@@ -4,7 +4,7 @@ Diese Warteschlange enthält ausschließlich die bereits in der Projektübergabe
 
 | Priorität | Produktionsblock | Status | Dokumentierter Inhalt |
 |---:|---|---|---|
-| 1 | Technische Produktionsspezifikation | Nicht begonnen | Zielplattformen, Engine, Code- und Datenarchitektur, Zustandsmodell, Persistenz, Cloud-/Offline-Strategie, Analytics, Ads, In-App-Käufe, Datenschutz, Qualitätssicherung und Releasepipeline. |
+| 1 | Technische Produktionsspezifikation | **Abgeschlossen (`WP-ARCH-001`)** | Architecture v0.1 mit Zielplattformen, Engine, Code- und Datenarchitektur, Zustandsmodell, Persistenz, Cloud-/Offline-Strategie, Analytics, Ads, In-App-Käufe, Datenschutz, Qualitätssicherung und Releasepipeline. Drei Folgeblocker sind fail-closed dokumentiert. |
 | 2 | Puzzle-Solver und Levelauthoring | Nicht begonnen | Implementierbarer Solver, Eindeutigkeitsprüfung, Generatorvalidierung, Leveldatenformat, Editor-Workflow und automatisierte Tests. |
 | 3 | 240 konkrete Rätselinstanzen | Nicht begonnen | Pro Meldung Lösung, Randzahlen, A/B-Positionen, Solver-Nachweis, Einstiegsschluss, Qualitätsnotiz, Zeitklasse und Abschlussinszenierung. |
 | 4 | Finale Zeitwerte | Nicht begonnen | Konkrete Zwei- und Drei-Sterne-Grenzen für gebaute und geprüfte Rätsel. |
@@ -17,7 +17,7 @@ Diese Warteschlange enthält ausschließlich die bereits in der Projektübergabe
 
 ## Bekannte Reihenfolgeabhängigkeit
 
-Der nächste bestätigte große Block ist die **Technische Produktionsspezifikation**. Die Projektübergabe hält außerdem fest, dass das technische Puzzle-Fundament vor der Produktion konkreter Rätselinstanzen, der Zeitkalibrierung oder einer Implementierung der Dauerbaustelle festgelegt werden muss. Weitere Reihenfolgen oder Detailzuschnitte werden erst durch freigegebene Work Packages dokumentiert.
+Die **Technische Produktionsspezifikation** ist mit `WP-ARCH-001` abgeschlossen. Der nächste noch nicht begonnene Produktionsblock ist **Puzzle-Solver und Levelauthoring**. Das technische Puzzle-Fundament muss weiterhin vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden. Weitere Reihenfolgen oder Detailzuschnitte werden erst durch freigegebene Work Packages dokumentiert.
 
 ## Pflege der Warteschlange
 
