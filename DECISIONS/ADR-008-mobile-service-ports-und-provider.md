@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -55,7 +55,7 @@ Contract-Tests laufen gegen Fakes und echte Sandboxadapter. Gerätetests decken 
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Ersetzt durch [ADR-015](./ADR-015-mobile-transaktionen-und-privacy-default-off.md).
 
 ## Referenzen
 

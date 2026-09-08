@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -49,7 +49,7 @@ Golden-Migrations-, Stromausfall-, Korruptions-, idempotente Transaktions- und R
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Ersetzt durch [ADR-014](./ADR-014-save-kanonisierung-und-ledgerkompaktierung.md).
 
 ## Referenzen
 

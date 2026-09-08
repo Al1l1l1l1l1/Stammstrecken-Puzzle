@@ -1,26 +1,43 @@
-# Architekturentscheidungen (ADR-System)
+# Architekturentscheidungen – verbindlicher ADR-Index
 
-Der Ordner `DECISIONS/` enthält künftig **Architecture Decision Records (ADRs)**. Ein ADR ist ein dauerhaftes, nachvollziehbares Protokoll für eine technische Architekturentscheidung und ihre Begründung. Dieser Ordner enthält derzeit **keine Architekturentscheidung**.
+**Aktueller Architekturstand:** **Architecture v0.2**, angenommen am 2026-09-08 im Rahmen von [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md).
+**Architektureinstieg:** [`ARCHITECTURE/ARCHITECTURE.md`](../ARCHITECTURE/ARCHITECTURE.md)
 
-## Zweck
+Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture Decision Records (ADRs) des Projekts. Ein ADR dokumentiert eine technische Entscheidung, ihre Begründung, Alternativen, Folgen und Ablösung. Produktentscheidungen bleiben den bestätigten Produktquellen vorbehalten.
 
-ADRs verhindern, dass technische Entscheidungen nur in einzelnen Chats, Modellkontexten oder impliziten Implementierungsdetails existieren. Sie machen für jeden späteren Agenten sichtbar, welche technische Entscheidung gilt, warum sie getroffen wurde, welche Alternativen geprüft wurden und ob sie später ersetzt wurde.
+## Aktueller Index
+
+| ADR | Titel | Status | Geltung in Architecture v0.2 |
+|---|---|---|---|
+| [ADR-001](./ADR-001-unity-6-3-lts.md) | Unity 6.3 LTS als Game Engine | **Angenommen** | Gültig. |
+| [ADR-002](./ADR-002-csharp-9-und-il2cpp.md) | C# 9 und IL2CPP | **Angenommen** | Gültig. |
+| [ADR-003](./ADR-003-domain-trennung-und-modulgrenzen.md) | Reine Puzzle-Domain und gerichtete Modulgrenzen | **Ersetzt** | Historisch; durch ADR-013 ersetzt. |
+| [ADR-004](./ADR-004-json-leveldaten-und-content-pipeline.md) | Versionierte JSON-Leveldaten | **Angenommen** | Gültig; durch ADR-016 um Non-Level-Kataloge und Endless-Identität ergänzt. |
+| [ADR-005](./ADR-005-deterministisches-command-state-modell.md) | Deterministisches Command/State-Modell | **Angenommen** | Gültig. |
+| [ADR-006](./ADR-006-lokale-persistenz-und-offline-first.md) | Lokaler atomarer Save als Offline-First-Wahrheit | **Ersetzt** | Historisch; durch ADR-014 ersetzt. |
+| [ADR-007](./ADR-007-solver-und-eindeutigkeitspruefung.md) | Deterministischer Constraint-Solver | **Angenommen** | Gültig. |
+| [ADR-008](./ADR-008-mobile-service-ports-und-provider.md) | Mobile-Service-Ports mit Google- und Unity-Adaptern | **Ersetzt** | Historisch; durch ADR-015 ersetzt. |
+| [ADR-009](./ADR-009-automatisierte-teststrategie.md) | Automatisierte Tests als Architekturgrenze | **Ersetzt** | Historisch; durch ADR-017 ersetzt. |
+| [ADR-010](./ADR-010-build-release-und-observability.md) | Build, Release und Observability | **Angenommen** | Gültig, soweit ADR-015 die Privacy-Aktivierung präzisiert. |
+| [ADR-011](./ADR-011-ui-assets-lokalisierung-und-audio.md) | UI, Assets, Lokalisierung und Audio | **Angenommen** | Gültig. |
+| [ADR-012](./ADR-012-mobile-plattformbaselines.md) | Mobile Plattformbaselines | **Angenommen** | Gültig. |
+| [ADR-013](./ADR-013-zyklusfreie-ports-und-modulgrenzen.md) | Zyklusfreie Ports und Modulgrenzen | **Angenommen** | Gültig; ersetzt ADR-003. |
+| [ADR-014](./ADR-014-save-kanonisierung-und-ledgerkompaktierung.md) | Save-Kanonisierung und Ledgerkompaktierung | **Angenommen** | Gültig; ersetzt ADR-006. |
+| [ADR-015](./ADR-015-mobile-transaktionen-und-privacy-default-off.md) | Mobile Transaktionen und Privacy Default-Off | **Angenommen** | Gültig; ersetzt ADR-008 und präzisiert ADR-010. |
+| [ADR-016](./ADR-016-katalogvertraege-und-endless-identitaet.md) | Katalogverträge und Endless-Identität | **Angenommen** | Gültig; ergänzt ADR-004. |
+| [ADR-017](./ADR-017-versionierter-architekturvalidator.md) | Versionierter Architekturvalidator | **Angenommen** | Gültig; ersetzt ADR-009. |
+
+Damit existieren **17 ADRs**: 13 sind angenommen und aktuell wirksam; 4 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Eine bloße Präzisierung ohne Ablösung ist nur zulässig, wenn beide ADRs konsistent nebeneinander gelten und der Index dies ausdrücklich benennt.
 
 ## Wann ein ADR erforderlich ist
 
-Ein ADR ist erforderlich, bevor eine technische Entscheidung umgesetzt wird, wenn sie die Architektur, Datenhaltung, Persistenz, Sicherheits- oder Datenschutzgrenzen, Plattformstrategie, externe Dienste, Integrationen, Build- oder Releasefähigkeit oder eine andere langfristige Systemgrenze beeinflusst.
+Ein ADR ist erforderlich, bevor eine technische Entscheidung umgesetzt wird, wenn sie Architektur, Datenhaltung, Persistenz, Sicherheits- oder Datenschutzgrenzen, Plattformstrategie, externe Dienste, Integrationen, Build- oder Releasefähigkeit oder eine andere langfristige Systemgrenze beeinflusst.
 
-Ein ADR ist kein Ersatz für eine Produktentscheidung. Er darf bestätigte Produktleitplanken nicht verändern. Fehlt eine notwendige Produktentscheidung, wird sie als Blocker dokumentiert statt durch einen ADR zu erfinden.
+Ein ADR ist kein Ersatz für eine Produktentscheidung. Es darf bestätigte Produktleitplanken nicht verändern. Fehlt eine notwendige Produktentscheidung, wird sie als Blocker dokumentiert statt durch ein ADR erfunden.
 
 ## Ablage und Dateinamen
 
-Jeder ADR wird als eigene Markdown-Datei unmittelbar in diesem Ordner gespeichert. Das Format lautet:
-
-```text
-ADR-###-kurzer-titel.md
-```
-
-Die Nummer ist fortlaufend, eindeutig und wird nie wiederverwendet. Bereits angenommene ADRs werden nicht überschrieben oder still verändert.
+Jeder ADR liegt unmittelbar in diesem Ordner und folgt dem Format `ADR-###-kurzer-titel.md`. Die Nummer ist fortlaufend, eindeutig und wird nie wiederverwendet. Ein angenommener ADR wird inhaltlich nicht still umgeschrieben. Erlaubt sind nachträgliche Status-, Link- und Ersetzungsverweise, die seine historische Entscheidung nicht verändern.
 
 ## Verbindliche ADR-Struktur
 
@@ -29,19 +46,27 @@ Die Nummer ist fortlaufend, eindeutig und wird nie wiederverwendet. Bereits ange
 | Titel und ID | Eindeutige ADR-Nummer und kurze Bezeichnung. |
 | Status | Entwurf, angenommen, ersetzt oder verworfen. |
 | Datum | Datum der Dokumentation. |
-| Kontext | Dokumentierte Ausgangslage, Anforderungen, Einschränkungen und relevante Projektquellen. |
-| Entscheidung | Präzise, überprüfbare technische Entscheidung. |
+| Kontext | Ausgangslage, Anforderungen, Einschränkungen und relevante Projektquellen. |
+| Entscheidung | Präzise und überprüfbare technische Entscheidung. |
 | Begründung | Warum die Entscheidung den dokumentierten Anforderungen entspricht. |
-| Betrachtete Alternativen | Relevante Alternativen und nachvollziehbare Gründe gegen ihre Wahl. |
-| Konsequenzen | Erwartete technische Folgen, Risiken, Migrations- oder Prüfpflichten. |
-| Betroffene Artefakte | Work Packages, Dateien, Module und Dokumentation, die von der Entscheidung berührt werden. |
-| Validierung | Wie die Entscheidung geprüft oder nach ihrer Umsetzung nachgewiesen wird. |
-| Ersetzt / ersetzt durch | Referenz auf frühere oder spätere ADRs, sofern vorhanden. |
+| Betrachtete Alternativen | Relevante Alternativen und Gründe gegen ihre Wahl. |
+| Konsequenzen | Technische Folgen, Risiken, Migrationen und Prüfpflichten. |
+| Betroffene Artefakte | Work Packages, Dateien und Module. |
+| Validierung | Nachweis der Entscheidung. |
+| Ersetzt / ersetzt durch | Beidseitige Referenz auf frühere oder spätere ADRs. |
 
-## Lebenszyklus
+## Lebenszyklus und Superseding
 
-Ein ADR beginnt als **Entwurf** und ist noch nicht verbindlich. Erst der Status **angenommen** macht eine technische Entscheidung verbindlich. Eine angenommene Entscheidung darf nur durch einen neuen ADR mit klarer Referenz ersetzt werden. Der frühere ADR bleibt erhalten und erhält den Status **ersetzt**. Ein verworfener ADR dokumentiert eine nicht angenommene Alternative und erzeugt keine Architekturvorgabe.
+Ein ADR beginnt als **Entwurf** und ist nicht verbindlich. Erst **Angenommen** macht die Entscheidung wirksam. Eine angenommene Entscheidung wird nur durch einen neuen, fortlaufend nummerierten ADR abgelöst. Der neue ADR benennt den Vorgänger im Abschnitt „Ersetzt / ersetzt durch“; der alte ADR erhält ausschließlich die Statusänderung **Ersetzt** und den Rückverweis. Beide Verweise müssen atomar im selben Work Package erfolgen.
 
-## Abgrenzung zum aktuellen Projektstand
+Ein ersetzter ADR bleibt unverändert als historische Begründung erhalten. Der Index wird im selben Commit aktualisiert. Ein verworfener ADR dokumentiert eine nicht angenommene Alternative und erzeugt keine Vorgabe. Das zugehörige Work Package, die Architektur-Navigation und der Validator müssen den gleichen Status ausweisen.
 
-Die Architekturversion des Projekts ist aktuell **nicht erstellt**. Dieses README definiert nur das Verfahren für künftige Entscheidungen und trifft weder eine Technologieauswahl noch eine Architektur-, Implementierungs- oder Datenmodellentscheidung.
+## Governance-Prüfung
+
+Der eingecheckte Validator prüft fortlaufende eindeutige Nummern, zulässige Statuswerte, Pflichtabschnitte, bidirektionale Ersetzungsverweise, Indexvollständigkeit und den in `PROJECT_CONTROL/CURRENT_STATE.md` benannten Architekturstand. Ein fehlender oder widersprüchlicher Indexeintrag blockiert den Abschluss.
+
+## Referenzen
+
+[1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
+[2]: ../ARCHITECTURE/ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.2"
+[3]: ../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md "WP-002 – Architecture-v0.2-Korrekturen"

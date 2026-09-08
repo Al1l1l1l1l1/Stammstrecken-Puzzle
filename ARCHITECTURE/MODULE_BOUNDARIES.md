@@ -1,8 +1,8 @@
-# Module Boundaries v0.1
+# Module Boundaries v0.2
 
 ## 1. Ziel
 
-Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Produktionsassembly besitzt eine `.asmdef`, eine dokumentierte Verantwortung und eine Allowlist direkter Referenzen. Zirklen, globale Service-Locator und implizite Szenenabhängigkeiten sind verboten.
+Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Produktionsassembly besitzt eine `.asmdef`, eine dokumentierte Verantwortung und eine Allowlist direkter Referenzen. Zirkeln, globale Service-Locator und implizite Szenenabhängigkeiten sind verboten.
 
 ## 2. Vorgesehene Repository-Struktur
 
@@ -26,7 +26,9 @@ Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Pro
 │       │   ├── Application/
 │       │   ├── Infrastructure/Content/
 │       │   ├── Infrastructure/Persistence/
-│       │   ├── MobileServices/
+│       │   ├── MobileServices/Google/
+│       │   ├── MobileServices/Store/
+│       │   ├── Platform/
 │       │   ├── Presentation/UI/
 │       │   ├── Presentation/World/
 │       │   ├── Audio/
@@ -44,6 +46,7 @@ Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Pro
 │   ├── Device/
 │   ├── Fixtures/
 │   └── Golden/
+├── tools/architecture-validation/
 ├── Packages/
 ├── ProjectSettings/
 └── .github/workflows/
@@ -51,48 +54,47 @@ Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Pro
 
 `Assets/StammstreckenPuzzle/Generated/` wird ausschließlich von versionierten Importern beschrieben. Authoringquellen bleiben unter `Content/`. Temporäre Unity-Verzeichnisse wie `Library`, `Temp`, `Logs`, `UserSettings` und lokale Builds werden ignoriert.
 
-## 3. Produktionsassemblies
+## 3. Einzige normative Produktionsassembly-Allowlist
 
-Die folgende Tabelle ist die **einzige normative Allowlist** direkter Assembly- und Paketreferenzen. Jede nicht genannte direkte Referenz ist verboten. `Domain Read Types` bezeichnet Typen aus `STP.Puzzle.Domain` und ist keine zusätzliche Assembly. CI liest beziehungsweise spiegelt diese Tabelle in einer versionierten maschinenprüfbaren Allowlist; ein Unterschied zwischen Dokument und Prüfliste blockiert den Merge.
+Die folgende Tabelle ist die **einzige normative Allowlist interner direkter Assemblyreferenzen**. Eine nicht genannte direkte interne Referenz ist verboten. Externe Paketreferenzen stehen nach einem Semikolon und werden getrennt geprüft. „Domain Read Types“ ist keine Assembly; Präsentationsassemblies referenzieren hierfür direkt `STP.Puzzle.Domain`.
 
-| Assembly | Verantwortung | Direkte Referenzen |
-|---|---|---|
-| `STP.Puzzle.Domain` | Werteobjekte, Puzzledefinition, Sessionstate, Commands, Invarianten und Completion. | Keine. `noEngineReferences: true`. |
-| `STP.Puzzle.Solver` | Constraintmodell, Propagation, Suche, Proof und Deduktionsspur. | `STP.Puzzle.Domain`. `noEngineReferences: true`. |
-| `STP.Application` | Use Cases, Fortschritt, Ökonomie, Policies, Read Models und Ports. | Domain, Solver. `noEngineReferences: true`. |
-| `STP.Infrastructure.Content` | JSON-Parsing, Schema-/Semantikadapter, Katalog und Addressable-Mapping. | Application, Domain, Newtonsoft Json, Addressables. |
-| `STP.Infrastructure.Persistence` | Save-Serializer, atomare Dateien, Migrationen, Checksummen und Backup. | Application, Domain, Newtonsoft Json. |
-| `STP.MobileServices.Contracts` | Anbieterfreie Adapter-DTOs, Fehlercodes und Konfigurationsverträge. | Application. |
-| `STP.MobileServices.Google` | Mobile Ads, UMP, Firebase Analytics und Crashlytics. | MobileServices.Contracts und jeweilige SDKs. |
-| `STP.MobileServices.Store` | Unity-IAP-Adapter und Storetransaktionsmapping. | MobileServices.Contracts, Unity IAP. |
-| `STP.Platform` | App-Lifecycle, Netzwerkstatus, Safe Area, Haptik und Plattforminformationen. | Application, UnityEngine/Input System. |
-| `STP.Audio` | Audio-Cue-Mapping, AudioMixer und Lifecycle. | Application, UnityEngine, Addressables. |
-| `STP.Presentation.UI` | UI Toolkit Screens, Presenter, Custom Grid und Navigation. | Application, Domain Read Types, UI Toolkit, Input System, Localization. |
-| `STP.Presentation.World` | Zugfahrt, Kartenwelt, 2D-/2.5D-Renderer und Animation. | Application, Domain Read Types, UnityEngine, URP, Addressables. |
-| `STP.Bootstrap` | Composition Root, Startreihenfolge, Buildkonfiguration und Szenenentry. | Alle konkreten Runtimeassemblies. |
-| `STP.Editor.Content` | Import, Authoringfenster, Batchvalidator und Buildkatalog. | Domain, Solver, Infrastructure.Content, UnityEditor. |
-| `STP.Editor.Build` | Reproduzierbare Buildentrypoints und Preflight. | Bootstrap-Verträge, UnityEditor. |
+| Assembly | Verantwortung | Direkte interne Referenzen | Zulässige externe Pakete |
+|---|---|---|---|
+| `STP.Puzzle.Domain` | Werteobjekte, Puzzledefinition, Sessionstate, Commands, Invarianten und Completion. | Keine. | .NET/C#-Basisbibliothek; `noEngineReferences: true`. |
+| `STP.Puzzle.Solver` | Constraintmodell, Propagation, Suche, Proof und Deduktionsspur. | `STP.Puzzle.Domain` | .NET/C#-Basisbibliothek; `noEngineReferences: true`. |
+| `STP.Application` | Use Cases, Fortschritt, Economy, Policies, Read Models und sämtliche providerneutralen Ports/Ergebnisunionen. | `STP.Puzzle.Domain`, `STP.Puzzle.Solver` | .NET/C#-Basisbibliothek; `noEngineReferences: true`. |
+| `STP.Infrastructure.Content` | JSON-Parsing, Schema-/Semantikadapter, Level-/Katalogports und Addressable-Mapping. | `STP.Application`, `STP.Puzzle.Domain` | Newtonsoft Json, Addressables. |
+| `STP.Infrastructure.Persistence` | Save-Serializer, atomare Dateien, Migrationen, Hashprofile, Ledgercheckpoint und Backup. | `STP.Application`, `STP.Puzzle.Domain` | Newtonsoft Json. |
+| `STP.MobileServices.Google` | Mobile Ads, UMP, Firebase Analytics und Crashlytics; implementiert Application-Ports. | `STP.Application` | jeweilige Google-/Firebase-SDKs. |
+| `STP.MobileServices.Store` | Unity-IAP-Adapter, lokale Belegprüfung und Storetransaktionsmapping; implementiert `IPurchasePort`. | `STP.Application` | Unity IAP. |
+| `STP.Platform` | App-Lifecycle, Netzwerkstatus, Safe Area, Haptik und Plattforminformationen. | `STP.Application` | UnityEngine, Input System. |
+| `STP.Audio` | Audio-Cue-Mapping, AudioMixer und Lifecycle. | `STP.Application` | UnityEngine, Addressables. |
+| `STP.Presentation.UI` | UI Toolkit Screens, Presenter, Custom Grid und Navigation. | `STP.Application`, `STP.Puzzle.Domain` | UI Toolkit, Input System, Localization. |
+| `STP.Presentation.World` | Zugfahrt, Kartenwelt, 2D-/2.5D-Renderer und Animation. | `STP.Application`, `STP.Puzzle.Domain` | UnityEngine, URP, Addressables. |
+| `STP.Bootstrap` | Composition Root, Startreihenfolge, Buildkonfiguration und Szenenentry. | `STP.Infrastructure.Content`, `STP.Infrastructure.Persistence`, `STP.MobileServices.Google`, `STP.MobileServices.Store`, `STP.Platform`, `STP.Audio`, `STP.Presentation.UI`, `STP.Presentation.World` | UnityEngine. |
+| `STP.Editor.Content` | Import, Authoringfenster, Batchvalidator und Buildkatalog. | `STP.Puzzle.Domain`, `STP.Puzzle.Solver`, `STP.Infrastructure.Content` | UnityEditor. |
+| `STP.Editor.Build` | Reproduzierbare Buildentrypoints und Preflight. | `STP.Bootstrap` | UnityEditor. |
 
-`STP.Puzzle.Domain`, `STP.Puzzle.Solver` und `STP.Application` enthalten keine Unity-Objekte, Coroutines, Scenes, ScriptableObjects, SDK-Typen oder Dateisystemzugriffe.
+Es existieren weder `STP.MobileServices.Contracts` noch eine Assembly „Bootstrap-Verträge“. Providerneutrale Ports gehören dem inneren Verbraucher `STP.Application`; konkrete Adapter hängen davon ab. `STP.Puzzle.Domain`, `STP.Puzzle.Solver` und `STP.Application` enthalten keine Unity-Objekte, Coroutines, Scenes, ScriptableObjects, SDK-Typen oder Dateisystemzugriffe.
 
 ## 4. Testassemblies
 
 | Assembly | Testziel |
 |---|---|
-| `STP.Tests.Domain.EditMode` | Commands, Invarianten, Completion, Properties und Replay. |
+| `STP.Tests.Domain.EditMode` | Commands, Invarianten, Ein-Zellen-Completion, Properties und Replay. |
 | `STP.Tests.Solver.EditMode` | 0/1/2+-Lösungen, Proofs, Metamorphosen, Limits und Performance. |
-| `STP.Tests.Application.EditMode` | Fortschritt, Sterne, Rewards, Anzeigenpolicy und Idempotenz mit Fakes. |
-| `STP.Tests.Persistence.EditMode` | Roundtrip, Migration, Korruption, atomare Recovery und Ledger. |
-| `STP.Tests.Content.EditMode` | Schema, Semantik, Katalog und deterministischer Import. |
+| `STP.Tests.Application.EditMode` | Fortschritt, Sterne, Rewards, Cosmetics, Anzeigenpolicy und Idempotenz mit Fakes. |
+| `STP.Tests.Persistence.EditMode` | Roundtrip, Hashprofile, Migration, Korruption, atomare Recovery und Ledgerkompaktierung. |
+| `STP.Tests.Content.EditMode` | Level-/Katalogschema, Semantik, Cross-References und deterministischer Import. |
 | `STP.Tests.Presentation.PlayMode` | Navigation, Grid, Fokus, Safe Area, Abschlussreihenfolge und Scene Wiring. |
 | `STP.Tests.Mobile.PlayMode` | Adaptercontracts mit Fakes und Sandbox-Stubs. |
-| `STP.Tests.Device` | Reale Android-/iOS-Lifecycle-, Store-, Consent-, Ads- und Crash-Smokes. |
+| `STP.Tests.Device` | Physische Android-/iOS-Lifecycle-, Store-, Consent-, Ads-, Telemetrie- und Crash-Smokes. |
 
 Tests dürfen Produktionsassemblies referenzieren. Produktionsassemblies dürfen nie Testassemblies oder Fixturepfade referenzieren.
 
-## 5. Abhängigkeitsgraph
+## 5. Nicht normative Visualisierung der internen Kanten
 
-Der folgende Graph ist eine **nicht normative Visualisierung ausschließlich interner Assemblykanten**. Externe Unity-/SDK-Pakete werden aus Gründen der Lesbarkeit nicht dargestellt. Bei jeder Abweichung gilt ausschließlich die Tabelle in Abschnitt 3; der Dokumentkonsistenztest muss eine solche Abweichung melden.
+Der Graph visualisiert ausschließlich die in Abschnitt 3 erlaubten internen Kanten. Bei Abweichung gilt die Tabelle; der Dokumentkonsistenztest muss jede Abweichung melden.
 
 ```mermaid
 flowchart TD
@@ -104,9 +106,8 @@ flowchart TD
     Content --> Domain
     Persist[STP.Infrastructure.Persistence] --> App
     Persist --> Domain
-    Contracts[STP.MobileServices.Contracts] --> App
-    Google[STP.MobileServices.Google] --> Contracts
-    Store[STP.MobileServices.Store] --> Contracts
+    Google[STP.MobileServices.Google] --> App
+    Store[STP.MobileServices.Store] --> App
     Platform[STP.Platform] --> App
     Audio[STP.Audio] --> App
     UI[STP.Presentation.UI] --> App
@@ -121,28 +122,35 @@ flowchart TD
     Bootstrap --> Audio
     Bootstrap --> UI
     Bootstrap --> World
+    EditorContent[STP.Editor.Content] --> Domain
+    EditorContent --> Solver
+    EditorContent --> Content
+    EditorBuild[STP.Editor.Build] --> Bootstrap
 ```
 
-Pfeile bedeuten „referenziert“. Die Verbotswirkung stammt aus der normativen Tabelle, nicht aus der Visualisierung.
+Pfeile bedeuten „referenziert“. Der Graph ist azyklisch. Die Verbotswirkung stammt aus Abschnitt 3.
 
-## 6. Application-Ports
+## 6. Normative Application-Ports
 
-| Port | Minimale Verantwortung | Verbotene Verantwortung |
-|---|---|---|
-| `ISaveRepository` | Snapshot laden, atomar speichern, Backupstatus melden. | Fortschritt berechnen. |
-| `ILevelCatalog` | Definition nach stabiler ID liefern und Katalogrevision melden. | Spielerzustand verändern. |
-| `IClock` | UTC für Tagesgrenzen und monotone aktive Zeit liefern. | Wanduhr als Rätseltimer verwenden. |
-| `IAdsPort` | Verfügbarkeit, Load, Show und typisiertes Ergebnis. | Werbefrequenz oder Zeitpunkt entscheiden. |
-| `IPurchasePort` | Produkte, Kauf, Pending, Restore und Belegreferenz abbilden. | Entitlement direkt vergeben. |
-| `IConsentPort` | Status aktualisieren, Optionen zeigen, Fähigkeiten freigeben. | Produktnavigation blockieren. |
-| `IAnalyticsPort` | freigegebene, schema-konforme Events senden. | Gameplay-Wahrheit speichern. |
-| `ICrashReportingPort` | nicht personenbezogene Keys, Logs und Exceptions senden. | Save-Inhalte hochladen. |
-| `IAudioPort` | semantische Cues, Gruppenlautstärke und Pause. | Clipnamen an Application liefern. |
-| `IAppLifecyclePort` | Foreground, Background, Suspend und Quit melden. | Puzzlezeit selbst berechnen. |
-| `INetworkStatusPort` | grobe Erreichbarkeit als Hinweis liefern. | Erfolg eines Dienstaufrufs garantieren. |
-| `IHapticsPort` | semantische Haptik-Cues ausführen. | Gameplayfeedback als Richtigkeitsurteil erfinden. |
+| Port | Implementierendes Modul | Minimale Verantwortung | Verbotene Verantwortung |
+|---|---|---|---|
+| `ISaveRepository` | `STP.Infrastructure.Persistence` | Snapshot laden, atomar speichern, Backupstatus melden. | Fortschritt berechnen. |
+| `ILevelCatalog` | `STP.Infrastructure.Content` | Definition nach stabiler ID liefern und Katalogrevision melden. | Spielerzustand verändern. |
+| `ICampaignCatalog` | `STP.Infrastructure.Content` | Hierarchie, Reihenfolge und Unlockdefinitionen liefern. | Fortschritt schreiben. |
+| `ICompletionCatalog` | `STP.Infrastructure.Content` | Reward- und Completiondefinitionen liefern. | Rewardberechtigung oder Ledger mutieren. |
+| `ICosmeticsCatalog` | `STP.Infrastructure.Content` | Itemstatus, Preis und Referenzen liefern. | Ownership vergeben oder Saldo prüfen. |
+| `IClock` | `STP.Platform` | UTC für ausdrücklich freigegebene Policies und monotone aktive Zeit liefern. | Wanduhr als Rätseltimer verwenden. |
+| `IAdsPort` | `STP.MobileServices.Google` | Verfügbarkeit, Load, Show und typisiertes Ergebnis. | Werbefrequenz oder Zeitpunkt entscheiden. |
+| `IPurchasePort` | `STP.MobileServices.Store` | Produkte, Kaufbeleg, lokale Prüfung, Acknowledge/Finish, Pending, Restore und Revocation abbilden. | Entitlement direkt vergeben. |
+| `IConsentPort` | `STP.MobileServices.Google` | Status aktualisieren, Optionen zeigen, explizite Capabilities liefern. | Produktnavigation blockieren oder unklare Zustände freigeben. |
+| `IAnalyticsPort` | `STP.MobileServices.Google` | freigegebene, schema-konforme Events senden. | Gameplay-Wahrheit speichern oder vor Capability senden. |
+| `ICrashReportingPort` | `STP.MobileServices.Google` | freigegebene Keys, Logs und Exceptions senden. | Save-Inhalte hochladen oder vor Capability aktivieren. |
+| `IAudioPort` | `STP.Audio` | semantische Cues, Gruppenlautstärke und Pause. | Clipnamen an Application liefern. |
+| `IAppLifecyclePort` | `STP.Platform` | Foreground, Background, Suspend und Quit melden. | Puzzlezeit selbst berechnen. |
+| `INetworkStatusPort` | `STP.Platform` | grobe Erreichbarkeit als Hinweis liefern. | Erfolg eines Dienstaufrufs garantieren. |
+| `IHapticsPort` | `STP.Platform` | semantische Haptik-Cues ausführen. | Gameplayfeedback als Richtigkeitsurteil erfinden. |
 
-Jeder asynchrone Port nimmt einen Cancellation-Token und liefert einen diskriminierten Status wie `Succeeded`, `Unavailable`, `NotAllowed`, `Cancelled`, `TimedOut`, `Pending` oder `Failed`. Anbieterexceptions überschreiten die Adaptergrenze nicht.
+`ISaveSyncPort` existiert nicht. Eine Cloudfunktion benötigt zuerst bestätigte Konto-, Datenschutz- und Konfliktregeln sowie ein ersetzendes ADR. Jeder asynchrone Port nimmt Cancellation und liefert einen diskriminierten Status wie `Succeeded`, `Unavailable`, `NotAllowed`, `Cancelled`, `TimedOut`, `Pending` oder `Failed`. Anbieterexceptions überschreiten die Adaptergrenze nicht.
 
 ## 7. Composition Root und Lifecycle
 
@@ -154,13 +162,15 @@ MonoBehaviours dienen ausschließlich als Unity-Lifecycle- und Renderingadapter.
 
 Domain und Application laufen seriell auf einem logischen Application-Thread. SDK-Callbacks und Hintergrund-I/O werden in unveränderliche Ergebnisse übersetzt und vor Zustandsmutation auf diesen Thread gestellt. Render- und UI-Objekte werden ausschließlich auf dem Unity-Hauptthread berührt.
 
-Große Daten werden nicht global gecacht. Leveldefinitionen sind immutable und nach ID cachebar. Save-Snapshots werden nach erfolgreichem Commit ausgetauscht. Eventhandler werden über explizite Subscriptions mit Lebensdauer verwaltet; anonyme globale statische Events sind verboten.
+Level- und Katalogdefinitionen sind immutable und nach stabiler ID cachebar. Save-Snapshots werden nach erfolgreichem Commit ausgetauscht. Eventhandler werden über explizite Subscriptions mit Lebensdauer verwaltet; anonyme globale statische Events sind verboten.
 
 ## 9. Maschinenprüfbare Grenzregeln
 
-CI prüft mindestens:
+CI und der Architekturvalidator prüfen mindestens:
 
-- `.asmdef`-Referenzen gegen eine Allowlist;
+- `.asmdef`-Referenzen gegen die Allowlist aus Abschnitt 3;
+- ausschließlich bekannte konkrete Assemblyknoten;
+- Azyklizität des internen Graphen;
 - `noEngineReferences` für Domain, Solver und Application;
 - keine SDK-Namensräume außerhalb zuständiger Adapter;
 - keine `UnityEngine`-Referenz in reinen Assemblies;
@@ -168,15 +178,17 @@ CI prüft mindestens:
 - keine `Resources.Load`-Aufrufe im Projektcode;
 - keine statischen veränderlichen Service-Instanzen;
 - keine sichtbaren Stringliterale in Presentern;
-- keine direkten Dateisystem- oder Netzwerkaufrufe aus Domain/Application;
-- keine zirkulären Assemblyabhängigkeiten.
+- keine direkten Dateisystem- oder Netzwerkaufrufe aus Domain/Application.
 
 ## 10. Regeln für neue Agenten
 
-Ein Agent ändert genau ein fachlich kohärentes Modul pro Work Package. Er liest zuerst den zuständigen Architekturvertrag und bestehende Tests. Neue öffentliche Typen benötigen XML-Dokumentation und Contracttests. Eine neue Assembly, ein neuer Port oder eine neue direkte Referenz ist eine Architekturänderung und benötigt vor Implementierung ADR-Prüfung.
+Ein Work Package beschreibt **eine fachlich kohärente, einzeln testbare Änderung mit explizit aufgelisteten betroffenen Modulen**. Wenn eine vollständige architektonische Transaktion mehrere Module zwingend gemeinsam ändern muss, werden diese im selben Work Package geändert. Beiläufige Refactorings oder nicht aufgelistete Module bleiben verboten.
+
+Ein Agent liest zuerst die zuständigen Architekturverträge und bestehenden Tests. Neue öffentliche Typen benötigen XML-Dokumentation und Contracttests. Eine neue Assembly, ein neuer Port oder eine neue direkte Referenz ist eine Architekturänderung und benötigt vor Implementierung ADR-Prüfung.
 
 ## Referenzen
 
-[1]: ../DECISIONS/ADR-003-domain-trennung-und-modulgrenzen.md "ADR-003 – Reine Puzzle-Domain und gerichtete Modulgrenzen"
-[2]: ./ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.1"
-[3]: ./TEST_STRATEGY.md "Test Strategy v0.1"
+[1]: ../DECISIONS/ADR-013-zyklusfreie-ports-und-modulgrenzen.md "ADR-013 – Zyklusfreie Ports und Modulgrenzen"
+[2]: ./ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.2"
+[3]: ./TEST_STRATEGY.md "Test Strategy v0.2"
+[4]: ../PROJECT_CONTROL/WORK_PACKAGE_RULES.md "Regeln für Work Packages"

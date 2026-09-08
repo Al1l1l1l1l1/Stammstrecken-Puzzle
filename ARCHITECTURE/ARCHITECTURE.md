@@ -1,16 +1,16 @@
-# Stammstrecken-Puzzle – Architecture v0.1
+# Stammstrecken-Puzzle – Architecture v0.2
 
 **Status:** Angenommen
 
-**Stand:** 2026-09-07
+**Stand:** 2026-09-08
 
 **Geltungsbereich:** Mobile-Spiel für Android und iOS
 
-**Work Package:** [`WP-ARCH-001`](../WORK_PACKAGES/WP-ARCH-001_Technische_Produktionsspezifikation.md)
+**Work Package:** [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md)
 
 ## 1. Architekturauftrag
 
-Architecture v0.1 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage. Sie legt Technologien, Grenzen, Datenverträge, Qualitätsgates und Releasewege fest. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
+Architecture v0.2 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt die zwölf Findings des unabhängigen Sol-Reviews. Sie legt Technologien, zyklusfreie Grenzen, Daten-/Transaktionsverträge, Privacy-Defaults, Qualitätsgates und Releasewege fest. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
 
 Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der persistente Projektstand liegt vollständig in Repository, Architecture Decision Records (ADRs), maschinenprüfbaren Datenverträgen und Tests. Kein Implementierungsschritt darf Wissen aus einem Chat voraussetzen.
 
@@ -21,9 +21,9 @@ Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der p
 | 1 | Fachliche Korrektheit | Reine deterministische Puzzle-Domain, Eindeutigkeits-Solver und Invariantentests. |
 | 2 | Agentenwechsel ohne Wissensverlust | Kleine Assemblies, explizite Ports, ADRs, versionierte Formate und keine versteckten Service-Locator. |
 | 3 | Offline-Verfügbarkeit | Alle Launchlevel und Kernfunktionen lokal; Netzwerkdienste sind optional und ausfallsicher. |
-| 4 | Datenintegrität | Atomare Saves, Backups, Prüfsummen, sequenzielle Migrationen und idempotente Belohnungen. |
+| 4 | Datenintegrität | Atomare Saves, JCS-Hashprofile, Backups, Migrationen, begrenztes Ledger und idempotente Transaktionen. |
 | 5 | Plattformfähigkeit | Eine Unity-Codebasis, IL2CPP, dünne Android-/iOS-Adapter und automatisierte Store-Preflights. |
-| 6 | Datenschutz | Consent vor optionalen SDKs, Datenminimierung, versioniertes Ereignisschema und keine Savegame-Exfiltration. |
+| 6 | Datenschutz | Native/buildseitige Default-Off-SDKs, explizite Capabilities, Datenminimierung und physische Netzwerk-Smokes. |
 | 7 | Reproduzierbarkeit | Gepinnte Toolchain und Pakete, deterministische Content-Importe, Buildmetadaten und CI-Gates. |
 | 8 | Einfachheit | Manuelle Composition Root, offizielle Unity-Pakete und keine unnötigen Frameworks. |
 
@@ -43,7 +43,7 @@ flowchart LR
     Source --> CI
 ```
 
-**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die Wahrheit für den nicht konsumierbaren Kauf `remove_ads`. Ads, Consent und Telemetrie sind optionale Adapter. Ihr Ausfall darf das Puzzle, Saves, Fortschritt oder bereits verdiente Inhalte nicht blockieren.
+**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die externe Wahrheit für den nicht konsumierbaren Kauf `remove_ads`; ein clientseitig verifizierter lokaler Grant bleibt bei transientem Storefehler aktiv. Ads, Consent und Telemetrie sind optionale Adapter. Analytics, Crashreports und Ads sind nativ default-off und ihr Ausfall darf Puzzle, Saves, Fortschritt oder verdiente Inhalte nicht blockieren.
 
 ## 4. Architekturstil
 
@@ -54,7 +54,7 @@ Das System verwendet eine pragmatische Ports-and-Adapters-Struktur mit einer rei
 | `STP.Puzzle.Domain` | Raster, Zellen, Gleise, Befehle, Invarianten, Completion. | Nur .NET/C#-Basisbibliothek. |
 | `STP.Puzzle.Solver` | Constraints, Lösungszählung, Proof und Deduktionsspur. | Domain. |
 | `STP.Application` | Use Cases, Policies, Fortschritt, Ökonomie, Ports und Orchestrierung. | Domain und Solver. |
-| Adapter | Persistenz, Content, Ads, IAP, Consent, Analytics, Crash, Audio und Lifecycle. | Application und notwendige Contracts. |
+| Adapter | Persistenz, Content, Ads, IAP, Consent, Analytics, Crash, Audio und Lifecycle. | Application-Ports und notwendige SDKs. |
 | Präsentation | UI Toolkit, Puzzlegrid, Karte und Zugfahrt. | Application Read Models und Commands; keine SDKs. |
 | `STP.Bootstrap` | Composition Root und Appstart. | Alle konkreten Module. |
 
@@ -67,10 +67,10 @@ Die verbindliche Feinstruktur steht in [`MODULE_BOUNDARIES.md`](./MODULE_BOUNDAR
 1. `Bootstrap` lädt Buildkonfiguration und lokale Content-Manifeste.
 2. Persistenzadapter liest Hauptstand, Backup und gegebenenfalls einen vollständig geschriebenen temporären Kandidaten.
 3. Save-Migratoren bringen den Snapshot sequenziell auf die aktuelle Version.
-4. Application validiert referenzierte Level- und Katalog-IDs.
-5. Consent wird aktualisiert; optionale SDKs bleiben bis zu einer zulässigen Entscheidung deaktiviert.
+4. Application validiert Level-, Campaign-, Completion- und Cosmetics-Kataloge samt Cross-References und Release-Lock.
+5. Consent wird aktualisiert; optionale SDKs sind bereits build-/nativ deaktiviert und bleiben bis zu einer explizit bestätigten Capability aus.
 6. UI zeigt sofort den lokal verfügbaren Startzustand. Netzwerkfehler erscheinen nicht als blockierender Startscreen.
-7. Kaufwiederherstellung und Telemetrieinitialisierung laufen nur über Ports und dürfen Kernnavigation nicht blockieren.
+7. IAP wird nur für Nutzeraktion oder persistente Recovery lazy initialisiert. Telemetrieinitialisierung erfolgt erst nach positiver Capability; beides darf Kernnavigation nicht blockieren.
 
 ### 5.2 Puzzleablauf
 
@@ -80,7 +80,7 @@ Die verbindliche Feinstruktur steht in [`MODULE_BOUNDARIES.md`](./MODULE_BOUNDAR
 4. Domain liefert neuen Snapshot, objektive Diagnosehinweise und Domainereignisse.
 5. Nach jeder fachlichen Mutation wird der Entwurf gedrosselt, aber crashsicher gespeichert.
 6. Bei gültiger A-B-Verbindung emittiert die Domain genau ein `PuzzleSolved`.
-7. Application verbucht Fortschritt und Belohnung idempotent, bevor die Zugfahrt beginnt.
+7. Application verbucht Fortschritt und Belohnung idempotent über Claimrecords und begrenztes Ledger, bevor die Zugfahrt beginnt.
 8. Präsentation zeigt Zugfahrt und Ergebnis in der bestätigten Reihenfolge.
 9. Erst nach vollständig sichtbarem Ergebnis und einer nachfolgenden Navigation darf die Ad-Policy eine unterbrechende Anzeige zulassen.
 
@@ -95,8 +95,9 @@ Kein externer SDK-Callback darf Domainzustand direkt mutieren. Callbacks werden 
 | Produktregeln | Konzeptdateien 00–15 | UI-Texte und Read Models. |
 | Architektur | Angenommene ADRs und diese Dokumente | Implementierungsdetails. |
 | Level | `Content/Levels/**/*.json` nach Schema und Semantikprüfung | Laufzeitkatalog, Addressables, Vorschaubilder. |
+| Kampagne/Completion/Kosmetik/Preise | versionierte JSON-Kataloge nach eigenen Schemata | Read Models und Betriebswerkdarstellung. |
 | Puzzleentwurf | Lokaler Save-Snapshot | UI-View-State. |
-| Fortschritt und Geduldspunkte | Lokaler Save mit idempotentem Ledger | Karten- und Profildarstellung. |
+| Fortschritt und Geduldspunkte | Lokaler Save mit Ledgercheckpoint, Journal und terminalen Claimrecords | Karten- und Profildarstellung. |
 | Werbefrei-Anspruch | Storetransaktion; lokal gecacht | Ad-Policy-Read-Model. |
 | Analytics | Ereignisschema plus freigegebener Adapter | Anbieter-Dashboards. |
 | Build | Git-Commit, Tag, Toolchainlock und Contenthash | Storeartefakte. |
@@ -116,6 +117,7 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 | [`PERSISTENCE.md`](./PERSISTENCE.md) | Saves, atomare Writes, Wiederherstellung, Migration und Offline-First. |
 | [`MOBILE_SERVICES.md`](./MOBILE_SERVICES.md) | Ads, IAP, Consent, Analytics, Audio und Plattformadapter. |
 | [`CONTENT_PIPELINE.md`](./CONTENT_PIPELINE.md) | Levelauthoring, Import, Assets und Lokalisierung. |
+| [`CONTENT_CATALOGS.md`](./CONTENT_CATALOGS.md) | Kampagne, Completion, Rewards, Kosmetik, Preise, Ownership und Cross-References. |
 | [`OBSERVABILITY.md`](./OBSERVABILITY.md) | Logging, Events, Crashdiagnose und Datenschutz. |
 | [`TEST_STRATEGY.md`](./TEST_STRATEGY.md) | Testpyramide, Invarianten, Geräteprüfungen und Gates. |
 | [`BUILD_AND_RELEASE.md`](./BUILD_AND_RELEASE.md) | Buildprofile, CI, Signing, Storetracks und Releasebelege. |
@@ -135,31 +137,37 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 10. Keine sichtbaren Strings, Assetpfade, Produkt-IDs oder SDK-Schlüssel werden in Domainlogik hart codiert.
 11. Jede neue Modulreferenz, Datenversion, externe SDK-Linie oder Plattformbaseline benötigt Prüfung gegen die ADRs.
 12. Kein Agent darf ein fehlschlagendes Gate durch Retry, Testlöschung oder stilles Downgrade umgehen.
+13. Savehashes verwenden ein benanntes Profil mit RFC-8785-Bytes; ein unbekanntes Profil ist nicht automatisch Korruption.
+14. Der fachliche `POST_CLEAR_PATIENCE`-Claim ist pro Meldung und Placement eindeutig; Provider-IDs sind nur Auditdaten.
+15. IAP-Entitlement wird vor Google Acknowledge beziehungsweise Apple Finish atomar persistiert und idempotent reconciled.
+16. Emulator oder Simulator allein erfüllt kein physisches Geräte- oder Privacy-Smoke-Gate.
 
 ## 9. Anforderungsabdeckung
 
 | Auftragsanforderung | Primärdokument | Entscheidung |
 |---|---|---|
 | Engine, Release-Linie, Sprache und Plattformbaselines | `TECH_STACK.md` | ADR-001, ADR-002, ADR-012 |
-| Source-Struktur und Modulgrenzen | `MODULE_BOUNDARIES.md` | ADR-003 |
+| Source-Struktur und Modulgrenzen | `MODULE_BOUNDARIES.md` | ADR-013 ersetzt ADR-003 |
 | Zustands-, Feld-, Werkzeug- und Gleismodell | `GAME_STATE_MODEL.md`, `PUZZLE_ENGINE.md` | ADR-005 |
-| Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-004 |
+| Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-004, ADR-016 |
 | Puzzlevalidierung | `PUZZLE_ENGINE.md` | ADR-005 |
 | Solver, Eindeutigkeit, Generatorvalidierung | `SOLVER_ARCHITECTURE.md` | ADR-007 |
 | Automatisierte Tests | `TEST_STRATEGY.md` | ADR-009 |
 | Levelauthoring | `CONTENT_PIPELINE.md` | ADR-004 |
-| Savegames und Offline-First | `PERSISTENCE.md` | ADR-006 |
-| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-008 |
-| Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-008 |
-| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-008, ADR-010 |
+| Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016 |
+| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-014 ersetzt ADR-006 |
+| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-015 ersetzt ADR-008 |
+| Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-015 |
+| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-015, ADR-010 |
 | Audio, Assets und Lokalisierung | `CONTENT_PIPELINE.md`, `MOBILE_SERVICES.md` | ADR-011 |
-| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010 |
+| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-017 |
 | Logging und Fehlerdiagnose | `OBSERVABILITY.md` | ADR-010 |
+| Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-017 ersetzt ADR-009 |
 | Fehlende Produktentscheidungen | `OPEN_BLOCKERS.md` | fail-closed Folgeblocker |
 
 ## 10. Offene Grenzen und Blockerstatus
 
-Architecture v0.1 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
+Architecture v0.2 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
 
 1. `BLOCKER-PROD-001` blockiert die finale Hint-Entitlement-/Economy-Implementierung.
 2. `BLOCKER-PROD-002` blockiert die Anspruchslogik der Betriebslage des Tages.
@@ -173,7 +181,7 @@ Vor einem öffentlichen Release sind jedoch externe Freigaben und Zugänge erfor
 
 ## 11. Änderungsverfahren
 
-Eine technische Änderung beginnt mit einem Work Package. Berührt sie eine angenommene Entscheidung, wird ein neuer ADR erstellt, der den alten ausdrücklich ersetzt. Datenverträge ändern sich nur mit Schema-/Save-Version, Migration und Rückwärtskompatibilitätstest. Architektur und Implementierung werden niemals allein über Chatabsprachen geändert.
+Eine technische Änderung beginnt mit einem regelkonformen Work Package `WP-###`. Berührt sie eine angenommene Entscheidung wesentlich, wird ein neuer ADR erstellt, der den alten ausdrücklich und bidirektional ersetzt. Datenverträge ändern sich nur mit Schema-/Save-/Hashprofilversion, Migration und Rückwärtskompatibilitätstest. Architektur und Implementierung werden niemals allein über Chatabsprachen geändert.
 
 ## Referenzen
 
@@ -181,3 +189,9 @@ Eine technische Änderung beginnt mit einem Work Package. Berührt sie eine ange
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md "Stammstrecken-Puzzle – Master-Spezifikation"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md "Stammstrecken-Puzzle – Projektübergabe und Gesamtstatus"
 [4]: ../DECISIONS/ADR-001-unity-6-3-lts.md "ADR-001 – Unity 6.3 LTS als Game Engine"
+[5]: ../DECISIONS/README.md "Verbindlicher ADR-Index"
+[6]: ../DECISIONS/ADR-013-zyklusfreie-ports-und-modulgrenzen.md "ADR-013 – Zyklusfreie Ports und Modulgrenzen"
+[7]: ../DECISIONS/ADR-014-save-kanonisierung-und-ledgerkompaktierung.md "ADR-014 – Save-Kanonisierung und Ledgerkompaktierung"
+[8]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"
+[9]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
+[10]: ../DECISIONS/ADR-017-versionierter-architekturvalidator.md "ADR-017 – Versionierter Architekturvalidator"

@@ -2,7 +2,7 @@
 
 ## 1. Vertrag und Geltung
 
-Die kanonische Authoringquelle eines Levels ist UTF-8-JSON nach [`level-v1.schema.json`](./schemas/level-v1.schema.json). [`level-v1.example.json`](./examples/level-v1.example.json) ist ein reines Vertragsfixture und ausdrücklich **kein freigegebenes Season-1-Produktionslevel**.
+Die kanonische Authoringquelle eines Levels ist UTF-8-JSON nach [`level-v1.schema.json`](./schemas/level-v1.schema.json). [`level-v1.example.json`](./examples/level-v1.example.json) und [`level-v1.single-cell.example.json`](./examples/level-v1.single-cell.example.json) sind reine Vertragsfixtures und ausdrücklich **keine freigegebenen Season-1-Produktionslevel**.
 
 Das JSON Schema prüft Syntax, Typen, geschlossene Enums und lokale Wertebereiche. Der `LevelSemanticValidator` prüft alle Beziehungen, die JSON Schema nicht zuverlässig ausdrücken kann. Ein Level darf erst nach beiden Prüfungen, Eindeutigkeitsnachweis und Hashvergleich in einen Laufzeitkatalog gelangen.
 
@@ -23,6 +23,8 @@ Das JSON Schema prüft Syntax, Typen, geschlossene Enums und lokale Wertebereich
 
 Endpoints liegen außerhalb des Rasters, werden aber durch Seite und Index adressiert. Sie belegen keine Rasterzelle und zählen nicht in Randzahlen.
 
+A und B müssen verschiedene Außenanschlüsse sein, dürfen aber dieselbe angrenzende Rasterzelle besitzen. In diesem Fall besteht ein technisch gültiger Pfad aus genau einer Trackzelle, wenn deren Form beide Endpointseiten verbindet und alle Zeilen-/Spaltenwerte exakt dazu passen. Das Schema erlaubt deshalb `solution.path` ab einem Eintrag. Season-1-Rastergrößen und Contentauswahl bleiben unverändert; die technische Zulässigkeit ist keine Pflicht, ein solches Produktionslevel zu verwenden.
+
 ## 3. Identität und Hierarchie
 
 Kampagnen-IDs folgen `S{season}-{networkSection:00}-{route:00}-{position:00}`, beispielsweise `S1-03-11-08`. Für Season 1 gelten zusätzlich die semantischen Grenzen: Abschnitte 1–5, Routen innerhalb des Abschnitts 1–4 und Positionen 1–12. Die `content`-Felder müssen exakt zur ID passen.
@@ -33,7 +35,7 @@ Die ID bleibt über Text-, Asset- und Balancingrevisionen stabil. `contentRevisi
 
 Katalogimport und Save-Laden vergleichen den veröffentlichten `puzzleHashSha256` mit dem Release-Lock. Ein abweichender Hash unter derselben veröffentlichten ID ist `LVL-PUBLISHED-PUZZLE-MUTATED` und blockiert Build sowie Laufzeitkatalog. Er wird niemals durch Übernahme alter Sterne, Rewards oder Bestzeiten auf den neuen Inhalt „migriert“.
 
-Endloslevel verwenden künftig einen getrennten, noch zu versionierenden Laufzeitvertrag. Sie werden nicht durch erfundene Kampagnen-IDs in dieses Schema gepresst.
+Endloslevel verwenden den getrennten Vertrag `endless-v1` aus [`SOLVER_ARCHITECTURE.md`](./SOLVER_ARCHITECTURE.md). Generatorversion, Seed, Generationordinal und Parameterhash erzeugen eine deterministische ID. Sie werden nicht durch erfundene Kampagnen-IDs in dieses Schema gepresst.
 
 ## 4. Feldgruppen
 
@@ -82,7 +84,7 @@ Der Validator liefert eine sortierte Liste stabiler Diagnosecodes und ist fehler
 | `LVL-ID-*` | ID eindeutig, Hierarchie konsistent, Season-1-Bereiche korrekt. |
 | `LVL-GRID-*` | Arraylängen, Werte höchstens Gegenachse, Season-1-Größe 4×4 bis 10×10 gemäß Contentposition. |
 | `LVL-ENDPOINT-*` | Index im Bereich, A und B verschieden, angrenzende Pfadzellen korrekt. |
-| `LVL-PATH-*` | Koordinaten im Raster, keine Duplikate, orthogonal benachbart, passende Gleisanschlüsse. |
+| `LVL-PATH-*` | mindestens eine Koordinate im Raster, keine Duplikate, bei mehreren Zellen orthogonal benachbart, passende Gleisanschlüsse; Ein-Zellen-Pfad verbindet beide Endpoints über dieselbe Zelle. |
 | `LVL-RULE-*` | ein einfacher Pfad A–B, keine Kreuzung, keine Schleife, keine offenen inneren Anschlüsse. |
 | `LVL-COUNT-*` | aus Lösung abgeleitete Zeilen-/Spaltenzahlen sind exakt identisch. |
 | `LVL-HASH-*` | Puzzle-, Lösungs- und Proofhash entsprechen kanonischen Projektionen. |
@@ -131,9 +133,11 @@ JSON speichert stabile Lokalisierungsschlüssel, keine übersetzten Strings. Jed
 
 Auch lokale Dateien werden als untrusted Input validiert. Parser begrenzen Dateigröße, Verschachtelung, Stringlängen und Raster auf 32×32 als technische Schutzgrenze. Season 1 bleibt fachlich auf die bestätigten Größen beschränkt. Externe JSON-Typmetadaten, polymorphe Typnamen und automatische Objektkonstruktion sind deaktiviert.
 
-## 12. Beispielnachweis
+## 12. Beispielnachweise
 
 Das Beispiel enthält genau einen einfachen Pfad: `(0,0) -> (0,1) -> (0,2) -> (1,2) -> (2,2) -> (2,1) -> (3,1) -> (3,2) -> (3,3)`. Daraus entstehen Zeilenwerte `[1,3,4,1]` und Spaltenwerte `[3,1,2,3]`. Die Eindeutigkeitsprüfung wurde als Vertragsprüfung mit Lösungslimit zwei ausgeführt und ergab exakt eine Lösung.
+
+Das Ein-Zellen-Fixture verwendet ein 2×2-Raster, A an `N/0`, B an `W/0`, Zeilenwerte `[1,0]`, Spaltenwerte `[1,0]` und `TRACK_WN` in `(0,0)`. Die Endpoints sind verschieden, grenzen aber an dieselbe Zelle. Schema, Semantik, Hashes und erschöpfende Eindeutigkeitsprüfung müssen genau diese eine Lösung bestätigen.
 
 ## Referenzen
 
@@ -142,3 +146,4 @@ Das Beispiel enthält genau einen einfachen Pfad: `(0,0) -> (0,1) -> (0,2) -> (1
 [3]: ../DECISIONS/ADR-004-json-leveldaten-und-content-pipeline.md "ADR-004 – Versionierte JSON-Leveldaten"
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Stammstrecken-Puzzle – Season-1-Content-Bible"
 [5]: https://www.rfc-editor.org/rfc/rfc8785 "RFC 8785 – JSON Canonicalization Scheme"
+[6]: ./examples/level-v1.single-cell.example.json "Leveldaten-Ein-Zellen-Beispiel v1"

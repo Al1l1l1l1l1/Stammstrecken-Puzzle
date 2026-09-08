@@ -2,28 +2,50 @@
 
 | Feld | Aktueller Stand |
 |---|---|
-| Projektstatus | Die strategische Produktkonzeption, fachlichen Spezifikationen und **Architecture v0.1** sind dokumentiert und verbindlich. Die modellunabhängige Projektsteuerung ist eingerichtet. Produktionscode existiert weiterhin nicht. |
-| Derzeitige Phase | Die technische Produktionsspezifikation `WP-ARCH-001` ist abgeschlossen. Die Implementierung hat nicht begonnen und benötigt ein neues, freigegebenes Work Package. |
-| Letzter abgeschlossener Schritt | Architecture v0.1 mit Unity-/C#-/Plattformbaseline, zwölf angenommenen ADRs, Modul- und Datenverträgen, deterministischer Puzzle-/Solverarchitektur, Persistenz, Mobile-Diensten, Contentpipeline, Tests, Observability sowie Build-/Releaseprozess wurde erstellt und unabhängig geprüft. |
-| Nächster vorgesehener Schritt | Ein klar abgegrenztes Implementierungs-Work-Package für den Produktions-Scaffold und das reine Puzzle-/Solverfundament aus Architecture v0.1 vorbereiten; vor dessen Freigabe keinen Produktionscode erzeugen. |
-| Offene Blocker | Drei fail-closed Folgeblocker sind in `../ARCHITECTURE/OPEN_BLOCKERS.md` dokumentiert: `BLOCKER-PROD-001` Hinweisanspruch, `BLOCKER-PROD-002` Tagesgrenze und `BLOCKER-PROD-003` Generator-Qualitätsprofil. Sie blockieren nur die jeweils genannten späteren Funktions-/Veröffentlichungsbereiche, nicht das lokale Puzzlefundament. |
-| Aktuell gültige Architekturversion | **Architecture v0.1**, angenommen am 2026-09-07; Einstieg: `../ARCHITECTURE/ARCHITECTURE.md`. |
+| Projektstatus | Die strategische Produktkonzeption, fachlichen Spezifikationen und **Architecture v0.2** sind dokumentiert und verbindlich. Die modellunabhängige Projektsteuerung ist eingerichtet. Produktionscode existiert weiterhin nicht. |
+| Derzeitige Phase | Die technische Produktionsspezifikation `WP-001` und die Sol-Review-Korrekturrunde `WP-002` sind abgeschlossen. Architecture v0.2 ist bereit für den ausdrücklich vorgesehenen unabhängigen Astra-Finalreview. |
+| Letzter abgeschlossener Schritt | Alle zwölf Sol-Review-Findings sowie zusätzliche unabhängige Befunde zu I-JSON, nativer Privacy, Unlockgraph und endlichem Endless-State wurden geschlossen; der finale unabhängige Re-Review meldet keine offenen Befunde ab MEDIUM. |
+| Nächster vorgesehener Schritt | Unabhängigen Astra-Finalreview auf dem gepushten Branch durchführen. Erst nach dessen erfolgreicher Abnahme darf Architecture v1.0 durch ein eigenes Work Package freigegeben werden. |
+| Produktionscode | **Nicht vorhanden.** Dieses Repository enthält weiterhin Konzept-, Architektur-, Governance-, Schema-, Fixture- und Entwicklungstooling-Artefakte. |
+| Aktuell gültige Architekturversion | **Architecture v0.2**, angenommen am 2026-09-08; Einstieg: `../ARCHITECTURE/ARCHITECTURE.md`. |
+| Architekturentscheidungen | 17 ADRs: 13 angenommen und aktuell wirksam, 4 als ersetzte Historie erhalten. Autoritativer Index: `../DECISIONS/README.md`. |
 
-## Geltungsrahmen
+## Verbindliche Grundlage
 
-Die bestehenden Konzeptdateien definieren unverändert den bestätigten Produktstand. Architecture v0.1 übersetzt ihn in technische Grenzen und dokumentiert fehlende Produktentscheidungen ausdrücklich als Blocker, statt Werte zu erfinden. Änderungen an Engine-Linie, Plattformbaseline, Datenformat, Modulgrenzen, Persistenzwahrheit oder externen Providern benötigen ein neues beziehungsweise ersetzendes ADR und ein freigegebenes Work Package.
+Die bestehenden Konzeptdateien definieren unverändert den bestätigten Produktstand. Architecture v0.2 übersetzt ihn in technische Grenzen und dokumentiert fehlende Produktentscheidungen ausdrücklich als Folgeblocker, statt Werte zu erfinden. Änderungen an Engine-Linie, Plattformbaseline, Datenformat, Modulgrenzen, Persistenzwahrheit, externen Providern oder den neuen Transaktions-/Katalogverträgen benötigen ein neues beziehungsweise ersetzendes ADR und ein freigegebenes Work Package.
 
-## Abschlussnachweis WP-ARCH-001
+## Abschlussnachweis WP-001 und WP-002
 
-Der Abschluss umfasst ausschließlich Dokumentations- und Vertragsartefakte. Ein automatisierter Abnahmelauf bestand 13 Prüfgruppen: Inventar, ADR-/WP-Struktur, relative Links, JSON-Syntax, JSON Schema Draft 2020-12, RFC-8785-kompatible Beispielhashes, semantische Beispielprüfung, erschöpfende 4×4-Eindeutigkeitsprüfung, Anforderungsmatrix, Navigation, Produktguardrails und Diffscope. Ein unabhängiger Re-Review bestätigte nach Korrekturen keine inhaltlichen CRITICAL- oder HIGH-Befunde.
+`WP-001` dokumentiert die ursprüngliche technische Produktionsspezifikation. `WP-002` korrigiert die zwölf Findings des unabhängigen Sol-Reviews und hebt den aktuellen Stand auf Architecture v0.2. Das frühere nicht regelkonforme Work-Package-ID-Format wurde ohne Sonderregel auf das einheitliche Schema `WP-###` migriert.
 
-## Projektquellen
+Der reproduzierbare Abnahmelauf liegt vollständig unter `../tools/architecture-validation/` und wird aus der Repositorywurzel nach dem dort dokumentierten Setup mit folgendem Befehl ausgeführt:
 
-| Datei | Relevanz für diesen Status |
+```bash
+../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py --self-test
+```
+
+Ein Abschluss ist nur gültig, wenn dieser Lauf, `git diff --check`, die Diff-/Produktdateiprüfung und der Remote-Branch-Nachweis erfolgreich sind. Spielbuild und Laufzeittests bleiben nicht anwendbar, weil dieses Work Package ausdrücklich keinen Produktionscode oder Unity-Scaffold erzeugt.
+
+## Offene Produktfolgeblocker
+
+| ID | Status | Blockiert |
+|---|---|---|
+| `BLOCKER-PROD-001` | **Offen, fail-closed** | Produktvertrag für Hinweisanspruch, Lebensdauer, Moduswirkung und Rewarded-Hint-Economy. |
+| `BLOCKER-PROD-002` | **Offen, fail-closed** | Kalendertag-, Zeitzonen-, Offline- und Manipulationspolicy für den Tagesanspruch. |
+| `BLOCKER-PROD-003` | **Offen, fail-closed** | Kalibriertes, produktfreigegebenes Generator-Qualitätsprofil für die Dauerbaustelle. |
+
+Diese Punkte blockieren Architecture v1.0 **nicht**. Sie blockieren erst die jeweils betroffenen späteren Feature- oder Release-Work-Packages. Das autoritative Register ist `../ARCHITECTURE/OPEN_BLOCKERS.md`.
+
+## Einstieg für die nächste Instanz
+
+| Datei | Zweck |
 |---|---|
-| `../ARCHITECTURE/ARCHITECTURE.md` | Verbindlicher Einstieg und Systemübersicht für Architecture v0.1. |
-| `../ARCHITECTURE/OPEN_BLOCKERS.md` | Autoritatives Register fehlender Produktentscheidungen und Unblock-Bedingungen. |
-| `../WORK_PACKAGES/WP-ARCH-001_Technische_Produktionsspezifikation.md` | Scope, Akzeptanzkriterien, Prüfungen und Abschlussnachweis. |
-| `../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigter Konzeptabschluss und Produktionsblöcke. |
-| `../Stammstrecken_Puzzle_Konzept_00-15/00_Train_Track_Konzeptindex.md` | Maßgebliche Fachfassungen. |
-| `../Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md` | Verbindlicher Produktkern und Guardrails. |
+| `../ARCHITECTURE/ARCHITECTURE.md` | Verbindlicher Einstieg und Systemübersicht für Architecture v0.2. |
+| `../DECISIONS/README.md` | Aktueller ADR-Index, Status und Superseding-Regeln. |
+| `../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md` | Historischer Scope und Abschluss der ursprünglichen Architekturarbeit. |
+| `../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md` | Scope, zwölf Reviewbefunde, Akzeptanzkriterien und Abschlussnachweise der v0.2-Korrekturrunde. |
+| `../tools/architecture-validation/README.md` | Reproduzierbarer Setup- und Validatorvertrag. |
+| `../ARCHITECTURE/OPEN_BLOCKERS.md` | Drei offene, nicht eigenmächtig zu lösende Produktfolgeblocker. |
+| `WORK_QUEUE.md` | Priorisierte Reihenfolge der nächsten Produktionsblöcke. |
+
+Eine neue Instanz beginnt erneut mit `AGENTS.md` und der dort vorgeschriebenen Lesereihenfolge. Chatkontext ersetzt keinen Repositoryzustand.

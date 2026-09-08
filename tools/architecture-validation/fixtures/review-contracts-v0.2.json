@@ -1,0 +1,52 @@
+{
+  "architectureVersion": "0.2",
+  "workPackagePattern": "^WP-[0-9]{3}$",
+  "assembly": {
+    "portsOwner": "STP.Application",
+    "forbiddenAssemblies": ["STP.MobileServices.Contracts"],
+    "forbiddenPorts": ["ISaveSyncPort"]
+  },
+  "save": {
+    "hashProfile": "STP-SAVE-JCS-1",
+    "schemaVersion": 1,
+    "journalMaxEntries": 512,
+    "journalMaxCanonicalBytes": 262144,
+    "compactAtEntries": 384,
+    "compactAtCanonicalBytes": 196608,
+    "diagnosticTailEntries": 64
+  },
+  "reward": {
+    "placement": "POST_CLEAR_PATIENCE",
+    "claimTemplate": "reward-claim:POST_CLEAR_PATIENCE:<levelId>",
+    "providerIdIsBusinessKey": false,
+    "atomicCommitFields": ["claim.COMMITTED", "economyJournal.entry"]
+  },
+  "iap": {
+    "productKey": "remove_ads",
+    "grantBeforeStoreFinalize": true,
+    "googleFinalization": "ACKNOWLEDGE",
+    "appleFinalization": "FINISH",
+    "states": ["STARTED", "EVIDENCE_RECEIVED", "VERIFIED", "GRANTED_NOT_FINALIZED", "FINALIZED", "REJECTED", "RECONCILIATION_REQUIRED"]
+  },
+  "privacy": {
+    "analyticsDefault": false,
+    "crashReportsDefault": false,
+    "adsBeforeCanRequestAds": false,
+    "unityDeveloperDataPackagesIncluded": false,
+    "unknownCapabilityValue": false
+  },
+  "deviceEvidence": {
+    "emulatorAlonePasses": false,
+    "simulatorAlonePasses": false,
+    "physicalAndroidRequired": true,
+    "physicalIosRequired": true
+  },
+  "endless": {
+    "contractVersion": 1,
+    "idPrefix": "E1-",
+    "identityProjection": ["endlessContractVersion", "rulesetVersion", "generatorVersion", "seed", "generationOrdinal", "parameterHashSha256"],
+    "maxActiveDescriptors": 20,
+    "maxTerminalIntervals": 64,
+    "terminalDetailWindow": 64
+  }
+}

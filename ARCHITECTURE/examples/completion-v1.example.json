@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "completion-contract-fixture",
+  "catalogRevision": 1,
+  "approvalStatus": "FIXTURE_ONLY",
+  "rewardDefinitions": [
+    {
+      "reasonCode": "LEVEL_FIRST_CLEAR",
+      "subjectKind": "LEVEL",
+      "amountPatience": 15,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    },
+    {
+      "reasonCode": "POST_CLEAR_PATIENCE",
+      "subjectKind": "LEVEL",
+      "amountPatience": 10,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    }
+  ],
+  "completionMoments": [
+    {
+      "id": "standard-first-clear",
+      "resultTextKey": "result.route-open.standard",
+      "mapSegmentId": "s1-section-01-route-01-segment-01",
+      "trainMomentId": "standard-first-clear"
+    },
+    {
+      "id": "fixture-single-cell",
+      "resultTextKey": "result.fixture.single-cell",
+      "mapSegmentId": "fixture-single-cell-segment",
+      "trainMomentId": "standard-first-clear"
+    }
+  ]
+}

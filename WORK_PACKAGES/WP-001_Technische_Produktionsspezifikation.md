@@ -1,8 +1,8 @@
-# WP-ARCH-001 – Technische Produktionsspezifikation
+# WP-001 – Technische Produktionsspezifikation
 
 ## ID
 
-`WP-ARCH-001`
+`WP-001`
 
 **Bearbeitungsstatus:** **Abgeschlossen am 2026-09-07.** Dieses Work Package wurde gemäß ausdrücklichem Auftrag in derselben Sitzung angelegt, bearbeitet, unabhängig überprüft und auf dem vorgesehenen Branch abgeschlossen.
 
@@ -39,7 +39,7 @@ Erlaubt sind die folgenden Tätigkeiten:
 
 | Pfad | Zulässige Änderung |
 |---|---|
-| `WORK_PACKAGES/WP-ARCH-001_Technische_Produktionsspezifikation.md` | Neu anlegen; Auftrag, Status, Ergebnis und Nachweise dokumentieren. |
+| `WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md` | Neu anlegen; Auftrag, Status, Ergebnis und Nachweise dokumentieren. |
 | `ARCHITECTURE/ARCHITECTURE.md` | Neu anlegen; Gesamtarchitektur und Navigationsdokument. |
 | `ARCHITECTURE/TECH_STACK.md` | Neu anlegen; Technologie-, Versions- und Paketstrategie. |
 | `ARCHITECTURE/MODULE_BOUNDARIES.md` | Neu anlegen; Module, Ports, Abhängigkeiten und Source-Struktur. |
@@ -148,7 +148,7 @@ Die Architektur legt Unity 6.3 LTS `6000.3.23f1`, C# 9, IL2CPP, Android API 26 a
 
 ## Ausgeführte Prüfungen
 
-Der temporäre, ausdrücklich nicht einzucheckende Prüfer `/home/ubuntu/work/validate_architecture.py` wurde nach den finalen Inhaltskorrekturen mit `python3 /home/ubuntu/work/validate_architecture.py` ausgeführt. Ergebnis: **PASS, 13 Prüfgruppen**.
+Architecture v0.1 wurde historisch mit einem temporären, nicht eingecheckten Prüfer abgenommen: **PASS, 13 Prüfgruppen**. Dieser nicht reproduzierbare Nachweis ist ausschließlich Historie und für den aktuellen Stand ungültig; `WP-002` ersetzt ihn durch `tools/architecture-validation/validate.py` samt Lock, README, Fixtures und Selbsttests.
 
 | Prüfgruppe | Ergebnis |
 |---|---|

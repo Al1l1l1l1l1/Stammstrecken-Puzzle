@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -49,7 +49,7 @@ Ein absichtlich eingebauter Vertragsbruch muss jedes definierte Gate nachweislic
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Ersetzt durch [ADR-017](./ADR-017-versionierter-architekturvalidator.md).
 
 ## Referenzen
 

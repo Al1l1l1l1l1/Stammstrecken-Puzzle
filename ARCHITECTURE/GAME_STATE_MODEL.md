@@ -1,4 +1,4 @@
-# Game State Model v0.1
+# Game State Model v0.2
 
 ## 1. Zustandsprinzip
 
@@ -8,11 +8,11 @@ Der fachliche Spielzustand ist ein unveränderlicher Snapshot. Commands sind die
 
 | Zustandsraum | Persistiert | Eigentümer | Beispiele |
 |---|---:|---|---|
-| `GameProfileState` | Ja | Application | Fortschritt, Sterne, Bestzeiten, Währung, Kosmetik, Einstellungen. |
+| `GameProfileState` | Ja | Application | Fortschritt, Sterne, Bestzeiten, Währung, Kosmetik, Claimterminals, Entitlements, Einstellungen. |
 | `PuzzleSessionState` | Ja, solange Entwurf aktiv | Puzzle Domain | Zellinhalte, Timer, Nutzung von Markierungen/Hinweisen, Undo-Diffs. |
 | `PuzzleDefinition` | Nein im Save; Contentquelle | Content/Domain | Raster, A/B, Randzahlen, Regeln. |
 | `PuzzleViewState` | Nein | Presentation | aktive Auswahl, Werkzeug, Fokus, Hover/Press, Animation. |
-| `ServiceRuntimeState` | Nein; nur notwendige Caches getrennt | Adapter/Application | Consentstatus, Adload, laufender Kauf, Netzwerkhinweis. |
+| `ServiceRuntimeState` | Nein; notwendige fachliche Operationen separat persistent | Adapter/Application | Consentcapabilities, Adload, SDK-Handle, Netzwerkhinweis. |
 | `ReleaseConfiguration` | Nein; Buildartefakt | Bootstrap | Environment, IDs, Featurefähigkeiten, Build-ID. |
 
 ## 3. Zell- und Gleiszustände
@@ -136,19 +136,29 @@ Sterne werden aus der ersten erfolgreichen aktiven Zeit beziehungsweise in freig
 
 ## 10. Fortschritt und Economy
 
-`GameProfileState` enthält pro Level einen `LevelProgressRecord` mit `puzzleHashAtFirstCompletion`, erstem Abschluss, besten berechtigten Zeiten je Modus, höchster Sternzahl, einmalig vergebenen Sternboni, direkter Lösung und Rewardstatus. Ein Record ist nur für denselben unveränderlichen Puzzlehash gültig. Route-, Abschnitts- und Seasonfortschritt werden deterministisch aus Levelrecords abgeleitet und beim Save als überprüfbarer Cache gehalten.
+`GameProfileState` enthält pro Level einen `LevelProgressRecord` mit `puzzleHashAtFirstCompletion`, erstem Abschluss, besten berechtigten Zeiten je Modus, höchster Sternzahl, einmalig vergebenen Sternboni, direkter Lösung und terminalem Rewardstatus. Ein Record ist nur für denselben unveränderlichen Puzzlehash gültig. Route-, Abschnitts- und Seasonfortschritt werden deterministisch aus Levelrecords und dem release-gelockten `ICampaignCatalog` abgeleitet und beim Save als überprüfbarer Cache gehalten.
 
-Geduldspunkte werden nicht als frei überschreibbarer Saldo geführt. Ein begrenztes `EconomyLedger` enthält idempotente Einträge mit `transactionId`, `reasonCode`, `amount`, `subjectId` und UTC-Zeit. Der Saldo ist die Summe gültiger Einträge abzüglich bestätigter Käufe. IDs sind deterministisch, etwa `level:S1-01-01-01:first-clear` oder `level:...:star-3`. Duplikate ändern den Saldo nicht.
+Geduldspunkte werden nicht als frei überschreibbarer Saldo geführt. Ein `LedgerCheckpoint` plus begrenztes `EconomyJournal` enthält idempotente Einträge mit `transactionId`, `reasonCode`, `amount`, `subjectId`, Katalog-/Claimbezug und UTC-Diagnosezeit. Der Saldo ist Checkpointsaldo plus Journalsumme. Deduplikationswahrheit verbleibt in terminalen Level-, Claim-, Inventory-, IAP- oder Endless-Records; Kompaktierung folgt ausschließlich dem Vertrag in `PERSISTENCE.md`.
 
-## 11. Objektive Rückmeldung versus Lösungsgeheimnis
+Der release-gelockte `ICompletionCatalog` ist die Quelle für bestätigte Rewardbeträge. Der `ICosmeticsCatalog` ist die Quelle für kosmetische Preise. `PurchaseCosmetic` prüft Kataloghash, Ownership und Saldo; negativer Ledger-Eintrag und Inventory-Grant werden in einem Savecommit unter `cosmetic-purchase:<itemId>` geschrieben. `ALREADY_OWNED` und identischer Callback sind No-ops ohne zweite Belastung.
+
+## 11. Persistente Mobile-Operationen
+
+`POST_CLEAR_PATIENCE` besitzt pro Meldung den fachlichen Schlüssel `reward-claim:POST_CLEAR_PATIENCE:<levelId>`. Zulässige persistente Zustände sind `RESERVED`, `RECONCILIATION_REQUIRED` und `COMMITTED`; fehlender Record bedeutet verfügbar. Provider-Reward-ID und lokale Operation-ID sind Auditfelder. Reservation sowie später Claimterminal plus Ledgergutschrift erfolgen jeweils atomar. Ein paralleler oder verspäteter Callback kann deshalb nie einen zweiten Gegenwert erzeugen.
+
+Eine IAP-Operation enthält `operationId`, logischen Produktkey, Store, minimale Transaktionsreferenz und genau einen Zustand aus `STARTED`, `EVIDENCE_RECEIVED`, `VERIFIED`, `GRANTED_NOT_FINALIZED`, `FINALIZED`, `REJECTED` oder `RECONCILIATION_REQUIRED`. `remove_ads` wird gemeinsam mit `GRANTED_NOT_FINALIZED` persistiert, bevor Google Acknowledge beziehungsweise Apple Finish erfolgt. Storefinalisierung und Restore verwenden denselben idempotenten Transaktionsschlüssel.
+
+Analytics- und Crashcapabilities sind flüchtig und starten im Applicationmodell bei jedem Prozess mit `false`. Persistierte Nutzerentscheidungen sind Input für den ConsentCoordinator. Ein SDK darf einen persistenten `true`-Override nur spiegeln, solange genau dieser Entscheid für die aktuelle Privacy-/Policyversion gültig ist; ein Release, das ihn invalidiert, wird mit permanentem nativen Default-Off ausgeliefert. Erst nach Abgleich darf der Application-Port freigeschaltet werden.
+
+## 12. Objektive Rückmeldung versus Lösungsgeheimnis
 
 Zulässige Live-Rückmeldungen sind Zeilen-/Spaltenanzahl offen, exakt oder überschritten; konkrete Schiene führt aus Raster; konkrete Nachbaranschlüsse widersprechen sich; bereits konkrete Schienen erzeugen eine geschlossene Schleife. Diese Fakten folgen aus dem sichtbaren Stand.
 
 Nicht zulässig sind Vergleich mit Authoring-Lösung, Markierung eines bloß später falschen X, Verraten eines noch nicht erzwungenen Gleises oder automatische Korrektur einer plausiblen Annahme. Solverwissen erreicht die UI ausschließlich nach einem ausdrücklich angeforderten Hinweis.
 
-## 12. UI- und Servicezustand
+## 13. UI- und Servicezustand
 
-Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zellauswahl, Scrollpositionen, geladene Werbeanzeige, offene Consentform, SDK-Initialisierungsobjekte, laufende Animationframeposition und Netzwerkstatus. Persistiert werden nur Nutzerpräferenzen und fachlich notwendige Vorgänge wie ein `PendingPurchaseOperation` mit nicht geheimen Store-/Operation-IDs.
+Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zellauswahl, Scrollpositionen, geladene Werbeanzeige, offene Consentform, SDK-Initialisierungsobjekte, laufende Animationframeposition und Netzwerkstatus. Persistiert werden Nutzerpräferenzen und alle fachlich notwendigen nicht terminalen Reward-/Kauf-/Restore-/Finalisierungsoperationen mit nicht geheimen Referenzen.
 
 ## Referenzen
 
@@ -156,3 +166,5 @@ Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zel
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/06_Fortschritt_Belohnungen_und_Meisterschaft.md "Stammstrecken-Puzzle – Fortschritt, Belohnungen und Meisterschaft"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md "Stammstrecken-Puzzle – UI- und Bedienungsspezifikation"
 [4]: ../DECISIONS/ADR-005-deterministisches-command-state-modell.md "ADR-005 – Deterministisches Command/State-Modell"
+[5]: ../DECISIONS/ADR-014-save-kanonisierung-und-ledgerkompaktierung.md "ADR-014 – Save-Kanonisierung und Ledgerkompaktierung"
+[6]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"

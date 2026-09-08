@@ -21,8 +21,8 @@ Jedes Work Package muss die folgenden Abschnitte in dieser Reihenfolge enthalten
 
 ## Verbindliche Zusatzregeln
 
-1. Ein Work Package beschreibt nur einen kohärenten und begrenzten Auftrag. Es darf keine unspezifische Sammelliste enthalten.
-2. Der Scope ist abschließend. Eine nicht genannte Änderung ist nicht automatisch erlaubt.
+1. Ein Work Package beschreibt genau eine fachlich kohärente, einzeln testbare Änderung mit explizit aufgelisteten betroffenen Modulen. Wenn eine vollständige architektonische Transaktion mehrere Module zwingend gemeinsam ändern muss, gehören diese Module in dasselbe Work Package; unspezifische Sammellisten bleiben verboten.
+2. Der Scope ist abschließend. Eine nicht genannte Änderung oder ein beiläufiges Refactoring außerhalb der aufgelisteten Module ist nicht automatisch erlaubt.
 3. Akzeptanzkriterien und Tests müssen vor Beginn der Bearbeitung feststehen. Sie werden nicht nachträglich abgesenkt, um einen unvollständigen Stand als fertig zu deklarieren.
 4. Abhängigkeiten und betroffene Dateien müssen den tatsächlich dokumentierten Projektstand widerspiegeln. Unklare Informationen werden als Blocker markiert, nicht ergänzt oder geraten.
 5. Ein Work Package darf bestätigte Produktentscheidungen nicht stillschweigend verändern. Architekturentscheidungen benötigen gegebenenfalls vor der Umsetzung einen akzeptierten ADR gemäß `DECISIONS/README.md`.

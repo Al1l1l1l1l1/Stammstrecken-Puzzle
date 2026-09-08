@@ -1,4 +1,4 @@
-# Test Strategy v0.1
+# Test Strategy v0.2
 
 ## 1. Qualitätsprinzip
 
@@ -26,6 +26,7 @@ Pflichtbehauptungen:
 - Hilfsmarkierungen beeinflussen Completion nicht und verhindern keine Sterne;
 - Zeilen-/Spaltenanzeige meldet nur offen/exakt/überschritten aus sichtbarer Belegung;
 - Completion verlangt exakt einen vollständigen A-B-Pfad mit allen konkreten Tracks;
+- A und B dürfen verschiedene Außenanschlüsse derselben Zelle sein; das Ein-Zellen-Fixture löst exakt mit einer Trackzelle;
 - Schleifen, getrennte Komponenten, falsche Außenkanten und Anschlussmismatch scheitern;
 - Batchcommands sind ganz oder gar nicht und bilden einen Undo-Schritt;
 - No-op startet keinen Timer und erzeugt keinen Undo-Diff;
@@ -47,6 +48,7 @@ Tests verwenden Builder mit sinnvollen Defaults und nennen die fachliche Behaupt
 | Hint | jeder ausgegebene Hint ist aus dem öffentlichen Puzzle ohne Spielerannahmen wahr, kein Suchguess und enttarnt keine nicht objektiv fehlerhafte Annahme; andernfalls `NO_NON_REVEALING_HINT_AVAILABLE`. |
 | Budget | kuratierte 10×10-Fälle bleiben innerhalb dokumentierter Grenzen. |
 | Generator | fester Seed reproduziert Kandidat; Production akzeptiert nur Profilstatus `PRODUCT_APPROVED` mit exakt passendem Profil-/Korpus-/Solverhash. |
+| Endless identity | Generatorversion, Seed, Ordinal und Parameterhash reproduzieren dieselbe `E1-`-ID; Duplicate und ID/Deskriptor-Konflikt werden unterschieden; 20 aktive Records, 64 terminale Intervalle und 64 terminale Volldetails sind harte Grenzen. |
 
 Der vollständige kuratierte Katalog wird bei jedem Release neu bis Lösungslimit zwei geprüft. Ein gespeicherter Proof allein genügt nicht.
 
@@ -58,6 +60,8 @@ Der vollständige kuratierte Katalog wird bei jedem Release neu bis Lösungslimi
 - unbekannte Eigenschaften wegen `additionalProperties: false` abgewiesen;
 - bösartige Größe, Tiefe, Strings und polymorphe Typmetadaten abgewiesen;
 - IDs und Contenthierarchie eindeutig/vollständig;
+- Campaign-, Completion- und Cosmetics-Kataloge gegen eigene Schemata, Freigabestatus, Revision, Hash und Cross-Reference-Reihenfolge;
+- Cosmetics-Preis stammt ausschließlich aus dem release-gelockten Katalog; Duplicate Purchase und Already Owned buchen nie doppelt ab;
 - veröffentlichter Puzzlehash unter stabiler Level-ID unveränderlich; Mutation blockiert Build und übernimmt keinen Fortschritt;
 - Lokalisierungs- und Assetreferenzen auflösbar;
 - zwei saubere Importe erzeugen denselben Kataloghash;
@@ -77,8 +81,10 @@ Das Beispiel unter `ARCHITECTURE/examples/` wird bereits in der Architekturphase
 | Split brain | gleiche Generation/anderer Hash; konservative Auswahl und Diagnose. |
 | Migration | Golden vN→vN+1, Kette über alle Versionen, Idempotenz, Rollbacksource. |
 | Downgrade | ältere App überschreibt neueren Save nicht. |
-| Economy | doppelte Reward-/Stern-/Route-/Abschnitts-Callbacks sind No-op. |
-| IAP | Owned-Cache bleibt bei Timeout; bestätigter Restore/Revocationpfad. |
+| Save hash | RFC-8785-Bytes, UTF-8 ohne BOM/Newline, Unicode/Integergrenzen, Duplicate-Key-Ablehnung in beiden Parsern, unabhängiger Cross-Tool-Golden und Hashprofildispatch. |
+| Economy | doppelte Reward-/Stern-/Route-/Abschnitts-Callbacks sind No-op; Checkpoint/Journalsaldo und Hashkette stimmen. |
+| Compaction | Schwellen, harte Grenzen, terminale Fachrecords, jüngstes Diagnosefenster, Crash vor/nach atomarem Commit und Migration. |
+| IAP | Belegprüfung, atomarer Grant vor Acknowledge/Finish, Phasencrash, Retry, Restore, widersprüchliche Antwort und bestätigte Revocation. |
 | Clock | Uhr zurück, Zeitzone wechselt, Tagesgrenze, Apppause. |
 | Ressourcen | niedriger Speicherplatz, I/O-Fehler, lange Pfade, Appkill. |
 
@@ -90,7 +96,9 @@ Fortschrittstests prüfen Erstabschluss, Übungsfahrt, freigeschaltete Betriebsr
 
 Adpolicy-Tests verwenden tabellarische Daten für Abschlussordinal 0–9+, Modus, Abstand, Sessioncount, `remove_ads`, Ergebnisphase, Consent, SDK-Bereitschaft und Fehler. Jede harte Ausschlusszone besitzt mindestens einen Negativtest. Kein Retry/No Fill erhöht Sessioncount.
 
-Rewardtests prüfen Post-Clear +10 genau einmal, zusätzlichen Hintcredit und zusätzlichen Tageslauf. Gegenwert wird erst nach Rewardcallback und persistentem Commit sichtbar.
+Rewardtests prüfen `POST_CLEAR_PATIENCE` über die fachliche Claim-ID exakt einmal je Meldung: wiederholte und parallele Anfragen, Crash nach Reservation, Rewardcallback vor/nach Close, später Callback nach Freigabe, Reconciliation und atomarer Claim-plus-Ledgercommit. Provider-IDs werden variiert und dürfen keinen zweiten Grant erlauben. Zusätzlicher Hintcredit und Tageslauf bleiben bis zur jeweiligen Produktfreigabe deaktiviert.
+
+Kosmetikkauftests prüfen ausreichenden/ungenügenden Saldo, atomaren Debit-plus-Ownership-Commit, Duplicate Purchase, Already Owned, parallele Commands, Kataloghashwechsel, Tombstone und Save-Migration.
 
 Solange `BLOCKER-PROD-001` beziehungsweise `BLOCKER-PROD-002` offen sind, müssen Productionprofile `EXTRA_HINT` und Betriebslage-des-Tages-Claims deaktivieren. Solange `BLOCKER-PROD-003` offen ist, muss jeder Generator-Productionimport fehlschlagen. Diese Fail-closed-Prüfungen sind selbst Merge- und Release-Gates.
 
@@ -105,6 +113,8 @@ Jede Implementierung von Ads, IAP, Consent, Analytics, Crash, Audio und Lifecycl
 - Unity-Objekte werden nur am Hauptthread berührt;
 - deaktivierter/no-op Adapter erfüllt denselben Vertrag;
 - keine nicht erlaubten Felder erreichen Analytics/Crash;
+- Analytics-/Crashcapabilities starten immer `false`; `UNKNOWN`, fehlende Entscheidung, offline und Consentfehler aktivieren kein SDK;
+- native Manifest-/`Info.plist`-Schalter deaktivieren Firebase-Autocollection; unnötige Unity-Developer-Data-Pakete fehlen;
 - Sandboxkonfiguration kann Production-IDs nicht verwenden.
 
 Echte SDK-Smokes laufen nur mit Testanzeigen, Sandboxprodukten und Testgeräten.
@@ -119,7 +129,7 @@ Accessibility-Gates prüfen Fokusreihenfolge, Screenreaderlabels, Kontrast, dyna
 
 ## 10. Performance- und Stabilitätstests
 
-ADR-012 legt die Mindest-Geräteklassen fest. Das erste Implementierungs-Work-Package benennt und inventarisiert konkrete physische oder remote erreichbare Geräte, die diesen Vertrag erfüllen. Verbindliche technische Ziele:
+ADR-012 legt die Mindest-Geräteklassen fest. Das erste Implementierungs-Work-Package benennt und inventarisiert konkrete physische Geräte oder eine ausdrücklich freigegebene Device-Farm mit physischen Geräten. Emulatoren/Simulatoren ergänzen schnelle Tests, gelten aber weder als physisches Gerät noch als bestandener Geräte-/Privacy-Smoke. Verbindliche technische Ziele:
 
 | Metrik | Ziel |
 |---|---|
@@ -133,6 +143,8 @@ ADR-012 legt die Mindest-Geräteklassen fest. Das erste Implementierungs-Work-Pa
 
 Long-run-Smokes wiederholen Level öffnen/lösen/zur Karte 100-mal mit Fakes und prüfen Speichertrend, Eventsubscriptions und Handlefreigabe.
 
+Der Privacy-Smoke folgt exakt `MOBILE_SERVICES.md`: Fresh Install, verweigerter Consent, versionierter Netzwerkcapture über 120 Sekunden und lokalen Kernflow, Offline-Reconnect sowie anschließende Einzelaktivierung jeder Capability. Für Android und iOS werden physisches Gerätemodell, OS, Buildhash, native Konfigurationshashes, Capturetool/-regelversion und Capturehash archiviert. Unerklärter Traffic blockiert; Simulator-/Emulatorcapture allein kann das Gate nicht erfüllen.
+
 ## 11. Build- und Release-Tests
 
 | Gate | Pull Request | Main/Integrationsstand | Release Candidate |
@@ -143,12 +155,12 @@ Long-run-Smokes wiederholen Level öffnen/lösen/zur Karte 100-mal mit Fakes und
 | PlayMode | Ja | Ja | Ja |
 | Android Development IL2CPP | Ja | Ja | Ja |
 | iOS Export/Compile | optional bei docs-only, sonst nightly | Ja | Ja |
-| Gerätesmoke Android/iOS | bei Adapteränderung | nightly | Ja |
+| Physischer Gerätesmoke Android/iOS | bei Adapteränderung auf verfügbarer freigegebener Hardware; sonst als echter Blocker | geplant auf Device-Farm | Ja |
 | Store-/Privacy-/Signing-Preflight | Nein | Stagingdryrun | Ja |
 | TestFlight/Internal Track Smoke | Nein | Nein | Ja |
 | Symbolisierter Testcrash | bei Crash-SDK-Änderung | Staging | Ja |
 
-Documentation-only Pull Requests wie WP-ARCH-001 benötigen keinen Spielbuild, solange noch kein Produktionsprojekt existiert. Ihre eigenen Dokument-, Link- und Schema-Gates bleiben verbindlich.
+Documentation-only-Arbeiten wie `WP-001` und `WP-002` benötigen keinen Spielbuild, solange noch kein Produktionsprojekt existiert. Ihr eingecheckter Befehl `python tools/architecture-validation/validate.py --self-test` sowie Dokument-, Link-, Governance-, Schema-, Hash- und Mutationsgates bleiben verbindlich.
 
 ## 12. Coverage, Mutation und Qualitätsmetriken
 
@@ -172,13 +184,16 @@ Zufallstests protokollieren Seed, Solverversion, Testfall und minimierten Gegenb
 
 Fixtures enthalten keine Produktionssecrets oder personenbezogene Daten. Goldens sind klein, lesbar und mit Generator-/Schema-/Solverversion markiert. Ihre Aktualisierung geschieht durch expliziten Befehl und wird getrennt vom Verhaltenscode reviewt. Ein Agent darf erwartete Outputs nicht ändern, nur damit ein fehlschlagender Test besteht.
 
+Der Architekturvalidator liegt dauerhaft unter `tools/architecture-validation/`. Setup, gepinnte Abhängigkeiten und Einstiegspunkt stehen in seiner README. `--self-test` führt positive Repositoryprüfungen und gezielte Negativmutationen für Work-Package-ID, ADR-Index, Assemblyzyklus, Savehash, Rewardclaim, IAP-Reihenfolge, Privacy Default-Off, Kataloge, Ledgerkompaktierung, Endless-ID, Modulregel und Ein-Zellen-Pfad aus. Eine nicht erkannte Mutation ist ein fehlgeschlagenes Gate.
+
 ## 15. Fehlerbehebungsvertrag
 
 Jeder Productionbug erhält zuerst einen minimalen reproduzierenden Test auf der niedrigsten sinnvollen Ebene. Die Korrektur darf den Test nicht durch Sonderpfade umgehen. Postmortems für Saveverlust, falsche Economy, Storefehler, Contentmehrdeutigkeit und öffentliche Crashregression aktualisieren Tests und gegebenenfalls Architektur.
 
 ## Referenzen
 
-[1]: ../DECISIONS/ADR-009-automatisierte-teststrategie.md "ADR-009 – Automatisierte Tests als Architekturgrenze"
-[2]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.1"
-[3]: ./SOLVER_ARCHITECTURE.md "Solver Architecture v0.1"
-[4]: ./PERSISTENCE.md "Persistence v0.1"
+[1]: ../DECISIONS/ADR-017-versionierter-architekturvalidator.md "ADR-017 – Versionierter Architekturvalidator"
+[2]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.2"
+[3]: ./SOLVER_ARCHITECTURE.md "Solver Architecture v0.2"
+[4]: ./PERSISTENCE.md "Persistence v0.2"
+[5]: ./MOBILE_SERVICES.md "Mobile Services v0.2"

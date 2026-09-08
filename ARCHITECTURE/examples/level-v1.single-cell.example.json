@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "train-track-v1",
+  "id": "S99-01-01-01",
+  "contentRevision": 1,
+  "grid": {
+    "width": 2,
+    "height": 2
+  },
+  "endpoints": {
+    "a": {"side": "N", "index": 0},
+    "b": {"side": "W", "index": 0}
+  },
+  "rowCounts": [1, 0],
+  "columnCounts": [1, 0],
+  "content": {
+    "season": 99,
+    "networkSection": 1,
+    "route": 1,
+    "position": 1,
+    "titleKey": "level.fixture.single-cell.title",
+    "statusKey": "level.fixture.single-cell.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.fixture.single-cell.entry",
+    "focus": ["ENDPOINT_GEOMETRY"],
+    "chainDepth": 1,
+    "qualityNote": "Contract fixture only; verifies a technically valid one-cell A-B path and is not production content.",
+    "timeClass": "UNSET",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "fixture-single-cell-segment",
+    "trainMomentId": "standard-first-clear",
+    "resultTextKey": "result.fixture.single-cell"
+  },
+  "solution": {
+    "path": [
+      {"x": 0, "y": 0, "track": "TRACK_WN"}
+    ]
+  },
+  "validation": {
+    "puzzleHashSha256": "56bbf207a89ddaf20162c43618fabb3f4ea88b1e2732fb1f88e7f3808f2efa52",
+    "solutionHashSha256": "0fc58a925a45a46db823cb866a0d6720a7f7e45e571af29b07aa5c7446ee9412",
+    "solverVersion": "solver-v1",
+    "solutionCount": 1,
+    "proof": {
+      "searchNodes": 1,
+      "deductionSteps": 1,
+      "maxDeductionDepth": 1,
+      "requiredGuessDepth": 0,
+      "proofHashSha256": "ee2ac18bc7aaf08b6731e6baf30ea45a2779ad53c3c8a22798cf81d126dce59e"
+    }
+  }
+}

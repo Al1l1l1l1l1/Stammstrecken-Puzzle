@@ -1,4 +1,4 @@
-# Content Pipeline v0.1
+# Content Pipeline v0.2
 
 ## 1. Ziel
 
@@ -12,9 +12,9 @@ Diese Spezifikation beschreibt den Produktionsweg, erzeugt aber keine der 240 ko
 |---|---|---|
 | Level | `Content/Levels/<season>/<section>/<route>/<id>.json` | Runtimekatalog, Addressables, Preview. |
 | Levelschema | `Content/Schemas/level-vN.schema.json` | Validatorbindings und Dokumentation. |
-| Kampagnenhierarchie | `Content/Catalogs/campaign-vN.json` | Karten-Read-Model und Unlockindex. |
-| Abschlussmomente | `Content/Catalogs/completion-vN.json` | typisierte Addressable-Referenzen. |
-| Kosmetik | `Content/Catalogs/cosmetics-vN.json` | Betriebswerk-Katalog. |
+| Kampagnenhierarchie | `Content/Catalogs/campaign-vN.json` nach `campaign-vN.schema.json` | Karten-Read-Model und Unlockindex. |
+| Abschlussmomente/Rewards | `Content/Catalogs/completion-vN.json` nach `completion-vN.schema.json` | typisierte Reward- und Präsentationsreferenzen. |
+| Kosmetik/Preise | `Content/Catalogs/cosmetics-vN.json` nach `cosmetics-vN.schema.json` | Betriebswerk-Katalog; autoritative Preisquelle. |
 | Lokalisierung | `Content/Localization/source/<locale>.json` plus Schema | Unity String-/Asset-Tables. |
 | Grafiken/Modelle/Audio | `Assets/StammstreckenPuzzle/...` plus `.meta` und Importpreset | Spriteatlanten, komprimierte Texturen, Audio-/AssetBundles. |
 | Generierter Unitycontent | keine manuelle Quelle | `Assets/StammstreckenPuzzle/Generated/`. |
@@ -67,6 +67,8 @@ Der Kampagnenkatalog bildet Season → fünf Netzabschnitte → je vier Routen �
 
 Unlockregeln werden als Application-Policy implementiert und aus stabilen IDs berechnet. Der Katalog darf keine Sternepflicht für Kampagnenfortschritt einführen. Betriebsrevision und Dauerbaustelle werden nach allen 240 korrekten Erstabschlüssen freigegeben.
 
+Die vollständigen technischen Verträge für `campaign-v1`, `completion-v1` und `cosmetics-v1`, ihre Application-Ports, Statuswerte, Preis-/Ownershipinvarianten und Cross-Reference-Reihenfolge stehen in [`CONTENT_CATALOGS.md`](./CONTENT_CATALOGS.md). Production akzeptiert nur release-gelockte Kataloge mit `PRODUCT_APPROVED`; `FIXTURE_ONLY` und `DRAFT` sind harte Importfehler.
+
 ## 5. Validatorarchitektur
 
 Alle Authoringoberflächen, CI und Build verwenden dieselbe `LevelValidationPipeline`. Ein GUI-Tool darf kein eigenes Validierungsverhalten besitzen.
@@ -83,6 +85,8 @@ Alle Authoringoberflächen, CI und Build verwenden dieselbe `LevelValidationPipe
 | Import | nur fehlerfreier Datensatz | deterministisches Runtimeartefakt. |
 
 Ein `--strict`-Modus behandelt Warnungen als Fehler und ist in CI/Release verbindlich. Ausnahmen sind versionierte Allowlist-Einträge mit Diagnosecode, Level-ID, Begründung, Eigentümer und Ablaufdatum.
+
+Die globale Reihenfolge über mehrere Dateien lautet: alle Quellen parsen → jedes Schema → kataloginterne Semantik → Levelsemantik/Solver → Campaign-zu-Level → Level-zu-Completion → Completion/Cosmetics zu Assets/Lokalisation → Produktwertprüfung → JCS-Hashes/Release-Lock → Freigabestatus. Ein späterer Schritt darf einen früheren Fehler nicht durch Fallback verdecken.
 
 ## 6. Deterministischer Import
 
@@ -147,6 +151,7 @@ Jeder Release enthält:
 
 - `contentCatalogVersion`;
 - SHA-256 des Kampagnenkatalogs;
+- SHA-256 des Completion- und Cosmetics-Katalogs;
 - Release-Lock aller veröffentlichten Level-IDs auf ihren unveränderlichen `puzzleHashSha256`;
 - Hashliste aller Levelinputs und Runtimeartefakte;
 - Addressables Content State/Buildlayout;
@@ -158,11 +163,15 @@ Ein Save referenziert stabile IDs und den zuletzt gesehenen Kataloghash. Content
 
 Eine bereits veröffentlichte Level-ID darf niemals auf einen anderen öffentlichen Puzzlehash zeigen. Logische Korrekturen verwenden eine neue ID und benötigen eine ausdrücklich bestätigte Progress-/Grandfathering-Migration. Eine Abweichung zum Release-Lock ist ein harter Buildfehler.
 
+Kosmetikpreise stammen ausschließlich aus dem gelockten `cosmetics-v1`-Snapshot. Ein Kauf bindet Item-ID, Preis und Kataloghash; Debit und Ownership werden in einem Savecommit geschrieben. Bereits besessene oder identisch wiederholte Käufe buchen nicht erneut ab. Katalogrevisionen entfernen vorhandenes Ownership nicht.
+
 ## 11. CI-Gates
 
 Content-Pull-Requests müssen Schema, Semantik, Solver, Hashes, Cross-References, Pseudolocale, deterministischen Doppelimport, Addressables Build, Lizenzscan und Größenbudgets bestehen. Release führt den vollständigen Katalog erneut aus; kein gecachter Proof ersetzt die aktuelle Solverprüfung.
 
 Generierte Dauerbaustellenkandidaten benötigen zusätzlich ein kanonisches `GeneratorQualityProfile` nach `SOLVER_ARCHITECTURE.md`. CI prüft Status `PRODUCT_APPROVED`, Profilhash, Solver-/Ruleset-Kompatibilität, Referenzkorpus, Metrikintervalle, Noveltyalgorithmus/-schwelle, Laufzeitbudget und Human-Review-Nachweis. Fehlt ein Wert oder stimmt ein Hash nicht, bleibt der Kandidat `DRAFT` und der Productionimport bricht ab. Wegen `BLOCKER-PROD-003` darf bis zur fachlichen Kalibrierung kein Generatoroutput veröffentlicht werden.
+
+Unabhängig vom noch offenen Qualitätsprofil verwendet jeder Kandidat die `endless-v1`-Identität aus [`SOLVER_ARCHITECTURE.md`](./SOLVER_ARCHITECTURE.md): Generatorversion, Seed, Generationordinal und Parameterhash ergeben deterministisch eine von Kampagnen-IDs getrennte ID. Duplicate-Erkennung findet vor Import statt; gleiche ID mit anderem Deskriptor ist ein fataler Konflikt.
 
 ## 12. Rollen und Übergabe
 
@@ -174,3 +183,4 @@ Ein Levelautor verantwortet Logik und Qualitätsnotiz. Ein Solver-/Tooling-Revie
 [2]: ../DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md "ADR-011 – UI Toolkit, lokale Addressables, Unity Localization und Unity Audio"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Stammstrecken-Puzzle – Season-1-Content-Bible"
 [4]: ./LEVEL_DATA_FORMAT.md "Level Data Format v1"
+[5]: ./CONTENT_CATALOGS.md "Content Catalogs v0.2"

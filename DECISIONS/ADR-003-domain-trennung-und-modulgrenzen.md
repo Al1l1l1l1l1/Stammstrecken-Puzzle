@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -51,7 +51,7 @@ CI prüft die Assembly-Definitionen gegen eine Allowlist und scannt reine Assemb
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Ersetzt durch [ADR-013](./ADR-013-zyklusfreie-ports-und-modulgrenzen.md).
 
 ## Referenzen
 

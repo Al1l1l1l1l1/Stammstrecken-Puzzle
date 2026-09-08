@@ -1,4 +1,4 @@
-# Build and Release v0.1
+# Build and Release v0.2
 
 ## 1. Ziel
 
@@ -31,7 +31,7 @@ Ein Releasebuild enthält `build-info.json` mit Version, Buildnummer, Commit, Ta
 
 ## 4. Branch- und Freigabevertrag
 
-`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.1 wird auf `arch/architecture-v0.1` erstellt und in diesem Auftrag nicht gemergt.
+`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.2 wird im Korrekturauftrag `WP-002` auf `arch/architecture-v0.1` dokumentiert und weder gemergt noch in einem Pull Request automatisch weiterverarbeitet.
 
 Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein Artefakt lokal „repariert“. Eine Änderung erzeugt einen neuen Commit und neuen Kandidaten. Production-Environment und öffentliche Storepromotion verwenden GitHub-Environment-Protection und manuellen Approval.
 
@@ -42,7 +42,7 @@ Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein 
 Läuft auf jedem Pull Request:
 
 1. Pfad-/Scope- und Secretcheck;
-2. Markdownlinks, JSON Schema und Architekturcontracts;
+2. den eingecheckten Befehl `python tools/architecture-validation/validate.py --self-test` einschließlich Markdownlinks, JSON Schema, Governance und Architekturcontracts;
 3. Paket-/Lizenz-/SDK-Inventar;
 4. Compile und EditMode;
 5. Content-/Solverprüfung für betroffene Daten;
@@ -57,7 +57,8 @@ Läuft geplant auf aktuellem Integrationsstand:
 - saubere Reimports und vollständiger Katalog;
 - deterministischer Doppelbuild der generierten Contentartefakte;
 - Android und iOS IL2CPP;
-- Long-run, Performance und ausgewählte Gerätefarm-Smokes;
+- Long-run und Performance sowie vorbereitende Emulator-/Simulator-Smokes;
+- physische Gerätesmokes auf den inventarisierten Referenzgeräten oder einer ausdrücklich freigegebenen Device-Farm mit physischen Geräten;
 - Dependency-, Lizenz-, Privacy-Manifest- und Größenberichte.
 
 ### 5.3 `release-candidate.yml`
@@ -112,6 +113,8 @@ Die App benötigt für den lokalen Rätselkern keine gefährliche Androidberecht
 - dSYM/BCSymbolMaps soweit relevant archivieren und Crashlytics-Symbolstatus prüfen;
 - expliziter Restore-Purchases-Einstieg im UI-Smoke.
 
+Ein iOS-Simulator erfüllt weder diesen Gerätesmoke noch den Privacy-Capture-Vertrag. Er darf nur vorbereitende UI-/Buildsignale liefern.
+
 ## 9. Secrets und Signing
 
 Keystore, Passwörter, Applezertifikate, Provisioning, API-Schlüssel und Unity-Lizenz liegen ausschließlich in geschützten Secretstores. CI schreibt sie in temporäre Dateien mit restriktiven Rechten und entfernt sie in `always()`-Cleanup. Logs maskieren bekannte Werte; ein nachgelagerter Secret-Scan prüft Artefakte.
@@ -145,7 +148,7 @@ Artefakte erhalten eine dokumentierte Aufbewahrungsfrist. Symbole und Release-Ma
 | Betrieb | Dashboards, Alarmwege, Rollout-/Stopkriterien, Support-/Recoverytext vorhanden. |
 | Security | Secrets, Permissions, SDK-Lizenzen/Signaturen und Dependencyrisiken geprüft. |
 
-Architecture v0.1 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
+Architecture v0.2 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
 
 ## 12. Rollout und Rollback
 
@@ -174,9 +177,9 @@ Ein Kandidat ist promotable, wenn:
 2. Toolchain/Packages exakt dem Lock entsprechen;
 3. vollständiger Levelkatalog schema-, semantik- und solvergrün ist;
 4. Saves einschließlich Upgrade vom ältesten unterstützten Stand funktionieren;
-5. Android/iOS aus internen Storekanälen installiert und kerngetestet wurden;
+5. Android/iOS aus internen Storekanälen auf den vorgeschriebenen **physischen** Referenzgeräten oder einer freigegebenen physischen Device-Farm installiert und kerngetestet wurden; Emulator-/Simulatorergebnisse allein gelten nicht;
 6. Ads/Reward/IAP/Restore/Consent mit Sandboxfällen bestanden sind;
-7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind;
+7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind und der Fresh-Install-Netzwerknachweis vor Consent auf beiden physischen Plattformgeräten keinen unerlaubten Traffic zeigt;
 8. Symbole erfolgreich hochgeladen und Testcrash symbolisiert sind;
 9. SBOM, Lizenzen und Artefakthashes archiviert sind;
 10. öffentlicher Rollout separat genehmigt ist.

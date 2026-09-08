@@ -56,4 +56,4 @@ Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
 ## Referenzen
 
 [1]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Stammstrecken-Puzzle – Season-1-Content-Bible"
-[2]: ../WORK_PACKAGES/WP-ARCH-001_Technische_Produktionsspezifikation.md "WP-ARCH-001 – Technische Produktionsspezifikation"
+[2]: ../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md "WP-001 – Technische Produktionsspezifikation"

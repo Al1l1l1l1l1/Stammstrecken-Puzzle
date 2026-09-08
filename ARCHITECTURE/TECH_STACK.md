@@ -1,4 +1,4 @@
-# Technology Stack v0.1
+# Technology Stack v0.2
 
 ## 1. Verbindliche Baseline
 
@@ -46,6 +46,7 @@ Die Benutzeroberfläche wird für Safe Areas, dynamische Auflösung und mindeste
 8. Dependency-Updates ändern nie gleichzeitig Produktverhalten oder fachliche Logik.
 9. Ein Update muss Changelog, Datenschutzdeklarationen, IL2CPP/AOT, App-Größe, Build und Gerätetests prüfen.
 10. Sicherheits- oder Store-Kompatibilitätsupdates dürfen beschleunigt werden, umgehen aber keine Gates.
+11. Unity Analytics, Unity Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete sind in Production nicht eingebunden. Firebase Analytics/Crashlytics und Google Mobile Ads müssen zusätzlich nativ default-off konfiguriert sein; bloße Application-No-ops genügen nicht.
 
 ## 4. Unity-Projektkonfiguration
 
@@ -92,6 +93,8 @@ Ein Upgrade-Pull-Request muss in dieser Reihenfolge arbeiten:
 7. Kernflow auf Geräten und SDK-Sandbox prüfen.
 8. Buildgröße, Startzeit und Crashsymbolik vergleichen.
 9. ADR nur dann ersetzen, wenn Release-Linie, Anbieter oder Systemgrenze wechselt.
+
+Jeder SDK-Updatevergleich umfasst außerdem native Android-Manifest-/iOS-`Info.plist`-Defaults, Providerdashboard-Einstellungen und den physischen Fresh-Install-Netzwerkmitschnitt vor Consent. Kann neue optionale Übertragung nicht ausgeschlossen oder freigegeben werden, bleibt das Update blockiert.
 
 ## 7. Konfigurations- und Secretvertrag
 

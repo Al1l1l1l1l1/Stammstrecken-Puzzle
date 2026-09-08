@@ -55,4 +55,4 @@ Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
 
 [1]: https://unity.com/releases/unity-6/support "Unity 6 release support"
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md "Stammstrecken-Puzzle – Projektübergabe und Gesamtstatus"
-[3]: ../WORK_PACKAGES/WP-ARCH-001_Technische_Produktionsspezifikation.md "WP-ARCH-001 – Technische Produktionsspezifikation"
+[3]: ../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md "WP-001 – Technische Produktionsspezifikation"

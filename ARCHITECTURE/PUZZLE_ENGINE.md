@@ -1,4 +1,4 @@
-# Puzzle Engine v0.1
+# Puzzle Engine v0.2
 
 ## 1. Rolle
 
@@ -29,9 +29,11 @@ Eine `PuzzleDefinition` ist nur gültig, wenn:
 2. Jeder Endpointindex zur betreffenden Rasterachse passt.
 3. `rowCounts.Length == height` und jeder Wert zwischen 0 und `width` liegt.
 4. `columnCounts.Length == width` und jeder Wert zwischen 0 und `height` liegt.
-5. Summe aller Zeilenwerte gleich Summe aller Spaltenwerte und mindestens 2 ist.
+5. Summe aller Zeilenwerte gleich Summe aller Spaltenwerte und mindestens 1 ist.
 6. Die angrenzenden Zellen beider Endpoints laut Zahlen grundsätzlich belegt sein können.
 7. die Ruleset-Version registriert ist.
+
+A und B bleiben unterschiedliche Außenanschlüsse, können aber an dieselbe Rasterzelle grenzen. Diese Definition ist gültig, wenn mindestens eine der sechs Trackformen beide Außenrichtungen verbindet. Dadurch ist ein technisch gültiger Pfad aus genau einer Trackzelle möglich, ohne neue Gleisform oder Rätselregel.
 
 Eindeutigkeit gehört nicht zur Konstruktion des Runtimeobjekts, sondern zum Content-Gate. Productionkataloge enthalten ausschließlich vorher eindeutig validierte Definitionen.
 
@@ -79,7 +81,7 @@ Ein Puzzle ist genau dann gelöst, wenn alle folgenden Schritte wahr sind:
 3. Jede konkrete Trackzelle hat Grad zwei im Graph aus passenden Zell-/Endpointanschlüssen.
 4. A und B haben jeweils Grad eins und verbinden mit ihrer angrenzenden Zelle.
 5. Eine Traversierung ab A erreicht B.
-6. Die Traversierung besucht jede konkrete Trackzelle genau einmal.
+6. Die Traversierung besucht jede konkrete Trackzelle genau einmal; bei identischer A-/B-Nachbarzelle ist dies genau ein Knoten.
 7. Es gibt keine zweite konkrete Komponente, Schleife, Kreuzung oder Verbindung zu einer falschen Außenkante.
 
 `MARK_EMPTY`, `MARK_OCCUPIED` und `UNSET` außerhalb der konkreten Strecke beeinflussen die Gültigkeit nicht. Hilfsmarkierungen dürfen nach Lösung visuell zurücktreten; ihr Vorhandensein entwertet den Abschluss nicht.
@@ -88,7 +90,7 @@ Die Completion-Prüfung vergleicht niemals mit `solution.path` aus Authoringdate
 
 ## 7. Graphmodell
 
-Jede konkrete Trackzelle ist ein Knoten. Eine Kante existiert nur, wenn zwei orthogonal benachbarte Formen wechselseitig aufeinander zeigen. A und B sind externe Knoten. Da jede Trackform zwei Ports besitzt und A/B je einen Port haben, ist der gültige Gesamtgraph ein einfacher Pfad.
+Jede konkrete Trackzelle ist ein Knoten. Eine Kante existiert nur, wenn zwei orthogonal benachbarte Formen wechselseitig aufeinander zeigen. A und B sind externe Knoten. Da jede Trackform zwei Ports besitzt und A/B je einen Port haben, ist der gültige Gesamtgraph ein einfacher Pfad. Der kleinste gültige Graph ist `A -> eine Trackzelle -> B`; beide externen Kanten dürfen dieselbe Rasterzelle treffen.
 
 Crossings und T-Knoten sind konstruktiv ausgeschlossen, weil keine erlaubte Form mehr als zwei Ports hat. Eine Schleife wird über Union-Find während inkrementeller Diagnostik oder über die abschließende Traversierung erkannt. Die abschließende Prüfung bleibt autoritativ.
 
@@ -96,7 +98,7 @@ Crossings und T-Knoten sind konstruktiv ausgeschlossen, weil keine erlaubte Form
 
 Ein `CellDiff` speichert sortierte Tupel `(coordinate, before, after)`. Der Stack enthält maximal 256 atomare Nutzerhandlungen. Beim Überschreiten wird der älteste Diff verworfen; der aktuelle Zustand bleibt vollständig.
 
-Undo erzeugt einen neuen Snapshot mit höherer Revision. Es setzt Zellen zurück, aber nicht `timerStarted`, `usedEmptyMarker`, `usedOccupiedMarker`, `hintCount` oder bereits verbuchte externe Ergebnisse. Redo ist für v0.1 nicht Teil des bestätigten Produkts und wird nicht implizit eingeführt.
+Undo erzeugt einen neuen Snapshot mit höherer Revision. Es setzt Zellen zurück, aber nicht `timerStarted`, `usedEmptyMarker`, `usedOccupiedMarker`, `hintCount` oder bereits verbuchte externe Ergebnisse. Redo ist für Architecture v0.2 nicht Teil des bestätigten Produkts und wird nicht implizit eingeführt.
 
 ## 9. Hintschnittstelle
 
@@ -131,11 +133,11 @@ Budgets sind Qualitätsgates, keine Produktzeitwerte. Bei Überschreitung wird z
 
 ## 13. Tests
 
-Pflicht sind Beispiel-, Property- und Metamorphic-Tests für alle Formen, Rotationen/Spiegelungen, Randanschlüsse, Zahlen, Schleifen, getrennte Komponenten, Markierungssemantik, Batchatomarität, No-op, Undo und Completion. Mutationen jeder einzelnen Regel müssen mindestens einen Test brechen.
+Pflicht sind Beispiel-, Property- und Metamorphic-Tests für alle Formen, Rotationen/Spiegelungen, Randanschlüsse, Zahlen, Ein-Zellen-A-B-Pfade, Schleifen, getrennte Komponenten, Markierungssemantik, Batchatomarität, No-op, Undo und Completion. Mutationen jeder einzelnen Regel müssen mindestens einen Test brechen.
 
 ## Referenzen
 
 [1]: ../Stammstrecken_Puzzle_Konzept_00-15/03_Raetselkern_und_Interaktionsmodell.md "Train Track Spiel – Rätselkern und Interaktionsmodell"
-[2]: ./GAME_STATE_MODEL.md "Game State Model v0.1"
+[2]: ./GAME_STATE_MODEL.md "Game State Model v0.2"
 [3]: ./LEVEL_DATA_FORMAT.md "Level Data Format v1"
 [4]: ../DECISIONS/ADR-005-deterministisches-command-state-modell.md "ADR-005 – Deterministisches Command/State-Modell"
