@@ -1,0 +1,31 @@
+{
+  "contractVersion": 1,
+  "productId": "remove_ads",
+  "initialState": "STARTED",
+  "traces": [
+    {
+      "name": "google-success",
+      "platform": "GOOGLE",
+      "events": [
+        {"kind": "RECEIVE_EVIDENCE", "transactionKey": "fixture-google-1"},
+        {"kind": "VERIFY", "valid": true},
+        {"kind": "PERSIST_ATOMIC_GRANT", "entitlement": true, "state": "GRANTED_NOT_FINALIZED"},
+        {"kind": "REQUEST_FINALIZE", "method": "ACKNOWLEDGE", "transactionKey": "fixture-google-1"},
+        {"kind": "FINALIZE_SUCCEEDED", "transactionKey": "fixture-google-1"}
+      ],
+      "expectedState": "FINALIZED"
+    },
+    {
+      "name": "apple-success",
+      "platform": "APPLE",
+      "events": [
+        {"kind": "RECEIVE_EVIDENCE", "transactionKey": "fixture-apple-1"},
+        {"kind": "VERIFY", "valid": true},
+        {"kind": "PERSIST_ATOMIC_GRANT", "entitlement": true, "state": "GRANTED_NOT_FINALIZED"},
+        {"kind": "REQUEST_FINALIZE", "method": "FINISH", "transactionKey": "fixture-apple-1"},
+        {"kind": "FINALIZE_SUCCEEDED", "transactionKey": "fixture-apple-1"}
+      ],
+      "expectedState": "FINALIZED"
+    }
+  ]
+}

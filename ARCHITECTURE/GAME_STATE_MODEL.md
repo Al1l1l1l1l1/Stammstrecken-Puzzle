@@ -1,4 +1,4 @@
-# Game State Model v0.2
+# Game State Model v0.3
 
 ## 1. Zustandsprinzip
 
@@ -53,8 +53,8 @@ Die konkreten Touchgesten sind ein offenes Produktdetail. Alle Gesten müssen di
 
 | Feld | Typ/Regel | Persistenz |
 |---|---|---:|
-| `levelId` | stabile Level-ID | Ja |
-| `puzzleHashSha256` | SHA-256 der unveränderlichen öffentlichen Puzzleprojektion | Ja |
+| `puzzleId` | stabile fachliche Puzzle-ID | Ja |
+| `publicPuzzleHash` | `{profile, sha256}` der unveränderlichen öffentlichen Fachprojektion | Ja |
 | `attemptId` | lokal eindeutige UUID | Ja |
 | `mode` | `FIRST_RUN`, `PRACTICE`, `REVISION`, `ENDLESS` | Ja |
 | `cells` | zeilenweise Array aus `CellContent`, exakt `width * height` | Ja |
@@ -70,7 +70,7 @@ Die konkreten Touchgesten sind ein offenes Produktdetail. Alle Gesten müssen di
 | `startedAtUtc` | Diagnose/Day-Boundary, nicht Timerquelle | Ja |
 | `lastSavedAtUtc` | Persistenzdiagnose | Ja |
 
-Ein Entwurf mit nicht passendem `puzzleHashSha256` wird nicht still geladen. Vor Veröffentlichung darf dies in Testdaten durch eine Authoringrevision entstehen; der Entwurf wird dann archiviert und als `CONTENT_REVISION_MISMATCH` diagnostiziert. In einem veröffentlichten Katalog ist derselbe Fall `LVL-PUBLISHED-PUZZLE-MUTATED` und blockiert den Katalog vollständig. Bereits verbuchter Fortschritt wird niemals auf einen abweichenden Puzzlehash übertragen.
+Ein Entwurf wird nur bei exakt passendem Tripel `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}` geladen. Reine Dokument- oder Proofmigrationen mit identischem fachlichem Hash erhalten ihn. In einem veröffentlichten Katalog ist eine andere Semantik unter derselben Puzzle-ID `LVL-PUBLISHED-PUZZLE-MUTATED` und blockiert den Katalog; der Entwurf wird archiviert und Fortschritt nie still übertragen.
 
 `hintCount` zählt ausschließlich in diesem Versuch tatsächlich dargestellte Hinweise. Der Anspruch auf kostenlosen, regulären oder werbebasierten Hinweis ist kein Sessionboolean. Ein persistenter `HintEntitlementState` mit Policyversion, Level-/Modusbezug, verfügbaren Credits und idempotenten Claim-IDs ist als Application-/Savevertrag reserviert. Seine finale Semantik bleibt wegen `BLOCKER-PROD-001` unveröffentlicht, bis „neues Level“ und das reguläre Hilfekontingent produktseitig präzisiert sind.
 
@@ -136,19 +136,21 @@ Sterne werden aus der ersten erfolgreichen aktiven Zeit beziehungsweise in freig
 
 ## 10. Fortschritt und Economy
 
-`GameProfileState` enthält pro Level einen `LevelProgressRecord` mit `puzzleHashAtFirstCompletion`, erstem Abschluss, besten berechtigten Zeiten je Modus, höchster Sternzahl, einmalig vergebenen Sternboni, direkter Lösung und terminalem Rewardstatus. Ein Record ist nur für denselben unveränderlichen Puzzlehash gültig. Route-, Abschnitts- und Seasonfortschritt werden deterministisch aus Levelrecords und dem release-gelockten `ICampaignCatalog` abgeleitet und beim Save als überprüfbarer Cache gehalten.
+`GameProfileState` enthält pro Puzzle-ID einen `LevelProgressRecord` mit profiliertem `publicPuzzleHashAtFirstCompletion`, erstem Abschluss, besten berechtigten Zeiten je Modus, höchster Sternzahl, einmalig vergebenen Sternboni, direkter Lösung und terminalem Rewardstatus. Ein Record ist nur für dasselbe fachliche Identity-Tripel gültig. Route-, Abschnitts- und Seasonfortschritt werden deterministisch aus Levelrecords und dem release-gelockten `ICampaignCatalog` abgeleitet und beim Save als überprüfbarer Cache gehalten.
 
 Geduldspunkte werden nicht als frei überschreibbarer Saldo geführt. Ein `LedgerCheckpoint` plus begrenztes `EconomyJournal` enthält idempotente Einträge mit `transactionId`, `reasonCode`, `amount`, `subjectId`, Katalog-/Claimbezug und UTC-Diagnosezeit. Der Saldo ist Checkpointsaldo plus Journalsumme. Deduplikationswahrheit verbleibt in terminalen Level-, Claim-, Inventory-, IAP- oder Endless-Records; Kompaktierung folgt ausschließlich dem Vertrag in `PERSISTENCE.md`.
 
-Der release-gelockte `ICompletionCatalog` ist die Quelle für bestätigte Rewardbeträge. Der `ICosmeticsCatalog` ist die Quelle für kosmetische Preise. `PurchaseCosmetic` prüft Kataloghash, Ownership und Saldo; negativer Ledger-Eintrag und Inventory-Grant werden in einem Savecommit unter `cosmetic-purchase:<itemId>` geschrieben. `ALREADY_OWNED` und identischer Callback sind No-ops ohne zweite Belastung.
+Der release-gelockte `ICompletionCatalog` ist die Quelle für bestätigte Rewardbeträge. Der `ICosmeticsCatalog` liefert diskriminierte Erwerbsverträge. `PurchaseCosmetic` prüft Kataloghash, Ownership und Saldo; negativer Ledger-Eintrag und Inventory-Grant werden in einem Savecommit unter `cosmetic-purchase:<itemId>` geschrieben. `ClaimMilestoneCosmetic` expandiert ausschließlich die gelockten Campaign-Subjects zu First-Clear-Records und schreibt den terminalen Ownership-Claim ohne Ledgerdelta atomar. `ALREADY_OWNED` und identische Wiederholung sind No-ops.
+
+Für `mode: ENDLESS` ist die persistente Zustandsmaschine `ReserveEndless -> ActiveDraft -> CompleteEndless|AbandonEndless`. Reservation erhöht den Watermark und schreibt den Draft atomar. Complete schreibt erlaubte Effects und entfernt den Draft atomar; Abandon entfernt ihn ohne Reward. Ein reservierter Ordinal ohne aktiven Draft ist terminal. Terminale Detailhistorie ist weder Zustands- noch Deduplikationswahrheit.
 
 ## 11. Persistente Mobile-Operationen
 
-`POST_CLEAR_PATIENCE` besitzt pro Meldung den fachlichen Schlüssel `reward-claim:POST_CLEAR_PATIENCE:<levelId>`. Zulässige persistente Zustände sind `RESERVED`, `RECONCILIATION_REQUIRED` und `COMMITTED`; fehlender Record bedeutet verfügbar. Provider-Reward-ID und lokale Operation-ID sind Auditfelder. Reservation sowie später Claimterminal plus Ledgergutschrift erfolgen jeweils atomar. Ein paralleler oder verspäteter Callback kann deshalb nie einen zweiten Gegenwert erzeugen.
+`POST_CLEAR_PATIENCE` besitzt pro Meldung den fachlichen Schlüssel `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>`. Zulässige persistente Zustände sind `RESERVED`, `RECONCILIATION_REQUIRED` und `COMMITTED`; fehlender Record bedeutet verfügbar. Provider-Reward-ID und lokale Operation-ID sind Auditfelder. Reservation sowie später Claimterminal plus Ledgergutschrift erfolgen jeweils atomar. Ein paralleler oder verspäteter Callback kann deshalb nie einen zweiten Gegenwert erzeugen.
 
 Eine IAP-Operation enthält `operationId`, logischen Produktkey, Store, minimale Transaktionsreferenz und genau einen Zustand aus `STARTED`, `EVIDENCE_RECEIVED`, `VERIFIED`, `GRANTED_NOT_FINALIZED`, `FINALIZED`, `REJECTED` oder `RECONCILIATION_REQUIRED`. `remove_ads` wird gemeinsam mit `GRANTED_NOT_FINALIZED` persistiert, bevor Google Acknowledge beziehungsweise Apple Finish erfolgt. Storefinalisierung und Restore verwenden denselben idempotenten Transaktionsschlüssel.
 
-Analytics- und Crashcapabilities sind flüchtig und starten im Applicationmodell bei jedem Prozess mit `false`. Persistierte Nutzerentscheidungen sind Input für den ConsentCoordinator. Ein SDK darf einen persistenten `true`-Override nur spiegeln, solange genau dieser Entscheid für die aktuelle Privacy-/Policyversion gültig ist; ein Release, das ihn invalidiert, wird mit permanentem nativen Default-Off ausgeliefert. Erst nach Abgleich darf der Application-Port freigeschaltet werden.
+Ads-, Analytics- und Crashcapabilities sind flüchtig und starten bei jedem Prozess mit `false`. Der versionierte `PrivacyDecisionRecord` ist Input für den ConsentCoordinator; `desired` und nach NativeApply wirksames `effective` bleiben getrennt. Fehlender, defekter, unbekannter oder revisionsinkompatibler Record bleibt fail-closed. Das Productionprofil schließt Crashlytics aus. Ein Analytics-invalidierender Reset-only-Build setzt permanenten Native-Off und überschreibt zusätzlich einen früher persistierten Runtimewert mit `false`; Re-enable ist erst in einem späteren kompatiblen Build nach neuem Entscheid möglich.
 
 ## 12. Objektive Rückmeldung versus Lösungsgeheimnis
 
@@ -166,5 +168,7 @@ Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zel
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/06_Fortschritt_Belohnungen_und_Meisterschaft.md "Stammstrecken-Puzzle – Fortschritt, Belohnungen und Meisterschaft"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md "Stammstrecken-Puzzle – UI- und Bedienungsspezifikation"
 [4]: ../DECISIONS/ADR-005-deterministisches-command-state-modell.md "ADR-005 – Deterministisches Command/State-Modell"
-[5]: ../DECISIONS/ADR-014-save-kanonisierung-und-ledgerkompaktierung.md "ADR-014 – Save-Kanonisierung und Ledgerkompaktierung"
-[6]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"
+[5]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
+[6]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
+[7]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
+[8]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

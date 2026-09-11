@@ -1,0 +1,113 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-01-01",
+  "contentRevision": 1,
+  "grid": {
+    "width": 4,
+    "height": 4
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 0
+    },
+    "b": {
+      "side": "S",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    1,
+    3,
+    4,
+    1
+  ],
+  "columnCounts": [
+    3,
+    1,
+    2,
+    3
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 1,
+    "position": 1,
+    "titleKey": "level.s1.01.01.01.title",
+    "statusKey": "level.s1.01.01.01.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.01.01.entry",
+    "focus": [
+      "OCCUPANCY",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Contract fixture only; this file is not an approved Season-1 production level.",
+    "timeClass": "UNSET",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "s1-section-01-route-01-segment-01",
+    "trainMomentId": "standard-first-clear",
+    "resultTextKey": "result.route-open.standard"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-01-01/solver-v1.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "b1ad9067e113f1a08b9f4db2d0b66cb41d1726e7290a182fffc11a2ec299ab25"
+    }
+  }
+}

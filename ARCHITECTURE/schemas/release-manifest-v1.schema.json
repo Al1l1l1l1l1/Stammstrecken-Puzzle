@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/release-manifest-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Release Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifestVersion", "releaseVersion", "candidateTag", "candidateOrdinal", "gitCommit", "workflow", "platform", "buildNumber", "buildProfile", "applicationIdentifier", "signingFingerprintSha256", "toolchainLockSha256", "packageLockSha256", "contentLockSha256", "productionConfigSha256", "artifactSha256", "storeBuildReference", "promotionAllowed", "debugFlags", "blockerState"],
+  "properties": {
+    "manifestVersion": {"const": 1},
+    "releaseVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "candidateTag": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+-rc\\.[1-9][0-9]*$"},
+    "candidateOrdinal": {"type": "integer", "minimum": 1},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "workflow": {"type": "string", "minLength": 1},
+    "platform": {"type": "string", "enum": ["ANDROID", "IOS"]},
+    "buildNumber": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+    "buildProfile": {"type": "string", "enum": ["staging", "production"]},
+    "applicationIdentifier": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*(?:[.-][A-Za-z0-9]+)+$"},
+    "signingFingerprintSha256": {"$ref": "#/$defs/sha256"},
+    "toolchainLockSha256": {"$ref": "#/$defs/sha256"},
+    "packageLockSha256": {"$ref": "#/$defs/sha256"},
+    "contentLockSha256": {"$ref": "#/$defs/sha256"},
+    "productionConfigSha256": {"$ref": "#/$defs/sha256"},
+    "artifactSha256": {"$ref": "#/$defs/sha256"},
+    "storeBuildReference": {"type": "string", "minLength": 1},
+    "promotionAllowed": {"type": "boolean"},
+    "debugFlags": {
+      "type": "object", "additionalProperties": false,
+      "required": ["developmentBuild", "profiler", "testCrash", "sandboxProviders"],
+      "properties": {"developmentBuild": {"type": "boolean"}, "profiler": {"type": "boolean"}, "testCrash": {"type": "boolean"}, "sandboxProviders": {"type": "boolean"}}
+    },
+    "blockerState": {
+      "type": "object", "additionalProperties": false,
+      "required": ["BLOCKER-PROD-001", "BLOCKER-PROD-002", "BLOCKER-PROD-003"],
+      "properties": {
+        "BLOCKER-PROD-001": {"const": "OPEN_FAIL_CLOSED"},
+        "BLOCKER-PROD-002": {"const": "OPEN_FAIL_CLOSED"},
+        "BLOCKER-PROD-003": {"const": "OPEN_FAIL_CLOSED"}
+      }
+    }
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

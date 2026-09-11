@@ -1,4 +1,4 @@
-# Content Pipeline v0.2
+# Content Pipeline v0.3
 
 ## 1. Ziel
 
@@ -10,7 +10,8 @@ Diese Spezifikation beschreibt den Produktionsweg, erzeugt aber keine der 240 ko
 
 | Inhalt | Kanonische Quelle | Abgeleitet |
 |---|---|---|
-| Level | `Content/Levels/<season>/<section>/<route>/<id>.json` | Runtimekatalog, Addressables, Preview. |
+| Level | `Content/Levels/<season>/<section>/<route>/<puzzleId>.level-v2.json` | Runtimekatalog, Addressables, Preview. |
+| Solverproof | `Content/Proofs/<puzzleId>/<solverVersion>.proof-v1.json` | QA-/Release-Lock-Nachweis; nicht UI-Wahrheit. |
 | Levelschema | `Content/Schemas/level-vN.schema.json` | Validatorbindings und Dokumentation. |
 | Kampagnenhierarchie | `Content/Catalogs/campaign-vN.json` nach `campaign-vN.schema.json` | Karten-Read-Model und Unlockindex. |
 | Abschlussmomente/Rewards | `Content/Catalogs/completion-vN.json` nach `completion-vN.schema.json` | typisierte Reward- und Präsentationsreferenzen. |
@@ -47,9 +48,9 @@ Vor Commit laufen in dieser Reihenfolge:
 1. JSON Schema;
 2. semantische Levelregeln;
 3. aus Lösung neu abgeleitete Randzahlen;
-4. Puzzle-/Lösungs-/Proofhash;
-5. Solverzählung bis zwei;
-6. Deduction Trace und Metriken;
+4. profilierter semantischer Puzzle- und Lösungshash;
+5. Solverzählung bis zwei und gebundenes `proof-v1`-Artefakt;
+6. Proofhash, Deduction Trace und Metriken;
 7. Kampagnenhierarchie und ID-Eindeutigkeit;
 8. Lokalisierungs- und Abschlussreferenzen;
 9. Ähnlichkeitsbericht gegen vorhandene Level;
@@ -67,7 +68,7 @@ Der Kampagnenkatalog bildet Season → fünf Netzabschnitte → je vier Routen �
 
 Unlockregeln werden als Application-Policy implementiert und aus stabilen IDs berechnet. Der Katalog darf keine Sternepflicht für Kampagnenfortschritt einführen. Betriebsrevision und Dauerbaustelle werden nach allen 240 korrekten Erstabschlüssen freigegeben.
 
-Die vollständigen technischen Verträge für `campaign-v1`, `completion-v1` und `cosmetics-v1`, ihre Application-Ports, Statuswerte, Preis-/Ownershipinvarianten und Cross-Reference-Reihenfolge stehen in [`CONTENT_CATALOGS.md`](./CONTENT_CATALOGS.md). Production akzeptiert nur release-gelockte Kataloge mit `PRODUCT_APPROVED`; `FIXTURE_ONLY` und `DRAFT` sind harte Importfehler.
+Die vollständigen technischen Verträge für `campaign-v2`, `completion-v1` und `cosmetics-v2`, ihre Application-Ports, Statuswerte, Preis-/Ownershipinvarianten und Cross-Reference-Reihenfolge stehen in [`CONTENT_CATALOGS.md`](./CONTENT_CATALOGS.md). Production akzeptiert nur release-gelockte Kataloge mit `PRODUCT_APPROVED`; `FIXTURE_ONLY` und `DRAFT` sind harte Importfehler.
 
 ## 5. Validatorarchitektur
 
@@ -79,14 +80,14 @@ Alle Authoringoberflächen, CI und Build verwenden dieselbe `LevelValidationPipe
 | Schema | DTO/JSON | Strukturdiagnosen. |
 | Domain map | DTO | gültiges Domainobjekt oder Mappingcodes. |
 | Semantic | Domain + Metadaten | sortierte Fehler/Warnungen. |
-| Solver | öffentliches Puzzle | 0/1/2+, Lösung und Proof. |
+| Solver | öffentliches Puzzle | 0/1/2+, Lösung und gebundenes versioniertes Proofartefakt. |
 | Cross-reference | Kataloge/Lokalisation/Assets | Referenzdiagnosen. |
 | Quality | Proof + Katalog | Bericht, keine automatische Produktfreigabe. |
 | Import | nur fehlerfreier Datensatz | deterministisches Runtimeartefakt. |
 
 Ein `--strict`-Modus behandelt Warnungen als Fehler und ist in CI/Release verbindlich. Ausnahmen sind versionierte Allowlist-Einträge mit Diagnosecode, Level-ID, Begründung, Eigentümer und Ablaufdatum.
 
-Die globale Reihenfolge über mehrere Dateien lautet: alle Quellen parsen → jedes Schema → kataloginterne Semantik → Levelsemantik/Solver → Campaign-zu-Level → Level-zu-Completion → Completion/Cosmetics zu Assets/Lokalisation → Produktwertprüfung → JCS-Hashes/Release-Lock → Freigabestatus. Ein späterer Schritt darf einen früheren Fehler nicht durch Fallback verdecken.
+Die globale Reihenfolge über mehrere Dateien lautet: alle Quellen ohne Duplicate Keys parsen → jedes Schema → kataloginterne Semantik → Levelsemantik → Puzzle-/Lösungshash → Solver/Proofregeneration → Campaign-zu-Puzzle → Level-zu-Completion → Completion/Cosmetics zu Assets/Lokalisation → Produktwertprüfung → Release-Lock → Freigabestatus. Ein späterer Schritt darf einen früheren Fehler nicht durch Fallback verdecken.
 
 ## 6. Deterministischer Import
 
@@ -152,7 +153,7 @@ Jeder Release enthält:
 - `contentCatalogVersion`;
 - SHA-256 des Kampagnenkatalogs;
 - SHA-256 des Completion- und Cosmetics-Katalogs;
-- Release-Lock aller veröffentlichten Level-IDs auf ihren unveränderlichen `puzzleHashSha256`;
+- append-only [`release-lock-v1`](./schemas/release-lock-v1.schema.json) mit profiliertem semantischem Puzzlehash, Lösungshash, Dokumenthash/-version, Proofformat/-version/-hash und Legacybindungen;
 - Hashliste aller Levelinputs und Runtimeartefakte;
 - Addressables Content State/Buildlayout;
 - Localization-Key-Inventar;
@@ -161,9 +162,9 @@ Jeder Release enthält:
 
 Ein Save referenziert stabile IDs und den zuletzt gesehenen Kataloghash. Contentrevisionen dürfen verdienten Fortschritt nicht löschen. Entfernte IDs bleiben über ein Tombstone-/Aliasmanifest auflösbar, bis eine bestätigte Migration existiert.
 
-Eine bereits veröffentlichte Level-ID darf niemals auf einen anderen öffentlichen Puzzlehash zeigen. Logische Korrekturen verwenden eine neue ID und benötigen eine ausdrücklich bestätigte Progress-/Grandfathering-Migration. Eine Abweichung zum Release-Lock ist ein harter Buildfehler.
+Eine bereits veröffentlichte `puzzleId` darf niemals auf einen anderen `STP-PUZZLE-SEMANTIC-JCS-1`-Hash zeigen. Reine Dokumentmigration oder Proofregeneration bleibt bei identischem semantischem Hash zulässig und wird append-only nachvollzogen. Logische Korrekturen verwenden eine neue ID und benötigen eine ausdrücklich bestätigte Progress-/Grandfathering-Migration.
 
-Kosmetikpreise stammen ausschließlich aus dem gelockten `cosmetics-v1`-Snapshot. Ein Kauf bindet Item-ID, Preis und Kataloghash; Debit und Ownership werden in einem Savecommit geschrieben. Bereits besessene oder identisch wiederholte Käufe buchen nicht erneut ab. Katalogrevisionen entfernen vorhandenes Ownership nicht.
+Kosmetikpreise und Milestone-Eligibility stammen ausschließlich aus dem gelockten `cosmetics-v2`-Snapshot. Kauf bindet Item, Preis und Kataloghash; Meilensteinclaim bindet Item, Eligibility-Version/-Hash und Campaignhash. Der jeweilige Ownershipgrant ist atomar; nur Kauf erzeugt ein Ledgerdelta. Katalogrevisionen entfernen vorhandenes Ownership nicht.
 
 ## 11. CI-Gates
 
@@ -182,5 +183,7 @@ Ein Levelautor verantwortet Logik und Qualitätsnotiz. Ein Solver-/Tooling-Revie
 [1]: ../DECISIONS/ADR-004-json-leveldaten-und-content-pipeline.md "ADR-004 – Versionierte JSON-Leveldaten"
 [2]: ../DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md "ADR-011 – UI Toolkit, lokale Addressables, Unity Localization und Unity Audio"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Stammstrecken-Puzzle – Season-1-Content-Bible"
-[4]: ./LEVEL_DATA_FORMAT.md "Level Data Format v1"
-[5]: ./CONTENT_CATALOGS.md "Content Catalogs v0.2"
+[4]: ./LEVEL_DATA_FORMAT.md "Level Data Format v0.3"
+[5]: ./CONTENT_CATALOGS.md "Content Catalogs v0.3"
+[6]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
+[7]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

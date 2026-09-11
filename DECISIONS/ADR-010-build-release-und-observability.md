@@ -49,7 +49,7 @@ Ein Dry Run erzeugt für denselben Commit reproduzierbare Buildmetadaten, Testbe
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Wird durch [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) um production-identische Releasekandidaten und artefaktgleiche Promotion ergänzt; die Grundentscheidung bleibt angenommen.
 
 ## Referenzen
 

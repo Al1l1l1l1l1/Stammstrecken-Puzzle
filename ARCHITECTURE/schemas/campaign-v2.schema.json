@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/campaign-v2.schema.json",
+  "title": "Stammstrecken-Puzzle Campaign Catalog v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "catalogId", "catalogRevision", "approvalStatus", "seasons"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "catalogId": {"type": "string", "pattern": "^campaign-[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 100},
+    "catalogRevision": {"type": "integer", "minimum": 1},
+    "approvalStatus": {"enum": ["FIXTURE_ONLY", "DRAFT", "PRODUCT_APPROVED"]},
+    "seasons": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/season"}
+    }
+  },
+  "$defs": {
+    "season": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "titleKey", "unlock", "sections"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^S[1-9][0-9]*$"},
+        "order": {"type": "integer", "minimum": 1},
+        "titleKey": {"$ref": "#/$defs/localizationKey"},
+        "unlock": {"$ref": "#/$defs/unlock"},
+        "sections": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/section"}}
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "titleKey", "unlock", "routes"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^S[1-9][0-9]*-[0-9]{2}$"},
+        "order": {"type": "integer", "minimum": 1},
+        "titleKey": {"$ref": "#/$defs/localizationKey"},
+        "unlock": {"$ref": "#/$defs/unlock"},
+        "routes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/route"}}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "titleKey", "unlock", "levels"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^S[1-9][0-9]*-[0-9]{2}-[0-9]{2}$"},
+        "order": {"type": "integer", "minimum": 1},
+        "titleKey": {"$ref": "#/$defs/localizationKey"},
+        "unlock": {"$ref": "#/$defs/unlock"},
+        "levels": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/levelRef"}}
+      }
+    },
+    "levelRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["puzzleId", "order", "unlock"],
+      "properties": {
+        "puzzleId": {"type": "string", "pattern": "^S[1-9][0-9]*-[0-9]{2}-[0-9]{2}-[0-9]{2}$"},
+        "order": {"type": "integer", "minimum": 1},
+        "unlock": {"$ref": "#/$defs/unlock"}
+      }
+    },
+    "unlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "requiredSubjectIds"],
+      "properties": {
+        "kind": {"enum": ["ALWAYS", "ALL_FIRST_CLEARS"]},
+        "requiredSubjectIds": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 100}}
+      }
+    },
+    "localizationKey": {"type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z0-9-]+)+$", "maxLength": 160}
+  }
+}

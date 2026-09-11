@@ -1,4 +1,4 @@
-# Build and Release v0.2
+# Build and Release v0.3
 
 ## 1. Ziel
 
@@ -10,7 +10,7 @@ Jeder Storekandidat ist aus Commit, Tag, Toolchain, Contenthash und Konfiguratio
 |---|---|---|---|---|
 | `dev` | lokale Entwicklung | `.dev` | Fakes oder offizielle Test-IDs; externe Telemetrie aus | lokal/Development |
 | `qa` | automatisierte und manuelle QA | `.qa` | Sandbox, Testanzeigen, Store-Sandbox | internes Signing |
-| `staging` | releaseähnlicher Kandidat | `.staging` | getrennte nicht öffentliche Providerprojekte | TestFlight / Play Internal |
+| `staging` | nicht promotable Integrationstest | `.staging` | getrennte nicht öffentliche Providerprojekte | interne QA; niemals öffentlicher Kandidat |
 | `production` | Storeprodukt | final | Productionkonfiguration nach Consent und Freigabe | App Store / Play Tracks |
 
 Bundle-Identifier, AdMob-App-IDs, Firebasekonfigurationen und IAP-Produkt-IDs sind je Profil getrennt. Ein Productionbuild bricht ab, wenn Test-IDs, Debugdefines, Development Build, Autoconnect Profiler oder Testcrashcode erkannt werden. Ein Nicht-Productionbuild bricht ab, wenn Production-Ad-/Store-IDs erkannt werden.
@@ -31,7 +31,7 @@ Ein Releasebuild enthält `build-info.json` mit Version, Buildnummer, Commit, Ta
 
 ## 4. Branch- und Freigabevertrag
 
-`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.2 wird im Korrekturauftrag `WP-002` auf `arch/architecture-v0.1` dokumentiert und weder gemergt noch in einem Pull Request automatisch weiterverarbeitet.
+`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.3 wird im Finalkorrekturauftrag `WP-003` auf `arch/architecture-v0.1` dokumentiert und weder gemergt noch in einem Pull Request automatisch weiterverarbeitet.
 
 Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein Artefakt lokal „repariert“. Eine Änderung erzeugt einen neuen Commit und neuen Kandidaten. Production-Environment und öffentliche Storepromotion verwenden GitHub-Environment-Protection und manuellen Approval.
 
@@ -41,8 +41,8 @@ Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein 
 
 Läuft auf jedem Pull Request:
 
-1. Pfad-/Scope- und Secretcheck;
-2. den eingecheckten Befehl `python tools/architecture-validation/validate.py --self-test` einschließlich Markdownlinks, JSON Schema, Governance und Architekturcontracts;
+1. Pfad-/Scopeprüfung gegen ein versioniertes Manifest und Secretcheck;
+2. `python tools/architecture-validation/validate.py --scope documentation --scope-manifest <path> --self-test` beziehungsweise für Produktionspakete `--scope production`;
 3. Paket-/Lizenz-/SDK-Inventar;
 4. Compile und EditMode;
 5. Content-/Solverprüfung für betroffene Daten;
@@ -66,15 +66,17 @@ Läuft geplant auf aktuellem Integrationsstand:
 Läuft nur auf `v*-rc.*`-Tag:
 
 - alle Validierungs-/Nightlygates erneut ohne Wiederverwendung unbewiesener lokaler Outputs;
-- signierte AAB-/IPA-Erzeugung in geschütztem Environment;
+- signierte AAB-/IPA-Erzeugung mit `production`-Buildprofil, finaler Application-ID, Productionkonfiguration und Production-Signing im geschützten Environment;
 - Symbole, Mapping, SBOM/SDK-Inventar, Lizenzen und Checksummen;
 - Upload zu Play Internal und TestFlight;
 - installierter Smoke aus Storekanal;
-- unveränderliches Release-Manifest.
+- unveränderliches [`release-manifest-v1`](./schemas/release-manifest-v1.schema.json).
 
 ### 5.4 `promote-release.yml`
 
-Promotet exakt bereits geprüftes Artefakt. Es baut nicht neu. Erst nach manueller Freigabe darf stufenweiser öffentlicher Rollout starten. Ein Store ohne artefaktgenaue Promotion erhält denselben Hash/Build erneut über die API.
+Promotet exakt das bereits geprüfte Storebuild. Es kompiliert, exportiert, signiert und paketiert nicht neu. Erst nach manueller Freigabe darf stufenweiser öffentlicher Rollout starten. Der öffentliche Tag `vX.Y.Z` attestiert denselben Commit. Erlaubt ein Store keine artefaktgenaue Trackpromotion, ist der Kandidat nicht promotable und ein neuer `rc.N+1` wird gebaut.
+
+Das Release-Manifest bindet Version/RC-Ordinal, Commit, Workflow-SHA, Plattform, Buildnummer, `buildProfile: production`, finale Application-ID, Signingfingerprint, Toolchain-/Paket-/Content-/Productionkonfigurationshash, Artefakthash, Storebuildreferenz, Debugflags und Blockerstatus. `promotionAllowed` ist nur wahr, wenn alle Debugflags aus, alle Identitäten production und die drei offenen Produktbereiche fail-closed sind. [`release-manifest-v1.rc.example.json`](./examples/release-manifest-v1.rc.example.json) ist ein synthetisches Positivfixture; [`release-manifest-v1.staging.example.json`](./examples/release-manifest-v1.staging.example.json) muss nicht promotable bleiben.
 
 Alle verwendeten Actions werden per vollständigem Commit-SHA gepinnt. Workflowpermissions folgen Least Privilege; `GITHUB_TOKEN` ist standardmäßig read-only.
 
@@ -97,7 +99,7 @@ Die bei Release aktuelle Storeanforderung hat Vorrang vor diesen Mindestständen
 - R8/Minify nur mit SDK-/Reflection-/IAP-/Ads-Smokes und Mappingarchiv;
 - Berechtigungsdiff als Gate; neue gefährliche Berechtigung blockiert bis Begründung und Storedeklaration;
 - Data-Safety-Antworten gegen SDK-Inventar und Telemetrieschema prüfen;
-- IL2CPP- und native Crashsymbole zu Crashlytics hochladen und archivieren.
+- IL2CPP- und native Symbole als geschützte Releaseartefakte archivieren; Crashlytics ist im Productionprofil ausgeschlossen.
 
 Die App benötigt für den lokalen Rätselkern keine gefährliche Androidberechtigung. SDK-manifeste werden nach Merge geprüft; unerwartete Permissions sind Buildfehler.
 
@@ -110,7 +112,7 @@ Die App benötigt für den lokalen Rätselkern keine gefährliche Androidberecht
 - Entitlements-Allowlist; neue Capability blockiert;
 - `PrivacyInfo.xcprivacy` für App und SDKaggregation prüfen;
 - Required Reason APIs, Trackingdomains und gesammelte Datentypen mit tatsächlichem SDK-Inventar abgleichen.[3]
-- dSYM/BCSymbolMaps soweit relevant archivieren und Crashlytics-Symbolstatus prüfen;
+- dSYM/BCSymbolMaps soweit relevant archivieren und lokale beziehungsweise Plattform-Symbolisierung prüfen;
 - expliziter Restore-Purchases-Einstieg im UI-Smoke.
 
 Ein iOS-Simulator erfüllt weder diesen Gerätesmoke noch den Privacy-Capture-Vertrag. Er darf nur vorbereitende UI-/Buildsignale liefern.
@@ -148,7 +150,7 @@ Artefakte erhalten eine dokumentierte Aufbewahrungsfrist. Symbole und Release-Ma
 | Betrieb | Dashboards, Alarmwege, Rollout-/Stopkriterien, Support-/Recoverytext vorhanden. |
 | Security | Secrets, Permissions, SDK-Lizenzen/Signaturen und Dependencyrisiken geprüft. |
 
-Architecture v0.2 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
+Architecture v0.3 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
 
 ## 12. Rollout und Rollback
 
@@ -179,10 +181,11 @@ Ein Kandidat ist promotable, wenn:
 4. Saves einschließlich Upgrade vom ältesten unterstützten Stand funktionieren;
 5. Android/iOS aus internen Storekanälen auf den vorgeschriebenen **physischen** Referenzgeräten oder einer freigegebenen physischen Device-Farm installiert und kerngetestet wurden; Emulator-/Simulatorergebnisse allein gelten nicht;
 6. Ads/Reward/IAP/Restore/Consent mit Sandboxfällen bestanden sind;
-7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind und der Fresh-Install-Netzwerknachweis vor Consent auf beiden physischen Plattformgeräten keinen unerlaubten Traffic zeigt;
-8. Symbole erfolgreich hochgeladen und Testcrash symbolisiert sind;
+7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind und Fresh Install, Upgrade mit früher aktivem Analytics-Override, Widerruf sowie Re-enable auf beiden physischen Plattformen keinen unerlaubten Traffic zeigen;
+8. Symbole archiviert und Testcrash lokal beziehungsweise über Plattformlogs symbolisiert ist;
 9. SBOM, Lizenzen und Artefakthashes archiviert sind;
-10. öffentlicher Rollout separat genehmigt ist.
+10. Promotion-Receipt und RC-Manifest in Commit, Plattform, Buildnummer, Application-ID, Signing-, Toolchain-, Paket-, Content-, Productionkonfigurations- und Artefakthash exakt übereinstimmen;
+11. öffentlicher Rollout separat genehmigt ist.
 
 ## Referenzen
 
@@ -191,3 +194,5 @@ Ein Kandidat ist promotable, wenn:
 [3]: https://developer.apple.com/documentation/bundleresources/privacy-manifest-files "Privacy manifest files"
 [4]: ../DECISIONS/ADR-010-build-release-und-observability.md "ADR-010 – GitHub Actions, Store-Artefakte und Observability"
 [5]: ../DECISIONS/ADR-012-mobile-plattformbaselines.md "ADR-012 – Mobile Plattformbaselines für Android und iOS"
+[6]: ../DECISIONS/ADR-022-validator-scope-und-belegkategorien.md "ADR-022 – Validator-Scope und Belegkategorien"
+[7]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

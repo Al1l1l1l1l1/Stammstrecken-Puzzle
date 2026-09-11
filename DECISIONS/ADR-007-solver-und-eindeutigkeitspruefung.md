@@ -49,7 +49,7 @@ CI prüft bekannte 0-/1-/Mehrfachlösungsfälle, gespiegelte und rotierte Metamo
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Wird durch [ADR-021](./ADR-021-puzzleidentitaet-und-proofartefakte.md) um die versionierte, an Puzzle und Lösung gebundene Proofartefaktform ergänzt; die Solverentscheidung bleibt angenommen.
 
 ## Referenzen
 

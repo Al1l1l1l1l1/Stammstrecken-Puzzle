@@ -1,0 +1,55 @@
+{
+  "contractVersion": 1,
+  "policyRevision": "privacy-v1",
+  "sdkContractRevision": "sdk-2026-09-12",
+  "productionProviders": {
+    "ads": "GoogleMobileAdsUnity-11.5.0",
+    "analytics": "FirebaseAnalyticsUnity-13.16.0",
+    "crash": "EXCLUDED",
+    "iap": "UnityIAP-5.4.3-LAZY_READINESS"
+  },
+  "scenarios": [
+    {
+      "name": "FRESH_INSTALL",
+      "input": {"record": "MISSING", "online": true, "umpCanRequestAds": false},
+      "requiredEffects": ["EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE", "UMP_UPDATE"],
+      "forbiddenEffects": ["ADS_INITIALIZE", "ANALYTICS_ENABLE", "CRASH_INITIALIZE", "IAP_INITIALIZE"]
+    },
+    {
+      "name": "OFFLINE_VALID_RESTART",
+      "input": {"record": "VALID_COMPATIBLE", "online": false, "analyticsDesired": true},
+      "requiredEffects": ["EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_TRUE", "EFFECTIVE_ANALYTICS_TRUE"],
+      "forbiddenEffects": ["UMP_UPDATE", "ADS_INITIALIZE", "CRASH_INITIALIZE", "IAP_INITIALIZE"]
+    },
+    {
+      "name": "OFFLINE_INVALID_RESTART",
+      "input": {"record": "VALID_INCOMPATIBLE", "online": false, "priorAnalyticsOverride": true},
+      "requiredEffects": ["EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE"],
+      "forbiddenEffects": ["UMP_UPDATE", "ADS_INITIALIZE", "ANALYTICS_ENABLE", "CRASH_INITIALIZE", "IAP_INITIALIZE"]
+    },
+    {
+      "name": "UPGRADE_PRIOR_ACTIVE",
+      "input": {"record": "VALID_INCOMPATIBLE", "online": true, "priorAnalyticsOverride": true, "buildMode": "RESET_ONLY"},
+      "requiredEffects": ["ANALYTICS_PERMANENT_DEACTIVATION_PRESENT", "ANALYTICS_OVERRIDE_FALSE", "EFFECTIVE_ALL_FALSE", "UMP_UPDATE"],
+      "forbiddenEffects": ["ANALYTICS_ENABLE", "ADS_INITIALIZE", "CRASH_INITIALIZE", "IAP_INITIALIZE"]
+    },
+    {
+      "name": "REVOCATION",
+      "input": {"record": "VALID_COMPATIBLE", "online": true, "analyticsEffective": true, "adsEffective": true},
+      "requiredEffects": ["PERSIST_REVOKED", "EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE", "DISCARD_ADS"],
+      "forbiddenEffects": ["ANALYTICS_EVENT_AFTER_REVOKE", "ADS_REQUEST_AFTER_REVOKE", "CRASH_INITIALIZE"]
+    },
+    {
+      "name": "REENABLE",
+      "input": {"record": "REVOKED", "online": true, "umpCanRequestAds": true, "buildMode": "REENABLE_CAPABLE"},
+      "requiredEffects": ["UMP_UPDATE", "PERSIST_VALID_CURRENT", "SET_ANALYTICS_PRIVACY_SIGNALS", "ANALYTICS_OVERRIDE_TRUE", "EFFECTIVE_ANALYTICS_TRUE", "ADS_INITIALIZE"],
+      "forbiddenEffects": ["CRASH_INITIALIZE", "IAP_INITIALIZE", "ANALYTICS_ENABLE_BEFORE_PERSIST"]
+    },
+    {
+      "name": "RESTART_AFTER_REVOKE",
+      "input": {"record": "REVOKED", "online": false, "priorAnalyticsOverride": false},
+      "requiredEffects": ["EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE"],
+      "forbiddenEffects": ["ADS_INITIALIZE", "ANALYTICS_ENABLE", "CRASH_INITIALIZE", "IAP_INITIALIZE"]
+    }
+  ]
+}

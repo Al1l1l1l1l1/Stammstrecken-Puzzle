@@ -1,149 +1,119 @@
-# Level Data Format v1
+# Level Data Format v0.3
 
 ## 1. Vertrag und Geltung
 
-Die kanonische Authoringquelle eines Levels ist UTF-8-JSON nach [`level-v1.schema.json`](./schemas/level-v1.schema.json). [`level-v1.example.json`](./examples/level-v1.example.json) und [`level-v1.single-cell.example.json`](./examples/level-v1.single-cell.example.json) sind reine Vertragsfixtures und ausdrücklich **keine freigegebenen Season-1-Produktionslevel**.
+Neue Authoringdaten verwenden UTF-8-JSON nach [`level-v2.schema.json`](./schemas/level-v2.schema.json). [`level-v2.example.json`](./examples/level-v2.example.json) und [`level-v2.single-cell.example.json`](./examples/level-v2.single-cell.example.json) sind reine **FIXTURE_ONLY**-Verträge und keine freigegebenen Season-1-Level. `level-v1` bleibt unverändert als Legacyreader- und Migrationsquelle erhalten.
 
-Das JSON Schema prüft Syntax, Typen, geschlossene Enums und lokale Wertebereiche. Der `LevelSemanticValidator` prüft alle Beziehungen, die JSON Schema nicht zuverlässig ausdrücken kann. Ein Level darf erst nach beiden Prüfungen, Eindeutigkeitsnachweis und Hashvergleich in einen Laufzeitkatalog gelangen.
+JSON Schema prüft Struktur, Typen, Enums und lokale Grenzen. Der semantische Validator prüft Cross-Field-Regeln, Kampagnenhierarchie, Zeitordnung, Pfadgeometrie, Hashprofile, Proofbindung, Eindeutigkeit und Releasehistorie. Erst danach darf ein Level in einen Laufzeitkatalog gelangen.
 
-## 2. Koordinaten- und Richtungsvertrag
+## 2. Koordinaten und Puzzleinvarianten
 
 | Begriff | Festlegung |
 |---|---|
 | Ursprung | Rasterzelle links oben ist `(x=0, y=0)`. |
 | Achsen | `x` wächst nach rechts, `y` nach unten. |
-| Zeilen | `rowCounts[y]`, Länge exakt `height`. |
-| Spalten | `columnCounts[x]`, Länge exakt `width`. |
+| Zeilen/Spalten | `rowCounts[y]` hat Länge `height`; `columnCounts[x]` hat Länge `width`. |
 | Richtungen | `N`, `E`, `S`, `W`. |
-| Endpoint N/S | `index` ist eine Spaltennummer und muss `< width` sein. |
-| Endpoint E/W | `index` ist eine Zeilennummer und muss `< height` sein. |
-| A-Anschluss | erster Pfadknoten; seine Gleisform muss an die Endpointseite anschließen. |
-| B-Anschluss | letzter Pfadknoten; seine Gleisform muss an die Endpointseite anschließen. |
-| Pfadreihenfolge | von A nach B, ohne Wiederholung einer Koordinate. |
+| Endpoint N/S | `index` ist eine Spalte und `< width`. |
+| Endpoint E/W | `index` ist eine Zeile und `< height`. |
+| Pfad | Von A nach B, ohne Koordinatenwiederholung; ab zwei Zellen orthogonal benachbart. |
 
-Endpoints liegen außerhalb des Rasters, werden aber durch Seite und Index adressiert. Sie belegen keine Rasterzelle und zählen nicht in Randzahlen.
+Endpoints liegen außerhalb des Rasters und zählen nicht in Randzahlen. A und B müssen verschiedene Außenanschlüsse sein, dürfen aber dieselbe angrenzende Zelle besitzen. Dann ist genau eine Trackzelle zulässig, wenn ihre Form beide Außenports und alle Zeilen-/Spaltenwerte erfüllt. Dies ändert keine Season-1-Contententscheidung.
 
-A und B müssen verschiedene Außenanschlüsse sein, dürfen aber dieselbe angrenzende Rasterzelle besitzen. In diesem Fall besteht ein technisch gültiger Pfad aus genau einer Trackzelle, wenn deren Form beide Endpointseiten verbindet und alle Zeilen-/Spaltenwerte exakt dazu passen. Das Schema erlaubt deshalb `solution.path` ab einem Eintrag. Season-1-Rastergrößen und Contentauswahl bleiben unverändert; die technische Zulässigkeit ist keine Pflicht, ein solches Produktionslevel zu verwenden.
+Die zulässigen Gleisformen bleiben `TRACK_NS`, `TRACK_EW`, `TRACK_NE`, `TRACK_ES`, `TRACK_SW`, `TRACK_WN`. Leere und Hilfsmarkierungen gehören nur zum Spielerzustand.
 
-## 3. Identität und Hierarchie
+## 3. Drei getrennte Identitätsebenen
 
-Kampagnen-IDs folgen `S{season}-{networkSection:00}-{route:00}-{position:00}`, beispielsweise `S1-03-11-08`. Für Season 1 gelten zusätzlich die semantischen Grenzen: Abschnitte 1–5, Routen innerhalb des Abschnitts 1–4 und Positionen 1–12. Die `content`-Felder müssen exakt zur ID passen.
+| Ebene | Feld/Artefakt | Lebenszyklus |
+|---|---|---|
+| Fachliche Puzzleidentität | `puzzleId` | Dauerhaft; für Kampagnenlevel `S{season}-{section:00}-{route:00}-{position:00}`. |
+| Dokumentformat | `documentSchemaVersion` | Wählt Parser/Migrator; darf sich bei semantisch neutraler Formatänderung ändern. |
+| Solvernachweis | `proof-v1` | Generiertes, regenerierbares und solverversioniertes Artefakt. |
 
-Die ID bleibt über Text-, Asset- und Balancingrevisionen stabil. `contentRevision` steigt bei jeder zulässigen Änderung von Darstellungsschlüsseln, Produktionsmetadaten, Assets oder noch nicht final bestätigten Zeitwerten. Vor der ersten Veröffentlichung kann sie auch Änderungen am Authoringpuzzle begleiten.
+`puzzleId` wird nie aus Dateipfad, `contentRevision`, Text, Asset, Dokumentversion oder Solverversion abgeleitet. Für Season 1 gelten zusätzlich Abschnitt 1–5, Route 1–4 und Position 1–12. Die vier ID-Segmente müssen exakt `content.season`, `networkSection`, `route`, `position` und der Platzierung in `campaign-v2` entsprechen.
 
-**Korrektur des Veröffentlichungsvertrags:** Ab der ersten Veröffentlichung eines Kampagnenlevels sind dessen öffentliche Puzzleprojektion (`rulesetVersion`, `grid`, `endpoints`, `rowCounts`, `columnCounts`) und damit `puzzleHashSha256` unter derselben Level-ID unveränderlich. Eine logische Korrektur erhält eine neue Level-ID und eine ausdrücklich bestätigte Progress-/Grandfathering-Migration. Unter der bestehenden ID dürfen nur Texte, Assets, Produktionsnotizen und noch nicht bestätigte Zeitkalibrierung durch höhere `contentRevision` fortgeschrieben werden; Puzzle-, Lösungs- und Proofhash bleiben identisch. Vor der ersten Veröffentlichung dürfen Authoringrevisionen den Puzzleinput ändern, weil noch kein Spielerfortschritt existiert.
+Ab der ersten Veröffentlichung ist die öffentliche Fachprojektion unter derselben Puzzle-ID unveränderlich. Eine logische Korrektur erhält eine neue Puzzle-ID. Ein Fortschrittstransfer ist ohne ausdrücklich freigegebenes, release-gelocktes Grandfathering-Manifest verboten.
 
-Katalogimport und Save-Laden vergleichen den veröffentlichten `puzzleHashSha256` mit dem Release-Lock. Ein abweichender Hash unter derselben veröffentlichten ID ist `LVL-PUBLISHED-PUZZLE-MUTATED` und blockiert Build sowie Laufzeitkatalog. Er wird niemals durch Übernahme alter Sterne, Rewards oder Bestzeiten auf den neuen Inhalt „migriert“.
+Endless-Level verwenden weiter `endless-v1` und `E1-…`; sie werden nicht in Kampagnen-IDs gepresst.
 
-Endloslevel verwenden den getrennten Vertrag `endless-v1` aus [`SOLVER_ARCHITECTURE.md`](./SOLVER_ARCHITECTURE.md). Generatorversion, Seed, Generationordinal und Parameterhash erzeugen eine deterministische ID. Sie werden nicht durch erfundene Kampagnen-IDs in dieses Schema gepresst.
-
-## 4. Feldgruppen
+## 4. Level-v2-Feldgruppen
 
 | Feldgruppe | Zweck | Laufzeitbedarf |
 |---|---|---:|
-| `schemaVersion`, `rulesetVersion` | Parser- und Regelvertragsauswahl | Ja |
-| `id`, `contentRevision` | stabile Identität und Revision | Ja |
-| `grid`, `endpoints`, `rowCounts`, `columnCounts` | öffentliches Puzzle | Ja |
-| `content` | Kampagnenhierarchie und Lokalisierung | Ja |
-| `production` | Didaktik, Qualität und spätere Zeitkalibrierung | Teilweise |
+| `documentSchemaVersion`, `rulesetVersion` | Dokumentparser und Rätselregelvertrag | Ja |
+| `puzzleId`, `contentRevision` | Fachidentität und redaktionelle Revision | Ja |
+| `grid`, `endpoints`, `rowCounts`, `columnCounts` | öffentlicher Puzzleinput | Ja |
+| `content` | hierarchiegebundene Metadaten und Lokalisierung | Ja |
+| `production` | Didaktik, Qualität und Zeitkalibrierung | Teilweise |
 | `completion` | Karten-, Zug- und Ergebnisreferenzen | Ja |
-| `solution` | Authoringlösung und Validierungsbezug | Nicht an Puzzle-UI ausliefern |
-| `validation` | Hashes, Solver- und Qualitätsnachweis | Manifest/QA; nur notwendige Teile in Runtime |
+| `solution` | kanonische Authoringlösung | Nicht an die Puzzle-UI ausliefern |
+| `proofRef` | Artefakt-ID, Format und Proofhash | Manifest/QA |
 
-Der Runtimeimport erzeugt zwei getrennte Datensätze: `RuntimePuzzleDefinition` ohne kanonische Lösung und `LevelQualityManifest` für QA/Diagnose. In Development-/QA-Builds darf die Lösung für Debugwerkzeuge enthalten sein. In Production wird sie entfernt, soweit der Hinweissolver sie nicht benötigt; Hinweise werden aus Regeln berechnet.
+Der Runtimeimport trennt `RuntimePuzzleDefinition`, `LevelPresentationData` und `LevelQualityManifest`. Production liefert die Authoringlösung nicht an UI-Code aus; Hinweise werden regelbasiert berechnet.
 
-## 5. Geschlossene Enums
+## 5. Zeitdaten
 
-### 5.1 Gleisformen
+`starThresholdsSeconds` ist entweder vollständig `null` oder ein Objekt mit positiven Integern und Kalibrierungsversion. Bei einem Objekt gilt strikt `threeStars < twoStars`. `null` ergibt technisch nur den ersten Stern und bleibt zulässig, bis Produktkalibrierung vorliegt. Der Validator erfindet keine Sekundenwerte.
 
-| Wert | Anschlüsse |
+## 6. Profilierte Hashverträge
+
+Alle Projektionen werden nach RFC 8785/JCS als UTF-8 ohne BOM und Abschlussnewline kanonisiert und mit SHA-256 gehasht. Nicht-I-JSON, ungültige Surrogate und Fließkommazahlen sind verboten.
+
+| Profil | Projektion |
 |---|---|
-| `TRACK_NS` | N–S |
-| `TRACK_EW` | E–W |
-| `TRACK_NE` | N–E |
-| `TRACK_ES` | E–S |
-| `TRACK_SW` | S–W |
-| `TRACK_WN` | W–N |
+| `STP-PUZZLE-SEMANTIC-JCS-1` | `{puzzleId,rulesetVersion,grid,endpoints,rowCounts,columnCounts}` |
+| `STP-SOLUTION-JCS-1` | `{puzzleId,publicPuzzleHash,path}` |
+| `STP-PROOF-JCS-1` | das vollständige `proof-v1`-Objekt ohne `proofHash` |
+| `STP-LEVEL-V1-PUZZLE-JCS-1` | unveränderte historische v1-Projektion aus dem Legacyvertrag |
 
-Leere und Hilfsmarkierungen sind Spielerzustände und erscheinen nicht in der Authoringlösung.
+Jeder Hash wird als `{profile, sha256}` gespeichert. Ein unbekanntes Profil ist ein harter Fehler; kein Hash wird anhand seines Wertes heuristisch gedeutet. Formatierung, Schlüsselreihenfolge, `documentSchemaVersion`, `contentRevision`, Texte, Assets und Proofregeneration ändern den semantischen Puzzlehash nicht. Eine Änderung von Puzzle-ID, Ruleset, Raster, Endpoints oder Counts ändert ihn.
 
-### 5.2 Produktionsschwerpunkte
+## 7. Proof-v1
 
-`OCCUPANCY`, `EXCLUSION`, `ENDPOINT_GEOMETRY`, `CHAIN`, `DENSITY` und `COMBINATION` bilden die bestätigten Lern- und Qualitätsachsen ab. Sie sind keine zusätzlichen Rätselregeln.
+[`proof-v1.schema.json`](./schemas/proof-v1.schema.json) definiert das geschlossene Proofartefakt. Es bindet `puzzleId`, profilierten Puzzlehash, profilierten Lösungshash, `solverVersion`, `solutionCount` und Metriken. Der Proofhash schließt alle diese Werte ein. Copy-Paste eines Proofs auf ein anderes Puzzle, ein stale Lösungshash oder eine Metrikänderung wird deshalb erkannt.
 
-### 5.3 Zeitdaten
+Gleicher öffentlicher Input und gleiche Solverversion müssen bytegleichen Proof erzeugen. Ein neuer Solververtrag benötigt eine neue `solverVersion`; er darf einen neuen Proof erzeugen, ohne `puzzleId` oder semantischen Puzzlehash zu ändern. Ein neues Proofformat benötigt `proofFormatVersion + 1` und einen expliziten Migrator/Reader.
 
-`timeClass` ist eine vorläufige redaktionelle Klasse. `starThresholdsSeconds` bleibt `null`, bis konkrete Zeitwerte produktseitig kalibriert und bestätigt sind. Wenn Schwellen vorliegen, muss semantisch `threeStars < twoStars` gelten. Fehlende Schwellen ergeben technisch nur den ersten Stern; sie werden nie geraten.
+Der Architecture-v0.3-Validator rehasht und bindet Fixtures und zählt ihre kleinen Lösungsmengen unabhängig nach. Die echte Proofregeneration durch den späteren C#-Solver ist **REQUIRED_LATER/NOT_EXECUTED**.
 
-## 6. Semantische Validierung
-
-Der Validator liefert eine sortierte Liste stabiler Diagnosecodes und ist fehlerakkumulierend. Ein Fehler verhindert den Import; Warnungen benötigen im kuratierten Katalog eine explizite, versionierte Ausnahme.
+## 8. Semantische Validierung
 
 | Codefamilie | Prüfung |
 |---|---|
-| `LVL-ID-*` | ID eindeutig, Hierarchie konsistent, Season-1-Bereiche korrekt. |
-| `LVL-GRID-*` | Arraylängen, Werte höchstens Gegenachse, Season-1-Größe 4×4 bis 10×10 gemäß Contentposition. |
-| `LVL-ENDPOINT-*` | Index im Bereich, A und B verschieden, angrenzende Pfadzellen korrekt. |
-| `LVL-PATH-*` | mindestens eine Koordinate im Raster, keine Duplikate, bei mehreren Zellen orthogonal benachbart, passende Gleisanschlüsse; Ein-Zellen-Pfad verbindet beide Endpoints über dieselbe Zelle. |
-| `LVL-RULE-*` | ein einfacher Pfad A–B, keine Kreuzung, keine Schleife, keine offenen inneren Anschlüsse. |
-| `LVL-COUNT-*` | aus Lösung abgeleitete Zeilen-/Spaltenzahlen sind exakt identisch. |
-| `LVL-HASH-*` | Puzzle-, Lösungs- und Proofhash entsprechen kanonischen Projektionen. |
-| `LVL-SOLVER-*` | aktueller Solver findet genau eine Lösung; gespeicherte Lösung ist diese Lösung. |
-| `LVL-CONTENT-*` | Lokalisierungsschlüssel, Kartensegment und Zugmoment existieren. |
-| `LVL-TIME-*` | Schwellen vollständig, positiv und streng geordnet oder vollständig `null`. |
-| `LVL-QUALITY-*` | Einstiegsschluss, Schwerpunkt, Kettentiefe und Qualitätsnotiz vorhanden; keine bloße Platzhalterphrase. |
+| `LVL-ID-*` | ID eindeutig; Segmente stimmen mit Content und Campaignhierarchie; Season-1-Bereiche 5×4×12. |
+| `LVL-GRID-*` | Arraylängen und Werte gegen Rastergrenzen. |
+| `LVL-ENDPOINT-*` | Indizes, verschiedene Außenanschlüsse und angrenzende Pfadzellen. |
+| `LVL-PATH-*` | mindestens eine Zelle, keine Duplikate, Nachbarschaft und passende Anschlüsse. |
+| `LVL-RULE-*` | einfacher Pfad A–B, keine Kreuzung, Schleife oder offene innere Verbindung. |
+| `LVL-COUNT-*` | aus der Lösung abgeleitete Zeilen-/Spaltenzahlen. |
+| `LVL-TIME-ORDER` | `threeStars < twoStars` oder vollständig `null`. |
+| `LVL-HASH-*` | bekannte Profile und exakte JCS-Projektionen. |
+| `PRF-*` | Artefaktformat, Puzzle-/Lösungsbindung, Lösung genau eins und Proofhash. |
+| `LOCK-*` | vollständiger aktueller Lock und keine publizierte semantische Mutation. |
 
-Der Validator vertraut `validation.solutionCount` nie. Er berechnet die Lösung erneut und vergleicht den Nachweis.
+Ein `PRODUCT_APPROVED`-Season-1-Katalog muss exakt 5 Abschnitte × 4 Routen × 12 Level enthalten. Kleine `FIXTURE_ONLY`-Kataloge dürfen unvollständig sein, müssen aber ID-/Content-/Parentkonsistenz erfüllen.
 
-## 7. Hashvertrag
+## 9. Migration und Fortschritt
 
-Hashes verwenden SHA-256 über die exakten UTF-8-Ausgabebytes des **JSON Canonicalization Scheme (JCS) nach RFC 8785**.[5] JCS emittiert kein Whitespace, sortiert Objektschlüssel rekursiv nach UTF-16-Codeeinheiten, erhält Arrayreihenfolgen, serialisiert Primitive normativ und führt ausdrücklich keine Unicode-Normalisierung aus. Die Hashbytes enthalten weder Byte Order Mark noch abschließendes Zeilenende. Nicht-I-JSON-konforme Werte werden abgewiesen. Levelverträge verwenden weiterhin keine Fließkommazahlen.
+`level-v1 -> level-v2` läuft auf Kopie, ist deterministisch und idempotent. `id` wird zu `puzzleId`; alle öffentlichen Eingaben, Lösung, Texte, Completion- und Produktionsfelder bleiben erhalten. Die neue semantische Projektion und der Proof werden erzeugt, ohne `contentRevision` allein wegen des Formats zu erhöhen. Fehlende nicht neutral ableitbare Felder führen zu `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`.
 
-| Hash | Projektion |
-|---|---|
-| `puzzleHashSha256` | `schemaVersion`, `rulesetVersion`, `id`, `grid`, `endpoints`, `rowCounts`, `columnCounts`. |
-| `solutionHashSha256` | Objekt `{id, path}`. |
-| `proofHashSha256` | `solverVersion`, `solutionCount`, `searchNodes`, `deductionSteps`, `maxDeductionDepth`, `requiredGuessDepth`. |
+Progress und Drafts binden an `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}`. Eine Save-Migration verwendet die historische Lockbindung des v1-Legacyhashes. Bei eindeutiger neutraler Zuordnung bleiben Erstabschluss, höchste Sterne, terminale Rewards, zulässige Bestzeit, direkte Lösung und Resume erhalten. Ohne eindeutige Bindung bleibt die Quelle unangetastet und `SAVE_LEVEL_IDENTITY_UNRESOLVED` wird gemeldet.
 
-Der genaue Serializer erhält Golden Tests in C# und einem unabhängigen RFC-8785-kompatiblen CI-Werkzeug. Goldens decken Schlüsselreihenfolge, rekursive Objekte, Escapezeichen, Steuerzeichen, Nicht-ASCII, unterschiedliche Unicode-Normalformen und ungültige Surrogate ab. Unterschiedliche Formatierung der Quelldatei darf keinen Hash ändern; unterschiedliche Unicode-Codepunktfolgen bleiben nach RFC 8785 bewusst unterschiedlich.
+## 10. Append-only Release-Lock
 
-## 8. Schema- und Ruleset-Versionierung
+[`release-lock-v1.schema.json`](./schemas/release-lock-v1.schema.json) hält pro Release Git-/Toolchain-/Katalogbezug und pro Puzzle Dokumenthash/-version, semantischen Puzzlehash, Lösungshash, Proofformat/-version/-hash und Legacybindungen fest. Die Registry ist append-only. Gleiche Puzzle-ID mit anderem semantischem Hash in zwei veröffentlichten Locks blockiert mit `LOCK_PUBLISHED_PUZZLE_MUTATED`; neue Dokument- oder Proofversion bei identischer Semantik ist zulässig.
 
-`schemaVersion` beschreibt die Form des Dokuments. `rulesetVersion` beschreibt die fachlichen Rätselregeln. Eine additive redaktionelle Eigenschaft erhöht wegen `additionalProperties: false` die Schema-Version. Eine neue Gleisform, ein Sonderfeld oder eine neue Gültigkeitsregel benötigt eine neue, ausdrücklich produktseitig bestätigte Ruleset-Version und ein neues ADR.
+## 11. Robustheit
 
-Parser akzeptieren nur explizit registrierte Versionen. „Best effort“ für unbekannte Daten ist verboten. Ein unbekanntes Schema erzeugt `LVL-SCHEMA-UNSUPPORTED`; der Build bricht ab. Production zeigt nie ein unvalidiertes Level.
+Parser behandeln auch lokale Dateien als untrusted Input. Dateigröße, Verschachtelung, Stringlänge und technische Rastergröße werden begrenzt. Polymorphe JSON-Typnamen und automatische Typkonstruktion sind deaktiviert. Lokalisierungsschlüssel, Completionreferenzen und Assets müssen vollständig auflösbar sein.
 
-## 9. Migration
+## 12. Referenzen
 
-Authoringmigrationen sind reine Kommandozeilen-/Editorfunktionen `LevelVn -> LevelVn+1`. Sie laufen auf einer Kopie, validieren das Ergebnis vollständig und schreiben erst nach erfolgreichem Roundtrip. Jede Migration besitzt:
-
-- Golden Input/Output;
-- Idempotenztest auf bereits migriertem Ziel;
-- Negativtests für unvollständige Quelldaten;
-- dokumentierte Standardwerte nur dann, wenn sie fachlich neutral sind;
-- einen Migrationsbericht mit alten/neuen Hashes.
-
-Kann eine neue Pflichtangabe nicht neutral hergeleitet werden, stoppt die Migration und verlangt redaktionelle Eingabe. Sie rät keinen Content.
-
-## 10. Lokalisierung und Assets
-
-JSON speichert stabile Lokalisierungsschlüssel, keine übersetzten Strings. Jeder Schlüssel muss in der deutschen Startlocale existieren. `mapSegmentId` und `trainMomentId` referenzieren typisierte Kataloge. Fehlende Referenzen sind Buildfehler und werden nicht durch generische Production-Fallbacks verdeckt.
-
-## 11. Sicherheits- und Robustheitsgrenzen
-
-Auch lokale Dateien werden als untrusted Input validiert. Parser begrenzen Dateigröße, Verschachtelung, Stringlängen und Raster auf 32×32 als technische Schutzgrenze. Season 1 bleibt fachlich auf die bestätigten Größen beschränkt. Externe JSON-Typmetadaten, polymorphe Typnamen und automatische Objektkonstruktion sind deaktiviert.
-
-## 12. Beispielnachweise
-
-Das Beispiel enthält genau einen einfachen Pfad: `(0,0) -> (0,1) -> (0,2) -> (1,2) -> (2,2) -> (2,1) -> (3,1) -> (3,2) -> (3,3)`. Daraus entstehen Zeilenwerte `[1,3,4,1]` und Spaltenwerte `[3,1,2,3]`. Die Eindeutigkeitsprüfung wurde als Vertragsprüfung mit Lösungslimit zwei ausgeführt und ergab exakt eine Lösung.
-
-Das Ein-Zellen-Fixture verwendet ein 2×2-Raster, A an `N/0`, B an `W/0`, Zeilenwerte `[1,0]`, Spaltenwerte `[1,0]` und `TRACK_WN` in `(0,0)`. Die Endpoints sind verschieden, grenzen aber an dieselbe Zelle. Schema, Semantik, Hashes und erschöpfende Eindeutigkeitsprüfung müssen genau diese eine Lösung bestätigen.
-
-## Referenzen
-
-[1]: ./schemas/level-v1.schema.json "JSON Schema für Leveldaten v1"
-[2]: ./examples/level-v1.example.json "Leveldaten-Beispiel v1"
-[3]: ../DECISIONS/ADR-004-json-leveldaten-und-content-pipeline.md "ADR-004 – Versionierte JSON-Leveldaten"
-[4]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Stammstrecken-Puzzle – Season-1-Content-Bible"
-[5]: https://www.rfc-editor.org/rfc/rfc8785 "RFC 8785 – JSON Canonicalization Scheme"
-[6]: ./examples/level-v1.single-cell.example.json "Leveldaten-Ein-Zellen-Beispiel v1"
+[1]: ./schemas/level-v2.schema.json "JSON Schema für Leveldaten v2"
+[2]: ./schemas/proof-v1.schema.json "JSON Schema für Proof v1"
+[3]: ./schemas/release-lock-v1.schema.json "JSON Schema für Release-Lock v1"
+[4]: ./examples/level-v2.example.json "Level-v2-Vertragsfixture"
+[5]: ./examples/level-v2.single-cell.example.json "Ein-Zellen-Level-v2-Vertragsfixture"
+[6]: ./examples/proof-v1.example.json "Proof-v1-Vertragsfixture"
+[7]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und versionierte Proofartefakte"
+[8]: https://www.rfc-editor.org/rfc/rfc8785 "RFC 8785 – JSON Canonicalization Scheme"

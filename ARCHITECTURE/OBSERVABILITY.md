@@ -1,8 +1,8 @@
-# Observability v0.2
+# Observability v0.3
 
 ## 1. Ziel
 
-Observability macht Fehler und Produktflüsse nachvollziehbar, ohne Gameplay-Wahrheit oder unnötige Nutzerdaten in externe Systeme zu verschieben. Lokale strukturierte Logs funktionieren immer. Externe Analytics und Crashberichte sind buildseitig und nativ standardmäßig deaktiviert. Sie werden ausschließlich nach einer explizit bestätigten Capability aktiviert; `UNKNOWN`, fehlende Entscheidung, Consentfehler und Abbruch bleiben `false`. Eine bereits gültig persistierte Entscheidung darf offline weitergelten.
+Observability macht Fehler und Produktflüsse nachvollziehbar, ohne Gameplay-Wahrheit oder unnötige Nutzerdaten in externe Systeme zu verschieben. Lokale strukturierte Logs funktionieren immer. Externe Analytics ist buildseitig und nativ standardmäßig deaktiviert und wird nur nach gültigem Entscheid plus erfolgreichem NativeApply aktiviert. Firebase Crashlytics ist im Productionprofil ausgeschlossen, bis ein späteres ADR einen sofort wirksamen Widerruf und sichere Pufferlöschung für die dann gepinnte SDK-Version belegt.
 
 ## 2. Ebenen
 
@@ -11,7 +11,7 @@ Observability macht Fehler und Produktflüsse nachvollziehbar, ohne Gameplay-Wah
 | Strukturierter lokaler Logger | Diagnosecodes, Zustandsübergänge und Fehlerursachen. | Immer; begrenzter Ringspeicher. |
 | CI-/Buildlogs | Toolchain, Tests, Content, Build und Store-Preflight. | CI; secrets redigiert. |
 | Firebase Analytics | aggregierte Produktmetriken aus Allowlist. | Automatische Sammlung nativ aus; nur bei `canSendAnalytics == true`. |
-| Firebase Crashlytics | Crash, ANR/non-fatal und Breadcrumbs. | Automatische Sammlung nativ aus; nur bei `canSendCrashReports == true`. |
+| Lokale Crashdiagnose | redigierte Fehlercodes und begrenzte Breadcrumbs ohne externe Übertragung. | Immer lokal; Firebase Crashlytics im Productionprofil ausgeschlossen. |
 | Store-/Ad-Dashboards | Transaktion und Anzeigenbetrieb. | Anbieterbedingt; in SDK-Inventar dokumentiert. |
 
 ## 3. Logschema
@@ -50,12 +50,13 @@ Vor Übergabe an Anbieter läuft jeder Eventdatensatz durch einen `TelemetrySani
 
 Die vollständige SDK-Matrix, native Manifest-/`Info.plist`-Schalter, Dashboardregeln und Initialisierungsreihenfolge stehen in [`MOBILE_SERVICES.md`](./MOBILE_SERVICES.md). Dieser Vertrag ist auch für Observability normativ:
 
-1. `canSendAnalytics` und `canSendCrashReports` werden im Applicationmodell bei Prozessstart als `false` konstruiert. Ein nativer persistenter `true`-Override darf nur denselben noch gültigen lokalen Entscheid spiegeln; eine ihn invalidierende Releaseversion setzt den permanenten nativen Deaktivierungsschalter.
+1. `desired` und `effective` für Ads, Analytics und Crash werden im Applicationmodell getrennt; alle effektiven Werte starten `false`. Ein nativer Override ist niemals Entscheidwahrheit.
 2. Firebase-Autocollection ist in Android-Manifest und iOS-`Info.plist` deaktiviert; ein fehlender oder widersprüchlicher Schalter ist Buildfehler.
 3. Unity Analytics, Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete sind nicht Bestandteil des Production-Manifests.
-4. Application erzeugt oder puffert keine Analyticsereignisse aus der Zeit vor Freigabe. Das native Crashlytics-SDK speichert bei deaktivierter Collection laut Hersteller Crashinformationen lokal; eine dünne Native Bridge löscht diese Berichte zwingend vor jedem späteren Enable.
-5. Widerruf setzt Application-Port und persistenten SDK-Override auf `false`. Vor einem erneuten Enable werden alle Berichte aus der deaktivierten Phase gelöscht.
-6. Ein SDK, dessen optionale Vorabübertragung nicht reproduzierbar ausgeschlossen werden kann, bleibt in Production deaktiviert.
+4. Application erzeugt oder puffert keine Analyticsereignisse aus der Zeit vor Freigabe.
+5. Ein Analytics-Widerruf persistiert zuerst `REVOKED`, setzt den Port sofort No-op und den Runtime-Override `false`. Ein inkompatibles Upgrade verwendet den Reset-only-Build aus `MOBILE_SERVICES.md`.
+6. Firebase Crashlytics ist in Production nicht importiert, nicht gelinkt und nicht initialisiert. `canSendCrashReports` bleibt `false`; Breadcrumb-Kopplung existiert nicht.
+7. Ein SDK, dessen optionale Vorabübertragung oder sofortiger Widerruf nicht reproduzierbar ausgeschlossen werden kann, bleibt in Production ausgeschlossen.
 
 ## 5. Analytics-Ereignisschema
 
@@ -85,9 +86,9 @@ Eine semantische Änderung eines Events erhöht entweder dessen Namen (`*_v2`) o
 
 Remote Config darf weder Analytics-Consent umgehen noch Produktregeln, Adsfrequenz, Belohnungen oder Puzzlelogik verändern.
 
-## 7. Crashlytics
+## 7. Crashdiagnose
 
-Crashreports erhalten ausschließlich:
+Der lokale Diagnose-Ring erhält ausschließlich:
 
 - Build-ID und Commitabkürzung;
 - App-/OS-/Geräteklasse;
@@ -96,7 +97,7 @@ Crashreports erhalten ausschließlich:
 - Sessionphase und letzter Command-/Adaptercode;
 - maximal 32 redigierte Breadcrumbs.
 
-Android-IL2CPP-Symbole werden pro Release mit Firebase CLI hochgeladen; Apple-Symbole werden über den konfigurierten Buildschritt geprüft.[1] Symbolarchive werden nach Build-ID geschützt aufbewahrt. Ein Release ist blockiert, wenn ein interner Testcrash nicht symbolisiert erscheint.
+Android-IL2CPP- und Apple-Symbole werden als geschützte Releaseartefakte nach Build-ID aufbewahrt. Ein interner Testcrash muss lokal und über Plattform-Crashlogs symbolisierbar sein. Ein später zugelassener externer Crashprovider benötigt einen neuen ADR, SDK-/Privacy-Diff und physische Capturebelege.
 
 Erwartbare Anbieterfehler wie No Fill sind keine Non-Fatal-Crashes. Sie werden gezählt, aber nicht als Exceptionrauschen gesendet. Domaininvarianten, Savekorruption und unhandled exceptions sind Fehler hoher Priorität.
 
@@ -120,7 +121,7 @@ Codes werden nie für eine andere Bedeutung wiederverwendet. Ein neuer Code erh�
 
 ## 9. Nutzerkontrolle und Datenlebenszyklus
 
-Einstellungen bieten Privacy-Optionen, Analyticspräferenz soweit rechtlich/technisch vorgesehen und lokales Datenlöschen. Änderungen werden sofort an Adapter weitergegeben. Nicht erlaubte Analyticsereignisse werden nicht erzeugt. Crashlytics-Berichte aus deaktivierten Phasen werden über native `deleteUnsentReports`-Adapter vor jeder späteren Freigabe und beim lokalen Datenlöschen entfernt.
+Einstellungen bieten Privacy-Optionen, Analyticspräferenz soweit rechtlich/technisch vorgesehen und lokales Datenlöschen. Änderungen werden zuerst atomar im `PrivacyDecisionRecord` festgehalten und anschließend an Adapter weitergegeben. Nicht erlaubte Analyticsereignisse werden nicht erzeugt. Da Crashlytics in Production fehlt, existiert dort keine externe Crashqueue; lokales Datenlöschen entfernt den redigierten Ring.
 
 Da es kein Konto und keinen eigenen Backenddatensatz gibt, kann die App keinen geräteübergreifenden Profilabruf anbieten. Storetransaktionen unterliegen den Storeprozessen. Datenschutzerklärung, Anbieterauftragsverarbeitung, Retention und endgültige Consenttexte sind Release-Gates mit fachlicher/rechtlicher Freigabe.
 
@@ -130,7 +131,7 @@ Releaseverantwortliche prüfen nach interner, Staging- und öffentlicher Promoti
 
 | Signal | Reaktion |
 |---|---|
-| Crash-free sessions und neue Fatalcodes | Rollout stoppen, symbolisierten Stack prüfen. |
+| Plattform-Crashberichte und neue lokale Fatalcodes | Rollout stoppen, symbolisierten Stack prüfen. |
 | Save-Recoveryrate | bei Anstieg Rollout stoppen; Datenmigration priorisieren. |
 | Levelabschluss 1–2 | technische Regression von Contentschwierigkeit trennen. |
 | Ads-Abbruch/Fehler/No Fill | Provider-/Consent-/Netzursache trennen; keine Frequenz erhöhen. |
@@ -142,11 +143,11 @@ Es gibt keine automatische Selbständerung der Monetarisierungsregeln. Dashboard
 
 ## 11. Tests
 
-Schema- und Redactiontests versuchen verbotene Felder einzuschleusen. Consenttests verlangen null externe Events vor Freigabe. Der reproduzierbare Fresh-Install-Test aus `MOBILE_SERVICES.md` prüft auf je einem physischen Android- und iOS-Gerät beziehungsweise einer ausdrücklich freigegebenen Device-Farm mit physischen Geräten den Netzwerkverkehr vor und nach einzelner Capability-Freigabe. Ein Vor-Consent-Testcrash wird vor Enable gelöscht und darf nie im Dashboard erscheinen; ein danach erzeugter Crash muss erscheinen. Emulator oder Simulator allein ist kein bestandener Gerätesmoke. Secret-Scanning testet Logs und Artefakte. Offline-, Queuevoll-, Anbieterfehler- und Datenlöschtests sichern Fallbacks.
+Schema- und Redactiontests versuchen verbotene Felder einzuschleusen. Consenttests verlangen null externe Events vor Freigabe. Die vier reproduzierbaren Szenarien aus `MOBILE_SERVICES.md` prüfen auf je einem physischen Android- und iOS-Gerät Fresh Install, Upgrade mit früher aktivem Analytics-Override, Widerruf und Re-enable. Der Paket-/Linkerscan belegt Crashlytics-Abwesenheit. Emulator oder Simulator allein ist kein bestandener Gerätesmoke. Secret-Scanning testet Logs und Artefakte. Offline-, Queuevoll-, Anbieterfehler- und Datenlöschtests sichern Fallbacks.
 
 ## Referenzen
 
-[1]: https://firebase.google.com/docs/crashlytics/unity/get-started "Get started with Crashlytics for Unity"
-[2]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"
-[3]: ./MOBILE_SERVICES.md "Mobile Services v0.2"
+[1]: https://firebase.google.com/docs/crashlytics/unity/customize-crash-reports "Firebase Crashlytics Unity opt-in reporting"
+[2]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
+[3]: ./MOBILE_SERVICES.md "Mobile Services v0.3"
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/13_Oekonomie_und_Monetarisierungs_Balancing.md "Stammstrecken-Puzzle – Ökonomie- und Monetarisierungs-Balancing"

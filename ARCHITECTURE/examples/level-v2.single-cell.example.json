@@ -1,0 +1,68 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S99-01-01-01",
+  "contentRevision": 1,
+  "grid": {
+    "width": 2,
+    "height": 2
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 0
+    },
+    "b": {
+      "side": "W",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    1,
+    0
+  ],
+  "columnCounts": [
+    1,
+    0
+  ],
+  "content": {
+    "season": 99,
+    "networkSection": 1,
+    "route": 1,
+    "position": 1,
+    "titleKey": "level.fixture.single-cell.title",
+    "statusKey": "level.fixture.single-cell.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.fixture.single-cell.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 1,
+    "qualityNote": "Contract fixture only; verifies a technically valid one-cell A-B path and is not production content.",
+    "timeClass": "UNSET",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "fixture-single-cell-segment",
+    "trainMomentId": "standard-first-clear",
+    "resultTextKey": "result.fixture.single-cell"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S99-01-01-01/solver-v1.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "60836f9234091bcddd0b8fc167e639c6104093559299f8c8ffc61e67907699e4"
+    }
+  }
+}

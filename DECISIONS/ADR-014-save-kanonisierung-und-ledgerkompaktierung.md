@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -54,7 +54,7 @@ Python- und Node-Implementierungen erzeugen aus denselben Save-Goldens exakt die
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-006](./ADR-006-lokale-persistenz-und-offline-first.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-006](./ADR-006-lokale-persistenz-und-offline-first.md). Ersetzt durch [ADR-019](./ADR-019-endless-watermark-und-save-v2.md), der JCS und das atomare Ledger restatiert, den Save aber auf v2 und eine konstante Endless-Deduplikationswahrheit hebt.
 
 ## Referenzen
 

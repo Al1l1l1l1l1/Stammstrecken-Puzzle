@@ -1,16 +1,16 @@
-# Stammstrecken-Puzzle – Architecture v0.2
+# Stammstrecken-Puzzle – Architecture v0.3
 
 **Status:** Angenommen
 
-**Stand:** 2026-09-08
+**Stand:** 2026-09-12
 
 **Geltungsbereich:** Mobile-Spiel für Android und iOS
 
-**Work Package:** [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md)
+**Work Package:** [`WP-003`](../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md) und [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md)
 
 ## 1. Architekturauftrag
 
-Architecture v0.2 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt die zwölf Findings des unabhängigen Sol-Reviews. Sie legt Technologien, zyklusfreie Grenzen, Daten-/Transaktionsverträge, Privacy-Defaults, Qualitätsgates und Releasewege fest. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
+Architecture v0.3 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt zusätzlich die acht Findings des unabhängigen Astra-Reviews: kompilierbare Composition Root, constant-space Endless-Lifecycle, vollständiger Privacy-Lifecycle, ehrlicher Validator-Scope, stabile Puzzleidentität/Proofbindung, ausführbare IAP-Reihenfolge, production-identische Kandidaten und implementierbare Kosmetikclaims. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
 
 Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der persistente Projektstand liegt vollständig in Repository, Architecture Decision Records (ADRs), maschinenprüfbaren Datenverträgen und Tests. Kein Implementierungsschritt darf Wissen aus einem Chat voraussetzen.
 
@@ -36,14 +36,14 @@ flowchart LR
     App --> Stores[Apple App Store / Google Play]
     App --> Ads[Google Mobile Ads / Mediation]
     App --> Privacy[Google UMP]
-    App --> Telemetry[Firebase Analytics / Crashlytics]
+    App --> Telemetry[Firebase Analytics nach Capability]
     CI[GitHub Actions] --> App
     CI --> Stores
     Author[Levelautor] --> Source[Versionierte Level-JSON]
     Source --> CI
 ```
 
-**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die externe Wahrheit für den nicht konsumierbaren Kauf `remove_ads`; ein clientseitig verifizierter lokaler Grant bleibt bei transientem Storefehler aktiv. Ads, Consent und Telemetrie sind optionale Adapter. Analytics, Crashreports und Ads sind nativ default-off und ihr Ausfall darf Puzzle, Saves, Fortschritt oder verdiente Inhalte nicht blockieren.
+**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die externe Wahrheit für den nicht konsumierbaren Kauf `remove_ads`; ein clientseitig verifizierter lokaler Grant bleibt bei transientem Storefehler aktiv. Ads, Consent und Analytics sind optionale Adapter. Analytics und Ads sind nativ default-off; Crashlytics ist im Productionprofil ausgeschlossen. Ihr Ausfall darf Puzzle, Saves, Fortschritt oder verdiente Inhalte nicht blockieren.
 
 ## 4. Architekturstil
 
@@ -54,9 +54,9 @@ Das System verwendet eine pragmatische Ports-and-Adapters-Struktur mit einer rei
 | `STP.Puzzle.Domain` | Raster, Zellen, Gleise, Befehle, Invarianten, Completion. | Nur .NET/C#-Basisbibliothek. |
 | `STP.Puzzle.Solver` | Constraints, Lösungszählung, Proof und Deduktionsspur. | Domain. |
 | `STP.Application` | Use Cases, Policies, Fortschritt, Ökonomie, Ports und Orchestrierung. | Domain und Solver. |
-| Adapter | Persistenz, Content, Ads, IAP, Consent, Analytics, Crash, Audio und Lifecycle. | Application-Ports und notwendige SDKs. |
+| Adapter | Persistenz, Content, Ads, IAP, Consent, Analytics, lokale Crashdiagnose, Audio und Lifecycle. | Application-Ports und notwendige SDKs. |
 | Präsentation | UI Toolkit, Puzzlegrid, Karte und Zugfahrt. | Application Read Models und Commands; keine SDKs. |
-| `STP.Bootstrap` | Composition Root und Appstart. | Alle konkreten Module. |
+| `STP.Bootstrap` | Composition Root und Appstart. | `STP.Application` sowie alle konkreten Adapter-/Präsentationsmodule; Domain/Solver nur transitiv. |
 
 Die verbindliche Feinstruktur steht in [`MODULE_BOUNDARIES.md`](./MODULE_BOUNDARIES.md). Compilerwirksame `.asmdef`-Referenzen müssen diese Richtung erzwingen.
 
@@ -66,11 +66,11 @@ Die verbindliche Feinstruktur steht in [`MODULE_BOUNDARIES.md`](./MODULE_BOUNDAR
 
 1. `Bootstrap` lädt Buildkonfiguration und lokale Content-Manifeste.
 2. Persistenzadapter liest Hauptstand, Backup und gegebenenfalls einen vollständig geschriebenen temporären Kandidaten.
-3. Save-Migratoren bringen den Snapshot sequenziell auf die aktuelle Version.
-4. Application validiert Level-, Campaign-, Completion- und Cosmetics-Kataloge samt Cross-References und Release-Lock.
-5. Consent wird aktualisiert; optionale SDKs sind bereits build-/nativ deaktiviert und bleiben bis zu einer explizit bestätigten Capability aus.
+3. Save-Migratoren bringen den Snapshot sequenziell auf Save v2.
+4. Application validiert Level-v2-, Campaign-v2-, Completion-v1- und Cosmetics-v2-Kataloge samt Cross-References, Proofs und Release-Lock.
+5. Der PrivacyCoordinator beginnt effective fail-closed, validiert den versionierten Entscheid, aktualisiert UMP und wendet native Effekte an; optionale SDKs bleiben bis zum jeweiligen Gate aus.
 6. UI zeigt sofort den lokal verfügbaren Startzustand. Netzwerkfehler erscheinen nicht als blockierender Startscreen.
-7. IAP wird nur für Nutzeraktion oder persistente Recovery lazy initialisiert. Telemetrieinitialisierung erfolgt erst nach positiver Capability; beides darf Kernnavigation nicht blockieren.
+7. IAP wird nur für Nutzeraktion oder persistente Recovery plus Release-Readiness lazy initialisiert. Analytics startet erst nach effektiver Capability; Crashlytics ist in Production nicht vorhanden.
 
 ### 5.2 Puzzleablauf
 
@@ -122,6 +122,7 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 | [`TEST_STRATEGY.md`](./TEST_STRATEGY.md) | Testpyramide, Invarianten, Geräteprüfungen und Gates. |
 | [`BUILD_AND_RELEASE.md`](./BUILD_AND_RELEASE.md) | Buildprofile, CI, Signing, Storetracks und Releasebelege. |
 | [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) | Echte fehlende Produktentscheidungen, blockierte Teilbereiche und Unblock-Bedingungen. |
+| [`PRIVACY_PROVIDER_EVIDENCE.md`](./PRIVACY_PROVIDER_EVIDENCE.md) | Herstellerbelege für SDK-Pins, Analytics-Reset, Crash-Ausschluss, UMP und IAP-Datenfluss. |
 
 ## 8. Nicht verhandelbare technische Guardrails
 
@@ -141,33 +142,37 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 14. Der fachliche `POST_CLEAR_PATIENCE`-Claim ist pro Meldung und Placement eindeutig; Provider-IDs sind nur Auditdaten.
 15. IAP-Entitlement wird vor Google Acknowledge beziehungsweise Apple Finish atomar persistiert und idempotent reconciled.
 16. Emulator oder Simulator allein erfüllt kein physisches Geräte- oder Privacy-Smoke-Gate.
+17. Endless-Deduplikation beruht auf Save-v2-Watermark plus aktiven Drafts und besitzt keine terminale Nutzungsgrenze außer UInt64-Erschöpfung.
+18. Puzzle-ID, Dokumentformat und Proofversion sind getrennte Achsen; Hashprofile werden immer mitgeführt.
+19. Ein Releasekandidat wird mit Productionidentität gebaut und exakt ohne Rebuild promotet; Stagingartefakte sind nie promotable.
+20. Ein lokaler Architekturcheck darf nicht als ausgeführter Unity-, Geräte-, SDK- oder Storetest berichtet werden.
 
 ## 9. Anforderungsabdeckung
 
 | Auftragsanforderung | Primärdokument | Entscheidung |
 |---|---|---|
 | Engine, Release-Linie, Sprache und Plattformbaselines | `TECH_STACK.md` | ADR-001, ADR-002, ADR-012 |
-| Source-Struktur und Modulgrenzen | `MODULE_BOUNDARIES.md` | ADR-013 ersetzt ADR-003 |
+| Source-Struktur und Modulgrenzen | `MODULE_BOUNDARIES.md` | ADR-013 ersetzt ADR-003; ADR-018 ergänzt Bootstrap |
 | Zustands-, Feld-, Werkzeug- und Gleismodell | `GAME_STATE_MODEL.md`, `PUZZLE_ENGINE.md` | ADR-005 |
-| Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-004, ADR-016 |
+| Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-021 ersetzt ADR-004 |
 | Puzzlevalidierung | `PUZZLE_ENGINE.md` | ADR-005 |
-| Solver, Eindeutigkeit, Generatorvalidierung | `SOLVER_ARCHITECTURE.md` | ADR-007 |
-| Automatisierte Tests | `TEST_STRATEGY.md` | ADR-009 |
-| Levelauthoring | `CONTENT_PIPELINE.md` | ADR-004 |
-| Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016 |
-| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-014 ersetzt ADR-006 |
-| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-015 ersetzt ADR-008 |
-| Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-015 |
-| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-015, ADR-010 |
+| Solver, Eindeutigkeit, Generatorvalidierung | `SOLVER_ARCHITECTURE.md` | ADR-007, ADR-019, ADR-021 |
+| Automatisierte Tests und Scope | `TEST_STRATEGY.md` | ADR-022 ersetzt ADR-017/ADR-009 |
+| Levelauthoring | `CONTENT_PIPELINE.md` | ADR-021 ersetzt ADR-004 |
+| Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016, ADR-023 |
+| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-019 ersetzt ADR-014/ADR-006 |
+| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-020 ersetzt ADR-015/ADR-008 |
+| Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-020 |
+| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-020, ADR-010 |
 | Audio, Assets und Lokalisierung | `CONTENT_PIPELINE.md`, `MOBILE_SERVICES.md` | ADR-011 |
-| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-017 |
+| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-022, ADR-023 |
 | Logging und Fehlerdiagnose | `OBSERVABILITY.md` | ADR-010 |
-| Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-017 ersetzt ADR-009 |
+| Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-022 ersetzt ADR-017/ADR-009 |
 | Fehlende Produktentscheidungen | `OPEN_BLOCKERS.md` | fail-closed Folgeblocker |
 
 ## 10. Offene Grenzen und Blockerstatus
 
-Architecture v0.2 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
+Architecture v0.3 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
 
 1. `BLOCKER-PROD-001` blockiert die finale Hint-Entitlement-/Economy-Implementierung.
 2. `BLOCKER-PROD-002` blockiert die Anspruchslogik der Betriebslage des Tages.
@@ -195,3 +200,9 @@ Eine technische Änderung beginnt mit einem regelkonformen Work Package `WP-###`
 [8]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"
 [9]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
 [10]: ../DECISIONS/ADR-017-versionierter-architekturvalidator.md "ADR-017 – Versionierter Architekturvalidator"
+[11]: ../DECISIONS/ADR-018-bootstrap-composition-root.md "ADR-018 – Bootstrap Composition Root"
+[12]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
+[13]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
+[14]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
+[15]: ../DECISIONS/ADR-022-validator-scope-und-belegkategorien.md "ADR-022 – Validator-Scope und Belegkategorien"
+[16]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

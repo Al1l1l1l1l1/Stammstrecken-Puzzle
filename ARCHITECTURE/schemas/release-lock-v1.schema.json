@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/release-lock-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Release Lock v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lockFormatVersion", "releaseId", "gitCommit", "toolchainLockSha256", "catalogHashes", "puzzles"],
+  "properties": {
+    "lockFormatVersion": {"const": 1},
+    "releaseId": {"type": "string", "pattern": "^(?:fixture-[a-z0-9.-]+|v[0-9]+\\.[0-9]+\\.[0-9]+(?:-rc\\.[1-9][0-9]*)?)$"},
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "toolchainLockSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "catalogHashes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/namedHash"}},
+    "puzzles": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/puzzleLock"}}
+  },
+  "$defs": {
+    "profiledHash": {
+      "type": "object", "additionalProperties": false, "required": ["profile", "sha256"],
+      "properties": {"profile": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "namedHash": {
+      "type": "object", "additionalProperties": false, "required": ["id", "sha256"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "puzzleLock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["puzzleId", "documentSchemaVersion", "documentSha256", "publicPuzzleHash", "solutionHash", "proofFormatVersion", "solverVersion", "proofHash", "legacyBindings"],
+      "properties": {
+        "puzzleId": {"type": "string", "pattern": "^S[1-9][0-9]*-[0-9]{2}-[0-9]{2}-[0-9]{2}$"},
+        "documentSchemaVersion": {"type": "integer", "minimum": 1},
+        "documentSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "publicPuzzleHash": {"$ref": "#/$defs/profiledHash"},
+        "solutionHash": {"$ref": "#/$defs/profiledHash"},
+        "proofFormatVersion": {"type": "integer", "minimum": 1},
+        "solverVersion": {"type": "string", "minLength": 1},
+        "proofHash": {"$ref": "#/$defs/profiledHash"},
+        "legacyBindings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/profiledHash"}}
+      }
+    }
+  }
+}

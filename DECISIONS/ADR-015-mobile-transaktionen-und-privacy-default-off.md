@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -76,7 +76,7 @@ Contracttests decken Reservation, Parallelität, Callbackreplay, Crash an jeder 
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-008](./ADR-008-mobile-service-ports-und-provider.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-008](./ADR-008-mobile-service-ports-und-provider.md). Ersetzt durch [ADR-020](./ADR-020-privacy-lifecycle-und-sdk-grenzen.md), der Transaktionsgrenzen bewahrt und Privacy-Lifecycle sowie belegbare SDK-Grenzen vollständig festlegt.
 
 ## Referenzen
 

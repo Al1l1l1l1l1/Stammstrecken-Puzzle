@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -51,7 +51,7 @@ CI validiert jede Quelldatei gegen das Schema, führt die semantische Prüfung u
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt keinen früheren ADR. Vollständig ersetzt durch [ADR-021](./ADR-021-puzzleidentitaet-und-proofartefakte.md), der alle fortgeltenden JSON-Source-, Schema-, Semantik-, Unveränderlichkeits-, Pipeline- und Migrationsgrundsätze explizit restatiert und Dokumentformat, fachliche Puzzleidentität sowie Proofartefakt trennt.
 
 ## Referenzen
 

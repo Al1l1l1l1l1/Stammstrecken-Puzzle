@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/level-v2.schema.json",
+  "title": "Stammstrecken-Puzzle Level v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["documentSchemaVersion", "rulesetVersion", "puzzleId", "contentRevision", "grid", "endpoints", "rowCounts", "columnCounts", "content", "production", "completion", "solution", "proofRef"],
+  "properties": {
+    "documentSchemaVersion": {"const": 2},
+    "rulesetVersion": {"const": "train-track-v1"},
+    "puzzleId": {"type": "string", "pattern": "^S[1-9][0-9]*-[0-9]{2}-[0-9]{2}-[0-9]{2}$"},
+    "contentRevision": {"type": "integer", "minimum": 1},
+    "grid": {
+      "type": "object", "additionalProperties": false, "required": ["width", "height"],
+      "properties": {"width": {"type": "integer", "minimum": 2, "maximum": 10}, "height": {"type": "integer", "minimum": 2, "maximum": 10}}
+    },
+    "endpoints": {
+      "type": "object", "additionalProperties": false, "required": ["a", "b"],
+      "properties": {"a": {"$ref": "#/$defs/endpoint"}, "b": {"$ref": "#/$defs/endpoint"}}
+    },
+    "rowCounts": {"type": "array", "minItems": 2, "maxItems": 10, "items": {"type": "integer", "minimum": 0, "maximum": 10}},
+    "columnCounts": {"type": "array", "minItems": 2, "maxItems": 10, "items": {"type": "integer", "minimum": 0, "maximum": 10}},
+    "content": {
+      "type": "object", "additionalProperties": false,
+      "required": ["season", "networkSection", "route", "position", "titleKey", "statusKey"],
+      "properties": {
+        "season": {"type": "integer", "minimum": 1}, "networkSection": {"type": "integer", "minimum": 1}, "route": {"type": "integer", "minimum": 1}, "position": {"type": "integer", "minimum": 1},
+        "titleKey": {"$ref": "#/$defs/localizationKey"}, "statusKey": {"$ref": "#/$defs/localizationKey"}
+      }
+    },
+    "production": {
+      "type": "object", "additionalProperties": false,
+      "required": ["entryDeductionKey", "focus", "chainDepth", "qualityNote", "timeClass", "starThresholdsSeconds"],
+      "properties": {
+        "entryDeductionKey": {"$ref": "#/$defs/localizationKey"},
+        "focus": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "enum": ["OCCUPANCY", "ENDPOINT_GEOMETRY", "ROW_COLUMN_COUNTS", "CONNECTIVITY", "NO_BRANCH", "NO_LOOP"]}},
+        "chainDepth": {"type": "integer", "minimum": 1}, "qualityNote": {"type": "string", "minLength": 1},
+        "timeClass": {"type": "string", "minLength": 1},
+        "starThresholdsSeconds": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "additionalProperties": false, "required": ["twoStars", "threeStars", "calibrationVersion"], "properties": {"twoStars": {"type": "integer", "minimum": 1}, "threeStars": {"type": "integer", "minimum": 1}, "calibrationVersion": {"type": "string", "minLength": 1}}}
+          ]
+        }
+      }
+    },
+    "completion": {
+      "type": "object", "additionalProperties": false, "required": ["mapSegmentId", "trainMomentId", "resultTextKey"],
+      "properties": {"mapSegmentId": {"type": "string", "minLength": 1}, "trainMomentId": {"type": "string", "minLength": 1}, "resultTextKey": {"$ref": "#/$defs/localizationKey"}}
+    },
+    "solution": {
+      "type": "object", "additionalProperties": false, "required": ["path"],
+      "properties": {"path": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/pathCell"}}}
+    },
+    "proofRef": {
+      "type": "object", "additionalProperties": false, "required": ["artifactId", "proofFormatVersion", "proofHash"],
+      "properties": {
+        "artifactId": {"type": "string", "pattern": "^[A-Za-z0-9._/-]+$"},
+        "proofFormatVersion": {"const": 1},
+        "proofHash": {"$ref": "#/$defs/profiledHash"}
+      }
+    }
+  },
+  "$defs": {
+    "endpoint": {
+      "type": "object", "additionalProperties": false, "required": ["side", "index"],
+      "properties": {"side": {"type": "string", "enum": ["N", "E", "S", "W"]}, "index": {"type": "integer", "minimum": 0, "maximum": 9}}
+    },
+    "pathCell": {
+      "type": "object", "additionalProperties": false, "required": ["x", "y", "track"],
+      "properties": {"x": {"type": "integer", "minimum": 0, "maximum": 9}, "y": {"type": "integer", "minimum": 0, "maximum": 9}, "track": {"type": "string", "enum": ["TRACK_NS", "TRACK_EW", "TRACK_NE", "TRACK_ES", "TRACK_SW", "TRACK_WN"]}}
+    },
+    "profiledHash": {
+      "type": "object", "additionalProperties": false, "required": ["profile", "sha256"],
+      "properties": {"profile": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "localizationKey": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$"}
+  }
+}

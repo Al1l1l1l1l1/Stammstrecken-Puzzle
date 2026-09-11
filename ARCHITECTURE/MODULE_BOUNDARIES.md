@@ -1,4 +1,4 @@
-# Module Boundaries v0.2
+# Module Boundaries v0.3
 
 ## 1. Ziel
 
@@ -65,13 +65,13 @@ Die folgende Tabelle ist die **einzige normative Allowlist interner direkter Ass
 | `STP.Application` | Use Cases, Fortschritt, Economy, Policies, Read Models und sämtliche providerneutralen Ports/Ergebnisunionen. | `STP.Puzzle.Domain`, `STP.Puzzle.Solver` | .NET/C#-Basisbibliothek; `noEngineReferences: true`. |
 | `STP.Infrastructure.Content` | JSON-Parsing, Schema-/Semantikadapter, Level-/Katalogports und Addressable-Mapping. | `STP.Application`, `STP.Puzzle.Domain` | Newtonsoft Json, Addressables. |
 | `STP.Infrastructure.Persistence` | Save-Serializer, atomare Dateien, Migrationen, Hashprofile, Ledgercheckpoint und Backup. | `STP.Application`, `STP.Puzzle.Domain` | Newtonsoft Json. |
-| `STP.MobileServices.Google` | Mobile Ads, UMP, Firebase Analytics und Crashlytics; implementiert Application-Ports. | `STP.Application` | jeweilige Google-/Firebase-SDKs. |
+| `STP.MobileServices.Google` | Mobile Ads, UMP und Firebase Analytics; implementiert Application-Ports. Crashdiagnose bleibt lokal. | `STP.Application` | gepinnte Google-Mobile-Ads-/Firebase-Analytics-SDKs; kein Crashlytics in Production. |
 | `STP.MobileServices.Store` | Unity-IAP-Adapter, lokale Belegprüfung und Storetransaktionsmapping; implementiert `IPurchasePort`. | `STP.Application` | Unity IAP. |
 | `STP.Platform` | App-Lifecycle, Netzwerkstatus, Safe Area, Haptik und Plattforminformationen. | `STP.Application` | UnityEngine, Input System. |
 | `STP.Audio` | Audio-Cue-Mapping, AudioMixer und Lifecycle. | `STP.Application` | UnityEngine, Addressables. |
 | `STP.Presentation.UI` | UI Toolkit Screens, Presenter, Custom Grid und Navigation. | `STP.Application`, `STP.Puzzle.Domain` | UI Toolkit, Input System, Localization. |
 | `STP.Presentation.World` | Zugfahrt, Kartenwelt, 2D-/2.5D-Renderer und Animation. | `STP.Application`, `STP.Puzzle.Domain` | UnityEngine, URP, Addressables. |
-| `STP.Bootstrap` | Composition Root, Startreihenfolge, Buildkonfiguration und Szenenentry. | `STP.Infrastructure.Content`, `STP.Infrastructure.Persistence`, `STP.MobileServices.Google`, `STP.MobileServices.Store`, `STP.Platform`, `STP.Audio`, `STP.Presentation.UI`, `STP.Presentation.World` | UnityEngine. |
+| `STP.Bootstrap` | Composition Root, Startreihenfolge, Buildkonfiguration und Szenenentry. | `STP.Application`, `STP.Infrastructure.Content`, `STP.Infrastructure.Persistence`, `STP.MobileServices.Google`, `STP.MobileServices.Store`, `STP.Platform`, `STP.Audio`, `STP.Presentation.UI`, `STP.Presentation.World` | UnityEngine. |
 | `STP.Editor.Content` | Import, Authoringfenster, Batchvalidator und Buildkatalog. | `STP.Puzzle.Domain`, `STP.Puzzle.Solver`, `STP.Infrastructure.Content` | UnityEditor. |
 | `STP.Editor.Build` | Reproduzierbare Buildentrypoints und Preflight. | `STP.Bootstrap` | UnityEditor. |
 
@@ -114,7 +114,8 @@ flowchart TD
     UI --> Domain
     World[STP.Presentation.World] --> App
     World --> Domain
-    Bootstrap[STP.Bootstrap] --> Content
+    Bootstrap[STP.Bootstrap] --> App
+    Bootstrap --> Content
     Bootstrap --> Persist
     Bootstrap --> Google
     Bootstrap --> Store
@@ -154,7 +155,11 @@ Pfeile bedeuten „referenziert“. Der Graph ist azyklisch. Die Verbotswirkung 
 
 ## 7. Composition Root und Lifecycle
 
-`STP.Bootstrap` ist der einzige Ort, an dem konkrete Implementierungen gewählt werden. Die Composition Root erstellt Abhängigkeiten in folgender Reihenfolge: Konfiguration, lokaler Logger, Content, Persistenz, Clock/Lifecycle, Application, Presentation und erst danach erlaubte externe Adapter.
+`STP.Bootstrap` ist der einzige Ort, an dem konkrete Implementierungen gewählt werden. Die direkte Referenz auf `STP.Application` ist erforderlich, damit die Root Use Cases und deren providerneutrale Ports kompilierbar verdrahten kann. Domain und Solver bleiben transitive innere Abhängigkeiten; Bootstrap referenziert sie nicht direkt. Die Composition Root erstellt Abhängigkeiten in folgender Reihenfolge: Konfiguration, lokaler Logger, Content, Persistenz, Clock/Lifecycle, Application, Presentation und erst danach erlaubte externe Adapter.
+
+Eine erlaubte Assemblyreferenz ist **keine** Initialisierungsfreigabe. Ads, IAP, Analytics und Crashdiagnose dürfen erst nach ihren eigenen Capability-, Privacy- und Recovery-Gates gestartet werden. Service Locator, veränderliche Singleton-Registry, Reflexions-Wiring und Szenensuche sind keine zulässigen Ersatzmechanismen.
+
+Der erste Produktions-Scaffold muss zusätzlich einen Compile-/Composition-Smoke `STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke` bereitstellen. Er kompiliert die echte `.asmdef`-Kante, startet die Root in einer dedizierten QA-Szene und belegt genau ein Binding pro Application-Port, vollständigen Application-/UI-/World-Graphen, keine nicht dokumentierten Null-/Fallback-Ports und keinen optionalen Providerstart. Dieser Test ist ohne Unity-Scaffold **REQUIRED_LATER/NOT_EXECUTED** und kein lokaler v0.3-PASS.
 
 MonoBehaviours dienen ausschließlich als Unity-Lifecycle- und Renderingadapter. Sie besitzen keine fachliche Entscheidungslogik. Szenen enthalten keine gegenseitigen Suchabhängigkeiten. Jede Szene hat genau einen dokumentierten Entry-Installer, der von Bootstrap gespeist wird.
 
@@ -169,6 +174,8 @@ Level- und Katalogdefinitionen sind immutable und nach stabiler ID cachebar. Sav
 CI und der Architekturvalidator prüfen mindestens:
 
 - `.asmdef`-Referenzen gegen die Allowlist aus Abschnitt 3;
+- die Bootstrap-Referenzmenge exakt gegen die neun in Abschnitt 3 genannten internen Ziele;
+- die Mermaid-Kantenmenge exakt gegen die normative Tabelle;
 - ausschließlich bekannte konkrete Assemblyknoten;
 - Azyklizität des internen Graphen;
 - `noEngineReferences` für Domain, Solver und Application;
@@ -189,6 +196,7 @@ Ein Agent liest zuerst die zuständigen Architekturverträge und bestehenden Tes
 ## Referenzen
 
 [1]: ../DECISIONS/ADR-013-zyklusfreie-ports-und-modulgrenzen.md "ADR-013 – Zyklusfreie Ports und Modulgrenzen"
-[2]: ./ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.2"
-[3]: ./TEST_STRATEGY.md "Test Strategy v0.2"
+[2]: ./ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.3"
+[3]: ./TEST_STRATEGY.md "Test Strategy v0.3"
 [4]: ../PROJECT_CONTROL/WORK_PACKAGE_RULES.md "Regeln für Work Packages"
+[5]: ../DECISIONS/ADR-018-bootstrap-composition-root.md "ADR-018 – Kompilierbare Bootstrap-Composition-Root"

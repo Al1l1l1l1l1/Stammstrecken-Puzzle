@@ -47,7 +47,7 @@ Der eingecheckte Architekturvalidator liest die normative Assembly-Allowlist, pr
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-003](./ADR-003-domain-trennung-und-modulgrenzen.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-003](./ADR-003-domain-trennung-und-modulgrenzen.md). Wird durch [ADR-018](./ADR-018-bootstrap-composition-root.md) um die minimale direkte Bootstrap-Referenz auf `STP.Application` ergänzt; Port-Eigentümerschaft und Adapterrichtung bleiben angenommen.
 
 ## Referenzen
 

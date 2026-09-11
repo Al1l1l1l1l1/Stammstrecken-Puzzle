@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -55,7 +55,7 @@ Ein sauberer Checkout erstellt eine frische virtuelle Umgebung, installiert auss
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-009](./ADR-009-automatisierte-teststrategie.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-009](./ADR-009-automatisierte-teststrategie.md). Ersetzt durch [ADR-022](./ADR-022-validator-scope-und-belegkategorien.md), der die reproduzierbaren Prüfungen bewahrt und Scope sowie Beleggrenzen explizit trennt.
 
 ## Referenzen
 

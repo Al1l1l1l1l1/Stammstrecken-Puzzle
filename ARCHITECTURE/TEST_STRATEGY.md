@@ -1,4 +1,4 @@
-# Test Strategy v0.2
+# Test Strategy v0.3
 
 ## 1. Qualitätsprinzip
 
@@ -43,18 +43,18 @@ Tests verwenden Builder mit sinnvollen Defaults und nennen die fachliche Behaupt
 | Known cases | 0, 1 und 2+ Lösungen korrekt bis Limit zwei. |
 | Cross-check | kleiner unabhängiger Enumerator stimmt auf kleinen Rastern mit Productionsolver überein. |
 | Metamorphic | Rotation, Spiegelung und A/B-Tausch bewahren Lösungsklasse. |
-| Determinism | Proof, Lösung und Metriken sind über Runs/Plattformen identisch. |
+| Determinism | Gebundenes `proof-v1`, Lösung und Metriken sind über Runs/Plattformen identisch. |
 | Mutation | Entfernte Constraintregeln lassen mindestens einen Test scheitern. |
 | Hint | jeder ausgegebene Hint ist aus dem öffentlichen Puzzle ohne Spielerannahmen wahr, kein Suchguess und enttarnt keine nicht objektiv fehlerhafte Annahme; andernfalls `NO_NON_REVEALING_HINT_AVAILABLE`. |
 | Budget | kuratierte 10×10-Fälle bleiben innerhalb dokumentierter Grenzen. |
 | Generator | fester Seed reproduziert Kandidat; Production akzeptiert nur Profilstatus `PRODUCT_APPROVED` mit exakt passendem Profil-/Korpus-/Solverhash. |
-| Endless identity | Generatorversion, Seed, Ordinal und Parameterhash reproduzieren dieselbe `E1-`-ID; Duplicate und ID/Deskriptor-Konflikt werden unterschieden; 20 aktive Records, 64 terminale Intervalle und 64 terminale Volldetails sind harte Grenzen. |
+| Endless identity/lifecycle | Generatorversion, Seed, Ordinal und Parameterhash reproduzieren dieselbe `E1-`-ID; Watermark plus aktive Drafts bleiben nach 10.000 alternierenden Complete-/Abandon-Transitions konstant begrenzt; Resume-Lücken und terminale Duplicates werden korrekt klassifiziert. |
 
 Der vollständige kuratierte Katalog wird bei jedem Release neu bis Lösungslimit zwei geprüft. Ein gespeicherter Proof allein genügt nicht.
 
 ## 5. Datenvertrags- und Contenttests
 
-- jedes Level gegen JSON Schema Draft 2020-12;
+- jedes neue Level gegen `level-v2`, Legacyfixtures zusätzlich gegen `level-v1`;
 - semantische Codes für jede Querschnittsregel;
 - Hashprojektionen in C# und unabhängigem CI-Werkzeug identisch;
 - unbekannte Eigenschaften wegen `additionalProperties: false` abgewiesen;
@@ -62,7 +62,8 @@ Der vollständige kuratierte Katalog wird bei jedem Release neu bis Lösungslimi
 - IDs und Contenthierarchie eindeutig/vollständig;
 - Campaign-, Completion- und Cosmetics-Kataloge gegen eigene Schemata, Freigabestatus, Revision, Hash und Cross-Reference-Reihenfolge;
 - Cosmetics-Preis stammt ausschließlich aus dem release-gelockten Katalog; Duplicate Purchase und Already Owned buchen nie doppelt ab;
-- veröffentlichter Puzzlehash unter stabiler Level-ID unveränderlich; Mutation blockiert Build und übernimmt keinen Fortschritt;
+- veröffentlichter profilierter semantischer Puzzlehash unter stabiler `puzzleId` unveränderlich; Dokumentmigration und Proofregeneration bleiben bei identischer Semantik zulässig;
+- `proof-v1` bindet Puzzle-ID, profilierten Puzzlehash, Lösungshash, Solverversion und Metriken; Cross-Puzzle-Copy und stale Proof scheitern;
 - Lokalisierungs- und Assetreferenzen auflösbar;
 - zwei saubere Importe erzeugen denselben Kataloghash;
 - Runtimeartefakt enthält keine unbeabsichtigte Authoringlösung;
@@ -83,7 +84,8 @@ Das Beispiel unter `ARCHITECTURE/examples/` wird bereits in der Architekturphase
 | Downgrade | ältere App überschreibt neueren Save nicht. |
 | Save hash | RFC-8785-Bytes, UTF-8 ohne BOM/Newline, Unicode/Integergrenzen, Duplicate-Key-Ablehnung in beiden Parsern, unabhängiger Cross-Tool-Golden und Hashprofildispatch. |
 | Economy | doppelte Reward-/Stern-/Route-/Abschnitts-Callbacks sind No-op; Checkpoint/Journalsaldo und Hashkette stimmen. |
-| Compaction | Schwellen, harte Grenzen, terminale Fachrecords, jüngstes Diagnosefenster, Crash vor/nach atomarem Commit und Migration. |
+| Compaction | Schwellen, harte Grenzen, terminale Fachrecords, Crash vor/nach atomarem Commit und Migration. |
+| Endless Save v2 | Watermarkinvarianten, aktive Höchstzahl 20, Complete/Abandon atomar, kein Terminaldetail als Wahrheit, 10.000 Transitions und v1→v2-Golden. |
 | IAP | Belegprüfung, atomarer Grant vor Acknowledge/Finish, Phasencrash, Retry, Restore, widersprüchliche Antwort und bestätigte Revocation. |
 | Clock | Uhr zurück, Zeitzone wechselt, Tagesgrenze, Apppause. |
 | Ressourcen | niedriger Speicherplatz, I/O-Fehler, lange Pfade, Appkill. |
@@ -98,7 +100,7 @@ Adpolicy-Tests verwenden tabellarische Daten für Abschlussordinal 0–9+, Modus
 
 Rewardtests prüfen `POST_CLEAR_PATIENCE` über die fachliche Claim-ID exakt einmal je Meldung: wiederholte und parallele Anfragen, Crash nach Reservation, Rewardcallback vor/nach Close, später Callback nach Freigabe, Reconciliation und atomarer Claim-plus-Ledgercommit. Provider-IDs werden variiert und dürfen keinen zweiten Grant erlauben. Zusätzlicher Hintcredit und Tageslauf bleiben bis zur jeweiligen Produktfreigabe deaktiviert.
 
-Kosmetikkauftests prüfen ausreichenden/ungenügenden Saldo, atomaren Debit-plus-Ownership-Commit, Duplicate Purchase, Already Owned, parallele Commands, Kataloghashwechsel, Tombstone und Save-Migration.
+Kosmetikkauftests prüfen ausreichenden/ungenügenden Saldo, atomaren Debit-plus-Ownership-Commit, Duplicate Purchase, Already Owned, parallele Commands, Kataloghashwechsel, Tombstone und Save-Migration. Meilensteintests prüfen Campaign-Subject-Expansion, First-Clear-Eligibility, atomaren Claim-plus-Ownership-Commit ohne Ledgerdelta, Replay, Claimkollision, Revision/Tombstone und Crash vor/nach Commit.
 
 Solange `BLOCKER-PROD-001` beziehungsweise `BLOCKER-PROD-002` offen sind, müssen Productionprofile `EXTRA_HINT` und Betriebslage-des-Tages-Claims deaktivieren. Solange `BLOCKER-PROD-003` offen ist, muss jeder Generator-Productionimport fehlschlagen. Diese Fail-closed-Prüfungen sind selbst Merge- und Release-Gates.
 
@@ -113,8 +115,9 @@ Jede Implementierung von Ads, IAP, Consent, Analytics, Crash, Audio und Lifecycl
 - Unity-Objekte werden nur am Hauptthread berührt;
 - deaktivierter/no-op Adapter erfüllt denselben Vertrag;
 - keine nicht erlaubten Felder erreichen Analytics/Crash;
-- Analytics-/Crashcapabilities starten immer `false`; `UNKNOWN`, fehlende Entscheidung, offline und Consentfehler aktivieren kein SDK;
-- native Manifest-/`Info.plist`-Schalter deaktivieren Firebase-Autocollection; unnötige Unity-Developer-Data-Pakete fehlen;
+- effektive Ads-/Analytics-/Crashcapabilities starten immer `false`; `UNKNOWN`, fehlende oder inkompatible Entscheidung und Consentfehler aktivieren kein SDK;
+- native Manifest-/`Info.plist`-Schalter deaktivieren Analytics-Autocollection; Reset-only-Builds setzen permanenten Analytics-Off und Runtime-Override `false`;
+- Crashlytics fehlt im Productionpaket; IAP initialisiert weder im Bootstrap noch ohne Readiness und Nutzeraktion/Recovery;
 - Sandboxkonfiguration kann Production-IDs nicht verwenden.
 
 Echte SDK-Smokes laufen nur mit Testanzeigen, Sandboxprodukten und Testgeräten.
@@ -143,9 +146,37 @@ ADR-012 legt die Mindest-Geräteklassen fest. Das erste Implementierungs-Work-Pa
 
 Long-run-Smokes wiederholen Level öffnen/lösen/zur Karte 100-mal mit Fakes und prüfen Speichertrend, Eventsubscriptions und Handlefreigabe.
 
-Der Privacy-Smoke folgt exakt `MOBILE_SERVICES.md`: Fresh Install, verweigerter Consent, versionierter Netzwerkcapture über 120 Sekunden und lokalen Kernflow, Offline-Reconnect sowie anschließende Einzelaktivierung jeder Capability. Für Android und iOS werden physisches Gerätemodell, OS, Buildhash, native Konfigurationshashes, Capturetool/-regelversion und Capturehash archiviert. Unerklärter Traffic blockiert; Simulator-/Emulatorcapture allein kann das Gate nicht erfüllen.
+Der Privacy-Smoke folgt exakt `MOBILE_SERVICES.md`: Fresh Install, Upgrade mit früher aktivem Analytics-Override, Widerruf und Re-enable, jeweils mit Restart-/Offlinevarianten. Für Android und iOS werden physisches Gerätemodell, OS, Buildhash, native Konfigurationshashes, Capturetool/-regelversion und Capturehash archiviert. Unerklärter Traffic blockiert; Simulator-/Emulatorcapture allein kann das Gate nicht erfüllen.
 
 ## 11. Build- und Release-Tests
+
+### 11.1 Maschinenprüfbarer Scope
+
+Jeder **Work-Package-Abnahmelauf** benötigt `--scope documentation|production` und `--scope-manifest <json>`. Ein Architecture-only-Lauf ohne diese Argumente bleibt für allgemeine Diagnose zulässig, ist aber kein Scope- oder Abschlussbeleg. Das Manifest bindet `workPackageId`, unveränderlichen `baseCommit`, Scope und erlaubte repositoryrelative POSIX-Globmuster. Der Validator berechnet die reale Diffmenge inklusive Rename-Endpunkten und untracked Dateien, lehnt absolute Pfade, `..`, unbeschränktes `**` und jeden Pfad außerhalb der Allowlist ab und meldet den Scope im Ergebnis. `documentation` scheitert insbesondere bei `Assets/**`, `Packages/**`, `ProjectSettings/**` oder anderem Produktcode; **nur** ein explizites Production-Manifest kann solche Pfade erlauben. Lokal und CI verwenden dasselbe eingecheckte Manifest; eine Umgebungsvariable darf den Scope nicht erweitern.
+
+Der kanonische WP-003-Befehl lautet:
+
+```bash
+python tools/architecture-validation/validate.py \
+  --scope documentation \
+  --scope-manifest tools/architecture-validation/scopes/WP-003.documentation.scope.json \
+  --self-test
+```
+
+Der GitHub-Workflow ermittelt für Pull Requests den Merge-Base mit dem Zielbranch, muss aber den im Manifest festgeschriebenen Commit bestätigen. Bei `push` wird derselbe Manifest-Base verwendet. Ein fehlender oder nicht erreichbarer Basecommit ist ein harter Fehler.
+
+### 11.2 Belegkategorien
+
+| Kategorie | Bedeutung |
+|---|---|
+| **LOCAL_DOCUMENT_STRUCTURE PASS** | Im aktuellen Repository ausgeführte Inventar-, Governance-, Link- oder Statusprüfung. |
+| **LOCAL_ARCHITECTURE_SEMANTICS PASS** | Im aktuellen Repository ausgeführtes Schema-, Fixture-, Modell- oder Mutationsgate. |
+| **LOCAL_SCOPE PASS** | Reale Git-Diffmenge bestand das versionierte Work-Package-Manifest. |
+| **CONTRACT_ONLY** | Schema, Fixture oder Dokumentvertrag vorhanden; noch kein Produktionscodebeleg. |
+| **REQUIRED_LATER/NOT_EXECUTED** | Verbindliches Gate für Scaffold, Gerät oder Store, das mangels Artefakt/Zugang noch nicht laufen kann. |
+| **BLOCKED** | Benötigt offene Produktentscheidung, Credential oder externe Freigabe. |
+
+Ein Architekturvalidator darf eine Dokumentphrase, Fixtureprojektion oder Mutationsprüfung nie als ausgeführten Unity-, C#-, IL2CPP-, Geräte-, SDK-, Sandbox- oder Storetest darstellen. Abschlussberichte listen lokale Kategorien sowie `CONTRACT_ONLY`, `REQUIRED_LATER/NOT_EXECUTED` und `BLOCKED` getrennt.
 
 | Gate | Pull Request | Main/Integrationsstand | Release Candidate |
 |---|---:|---:|---:|
@@ -155,12 +186,12 @@ Der Privacy-Smoke folgt exakt `MOBILE_SERVICES.md`: Fresh Install, verweigerter 
 | PlayMode | Ja | Ja | Ja |
 | Android Development IL2CPP | Ja | Ja | Ja |
 | iOS Export/Compile | optional bei docs-only, sonst nightly | Ja | Ja |
-| Physischer Gerätesmoke Android/iOS | bei Adapteränderung auf verfügbarer freigegebener Hardware; sonst als echter Blocker | geplant auf Device-Farm | Ja |
+| Physischer Gerätesmoke Android/iOS | REQUIRED_LATER/NOT_EXECUTED ohne Scaffold/Hardware | geplant auf Device-Farm | Ja |
 | Store-/Privacy-/Signing-Preflight | Nein | Stagingdryrun | Ja |
 | TestFlight/Internal Track Smoke | Nein | Nein | Ja |
 | Symbolisierter Testcrash | bei Crash-SDK-Änderung | Staging | Ja |
 
-Documentation-only-Arbeiten wie `WP-001` und `WP-002` benötigen keinen Spielbuild, solange noch kein Produktionsprojekt existiert. Ihr eingecheckter Befehl `python tools/architecture-validation/validate.py --self-test` sowie Dokument-, Link-, Governance-, Schema-, Hash- und Mutationsgates bleiben verbindlich.
+Documentation-only-Arbeiten wie `WP-001`, `WP-002` und `WP-003` benötigen keinen Spielbuild, solange noch kein Produktionsprojekt existiert. Sie müssen jedoch mit ihrem eingecheckten Documentation-Scope-Manifest laufen und dürfen Unity-/Geräte-/Storetests nur als REQUIRED_LATER/NOT_EXECUTED ausweisen.
 
 ## 12. Coverage, Mutation und Qualitätsmetriken
 
@@ -184,7 +215,7 @@ Zufallstests protokollieren Seed, Solverversion, Testfall und minimierten Gegenb
 
 Fixtures enthalten keine Produktionssecrets oder personenbezogene Daten. Goldens sind klein, lesbar und mit Generator-/Schema-/Solverversion markiert. Ihre Aktualisierung geschieht durch expliziten Befehl und wird getrennt vom Verhaltenscode reviewt. Ein Agent darf erwartete Outputs nicht ändern, nur damit ein fehlschlagender Test besteht.
 
-Der Architekturvalidator liegt dauerhaft unter `tools/architecture-validation/`. Setup, gepinnte Abhängigkeiten und Einstiegspunkt stehen in seiner README. `--self-test` führt positive Repositoryprüfungen und gezielte Negativmutationen für Work-Package-ID, ADR-Index, Assemblyzyklus, Savehash, Rewardclaim, IAP-Reihenfolge, Privacy Default-Off, Kataloge, Ledgerkompaktierung, Endless-ID, Modulregel und Ein-Zellen-Pfad aus. Eine nicht erkannte Mutation ist ein fehlgeschlagenes Gate.
+Der Architekturvalidator liegt dauerhaft unter `tools/architecture-validation/`. Setup, gepinnte Abhängigkeiten und Einstiegspunkt stehen in seiner README. `--self-test` führt positive Repositoryprüfungen und gezielte Negativmutationen für Scope-Escape, Work-Package-ID, ADR-Indexstatus, projektweite v0.3-Statuskonsistenz, Bootstrapkante, Savehash/-migration, Rewardclaim, ausführbare IAP-Reihenfolge, Privacy-Lifecycle, Kataloge, Season-1-Grenzen 1–5/1–4/1–12, Sternschwellen, Ledgerkompaktierung, Endless-Watermark, Puzzle-/Proofbindung, Releaseidentität, Cosmetics-Eligibility und Ein-Zellen-Pfad aus. Eine nicht erkannte Mutation ist ein fehlgeschlagenes Gate.
 
 ## 15. Fehlerbehebungsvertrag
 
@@ -192,8 +223,8 @@ Jeder Productionbug erhält zuerst einen minimalen reproduzierenden Test auf der
 
 ## Referenzen
 
-[1]: ../DECISIONS/ADR-017-versionierter-architekturvalidator.md "ADR-017 – Versionierter Architekturvalidator"
-[2]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.2"
-[3]: ./SOLVER_ARCHITECTURE.md "Solver Architecture v0.2"
-[4]: ./PERSISTENCE.md "Persistence v0.2"
-[5]: ./MOBILE_SERVICES.md "Mobile Services v0.2"
+[1]: ../DECISIONS/ADR-022-validator-scope-und-belegkategorien.md "ADR-022 – Validator-Scope und Belegkategorien"
+[2]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.3"
+[3]: ./SOLVER_ARCHITECTURE.md "Solver Architecture v0.3"
+[4]: ./PERSISTENCE.md "Persistence v0.3"
+[5]: ./MOBILE_SERVICES.md "Mobile Services v0.3"

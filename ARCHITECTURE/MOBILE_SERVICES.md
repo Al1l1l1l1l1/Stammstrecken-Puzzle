@@ -1,4 +1,4 @@
-# Mobile Services v0.2
+# Mobile Services v0.3
 
 ## 1. Grundregel
 
@@ -30,7 +30,7 @@ Timeout ist nie Erfolg. Späte und doppelte Callbacks werden über Operation-ID 
 | `IAdsPort` | `STP.MobileServices.Google`: Google Mobile Ads 11.5.0 mit AdMob Mediation | Angebot ausblenden beziehungsweise ohne Anzeige fortfahren. |
 | `IPurchasePort` | `STP.MobileServices.Store`: Unity IAP 5.4.3 | Kauf nicht verfügbar; bestätigter lokaler Werbefrei-Cache bleibt. |
 | `IAnalyticsPort` | `STP.MobileServices.Google`: Firebase Analytics 13.16.0 | No-op-Sink. |
-| `ICrashReportingPort` | `STP.MobileServices.Google`: Firebase Crashlytics 13.16.0 | begrenztes lokales Diagnosejournal. |
+| `ICrashReportingPort` | Production: lokaler redigierter Diagnosesink; Firebase Crashlytics 13.16.0 ist ausgeschlossen. | begrenztes lokales Diagnosejournal. |
 | `IAudioPort` | `STP.Audio`: AudioMixer/AudioSource | lautloser No-op ohne Spielfehler. |
 | `IAppLifecyclePort` | `STP.Platform`: Unity Lifecycle plus notwendige dünne Hooks | konservatives Pause/Resume. |
 | `INetworkStatusPort` | `STP.Platform`: Plattformhinweis plus tatsächliches Ergebnis | `UNKNOWN`; Dienstaufruf entscheidet selbst. |
@@ -38,9 +38,9 @@ Timeout ist nie Erfolg. Späte und doppelte Callbacks werden über Operation-ID 
 
 Es gibt keine `STP.MobileServices.Contracts`-Assembly und keinen `ISaveSyncPort`.
 
-## 4. Privacy Capability Gate
+## 4. Privacy Decision Record und Capability Gate
 
-Capabilities sind getrennt. Das Application-Capabilityobjekt beginnt bei jedem Prozess mit `false`; ein nativer persistenter SDK-Override darf nur dann bereits `true` sein, wenn er denselben noch gültigen lokalen Entscheid spiegelt:
+Capabilities sind getrennt. Das Application-Capabilityobjekt beginnt bei jedem Prozess mit `false`:
 
 - `canRequestAds`;
 - `canSendAnalytics`;
@@ -48,7 +48,11 @@ Capabilities sind getrennt. Das Application-Capabilityobjekt beginnt bei jedem P
 - `privacyOptionsEntryRequired`;
 - `trackingAuthorizationStatus`.
 
-`UNKNOWN`, fehlender lokaler Entscheid, Formfehler, Abbruch oder nicht geladene Konfiguration kann keine Fähigkeit auf `true` setzen. Eine bereits explizit persistierte und für die aktuelle Privacy-/Policyversion gültige Entscheidung darf offline weitergelten; ein Netzwerkfehler allein widerruft sie nicht. Eine Fähigkeit wird nur durch diesen gültigen Entscheid plus erfolgreiche Runtime-Aktivierung freigegeben. Ein Widerruf setzt den Application-Port sofort auf No-op und den nativen SDK-Override auf `false`. SDK-spezifische lokale Puffer werden nach den Regeln in Abschnitt 5 behandelt.
+Der persistente `PrivacyDecisionRecord` enthält ausschließlich `recordVersion`, `policyRevision`, `sdkContractRevision`, `decisionRevision`, `capturedAtUtc`, getrennte Ads-/Analytics-/Crashentscheidungen, `validity` und `source`. UMP-Strings, Advertising IDs und Personenkennungen werden nicht übernommen. Fehlend, defekt, unbekannt oder revisionsinkompatibel ergibt `INVALID` und alle Capabilities `false`.
+
+`desiredCapabilities` aus einem validen Record und `effectiveCapabilities` nach erfolgreich angewandten nativen Effekten sind getrennt. Ein fehlgeschlagener oder abgebrochener Effekt bleibt `false`. Eine kompatible, integre Entscheidung darf Analytics offline weitergelten; Ads benötigen dennoch ein aktuelles UMP-`Update()` des Starts. Crash bleibt im Productionprofil immer `false`.
+
+Startreihenfolge: (1) Application effective alles `false`; (2) Record laden und Revisionen prüfen; (3) invalid oder Upgrade: Analytics nativ `false`, keine Ads/IAP/Crash-Initialisierung; (4) UMP online aktualisieren und erforderliche Form zeigen; (5) aktuellen Record atomar persistieren; (6) zugelassene native Effekte anwenden; (7) erst danach den jeweiligen Port effective schalten.
 
 UMP-Status wird bei jedem Start aktualisiert. Nur der dafür notwendige Consentstatus-/Formfluss darf vor Adfreigabe kommunizieren. Anzeigen dürfen erst nach `CanRequestAds() == true` initialisiert beziehungsweise geladen werden.[1] App Tracking Transparency wird nur bei einer rechtlich und produktseitig freigegebenen Trackingkonfiguration angefragt. Ablehnung blockiert das Spiel nicht.
 
@@ -59,9 +63,10 @@ Application-No-ops allein genügen nicht. Productionbuild, native Konfiguration,
 | System | Build-/native Default-Off | Runtime-Aktivierung | Ohne Consent / offline | Releasenachweis |
 |---|---|---|---|---|
 | Unity-/Developer Data | Unity Analytics, Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete fehlen aus `manifest.json`; Unity-Services-Autoinitialisierung und Editor-/Runtime-Analytics sind deaktiviert. | Nur eine später ausdrücklich freigegebene Fähigkeit darf ein benötigtes Unity-Service-Modul initialisieren. | Keine optionale Übertragung oder eigene Vor-Consent-Eventqueue. | Paket-/Native-Manifest-Scan und Netzwerkmitschnitt. |
-| Unity IAP 5.4 | Keine IAP-Initialisierung im Bootstrap; Storeproduktabfrage startet erst nach sichtbarer Kauf-/Restoreaktion oder bei persistenter Recovery. Das SDK- und Privacy-Inventar führt die laut Hersteller immer erhobenen Daten (Player ID, Unity Installation ID, Geräte-/Sessiondaten und Land), Transaktionsdaten sowie die Unity-Authentication-Abhängigkeit ausdrücklich auf.[5] | Nutzeraktion oder persistente IAP-Recovery initialisiert Store/IAP; vor dem ersten solchen Vorgang werden Datenschutzhinweis und notwendige Rechts-/Storefreigabe nachgewiesen. | Ohne Initialisierung kein IAP-Developer-Data-Fluss; Kauf nicht verfügbar, bestätigter lokaler `remove_ads`-Cache bleibt. Nach Initialisierung gelten notwendige Store-/IAP-Datenflüsse zweckgebunden, nicht als Analytics-Opt-in. | Paket-/PrivacyInfo-/Data-Safety-Scan, Sandboxflow und Capture; notwendige Store-/IAP-Kommunikation getrennt klassifizieren. |
-| Firebase Analytics | Android: `firebase_analytics_collection_enabled=false`, `google_analytics_adid_collection_enabled=false` und Personalisierungssignale standardmäßig aus. iOS: `FIREBASE_ANALYTICS_COLLECTION_ENABLED=NO`, keine AdSupport-IDFA-Fähigkeit und Personalisierungssignale standardmäßig aus.[6][7] | Erst nach `canSendAnalytics == true` Personalisierungsstatus setzen und danach `SetAnalyticsCollectionEnabled(true)` aufrufen. Der Override persistiert; er muss denselben gültigen lokalen Entscheid spiegeln. | Ohne gültigen Entscheid No-op; keine eigenen Vor-Opt-in-Events nachsenden. Ein Release, das frühere Einwilligung invalidiert, muss Analytics für diese Version mit dem permanenten Deaktivierungsschalter hart ausliefern. | Native-Konfigurationsscan, DebugView und Capture. |
-| Firebase Crashlytics | Android: `firebase_crashlytics_collection_enabled=false`; iOS: `FirebaseCrashlyticsCollectionEnabled=false`.[8][9] Keine Breadcrumbkopplung an Analytics. | Erst nach `canSendCrashReports == true` aktivieren. Vor **erstmaligem** Enable beziehungsweise Re-Enable nach einer deaktivierten Phase löscht ein dünner nativer Adapter `deleteUnsentReports`, damit lokal vor Consent erfasste Crashes nicht nachträglich hochgeladen werden; dann wird der persistente Override aktiviert. | Deaktiviert speichert das SDK laut Hersteller Crashinformationen lokal. Diese Daten dürfen nicht gesendet werden und werden vor späterem Enable gelöscht. Widerruf setzt den Override auf `false`; vor einem erneuten Enable wird erneut gelöscht.[8][9] | Testcrash vor/nach Opt-in, Neustart, Löschbridge und Capture. |
+| Unity IAP 5.4.3 | Keine IAP-Initialisierung im Bootstrap; Storeproduktabfrage startet erst nach sichtbarer Kauf-/Restoreaktion oder bei persistenter Recovery. Das Inventar führt die immer erhobenen Daten und Unity-Authentication-Abhängigkeit auf.[5] | Nutzeraktion oder Recovery **und** freigegebener `IapPrivacyReadiness`-Beleg. | Ohne Readiness `NOT_ALLOWED`; bestätigter lokaler `remove_ads`-Cache bleibt. | Privacy-/SDK-Inventar, Dashboard-/Storedeklarationen, Sandboxflow und separater Capture. |
+| Firebase Analytics 13.16.0 | Android: `firebase_analytics_collection_enabled=false`, `google_analytics_adid_collection_enabled=false`, Personalisierung aus. iOS: `FIREBASE_ANALYTICS_COLLECTION_ENABLED=NO`, kein AdSupport/IDFA, Personalisierung aus.[6][7] | Nach gültigem Record erst Privacy-/Personalisierungssignale, dann `SetAnalyticsCollectionEnabled(true)`. | Ohne gültigen Record Override `false`; keine Application-Vorfreigabequeue. | Native-Konfigurationsscan, DebugView und Capture. |
+| Analytics Reset-only-Build | Zusätzlich `firebase_analytics_collection_deactivated=true` beziehungsweise `FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED=YES`; beim Start Runtime-Override `false` schreiben. | In diesem Binary niemals aktivierbar. Erst ein späterer kompatibler Build entfernt den permanenten Schalter; der persistierte Override bleibt `false` bis zum neuen Entscheid. | Verhindert, dass ein früher persistiertes `true` beim invalidierenden Upgrade gewinnt. | Upgradecapture mit zuvor aktivem Testbuild und Native-Config-Hash. |
+| Firebase Crashlytics 13.16.0 | **Nicht im Productionprofil enthalten.** Der Anbieter dokumentiert, dass `false` erst beim nächsten Start gilt und lokal gesammelte Berichte beim späteren Aktivieren gesendet werden.[8][9] | Keine Production-Aktivierung; `canSendCrashReports` bleibt `false`. | Lokaler redigierter Diagnosering. | Paket-/Linker-/Native-Manifest-Scan bestätigt Abwesenheit. |
 | Google Mobile Ads | Keine Ads-SDK-Initialisierung und kein Adload vor `CanRequestAds`; Test-/Production-App-IDs profilgetrennt. | Erst nach `canRequestAds == true`; UMP separat davor zulässig. | Keine Anzeige, kein Load, kein Retry. | Manifestscan, UMP-/Ad-Test und Capture. |
 
 Wenn ein SDK zwingende Developer Data überträgt, die technisch nicht deaktivierbar ist, müssen Datenart, Zweck, Endpoint, Aufbewahrung, Anbieterrolle, Storedeklaration und Rechtsgrundlage vor Production im SDK-/Privacy-Inventar freigegeben sein. Unity IAP 5.4 fällt ausdrücklich in diese Kategorie und hat keinen eigenen Consentdienst.[5] Bis zu dieser Freigabe darf es nicht initialisieren. Notwendige Apple-/Google-Storekommunikation nach ausdrücklicher Kauf-/Restoreaktion ist kein Analytics-Opt-in, bleibt aber datensparsam, dokumentiert und zweckgebunden.
@@ -100,7 +105,7 @@ Der Adapterzustand lautet `REQUESTED -> LOADING -> SHOWING -> REWARDED | CLOSED_
 
 | Placement | Fachlicher Claim | Gegenwert |
 |---|---|---|
-| `POST_CLEAR_PATIENCE` | `reward-claim:POST_CLEAR_PATIENCE:<levelId>` | +10 Geduldspunkte exakt einmal je Meldung. |
+| `POST_CLEAR_PATIENCE` | `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>` | +10 Geduldspunkte exakt einmal je Meldung. |
 | `EXTRA_HINT` | erst nach bestätigter `IHintPolicy` | ein persistenter Hintcredit; wegen `BLOCKER-PROD-001` Production-aus. |
 | `DAILY_EXTRA` | erst nach bestätigter Tagespolicy | eine zusätzliche Teilnahme; wegen `BLOCKER-PROD-002` Production-aus. |
 
@@ -151,24 +156,26 @@ Ein Crash vor Schritt 3 wird über Store-Replay/Restore erneut validiert. Ein Cr
 
 Restore auf iOS und Android verwendet dieselbe Pipeline. Eine leere, fehlgeschlagene oder zeitüberschrittene Abfrage widerruft keinen bestätigten lokalen Anspruch. Nur eine eindeutige verifizierte Refund-/Revocationaussage setzt `REVOCATION_CONFIRMED`. Widersprüchliche Storeantworten werden `RECONCILIATION_REQUIRED`; der zuvor bestätigte Werbefreistatus bleibt konservativ aktiv.
 
-## 9. Analytics und Crashdiagnose
+## 9. Widerruf, Re-enable, Restart und Offline
 
-Analytics akzeptiert nur Events aus der versionierten Allowlist. Ohne `canSendAnalytics == true` ist der Port No-op und das SDK nativ deaktiviert. Es gibt keine Application-Vor-Consent-Queue und keine nachträgliche Übertragung von selbst erzeugten Ereignissen aus der verbotenen Phase.
+**Widerruf:** Zuerst wird `REVOKED` atomar lokal gespeichert. Danach werden effektive Ports sofort No-op, Ads verworfen und Analytics Override `false` gesetzt. Schlägt der native Effekt fehl, bleibt Application trotzdem gesperrt und wiederholt Disable beim nächsten Start; kein Ereignis wird gepuffert.
 
-Crashlytics erhält nach `canSendCrashReports == true` ausschließlich freigegebene Keys. Ohne Fähigkeit bleibt das redigierte Applicationjournal lokal. Zusätzlich lokal vom nativen Crashlytics-SDK erfasste Berichte werden nie freigegebenen Berichten beigemischt: Die Native Bridge löscht sie vor jedem späteren Enable. Zulässig sind Build-ID, Appversion, Plattform, Save-Schema, Contenthash, Level-ID, Sessionphase und letzter Command-Code. Unzulässig sind Raster, Lösungsweg, Receipt, Werbe-ID, Freitext und vollständige Pfade.
+**Re-enable:** Nur nach erfolgreichem UMP-Update/Form und atomar gespeichertem, revisionsaktuellem `VALID`-Record. Für Analytics werden zuerst Privacy-/Personalisierungssignale gesetzt, dann Collection aktiviert und erst nach Erfolg `effective=true`. Ads werden separat nur bei `CanRequestAds()==true` initialisiert. Crash bleibt ausgeschlossen; IAP bleibt bis sichtbarer Aktion/Recovery und Readiness aus.
 
-## 10. Reproduzierbarer Privacy-Gerätetest
+**Restart:** Jeder Start beginnt effective false und synchronisiert gegen den lokalen Record. Ein persistierter Provideroverride ist niemals selbst die Entscheidwahrheit. **Offline:** kompatibles Analytics-Opt-in kann nach NativeApply gelten; Ads bleiben ohne aktuelles UMP-Update aus. Invalidierung oder unbekannter Zustand bleibt vollständig fail-closed.
 
-Vor Stagingpromotion wird für **jede Plattform** ein Fresh-Install-Test auf einem physischen Mindest- oder aktuellen Referenzgerät beziehungsweise einer ausdrücklich freigegebenen Device-Farm mit physischen Geräten ausgeführt. Emulator und Simulator dürfen vorbereitend genutzt werden, erfüllen das Gate aber niemals allein.
+## 10. Reproduzierbare Privacy-Gerätetests
+
+Vor RC-Promotion werden auf **jeder Plattform** vier getrennte Szenarien auf physischen Geräten oder einer freigegebenen physischen Device-Farm ausgeführt. Emulator und Simulator erfüllen das Gate niemals allein:
 
 Der Testvertrag lautet:
 
-1. Produktionsnahen Stagingbuild mit bekanntem Artefakthash installieren und Appdaten löschen.
-2. Gerät über dokumentierten DNS-/SNI-/Packet-Capture beziehungsweise freigegebenen TLS-Proxy führen; Capturetool und Regelset versionieren.
-3. App starten, Consent nicht erteilen beziehungsweise ablehnen, 120 Sekunden warten und lokalen Start-/Puzzle-/Einstellungsflow ohne Kauf/Restore ausführen.
-4. Erwartbar ist ausschließlich der dokumentierte UMP-Consentfluss. Analytics-, Crash-, Adload-/Adrequest-, Unity-Developer-Data- und IAP-Endpunkte sind verboten, solange weder Kauf/Restore noch IAP-Recovery ausgelöst wurde.
-5. Offline denselben Flow wiederholen. Application darf keine optionale Vor-Capability-Queue erzeugen. Ein vom deaktivierten Crashlytics-SDK lokal gehaltener Testbericht darf beim nächsten Netzstart nicht übertragen werden und muss vor einem späteren Enable nachweislich gelöscht werden.
-6. Danach jede Capability einzeln freigeben und nachweisen, dass nur der zugehörige Anbieterfluss beginnt. Für Crashlytics wird vor Enable ein Vor-Consent-Testcrash erzeugt und nach Löschung verifiziert, dass dieser nie erscheint; erst der nach Enable erzeugte Testcrash darf übertragen werden.
+1. **Fresh Install:** Daten löschen; vor Entscheidung nur UMP-Flow, keine Ads-/Analytics-/Crash-/IAP-Kommunikation.
+2. **Upgrade prior active:** Testvorversion mit Analytics-Override `true`, danach Reset-only-RC installieren; vor Re-Consent kein Analyticskontakt, Runtimewert wird `false`.
+3. **Revocation:** Analytics und Ads gezielt aktivieren, widerrufen und noch im selben Prozess sowie nach Restart keine weiteren Requests beobachten.
+4. **Re-enable:** Re-enable-fähigen späteren Build nach validem aktuellen Entscheid prüfen; nur freigegebene Analytics-/Adsachsen senden, Crash bleibt abwesend.
+
+Jedes Szenario läuft online und, wo sinnvoll, offline. DNS-/SNI-Kontakt zählt als Traffic. IAP-Kommunikation ist nur in einem getrennten Readiness-/Kauf-/Restoreflow zulässig.
 
 Der Beleg enthält Plattform, physisches Gerätemodell/-ID-Pseudonym, OS, Build-/Artefakthash, native Konfigurationshashes, Zeitfenster, Capturetoolversion, Capturehash, Endpointklassifikation und Reviewer. Ein nicht entschlüsselbarer, aber sichtbarer DNS-/SNI-Zielkontakt zählt als Übertragung und muss klassifiziert werden. Unerklärter Traffic blockiert die Freigabe.
 
@@ -180,16 +187,18 @@ Application sendet semantische Cues. Audio/Haptik geben kein Richtigkeitsurteil 
 
 Ein anderer Anbieter implementiert dieselben Contracttests. Ein Wechsel benötigt wegen Datenfluss, SDK und Releasefähigkeit ein ersetzendes ADR. Zwei aktive Anbieter für dieselbe Fähigkeit sind ohne Migrationsplan verboten.
 
-Pflichtfälle sind Consent erforderlich/nicht erforderlich/abgelehnt/Fehler/Widerruf, nativer Default-Off-Scan, Fresh-Install-Capture, Appstart offline, Ad No Fill, Rewardreservation, Parallelität, Spätcallback, Crash an jeder Claimphase, Kaufbeleg gültig/ungültig/unklar, Crash an jeder IAP-Phase, Google Acknowledge, Apple Finish, Retry, Restore, widersprüchliche Storeantwort, Revocation, Hauptthread-Marshalling und deaktivierte Provider.
+Pflichtfälle sind Consent erforderlich/nicht erforderlich/abgelehnt/Fehler/Widerruf, Recordrevision, desired/effective-Trennung, native Default-Off-/Crash-Exclusion-Scan, Fresh-Install-/Upgrade-/Widerruf-/Re-enable-Capture, Appstart offline, Ad No Fill, Rewardreservation, Parallelität, Spätcallback, Crash an jeder Claimphase, Kaufbeleg gültig/ungültig/unklar, Crash an jeder IAP-Phase, Google Acknowledge, Apple Finish, Retry, Restore, widersprüchliche Storeantwort, Revocation, Hauptthread-Marshalling und deaktivierte Provider.
 
 ## Referenzen
 
 [1]: https://developers.google.com/admob/unity/privacy "Set up UMP SDK for Unity"
 [2]: https://developer.apple.com/documentation/storekit/restoring-purchased-products "Restoring purchased products"
-[3]: ../DECISIONS/ADR-015-mobile-transaktionen-und-privacy-default-off.md "ADR-015 – Mobile Transaktionen und Privacy Default-Off"
-[4]: ./PERSISTENCE.md "Persistence v0.2"
+[3]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
+[4]: ./PERSISTENCE.md "Persistence v0.3"
 [5]: https://docs.unity.com/en-us/iap/privacy-and-consent/overview "Unity IAP 5.4 Privacy overview"
 [6]: https://firebase.google.com/docs/analytics/android/configure-data-collection "Firebase Analytics Android data collection"
 [7]: https://firebase.google.com/docs/analytics/ios/configure-data-collection "Firebase Analytics Apple data collection"
 [8]: https://firebase.google.com/docs/crashlytics/android/customize-crash-reports "Firebase Crashlytics Android opt-in reporting"
 [9]: https://firebase.google.com/docs/crashlytics/ios/customize-crash-reports "Firebase Crashlytics Apple opt-in reporting"
+[10]: https://firebase.google.com/support/release-notes/unity "Firebase Unity SDK 13.16.0 Release Notes"
+[11]: https://github.com/googleads/googleads-mobile-unity/releases/tag/v11.5.0 "Google Mobile Ads Unity Plugin 11.5.0"

@@ -1,4 +1,4 @@
-# Puzzle Engine v0.2
+# Puzzle Engine v0.3
 
 ## 1. Rolle
 
@@ -98,7 +98,7 @@ Crossings und T-Knoten sind konstruktiv ausgeschlossen, weil keine erlaubte Form
 
 Ein `CellDiff` speichert sortierte Tupel `(coordinate, before, after)`. Der Stack enthält maximal 256 atomare Nutzerhandlungen. Beim Überschreiten wird der älteste Diff verworfen; der aktuelle Zustand bleibt vollständig.
 
-Undo erzeugt einen neuen Snapshot mit höherer Revision. Es setzt Zellen zurück, aber nicht `timerStarted`, `usedEmptyMarker`, `usedOccupiedMarker`, `hintCount` oder bereits verbuchte externe Ergebnisse. Redo ist für Architecture v0.2 nicht Teil des bestätigten Produkts und wird nicht implizit eingeführt.
+Undo erzeugt einen neuen Snapshot mit höherer Revision. Es setzt Zellen zurück, aber nicht `timerStarted`, `usedEmptyMarker`, `usedOccupiedMarker`, `hintCount` oder bereits verbuchte externe Ergebnisse. Redo ist für Architecture v0.3 nicht Teil des bestätigten Produkts und wird nicht implizit eingeführt.
 
 ## 9. Hintschnittstelle
 
@@ -138,6 +138,6 @@ Pflicht sind Beispiel-, Property- und Metamorphic-Tests für alle Formen, Rotati
 ## Referenzen
 
 [1]: ../Stammstrecken_Puzzle_Konzept_00-15/03_Raetselkern_und_Interaktionsmodell.md "Train Track Spiel – Rätselkern und Interaktionsmodell"
-[2]: ./GAME_STATE_MODEL.md "Game State Model v0.2"
-[3]: ./LEVEL_DATA_FORMAT.md "Level Data Format v1"
+[2]: ./GAME_STATE_MODEL.md "Game State Model v0.3"
+[3]: ./LEVEL_DATA_FORMAT.md "Level Data Format v0.3"
 [4]: ../DECISIONS/ADR-005-deterministisches-command-state-modell.md "ADR-005 – Deterministisches Command/State-Modell"

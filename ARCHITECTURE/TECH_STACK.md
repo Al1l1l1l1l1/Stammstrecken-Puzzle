@@ -1,4 +1,4 @@
-# Technology Stack v0.2
+# Technology Stack v0.3
 
 ## 1. Verbindliche Baseline
 
@@ -15,7 +15,8 @@
 | JSON | Unity Newtonsoft Json | `com.unity.nuget.newtonsoft-json` **3.2.2**. |
 | In-App-Kauf | Unity IAP | `com.unity.purchasing` **5.4.3**. |
 | Werbung/Consent | Google Mobile Ads Unity Plugin inklusive UMP | **11.5.0**. |
-| Analytics/Crash | Firebase Unity SDK | **13.16.0**, nur Analytics und Crashlytics importieren. |
+| Analytics | Firebase Unity SDK | **13.16.0**, im Productionprofil nur Analytics importieren. |
+| Crashdiagnose | lokaler redigierter Diagnosering plus Plattformlogs | Firebase Crashlytics 13.16.0 ist in Production ausgeschlossen; erneute Aufnahme nur per neuem ADR. |
 | Tests | Unity Test Framework und NUnit | Mit Unity 6000.3 fest gekoppelte Core-Paketversion. |
 | CI/CD | GitHub Actions und native Store-CLIs/APIs | Actions ausschließlich per unveränderlichem Commit-SHA pinnen. |
 
@@ -46,7 +47,7 @@ Die Benutzeroberfläche wird für Safe Areas, dynamische Auflösung und mindeste
 8. Dependency-Updates ändern nie gleichzeitig Produktverhalten oder fachliche Logik.
 9. Ein Update muss Changelog, Datenschutzdeklarationen, IL2CPP/AOT, App-Größe, Build und Gerätetests prüfen.
 10. Sicherheits- oder Store-Kompatibilitätsupdates dürfen beschleunigt werden, umgehen aber keine Gates.
-11. Unity Analytics, Unity Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete sind in Production nicht eingebunden. Firebase Analytics/Crashlytics und Google Mobile Ads müssen zusätzlich nativ default-off konfiguriert sein; bloße Application-No-ops genügen nicht.
+11. Unity Analytics, Unity Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete sind in Production nicht eingebunden. Firebase Analytics und Google Mobile Ads müssen zusätzlich nativ default-off konfiguriert sein; Firebase Crashlytics ist im Productionprofil nicht importiert. Bloße Application-No-ops genügen nicht.
 
 ## 4. Unity-Projektkonfiguration
 
@@ -94,7 +95,7 @@ Ein Upgrade-Pull-Request muss in dieser Reihenfolge arbeiten:
 8. Buildgröße, Startzeit und Crashsymbolik vergleichen.
 9. ADR nur dann ersetzen, wenn Release-Linie, Anbieter oder Systemgrenze wechselt.
 
-Jeder SDK-Updatevergleich umfasst außerdem native Android-Manifest-/iOS-`Info.plist`-Defaults, Providerdashboard-Einstellungen und den physischen Fresh-Install-Netzwerkmitschnitt vor Consent. Kann neue optionale Übertragung nicht ausgeschlossen oder freigegeben werden, bleibt das Update blockiert.
+Jeder SDK-Updatevergleich umfasst außerdem native Android-Manifest-/iOS-`Info.plist`-Defaults, Providerdashboard-Einstellungen und physische Netzwerkbelege für Fresh Install, Upgrade mit früher aktivem Override, Widerruf und Re-enable. Kann neue optionale Übertragung oder sofortiger Widerruf nicht belegt werden, bleibt das Update blockiert.
 
 ## 7. Konfigurations- und Secretvertrag
 
@@ -108,3 +109,4 @@ Jeder SDK-Updatevergleich umfasst außerdem native Android-Manifest-/iOS-`Info.p
 [4]: ../DECISIONS/ADR-001-unity-6-3-lts.md "ADR-001 – Unity 6.3 LTS als Game Engine"
 [5]: ../DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md "ADR-011 – UI Toolkit, lokale Addressables, Unity Localization und Unity Audio"
 [6]: ../DECISIONS/ADR-012-mobile-plattformbaselines.md "ADR-012 – Mobile Plattformbaselines für Android und iOS"
+[7]: ./PRIVACY_PROVIDER_EVIDENCE.md "Privacy Provider Evidence für Architecture v0.3"

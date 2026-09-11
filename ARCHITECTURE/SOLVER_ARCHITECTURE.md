@@ -1,4 +1,4 @@
-# Solver Architecture v0.2
+# Solver Architecture v0.3
 
 ## 1. Verantwortungsgrenze
 
@@ -55,19 +55,20 @@ Ein Timeout oder Ressourcenlimit ist `INDETERMINATE`, niemals `UNIQUE`.
 
 ## 5. Eindeutigkeitsnachweis
 
-Der Content-Validator führt den Solver aus dem unveränderten öffentlichen Puzzleinput aus. Er vergleicht die einzige gefundene Lösung mit der Authoringlösung nach kanonischem Lösungshash. Der Nachweis enthält:
+Der Content-Validator führt den Solver aus dem unveränderten öffentlichen Puzzleinput aus. Er vergleicht die einzige gefundene Lösung mit der Authoringlösung nach kanonischem Lösungshash. Der Nachweis liegt als separates `proof-v1`-Artefakt vor und enthält:
 
 - `solverVersion`;
-- `puzzleHashSha256`;
-- `solutionHashSha256`;
+- `puzzleId` sowie den profilierten `publicPuzzleHash`;
+- den profilierten `solutionHash`;
+- `proofFormatVersion`;
 - `solutionCount` bis zwei;
 - Zahl der Suchknoten;
 - Zahl erklärbarer Deduktionsschritte;
 - maximale Deduktionskettentiefe;
 - benötigte Annahmetiefe;
-- `proofHashSha256`.
+- den profilierten `proofHash` über alle vorgenannten Felder außer sich selbst.
 
-Gespeicherte Werte sind ein Cache. CI berechnet sie neu. Ein anderer Proof bei identischer Solver-Version und identischem Puzzlehash ist ein deterministischer Fehler.
+Gespeicherte Werte sind ein Cache. CI berechnet sie mit dem Produktionssolver neu. Ein anderer Proof bei identischer Solver-Version und identischem Puzzlehash ist `PRF-NONDETERMINISTIC`. Eine neue Solverversion darf ein neues Proofartefakt liefern, ohne `puzzleId` oder den semantischen Puzzlehash zu ändern. Der lokale Architekturvalidator prüft Bindung und kleine Fixtures, behauptet aber keine Regeneration durch noch nicht vorhandenen Produktionscode.
 
 ## 6. Deduction Tracer und Hinweise
 
@@ -170,22 +171,22 @@ Die Identität einer generierten Meldung ist vollständig von Kampagnen-IDs getr
 | `parameters` | vollständig aufgelistete relevante technische Zielparameter; keine versteckten Defaults. |
 | `parameterHashSha256` | RFC-8785/JCS-SHA-256 über exakt `parameters`. |
 
-Die stabile ID lautet `E1-<hex>`, wobei `<hex>` der vollständige kleingeschriebene SHA-256-Hexwert der JCS-Projektion `{endlessContractVersion,rulesetVersion,generatorVersion,seed,generationOrdinal,parameterHashSha256}` ist. Nach Generierung ergänzt der Runtime-/Diagnosedatensatz `puzzleHashSha256`, `solutionHashSha256`, `proofHashSha256`, Solverversion und Status.
+Die stabile ID lautet `E1-<hex>`, wobei `<hex>` der vollständige kleingeschriebene SHA-256-Hexwert der JCS-Projektion `{endlessContractVersion,rulesetVersion,generatorVersion,seed,generationOrdinal,parameterHashSha256}` ist. Nach Generierung ergänzt der Runtime-/Diagnosedatensatz `publicPuzzleHash{profile,sha256}`, `solutionHash{profile,sha256}`, `proofHash{profile,sha256}`, Solverversion und Status.
 
-Der Save reserviert `generationOrdinal` atomar vor Ausführung und erhöht `nextGenerationOrdinal`, sodass Crash/Retry keine zweite Identität erzeugt. Gleiche ID plus gleicher Deskriptor ist dieselbe Instanz. Gleiche ID mit anderem Deskriptor ist `GEN-ENDLESS-ID-COLLISION` und fatal. Vor Annahme wird gegen aktive IDs und terminale Ordinalintervalle geprüft; ein Duplikat ist weder eine neue Meldung noch rewardberechtigt.
+Der Save reserviert `generationOrdinal` atomar vor Ausführung, indem er ausschließlich `highestReservedOrdinal + 1` zusammen mit einem aktiven Draft persistiert. Crash/Retry erzeugt keine zweite Identität. Gleiche ID plus gleicher Deskriptor ist dieselbe Instanz. Gleiche ID mit anderem Deskriptor ist `GEN-ENDLESS-ID-COLLISION` und fatal.
 
 Ein aktiver Entwurf speichert Deskriptor **und** öffentlichen Puzzleinput. Dadurch ist Wiederaufnahme möglich, auch wenn die Generatorbinary später nicht mehr enthalten ist. Seed, Generatorversion, Parameter und Proof erlauben Diagnose/Reproduktion mit archiviertem Tooling.
 
-Die Lebensdauer ist explizit begrenzt:
+Die Lebensdauer ist durch einen konstanten autoritativen Zustand begrenzt, nicht durch die Anzahl terminaler Instanzen:
 
-- höchstens 20 aktive Endless-Deskriptoren, exakt gekoppelt an die globale Jüngsten-20-Draftgrenze;
-- ein verdrängter Entwurf wird im selben Savecommit terminal `ABANDONED`, nie still wiederverwendet und ist nicht rewardberechtigt;
-- jeder reservierte Ordinal ist entweder aktiv oder terminal; unbekannte Lücken sind Savekorruption;
-- terminale Status-/Claimwahrheit liegt in maximal zusammengeführten, sortierten disjunkten Intervallen, insgesamt höchstens 64;
-- nur die jüngsten 64 terminalen Instanzen behalten den vollständigen Reproduktionsdeskriptor; ältere Details gehen mit Ordinal, Status und Hash in die Endless-Checkpoint-Hashkette ein;
-- bei einer nicht kompaktierbaren 20-/64-Grenze wird neue Generierung mit `ENDLESS_RETENTION_LIMIT` fail-closed verweigert, bis ein alter aktiver Entwurf bewusst abgeschlossen oder aufgegeben wurde.
+- höchstens 20 aktive Endless-Drafts; der 21. parallele Draft wird mit `ENDLESS_ACTIVE_DRAFT_CAPACITY` abgewiesen;
+- `active(o)` gilt exakt bei vorhandenem Draft; `terminal(o)` gilt für jeden reservierten Ordinal bis zum Watermark ohne aktiven Draft;
+- Complete schreibt alle zulässigen Effects und entfernt den Draft atomar; Abandon entfernt ihn ohne Reward;
+- ein terminaler Ordinal ist dauerhaft nicht erneut generierbar oder rewardberechtigt und liefert bei Wiederholung `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise No-op;
+- terminale Statusintervalle und Deskriptorlisten sind keine fachliche Savewahrheit; höchstens 64 optionale Diagnoseeinträge dürfen best-effort im lokalen Ring liegen;
+- nur `ENDLESS_ORDINAL_SPACE_EXHAUSTED` beendet nach vollständiger UInt64-Ausschöpfung neue Reservationen.
 
-Damit bleiben Resume und volle Diagnose für alle aktiven sowie die jüngsten 64 terminalen Instanzen erhalten. Für ältere Instanzen bleiben stabile ID-/Ordinal-/Status-/Claimwahrheit und manipulationsanzeigende Hashkette; eine vollständige lokale Reproduktion ist nach Ablauf dieses ausdrücklich definierten Diagnosefensters nicht garantiert. Der Save wächst bei Endlosnutzung nicht unbegrenzt.
+Volle Reproduktion ist für alle aktiven Drafts garantiert. Für terminale Instanzen werden bewusst keine dauerhaft fachlich relevanten Detail-/Statusdaten versprochen; eine spätere solche Produktanforderung benötigt eine neue Entscheidung. Der Save wächst bei Endlosnutzung nicht mit der Terminalhistorie.
 
 Dieser Identitätsvertrag entscheidet keine Qualitätsgrenze. Ohne `PRODUCT_APPROVED`-GeneratorQualityProfile bleibt jede Instanz unveröffentlichbar.
 
@@ -205,7 +206,7 @@ Startbudgets für Season 1 auf einem CI-Referenzrechner:
 
 ## 11. Teststrategie
 
-Pflichtfixture sind mindestens: unlösbar, exakt eindeutig, technisch gültiger Ein-Zellen-Pfad, zwei Lösungen, Endpointfehler, Randzahlfehler, isolierte Schleife, getrennte Komponente, lange eindeutige Kette und gültige 10×10-Grenze. Metamorphic Tests rotieren/spiegeln Puzzle samt Endpoints und Counts; Lösungsklasse muss invariant bleiben. Solverproofs sind Golden Files pro Solverversion.
+Pflichtfixture sind mindestens: unlösbar, exakt eindeutig, technisch gültiger Ein-Zellen-Pfad, zwei Lösungen, Endpointfehler, Randzahlfehler, isolierte Schleife, getrennte Komponente, lange eindeutige Kette und gültige 10×10-Grenze. Metamorphic Tests rotieren/spiegeln Puzzle samt Endpoints und Counts; Lösungsklasse muss invariant bleiben. `proof-v1`-Artefakte sind Golden Files pro Solverversion. Zusätzlich laufen 10.000 alternierende Endless-Complete-/Abandon-Transitionen, Resume-Lücken und Duplicate-after-Compaction.
 
 Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rastersubräume in Tests gegen den Produktionssolver. Er wird nicht in Production ausgeliefert und reduziert das Risiko gemeinsamer Regelbugs.
 
@@ -217,6 +218,8 @@ Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rasters
 
 [1]: ../DECISIONS/ADR-007-solver-und-eindeutigkeitspruefung.md "ADR-007 – Deterministischer Constraint-Solver"
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/04_Schwierigkeit_Feldgroessen_und_Levelgenerierung.md "Train Track Spiel – Schwierigkeit, Feldgrößen und Levelgenerierung"
-[3]: ./LEVEL_DATA_FORMAT.md "Level Data Format v1"
-[4]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.2"
+[3]: ./LEVEL_DATA_FORMAT.md "Level Data Format v0.3"
+[4]: ./PUZZLE_ENGINE.md "Puzzle Engine v0.3"
 [5]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
+[6]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
+[7]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und versionierte Proofartefakte"
