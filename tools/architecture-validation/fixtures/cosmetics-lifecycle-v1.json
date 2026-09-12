@@ -1,0 +1,74 @@
+{
+  "contractVersion": 1,
+  "runtimeCatalogApprovalStatus": "FIXTURE_ONLY",
+  "claimTemplate": "cosmetic-milestone-claim:v1:<catalogId>:<itemId>",
+  "scenarios": [
+    {
+      "name": "PURCHASE_ACTIVE",
+      "itemId": "fixture-purchase-object",
+      "initial": {"owned": false, "balancePatience": 120, "claimState": null},
+      "events": [{"kind": "PURCHASE"}],
+      "expected": {"result": "COMMITTED", "owned": true, "balancePatience": 0, "claimState": null}
+    },
+    {
+      "name": "PURCHASE_DRAFT_REJECTED",
+      "catalog": "cosmetics-v2.draft.example.json",
+      "itemId": "draft-purchase-object",
+      "initial": {"owned": false, "balancePatience": 120, "claimState": null},
+      "events": [{"kind": "PURCHASE"}],
+      "expected": {"result": "COSMETIC_NOT_RUNTIME_ELIGIBLE", "owned": false, "balancePatience": 120, "claimState": null}
+    },
+    {
+      "name": "MILESTONE_FIRST_CLEAR_GRANT",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": false, "balancePatience": 15, "claimState": null, "firstClearPuzzleIds": []},
+      "events": [
+        {"kind": "FIRST_CLEAR", "puzzleId": "S1-01-01-01"},
+        {"kind": "EVALUATE_MILESTONE"},
+        {"kind": "COMMIT_CLAIM"}
+      ],
+      "expected": {"result": "COMMITTED", "owned": true, "balancePatience": 15, "claimState": "COMMITTED"}
+    },
+    {
+      "name": "MILESTONE_INELIGIBLE",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": false, "balancePatience": 15, "claimState": null, "firstClearPuzzleIds": []},
+      "events": [{"kind": "EVALUATE_MILESTONE"}],
+      "expected": {"result": "NOT_ELIGIBLE", "owned": false, "balancePatience": 15, "claimState": null}
+    },
+    {
+      "name": "MILESTONE_DUPLICATE_IDEMPOTENT",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": true, "balancePatience": 15, "claimState": "COMMITTED", "firstClearPuzzleIds": ["S1-01-01-01"]},
+      "events": [{"kind": "EVALUATE_MILESTONE"}, {"kind": "COMMIT_CLAIM"}],
+      "expected": {"result": "ALREADY_COMMITTED", "owned": true, "balancePatience": 15, "claimState": "COMMITTED"}
+    },
+    {
+      "name": "MILESTONE_CRASH_RESUME",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": false, "balancePatience": 15, "claimState": null, "firstClearPuzzleIds": ["S1-01-01-01"]},
+      "events": [
+        {"kind": "EVALUATE_MILESTONE"},
+        {"kind": "RESERVE_CLAIM"},
+        {"kind": "CRASH"},
+        {"kind": "RESTART"},
+        {"kind": "COMMIT_CLAIM"}
+      ],
+      "expected": {"result": "COMMITTED", "owned": true, "balancePatience": 15, "claimState": "COMMITTED"}
+    },
+    {
+      "name": "TOMBSTONE_OWNERSHIP_PRESERVED",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": true, "balancePatience": 15, "claimState": "COMMITTED", "firstClearPuzzleIds": ["S1-01-01-01"]},
+      "events": [{"kind": "CATALOG_STATUS_CHANGED", "status": "TOMBSTONE"}, {"kind": "EVALUATE_MILESTONE"}],
+      "expected": {"result": "OWNERSHIP_PRESERVED_NO_NEW_GRANT", "owned": true, "balancePatience": 15, "claimState": "COMMITTED"}
+    },
+    {
+      "name": "HIDDEN_NOT_NEWLY_GRANTABLE",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {"owned": false, "balancePatience": 15, "claimState": null, "firstClearPuzzleIds": ["S1-01-01-01"]},
+      "events": [{"kind": "CATALOG_STATUS_CHANGED", "status": "HIDDEN"}, {"kind": "EVALUATE_MILESTONE"}],
+      "expected": {"result": "COSMETIC_NOT_RUNTIME_ELIGIBLE", "owned": false, "balancePatience": 15, "claimState": null}
+    }
+  ]
+}

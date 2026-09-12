@@ -1,10 +1,10 @@
-# Content Catalogs v0.3
+# Content Catalogs v0.4
 
 ## 1. Ziel und Geltung
 
 Neben Leveldaten sind Kampagnenhierarchie, Completion-/Fortschrittsdefinitionen und Kosmetika eigenständige, versionierte Quellverträge. Kein Screen, Save und keine Application-Policy darf Hierarchie, Preise oder Rewardbeträge als Literal duplizieren.
 
-Die drei Beispiele unter `ARCHITECTURE/examples/` sind ausschließlich `FIXTURE_ONLY`. Sie erzeugen keinen Season-1-Produktcontent und legen keine neuen Preise fest. Productionkataloge benötigen redaktionelle beziehungsweise produktseitige Freigabe und Status `PRODUCT_APPROVED`.
+Die positiven Beispiele unter `ARCHITECTURE/examples/` sind ausschließlich `FIXTURE_ONLY`. Das zusätzliche Cosmetics-Negativfixture ist bewusst `DRAFT`. Sie erzeugen keinen Season-1-Produktcontent und legen keine neuen Preise fest. Productionkataloge benötigen redaktionelle beziehungsweise produktseitige Freigabe und Status `PRODUCT_APPROVED`.
 
 ## 2. Kanonische Kataloge
 
@@ -26,6 +26,8 @@ Jeder Katalog besitzt `schemaVersion`, `catalogId`, `catalogRevision` und `appro
 | `DRAFT` | Authoring und Review; Productionimport ist verboten. |
 | `PRODUCT_APPROVED` | Darf nach allen Cross-Reference- und Release-Lock-Prüfungen importiert werden. |
 | Tombstone | Entfernt Darstellung/Neukauf, bewahrt aber ID-Auflösung, Save-Ownership und Migrationswissen. |
+
+`cosmetics-v2` führt dieselbe Authoringfähigkeit auf Itemebene: `DRAFT`, `ACTIVE`, `HIDDEN`, `TOMBSTONE`. Nur `ACTIVE` darf neu gekauft oder per Meilenstein vergeben werden. `DRAFT` ist schema- und authoringgültig, aber in Runtime immer `COSMETIC_NOT_RUNTIME_ELIGIBLE`. `HIDDEN` und `TOMBSTONE` bewahren bestehendes Ownership, sind aber nicht neu erwerbbar.
 
 Season-1-Struktur wird zusätzlich gegen die bestätigten fünf Netzabschnitte, je vier Routen und je zwölf Meldungen validiert, sobald der Content-Work-Package-Abschluss den vollständigen Katalog verlangt. Ein Fixture darf bewusst kleiner sein und wird niemals als Productionkatalog akzeptiert.
 
@@ -76,7 +78,7 @@ Der release-gelockte `ICosmeticsCatalog` ist die autoritative Preisquelle. Save,
 `PurchaseCosmetic(commandId, itemId, expectedSaveGeneration, expectedCatalogHash)` folgt exakt:
 
 1. Command-ID, Savegeneration und Kataloghash prüfen.
-2. Item muss `ACTIVE` sein; `HIDDEN` und `TOMBSTONE` sind nicht neu kaufbar.
+2. Katalog muss `PRODUCT_APPROVED` sein; im Contracttest ist ausschließlich `FIXTURE_ONLY` zulässig. Item muss `ACTIVE` sein. `DRAFT`, `HIDDEN` und `TOMBSTONE` sind nicht neu kaufbar.
 3. Bereits bestehendes Ownership liefert `ALREADY_OWNED` als erfolgreichen No-op ohne Abbuchung.
 4. Preis aus exakt diesem Katalogsnapshot lesen.
 5. Saldo aus `LedgerCheckpoint + Journal` ableiten und ausreichende Geduldspunkte prüfen.
@@ -97,13 +99,15 @@ Jedes `cosmetics-v2`-Item besitzt exakt einen Erwerbsmodus: `DEFAULT`, `PATIENCE
 
 Application expandiert Subjects ausschließlich zu Campaign-Leveln und prüft deren First-Clear-Records. Sterne, Zeit, Hinweise, Geduldspunkte, Analytics und Wanduhr sind keine Eligibility-Inputs. Damit lassen sich bestätigte Routen-/Abschnitts-/Seasonmeilensteine ausdrücken, ohne noch nicht definierte Meisterschaftsmetriken zu erfinden.
 
-`ClaimMilestoneCosmetic(commandId, itemId, expectedSaveGeneration, expectedCatalogHash)` verlangt ein `ACTIVE`-Item und positive Eligibility. Die revisionsstabile Claim-ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Ein atomarer Savecommit schreibt Inventory-Ownership mit `grantKind: MILESTONE_CLAIM`, `claimState: COMMITTED`, Katalogrevision/-hash, Eligibility-Version und JCS-Hash der Eligibility-Projektion. Der Ledger bleibt unverändert. Gleiche ID/Projektion ist `ALREADY_OWNED`; Abweichung ist `COS-MILESTONE-CLAIM-COLLISION`.
+`ClaimMilestoneCosmetic(commandId, itemId, expectedSaveGeneration, expectedCatalogHash)` verlangt einen runtime-zulässigen Katalog, ein `ACTIVE`-Item und positive Eligibility. Die revisionsstabile Claim-ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Eligibility expandiert jeden Campaign-Subject deterministisch bis zu den referenzierten Puzzle-IDs und verlangt für jedes einen First-Clear-Record. Die sortierte Projektion aus Katalog, Item, Eligibilityvertrag, Subject- und Puzzle-IDs wird gehasht. `RESERVED` und nachfolgend `COMMITTED` werden crashsicher über denselben Claim weitergeführt. Ein atomarer Savecommit schreibt Claimterminal plus Inventory-Ownership mit `grantKind: MILESTONE_CLAIM`, Katalogrevision/-hash, Eligibility-Version und Eligibility-Projektionshash. Der Ledger bleibt unverändert. Gleiche ID/Projektion ist `ALREADY_OWNED`; Abweichung ist `COS-MILESTONE-CLAIM-COLLISION`.
 
 ## 9. Katalogrevision, Ownership und Migration
 
 Ein pending Kosmetikkauf bindet `itemId`, `pricePatience` und `catalogHashSha256`. Eine spätere Katalogrevision verändert eine bereits reservierte Transaktion nicht rückwirkend. Da der lokale Kaufcommit synchron und ohne externen Dienst erfolgt, darf ein pending Zustand nur für Save-Recovery bestehen und wird beim nächsten Start idempotent abgeschlossen oder vollständig verworfen.
 
-Bereits besessene Items bleiben unabhängig von `ACTIVE`, `HIDDEN` oder `TOMBSTONE` nutzbar, solange das erforderliche Asset im unterstützten Build vorhanden ist. Eine ID wird nie einer anderen Kosmetik zugeordnet. Ein Assetentfall benötigt Tombstone, Fallbackdarstellung, Save-Migration und ausdrückliche Inhaltsfreigabe; Ownership wird nicht gelöscht.
+Bereits besessene Items bleiben unabhängig von `ACTIVE`, `HIDDEN` oder `TOMBSTONE` nutzbar, solange das erforderliche Asset im unterstützten Build vorhanden ist. `DRAFT` darf nie aus einem früheren Runtimegrant entstehen. Eine ID wird nie einer anderen Kosmetik zugeordnet. Ein Assetentfall benötigt Tombstone, Fallbackdarstellung, Save-Migration und ausdrückliche Inhaltsfreigabe; Ownership wird nicht gelöscht.
+
+Zulässige veröffentlichte Transitionen sind `DRAFT -> ACTIVE`, `ACTIVE -> HIDDEN`, `HIDDEN -> ACTIVE`, `ACTIVE|HIDDEN -> TOMBSTONE`. `TOMBSTONE` ist terminal. Erwerbsmodus und Eligibility eines einmal `ACTIVE` veröffentlichten Items bleiben unter stabiler ID unveränderlich. Katalogrevisionen dürfen bestehendes Ownership weder löschen noch neu interpretieren.
 
 Katalogschemamigrationen sind reine Funktionen `vN -> vN+1`. `availableByDefault` aus v1 wird nicht als persistiertes Ownership umgedeutet. Eine tatsächliche v1-Kataloglinie benötigt ein explizites Authoringmapping; ohne neutrales Mapping stoppt `CATALOG_MIGRATION_NEEDS_DECISION`. Save v1→v2 erhält Inventory-IDs, Auswahl, Kaufreferenzen, Ledger und Generation, erzeugt aber keine synthetischen Milestone-Claims. Veröffentlichte Item-IDs dürfen Erwerbsmodus oder Eligibility nicht still ändern; Tombstones erhalten bestehendes Ownership.
 
@@ -113,7 +117,7 @@ Parser begrenzen Dateigröße, Verschachtelung, Arraylängen und Stringgrößen 
 
 ## 11. Tests und Release-Gates
 
-Pflichtfälle umfassen Schemafehler, Duplicate IDs, falsche Reihenfolge, Unlock-Selbstreferenz, Unlockzyklus, unerreichbares Subject, gebrochene Puzzle-/Completion-/Asset-/Localization-Referenzen, nicht freigegebenen Status, Hashkonflikt, Preisabweichung, unzureichenden Saldo, Duplicate Purchase, Already Owned, parallele Commands, Crash vor/nach Commit, Tombstone, Katalogrevision und Save-Migration. Für Meilensteine kommen unbekannte Eligibility, gemischte Erwerbsfelder, fehlende Campaignreferenz, First-Clear-Negativfall, atomarer Grant ohne Ledgerdelta, Replay, Kollisions- und Revisionsmutation hinzu.
+Pflichtfälle umfassen Schemafehler, Duplicate IDs, falsche Reihenfolge, Unlock-Selbstreferenz, Unlockzyklus, unerreichbares Subject, gebrochene Puzzle-/Completion-/Asset-/Localization-Referenzen, `DRAFT`-Schema-Positivfall plus Runtime-Ablehnung, nicht freigegebenen Status, Hashkonflikt, Preisabweichung, unzureichenden Saldo, Duplicate Purchase, Already Owned, parallele Commands, Crash vor/nach Commit, Hidden/Tombstone, erlaubte/verbotene Statustransitionen, Katalogrevision und Save-Migration. Für Meilensteine kommen unbekannte Eligibility, gemischte Erwerbsfelder, fehlende Campaignreferenz, First-Clear-Negativfall, atomarer Grant ohne Ledgerdelta, Reserved-Crash-Resume, Replay, Kollisions- und Revisionsmutation hinzu.
 
 Der eingecheckte Architekturvalidator prüft v1-Legacy- und v2-Positivfixtures gegen ihre Schemata sowie zentrale Cross-References. Der Produktionsvalidator im späteren Content-Work-Package verwendet dieselbe Reihenfolge und Diagnosecodes.
 
@@ -121,6 +125,6 @@ Der eingecheckte Architekturvalidator prüft v1-Legacy- und v2-Positivfixtures g
 
 [1]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
 [2]: ./CONTENT_PIPELINE.md "Content Pipeline v0.3"
-[3]: ./PERSISTENCE.md "Persistence v0.3"
+[3]: ./PERSISTENCE.md "Persistence v0.4"
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/13_Oekonomie_und_Monetarisierungs_Balancing.md "Stammstrecken-Puzzle – Ökonomie- und Monetarisierungs-Balancing"
 [5]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

@@ -1,20 +1,21 @@
 # Produktionswarteschlange
 
-Diese Warteschlange enthält bestätigte große Produktionsblöcke und den ausdrücklich vorgeschriebenen nächsten Architecture-v1.0-Freigabereview. Sie ist **keine** detaillierte Implementierungsplanung; jeder neue Block benötigt ein eigenes freigegebenes `WP-###`.
+Diese Warteschlange enthält bestätigte große Produktionsblöcke, den ausdrücklich vorgeschriebenen engen Architecture-v1.0-Freigabereview und das zwingende CI-Gate vor Produktionscoding. Sie ist **keine** detaillierte Implementierungsplanung; jeder neue Block benötigt ein eigenes freigegebenes `WP-###`.
 
 | Priorität | Produktionsblock | Status | Dokumentierter Inhalt |
 |---:|---|---|---|
-| 1 | Technische Produktionsspezifikation und Finalkorrekturen | **Abgeschlossen (`WP-001`, `WP-002`, `WP-003`)** | **Architecture v0.3** mit kompilierbarer Composition Root, constant-space Endless-Watermark, Privacy-Lifecycle, stabiler Puzzle-/Proofidentität, ehrlichem Validator-Scope, production-identischem RC und atomaren Cosmetics-Claims. Drei Folgeblocker bleiben fail-closed. |
-| 2 | Unabhängiger Architecture-v1.0-Freigabereview | **Nicht begonnen** | Architecture v0.3 erneut unabhängig gegen Produktquellen, aktuelle ADRs, geschlossene Sol-/Astra-Findings und lokale Beleggrenzen prüfen. v1.0 benötigt ein eigenes freigegebenes Work Package und wird in WP-003 nicht ausgerufen. |
-| 3 | Puzzle-Solver und Levelauthoring | Nicht begonnen | Implementierbarer Solver, Eindeutigkeitsprüfung, Generatorvalidierung, Level-/Katalogdaten, Editor-Workflow und automatisierte Tests. |
-| 4 | 240 konkrete Rätselinstanzen | Nicht begonnen | Pro Meldung Lösung, Randzahlen, A/B-Positionen, Solver-Nachweis, Einstiegsschluss, Qualitätsnotiz, Zeitklasse und Abschlussinszenierung. |
-| 5 | Finale Zeitwerte | Nicht begonnen | Konkrete Zwei- und Drei-Sterne-Grenzen für gebaute und geprüfte Rätsel. |
-| 6 | Finale Asset-Bible | Nicht begonnen | Exakte Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Lackierungen, Betriebsobjekte sowie Motion- und Soundregeln. |
-| 7 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen mit Längenregeln und Tonprüfung. |
-| 8 | Finaler Zug- und Objektkatalog | Nicht begonnen | Züge, Betriebsobjekte, Preise, Freischaltreihenfolge, Aussehen, Sound und Kartenreaktion. |
-| 9 | Werbefrei-Produkt | Nicht begonnen | Plattformkonformer Preis, Produktbeschreibung, clientseitiger Trustvertrag, Kaufwiederherstellung sowie Consent- und Datenschutz-Flows. |
-| 10 | Rechtliche Endprüfung | Nicht begonnen | Wortmarke, Icon, Screenshots, Werbemittel, Zugdesigns und Herkunftseindruck durch qualifizierte Rechtsberatung prüfen. |
-| 11 | Launchpaket | Nicht begonnen | Store-Metadaten, Screenshots, Trailer, Meme-Clips, Influencer-Material, Community- und Messplan. |
+| 1 | Technische Produktionsspezifikation und Abschlusskorrekturen | **Abgeschlossen (`WP-001` bis `WP-004`)** | **Architecture v0.4** mit prä-SDK-Privacy-Fence, vollständigem Endless-Open-Lifecycle, wahrheitsgemäßem Validator, kompatiblen Schemata, Scope-Vertrauensanker, korrekter ADR-Historie und konkretem Store-Rolloutvertrag. Drei Produktfolgeblocker bleiben fail-closed. |
+| 2 | Unabhängiger Architecture-v1.0-Freigabereview | **Nicht begonnen** | Enger Delta-Review von Architecture v0.4 gegen Produktquellen, aktuelle ADRs, geschlossene Sol-/Astra-/V03-Findings und lokale Beleggrenzen. v1.0 benötigt ein eigenes freigegebenes Work Package und wird in WP-004 nicht ausgerufen. |
+| 3 | CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding** | GitHub-Actions-Workflow, autorisierte Workflowberechtigungen, gepinnte Umgebung, Architecture Validator, Self-/Negativtests, commitgebundener PASS und geschützter Pflichtcheck vor Merge. Die fehlende Workflowberechtigung ist non-blocking für v0.4, aber dieses WP muss vor jedem produktiven Coding-WP abgeschlossen sein. |
+| 4 | Puzzle-Solver und Levelauthoring | Nicht begonnen; durch CI-Gate blockiert | Implementierbarer Solver, Eindeutigkeitsprüfung, Generatorvalidierung, Level-/Katalogdaten, Editor-Workflow und automatisierte Tests. |
+| 5 | 240 konkrete Rätselinstanzen | Nicht begonnen | Pro Meldung Lösung, Randzahlen, A/B-Positionen, Solver-Nachweis, Einstiegsschluss, Qualitätsnotiz, Zeitklasse und Abschlussinszenierung. |
+| 6 | Finale Zeitwerte | Nicht begonnen | Konkrete Zwei- und Drei-Sterne-Grenzen für gebaute und geprüfte Rätsel. |
+| 7 | Finale Asset-Bible | Nicht begonnen | Exakte Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Lackierungen, Betriebsobjekte sowie Motion- und Soundregeln. |
+| 8 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen mit Längenregeln und Tonprüfung. |
+| 9 | Finaler Zug- und Objektkatalog | Nicht begonnen | Züge, Betriebsobjekte, Preise, Freischaltreihenfolge, Aussehen, Sound und Kartenreaktion. |
+| 10 | Werbefrei-Produkt | Nicht begonnen | Plattformkonformer Preis, Produktbeschreibung, clientseitiger Trustvertrag, Kaufwiederherstellung sowie Consent- und Datenschutz-Flows. |
+| 11 | Rechtliche Endprüfung | Nicht begonnen | Wortmarke, Icon, Screenshots, Werbemittel, Zugdesigns und Herkunftseindruck durch qualifizierte Rechtsberatung prüfen. |
+| 12 | Launchpaket | Nicht begonnen | Store-Metadaten, Screenshots, Trailer, Meme-Clips, Influencer-Material, Community- und Messplan. |
 
 ## Offene Produktfolgeblocker
 
@@ -28,7 +29,7 @@ Diese drei Punkte blockieren weder den Architecture-v1.0-Freigabereview noch ein
 
 ## Bekannte Reihenfolgeabhängigkeit
 
-Architecture v0.3 ist mit WP-003 abgeschlossen. Der nächste zulässige Architekturschritt ist der unabhängige v1.0-Freigabereview in einem neuen Work Package. Kein Produktionsblock beginnt ohne eigenes freigegebenes `WP-###`. Das technische Puzzle-Fundament muss vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden.
+Architecture v0.4 ist mit `WP-001` bis `WP-004` abgeschlossen. Als nächster Architekturschritt ist der enge unabhängige v1.0-Freigabereview zulässig. **Vor jedem ersten produktiven Coding-Work-Package muss das separate CI-Setup-Work-Package vollständig abgeschlossen sein.** Kein Produktionsblock beginnt ohne eigenes freigegebenes `WP-###`. Das technische Puzzle-Fundament muss vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden.
 
 ## Pflege der Warteschlange
 
@@ -38,7 +39,7 @@ Ein Eintrag wechselt erst dann von „Nicht begonnen“ zu einem anderen Status,
 
 | Datei | Relevanz für diese Warteschlange |
 |---|---|
-| `CURRENT_STATE.md` | Aktuell gültiger Architektur- und Übergabestand. |
-| `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v0.3 und nächster Review-Schritt. |
-| `../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md` | Acht Astra-Findings und Abschlussnachweise. |
+| `CURRENT_STATE.md` | Aktuell gültiger Architektur-, CI-Gate- und Übergabestand. |
+| `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v0.4 und nächster Review-Schritt. |
+| `../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md` | Sieben V03-Restbefunde und Abschlussnachweise. |
 | `../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigte große Produktionsblöcke. |

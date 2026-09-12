@@ -2,7 +2,7 @@
 
 ## Status
 
-**Angenommen**
+**Ersetzt**
 
 ## Datum
 
@@ -62,7 +62,7 @@ Selbsttests prüfen fehlende/ungültige Scopeargumente, nicht autorisierte Markd
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-017](./ADR-017-versionierter-architekturvalidator.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzte [ADR-017](./ADR-017-versionierter-architekturvalidator.md). Wird vollständig durch [ADR-026](./ADR-026-validator-evidenz-und-scope-vertrauensanker.md) ersetzt.
 
 ## Referenzen
 

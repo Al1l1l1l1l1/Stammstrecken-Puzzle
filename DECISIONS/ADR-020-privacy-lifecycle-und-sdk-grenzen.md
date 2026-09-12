@@ -69,7 +69,7 @@ Ein ausführbares Referenzmodell prüft die Übergänge und Effekt-Reihenfolge. 
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-015](./ADR-015-mobile-transaktionen-und-privacy-default-off.md). Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-015](./ADR-015-mobile-transaktionen-und-privacy-default-off.md). Die Analytics-Upgrade-, Re-enable- und Widerrufsanteile werden durch [ADR-024](./ADR-024-privacy-bootstrap-fence-und-widerruf.md) ersetzt; Ads-, Crashlytics- und IAP-Grenzen bleiben angenommen.
 
 ## Referenzen
 

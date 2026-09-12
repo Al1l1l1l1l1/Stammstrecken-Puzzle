@@ -9,7 +9,7 @@
     "schemaVersion": {"const": 2},
     "catalogId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
     "catalogRevision": {"type": "integer", "minimum": 1},
-    "approvalStatus": {"type": "string", "enum": ["FIXTURE_ONLY", "PRODUCT_APPROVED"]},
+    "approvalStatus": {"type": "string", "enum": ["DRAFT", "FIXTURE_ONLY", "PRODUCT_APPROVED"]},
     "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/item"}}
   },
   "$defs": {
@@ -19,7 +19,7 @@
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
         "type": {"type": "string", "enum": ["OPERATING_OBJECT", "LIVERY", "TRAIN_VARIANT"]},
-        "status": {"type": "string", "enum": ["ACTIVE", "HIDDEN", "TOMBSTONE"]},
+        "status": {"type": "string", "enum": ["DRAFT", "ACTIVE", "HIDDEN", "TOMBSTONE"]},
         "titleKey": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$"},
         "assetAddress": {"type": "string", "minLength": 1},
         "acquisition": {"type": "string", "enum": ["DEFAULT", "PATIENCE_PURCHASE", "MILESTONE_GRANT"]}

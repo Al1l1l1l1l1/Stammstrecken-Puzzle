@@ -1,4 +1,4 @@
-# Persistence v0.3
+# Persistence v0.4
 
 ## 1. Ziel und Wahrheiten
 
@@ -64,7 +64,7 @@ Ein unbekanntes Profil liefert `SAVE_HASH_PROFILE_UNSUPPORTED`, nicht `SAVE_CORR
 |---|---|
 | `profile` | lokale Profil-ID, erste Nutzung, höchste freigegebene Inhalte, Meisterschaft. |
 | `levels` | Records pro `puzzleId` plus profiliertem `publicPuzzleHashAtFirstCompletion`, Abschluss, Stern-High-Water, Zeiten und endlichen Claims. |
-| `endless` | `highestReservedOrdinal` als UInt64-Dezimalstring; detaillierte Resume-Daten liegen ausschließlich in höchstens 20 aktiven Endless-Drafts. |
+| `endless` | `highestReservedOrdinal` als UInt64-Dezimalstring plus höchstens 20 `openEndless`-Einträge in `RESERVED_NOT_GENERATED`, `ACTIVE_DRAFT` oder `COMPLETION_CLAIM_OPEN`. |
 | `ledgerCheckpoint` | kompaktierter Saldo-/Hashkettenstand. |
 | `economyJournal` | begrenzte idempotente Gutschriften/Belastungen nach dem Checkpoint. |
 | `inventory` | gezielt freigeschaltete und ausgewählte kosmetische IDs samt terminaler Kauf- oder Meilensteinclaim-Provenienz. |
@@ -75,7 +75,7 @@ Ein unbekanntes Profil liefert `SAVE_HASH_PROFILE_UNSUPPORTED`, nicht `SAVE_CORR
 | `entitlements` | `remove_ads`, Store, logischer Produktkey, letzte bestätigte Transaktionsreferenz und Reconciliationstatus. |
 | `pendingOperations` | persistente Reward-/Kauf-/Restore-/Finalisierungsoperationen ohne Receipt-/Tokenrohwerte. |
 | `settings` | Locale, Lautstärkegruppen, Haptik, Accessibility- und Privacypräferenzen. |
-| `dataLifecycle` | versionierter `PrivacyDecisionRecord`, Policy-/SDK-Revision, Gültigkeit und letzter lokaler Reset; keine SDK-Caches. |
+| `dataLifecycle` | versionierter `PrivacyDecisionRecord`, Policy-/SDK-Revision, Gültigkeit, `nativeSyncState` und letzte Reconciliation; keine SDK-Caches als fachliche Wahrheit. |
 
 Unbekannte Level- oder Asset-IDs werden als `orphaned` erhalten, diagnostiziert und bei erneut verfügbarem Content reaktiviert.
 
@@ -123,7 +123,7 @@ Vor einer Migration wird die unveränderte Quelle gesichert. Jede Zwischenversio
 
 Golden Tests umfassen immer ursprünglichen Envelope, Hashprofil, kanonische Payloadbytes, ursprünglichen Hash, migriertes Objekt, Zielbytes und Zielhash. Dadurch kann ein fachlich gültiger alter Save nicht allein wegen eines Serializerwechsels als korrupt gelten.
 
-Save v1→v2 führt drei getrennte Migrationen aus. Erstens wird jedes Levelrecord nur über einen historischen Release-Lock auf `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}` überführt; fehlt eine eindeutige Bindung, stoppt `SAVE_LEVEL_IDENTITY_UNRESOLVED`. Zweitens wird `highestReservedOrdinal = nextGenerationOrdinal - 1` gesetzt und die v1-Präfixabdeckung aus aktiven Drafts plus Terminalintervallen validiert; Statusintervalle und Terminaldetails werden erst danach entfernt. Drittens bleiben Legacy-Cosmetics ohne neutrale Provenienzzuordnung unverändert lesbar; es entstehen keine synthetischen Meilensteinclaims. Jeder Stopp erhält die unveränderte Quelle.
+Save v1→v2 führt drei getrennte Migrationen aus. Erstens wird jedes Levelrecord nur über einen historischen Release-Lock auf `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}` überführt; das Golden bindet die vollständigen JCS-Hashes der tatsächlichen v1-Quelle, des v2-Ziels und des Release-Locks. Fehlt eine eindeutige Bindung oder stimmen die Dokumentbytes nicht, stoppt `SAVE_LEVEL_IDENTITY_UNRESOLVED`. Zweitens wird `highestReservedOrdinal = nextGenerationOrdinal - 1` gesetzt und die v1-Präfixabdeckung aus aktiven Drafts, Terminalintervallen und ausdrücklich offenen Rewardclaims validiert. Aktive Drafts werden `ACTIVE_DRAFT`; eindeutig gebundene offene Completed-Claims werden `COMPLETION_CLAIM_OPEN`. Ein Completed-Intervall ohne beweisbare Claimauflösung stoppt mit `SAVE_MIGRATION_NEEDS_DECISION`; erst danach dürfen historische Intervalle entfernt werden. Drittens bleiben Legacy-Cosmetics ohne neutrale Provenienzzuordnung unverändert lesbar; es entstehen keine synthetischen Meilensteinclaims. Jeder Stopp erhält die unveränderte Quelle.
 
 ## 9. Economycheckpoint, Journal und Kompaktierung
 
@@ -143,18 +143,26 @@ Kompaktierung ist deterministisch nach `sequence`. Ein entfernter Eintrag wird i
 - Level-, Stern-, Routen- und Rewardclaims in Level-/Progress-/Claimrecords;
 - kosmetische Käufe im Inventory;
 - IAP im Entitlement-/Operationsrecord;
-- Endless-Claims durch das Watermark-Prädikat plus begrenzte aktive Drafts.
+- Endless-Claims durch Watermark plus begrenztes `openEndless`-Komplement; ein offener Claim darf vor `COMMITTED` oder `CLOSED_NO_REWARD` nicht kompakt terminalisiert werden.
 - kosmetische Meilensteinclaims im terminalen Inventory-Ownership-Record.
 
 Ein Eintrag ohne terminale Fachwahrheit blockiert Kompaktierung mit `ECO-COMPACTION-NONTERMINAL`. Checkpointbildung und Journalkürzung erfolgen im selben atomaren Savecommit. Endlosnutzung lässt dadurch weder Journal noch Claim-ID-Liste unbegrenzt wachsen.
 
 ### 9.1 Begrenzter Endless State ohne Terminalnutzungsgrenze
 
-`highestReservedOrdinal` ist ein kanonischer UInt64-Dezimalstring ohne führende Nullen, initial `0`. Die höchstens 20 `drafts` mit `mode: ENDLESS` sind die einzige detaillierte aktive Sammlung; jeder enthält vollständigen unveränderten `endless-v1`-Deskriptor, rekonstruierbare `E1-…`-ID, öffentlichen Puzzleinput und Sessionstate. Sie ist eindeutig und nach Ordinal sortiert. Eine parallele Active-Liste ist verboten.
+`highestReservedOrdinal` ist ein kanonischer UInt64-Dezimalstring ohne führende Nullen, initial `0`. `openEndless` ist die einzige detaillierte fachliche Sammlung und enthält höchstens 20 eindeutig nach Ordinal sortierte Records. Zulässige Zustände und Pflichtdaten sind:
 
-Für `o` gilt exakt: `active(o)`, wenn ein aktiver Draft mit `o` existiert; `terminal(o)`, wenn `1 <= o <= highestReservedOrdinal` und kein aktiver Draft existiert; andernfalls ist `o` unreserviert. Ordinal 0 in einem Draft, Duplikate, aktive Ordinale über dem Watermark oder Descriptor-/ID-Mismatch machen den Save ungültig.
+| Zustand | Pflichtdaten | Zulässiger nächster Fachschritt |
+|---|---|---|
+| `RESERVED_NOT_GENERATED` | Ordinal, E1-ID und vollständiger kanonischer `endless-v1`-Deskriptor | deterministisch generieren und nach vollständiger Prüfung atomar promoten oder abbrechen. |
+| `ACTIVE_DRAFT` | Reservation plus öffentlicher Puzzleinput, profilierte Puzzle-/Lösungs-/Proofhashes und Sessionstate | fortsetzen, abschließen oder abbrechen. |
+| `COMPLETION_CLAIM_OPEN` | Reservation, Puzzle-ID, Completion-Commit-ID, Reason-Code, fachliche Claim-ID, vor Callback persistierte lokale Operation, `RESERVED`/`RECONCILIATION_REQUIRED`/`REWARD_CONFIRMED`/`NO_REWARD_CONFIRMED` und gegebenenfalls Provideroperation | bestätigten Claim committen, bestätigt ohne Reward schließen oder reconciliieren. |
 
-`ReserveEndless` schreibt ausschließlich `highestReservedOrdinal + 1` und den neuen Draft im selben Commit. Bei 20 offenen Drafts liefert es `ENDLESS_ACTIVE_DRAFT_CAPACITY`. `CompleteEndless` schreibt alle zulässigen Progress-/Economy-Effekte und entfernt den Draft atomar; `AbandonEndless` entfernt ihn ohne Reward. Ein erneuter terminaler Command liefert `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise No-op. Terminalintervalle, Terminalcheckpoint und Terminaldetailtail sind in Save v2 verboten. Der Diagnose-Ring darf höchstens 64 redigierte Terminalhinweise halten, ist aber nie fachliche Wahrheit. Nach Erschöpfung des UInt64-Raums gilt `ENDLESS_ORDINAL_SPACE_EXHAUSTED`.
+Für `o` gilt exakt: `open(o)`, wenn ein `openEndless`-Record mit `o` existiert; `terminal(o)`, wenn `1 <= o <= highestReservedOrdinal` und kein offener Record existiert; andernfalls ist `o` unreserviert. Ordinal 0, Duplikate, offene Ordinale über dem Watermark, unzulässige Pflichtfelder oder Descriptor-/E1-Mismatch machen den Save ungültig. Terminalität unterscheidet absichtlich nicht mehr zwischen Complete und Abandon.
+
+`ReserveEndless` commitet ausschließlich `highestReservedOrdinal + 1` und `RESERVED_NOT_GENERATED` gemeinsam. Die Generierung liest nur diesen persistierten Descriptor. Erst schema-, solver- und proofvalidierter Output wird atomar `ACTIVE_DRAFT`; ein Crash wiederholt dieselbe E1-Instanz. Fehlt die Generatorversion, bleibt `ENDLESS_GENERATOR_RECOVERY_REQUIRED` offen. Bei 20 offenen Records liefert jede weitere Reservation `ENDLESS_OPEN_CAPACITY`.
+
+`CompleteEndless` schreibt Completion-/Fortschrittseffekte, persistiert die lokale Claimoperation und ersetzt `ACTIVE_DRAFT` atomar durch `COMPLETION_CLAIM_OPEN`; der Resume-Payload wird entfernt. `AbandonEndless` entfernt `RESERVED_NOT_GENERATED` oder `ACTIVE_DRAFT` ohne Reward. Ein Providerergebnis gilt nur bei exakt passender Claim-, Puzzle- und lokaler Operations-ID; eine bereits gebundene Provideroperation ist unveränderlich. `COMMIT_CLAIM` ist nur nach `REWARD_CONFIRMED`, `CLOSED_NO_REWARD` nur nach `NO_REWARD_CONFIRMED` und jeweils mit denselben Bindungen zulässig. Der Claimcommit beziehungsweise `CLOSED_NO_REWARD` entfernt erst danach den letzten offenen Record. Ein erneuter terminaler Command oder verspäteter Callback liefert `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise redigierten No-op. Terminalintervalle, Terminalcheckpoint und Terminaldetailtail sind in Save v2 verboten. Der Diagnose-Ring darf höchstens 64 redigierte Hinweise halten, ist aber nie fachliche Wahrheit. Nach Erschöpfung des UInt64-Raums gilt `ENDLESS_ORDINAL_SPACE_EXHAUSTED`.
 
 ## 10. Einmaliger `POST_CLEAR_PATIENCE`-Claim
 
@@ -167,7 +175,9 @@ Die fachliche Claim-ID lautet `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>`. Pro
 | `RECONCILIATION_REQUIRED` | Ausgang nach Crash/Timeout unbekannt; keine zweite Anzeige zulässig. |
 | `COMMITTED` | +10 und terminaler Claim wurden atomar persistiert. |
 
-Eligibilityprüfung und `RESERVED` werden in einem Savecommit durchgeführt. Parallele Operationen verlieren auf `expectedSaveGeneration`. Rewardcallback, Claimterminal und Ledgergutschrift werden in einem gemeinsamen Savecommit geschrieben. Ein bestätigtes `CLOSED_NO_REWARD` beziehungsweise `FAILED` gibt die Reservation atomar frei. Ein unbekannter Ausgang bleibt gesperrt, bis Adapterreplay oder eine eindeutige terminale Antwort vorliegt. Späte Callbacks derselben Reservation sind idempotent; Callbacks einer freigegebenen älteren Operation werden quarantänisiert und erzeugen keinen zweiten Grant.
+Eligibilityprüfung und `RESERVED` werden in einem Savecommit durchgeführt. Parallele Operationen verlieren auf `expectedSaveGeneration`. Rewardcallback, Claimterminal und Ledgergutschrift werden in einem gemeinsamen Savecommit geschrieben. Der gutzuschreibende Betrag stammt ausschließlich aus der exakt geladenen, release-gelockten `POST_CLEAR_PATIENCE`-Definition des Completionkatalogs; Callback und Command führen keinen Betrag. Ein bestätigtes `CLOSED_NO_REWARD` beziehungsweise `FAILED` gibt die Reservation atomar frei. Ein unbekannter Ausgang bleibt gesperrt, bis Adapterreplay oder eine eindeutige terminale Antwort vorliegt. Späte Callbacks derselben Reservation sind idempotent; Callbacks einer freigegebenen älteren Operation werden quarantänisiert und erzeugen keinen zweiten Grant.
+
+Für Kampagnenlevel kann das Fehlen eines Claimrecords `AVAILABLE` bedeuten. Für Endless gilt enger: Nur ein passender `COMPLETION_CLAIM_OPEN`-Record ist berechtigt. Reserved-, aktive, kompakt terminale oder abgebrochene Ordinale erzeugen aus Recordabwesenheit niemals einen neuen Claim.
 
 ## 11. IAP-Verifikation, Grant und Storefinalisierung
 
@@ -209,13 +219,15 @@ Save und lokale Logs liegen im App-Sandboxspeicher und werden nicht automatisch 
 
 ## 15. Tests
 
-Pflicht sind Roundtrip-, Hashprofil-, JCS-Cross-Tool-, unbekanntes-Profil-, Schema-/Profilmigrations-, Truncation-, bad-hash-, pending-write-, backup-, split-brain-, low-disk-, permission-, idempotency-, Claimparallelitäts-, Spätcallback-, Rewardcrash-, IAP-Phasencrash-, Acknowledge-/Finish-Retry-, Restore-, Revocation-, Ledgergrenzen- und Kompaktierungstests. Hinzu kommen 10.000 alternierende Endless-Terminaltransitionen, Resume-Lücken, Duplicate nach Kompaktierung, aktive Kapazität, v1→v2-Golden sowie atomare Kosmetikclaim-/Kollisionsfälle. Gerätetests unterbrechen die App während Writes und Storeoperationen auf Android und iOS.
+Pflicht sind Roundtrip-, Hashprofil-, JCS-Cross-Tool-, unbekanntes-Profil-, Schema-/Profilmigrations-, Truncation-, bad-hash-, pending-write-, backup-, split-brain-, low-disk-, permission-, idempotency-, Claimparallelitäts-, Spätcallback-, Rewardcrash-, IAP-Phasencrash-, Acknowledge-/Finish-Retry-, Restore-, Revocation-, Ledgergrenzen- und Kompaktierungstests. Hinzu kommen Reservation vor Generierung, Crash/Retry mit identischer E1-ID, Promotion zu `ACTIVE_DRAFT`, Completion zu `COMPLETION_CLAIM_OPEN`, Claimreconciliation, `CLOSED_NO_REWARD`, Abandon, 10.000 gemischte Terminaltransitionen ohne wachsende Historie, offene Kapazität, v1→v2-Claimmigration sowie atomare Kosmetikclaim-/Kollisionsfälle. Gerätetests unterbrechen die App während Writes und Storeoperationen auf Android und iOS.
 
 ## Referenzen
 
 [1]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
 [2]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
 [3]: https://www.rfc-editor.org/rfc/rfc8785 "RFC 8785 – JSON Canonicalization Scheme"
-[4]: ./GAME_STATE_MODEL.md "Game State Model v0.3"
+[4]: ./GAME_STATE_MODEL.md "Game State Model v0.4"
 [5]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und versionierte Proofartefakte"
-[6]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat-Identität und kosmetische Meilensteinclaims"
+[6]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"
+[7]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"
+[8]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat-Identität und kosmetische Meilensteinclaims"

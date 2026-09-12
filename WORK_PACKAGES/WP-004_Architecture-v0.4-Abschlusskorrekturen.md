@@ -4,7 +4,7 @@
 
 `WP-004`
 
-**Bearbeitungsstatus:** In Bearbeitung seit 2026-09-12 auf Branch `arch/architecture-v0.1`.
+**Bearbeitungsstatus:** Abgeschlossen am 2026-09-12 auf Branch `arch/architecture-v0.1`.
 
 ## Ziel
 
@@ -96,6 +96,24 @@ Vor Abschluss werden mindestens ausgeführt und commitbezogen dokumentiert:
 14. erneuter vollständiger Lauf auf dem konkreten Abschlusscommit vor Push sowie Remote-Commit-Verifikation nach Push.
 
 Unity Compile/EditMode/PlayMode, `BootstrapCompositionSmoke`, IL2CPP, physische Privacy-Gerätecaptures, SDK-Sandbox und Storepromotion bleiben mangels Produktionsprojekt **REQUIRED_LATER/NOT_EXECUTED**. Der GitHub-Actions-Nachweis bleibt ein verpflichtendes separates CI-Follow-up vor Produktionscoding.
+
+## Ergebnis und Abnahmenachweis
+
+| Finding | Status | Abschlussbeleg |
+|---|---|---|
+| `V03-001` | **CLOSED** | Ausführbarer Privacy-v2-Reducer deckt Fresh Install, direkten Legacy-Sprung mit altem Native-Override, nie gestarteten Zwischenbuild, `REVOKE_PENDING`, Crash/Restart, Re-enable und Offline ab; Production bleibt ohne belegten prä-SDK-Fence fail-closed. |
+| `V03-002` | **CLOSED** | `openEndless` modelliert Reservation, Generierung, Draft, Completionclaim und Terminalisierung; Claim-ID, Providerergebnis, Claimstatus und kataloggebundener Betrag sind ausführbar gebunden; 10.000 gemischte Zyklen bleiben bounded. |
+| `V03-003` | **CLOSED** | Validator prüft Schema-, Reducer-, Cross-Reference-, Migrations-, Release-Lock-, Cosmetics-, IAP-Fixture- und Reportsemantik mit gezielten Negativmutationen; nicht ausgeführte Belege erscheinen nie als lokaler PASS. |
+| `V03-004` | **CLOSED** | Level v2 akzeptiert `EXCLUSION`, `CHAIN`, `DENSITY`, `COMBINATION`; schema-gültiges DRAFT-Cosmetics-Fixture wird zur Runtime abgewiesen. |
+| `V03-005` | **CLOSED** | Segmentglobvertrag, globale Patternverbote, repositoryrelativer kanonischer Manifestpfad, WP-Zuordnung und unveränderlicher Vorab-Anker werden geprüft. |
+| `V03-006` | **CLOSED** | ADR-016-Entscheidungskörper stimmt mit Commit `6152eead04494386404241967da0d8a62e741718` überein; aktuelle Regeln stehen in ADR-024 bis ADR-026 und der Index ist konsistent. |
+| `V03-007` | **CLOSED** | `store-crash-rate-v1` bindet Android/iOS an konkrete Storequelle, Releasepopulation, Mindestmenge, Freshness und `PAUSE_NO_ADVANCE`; Crashlytics bleibt in Production ausgeschlossen. |
+
+Der erste unabhängige Delta-Review identifizierte neben dem erwarteten offenen WP-Status eine überbreite Report-Selbsttestprüfung und eine fehlende fachliche Bindung des Endless-Claims. Beide wurden korrigiert. Der anschließende fokussierte Re-Review meldete **`ZERO OPEN TECHNICAL FINDINGS; ONLY EXPECTED WP STATUS CLOSURE REMAINS`**. Dieser erwartete Statusrest ist mit dem vorliegenden Abschluss behoben. Die danach durchgeführte vollständige Staging-Diff-Prüfung deckte noch zwei enge Kopplungslücken zwischen E1-/Puzzle-ID sowie lokaler und Provideroperation auf. Nach ihrer Korrektur meldete der gezielte Recheck **`FINAL ENDLESS CLAIM RECHECK PASS — ZERO ISSUES`**.
+
+Der kanonische Documentation-Scope-Lauf umfasst `LOCAL_DOCUMENT_STRUCTURE`, `LOCAL_ARCHITECTURE_SEMANTICS`, `LOCAL_SCOPE` und den vollständigen Mutations-Selbsttest. `MANUAL_ARCHITECTURE_REVIEW` bestätigt separat die konsistente IAP-Reihenfolge Verifikation → atomarer lokaler Grant → Google Acknowledge/Apple Finish → lokaler Finalstatus. `CONTRACT_ONLY`, `REQUIRED_LATER/NOT_EXECUTED` und `BLOCKED` bleiben ausdrücklich ohne PASS-Behauptung.
+
+Vor Commit werden zusätzlich `git diff --check`, vollständige Scope-/Secret-/Produktdateiwachen und der Vergleich von lokalem/remote `main` ausgeführt. Nach dem Abschlusscommit werden Architecture-only- und Documentation-Scope-Lauf exakt auf diesem Commit wiederholt; erst danach wird ausschließlich `arch/architecture-v0.1` gepusht und der Remotecommit verifiziert. Es erfolgt kein Merge und keine Pull-Request-Erstellung.
 
 ## Risikoklasse
 

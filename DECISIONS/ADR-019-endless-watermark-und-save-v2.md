@@ -60,7 +60,7 @@ Der Referenzreducer führt mindestens 10.000 alternierende Complete-/Abandon-Tra
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt die Retentions- und Saveanteile aus [ADR-014](./ADR-014-save-kanonisierung-und-ledgerkompaktierung.md) und [ADR-016](./ADR-016-katalogvertraege-und-endless-identitaet.md); deren nicht widersprechende JCS-, Ledger-, Katalog- und Identitätsentscheidungen bleiben durch diesen ADR ausdrücklich restatiert. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt die Retentions- und Saveanteile aus [ADR-014](./ADR-014-save-kanonisierung-und-ledgerkompaktierung.md) und [ADR-016](./ADR-016-katalogvertraege-und-endless-identitaet.md); deren nicht widersprechende JCS-, Ledger-, Katalog- und Identitätsentscheidungen bleiben durch diesen ADR ausdrücklich restatiert. Die Open-Lifecycle-, Terminalprädikat- und Claimfortsetzungsanteile werden durch [ADR-025](./ADR-025-endless-open-lifecycle-und-claims.md) ersetzt; UInt64-Watermark, fehlende terminale Nutzungsgrenze und `endless-v1`-Identität bleiben angenommen.
 
 ## Referenzen
 

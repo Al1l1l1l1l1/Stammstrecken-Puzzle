@@ -1,42 +1,46 @@
-# Privacy Provider Evidence für Architecture v0.3
+# Privacy Provider Evidence für Architecture v0.4
 
 **Stand:** 2026-09-12
-**Zweck:** Nachvollziehbare Herstellerbasis für `ADR-020` und die Mobile-/Observability-Verträge. Dieses Dokument ist keine Rechtsberatung und ersetzt keine Releasefreigabe.
 
-## Gepinnte SDK-Linien
+## 1. Zweck und Aussagegrenze
 
-| Anbieter | Pin | Verifizierter Herstellerstand |
-|---|---:|---|
-| Firebase Unity SDK | `13.16.0` | Am 27. August 2026 veröffentlicht; verwendet Firebase C++ 13.11.0, Android BoM 34.18.0 und iOS Cocoapods 12.18.0.[1] |
-| Google Mobile Ads Unity Plugin | `11.5.0` | Am 3. September 2026 veröffentlicht; bindet GMA iOS 13.9.0 und Android Next-Gen 1.4.0.[2] |
-| Unity IAP | `5.4.3` | Gepinnter IAP-5.4-Patch; Privacyvertrag gilt für 5.4 und neuer.[3] |
+Dieses Dokument sichert die extern verifizierten Herstellerregeln, aus denen der lokale Privacy-Vertrag abgeleitet wird. Es ist kein Gerätebeleg. Native Manifest-/`Info.plist`-Wirkung, direkte Upgradepfade, Prozessreihenfolge und Netzwerkverkehr müssen später auf physischen Android- und iOS-Geräten bewiesen werden.
 
-## Verifizierte Lifecycle-Regeln
+## 2. Gepinnte SDK-Linien und Providerregeln
 
-Firebase Analytics lässt die automatische Sammlung nativ über `firebase_analytics_collection_enabled=false` auf Android beziehungsweise `FIREBASE_ANALYTICS_COLLECTION_ENABLED=NO` auf Apple deaktivieren. Ein Runtimeaufruf kann die Sammlung aktivieren oder wieder suspendieren. Auf Apple dokumentiert Firebase ausdrücklich, dass der Runtimewert über Appausführungen persistiert und den temporären Plist-Wert überstimmt. Der permanente Schalter `firebase_analytics_collection_deactivated=true` beziehungsweise `FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED=YES` hat Vorrang und kann im selben Binary nicht per Runtime reaktiviert werden.[4][5]
+| Provider | Pin / Productionrolle | Verifizierte Herstellerregel | Architekturschluss |
+|---|---|---|---|
+| Firebase Analytics Unity | 13.16.0; **bis Fence-Nachweis nicht im Productionpfad aktivierbar** | Android kennt `firebase_analytics_collection_enabled=false` als initialen Default und `firebase_analytics_collection_deactivated=true` als permanente Deaktivierung. iOS kennt `FIREBASE_ANALYTICS_COLLECTION_ENABLED=NO` und `FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED=YES`. Runtime-`SetAnalyticsCollectionEnabled` überdauert App-Sessions. | Ein alter persistierter Runtime-Override kann einen späteren Default überstimmen. Ein Reset-only-Zwischenbuild ist kein sicherer Migrationsanker, wenn Nutzer ihn überspringen oder nie starten. Ohne belegten prä-SDK-Mechanismus bleibt Analytics Production-aus. |
+| Firebase Crashlytics Unity | 13.16.0; **Production ausgeschlossen** | Collection lässt sich opt-in konfigurieren; der Runtime-Override persistiert, und Änderungen können erst beim nächsten Lauf vollständig wirken. Nicht gesendete Reports können gelöscht werden. | Die einfachste belastbare Productiongrenze bleibt Package-/Binary-Ausschluss. Lokale redigierte Diagnose ersetzt keinen Crashprovider. |
+| Google Mobile Ads Unity / UMP | 11.5.0 | Consentinformation wird bei jedem Start aktualisiert. Anzeigenanfragen sind nur zulässig, wenn `CanRequestAds()` wahr ist; Privacyoptionen können erneut erforderlich werden. | Ads bleiben uninitialisiert beziehungsweise ohne Requestfreigabe, bis der aktuelle UMP-Startfluss sie erlaubt. Geladene Ads werden bei Widerruf verworfen. |
+| Unity IAP | 5.4.3; lazy readiness | IAP erhebt verpflichtende Developer Data und kann nach Kaufnachweisen wiederholt Pending-/Replay-Ereignisse liefern. Entitlement soll vor Storefinalisierung dauerhaft erfüllt werden. | IAP ist kein an den optionalen Analytics-Consent gekoppelter Dienst. Es wird nur für Kaufaktion oder Recovery/readiness initialisiert; Offenlegung und Datenminimierung bleiben Pflicht. |
 
-Firebase Crashlytics sammelt standardmäßig automatisch. Ein Runtime-Override persistiert über Starts. Ein späteres Opt-out wird laut Android-, Apple- und Unity-Dokumentation erst beim nächsten Appstart wirksam. Bei deaktivierter Sammlung speichert Crashlytics Berichte lokal; nach späterer Aktivierung werden diese Berichte übertragen.[6][7][8] Diese dokumentierte Semantik erfüllt keinen belegbaren sofortigen Widerruf innerhalb desselben Prozesses. Deshalb ist Crashlytics im v0.3-Productionprofil ausgeschlossen.
+## 3. Prä-SDK-Fence und direkte Upgradepfade
 
-Google UMP verlangt `ConsentInformation.Update()` bei jedem Start. `CanRequestAds()` ist vor dem Update immer `false`; Ads dürfen erst nach Update/Form und `CanRequestAds()==true` initialisiert oder geladen werden. UMP ist die Autorität für Werbeanfragen, nicht für Firebase Analytics oder Crashdiagnose.[9]
+Ein **prä-SDK-Deny-Fence** ist nur erfüllt, wenn auf beiden Plattformen vor jeder möglichen Firebase-Analytics-Initialisierung oder -Erfassung ein beliebiger persistierter Runtime-Override nachweislich auf `false` neutralisiert wird. Eine Application-Capability, die nach Unity-Start auf `false` steht, genügt nicht. Ebenso genügt ein Reset-only-Build nicht, weil App Stores weder die Installation noch den Start jeder Zwischenversion garantieren.
 
-Unity IAP 5.4 und neuer sammelt zur Funktion immer Player ID, Unity Installation ID, Geräteinformationen, Session IDs und Land. Es aktiviert die Unity-Authentication-Abhängigkeit und besitzt keinen eigenen Consentservice. Eine App muss notwendige Rechtsgrundlage, Privacy Policy, Storedeklarationen und Datenverarbeitung selbst freigeben.[3]
+Für die gepinnte Unity-/Firebase-Integration liegt im Repository kein solcher plattformbezogener Nachweis vor. Deshalb verlangt ADR-024 fail-closed:
 
-## Architekturableitung
+> Analytics bleibt in Production deaktiviert, bis ein separates Implementierungs-/Release-Work-Package den prä-SDK-Fence, direkte Legacy-Upgrades, den „installiert, nie gestartet“-Pfad, Crashinjektion und Netzwerkstille auf physischen Android- und iOS-Geräten belegt.
 
-Die dokumentierten Providermechanismen führen zu drei fail-closed Grenzen:
+Ein künftiger Nachweis muss die exakten exportierten Android-Manifest- und Apple-`Info.plist`-Werte, Firebase-Initialisierungsreihenfolge, persistierte Runtime-Overrides, Process-Restarts und beobachteten Netzwerkverkehr an den unveränderlichen Releasekandidaten binden.
 
-1. **Analytics-Invalidierung benötigt Reset-only:** Ein invalidierender Build setzt permanenten Analytics-Off und schreibt zusätzlich den persistierten Runtimewert `false`. Re-enable ist erst in einem späteren Build ohne permanenten Schalter und nach neuem gültigem Entscheid möglich.
-2. **Crashlytics bleibt aus Production entfernt:** Solange kein später gepinntes SDK einen belegten sofortigen Widerruf sowie sichere Behandlung lokal vor Freigabe erfasster Berichte ermöglicht, gibt es keinen Production-Enable-Pfad.
-3. **IAP bleibt lazy und readiness-gesteuert:** Keine Bootstrapinitialisierung; nur sichtbare Kauf-/Restoreaktion oder persistente Recovery nach dokumentierter Releasefreigabe.
+## 4. Widerruf und Native-Synchronisierung
 
-## Quellen
+`PrivacyDecisionRecord.nativeSyncState` trennt lokale Entscheidung von bestätigtem Providerzustand. `REVOKE_PENDING` wird vor Native Disable persistiert. Ein Crash davor oder danach startet erneut mit prä-SDK-Deny-Fence und Reconciliation. Erst bestätigtes Native Disable führt zu `REVOKED_CONFIRMED`. `ENABLE_PENDING` bleibt capability-seitig aus, bis der Providerapply bestätigt ist. Ein Providercallback darf keinen neueren Widerruf überschreiben.
+
+Das ausführbare Fixture [`privacy-lifecycle-v2.json`](../tools/architecture-validation/fixtures/privacy-lifecycle-v2.json) modelliert Fresh Install, direkten Legacy-Sprung, übersprungenen Reset-only-Build, Widerrufs-Crash, Native-Disable-Fehler, Recovery, Re-enable-Referenzpfad und Offlinefälle. Der lokale Validator beweist nur Reducer- und Fixturesemantik; physische Providerwirkung bleibt `REQUIRED_LATER/NOT_EXECUTED`.
+
+## 5. Quellen
 
 [1]: https://firebase.google.com/support/release-notes/unity "Firebase Unity SDK Release Notes – 13.16.0"
 [2]: https://github.com/googleads/googleads-mobile-unity/releases/tag/v11.5.0 "Google Mobile Ads Unity Plugin 11.5.0"
-[3]: https://docs.unity.com/en-us/iap/privacy-and-consent/overview "Unity IAP 5.4 Privacy overview"
-[4]: https://firebase.google.com/docs/analytics/android/configure-data-collection "Firebase Analytics Android collection controls"
-[5]: https://firebase.google.com/docs/analytics/ios/configure-data-collection "Firebase Analytics Apple collection controls"
-[6]: https://firebase.google.com/docs/crashlytics/android/customize-crash-reports "Firebase Crashlytics Android opt-in reporting"
-[7]: https://firebase.google.com/docs/crashlytics/ios/customize-crash-reports "Firebase Crashlytics Apple opt-in reporting"
-[8]: https://firebase.google.com/docs/crashlytics/unity/customize-crash-reports "Firebase Crashlytics Unity opt-in reporting"
-[9]: https://developers.google.com/admob/unity/privacy "Google UMP Unity"
+[3]: https://firebase.google.com/docs/analytics/android/configure-data-collection "Firebase Analytics – Android data collection"
+[4]: https://firebase.google.com/docs/analytics/ios/configure-data-collection "Firebase Analytics – Apple data collection"
+[5]: https://firebase.google.com/docs/crashlytics/unity/customize-crash-reports "Firebase Crashlytics Unity – opt-in reporting"
+[6]: https://firebase.google.com/docs/crashlytics/android/customize-crash-reports "Firebase Crashlytics Android – collection controls"
+[7]: https://firebase.google.com/docs/crashlytics/ios/customize-crash-reports "Firebase Crashlytics Apple – collection controls"
+[8]: https://developers.google.com/admob/unity/privacy "Google UMP for Unity"
+[9]: https://docs.unity.com/en-us/iap/privacy-and-consent/overview "Unity IAP privacy and consent"
+[10]: https://docs.unity.com/en-us/iap/purchases "Unity IAP purchase processing"
+[11]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"

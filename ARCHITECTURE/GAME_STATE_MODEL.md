@@ -1,4 +1,4 @@
-# Game State Model v0.3
+# Game State Model v0.4
 
 ## 1. Zustandsprinzip
 
@@ -140,17 +140,17 @@ Sterne werden aus der ersten erfolgreichen aktiven Zeit beziehungsweise in freig
 
 Geduldspunkte werden nicht als frei überschreibbarer Saldo geführt. Ein `LedgerCheckpoint` plus begrenztes `EconomyJournal` enthält idempotente Einträge mit `transactionId`, `reasonCode`, `amount`, `subjectId`, Katalog-/Claimbezug und UTC-Diagnosezeit. Der Saldo ist Checkpointsaldo plus Journalsumme. Deduplikationswahrheit verbleibt in terminalen Level-, Claim-, Inventory-, IAP- oder Endless-Records; Kompaktierung folgt ausschließlich dem Vertrag in `PERSISTENCE.md`.
 
-Der release-gelockte `ICompletionCatalog` ist die Quelle für bestätigte Rewardbeträge. Der `ICosmeticsCatalog` liefert diskriminierte Erwerbsverträge. `PurchaseCosmetic` prüft Kataloghash, Ownership und Saldo; negativer Ledger-Eintrag und Inventory-Grant werden in einem Savecommit unter `cosmetic-purchase:<itemId>` geschrieben. `ClaimMilestoneCosmetic` expandiert ausschließlich die gelockten Campaign-Subjects zu First-Clear-Records und schreibt den terminalen Ownership-Claim ohne Ledgerdelta atomar. `ALREADY_OWNED` und identische Wiederholung sind No-ops.
+Der release-gelockte `ICompletionCatalog` ist die Quelle für bestätigte Rewardbeträge. Der `ICosmeticsCatalog` liefert diskriminierte Erwerbsverträge. Runtime-Kauf oder -Claim verlangt `PRODUCT_APPROVED` oder ausdrücklich `FIXTURE_ONLY` im Contracttest **und** Itemstatus `ACTIVE`; `DRAFT`, `HIDDEN` und `TOMBSTONE` sind nicht neu erwerbbar. `PurchaseCosmetic` prüft Kataloghash, Ownership und Saldo; negativer Ledger-Eintrag und Inventory-Grant werden in einem Savecommit unter `cosmetic-purchase:<itemId>` geschrieben. `ClaimMilestoneCosmetic` expandiert ausschließlich gelockte Campaign-Subjects zu First-Clear-Records, reserviert den revisionsstabilen Claim und schreibt Claimterminal plus Ownership ohne Ledgerdelta atomar. `ALREADY_OWNED` und identische Wiederholung sind No-ops.
 
-Für `mode: ENDLESS` ist die persistente Zustandsmaschine `ReserveEndless -> ActiveDraft -> CompleteEndless|AbandonEndless`. Reservation erhöht den Watermark und schreibt den Draft atomar. Complete schreibt erlaubte Effects und entfernt den Draft atomar; Abandon entfernt ihn ohne Reward. Ein reservierter Ordinal ohne aktiven Draft ist terminal. Terminale Detailhistorie ist weder Zustands- noch Deduplikationswahrheit.
+Für `mode: ENDLESS` ist die persistente Zustandsmaschine `ReserveEndless -> RESERVED_NOT_GENERATED -> ACTIVE_DRAFT -> COMPLETION_CLAIM_OPEN -> terminal`; Abandon führt aus Reservation oder aktivem Draft ohne Reward direkt zu terminal. Reservation erhöht den Watermark und speichert den vollständigen Descriptor, aber noch keinen erfundenen Puzzleinput. Erst validierte Generierung promotet atomar zum Draft. Complete entfernt Resume-Daten, bewahrt jedoch eine begrenzte Claimfortsetzung. Erst `COMMITTED` oder `CLOSED_NO_REWARD` entfernt sie. Ein reservierter Ordinal ohne offenen Record ist terminal; ein fehlender allgemeiner Rewardrecord erzeugt für Endless keine neue Eligibility.
 
 ## 11. Persistente Mobile-Operationen
 
-`POST_CLEAR_PATIENCE` besitzt pro Meldung den fachlichen Schlüssel `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>`. Zulässige persistente Zustände sind `RESERVED`, `RECONCILIATION_REQUIRED` und `COMMITTED`; fehlender Record bedeutet verfügbar. Provider-Reward-ID und lokale Operation-ID sind Auditfelder. Reservation sowie später Claimterminal plus Ledgergutschrift erfolgen jeweils atomar. Ein paralleler oder verspäteter Callback kann deshalb nie einen zweiten Gegenwert erzeugen.
+`POST_CLEAR_PATIENCE` besitzt pro Meldung den fachlichen Schlüssel `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>`. Zulässige persistente Zwischenzustände sind `RESERVED`, `RECONCILIATION_REQUIRED`, `REWARD_CONFIRMED` und `NO_REWARD_CONFIRMED`; terminal folgen `COMMITTED` oder `CLOSED_NO_REWARD`. Bei Kampagnenmeldungen kann fehlender Record verfügbar bedeuten; bei Endless ist ausschließlich `COMPLETION_CLAIM_OPEN` berechtigend. Provider-Reward-ID und lokale Operation-ID sind Bindungs- und Auditfelder. Erst ein zur Claim-/Puzzle-/Operations-ID passendes Providerergebnis darf bestätigen. Reservation sowie später Claimterminal plus Ledgergutschrift erfolgen jeweils atomar; der Betrag stammt aus dem release-gelockten Completionkatalog und niemals aus dem Callback. Ein paralleler oder verspäteter Callback kann deshalb nie einen zweiten oder abweichenden Gegenwert erzeugen.
 
 Eine IAP-Operation enthält `operationId`, logischen Produktkey, Store, minimale Transaktionsreferenz und genau einen Zustand aus `STARTED`, `EVIDENCE_RECEIVED`, `VERIFIED`, `GRANTED_NOT_FINALIZED`, `FINALIZED`, `REJECTED` oder `RECONCILIATION_REQUIRED`. `remove_ads` wird gemeinsam mit `GRANTED_NOT_FINALIZED` persistiert, bevor Google Acknowledge beziehungsweise Apple Finish erfolgt. Storefinalisierung und Restore verwenden denselben idempotenten Transaktionsschlüssel.
 
-Ads-, Analytics- und Crashcapabilities sind flüchtig und starten bei jedem Prozess mit `false`. Der versionierte `PrivacyDecisionRecord` ist Input für den ConsentCoordinator; `desired` und nach NativeApply wirksames `effective` bleiben getrennt. Fehlender, defekter, unbekannter oder revisionsinkompatibler Record bleibt fail-closed. Das Productionprofil schließt Crashlytics aus. Ein Analytics-invalidierender Reset-only-Build setzt permanenten Native-Off und überschreibt zusätzlich einen früher persistierten Runtimewert mit `false`; Re-enable ist erst in einem späteren kompatiblen Build nach neuem Entscheid möglich.
+Ads-, Analytics- und Crashcapabilities sind flüchtig und starten bei jedem Prozess mit `false`. Der versionierte `PrivacyDecisionRecord` ist Input für den ConsentCoordinator; `desired`, bestätigtes `nativeSyncState` und wirksames `effective` bleiben getrennt. `ENABLE_PENDING`, `REVOKE_PENDING`, `UNKNOWN`, fehlend, defekt oder revisionsinkompatibel sind fail-closed. Ein Bootstrapfence muss vor optionaler SDK-Erfassung Native Analytics deny erzwingen. Da dieser prä-SDK-Nachweis für die gepinnte Integration fehlt, bleibt Analytics im Productionprofil ausgeschlossen; Crashlytics ist ebenfalls ausgeschlossen. Widerruf persistiert `REVOKE_PENDING` vor Native Disable und erst nach Bestätigung `REVOKED_CONFIRMED`.
 
 ## 12. Objektive Rückmeldung versus Lösungsgeheimnis
 
@@ -168,7 +168,9 @@ Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zel
 [2]: ../Stammstrecken_Puzzle_Konzept_00-15/06_Fortschritt_Belohnungen_und_Meisterschaft.md "Stammstrecken-Puzzle – Fortschritt, Belohnungen und Meisterschaft"
 [3]: ../Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md "Stammstrecken-Puzzle – UI- und Bedienungsspezifikation"
 [4]: ../DECISIONS/ADR-005-deterministisches-command-state-modell.md "ADR-005 – Deterministisches Command/State-Modell"
-[5]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
-[6]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
-[7]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
-[8]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+[5]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"
+[6]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"
+[7]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
+[8]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
+[9]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
+[10]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"

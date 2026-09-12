@@ -1,4 +1,4 @@
-# Stammstrecken-Puzzle – Architecture v0.3
+# Stammstrecken-Puzzle – Architecture v0.4
 
 **Status:** Angenommen
 
@@ -6,13 +6,23 @@
 
 **Geltungsbereich:** Mobile-Spiel für Android und iOS
 
-**Work Package:** [`WP-003`](../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md) und [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md)
+**Work Package:** [`WP-004`](../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md), [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md) und [`WP-003`](../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md)
 
 ## 1. Architekturauftrag
 
-Architecture v0.3 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt zusätzlich die acht Findings des unabhängigen Astra-Reviews: kompilierbare Composition Root, constant-space Endless-Lifecycle, vollständiger Privacy-Lifecycle, ehrlicher Validator-Scope, stabile Puzzleidentität/Proofbindung, ausführbare IAP-Reihenfolge, production-identische Kandidaten und implementierbare Kosmetikclaims. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
+Architecture v0.4 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt zusätzlich die sieben Restbefunde `V03-001` bis `V03-007`: prä-SDK-Privacy-Fence und crashsicherer Widerruf, vollständiger Endless-Open-Lifecycle, ehrliche Validatorbelege, level-v1/v2-Kompatibilität, unveränderlicher Scope-Vertrauensanker, Cosmetics-DRAFT-/Transitiontests und eine konkrete Store-Crashrate als Rolloutsignal. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
 
 Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der persistente Projektstand liegt vollständig in Repository, Architecture Decision Records (ADRs), maschinenprüfbaren Datenverträgen und Tests. Kein Implementierungsschritt darf Wissen aus einem Chat voraussetzen.
+
+| Finding | Status | Verbindlicher Abschluss |
+|---|---|---|
+| `V03-001` | **CLOSED** | Prä-SDK-Deny-Fence, direkte Legacy-Upgrades, `REVOKE_PENDING`/Reconciliation und fail-closed Productionausschluss. |
+| `V03-002` | **CLOSED** | Persistierte Reservation, reproduzierbare Generation, offener Completionclaim und begrenzte Kompaktierung. |
+| `V03-003` | **CLOSED** | Ausführbare Reducer-/Cross-Reference-Prüfungen, gezielte Mutationen und sieben getrennte Evidenzkategorien. |
+| `V03-004` | **CLOSED** | Alle v1-Fokuswerte bleiben v2-kompatibel; DRAFT-Cosmetics sind authoringgültig und runtimegesperrt. |
+| `V03-005` | **CLOSED** | Segmentglobs, kanonischer Repositorypfad und vorab unveränderlich verankertes WP-Scope-Manifest. |
+| `V03-006` | **CLOSED** | Historischer ADR-016-Entscheidungskörper restauriert; aktuelle Normen ausschließlich in Nachfolge-ADRs. |
+| `V03-007` | **CLOSED** | Plattformgebundene Store-Crashrate mit Mindestpopulation, Freshness und `PAUSE_NO_ADVANCE`. |
 
 ## 2. Leitende Qualitätsziele
 
@@ -36,14 +46,14 @@ flowchart LR
     App --> Stores[Apple App Store / Google Play]
     App --> Ads[Google Mobile Ads / Mediation]
     App --> Privacy[Google UMP]
-    App --> Telemetry[Firebase Analytics nach Capability]
+    App -. späterer belegter Adapter .-> Telemetry[Firebase Analytics; aktuell nicht in Production]
     CI[GitHub Actions] --> App
     CI --> Stores
     Author[Levelautor] --> Source[Versionierte Level-JSON]
     Source --> CI
 ```
 
-**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die externe Wahrheit für den nicht konsumierbaren Kauf `remove_ads`; ein clientseitig verifizierter lokaler Grant bleibt bei transientem Storefehler aktiv. Ads, Consent und Analytics sind optionale Adapter. Analytics und Ads sind nativ default-off; Crashlytics ist im Productionprofil ausgeschlossen. Ihr Ausfall darf Puzzle, Saves, Fortschritt oder verdiente Inhalte nicht blockieren.
+**Local** ist die Wahrheit für Gameplay-Fortschritt. Stores sind die externe Wahrheit für den nicht konsumierbaren Kauf `remove_ads`; ein clientseitig verifizierter lokaler Grant bleibt bei transientem Storefehler aktiv. Ads und Consent sind optionale Adapter. Analytics bleibt bis zum belegten prä-SDK-Deny-Fence aus Production ausgeschlossen; Crashlytics ist im Productionprofil ausgeschlossen. Ihr Ausfall darf Puzzle, Saves, Fortschritt oder verdiente Inhalte nicht blockieren.
 
 ## 4. Architekturstil
 
@@ -68,9 +78,9 @@ Die verbindliche Feinstruktur steht in [`MODULE_BOUNDARIES.md`](./MODULE_BOUNDAR
 2. Persistenzadapter liest Hauptstand, Backup und gegebenenfalls einen vollständig geschriebenen temporären Kandidaten.
 3. Save-Migratoren bringen den Snapshot sequenziell auf Save v2.
 4. Application validiert Level-v2-, Campaign-v2-, Completion-v1- und Cosmetics-v2-Kataloge samt Cross-References, Proofs und Release-Lock.
-5. Der PrivacyCoordinator beginnt effective fail-closed, validiert den versionierten Entscheid, aktualisiert UMP und wendet native Effekte an; optionale SDKs bleiben bis zum jeweiligen Gate aus.
+5. Vor optionaler SDK-Erfassung erzwingt der Bootstrapfence Native deny; der PrivacyCoordinator beginnt effective fail-closed, validiert Entscheid und `nativeSyncState`, reconciliiert Pending-Zustände, aktualisiert UMP und wendet nur belegte native Effekte an. Analytics und Crashlytics bleiben im aktuellen Productionprofil ausgeschlossen.
 6. UI zeigt sofort den lokal verfügbaren Startzustand. Netzwerkfehler erscheinen nicht als blockierender Startscreen.
-7. IAP wird nur für Nutzeraktion oder persistente Recovery plus Release-Readiness lazy initialisiert. Analytics startet erst nach effektiver Capability; Crashlytics ist in Production nicht vorhanden.
+7. IAP wird nur für Nutzeraktion oder persistente Recovery plus Release-Readiness lazy initialisiert. Analytics wird im aktuellen Productionprofil nicht initialisiert; Crashlytics ist in Production nicht vorhanden.
 
 ### 5.2 Puzzleablauf
 
@@ -142,10 +152,13 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 14. Der fachliche `POST_CLEAR_PATIENCE`-Claim ist pro Meldung und Placement eindeutig; Provider-IDs sind nur Auditdaten.
 15. IAP-Entitlement wird vor Google Acknowledge beziehungsweise Apple Finish atomar persistiert und idempotent reconciled.
 16. Emulator oder Simulator allein erfüllt kein physisches Geräte- oder Privacy-Smoke-Gate.
-17. Endless-Deduplikation beruht auf Save-v2-Watermark plus aktiven Drafts und besitzt keine terminale Nutzungsgrenze außer UInt64-Erschöpfung.
+17. Endless-Deduplikation beruht auf Save-v2-Watermark plus höchstens 20 offenen Reservation-/Draft-/Claimfortsetzungen und besitzt keine terminale Nutzungsgrenze außer UInt64-Erschöpfung.
 18. Puzzle-ID, Dokumentformat und Proofversion sind getrennte Achsen; Hashprofile werden immer mitgeführt.
 19. Ein Releasekandidat wird mit Productionidentität gebaut und exakt ohne Rebuild promotet; Stagingartefakte sind nie promotable.
 20. Ein lokaler Architekturcheck darf nicht als ausgeführter Unity-, Geräte-, SDK- oder Storetest berichtet werden.
+21. Ein Scope-Manifest ist nur als unveränderlicher, vor dem geprüften Diff versionierter kanonischer Repositoryblob vertrauenswürdig.
+22. DRAFT-Cosmetics sind authoringgültig, aber niemals runtime-kauf- oder grantfähig.
+23. Fehlende oder nicht exakt releasegebundene Store-Crashdaten pausieren den Rollout und gelten nie als bestandene Schwelle.
 
 ## 9. Anforderungsabdeckung
 
@@ -157,22 +170,22 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 | Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-021 ersetzt ADR-004 |
 | Puzzlevalidierung | `PUZZLE_ENGINE.md` | ADR-005 |
 | Solver, Eindeutigkeit, Generatorvalidierung | `SOLVER_ARCHITECTURE.md` | ADR-007, ADR-019, ADR-021 |
-| Automatisierte Tests und Scope | `TEST_STRATEGY.md` | ADR-022 ersetzt ADR-017/ADR-009 |
+| Automatisierte Tests und Scope | `TEST_STRATEGY.md` | ADR-026 ersetzt ADR-022/ADR-017/ADR-009 |
 | Levelauthoring | `CONTENT_PIPELINE.md` | ADR-021 ersetzt ADR-004 |
 | Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016, ADR-023 |
-| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-019 ersetzt ADR-014/ADR-006 |
-| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-020 ersetzt ADR-015/ADR-008 |
+| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-019 ersetzt ADR-014/ADR-006; ADR-025 präzisiert Open-Lifecycle und Claims |
+| Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-020 ersetzt ADR-015/ADR-008; ADR-024 präzisiert Analytics-Lifecycle |
 | Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-020 |
-| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-020, ADR-010 |
+| Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-024 ersetzt Teil von ADR-020; ADR-020 ersetzt Production-Crashteil von ADR-010 |
 | Audio, Assets und Lokalisierung | `CONTENT_PIPELINE.md`, `MOBILE_SERVICES.md` | ADR-011 |
-| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-022, ADR-023 |
+| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-023, ADR-026 |
 | Logging und Fehlerdiagnose | `OBSERVABILITY.md` | ADR-010 |
-| Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-022 ersetzt ADR-017/ADR-009 |
+| Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-026 ersetzt ADR-022/ADR-017/ADR-009 |
 | Fehlende Produktentscheidungen | `OPEN_BLOCKERS.md` | fail-closed Folgeblocker |
 
 ## 10. Offene Grenzen und Blockerstatus
 
-Architecture v0.3 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
+Architecture v0.4 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
 
 1. `BLOCKER-PROD-001` blockiert die finale Hint-Entitlement-/Economy-Implementierung.
 2. `BLOCKER-PROD-002` blockiert die Anspruchslogik der Betriebslage des Tages.
@@ -206,3 +219,6 @@ Eine technische Änderung beginnt mit einem regelkonformen Work Package `WP-###`
 [14]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
 [15]: ../DECISIONS/ADR-022-validator-scope-und-belegkategorien.md "ADR-022 – Validator-Scope und Belegkategorien"
 [16]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+[17]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"
+[18]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"
+[19]: ../DECISIONS/ADR-026-validator-evidenz-und-scope-vertrauensanker.md "ADR-026 – Validator-Evidenz und Scope-Vertrauensanker"

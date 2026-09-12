@@ -10,7 +10,7 @@ import json
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Callable
 
 try:
@@ -40,9 +40,11 @@ CURRENT_ADR_STATUS = {
     9: "Ersetzt", 10: "Angenommen", 11: "Angenommen", 12: "Angenommen",
     13: "Angenommen", 14: "Ersetzt", 15: "Ersetzt", 16: "Angenommen",
     17: "Ersetzt", 18: "Angenommen", 19: "Angenommen", 20: "Angenommen",
-    21: "Angenommen", 22: "Angenommen", 23: "Angenommen",
+    21: "Angenommen", 22: "Ersetzt", 23: "Angenommen", 24: "Angenommen",
+    25: "Angenommen", 26: "Angenommen",
 }
-SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22}
+SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
+ADR016_HISTORY_COMMIT = "6152eead04494386404241967da0d8a62e741718"
 ARCH_DOCS = [
     "ARCHITECTURE/ARCHITECTURE.md", "ARCHITECTURE/TECH_STACK.md",
     "ARCHITECTURE/MODULE_BOUNDARIES.md", "ARCHITECTURE/GAME_STATE_MODEL.md",
@@ -61,10 +63,10 @@ SCHEMA_EXAMPLES: dict[str, tuple[str, list[str]]] = {
     "campaign-v2": ("ARCHITECTURE/schemas/campaign-v2.schema.json", ["ARCHITECTURE/examples/campaign-v2.example.json"]),
     "completion-v1": ("ARCHITECTURE/schemas/completion-v1.schema.json", ["ARCHITECTURE/examples/completion-v1.example.json"]),
     "cosmetics-v1": ("ARCHITECTURE/schemas/cosmetics-v1.schema.json", ["ARCHITECTURE/examples/cosmetics-v1.example.json"]),
-    "cosmetics-v2": ("ARCHITECTURE/schemas/cosmetics-v2.schema.json", ["ARCHITECTURE/examples/cosmetics-v2.example.json"]),
+    "cosmetics-v2": ("ARCHITECTURE/schemas/cosmetics-v2.schema.json", ["ARCHITECTURE/examples/cosmetics-v2.example.json", "ARCHITECTURE/examples/cosmetics-v2.draft.example.json"]),
     "release-lock-v1": ("ARCHITECTURE/schemas/release-lock-v1.schema.json", ["ARCHITECTURE/examples/release-lock-v1.example.json"]),
     "release-manifest-v1": ("ARCHITECTURE/schemas/release-manifest-v1.schema.json", ["ARCHITECTURE/examples/release-manifest-v1.rc.example.json", "ARCHITECTURE/examples/release-manifest-v1.staging.example.json"]),
-    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json"]),
+    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json"]),
 }
 REQUIRED_FILES = [
     *[ROOT / item for item in ARCH_DOCS],
@@ -75,12 +77,14 @@ REQUIRED_FILES = [
     ROOT / "WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md",
     ROOT / "WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md",
     ROOT / "WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md",
+    ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md",
     TOOL / "README.md", TOOL / "requirements.lock.txt", TOOL / "jcs_crosscheck.mjs",
     TOOL / "fixtures/duplicate-key.invalid.json", TOOL / "fixtures/float-token.invalid.json",
     TOOL / "fixtures/save-payload-v1.golden.json", TOOL / "fixtures/save-payload-v1.expected.json",
-    TOOL / "fixtures/review-contracts-v0.3.json", TOOL / "fixtures/endless-save-v2.example.json",
+    TOOL / "fixtures/review-contracts-v0.3.json", TOOL / "fixtures/review-contracts-v0.4.json", TOOL / "fixtures/endless-save-v2.example.json",
     TOOL / "fixtures/endless-save-v1-to-v2.golden.json", TOOL / "fixtures/iap-state-machine-v1.json",
-    TOOL / "fixtures/privacy-lifecycle-v1.json", TOOL / "fixtures/level-progress-v1-to-v2.golden.json",
+    TOOL / "fixtures/privacy-lifecycle-v1.json", TOOL / "fixtures/privacy-lifecycle-v2.json", TOOL / "fixtures/level-progress-v1-to-v2.golden.json",
+    TOOL / "fixtures/cosmetics-lifecycle-v1.json", TOOL / "fixtures/rollout-metric-v1.json",
     ROOT / "ARCHITECTURE/examples/promotion-receipt-v1.example.json",
 ]
 TRACK_PORTS = {
@@ -168,7 +172,7 @@ def inventory_check() -> None:
             fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
     adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
     numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 24)):
+    if numbers != list(range(1, 27)):
         fail(f"inventory:adr-sequence:{numbers}")
 
 
@@ -206,9 +210,13 @@ def work_package_check() -> None:
     if re.search(r"WP-[A-Z]+-[0-9]+", all_text): fail("wp:obsolete-nonconforming-id")
 
 
+def section_body(text: str, heading: str, next_heading: str) -> str:
+    return text.split(heading, 1)[1].split(next_heading, 1)[0].strip()
+
+
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 24):
+    for number in range(1, 27):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -219,7 +227,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v0.3" not in index_text or "15 sind angenommen" not in index_text or "8 bleiben als ersetzte" not in index_text:
+    if "Architecture v0.4" not in index_text or "17 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
@@ -240,7 +248,18 @@ def adr_check() -> None:
         if f"ADR-{new:03d}" not in texts[old] or f"ADR-{old:03d}" not in texts[new]:
             fail(f"adr:superseding:{old}:{new}")
     if "vollständig ersetzt durch [adr-021]" not in texts[4].lower() or "ersetzt [adr-004]" not in texts[21].lower() or "vollständig" not in texts[21].lower(): fail("adr:004-021-full-replacement")
-    if "adr-004 bleibt" in texts[16].lower(): fail("adr:016-stale-004-validity")
+    superseding_section = section_body(texts[16], "## Ersetzt / ersetzt durch", "## Referenzen")
+    if "adr-004 bleibt" in superseding_section.lower(): fail("adr:016-stale-004-validity")
+    historical = subprocess.run(
+        ["git", "-C", str(ROOT), "show", f"{ADR016_HISTORY_COMMIT}:DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md"],
+        text=True, capture_output=True, check=False,
+    )
+    if historical.returncode != 0:
+        fail("adr:016-history-source-unavailable")
+    elif section_body(texts[16], "## Entscheidung", "## Begründung") != section_body(historical.stdout, "## Entscheidung", "## Begründung"):
+        fail("adr:016-historical-decision-mutated")
+    if "ADR-024" not in texts[20] or "ADR-020" not in texts[24]: fail("adr:020-024-follow-up")
+    if "ADR-025" not in texts[19] or "ADR-019" not in texts[25]: fail("adr:019-025-follow-up")
 
 
 def markdown_link_check() -> None:
@@ -360,6 +379,34 @@ def v2_binding_errors(level: dict[str, Any], proof: dict[str, Any]) -> list[str]
     return errors
 
 
+def level_progress_migration_errors(golden: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    source, binding = golden["source"], golden["releaseLockBinding"]
+    documents: dict[str, dict[str, Any]] = {}
+    for key, expected_version_field, expected_version in (
+        ("sourceDocument", "schemaVersion", 1),
+        ("targetDocument", "documentSchemaVersion", 2),
+        ("releaseLockDocument", "lockFormatVersion", 1),
+    ):
+        document = golden[key]; path = ROOT / document["path"]
+        if not path.is_file(): errors.append(f"level-progress-migration:document-binding:{key}"); continue
+        documents[key] = load_json(path)
+        metadata_field = "lockFormatVersion" if key == "releaseLockDocument" else "documentSchemaVersion"
+        if document.get(metadata_field) != expected_version: errors.append(f"level-progress-migration:document-version:{key}")
+        if digest(documents[key]) != document["documentSha256"]: errors.append(f"level-progress-migration:document-binding:{key}")
+        if documents[key].get(expected_version_field) != expected_version: errors.append(f"level-progress-migration:document-version:{key}")
+    if set(documents) != {"sourceDocument", "targetDocument", "releaseLockDocument"}: return errors
+    source_document, target_document, lock = documents["sourceDocument"], documents["targetDocument"], documents["releaseLockDocument"]
+    if source_document["id"] != source["levelId"] or source_document["validation"]["puzzleHashSha256"] != source["puzzleHashSha256"]: errors.append("level-progress-migration:source-identity")
+    if target_document["puzzleId"] != binding["puzzleId"]: errors.append("level-progress-migration:target-identity")
+    entry = next((item for item in lock["puzzles"] if item["puzzleId"] == binding["puzzleId"]), None)
+    if entry is None or binding["publicPuzzleHash"] != entry["publicPuzzleHash"] or entry["documentSha256"] != golden["targetDocument"]["documentSha256"] or {"profile": binding["legacyProfile"], "sha256": binding["legacySha256"]} not in entry["legacyBindings"]: errors.append("level-progress-migration:release-lock")
+    expected = {key: value for key, value in source.items() if key not in {"levelId", "puzzleHashSha256"}}
+    expected["saveSchemaVersion"] = 2; expected["puzzleId"] = binding["puzzleId"]; expected["publicPuzzleHashAtFirstCompletion"] = binding["publicPuzzleHash"]
+    if expected != golden["expected"]: errors.append("level-progress-migration:golden")
+    return errors
+
+
 def level_and_proof_check() -> None:
     legacy_levels: list[dict[str, Any]] = []
     for rel in SCHEMA_EXAMPLES["level-v1"][1]:
@@ -379,17 +426,14 @@ def level_and_proof_check() -> None:
     for legacy, current in zip(legacy_levels, current_levels):
         if legacy["id"] != current["puzzleId"] or any(legacy[key] != current[key] for key in ("rulesetVersion", "contentRevision", "grid", "endpoints", "rowCounts", "columnCounts", "content", "production", "completion", "solution")):
             fail(f"level-migration:not-neutral:{legacy['id']}")
-    golden = load_json(TOOL / "fixtures/level-progress-v1-to-v2.golden.json")
-    source, binding = golden["source"], golden["releaseLockBinding"]
-    lock = load_json(ROOT / "ARCHITECTURE/examples/release-lock-v1.example.json")
-    entry = next((item for item in lock["puzzles"] if item["puzzleId"] == binding["puzzleId"]), None)
-    if entry is None or binding["publicPuzzleHash"] != entry["publicPuzzleHash"] or {"profile": binding["legacyProfile"], "sha256": binding["legacySha256"]} not in entry["legacyBindings"]:
-        fail("level-progress-migration:release-lock")
-    expected = {key: value for key, value in source.items() if key not in {"levelId", "puzzleHashSha256"}}
-    expected["saveSchemaVersion"] = 2
-    expected["puzzleId"] = binding["puzzleId"]
-    expected["publicPuzzleHashAtFirstCompletion"] = binding["publicPuzzleHash"]
-    if expected != golden["expected"]: fail("level-progress-migration:golden")
+    v1_schema = jsonschema.Draft202012Validator(load_json(ROOT / SCHEMA_EXAMPLES["level-v1"][0]))
+    v2_schema = jsonschema.Draft202012Validator(load_json(ROOT / SCHEMA_EXAMPLES["level-v2"][0]))
+    for focus in ("OCCUPANCY", "EXCLUSION", "ENDPOINT_GEOMETRY", "CHAIN", "DENSITY", "COMBINATION"):
+        legacy_focus = copy.deepcopy(legacy_levels[0]); legacy_focus["production"]["focus"] = [focus]
+        current_focus = copy.deepcopy(current_levels[0]); current_focus["production"]["focus"] = [focus]
+        if list(v1_schema.iter_errors(legacy_focus)): fail(f"level-migration:v1-focus-source:{focus}")
+        if list(v2_schema.iter_errors(current_focus)): fail(f"level-migration:v2-focus-compatibility:{focus}")
+    for error in level_progress_migration_errors(load_json(TOOL / "fixtures/level-progress-v1-to-v2.golden.json")): fail(error)
 
 
 def campaign_subjects(campaign: dict[str, Any]) -> tuple[set[str], list[str], list[str]]:
@@ -467,10 +511,59 @@ def cosmetics_errors(cosmetics: dict[str, Any], subjects: set[str]) -> list[str]
     return errors
 
 
+def expand_campaign_subject(subject: str, puzzle_ids: list[str]) -> set[str]:
+    return {puzzle_id for puzzle_id in puzzle_ids if puzzle_id == subject or puzzle_id.startswith(subject + "-")}
+
+
+def cosmetic_status_transition_allowed(before: str, after: str) -> bool:
+    return (before, after) in {("DRAFT", "ACTIVE"), ("ACTIVE", "HIDDEN"), ("HIDDEN", "ACTIVE"), ("ACTIVE", "TOMBSTONE"), ("HIDDEN", "TOMBSTONE")} or before == after
+
+
+def execute_cosmetics_scenario(scenario: dict[str, Any], catalogs: dict[str, dict[str, Any]], puzzle_ids: list[str]) -> tuple[dict[str, Any], list[str]]:
+    catalog_name = scenario.get("catalog", "cosmetics-v2.example.json")
+    catalog = catalogs[catalog_name]
+    item = copy.deepcopy(next(item for item in catalog["items"] if item["id"] == scenario["itemId"]))
+    state = copy.deepcopy(scenario["initial"]); owned = state["owned"]; balance = state["balancePatience"]; claim = state.get("claimState")
+    first_clears = set(state.get("firstClearPuzzleIds", [])); eligible = False; result = "NO_RESULT"; errors: list[str] = []
+    runtime_catalog = catalog["approvalStatus"] in {"FIXTURE_ONLY", "PRODUCT_APPROVED"}
+    for index, event in enumerate(scenario["events"]):
+        kind = event["kind"]
+        if kind == "FIRST_CLEAR": first_clears.add(event["puzzleId"])
+        elif kind == "CATALOG_STATUS_CHANGED":
+            if not cosmetic_status_transition_allowed(item["status"], event["status"]): errors.append(f"cosmetics:status-transition:{index}")
+            else: item["status"] = event["status"]
+        elif kind == "PURCHASE":
+            if not runtime_catalog or item["status"] != "ACTIVE": result = "COSMETIC_NOT_RUNTIME_ELIGIBLE"
+            elif owned: result = "ALREADY_OWNED"
+            elif item.get("acquisition") != "PATIENCE_PURCHASE" or balance < item.get("pricePatience", 2**53): result = "NOT_ELIGIBLE"
+            else: balance -= item["pricePatience"]; owned = True; result = "COMMITTED"
+        elif kind == "EVALUATE_MILESTONE":
+            if owned:
+                result = "OWNERSHIP_PRESERVED_NO_NEW_GRANT" if item["status"] in {"HIDDEN", "TOMBSTONE"} else "ALREADY_COMMITTED"; continue
+            if not runtime_catalog or item["status"] != "ACTIVE" or item.get("acquisition") != "MILESTONE_GRANT":
+                result = "COSMETIC_NOT_RUNTIME_ELIGIBLE"; continue
+            required: set[str] = set()
+            for subject in item["milestoneEligibility"]["requiredCampaignSubjectIds"]: required |= expand_campaign_subject(subject, puzzle_ids)
+            eligible = bool(required) and required.issubset(first_clears)
+            result = "ELIGIBLE" if eligible else "NOT_ELIGIBLE"
+        elif kind == "RESERVE_CLAIM":
+            if not eligible or owned: errors.append(f"cosmetics:reserve-precondition:{index}")
+            else: claim = "RESERVED"; result = "RESERVED"
+        elif kind in {"CRASH", "RESTART"}:
+            continue
+        elif kind == "COMMIT_CLAIM":
+            if owned and claim == "COMMITTED": result = "ALREADY_COMMITTED"
+            elif not eligible and claim != "RESERVED": errors.append(f"cosmetics:commit-precondition:{index}")
+            else: owned = True; claim = "COMMITTED"; result = "COMMITTED"
+        else: errors.append(f"cosmetics:unknown-event:{index}:{kind}")
+    return {"result": result, "owned": owned, "balancePatience": balance, "claimState": claim}, errors
+
+
 def catalog_check() -> None:
     campaign = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json")
     completion = load_json(ROOT / "ARCHITECTURE/examples/completion-v1.example.json")
     cosmetics = load_json(ROOT / "ARCHITECTURE/examples/cosmetics-v2.example.json")
+    cosmetics_draft = load_json(ROOT / "ARCHITECTURE/examples/cosmetics-v2.draft.example.json")
     levels = [load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json"), load_json(ROOT / "ARCHITECTURE/examples/level-v2.single-cell.example.json")]
     subjects, puzzle_ids, errors = campaign_subjects(campaign)
     expected_fixture_ids = {level["puzzleId"] for level in levels if level["puzzleId"].startswith("S1-")}
@@ -483,7 +576,14 @@ def catalog_check() -> None:
     if rewards.get("LEVEL_FIRST_CLEAR", {}).get("amountPatience") != 15 or rewards.get("POST_CLEAR_PATIENCE", {}).get("amountPatience") != 10:
         errors.append("catalog:confirmed-reward-values")
     errors.extend(cosmetics_errors(cosmetics, subjects))
+    errors.extend(cosmetics_errors(cosmetics_draft, subjects))
     for error in errors: fail(error)
+    lifecycle = load_json(TOOL / "fixtures/cosmetics-lifecycle-v1.json")
+    catalogs = {"cosmetics-v2.example.json": cosmetics, "cosmetics-v2.draft.example.json": cosmetics_draft}
+    for scenario in lifecycle["scenarios"]:
+        actual, transition_errors = execute_cosmetics_scenario(scenario, catalogs, puzzle_ids)
+        for error in transition_errors: fail(f"{error}:{scenario['name']}")
+        if actual != scenario["expected"]: fail(f"cosmetics:scenario-expected:{scenario['name']}")
 
 
 def parse_assembly_graph(text: str) -> tuple[set[str], dict[str, set[str]]]:
@@ -549,29 +649,140 @@ def endless_identity(descriptor: dict[str, Any]) -> str:
 def endless_fixture_errors(fixture: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if fixture.get("saveSchemaVersion") != 2: errors.append("endless:save-version")
-    try: watermark = int(fixture["highestReservedOrdinal"])
+    raw_watermark = fixture.get("highestReservedOrdinal")
+    if not isinstance(raw_watermark, str) or re.fullmatch(r"0|[1-9][0-9]*", raw_watermark) is None:
+        return errors + ["endless:watermark-format"]
+    try: watermark = int(raw_watermark)
     except Exception: return errors + ["endless:watermark-format"]
-    active: set[int] = set()
-    for draft in fixture.get("activeDrafts", []):
-        ordinal = int(draft["generationOrdinal"])
-        if ordinal <= 0 or ordinal > watermark or ordinal in active: errors.append("endless:active-ordinal")
-        active.add(ordinal)
-        if draft["descriptor"]["generationOrdinal"] != draft["generationOrdinal"] or draft["id"] != endless_identity(draft["descriptor"]): errors.append("endless:identity")
-    if len(active) > 20: errors.append("endless:active-capacity")
+    if watermark > 2**64 - 1: errors.append("endless:watermark-range")
+    open_ordinals: set[int] = set()
+    allowed_states = {"RESERVED_NOT_GENERATED", "ACTIVE_DRAFT", "COMPLETION_CLAIM_OPEN"}
+    for record in fixture.get("openEndless", []):
+        raw_ordinal = record.get("generationOrdinal")
+        if not isinstance(raw_ordinal, str) or re.fullmatch(r"[1-9][0-9]*", raw_ordinal) is None:
+            errors.append("endless:open-ordinal-format"); continue
+        ordinal = int(raw_ordinal)
+        if ordinal > watermark or ordinal in open_ordinals: errors.append("endless:open-ordinal")
+        open_ordinals.add(ordinal)
+        if record.get("state") not in allowed_states: errors.append("endless:open-state")
+        descriptor = record.get("descriptor", {})
+        if descriptor.get("generationOrdinal") != raw_ordinal or record.get("id") != endless_identity(descriptor): errors.append("endless:identity")
+        if record.get("state") == "RESERVED_NOT_GENERATED":
+            if any(key in record for key in ("publicPuzzleInput", "sessionState", "claim", "completionCommitId")): errors.append("endless:reserved-shape")
+        elif record.get("state") == "ACTIVE_DRAFT":
+            required = {"publicPuzzleInput", "publicPuzzleHash", "solutionHash", "proofHash", "sessionState"}
+            if not required.issubset(record) or any(key in record for key in ("claim", "completionCommitId")): errors.append("endless:active-shape")
+        elif record.get("state") == "COMPLETION_CLAIM_OPEN":
+            if not {"puzzleId", "completionCommitId", "claim"}.issubset(record) or any(key in record for key in ("publicPuzzleInput", "sessionState")): errors.append("endless:claim-shape")
+            claim = record.get("claim", {})
+            expected_claim = f"reward-claim:POST_CLEAR_PATIENCE:{record.get('puzzleId')}"
+            expected_operation = f"reward-operation:POST_CLEAR_PATIENCE:{record.get('puzzleId')}"
+            if record.get("puzzleId") != record.get("id") or claim.get("claimId") != expected_claim or claim.get("localOperationId") != expected_operation or claim.get("reasonCode") != "POST_CLEAR_PATIENCE" or claim.get("claimStatus") not in {"RESERVED", "RECONCILIATION_REQUIRED", "REWARD_CONFIRMED", "NO_REWARD_CONFIRMED"}: errors.append("endless:claim-binding")
+            if claim.get("claimStatus") in {"RECONCILIATION_REQUIRED", "REWARD_CONFIRMED", "NO_REWARD_CONFIRMED"} and not claim.get("providerOperationId"): errors.append("endless:claim-provider-binding")
+    if len(open_ordinals) > 20: errors.append("endless:open-capacity")
     if any(key in fixture for key in ("terminalIntervals", "terminalDetails", "terminalCheckpoint")): errors.append("endless:terminal-state-present")
     return errors
+
+
+def post_clear_patience_amount() -> int:
+    completion = load_json(ROOT / "ARCHITECTURE/examples/completion-v1.example.json")
+    definitions = [item for item in completion.get("rewardDefinitions", []) if item.get("reasonCode") == "POST_CLEAR_PATIENCE"]
+    if len(definitions) != 1 or definitions[0].get("amountPatience") != 10: raise ValueError("completion:post-clear-patience-definition")
+    return definitions[0]["amountPatience"]
+
+
+def execute_endless_scenario(scenario: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+    state = copy.deepcopy(scenario["initial"])
+    open_records = {int(item["generationOrdinal"]): copy.deepcopy(item) for item in state.get("openEndless", [])}
+    watermark = int(state["highestReservedOrdinal"])
+    balance = state.get("economyBalancePatience", 0)
+    errors: list[str] = []
+    for index, event in enumerate(scenario["events"]):
+        kind = event["kind"]
+        if kind == "CRASH":
+            continue
+        if kind == "RESERVE":
+            if len(open_records) >= 20 or watermark >= 2**64 - 1:
+                errors.append(f"endless:transition:{index}:reserve")
+                continue
+            watermark += 1
+            descriptor = {
+                "endlessContractVersion": 1, "rulesetVersion": "train-track-v1",
+                "generatorVersion": event["generatorVersion"], "seed": event["seed"],
+                "generationOrdinal": str(watermark), "parameterHashSha256": event["parameterHashSha256"],
+            }
+            open_records[watermark] = {"state": "RESERVED_NOT_GENERATED", "generationOrdinal": str(watermark), "id": endless_identity(descriptor), "descriptor": descriptor}
+        elif kind == "GENERATE_AND_PROMOTE":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] != "RESERVED_NOT_GENERATED": errors.append(f"endless:transition:{index}:generate"); continue
+            record["state"] = "ACTIVE_DRAFT"; record["publicPuzzleInput"] = {"puzzleId": record["id"]}; record["publicPuzzleHash"] = {"profile": "STP-PUZZLE-SEMANTIC-JCS-1", "sha256": "b" * 64}; record["solutionHash"] = {"profile": "STP-SOLUTION-JCS-1", "sha256": "c" * 64}; record["proofHash"] = {"profile": "STP-PROOF-JCS-1", "sha256": "d" * 64}; record["sessionState"] = {"moveCount": 0}
+        elif kind == "COMPLETE":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] != "ACTIVE_DRAFT": errors.append(f"endless:transition:{index}:complete"); continue
+            open_records[ordinal] = {"state": "COMPLETION_CLAIM_OPEN", "generationOrdinal": record["generationOrdinal"], "id": record["id"], "descriptor": record["descriptor"], "puzzleId": record["id"], "completionCommitId": f"completion-{ordinal}", "claim": {"claimId": f"reward-claim:POST_CLEAR_PATIENCE:{record['id']}", "localOperationId": f"reward-operation:POST_CLEAR_PATIENCE:{record['id']}", "reasonCode": "POST_CLEAR_PATIENCE", "claimStatus": "RESERVED", "providerOperationId": None}}
+        elif kind == "REWARD_RESULT":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] != "COMPLETION_CLAIM_OPEN": errors.append(f"endless:transition:{index}:reward-result"); continue
+            claim = record["claim"]
+            if event.get("puzzleId") != record.get("puzzleId") or event.get("claimId") != claim.get("claimId") or event.get("localOperationId") != claim.get("localOperationId") or not event.get("providerOperationId"): errors.append(f"endless:transition:{index}:reward-binding"); continue
+            if claim.get("providerOperationId") not in {None, event["providerOperationId"]}: errors.append(f"endless:transition:{index}:reward-provider-binding"); continue
+            outcome = event.get("outcome")
+            terminal_outcome = {"REWARD_CONFIRMED": "REWARDED", "NO_REWARD_CONFIRMED": "NO_REWARD"}.get(claim.get("claimStatus"))
+            if terminal_outcome is not None and outcome != terminal_outcome: errors.append(f"endless:transition:{index}:reward-terminal-conflict"); continue
+            if outcome == "REWARDED": claim["claimStatus"] = "REWARD_CONFIRMED"; claim["providerOperationId"] = event["providerOperationId"]
+            elif outcome == "UNCERTAIN": claim["claimStatus"] = "RECONCILIATION_REQUIRED"; claim["providerOperationId"] = event["providerOperationId"]
+            elif outcome == "NO_REWARD": claim["claimStatus"] = "NO_REWARD_CONFIRMED"; claim["providerOperationId"] = event["providerOperationId"]
+            else: errors.append(f"endless:transition:{index}:reward-outcome")
+        elif kind == "COMMIT_CLAIM":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] != "COMPLETION_CLAIM_OPEN": errors.append(f"endless:transition:{index}:claim"); continue
+            claim = record["claim"]
+            if event.get("puzzleId") != record.get("puzzleId") or event.get("claimId") != claim.get("claimId") or event.get("localOperationId") != claim.get("localOperationId") or event.get("providerOperationId") != claim.get("providerOperationId") or claim.get("claimStatus") != "REWARD_CONFIRMED" or not claim.get("providerOperationId"):
+                errors.append(f"endless:transition:{index}:claim-binding"); continue
+            if "amountPatience" in event:
+                errors.append(f"endless:transition:{index}:claim-amount-source"); continue
+            balance += post_clear_patience_amount(); del open_records[ordinal]
+        elif kind == "CLOSE_NO_REWARD":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] != "COMPLETION_CLAIM_OPEN" or event.get("puzzleId") != record.get("puzzleId") or event.get("claimId") != record["claim"].get("claimId") or event.get("localOperationId") != record["claim"].get("localOperationId") or event.get("providerOperationId") != record["claim"].get("providerOperationId") or record["claim"].get("claimStatus") != "NO_REWARD_CONFIRMED" or not record["claim"].get("providerOperationId"): errors.append(f"endless:transition:{index}:close"); continue
+            del open_records[ordinal]
+        elif kind == "ABANDON":
+            ordinal = int(event["generationOrdinal"]); record = open_records.get(ordinal)
+            if record is None or record["state"] not in {"RESERVED_NOT_GENERATED", "ACTIVE_DRAFT"}: errors.append(f"endless:transition:{index}:abandon"); continue
+            del open_records[ordinal]
+        else:
+            errors.append(f"endless:transition:{index}:unknown")
+    result: dict[str, Any] = {"highestReservedOrdinal": str(watermark), "openCount": len(open_records), "economyBalancePatience": balance}
+    if len(open_records) == 1:
+        only = next(iter(open_records.values())); result.update({"openState": only["state"], "id": only["id"]})
+    expected_terminal = scenario["expected"].get("terminalOrdinal")
+    if expected_terminal is not None and not (1 <= int(expected_terminal) <= watermark and int(expected_terminal) not in open_records): errors.append("endless:terminal-predicate")
+    if result != {key: value for key, value in scenario["expected"].items() if key != "terminalOrdinal"}: errors.append("endless:scenario-expected")
+    return result, errors
 
 
 def endless_check() -> None:
     fixture = load_json(TOOL / "fixtures/endless-save-v2.example.json")
     for error in endless_fixture_errors(fixture): fail(error)
-    watermark = 0; active: dict[int, str] = {}; terminal_duplicates = 0
+    for scenario in fixture.get("transitionScenarios", []):
+        _, errors = execute_endless_scenario(scenario)
+        for error in errors: fail(f"{error}:{scenario['name']}")
+    descriptor_template = {"generatorVersion": "fixture-generator-v1", "parameterHashSha256": "a" * 64}
+    long_run = {"initial": {"highestReservedOrdinal": "0", "openEndless": [], "economyBalancePatience": 0}, "events": [], "expected": {"highestReservedOrdinal": "10000", "openCount": 0, "economyBalancePatience": 66670}}
     for ordinal in range(1, 10001):
-        if len(active) >= 20: fail("endless:simulation-capacity"); break
-        watermark += 1; active[watermark] = "ACTIVE"
-        del active[ordinal]
-        if ordinal <= watermark and ordinal not in active: terminal_duplicates += 1
-    if watermark != 10000 or active or terminal_duplicates != 10000: fail("endless:long-run")
+        long_run["events"].append({"kind": "RESERVE", "seed": str(ordinal), **descriptor_template})
+        if ordinal % 3 == 0:
+            long_run["events"].append({"kind": "ABANDON", "generationOrdinal": str(ordinal)})
+        else:
+            descriptor = {"endlessContractVersion": 1, "rulesetVersion": "train-track-v1", "generatorVersion": descriptor_template["generatorVersion"], "seed": str(ordinal), "generationOrdinal": str(ordinal), "parameterHashSha256": descriptor_template["parameterHashSha256"]}
+            puzzle_id = endless_identity(descriptor)
+            claim_id = f"reward-claim:POST_CLEAR_PATIENCE:{puzzle_id}"
+            local_operation_id = f"reward-operation:POST_CLEAR_PATIENCE:{puzzle_id}"
+            provider_operation_id = f"provider-{ordinal}"
+            bound = {"generationOrdinal": str(ordinal), "puzzleId": puzzle_id, "claimId": claim_id, "localOperationId": local_operation_id, "providerOperationId": provider_operation_id}
+            long_run["events"].extend([{"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": str(ordinal)}, {"kind": "COMPLETE", "generationOrdinal": str(ordinal)}, {"kind": "REWARD_RESULT", **bound, "outcome": "REWARDED"}, {"kind": "COMMIT_CLAIM", **bound}])
+    _, long_errors = execute_endless_scenario(long_run)
+    for error in long_errors: fail(f"{error}:long-run")
     golden = load_json(TOOL / "fixtures/endless-save-v1-to-v2.golden.json")
     source, expected = golden["source"], golden["expected"]
     highest = int(source["nextGenerationOrdinal"]) - 1
@@ -579,9 +790,19 @@ def endless_check() -> None:
     terminal: set[int] = set()
     for interval in source["terminalIntervals"]:
         terminal.update(range(int(interval["firstOrdinal"]), int(interval["lastOrdinal"]) + 1))
-    if active_ordinals & terminal or active_ordinals | terminal != set(range(1, highest + 1)): fail("endless:migration-prefix")
-    if expected != {"saveSchemaVersion": 2, "highestReservedOrdinal": str(highest), "activeOrdinals": [str(value) for value in sorted(active_ordinals)], "economyBalancePatience": source["economyBalancePatience"]}:
-        fail("endless:migration-golden")
+    claims = {int(item["generationOrdinal"]): item for item in source.get("openRewardClaims", [])}
+    if active_ordinals & terminal or active_ordinals | terminal != set(range(1, highest + 1)) or not set(claims).issubset(terminal): fail("endless:migration-prefix")
+    migrated: list[dict[str, Any]] = []
+    for item in source["activeDrafts"]: migrated.append(copy.deepcopy(item))
+    for ordinal, item in claims.items():
+        record = copy.deepcopy(item); record["state"] = "COMPLETION_CLAIM_OPEN"
+        record["claim"]["reasonCode"] = "POST_CLEAR_PATIENCE"
+        record["claim"]["localOperationId"] = f"reward-operation:POST_CLEAR_PATIENCE:{record['puzzleId']}"
+        migrated.append(record)
+    migrated.sort(key=lambda item: int(item["generationOrdinal"]))
+    derived = {"saveSchemaVersion": 2, "highestReservedOrdinal": str(highest), "openEndless": migrated, "economyBalancePatience": source["economyBalancePatience"]}
+    for error in endless_fixture_errors(derived): fail(f"endless:migration-{error}")
+    if expected != derived: fail("endless:migration-golden")
 
 
 def execute_iap_trace(trace: dict[str, Any]) -> list[str]:
@@ -607,30 +828,93 @@ def iap_check() -> None:
         for error in execute_iap_trace(trace): fail(f"{error}:{trace['name']}")
 
 
+def execute_privacy_scenario(scenario: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+    decision = "NONE"; sync = "UNKNOWN"; analytics = False; ads = False; fence = False
+    signals_applied = False; native_enabled = False; native_disabled = False; result: str | None = None
+    errors: list[str] = []
+    for index, event in enumerate(scenario["events"]):
+        kind = event["kind"]
+        if kind == "BOOTSTRAP_PRE_SDK_DENY":
+            fence = event.get("available") is True; analytics = False; ads = False
+        elif kind == "LOAD_DECISION":
+            record = event["record"]
+            mapping = {
+                "NONE": ("NONE", "UNKNOWN"),
+                "VALID_CURRENT_ALLOW_ANALYTICS": ("VALID_CURRENT_ALLOW_ANALYTICS", "UNKNOWN"),
+                "REVOKED_CONFIRMED_CURRENT": ("REVOKED", "REVOKED_CONFIRMED"),
+                "ENABLED_CONFIRMED_CURRENT": ("ALLOW_ANALYTICS", "ENABLED_CONFIRMED"),
+                "REVOKE_PENDING_CURRENT": ("REVOKED", "REVOKE_PENDING"),
+                "ENABLED_CONFIRMED_STALE_REVISION": ("INVALID", "UNKNOWN"),
+            }
+            if record not in mapping: errors.append(f"privacy:record:{index}")
+            else: decision, sync = mapping[record]
+            analytics = False; ads = False
+            if decision == "INVALID": result = "FAIL_CLOSED"
+            elif sync == "REVOKED_CONFIRMED": result = "DENIED_CONFIRMED"
+        elif kind in {"START_UMP", "NETWORK_CHANGED"}:
+            continue
+        elif kind == "PERSIST_NEW_ALLOW_DECISION":
+            decision = "ALLOW_ANALYTICS"; sync = "ENABLE_PENDING"; analytics = False
+        elif kind == "APPLY_PRIVACY_SIGNALS":
+            signals_applied = event.get("success") is True
+            if not signals_applied: result = "RECONCILIATION_REQUIRED"
+        elif kind == "REQUEST_REENABLE":
+            if not fence:
+                analytics = False; result = "PRE_SDK_FENCE_REQUIRED"
+            elif decision not in {"ALLOW_ANALYTICS", "VALID_CURRENT_ALLOW_ANALYTICS"} or not signals_applied:
+                errors.append(f"privacy:enable-precondition:{index}")
+            else:
+                sync = "ENABLE_PENDING"
+        elif kind == "APPLY_NATIVE_ENABLE":
+            if not fence or sync != "ENABLE_PENDING" or not signals_applied or event.get("success") is not True:
+                errors.append(f"privacy:native-enable:{index}")
+            else: native_enabled = True
+        elif kind == "CONFIRM_ENABLED":
+            if not native_enabled or sync != "ENABLE_PENDING": errors.append(f"privacy:confirm-enabled:{index}")
+            else: sync = "ENABLED_CONFIRMED"; analytics = True; result = "ENABLED_CONFIRMED"
+        elif kind == "REQUEST_REVOKE":
+            decision = "REVOKED"; sync = "REVOKE_PENDING"; analytics = False; ads = False; result = "RECONCILIATION_REQUIRED"
+        elif kind == "APPLY_NATIVE_DISABLE":
+            if sync != "REVOKE_PENDING": errors.append(f"privacy:disable-precondition:{index}")
+            native_disabled = event.get("success") is True
+            if not native_disabled: result = "RECONCILIATION_REQUIRED"
+        elif kind == "CONFIRM_REVOKED":
+            if sync != "REVOKE_PENDING" or not native_disabled: errors.append(f"privacy:confirm-revoked:{index}")
+            else: sync = "REVOKED_CONFIRMED"; result = "REVOKED_CONFIRMED"
+        elif kind in {"CRASH", "RESTART"}:
+            analytics = False; ads = False; signals_applied = False; native_enabled = False; native_disabled = False
+        else:
+            errors.append(f"privacy:unknown-event:{index}:{kind}")
+    if result is None:
+        result = "FAIL_CLOSED" if sync == "UNKNOWN" else ("DENIED_CONFIRMED" if sync in {"DENIED_CONFIRMED", "REVOKED_CONFIRMED"} else "RECONCILIATION_REQUIRED")
+    return {"decision": decision, "nativeSyncState": sync, "analytics": analytics, "ads": ads, "result": result}, errors
+
+
 def privacy_errors(value: dict[str, Any]) -> list[str]:
     errors: list[str] = []
-    providers = value["productionProviders"]
-    if providers != {"ads": "GoogleMobileAdsUnity-11.5.0", "analytics": "FirebaseAnalyticsUnity-13.16.0", "crash": "EXCLUDED", "iap": "UnityIAP-5.4.3-LAZY_READINESS"}: errors.append("privacy:provider-pins")
-    scenarios = {item["name"]: item for item in value["scenarios"]}
-    if set(scenarios) != {"FRESH_INSTALL", "OFFLINE_VALID_RESTART", "OFFLINE_INVALID_RESTART", "UPGRADE_PRIOR_ACTIVE", "REVOCATION", "REENABLE", "RESTART_AFTER_REVOKE"}: errors.append("privacy:scenario-set")
-    required = {
-        "FRESH_INSTALL": {"EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE", "UMP_UPDATE"},
-        "OFFLINE_INVALID_RESTART": {"EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE"},
-        "UPGRADE_PRIOR_ACTIVE": {"ANALYTICS_PERMANENT_DEACTIVATION_PRESENT", "ANALYTICS_OVERRIDE_FALSE", "EFFECTIVE_ALL_FALSE"},
-        "REVOCATION": {"PERSIST_REVOKED", "EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE", "DISCARD_ADS"},
-        "REENABLE": {"PERSIST_VALID_CURRENT", "SET_ANALYTICS_PRIVACY_SIGNALS", "ANALYTICS_OVERRIDE_TRUE", "ADS_INITIALIZE"},
-        "RESTART_AFTER_REVOKE": {"EFFECTIVE_ALL_FALSE", "ANALYTICS_OVERRIDE_FALSE"},
-    }
-    for name, effects in required.items():
-        if name not in scenarios or not effects.issubset(set(scenarios[name]["requiredEffects"])): errors.append(f"privacy:effects:{name}")
-    if "CRASH_INITIALIZE" not in scenarios.get("REENABLE", {}).get("forbiddenEffects", []): errors.append("privacy:crash-exclusion")
-    reen = scenarios.get("REENABLE", {}).get("requiredEffects", [])
-    if reen and not (reen.index("PERSIST_VALID_CURRENT") < reen.index("ANALYTICS_OVERRIDE_TRUE") and reen.index("SET_ANALYTICS_PRIVACY_SIGNALS") < reen.index("ANALYTICS_OVERRIDE_TRUE")): errors.append("privacy:enable-order")
+    providers = value.get("productionProviders", {})
+    expected_providers = {"ads": "GoogleMobileAdsUnity-11.5.0", "analytics": "EXCLUDED_UNTIL_PRE_SDK_FENCE_PROVEN", "crash": "EXCLUDED", "iap": "UnityIAP-5.4.3-LAZY_READINESS"}
+    if value.get("contractVersion") != 2 or providers != expected_providers: errors.append("privacy:provider-pins")
+    scenarios = {item["name"]: item for item in value.get("scenarios", [])}
+    expected_names = {"FRESH_INSTALL", "DIRECT_LEGACY_UPGRADE_STALE_TRUE", "RESET_ONLY_INSTALLED_NEVER_LAUNCHED", "OFFLINE_CONFIRMED_DENIED_RESTART", "REVOKE_CRASH_AFTER_PENDING", "REVOKE_DISABLE_FAILURE", "REENABLE_WITHOUT_FENCE", "REENABLE_WITH_PROVEN_FENCE_REFERENCE", "OFFLINE_INVALID_REVISION"}
+    if set(scenarios) != expected_names: errors.append("privacy:scenario-set")
+    direct_events = scenarios.get("DIRECT_LEGACY_UPGRADE_STALE_TRUE", {}).get("events", [])
+    if not direct_events or direct_events[0].get("kind") != "BOOTSTRAP_PRE_SDK_DENY" or direct_events[0].get("available") is not False or direct_events[0].get("legacyPersistedAnalyticsOverride") is not True:
+        errors.append("privacy:direct-upgrade-input")
+    intermediate_events = scenarios.get("RESET_ONLY_INSTALLED_NEVER_LAUNCHED", {}).get("events", [])
+    if not intermediate_events or intermediate_events[0].get("kind") != "BOOTSTRAP_PRE_SDK_DENY" or intermediate_events[0].get("resetOnlyIntermediateLaunchObserved") is not False:
+        errors.append("privacy:intermediate-input")
+    for name, scenario in scenarios.items():
+        actual, scenario_errors = execute_privacy_scenario(scenario)
+        errors.extend(f"{error}:{name}" for error in scenario_errors)
+        if actual != scenario.get("expected"): errors.append(f"privacy:expected:{name}")
+    reference = scenarios.get("REENABLE_WITH_PROVEN_FENCE_REFERENCE", {})
+    if reference.get("productionExecutable") is not False: errors.append("privacy:reenable-reference-only")
     return errors
 
 
 def privacy_check() -> None:
-    for error in privacy_errors(load_json(TOOL / "fixtures/privacy-lifecycle-v1.json")): fail(error)
+    for error in privacy_errors(load_json(TOOL / "fixtures/privacy-lifecycle-v2.json")): fail(error)
 
 
 def release_errors(rc: dict[str, Any], staging: dict[str, Any], receipt: dict[str, Any]) -> list[str]:
@@ -643,6 +927,28 @@ def release_errors(rc: dict[str, Any], staging: dict[str, Any], receipt: dict[st
     return errors
 
 
+def release_lock_errors(lock: dict[str, Any], level: dict[str, Any], proof: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    entry = lock["puzzles"][0]
+    public_projection = {key: level[key] for key in ("puzzleId", "rulesetVersion", "grid", "endpoints", "rowCounts", "columnCounts")}
+    public_hash = {"profile": "STP-PUZZLE-SEMANTIC-JCS-1", "sha256": digest(public_projection)}
+    solution_projection = {"puzzleId": level["puzzleId"], "publicPuzzleHash": public_hash, "path": level["solution"]["path"]}
+    solution_hash = {"profile": "STP-SOLUTION-JCS-1", "sha256": digest(solution_projection)}
+    checks = {
+        "puzzle-id": entry.get("puzzleId") == level.get("puzzleId") == proof.get("puzzleId"),
+        "document-version": entry.get("documentSchemaVersion") == level.get("documentSchemaVersion"),
+        "document-hash": entry.get("documentSha256") == digest(level),
+        "public-puzzle-hash": entry.get("publicPuzzleHash") == public_hash == proof.get("publicPuzzleHash"),
+        "solution-hash": entry.get("solutionHash") == solution_hash == proof.get("solutionHash"),
+        "proof-format": entry.get("proofFormatVersion") == proof.get("proofFormatVersion") == level.get("proofRef", {}).get("proofFormatVersion"),
+        "solver-version": entry.get("solverVersion") == proof.get("solverVersion"),
+        "proof-hash": entry.get("proofHash") == proof.get("proofHash") == level.get("proofRef", {}).get("proofHash"),
+    }
+    for field, valid in checks.items():
+        if not valid: errors.append(f"release-lock:{field}")
+    return errors
+
+
 def release_check() -> None:
     rc = load_json(ROOT / "ARCHITECTURE/examples/release-manifest-v1.rc.example.json")
     staging = load_json(ROOT / "ARCHITECTURE/examples/release-manifest-v1.staging.example.json")
@@ -651,36 +957,75 @@ def release_check() -> None:
     lock = load_json(ROOT / "ARCHITECTURE/examples/release-lock-v1.example.json")
     level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     proof = load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")
-    entry = lock["puzzles"][0]
-    if entry["puzzleId"] != level["puzzleId"] or entry["documentSha256"] != digest(level) or entry["proofHash"] != proof["proofHash"]:
-        fail("release-lock:binding")
+    for error in release_lock_errors(lock, level, proof): fail(error)
+
+
+def rollout_decision(contract: dict[str, Any], platform: str, crash_rate: float | None, population: int, data_age_hours: int, exact_release: bool) -> str:
+    item = next(entry for entry in contract["platforms"] if entry["platform"] == platform)
+    availability = item["availability"]
+    minimum = availability.get("minimumDistinctUsers", availability.get("minimumSessions"))
+    if crash_rate is None or population < minimum or data_age_hours > availability["maximumAgeHours"] or not exact_release:
+        return availability["insufficientDataAction"]
+    if crash_rate >= contract["thresholds"]["haltInclusive"]: return "HALT_AND_ROLL_BACK_IF_AVAILABLE"
+    if crash_rate >= contract["thresholds"]["warnExclusive"]: return "PAUSE_AND_INVESTIGATE"
+    return "ADVANCE_OR_HOLD_AT_100"
+
+
+def rollout_errors(contract: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if contract.get("contractVersion") != 1 or contract.get("metricId") != "store-crash-rate-v1": errors.append("rollout:contract")
+    if contract.get("thresholds") != {"warnExclusive": 0.005, "haltInclusive": 0.01}: errors.append("rollout:thresholds")
+    platforms = {item["platform"]: item for item in contract.get("platforms", [])}
+    if set(platforms) != {"ANDROID", "IOS"}: errors.append("rollout:platforms"); return errors
+    android, ios = platforms["ANDROID"], platforms["IOS"]
+    if android.get("source") != "Google Play Developer Reporting API vitals.crashrate" or android.get("metric") != "userPerceivedCrashRate" or android.get("releaseIdentityDimension") != "versionCode": errors.append("rollout:android-source")
+    if android.get("availability") != {"minimumDistinctUsers": 100, "freshnessFieldRequired": True, "maximumAgeHours": 48, "insufficientDataAction": "PAUSE_NO_ADVANCE"}: errors.append("rollout:android-availability")
+    if [item["percentage"] for item in android.get("stages", [])] != [1, 5, 20, 50, 100]: errors.append("rollout:android-stages")
+    if ios.get("source") != "App Store Connect Analytics App Crashes plus App Sessions reports" or ios.get("metric") != "crashes divided by sessions" or ios.get("releaseIdentityDimension") != "appVersion": errors.append("rollout:ios-source")
+    if ios.get("availability") != {"minimumSessions": 100, "minimumActiveDevices": 5, "maximumAgeHours": 120, "insufficientDataAction": "PAUSE_NO_ADVANCE"}: errors.append("rollout:ios-availability")
+    if [item["percentage"] for item in ios.get("stages", [])] != [1, 2, 5, 10, 20, 50, 100]: errors.append("rollout:ios-stages")
+    decisions = {item["action"] for item in contract.get("decisions", [])}
+    if decisions != {"PAUSE_NO_ADVANCE", "ADVANCE_OR_HOLD_AT_100", "PAUSE_AND_INVESTIGATE", "HALT_AND_ROLL_BACK_IF_AVAILABLE"}: errors.append("rollout:decisions")
+    if rollout_decision(contract, "ANDROID", None, 1000, 1, True) != "PAUSE_NO_ADVANCE": errors.append("rollout:missing-data")
+    if rollout_decision(contract, "IOS", 0.001, 99, 1, True) != "PAUSE_NO_ADVANCE": errors.append("rollout:small-population")
+    if rollout_decision(contract, "ANDROID", 0.001, 1000, 49, True) != "PAUSE_NO_ADVANCE": errors.append("rollout:stale")
+    if rollout_decision(contract, "IOS", 0.001, 1000, 1, False) != "PAUSE_NO_ADVANCE": errors.append("rollout:release-filter")
+    if rollout_decision(contract, "ANDROID", 0.0049, 1000, 1, True) != "ADVANCE_OR_HOLD_AT_100": errors.append("rollout:advance")
+    if rollout_decision(contract, "ANDROID", 0.005, 1000, 1, True) != "PAUSE_AND_INVESTIGATE": errors.append("rollout:warn")
+    if rollout_decision(contract, "ANDROID", 0.01, 1000, 1, True) != "HALT_AND_ROLL_BACK_IF_AVAILABLE": errors.append("rollout:halt")
+    return errors
+
+
+def rollout_check() -> None:
+    for error in rollout_errors(load_json(TOOL / "fixtures/rollout-metric-v1.json")): fail(error)
 
 
 def review_contract_check() -> None:
-    contract = load_json(TOOL / "fixtures/review-contracts-v0.3.json")
+    contract = load_json(TOOL / "fixtures/review-contracts-v0.4.json")
     checks = [
-        contract.get("architectureVersion") == "0.3",
-        set(contract["assembly"].get("bootstrapReferences", [])) == EXPECTED_BOOTSTRAP_REFS,
-        contract["save"].get("schemaVersion") == 2,
-        contract["reward"].get("claimTemplate") == "reward-claim:POST_CLEAR_PATIENCE:<puzzleId>",
-        contract["iap"].get("grantBeforeStoreFinalize") is True,
-        contract["privacy"].get("crashlyticsProductionMode") == "EXCLUDED",
-        contract["privacy"].get("analyticsInvalidationMode") == "RESET_ONLY_BUILD",
+        contract.get("architectureVersion") == "0.4",
+        contract["privacy"].get("preSdkFenceRequired") is True,
+        contract["privacy"].get("analyticsProductionMode") == "EXCLUDED_UNTIL_PRE_SDK_FENCE_PROVEN",
+        contract["privacy"].get("resetOnlyIntermediateLaunchRequired") is False,
+        contract["endless"].get("saveSchemaVersion") == 2,
+        set(contract["endless"].get("openStates", [])) == {"RESERVED_NOT_GENERATED", "ACTIVE_DRAFT", "COMPLETION_CLAIM_OPEN"},
         contract["endless"].get("terminalRetentionLimit") is None,
-        contract["puzzleIdentity"].get("levelDocumentVersion") == 2,
-        contract["release"].get("promotionRebuildAllowed") is False,
+        contract["validation"].get("scopeManifestAnchoredBeforeImplementation") is True,
+        contract["validation"].get("externalManifestAllowed") is False,
+        contract["levelMigration"].get("legacyFixtureParityRequired") is True,
         contract["cosmetics"].get("milestoneLedgerDelta") == 0,
+        contract["rollout"].get("insufficientDataAction") == "PAUSE_NO_ADVANCE",
+        contract["governance"].get("adr016DecisionBodyRestored") is True,
     ]
-    if not all(checks): fail("review-contract:v0.3")
+    if not all(checks): fail("review-contract:v0.4")
     tokens = {
-        "FINAL-001": ("ARCHITECTURE/MODULE_BOUNDARIES.md", "BootstrapCompositionSmoke"),
-        "FINAL-002": ("ARCHITECTURE/PERSISTENCE.md", "highestReservedOrdinal"),
-        "FINAL-003": ("ARCHITECTURE/MOBILE_SERVICES.md", "Reset-only-Build"),
-        "FINAL-004": ("ARCHITECTURE/TEST_STRATEGY.md", "REQUIRED_LATER/NOT_EXECUTED"),
-        "FINAL-005": ("ARCHITECTURE/LEVEL_DATA_FORMAT.md", "STP-PUZZLE-SEMANTIC-JCS-1"),
-        "FINAL-006": ("ARCHITECTURE/TEST_STRATEGY.md", "--scope-manifest"),
-        "FINAL-007": ("ARCHITECTURE/BUILD_AND_RELEASE.md", "buildProfile: production"),
-        "FINAL-008": ("ARCHITECTURE/CONTENT_CATALOGS.md", "cosmetic-milestone-claim:v1"),
+        "V03-001": ("ARCHITECTURE/MOBILE_SERVICES.md", "REVOKE_PENDING"),
+        "V03-002": ("ARCHITECTURE/PERSISTENCE.md", "RESERVED_NOT_GENERATED"),
+        "V03-003": ("ARCHITECTURE/TEST_STRATEGY.md", "MANUAL_ARCHITECTURE_REVIEW"),
+        "V03-004": ("ARCHITECTURE/LEVEL_DATA_FORMAT.md", "EXCLUSION"),
+        "V03-005": ("ARCHITECTURE/TEST_STRATEGY.md", "Ankercommit"),
+        "V03-006": ("DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md", "ADR-025"),
+        "V03-007": ("ARCHITECTURE/BUILD_AND_RELEASE.md", "PAUSE_NO_ADVANCE"),
     }
     for finding, (rel, token) in tokens.items():
         if token.lower() not in (ROOT / rel).read_text(encoding="utf-8").lower(): fail(f"review-doc:{finding}:{rel}")
@@ -705,16 +1050,42 @@ def cross_tool_hash_check() -> None:
         if result.returncode == 0 or expected_text not in result.stderr: fail(f"jcs:node-invalid:{invalid_name}")
 
 
-def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requested_scope: str) -> list[str]:
+def is_global_pattern(pattern: str) -> bool:
+    parts = pattern.split("/")
+    return pattern in {"*", "**", "**/*", "*/**"} or all(part in {"*", "**"} for part in parts)
+
+
+def segment_glob_match(path: str, pattern: str) -> bool:
+    path_parts = PurePosixPath(path).parts
+    pattern_parts = PurePosixPath(pattern).parts
+    def match(path_index: int, pattern_index: int) -> bool:
+        if pattern_index == len(pattern_parts): return path_index == len(path_parts)
+        token = pattern_parts[pattern_index]
+        if token == "**":
+            return match(path_index, pattern_index + 1) or (path_index < len(path_parts) and match(path_index + 1, pattern_index))
+        return path_index < len(path_parts) and fnmatch.fnmatchcase(path_parts[path_index], token) and match(path_index + 1, pattern_index + 1)
+    return match(0, 0)
+
+
+def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requested_scope: str, manifest_rel: str | None = None) -> list[str]:
     errors: list[str] = []
     if manifest.get("scope") != requested_scope: errors.append("scope:mode-mismatch")
     patterns = manifest.get("allowedPathPatterns", [])
     for pattern in patterns:
-        parts = Path(pattern).parts
-        if pattern.startswith("/") or ".." in parts or pattern == "**": errors.append(f"scope:unsafe-pattern:{pattern}")
+        parts = PurePosixPath(pattern).parts
+        if pattern.startswith("/") or "\\" in pattern or ".." in parts or is_global_pattern(pattern): errors.append(f"scope:unsafe-pattern:{pattern}")
+        if not parts or any(token in parts[0] for token in ("*", "?", "[")): errors.append(f"scope:unsafe-root-segment:{pattern}")
+        if any("**" in part and part != "**" for part in parts): errors.append(f"scope:unsafe-double-star-segment:{pattern}")
+    if manifest_rel is not None:
+        wp = manifest.get("workPackageId", "")
+        expected = f"tools/architecture-validation/scopes/{wp}.{requested_scope}.scope.json"
+        if manifest_rel != expected: errors.append("scope:manifest-name-or-location")
+        if manifest_rel not in patterns: errors.append("scope:manifest-self-not-explicit")
+        if any(pattern.startswith("tools/architecture-validation/scopes/") and pattern != manifest_rel for pattern in patterns):
+            errors.append("scope:other-manifests-allowed")
     for rel in changed:
-        if rel.startswith("/") or ".." in Path(rel).parts: errors.append(f"scope:unsafe-path:{rel}"); continue
-        if not any(fnmatch.fnmatchcase(rel, pattern) for pattern in patterns): errors.append(f"scope:out-of-scope:{rel}")
+        if rel.startswith("/") or "\\" in rel or ".." in PurePosixPath(rel).parts: errors.append(f"scope:unsafe-path:{rel}"); continue
+        if not any(segment_glob_match(rel, pattern) for pattern in patterns): errors.append(f"scope:out-of-scope:{rel}")
         if rel.startswith("Stammstrecken_Puzzle_Konzept_00-15/"): errors.append(f"scope:product-source:{rel}")
         if requested_scope == "documentation":
             forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
@@ -724,14 +1095,61 @@ def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requeste
 
 
 def normalized_blocker_text(text: str) -> str:
-    return re.sub(r"2026-09-(?:08|12)|Architecture v0\.[23]|Architecture-v0\.[23]", "<VERSION-METADATA>", text)
+    return re.sub(r"2026-09-(?:08|12)|Architecture v0\.[234]|Architecture-v0\.[234]", "<VERSION-METADATA>", text)
+
+
+def scope_manifest_trust_errors(manifest: dict[str, Any], manifest_rel: str, tracked: bool, anchors: list[str], anchor_parent: str, anchor_bytes: bytes, current_bytes: bytes) -> list[str]:
+    errors: list[str] = []
+    expected = f"tools/architecture-validation/scopes/{manifest.get('workPackageId')}.{manifest.get('scope')}.scope.json"
+    if manifest_rel != expected: errors.append("scope:manifest-name-or-location")
+    if not tracked: errors.append("scope:manifest-unversioned")
+    if len(anchors) != 1: errors.append("scope:manifest-anchor-count")
+    if anchor_parent != manifest.get("baseCommit"): errors.append("scope:manifest-base-not-anchor-parent")
+    if anchor_bytes != current_bytes: errors.append("scope:manifest-mutated-after-anchor")
+    return errors
+
+
+def scope_manifest_argument_error(argument: Path) -> str | None:
+    raw = argument.as_posix()
+    if argument.is_absolute(): return "scope:absolute-manifest-argument"
+    if "\\" in raw or ".." in PurePosixPath(raw).parts: return "scope:external-manifest-argument"
+    return None
 
 
 def git_scope_check(scope: str, manifest_path: Path) -> None:
-    manifest = load_json(manifest_path)
+    lexical = manifest_path.absolute()
+    try:
+        resolved = manifest_path.resolve(strict=True)
+    except OSError:
+        fail("scope:manifest-unavailable")
+        return
+    if resolved != lexical:
+        fail("scope:manifest-noncanonical-or-symlink")
+        return
+    try:
+        manifest_rel = resolved.relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        fail("scope:external-manifest")
+        return
+    manifest = load_json(resolved)
     schema = load_json(TOOL / "scope-manifest-v1.schema.json")
     jsonschema.Draft202012Validator(schema).validate(manifest)
+    tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--error-unmatch", "--", manifest_rel], text=True, capture_output=True, check=False)
+    anchor_result = subprocess.run(["git", "-C", str(ROOT), "log", "--diff-filter=A", "--format=%H", "--", manifest_rel], text=True, capture_output=True, check=True)
+    anchors = [line for line in anchor_result.stdout.splitlines() if line]
+    if len(anchors) != 1:
+        for error in scope_manifest_trust_errors(manifest, manifest_rel, tracked.returncode == 0, anchors, "", b"", resolved.read_bytes()): fail(error)
+        return
+    anchor = anchors[0]
+    anchor_parent = subprocess.run(["git", "-C", str(ROOT), "rev-parse", f"{anchor}^"], text=True, capture_output=True, check=False)
+    anchor_blob = subprocess.run(["git", "-C", str(ROOT), "show", f"{anchor}:{manifest_rel}"], capture_output=True, check=False)
+    if anchor_parent.returncode != 0 or anchor_blob.returncode != 0:
+        fail("scope:manifest-anchor-unavailable")
+        return
     base = manifest["baseCommit"]
+    for error in scope_manifest_trust_errors(manifest, manifest_rel, tracked.returncode == 0, anchors, anchor_parent.stdout.strip(), anchor_blob.stdout, resolved.read_bytes()): fail(error)
+    anchor_ancestor = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", anchor, "HEAD"], capture_output=True, check=False)
+    if anchor_ancestor.returncode != 0: fail("scope:manifest-anchor-not-ancestor")
     exists = subprocess.run(["git", "-C", str(ROOT), "cat-file", "-e", f"{base}^{{commit}}"], capture_output=True, check=False)
     if exists.returncode != 0: fail("scope:base-unavailable"); return
     ancestor = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", base, "HEAD"], capture_output=True, check=False)
@@ -739,16 +1157,21 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
     if re.fullmatch(r"WP-[0-9]{3}", manifest.get("workPackageId", "")) is None or not list((ROOT / "WORK_PACKAGES").glob(manifest["workPackageId"] + "_*.md")):
         fail("scope:work-package")
     name_status = subprocess.run(["git", "-C", str(ROOT), "diff", "--name-status", base, "--"], text=True, capture_output=True, check=True).stdout.splitlines()
-    tracked: list[str] = []
+    tracked_paths: list[str] = []
     for line in name_status:
         columns = line.split("\t")
         if columns[0].startswith(("R", "C")) and len(columns) == 3:
-            tracked.extend(columns[1:])
+            tracked_paths.extend(columns[1:])
         elif len(columns) >= 2:
-            tracked.append(columns[-1])
+            tracked_paths.append(columns[-1])
     untracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--others", "--exclude-standard"], text=True, capture_output=True, check=True).stdout.splitlines()
-    changed = sorted(set(tracked + untracked))
-    for error in scope_manifest_errors(manifest, changed, scope): fail(error)
+    changed = sorted(set(tracked_paths + untracked))
+    for rel in changed:
+        candidate = ROOT / rel
+        if candidate.exists():
+            try: candidate.resolve().relative_to(ROOT.resolve())
+            except ValueError: fail(f"scope:symlink-escape:{rel}")
+    for error in scope_manifest_errors(manifest, changed, scope, manifest_rel): fail(error)
     blocker_rel = "ARCHITECTURE/OPEN_BLOCKERS.md"
     if blocker_rel in changed:
         base_text = subprocess.run(["git", "-C", str(ROOT), "show", f"{base}:{blocker_rel}"], text=True, capture_output=True, check=True).stdout
@@ -774,9 +1197,9 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
 
 def status_consistency_errors(architecture: str, current: str, queue: str, work_package: str) -> list[str]:
     errors: list[str] = []
-    if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v0.3") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
-    if "**Architecture v0.3**" not in current or "Architecture v0.3 (Abnahmekandidat)" in current or "`WP-001`, `WP-002` und `WP-003` sind abgeschlossen" not in current: errors.append("version:current-state")
-    if "Architecture v0.3" not in queue or "WP-001`, `WP-002`, `WP-003" not in queue or "Unabhängiger Architecture-v1.0-Freigabereview | **Nicht begonnen**" not in queue: errors.append("version:work-queue")
+    if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v0.4") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
+    if "**Architecture v0.4**" not in current or "Architecture v0.4 (Abnahmekandidat)" in current or "`WP-001` bis `WP-004` sind abgeschlossen" not in current: errors.append("version:current-state")
+    if "Architecture v0.4" not in queue or "WP-001` bis `WP-004" not in queue or "CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding**" not in queue: errors.append("version:work-queue")
     if "**Bearbeitungsstatus:** Abgeschlossen" not in work_package: errors.append("version:work-package")
     return errors
 
@@ -786,7 +1209,7 @@ def version_and_blocker_check() -> None:
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md").read_text(encoding="utf-8"),
     ): fail(error)
     blockers = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
     for number in (1, 2, 3):
@@ -794,93 +1217,168 @@ def version_and_blocker_check() -> None:
     if blockers.count("| Status | **Offen** |") != 3 or blockers.count("Fail-closed") < 3: fail("blocker:status")
 
 
+def evidence_summary_lines() -> list[str]:
+    return [
+        "MANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS",
+        "CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode",
+        "REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP",
+        "REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox",
+        "REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion",
+        "BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed",
+    ]
+
+
 def self_test(scope: str, manifest_path: Path) -> None:
     failures: list[str] = []
     def expect(label: str, condition: bool) -> None:
         if not condition: failures.append(label)
 
-    # FINAL-001: deleting the direct Bootstrap -> Application edge must fail exact graph parity.
+    # Retained architecture regressions.
     module_text = (ROOT / "ARCHITECTURE/MODULE_BOUNDARIES.md").read_text(encoding="utf-8")
     mutated = module_text.replace("`STP.Application`, `STP.Infrastructure.Content`", "`STP.Infrastructure.Content`", 1).replace("    Bootstrap[STP.Bootstrap] --> App\n", "")
-    expect("FINAL-001", "assembly:bootstrap-exact" in assembly_errors(mutated))
+    expect("REG-ASSEMBLY", "assembly:bootstrap-exact" in assembly_errors(mutated))
+    expect("REG-WP", bool(check_wp_identifiers(["WP-001", "WP-02"])))
 
-    # FINAL-002: terminal collections in Save v2 and duplicate active ordinals must fail.
+    # V03-001: privacy inputs and ordering are executed, not only listed.
+    privacy = load_json(TOOL / "fixtures/privacy-lifecycle-v2.json")
+    bad_direct = copy.deepcopy(privacy)
+    next(item for item in bad_direct["scenarios"] if item["name"] == "DIRECT_LEGACY_UPGRADE_STALE_TRUE")["events"][0]["legacyPersistedAnalyticsOverride"] = False
+    expect("V03-001-DIRECT-UPGRADE", "privacy:direct-upgrade-input" in privacy_errors(bad_direct))
+    bad_intermediate = copy.deepcopy(privacy)
+    next(item for item in bad_intermediate["scenarios"] if item["name"] == "RESET_ONLY_INSTALLED_NEVER_LAUNCHED")["events"][0]["resetOnlyIntermediateLaunchObserved"] = True
+    expect("V03-001-NEVER-LAUNCHED", "privacy:intermediate-input" in privacy_errors(bad_intermediate))
+    bad_revoke = copy.deepcopy(privacy)
+    revoke = next(item for item in bad_revoke["scenarios"] if item["name"] == "REVOKE_CRASH_AFTER_PENDING")
+    revoke["events"] = [event for event in revoke["events"] if event["kind"] != "APPLY_NATIVE_DISABLE"]
+    expect("V03-001-REVOKE-ORDER", any(item.startswith("privacy:disable-precondition") or item.startswith("privacy:expected") for item in privacy_errors(bad_revoke)))
+    bad_reference = copy.deepcopy(privacy)
+    next(item for item in bad_reference["scenarios"] if item["name"] == "REENABLE_WITH_PROVEN_FENCE_REFERENCE")["productionExecutable"] = True
+    expect("V03-001-FAIL-CLOSED", "privacy:reenable-reference-only" in privacy_errors(bad_reference))
+
+    # V03-002: watermark, open shapes, transitions and claim retention.
     endless = load_json(TOOL / "fixtures/endless-save-v2.example.json")
-    endless["terminalIntervals"] = []
-    expect("FINAL-002", "endless:terminal-state-present" in endless_fixture_errors(endless))
+    bad_watermark = copy.deepcopy(endless); bad_watermark["highestReservedOrdinal"] = "18446744073709551616"
+    expect("V03-002-WATERMARK-RANGE", "endless:watermark-range" in endless_fixture_errors(bad_watermark))
+    bad_open = copy.deepcopy(endless); bad_open["openEndless"][0]["generationOrdinal"] = "4"; bad_open["openEndless"][0]["descriptor"]["generationOrdinal"] = "4"
+    expect("V03-002-OPEN-ABOVE-WATERMARK", "endless:open-ordinal" in endless_fixture_errors(bad_open))
+    bad_shape = copy.deepcopy(endless); bad_shape["openEndless"][0]["sessionState"] = {"moveCount": 0}
+    expect("V03-002-RESERVED-SHAPE", "endless:reserved-shape" in endless_fixture_errors(bad_shape))
+    wrong_open_puzzle = copy.deepcopy(endless); wrong_open_puzzle["openEndless"][2]["puzzleId"] = endless["openEndless"][1]["id"]
+    expect("V03-002-OPEN-PUZZLE-BINDING", "endless:claim-binding" in endless_fixture_errors(wrong_open_puzzle))
+    bad_sequence = copy.deepcopy(endless["transitionScenarios"][1]); bad_sequence["events"][1] = {"kind": "COMPLETE", "generationOrdinal": "1"}
+    expect("V03-002-TRANSITION", any(item.startswith("endless:transition") for item in execute_endless_scenario(bad_sequence)[1]))
+    bad_claim = copy.deepcopy(endless["transitionScenarios"][1]); bad_claim["events"] = bad_claim["events"][:-1]
+    expect("V03-002-CLAIM-RETENTION", "endless:scenario-expected" in execute_endless_scenario(bad_claim)[1])
+    wrong_amount = copy.deepcopy(endless["transitionScenarios"][1]); wrong_amount["events"][-1]["amountPatience"] = 999
+    expect("V03-002-CLAIM-AMOUNT", any("claim-amount-source" in item for item in execute_endless_scenario(wrong_amount)[1]))
+    wrong_claim_id = copy.deepcopy(endless["transitionScenarios"][1]); wrong_claim_id["events"][-1]["claimId"] = "reward-claim:POST_CLEAR_PATIENCE:E1-wrong"
+    expect("V03-002-CLAIM-ID", any("claim-binding" in item for item in execute_endless_scenario(wrong_claim_id)[1]))
+    wrong_puzzle_id = copy.deepcopy(endless["transitionScenarios"][1]); wrong_puzzle_id["events"][-2]["puzzleId"] = endless["openEndless"][1]["id"]
+    expect("V03-002-CALLBACK-PUZZLE-ID", any("reward-binding" in item for item in execute_endless_scenario(wrong_puzzle_id)[1]))
+    wrong_local_operation = copy.deepcopy(endless["transitionScenarios"][1]); wrong_local_operation["events"][-2]["localOperationId"] = "reward-operation:foreign"
+    expect("V03-002-CALLBACK-LOCAL-OPERATION", any("reward-binding" in item for item in execute_endless_scenario(wrong_local_operation)[1]))
+    wrong_provider_operation = copy.deepcopy(endless["transitionScenarios"][1]); wrong_provider_operation["events"][-1]["providerOperationId"] = "provider-foreign"
+    expect("V03-002-COMMIT-PROVIDER-OPERATION", any("claim-binding" in item for item in execute_endless_scenario(wrong_provider_operation)[1]))
+    no_reward_result = copy.deepcopy(endless["transitionScenarios"][1]); no_reward_result["events"] = [event for event in no_reward_result["events"] if event["kind"] != "REWARD_RESULT"]
+    expect("V03-002-CLAIM-STATUS", any("claim-binding" in item for item in execute_endless_scenario(no_reward_result)[1]))
+    late_callback = copy.deepcopy(endless["transitionScenarios"][1]); late_callback["events"].append(copy.deepcopy(late_callback["events"][-2]))
+    expect("V03-002-LATE-CALLBACK", any("reward-result" in item for item in execute_endless_scenario(late_callback)[1]))
 
-    # FINAL-003: removing the reset-only upgrade effect must fail.
-    privacy = load_json(TOOL / "fixtures/privacy-lifecycle-v1.json")
-    upgrade = next(item for item in privacy["scenarios"] if item["name"] == "UPGRADE_PRIOR_ACTIVE")
-    upgrade["requiredEffects"].remove("ANALYTICS_PERMANENT_DEACTIVATION_PRESENT")
-    expect("FINAL-003", "privacy:effects:UPGRADE_PRIOR_ACTIVE" in privacy_errors(privacy))
+    # V03-003: complete migration and release-lock cross references.
+    migration = load_json(TOOL / "fixtures/level-progress-v1-to-v2.golden.json")
+    for label, mutator, expected_code in (
+        ("LEVEL-ID", lambda value: value["source"].__setitem__("levelId", "S1-01-01-99"), "level-progress-migration:source-identity"),
+        ("LEGACY-HASH", lambda value: value["source"].__setitem__("puzzleHashSha256", "0" * 64), "level-progress-migration:source-identity"),
+        ("SOURCE-SCHEMA", lambda value: value["sourceDocument"].__setitem__("documentSchemaVersion", 9), "level-progress-migration:document-version:sourceDocument"),
+        ("SOURCE-DOCUMENT-HASH", lambda value: value["sourceDocument"].__setitem__("documentSha256", "0" * 64), "level-progress-migration:document-binding:sourceDocument"),
+    ):
+        changed = copy.deepcopy(migration); mutator(changed)
+        expect(f"V03-003-MIGRATION-{label}", expected_code in level_progress_migration_errors(changed))
+    lock = load_json(ROOT / "ARCHITECTURE/examples/release-lock-v1.example.json")
+    level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
+    proof = load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")
+    for field, code, value in (
+        ("solutionHash", "release-lock:solution-hash", {"profile": "STP-SOLUTION-JCS-1", "sha256": "0" * 64}),
+        ("solverVersion", "release-lock:solver-version", "solver-v99"),
+        ("documentSchemaVersion", "release-lock:document-version", 99),
+        ("proofHash", "release-lock:proof-hash", {"profile": "STP-PROOF-JCS-1", "sha256": "0" * 64}),
+    ):
+        changed = copy.deepcopy(lock); changed["puzzles"][0][field] = value
+        expect(f"V03-003-LOCK-{field}", code in release_lock_errors(changed, level, proof))
 
-    # FINAL-004/006: documentation scope must reject a production source path and unsafe wildcard.
+    # V03-004: all legacy focus values and schema-valid DRAFT authoring.
+    v2_schema = jsonschema.Draft202012Validator(load_json(ROOT / "ARCHITECTURE/schemas/level-v2.schema.json"))
+    for focus in ("EXCLUSION", "CHAIN", "DENSITY", "COMBINATION"):
+        changed = copy.deepcopy(level); changed["production"]["focus"] = [focus]
+        expect(f"V03-004-FOCUS-{focus}", not list(v2_schema.iter_errors(changed)))
+    cosmetics_schema = jsonschema.Draft202012Validator(load_json(ROOT / "ARCHITECTURE/schemas/cosmetics-v2.schema.json"))
+    draft_catalog = load_json(ROOT / "ARCHITECTURE/examples/cosmetics-v2.draft.example.json")
+    expect("V03-004-COSMETICS-DRAFT", not list(cosmetics_schema.iter_errors(draft_catalog)))
+
+    # V03-003 Cosmetics: execute eligibility and ownership, including illegal status transitions.
+    campaign = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json"); _, puzzle_ids, _ = campaign_subjects(campaign)
+    catalogs = {"cosmetics-v2.example.json": load_json(ROOT / "ARCHITECTURE/examples/cosmetics-v2.example.json"), "cosmetics-v2.draft.example.json": draft_catalog}
+    lifecycle = load_json(TOOL / "fixtures/cosmetics-lifecycle-v1.json")
+    grant = copy.deepcopy(next(item for item in lifecycle["scenarios"] if item["name"] == "MILESTONE_FIRST_CLEAR_GRANT")); grant["events"] = [event for event in grant["events"] if event["kind"] != "FIRST_CLEAR"]
+    expect("V03-003-COSMETICS-ELIGIBILITY", bool(execute_cosmetics_scenario(grant, catalogs, puzzle_ids)[1]))
+    expect("V03-003-COSMETICS-STATUS", not cosmetic_status_transition_allowed("DRAFT", "TOMBSTONE"))
+
+    # V03-005: segment globs, repository-local manifest and immutable trust anchor.
     manifest = load_json(manifest_path)
-    expect("FINAL-004", any(item.startswith("scope:out-of-scope") or item.startswith("scope:production-artifact") for item in scope_manifest_errors(manifest, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "documentation")))
-    unsafe = copy.deepcopy(manifest); unsafe["allowedPathPatterns"] = ["**"]
-    expect("FINAL-006", "scope:unsafe-pattern:**" in scope_manifest_errors(unsafe, [], "documentation"))
+    manifest_rel = manifest_path.relative_to(ROOT).as_posix()
+    expect("V03-005-PRODUCT", any(item.startswith("scope:out-of-scope") or item.startswith("scope:production-artifact") for item in scope_manifest_errors(manifest, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "documentation", manifest_rel)))
+    for pattern in ("*", "**", "**/*", "*/**"):
+        unsafe = copy.deepcopy(manifest); unsafe["allowedPathPatterns"] = [pattern]
+        expect(f"V03-005-GLOBAL-{pattern}", f"scope:unsafe-pattern:{pattern}" in scope_manifest_errors(unsafe, [], "documentation"))
+    shallow = copy.deepcopy(manifest); shallow["allowedPathPatterns"] = ["ARCHITECTURE/*"]
+    expect("V03-005-SEGMENT", "scope:out-of-scope:ARCHITECTURE/examples/x.json" in scope_manifest_errors(shallow, ["ARCHITECTURE/examples/x.json"], "documentation"))
+    expect("V03-005-ABSOLUTE", scope_manifest_argument_error(Path("/tmp/scope.json")) == "scope:absolute-manifest-argument")
+    expect("V03-005-EXTERNAL", scope_manifest_argument_error(Path("../scope.json")) == "scope:external-manifest-argument")
+    expect("V03-005-UNVERSIONED", "scope:manifest-unversioned" in scope_manifest_trust_errors(manifest, manifest_rel, False, ["a"], manifest["baseCommit"], b"x", b"x"))
+    wrong_wp = copy.deepcopy(manifest); wrong_wp["workPackageId"] = "WP-999"
+    expect("V03-005-WP-ASSOCIATION", "scope:manifest-name-or-location" in scope_manifest_trust_errors(wrong_wp, manifest_rel, True, ["a"], wrong_wp["baseCommit"], b"x", b"x"))
+    expect("V03-005-MUTATED-ANCHOR", "scope:manifest-mutated-after-anchor" in scope_manifest_trust_errors(manifest, manifest_rel, True, ["a"], manifest["baseCommit"], b"original", b"changed"))
+    expect("V03-005-SCOPE-ESCAPE", "scope:unsafe-path:../escape" in scope_manifest_errors(manifest, ["../escape"], "documentation", manifest_rel))
     production = copy.deepcopy(manifest); production["scope"] = "production"; production["allowedPathPatterns"] = ["Assets/**/*.cs"]
-    expect("FINAL-006-PRODUCTION", not scope_manifest_errors(production, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "production"))
+    expect("V03-005-PRODUCTION", not scope_manifest_errors(production, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "production"))
     product_scope = copy.deepcopy(production); product_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/**"]
-    expect("FINAL-006-PRODUCT-SOURCE", any(item.startswith("scope:product-source:") for item in scope_manifest_errors(product_scope, ["Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md"], "production")))
+    expect("V03-005-PRODUCT-SOURCE", any(item.startswith("scope:product-source:") for item in scope_manifest_errors(product_scope, ["Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md"], "production")))
+
+    # V03-006: historical ADR-016 decision body must remain byte-equivalent as text.
+    current_016 = (ROOT / "DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md").read_text(encoding="utf-8")
+    historical_016 = subprocess.run(["git", "-C", str(ROOT), "show", f"{ADR016_HISTORY_COMMIT}:DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md"], text=True, capture_output=True, check=True).stdout
+    mutated_016 = current_016.replace("campaign-v1", "campaign-v9", 1)
+    expect("V03-006-HISTORY", section_body(mutated_016, "## Entscheidung", "## Begründung") != section_body(historical_016, "## Entscheidung", "## Begründung"))
+
+    # V03-007: no automatic advance without exact, fresh and sufficiently populated Store data.
+    rollout = load_json(TOOL / "fixtures/rollout-metric-v1.json")
+    bad_rollout = copy.deepcopy(rollout); next(item for item in bad_rollout["platforms"] if item["platform"] == "ANDROID")["availability"]["insufficientDataAction"] = "ADVANCE_OR_HOLD_AT_100"
+    expect("V03-007-MISSING-DATA", "rollout:android-availability" in rollout_errors(bad_rollout) and rollout_decision(bad_rollout, "ANDROID", None, 1000, 1, True) == "ADVANCE_OR_HOLD_AT_100")
+
+    # IAP fixture order is executable; the normative prose remains a manual review item.
+    bad_trace = load_json(TOOL / "fixtures/iap-state-machine-v1.json")["traces"][0]
+    events = bad_trace["events"]; bad_trace["events"] = [events[0], events[1], events[3], events[2], events[4]]
+    expect("V03-003-IAP-FIXTURE", any(item.startswith("iap:finalize-order") for item in execute_iap_trace(bad_trace)))
+    report = evidence_summary_lines()
+    expect("V03-003-REPORT-CATEGORIES", {line.split("  ", 1)[0] for line in report} == {"MANUAL_ARCHITECTURE_REVIEW", "CONTRACT_ONLY", "REQUIRED_LATER/NOT_EXECUTED", "BLOCKED"})
+    expect("V03-003-NO-FALSE-PASS", all(not line.split("  ", 1)[0].endswith("PASS") for line in report))
+
+    # Retained governance, puzzle and blocker regressions.
     blocker_text = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
-    expect("FINAL-006-BLOCKERS", normalized_blocker_text(blocker_text) != normalized_blocker_text(blocker_text.replace("**Offen**", "**Geschlossen**", 1)))
+    expect("REG-BLOCKERS", normalized_blocker_text(blocker_text) != normalized_blocker_text(blocker_text.replace("**Offen**", "**Geschlossen**", 1)))
     status_args = [
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md").read_text(encoding="utf-8"),
     ]
-    status_args[2] = status_args[2].replace("Architecture v0.3", "Architecture v0.2")
-    expect("FINAL-004-STATUS-CONSISTENCY", "version:work-queue" in status_consistency_errors(*status_args))
-
-    # FINAL-005: copied proof bound to another puzzle must fail.
-    level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
-    proof = load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json"); proof["puzzleId"] = "S1-01-01-02"
-    expect("FINAL-005", "proof:puzzle-id" in v2_binding_errors(level, proof))
-
-    # FINAL-007: a changed promotion artifact hash must fail identity equality.
-    rc = load_json(ROOT / "ARCHITECTURE/examples/release-manifest-v1.rc.example.json")
-    staging = load_json(ROOT / "ARCHITECTURE/examples/release-manifest-v1.staging.example.json")
-    receipt = load_json(ROOT / "ARCHITECTURE/examples/promotion-receipt-v1.example.json"); receipt["artifactSha256"] = "0" * 64
-    expect("FINAL-007", "release:promotion-identity" in release_errors(rc, staging, receipt))
-
-    # FINAL-008: unknown milestone subject must fail catalog semantics.
-    campaign = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json"); subjects, _, _ = campaign_subjects(campaign)
-    cosmetics = load_json(ROOT / "ARCHITECTURE/examples/cosmetics-v2.example.json")
-    milestone = next(item for item in cosmetics["items"] if item["acquisition"] == "MILESTONE_GRANT")
-    milestone["milestoneEligibility"]["requiredCampaignSubjectIds"] = ["S9-99-99"]
-    expect("FINAL-008", "cosmetics:milestone-reference" in cosmetics_errors(cosmetics, subjects))
-
-    # Retained regression mutations from Architecture v0.2.
-    expect("REG-WP", bool(check_wp_identifiers(["WP-001", "WP-02"])))
+    status_args[2] = status_args[2].replace("Architecture v0.4", "Architecture v0.3")
+    expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
     index_text = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
-    expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-023", "ADR-X23"))))
-    expect("FINAL-004-ADR-STATUS", "adr-index:status:023" in adr_index_errors(index_text.replace("| [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) | Releasekandidat-Identität und kosmetische Meilensteinclaims | **Angenommen** |", "| [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) | Releasekandidat-Identität und kosmetische Meilensteinclaims | **Ersetzt** |")))
-    expect("FINAL-004-ADR-LINK", "adr-index:link:023" in adr_index_errors(index_text.replace("./ADR-023-releasekandidat-und-kosmetikclaims.md", "./ADR-022-validator-scope-und-belegkategorien.md", 1)))
+    expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-026", "ADR-X26"))))
     inconsistent_level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     inconsistent_level["content"]["season"] = 2
-    expect("FINAL-004-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")))
-    for field, value, code in (("networkSection", 6, "level-v2:s1-section-range"), ("route", 5, "level-v2:s1-route-range"), ("position", 13, "level-v2:s1-position-range")):
-        out_of_range = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
-        out_of_range["content"][field] = value
-        expect(f"FINAL-004-S1-{field.upper()}", code in v2_binding_errors(out_of_range, load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")))
-    campaign_section = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json")
-    section = campaign_section["seasons"][0]["sections"][0]; section["id"] = "S1-06"; section["routes"][0]["id"] = "S1-06-01"; section["routes"][0]["levels"][0]["puzzleId"] = "S1-06-01-01"
-    expect("FINAL-004-CAMPAIGN-SECTION", "catalog:s1-section-range" in campaign_subjects(campaign_section)[2])
-    campaign_route = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json")
-    route = campaign_route["seasons"][0]["sections"][0]["routes"][0]; route["id"] = "S1-01-05"; route["levels"][0]["puzzleId"] = "S1-01-05-01"
-    expect("FINAL-004-CAMPAIGN-ROUTE", "catalog:s1-route-range" in campaign_subjects(campaign_route)[2])
-    campaign_position = load_json(ROOT / "ARCHITECTURE/examples/campaign-v2.example.json")
-    campaign_position["seasons"][0]["sections"][0]["routes"][0]["levels"][0]["puzzleId"] = "S1-01-01-13"
-    expect("FINAL-004-CAMPAIGN-POSITION", "catalog:s1-position-range" in campaign_subjects(campaign_position)[2])
-    bad_thresholds = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
-    bad_thresholds["production"]["starThresholdsSeconds"] = {"twoStars": 100, "threeStars": 120}
-    expect("FINAL-004-STAR-THRESHOLDS", "level-v2:time-order" in v2_binding_errors(bad_thresholds, load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")))
-    bad_trace = load_json(TOOL / "fixtures/iap-state-machine-v1.json")["traces"][0]
-    events = bad_trace["events"]; bad_trace["events"] = [events[0], events[1], events[3], events[2], events[4]]
-    expect("REG-IAP", any(item.startswith("iap:finalize-order") for item in execute_iap_trace(bad_trace)))
+    expect("REG-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, proof))
     bad_schema = load_json(ROOT / "ARCHITECTURE/schemas/level-v2.schema.json")
     bad_schema["properties"]["solution"]["properties"]["path"]["minItems"] = 2
     single = load_json(ROOT / "ARCHITECTURE/examples/level-v2.single-cell.example.json")
@@ -889,18 +1387,20 @@ def self_test(scope: str, manifest_path: Path) -> None:
     if failures:
         for label in failures: fail(f"self-test:not-detected:{label}")
     else:
-        PASSES.append(("LOCAL_ARCHITECTURE_SEMANTICS", "Mutations-Selbsttest: FINAL-001 bis FINAL-008 und Regressionen werden erkannt"))
+        PASSES.append(("LOCAL_ARCHITECTURE_SEMANTICS", "Mutations-Selbsttest: V03-001 bis V03-007 und Regressionen werden erkannt"))
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v0.3")
+    parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v0.4")
     parser.add_argument("--scope", choices=("documentation", "production"))
     parser.add_argument("--scope-manifest", type=Path)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if bool(args.scope) != bool(args.scope_manifest):
         parser.error("--scope and --scope-manifest must be provided together")
-    manifest_path = None if args.scope_manifest is None else (args.scope_manifest if args.scope_manifest.is_absolute() else ROOT / args.scope_manifest)
+    if args.scope_manifest is not None and scope_manifest_argument_error(args.scope_manifest):
+        parser.error("--scope-manifest must be a canonical repository-relative path")
+    manifest_path = None if args.scope_manifest is None else ROOT / args.scope_manifest
 
     groups: list[tuple[str, str, Callable[[], None]]] = [
         ("LOCAL_DOCUMENT_STRUCTURE", "Datei-/ADR-Inventar", inventory_check),
@@ -912,29 +1412,28 @@ def main() -> int:
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Campaign-/Completion-/Cosmetics-v2-Semantik", catalog_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Zyklusfreier exakter Assemblygraph", assembly_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Endless-Watermark und Save-v1→v2", endless_check),
-        ("LOCAL_ARCHITECTURE_SEMANTICS", "Ausführbare IAP-Zustandsmaschine", iap_check),
-        ("LOCAL_ARCHITECTURE_SEMANTICS", "Privacy-Lifecycle-Fixture", privacy_check),
+        ("LOCAL_ARCHITECTURE_SEMANTICS", "Strukturierte IAP-Fixture-Zustandsmaschine", iap_check),
+        ("LOCAL_ARCHITECTURE_SEMANTICS", "Ausführbarer Privacy-v2-Lifecycle", privacy_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "RC-/Promotion- und Release-Lock-Identität", release_check),
-        ("LOCAL_ARCHITECTURE_SEMANTICS", "Acht Architecture-v0.3-Reviewverträge", review_contract_check),
+        ("LOCAL_ARCHITECTURE_SEMANTICS", "Store-Crashrate und Rolloutentscheidung", rollout_check),
+        ("LOCAL_ARCHITECTURE_SEMANTICS", "Sieben Architecture-v0.4-Reviewverträge", review_contract_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Save-JCS Python/Node-Crosscheck", cross_tool_hash_check),
-        ("LOCAL_DOCUMENT_STRUCTURE", "Architecture-v0.3-Status und drei Produktblocker", version_and_blocker_check),
+        ("LOCAL_DOCUMENT_STRUCTURE", "Architecture-v0.4-Status und drei Produktblocker", version_and_blocker_check),
     ]
     if args.scope and manifest_path:
         groups.append(("LOCAL_SCOPE", "Git-Diff gegen versioniertes Scope-Manifest", lambda: git_scope_check(args.scope, manifest_path)))
     for category, name, function in groups: run_group(category, name, function)
-    mutation_manifest = manifest_path or ROOT / "tools/architecture-validation/scopes/WP-003.documentation.scope.json"
+    mutation_manifest = manifest_path or ROOT / "tools/architecture-validation/scopes/WP-004.documentation.scope.json"
     if args.self_test: self_test(args.scope or "documentation", mutation_manifest)
 
-    print(f"ARCHITECTURE VALIDATION v0.3 scope={args.scope or 'architecture-only'}")
+    print(f"ARCHITECTURE VALIDATION v0.4 scope={args.scope or 'architecture-only'}")
     for category, item in PASSES: print(f"{category} PASS  {item}")
     if args.scope and manifest_path:
         head = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True, capture_output=True, check=True).stdout.strip()
         dirty = bool(subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain"], text=True, capture_output=True, check=True).stdout)
         manifest = load_json(manifest_path)
         print(f"SCOPE_CONTEXT  workPackage={manifest['workPackageId']} base={manifest['baseCommit']} head={head} worktreeDirty={str(dirty).lower()}")
-    print("CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode")
-    print("REQUIRED_LATER/NOT_EXECUTED  Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke, IL2CPP, physische Privacy-Gerätecaptures, SDK-Sandbox, Storeupload/-promotion")
-    print("BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed")
+    for line in evidence_summary_lines(): print(line)
     if ERRORS:
         for item in ERRORS: print(f"FAIL  {item}")
         print(f"RESULT FAIL ({len(ERRORS)} Fehler)")

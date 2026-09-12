@@ -1,4 +1,4 @@
-# Solver Architecture v0.3
+# Solver Architecture v0.4
 
 ## 1. Verantwortungsgrenze
 
@@ -173,20 +173,20 @@ Die Identität einer generierten Meldung ist vollständig von Kampagnen-IDs getr
 
 Die stabile ID lautet `E1-<hex>`, wobei `<hex>` der vollständige kleingeschriebene SHA-256-Hexwert der JCS-Projektion `{endlessContractVersion,rulesetVersion,generatorVersion,seed,generationOrdinal,parameterHashSha256}` ist. Nach Generierung ergänzt der Runtime-/Diagnosedatensatz `publicPuzzleHash{profile,sha256}`, `solutionHash{profile,sha256}`, `proofHash{profile,sha256}`, Solverversion und Status.
 
-Der Save reserviert `generationOrdinal` atomar vor Ausführung, indem er ausschließlich `highestReservedOrdinal + 1` zusammen mit einem aktiven Draft persistiert. Crash/Retry erzeugt keine zweite Identität. Gleiche ID plus gleicher Deskriptor ist dieselbe Instanz. Gleiche ID mit anderem Deskriptor ist `GEN-ENDLESS-ID-COLLISION` und fatal.
+Der Save reserviert `generationOrdinal` atomar **vor** Generierung, indem er ausschließlich `highestReservedOrdinal + 1` zusammen mit `RESERVED_NOT_GENERATED` und dem vollständigen Deskriptor persistiert. Dieser Zustand fordert noch keinen Puzzleinput. Crash/Retry verwendet denselben Descriptor und erzeugt keine zweite Identität. Gleiche ID plus gleicher Deskriptor ist dieselbe Instanz. Gleiche ID mit anderem Deskriptor ist `GEN-ENDLESS-ID-COLLISION` und fatal.
 
-Ein aktiver Entwurf speichert Deskriptor **und** öffentlichen Puzzleinput. Dadurch ist Wiederaufnahme möglich, auch wenn die Generatorbinary später nicht mehr enthalten ist. Seed, Generatorversion, Parameter und Proof erlauben Diagnose/Reproduktion mit archiviertem Tooling.
+Nach Generierung werden Schema, Domain, Unique, Lösungshash und Proof vollständig geprüft. Erst dann ersetzt ein atomarer Commit `RESERVED_NOT_GENERATED` durch `ACTIVE_DRAFT` mit Deskriptor, öffentlichem Puzzleinput, profilierten Hashes und Sessionstate. Dadurch ist Wiederaufnahme möglich, auch wenn die Generatorbinary später nicht mehr enthalten ist. Ist bei einer offenen Reservation die gebundene Generatorversion nicht verfügbar, bleibt `ENDLESS_GENERATOR_RECOVERY_REQUIRED`; die Instanz wird weder neu reserviert noch still terminalisiert.
 
 Die Lebensdauer ist durch einen konstanten autoritativen Zustand begrenzt, nicht durch die Anzahl terminaler Instanzen:
 
-- höchstens 20 aktive Endless-Drafts; der 21. parallele Draft wird mit `ENDLESS_ACTIVE_DRAFT_CAPACITY` abgewiesen;
-- `active(o)` gilt exakt bei vorhandenem Draft; `terminal(o)` gilt für jeden reservierten Ordinal bis zum Watermark ohne aktiven Draft;
-- Complete schreibt alle zulässigen Effects und entfernt den Draft atomar; Abandon entfernt ihn ohne Reward;
+- höchstens 20 offene Endless-Records über `RESERVED_NOT_GENERATED`, `ACTIVE_DRAFT` und `COMPLETION_CLAIM_OPEN`; der 21. offene Vorgang wird mit `ENDLESS_OPEN_CAPACITY` abgewiesen;
+- `open(o)` gilt exakt bei vorhandenem Open-Record; `terminal(o)` gilt für jeden reservierten Ordinal bis zum Watermark ohne Open-Record;
+- Complete schreibt alle zulässigen Completioneffekte und ersetzt den aktiven Draft atomar durch `COMPLETION_CLAIM_OPEN`; erst Claimcommit oder `CLOSED_NO_REWARD` entfernt den letzten Open-Record; Abandon entfernt Reservation/Draft ohne Reward;
 - ein terminaler Ordinal ist dauerhaft nicht erneut generierbar oder rewardberechtigt und liefert bei Wiederholung `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise No-op;
 - terminale Statusintervalle und Deskriptorlisten sind keine fachliche Savewahrheit; höchstens 64 optionale Diagnoseeinträge dürfen best-effort im lokalen Ring liegen;
 - nur `ENDLESS_ORDINAL_SPACE_EXHAUSTED` beendet nach vollständiger UInt64-Ausschöpfung neue Reservationen.
 
-Volle Reproduktion ist für alle aktiven Drafts garantiert. Für terminale Instanzen werden bewusst keine dauerhaft fachlich relevanten Detail-/Statusdaten versprochen; eine spätere solche Produktanforderung benötigt eine neue Entscheidung. Der Save wächst bei Endlosnutzung nicht mit der Terminalhistorie.
+Deterministische Generationswiederholung ist für `RESERVED_NOT_GENERATED`, volle Puzzlewiederaufnahme für `ACTIVE_DRAFT` und begrenzte Rewardreconciliation für `COMPLETION_CLAIM_OPEN` garantiert. Für terminale Instanzen werden bewusst keine dauerhaft fachlich relevanten Detail-/Statusdaten versprochen; eine spätere solche Produktanforderung benötigt eine neue Entscheidung. Der Save wächst bei Endlosnutzung nicht mit der Terminalhistorie.
 
 Dieser Identitätsvertrag entscheidet keine Qualitätsgrenze. Ohne `PRODUCT_APPROVED`-GeneratorQualityProfile bleibt jede Instanz unveröffentlichbar.
 
@@ -208,7 +208,7 @@ Startbudgets für Season 1 auf einem CI-Referenzrechner:
 
 Pflichtfixture sind mindestens: unlösbar, exakt eindeutig, technisch gültiger Ein-Zellen-Pfad, zwei Lösungen, Endpointfehler, Randzahlfehler, isolierte Schleife, getrennte Komponente, lange eindeutige Kette und gültige 10×10-Grenze. Metamorphic Tests rotieren/spiegeln Puzzle samt Endpoints und Counts; Lösungsklasse muss invariant bleiben. `proof-v1`-Artefakte sind Golden Files pro Solverversion. Zusätzlich laufen 10.000 alternierende Endless-Complete-/Abandon-Transitionen, Resume-Lücken und Duplicate-after-Compaction.
 
-Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rastersubräume in Tests gegen den Produktionssolver. Er wird nicht in Production ausgeliefert und reduziert das Risiko gemeinsamer Regelbugs.
+Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rastersubräume in Tests gegen den Produktionssolver. Er wird nicht in Production ausgeliefert und reduziert das Risiko gemeinsamer Regelbugs. Der Endless-Referenzreducer prüft zusätzlich Reserve → Generate → Promote → Resume/Complete/Abandon → Claimreconciliation → Terminal sowie Crashpunkte und 10.000 gemischte Zyklen.
 
 ## 12. Versionierung
 
@@ -223,3 +223,4 @@ Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rasters
 [5]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
 [6]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
 [7]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und versionierte Proofartefakte"
+[8]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"

@@ -49,7 +49,7 @@ Ein Dry Run erzeugt für denselben Commit reproduzierbare Buildmetadaten, Testbe
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt keinen früheren ADR. Wird durch [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) um production-identische Releasekandidaten und artefaktgleiche Promotion ergänzt; die Grundentscheidung bleibt angenommen.
+Ersetzt keinen früheren ADR. Der Production-Crashlytics-Anteil wird durch [ADR-020](./ADR-020-privacy-lifecycle-und-sdk-grenzen.md) ersetzt; Build-, Release- und lokale Observability-Grundsätze bleiben angenommen. [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) ergänzt production-identische Releasekandidaten und artefaktgleiche Promotion.
 
 ## Referenzen
 

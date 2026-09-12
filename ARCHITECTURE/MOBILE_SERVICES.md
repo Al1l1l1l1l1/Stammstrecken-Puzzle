@@ -1,4 +1,4 @@
-# Mobile Services v0.3
+# Mobile Services v0.4
 
 ## 1. Grundregel
 
@@ -29,7 +29,7 @@ Timeout ist nie Erfolg. Späte und doppelte Callbacks werden über Operation-ID 
 | `IConsentPort` | `STP.MobileServices.Google`: UMP plus lokale Privacypräferenzen | keine Ads/Analytics/Crashreports; lokale App funktioniert. |
 | `IAdsPort` | `STP.MobileServices.Google`: Google Mobile Ads 11.5.0 mit AdMob Mediation | Angebot ausblenden beziehungsweise ohne Anzeige fortfahren. |
 | `IPurchasePort` | `STP.MobileServices.Store`: Unity IAP 5.4.3 | Kauf nicht verfügbar; bestätigter lokaler Werbefrei-Cache bleibt. |
-| `IAnalyticsPort` | `STP.MobileServices.Google`: Firebase Analytics 13.16.0 | No-op-Sink. |
+| `IAnalyticsPort` | Production: No-op-Sink; Firebase Analytics 13.16.0 bleibt Integrationsreferenz bis zum prä-SDK-Fence-Nachweis. | No-op-Sink. |
 | `ICrashReportingPort` | Production: lokaler redigierter Diagnosesink; Firebase Crashlytics 13.16.0 ist ausgeschlossen. | begrenztes lokales Diagnosejournal. |
 | `IAudioPort` | `STP.Audio`: AudioMixer/AudioSource | lautloser No-op ohne Spielfehler. |
 | `IAppLifecyclePort` | `STP.Platform`: Unity Lifecycle plus notwendige dünne Hooks | konservatives Pause/Resume. |
@@ -48,11 +48,11 @@ Capabilities sind getrennt. Das Application-Capabilityobjekt beginnt bei jedem P
 - `privacyOptionsEntryRequired`;
 - `trackingAuthorizationStatus`.
 
-Der persistente `PrivacyDecisionRecord` enthält ausschließlich `recordVersion`, `policyRevision`, `sdkContractRevision`, `decisionRevision`, `capturedAtUtc`, getrennte Ads-/Analytics-/Crashentscheidungen, `validity` und `source`. UMP-Strings, Advertising IDs und Personenkennungen werden nicht übernommen. Fehlend, defekt, unbekannt oder revisionsinkompatibel ergibt `INVALID` und alle Capabilities `false`.
+Der persistente `PrivacyDecisionRecord` enthält ausschließlich `recordVersion`, `policyRevision`, `sdkContractRevision`, `decisionRevision`, `capturedAtUtc`, getrennte Ads-/Analytics-/Crashentscheidungen, `validity`, `source` und `nativeSyncState`. Zulässig sind `UNKNOWN`, `DENIED_CONFIRMED`, `ENABLE_PENDING`, `ENABLED_CONFIRMED`, `REVOKE_PENDING` und `REVOKED_CONFIRMED`. UMP-Strings, Advertising IDs und Personenkennungen werden nicht übernommen. Fehlend, defekt, unbekannt oder revisionsinkompatibel ergibt `INVALID`, `UNKNOWN` und alle Capabilities `false`.
 
-`desiredCapabilities` aus einem validen Record und `effectiveCapabilities` nach erfolgreich angewandten nativen Effekten sind getrennt. Ein fehlgeschlagener oder abgebrochener Effekt bleibt `false`. Eine kompatible, integre Entscheidung darf Analytics offline weitergelten; Ads benötigen dennoch ein aktuelles UMP-`Update()` des Starts. Crash bleibt im Productionprofil immer `false`.
+`desiredCapabilities` aus einem validen Record und `effectiveCapabilities` nach erfolgreich angewandten nativen Effekten sind getrennt. Ein fehlgeschlagener oder abgebrochener Effekt bleibt `false`. `ENABLE_PENDING`, `REVOKE_PENDING` und `UNKNOWN` sind immer effective `false`. Offline darf Analytics nur bei `ENABLED_CONFIRMED` für exakt dieselbe Policy- und SDK-Revision weitergelten; Ads benötigen dennoch ein aktuelles UMP-`Update()` des Starts. Crash bleibt im Productionprofil immer `false`.
 
-Startreihenfolge: (1) Application effective alles `false`; (2) Record laden und Revisionen prüfen; (3) invalid oder Upgrade: Analytics nativ `false`, keine Ads/IAP/Crash-Initialisierung; (4) UMP online aktualisieren und erforderliche Form zeigen; (5) aktuellen Record atomar persistieren; (6) zugelassene native Effekte anwenden; (7) erst danach den jeweiligen Port effective schalten.
+Startreihenfolge: (1) Ein plattformspezifischer Bootstrapfence erzwingt **vor jeder möglichen optionalen SDK-Erfassung** Native Analytics deny; (2) Application effective alles `false`; (3) Record laden und Revisionen prüfen; (4) `UNKNOWN`, invalid, Upgrade oder ausstehende Reconciliation bleibt native deny und wiederholt erforderliche Disable-Schritte; (5) UMP online aktualisieren und erforderliche Form zeigen; (6) aktuellen Record atomar persistieren; (7) zugelassene native Effekte anwenden und bestätigen; (8) erst danach den jeweiligen Port effective schalten. Ein persistierter Provideroverride ist nur untrusted input und nie Entscheidwahrheit.
 
 UMP-Status wird bei jedem Start aktualisiert. Nur der dafür notwendige Consentstatus-/Formfluss darf vor Adfreigabe kommunizieren. Anzeigen dürfen erst nach `CanRequestAds() == true` initialisiert beziehungsweise geladen werden.[1] App Tracking Transparency wird nur bei einer rechtlich und produktseitig freigegebenen Trackingkonfiguration angefragt. Ablehnung blockiert das Spiel nicht.
 
@@ -64,8 +64,7 @@ Application-No-ops allein genügen nicht. Productionbuild, native Konfiguration,
 |---|---|---|---|---|
 | Unity-/Developer Data | Unity Analytics, Cloud Diagnostics und nicht benötigte Unity-Gaming-Services-Pakete fehlen aus `manifest.json`; Unity-Services-Autoinitialisierung und Editor-/Runtime-Analytics sind deaktiviert. | Nur eine später ausdrücklich freigegebene Fähigkeit darf ein benötigtes Unity-Service-Modul initialisieren. | Keine optionale Übertragung oder eigene Vor-Consent-Eventqueue. | Paket-/Native-Manifest-Scan und Netzwerkmitschnitt. |
 | Unity IAP 5.4.3 | Keine IAP-Initialisierung im Bootstrap; Storeproduktabfrage startet erst nach sichtbarer Kauf-/Restoreaktion oder bei persistenter Recovery. Das Inventar führt die immer erhobenen Daten und Unity-Authentication-Abhängigkeit auf.[5] | Nutzeraktion oder Recovery **und** freigegebener `IapPrivacyReadiness`-Beleg. | Ohne Readiness `NOT_ALLOWED`; bestätigter lokaler `remove_ads`-Cache bleibt. | Privacy-/SDK-Inventar, Dashboard-/Storedeklarationen, Sandboxflow und separater Capture. |
-| Firebase Analytics 13.16.0 | Android: `firebase_analytics_collection_enabled=false`, `google_analytics_adid_collection_enabled=false`, Personalisierung aus. iOS: `FIREBASE_ANALYTICS_COLLECTION_ENABLED=NO`, kein AdSupport/IDFA, Personalisierung aus.[6][7] | Nach gültigem Record erst Privacy-/Personalisierungssignale, dann `SetAnalyticsCollectionEnabled(true)`. | Ohne gültigen Record Override `false`; keine Application-Vorfreigabequeue. | Native-Konfigurationsscan, DebugView und Capture. |
-| Analytics Reset-only-Build | Zusätzlich `firebase_analytics_collection_deactivated=true` beziehungsweise `FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED=YES`; beim Start Runtime-Override `false` schreiben. | In diesem Binary niemals aktivierbar. Erst ein späterer kompatibler Build entfernt den permanenten Schalter; der persistierte Override bleibt `false` bis zum neuen Entscheid. | Verhindert, dass ein früher persistiertes `true` beim invalidierenden Upgrade gewinnt. | Upgradecapture mit zuvor aktivem Testbuild und Native-Config-Hash. |
+| Firebase Analytics 13.16.0 | **Bis zum belegten prä-SDK-Deny-Fence nicht im Productionprofil aktivierbar.** Native Defaults allein reichen wegen persistierter Runtime-Overrides nicht aus.[6][7] | Nur ein späteres Work Package darf nach beidseitigem Fence-Nachweis zuerst Privacy-/Personalisierungssignale setzen, `ENABLE_PENDING` speichern, nativ aktivieren und anschließend `ENABLED_CONFIRMED` committen. | Ohne Fence, bei Direktupgrade, übersprungenem Zwischenbuild, Revisionfehler oder ausstehender Reconciliation immer No-op und native deny. | Exportierter Native-Config-Scan, direkte Upgrade-Matrix, Crashinjektion, Restart-/Offlinecapture und Netzwerkbeleg auf physischen Geräten. |
 | Firebase Crashlytics 13.16.0 | **Nicht im Productionprofil enthalten.** Der Anbieter dokumentiert, dass `false` erst beim nächsten Start gilt und lokal gesammelte Berichte beim späteren Aktivieren gesendet werden.[8][9] | Keine Production-Aktivierung; `canSendCrashReports` bleibt `false`. | Lokaler redigierter Diagnosering. | Paket-/Linker-/Native-Manifest-Scan bestätigt Abwesenheit. |
 | Google Mobile Ads | Keine Ads-SDK-Initialisierung und kein Adload vor `CanRequestAds`; Test-/Production-App-IDs profilgetrennt. | Erst nach `canRequestAds == true`; UMP separat davor zulässig. | Keine Anzeige, kein Load, kein Retry. | Manifestscan, UMP-/Ad-Test und Capture. |
 
@@ -158,22 +157,24 @@ Restore auf iOS und Android verwendet dieselbe Pipeline. Eine leere, fehlgeschla
 
 ## 9. Widerruf, Re-enable, Restart und Offline
 
-**Widerruf:** Zuerst wird `REVOKED` atomar lokal gespeichert. Danach werden effektive Ports sofort No-op, Ads verworfen und Analytics Override `false` gesetzt. Schlägt der native Effekt fehl, bleibt Application trotzdem gesperrt und wiederholt Disable beim nächsten Start; kein Ereignis wird gepuffert.
+**Widerruf:** Effektive Ports werden sofort No-op und geladene Ads verworfen. Danach wird `REVOKE_PENDING` atomar persistiert, Native Analytics disable angewandt und bestätigt und erst dann `REVOKED_CONFIRMED` gespeichert. Schlägt der native Effekt fehl oder crasht der Prozess, bleibt Application gesperrt; der nächste Start beginnt mit prä-SDK-Deny-Fence und setzt die Reconciliation fort. Kein Ereignis wird gepuffert.
 
-**Re-enable:** Nur nach erfolgreichem UMP-Update/Form und atomar gespeichertem, revisionsaktuellem `VALID`-Record. Für Analytics werden zuerst Privacy-/Personalisierungssignale gesetzt, dann Collection aktiviert und erst nach Erfolg `effective=true`. Ads werden separat nur bei `CanRequestAds()==true` initialisiert. Crash bleibt ausgeschlossen; IAP bleibt bis sichtbarer Aktion/Recovery und Readiness aus.
+**Re-enable:** Ads werden nach aktuellem UMP-Update/Form separat und nur bei `CanRequestAds()==true` initialisiert. Analytics-Re-enable benötigt zusätzlich einen durch physische Android-/iOS-Belege freigegebenen prä-SDK-Fence, einen neuen revisionsaktuellen Entscheid, `ENABLE_PENDING`, erfolgreich angewandte Privacy-/Personalisierungssignale, Native Enable und danach `ENABLED_CONFIRMED`. Da dieser Fence für die gepinnte Integration nicht belegt ist, bleibt der Productionpfad derzeit aus. Crash bleibt ausgeschlossen; IAP bleibt bis sichtbarer Aktion/Recovery und Readiness aus.
 
-**Restart:** Jeder Start beginnt effective false und synchronisiert gegen den lokalen Record. Ein persistierter Provideroverride ist niemals selbst die Entscheidwahrheit. **Offline:** kompatibles Analytics-Opt-in kann nach NativeApply gelten; Ads bleiben ohne aktuelles UMP-Update aus. Invalidierung oder unbekannter Zustand bleibt vollständig fail-closed.
+**Restart:** Jeder Start beginnt vor optionaler SDK-Erfassung mit Native deny und Application effective false. `REVOKE_PENDING` wird bis `REVOKED_CONFIRMED` reconciled. Ein persistierter Provideroverride ist niemals selbst die Entscheidwahrheit. **Offline:** Nur `ENABLED_CONFIRMED` für exakt dieselbe Policy-/SDK-Revision dürfte nach einem später belegten Fence weitergelten; Ads bleiben ohne aktuelles UMP-Update aus. Invalidierung, Direktupgrade ohne Fence und unbekannter Zustand bleiben vollständig fail-closed.
 
 ## 10. Reproduzierbare Privacy-Gerätetests
 
-Vor RC-Promotion werden auf **jeder Plattform** vier getrennte Szenarien auf physischen Geräten oder einer freigegebenen physischen Device-Farm ausgeführt. Emulator und Simulator erfüllen das Gate niemals allein:
+Vor RC-Promotion werden auf **jeder Plattform** getrennte Szenarien auf physischen Geräten oder einer freigegebenen physischen Device-Farm ausgeführt. Emulator und Simulator erfüllen das Gate niemals allein:
 
 Der Testvertrag lautet:
 
 1. **Fresh Install:** Daten löschen; vor Entscheidung nur UMP-Flow, keine Ads-/Analytics-/Crash-/IAP-Kommunikation.
-2. **Upgrade prior active:** Testvorversion mit Analytics-Override `true`, danach Reset-only-RC installieren; vor Re-Consent kein Analyticskontakt, Runtimewert wird `false`.
-3. **Revocation:** Analytics und Ads gezielt aktivieren, widerrufen und noch im selben Prozess sowie nach Restart keine weiteren Requests beobachten.
-4. **Re-enable:** Re-enable-fähigen späteren Build nach validem aktuellen Entscheid prüfen; nur freigegebene Analytics-/Adsachsen senden, Crash bleibt abwesend.
+2. **Direktes Legacy-Upgrade:** Jede noch unterstützte Testvorversion mit Analytics-Override `true` direkt auf den RC aktualisieren; vor optionaler SDK-Erfassung muss der Deny-Fence wirken.
+3. **Reset-only installiert, nie gestartet:** Den Zwischenbuild installieren, nicht ausführen, direkt auf den RC aktualisieren und denselben Deny-Nachweis erbringen.
+4. **Widerruf mit Crashinjektion:** Nach jedem persistenten Schritt crashen; Restart muss deny erzwingen und `REVOKE_PENDING` deterministisch zu `REVOKED_CONFIRMED` reconciliieren.
+5. **Re-enable:** Nur für einen späteren Build mit zuvor abgenommenem prä-SDK-Fence; ohne diesen Nachweis muss der Pfad fail-closed gesperrt bleiben.
+6. **Offline/Restart:** bestätigte und inkompatible Revisionen, pending Zustände und Netzverlust getrennt prüfen.
 
 Jedes Szenario läuft online und, wo sinnvoll, offline. DNS-/SNI-Kontakt zählt als Traffic. IAP-Kommunikation ist nur in einem getrennten Readiness-/Kauf-/Restoreflow zulässig.
 
@@ -187,14 +188,14 @@ Application sendet semantische Cues. Audio/Haptik geben kein Richtigkeitsurteil 
 
 Ein anderer Anbieter implementiert dieselben Contracttests. Ein Wechsel benötigt wegen Datenfluss, SDK und Releasefähigkeit ein ersetzendes ADR. Zwei aktive Anbieter für dieselbe Fähigkeit sind ohne Migrationsplan verboten.
 
-Pflichtfälle sind Consent erforderlich/nicht erforderlich/abgelehnt/Fehler/Widerruf, Recordrevision, desired/effective-Trennung, native Default-Off-/Crash-Exclusion-Scan, Fresh-Install-/Upgrade-/Widerruf-/Re-enable-Capture, Appstart offline, Ad No Fill, Rewardreservation, Parallelität, Spätcallback, Crash an jeder Claimphase, Kaufbeleg gültig/ungültig/unklar, Crash an jeder IAP-Phase, Google Acknowledge, Apple Finish, Retry, Restore, widersprüchliche Storeantwort, Revocation, Hauptthread-Marshalling und deaktivierte Provider.
+Pflichtfälle sind Consent erforderlich/nicht erforderlich/abgelehnt/Fehler/Widerruf, Recordrevision, alle sechs `nativeSyncState`-Werte, desired/effective-Trennung, prä-SDK-Deny-Fence, direkte Legacy-Upgrades, übersprungener Zwischenbuild, Crash an jedem Widerrufsschritt, native Default-Off-/Crash-Exclusion-Scan, Fresh-Install-/Upgrade-/Widerruf-/Re-enable-Capture, Appstart offline, Ad No Fill, Rewardreservation, Parallelität, Spätcallback, Crash an jeder Claimphase, Kaufbeleg gültig/ungültig/unklar, Crash an jeder IAP-Phase, Google Acknowledge, Apple Finish, Retry, Restore, widersprüchliche Storeantwort, Revocation, Hauptthread-Marshalling und deaktivierte Provider.
 
 ## Referenzen
 
 [1]: https://developers.google.com/admob/unity/privacy "Set up UMP SDK for Unity"
 [2]: https://developer.apple.com/documentation/storekit/restoring-purchased-products "Restoring purchased products"
 [3]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
-[4]: ./PERSISTENCE.md "Persistence v0.3"
+[4]: ./PERSISTENCE.md "Persistence v0.4"
 [5]: https://docs.unity.com/en-us/iap/privacy-and-consent/overview "Unity IAP 5.4 Privacy overview"
 [6]: https://firebase.google.com/docs/analytics/android/configure-data-collection "Firebase Analytics Android data collection"
 [7]: https://firebase.google.com/docs/analytics/ios/configure-data-collection "Firebase Analytics Apple data collection"
@@ -202,3 +203,4 @@ Pflichtfälle sind Consent erforderlich/nicht erforderlich/abgelehnt/Fehler/Wide
 [9]: https://firebase.google.com/docs/crashlytics/ios/customize-crash-reports "Firebase Crashlytics Apple opt-in reporting"
 [10]: https://firebase.google.com/support/release-notes/unity "Firebase Unity SDK 13.16.0 Release Notes"
 [11]: https://github.com/googleads/googleads-mobile-unity/releases/tag/v11.5.0 "Google Mobile Ads Unity Plugin 11.5.0"
+[12]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"

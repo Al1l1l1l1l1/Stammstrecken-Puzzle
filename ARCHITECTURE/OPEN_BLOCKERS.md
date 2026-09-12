@@ -1,8 +1,8 @@
-# Offene Blocker nach Architecture v0.3
+# Offene Blocker nach Architecture v0.4
 
 **Stand:** 2026-09-12
 
-Architecture v0.3 ist als technische Grundlage vollständig. Die folgenden fehlenden Produktentscheidungen werden nicht durch Architekturannahmen ersetzt. Jeder betroffene Teilbereich bleibt **fail-closed**, bis die dokumentierte Unblock-Bedingung erfüllt ist. Lokaler Kampagnen-Rätselkern, Grundfortschritt, Save, UI-Scaffold und nicht betroffene Architekturmodule können unabhängig davon umgesetzt werden.
+Architecture v0.4 ist als technische Grundlage vollständig. Die folgenden fehlenden Produktentscheidungen werden nicht durch Architekturannahmen ersetzt. Jeder betroffene Teilbereich bleibt **fail-closed**, bis die dokumentierte Unblock-Bedingung erfüllt ist. Lokaler Kampagnen-Rätselkern, Grundfortschritt, Save, UI-Scaffold und nicht betroffene Architekturmodule können unabhängig davon umgesetzt werden.
 
 ## BLOCKER-PROD-001 – Persistenter Hinweisanspruch
 
@@ -42,7 +42,7 @@ Architecture v0.3 ist als technische Grundlage vollständig. Die folgenden fehle
 
 ## Bekannte offene Produktpunkte ohne aktuellen Architekturblock
 
-| Punkt | Warum kein Architecture-v0.3-Blocker |
+| Punkt | Warum kein Architecture-v0.4-Blocker |
 |---|---|
 | Finaler Werbefrei-Preis | Produkt-ID und Adapter sind vorbereitet; Preis blockiert erst Storekonfiguration/öffentlichen Release. |
 | Finale Zwei-/Drei-Sterne-Zeiten | Levelschema erlaubt ausdrücklich `null`; korrekte Lösung und Grundfortschritt funktionieren mit einem Stern. |

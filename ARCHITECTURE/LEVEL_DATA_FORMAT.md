@@ -1,8 +1,8 @@
-# Level Data Format v0.3
+# Level Data Format v0.4
 
 ## 1. Vertrag und Geltung
 
-Neue Authoringdaten verwenden UTF-8-JSON nach [`level-v2.schema.json`](./schemas/level-v2.schema.json). [`level-v2.example.json`](./examples/level-v2.example.json) und [`level-v2.single-cell.example.json`](./examples/level-v2.single-cell.example.json) sind reine **FIXTURE_ONLY**-Verträge und keine freigegebenen Season-1-Level. `level-v1` bleibt unverändert als Legacyreader- und Migrationsquelle erhalten.
+Neue Authoringdaten verwenden UTF-8-JSON nach [`level-v2.schema.json`](./schemas/level-v2.schema.json). [`level-v2.example.json`](./examples/level-v2.example.json) und [`level-v2.single-cell.example.json`](./examples/level-v2.single-cell.example.json) sind reine **FIXTURE_ONLY**-Verträge und keine freigegebenen Season-1-Level. `level-v1` bleibt unverändert als Legacyreader- und Migrationsquelle erhalten. Level v2 bewahrt die in v1 gültigen Fokuswerte `OCCUPANCY`, `EXCLUSION`, `ENDPOINT_GEOMETRY`, `CHAIN`, `DENSITY` und `COMBINATION`; die neueren Werte sind additive Authoringbegriffe und erzwingen keine redaktionelle Umdeutung alter Level.
 
 JSON Schema prüft Struktur, Typen, Enums und lokale Grenzen. Der semantische Validator prüft Cross-Field-Regeln, Kampagnenhierarchie, Zeitordnung, Pfadgeometrie, Hashprofile, Proofbindung, Eindeutigkeit und Releasehistorie. Erst danach darf ein Level in einen Laufzeitkatalog gelangen.
 
@@ -74,7 +74,7 @@ Jeder Hash wird als `{profile, sha256}` gespeichert. Ein unbekanntes Profil ist 
 
 Gleicher öffentlicher Input und gleiche Solverversion müssen bytegleichen Proof erzeugen. Ein neuer Solververtrag benötigt eine neue `solverVersion`; er darf einen neuen Proof erzeugen, ohne `puzzleId` oder semantischen Puzzlehash zu ändern. Ein neues Proofformat benötigt `proofFormatVersion + 1` und einen expliziten Migrator/Reader.
 
-Der Architecture-v0.3-Validator rehasht und bindet Fixtures und zählt ihre kleinen Lösungsmengen unabhängig nach. Die echte Proofregeneration durch den späteren C#-Solver ist **REQUIRED_LATER/NOT_EXECUTED**.
+Der Architecture-v0.4-Validator rehasht und bindet Fixtures und zählt ihre kleinen Lösungsmengen unabhängig nach. Die echte Proofregeneration durch den späteren C#-Solver ist **REQUIRED_LATER/NOT_EXECUTED**.
 
 ## 8. Semantische Validierung
 
@@ -95,9 +95,9 @@ Ein `PRODUCT_APPROVED`-Season-1-Katalog muss exakt 5 Abschnitte × 4 Routen × 1
 
 ## 9. Migration und Fortschritt
 
-`level-v1 -> level-v2` läuft auf Kopie, ist deterministisch und idempotent. `id` wird zu `puzzleId`; alle öffentlichen Eingaben, Lösung, Texte, Completion- und Produktionsfelder bleiben erhalten. Die neue semantische Projektion und der Proof werden erzeugt, ohne `contentRevision` allein wegen des Formats zu erhöhen. Fehlende nicht neutral ableitbare Felder führen zu `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`.
+`level-v1 -> level-v2` läuft auf Kopie, ist deterministisch und idempotent. `id` wird zu `puzzleId`; alle öffentlichen Eingaben, Lösung, Texte, Completion- und Produktionsfelder bleiben erhalten. Die neue semantische Projektion und der Proof werden erzeugt, ohne `contentRevision` allein wegen des Formats zu erhöhen. Jeder v1-Positivfixture wird programmatisch migriert; zusätzlich setzt der Validator nacheinander alle sechs historischen Fokuswerte ein und verlangt, dass sie im v2-Schema unverändert gültig bleiben. Fehlende nicht neutral ableitbare Felder führen zu `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`.
 
-Progress und Drafts binden an `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}`. Eine Save-Migration verwendet die historische Lockbindung des v1-Legacyhashes. Bei eindeutiger neutraler Zuordnung bleiben Erstabschluss, höchste Sterne, terminale Rewards, zulässige Bestzeit, direkte Lösung und Resume erhalten. Ohne eindeutige Bindung bleibt die Quelle unangetastet und `SAVE_LEVEL_IDENTITY_UNRESOLVED` wird gemeldet.
+Progress und Drafts binden an `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}`. Das Migrationsgolden nennt repositoryrelative Pfade und vollständige JCS-Dokumenthashes der tatsächlichen v1-Quelle, des v2-Ziels und des Release-Locks. Der Validator lädt diese drei Dateien, prüft die Hashes, die semantisch neutrale Feldabbildung und den exakten Legacy-/Zielhasheintrag im Lock. Bei eindeutiger neutraler Zuordnung bleiben Erstabschluss, höchste Sterne, terminale Rewards, zulässige Bestzeit, direkte Lösung und Resume erhalten. Ohne eindeutige Bindung bleibt die Quelle unangetastet und `SAVE_LEVEL_IDENTITY_UNRESOLVED` wird gemeldet.
 
 ## 10. Append-only Release-Lock
 

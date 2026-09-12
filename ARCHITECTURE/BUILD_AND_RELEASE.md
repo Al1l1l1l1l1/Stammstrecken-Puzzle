@@ -1,4 +1,4 @@
-# Build and Release v0.3
+# Build and Release v0.4
 
 ## 1. Ziel
 
@@ -31,7 +31,7 @@ Ein Releasebuild enthält `build-info.json` mit Version, Buildnummer, Commit, Ta
 
 ## 4. Branch- und Freigabevertrag
 
-`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.3 wird im Finalkorrekturauftrag `WP-003` auf `arch/architecture-v0.1` dokumentiert und weder gemergt noch in einem Pull Request automatisch weiterverarbeitet.
+`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.4 wird im Abschlusskorrekturauftrag `WP-004` auf `arch/architecture-v0.1` dokumentiert und weder automatisch gemergt noch ohne getrennten Freigabereview in v1.0 umbenannt.
 
 Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein Artefakt lokal „repariert“. Eine Änderung erzeugt einen neuen Commit und neuen Kandidaten. Production-Environment und öffentliche Storepromotion verwenden GitHub-Environment-Protection und manuellen Approval.
 
@@ -150,11 +150,22 @@ Artefakte erhalten eine dokumentierte Aufbewahrungsfrist. Symbole und Release-Ma
 | Betrieb | Dashboards, Alarmwege, Rollout-/Stopkriterien, Support-/Recoverytext vorhanden. |
 | Security | Secrets, Permissions, SDK-Lizenzen/Signaturen und Dependencyrisiken geprüft. |
 
-Architecture v0.3 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
+Architecture v0.4 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
 
 ## 12. Rollout und Rollback
 
-Öffentliche Releases starten gestuft. Vor jeder Erhöhung werden Crash-free Sessions, Save-Recovery, Reward-/Purchasefehler, Start-/Completionfunnel und Storefeedback geprüft. Harte Stoppsignale sind Saveverlust, falsche Währung/Entitlements, mehrdeutiger Content, nicht symbolisierte Crashspitze oder Consent-/Datenschutzverletzung.
+Öffentliche Releases starten gestuft. Das primäre technische Rolloutsignal ist `store-crash-rate-v1` aus [`rollout-metric-v1.json`](../tools/architecture-validation/fixtures/rollout-metric-v1.json). Andere Signale ergänzen diese Entscheidung, ersetzen sie aber nicht.
+
+| Plattform | Quelle und exakte Releasepopulation | Kennzahl | Verfügbarkeit |
+|---|---|---|---|
+| Android | Google Play Developer Reporting API `vitals.crashrate`, nach exakt dem `versionCode` des Storebuilds; opt-in Nutzer, aktive Nutzung, Play-installierte zertifizierte Geräte. | `userPerceivedCrashRate`; Normalisierung über `distinctUsers`. | mindestens 100 `distinctUsers`, `freshnessInfo` vorhanden, Daten höchstens 48 Stunden alt. |
+| iOS | App Store Connect Analytics `App Crashes` plus `App Sessions`, nach exakt der `App Version` des Storebuilds; opt-in App-Store-Nutzer. | `Crashes / Sessions`; Session bedeutet mindestens zwei Sekunden Nutzung. | mindestens 100 Sessions und fünf aktive Geräte; tägliche Daten höchstens 120 Stunden alt, weil Apple Vollständigkeit innerhalb fünf Tagen angibt. |
+
+Für beide Plattformen gilt: unter 0,5 % nach vollständigem Beobachtungsfenster darf fortgesetzt werden; ab 0,5 % und unter 1,0 % wird pausiert und untersucht; ab 1,0 % wird gestoppt und, soweit der Store dies erlaubt, auf den letzten freigegebenen Stand zurückgesteuert. Fehlende, stale, unvollständige, zu kleine oder nicht exakt releasegefilterte Daten ergeben `PAUSE_NO_ADVANCE`, niemals Erfolg.
+
+Android verwendet die Stufen 1 %, 5 %, 20 %, 50 %, 100 % mit Mindestbeobachtungen 24/24/48/48/72 Stunden. Apple folgt der offiziellen Phased-Release-Folge 1 %, 2 %, 5 %, 10 %, 20 %, 50 %, 100 %; die ersten sechs Stufen beobachten mindestens je 24 Stunden, 100 % mindestens 120 Stunden. Manuelle App-Store-Downloads liegen außerhalb der Apple-Automatic-Update-Stichprobe und werden im Review vermerkt. Jedes Gate archiviert Quelle, Releaseidentität, Storebuildreferenz, Stufe, UTC-Fenster, Beobachtungszeit, Zähler, Nenner, Rate, Freshness, Entscheidung und Reviewer.
+
+Zusätzliche harte Stoppsignale sind Saveverlust, falsche Währung/Entitlements, mehrdeutiger Content, neue lokale Fatalcodes oder Consent-/Datenschutzverletzung.
 
 Mobile Stores erlauben kein echtes Binärrollback für bereits installierte Versionen. Reaktion:
 
@@ -181,11 +192,12 @@ Ein Kandidat ist promotable, wenn:
 4. Saves einschließlich Upgrade vom ältesten unterstützten Stand funktionieren;
 5. Android/iOS aus internen Storekanälen auf den vorgeschriebenen **physischen** Referenzgeräten oder einer freigegebenen physischen Device-Farm installiert und kerngetestet wurden; Emulator-/Simulatorergebnisse allein gelten nicht;
 6. Ads/Reward/IAP/Restore/Consent mit Sandboxfällen bestanden sind;
-7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind und Fresh Install, Upgrade mit früher aktivem Analytics-Override, Widerruf sowie Re-enable auf beiden physischen Plattformen keinen unerlaubten Traffic zeigen;
+7. Privacy-/Permission-/Entitlement-/SDK-Diffs freigegeben sind; Fresh Install, direkte Legacy-Upgrades, installierte aber nie gestartete Zwischenbuilds, Widerrufs-Crashpunkte, Restart/Offline sowie ein etwaiger Re-enable-Pfad zeigen auf beiden physischen Plattformen keinen unerlaubten Traffic; ohne belegten prä-SDK-Fence bleibt Analytics aus Production ausgeschlossen;
 8. Symbole archiviert und Testcrash lokal beziehungsweise über Plattformlogs symbolisiert ist;
 9. SBOM, Lizenzen und Artefakthashes archiviert sind;
 10. Promotion-Receipt und RC-Manifest in Commit, Plattform, Buildnummer, Application-ID, Signing-, Toolchain-, Paket-, Content-, Productionkonfigurations- und Artefakthash exakt übereinstimmen;
-11. öffentlicher Rollout separat genehmigt ist.
+11. `store-crash-rate-v1`, Storezugänge, Dashboards/Reporting-API und Archivziel konfiguriert sind;
+12. öffentlicher Rollout separat genehmigt ist.
 
 ## Referenzen
 
@@ -194,5 +206,10 @@ Ein Kandidat ist promotable, wenn:
 [3]: https://developer.apple.com/documentation/bundleresources/privacy-manifest-files "Privacy manifest files"
 [4]: ../DECISIONS/ADR-010-build-release-und-observability.md "ADR-010 – GitHub Actions, Store-Artefakte und Observability"
 [5]: ../DECISIONS/ADR-012-mobile-plattformbaselines.md "ADR-012 – Mobile Plattformbaselines für Android und iOS"
-[6]: ../DECISIONS/ADR-022-validator-scope-und-belegkategorien.md "ADR-022 – Validator-Scope und Belegkategorien"
+[6]: ../DECISIONS/ADR-026-validator-evidenz-und-scope-vertrauensanker.md "ADR-026 – Validator-Evidenz und Scope-Vertrauensanker"
 [7]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+[8]: https://developers.google.com/play/developer/reporting/reference/rest/v1beta1/vitals.crashrate "Google Play Developer Reporting API – CrashRateMetricSet"
+[9]: https://support.google.com/googleplay/android-developer/answer/9844486?hl=en "Android vitals data and availability"
+[10]: https://developer.apple.com/help/app-store-connect-analytics/reference/metrics-definitions/ "App Store Connect Analytics metric definitions"
+[11]: https://developer.apple.com/documentation/analytics-reports/app-crashes "Apple App Crashes report"
+[12]: https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/ "Apple phased release schedule"

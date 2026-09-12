@@ -1,0 +1,65 @@
+{
+  "contractVersion": 1,
+  "metricId": "store-crash-rate-v1",
+  "thresholds": {
+    "warnExclusive": 0.005,
+    "haltInclusive": 0.01
+  },
+  "platforms": [
+    {
+      "platform": "ANDROID",
+      "source": "Google Play Developer Reporting API vitals.crashrate",
+      "metric": "userPerceivedCrashRate",
+      "population": "distinct opted-in users who actively used the exact versionCode in the aggregation period; Play-installed certified devices only",
+      "releaseIdentityDimension": "versionCode",
+      "aggregation": "DAILY_AMERICA_LOS_ANGELES",
+      "availability": {
+        "minimumDistinctUsers": 100,
+        "freshnessFieldRequired": true,
+        "maximumAgeHours": 48,
+        "insufficientDataAction": "PAUSE_NO_ADVANCE"
+      },
+      "stages": [
+        {"percentage": 1, "minimumObservationHours": 24},
+        {"percentage": 5, "minimumObservationHours": 24},
+        {"percentage": 20, "minimumObservationHours": 48},
+        {"percentage": 50, "minimumObservationHours": 48},
+        {"percentage": 100, "minimumObservationHours": 72}
+      ]
+    },
+    {
+      "platform": "IOS",
+      "source": "App Store Connect Analytics App Crashes plus App Sessions reports",
+      "metric": "crashes divided by sessions",
+      "population": "opted-in App Store users for the exact App Version; sessions are uses of at least two seconds",
+      "releaseIdentityDimension": "appVersion",
+      "aggregation": "DAILY",
+      "availability": {
+        "minimumSessions": 100,
+        "minimumActiveDevices": 5,
+        "maximumAgeHours": 120,
+        "insufficientDataAction": "PAUSE_NO_ADVANCE"
+      },
+      "stages": [
+        {"percentage": 1, "minimumObservationHours": 24},
+        {"percentage": 2, "minimumObservationHours": 24},
+        {"percentage": 5, "minimumObservationHours": 24},
+        {"percentage": 10, "minimumObservationHours": 24},
+        {"percentage": 20, "minimumObservationHours": 24},
+        {"percentage": 50, "minimumObservationHours": 24},
+        {"percentage": 100, "minimumObservationHours": 120}
+      ]
+    }
+  ],
+  "decisions": [
+    {"condition": "data unavailable, below minimum population, stale, incomplete, or not exact-release-filtered", "action": "PAUSE_NO_ADVANCE"},
+    {"condition": "crashRate < 0.005 after complete observation window", "action": "ADVANCE_OR_HOLD_AT_100"},
+    {"condition": "0.005 <= crashRate < 0.01", "action": "PAUSE_AND_INVESTIGATE"},
+    {"condition": "crashRate >= 0.01", "action": "HALT_AND_ROLL_BACK_IF_AVAILABLE"}
+  ],
+  "evidence": {
+    "requiredFields": ["platform", "releaseIdentity", "storeBuildReference", "stagePercentage", "windowStartUtc", "windowEndUtc", "observedAtUtc", "source", "numerator", "denominator", "crashRate", "freshness", "decision", "reviewer"],
+    "retention": "release evidence archive",
+    "crossPlatformSubstitutionAllowed": false
+  }
+}
