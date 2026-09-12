@@ -72,7 +72,7 @@ Ein typisierter Reducer prüft Reserve, Crash, deterministische Regeneration, Pr
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt die Open-Lifecycle-, Terminalprädikat- und Claimfortsetzungsanteile aus [ADR-019](./ADR-019-endless-watermark-und-save-v2.md). UInt64-Watermark, fehlende terminale Nutzungsgrenze und `endless-v1`-Identität bleiben angenommen. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt die Open-Lifecycle-, Terminalprädikat- und Claimfortsetzungsanteile aus [ADR-019](./ADR-019-endless-watermark-und-save-v2.md). UInt64-Watermark, fehlende terminale Nutzungsgrenze und `endless-v1`-Identität bleiben angenommen. Der lokale Nichtbeanspruchungs- und Providerstartanteil wird durch [ADR-027](./ADR-027-endless-no-reward-terminalpfad.md) präzisiert und teilweise ersetzt; Rewardcommit und providerbestätigtes `CLOSED_NO_REWARD` bleiben gültig.
 
 ## Referenzen
 

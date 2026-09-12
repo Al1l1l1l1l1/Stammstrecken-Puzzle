@@ -1,4 +1,4 @@
-# Content Catalogs v0.4
+# Content Catalogs v0.5
 
 ## 1. Ziel und Geltung
 
@@ -99,7 +99,11 @@ Jedes `cosmetics-v2`-Item besitzt exakt einen Erwerbsmodus: `DEFAULT`, `PATIENCE
 
 Application expandiert Subjects ausschließlich zu Campaign-Leveln und prüft deren First-Clear-Records. Sterne, Zeit, Hinweise, Geduldspunkte, Analytics und Wanduhr sind keine Eligibility-Inputs. Damit lassen sich bestätigte Routen-/Abschnitts-/Seasonmeilensteine ausdrücken, ohne noch nicht definierte Meisterschaftsmetriken zu erfinden.
 
-`ClaimMilestoneCosmetic(commandId, itemId, expectedSaveGeneration, expectedCatalogHash)` verlangt einen runtime-zulässigen Katalog, ein `ACTIVE`-Item und positive Eligibility. Die revisionsstabile Claim-ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Eligibility expandiert jeden Campaign-Subject deterministisch bis zu den referenzierten Puzzle-IDs und verlangt für jedes einen First-Clear-Record. Die sortierte Projektion aus Katalog, Item, Eligibilityvertrag, Subject- und Puzzle-IDs wird gehasht. `RESERVED` und nachfolgend `COMMITTED` werden crashsicher über denselben Claim weitergeführt. Ein atomarer Savecommit schreibt Claimterminal plus Inventory-Ownership mit `grantKind: MILESTONE_CLAIM`, Katalogrevision/-hash, Eligibility-Version und Eligibility-Projektionshash. Der Ledger bleibt unverändert. Gleiche ID/Projektion ist `ALREADY_OWNED`; Abweichung ist `COS-MILESTONE-CLAIM-COLLISION`.
+`ClaimMilestoneCosmetic(commandId, itemId, expectedSaveGeneration, expectedCatalogHash)` verlangt einen runtime-zulässigen Katalog, ein `ACTIVE`-Item und positive Eligibility. Die revisionsstabile Claim-ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Eligibility expandiert jeden Campaign-Subject deterministisch bis zu den referenzierten Puzzle-IDs und verlangt für jedes einen First-Clear-Record. Die sortierte Projektion aus Katalog-ID/-revision/-hash, Item-ID/Erwerbsart, Eligibilityvertrag, Subject- und Puzzle-IDs sowie den tatsächlich validierten First-Clear-Puzzle-IDs wird gehasht. Damit ist der persistierte Eligibility-Hash zugleich an den geprüften Fortschrittsnachweis gebunden.
+
+`RESERVE_CLAIM` persistiert nach dieser Prüfung einen strukturierten Record mit Claim-ID, eindeutiger `operationId`, fixer `claimGeneration`, `itemId`, `catalogId`, `catalogRevision`, `catalogHashSha256`, `acquisition: MILESTONE_GRANT`, `eligibilityContractVersion`, `eligibilityProjectionHashSha256` und `claimState: RESERVED`. Erst ein erfolgreicher Savecommit macht die Reservation gültig.
+
+`COMMIT_CLAIM` lädt genau diesen Record und prüft alle Identitäten sowie die erneut hergeleitete Eligibility-Projektion. Ein flüchtiges `eligible=true`, ein nur im Command mitgeführter Record oder ein nachträglich eingesetztes `RESERVED` genügt nicht. Fehlende Reservation, andere Cosmetic-ID, andere Katalogrevision/-hash, andere Erwerbsart, andere Claim-/Operation-/Generations-ID oder nicht mehr passende Eligibility scheitern. Der anschließende atomare Savecommit entfernt die Reservation und schreibt Inventory-Ownership mit `grantKind: MILESTONE_CLAIM`, `claimState: COMMITTED` und derselben Provenienz. Der Ledger bleibt unverändert. Gleiche ID/Projektion ist `ALREADY_OWNED`; Abweichung ist `COS-MILESTONE-CLAIM-COLLISION`.
 
 ## 9. Katalogrevision, Ownership und Migration
 
@@ -117,7 +121,7 @@ Parser begrenzen Dateigröße, Verschachtelung, Arraylängen und Stringgrößen 
 
 ## 11. Tests und Release-Gates
 
-Pflichtfälle umfassen Schemafehler, Duplicate IDs, falsche Reihenfolge, Unlock-Selbstreferenz, Unlockzyklus, unerreichbares Subject, gebrochene Puzzle-/Completion-/Asset-/Localization-Referenzen, `DRAFT`-Schema-Positivfall plus Runtime-Ablehnung, nicht freigegebenen Status, Hashkonflikt, Preisabweichung, unzureichenden Saldo, Duplicate Purchase, Already Owned, parallele Commands, Crash vor/nach Commit, Hidden/Tombstone, erlaubte/verbotene Statustransitionen, Katalogrevision und Save-Migration. Für Meilensteine kommen unbekannte Eligibility, gemischte Erwerbsfelder, fehlende Campaignreferenz, First-Clear-Negativfall, atomarer Grant ohne Ledgerdelta, Reserved-Crash-Resume, Replay, Kollisions- und Revisionsmutation hinzu.
+Pflichtfälle umfassen Schemafehler, Duplicate IDs, falsche Reihenfolge, Unlock-Selbstreferenz, Unlockzyklus, unerreichbares Subject, gebrochene Puzzle-/Completion-/Asset-/Localization-Referenzen, `DRAFT`-Schema-Positivfall plus Runtime-Ablehnung, nicht freigegebenen Status, Hashkonflikt, Preisabweichung, unzureichenden Saldo, Duplicate Purchase, Already Owned, parallele Commands, Crash vor/nach Commit, Hidden/Tombstone, erlaubte/verbotene Statustransitionen, Katalogrevision und Save-Migration. Für Meilensteine kommen unbekannte Eligibility, gemischte Erwerbsfelder, fehlende Campaignreferenz, First-Clear-Negativfall, persistierte Reservation, atomarer Grant ohne Ledgerdelta, Reserved-Crash-Resume, Commit ohne Reservation, gefälschte Reservation, Item-/Katalog-/Eligibility-Mismatch, Replay, Kollisions- und Revisionsmutation hinzu.
 
 Der eingecheckte Architekturvalidator prüft v1-Legacy- und v2-Positivfixtures gegen ihre Schemata sowie zentrale Cross-References. Der Produktionsvalidator im späteren Content-Work-Package verwendet dieselbe Reihenfolge und Diagnosecodes.
 
@@ -125,6 +129,7 @@ Der eingecheckte Architekturvalidator prüft v1-Legacy- und v2-Positivfixtures g
 
 [1]: ../DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md "ADR-016 – Katalogverträge und Endless-Identität"
 [2]: ./CONTENT_PIPELINE.md "Content Pipeline v0.3"
-[3]: ./PERSISTENCE.md "Persistence v0.4"
+[3]: ./PERSISTENCE.md "Persistence v0.5"
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/13_Oekonomie_und_Monetarisierungs_Balancing.md "Stammstrecken-Puzzle – Ökonomie- und Monetarisierungs-Balancing"
 [5]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+[6]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"

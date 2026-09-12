@@ -4,9 +4,9 @@ Diese Warteschlange enthält bestätigte große Produktionsblöcke, den ausdrüc
 
 | Priorität | Produktionsblock | Status | Dokumentierter Inhalt |
 |---:|---|---|---|
-| 1 | Technische Produktionsspezifikation und Abschlusskorrekturen | **Abgeschlossen (`WP-001` bis `WP-004`)** | **Architecture v0.4** mit prä-SDK-Privacy-Fence, vollständigem Endless-Open-Lifecycle, wahrheitsgemäßem Validator, kompatiblen Schemata, Scope-Vertrauensanker, korrekter ADR-Historie und konkretem Store-Rolloutvertrag. Drei Produktfolgeblocker bleiben fail-closed. |
-| 2 | Unabhängiger Architecture-v1.0-Freigabereview | **Nicht begonnen** | Enger Delta-Review von Architecture v0.4 gegen Produktquellen, aktuelle ADRs, geschlossene Sol-/Astra-/V03-Findings und lokale Beleggrenzen. v1.0 benötigt ein eigenes freigegebenes Work Package und wird in WP-004 nicht ausgerufen. |
-| 3 | CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding** | GitHub-Actions-Workflow, autorisierte Workflowberechtigungen, gepinnte Umgebung, Architecture Validator, Self-/Negativtests, commitgebundener PASS und geschützter Pflichtcheck vor Merge. Die fehlende Workflowberechtigung ist non-blocking für v0.4, aber dieses WP muss vor jedem produktiven Coding-WP abgeschlossen sein. |
+| 1 | Technische Produktionsspezifikation und Abschlusskorrekturen | **Abgeschlossen (`WP-001` bis `WP-005`)** | **Architecture v0.5** mit providerfreiem Endless-Skip, bindender Cosmetics-Reservation, vollständigem Rollout-Evidenzreducer und gemeinsamem historischem WP-/Manifest-Trust-Anchor. Drei Produktfolgeblocker bleiben fail-closed. |
+| 2 | Unabhängiger Architecture-v1.0-Freigabereview | **Nicht begonnen** | Enger Delta-Review von Architecture v0.5 gegen Produktquellen, aktuelle ADRs, geschlossene Sol-/Astra-/V03-/HIGH-Findings und lokale Beleggrenzen. v1.0 benötigt ein eigenes freigegebenes Work Package und wird in WP-005 nicht ausgerufen. |
+| 3 | CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding** | GitHub-Actions-Workflow, autorisierte Workflowberechtigungen, gepinnte Umgebung, Architecture Validator, Self-/Negativtests, commitgebundener PASS und geschützter Pflichtcheck vor Merge. Die fehlende Workflowberechtigung ist non-blocking für v0.5, aber dieses WP muss vor jedem produktiven Coding-WP abgeschlossen sein. |
 | 4 | Puzzle-Solver und Levelauthoring | Nicht begonnen; durch CI-Gate blockiert | Implementierbarer Solver, Eindeutigkeitsprüfung, Generatorvalidierung, Level-/Katalogdaten, Editor-Workflow und automatisierte Tests. |
 | 5 | 240 konkrete Rätselinstanzen | Nicht begonnen | Pro Meldung Lösung, Randzahlen, A/B-Positionen, Solver-Nachweis, Einstiegsschluss, Qualitätsnotiz, Zeitklasse und Abschlussinszenierung. |
 | 6 | Finale Zeitwerte | Nicht begonnen | Konkrete Zwei- und Drei-Sterne-Grenzen für gebaute und geprüfte Rätsel. |
@@ -29,7 +29,7 @@ Diese drei Punkte blockieren weder den Architecture-v1.0-Freigabereview noch ein
 
 ## Bekannte Reihenfolgeabhängigkeit
 
-Architecture v0.4 ist mit `WP-001` bis `WP-004` abgeschlossen. Als nächster Architekturschritt ist der enge unabhängige v1.0-Freigabereview zulässig. **Vor jedem ersten produktiven Coding-Work-Package muss das separate CI-Setup-Work-Package vollständig abgeschlossen sein.** Kein Produktionsblock beginnt ohne eigenes freigegebenes `WP-###`. Das technische Puzzle-Fundament muss vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden.
+Architecture v0.5 ist mit `WP-001` bis `WP-005` abgeschlossen. Als nächster Architekturschritt ist der enge unabhängige v1.0-Freigabereview zulässig. **Vor jedem ersten produktiven Coding-Work-Package muss das separate CI-Setup-Work-Package vollständig abgeschlossen sein.** Kein Produktionsblock beginnt ohne eigenes freigegebenes `WP-###`. Das technische Puzzle-Fundament muss vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden.
 
 ## Pflege der Warteschlange
 
@@ -40,6 +40,6 @@ Ein Eintrag wechselt erst dann von „Nicht begonnen“ zu einem anderen Status,
 | Datei | Relevanz für diese Warteschlange |
 |---|---|
 | `CURRENT_STATE.md` | Aktuell gültiger Architektur-, CI-Gate- und Übergabestand. |
-| `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v0.4 und nächster Review-Schritt. |
-| `../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md` | Sieben V03-Restbefunde und Abschlussnachweise. |
+| `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v0.5 und nächster Review-Schritt. |
+| `../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md` | Vier HIGH-Korrekturen, Trust-Anchor und Abschlussnachweise. |
 | `../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigte große Produktionsblöcke. |

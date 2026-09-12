@@ -4,7 +4,7 @@
 
 `WP-005`
 
-**Bearbeitungsstatus:** In Arbeit auf Branch `arch/architecture-v0.1`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `arch/architecture-v0.1`.
 
 ## Ziel
 
@@ -103,6 +103,37 @@ Unity Compile/EditMode/PlayMode, IL2CPP, physische Geräte-, SDK- und Storetests
 WP-005 ist nur abgeschlossen, wenn alle vier HIGH-Probleme einzeln `CLOSED` sind, Acceptance Checks A bis D bestanden haben, beide Validator-Modi und alle Self-/Negativtests grün sind, der vollständige Diff ausschließlich die vorab erlaubten Dateien enthält und der Abschlusscommit auf `arch/architecture-v0.1` gepusht und remote verifiziert wurde.
 
 Jede materielle Korrektur einer angenommenen Architekturentscheidung steht in einem nachfolgenden ADR. `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `DECISIONS/README.md`, dieses Work Package und die Architekturnavigation geben denselben Architecture-v0.5-Stand wieder. Es erfolgt kein Merge und keine Änderung an `main`.
+
+## Ergebnis
+
+Architecture v0.5 schließt exakt die vier beauftragten HIGH-Probleme. Es wurde kein Produktionscode erzeugt, keine Produktdatei geändert und kein Produktfolgeblocker gelöst. Architecture v1.0 wird nicht ausgerufen.
+
+| Finding | Status | Abschlussnachweis |
+|---|---|---|
+| `HIGH-1` Endless No-Reward-Terminalpfad | **CLOSED** | `LOCAL_DECISION_PENDING` kann ohne Provider-ID oder Ledgerdelta per lokalem Savecommit terminalisiert werden. Savegeneration-CAS, Providerreservation vor SDK-Aufruf, Crash/Restart, Duplicate, später Callback, Skip nach Reward und 100 aufeinanderfolgende lokale Skips sind ausführbar geprüft. |
+| `HIGH-2` Cosmetics Claim Reservation Binding | **CLOSED** | `COMMIT_CLAIM` verlangt eine zuvor persistierte, eligibility-/progress-validierte Reservation und bindet Claim, Operation, Generation, Item, Erwerbsart, Katalogsnapshot und Eligibility-Projektion. Fehlende, gefälschte oder abweichende Reservationen scheitern; Replay bleibt einmalige Ownership. |
+| `HIGH-3` Rollout Reducer Semantik | **CLOSED** | Android- und iOS-Evidenzobjekte binden Plattform, Quelle, Metrik, Release, Build, Stufe, Fenster, Freshness, Reporting, Reviewer und plattformspezifische Population. Jede fehlende oder unzureichende Dimension liefert `PAUSE_NO_ADVANCE`. |
+| `HIGH-4` WP-/Scope-Manifest-Ankerbindung | **CLOSED** | WP-005 und Manifest wurden gemeinsam in Commit `ebf522a9ef3c28035341cc04dbd6d8251b107603` eingeführt. Der Validator lädt beide historischen Blobs, verlangt Add-Status im selben Commit, prüft Elternabwesenheit, IDs, exakten historischen Link und aktuelle Manifestbytegleichheit. |
+
+## Acceptance Checks A–D
+
+| Check | Ergebnis |
+|---|---|
+| A – Endless ohne Rewarded Ad | **PASS.** 100 lokale Skipzyklen enden ohne Capacityfehler, offenen Record oder Economyänderung; Restart, Duplicate, Provider-Race und Skip nach Reward sind abgedeckt. |
+| B – Cosmetics ohne valide Reservation | **PASS.** Direkter Commit, gefälschte Reservation, falsche Claim-/Item-/Erwerbsart-/Katalog-/Operations-/Generations-/Eligibility-Bindung und nachträglich fehlende Eligibility werden abgewiesen. |
+| C – unvollständige Rollout-Evidenz | **PASS.** Fehlendes Fenster, Active Devices, Freshness, Reporting, Metrik, Reviewer, Population oder Release-/Buildbindung pausiert; vollständige Android-/iOS-Daten erlauben die dokumentierte positive Entscheidung. |
+| D – historischer Trust-Anchor | **PASS.** Späteres WP/Manifest, späterer oder falscher Link, falsche ID, anderes Manifest, absoluter/externer Pfad und mutierter Manifestblob werden abgewiesen; eigenes späteres Production-WP/-Manifest bleibt möglich. |
+
+## Review- und Beleggrenzen
+
+Ein unabhängiger Principal-Architecture-Recheck bestätigte nach der letzten HIGH-2-Korrektur die Erwerbsartbindung und den vollständigen Self-Test ohne Abbruch. Automatisch belegt sind ausschließlich lokale Dokumentstruktur, Architektursemantik, Fixtures, Reducer, Mutationen und Git-Scope. IAP-Dokumentreihenfolge bleibt `MANUAL_ARCHITECTURE_REVIEW`; Unity-/Produktionscode-, Geräte- und Storetests bleiben `REQUIRED_LATER/NOT_EXECUTED`. Die drei Produktfolgeblocker bleiben `BLOCKED` und fail-closed.
+
+| Ausgeführter Nachweis | Ergebnis |
+|---|---|
+| Architecture-only mit `--self-test` | **PASS**, 17 lokale Prüfgruppen. |
+| Documentation-Scope mit WP-005-Manifest und `--self-test` | **PASS**, 18 lokale Prüfgruppen einschließlich `LOCAL_SCOPE`. |
+| Unabhängiger Recheck der HIGH-2-Erwerbsartmutation | **PASS**; abweichendes `PATIENCE_PURCHASE` gegen persistiertes `MILESTONE_GRANT` ergibt `cosmetics:commit-binding`. |
+| Delta-/Whitespace-/JSON-/Secret-/Produktcodewachen | **PASS** vor dem Abschlusscommit; nach jedem nachfolgenden Dokumentationsschritt erneut auszuführen. |
 
 ## Referenzen
 

@@ -1,16 +1,16 @@
-# Stammstrecken-Puzzle – Architecture v0.4
+# Stammstrecken-Puzzle – Architecture v0.5
 
 **Status:** Angenommen
 
-**Stand:** 2026-09-12
+**Stand:** 2026-09-13
 
 **Geltungsbereich:** Mobile-Spiel für Android und iOS
 
-**Work Package:** [`WP-004`](../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md), [`WP-002`](../WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md) und [`WP-003`](../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md)
+**Work Package:** [`WP-005`](../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md) bis [`WP-004`](../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md)
 
 ## 1. Architekturauftrag
 
-Architecture v0.4 übersetzt den bestätigten Produktstand in eine umsetzungsreife technische Grundlage und schließt zusätzlich die sieben Restbefunde `V03-001` bis `V03-007`: prä-SDK-Privacy-Fence und crashsicherer Widerruf, vollständiger Endless-Open-Lifecycle, ehrliche Validatorbelege, level-v1/v2-Kompatibilität, unveränderlicher Scope-Vertrauensanker, Cosmetics-DRAFT-/Transitiontests und eine konkrete Store-Crashrate als Rolloutsignal. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
+Architecture v0.5 übernimmt den bestätigten Produktstand und Architecture v0.4 unverändert, schließt aber vier letzte HIGH-Lücken: den providerfreien Endless-Skip mit Race-Schutz, die bindende Cosmetics-Reservation vor Ownershipcommit, den vollständig evidenzgebundenen Rolloutreducer und den gemeinsamen historischen Work-Package-/Scope-Trust-Anchor. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
 
 Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der persistente Projektstand liegt vollständig in Repository, Architecture Decision Records (ADRs), maschinenprüfbaren Datenverträgen und Tests. Kein Implementierungsschritt darf Wissen aus einem Chat voraussetzen.
 
@@ -23,6 +23,10 @@ Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der p
 | `V03-005` | **CLOSED** | Segmentglobs, kanonischer Repositorypfad und vorab unveränderlich verankertes WP-Scope-Manifest. |
 | `V03-006` | **CLOSED** | Historischer ADR-016-Entscheidungskörper restauriert; aktuelle Normen ausschließlich in Nachfolge-ADRs. |
 | `V03-007` | **CLOSED** | Plattformgebundene Store-Crashrate mit Mindestpopulation, Freshness und `PAUSE_NO_ADVANCE`. |
+| `HIGH-001` | **CLOSED** | `LOCAL_DECISION_PENDING`, lokaler Skip ohne Provider-ID/Ledgerdelta, providerseitige Vorabreservation und deterministische Race-/Callback-Behandlung. |
+| `HIGH-002` | **CLOSED** | Eligibility-validierte persistierte Cosmetics-Reservation mit vollständiger Claim-, Katalog- und Projektionsbindung vor atomarem Ownershipcommit. |
+| `HIGH-003` | **CLOSED** | Vollständiger Android-/iOS-Evidenzreducer für Population, Fenster, Freshness, Quelle, Metrik sowie Release-/Buildbindung; jede Lücke pausiert. |
+| `HIGH-004` | **CLOSED** | Work Package und Scope-Manifest werden aus demselben historischen Add-Commit geladen und dort exakt miteinander verlinkt. |
 
 ## 2. Leitende Qualitätsziele
 
@@ -156,9 +160,12 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 18. Puzzle-ID, Dokumentformat und Proofversion sind getrennte Achsen; Hashprofile werden immer mitgeführt.
 19. Ein Releasekandidat wird mit Productionidentität gebaut und exakt ohne Rebuild promotet; Stagingartefakte sind nie promotable.
 20. Ein lokaler Architekturcheck darf nicht als ausgeführter Unity-, Geräte-, SDK- oder Storetest berichtet werden.
-21. Ein Scope-Manifest ist nur als unveränderlicher, vor dem geprüften Diff versionierter kanonischer Repositoryblob vertrauenswürdig.
+21. Ein Scope-Manifest ist nur vertrauenswürdig, wenn Manifest und zugehöriges Work Package im selben historischen Add-Commit eingeführt wurden, dessen Elterncommit dem `baseCommit` entspricht, und der historische WP-Blob exakt auf dieses Manifest verweist.
 22. DRAFT-Cosmetics sind authoringgültig, aber niemals runtime-kauf- oder grantfähig.
 23. Fehlende oder nicht exakt releasegebundene Store-Crashdaten pausieren den Rollout und gelten nie als bestandene Schwelle.
+24. Ein Endless-No-Reward-Skip ist lokal, rewardfrei und providerfrei; jeder Providerpfad reserviert seine Operation vor SDK-Aufruf und konkurriert über dieselbe Savegeneration.
+25. Ein kosmetischer Meilensteinclaim kann ohne persistierte, eligibility-validierte und vollständig gebundene Reservation niemals Ownership schreiben.
+26. Ein Rollout darf nur bei vollständiger, frischer, stufen- und buildgebundener Plattform-Evidenz fortschreiten; jede fehlende Dimension liefert `PAUSE_NO_ADVANCE`.
 
 ## 9. Anforderungsabdeckung
 
@@ -170,22 +177,22 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 | Leveldaten, Versionierung und Migration | `LEVEL_DATA_FORMAT.md` | ADR-021 ersetzt ADR-004 |
 | Puzzlevalidierung | `PUZZLE_ENGINE.md` | ADR-005 |
 | Solver, Eindeutigkeit, Generatorvalidierung | `SOLVER_ARCHITECTURE.md` | ADR-007, ADR-019, ADR-021 |
-| Automatisierte Tests und Scope | `TEST_STRATEGY.md` | ADR-026 ersetzt ADR-022/ADR-017/ADR-009 |
+| Automatisierte Tests und Scope | `TEST_STRATEGY.md` | ADR-026 ersetzt ADR-022/ADR-017/ADR-009; ADR-030 präzisiert den gemeinsamen historischen WP-/Manifestanker |
 | Levelauthoring | `CONTENT_PIPELINE.md` | ADR-021 ersetzt ADR-004 |
-| Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016, ADR-023 |
-| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-019 ersetzt ADR-014/ADR-006; ADR-025 präzisiert Open-Lifecycle und Claims |
+| Kampagne, Completion, Kosmetik und Preise | `CONTENT_CATALOGS.md` | ADR-016, ADR-023; ADR-028 präzisiert Cosmetics-Reservation und Commitbindung |
+| Savegames, Hashprofil, Ledger und Offline-First | `PERSISTENCE.md` | ADR-019 ersetzt ADR-014/ADR-006; ADR-025 präzisiert Open-Lifecycle und Claims; ADR-027 ergänzt den lokalen Skip |
 | Android-/iOS-Abstraktionen | `MOBILE_SERVICES.md` | ADR-020 ersetzt ADR-015/ADR-008; ADR-024 präzisiert Analytics-Lifecycle |
 | Ads, IAP und Kaufwiederherstellung | `MOBILE_SERVICES.md`, `PERSISTENCE.md` | ADR-020 |
 | Analytics, Consent und Datenschutz | `OBSERVABILITY.md`, `MOBILE_SERVICES.md` | ADR-024 ersetzt Teil von ADR-020; ADR-020 ersetzt Production-Crashteil von ADR-010 |
 | Audio, Assets und Lokalisierung | `CONTENT_PIPELINE.md`, `MOBILE_SERVICES.md` | ADR-011 |
-| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-023, ADR-026 |
+| Build, CI und Release | `BUILD_AND_RELEASE.md` | ADR-010, ADR-023, ADR-026; ADR-029 präzisiert Rolloutevidenz, ADR-030 den Trust-Anchor |
 | Logging und Fehlerdiagnose | `OBSERVABILITY.md` | ADR-010 |
 | Reproduzierbarer Architekturvalidator | `tools/architecture-validation/README.md` | ADR-026 ersetzt ADR-022/ADR-017/ADR-009 |
 | Fehlende Produktentscheidungen | `OPEN_BLOCKERS.md` | fail-closed Folgeblocker |
 
 ## 10. Offene Grenzen und Blockerstatus
 
-Architecture v0.4 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
+Architecture v0.5 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
 
 1. `BLOCKER-PROD-001` blockiert die finale Hint-Entitlement-/Economy-Implementierung.
 2. `BLOCKER-PROD-002` blockiert die Anspruchslogik der Betriebslage des Tages.
@@ -222,3 +229,7 @@ Eine technische Änderung beginnt mit einem regelkonformen Work Package `WP-###`
 [17]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"
 [18]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"
 [19]: ../DECISIONS/ADR-026-validator-evidenz-und-scope-vertrauensanker.md "ADR-026 – Validator-Evidenz und Scope-Vertrauensanker"
+[20]: ../DECISIONS/ADR-027-endless-no-reward-terminalpfad.md "ADR-027 – Providerfreier Endless-No-Reward-Terminalpfad"
+[21]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"
+[22]: ../DECISIONS/ADR-029-rollout-reducer-semantik.md "ADR-029 – Vollständige Rollout-Reducer-Semantik"
+[23]: ../DECISIONS/ADR-030-wp-scope-trust-anchor.md "ADR-030 – Gemeinsamer historischer WP-/Scope-Trust-Anchor"

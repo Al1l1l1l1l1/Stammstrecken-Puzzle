@@ -77,7 +77,7 @@ Negativtests prüfen globale und global-äquivalente Muster, Slash-Semantik, Ren
 
 ## Ersetzt / ersetzt durch
 
-Ersetzt [ADR-022](./ADR-022-validator-scope-und-belegkategorien.md) vollständig. Wird derzeit durch keinen ADR ersetzt.
+Ersetzt [ADR-022](./ADR-022-validator-scope-und-belegkategorien.md) vollständig. Die historische Work-Package-/Manifest-Bindung wird durch [ADR-030](./ADR-030-wp-scope-trust-anchor.md) präzisiert und teilweise ersetzt; Scope-Modi, Segmentglobvertrag und Evidenzkategorien bleiben gültig.
 
 ## Referenzen
 

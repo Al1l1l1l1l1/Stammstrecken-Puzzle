@@ -1,4 +1,4 @@
-# Persistence v0.4
+# Persistence v0.5
 
 ## 1. Ziel und Wahrheiten
 
@@ -68,6 +68,7 @@ Ein unbekanntes Profil liefert `SAVE_HASH_PROFILE_UNSUPPORTED`, nicht `SAVE_CORR
 | `ledgerCheckpoint` | kompaktierter Saldo-/Hashkettenstand. |
 | `economyJournal` | begrenzte idempotente Gutschriften/Belastungen nach dem Checkpoint. |
 | `inventory` | gezielt freigeschaltete und ausgewählte kosmetische IDs samt terminaler Kauf- oder Meilensteinclaim-Provenienz. |
+| `cosmeticClaimReservations` | höchstens eine offene, eligibility-validierte Reservation je fachlicher Cosmetic-Claim-ID mit Operation, Generation, Item-, Katalog- und Eligibility-Provenienz. |
 | `seasonProgressCache` | abgeleitete Route-/Abschnitt-/Seasonstände plus Quellhash. |
 | `drafts` | höchstens ein aktiver Entwurf je Level, begrenzt auf die jüngsten 20, inklusive Undo-Diffs. |
 | `rewardClaims` | `POST_CLEAR_PATIENCE`-Reservationen/-Terminals und künftig freigegebene Claimarten. |
@@ -156,13 +157,17 @@ Ein Eintrag ohne terminale Fachwahrheit blockiert Kompaktierung mit `ECO-COMPACT
 |---|---|---|
 | `RESERVED_NOT_GENERATED` | Ordinal, E1-ID und vollständiger kanonischer `endless-v1`-Deskriptor | deterministisch generieren und nach vollständiger Prüfung atomar promoten oder abbrechen. |
 | `ACTIVE_DRAFT` | Reservation plus öffentlicher Puzzleinput, profilierte Puzzle-/Lösungs-/Proofhashes und Sessionstate | fortsetzen, abschließen oder abbrechen. |
-| `COMPLETION_CLAIM_OPEN` | Reservation, Puzzle-ID, Completion-Commit-ID, Reason-Code, fachliche Claim-ID, vor Callback persistierte lokale Operation, `RESERVED`/`RECONCILIATION_REQUIRED`/`REWARD_CONFIRMED`/`NO_REWARD_CONFIRMED` und gegebenenfalls Provideroperation | bestätigten Claim committen, bestätigt ohne Reward schließen oder reconciliieren. |
+| `COMPLETION_CLAIM_OPEN` | Reservation, Puzzle-ID, Completion-Commit-ID, Reason-Code, fachliche Claim-ID, lokale Operation, `LOCAL_DECISION_PENDING`/`PROVIDER_RESERVED`/`RECONCILIATION_REQUIRED`/`REWARD_CONFIRMED`/`NO_REWARD_CONFIRMED` und gegebenenfalls Provideroperation | lokal ohne Reward terminalisieren, Provideroperation vor SDK-Aufruf reservieren, bestätigten Claim committen, bestätigt ohne Reward schließen oder reconciliieren. |
 
 Für `o` gilt exakt: `open(o)`, wenn ein `openEndless`-Record mit `o` existiert; `terminal(o)`, wenn `1 <= o <= highestReservedOrdinal` und kein offener Record existiert; andernfalls ist `o` unreserviert. Ordinal 0, Duplikate, offene Ordinale über dem Watermark, unzulässige Pflichtfelder oder Descriptor-/E1-Mismatch machen den Save ungültig. Terminalität unterscheidet absichtlich nicht mehr zwischen Complete und Abandon.
 
 `ReserveEndless` commitet ausschließlich `highestReservedOrdinal + 1` und `RESERVED_NOT_GENERATED` gemeinsam. Die Generierung liest nur diesen persistierten Descriptor. Erst schema-, solver- und proofvalidierter Output wird atomar `ACTIVE_DRAFT`; ein Crash wiederholt dieselbe E1-Instanz. Fehlt die Generatorversion, bleibt `ENDLESS_GENERATOR_RECOVERY_REQUIRED` offen. Bei 20 offenen Records liefert jede weitere Reservation `ENDLESS_OPEN_CAPACITY`.
 
-`CompleteEndless` schreibt Completion-/Fortschrittseffekte, persistiert die lokale Claimoperation und ersetzt `ACTIVE_DRAFT` atomar durch `COMPLETION_CLAIM_OPEN`; der Resume-Payload wird entfernt. `AbandonEndless` entfernt `RESERVED_NOT_GENERATED` oder `ACTIVE_DRAFT` ohne Reward. Ein Providerergebnis gilt nur bei exakt passender Claim-, Puzzle- und lokaler Operations-ID; eine bereits gebundene Provideroperation ist unveränderlich. `COMMIT_CLAIM` ist nur nach `REWARD_CONFIRMED`, `CLOSED_NO_REWARD` nur nach `NO_REWARD_CONFIRMED` und jeweils mit denselben Bindungen zulässig. Der Claimcommit beziehungsweise `CLOSED_NO_REWARD` entfernt erst danach den letzten offenen Record. Ein erneuter terminaler Command oder verspäteter Callback liefert `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise redigierten No-op. Terminalintervalle, Terminalcheckpoint und Terminaldetailtail sind in Save v2 verboten. Der Diagnose-Ring darf höchstens 64 redigierte Hinweise halten, ist aber nie fachliche Wahrheit. Nach Erschöpfung des UInt64-Raums gilt `ENDLESS_ORDINAL_SPACE_EXHAUSTED`.
+`CompleteEndless` schreibt Completion-/Fortschrittseffekte, persistiert die lokale Claimoperation und ersetzt `ACTIVE_DRAFT` atomar durch `COMPLETION_CLAIM_OPEN` mit `claimStatus: LOCAL_DECISION_PENDING`; der Resume-Payload wird entfernt. `AbandonEndless` entfernt `RESERVED_NOT_GENERATED` oder `ACTIVE_DRAFT` ohne Reward.
+
+Aus `LOCAL_DECISION_PENDING` konkurrieren `SkipEndlessReward` und `ReserveEndlessRewardProvider` über dieselbe `expectedSaveGeneration`. Der lokale Skip entfernt den offenen Record in einem Copy-on-Write-Savecommit, schreibt weder Ledger noch Provider-ID und startet keinen Provideraufruf. Ein Crash vor Commit lässt denselben Record wiederaufnehmbar; ein Crash nach Commit lädt ihn kompakt terminal. Duplicate Skip ist ein No-op. `ReserveEndlessRewardProvider` bindet dagegen eine eindeutige Provideroperation und `PROVIDER_RESERVED` **vor** jedem SDK-Aufruf. Gewinnt diese Reservation, wird Skip ohne Mutation abgewiesen. Gewinnt Skip, muss der Providerpfad nach erneutem Lesen vor jedem externen Aufruf abbrechen. Skip ist außerdem bei `RECONCILIATION_REQUIRED`, `REWARD_CONFIRMED` und `NO_REWARD_CONFIRMED` verboten.
+
+Ein Providerergebnis gilt nur bei exakt passender Claim-, Puzzle-, lokaler Operations- und Provideroperations-ID; eine bereits gebundene Provideroperation ist unveränderlich. `COMMIT_CLAIM` ist nur nach `REWARD_CONFIRMED`, `CLOSED_NO_REWARD` nur nach `NO_REWARD_CONFIRMED` und jeweils mit denselben Bindungen zulässig. `CLOSED_NO_REWARD` bleibt der providerbestätigte Pfad und darf keinen lokalen Skip vortäuschen. Claimcommit, providerbestätigtes Close oder lokaler Skip entfernen den letzten offenen Record. Ein erneuter terminaler Command oder verspäteter Callback liefert `ENDLESS_TERMINAL_DUPLICATE` beziehungsweise redigierten No-op, rekonstruiert keinen Record und schreibt keinen Reward. Terminalintervalle, Terminalcheckpoint, Terminaldetailtail und Skip-ID-Listen sind in Save v2 verboten. Der Diagnose-Ring darf höchstens 64 redigierte Hinweise halten, ist aber nie fachliche Wahrheit. Nach Erschöpfung des UInt64-Raums gilt `ENDLESS_ORDINAL_SPACE_EXHAUSTED`.
 
 ## 10. Einmaliger `POST_CLEAR_PATIENCE`-Claim
 
@@ -209,9 +214,11 @@ Crash vor Schritt 3 wird durch Store-Replay/Restore erneut validiert. Crash zwis
 
 ## 13. Kosmetischer Meilensteinclaim
 
-`ClaimMilestoneCosmetic` bindet an den gelockten `cosmetics-v2`-Katalog. Die fachliche ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Bei positiver Eligibility schreibt genau ein Copy-on-Write-Commit den Inventoryeintrag mit `grantKind: MILESTONE_CLAIM`, `claimState: COMMITTED`, Katalogrevision/-hash, Eligibility-Version und Eligibility-Projektionshash. Es gibt kein Ledgerdelta. Gleiche ID und Projektion ist `ALREADY_OWNED`; dieselbe ID mit anderem Item, Katalog oder Eligibility-Hash ist `COS_MILESTONE_CLAIM_COLLISION`.
+`ClaimMilestoneCosmetic` bindet an den gelockten `cosmetics-v2`-Katalog. Die fachliche ID lautet `cosmetic-milestone-claim:v1:<catalogId>:<itemId>`. Nach positiver Eligibility schreibt `RESERVE_CLAIM` zuerst einen eigenen Copy-on-Write-Snapshot. Die persistierte Reservation enthält Claim-ID, eindeutige `operationId`, fixe `claimGeneration`, Item-ID, `MILESTONE_GRANT`, Katalog-ID/-revision/-hash, Eligibility-Vertragsversion, den über Anforderungen und tatsächlich validierte First-Clear-Puzzle-IDs gebildeten Eligibility-Projektionshash sowie `claimState: RESERVED`.
 
-Crash vor Commit hinterlässt weder Claim noch Ownership; Crash nach Commit lädt beides. Eine Katalogrevision darf ein veröffentlichtes Item unter stabiler ID nicht auf einen anderen Erwerbsmodus oder eine andere Eligibility umdeuten. Tombstones erhalten vorhandenes Ownership.
+`COMMIT_CLAIM` lädt genau diese Reservation. Claim-ID, Operation, Generation, Item, Erwerbsart, Katalogidentität und erneut hergeleitete Eligibility-Projektion müssen vollständig übereinstimmen. Fehlende, nur nachträglich eingefügte, nicht eligibility-validierte oder abweichende Reservationen werden abgewiesen. Ein zweiter atomarer Copy-on-Write-Commit entfernt die offene Reservation und schreibt den terminalen Inventoryeintrag mit `grantKind: MILESTONE_CLAIM`, `claimState: COMMITTED` und derselben Provenienz. Es gibt kein Ledgerdelta. Gleiche ID und Projektion ist `ALREADY_OWNED`; dieselbe ID mit anderem Item, Katalog oder Eligibility-Hash ist `COS_MILESTONE_CLAIM_COLLISION`.
+
+Crash vor dem Reservationcommit hinterlässt nichts. Crash danach lädt die Reservation unverändert. Crash vor dem Ownershipcommit lässt sie offen; Crash danach lädt ausschließlich den terminalen Ownershiprecord. Eine Katalogrevision darf ein veröffentlichtes Item unter stabiler ID nicht auf einen anderen Erwerbsmodus oder eine andere Eligibility umdeuten. Tombstones erhalten vorhandenes Ownership.
 
 ## 14. Datenschutz und Datenlöschung
 
@@ -219,15 +226,17 @@ Save und lokale Logs liegen im App-Sandboxspeicher und werden nicht automatisch 
 
 ## 15. Tests
 
-Pflicht sind Roundtrip-, Hashprofil-, JCS-Cross-Tool-, unbekanntes-Profil-, Schema-/Profilmigrations-, Truncation-, bad-hash-, pending-write-, backup-, split-brain-, low-disk-, permission-, idempotency-, Claimparallelitäts-, Spätcallback-, Rewardcrash-, IAP-Phasencrash-, Acknowledge-/Finish-Retry-, Restore-, Revocation-, Ledgergrenzen- und Kompaktierungstests. Hinzu kommen Reservation vor Generierung, Crash/Retry mit identischer E1-ID, Promotion zu `ACTIVE_DRAFT`, Completion zu `COMPLETION_CLAIM_OPEN`, Claimreconciliation, `CLOSED_NO_REWARD`, Abandon, 10.000 gemischte Terminaltransitionen ohne wachsende Historie, offene Kapazität, v1→v2-Claimmigration sowie atomare Kosmetikclaim-/Kollisionsfälle. Gerätetests unterbrechen die App während Writes und Storeoperationen auf Android und iOS.
+Pflicht sind Roundtrip-, Hashprofil-, JCS-Cross-Tool-, unbekanntes-Profil-, Schema-/Profilmigrations-, Truncation-, bad-hash-, pending-write-, backup-, split-brain-, low-disk-, permission-, idempotency-, Claimparallelitäts-, Spätcallback-, Rewardcrash-, IAP-Phasencrash-, Acknowledge-/Finish-Retry-, Restore-, Revocation-, Ledgergrenzen- und Kompaktierungstests. Hinzu kommen Reservation vor Generierung, Crash/Retry mit identischer E1-ID, Promotion zu `ACTIVE_DRAFT`, Completion zu `COMPLETION_CLAIM_OPEN`, lokaler Skip ohne Provider-ID, Skip-Crash/Restart/Duplicate, Skip-versus-Provider-CAS, Claimreconciliation, `CLOSED_NO_REWARD`, Abandon, mindestens 100 aufeinanderfolgende Skip-Terminalisierungen ohne Capacity-Sperre, 10.000 gemischte Terminaltransitionen ohne wachsende Historie, offene Kapazität, v1→v2-Claimmigration sowie atomare, zuvor reservierte Kosmetikclaim-/Kollisionsfälle. Gerätetests unterbrechen die App während Writes und Storeoperationen auf Android und iOS.
 
 ## Referenzen
 
 [1]: ../DECISIONS/ADR-019-endless-watermark-und-save-v2.md "ADR-019 – Endless-Watermark und Save v2"
 [2]: ../DECISIONS/ADR-020-privacy-lifecycle-und-sdk-grenzen.md "ADR-020 – Privacy-Lifecycle und SDK-Grenzen"
 [3]: https://www.rfc-editor.org/rfc/rfc8785 "RFC 8785 – JSON Canonicalization Scheme"
-[4]: ./GAME_STATE_MODEL.md "Game State Model v0.4"
+[4]: ./GAME_STATE_MODEL.md "Game State Model v0.5"
 [5]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und versionierte Proofartefakte"
 [6]: ../DECISIONS/ADR-024-privacy-bootstrap-fence-und-widerruf.md "ADR-024 – Privacy-Bootstrap-Fence und Widerruf"
 [7]: ../DECISIONS/ADR-025-endless-open-lifecycle-und-claims.md "ADR-025 – Endless-Open-Lifecycle und Claims"
 [8]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat-Identität und kosmetische Meilensteinclaims"
+[9]: ../DECISIONS/ADR-027-endless-no-reward-terminalpfad.md "ADR-027 – Providerfreier Endless-No-Reward-Terminalpfad"
+[10]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"

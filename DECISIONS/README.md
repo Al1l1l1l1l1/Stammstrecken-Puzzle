@@ -1,13 +1,13 @@
 # Architekturentscheidungen – verbindlicher ADR-Index
 
-**Aktueller Architekturstand:** **Architecture v0.4**, angenommen am 2026-09-12 im Rahmen von [`WP-004`](../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md).
+**Aktueller Architekturstand:** **Architecture v0.5**, angenommen am 2026-09-13 im Rahmen von [`WP-005`](../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md).
 **Architektureinstieg:** [`ARCHITECTURE/ARCHITECTURE.md`](../ARCHITECTURE/ARCHITECTURE.md)
 
 Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture Decision Records (ADRs) des Projekts. Ein ADR dokumentiert Entscheidung, Begründung, Alternativen, Folgen und Ablösung. Produktentscheidungen bleiben den bestätigten Produktquellen vorbehalten.
 
 ## Aktueller Index
 
-| ADR | Titel | Status | Geltung in Architecture v0.4 |
+| ADR | Titel | Status | Geltung in Architecture v0.5 |
 |---|---|---|---|
 | [ADR-001](./ADR-001-unity-6-3-lts.md) | Unity 6.3 LTS als Game Engine | **Angenommen** | Gültig. |
 | [ADR-002](./ADR-002-csharp-9-und-il2cpp.md) | C# 9 und IL2CPP | **Angenommen** | Gültig. |
@@ -18,7 +18,7 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-007](./ADR-007-solver-und-eindeutigkeitspruefung.md) | Deterministischer Constraint-Solver | **Angenommen** | Gültig; ADR-021 ergänzt das Proofartefakt. |
 | [ADR-008](./ADR-008-mobile-service-ports-und-provider.md) | Mobile-Service-Ports mit Google- und Unity-Adaptern | **Ersetzt** | Historisch; durch ADR-015 und danach ADR-020 ersetzt. |
 | [ADR-009](./ADR-009-automatisierte-teststrategie.md) | Automatisierte Tests als Architekturgrenze | **Ersetzt** | Historisch; durch ADR-017 und danach ADR-022 ersetzt. |
-| [ADR-010](./ADR-010-build-release-und-observability.md) | Build, Release und Observability | **Angenommen** | Build-/Releasegrundsätze gültig; Production-Crashlytics durch ADR-020 ersetzt, ADR-023 ergänzt Kandidatenidentität. |
+| [ADR-010](./ADR-010-build-release-und-observability.md) | Build, Release und Observability | **Angenommen** | Build-/Releasegrundsätze gültig; Production-Crashlytics durch ADR-020 ersetzt, ADR-023 ergänzt Kandidatenidentität und ADR-029 präzisiert den Rolloutreducer. |
 | [ADR-011](./ADR-011-ui-assets-lokalisierung-und-audio.md) | UI, Assets, Lokalisierung und Audio | **Angenommen** | Gültig. |
 | [ADR-012](./ADR-012-mobile-plattformbaselines.md) | Mobile Plattformbaselines | **Angenommen** | Gültig. |
 | [ADR-013](./ADR-013-zyklusfreie-ports-und-modulgrenzen.md) | Zyklusfreie Ports und Modulgrenzen | **Angenommen** | Gültig; ADR-018 ergänzt die minimale Bootstrapkante. |
@@ -31,12 +31,16 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-020](./ADR-020-privacy-lifecycle-und-sdk-grenzen.md) | Privacy-Lifecycle und SDK-Grenzen | **Angenommen** | Provider-/Fail-closed-Grundsatz gültig; Bootstrapfence und Widerruf durch ADR-024 präzisiert. |
 | [ADR-021](./ADR-021-puzzleidentitaet-und-proofartefakte.md) | Puzzleidentität und versionierte Proofartefakte | **Angenommen** | Gültig; ersetzt ADR-004 vollständig mit Restatement und ergänzt ADR-007. |
 | [ADR-022](./ADR-022-validator-scope-und-belegkategorien.md) | Validator-Scope und Belegkategorien | **Ersetzt** | Historisch; vollständig durch ADR-026 ersetzt. |
-| [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) | Releasekandidat-Identität und kosmetische Meilensteinclaims | **Angenommen** | Gültig; ergänzt ADR-010 und ADR-016. |
+| [ADR-023](./ADR-023-releasekandidat-und-kosmetikclaims.md) | Releasekandidat-Identität und kosmetische Meilensteinclaims | **Angenommen** | Releaseidentität und Erwerbsgrundsätze gültig; Cosmetics-Reservation durch ADR-028 und Rollout-Evidenz durch ADR-029 präzisiert. |
 | [ADR-024](./ADR-024-privacy-bootstrap-fence-und-widerruf.md) | Privacy-Bootstrap-Fence und crashsicherer Widerruf | **Angenommen** | Gültig; präzisiert ADR-020 für direkte Upgrades, Native Reconciliation und Widerruf. |
-| [ADR-025](./ADR-025-endless-open-lifecycle-und-claims.md) | Endless-Open-Lifecycle und nachgelagerte Claims | **Angenommen** | Gültig; präzisiert ADR-019 und ersetzt die offenen Retentions-/Claimanteile aus ADR-016. |
-| [ADR-026](./ADR-026-validator-evidenz-und-scope-vertrauensanker.md) | Validator-Evidenz und Scope-Vertrauensanker | **Angenommen** | Gültig; ersetzt ADR-022 vollständig. |
+| [ADR-025](./ADR-025-endless-open-lifecycle-und-claims.md) | Endless-Open-Lifecycle und nachgelagerte Claims | **Angenommen** | Watermark, Rewardcommit und providerbestätigtes Close gültig; lokaler Skip und Providerstart durch ADR-027 präzisiert. |
+| [ADR-026](./ADR-026-validator-evidenz-und-scope-vertrauensanker.md) | Validator-Evidenz und Scope-Vertrauensanker | **Angenommen** | Scope- und Evidenzgrundsätze gültig; gemeinsame historische WP-/Manifestbindung durch ADR-030 präzisiert. |
+| [ADR-027](./ADR-027-endless-no-reward-terminalpfad.md) | Providerfreier Endless-No-Reward-Terminalpfad | **Angenommen** | Gültig; ersetzt den lokalen Nichtbeanspruchungs- und Providerstartanteil aus ADR-025. |
+| [ADR-028](./ADR-028-cosmetics-reservation-binding.md) | Bindende Cosmetics-Claim-Reservation | **Angenommen** | Gültig; ersetzt die Meilensteinclaim-Reservation/-Commitbindung aus ADR-023. |
+| [ADR-029](./ADR-029-rollout-reducer-semantik.md) | Vollständige Rollout-Reducer-Semantik | **Angenommen** | Gültig; präzisiert den operativen Rolloutvertrag aus ADR-010 und ADR-023. |
+| [ADR-030](./ADR-030-wp-scope-trust-anchor.md) | Gemeinsamer historischer WP-/Scope-Trust-Anchor | **Angenommen** | Gültig; ersetzt die historische WP-/Manifestbindung aus ADR-026. |
 
-Damit existieren **26 ADRs**: 17 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **30 ADRs**: 21 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 
@@ -72,10 +76,10 @@ Ein ersetzter ADR bleibt als historische Begründung erhalten. Der Index wird im
 
 ## Governance-Prüfung
 
-Der eingecheckte Validator prüft fortlaufende eindeutige Nummern, zulässige Statuswerte, Pflichtabschnitte, bidirektionale Ersetzungsverweise, Indexvollständigkeit und den in `PROJECT_CONTROL/CURRENT_STATE.md` benannten Architekturstand. Ein fehlender oder widersprüchlicher Indexeintrag blockiert den Abschluss.
+Der eingecheckte Validator prüft fortlaufende eindeutige Nummern, zulässige Statuswerte, Pflichtabschnitte, bidirektionale Ersetzungs-/Nachfolgerverweise, Indexvollständigkeit und den in `PROJECT_CONTROL/CURRENT_STATE.md` benannten Architekturstand. Ein fehlender oder widersprüchlicher Indexeintrag blockiert den Abschluss.
 
 ## Referenzen
 
 [1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
-[2]: ../ARCHITECTURE/ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.4"
-[3]: ../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md "WP-004 – Architecture-v0.4-Abschlusskorrekturen"
+[2]: ../ARCHITECTURE/ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.5"
+[3]: ../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md "WP-005 – Architecture-v0.5-letzte-High-Korrekturen"

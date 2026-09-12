@@ -1,4 +1,4 @@
-# Build and Release v0.4
+# Build and Release v0.5
 
 ## 1. Ziel
 
@@ -31,7 +31,7 @@ Ein Releasebuild enthält `build-info.json` mit Version, Buildnummer, Commit, Ta
 
 ## 4. Branch- und Freigabevertrag
 
-`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.4 wird im Abschlusskorrekturauftrag `WP-004` auf `arch/architecture-v0.1` dokumentiert und weder automatisch gemergt noch ohne getrennten Freigabereview in v1.0 umbenannt.
+`main` ist geschützt. Produktionsarbeit erfolgt auf Work-Package-Branches und gelangt nur über reviewte Pull Requests mit grünen Pflichtchecks in den Integrationsstand. Architecture v0.5 wird im eng begrenzten Korrekturauftrag `WP-005` auf `arch/architecture-v0.1` dokumentiert und weder automatisch gemergt noch ohne getrennten Freigabereview in v1.0 umbenannt.
 
 Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein Artefakt lokal „repariert“. Eine Änderung erzeugt einen neuen Commit und neuen Kandidaten. Production-Environment und öffentliche Storepromotion verwenden GitHub-Environment-Protection und manuellen Approval.
 
@@ -150,11 +150,11 @@ Artefakte erhalten eine dokumentierte Aufbewahrungsfrist. Symbole und Release-Ma
 | Betrieb | Dashboards, Alarmwege, Rollout-/Stopkriterien, Support-/Recoverytext vorhanden. |
 | Security | Secrets, Permissions, SDK-Lizenzen/Signaturen und Dependencyrisiken geprüft. |
 
-Architecture v0.4 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
+Architecture v0.5 erfüllt diese späteren Release-Gates nicht selbst. Sie definiert sie. Vorhandene offene Produktpunkte sind daher keine verdeckt als erledigt dargestellten Werte.
 
 ## 12. Rollout und Rollback
 
-Öffentliche Releases starten gestuft. Das primäre technische Rolloutsignal ist `store-crash-rate-v1` aus [`rollout-metric-v1.json`](../tools/architecture-validation/fixtures/rollout-metric-v1.json). Andere Signale ergänzen diese Entscheidung, ersetzen sie aber nicht.
+Öffentliche Releases starten gestuft. Das primäre technische Rolloutsignal ist `store-crash-rate-v2` aus [`rollout-metric-v1.json`](../tools/architecture-validation/fixtures/rollout-metric-v1.json). Andere Signale ergänzen diese Entscheidung, ersetzen sie aber nicht.
 
 | Plattform | Quelle und exakte Releasepopulation | Kennzahl | Verfügbarkeit |
 |---|---|---|---|
@@ -163,7 +163,9 @@ Architecture v0.4 erfüllt diese späteren Release-Gates nicht selbst. Sie defin
 
 Für beide Plattformen gilt: unter 0,5 % nach vollständigem Beobachtungsfenster darf fortgesetzt werden; ab 0,5 % und unter 1,0 % wird pausiert und untersucht; ab 1,0 % wird gestoppt und, soweit der Store dies erlaubt, auf den letzten freigegebenen Stand zurückgesteuert. Fehlende, stale, unvollständige, zu kleine oder nicht exakt releasegefilterte Daten ergeben `PAUSE_NO_ADVANCE`, niemals Erfolg.
 
-Android verwendet die Stufen 1 %, 5 %, 20 %, 50 %, 100 % mit Mindestbeobachtungen 24/24/48/48/72 Stunden. Apple folgt der offiziellen Phased-Release-Folge 1 %, 2 %, 5 %, 10 %, 20 %, 50 %, 100 %; die ersten sechs Stufen beobachten mindestens je 24 Stunden, 100 % mindestens 120 Stunden. Manuelle App-Store-Downloads liegen außerhalb der Apple-Automatic-Update-Stichprobe und werden im Review vermerkt. Jedes Gate archiviert Quelle, Releaseidentität, Storebuildreferenz, Stufe, UTC-Fenster, Beobachtungszeit, Zähler, Nenner, Rate, Freshness, Entscheidung und Reviewer.
+Der Reducer verarbeitet ein vollständiges Evidenzobjekt und darf `ADVANCE_OR_HOLD_AT_100` nur liefern, wenn **alle** Nachweise vorliegen: erwartete Plattform/Quelle/Metrik, exakte `releaseIdentity` und `storeBuildReference`, definierte `stagePercentage`, vollständiges UTC-Beobachtungsfenster der Stufe, `observedAtUtc` nach Fensterende, vorhandene `freshness.observedThroughUtc` innerhalb der Plattformgrenze, `reportingComplete: true`, vorhandener Reviewer, nicht negative Zähler/Nenner, rechnerisch konsistente Crashrate und ausreichende plattformspezifische Population. Android verlangt `distinctUsers >= 100`; iOS verlangt `sessions >= 100` und `activeDevices >= 5`. Ein externes `exactRelease`-Boolean ersetzt diese Feldbindung nicht.
+
+Android verwendet die Stufen 1 %, 5 %, 20 %, 50 %, 100 % mit Mindestbeobachtungen 24/24/48/48/72 Stunden. Apple folgt der offiziellen Phased-Release-Folge 1 %, 2 %, 5 %, 10 %, 20 %, 50 %, 100 %; die ersten sechs Stufen beobachten mindestens je 24 Stunden, 100 % mindestens 120 Stunden. Manuelle App-Store-Downloads liegen außerhalb der Apple-Automatic-Update-Stichprobe und werden im Review vermerkt. Jedes Gate archiviert Plattform, Quelle, Metrik, Releaseidentität, Storebuildreferenz, Stufe, UTC-Fenster, Beobachtungszeit, Zähler, Nenner, Rate, Freshness, Reportingvollständigkeit, plattformspezifische Population, Entscheidung und Reviewer.
 
 Zusätzliche harte Stoppsignale sind Saveverlust, falsche Währung/Entitlements, mehrdeutiger Content, neue lokale Fatalcodes oder Consent-/Datenschutzverletzung.
 
@@ -196,7 +198,7 @@ Ein Kandidat ist promotable, wenn:
 8. Symbole archiviert und Testcrash lokal beziehungsweise über Plattformlogs symbolisiert ist;
 9. SBOM, Lizenzen und Artefakthashes archiviert sind;
 10. Promotion-Receipt und RC-Manifest in Commit, Plattform, Buildnummer, Application-ID, Signing-, Toolchain-, Paket-, Content-, Productionkonfigurations- und Artefakthash exakt übereinstimmen;
-11. `store-crash-rate-v1`, Storezugänge, Dashboards/Reporting-API und Archivziel konfiguriert sind;
+11. `store-crash-rate-v2`, Storezugänge, Dashboards/Reporting-API und Archivziel konfiguriert sind;
 12. öffentlicher Rollout separat genehmigt ist.
 
 ## Referenzen
@@ -213,3 +215,4 @@ Ein Kandidat ist promotable, wenn:
 [10]: https://developer.apple.com/help/app-store-connect-analytics/reference/metrics-definitions/ "App Store Connect Analytics metric definitions"
 [11]: https://developer.apple.com/documentation/analytics-reports/app-crashes "Apple App Crashes report"
 [12]: https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/ "Apple phased release schedule"
+[13]: ../DECISIONS/ADR-029-rollout-reducer-semantik.md "ADR-029 – Vollständige Rollout-Reducer-Semantik"

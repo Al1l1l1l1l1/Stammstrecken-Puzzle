@@ -59,7 +59,7 @@ Strukturtests lehnen promotierbares Staging, Test-/Debugwerte im RC, Manifest-/R
 
 ## Ersetzt / ersetzt durch
 
-Ergänzt [ADR-010](./ADR-010-build-release-und-observability.md) und [ADR-016](./ADR-016-katalogvertraege-und-endless-identitaet.md). Wird derzeit durch keinen ADR ersetzt.
+Ergänzt [ADR-010](./ADR-010-build-release-und-observability.md) und [ADR-016](./ADR-016-katalogvertraege-und-endless-identitaet.md). Die Reservation-/Commitbindung kosmetischer Meilensteinclaims wird durch [ADR-028](./ADR-028-cosmetics-reservation-binding.md) präzisiert und teilweise ersetzt. Die operative Evidenzprüfung für die Rolloutentscheidung wird durch [ADR-029](./ADR-029-rollout-reducer-semantik.md) präzisiert. Releasekandidat-Identität, Erwerbsmodi und terminale Inventory-Wahrheit bleiben gültig.
 
 ## Referenzen
 

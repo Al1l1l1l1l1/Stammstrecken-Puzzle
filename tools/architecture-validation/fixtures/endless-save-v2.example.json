@@ -103,6 +103,7 @@
         {"kind": "RESERVE", "generatorVersion": "fixture-generator-v1", "seed": "42", "parameterHashSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
         {"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": "1"},
         {"kind": "COMPLETE", "generationOrdinal": "1"},
+        {"kind": "RESERVE_REWARD_PROVIDER", "expectedSaveGeneration": 3, "generationOrdinal": "1", "puzzleId": "E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "providerOperationId": "provider-fixture-reward-0001"},
         {"kind": "REWARD_RESULT", "generationOrdinal": "1", "puzzleId": "E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "providerOperationId": "provider-fixture-reward-0001", "outcome": "REWARDED"},
         {"kind": "COMMIT_CLAIM", "generationOrdinal": "1", "puzzleId": "E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-dee5d708a8dc79d9753d15de88003a1258cd78ed2e0eac498a2367c6f62e7a11", "providerOperationId": "provider-fixture-reward-0001"}
       ],
@@ -115,10 +116,52 @@
         {"kind": "RESERVE", "generatorVersion": "fixture-generator-v1", "seed": "43", "parameterHashSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
         {"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": "1"},
         {"kind": "COMPLETE", "generationOrdinal": "1"},
+        {"kind": "RESERVE_REWARD_PROVIDER", "expectedSaveGeneration": 3, "generationOrdinal": "1", "puzzleId": "E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "providerOperationId": "provider-fixture-no-reward-0001"},
         {"kind": "REWARD_RESULT", "generationOrdinal": "1", "puzzleId": "E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "providerOperationId": "provider-fixture-no-reward-0001", "outcome": "NO_REWARD"},
         {"kind": "CLOSE_NO_REWARD", "generationOrdinal": "1", "puzzleId": "E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-cee016a8c96de623c6b6ede2b4b5240f839fb59fe53657a96a3aa8959909e609", "providerOperationId": "provider-fixture-no-reward-0001"}
       ],
       "expected": {"highestReservedOrdinal": "1", "openCount": 0, "terminalOrdinal": "1", "economyBalancePatience": 0}
+    },
+    {
+      "name": "COMPLETE_SKIP_LOCAL_CRASH_RESTART_DUPLICATE",
+      "initial": {"highestReservedOrdinal": "0", "openEndless": [], "economyBalancePatience": 0},
+      "events": [
+        {"kind": "RESERVE", "generatorVersion": "fixture-generator-v1", "seed": "45", "parameterHashSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+        {"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": "1"},
+        {"kind": "COMPLETE", "generationOrdinal": "1"},
+        {"kind": "CRASH"},
+        {"kind": "RESTART"},
+        {"kind": "SKIP_REWARD", "expectedSaveGeneration": 3, "generationOrdinal": "1", "puzzleId": "E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5"},
+        {"kind": "CRASH"},
+        {"kind": "RESTART"},
+        {"kind": "SKIP_REWARD", "expectedSaveGeneration": 4, "generationOrdinal": "1", "puzzleId": "E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-2c9d0eb9d14f3dd3ddae6f98020dbc3d5fdd1ba54c17b8cf8d950d94f851edd5"}
+      ],
+      "expected": {"highestReservedOrdinal": "1", "openCount": 0, "terminalOrdinal": "1", "economyBalancePatience": 0, "lastResult": "ENDLESS_TERMINAL_DUPLICATE"}
+    },
+    {
+      "name": "PROVIDER_RESERVATION_WINS_SKIP_RACE",
+      "initial": {"highestReservedOrdinal": "0", "openEndless": [], "economyBalancePatience": 0},
+      "events": [
+        {"kind": "RESERVE", "generatorVersion": "fixture-generator-v1", "seed": "46", "parameterHashSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+        {"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": "1"},
+        {"kind": "COMPLETE", "generationOrdinal": "1"},
+        {"kind": "RESERVE_REWARD_PROVIDER", "expectedSaveGeneration": 3, "generationOrdinal": "1", "puzzleId": "E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "providerOperationId": "provider-race-0001"},
+        {"kind": "SKIP_REWARD", "expectedSaveGeneration": 4, "generationOrdinal": "1", "puzzleId": "E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550"}
+      ],
+      "expected": {"highestReservedOrdinal": "1", "openCount": 1, "openState": "COMPLETION_CLAIM_OPEN", "claimStatus": "PROVIDER_RESERVED", "id": "E1-ea6f9ea72e29d73783e0153f9596c4c668806b87ec2c164e99dd685bd15b5550", "economyBalancePatience": 0, "lastResult": "SKIP_REJECTED_PROVIDER_RESERVED"}
+    },
+    {
+      "name": "LOCAL_SKIP_WINS_LATE_PROVIDER_CALLBACK",
+      "initial": {"highestReservedOrdinal": "0", "openEndless": [], "economyBalancePatience": 0},
+      "events": [
+        {"kind": "RESERVE", "generatorVersion": "fixture-generator-v1", "seed": "47", "parameterHashSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+        {"kind": "GENERATE_AND_PROMOTE", "generationOrdinal": "1"},
+        {"kind": "COMPLETE", "generationOrdinal": "1"},
+        {"kind": "SKIP_REWARD", "expectedSaveGeneration": 3, "generationOrdinal": "1", "puzzleId": "E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380"},
+        {"kind": "RESERVE_REWARD_PROVIDER", "expectedSaveGeneration": 4, "generationOrdinal": "1", "puzzleId": "E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "providerOperationId": "provider-late-0001"},
+        {"kind": "REWARD_RESULT", "generationOrdinal": "1", "puzzleId": "E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "claimId": "reward-claim:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "localOperationId": "reward-operation:POST_CLEAR_PATIENCE:E1-f75d8f251e46dbfc693f6745497cf77111901deda6a4d74de369e7a48b519380", "providerOperationId": "provider-late-0001", "outcome": "REWARDED"}
+      ],
+      "expected": {"highestReservedOrdinal": "1", "openCount": 0, "terminalOrdinal": "1", "economyBalancePatience": 0, "lastResult": "LATE_PROVIDER_CALLBACK_QUARANTINED"}
     },
     {
       "name": "ABANDON_RESERVED",
