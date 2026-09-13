@@ -70,7 +70,7 @@ SCHEMA_EXAMPLES: dict[str, tuple[str, list[str]]] = {
     "cosmetics-v2": ("ARCHITECTURE/schemas/cosmetics-v2.schema.json", ["ARCHITECTURE/examples/cosmetics-v2.example.json", "ARCHITECTURE/examples/cosmetics-v2.draft.example.json"]),
     "release-lock-v1": ("ARCHITECTURE/schemas/release-lock-v1.schema.json", ["ARCHITECTURE/examples/release-lock-v1.example.json"]),
     "release-manifest-v1": ("ARCHITECTURE/schemas/release-manifest-v1.schema.json", ["ARCHITECTURE/examples/release-manifest-v1.rc.example.json", "ARCHITECTURE/examples/release-manifest-v1.staging.example.json"]),
-    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json", "tools/architecture-validation/scopes/WP-005.documentation.scope.json"]),
+    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json", "tools/architecture-validation/scopes/WP-005.documentation.scope.json", "tools/architecture-validation/scopes/WP-006.documentation.scope.json"]),
 }
 REQUIRED_FILES = [
     *[ROOT / item for item in ARCH_DOCS],
@@ -83,6 +83,7 @@ REQUIRED_FILES = [
     ROOT / "WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md",
     ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md",
     ROOT / "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md",
+    ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md",
     TOOL / "README.md", TOOL / "requirements.lock.txt", TOOL / "jcs_crosscheck.mjs",
     TOOL / "fixtures/duplicate-key.invalid.json", TOOL / "fixtures/float-token.invalid.json",
     TOOL / "fixtures/save-payload-v1.golden.json", TOOL / "fixtures/save-payload-v1.expected.json",
@@ -232,7 +233,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v0.5" not in index_text or "21 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
+    if "Architecture v1.0" not in index_text or "21 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
@@ -1461,9 +1462,9 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
 
 def status_consistency_errors(architecture: str, current: str, queue: str, work_package: str) -> list[str]:
     errors: list[str] = []
-    if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v0.5") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
-    if "**Architecture v0.5**" not in current or "Architecture v0.5 (Abnahmekandidat)" in current or "`WP-001` bis `WP-005` sind abgeschlossen" not in current: errors.append("version:current-state")
-    if "Architecture v0.5" not in queue or "WP-001` bis `WP-005" not in queue or "CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding**" not in queue: errors.append("version:work-queue")
+    if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v1.0") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
+    if "**Architecture v1.0**" not in current or "Architecture v1.0 (Abnahmekandidat)" in current or "`WP-001` bis `WP-006` sind abgeschlossen" not in current: errors.append("version:current-state")
+    if "Architecture v1.0" not in queue or "WP-001` bis `WP-005" not in queue or "CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding**" not in queue: errors.append("version:work-queue")
     if "**Bearbeitungsstatus:** Abgeschlossen" not in work_package: errors.append("version:work-package")
     return errors
 
@@ -1473,7 +1474,7 @@ def version_and_blocker_check() -> None:
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md").read_text(encoding="utf-8"),
     ): fail(error)
     blockers = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
     for number in (1, 2, 3):
@@ -1636,17 +1637,18 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("V03-005-PRODUCTION", not scope_manifest_errors(production, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "production"))
     product_scope = copy.deepcopy(production); product_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/**"]
     expect("V03-005-PRODUCT-SOURCE", any(item.startswith("scope:product-source:") for item in scope_manifest_errors(product_scope, ["Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md"], "production")))
-    wp_rel = "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md"
-    historical_wp = "# WP-005 – Test\n\n## ID\n\n`WP-005`\n\n[Scope](../tools/architecture-validation/scopes/WP-005.documentation.scope.json)\n"
+    wp_rel = f"WORK_PACKAGES/{manifest['workPackageId']}_Test.md"
+    wp_link = f"../{manifest_rel}"
+    historical_wp = f"# {manifest['workPackageId']} – Test\n\n## ID\n\n`{manifest['workPackageId']}`\n\n[Scope]({wp_link})\n"
     added = {manifest_rel, wp_rel}; historical = {wp_rel: historical_wp}
     expect("HIGH-004-COMMON-ANCHOR-POSITIVE", not scope_anchor_binding_errors(manifest, manifest_rel, added, set(), historical))
     expect("HIGH-004-WP-ADDED-LATER", "scope:work-package-existed-before-anchor" in scope_anchor_binding_errors(manifest, manifest_rel, {manifest_rel}, {wp_rel}, historical))
     expect("HIGH-004-SEPARATE-ADD-COMMITS", "scope:work-package-not-added-in-anchor" in scope_anchor_binding_errors(manifest, manifest_rel, {manifest_rel}, set(), historical))
-    historical_no_link = {wp_rel: historical_wp.replace("[Scope](../tools/architecture-validation/scopes/WP-005.documentation.scope.json)", "Scope folgt später")}
+    historical_no_link = {wp_rel: historical_wp.replace(f"[Scope]({wp_link})", "Scope folgt später")}
     expect("HIGH-004-LATER-REFERENCE", "scope:historical-work-package-manifest-link" in scope_anchor_binding_errors(manifest, manifest_rel, added, set(), historical_no_link))
-    wrong_historical_id = {wp_rel: historical_wp.replace("`WP-005`", "`WP-006`")}
+    wrong_historical_id = {wp_rel: historical_wp.replace(f"`{manifest['workPackageId']}`", "`WP-999`")}
     expect("HIGH-004-WRONG-WP-ID", "scope:historical-work-package-id" in scope_anchor_binding_errors(manifest, manifest_rel, added, set(), wrong_historical_id))
-    other_manifest_rel = "tools/architecture-validation/scopes/WP-005.alternate.scope.json"
+    other_manifest_rel = f"tools/architecture-validation/scopes/{manifest['workPackageId']}.alternate.scope.json"
     other_manifest_errors = scope_manifest_errors(manifest, [], "documentation", other_manifest_rel) + scope_anchor_binding_errors(manifest, other_manifest_rel, {other_manifest_rel, wp_rel}, set(), historical)
     expect("HIGH-004-OTHER-MANIFEST-SAME-SCOPE", "scope:manifest-name-or-location" in other_manifest_errors or "scope:historical-work-package-manifest-link" in other_manifest_errors)
     production_manifest = copy.deepcopy(manifest); production_manifest["workPackageId"] = "WP-900"; production_manifest["scope"] = "production"
@@ -1701,9 +1703,9 @@ def self_test(scope: str, manifest_path: Path) -> None:
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md").read_text(encoding="utf-8"),
     ]
-    status_args[2] = status_args[2].replace("Architecture v0.5", "Architecture v0.4")
+    status_args[2] = status_args[2].replace("Architecture v1.0", "Architecture v0.5")
     expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
     index_text = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
     expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-026", "ADR-X26"))))
@@ -1722,7 +1724,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v0.5")
+    parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v1.0")
     parser.add_argument("--scope", choices=("documentation", "production"))
     parser.add_argument("--scope-manifest", type=Path)
     parser.add_argument("--self-test", action="store_true")
@@ -1749,7 +1751,7 @@ def main() -> int:
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Store-Crashrate und Rolloutentscheidung", rollout_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Vier Architecture-v0.5-HIGH-Verträge", review_contract_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Save-JCS Python/Node-Crosscheck", cross_tool_hash_check),
-        ("LOCAL_DOCUMENT_STRUCTURE", "Architecture-v0.5-Status und drei Produktblocker", version_and_blocker_check),
+        ("LOCAL_DOCUMENT_STRUCTURE", "Architecture-v1.0-Status und drei Produktblocker", version_and_blocker_check),
     ]
     if args.scope and manifest_path:
         groups.append(("LOCAL_SCOPE", "Git-Diff gegen versioniertes Scope-Manifest", lambda: git_scope_check(args.scope, manifest_path)))
@@ -1757,7 +1759,7 @@ def main() -> int:
     mutation_manifest = manifest_path or ROOT / "tools/architecture-validation/scopes/WP-005.documentation.scope.json"
     if args.self_test: self_test(args.scope or "documentation", mutation_manifest)
 
-    print(f"ARCHITECTURE VALIDATION v0.5 scope={args.scope or 'architecture-only'}")
+    print(f"ARCHITECTURE VALIDATION v1.0 scope={args.scope or 'architecture-only'}")
     for category, item in PASSES: print(f"{category} PASS  {item}")
     if args.scope and manifest_path:
         head = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True, capture_output=True, check=True).stdout.strip()

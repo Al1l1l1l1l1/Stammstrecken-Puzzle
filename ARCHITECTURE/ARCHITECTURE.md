@@ -1,4 +1,4 @@
-# Stammstrecken-Puzzle – Architecture v0.5
+# Stammstrecken-Puzzle – Architecture v1.0
 
 **Status:** Angenommen
 
@@ -6,11 +6,11 @@
 
 **Geltungsbereich:** Mobile-Spiel für Android und iOS
 
-**Work Package:** [`WP-005`](../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md) bis [`WP-004`](../WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md)
+**Work Package:** [`WP-006`](../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md), aufbauend auf [`WP-001`](../WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md) bis [`WP-005`](../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md)
 
 ## 1. Architekturauftrag
 
-Architecture v0.5 übernimmt den bestätigten Produktstand und Architecture v0.4 unverändert, schließt aber vier letzte HIGH-Lücken: den providerfreien Endless-Skip mit Race-Schutz, die bindende Cosmetics-Reservation vor Ownershipcommit, den vollständig evidenzgebundenen Rolloutreducer und den gemeinsamen historischen Work-Package-/Scope-Trust-Anchor. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
+Architecture v1.0 ist der freigegebene Architekturstand. Sie übernimmt Architecture v0.5 unverändert: den bestätigten Produktstand und Architecture v0.4 sowie die vier geschlossenen HIGH-Lücken, nämlich den providerfreien Endless-Skip mit Race-Schutz, die bindende Cosmetics-Reservation vor Ownershipcommit, den vollständig evidenzgebundenen Rolloutreducer und den gemeinsamen historischen Work-Package-/Scope-Trust-Anchor. Der unabhängige Abschlussreview ist bestanden: Alle vier HIGH-Findings sind CLOSED, es existieren 0 neue BLOCKER und 0 neue HIGH, und die relevanten Acceptance-/Validator-Tests sind PASS. Sie erzeugt **keinen Produktionscode**, keine konkreten Season-1-Rätsel und keine neue Produktentscheidung.
 
 Die Architektur optimiert ausdrücklich für wechselnde KI-Coding-Agenten. Der persistente Projektstand liegt vollständig in Repository, Architecture Decision Records (ADRs), maschinenprüfbaren Datenverträgen und Tests. Kein Implementierungsschritt darf Wissen aus einem Chat voraussetzen.
 
@@ -192,7 +192,7 @@ Abgeleitete Artefakte dürfen gelöscht und deterministisch neu erzeugt werden. 
 
 ## 10. Offene Grenzen und Blockerstatus
 
-Architecture v0.5 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
+Architecture v1.0 ist als technische Grundlage vollständig, enthält aber drei echte, bewusst nicht durch Annahmen gelöste **Folgeblocker**. [`OPEN_BLOCKERS.md`](./OPEN_BLOCKERS.md) ist das autoritative Register:
 
 1. `BLOCKER-PROD-001` blockiert die finale Hint-Entitlement-/Economy-Implementierung.
 2. `BLOCKER-PROD-002` blockiert die Anspruchslogik der Betriebslage des Tages.

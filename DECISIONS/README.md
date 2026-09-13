@@ -1,13 +1,13 @@
 # Architekturentscheidungen – verbindlicher ADR-Index
 
-**Aktueller Architekturstand:** **Architecture v0.5**, angenommen am 2026-09-13 im Rahmen von [`WP-005`](../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md).
+**Aktueller Architekturstand:** **Architecture v1.0**, freigegeben am 2026-09-13 im Rahmen von [`WP-006`](../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md) nach unabhängig bestandenem Abschlussreview von Architecture v0.5.
 **Architektureinstieg:** [`ARCHITECTURE/ARCHITECTURE.md`](../ARCHITECTURE/ARCHITECTURE.md)
 
 Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture Decision Records (ADRs) des Projekts. Ein ADR dokumentiert Entscheidung, Begründung, Alternativen, Folgen und Ablösung. Produktentscheidungen bleiben den bestätigten Produktquellen vorbehalten.
 
 ## Aktueller Index
 
-| ADR | Titel | Status | Geltung in Architecture v0.5 |
+| ADR | Titel | Status | Geltung in Architecture v1.0 |
 |---|---|---|---|
 | [ADR-001](./ADR-001-unity-6-3-lts.md) | Unity 6.3 LTS als Game Engine | **Angenommen** | Gültig. |
 | [ADR-002](./ADR-002-csharp-9-und-il2cpp.md) | C# 9 und IL2CPP | **Angenommen** | Gültig. |
@@ -81,5 +81,6 @@ Der eingecheckte Validator prüft fortlaufende eindeutige Nummern, zulässige St
 ## Referenzen
 
 [1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
-[2]: ../ARCHITECTURE/ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v0.5"
+[2]: ../ARCHITECTURE/ARCHITECTURE.md "Stammstrecken-Puzzle – Architecture v1.0"
 [3]: ../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md "WP-005 – Architecture-v0.5-letzte-High-Korrekturen"
+[4]: ../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md "WP-006 – Architecture-v1.0-Promotion"

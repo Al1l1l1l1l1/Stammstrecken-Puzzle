@@ -4,7 +4,7 @@
 
 `WP-006`
 
-**Bearbeitungsstatus:** In Bearbeitung auf Branch `arch/architecture-v0.1`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `arch/architecture-v0.1`.
 
 ## Ziel
 
@@ -83,6 +83,36 @@ Unity Compile/EditMode/PlayMode, IL2CPP, physische Geräte-, SDK- und Storetests
 WP-006 ist nur abgeschlossen, wenn alle Akzeptanzkriterien einzeln erfüllt sind, beide Validator-Modi und alle Self-/Negativtests grün sind, der vollständige Diff ausschließlich die vorab erlaubten Dateien enthält und der Abschlusscommit auf `arch/architecture-v0.1` gepusht und remote verifiziert wurde.
 
 `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `DECISIONS/README.md`, dieses Work Package und die Architekturnavigation geben denselben Architecture-v1.0-Stand wieder. Es erfolgt kein Merge und keine Änderung an `main`.
+
+## Ergebnis
+
+Architecture v0.5 (freigegebener Commit `79f64d7191672175ede1153c9458be2207ce3c62`) wurde rein formal auf **Architecture v1.0** promoviert. Der unabhängige Abschlussreview (K3 Max) ist bestanden: `HIGH-1` bis `HIGH-4` CLOSED, 0 neue BLOCKER, 0 neue HIGH, relevante Acceptance-/Validator-Tests PASS, Freigabe JA.
+
+| Feststellung | Stand |
+|---|---|
+| Architecture v1.0 freigegeben | **JA** – `ARCHITECTURE/ARCHITECTURE.md` trägt die v1.0-Identität mit Status Angenommen. |
+| Vier HIGH-Findings | CLOSED (unverändert aus v0.5 übernommen, durch den unabhängigen Review bestätigt). |
+| Neue BLOCKER / neue HIGH | 0 / 0. |
+| `BLOCKER-PROD-001/002/003` | **Unverändert offen und fail-closed**; `ARCHITECTURE/OPEN_BLOCKERS.md` wurde nicht verändert. |
+| CI-Setup vor Produktionscoding | **Unverändert zwingend**; in `CURRENT_STATE.md` und `WORK_QUEUE.md` dokumentiert. |
+| Technische Architekturänderung | **Keine.** Kein neuer ADR, kein geänderter ADR-Entscheidungskörper, keine Semantikänderung. |
+| Produktionscode / Unity / CI-Workflow | **Keiner erzeugt oder verändert.** |
+| Merge nach `main` / Pull Request | **Nicht erfolgt.** |
+
+Geänderte Dateien: `ARCHITECTURE/ARCHITECTURE.md`, `DECISIONS/README.md`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md` (neu), `tools/architecture-validation/scopes/WP-006.documentation.scope.json` (neu, Trust-Anchor), `tools/architecture-validation/validate.py` und `tools/architecture-validation/README.md` (ausschließlich mechanische Versions-/WP-006-Nachführung: erwartete Versionszeichenketten v1.0, geprüftes Abschluss-WP, WP-006-Inventar, WP-006-Manifest-Schemabeispiel sowie WP-ID-Nachführung der HIGH-004-Selbsttest-Fixtures auf das jeweils geprüfte Manifest; keine Regeländerung, keine Abschwächung, keine neue oder entfernte Prüfung).
+
+## Validierung
+
+| Ausgeführter Nachweis | Ergebnis |
+|---|---|
+| Architecture-only mit `--self-test` | **PASS** für alle 17 lokalen Prüfgruppen; einzig verbleibende FAIL-Zeilen sind die zwei unten dokumentierten, plattformbedingten Windows-Artefakte. |
+| Documentation-Scope mit WP-006-Manifest und `--self-test` | **PASS** für alle 18 lokalen Prüfgruppen einschließlich `LOCAL_SCOPE` (Trust-Anchor-Nachweis: WP-006 und Manifest gemeinsam in Commit `3e8441830552a2d99c4546fcebc2dc1b23de58cf` hinzugefügt, historischer WP-Blob mit exaktem Manifestlink, Manifestblob bytegleich, reale Diffmenge vollständig innerhalb der Allowlist); einzig verbleibende FAIL-Zeilen sind dieselben zwei Windows-Artefakte. |
+| Plattformartefakt-Nachweis | Dieselben zwei FAIL-Zeilen (`adr:016-historical-decision-mutated`, `self-test:not-detected:V03-005-ABSOLUTE`) treten **identisch auf dem unveränderten freigegebenen Basiskommit `79f64d7`** auf (Separat-Worktree-Gegenprobe). Ursache: CRLF-Arbeitskopie gegen LF-Historienblob beziehungsweise Windows-Pfadsemantik von `Path("/tmp/...").is_absolute()`. Sie sind **bestehend und nicht regressiv** und wurden gemäß Auftrag nicht verändert. |
+| `git diff --check`, Scope-, Secret-, Produktdatei-, Produktionscode- und `main`-Unverändertheit | **PASS** (im `LOCAL_SCOPE`-Lauf enthalten und zusätzlich manuell geprüft). |
+| Delta-Prüfung gegen `79f64d7191672175ede1153c9458be2207ce3c62` | **PASS**; der vollständige Diff enthält ausschließlich die im Manifest erlaubten Dateien. |
+| Validator-Umgebung | Gepinnte Lock-Abhängigkeiten aus `requirements.lock.txt`; Ausführung unter Windows mit CPython 3.12 (Projektvertrag nennt Linux/macOS mit CPython 3.11 – plattformbedingte Abweichung, wie bereits im unabhängigen Review festgestellt). |
+| GitHub-Actions-Nachweis | **NON-BLOCKING WITH FOLLOW-UP / NOT EXECUTED**; separates zwingendes CI-Setup-Work-Package vor Produktionscoding. |
+| Unity-, Geräte-, SDK- und Storetests | **REQUIRED_LATER/NOT_EXECUTED**; WP-006 erzeugte keinen Produktionscode. |
 
 ## Referenzen
 

@@ -2,7 +2,7 @@
 
 ## Zweck
 
-Dieses Verzeichnis enthält den **einzigen autoritativen, eingecheckten und repositoryrelativen Validator** für Architecture v0.5. Das Werkzeug prüft Dokumentstruktur, Datenverträge, ausführbare Architekturmodelle und den Git-Scope. Es ist Governance-/Contract-Tooling und kein Spielproduktionscode.
+Dieses Verzeichnis enthält den **einzigen autoritativen, eingecheckten und repositoryrelativen Validator** für Architecture v1.0. Das Werkzeug prüft Dokumentstruktur, Datenverträge, ausführbare Architekturmodelle und den Git-Scope. Es ist Governance-/Contract-Tooling und kein Spielproduktionscode.
 
 ## Voraussetzungen
 
@@ -35,6 +35,15 @@ python3 -m venv ../.venv-stp-architecture
 
 `--scope` und `--scope-manifest` sind gemeinsam für jede Work-Package-Abnahme Pflicht. Der Manifestpfad muss repositoryrelativ sein. `validate.py --self-test` ohne beide Argumente ist als Architecture-only-Diagnoselauf zulässig, belegt aber keinen Git-Scope. Ein gültiger Abschluss endet mit Exitcode `0` und `RESULT PASS`. Ohne `--self-test` fehlt der Mutationsnachweis.
 
+## Kanonischer WP-006-Befehl
+
+```bash
+../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
+  --scope documentation \
+  --scope-manifest tools/architecture-validation/scopes/WP-006.documentation.scope.json \
+  --self-test
+```
+
 ## Scope-Vertrauensanker
 
 Das Manifest folgt [`scope-manifest-v1.schema.json`](./scope-manifest-v1.schema.json) und liegt exakt unter `tools/architecture-validation/scopes/<WP-ID>.<scope>.scope.json`. **Manifest und zugehöriges Work Package müssen im selben historischen Add-Commit erstmals eingeführt werden.** Sein `baseCommit` ist der Elterncommit dieses gemeinsamen Ankers.
@@ -49,7 +58,7 @@ Ein späteres Production-Manifest ist zulässig, wenn es mit seinem eigenen Work
 
 | Gruppe | Tatsächlicher Nachweis |
 |---|---|
-| Inventar/Governance | v0.5-Dokumente, Schemata, Fixtures, 30 ADRs, fünf Work Packages und Tooldateien. |
+| Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, sechs Work Packages und Tooldateien. |
 | Scope | Reale Git-Diffmenge gegen gemeinsam mit dem historischen Work Package verankertes Manifest; unverändertes lokales/remote `main`. |
 | ADR/WP/Links | IDs, Pflichtabschnitte, 21 aktuelle/9 ersetzte ADRs, bidirektionales vollständiges Superseding und explizite Teilnachfolger, ADR-016-Entscheidungskörper gegen den v0.2-Historiencommit sowie relative Ziele. |
 | Datenverträge | Draft 2020-12 für Legacy-v1 und aktuelle Level-/Campaign-/Cosmetics-v2-, Proof-, Lock-, Release- und Scope-Schemata; DRAFT-Cosmetics ist schemafähig. |
