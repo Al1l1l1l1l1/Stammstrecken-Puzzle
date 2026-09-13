@@ -70,7 +70,7 @@ SCHEMA_EXAMPLES: dict[str, tuple[str, list[str]]] = {
     "cosmetics-v2": ("ARCHITECTURE/schemas/cosmetics-v2.schema.json", ["ARCHITECTURE/examples/cosmetics-v2.example.json", "ARCHITECTURE/examples/cosmetics-v2.draft.example.json"]),
     "release-lock-v1": ("ARCHITECTURE/schemas/release-lock-v1.schema.json", ["ARCHITECTURE/examples/release-lock-v1.example.json"]),
     "release-manifest-v1": ("ARCHITECTURE/schemas/release-manifest-v1.schema.json", ["ARCHITECTURE/examples/release-manifest-v1.rc.example.json", "ARCHITECTURE/examples/release-manifest-v1.staging.example.json"]),
-    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json", "tools/architecture-validation/scopes/WP-005.documentation.scope.json", "tools/architecture-validation/scopes/WP-006.documentation.scope.json"]),
+    "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json", "tools/architecture-validation/scopes/WP-005.documentation.scope.json", "tools/architecture-validation/scopes/WP-006.documentation.scope.json", "tools/architecture-validation/scopes/WP-007.documentation.scope.json"]),
 }
 REQUIRED_FILES = [
     *[ROOT / item for item in ARCH_DOCS],
@@ -84,6 +84,7 @@ REQUIRED_FILES = [
     ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md",
     ROOT / "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md",
     ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md",
+    ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md",
     TOOL / "README.md", TOOL / "requirements.lock.txt", TOOL / "jcs_crosscheck.mjs",
     TOOL / "fixtures/duplicate-key.invalid.json", TOOL / "fixtures/float-token.invalid.json",
     TOOL / "fixtures/save-payload-v1.golden.json", TOOL / "fixtures/save-payload-v1.expected.json",
@@ -1463,8 +1464,8 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
 def status_consistency_errors(architecture: str, current: str, queue: str, work_package: str) -> list[str]:
     errors: list[str] = []
     if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v1.0") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
-    if "**Architecture v1.0**" not in current or "Architecture v1.0 (Abnahmekandidat)" in current or "`WP-001` bis `WP-006` sind abgeschlossen" not in current: errors.append("version:current-state")
-    if "Architecture v1.0" not in queue or "WP-001` bis `WP-005" not in queue or "CI-Setup-Work-Package | **Nicht begonnen, zwingend vor Produktionscoding**" not in queue: errors.append("version:work-queue")
+    if "**Architecture v1.0**" not in current or "Architecture v1.0 (Abnahmekandidat)" in current or "`WP-001` bis `WP-007` sind abgeschlossen" not in current: errors.append("version:current-state")
+    if "Architecture v1.0" not in queue or "WP-001` bis `WP-005" not in queue or "CI-Setup-Work-Package | **Abgeschlossen (`WP-007`)**" not in queue: errors.append("version:work-queue")
     if "**Bearbeitungsstatus:** Abgeschlossen" not in work_package: errors.append("version:work-package")
     return errors
 
@@ -1474,7 +1475,7 @@ def version_and_blocker_check() -> None:
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md").read_text(encoding="utf-8"),
     ): fail(error)
     blockers = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
     for number in (1, 2, 3):
@@ -1703,7 +1704,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md").read_text(encoding="utf-8"),
+        (ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md").read_text(encoding="utf-8"),
     ]
     status_args[2] = status_args[2].replace("Architecture v1.0", "Architecture v0.5")
     expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
