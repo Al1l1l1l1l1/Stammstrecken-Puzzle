@@ -1,0 +1,117 @@
+{
+  "contractVersion": 2,
+  "policyRevision": "privacy-v2",
+  "sdkContractRevision": "firebase-analytics-unity-13.16.0",
+  "productionProviders": {
+    "ads": "GoogleMobileAdsUnity-11.5.0",
+    "analytics": "EXCLUDED_UNTIL_PRE_SDK_FENCE_PROVEN",
+    "crash": "EXCLUDED",
+    "iap": "UnityIAP-5.4.3-LAZY_READINESS"
+  },
+  "initialState": {
+    "decision": "NONE",
+    "nativeSyncState": "UNKNOWN",
+    "applicationCapabilities": {
+      "ads": false,
+      "analytics": false,
+      "crash": false
+    }
+  },
+  "scenarios": [
+    {
+      "name": "FRESH_INSTALL",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": false},
+        {"kind": "LOAD_DECISION", "record": "NONE"},
+        {"kind": "START_UMP", "result": "REQUIRED"}
+      ],
+      "expected": {"decision": "NONE", "nativeSyncState": "UNKNOWN", "analytics": false, "ads": false, "result": "FAIL_CLOSED"}
+    },
+    {
+      "name": "DIRECT_LEGACY_UPGRADE_STALE_TRUE",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": false, "legacyPersistedAnalyticsOverride": true},
+        {"kind": "LOAD_DECISION", "record": "VALID_CURRENT_ALLOW_ANALYTICS"},
+        {"kind": "REQUEST_REENABLE"}
+      ],
+      "expected": {"decision": "VALID_CURRENT_ALLOW_ANALYTICS", "nativeSyncState": "UNKNOWN", "analytics": false, "ads": false, "result": "PRE_SDK_FENCE_REQUIRED"}
+    },
+    {
+      "name": "RESET_ONLY_INSTALLED_NEVER_LAUNCHED",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": false, "resetOnlyIntermediateLaunchObserved": false},
+        {"kind": "LOAD_DECISION", "record": "VALID_CURRENT_ALLOW_ANALYTICS"},
+        {"kind": "REQUEST_REENABLE"}
+      ],
+      "expected": {"decision": "VALID_CURRENT_ALLOW_ANALYTICS", "nativeSyncState": "UNKNOWN", "analytics": false, "ads": false, "result": "PRE_SDK_FENCE_REQUIRED"}
+    },
+    {
+      "name": "OFFLINE_CONFIRMED_DENIED_RESTART",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "REVOKED_CONFIRMED_CURRENT"},
+        {"kind": "NETWORK_CHANGED", "online": false}
+      ],
+      "expected": {"decision": "REVOKED", "nativeSyncState": "REVOKED_CONFIRMED", "analytics": false, "ads": false, "result": "DENIED_CONFIRMED"}
+    },
+    {
+      "name": "REVOKE_CRASH_AFTER_PENDING",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "ENABLED_CONFIRMED_CURRENT"},
+        {"kind": "REQUEST_REVOKE"},
+        {"kind": "CRASH"},
+        {"kind": "RESTART"},
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "REVOKE_PENDING_CURRENT"},
+        {"kind": "APPLY_NATIVE_DISABLE", "success": true},
+        {"kind": "CONFIRM_REVOKED"}
+      ],
+      "expected": {"decision": "REVOKED", "nativeSyncState": "REVOKED_CONFIRMED", "analytics": false, "ads": false, "result": "REVOKED_CONFIRMED"}
+    },
+    {
+      "name": "REVOKE_DISABLE_FAILURE",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "ENABLED_CONFIRMED_CURRENT"},
+        {"kind": "REQUEST_REVOKE"},
+        {"kind": "APPLY_NATIVE_DISABLE", "success": false}
+      ],
+      "expected": {"decision": "REVOKED", "nativeSyncState": "REVOKE_PENDING", "analytics": false, "ads": false, "result": "RECONCILIATION_REQUIRED"}
+    },
+    {
+      "name": "REENABLE_WITHOUT_FENCE",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": false},
+        {"kind": "LOAD_DECISION", "record": "REVOKED_CONFIRMED_CURRENT"},
+        {"kind": "PERSIST_NEW_ALLOW_DECISION"},
+        {"kind": "APPLY_PRIVACY_SIGNALS", "success": true},
+        {"kind": "REQUEST_REENABLE"}
+      ],
+      "expected": {"decision": "ALLOW_ANALYTICS", "nativeSyncState": "ENABLE_PENDING", "analytics": false, "ads": false, "result": "PRE_SDK_FENCE_REQUIRED"}
+    },
+    {
+      "name": "REENABLE_WITH_PROVEN_FENCE_REFERENCE",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "REVOKED_CONFIRMED_CURRENT"},
+        {"kind": "PERSIST_NEW_ALLOW_DECISION"},
+        {"kind": "APPLY_PRIVACY_SIGNALS", "success": true},
+        {"kind": "REQUEST_REENABLE"},
+        {"kind": "APPLY_NATIVE_ENABLE", "success": true},
+        {"kind": "CONFIRM_ENABLED"}
+      ],
+      "expected": {"decision": "ALLOW_ANALYTICS", "nativeSyncState": "ENABLED_CONFIRMED", "analytics": true, "ads": false, "result": "ENABLED_CONFIRMED"},
+      "productionExecutable": false
+    },
+    {
+      "name": "OFFLINE_INVALID_REVISION",
+      "events": [
+        {"kind": "BOOTSTRAP_PRE_SDK_DENY", "available": true},
+        {"kind": "LOAD_DECISION", "record": "ENABLED_CONFIRMED_STALE_REVISION"},
+        {"kind": "NETWORK_CHANGED", "online": false}
+      ],
+      "expected": {"decision": "INVALID", "nativeSyncState": "UNKNOWN", "analytics": false, "ads": false, "result": "FAIL_CLOSED"}
+    }
+  ]
+}

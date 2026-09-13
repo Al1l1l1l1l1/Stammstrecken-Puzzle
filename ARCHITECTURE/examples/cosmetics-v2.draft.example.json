@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "catalogId": "cosmetics-draft-contract-fixture",
+  "catalogRevision": 1,
+  "approvalStatus": "DRAFT",
+  "items": [
+    {
+      "id": "draft-purchase-object",
+      "type": "OPERATING_OBJECT",
+      "status": "DRAFT",
+      "titleKey": "cosmetic.draft-purchase-object.title",
+      "assetAddress": "stp/cosmetics/draft-purchase-object",
+      "acquisition": "PATIENCE_PURCHASE",
+      "pricePatience": 120
+    },
+    {
+      "id": "draft-route-milestone-object",
+      "type": "TRAIN_VARIANT",
+      "status": "DRAFT",
+      "titleKey": "cosmetic.draft-route-milestone-object.title",
+      "assetAddress": "stp/cosmetics/draft-route-milestone-object",
+      "acquisition": "MILESTONE_GRANT",
+      "milestoneEligibility": {
+        "contractVersion": 1,
+        "kind": "ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS",
+        "requiredCampaignSubjectIds": ["S1-01-01"]
+      }
+    }
+  ]
+}

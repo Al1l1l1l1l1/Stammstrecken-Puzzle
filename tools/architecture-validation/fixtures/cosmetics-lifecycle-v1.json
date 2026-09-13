@@ -1,0 +1,291 @@
+{
+  "contractVersion": 2,
+  "runtimeCatalogApprovalStatus": "FIXTURE_ONLY",
+  "claimTemplate": "cosmetic-milestone-claim:v1:<catalogId>:<itemId>",
+  "catalogHashProfile": "STP-COSMETICS-CATALOG-JCS-1",
+  "eligibilityHashProfile": "STP-COSMETIC-ELIGIBILITY-JCS-1",
+  "scenarios": [
+    {
+      "name": "PURCHASE_ACTIVE",
+      "itemId": "fixture-purchase-object",
+      "initial": {
+        "balancePatience": 120,
+        "firstClearPuzzleIds": [],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "PURCHASE"
+        }
+      ],
+      "expected": {
+        "result": "COMMITTED",
+        "owned": true,
+        "balancePatience": 0,
+        "openReservationCount": 0,
+        "ownershipCount": 1
+      }
+    },
+    {
+      "name": "PURCHASE_DRAFT_REJECTED",
+      "catalog": "cosmetics-v2.draft.example.json",
+      "itemId": "draft-purchase-object",
+      "initial": {
+        "balancePatience": 120,
+        "firstClearPuzzleIds": [],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "PURCHASE"
+        }
+      ],
+      "expected": {
+        "result": "COSMETIC_NOT_RUNTIME_ELIGIBLE",
+        "owned": false,
+        "balancePatience": 120,
+        "openReservationCount": 0,
+        "ownershipCount": 0
+      }
+    },
+    {
+      "name": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {
+        "balancePatience": 15,
+        "firstClearPuzzleIds": [],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "FIRST_CLEAR",
+          "puzzleId": "S1-01-01-01"
+        },
+        {
+          "kind": "EVALUATE_MILESTONE"
+        },
+        {
+          "kind": "RESERVE_CLAIM",
+          "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+          "operationId": "cosmetic-claim-operation:v1:cosmetics-contract-fixture:fixture-route-milestone-object:1",
+          "claimGeneration": 1,
+          "itemId": "fixture-route-milestone-object",
+          "catalogId": "cosmetics-contract-fixture",
+          "catalogRevision": 1,
+          "catalogHashSha256": "8ce936af63fc8c4963fd1560191213fb9302f50a0dc46f75279a0375c8f50626",
+          "eligibilityContractVersion": 1,
+          "eligibilityProjectionHashSha256": "3fc1fbd56c7e721af0777d76df4d515c95712635ae7b174be74ede551e0f39da",
+          "acquisition": "MILESTONE_GRANT"
+        },
+        {
+          "kind": "CRASH"
+        },
+        {
+          "kind": "RESTART"
+        },
+        {
+          "kind": "COMMIT_CLAIM",
+          "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+          "operationId": "cosmetic-claim-operation:v1:cosmetics-contract-fixture:fixture-route-milestone-object:1",
+          "claimGeneration": 1,
+          "itemId": "fixture-route-milestone-object",
+          "catalogId": "cosmetics-contract-fixture",
+          "catalogRevision": 1,
+          "catalogHashSha256": "8ce936af63fc8c4963fd1560191213fb9302f50a0dc46f75279a0375c8f50626",
+          "eligibilityContractVersion": 1,
+          "eligibilityProjectionHashSha256": "3fc1fbd56c7e721af0777d76df4d515c95712635ae7b174be74ede551e0f39da",
+          "acquisition": "MILESTONE_GRANT"
+        }
+      ],
+      "expected": {
+        "result": "COMMITTED",
+        "owned": true,
+        "balancePatience": 15,
+        "openReservationCount": 0,
+        "ownershipCount": 1
+      }
+    },
+    {
+      "name": "MILESTONE_INELIGIBLE",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {
+        "balancePatience": 15,
+        "firstClearPuzzleIds": [],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "EVALUATE_MILESTONE"
+        }
+      ],
+      "expected": {
+        "result": "NOT_ELIGIBLE",
+        "owned": false,
+        "balancePatience": 15,
+        "openReservationCount": 0,
+        "ownershipCount": 0
+      }
+    },
+    {
+      "name": "MILESTONE_DUPLICATE_IDEMPOTENT",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {
+        "balancePatience": 15,
+        "firstClearPuzzleIds": [
+          "S1-01-01-01"
+        ],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "EVALUATE_MILESTONE"
+        },
+        {
+          "kind": "RESERVE_CLAIM",
+          "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+          "operationId": "cosmetic-claim-operation:v1:cosmetics-contract-fixture:fixture-route-milestone-object:1",
+          "claimGeneration": 1,
+          "itemId": "fixture-route-milestone-object",
+          "catalogId": "cosmetics-contract-fixture",
+          "catalogRevision": 1,
+          "catalogHashSha256": "8ce936af63fc8c4963fd1560191213fb9302f50a0dc46f75279a0375c8f50626",
+          "eligibilityContractVersion": 1,
+          "eligibilityProjectionHashSha256": "3fc1fbd56c7e721af0777d76df4d515c95712635ae7b174be74ede551e0f39da",
+          "acquisition": "MILESTONE_GRANT"
+        },
+        {
+          "kind": "COMMIT_CLAIM",
+          "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+          "operationId": "cosmetic-claim-operation:v1:cosmetics-contract-fixture:fixture-route-milestone-object:1",
+          "claimGeneration": 1,
+          "itemId": "fixture-route-milestone-object",
+          "catalogId": "cosmetics-contract-fixture",
+          "catalogRevision": 1,
+          "catalogHashSha256": "8ce936af63fc8c4963fd1560191213fb9302f50a0dc46f75279a0375c8f50626",
+          "eligibilityContractVersion": 1,
+          "eligibilityProjectionHashSha256": "3fc1fbd56c7e721af0777d76df4d515c95712635ae7b174be74ede551e0f39da",
+          "acquisition": "MILESTONE_GRANT"
+        },
+        {
+          "kind": "COMMIT_CLAIM",
+          "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+          "operationId": "cosmetic-claim-operation:v1:cosmetics-contract-fixture:fixture-route-milestone-object:1",
+          "claimGeneration": 1,
+          "itemId": "fixture-route-milestone-object",
+          "catalogId": "cosmetics-contract-fixture",
+          "catalogRevision": 1,
+          "catalogHashSha256": "8ce936af63fc8c4963fd1560191213fb9302f50a0dc46f75279a0375c8f50626",
+          "eligibilityContractVersion": 1,
+          "eligibilityProjectionHashSha256": "3fc1fbd56c7e721af0777d76df4d515c95712635ae7b174be74ede551e0f39da",
+          "acquisition": "MILESTONE_GRANT"
+        }
+      ],
+      "expected": {
+        "result": "ALREADY_OWNED",
+        "owned": true,
+        "balancePatience": 15,
+        "openReservationCount": 0,
+        "ownershipCount": 1
+      }
+    },
+    {
+      "name": "TOMBSTONE_OWNERSHIP_PRESERVED",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {
+        "balancePatience": 15,
+        "firstClearPuzzleIds": [
+          "S1-01-01-01"
+        ],
+        "claimReservations": [],
+        "ownershipRecords": [
+          {
+            "itemId": "fixture-route-milestone-object",
+            "claimId": "cosmetic-milestone-claim:v1:cosmetics-contract-fixture:fixture-route-milestone-object",
+            "claimState": "COMMITTED"
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "CATALOG_STATUS_CHANGED",
+          "status": "TOMBSTONE"
+        },
+        {
+          "kind": "EVALUATE_MILESTONE"
+        }
+      ],
+      "expected": {
+        "result": "OWNERSHIP_PRESERVED_NO_NEW_GRANT",
+        "owned": true,
+        "balancePatience": 15,
+        "openReservationCount": 0,
+        "ownershipCount": 1
+      }
+    },
+    {
+      "name": "HIDDEN_NOT_NEWLY_GRANTABLE",
+      "itemId": "fixture-route-milestone-object",
+      "initial": {
+        "balancePatience": 15,
+        "firstClearPuzzleIds": [
+          "S1-01-01-01"
+        ],
+        "claimReservations": [],
+        "ownershipRecords": []
+      },
+      "events": [
+        {
+          "kind": "CATALOG_STATUS_CHANGED",
+          "status": "HIDDEN"
+        },
+        {
+          "kind": "EVALUATE_MILESTONE"
+        }
+      ],
+      "expected": {
+        "result": "COSMETIC_NOT_RUNTIME_ELIGIBLE",
+        "owned": false,
+        "balancePatience": 15,
+        "openReservationCount": 0,
+        "ownershipCount": 0
+      }
+    }
+  ],
+  "negativeScenarios": [
+    {
+      "name": "COMMIT_WITHOUT_RESERVATION",
+      "baseScenario": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "mutation": "REMOVE_RESERVE_EVENT",
+      "expectedError": "cosmetics:commit-without-reservation"
+    },
+    {
+      "name": "FORGED_RESERVATION_WITHOUT_ELIGIBILITY",
+      "baseScenario": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "mutation": "REMOVE_FIRST_CLEAR_AFTER_RESERVE",
+      "expectedError": "cosmetics:reservation-eligibility"
+    },
+    {
+      "name": "WRONG_ITEM_ID",
+      "baseScenario": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "mutation": "COMMIT_WRONG_ITEM",
+      "expectedError": "cosmetics:commit-binding"
+    },
+    {
+      "name": "WRONG_CATALOG_REVISION",
+      "baseScenario": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "mutation": "COMMIT_WRONG_CATALOG_REVISION",
+      "expectedError": "cosmetics:commit-binding"
+    },
+    {
+      "name": "CHANGED_ELIGIBILITY_PROJECTION",
+      "baseScenario": "MILESTONE_RESERVE_CRASH_RESTART_COMMIT",
+      "mutation": "REMOVE_FIRST_CLEAR_BEFORE_COMMIT",
+      "expectedError": "cosmetics:commit-eligibility"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/cosmetics-v2.schema.json",
+  "title": "Stammstrecken-Puzzle Cosmetics Catalog v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "catalogId", "catalogRevision", "approvalStatus", "items"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "catalogId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "catalogRevision": {"type": "integer", "minimum": 1},
+    "approvalStatus": {"type": "string", "enum": ["DRAFT", "FIXTURE_ONLY", "PRODUCT_APPROVED"]},
+    "items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/item"}}
+  },
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": ["id", "type", "status", "titleKey", "assetAddress", "acquisition"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "type": {"type": "string", "enum": ["OPERATING_OBJECT", "LIVERY", "TRAIN_VARIANT"]},
+        "status": {"type": "string", "enum": ["DRAFT", "ACTIVE", "HIDDEN", "TOMBSTONE"]},
+        "titleKey": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$"},
+        "assetAddress": {"type": "string", "minLength": 1},
+        "acquisition": {"type": "string", "enum": ["DEFAULT", "PATIENCE_PURCHASE", "MILESTONE_GRANT"]}
+      }
+    },
+    "item": {
+      "oneOf": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/base"},
+            {"type": "object", "additionalProperties": false, "properties": {"id": {}, "type": {}, "status": {}, "titleKey": {}, "assetAddress": {}, "acquisition": {"const": "DEFAULT"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/base"},
+            {"type": "object", "additionalProperties": false, "required": ["pricePatience"], "properties": {"id": {}, "type": {}, "status": {}, "titleKey": {}, "assetAddress": {}, "acquisition": {"const": "PATIENCE_PURCHASE"}, "pricePatience": {"type": "integer", "minimum": 1}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/base"},
+            {"type": "object", "additionalProperties": false, "required": ["milestoneEligibility"], "properties": {
+              "id": {}, "type": {}, "status": {}, "titleKey": {}, "assetAddress": {}, "acquisition": {"const": "MILESTONE_GRANT"},
+              "milestoneEligibility": {
+                "type": "object", "additionalProperties": false,
+                "required": ["contractVersion", "kind", "requiredCampaignSubjectIds"],
+                "properties": {
+                  "contractVersion": {"const": 1},
+                  "kind": {"const": "ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS"},
+                  "requiredCampaignSubjectIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^S[1-9][0-9]*(?:-[0-9]{2}){0,2}$"}}
+                }
+              }
+            }}
+          ]
+        }
+      ]
+    }
+  }
+}

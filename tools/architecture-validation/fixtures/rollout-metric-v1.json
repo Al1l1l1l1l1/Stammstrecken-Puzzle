@@ -1,0 +1,115 @@
+{
+  "contractVersion": 2,
+  "metricId": "store-crash-rate-v2",
+  "thresholds": {
+    "warnInclusive": 0.005,
+    "haltInclusive": 0.01
+  },
+  "platforms": [
+    {
+      "platform": "ANDROID",
+      "source": "Google Play Developer Reporting API vitals.crashrate",
+      "metric": "userPerceivedCrashRate",
+      "population": "distinct opted-in users who actively used the exact versionCode in the aggregation period; Play-installed certified devices only",
+      "releaseIdentityDimension": "versionCode",
+      "aggregation": "DAILY_AMERICA_LOS_ANGELES",
+      "availability": {
+        "minimumDistinctUsers": 100,
+        "freshnessFieldRequired": true,
+        "maximumAgeHours": 48,
+        "insufficientDataAction": "PAUSE_NO_ADVANCE"
+      },
+      "stages": [
+        {"percentage": 1, "minimumObservationHours": 24},
+        {"percentage": 5, "minimumObservationHours": 24},
+        {"percentage": 20, "minimumObservationHours": 48},
+        {"percentage": 50, "minimumObservationHours": 48},
+        {"percentage": 100, "minimumObservationHours": 72}
+      ]
+    },
+    {
+      "platform": "IOS",
+      "source": "App Store Connect Analytics App Crashes plus App Sessions reports",
+      "metric": "crashes divided by sessions",
+      "population": "opted-in App Store users for the exact App Version; sessions are uses of at least two seconds",
+      "releaseIdentityDimension": "appVersion",
+      "aggregation": "DAILY",
+      "availability": {
+        "minimumSessions": 100,
+        "minimumActiveDevices": 5,
+        "maximumAgeHours": 120,
+        "insufficientDataAction": "PAUSE_NO_ADVANCE"
+      },
+      "stages": [
+        {"percentage": 1, "minimumObservationHours": 24},
+        {"percentage": 2, "minimumObservationHours": 24},
+        {"percentage": 5, "minimumObservationHours": 24},
+        {"percentage": 10, "minimumObservationHours": 24},
+        {"percentage": 20, "minimumObservationHours": 24},
+        {"percentage": 50, "minimumObservationHours": 24},
+        {"percentage": 100, "minimumObservationHours": 120}
+      ]
+    }
+  ],
+  "decisions": [
+    {"condition": "any required evidence missing, malformed, stale, incomplete, below platform population, outside stage window, or not exact-release/build-bound", "action": "PAUSE_NO_ADVANCE"},
+    {"condition": "crashRate < 0.005 after complete evidence validation", "action": "ADVANCE_OR_HOLD_AT_100"},
+    {"condition": "0.005 <= crashRate < 0.01", "action": "PAUSE_AND_INVESTIGATE"},
+    {"condition": "crashRate >= 0.01", "action": "HALT_AND_ROLL_BACK_IF_AVAILABLE"}
+  ],
+  "evidence": {
+    "requiredFields": ["platform", "releaseIdentity", "storeBuildReference", "stagePercentage", "windowStartUtc", "windowEndUtc", "observedAtUtc", "source", "metric", "numerator", "denominator", "crashRate", "freshness", "population", "reportingComplete", "reviewer"],
+    "retention": "release evidence archive",
+    "crossPlatformSubstitutionAllowed": false
+  },
+  "evidenceFixtures": [
+    {
+      "name": "ANDROID_COMPLETE_FRESH_EXACT_BUILD",
+      "expectedReleaseIdentity": "1002003",
+      "expectedStoreBuildReference": "google-play-internal:1002003",
+      "evidence": {
+        "platform": "ANDROID",
+        "releaseIdentity": "1002003",
+        "storeBuildReference": "google-play-internal:1002003",
+        "stagePercentage": 5,
+        "windowStartUtc": "2026-09-10T00:00:00Z",
+        "windowEndUtc": "2026-09-11T00:00:00Z",
+        "observedAtUtc": "2026-09-11T04:00:00Z",
+        "source": "Google Play Developer Reporting API vitals.crashrate",
+        "metric": "userPerceivedCrashRate",
+        "numerator": 1,
+        "denominator": 500,
+        "crashRate": 0.002,
+        "freshness": {"observedThroughUtc": "2026-09-11T02:00:00Z", "sourceField": "freshnessInfo.latestEndTime"},
+        "population": {"distinctUsers": 500},
+        "reportingComplete": true,
+        "reviewer": "fixture-reviewer"
+      },
+      "expectedDecision": "ADVANCE_OR_HOLD_AT_100"
+    },
+    {
+      "name": "IOS_COMPLETE_FRESH_EXACT_BUILD",
+      "expectedReleaseIdentity": "1.2.3",
+      "expectedStoreBuildReference": "app-store-connect:123",
+      "evidence": {
+        "platform": "IOS",
+        "releaseIdentity": "1.2.3",
+        "storeBuildReference": "app-store-connect:123",
+        "stagePercentage": 10,
+        "windowStartUtc": "2026-09-10T00:00:00Z",
+        "windowEndUtc": "2026-09-11T00:00:00Z",
+        "observedAtUtc": "2026-09-11T06:00:00Z",
+        "source": "App Store Connect Analytics App Crashes plus App Sessions reports",
+        "metric": "crashes divided by sessions",
+        "numerator": 2,
+        "denominator": 1000,
+        "crashRate": 0.002,
+        "freshness": {"observedThroughUtc": "2026-09-11T00:00:00Z", "sourceField": "reportEndDate"},
+        "population": {"sessions": 1000, "activeDevices": 100},
+        "reportingComplete": true,
+        "reviewer": "fixture-reviewer"
+      },
+      "expectedDecision": "ADVANCE_OR_HOLD_AT_100"
+    }
+  ]
+}

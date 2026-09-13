@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "catalogId": "campaign-contract-fixture",
+  "catalogRevision": 1,
+  "approvalStatus": "FIXTURE_ONLY",
+  "seasons": [
+    {
+      "id": "S1",
+      "order": 1,
+      "titleKey": "campaign.s1.title",
+      "unlock": {"kind": "ALWAYS", "requiredSubjectIds": []},
+      "sections": [
+        {
+          "id": "S1-01",
+          "order": 1,
+          "titleKey": "campaign.s1.section-01.title",
+          "unlock": {"kind": "ALWAYS", "requiredSubjectIds": []},
+          "routes": [
+            {
+              "id": "S1-01-01",
+              "order": 1,
+              "titleKey": "campaign.s1.section-01.route-01.title",
+              "unlock": {"kind": "ALWAYS", "requiredSubjectIds": []},
+              "levels": [
+                {
+                  "puzzleId": "S1-01-01-01",
+                  "order": 1,
+                  "unlock": {"kind": "ALWAYS", "requiredSubjectIds": []}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

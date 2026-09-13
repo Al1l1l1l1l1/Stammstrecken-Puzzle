@@ -1,0 +1,57 @@
+{
+  "architectureVersion": "0.4",
+  "workPackagePattern": "^WP-[0-9]{3}$",
+  "privacy": {
+    "contractVersion": 2,
+    "preSdkFenceRequired": true,
+    "directLegacyUpgradeCovered": true,
+    "resetOnlyIntermediateLaunchRequired": false,
+    "analyticsProductionMode": "EXCLUDED_UNTIL_PRE_SDK_FENCE_PROVEN",
+    "nativeSyncStates": ["UNKNOWN", "DENIED_CONFIRMED", "ENABLE_PENDING", "ENABLED_CONFIRMED", "REVOKE_PENDING", "REVOKED_CONFIRMED"]
+  },
+  "endless": {
+    "contractVersion": 1,
+    "saveSchemaVersion": 2,
+    "maxOpenEntries": 20,
+    "openStates": ["RESERVED_NOT_GENERATED", "ACTIVE_DRAFT", "COMPLETION_CLAIM_OPEN"],
+    "terminalPredicate": "reserved-and-not-open",
+    "terminalRetentionLimit": null,
+    "claimEligibilitySource": "COMPLETION_CLAIM_OPEN"
+  },
+  "validation": {
+    "manualIapDocumentationReview": true,
+    "executableIapFixture": true,
+    "scopeManifestAnchoredBeforeImplementation": true,
+    "scopeManifestCanonicalRepositoryPath": true,
+    "segmentGlobSemantics": true,
+    "externalManifestAllowed": false
+  },
+  "levelMigration": {
+    "legacyDocumentVersion": 1,
+    "currentDocumentVersion": 2,
+    "legacyLevelSchemaMinGrid": 2,
+    "legacyFixtureParityRequired": true,
+    "releaseLockBindingRequired": true
+  },
+  "cosmetics": {
+    "schemaVersion": 2,
+    "catalogStatuses": ["DRAFT", "FIXTURE_ONLY", "PRODUCT_APPROVED"],
+    "itemStatuses": ["DRAFT", "ACTIVE", "HIDDEN", "TOMBSTONE"],
+    "runtimeGrantableItemStatus": "ACTIVE",
+    "milestoneClaimTemplate": "cosmetic-milestone-claim:v1:<catalogId>:<itemId>",
+    "milestoneLedgerDelta": 0
+  },
+  "rollout": {
+    "metricContractVersion": 1,
+    "warnExclusive": 0.005,
+    "haltInclusive": 0.01,
+    "insufficientDataAction": "PAUSE_NO_ADVANCE",
+    "androidSource": "Google Play Developer Reporting API vitals.crashrate",
+    "iosSource": "App Store Connect Analytics App Crashes plus App Sessions reports"
+  },
+  "governance": {
+    "historicalAdrDecisionBodiesImmutable": true,
+    "adr016DecisionBodyRestored": true,
+    "adr010ProductionCrashlyticsPartiallySupersededBy": "ADR-020"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "architectureVersion": "0.5",
+  "workPackageId": "WP-005",
+  "findings": {
+    "HIGH-001-ENDLESS-SKIP": {
+      "initialClaimStatus": "LOCAL_DECISION_PENDING",
+      "localSkipRequiresProviderOperation": false,
+      "localSkipLedgerDelta": 0,
+      "providerReservationBeforeSdk": true,
+      "skipProviderRaceUsesSaveGeneration": true,
+      "duplicateSkipIdempotent": true,
+      "minimumRepeatedSkips": 100
+    },
+    "HIGH-002-COSMETICS-RESERVATION": {
+      "reservationRequiredBeforeCommit": true,
+      "eligibilityValidatedBeforeReservation": true,
+      "bindings": ["claimId", "operationId", "claimGeneration", "itemId", "catalogId", "catalogRevision", "catalogHashSha256", "acquisition", "eligibilityContractVersion", "eligibilityProjectionHashSha256"],
+      "atomicOwnershipCommit": true,
+      "milestoneLedgerDelta": 0
+    },
+    "HIGH-003-ROLLOUT-EVIDENCE": {
+      "completeEvidenceObjectRequired": true,
+      "androidPopulationFields": ["distinctUsers"],
+      "iosPopulationFields": ["sessions", "activeDevices"],
+      "freshnessRequired": true,
+      "observationWindowRequired": true,
+      "exactReleaseAndBuildBindingRequired": true,
+      "incompleteEvidenceAction": "PAUSE_NO_ADVANCE"
+    },
+    "HIGH-004-WP-SCOPE-ANCHOR": {
+      "workPackageAndManifestSameAddCommit": true,
+      "historicalWorkPackageBlobRequired": true,
+      "historicalExactManifestLinkRequired": true,
+      "currentWorkPackageNotTrustEvidence": true,
+      "futureProductionManifestAllowedWithOwnAnchor": true
+    }
+  }
+}

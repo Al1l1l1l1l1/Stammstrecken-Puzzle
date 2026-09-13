@@ -1,0 +1,89 @@
+{
+  "architectureVersion": "0.3",
+  "workPackagePattern": "^WP-[0-9]{3}$",
+  "assembly": {
+    "portsOwner": "STP.Application",
+    "bootstrapReferences": [
+      "STP.Application",
+      "STP.Audio",
+      "STP.Infrastructure.Content",
+      "STP.Infrastructure.Persistence",
+      "STP.MobileServices.Google",
+      "STP.MobileServices.Store",
+      "STP.Platform",
+      "STP.Presentation.UI",
+      "STP.Presentation.World"
+    ],
+    "forbiddenAssemblies": ["STP.MobileServices.Contracts"],
+    "forbiddenPorts": ["ISaveSyncPort"]
+  },
+  "save": {
+    "hashProfile": "STP-SAVE-JCS-1",
+    "schemaVersion": 2,
+    "journalMaxEntries": 512,
+    "journalMaxCanonicalBytes": 262144,
+    "compactAtEntries": 384,
+    "compactAtCanonicalBytes": 196608,
+    "diagnosticTailEntries": 64
+  },
+  "reward": {
+    "placement": "POST_CLEAR_PATIENCE",
+    "claimTemplate": "reward-claim:POST_CLEAR_PATIENCE:<puzzleId>",
+    "providerIdIsBusinessKey": false,
+    "atomicCommitFields": ["claim.COMMITTED", "economyJournal.entry"]
+  },
+  "iap": {
+    "productKey": "remove_ads",
+    "grantBeforeStoreFinalize": true,
+    "googleFinalization": "ACKNOWLEDGE",
+    "appleFinalization": "FINISH",
+    "states": ["STARTED", "EVIDENCE_RECEIVED", "VERIFIED", "GRANTED_NOT_FINALIZED", "FINALIZED", "REJECTED", "RECONCILIATION_REQUIRED"]
+  },
+  "privacy": {
+    "firebaseUnityVersion": "13.16.0",
+    "googleMobileAdsUnityVersion": "11.5.0",
+    "unityIapVersion": "5.4.3",
+    "analyticsNativeDefault": false,
+    "crashlyticsProductionMode": "EXCLUDED",
+    "adsBeforeCanRequestAds": false,
+    "unknownCapabilityValue": false,
+    "analyticsInvalidationMode": "RESET_ONLY_BUILD",
+    "iapBootstrapAllowed": false
+  },
+  "deviceEvidence": {
+    "requiredScenarios": ["FRESH_INSTALL", "UPGRADE_PRIOR_ACTIVE", "REVOCATION", "REENABLE"],
+    "physicalAndroidRequired": true,
+    "physicalIosRequired": true
+  },
+  "endless": {
+    "contractVersion": 1,
+    "idPrefix": "E1-",
+    "identityProjection": ["endlessContractVersion", "rulesetVersion", "generatorVersion", "seed", "generationOrdinal", "parameterHashSha256"],
+    "saveSchemaVersion": 2,
+    "maxActiveDrafts": 20,
+    "ordinalEncoding": "UINT64_DECIMAL_STRING",
+    "terminalRetentionLimit": null,
+    "terminalDiagnosticsAuthoritative": false
+  },
+  "puzzleIdentity": {
+    "levelDocumentVersion": 2,
+    "puzzleHashProfile": "STP-PUZZLE-SEMANTIC-JCS-1",
+    "solutionHashProfile": "STP-SOLUTION-JCS-1",
+    "proofHashProfile": "STP-PROOF-JCS-1",
+    "proofFormatVersion": 1,
+    "releaseLockFormatVersion": 1
+  },
+  "release": {
+    "manifestVersion": 1,
+    "stagingPromotionAllowed": false,
+    "promotableBuildProfile": "production",
+    "promotionRebuildAllowed": false
+  },
+  "cosmetics": {
+    "schemaVersion": 2,
+    "milestoneEligibilityContractVersion": 1,
+    "milestoneKind": "ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS",
+    "claimTemplate": "cosmetic-milestone-claim:v1:<catalogId>:<itemId>",
+    "milestoneLedgerDelta": 0
+  }
+}

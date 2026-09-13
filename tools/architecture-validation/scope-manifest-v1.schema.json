@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/architecture-scope-manifest-v1.schema.json",
+  "title": "Architecture validation scope manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifestVersion", "workPackageId", "baseCommit", "scope", "allowedPathPatterns"],
+  "properties": {
+    "manifestVersion": {"const": 1},
+    "workPackageId": {"type": "string", "pattern": "^WP-[0-9]{3}$"},
+    "baseCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "scope": {"type": "string", "enum": ["documentation", "production"]},
+    "allowedPathPatterns": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.?*\\[\\]-]+)*$"}
+    }
+  }
+}

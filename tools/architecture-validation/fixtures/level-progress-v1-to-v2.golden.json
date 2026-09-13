@@ -1,0 +1,55 @@
+{
+  "sourceDocument": {
+    "path": "ARCHITECTURE/examples/level-v1.example.json",
+    "documentSchemaVersion": 1,
+    "documentSha256": "2c52d69b655a5f16a0b25ec3748155d54a49b913a902293d3f78b01599ac7806"
+  },
+  "targetDocument": {
+    "path": "ARCHITECTURE/examples/level-v2.example.json",
+    "documentSchemaVersion": 2,
+    "documentSha256": "1e025232202030bd420a1cee721585b36f9a1796476ff27cc22977c0970ff3c4"
+  },
+  "releaseLockDocument": {
+    "path": "ARCHITECTURE/examples/release-lock-v1.example.json",
+    "lockFormatVersion": 1,
+    "documentSha256": "aa3a943b78d15c8b5b2cc93c119fd4d7b73d964c97bd2e05fb3f640cd02caa3b"
+  },
+  "source": {
+    "saveSchemaVersion": 1,
+    "levelId": "S1-01-01-01",
+    "puzzleHashSha256": "3aa16bef1d6dc283d642cf9d68f24afce6bec0a57803d7d877f6452bcc7b92b0",
+    "completed": true,
+    "starsHighWater": 2,
+    "bestElapsedMilliseconds": 73000,
+    "firstCompletedAtUtc": "2026-09-12T00:00:00Z",
+    "terminalClaimIds": [
+      "reward:LEVEL_FIRST_CLEAR:S1-01-01-01",
+      "reward-claim:POST_CLEAR_PATIENCE:S1-01-01-01"
+    ]
+  },
+  "releaseLockBinding": {
+    "legacyProfile": "STP-LEVEL-V1-PUZZLE-JCS-1",
+    "legacySha256": "3aa16bef1d6dc283d642cf9d68f24afce6bec0a57803d7d877f6452bcc7b92b0",
+    "puzzleId": "S1-01-01-01",
+    "publicPuzzleHash": {
+      "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+      "sha256": "b2a8bdb105dde81b9072eda0bdb602cb64390c1533494651f1951efea3225031"
+    }
+  },
+  "expected": {
+    "saveSchemaVersion": 2,
+    "puzzleId": "S1-01-01-01",
+    "publicPuzzleHashAtFirstCompletion": {
+      "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+      "sha256": "b2a8bdb105dde81b9072eda0bdb602cb64390c1533494651f1951efea3225031"
+    },
+    "completed": true,
+    "starsHighWater": 2,
+    "bestElapsedMilliseconds": 73000,
+    "firstCompletedAtUtc": "2026-09-12T00:00:00Z",
+    "terminalClaimIds": [
+      "reward:LEVEL_FIRST_CLEAR:S1-01-01-01",
+      "reward-claim:POST_CLEAR_PATIENCE:S1-01-01-01"
+    ]
+  }
+}
