@@ -4,7 +4,7 @@
 
 `WP-007`
 
-**Bearbeitungsstatus:** Abgeschlossen auf Branch `chore/ci-setup`.
+**Bearbeitungsstatus:** In Bearbeitung auf Branch `chore/ci-setup`.
 
 ## Ziel
 
