@@ -4,7 +4,7 @@
 
 `WP-007`
 
-**Bearbeitungsstatus:** In Bearbeitung auf Branch `chore/ci-setup`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `chore/ci-setup`.
 
 ## Ziel
 
@@ -101,12 +101,12 @@ Das zwingende CI-Gate vor Produktionscoding ist eingerichtet. Der Workflow `.git
 | Workflow `.github/workflows/validate.yml` | **Erstellt** – Trigger `pull_request` gegen `main`, `push` auf alle Branches, `workflow_dispatch`; `permissions: contents: read`; `fetch-depth: 0`. |
 | Laufzeitumgebung | **Gepinnt** – `ubuntu-24.04`, CPython 3.11.13, Node.js 22.20.0, Abhängigkeiten exakt aus `requirements.lock.txt` in repositoryexterner virtueller Umgebung (`../.venv-stp-architecture`), alle Actions per vollständigem Commit-SHA gepinnt. |
 | Checkname | `Architecture Validation / validate`, eindeutig und als Required Merge Check verwendbar. |
-| Positiver CI-Nachweis | Implementierungs- und Abschlusscommit **PASS** (commitgebundene Run-URLs in `## Validierung`). |
-| Negativnachweis | Absichtlich ungültiger Commit (Work-Package-Statusmutation) **FAIL** mit `version:work-package`; Branch danach wieder ausschließlich gültig. |
-| Trust-Anchor (ADR-030) | WP-007 und Manifest gemeinsam im selben Add-Commit eingeführt; `baseCommit` ist dessen Elterncommit `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea`; Manifestblob bytegleich. |
+| Positiver CI-Nachweis | Implementierungsstand `e366466c` und Abschlusscommit **PASS** (commitgebundene Run-URLs in `## Validierung`). |
+| Negativnachweis | Absichtlich ungültiger Commit `ddb6868` (Work-Package-Statusmutation) **FAIL** mit `version:work-package`; Branch danach wieder ausschließlich gültig. |
+| Trust-Anchor (ADR-030) | WP-007 und Manifest gemeinsam im selben Add-Commit `280dbee4ea0134e18a21317ea87ee22aafd68852` eingeführt; `baseCommit` ist dessen Elterncommit `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea`; Manifestblob bytegleich. |
 | `BLOCKER-PROD-001/002/003` | **Unverändert offen und fail-closed**; `ARCHITECTURE/OPEN_BLOCKERS.md` unverändert. |
 | Produktionscode / Unity | **Keiner erzeugt oder verändert.** |
-| Merge nach `main` / Pull-Request-Merge | **Nicht erfolgt.** Der Pull Request `chore/ci-setup` → `main` bleibt ungemergt als Check-Nachweis offen. |
+| Merge nach `main` / Pull-Request-Merge | **Nicht erfolgt.** Der Pull Request `chore/ci-setup` → `main` (https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/2) bleibt ungemergt als Check-Nachweis offen. |
 
 Geänderte Dateien: `.github/workflows/validate.yml` (neu), `ARCHITECTURE/TEST_STRATEGY.md`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `WORK_PACKAGES/WP-007_CI-Setup.md` (neu), `tools/architecture-validation/README.md`, `tools/architecture-validation/scopes/WP-007.documentation.scope.json` (neu, Trust-Anchor, danach byteunverändert) und `tools/architecture-validation/validate.py` (ausschließlich mechanische WP-007-Nachführung).
 
@@ -119,11 +119,13 @@ Geänderte Dateien: `.github/workflows/validate.yml` (neu), `ARCHITECTURE/TEST_S
 | `git diff --check`, Scope-, Secret-, Produktdatei-, Produktionscode- und `main`-Unverändertheit | **PASS** (im `LOCAL_SCOPE`-Lauf enthalten und zusätzlich manuell geprüft). |
 | Delta-Prüfung gegen `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea` | **PASS**; der vollständige Diff enthält ausschließlich die acht im Manifest erlaubten Dateien. |
 | Save-JCS-Crosscheck (Node) | **PASS** im Validatorlauf enthalten. |
-| GitHub-Actions: Implementierungscommit | **PASS**; commitgebundene Run-URL wird mit dem Abschlusscommit an dieser Stelle nachgetragen. |
-| GitHub-Actions: Negativcommit (Statusmutation) | **FAIL** mit `version:work-package` als beabsichtigter Negativnachweis; commitgebundene Run-URL wird mit dem Abschlusscommit nachgetragen. |
+| GitHub-Actions: Implementierungsstand `e366466c` | **PASS** – Check `Architecture Validation / validate`; Push-Run: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/34781158359, PR-Run auf demselben Commit: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/34781210539. |
+| GitHub-Actions: Negativcommit `ddb6868` (Statusmutation) | **FAIL** als beabsichtigter Negativnachweis: die Ein-Zeilen-Statusmutation erzwingt `version:work-package` (auf dem bytegleichen Blob lokal verifiziert; commitgebundene Check-Conclusion `failure`); Push-Run: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/34781421995, PR-Run: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/34781423862. |
 | GitHub-Actions: Abschlusscommit | **PASS**; der Lauf zum Abschlusscommit ist im Actions-Tab und im Abschlussbericht belegt, da ein Commit seine eigene Run-URL nicht enthalten kann. |
-| Remote-Anker-SHA | Wird mit dem Abschlusscommit hier und in `../PROJECT_CONTROL/CURRENT_STATE.md` nachgetragen. |
-| Remote-Commit-Verifikation | Nach jedem Push per Remote-Abfrage verifiziert. |
+| Erwartete Zwischenstands-Läufe | `18a8fb8` (autorisierter manueller Workflow-Commit vor vollständiger Nachführung) und `46d02c93` (Governance-/Dokumentstand vor der Validator-Nachführung in `e366466c`) scheiterten erwartbar an `version:work-queue` beziehungsweise `version:current-state` und `version:work-queue` — dokumentierte Effekte des jeweils unvollständigen Zwischenstands, keine Regressionsbefunde; Läufe im Actions-Tab belegt. |
+| Workflow-Berechtigung | Die aktive GitHub-Integration lehnte das Anlegen von `.github/workflows/validate.yml` ab (fehlender `workflow`-Scope; generischer Upstream-Fehler bei zwei Schreibwerkzeugen, während Nicht-Workflow-Schreibzugriffe im selben Zeitraum erfolgreich waren — exakt der in WP-006 dokumentierte Befund). Die Workflowdatei wurde daraufhin autorisiert durch den Owner manuell über die Weboberfläche in `18a8fb8` eingestellt (semantisch identisch zum vorbereiteten Workflow; eine zusätzliche YAML-neutrale Leerzeile) und bleibt unverändert. |
+| Remote-Anker-SHA | `280dbee4ea0134e18a21317ea87ee22aafd68852` (WP-007 und Manifest gemeinsam hinzugefügt; Elterncommit = `baseCommit` = `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea`; remote verifiziert). |
+| Remote-Commit-Verifikation | Nach jedem Push per Remote-Abfrage verifiziert; alle übertragenen Blobs sind bytegleich mit dem lokal validierten Trockenlauf-Stand. |
 | Validator-Umgebung (lokal) | Gepinnte Lock-Abhängigkeiten aus `requirements.lock.txt`; lokaler Trockenlauf unter Windows mit CPython 3.12, CI-Zielumgebung Ubuntu 24.04 mit CPython 3.11.13 (dokumentierte, nicht regressionsbehaftete Plattformabweichung wie in den früheren Reviews). |
 | Unity-, Geräte-, SDK- und Storetests | **REQUIRED_LATER/NOT_EXECUTED**; WP-007 erzeugte keinen Produktionscode. |
 
