@@ -78,7 +78,7 @@ Das Beispiel unter `ARCHITECTURE/examples/` wird bereits in der Architekturphase
 | Risiko | Pflichtfälle |
 |---|---|
 | Teilwrite | Abbruch nach jedem Schritt des atomaren Algorithmus; höchste gültige Generation wird geladen. |
-| Korruption | truncation, ungültiges JSON, falscher Hash, ungültiger Payload. |
+| Korruption | truncation, ungültiges JSON, falscher Hash, ungültige Payload. |
 | Backup | Hauptstand defekt, Backup gültig; Recovery ohne Fortschrittsverlust. |
 | Split brain | gleiche Generation/anderer Hash; konservative Auswahl und Diagnose. |
 | Migration | Golden vN→vN+1, Kette über alle Versionen, Idempotenz, Rollbacksource. |
@@ -167,7 +167,7 @@ python tools/architecture-validation/validate.py \
   --self-test
 ```
 
-Ein später autorisierter GitHub-Workflow verwendet denselben kanonischen Manifestpfad und muss den verankerten Basecommit bestätigen. Ein fehlender oder nicht erreichbarer Basecommit, ein geänderter Manifestblob, ein getrennt eingeführtes Work Package, ein erst später ergänzter Manifestverweis oder ein nicht passender Ankercommit ist ein harter Fehler. Ein späteres Production-Work-Package bleibt zulässig, wenn es sein eigenes Production-Manifest nach demselben gemeinsamen-Anker-Vertrag einführt. Das noch fehlende CI-Setup bleibt als non-blocking Follow-up vor dem ersten produktiven Coding-Work-Package dokumentiert.
+Ein später autorisierter GitHub-Workflow verwendet denselben kanonischen Manifestpfad und muss den verankerten Basecommit bestätigen. Ein fehlender oder nicht erreichbarer Basecommit, ein geänderter Manifestblob, ein getrennt eingeführtes Work Package, ein erst später ergänzter Manifestverweis oder ein nicht passender Ankercommit ist ein harter Fehler. Ein späteres Production-Work-Package bleibt zulässig, wenn es sein eigenes Production-Manifest nach demselben gemeinsamen-Anker-Vertrag einführt. Das zuvor fehlende CI-Setup wurde mit `WP-007` abgeschlossen: der Workflow `.github/workflows/validate.yml` führt denselben kanonischen Befehl mit dem jeweils verankerten Manifestpfad (`STP_SCOPE_MANIFEST`) fail-closed auf Ubuntu 24.04 mit gepinntem CPython 3.11.13 und Node.js 22.20.0 aus und bestätigt dabei den verankerten Basecommit.
 
 ### 11.2 Belegkategorien
 
@@ -212,7 +212,7 @@ Wichtiger als Gesamtprozent sind:
 
 ## 13. Flaky-Test-Regel
 
-Ein Test wird nicht durch automatisches Mehrfachretry „grün“. Flaky bedeutet Fehler. Er blockiert, bis Ursache behoben oder eine dokumentierte Quarantäne mit Issue, Eigentümer, Umfang und Ablaufdatum eingerichtet ist. Quarantänetests zählen nicht als erfülltes Release-Gate für das betroffene Risiko.
+Ein Test wird nicht durch automatisches Mehrfachretry „grün". Flaky bedeutet Fehler. Er blockiert, bis Ursache behoben oder eine dokumentierte Quarantäne mit Issue, Eigentümer, Umfang und Ablaufdatum eingerichtet ist. Quarantänetests zählen nicht als erfülltes Release-Gate für das betroffene Risiko.
 
 Zufallstests protokollieren Seed, Solverversion, Testfall und minimierten Gegenbeweis. CI verwendet feste Seeds plus rotierenden, gespeicherten Tagesseed nur als Zusatzsignal.
 
@@ -224,7 +224,7 @@ Der Architekturvalidator liegt dauerhaft unter `tools/architecture-validation/`.
 
 ## 15. Fehlerbehebungsvertrag
 
-Jeder Productionbug erhält zuerst einen minimalen reproduzierenden Test auf der niedrigsten sinnvollen Ebene. Die Korrektur darf den Test nicht durch Sonderpfade umgehen. Postmortems für Saveverlust, falsche Economy, Storefehler, Contentmehrdeutigkeit und öffentliche Crashregression aktualisieren Tests und gegebenenfalls Architektur.
+Jeder Productionbug erhält zuerst einen minimalen reproduzierbaren Test auf der niedrigsten sinnvollen Ebene. Die Korrektur darf den Test nicht durch Sonderpfade umgehen. Postmortems für Saveverlust, falsche Economy, Storefehler, Contentmehrdeutigkeit und öffentliche Crashregression aktualisieren Tests und gegebenenfalls Architektur.
 
 ## Referenzen
 

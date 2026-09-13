@@ -44,6 +44,21 @@ python3 -m venv ../.venv-stp-architecture
   --self-test
 ```
 
+## Kanonischer WP-007-Befehl
+
+```bash
+../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
+  --scope documentation \
+  --scope-manifest tools/architecture-validation/scopes/WP-007.documentation.scope.json \
+  --self-test
+```
+
+## Autorisierte CI-Integration (WP-007)
+
+Der Workflow [`../../.github/workflows/validate.yml`](../../.github/workflows/validate.yml) (`Architecture Validation`, Check `Architecture Validation / validate`) ist die autorisierte CI-Integration dieses Validators. Er läuft bei Pull Requests gegen `main`, bei Pushes auf Branches außer `main` und manuell (`workflow_dispatch`) auf `ubuntu-24.04` mit CPython 3.11.13 und Node.js 22.20.0. Alle Actions sind per vollständigem Commit-SHA gepinnt, die Python-Abhängigkeiten kommen exakt aus `requirements.lock.txt`, und das `GITHUB_TOKEN` ist auf `contents: read` begrenzt.
+
+Der Workflow führt den Architecture-only-Lauf mit `--self-test` auf jedem Ereignis aus. Den kanonischen Scope-Lauf mit `--self-test` führt er bei Pull Requests und bei Pushes außerhalb von `main` gegen das in `STP_SCOPE_MANIFEST` benannte Manifest aus; auf `main`-Pushes entfällt der Scope-Schritt, weil der Integrationsstand keinem einzelnen Work-Package-Diff mehr entspricht. Jedes künftige Work Package setzt `STP_SCOPE_MANIFEST` auf sein eigenes verankertes Manifest und nimmt die Workflowdatei in seine Allowlist auf. Jeder Validatorfehler lässt den Check fail-closed fehlschlagen.
+
 ## Scope-Vertrauensanker
 
 Das Manifest folgt [`scope-manifest-v1.schema.json`](./scope-manifest-v1.schema.json) und liegt exakt unter `tools/architecture-validation/scopes/<WP-ID>.<scope>.scope.json`. **Manifest und zugehöriges Work Package müssen im selben historischen Add-Commit erstmals eingeführt werden.** Sein `baseCommit` ist der Elterncommit dieses gemeinsamen Ankers.
@@ -52,13 +67,13 @@ Der Validator lädt Manifest und Work Package aus genau diesem Commit. Er verlan
 
 Die reale Änderungsmenge stammt aus `git diff --name-status <baseCommit> --` einschließlich beider Rename-/Copy-Endpunkte und untracked Dateien. Muster verwenden segmentierte POSIX-Semantik: `*` matcht kein `/`, `**` ist nur als eigenes Segment erlaubt. Globale beziehungsweise global-äquivalente Muster (`*`, `**`, `**/*`, `*/**`), absolute oder externe Manifestpfade, unversionierte Manifeste, falsche WP-/Scope-Dateinamen, `..`, Backslashes, Symlink-Escape und nicht erlaubte Dateien scheitern. Das Manifest muss sich selbst ausdrücklich nennen und darf keine anderen Scope-Manifeste erlauben. Documentation-Scope lehnt Produktcode, Unityartefakte und Produktquellen zusätzlich kategorisch ab.
 
-Ein späteres Production-Manifest ist zulässig, wenn es mit seinem eigenen Work Package denselben gemeinsamen-Anker-Vertrag erfüllt und einen engen Production-Scope besitzt. Eine spätere autorisierte CI-Integration muss denselben kanonischen Befehl und denselben Manifestanker verwenden. Der fehlende GitHub-Actions-Workflow ist für WP-005 **non-blocking with follow-up**; ein eigenes CI-Setup-Work-Package ist jedoch zwingend vor dem ersten produktiven Coding-Work-Package abzuschließen.
+Ein späteres Production-Manifest ist zulässig, wenn es mit seinem eigenen Work Package denselben gemeinsamen-Anker-Vertrag erfüllt und einen engen Production-Scope besitzt. Eine spätere autorisierte CI-Integration muss denselben kanonischen Befehl und denselben Manifestanker verwenden. Der fehlende GitHub-Actions-Workflow ist für WP-005 **non-blocking with follow-up**; ein eigenes CI-Setup-Work-Package ist jedoch zwingend vor dem ersten produktiven Coding-Work-Package abzuschließen. Dieses zwingende CI-Setup-Work-Package wurde mit `WP-007` abgeschlossen; die autorisierte CI-Integration ist im eigenen Abschnitt oben beschrieben.
 
 ## Tatsächlicher Prüfumfang
 
 | Gruppe | Tatsächlicher Nachweis |
 |---|---|
-| Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, sechs Work Packages und Tooldateien. |
+| Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, sieben Work Packages und Tooldateien. |
 | Scope | Reale Git-Diffmenge gegen gemeinsam mit dem historischen Work Package verankertes Manifest; unverändertes lokales/remote `main`. |
 | ADR/WP/Links | IDs, Pflichtabschnitte, 21 aktuelle/9 ersetzte ADRs, bidirektionales vollständiges Superseding und explizite Teilnachfolger, ADR-016-Entscheidungskörper gegen den v0.2-Historiencommit sowie relative Ziele. |
 | Datenverträge | Draft 2020-12 für Legacy-v1 und aktuelle Level-/Campaign-/Cosmetics-v2-, Proof-, Lock-, Release- und Scope-Schemata; DRAFT-Cosmetics ist schemafähig. |

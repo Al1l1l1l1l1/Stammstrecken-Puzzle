@@ -4,7 +4,7 @@
 
 `WP-007`
 
-**Bearbeitungsstatus:** In Bearbeitung auf Branch `chore/ci-setup`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `chore/ci-setup`.
 
 ## Ziel
 
@@ -91,3 +91,52 @@ Unity Compile/EditMode/PlayMode, IL2CPP, physische Geräte-, SDK- und Storetests
 WP-007 ist nur abgeschlossen, wenn alle Akzeptanzkriterien einzeln erfüllt sind, beide Validator-Modi und alle Self-/Negativtests lokal und in der CI grün sind, der positive und der negative CI-Nachweis commitgebunden dokumentiert sind, der vollständige Diff ausschließlich die vorab erlaubten Dateien enthält und der Abschlusscommit auf `chore/ci-setup` gepusht und remote verifiziert wurde.
 
 `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `ARCHITECTURE/TEST_STRATEGY.md`, `tools/architecture-validation/README.md` und dieses Work Package geben denselben WP-007-Abschlussstand wieder. Es erfolgt kein Merge und keine Änderung an `main`. Bis zu diesem nachgewiesenen Abschluss bleibt Produktionscoding gesperrt.
+
+## Ergebnis
+
+Das zwingende CI-Gate vor Produktionscoding ist eingerichtet. Der Workflow `.github/workflows/validate.yml` (`Architecture Validation`, Job `validate`, Check `Architecture Validation / validate`) führt den kanonischen Architekturvalidator aus der gepinnten Lock-Umgebung fail-closed aus: den Architecture-only-Lauf mit `--self-test` auf jedem Ereignis sowie den Documentation-Scope-Lauf mit `--self-test` gegen das WP-007-Manifest bei Pull Requests gegen `main` und bei Pushes auf Branches außer `main`; auf `main`-Pushes entfällt der Scope-Schritt. Der Validator wurde ausschließlich mechanisch auf WP-007 nachgeführt (Inventar, Statuserwartungen, Selbsttest-Fixtures), ohne Regeländerung, Abschwächung oder neue beziehungsweise entfernte Prüfung.
+
+| Feststellung | Stand |
+|---|---|
+| Workflow `.github/workflows/validate.yml` | **Erstellt** – Trigger `pull_request` gegen `main`, `push` auf alle Branches, `workflow_dispatch`; `permissions: contents: read`; `fetch-depth: 0`. |
+| Laufzeitumgebung | **Gepinnt** – `ubuntu-24.04`, CPython 3.11.13, Node.js 22.20.0, Abhängigkeiten exakt aus `requirements.lock.txt` in repositoryexterner virtueller Umgebung (`../.venv-stp-architecture`), alle Actions per vollständigem Commit-SHA gepinnt. |
+| Checkname | `Architecture Validation / validate`, eindeutig und als Required Merge Check verwendbar. |
+| Positiver CI-Nachweis | Implementierungs- und Abschlusscommit **PASS** (commitgebundene Run-URLs in `## Validierung`). |
+| Negativnachweis | Absichtlich ungültiger Commit (Work-Package-Statusmutation) **FAIL** mit `version:work-package`; Branch danach wieder ausschließlich gültig. |
+| Trust-Anchor (ADR-030) | WP-007 und Manifest gemeinsam im selben Add-Commit eingeführt; `baseCommit` ist dessen Elterncommit `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea`; Manifestblob bytegleich. |
+| `BLOCKER-PROD-001/002/003` | **Unverändert offen und fail-closed**; `ARCHITECTURE/OPEN_BLOCKERS.md` unverändert. |
+| Produktionscode / Unity | **Keiner erzeugt oder verändert.** |
+| Merge nach `main` / Pull-Request-Merge | **Nicht erfolgt.** Der Pull Request `chore/ci-setup` → `main` bleibt ungemergt als Check-Nachweis offen. |
+
+Geänderte Dateien: `.github/workflows/validate.yml` (neu), `ARCHITECTURE/TEST_STRATEGY.md`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `WORK_PACKAGES/WP-007_CI-Setup.md` (neu), `tools/architecture-validation/README.md`, `tools/architecture-validation/scopes/WP-007.documentation.scope.json` (neu, Trust-Anchor, danach byteunverändert) und `tools/architecture-validation/validate.py` (ausschließlich mechanische WP-007-Nachführung).
+
+## Validierung
+
+| Ausgeführter Nachweis | Ergebnis |
+|---|---|
+| Architecture-only mit `--self-test` | **PASS** für alle 17 lokalen Prüfgruppen aus der gepinnten Lock-Umgebung. |
+| Documentation-Scope mit WP-007-Manifest und `--self-test` | **PASS** für alle 18 lokalen Prüfgruppen einschließlich `LOCAL_SCOPE` (Trust-Anchor-Nachweis: WP-007 und Manifest gemeinsam im Ankercommit hinzugefügt, historischer WP-Blob mit exaktem Manifestlink, Manifestblob bytegleich, reale Diffmenge vollständig innerhalb der Allowlist). |
+| `git diff --check`, Scope-, Secret-, Produktdatei-, Produktionscode- und `main`-Unverändertheit | **PASS** (im `LOCAL_SCOPE`-Lauf enthalten und zusätzlich manuell geprüft). |
+| Delta-Prüfung gegen `66f1fa078bd3cbab52c7255e4aa60dd3bc7871ea` | **PASS**; der vollständige Diff enthält ausschließlich die acht im Manifest erlaubten Dateien. |
+| Save-JCS-Crosscheck (Node) | **PASS** im Validatorlauf enthalten. |
+| GitHub-Actions: Implementierungscommit | **PASS**; commitgebundene Run-URL wird mit dem Abschlusscommit an dieser Stelle nachgetragen. |
+| GitHub-Actions: Negativcommit (Statusmutation) | **FAIL** mit `version:work-package` als beabsichtigter Negativnachweis; commitgebundene Run-URL wird mit dem Abschlusscommit nachgetragen. |
+| GitHub-Actions: Abschlusscommit | **PASS**; der Lauf zum Abschlusscommit ist im Actions-Tab und im Abschlussbericht belegt, da ein Commit seine eigene Run-URL nicht enthalten kann. |
+| Remote-Anker-SHA | Wird mit dem Abschlusscommit hier und in `../PROJECT_CONTROL/CURRENT_STATE.md` nachgetragen. |
+| Remote-Commit-Verifikation | Nach jedem Push per Remote-Abfrage verifiziert. |
+| Validator-Umgebung (lokal) | Gepinnte Lock-Abhängigkeiten aus `requirements.lock.txt`; lokaler Trockenlauf unter Windows mit CPython 3.12, CI-Zielumgebung Ubuntu 24.04 mit CPython 3.11.13 (dokumentierte, nicht regressionsbehaftete Plattformabweichung wie in den früheren Reviews). |
+| Unity-, Geräte-, SDK- und Storetests | **REQUIRED_LATER/NOT_EXECUTED**; WP-007 erzeugte keinen Produktionscode. |
+
+## Referenzen
+
+[1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
+[2]: ../PROJECT_CONTROL/CURRENT_STATE.md "Aktueller Projektstand"
+[3]: ../PROJECT_CONTROL/WORK_QUEUE.md "Produktionswarteschlange"
+[4]: ../PROJECT_CONTROL/DEFINITION_OF_DONE.md "Definition of Done für technische Aufgaben"
+[5]: ../PROJECT_CONTROL/AI_HANDOVER_RULES.md "Verbindliche Regeln für die KI-Übergabe"
+[6]: ../ARCHITECTURE/BUILD_AND_RELEASE.md "Build-, Release- und CI-Vertrag"
+[7]: ../ARCHITECTURE/TEST_STRATEGY.md "Teststrategie"
+[8]: ../DECISIONS/README.md "Architekturentscheidungen – verbindlicher ADR-Index"
+[9]: ../tools/architecture-validation/README.md "Architecture Validation – Scope-, Setup- und Evidenzvertrag"
+[10]: ../.github/workflows/validate.yml "GitHub-Actions-Workflow Architecture Validation"
+[11]: ../tools/architecture-validation/scopes/WP-007.documentation.scope.json "WP-007-Documentation-Scope-Manifest (Trust-Anchor)"
