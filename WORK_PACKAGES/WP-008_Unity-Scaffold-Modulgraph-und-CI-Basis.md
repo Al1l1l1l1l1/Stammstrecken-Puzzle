@@ -4,7 +4,7 @@
 
 `WP-008`
 
-**Bearbeitungsstatus:** In Bearbeitung – **Gate A** (Work Package, Production-Scope-Manifest, Trust-Anchor, ADR-012-Reichweitenprüfung). Kein Unity-Scaffold und kein Produktionscode vor Abschluss von Gate A.
+**Bearbeitungsstatus:** In Bearbeitung – **Gate A abgeschlossen (PASS)**: Work Package, Production-Scope-Manifest, Trust-Anchor und ADR-012-Reichweitenprüfung sind abgeschlossen und dokumentiert. **Gate B (Unity-Scaffold) ist noch nicht begonnen**; kein Produktionscode existiert weiterhin.
 
 ## Ziel
 
@@ -124,6 +124,40 @@ Physische Geräte-, SDK-Sandbox- und Storetests bleiben **REQUIRED_LATER/NOT_EXE
 WP-008 ist nur abgeschlossen, wenn alle Akzeptanzkriterien einzeln erfüllt sind, beide Validator-Modi einschließlich Self-/Negativtests lokal und in der CI grün sind, die Unity-CI-Nachweise (Compile, EditMode, Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS) commitgebunden dokumentiert sind, der vollständige Diff ausschließlich die im Manifest erlaubten Pfade enthält und der Abschlusscommit auf `feat/wp-008-unity-scaffold` gepusht und remote verifiziert wurde.
 
 `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `tools/architecture-validation/README.md` und dieses Work Package geben denselben WP-008-Stand wieder. Es erfolgt kein Merge und keine Änderung an `main`. Die fachliche Puzzle-Implementierung bleibt vollständig WP-009 vorbehalten.
+
+## Trust-Anchor-Nachweis (Gate A)
+
+WP-008 und [`tools/architecture-validation/scopes/WP-008.production.scope.json`](../tools/architecture-validation/scopes/WP-008.production.scope.json) wurden gemeinsam im Trust-Anchor-Commit `8d3e245fcab8bce42b5e8efdded480f47dacfbb8` eingeführt (beide Pfade mit Add-Status, im Elterncommit nicht vorhanden). Der Elterncommit des Ankers ist `3c1a6988c1aab2084763edf772b6adc268874865` und entspricht exakt dem `baseCommit` des Manifests. Der Anker wurde ausschließlich auf `feat/wp-008-unity-scaffold` gepusht und remote verifiziert; `main` bleibt unverändert auf `3c1a6988c1aab2084763edf772b6adc268874865`. Der nachfolgende Commit `3c1ffe939e55d9959dc4e3a1e8fecbbb2ee54660` stellte den CI-Scope-Lauf in [`.github/workflows/validate.yml`](../.github/workflows/validate.yml) mechanisch auf das WP-008-Production-Manifest um (`STP_SCOPE: production`, `STP_SCOPE_MANIFEST`). Das Manifest ist seit dem Ankercommit byteunveränderlich.
+
+## ADR-012-Reichweitenprüfung (Gate A)
+
+Gemäß [ADR-012](../DECISIONS/ADR-012-mobile-plattformbaselines.md) wurde die Reichweite vor dem ersten Produktions-Scaffold mit aktuellen Store-/Zielgruppen- und Geräteinformationen geprüft. **Stichtag der Prüfung: 2026-09-14.**
+
+### Geprüfte Baselines (Architecture v1.0, unverändert)
+
+| Plattform | Deployment-Minimum | Upload-/Releaseziel |
+|---|---|---|
+| Android | Android 8.0 / API 26, ARM64, IL2CPP | `targetSdkVersion`/`compileSdkVersion` mindestens API 36 sowie aktuelles Google-Play-Mandat |
+| iOS | iOS 15.0, ARM64, IL2CPP | Xcode 26+ mit iOS-26-SDK+ sowie aktuelles App-Store-Mandat |
+
+### Befunde mit aktuellen Informationen
+
+| Prüfpunkt | Aktueller Befund (Stichtag 2026-09-14) | Auswirkung auf die Baseline |
+|---|---|---|
+| Google-Play-Uploadziel | Seit 2026-08-31 müssen neue Apps und Updates Android 16 (API 36) oder höher targeten; Fristverlängerung bis 2026-11-01 nur auf Antrag. | Keine: das Architekturmuster „mindestens API 36 und bei Release aktuelles Mandat" deckt dies bereits ab; das Deployment-Minimum ist davon nicht berührt. |
+| App-Store-Uploadziel | Seit 2026-04-28 müssen Uploads mit Xcode 26+ und einem 26er-SDK gebaut sein; das betrifft nur das Build-SDK, nicht das Deployment Target. | Keine: die Architektur verlangt bereits Xcode 26+/iOS-26-SDK+; iOS 15.0 als Deployment Target bleibt zulässig. |
+| Unity-6000.3-Minima | Unity 6000.3 unterstützt Android ab API 25 und iOS ab 15.0 als Mindest-Deployment-Targets. | Keine: API 26 und iOS 15.0 sind mit der gepinnten Editorversion baubar; iOS 15.0 ist exakt die Unity-Untergrenze. |
+| SDK-Linie Google Mobile Ads 11.5.0 | Mindestanforderungen Android API 23 und iOS 13.0 laut aktueller Anbieterdoku. | Keine: beide Minima liegen unter den Baselines; keine notwendige SDK-Linie ist inkompatibel. |
+| Zielgruppenabdeckung Android | API 26+ (Android 8.0+, 2017) deckt etwa 96 % der aktiven Geräte weltweit ab. | Keine relevante Zielgruppenausgrenzung für die deutschsprachige, breite Puzzle-Zielgruppe. |
+| Zielgruppenabdeckung iOS | iOS 15 läuft ab iPhone 6s/SE (2015); Geräte auf iOS 15 oder älter liegen 2026 nur noch im niedrigen einstelligen Prozentbereich. | Keine relevante Zielgruppenausgrenzung. |
+| Vorhandene Geräte | Derzeit ist **kein** physisches Referenzgerät und **keine** freigegebene Device-Farm als verfügbar nachgewiesen (wahrheitsgemäßer Zustand). | Für WP-008 ist kein physischer Gerätesmoke erforderlich; die physische Gerätematrix aus ADR-012/`ARCHITECTURE/TEST_STRATEGY.md` Abschnitt 10 bleibt verbindlich und ist vor den entsprechenden späteren Geräte-/Release-Gates bereitzustellen. Diese Gates bleiben REQUIRED_LATER/NOT_EXECUTED. |
+| Unity 6000.3 mit Xcode 26 | Die Unity-Doku empfiehlt „Xcode 16 oder später" und belegt die Kombination mit Xcode 26 nicht explizit. | Kein Architekturbefund; die Kombination ist im iOS-CI-Nachweis von Gate B praktisch zu verifizieren. |
+
+Quellen: [Google Play target API level](https://developer.android.com/google/play/requirements/target-sdk), [Apple Upcoming Requirements](https://developer.apple.com/news/upcoming-requirements/), [Unity 6000.3 Android requirements](https://docs.unity3d.com/6000.3/Documentation/Manual/android-requirements-and-compatibility.html), [Unity 6000.3 iOS requirements](https://docs.unity3d.com/6000.3/Documentation/Manual/ios-requirements-and-compatibility.html), [Google Mobile Ads Unity Quickstart](https://developers.google.com/admob/unity/quick-start), [apilevels.com](https://apilevels.com/), [Apple App Store support – Gerätestatistik](https://developer.apple.com/support/app-store/).
+
+### Ergebnis der Reichweitenprüfung
+
+**PASS.** Die Prüfung bestätigt die bestehenden Architecture-v1.0-Baselines vollständig: keine relevante Zielgruppenausgrenzung, keine inkompatible notwendige SDK-Linie, keine Abweichung von den Store-Mandaten. **Es ist keine neue Architekturentscheidung, keine Änderung einer angenommenen Baseline und kein Nachfolge-ADR erforderlich.** Damit ist Gate A abgeschlossen; Gate B (Unity-Scaffold) ist freigegeben, aber in diesem Arbeitsstand noch nicht begonnen.
 
 ## Referenzen
 
