@@ -1,4 +1,4 @@
-# Architecture Validation (WP-007)
+# Architecture Validation (WP-008: Production-Scope)
 #
 # Kanonische CI-Integration des Architekturvalidators aus
 # tools/architecture-validation/ (ADR-017, ADR-026, ADR-030).
@@ -27,7 +27,8 @@ permissions:
   contents: read
 
 env:
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-007.documentation.scope.json
+  STP_SCOPE: production
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-008.production.scope.json
 
 jobs:
   validate:
@@ -65,6 +66,6 @@ jobs:
         if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
         run: |
           ../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
-            --scope documentation \
+            --scope "$STP_SCOPE" \
             --scope-manifest "$STP_SCOPE_MANIFEST" \
             --self-test
