@@ -53,6 +53,17 @@ python3 -m venv ../.venv-stp-architecture
   --self-test
 ```
 
+## Kanonischer WP-008-Befehl
+
+```bash
+../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
+  --scope production \
+  --scope-manifest tools/architecture-validation/scopes/WP-008.production.scope.json \
+  --self-test
+```
+
+WP-008 ist das erste Production-Scope-Work-Package: Es verankerte `WP-008.production.scope.json` und sein Work Package gemeinsam im Trust-Anchor `8d3e245fcab8bce42b5e8efdded480f47dacfbb8` (Elterncommit = `baseCommit` = `3c1a6988c1aab2084763edf772b6adc268874865`) und stellte den CI-Scope-Lauf in `.github/workflows/validate.yml` auf `STP_SCOPE: production` mit diesem Manifest um.
+
 ## Autorisierte CI-Integration (WP-007)
 
 Der Workflow [`../../.github/workflows/validate.yml`](../../.github/workflows/validate.yml) (`Architecture Validation`, Check `Architecture Validation / validate`) ist die autorisierte CI-Integration dieses Validators. Er läuft bei Pull Requests gegen `main`, bei Pushes auf Branches außer `main` und manuell (`workflow_dispatch`) auf `ubuntu-24.04` mit CPython 3.11.13 und Node.js 22.20.0. Alle Actions sind per vollständigem Commit-SHA gepinnt, die Python-Abhängigkeiten kommen exakt aus `requirements.lock.txt`, und das `GITHUB_TOKEN` ist auf `contents: read` begrenzt.
@@ -73,7 +84,7 @@ Ein späteres Production-Manifest ist zulässig, wenn es mit seinem eigenen Work
 
 | Gruppe | Tatsächlicher Nachweis |
 |---|---|
-| Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, sieben Work Packages und Tooldateien. |
+| Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, acht Work Packages, Tooldateien sowie das WP-008-Produktionsscaffold-Inventar (ProjectVersion, Paketlocks, Toolchain-Lock, Unity-CI-Workflow und die vierzehn normativen `.asmdef`-Dateien). |
 | Scope | Reale Git-Diffmenge gegen gemeinsam mit dem historischen Work Package verankertes Manifest; unverändertes lokales/remote `main`. |
 | ADR/WP/Links | IDs, Pflichtabschnitte, 21 aktuelle/9 ersetzte ADRs, bidirektionales vollständiges Superseding und explizite Teilnachfolger, ADR-016-Entscheidungskörper gegen den v0.2-Historiencommit sowie relative Ziele. |
 | Datenverträge | Draft 2020-12 für Legacy-v1 und aktuelle Level-/Campaign-/Cosmetics-v2-, Proof-, Lock-, Release- und Scope-Schemata; DRAFT-Cosmetics ist schemafähig. |
