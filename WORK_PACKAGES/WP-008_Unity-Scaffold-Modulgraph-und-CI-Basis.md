@@ -4,7 +4,7 @@
 
 `WP-008`
 
-**Bearbeitungsstatus:** In Bearbeitung – **Gate A abgeschlossen (PASS)**: Work Package, Production-Scope-Manifest, Trust-Anchor und ADR-012-Reichweitenprüfung sind abgeschlossen und dokumentiert. **Gate B (Unity-Scaffold) ist noch nicht begonnen**; kein Produktionscode existiert weiterhin.
+**Bearbeitungsstatus:** In Bearbeitung – **Gate A abgeschlossen (PASS)**. **Gate B weitestgehend umgesetzt, aber blockiert vor Abschluss** durch B-01 (Tests-Standort: fehlende Architekturentscheidung außerhalb des WP-008-Scopes) und B-02 (Unity-Lizenz/Runner nicht konfiguriert). Stand, Befunde und Nachweise siehe Abschnitt „Gate-B-Status, Befunde und Nachweise".
 
 ## Ziel
 
@@ -158,6 +158,64 @@ Quellen: [Google Play target API level](https://developer.android.com/google/pla
 ### Ergebnis der Reichweitenprüfung
 
 **PASS.** Die Prüfung bestätigt die bestehenden Architecture-v1.0-Baselines vollständig: keine relevante Zielgruppenausgrenzung, keine inkompatible notwendige SDK-Linie, keine Abweichung von den Store-Mandaten. **Es ist keine neue Architekturentscheidung, keine Änderung einer angenommenen Baseline und kein Nachfolge-ADR erforderlich.** Damit ist Gate A abgeschlossen; Gate B (Unity-Scaffold) ist freigegeben, aber in diesem Arbeitsstand noch nicht begonnen.
+
+## Gate-B-Status, Befunde und Nachweise
+
+### Umgesetzter Scaffold-Stand
+
+**Unity-Projektbasis.** `ProjectSettings/ProjectVersion.txt` trägt exakt `6000.3.23f1` mit Changeset `09d2ecc7fb28` (autoritativ gemäß ADR-001). `ProjectSettings/EditorSettings.asset` setzt Force Text (`m_SerializationMode: 2`) und Visible Meta Files. `ProjectSettings/ProjectSettings.asset` setzt Linear Color Space, Input System (New) (`activeInputHandler: 1`), `.NET Standard 2.1` (`apiCompatibilityLevel: 3`), minSdk 26, targetSdk 36, iOS Deployment Target 15.0 und ARM64; das Scripting Backend wird je Plattform durch die Build-Entrypoints auf IL2CPP gesetzt (Mono bleibt Editor-/Entwicklungsiteration). `ProjectSettings/EditorBuildSettings.asset` verankert die QA-Szene. `Packages/manifest.json` und `Packages/packages-lock.json` enthalten ausschließlich Versionen, die aus den Architekturverträgen (TECH_STACK.md) oder der quellenfest belegten Unity-6000.3-Core-Linie ableitbar sind; `Toolchain.lock.md` dokumentiert alle Pins und markiert nicht auslesbare Werte wahrheitsgemäß als NOT_DETERMINED. Die `.meta`-Abdeckung unter `Assets/` ist vollständig (Visible Meta Files).
+
+**Normativer Modulgraph.** Alle vierzehn Produktionsassemblies aus [`ARCHITECTURE/MODULE_BOUNDARIES.md`](../ARCHITECTURE/MODULE_BOUNDARIES.md) Abschnitt 3 existieren als `.asmdef` mit exakt den normativen Referenzmengen: Bootstrap mit exakt den neun internen Zielen (ADR-018), `noEngineReferences: true` für `STP.Puzzle.Domain`, `STP.Puzzle.Solver` und `STP.Application`, Editor-Grenze `includePlatforms: ["Editor"]` für `STP.Editor.Content` und `STP.Editor.Build`. Jede Assembly trägt eine `csc.rsp` mit `-nullable:enable` und `-warnaserror+` (ADR-002). Domain und Solver enthalten bewusst keine Typen: Jeder Typ wäre entweder verbotene Fachlogik oder verbotener Platzhalter; die Fachverträge folgen mit WP-009. `STP.Application` enthält die fünfzehn normativen Port-Skelette (Abschnitt 6), `ApplicationComposition` (jeder Port genau einmal gebunden, null-frei, fail-closed bei Doppelbindung oder ungebundenem Zugriff, kein stiller Fallback) und `ApplicationRoot`. Die acht Adapter-/Präsentationsmodule enthalten je ein dokumentiertes Skelett ohne Fachlogik, ohne Dateizugriff und ohne SDK-Referenz.
+
+**Bootstrap/Composition Root.** `BootstrapComposition.Compose()` erstellt den Graphen in der dokumentierten Reihenfolge (Content, Persistenz, Clock/Lifecycle, Audio, Application, Presentation, danach externe Adapter; ADR-018, MODULE_BOUNDARIES.md Abschnitt 7) per manueller Konstruktorinjektion. Kein Service Locator, keine veränderliche Registry, kein Reflexions-Wiring, keine Szenensuche, kein Providerstart: Die Google-/Store-Adapter werden erstellt, aber nicht initialisiert. `BootstrapCompositionResult` legt alle Instanzen offen, damit der Smoke jede Portbindung referenzgleich prüfen kann. `BootstrapInstaller` ist der einzige Entry-Installer der dedizierten QA-Szene `Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity` (MonoBehaviour nur als Lifecycle-Adapter).
+
+**Editor.Build.** `StpBuildEntrypoints` bietet `VerifyProjectVersion` (Preflight: Editorversion und ProjectVersion.txt exakt, QA-Szene vorhanden), `BuildAndroidDevelopmentIl2Cpp` (IL2CPP, ARM64, minSdk 26, targetSdk 36, Development) und `ExportIosXcodeProjectIl2Cpp` (IL2CPP, iOS 15.0) für die headless CI.
+
+**CI.** `.github/workflows/unity.yml` enthält den immer laufenden, echt ausführbaren `project-preflight` (Unity-Versionspin, Pflichtartefakte, statischer Modulgraph-Check der realen `.asmdef`-Dateien gegen die normative Allowlist inklusive Azyklizität, noEngineReferences, Editor-Grenzen, csc.rsp-Konventionen und Guardrail-Tokens) sowie die Unity-Nachweisjobs (Compile/EditMode, PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile auf `macos-15`). Diese Jobs laufen erst nach Konfiguration von `secrets.UNITY_LICENSE` und `vars.UNITY_RUNNERS_READY=true`; andernfalls schlägt der `unity-evidence-guard` fail-closed fehl und meldet jede Zeile wahrheitsgemäß als NOT_EXECUTED/BLOCKED. Kein Job täuscht einen erfolgreichen Unity-Nachweis vor.
+
+**Governance.** `tools/architecture-validation/validate.py` und `tools/architecture-validation/README.md` wurden ausschließlich mechanisch nachgeführt (WP-008-Inventar einschließlich vierzehn `.asmdef`-Dateien, Paketlocks, Toolchain-Lock, Unity-Workflow; Schema-Beispiel; kanonischer WP-008-Befehl). Keine Regeländerung.
+
+### Befund und Blocker B-01: Testassemblies-Standort (fehlende Architekturentscheidung, STOPP-Bedingung)
+
+**Befund.** [`ARCHITECTURE/MODULE_BOUNDARIES.md`](../ARCHITECTURE/MODULE_BOUNDARIES.md) Abschnitt 2 sieht die Testassemblies unter dem repositorywurzeligen `Tests/` vor (EditMode/, PlayMode/, Device/, Fixtures/, Golden/). Die offizielle Unity-Dokumentation belegt, dass Unity ausschließlich Dateien unter `Assets/` sowie in Paketen importiert und kompiliert und dass Test-Assemblies des Unity Test Framework im Assets-Ordner oder in Paketen liegen müssen: [Introduction to importing assets](https://docs.unity3d.com/6000.3/Documentation/Manual/ImportingAssets.html), [Special folder names](https://docs.unity3d.com/6000.3/Documentation/Manual/SpecialFolders.html), [Create a test assembly](https://docs.unity3d.com/Packages/com.unity.test-framework@1.4/manual/workflow-create-test-assembly.html). Ein wurzeliger `Tests/`-Ordner wird folglich nicht importiert: keine `.meta`-Generierung, kein Compile, keine Testausführung. `BootstrapCompositionSmoke` und alle Testassemblies aus Abschnitt 4 wären an der dokumentierten Position nicht ausführbar.
+
+**Getroffene Maßnahme.** Gemäß der in diesem Work Package festgelegten Stop-Regel wurde **keine eigene Abweichung** umgesetzt: keine Testassembly unter `Assets/` (Strukturabweichung) und keine inerte Testassembly unter `Tests/` (vorgetäuschte Ausführbarkeit). Jede Alternative — Testassemblies unter `Assets/StammstreckenPuzzle/Tests/`, ein lokales Test-Paket per `file:`-Referenz oder eine andere Konstruktion — verändert die dokumentierte Struktur und erfordert eine Architekturänderung, die außerhalb des byte-unveränderlichen WP-008-Scopes liegt.
+
+**Exakt fehlende Entscheidung.** Der verbindliche physische Ort aller Testassemblies einschließlich `STP.Tests.Bootstrap.PlayMode` ist zu entscheiden und in `ARCHITECTURE/MODULE_BOUNDARIES.md` fortzuschreiben (gegebenenfalls per ADR). Kandidaten: (a) Testassemblies unter `Assets/StammstreckenPuzzle/Tests/` mit Anpassung von Abschnitt 2, (b) `Tests/` als lokales Unity-Paket (`package.json` plus `file:`-Referenz in `Packages/manifest.json`), (c) eine andere dokumentierte Entscheidung. Danach kann WP-008 die Testassemblies und den Smoke nachliefern.
+
+**Blockiert durch B-01:** Testassemblies (AK-04 teilweise), `BootstrapCompositionSmoke` (AK-06), Coverage-/Mutation-Baseline und damit der WP-008-Abschluss. Der vorgesehene Smoke-Testumfang bleibt der aus MODULE_BOUNDARIES.md Abschnitt 7: Kompilieren der echten `.asmdef`-Kante, Start der Root in der dedizierten QA-Szene, genau ein Binding pro Application-Port (referenzgleich gegen die Adapterinstanzen aus `BootstrapCompositionResult`), vollständiger Application-/UI-/World-Graph, keine nicht dokumentierten Null-/Fallback-Ports (fail-closed-Eigenschaften von `ApplicationComposition`), kein optionaler Providerstart sowie Fehlschlag einer Doppelbindung über `BindProviders`.
+
+### Blocker B-02: Unity-Lizenz und reproduzierbare Runner (bekanntes Abschlussrisiko)
+
+Unity-Lizenz/Secret (`secrets.UNITY_LICENSE`) und reproduzierbare Unity-Runner für Linux/Android sowie macOS/iOS (`vars.UNITY_RUNNERS_READY`) sind weiterhin **nicht als verfügbar nachgewiesen**. Folglich NOT_EXECUTED/BLOCKED: Unity Compile, EditMode, `BootstrapCompositionSmoke`-Ausführung, Android-Development-IL2CPP und iOS-Export/Compile. Der `unity-evidence-guard` in `.github/workflows/unity.yml` hält diesen Zustand fail-closed rot. Ebenfalls davon abhängig und offen: Bestätigung des handabgeleiteten `packages-lock.json` durch den ersten realen Unity-Resolve (ein etwaiger normalisierender Diff wird als eigener Commit dokumentiert), Normalisierung der `ProjectSettings.asset` durch den ersten Editor-Open sowie die NOT_DETERMINED-Felder des `Toolchain.lock.md`. Der Geräte-/Device-Farm-Zustand ist unverändert: keine physischen Referenzgeräte und keine Device-Farm nachgewiesen; für WP-008 ist kein physischer Gerätesmoke erforderlich.
+
+### Coverage-/Mutation-Baseline
+
+**NOT_EXECUTED.** Ohne ausgeführten Unity-Testlauf existiert keine messbare Abdeckung; es werden keine Zahlen erfunden. Der tatsächlich entstandene Produktionscode besteht ausschließlich aus Composition-/Port-/Adapter-Skeletten ohne Fachlogik. Die erste Coverage-/Mutation-Baseline nach Assembly wird mit dem ersten ausgeführten EditMode-/PlayMode-Lauf gemäß [`ARCHITECTURE/TEST_STRATEGY.md`](../ARCHITECTURE/TEST_STRATEGY.md) Abschnitt 12 erhoben.
+
+### Nachweismatrix (Gate B)
+
+| Nachweis | Status |
+|---|---|
+| `git diff --check` gegen `3c1a6988c1aab2084763edf772b6adc268874865` | PASS |
+| Statische Scope-Konformität aller 155 geänderten/neuen Dateien gegen `WP-008.production.scope.json` (Segmentglob-Spiegel in Node, kein Validatorlauf) | PASS |
+| `.meta`-Vollständigkeit unter `Assets/` | PASS |
+| Architecture Validator (`--self-test`) | NOT_EXECUTED lokal (kein Python auf dem Windows-Host); CI-gebunden auf dem Push-Commit |
+| Production-Scope-Validator (`--scope production --self-test`) | NOT_EXECUTED lokal; CI-gebunden auf dem Push-Commit |
+| Statischer Modulgraph-Check (`unity.yml` project-preflight) | CI-gebunden auf dem Push-Commit |
+| Unity Compile | BLOCKED (B-02) |
+| EditMode | BLOCKED (B-02); zusätzlich B-01 für die Testassemblies |
+| Bootstrap PlayMode Smoke | BLOCKED (B-01 und B-02) |
+| Android Development IL2CPP | BLOCKED (B-02) |
+| iOS Export/Compile | BLOCKED (B-02) |
+| Coverage-/Mutation-Baseline | NOT_EXECUTED (B-02) |
+| Physischer Gerätesmoke | NOT_EXECUTED — für WP-008 nicht erforderlich; Geräte-/Device-Farm-Zustand wahrheitsgemäß dokumentiert |
+
+### Nächste Schritte vor WP-008-Abschluss
+
+1. **B-01 auflösen:** Entscheidung über den physischen Ort der Testassemblies außerhalb von WP-008 (Architekturklarstellung in `ARCHITECTURE/MODULE_BOUNDARIES.md`, gegebenenfalls ADR) und gegebenenfalls Scope-Fortschreibung; danach Testassemblies und `BootstrapCompositionSmoke` in WP-008 nachliefern.
+2. **B-02 auflösen:** Owner konfiguriert `secrets.UNITY_LICENSE` und reproduzierbare Runner (`vars.UNITY_RUNNERS_READY=true`); danach laufen die Unity-Nachweisjobs von `.github/workflows/unity.yml` unverändert.
+3. Anschließend: ersten realen Unity-Resolve des `packages-lock.json` bestätigen, Toolchain-Lock-NOT_DETERMINED-Felder aus dem Runner auslesen, erste Coverage-/Mutation-Baseline erheben, WP-008-Abschluss gemäß Akzeptanzkriterien und Definition of Done.
 
 ## Referenzen
 
