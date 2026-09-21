@@ -4,7 +4,7 @@
 
 `WP-011`
 
-**Bearbeitungsstatus:** In Bearbeitung auf Branch `chore/wp-011-pr-scope-checkout`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `chore/wp-011-pr-scope-checkout`.
 
 ## Ziel
 
@@ -92,3 +92,46 @@ Unity Compile/EditMode/PlayMode, IL2CPP, physische Geräte-, SDK- und Storetests
 WP-011 ist nur abgeschlossen, wenn alle Akzeptanzkriterien einzeln erfüllt sind, beide Validator-Modi einschließlich Self-/Negativtests lokal und in der CI bestehen, die Deadlock-Simulation nachweislich PASS ist, der vollständige Diff gegen den `baseCommit` ausschließlich die im WP-011-Manifest erlaubten Dateien enthält und der Abschlussstand auf `chore/wp-011-pr-scope-checkout` gepusht und remote verifiziert wurde.
 
 `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md` und dieses Work Package geben denselben WP-011-Stand wieder. Es erfolgt kein Merge nach `main` und kein Pull Request. `ARCHITECTURE/OPEN_BLOCKERS.md` bleibt unverändert; die drei Produktfolgeblocker bleiben offen und fail-closed.
+
+## Ergebnis
+
+Der bestätigte Scope-Checkout-Deadlock bei Pull Requests ist behoben. Der Workflow `.github/workflows/validate.yml` läuft unverändert mit dem initialen Checkout auf dem synthetischen PR-Merge-Stand und führt dort den Architecture-only-Lauf aus; unmittelbar vor dem kanonischen Work-Package-Scope-Lauf checkt er bei `pull_request` den tatsächlichen PR-Head (`github.event.pull_request.head.sha`) mit vollständiger Historie aus, sodass der Scope-Diff `<WP-baseCommit> → tatsächlicher PR-Branch-Head` keine fremden Main-Änderungen mehr enthält. Bei `push` erfolgt kein zweiter Checkout; auf `main`-Pushes entfällt der Scope-Schritt weiterhin. `STP_SCOPE_MANIFEST` zeigt auf das WP-011-Manifest. `tools/architecture-validation/validate.py`, `tools/architecture-validation/README.md`, alle ADRs (insbesondere ADR-026 und ADR-030) und alle Architekturdateien sind unverändert; kein Produktionscode wurde erzeugt.
+
+| Feststellung | Stand |
+|---|---|
+| Trust-Anchor (ADR-030) | WP-011 und Manifest gemeinsam im Add-Commit `78f38fa90b3ca492ce33da5423215056056bee1b`; `baseCommit` ist dessen Elterncommit `3c1a6988c1aab2084763edf772b6adc268874865`; Manifestblob bytegleich; historischer WP-Blob mit exaktem Manifestlink. |
+| Workflowänderung | Commit `833cac2519e5cf61801531bfb351a42060ee6e9f`: PR-Head-Checkout vor dem Scope-Lauf bei `pull_request`; `STP_SCOPE_MANIFEST` auf WP-011-Manifest; Headerkommentar fortgeschrieben. |
+| Governance-Nachführung | Commit `a56d73287ada5bdb159a96e75dad90cde4094fef`: `CURRENT_STATE.md` und `WORK_QUEUE.md` mit WP-011-Stand und Integrationsreihenfolge. |
+| Umfassender Delta gegen `3c1a6988c1aab2084763edf772b6adc268874865` | Exakt die fünf erlaubten Dateien: `.github/workflows/validate.yml`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `WORK_PACKAGES/WP-011_PR-Scope-Checkout-Korrektur.md`, `tools/architecture-validation/scopes/WP-011.documentation.scope.json`. Keine untracked Dateien. |
+| `BLOCKER-PROD-001/002/003` | **Unverändert offen und fail-closed**; `ARCHITECTURE/OPEN_BLOCKERS.md` unverändert. |
+| Produktionscode / Unity | **Keiner erzeugt oder verändert.** |
+| Merge nach `main` / Pull Request | **Nicht erfolgt.** |
+
+## Validierung
+
+| Ausgeführter Nachweis | Ergebnis |
+|---|---|
+| Trust-Anchor-Nachweis (ADR-030) | **PASS** – Manifest-Add-Commit `78f38fa` genau einer; Elterncommit = `baseCommit` = `3c1a6988c1aab2084763edf772b6adc268874865`; Ankerdiff weist WP und Manifest beide als `A` aus; Manifestblob bytegleich (`cmp`); historischer WP-Blob enthält den exakten repositorylokalen Manifestlink und die IDs `# WP-011` / `` `WP-011` ``. |
+| Architecture-only-Lauf mit `--self-test` | **PASS** lokal (CPython 3.11.15, gepinnte Locks) für alle 17 Prüfgruppen; einzige Ausnahme ist der nachweislich auf dem Base-Commit `3c1a698` identisch auftretende Windows-Plattformartefakt `self-test:not-detected:V03-005-ABSOLUTE` (`Path("/tmp/scope.json").is_absolute()` ist unter nativem Windows-CPython stets `False`; unter Ubuntu 24.04 nicht existent). |
+| WP-011-Documentation-Scope-Lauf mit `--self-test` | **PASS** – `LOCAL_SCOPE PASS` mit `workPackage=WP-011 base=3c1a6988… head=a56d732… worktreeDirty=false`; derselbe einzige Windows-Plattformartefakt wie im Architecture-only-Lauf. |
+| `git diff --check` gegen `3c1a6988c1aab2084763edf772b6adc268874865` | **PASS**. |
+| Vollständiger Delta gegen `3c1a6988c1aab2084763edf772b6adc268874865` | **PASS** – ausschließlich die fünf im Manifest erlaubten Dateien; keine untracked Dateien. |
+| Deadlock-Simulation (temporärer Clone außerhalb des Repositories, simulierte fremde WP-010-Main-Änderung nach dem `baseCommit`) | **PASS** – Scope-Diff auf dem synthetischen Merge-Stand enthält die Fremddatei (`WORK_PACKAGES/WP-010_B-01-Testpfad-Klaerung.md`) → `scope:out-of-scope`; derselbe Diff auf dem tatsächlichen WP-Head enthält sie nicht → vollständig in der Allowlist. Simulations-Repository vollständig entfernt; keine künstliche Änderung im Projekt-Repository. |
+| YAML-Plausibilität `.github/workflows/validate.yml` | **PASS** – vollständiger YAML-Parse erfolgreich; 7 Schritte in korrekter Reihenfolge; neuer PR-Head-Checkout unmittelbar vor dem Scope-Lauf und nur bei `pull_request`. |
+| Workflow-Berechtigung beim Push von `.github/workflows/validate.yml` | **Kein Befund** – Push von Commit `833cac2` erfolgreich; kein Workflow-Berechtigungsfehler aufgetreten. |
+| Remote-Commit-Verifikation | **PASS** – `78f38fa…`, `833cac2…` und `a56d732…` jeweils per `git ls-remote` remote verifiziert. |
+| CI-Conclusion der Push-Läufe (Ubuntu 24.04) | **NOT_EXECUTED (nicht abrufbar)** – Das private Repository ist aus dieser Umgebung ohne API-Token nicht lesbar; die Push-Läufe wurden durch die erfolgreichen Pushes ausgelöst, ihre Conclusions können hier nicht abgefragt werden. Die verbindliche CI-Verifikation obliegt dem Owner beim Merge-Review; der lokale Windows-Artefakt existiert unter Ubuntu nicht. |
+| Unity-, Geräte-, SDK- und Storetests | **REQUIRED_LATER/NOT_EXECUTED**; WP-011 erzeugte keinen Produktionscode. |
+
+## Referenzen
+
+[1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
+[2]: ../PROJECT_CONTROL/CURRENT_STATE.md "Aktueller Projektstand"
+[3]: ../PROJECT_CONTROL/WORK_QUEUE.md "Produktionswarteschlange"
+[4]: ../PROJECT_CONTROL/DEFINITION_OF_DONE.md "Definition of Done für technische Aufgaben"
+[5]: ../PROJECT_CONTROL/AI_HANDOVER_RULES.md "Verbindliche Regeln für die KI-Übergabe"
+[6]: ../DECISIONS/ADR-026-validator-evidenz-und-scope-vertrauensanker.md "ADR-026 – Validator-Evidenz und Scope-Vertrauensanker"
+[7]: ../DECISIONS/ADR-030-wp-scope-trust-anchor.md "ADR-030 – Gemeinsamer historischer WP-/Scope-Trust-Anchor"
+[8]: ../WORK_PACKAGES/WP-007_CI-Setup.md "WP-007 – CI-Setup"
+[9]: ../.github/workflows/validate.yml "GitHub-Actions-Workflow Architecture Validation"
+[10]: ../tools/architecture-validation/scopes/WP-011.documentation.scope.json "WP-011-Documentation-Scope-Manifest (Trust-Anchor)"
