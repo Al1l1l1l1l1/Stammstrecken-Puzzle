@@ -5,9 +5,10 @@
 # Abschnitt 11.
 #
 # - project-preflight laeuft immer: autoritative Unity-Versionspin-Pruefung,
-#   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normative
-#   Allowlist aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 sowie
-#   Skelett-Konventionspruefungen. Das ist ein echter, ausgefuehrter Check.
+#   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normativen
+#   Allowlists aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion)
+#   und Abschnitt 4 (Tests) sowie Skelett-Konventionspruefungen. Das ist ein
+#   echter, ausgefuehrter Check.
 # - Die Unity-ausfuehrenden Jobs (Compile, EditMode, Bootstrap-PlayMode-Smoke,
 #   Android-Development-IL2CPP, iOS-Export) laufen erst, wenn Unity-Lizenz und
 #   reproduzierbare Runner konfiguriert sind (secrets.UNITY_LICENSE und
@@ -66,8 +67,9 @@ jobs:
           import json, pathlib, sys
 
           root = pathlib.Path(".")
-          # Spiegel der einzigen normativen Allowlist aus
-          # ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Stand Architecture v1.0).
+          # Spiegel der einzigen normativen Allowlists aus
+          # ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion) und
+          # Abschnitt 4 (Testassemblies), Stand Architecture v1.0.
           expected = {
               "STP.Puzzle.Domain": set(),
               "STP.Puzzle.Solver": {"STP.Puzzle.Domain"},
@@ -88,8 +90,23 @@ jobs:
               "STP.Editor.Content": {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Infrastructure.Content"},
               "STP.Editor.Build": {"STP.Bootstrap"},
           }
+          # Interne Referenzen der neun Testassemblies (Abschnitt 4); die
+          # Unity-Testrunner-Referenzen werden separat geprueft.
+          test_expected = {
+              "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
+              "STP.Tests.Solver.EditMode": {"STP.Puzzle.Solver"},
+              "STP.Tests.Application.EditMode": {"STP.Application"},
+              "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
+              "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content"},
+              "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
+              "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
+              "STP.Tests.Bootstrap.PlayMode": {"STP.Bootstrap", "STP.Application"},
+              "STP.Tests.Device": {"STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform"},
+          }
           pure = {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Application"}
           editors = {"STP.Editor.Content", "STP.Editor.Build"}
+          editmode_tests = {name for name in test_expected if name.endswith(".EditMode")}
+          test_runner_refs = {"UnityEngine.TestRunner", "UnityEditor.TestRunner"}
 
           errors = []
           found = {}
@@ -100,23 +117,40 @@ jobs:
                   errors.append(f"duplicate-assembly:{name}")
               found[name] = (asmdef, data)
 
-          if set(found) != set(expected):
-              errors.append(f"assembly-set: fehlen={sorted(set(expected) - set(found))} unbekannt={sorted(set(found) - set(expected))}")
+          all_expected = set(expected) | set(test_expected)
+          if set(found) != all_expected:
+              errors.append(f"assembly-set: fehlen={sorted(all_expected - set(found))} unbekannt={sorted(set(found) - all_expected)}")
 
           for name, (path, data) in sorted(found.items()):
               refs = set(data.get("references", []))
-              if refs != expected.get(name, set()):
-                  errors.append(f"references:{name}: erwartet={sorted(expected.get(name, set()))} tatsaechlich={sorted(refs)}")
+              if name in expected:
+                  if refs != expected[name]:
+                      errors.append(f"references:{name}: erwartet={sorted(expected[name])} tatsaechlich={sorted(refs)}")
+              elif name in test_expected:
+                  internal = refs - test_runner_refs
+                  if internal != test_expected[name]:
+                      errors.append(f"test-references:{name}: erwartet={sorted(test_expected[name])} tatsaechlich={sorted(internal)}")
+                  if not test_runner_refs.issubset(refs):
+                      errors.append(f"test-runner-references:{name}")
+                  if data.get("overrideReferences") is not True:
+                      errors.append(f"test-override-references:{name}")
+                  if "nunit.framework.dll" not in data.get("precompiledReferences", []):
+                      errors.append(f"test-nunit-reference:{name}")
+                  if "UNITY_INCLUDE_TESTS" not in data.get("defineConstraints", []):
+                      errors.append(f"test-define-constraint:{name}")
+                  if data.get("autoReferenced") is not False:
+                      errors.append(f"test-auto-referenced:{name}")
               if name in pure and data.get("noEngineReferences") is not True:
                   errors.append(f"no-engine-references:{name}")
               if name not in pure and data.get("noEngineReferences") is True:
                   errors.append(f"unexpected-no-engine-references:{name}")
-              if name in editors and data.get("includePlatforms") != ["Editor"]:
-                  errors.append(f"editor-platforms:{name}")
-              if name not in editors and data.get("includePlatforms") not in (None, []):
+              if name in editors or name in editmode_tests:
+                  if data.get("includePlatforms") != ["Editor"]:
+                      errors.append(f"editor-platforms:{name}")
+              elif data.get("includePlatforms") not in (None, []):
                   errors.append(f"unexpected-platforms:{name}")
 
-          # Azyklizitaet
+          # Azyklizitaet des internen Produktionsgraphen
           edges = {name: expected[name] for name in expected if name in found}
           visiting, visited = set(), set()
           def visit(node):
@@ -131,6 +165,11 @@ jobs:
               return cycle
           if any(visit(node) for node in sorted(edges)):
               errors.append("assembly-cycle")
+
+          # Keine Assembly darf eine Testassembly referenzieren (Tests sind Blaetter).
+          for name, (path, data) in sorted(found.items()):
+              if any(ref in test_expected for ref in data.get("references", [])):
+                  errors.append(f"test-assembly-referenced:{name}")
 
           # Skelett-Konventionen: Nullable und Warnungen-als-Fehler pro Assembly.
           for name, (path, data) in sorted(found.items()):
@@ -157,7 +196,7 @@ jobs:
               for item in errors:
                   print(f"FAIL {item}")
               sys.exit(1)
-          print(f"MODULGRAPH PASS: {len(found)} Produktionsassemblies, Allowlist exakt, Graph azyklisch, noEngineReferences korrekt.")
+          print(f"MODULGRAPH PASS: {len(expected)} Produktions- und {len(test_expected)} Testassemblies, Allowlists exakt, Graph azyklisch, noEngineReferences und Testkonfiguration korrekt.")
           PYEOF
 
   unity-config:
