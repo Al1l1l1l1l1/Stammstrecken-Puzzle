@@ -100,7 +100,11 @@ jobs:
               "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content"},
               "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
               "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
-              "STP.Tests.Bootstrap.PlayMode": {"STP.Bootstrap", "STP.Application"},
+              "STP.Tests.Bootstrap.PlayMode": {
+                  "STP.Bootstrap", "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
+                  "STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform",
+                  "STP.Audio", "STP.Presentation.UI", "STP.Presentation.World",
+              },
               "STP.Tests.Device": {"STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform"},
           }
           pure = {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Application"}
