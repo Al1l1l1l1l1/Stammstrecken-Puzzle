@@ -15,10 +15,10 @@ namespace STP.Tests.Bootstrap.PlayMode
     /// des Application-/UI-/World-Graphen, genau ein Binding je normativem
     /// Application-Port, referenzgleiche Bindung bei wiederholter Abfrage, keine
     /// undokumentierten Null-/Fallback-Ports (fail-closed), Fehlschlag einer
-    /// Doppel- oder Nullbindung und — als Laufzeitbeobachtung des realen
-    /// Composition-Pfads — das Fehlen jeglicher geladener Provider-SDK-Assembly
-    /// nach der Composition (kein optionaler Providerstart). Nutzt die dedizierte
-    /// QA-Szene als PlayMode-Basis.
+    /// Doppel- oder Nullbindung sowie — als Laufzeitbeobachtung des realen
+    /// Composition-Pfads — dass waehrend des untersuchten Ausfuehrungszeitraums
+    /// keine zusaetzlich erkannten verwalteten Provider-SDK-Assemblies geladen
+    /// werden. Nutzt die dedizierte QA-Szene als PlayMode-Basis.
     /// </summary>
     public sealed class BootstrapCompositionSmoke
     {
@@ -128,8 +128,8 @@ namespace STP.Tests.Bootstrap.PlayMode
         /// Statische Pruefung: Keine Adapter-Assembly referenziert ein Provider-SDK
         /// (Ads, IAP, Analytics, Crashdiagnose). Dies belegt ausschliesslich das
         /// Fehlen von Compile-Zeit-Referenzen und ist ausdruecklich KEIN Nachweis
-        /// ueber das Laufzeitverhalten von Compose(); der Runtime-Nachweis erfolgt
-        /// in <see cref="Compose_LoadsNoProviderSdkAssembliesIntoRuntime"/>.
+        /// ueber das Laufzeitverhalten von Compose(); die Laufzeitbeobachtung
+        /// erfolgt in <see cref="Compose_LoadsNoAdditionalProviderSdkAssembliesDuringComposition"/>.
         /// </summary>
         [Test]
         public void Compose_CreatedAdaptersReferenceNoProviderSdks()
@@ -159,37 +159,52 @@ namespace STP.Tests.Bootstrap.PlayMode
         }
 
         /// <summary>
-        /// Runtime-Nachweis ueber den tatsaechlich ausgefuehrten Composition-Pfad:
-        /// Nach Compose() ist im laufenden Prozess keine verwaltete Provider-SDK-
-        /// Assembly geladen. Jeder Start eines solchen SDKs (statischer Konstruktor
-        /// oder Initialize-Aufruf) wuerde seine verwaltete Assembly in die Laufzeit
-        /// laden und hier sichtbar werden. Die Beobachtung gilt dem realen
-        /// Produktionspfad; es wird kein Testdouble verwendet. Rein native Starts
-        /// ohne verwaltete Assembly sind in diesem Scaffold ausgeschlossen, weil das
-        /// Projektmanifest keinerlei Provider-SDK-Pakete enthaelt; das Verhalten
-        /// echter SDK-Integrationen spaeterer Work Packages wird hier nicht bewertet.
+        /// Laufzeitbeobachtung des realen Composition-Pfads: Vergleicht die erkannten
+        /// geladenen verwalteten Provider-SDK-Assemblies unmittelbar vor und nach
+        /// Compose() und schlaegt nur fehl, wenn waehrend dieses Zeitraums zusaetzlich
+        /// erkannte Provider-SDK-Assemblies hinzugekommen sind. Bereits vorher
+        /// geladene Assemblies schlagen nicht allein wegen ihrer Anwesenheit fehl.
+        /// Dieser Vergleich beweist ausdruecklich NICHT: die allgemeine Abwesenheit
+        /// von Initialize- oder Startaufrufen, eine Aussage ueber native Starts ohne
+        /// verwaltete Assembly, die Kausalitaet eines etwaigen Ladevorgangs durch
+        /// Compose() selbst oder eine Eigenschaft zukuenftiger echter
+        /// SDK-Integrationen. Er gilt ausschliesslich fuer diesen Scaffold und den
+        /// untersuchten Ausfuehrungszeitraum.
+        /// Separate Scaffold-Feststellung aus dem vorhandenen Code (nicht aus diesem
+        /// Vergleich): Packages/manifest.json enthaelt keinerlei
+        /// Provider-SDK-Pakete; BootstrapComposition.Compose() ruft ausschliesslich
+        /// parameterlose Konstruktoren zustandsloser Skelett-Adapter sowie
+        /// ApplicationComposition.BindProviders auf; Start- oder Initialize-Methoden
+        /// existieren im Scaffold nicht. Ein konkreter Providerstartpfad ist im
+        /// vorhandenen Code damit nicht vorhanden.
         /// </summary>
         [Test]
-        public void Compose_LoadsNoProviderSdkAssembliesIntoRuntime()
+        public void Compose_LoadsNoAdditionalProviderSdkAssembliesDuringComposition()
         {
+            var before = LoadedProviderSdkAssemblies();
+
             var result = BootstrapComposition.Compose();
 
             AssertCompleteGraph(result);
             AssertPortBindings(result);
             Assert.IsEmpty(
-                LoadedProviderSdkAssemblies(),
-                "Nach Compose() ist eine Provider-SDK-Assembly in der Laufzeit geladen; ein optionaler Providerstart allein durch die Composition ist nicht zulaessig.");
+                NewSince(before),
+                "Waehrend des untersuchten Composition-Pfads wurden zusaetzlich erkannte verwaltete Provider-SDK-Assemblies geladen.");
         }
 
         /// <summary>
         /// Die dedizierte QA-Szene baut ueber ihren dokumentierten Entry-Installer
         /// den Composition Graph auf; der Graph erfuellt dieselben Invarianten wie
-        /// die direkte Composition, und auch der Szenenpfad laedt keine
-        /// Provider-SDK-Assembly in die Laufzeit.
+        /// die direkte Composition. Zusaetzlich gilt dieselbe Vorher-/Nachher-
+        /// Beobachtung: Der Snapshot erfolgt unmittelbar vor dem Laden der QA-Szene,
+        /// der Vergleich nach Abschluss des Installer-/Bootstrap-Pfads; nur
+        /// zusaetzlich erkannte verwaltete Provider-SDK-Assemblies schlagen fehl.
         /// </summary>
         [UnityTest]
         public IEnumerator QaScene_BootstrapInstallerBuildsComposition()
         {
+            var before = LoadedProviderSdkAssemblies();
+
             yield return SceneManager.LoadSceneAsync(QaScenePath, LoadSceneMode.Single);
 
             var scene = SceneManager.GetActiveScene();
@@ -212,8 +227,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             AssertCompleteGraph(composition!);
             AssertPortBindings(composition!);
             Assert.IsEmpty(
-                LoadedProviderSdkAssemblies(),
-                "Nach dem Szenenentry ist eine Provider-SDK-Assembly in der Laufzeit geladen; ein optionaler Providerstart ist nicht zulaessig.");
+                NewSince(before),
+                "Waehrend des untersuchten QA-Szenenpfads wurden zusaetzlich erkannte verwaltete Provider-SDK-Assemblies geladen.");
         }
 
         /// <summary>
@@ -235,6 +250,25 @@ namespace STP.Tests.Bootstrap.PlayMode
                 }
             }
             return loaded;
+        }
+
+        /// <summary>
+        /// Liefert die Namen der Provider-SDK-Assemblies, die seit dem uebergebenen
+        /// Snapshot zusaetzlich geladen wurden. Bereits im Snapshot enthaltene
+        /// Assemblies werden ignoriert.
+        /// </summary>
+        private static List<string> NewSince(IReadOnlyCollection<string> beforeSnapshot)
+        {
+            var before = new HashSet<string>(beforeSnapshot, StringComparer.OrdinalIgnoreCase);
+            var added = new List<string>();
+            foreach (var name in LoadedProviderSdkAssemblies())
+            {
+                if (!before.Contains(name))
+                {
+                    added.Add(name);
+                }
+            }
+            return added;
         }
 
         /// <summary>
