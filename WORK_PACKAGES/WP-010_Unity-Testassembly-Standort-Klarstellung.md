@@ -4,7 +4,7 @@
 
 `WP-010`
 
-**Bearbeitungsstatus:** In Bearbeitung auf Branch `docs/wp-010-tests-standort`.
+**Bearbeitungsstatus:** Abgeschlossen auf Branch `docs/wp-010-tests-standort`.
 
 ## Ziel
 
@@ -91,11 +91,34 @@ WP-010 ist nur abgeschlossen, wenn alle Akzeptanzkriterien einzeln erfüllt sind
 
 ## Ergebnis
 
-Pending – wird im Abschlusscommit dokumentiert.
+Der bestätigte Architektur-Dokumentationsfehler B-01 ist behoben. `ARCHITECTURE/MODULE_BOUNDARIES.md` dokumentiert in Abschnitt 2 die tatsächliche physische Unity-Testverzeichnisstruktur unter `Assets/StammstreckenPuzzle/Tests/` (EditMode/Domain, EditMode/Solver, EditMode/Application, EditMode/Persistence, EditMode/Content, PlayMode/Presentation, PlayMode/Mobile, PlayMode/Bootstrap, Device, Fixtures, Golden); der früher dokumentierte repositorywurzelige `Tests/`-Ordner ist entfernt. Abschnitt 4 ordnet alle neun Testassemblies einschließlich `STP.Tests.Bootstrap.PlayMode` eindeutig diesen physischen Pfaden zu und kennzeichnet `Fixtures/` sowie `Golden/` als reine Testdatenordner ohne `.asmdef`. Abschnitt 7 referenziert den Bootstrap-Composition-Smoke mit seinem physischen Pfad `Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs` und der unveränderten QA-Szene `Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity`. Die logischen Assemblynamen, der Modulgraph (Abschnitt 3 und Mermaid), seine Referenzregeln und die Teststrategie sind unverändert; es gab keine neue Architekturentscheidung und keinen neuen ADR.
+
+| Feststellung | Stand |
+|---|---|
+| Trust-Anchor (ADR-030) | WP-010 und Manifest gemeinsam im Add-Commit `2357d51b1da3d92f351e5494cdaafe139e4c7497`; `baseCommit` ist dessen Elterncommit `dca18b8fe228b6e852a0603b6cfeafc1795589bc`; Manifestblob bytegleich; historischer WP-Blob mit exaktem Manifestlink, H1-ID `# WP-010` und Body-ID `` `WP-010` ``. |
+| MODULE_BOUNDARIES-Klarstellung | Commit `ddab89339e621e1c44fbb43b52beebedc61d4b0f`: Abschnitt 2 (physische Struktur), Abschnitt 4 (neun Assembly-Pfad-Zuordnungen), Abschnitt 7 (Smoke- und QA-Szenenpfad); Abschnitt 3 und Mermaid unverändert. |
+| Workflow-Umstellung | Commit `aa9a2ced64a6ec1a0f882e16b96d7e3bcab8607f`: `STP_SCOPE_MANIFEST` auf `tools/architecture-validation/scopes/WP-010.documentation.scope.json`; exakt eine geänderte Zeile, WP-011-PR-Head-Checkout unverändert. |
+| Governance-Nachführung | Commit `92c64d7`: `CURRENT_STATE.md` und `WORK_QUEUE.md` mit WP-010-Stand, WP-011-Merge-Status und Integrationsreihenfolge (WP-008-Branch wird fortgesetzt; WP-008-Trust-Anchor und WP-008-Manifest unverändert; WP-009 bleibt der nächste fachliche Puzzle-Stack). |
+| Umfassender Delta gegen `dca18b8fe228b6e852a0603b6cfeafc1795589bc` | Exakt die sechs im Manifest erlaubten Dateien: `.github/workflows/validate.yml`, `ARCHITECTURE/MODULE_BOUNDARIES.md`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`, `WORK_PACKAGES/WP-010_Unity-Testassembly-Standort-Klarstellung.md`, `tools/architecture-validation/scopes/WP-010.documentation.scope.json`. Keine untracked Dateien. |
+| `BLOCKER-PROD-001/002/003` | **Unverändert offen und fail-closed**; `ARCHITECTURE/OPEN_BLOCKERS.md` unverändert. |
+| Produktionscode / Unity | **Keiner erzeugt oder verändert.** |
+| Merge nach `main` / Pull Request | **Nicht erfolgt.** |
 
 ## Validierung
 
-Pending – wird im Abschlusscommit dokumentiert.
+| Ausgeführter Nachweis | Ergebnis |
+|---|---|
+| Trust-Anchor-Nachweis (ADR-030) | **PASS** – Manifest-Add-Commit `2357d51` genau einer; Elterncommit = `baseCommit` = `dca18b8fe228b6e852a0603b6cfeafc1795589bc`; Ankerdiff weist WP und Manifest beide als `A` aus; Manifestblob bytegleich (`cmp`); historischer WP-Blob enthält den exakten repositorylokalen Manifestlink, `# WP-010` (H1) und `` `WP-010` `` (Body). |
+| Architecture-only-Lauf mit `--self-test` (lokal, CPython 3.11.15, gepinnte Locks, UTF-8-Modus) | **PASS** für alle Prüfgruppen; einzige Ausnahme ist der nachweislich auf dem Base-Commit `dca18b8` identisch auftretende Windows-Plattformartefakt `self-test:not-detected:V03-005-ABSOLUTE` (`Path("/tmp/scope.json").is_absolute()` ist unter nativem Windows-CPython stets `False`; unter Ubuntu 24.04 nicht existent). Ohne erzwungenen UTF-8-Modus erscheint zusätzlich das reine Konsolen-Kodierungsartefakt `adr:016-historical-decision-mutated` (cp1252-Dekodierung der `git show`-UTF-8-Ausgabe); unter UTF-8, wie in der Ubuntu-CI, nicht existent. |
+| WP-010-Documentation-Scope-Lauf mit `--self-test` | **PASS** – `LOCAL_SCOPE PASS` mit `workPackage=WP-010 base=dca18b8… head=92c64d7`; derselbe einzige Windows-Plattformartefakt wie im Architecture-only-Lauf. |
+| `git diff --check` gegen `dca18b8fe228b6e852a0603b6cfeafc1795589bc` | **PASS**. |
+| Vollständiger Delta gegen `dca18b8fe228b6e852a0603b6cfeafc1795589bc` | **PASS** – ausschließlich die sechs im Manifest erlaubten Dateien; keine untracked Dateien. |
+| Manuelle B-01-Gegenprüfung (alle elf physischen Pfade, neun `.asmdef`-Namenszuordnungen, Bootstrap-Smoke-Pfad, vollständiger Testtyp, QA-Szene in MODULE_BOUNDARIES.md) | **PASS** – alle Referenzen vorhanden; wurzeliger `Tests/`-Baumeintrag entfernt; Abschnitt 3 und Mermaid gegen Base-Commit unverändert. |
+| YAML-Plausibilität `.github/workflows/validate.yml` | **PASS** – Diff gegen den WP-011-validierten Stand umfasst exakt eine Zeile (`STP_SCOPE_MANIFEST`); PR-Head-Checkout-Schritt mit `if: github.event_name == 'pull_request'` und `ref: ${{ github.event.pull_request.head.sha }}` unmittelbar vor dem Scope-Lauf unverändert; Scope-Schritt-Bedingung und Main-Push-Verhalten unverändert. |
+| WP-011-Governance erhalten | **PASS** – kein ADR geändert, kein neuer ADR, `validate.py` und Validator-README unverändert, `TECH_STACK.md`/`TEST_STRATEGY.md`/`BUILD_AND_RELEASE.md` unverändert. |
+| Remote-Commit-Verifikation | **PASS** – alle fünf Commits nach dem Push per `git ls-remote` gegen `docs/wp-010-tests-standort` verifiziert. |
+| CI-Conclusion der Push-Läufe (Ubuntu 24.04) | **NOT_EXECUTED (nicht abrufbar)** – Das private Repository ist aus dieser Umgebung ohne API-Token nicht lesbar; die Push-Läufe werden durch die Pushes ausgelöst, ihre Conclusions können hier nicht abgefragt werden. Die verbindliche CI-Verifikation des Checks `Architecture Validation / validate` obliegt dem Owner; der lokale Windows-Artefakt existiert unter Ubuntu nicht. |
+| Unity-, Geräte-, SDK- und Storetests | **REQUIRED_LATER/NOT_EXECUTED**; WP-010 erzeugte keinen Produktionscode. |
 
 ## Referenzen
 
