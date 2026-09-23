@@ -9,6 +9,12 @@
 #   und bei Pushes auf Branches außer main. Auf main-Pushes entfällt der
 #   Scope-Schritt, weil der Integrationsstand keinem einzelnen
 #   Work-Package-Diff mehr entspricht.
+# - Bei pull_request bleibt der initiale Checkout der synthetische
+#   PR-Merge-Stand und trägt den Architecture-only-Lauf; unmittelbar vor dem
+#   Scope-Lauf wird der tatsächliche PR-Head (head.sha) mit vollständiger
+#   Historie ausgecheckt, damit der Scope-Diff baseCommit→PR-Head keine
+#   fremden Main-Änderungen aus dem synthetischen Merge enthält. Bei push
+#   erfolgt kein zweiter Checkout.
 # - Jedes künftige Work Package setzt STP_SCOPE_MANIFEST auf sein eigenes
 #   verankertes Manifest und nimmt diese Workflowdatei in seine Allowlist auf.
 # - Fail-closed: jeder Validatorfehler (Exitcode ungleich 0) lässt den Check
@@ -27,7 +33,7 @@ permissions:
   contents: read
 
 env:
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-007.documentation.scope.json
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-011.documentation.scope.json
 
 jobs:
   validate:
@@ -60,6 +66,13 @@ jobs:
         run: |
           ../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
             --self-test
+
+      - name: Tatsächlichen PR-Head für Scope-Prüfung auschecken
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests
         if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'

@@ -31,6 +31,12 @@ Diese drei Punkte blockierten weder den Architecture-v1.0-Freigabereview noch di
 
 Architecture v1.0 ist mit `WP-001` bis `WP-006` freigegeben. **Das separate CI-Setup-Work-Package ist mit `WP-007` vollständig abgeschlossen; das zwingende CI-Gate vor Produktionscoding ist damit erfüllt.** Kein Produktionsblock beginnt ohne eigenes freigegebenes `WP-###`. Jedes künftige Work Package verankert sein eigenes Scope-Manifest und setzt `STP_SCOPE_MANIFEST` in `.github/workflows/validate.yml` auf dieses Manifest. Das technische Puzzle-Fundament muss vor konkreten Rätselinstanzen, Zeitkalibrierung oder Veröffentlichung der Dauerbaustelle implementiert und geprüft werden.
 
+## CI-/Governance-Fix `WP-011` und Integrationsreihenfolge
+
+`WP-011` (PR-Scope-Checkout-Korrektur) ist auf dem Branch `chore/wp-011-pr-scope-checkout` abgeschlossen: Bei `pull_request` prüft der kanonische Work-Package-Scope-Lauf künftig den tatsächlichen PR-Branch-Head statt des synthetischen GitHub-PR-Merge-Commits, sodass fremde Main-Änderungen aus dem Merge-Stand nicht mehr fälschlich als `scope:out-of-scope` gemeldet werden. Der Architecture-only-Lauf validiert weiterhin den synthetischen Merge-Stand; das Push- und das Main-Push-Verhalten sind unverändert. `validate.py`, die ADRs und alle Architekturdateien wurden nicht verändert; der WP-011-Diff umfasst ausschließlich die WP-011-Datei, das WP-011-Scope-Manifest, `.github/workflows/validate.yml` sowie die mechanischen Statusnachführungen in `PROJECT_CONTROL`.
+
+Verbindliche Integrationsreihenfolge: 1. `WP-011` nach `main` mergen; 2. danach `WP-010` nach `main` mergen; 3. danach `WP-008` fertigstellen und als PR gegen `main` integrieren; 4. `WP-009` erst nach Abschluss von `WP-008` beginnen. Die Zuordnungen von `WP-008`, `WP-009` und `WP-010` bleiben unverändert.
+
 ## Pflege der Warteschlange
 
 Ein Eintrag wechselt erst dann von „Nicht begonnen" zu einem anderen Status, wenn ein eindeutig abgegrenztes Work Package dafür angelegt wurde. Neue Produktionsblöcke oder Prioritätsänderungen benötigen eine dokumentierte, ausdrücklich bestätigte Grundlage.
@@ -42,6 +48,7 @@ Ein Eintrag wechselt erst dann von „Nicht begonnen" zu einem anderen Status, w
 | `CURRENT_STATE.md` | Aktuell gültiger Architektur-, CI-Gate- und Übergabestand. |
 | `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v1.0 als freigegebener Architekturstand. |
 | `../WORK_PACKAGES/WP-007_CI-Setup.md` | CI-Setup, Trust-Anchor und Abschlussnachweise. |
+| `../WORK_PACKAGES/WP-011_PR-Scope-Checkout-Korrektur.md` | PR-Scope-Checkout-Korrektur, Trust-Anchor und Abschlussnachweise. |
 | `../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md` | Formale v1.0-Promotion, Trust-Anchor und Abschlussnachweise. |
 | `../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md` | Vier HIGH-Korrekturen, WP-005-Trust-Anchor und Abschlussnachweise. |
 | `../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigte große Produktionsblöcke. |
