@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 using STP.Application.Composition;
 using STP.Bootstrap;
@@ -14,8 +15,10 @@ namespace STP.Tests.Bootstrap.PlayMode
     /// des Application-/UI-/World-Graphen, genau ein Binding je normativem
     /// Application-Port, referenzgleiche Bindung bei wiederholter Abfrage, keine
     /// undokumentierten Null-/Fallback-Ports (fail-closed), Fehlschlag einer
-    /// Doppel- oder Nullbindung und kein providerseitiger Start allein durch die
-    /// Composition. Nutzt die dedizierte QA-Szene als PlayMode-Basis.
+    /// Doppel- oder Nullbindung und — als Laufzeitbeobachtung des realen
+    /// Composition-Pfads — das Fehlen jeglicher geladener Provider-SDK-Assembly
+    /// nach der Composition (kein optionaler Providerstart). Nutzt die dedizierte
+    /// QA-Szene als PlayMode-Basis.
     /// </summary>
     public sealed class BootstrapCompositionSmoke
     {
@@ -122,10 +125,11 @@ namespace STP.Tests.Bootstrap.PlayMode
         }
 
         /// <summary>
-        /// Kein Adapter referenziert ein Provider-SDK (Ads, IAP, Analytics,
-        /// Crashdiagnose). Da kein SDK verdrahtet ist, kann die Composition allein
-        /// keinen providerseitigen Start ausloesen; Initialisierungen bleiben hinter
-        /// ihren Capability-, Privacy- und Recovery-Gates (ADR-018).
+        /// Statische Pruefung: Keine Adapter-Assembly referenziert ein Provider-SDK
+        /// (Ads, IAP, Analytics, Crashdiagnose). Dies belegt ausschliesslich das
+        /// Fehlen von Compile-Zeit-Referenzen und ist ausdruecklich KEIN Nachweis
+        /// ueber das Laufzeitverhalten von Compose(); der Runtime-Nachweis erfolgt
+        /// in <see cref="Compose_LoadsNoProviderSdkAssembliesIntoRuntime"/>.
         /// </summary>
         [Test]
         public void Compose_CreatedAdaptersReferenceNoProviderSdks()
@@ -155,9 +159,33 @@ namespace STP.Tests.Bootstrap.PlayMode
         }
 
         /// <summary>
+        /// Runtime-Nachweis ueber den tatsaechlich ausgefuehrten Composition-Pfad:
+        /// Nach Compose() ist im laufenden Prozess keine verwaltete Provider-SDK-
+        /// Assembly geladen. Jeder Start eines solchen SDKs (statischer Konstruktor
+        /// oder Initialize-Aufruf) wuerde seine verwaltete Assembly in die Laufzeit
+        /// laden und hier sichtbar werden. Die Beobachtung gilt dem realen
+        /// Produktionspfad; es wird kein Testdouble verwendet. Rein native Starts
+        /// ohne verwaltete Assembly sind in diesem Scaffold ausgeschlossen, weil das
+        /// Projektmanifest keinerlei Provider-SDK-Pakete enthaelt; das Verhalten
+        /// echter SDK-Integrationen spaeterer Work Packages wird hier nicht bewertet.
+        /// </summary>
+        [Test]
+        public void Compose_LoadsNoProviderSdkAssembliesIntoRuntime()
+        {
+            var result = BootstrapComposition.Compose();
+
+            AssertCompleteGraph(result);
+            AssertPortBindings(result);
+            Assert.IsEmpty(
+                LoadedProviderSdkAssemblies(),
+                "Nach Compose() ist eine Provider-SDK-Assembly in der Laufzeit geladen; ein optionaler Providerstart allein durch die Composition ist nicht zulaessig.");
+        }
+
+        /// <summary>
         /// Die dedizierte QA-Szene baut ueber ihren dokumentierten Entry-Installer
         /// den Composition Graph auf; der Graph erfuellt dieselben Invarianten wie
-        /// die direkte Composition.
+        /// die direkte Composition, und auch der Szenenpfad laedt keine
+        /// Provider-SDK-Assembly in die Laufzeit.
         /// </summary>
         [UnityTest]
         public IEnumerator QaScene_BootstrapInstallerBuildsComposition()
@@ -183,6 +211,62 @@ namespace STP.Tests.Bootstrap.PlayMode
 
             AssertCompleteGraph(composition!);
             AssertPortBindings(composition!);
+            Assert.IsEmpty(
+                LoadedProviderSdkAssemblies(),
+                "Nach dem Szenenentry ist eine Provider-SDK-Assembly in der Laufzeit geladen; ein optionaler Providerstart ist nicht zulaessig.");
+        }
+
+        /// <summary>
+        /// Listet die Namen aller aktuell geladenen verwalteten Assemblies auf, die
+        /// einem bekannten Provider-SDK (Google Mobile Ads inklusive UMP, Firebase,
+        /// Unity IAP, Unity Services, Unity Ads) zugehoeren. Die Praefixe benennen
+        /// ausschliesslich Paket-Assemblies; Engine-eigene Module werden durch den
+        /// Segmentvergleich nicht erfasst.
+        /// </summary>
+        private static List<string> LoadedProviderSdkAssemblies()
+        {
+            var loaded = new List<string>();
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                var name = assembly.GetName().Name ?? string.Empty;
+                if (IsProviderSdkAssembly(name))
+                {
+                    loaded.Add(name);
+                }
+            }
+            return loaded;
+        }
+
+        /// <summary>
+        /// Prueft einen Assemblynamen gegen die bekannten Provider-SDK-Praefixe.
+        /// Ein Praefix ohne abschliessenden Punkt trifft nur auf die Assembly selbst
+        /// oder auf Unterassemblies mit Punktgrenze zu, damit keine Engine-Module
+        /// mit aehnlichem Namensanfang faelschlich erfasst werden.
+        /// </summary>
+        private static bool IsProviderSdkAssembly(string name)
+        {
+            string[] providerSdkPrefixes =
+            {
+                "GoogleMobileAds", "Firebase.", "UnityEngine.Purchasing", "Unity.Services.",
+                "UnityEngine.Advertisements", "UnityEngine.Monetization",
+            };
+            foreach (var prefix in providerSdkPrefixes)
+            {
+                if (prefix.EndsWith(".", StringComparison.Ordinal))
+                {
+                    if (name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return true;
+                    }
+                }
+                else if (
+                    name.Equals(prefix, StringComparison.OrdinalIgnoreCase) ||
+                    name.StartsWith(prefix + ".", StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
