@@ -33,9 +33,13 @@ Architecture v1.0 ist mit `WP-001` bis `WP-006` freigegeben. **Das separate CI-S
 
 ## CI-/Governance-Fix `WP-011` und Integrationsreihenfolge
 
-`WP-011` (PR-Scope-Checkout-Korrektur) ist auf dem Branch `chore/wp-011-pr-scope-checkout` abgeschlossen: Bei `pull_request` prüft der kanonische Work-Package-Scope-Lauf künftig den tatsächlichen PR-Branch-Head statt des synthetischen GitHub-PR-Merge-Commits, sodass fremde Main-Änderungen aus dem Merge-Stand nicht mehr fälschlich als `scope:out-of-scope` gemeldet werden. Der Architecture-only-Lauf validiert weiterhin den synthetischen Merge-Stand; das Push- und das Main-Push-Verhalten sind unverändert. `validate.py`, die ADRs und alle Architekturdateien wurden nicht verändert; der WP-011-Diff umfasst ausschließlich die WP-011-Datei, das WP-011-Scope-Manifest, `.github/workflows/validate.yml` sowie die mechanischen Statusnachführungen in `PROJECT_CONTROL`.
+`WP-011` (PR-Scope-Checkout-Korrektur) ist nach `main` gemergt (Merge-Commit `dca18b8`): Bei `pull_request` prüft der kanonische Work-Package-Scope-Lauf künftig den tatsächlichen PR-Branch-Head statt des synthetischen GitHub-PR-Merge-Commits, sodass fremde Main-Änderungen aus dem Merge-Stand nicht mehr fälschlich als `scope:out-of-scope` gemeldet werden. Der Architecture-only-Lauf validiert weiterhin den synthetischen Merge-Stand; das Push- und das Main-Push-Verhalten sind unverändert. `validate.py`, die ADRs und alle Architekturdateien wurden nicht verändert; der WP-011-Diff umfasste ausschließlich die WP-011-Datei, das WP-011-Scope-Manifest, `.github/workflows/validate.yml` sowie die mechanischen Statusnachführungen in `PROJECT_CONTROL`.
 
-Verbindliche Integrationsreihenfolge: 1. `WP-011` nach `main` mergen; 2. danach `WP-010` nach `main` mergen; 3. danach `WP-008` fertigstellen und als PR gegen `main` integrieren; 4. `WP-009` erst nach Abschluss von `WP-008` beginnen. Die Zuordnungen von `WP-008`, `WP-009` und `WP-010` bleiben unverändert.
+## Dokumentationsfix `WP-010`
+
+`WP-010` (Unity-Testassembly-Standort-Klarstellung) ist auf dem Branch `docs/wp-010-tests-standort` abgeschlossen und behebt den unabhängig durch GPT-5.6 Sol High bestätigten Architektur-Dokumentationsfehler B-01: `ARCHITECTURE/MODULE_BOUNDARIES.md` dokumentiert in Abschnitt 2 die tatsächliche physische Unity-Testverzeichnisstruktur unter `Assets/StammstreckenPuzzle/Tests/` und ordnet in Abschnitt 4 alle neun Testassemblies einschließlich `STP.Tests.Bootstrap.PlayMode` eindeutig diesen Pfaden zu. Modulgraphsemantik, Referenzregeln und Teststrategie blieben unverändert; es gab keinen neuen ADR und keine Änderung an `TECH_STACK.md`, `TEST_STRATEGY.md` oder `BUILD_AND_RELEASE.md`. `STP_SCOPE_MANIFEST` in `.github/workflows/validate.yml` zeigt auf das verankerte WP-010-Manifest; der WP-011-PR-Head-Checkout-Mechanismus ist unverändert. Der WP-010-Diff umfasst ausschließlich die WP-010-Datei, das WP-010-Scope-Manifest, `ARCHITECTURE/MODULE_BOUNDARIES.md`, `.github/workflows/validate.yml` sowie die mechanischen Statusnachführungen in `PROJECT_CONTROL`. Nach WP-010 wird der bestehende WP-008-Branch fortgesetzt; der WP-008-Trust-Anchor und das WP-008-Manifest bleiben unverändert. WP-009 bleibt der nächste fachliche Puzzle-Stack.
+
+Verbindliche Integrationsreihenfolge: 1. `WP-011` nach `main` mergen (erledigt); 2. danach `WP-010` nach `main` mergen; 3. danach `WP-008` auf `feat/wp-008-unity-scaffold` fortsetzen, fertigstellen und als PR gegen `main` integrieren; 4. `WP-009` erst nach Abschluss von `WP-008` beginnen. Die Zuordnungen von `WP-008`, `WP-009` und `WP-010` bleiben unverändert.
 
 ## Pflege der Warteschlange
 
@@ -49,6 +53,7 @@ Ein Eintrag wechselt erst dann von „Nicht begonnen" zu einem anderen Status, w
 | `../ARCHITECTURE/ARCHITECTURE.md` | Architecture v1.0 als freigegebener Architekturstand. |
 | `../WORK_PACKAGES/WP-007_CI-Setup.md` | CI-Setup, Trust-Anchor und Abschlussnachweise. |
 | `../WORK_PACKAGES/WP-011_PR-Scope-Checkout-Korrektur.md` | PR-Scope-Checkout-Korrektur, Trust-Anchor und Abschlussnachweise. |
+| `../WORK_PACKAGES/WP-010_Unity-Testassembly-Standort-Klarstellung.md` | B-01-Testpfad-Klarstellung, Trust-Anchor und Abschlussnachweise. |
 | `../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md` | Formale v1.0-Promotion, Trust-Anchor und Abschlussnachweise. |
 | `../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md` | Vier HIGH-Korrekturen, WP-005-Trust-Anchor und Abschlussnachweise. |
 | `../Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigte große Produktionsblöcke. |
