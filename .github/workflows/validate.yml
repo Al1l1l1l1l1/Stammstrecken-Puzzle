@@ -1,4 +1,4 @@
-# Architecture Validation (WP-008: Production-Scope)
+# Architecture Validation (WP-009: Production-Scope)
 #
 # Kanonische CI-Integration des Architekturvalidators aus
 # tools/architecture-validation/ (ADR-017, ADR-026, ADR-030).
@@ -28,7 +28,7 @@ permissions:
 
 env:
   STP_SCOPE: production
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-008.production.scope.json
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-009.production.scope.json
 
 jobs:
   validate:
