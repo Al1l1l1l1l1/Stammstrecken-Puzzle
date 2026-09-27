@@ -122,6 +122,18 @@ Erlaubt ist ausschließlich:
   mit Protokoll benannt. Nicht ausführbare Nachweise werden als NOT_EXECUTED gemeldet,
   niemals simuliert.
 
+### Lokaler EditMode-Nachweis (2026-09-27)
+
+Headless-Lauf auf Unity 6000.3.23f1 (`-batchmode -runTests -testPlatform EditMode`,
+NUnit-Engine 3.5.0.0, Lauf 2026-09-27 19:18:46Z): **54 Tests, 54 PASSED, 0 FAILED,
+0 SKIPPED** für `STP.Tests.Domain.EditMode` und `STP.Tests.Solver.EditMode`
+(Assemblies aus `Library/ScriptAssemblies` dieses Projekts kompiliert). Ein erster
+Lauf scheiterte an drei testseitigen Erwartungsfehlern (falsche Spaltenerwartung,
+`Single()` statt `Any()` bei zwei Ereignissen, ein unbeabsichtigt bereits lösender
+erster Zug); Produktionscode war davon nicht betroffen. Nach den Testkorrekturen
+ist der Lauf vollständig grün. GitHub-CI-Nachweis und PlayMode-/Gerätenachweise
+stehen weiterhin aus (kein CI-Runner konfiguriert; kein falscher PASS gemeldet).
+
 ## Risikoklasse
 
 Mittel. Reiner, szeneunabhängiger C#-Kern ohne Unity-, Datei- oder SDK-Zugriff;
