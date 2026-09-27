@@ -94,7 +94,7 @@ jobs:
           # Unity-Testrunner-Referenzen werden separat geprueft.
           test_expected = {
               "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
-              "STP.Tests.Solver.EditMode": {"STP.Puzzle.Solver"},
+              "STP.Tests.Solver.EditMode": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
               "STP.Tests.Application.EditMode": {"STP.Application"},
               "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
               "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content"},
