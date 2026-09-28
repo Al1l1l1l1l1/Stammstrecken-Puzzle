@@ -34,18 +34,26 @@ Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Pro
 │       │   ├── Audio/
 │       │   ├── Bootstrap/
 │       │   └── Editor/
+│       ├── Tests/
+│       │   ├── EditMode/
+│       │   │   ├── Domain/
+│       │   │   ├── Solver/
+│       │   │   ├── Application/
+│       │   │   ├── Persistence/
+│       │   │   └── Content/
+│       │   ├── PlayMode/
+│       │   │   ├── Presentation/
+│       │   │   ├── Mobile/
+│       │   │   └── Bootstrap/
+│       │   ├── Device/
+│       │   ├── Fixtures/
+│       │   └── Golden/
 │       ├── UI/
 │       ├── Art/
 │       ├── Audio/
 │       ├── Localization/
 │       ├── Scenes/
 │       └── Generated/
-├── Tests/
-│   ├── EditMode/
-│   ├── PlayMode/
-│   ├── Device/
-│   ├── Fixtures/
-│   └── Golden/
 ├── tools/architecture-validation/
 ├── Packages/
 ├── ProjectSettings/
@@ -53,6 +61,8 @@ Modulgrenzen sind Compilerverträge. Ordnernamen allein genügen nicht. Jede Pro
 ```
 
 `Assets/StammstreckenPuzzle/Generated/` wird ausschließlich von versionierten Importern beschrieben. Authoringquellen bleiben unter `Content/`. Temporäre Unity-Verzeichnisse wie `Library`, `Temp`, `Logs`, `UserSettings` und lokale Builds werden ignoriert.
+
+Die Unity-Testassemblies liegen physisch unter `Assets/StammstreckenPuzzle/Tests/`. Ein gewöhnlicher repositorywurzeliger `Tests/`-Ordner außerhalb von `Assets/` oder einem eingebundenen Unity-Package wird vom Unity-Editor nicht als normale Unity-Testassembly importiert; eine frühere Fassung dieses Dokuments zeigte einen solchen wurzeligen Ordner und war damit eine Dokumentationsungenauigkeit (B-01, Klarstellung durch WP-010). Die logischen Assemblynamen aus Abschnitt 4 ändern sich durch den physischen Standort nicht.
 
 ## 3. Einzige normative Produktionsassembly-Allowlist
 
@@ -79,16 +89,19 @@ Es existieren weder `STP.MobileServices.Contracts` noch eine Assembly „Bootstr
 
 ## 4. Testassemblies
 
-| Assembly | Testziel |
-|---|---|
-| `STP.Tests.Domain.EditMode` | Commands, Invarianten, Ein-Zellen-Completion, Properties und Replay. |
-| `STP.Tests.Solver.EditMode` | 0/1/2+-Lösungen, Proofs, Metamorphosen, Limits und Performance. |
-| `STP.Tests.Application.EditMode` | Fortschritt, Sterne, Rewards, Cosmetics, Anzeigenpolicy und Idempotenz mit Fakes. |
-| `STP.Tests.Persistence.EditMode` | Roundtrip, Hashprofile, Migration, Korruption, atomare Recovery und Ledgerkompaktierung. |
-| `STP.Tests.Content.EditMode` | Level-/Katalogschema, Semantik, Cross-References und deterministischer Import. |
-| `STP.Tests.Presentation.PlayMode` | Navigation, Grid, Fokus, Safe Area, Abschlussreihenfolge und Scene Wiring. |
-| `STP.Tests.Mobile.PlayMode` | Adaptercontracts mit Fakes und Sandbox-Stubs. |
-| `STP.Tests.Device` | Physische Android-/iOS-Lifecycle-, Store-, Consent-, Ads-, Telemetrie- und Crash-Smokes. |
+| Assembly | Physische Testassembly (.asmdef-Pfad) | Testziel |
+|---|---|---|
+| `STP.Tests.Domain.EditMode` | `Assets/StammstreckenPuzzle/Tests/EditMode/Domain/` | Commands, Invarianten, Ein-Zellen-Completion, Properties und Replay. |
+| `STP.Tests.Solver.EditMode` | `Assets/StammstreckenPuzzle/Tests/EditMode/Solver/` | 0/1/2+-Lösungen, Proofs, Metamorphosen, Limits und Performance. |
+| `STP.Tests.Application.EditMode` | `Assets/StammstreckenPuzzle/Tests/EditMode/Application/` | Fortschritt, Sterne, Rewards, Cosmetics, Anzeigenpolicy und Idempotenz mit Fakes. |
+| `STP.Tests.Persistence.EditMode` | `Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/` | Roundtrip, Hashprofile, Migration, Korruption, atomare Recovery und Ledgerkompaktierung. |
+| `STP.Tests.Content.EditMode` | `Assets/StammstreckenPuzzle/Tests/EditMode/Content/` | Level-/Katalogschema, Semantik, Cross-References und deterministischer Import. |
+| `STP.Tests.Presentation.PlayMode` | `Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/` | Navigation, Grid, Fokus, Safe Area, Abschlussreihenfolge und Scene Wiring. |
+| `STP.Tests.Mobile.PlayMode` | `Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile/` | Adaptercontracts mit Fakes und Sandbox-Stubs. |
+| `STP.Tests.Bootstrap.PlayMode` | `Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/` | Compile-/Composition-Smoke `BootstrapCompositionSmoke` inklusive QA-Szene. |
+| `STP.Tests.Device` | `Assets/StammstreckenPuzzle/Tests/Device/` | Physische Android-/iOS-Lifecycle-, Store-, Consent-, Ads-, Telemetrie- und Crash-Smokes. |
+
+Jede Testassembly besitzt ihre gleichnamige `.asmdef`-Datei direkt in ihrem physischen Verzeichnis. `Assets/StammstreckenPuzzle/Tests/Fixtures/` und `Assets/StammstreckenPuzzle/Tests/Golden/` enthalten keine `.asmdef` und sind reine Testdatenordner. EditMode-Assemblies bleiben Editor-only; PlayMode- und Device-Assemblies bleiben nach den bestehenden Verträgen ausführbar und erhalten die korrekte Unity-Testkonfiguration.
 
 Tests dürfen Produktionsassemblies referenzieren. Produktionsassemblies dürfen nie Testassemblies oder Fixturepfade referenzieren.
 
@@ -159,7 +172,7 @@ Pfeile bedeuten „referenziert“. Der Graph ist azyklisch. Die Verbotswirkung 
 
 Eine erlaubte Assemblyreferenz ist **keine** Initialisierungsfreigabe. Ads, IAP, Analytics und Crashdiagnose dürfen erst nach ihren eigenen Capability-, Privacy- und Recovery-Gates gestartet werden. Service Locator, veränderliche Singleton-Registry, Reflexions-Wiring und Szenensuche sind keine zulässigen Ersatzmechanismen.
 
-Der erste Produktions-Scaffold muss zusätzlich einen Compile-/Composition-Smoke `STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke` bereitstellen. Er kompiliert die echte `.asmdef`-Kante, startet die Root in einer dedizierten QA-Szene und belegt genau ein Binding pro Application-Port, vollständigen Application-/UI-/World-Graphen, keine nicht dokumentierten Null-/Fallback-Ports und keinen optionalen Providerstart. Dieser Test ist ohne Unity-Scaffold **REQUIRED_LATER/NOT_EXECUTED** und kein lokaler v0.3-PASS.
+Der erste Produktions-Scaffold muss zusätzlich einen Compile-/Composition-Smoke `STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke` bereitstellen, physisch als `Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs` in der Assembly `STP.Tests.Bootstrap.PlayMode`. Er kompiliert die echte `.asmdef`-Kante, startet die Root in der dedizierten QA-Szene `Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity` und belegt genau ein Binding pro Application-Port, vollständigen Application-/UI-/World-Graphen, keine nicht dokumentierten Null-/Fallback-Ports und keinen optionalen Providerstart. Dieser Test ist ohne Unity-Scaffold **REQUIRED_LATER/NOT_EXECUTED** und kein lokaler v0.3-PASS.
 
 MonoBehaviours dienen ausschließlich als Unity-Lifecycle- und Renderingadapter. Sie besitzen keine fachliche Entscheidungslogik. Szenen enthalten keine gegenseitigen Suchabhängigkeiten. Jede Szene hat genau einen dokumentierten Entry-Installer, der von Bootstrap gespeist wird.
 
