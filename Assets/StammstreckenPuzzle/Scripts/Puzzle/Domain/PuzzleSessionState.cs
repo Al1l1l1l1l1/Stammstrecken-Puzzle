@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace STP.Puzzle.Domain
 {
@@ -9,10 +10,17 @@ namespace STP.Puzzle.Domain
     /// einzige Mutationsgrenze; jede Handlung erzeugt einen neuen Snapshot mit
     /// monoton steigender Revision. Persistenzfelder wie publicPuzzleHash,
     /// Modus und UTC-Diagnosezeiten sind Verträge späterer Work Packages
-    /// (Content-/Persistenzadapter).
+    /// (Content-/Persistenzadapter). Zellstand und Undo-Verlauf werden defensiv
+    /// kopiert und ausschließlich schreibgeschützt exponiert; eine externe
+    /// Mutation am Command-Fluss vorbei ist nicht möglich.
     /// </summary>
     public sealed class PuzzleSessionState
     {
+        private readonly CellContent[] _cells;
+        private readonly CellDiff[] _undoStack;
+        private readonly ReadOnlyCollection<CellContent> _cellsView;
+        private readonly ReadOnlyCollection<CellDiff> _undoStackView;
+
         /// <summary>Stabile fachliche Puzzle-ID.</summary>
         public string PuzzleId { get; }
 
@@ -22,8 +30,8 @@ namespace STP.Puzzle.Domain
         /// <summary>Die validierte Definition dieses Versuchs.</summary>
         public PuzzleDefinition Definition { get; }
 
-        /// <summary>Zeilenweiser Zellstand, exakt <c>width * height</c> Einträge.</summary>
-        public IReadOnlyList<CellContent> Cells { get; }
+        /// <summary>Zeilenweiser Zellstand, exakt <c>width * height</c> Einträge, schreibgeschützt.</summary>
+        public IReadOnlyList<CellContent> Cells => _cellsView;
 
         /// <summary>Fachliche Sessionphase.</summary>
         public SessionPhase Phase { get; }
@@ -52,8 +60,8 @@ namespace STP.Puzzle.Domain
         /// <summary>Zahl echter Inhaltsänderungen bereits belegter Zellen (Korrekturen).</summary>
         public int CorrectionCount { get; }
 
-        /// <summary>Undo-Diffs, älteste zuerst verworfen, maximal <see cref="CellDiff.MaximumUndoDepth"/> Einträge.</summary>
-        public IReadOnlyList<CellDiff> UndoStack { get; }
+        /// <summary>Undo-Diffs, älteste zuerst verworfen, maximal <see cref="CellDiff.MaximumUndoDepth"/> Einträge, schreibgeschützt.</summary>
+        public IReadOnlyList<CellDiff> UndoStack => _undoStackView;
 
         /// <summary>Deterministische Abschluss-ID oder <c>null</c>, solange nicht gelöst.</summary>
         public string? SolvedEventId { get; }
@@ -78,7 +86,10 @@ namespace STP.Puzzle.Domain
             PuzzleId = puzzleId;
             AttemptId = attemptId;
             Definition = definition;
-            Cells = cells;
+            _cells = CopyOf(cells);
+            _undoStack = CopyOf(undoStack);
+            _cellsView = new ReadOnlyCollection<CellContent>(_cells);
+            _undoStackView = new ReadOnlyCollection<CellDiff>(_undoStack);
             Phase = phase;
             Revision = revision;
             TimerStarted = timerStarted;
@@ -88,7 +99,6 @@ namespace STP.Puzzle.Domain
             UsedOccupiedMarker = usedOccupiedMarker;
             HintCount = hintCount;
             CorrectionCount = correctionCount;
-            UndoStack = undoStack;
             SolvedEventId = solvedEventId;
         }
 
@@ -133,8 +143,13 @@ namespace STP.Puzzle.Domain
                 solvedEventId: null);
         }
 
-        /// <summary>Erzeugt einen Nachfolgesnapshot; nicht genannte Felder bleiben erhalten.</summary>
-        public PuzzleSessionState With(
+        /// <summary>
+        /// Erzeugt einen Nachfolgesnapshot; nicht genannte Felder bleiben
+        /// erhalten. Interne Hilfsfunktion der Command-Verarbeitung: Ein
+        /// ungeprüftes Zurücksetzen von Revisionen oder Sticky-Flags ist
+        /// außerhalb der Assembly nicht möglich.
+        /// </summary>
+        internal PuzzleSessionState With(
             IReadOnlyList<CellContent>? cells = null,
             SessionPhase? phase = null,
             long? revision = null,
@@ -164,6 +179,20 @@ namespace STP.Puzzle.Domain
                 correctionCount ?? CorrectionCount,
                 undoStack ?? UndoStack,
                 solvedEventId ?? SolvedEventId);
+        }
+
+        private static T[] CopyOf<T>(IReadOnlyList<T> source)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            var copy = new T[source.Count];
+            for (var index = 0; index < copy.Length; index++)
+            {
+                copy[index] = source[index];
+            }
+            return copy;
         }
     }
 }

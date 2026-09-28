@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace STP.Puzzle.Domain
 {
@@ -8,11 +9,18 @@ namespace STP.Puzzle.Domain
     /// gemäß PUZZLE_ENGINE.md Abschnitt 3. Trägt Raster, die Außenanschlüsse A/B
     /// und die Zielzahlen aller Zeilen und Spalten. Eindeutigkeit ist nicht Teil
     /// der Konstruktion, sondern des Content-Gates (Solver/Validator).
+    /// Randzahlen werden defensiv kopiert und ausschließlich schreibgeschützt
+    /// exponiert; eine externe Mutation nach der Konstruktion ist nicht möglich.
     /// </summary>
     public sealed class PuzzleDefinition
     {
         /// <summary>Derzeit registrierte Ruleset-Version des Rätselregelvertrags.</summary>
         public const string RulesetVersionV1 = "train-track-v1";
+
+        private readonly int[] _rowCounts;
+        private readonly int[] _columnCounts;
+        private readonly ReadOnlyCollection<int> _rowCountsView;
+        private readonly ReadOnlyCollection<int> _columnCountsView;
 
         /// <summary>Rastergröße.</summary>
         public GridSize Grid { get; }
@@ -23,11 +31,11 @@ namespace STP.Puzzle.Domain
         /// <summary>Äußerer Anschlusspunkt B.</summary>
         public Endpoint B { get; }
 
-        /// <summary>Zielzahl belegter Zellen je Zeile (Länge <see cref="GridSize.Height"/>).</summary>
-        public IReadOnlyList<int> RowCounts { get; }
+        /// <summary>Zielzahl belegter Zellen je Zeile (Länge <see cref="GridSize.Height"/>), schreibgeschützt.</summary>
+        public IReadOnlyList<int> RowCounts => _rowCountsView;
 
-        /// <summary>Zielzahl belegter Zellen je Spalte (Länge <see cref="GridSize.Width"/>).</summary>
-        public IReadOnlyList<int> ColumnCounts { get; }
+        /// <summary>Zielzahl belegter Zellen je Spalte (Länge <see cref="GridSize.Width"/>), schreibgeschützt.</summary>
+        public IReadOnlyList<int> ColumnCounts => _columnCountsView;
 
         /// <summary>Registrierte Ruleset-Version dieser Definition.</summary>
         public string RulesetVersion { get; }
@@ -108,8 +116,10 @@ namespace STP.Puzzle.Domain
             Grid = grid;
             A = a;
             B = b;
-            RowCounts = rows;
-            ColumnCounts = columns;
+            _rowCounts = rows;
+            _columnCounts = columns;
+            _rowCountsView = new ReadOnlyCollection<int>(_rowCounts);
+            _columnCountsView = new ReadOnlyCollection<int>(_columnCounts);
             RulesetVersion = rulesetVersion;
         }
 

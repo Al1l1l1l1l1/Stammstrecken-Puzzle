@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace STP.Puzzle.Domain
 {
@@ -72,15 +73,19 @@ namespace STP.Puzzle.Domain
     /// <summary>
     /// Atomarer, nach Koordinate sortierter Zell-Diff einer Nutzerhandlung gemäß
     /// PUZZLE_ENGINE.md Abschnitt 8. Der Undo-Stack enthält maximal 256 solcher
-    /// Diffs; beim Überschreiten wird der älteste verworfen.
+    /// Diffs; beim Überschreiten wird der älteste verworfen. Die Einträge werden
+    /// defensiv kopiert und ausschließlich schreibgeschützt exponiert.
     /// </summary>
     public sealed class CellDiff
     {
         /// <summary>Maximale Stacktiefe des Undo-Verlaufs.</summary>
         public const int MaximumUndoDepth = 256;
 
-        /// <summary>Sortierte Einträge (Koordinate, vorher, nachher); niemals leer.</summary>
-        public IReadOnlyList<CellDiffEntry> Entries { get; }
+        private readonly CellDiffEntry[] _entries;
+        private readonly ReadOnlyCollection<CellDiffEntry> _entriesView;
+
+        /// <summary>Sortierte Einträge (Koordinate, vorher, nachher); niemals leer, schreibgeschützt.</summary>
+        public IReadOnlyList<CellDiffEntry> Entries => _entriesView;
 
         /// <summary>Erstellt einen Diff aus unsortierten Einträgen und sortiert sie zeilenweise.</summary>
         public CellDiff(IReadOnlyList<CellDiffEntry> entries)
@@ -91,7 +96,8 @@ namespace STP.Puzzle.Domain
             }
             var sorted = new List<CellDiffEntry>(entries);
             sorted.Sort((left, right) => left.Coordinate.CompareTo(right.Coordinate));
-            Entries = sorted;
+            _entries = sorted.ToArray();
+            _entriesView = new ReadOnlyCollection<CellDiffEntry>(_entries);
         }
     }
 }

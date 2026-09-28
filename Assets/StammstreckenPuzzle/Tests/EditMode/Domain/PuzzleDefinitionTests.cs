@@ -72,9 +72,14 @@ namespace STP.Tests.Domain.EditMode
         [Test]
         public void CountSums_MustMatchAndBePositive()
         {
+            // Isolierter Summenverstoß: Zeilen 1 vs. Spalten 2; alle übrigen
+            // Invarianten (Indizes, Längen, Wertebereiche, Belegbarkeit der
+            // Endpointzellen) sind erfüllt — die Ablehnung gilt allein der
+            // Summengleichheit.
             Assert.Throws<ArgumentException>(() => new PuzzleDefinition(
                 new GridSize(2, 2), new Endpoint(Direction.N, 0), new Endpoint(Direction.W, 0),
-                new[] { 1, 0 }, new[] { 0, 1 }, PuzzleDefinition.RulesetVersionV1));
+                new[] { 1, 0 }, new[] { 1, 1 }, PuzzleDefinition.RulesetVersionV1));
+            // Gesamtsumme 0 verletzt die Mindestsumme 1.
             Assert.Throws<ArgumentException>(() => new PuzzleDefinition(
                 new GridSize(2, 2), new Endpoint(Direction.N, 0), new Endpoint(Direction.W, 0),
                 new[] { 0, 0 }, new[] { 0, 0 }, PuzzleDefinition.RulesetVersionV1));

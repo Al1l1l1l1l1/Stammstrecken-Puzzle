@@ -63,6 +63,12 @@ namespace STP.Puzzle.Domain
         /// <summary>Liefert die Form, die genau zwei unterschiedliche Richtungen verbindet.</summary>
         public static TrackShape FromPorts(Direction first, Direction second)
         {
+            if (first == second)
+            {
+                throw new System.ArgumentException(
+                    $"Eine Gleisform verbindet zwei unterschiedliche Anschlüsse, nicht {first} mit sich selbst.",
+                    nameof(first));
+            }
             foreach (var shape in All)
             {
                 if (HasPort(shape, first) && HasPort(shape, second))

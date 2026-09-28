@@ -27,6 +27,15 @@ namespace STP.Puzzle.Domain
         /// <summary>Diagnosecode für Undo ohne vorhandenen Verlauf.</summary>
         public const string NothingToUndo = "NOTHING_TO_UNDO";
 
+        /// <summary>
+        /// Diagnosecode für eine malformed Command-Hülle: fehlende Command-ID,
+        /// fehlende oder leere Batch-Änderungsliste oder ein Zellinhalt
+        /// außerhalb des geschlossenen Enum-Bereichs. Solche Eingaben werden
+        /// stabil und deterministisch abgelehnt, niemals mit einer ungefangenen
+        /// Ausnahme abgebrochen.
+        /// </summary>
+        public const string InvalidCommand = "INVALID_COMMAND";
+
         /// <summary>Wendet einen Einzel-Command an.</summary>
         public static CommandResult Handle(
             PuzzleSessionState state,
@@ -41,6 +50,10 @@ namespace STP.Puzzle.Domain
             if (envelope is not null)
             {
                 return CommandResult.Rejected(state, envelope);
+            }
+            if (string.IsNullOrEmpty(command.CommandId) || !Enum.IsDefined(typeof(CellContent), command.Content))
+            {
+                return CommandResult.Rejected(state, InvalidCommand);
             }
             if (!state.Definition.Grid.Contains(command.Coordinate))
             {
@@ -69,14 +82,18 @@ namespace STP.Puzzle.Domain
             {
                 return CommandResult.Rejected(state, envelope);
             }
-            if (command.Changes.Count == 0)
+            if (string.IsNullOrEmpty(command.CommandId) || command.Changes is null || command.Changes.Count == 0)
             {
-                return CommandResult.Rejected(state, OutOfBounds);
+                return CommandResult.Rejected(state, InvalidCommand);
             }
 
             var seen = new HashSet<CellCoordinate>();
             foreach (var change in command.Changes)
             {
+                if (!Enum.IsDefined(typeof(CellContent), change.Content))
+                {
+                    return CommandResult.Rejected(state, InvalidCommand);
+                }
                 if (!state.Definition.Grid.Contains(change.Coordinate))
                 {
                     return CommandResult.Rejected(state, OutOfBounds);
@@ -108,6 +125,10 @@ namespace STP.Puzzle.Domain
             if (envelope is not null)
             {
                 return CommandResult.Rejected(state, envelope);
+            }
+            if (string.IsNullOrEmpty(command.CommandId))
+            {
+                return CommandResult.Rejected(state, InvalidCommand);
             }
             if (state.UndoStack.Count == 0)
             {

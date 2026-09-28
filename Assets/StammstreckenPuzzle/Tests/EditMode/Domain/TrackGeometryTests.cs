@@ -45,6 +45,16 @@ namespace STP.Tests.Domain.EditMode
             Assert.AreEqual(12, covered);
         }
 
+        /// <summary>Identische Ports sind keine zulässige Gleisform und werden abgelehnt.</summary>
+        [Test]
+        public void FromPorts_RejectsIdenticalPorts()
+        {
+            Assert.Throws<System.ArgumentException>(() => TrackShapeGeometry.FromPorts(Direction.N, Direction.N));
+            Assert.Throws<System.ArgumentException>(() => TrackShapeGeometry.FromPorts(Direction.E, Direction.E));
+            Assert.Throws<System.ArgumentException>(() => TrackShapeGeometry.FromPorts(Direction.S, Direction.S));
+            Assert.Throws<System.ArgumentException>(() => TrackShapeGeometry.FromPorts(Direction.W, Direction.W));
+        }
+
         /// <summary>Die Gegenrichtung ist symmetrisch und vertauscht die Achsen korrekt.</summary>
         [Test]
         public void Opposite_IsSymmetricAndDeltasMatchConcept()
