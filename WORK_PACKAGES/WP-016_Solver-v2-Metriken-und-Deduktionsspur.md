@@ -11,7 +11,7 @@ Der bisherige Solver wird zu `solver-v2` weiterentwickelt. Seine vier Proofmetri
 ## Voraussetzungen
 
 1. Vollständige Pflichtlektüre nach [`AGENTS.md`](../AGENTS.md).
-2. WP-014, WP-018, WP-019 und WP-020 sind nach `main` integriert; WP-015 ist abgeschlossen und nach `main` integriert. Die historischen WP-008-/WP-009-Branches sind nur Vergleichskorpora.
+2. WP-014, WP-018, WP-021 und WP-022 sind nach `main` integriert; WP-015 ist abgeschlossen und nach `main` integriert. Die historischen WP-008-/WP-009-Branches sowie WP-019/WP-020 sind nur Vergleichskorpora bzw. archivierte Planungsunterlagen.
 3. [`ADR-007`](../DECISIONS/ADR-007-solver-und-eindeutigkeitspruefung.md), [`ADR-021`](../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md), [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md) und [`ARCHITECTURE/SOLVER_ARCHITECTURE.md`](../ARCHITECTURE/SOLVER_ARCHITECTURE.md) sind gelesen.
 4. Der historische WP-013-Branch wird nur als Negativvergleich benutzt; seine Metrikimplementierung darf nicht übernommen werden, ohne jedes Akzeptanzkriterium dieses Packages nachzuweisen.
 

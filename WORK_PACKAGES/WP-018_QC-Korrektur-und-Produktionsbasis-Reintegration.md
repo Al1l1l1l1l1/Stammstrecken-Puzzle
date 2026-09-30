@@ -94,3 +94,7 @@ WP-018 ist erst abgeschlossen, wenn alle Akzeptanzkriterien und Tests nachweisli
 - Astra und Sol haben den eingefrorenen Korrektur-Head unabhängig mit **PASS** und ohne offene BLOCKER/HIGH-Befunde freigegeben.
 - [PR #6](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/6) wurde als Merge-Commit `7b0d65ac01334f2457e3a47f3b79ca0b5e1e9542` nach `main` integriert. Die Trust-Anchor-Commits bleiben dadurch in der Main-Historie erhalten.
 - Nächste zulässige Arbeit ist ausschließlich WP-019 auf einer neuen Main-basierten Production-Branch. Fehlende Unity-Lizenz oder Runner bleiben gemäß WP-019 ein Start-/Abschlussblocker; WP-020 bis WP-017 bleiben gesperrt.
+
+### Nachträgliche Trust-Anchor-Korrektur
+
+Die nach PR #7 durchgeführte WP-019-Startprüfung hat die ADR-030-Regel erneut angewandt: Ein ausführbares Work Package muss zusammen mit seinem eigenen Manifest erstmals im selben Add-Commit erscheinen. WP-019 und WP-020 waren bereits als Planungsdateien auf `main` angelegt und können daher nicht mehr ihre eigenen Trust-Anchor-Kandidaten sein. Sie sind ohne Implementierung zurückgezogen; die nächsten zulässigen Recovery-IDs sind WP-021 und WP-022, jeweils erst auf ihrer frischen Main-basierten Implementierungsbranch mit gemeinsamem Anchor. Diese Korrektur hält die Trust-Grenze aufrecht und ändert keine Produkt- oder Metrikentscheidung.

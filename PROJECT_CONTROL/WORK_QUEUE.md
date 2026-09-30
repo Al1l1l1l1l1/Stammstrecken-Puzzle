@@ -6,11 +6,11 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
-| 0 | WP-018 – QC-Korrektur und Produktionsbasis-Reintegration | **Abgeschlossen** | Beide unabhängigen QC-Berichte PASS ohne BLOCKER/HIGH; PR #6 ist als Merge-Commit `7b0d65a…` nach `main` integriert. |
-| 1 | WP-019 – Unity-Scaffold-Recovery | Freigegeben, nicht begonnen | Nächster Auftrag auf frischer Main-Branch, eigener Production-Anchor und reale Unity-/CI-Evidenz. Start/Abschluss nur bei verfügbarer Unity-Lizenz und Linux/Android-/macOS/iOS-Runnern. Historisches WP-008 bleibt nur Vergleich. |
-| 2 | WP-020 – Puzzle-Kern-Recovery | Definiert, nicht begonnen | Nach integriertem WP-019: Domain und `solver-v1` auf frischer Main-Branch, eigener Production-Anchor. Historisches WP-009 bleibt nur Vergleich. |
-| 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-020: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
-| 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-019/WP-020 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
+| 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **In Prüfung** | WP-019/WP-020 werden als vorab angelegte und daher nicht ausführbare Planungen archiviert. Keine Produktionsarbeit vor erfolgreichem Korrekturmerge. |
+| 1 | WP-021 – Unity-Scaffold-Recovery | Reserviert, noch nicht verankert | Nach der Korrektur auf frischer Main-Branch: ausführbares WP-021 und eigenes Production-Manifest im selben Add-Commit verankern; erst dann Scope an Kimi. Lizenz-/Runnernachweise sind Start-/Abschlussgates. |
+| 2 | WP-022 – Puzzle-Kern-Recovery | Reserviert, noch nicht definiert | Erst nach integriertem WP-021: WP-022 und eigenes Manifest im selben Add-Commit auf neuer Main-Branch definieren und verankern. |
+| 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
+| 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
 | 5 | WP-017 – Proof-v1-Regeneration und Strict-Validation | Definiert, nicht begonnen | Nach WP-016 sowie allen Vorgängern auf `main`: `minimum: 0`-Schema, schema-valider `solver-v2`-Proof, bytegenaue Regeneration und Strict-Gate. |
 | 6 | 240 konkrete Rätselinstanzen | Blockiert durch WP-017 | Erst nach vollständiger Level-/Solver-/Proofpipeline. |
 | 7 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen. |
@@ -37,9 +37,9 @@ Sie bleiben nur lesbare Vergleichskorpora. Insbesondere sind Direktmerge, Cherry
 
 ```text
 main
-  → WP-014 + WP-018 Governance integriert (PR #6)
-  → WP-019 auf frischer Main-Branch abschließen und integrieren
-  → WP-020 auf frischer Main-Branch abschließen und integrieren
+  → Trust-Anchor-Korrektur integrieren
+  → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
+  → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
   → WP-015
   → WP-016
   → WP-017
@@ -77,7 +77,7 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur und Abgrenzung der historischen Branches. |
 | `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindender `solver-v2`-Zielvertrag und Zeitpunkt der Schemaumsetzung. |
 | `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Abgeschlossene QC-Korrektur und Recovery-Freigabe. |
-| `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Erste Produktionsrecovery. |
-| `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Zweite Produktionsrecovery. |
+| `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
+| `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
 | `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Level-/Hashfolgeauftrag. |
 | `../PROJECT_CONTROL/DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |

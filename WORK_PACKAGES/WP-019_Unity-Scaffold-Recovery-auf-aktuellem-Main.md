@@ -4,6 +4,8 @@
 
 `WP-019`
 
+**Bearbeitungsstatus:** **Zurückgezogen vor Implementierungsbeginn am 2026-09-30.** Dieses Dokument wurde auf `main` vor einem eigenen gemeinsamen Work-Package-/Scope-Manifest-Add-Commit persistiert. Es kann deshalb die historische Trust-Anchor-Bindung aus ADR-030 nicht erfüllen und ist **kein ausführbarer Implementierungsauftrag**. Die technische Absicht dient nur als Planungsarchiv; ein neues, erst gemeinsam mit eigenem Manifest verankertes WP-021 ersetzt diese Planung. Es wurden keine Produktionsdateien, Branches, CI-Nachweise oder Freigaben aus diesem Dokument erzeugt.
+
 ## Ziel
 
 Auf einer **neu vom nach WP-014 und WP-018 aktualisierten `main` abgezweigten Branch** wird das Unity-6.3-Produktionsscaffold sauber wiederhergestellt und unabhängig nachgewiesen. Der historische WP-008-Branch ist dabei nur ein lesbarer Vergleichskorpus; weder sein Commitgraph noch sein Scope-Manifest, seine CI-Ergebnisse oder seine Dateien werden gemergt, gerebased oder gecherry-picked.
