@@ -4,7 +4,7 @@
 
 `WP-018`
 
-**Bearbeitungsstatus:** In Bearbeitung – Governance-Korrektur nach unabhängiger Astra-/Sol-QC; keine Produktionsimplementierung.
+**Bearbeitungsstatus:** Abgeschlossen am 2026-09-30; Governance-Korrektur nach zwei unabhängigen Astra-/Sol-QC-PASS-Berichten, ohne Produktionsimplementierung.
 
 ## Ziel
 
@@ -86,3 +86,11 @@ WP-018 ist erst abgeschlossen, wenn alle Akzeptanzkriterien und Tests nachweisli
 - **Astra-QC:** unabhängige Prüfung der Zielvertrags- und Architekturkonsistenz.
 - **Sol-QC:** unabhängige Prüfung von Scope, Trust Anchor, Integrationspfad und Evidenz.
 - Astra und Sol prüfen ohne Einsicht in die Ergebnisse des jeweils anderen Reviewers.
+
+## Abschlussnachweis
+
+- Der WP-018-Trust Anchor `7226cbd6e76c0ddca5ff81dd9eeb211eec2ea61f` hat den korrekten Basecommit `9336dfff5ad3aed1d3155c6eba81a145f5753258`; der Manifestblob blieb bis zum geprüften Head byteunverändert.
+- Der Documentation-Scope-Validator mit `--self-test` hat für den Korrektur-Head `7b65c0cf70ba9e9ead65df8a749f9324ae6ebc30` 18 lokale Prüfgruppen PASS gemeldet; `git diff --check` war sauber.
+- Astra und Sol haben den eingefrorenen Korrektur-Head unabhängig mit **PASS** und ohne offene BLOCKER/HIGH-Befunde freigegeben.
+- [PR #6](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/6) wurde als Merge-Commit `7b0d65ac01334f2457e3a47f3b79ca0b5e1e9542` nach `main` integriert. Die Trust-Anchor-Commits bleiben dadurch in der Main-Historie erhalten.
+- Nächste zulässige Arbeit ist ausschließlich WP-019 auf einer neuen Main-basierten Production-Branch. Fehlende Unity-Lizenz oder Runner bleiben gemäß WP-019 ein Start-/Abschlussblocker; WP-020 bis WP-017 bleiben gesperrt.
