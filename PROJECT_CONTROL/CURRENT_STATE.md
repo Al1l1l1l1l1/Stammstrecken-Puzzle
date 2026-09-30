@@ -3,11 +3,11 @@
 | Feld | Aktueller Stand |
 |---|---|
 | Projektstatus | Produktkonzeption und **Architecture v1.0** sind verbindlich. `main` enthält die Governance-Entscheidung aus PR #6 und den WP-018-Closeout aus PR #7, aber keinen freigegebenen Produktionscode. |
-| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-014/WP-018 sind ebenfalls abgeschlossen. Eine nachträgliche Trust-Anchor-Korrektur ist in Prüfung: WP-019/WP-020 sind vor Implementierung zurückgezogene Planungsunterlagen, weil sie vor ihren eigenen Manifesten auf `main` lagen. |
+| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-014/WP-018 sind ebenfalls abgeschlossen. Die Trust-Anchor-Korrektur aus PR #8 ist integriert: WP-019/WP-020 bleiben vor Implementierung zurückgezogene Planungsunterlagen, weil sie vor ihren eigenen Manifesten auf `main` lagen. |
 | Historische Branches | `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` sind archivierte, lesbare Vergleichskorpora. Keiner ist direkt integrierbar oder darf gerebased, gecherry-picked oder konfliktaufgelöst werden. |
-| Letzter verifizierter Nachweis | PR #6 und PR #7 sind erfolgreich gemergt; deren Architecture-Validation-Actions waren erfolgreich. Die erneute Anwendung von ADR-030 hat danach die WP-019/WP-020-Pre-Anchor-Inkonsistenz vor jedem Produktionsstart fail-closed erkannt. |
-| Aktuell zu prüfender Schritt | Diese Dokumentationskorrektur muss die IDs WP-019/WP-020 archivieren und die Nachfolgekette auf neue, künftig erst gemeinsam mit Manifest verankerte WP-021/WP-022 umstellen. Bis zu ihrem Merge gibt es keinen Implementierungsauftrag. |
-| Nächster vorgesehener Schritt | Nach fehlerfreier Korrektur-QC: WP-021 auf einer neuen Main-basierten Branch mit **gleichzeitigem** WP-021-/Manifest-Trust-Anchor definieren. Erst bei nachgewiesener Unity-Lizenz sowie Linux/Android- und macOS/iOS-Runnern darf Kimi dessen Production-Scope ausführen. |
+| Letzter verifizierter Nachweis | PR #8 ist als Merge-Commit `3032371…` integriert; Push- und PR-Actions waren SUCCESS. Die erneute unabhängige Astra-/Sol-QC auf `0b1e3c4…` war PASS ohne BLOCKER/HIGH. Die ADR-030-Trust-Anchor-Bindung bleibt unverändert. |
+| Aktuell zu prüfender Schritt | Vor jeder WP-021-Verankerung muss die reale Verfügbarkeit von `UNITY_LICENSE` und der dokumentierten Linux/Android- sowie macOS/iOS-Runner belegt werden. In dieser Sandbox fehlen Unity und `UNITY_LICENSE`; die GitHub-App kann Actions-Secrets/Variablen nicht lesen. Das ist fail-closed **nicht nachgewiesen**, kein Negativnachweis für die Repository-Konfiguration. |
+| Nächster vorgesehener Schritt | Nach explizit belegter WP-021-Startvoraussetzung erstellt die Geschäftsführung auf einer frischen Main-basierten Branch **gleichzeitig** das ausführbare WP-021 und sein Production-Scope-Manifest als Trust Anchor. Erst danach darf Kimi ausschließlich dessen Produktionsscope ausführen. |
 | Produktionscode | **Nicht freigegeben.** WP-019/WP-020 sind keine Lieferbranches; historische Produktbranches und Governance-Historie ersetzen weder einen eigenen Recovery-Anchor noch reale CI-Nachweise. |
 | Architekturentscheidungen | Architecture v1.0; 31 ADRs, davon 22 angenommen und aktuell wirksam. ADR-031 bleibt ein verbindlicher Zielvertrag; dessen Proofschema-Implementierung liegt ausschließlich in WP-017 nach der künftigen Recovery-Kette. |
 | Scope-Vertrauensanker | WP-014/WP-018 bleiben unverändert. Für WP-021 und WP-022 gilt ohne Ausnahme: das ausführbare Work Package und sein eigenes Production-Scope-Manifest müssen gemeinsam erstmals auf ihrer jeweiligen frischen Implementierungsbranch hinzugefügt werden. |
@@ -20,8 +20,8 @@ Die Quellenhierarchie in [`AGENTS.md`](../AGENTS.md) gilt unverändert. Der spä
 ## Verbindliche Integrations- und Umsetzungsreihenfolge
 
 1. **Governance abgeschlossen:** WP-014/WP-018 wurden nach unabhängiger QC über [PR #6](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/6) integriert; der formale Closeout erfolgte über [PR #7](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/7).
-2. **Trust-Anchor-Korrektur:** WP-019/WP-020 bleiben archivierte Planungen und werden nicht ausgeführt. Die Korrektur muss zuerst auf `main` integriert sein.
-3. **Produktionsbasis:** WP-021 wird erst auf einer frischen Main-basierten Branch gemeinsam mit seinem neuen Production-Manifest verankert und nach allen eigenen CI-/QC-Nachweisen integriert.
+2. **Trust-Anchor-Korrektur:** [PR #8](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/8) ist integriert. WP-019/WP-020 bleiben archivierte Planungen und werden nicht ausgeführt.
+3. **Produktionsbasis:** Nach belegter Lizenz-/Runnerverfügbarkeit wird WP-021 erst auf einer frischen Main-basierten Branch gemeinsam mit seinem neuen Production-Manifest verankert und nach allen eigenen CI-/QC-Nachweisen integriert.
 4. **Puzzle-Kern:** WP-022 wird erst nach integriertem WP-021 auf einer neuen Branch gemeinsam mit eigenem Manifest verankert und umgesetzt.
 5. **Content-/Proofkette:** Erst danach folgen WP-015 → WP-016 → WP-017 in harter Reihenfolge.
 6. **Contentproduktion:** Erst nach WP-017 dürfen konkrete Season-1-Level, Generatorprofile, Zeitkalibrierung und weitere Produktionsblöcke beginnen.

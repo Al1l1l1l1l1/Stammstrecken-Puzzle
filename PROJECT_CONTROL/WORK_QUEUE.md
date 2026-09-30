@@ -6,8 +6,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
-| 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **In Prüfung** | WP-019/WP-020 werden als vorab angelegte und daher nicht ausführbare Planungen archiviert. Keine Produktionsarbeit vor erfolgreichem Korrekturmerge. |
-| 1 | WP-021 – Unity-Scaffold-Recovery | Reserviert, noch nicht verankert | Nach der Korrektur auf frischer Main-Branch: ausführbares WP-021 und eigenes Production-Manifest im selben Add-Commit verankern; erst dann Scope an Kimi. Lizenz-/Runnernachweise sind Start-/Abschlussgates. |
+| 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
+| 1 | WP-021 – Unity-Scaffold-Recovery | Reserviert, **durch Readiness-Gate blockiert** | Auf frischer Main-Branch dürfen ausführbares WP-021 und eigenes Production-Manifest erst im selben Add-Commit verankert werden, nachdem `UNITY_LICENSE` sowie Linux/Android- und macOS/iOS-Runner explizit nachgewiesen sind; erst dann Scope an Kimi. |
 | 2 | WP-022 – Puzzle-Kern-Recovery | Reserviert, noch nicht definiert | Erst nach integriertem WP-021: WP-022 und eigenes Manifest im selben Add-Commit auf neuer Main-Branch definieren und verankern. |
 | 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
 | 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
@@ -37,7 +37,8 @@ Sie bleiben nur lesbare Vergleichskorpora. Insbesondere sind Direktmerge, Cherry
 
 ```text
 main
-  → Trust-Anchor-Korrektur integrieren
+  → Trust-Anchor-Korrektur integriert (PR #8)
+  → Unity-Lizenz und Linux/Android-/macOS/iOS-Runner explizit nachweisen
   → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
   → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
   → WP-015
