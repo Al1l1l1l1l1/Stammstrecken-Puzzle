@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using STP.Puzzle.Domain;
 
 namespace STP.Puzzle.Solver
@@ -46,6 +47,84 @@ namespace STP.Puzzle.Solver
             return search.Execute();
         }
 
+        /// <summary>
+        /// Löst das Puzzle aus dem unveränderten öffentlichen Puzzleinput und
+        /// bündelt das Ergebnis als typisiertes Proof-Ergebnismodell
+        /// (<see cref="SolverProofResult"/>): Klassifikation, gefundener
+        /// Lösungspfad von A nach B (bei eindeutiger Lösung), die
+        /// dokumentierten Metriken einschließlich der maximalen
+        /// Deduktionskettentiefe und die <c>solver-v1</c>-Versionskonstante.
+        /// Suche, Klassifikation und bestehende Metriken sind identisch zu
+        /// <see cref="Solve"/>.
+        /// </summary>
+        public static SolverProofResult SolveForProof(
+            PuzzleDefinition definition,
+            long maxSearchNodes = DefaultMaxSearchNodes)
+        {
+            if (definition is null)
+            {
+                throw new ArgumentNullException(nameof(definition));
+            }
+            if (maxSearchNodes < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxSearchNodes));
+            }
+
+            var search = new SearchRun(definition, maxSearchNodes);
+            var result = search.Execute();
+            IReadOnlyList<SolverPathCell>? path = null;
+            if (result.Classification == SolutionClassification.Unique && result.UniqueSolution is not null)
+            {
+                path = ExtractSolutionPath(definition, result.UniqueSolution);
+            }
+            return new SolverProofResult(
+                result.Classification,
+                result.SolutionCount,
+                path,
+                result.Metrics,
+                search.MaxDeductionDepth,
+                SolverVersion);
+        }
+
+        /// <summary>
+        /// Traversiert die eindeutige Lösung vom Außenanschluss A zum
+        /// Außenanschluss B und liefert den geordneten Lösungspfad; der
+        /// Ein-Zellen-Sonderfall (beide Endpoints an derselben Zelle) ergibt
+        /// genau eine Pfadzelle.
+        /// </summary>
+        private static IReadOnlyList<SolverPathCell> ExtractSolutionPath(PuzzleDefinition definition, IReadOnlyList<CellContent> cells)
+        {
+            var grid = definition.Grid;
+            var path = new List<SolverPathCell>();
+            var start = definition.A.AdjacentCell(grid);
+            var current = start;
+            var entryDirection = definition.A.Side;
+            while (true)
+            {
+                var content = cells[grid.IndexOf(current)];
+                var shape = CellContentSemantics.ToTrackShape(content);
+                path.Add(new SolverPathCell(current, shape));
+                var (first, second) = TrackShapeGeometry.Ports(shape);
+                Direction? exitDirection = null;
+                if (first == entryDirection)
+                {
+                    exitDirection = second;
+                }
+                else if (second == entryDirection)
+                {
+                    exitDirection = first;
+                }
+                if (exitDirection is null || definition.IsEndpointAt(definition.B, current, exitDirection.Value))
+                {
+                    break;
+                }
+                var next = current.Neighbor(exitDirection.Value);
+                entryDirection = DirectionGeometry.Opposite(exitDirection.Value);
+                current = next;
+            }
+            return path;
+        }
+
         private sealed class SearchRun
         {
             private readonly PuzzleDefinition _definition;
@@ -56,6 +135,7 @@ namespace STP.Puzzle.Solver
             private CellContent[]? _firstSolution;
             private int _firstSolutionGuessDepth;
             private long _deductionSteps;
+            private long _maxDeductionDepth;
 
             internal SearchRun(PuzzleDefinition definition, long maxSearchNodes)
             {
@@ -63,12 +143,15 @@ namespace STP.Puzzle.Solver
                 _maxSearchNodes = maxSearchNodes;
             }
 
+            internal long MaxDeductionDepth => _maxDeductionDepth;
+
             internal SolverResult Execute()
             {
-                var core = SolverCore.CreateInitial(_definition, out _deductionSteps);
+                var core = SolverCore.CreateInitial(_definition, out _deductionSteps, out _maxDeductionDepth);
                 if (core is not null)
                 {
                     Search(core, guessDepth: 0);
+                    _maxDeductionDepth = core.MaxDeductionDepth;
                 }
 
                 var pathLength = 0;

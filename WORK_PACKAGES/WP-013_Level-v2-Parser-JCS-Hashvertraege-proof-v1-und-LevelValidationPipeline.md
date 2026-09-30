@@ -4,7 +4,7 @@
 
 `WP-013`
 
-**Bearbeitungsstatus:** In Bearbeitung
+**Bearbeitungsstatus:** Abgeschlossen
 
 **Trust Anchor:** Dieses Work Package und sein Production-Scope-Manifest
 [`tools/architecture-validation/scopes/WP-013.production.scope.json`](../tools/architecture-validation/scopes/WP-013.production.scope.json)
@@ -240,3 +240,168 @@ vertraglich begrenzt und durch vorgeschriebene Negativtests abgesichert.
 - `PROJECT_CONTROL/CURRENT_STATE.md` und `PROJECT_CONTROL/WORK_QUEUE.md` sind
   fortgeschrieben; Ergebnis, Validierung und offene Punkte sind so dokumentiert,
   dass ein neuer Agent ohne Chat-Verlauf übernehmen kann.
+
+## Abschlussdokumentation
+
+### Ergebnis
+
+WP-013 ist abgeschlossen. Die Leveldaten-Validierungskette ist als Produktionscode
+auf dem WP-008-/WP-009-Modulgraphen implementiert:
+
+- **`STP.Infrastructure.Content`** (17 neue Dateien): strikter UTF-8-JSON-Parser
+  für untrusted Input (`StrictJsonParser` mit `JsonParseLimits`: Dateigröße,
+  Verschachtelungstiefe, Stringlänge, Arraylänge; Duplicate-Key-Ablehnung;
+  Ablehnung von Fließkomma-/Exponententokens, ungültigen Surrogaten,
+  Steuerzeichen, BOM und polymorphen Typmetadaten `$type`; automatische
+  Typkonstruktion existiert strukturell nicht) auf dem Dokumentmodell
+  `JsonValue`; RFC-8785/JCS-Kanonisierung (`JcsCanonicalizer`, UTF-8 ohne BOM,
+  ohne Abschlussnewline, I-JSON); Profilregistry (`HashProfiles`) mit den drei
+  aktuellen Profilen und dem historischen Leseeintrag; die drei
+  Hashprojektionen (`PuzzleHashContracts`); Diagnosemodell
+  (`LevelDiagnostic`, sortiert, Fehler/Warnung); level-v2-DTO-Schicht
+  (`LevelV2Dtos`); zweckgebaute strukturelle Prüfung gegen den feststehenden
+  level-v2-Vertrag (`LevelV2SchemaValidator`, Codes `LVL-SCHEMA-*`; das
+  kanonische Schemadokument `ARCHITECTURE/schemas/level-v2.schema.json`
+  bleibt unverändert maßgeblich, eine generische Draft-2020-12-Maschine ist
+  nicht Bestandteil); Domain-Mapping (`LevelV2DomainMapper`, Codes
+  `LVL-GRID-*`/`LVL-ENDPOINT-*`, Ein-Zellen-Sonderfall); semantische
+  Leveldiagnosen (`LevelV2Semantics`: `LVL-ID-*`, `LVL-PATH-*`, `LVL-RULE-*`,
+  `LVL-COUNT-*`, `LVL-TIME-ORDER`, `LVL-HASH-*`); proof-v1-Artefaktmodell mit
+  Formatstufe (`ProofV1SchemaValidator`, Codes `PRF-FORMAT-*`),
+  Serialisierung/Deserialisierung (`ProofV1Serializer`) und den
+  `PRF-*`-Bindungsprüfungen (`ProofV1Binding`).
+- **`STP.Puzzle.Solver`** (1 neue Datei, 2 Dateien ergänzt): typisiertes
+  Proof-Ergebnismodell (`SolverProofResult`: Klassifikation, gefundener
+  Lösungspfad A→B inklusive Ein-Zellen-Fall, `SolverMetrics`,
+  `MaxDeductionDepth`, `solver-v1`-Konstante) über
+  `PuzzleSolver.SolveForProof`. Die in SOLVER_ARCHITECTURE.md Abschnitte 5
+  und 7 dokumentierte, bislang nicht berechnete Metrik
+  `maxDeductionDepth` wird rein additiv als Prämissentiefen-Buchführung in
+  `SolverCore` ergänzt (statische Reduktionen Tiefe 1, abhängige Reduktionen
+  +1; Suchannahmen sind keine Deduktionen). Constraintsemantik, Tiebreaker,
+  Wertreihenfolge und die bestehenden solver-v1-Metrikdefinitionen sind
+  unverändert; die WP-009-Tests laufen unverändert grün.
+- **`STP.Editor.Content`** (2 neue Dateien): `ProofGenerator` (proof-v1 aus
+  dem Solverlauf über den unveränderten öffentlichen Puzzleinput,
+  `solver-v1`, `solutionCount` 1, dokumentierte Metriken, Proofhash
+  `STP-PROOF-JCS-1`, kanonische Bytes) und `LevelValidationPipeline` mit den
+  Stufen Parse, Schema, Domain map, Semantic und Solver/Proof, sortierten
+  Diagnosen, `--strict`-Semantik (Warnungen als Fehler) und der Regel, dass
+  spätere Stufen frühere Fehler nicht verdecken (Stufenabbruch bei Fehler,
+  frühere Diagnosen bleiben vollständig erhalten). Cross-reference-, Quality-
+  und Import-Stufe sind nicht Teil.
+- **Tests** (8 neue Dateien): 66 Testmethoden in `STP.Tests.Content.EditMode`
+  (Parser, Robustheitsgrenzen, Duplicate Keys, strukturelle Verletzungen je
+  Regel, Domain-Mapping inklusive Ein-Zellen-Fall, je Vertreter aller
+  `LVL-*`-Familien, JCS-Known-Answer-Vektoren, Live-Crosscheck gegen
+  `jcs_crosscheck.mjs`, unbekanntes Profil, Fließkomma-/Surrogate-Ablehnung,
+  Semantikinvarianz/-änderung, proof-v1-Bindungen inklusive
+  Cross-Puzzle-Copy, stale Lösungshash, Metrikänderung und `proofRef`,
+  Determinismus der Proofgenerierung, Pipeline-Stufenordnung,
+  `--strict`-Semantik, Diagnosesortierung) sowie 7 Testmethoden in
+  `STP.Tests.Solver.EditMode` (Proof-Ergebnismodell deterministisch für
+  0-/1-/2+-Fälle, `solver-v1`-Konstante unverändert).
+- **Mechanische Governance:** Testassembly `STP.Tests.Content.EditMode`
+  erhielt direkte Referenzen auf die bestehenden Produktionsassemblies
+  `STP.Puzzle.Domain`, `STP.Puzzle.Solver` und `STP.Editor.Content`
+  (Unity-Assemblyreferenzen sind nicht transitiv); der statische
+  Modulgraph-Check in `.github/workflows/unity.yml` wurde mechanisch
+  gespiegelt. `.github/workflows/validate.yml` war bereits auf das
+  WP-013-Manifest umgeschaltet und blieb unverändert.
+
+### Akzeptanzkriterien
+
+| ID | Stand | Nachweis |
+|---|---|---|
+| `AK-01` | Erfüllt | Trust-Anchor `e09658ba964b76d2a36b4baf07e69a2ccc26d952` (bestand bereits); Validator bestätigt `LOCAL_SCOPE PASS` gegen das byteunveränderte Manifest. |
+| `AK-02` | Erfüllt | `LevelV2ParserTests`: beide Vertragsfixtures werden akzeptiert und auf gültige `PuzzleDefinition`-Objekte gemappt (inklusive Ein-Zellen-Fall); malformed JSON, Duplicate Keys, Ressourcenüberschreitungen, `additionalProperties: false`, polymorphe Typmetadaten und unbekannte `documentSchemaVersion`/`rulesetVersion` werden fail-closed mit stabilen Codes abgelehnt. |
+| `AK-03` | Erfüllt | `LevelV2SemanticsTests`: Vertreter aller geforderten Familien; ID-Segmente exakt gegen `content.season`/`networkSection`/`route`/`position`, Season-1-Bereiche 5×4×12, aus der Lösung abgeleitete Randzahlen, Zeitordnung; sortierte stabile Codes; Katalogprüfungen bleiben der Cross-reference-Stufe vorbehalten. |
+| `AK-04` | Erfüllt | `HashContractTests`: alle sechs dokumentierten Fixture-Hashes werden exakt reproduziert; Live-Crosscheck gegen `jcs_crosscheck.mjs` (Node.js 22) bestätigt byte- und hashgleiche Ergebnisse; unbekanntes Profil ist harter Fehler; Fließkomma-/Surrogate-Ablehnung; Semantikinvarianz (Formatierung, Schlüsselreihenfolge, `documentSchemaVersion`, `contentRevision`, Texte, Proofregeneration) und -änderung (Puzzle-ID, Ruleset, Raster, Endpoints, Counts) nachgewiesen. |
+| `AK-05` | Erfüllt | `ProofBindingTests` und `PipelineTests`: Generierung aus dem unveränderten öffentlichen Puzzleinput mit `solver-v1`; bytegleicher Proof bei gleichem Input und gleicher Solverversion; Vergleich der einzigen gefundenen Lösung mit der Authoringlösung über den kanonischen Lösungshash; `solutionCount` 1; Cross-Puzzle-Copy, stale Lösungshash und Metrikänderung werden erkannt; `proofRef` bindet Artefakt-ID, Proofformat und Proofhash. |
+| `AK-06` | Erfüllt | `PipelineTests`: fünf Stufen in Reihenfolge, sortierte Diagnosen, `--strict`-Semantik, keine Verdeckung früherer Fehler; jede Fixturemutation scheitert an der zuständigen Stufe mit dem zuständigen Code (Parse/Schema/Domain map/Semantic/Solver/Proof). |
+| `AK-07` | Erfüllt | Lokaler Unity-EditMode-Lauf 6000.3.23f1: **141/141 PASSED** (Protokoll unten). |
+| `AK-08` | Erfüllt mit dokumentiertem Umgebungsbefund | `git diff --check` besteht; `LOCAL_SCOPE PASS` mit dem WP-013-Manifest; der vollständige kanonische Selbsttest scheitert auf diesem Windows-Host an einer vorab existierenden, OS-abhängigen Negativmutation (siehe Befund B-4); auf der kanonischen POSIX-Umgebung (CI, Ubuntu 24.04) ist er nicht betroffen. |
+
+### Validierung
+
+- **Lokaler Unity-Nachweis (durch den ausführenden Agenten):** Headless-EditMode-Lauf
+  auf Unity 6000.3.23f1 (`-batchmode -nographics -runTests -testPlatform EditMode`,
+  NUnit, Lauf 2026-09-30 17:49:10Z): **141 Tests, 141 PASSED, 0 FAILED, 0 SKIPPED,
+  0 INCONCLUSIVE**. Aufschlüsselung: 69 `STP.Tests.Content.EditMode` (66 WP-013-neu
+  zuzüglich Anteilen der Assembly), 17 `STP.Tests.Solver.EditMode` (10 WP-009 plus
+  7 WP-013-neu), 54 `STP.Tests.Domain.EditMode` (WP-009, unverändert) und 1 vom
+  Addressables-Paket mitgelieferter Doc-Example-Test. Ein erster Lauf endete mit 4
+  Testfehlern in den neuen Tests (Tiefenlimit-Erwartung um eins daneben, zwei
+  Bindungstests mit zusätzlich erwarteter `proofRef`-Kopplung, ein überzogener
+  Formatanspruch an generierte Proofs bei rein deduktiven Läufen);
+  Produktionscode war davon nicht betroffen; nach Testkorrekturen ist der Lauf
+  vollständig grün.
+- **Unabhängiger JCS-Crosscheck:** Der EditMode-Test
+  `Crosscheck_NodeToolProducesIdenticalResults` lief live gegen Node.js 22 und
+  `tools/architecture-validation/jcs_crosscheck.mjs` (kanonische Bytes und
+  SHA-256 identisch für alle Projektionen beider Fixtures); ohne erreichbaren
+  Node-Interpreter meldet der Test ehrlich Inconclusive statt zu simulieren.
+- **Kanonischer Scope-Lauf:** `validate.py --scope production --scope-manifest
+  tools/architecture-validation/scopes/WP-013.production.scope.json --self-test`:
+  alle Architektur- und Dokumentgruppen PASS einschließlich **`LOCAL_SCOPE PASS`**
+  (reale Diffmenge ausschließlich innerhalb der Manifest-Allowlist; Manifest
+  byteunverändert; `SCOPE_CONTEXT workPackage=WP-013 base=767c01e… head=7c0d7b5…`).
+  `git diff --check` gegen den `baseCommit` besteht.
+- **Nicht ausführbare Nachweise (wahrheitsgemäß NOT_EXECUTED):** Der GitHub-Check
+  `Architecture Validation / validate` für den Abschlusscommit kann vom
+  ausführenden Agenten nicht ausgewertet werden (kein lesender GitHub-Zugriff in
+  dieser Umgebung); die CI-Konfiguration ist unverändert und läuft auf Ubuntu
+  24.04. GitHub-Unity-CI (Compile/EditMode/PlayMode/Android/iOS) bleibt wie in
+  WP-008/WP-009 dokumentiert ohne Lizenz/Runner NOT_EXECUTED und ist kein
+  Blocker für die weitere Spieleentwicklung.
+
+### Technische Befunde (keine WP-013-Blocker)
+
+- **B-1 Fixture-Proofmetriken vs. solver-v1-Metriken.** Die in der
+  Architekturphase handgesetzten Metrikwerte der proof-v1-Fixtures
+  (`searchNodes` 1, `deductionSteps` 9/1, `maxDeductionDepth` 4/1) stammen aus
+  keinem Lauf des WP-009-Solvers; solver-v1 meldet für dieselben Fixtures
+  `searchNodes` 0, `deductionSteps` 46/11, `maxDeductionDepth` 6/3. WP-013
+  verlangt nach eigener Testliste Bindungs- und Determinismusnachweise, keinen
+  Regenerationsgleichlauf; die Pipeline prüft deshalb Format, Bindungen und
+  Proofhash des gespeicherten Artefakts sowie Eindeutigkeit und Lösungshash
+  frisch, ohne die Fixture-Metriken mit solver-v1 gleichsetzen zu müssen
+  (Solver- und Fixtureseite durften beide nicht geändert werden). Ein
+  `PRF-NONDETERMINISTIC`-Regenerationsvergleich gehört zur späteren
+  Katalog-/Quality-CI und muss diese Zählweitendifferenz dann adressieren.
+- **B-2 Metrikminimum `searchNodes`.** Das proof-v1-Schema verlangt
+  `searchNodes >= 1`; solver-v1 meldet für rein deduktiv (ohne Suchannahme)
+  lösbare Puzzles wahrheitsgemäß `searchNodes = 0`. Generierte Proofs solcher
+  Puzzles tragen den wahren solver-v1-Wert und erfüllen damit das
+  Artefaktminimum nicht; bei Läufen mit Suchannahme ist der generierte Proof
+  vollständig format- und bindungsgültig (beides testiert). Keine der beiden
+  Seiten durfte in WP-013 geändert werden (keine neue Solverversion, keine
+  Architekturänderung); die Auflösung ist einer späteren Entscheidung
+  vorbehalten.
+- **B-3 `maxDeductionDepth` additiv implementiert.** Die dokumentierte Metrik
+  war bislang nicht berechnet; die gewählte Prämissentiefen-Buchführung ist im
+  Code dokumentiert. Sie ändert weder Lösungen, Klassifikationen noch
+  bestehende Metrikwerte (WP-009-Tests unverändert grün).
+- **B-4 Windows-Selbsttest-Artefakt des Architekturvalidators.** Die
+  Negativmutation `V03-005-ABSOLUTE` setzt POSIX-Pfadsemantik voraus
+  (`Path("/tmp/scope.json")` ist nur unter POSIX absolut); sie schlägt auf
+  diesem Windows-Host fehl und reproduziert identisch auch ohne den
+  WP-013-Diff (verifiziert auf dem unveränderten Remote-HEAD `7c0d7b5…`).
+  Eine zweite Umgebungsweiche (`adr:016-historical-decision-mutated` durch
+  locale-abhängige Subprocess-Dekodierung) ist mit `PYTHONUTF8=1` behoben.
+  Beide Punkte betreffen ausschließlich die lokale Windows-Ausführung; die
+  kanonische Umgebung (README: Linux/macOS; CI: Ubuntu 24.04) ist nicht
+  betroffen. Eine Korrektur des Validators ist selbst nicht Teil von WP-013
+  (Governance-Tooling außerhalb der Manifest-Allowlist).
+
+### Verbleibende Punkte (keine WP-013-Blocker)
+
+- Generator, Generatorvalidierung, Levelauthoring, Editorfenster, die 240
+  konkreten Rätselinstanzen, Zeitwertkalibrierung, Kataloge, Lokalisierung,
+  deterministischer Import sowie die Pipeline-Stufen Cross-reference, Quality
+  und Import folgen in späteren Work Packages.
+- `BLOCKER-PROD-001/002/003` bleiben unverändert offen und fail-closed.
+- GitHub-Unity-Buildnachweise (WP-008 B-02) bleiben offen und blockieren die
+  weitere Spieleentwicklung nicht.
+- Nächster vorgesehener Schritt gemäß `PROJECT_CONTROL/WORK_QUEUE.md`:
+  Generator und Levelauthoring in eigenen, noch zu vergebenden Work Packages.

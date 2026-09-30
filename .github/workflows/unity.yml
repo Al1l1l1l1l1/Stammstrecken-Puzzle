@@ -97,7 +97,7 @@ jobs:
               "STP.Tests.Solver.EditMode": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
               "STP.Tests.Application.EditMode": {"STP.Application"},
               "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
-              "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content"},
+              "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Editor.Content"},
               "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
               "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
               "STP.Tests.Bootstrap.PlayMode": {

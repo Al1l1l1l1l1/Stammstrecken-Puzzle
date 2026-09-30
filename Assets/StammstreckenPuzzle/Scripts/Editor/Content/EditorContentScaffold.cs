@@ -1,10 +1,10 @@
 namespace STP.Editor.Content
 {
     /// <summary>
-    /// WP-008-Editor-Skelett von STP.Editor.Content. Import, Authoringfenster,
-    /// Batchvalidator und Buildkatalog sind ausdruecklich Scope OUT von WP-008 und
-    /// folgen mit WP-009. Diese Assembly existiert, damit der normative Modulgraph
-    /// vollstaendig compilerfaehig ist.
+    /// WP-008-Editor-Skelett von STP.Editor.Content. Der Batchvalidator
+    /// (<see cref="LevelValidationPipeline"/>) ist mit WP-013 in dieser
+    /// Assembly implementiert; Import, Authoringfenster und Buildkatalog
+    /// bleiben ausdrücklich späteren Work Packages vorbehalten.
     /// </summary>
     public static class EditorContentScaffold
     {
