@@ -39,10 +39,11 @@ Der Branch wird nicht direkt nach `main` gemergt, weil:
 
 ## 5. Verbindlicher Wiederanlauf
 
-1. Die bestehenden, noch nicht integrierten Vorgänger `WP-008` und `WP-009` werden in ihrer dokumentierten Reihenfolge abgeschlossen und nach `main` integriert.
-2. `WP-015`, `WP-016` und `WP-017` bauen nach WP-014 und den integrierten Vorgängern auf `main` auf; sie übernehmen keinerlei Autorität aus dem separaten Chat oder dem WP-013-Prototyp.
-3. Die Architekturentscheidung ist ausschließlich [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md).
-4. Astra und Sol prüfen die Ergebnisse der jeweiligen Work Packages unabhängig und ohne gegenseitige Abstimmung. Kimi erhält ausschließlich die fertig definierten Arbeitsaufträge und keine Entscheidungsbefugnis.
+1. Die historischen Branches `WP-008` und `WP-009` sind wegen nicht vorfahriger Basen, Konflikten und unveränderlichen historischen Scope-Manifests keine Direktmergequellen. Sie bleiben lesbare Vergleichskorpora.
+2. Nach WP-014 und der WP-018-QC-Korrektur stellt WP-019 das Unity-Scaffold und danach WP-020 den Puzzle-Kern jeweils auf einer frischen Main-basierten Branch mit neuem Trust Anchor wieder her.
+3. `WP-015`, `WP-016` und `WP-017` bauen erst nach integrierten WP-019 und WP-020 auf `main` auf; sie übernehmen keinerlei Autorität aus dem separaten Chat oder dem WP-013-Prototyp.
+4. Die Architekturentscheidung ist ausschließlich [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md).
+5. Astra und Sol prüfen die Ergebnisse der jeweiligen Work Packages unabhängig und ohne gegenseitige Abstimmung. Kimi erhält ausschließlich die fertig definierten Arbeitsaufträge und keine Entscheidungsbefugnis.
 
 ## Referenzen
 

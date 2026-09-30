@@ -6,12 +6,12 @@
 
 ## Ziel
 
-Auf einem aktuellen `main`, der WP-014 sowie WP-008 und WP-009 vollständig integriert enthält, entsteht eine produktionsnahe, aber noch prooflose Level-v2-Basis: striktes JSON-Parsing, Level-v2-Struktur- und Semantikprüfung, Domain-Mapping sowie die drei JCS-/SHA-256-Projektionen. Sie liefert keine importierbare Produktion und keinen Solverproof; diese Grenze wird erst WP-017 schließen.
+ Auf einem aktuellen `main`, der WP-014, WP-018, WP-019 und WP-020 vollständig integriert enthält, entsteht eine produktionsnahe, aber noch prooflose Level-v2-Basis: striktes JSON-Parsing, Level-v2-Struktur- und Semantikprüfung, Domain-Mapping sowie die drei JCS-/SHA-256-Projektionen. Sie liefert keine importierbare Produktion und keinen Solverproof; diese Grenze wird erst WP-017 schließen.
 
 ## Voraussetzungen
 
 1. Vollständige Pflichtlektüre nach [`AGENTS.md`](../AGENTS.md).
-2. `WP-008` und `WP-009` sind jeweils nach `main` integriert; zugehörige Required Checks und die dort geforderten Nachweise sind PASS.
+2. WP-014 und WP-018 sowie die Main-basierten Recovery-Packages WP-019 und WP-020 sind jeweils nach `main` integriert; zugehörige Required Checks und die dort geforderten Nachweise sind PASS. Die historischen WP-008-/WP-009-Branches sind keine Lieferbranches.
 3. [`ADR-007`](../DECISIONS/ADR-007-solver-und-eindeutigkeitspruefung.md), [`ADR-021`](../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md) und [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md) sind gelesen.
 4. [`ARCHITECTURE/LEVEL_DATA_FORMAT.md`](../ARCHITECTURE/LEVEL_DATA_FORMAT.md), [`ARCHITECTURE/CONTENT_PIPELINE.md`](../ARCHITECTURE/CONTENT_PIPELINE.md) und dieses Work Package sind gelesen.
 5. Der historische Branch `origin/feat/wp-013-level-v2-pipeline` darf nur als lesbarer Vergleichskorpus dienen; er ist keine Mergequelle.

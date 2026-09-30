@@ -29,7 +29,9 @@ Die Festlegung erfolgt **nicht** auf Grundlage eines späteren separaten Manus-C
 
 ### 2. Metriken von `solver-v2`
 
-Alle vier gespeicherten Metriken sind nichtnegative Ganzzahlen. Das Proof-v1-Schema akzeptiert deshalb für `searchNodes`, `deductionSteps`, `maxDeductionDepth` und `requiredGuessDepth` jeweils `minimum: 0`.
+Der folgende `solver-v2`-Vertrag ist verbindlicher **Zielvertrag**. Alle vier gespeicherten Metriken sind nichtnegative Ganzzahlen. **Erst mit Abschluss von WP-017** akzeptiert das implementierte Proof-v1-Schema deshalb für `searchNodes`, `deductionSteps`, `maxDeductionDepth` und `requiredGuessDepth` jeweils `minimum: 0`.
+
+Bis WP-017 bleibt das eingecheckte Schema eine historische Übergangsform mit teilweise strengeren Minima. Vor dessen Umsetzung ist kein Root-only-`solver-v2`-Proof als schema-valide, importierbar oder releasefähig zu behaupten; neue Production-Proofausgaben bleiben fail-closed deaktiviert.
 
 | Metrik | Verbindliche Definition | Zählgrenze |
 |---|---|---|
@@ -49,6 +51,8 @@ Alle vier gespeicherten Metriken sind nichtnegative Ganzzahlen. Das Proof-v1-Sch
 Normale kuratierte Kampagnenlevel benötigen `requiredGuessDepth = 0`. Ein Wert größer null ist ein harter Contentfehler für den normalen Kampagnenimport. Suchzweige dürfen zur Eindeutigkeitsprüfung stattfinden; sie dürfen jedoch nicht als notwendige Spielerlogik in die Kampagne gelangen. Spätere ausdrücklich als Expertenmodus entschiedene Inhalte benötigen einen separaten Produkt- und Architekturentscheid.
 
 ### 5. Proofregeneration und Strict-Modus
+
+Nach Abschluss von WP-017 gilt für die Produktionsvalidierung:
 
 1. Die Validierung erzeugt aus dem öffentlichen Puzzleinput stets einen frischen kanonischen Proof mit dem Produktionssolver.
 2. Der frische Proof muss zunächst selbst schema- und hashgültig sein.
@@ -75,7 +79,7 @@ ADR-007 verlangt sowohl erklärbare Deduktionen als auch Versionswechsel bei Met
 
 - Alle bisherigen `solver-v1`-Prooffixtures werden als historische Prototypfixtures behandelt und in WP-017 bewusst durch `solver-v2`-Goldens ersetzt.
 - Der historische WP-013-Branch wird nicht direkt integriert.
-- Die Umsetzung ist auf die getrennten Work Packages WP-015, WP-016 und WP-017 aufgeteilt. Kein Paket darf die Grenzen des anderen still erweitern.
+- Die Umsetzung des Zielvertrags ist auf WP-015, WP-016 und WP-017 aufgeteilt. Zuvor stellen WP-019 und WP-020 die ausschließlich neue Main-basierte Produktionsbasis wieder her; kein Paket darf die Grenzen des anderen still erweitern.
 - Neue normale Kampagnenlevel dürfen erst nach WP-017 in einen importierbaren Katalog gelangen.
 - Jeder spätere Eingriff in Solver-Tiebreaker, Traceform oder Metriksemantik erfordert `solver-v3` oder höher, regenerierte Proofs und eine neue ADR-Prüfung.
 

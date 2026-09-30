@@ -2,29 +2,28 @@
 
 | Feld | Aktueller Stand |
 |---|---|
-| Projektstatus | Produktkonzeption und Architecture v1.0 sind verbindlich. `main` enthält weiterhin keinen freigegebenen Produktionscode. Diese Governance-Branch dokumentiert das Governance-Package WP-014 sowie die Folgeaufträge WP-015 bis WP-017; deren Implementierung hat **nicht** begonnen. |
-| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. `WP-011` (PR-Scope-Checkout) und `WP-010` (Unity-Testassembly-Standort) sind nach `main` integriert. Die nicht integrierten Branches `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` bleiben getrennte Vorgänger-/Prototypstände. |
-| Letzter abgeschlossener Schritt | Quellenautorität von WP-013 geklärt: ein späterer separater Manus-Chat ist keine Projektquelle. ADR-031 entscheidet `solver-v2`-Metriken, Proofregeneration und Strict-Semantik ausschließlich aus persistenten Projektquellen und der aktuellen Architekturentscheidung. |
-| Aktuell zu prüfender Schritt | Diese Governance-Änderung wartet auf unabhängige Astra- und Sol-QC. Bis zu beiden Berichten gibt es keinen Merge und keinen Implementierungsauftrag. |
-| Nächster vorgesehener Schritt | Nach fehlerfreier Governance-QC: Branch mit WP-014 mit ADR-031, Quellenklarstellung sowie WP-015 bis WP-017 nach `main` integrieren. Danach WP-008 vollständig abschließen und integrieren, danach WP-009 vollständig abschließen und integrieren, danach WP-015 → WP-016 → WP-017 in dieser Reihenfolge ausführen. |
-| Produktionscode | **Nicht freigegeben.** Der historische WP-013-Branch ist ein nicht integrierter Prototyp; er darf nicht direkt gemergt werden. |
-| Aktuell gültige Architekturversion | **Architecture v1.0**; ADR-031 ergänzt ADR-007 und ADR-021, ohne deren übrige Geltung aufzuheben. |
-| Architekturentscheidungen | 31 ADRs: 22 angenommen und aktuell wirksam, 9 als ersetzte Historie erhalten. Autoritativer Index: `../DECISIONS/README.md`. |
-| WP-013-Quellenautorität | Verbindlich: `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md`. Der separate spätere Chat ist kein Entscheidungsnachweis. |
-| Scope-Vertrauensanker | Jeder kommende Implementierungsauftrag erhält ein eigenes Scope-Manifest im gemeinsamen Trust-Anchor-Commit. Die bereits historischen Anker von WP-006 bis WP-011 bleiben unverändert. |
-| CI-Follow-up | Das Architecture-Validation-Gate ist eingerichtet. Für künftige Produktions-WPs sind Unity Compile/EditMode, der gültige Scope-Lauf und die vorgesehenen unabhängigen QC-Berichte Pflicht. |
+| Projektstatus | Produktkonzeption und **Architecture v1.0** sind verbindlich. `main` enthält keinen freigegebenen Produktionscode. Die Governance-Branch enthält WP-014/ADR-031 und die WP-018-Korrektur; bis zur erneuten Astra-/Sol-QC wird nichts davon nach `main` integriert. |
+| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-014-QC hat zwei HIGH-Befunde ergeben. WP-018 korrigiert die Zielzeitformulierung von ADR-031 und ersetzt den nicht ausführbaren historischen Integrationsweg durch WP-019/WP-020. Produktionsimplementierung hat nicht begonnen. |
+| Historische Branches | `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` sind archivierte, lesbare Vergleichskorpora. Keiner ist direkt integrierbar oder darf gerebased, gecherry-picked oder konfliktaufgelöst werden. |
+| Letzter verifizierter Nachweis | WP-014-Dokumentationsscope auf Commit `9336dff…`: Validator mit 18 lokalen Prüfgruppen PASS, Trust Anchor/Manifestbindung PASS, Arbeitsbaum sauber. Die unabhängige QC deckte anschließend die Zielvertrags- und Reintegrationslücken auf. |
+| Aktuell zu prüfender Schritt | WP-018-Governance-Korrektur: nach aktualisierten Artefakten müssen Astra und Sol erneut unabhängig prüfen; bis dahin kein Merge und kein Implementierungsauftrag. |
+| Nächster vorgesehener Schritt | Nach fehlerfreier WP-018-QC wird die gesamte Governance-Branch nach `main` integriert. Danach: WP-019 abschließen/integrieren, WP-020 abschließen/integrieren, dann WP-015 → WP-016 → WP-017. |
+| Produktionscode | **Nicht freigegeben.** Weder historische Produktbranches noch die Governance-Branch sind ein direkter Ersatz für die geforderten Recovery- und CI-Nachweise. |
+| Architekturentscheidungen | Architecture v1.0; 31 ADRs, davon 22 angenommen und aktuell wirksam. ADR-031 ist ein verbindlicher Zielvertrag, dessen Proofschema-Implementierung erst WP-017 herstellt. |
+| Scope-Vertrauensanker | WP-014 und WP-018 besitzen jeweils eigenen dokumentationsweiten Trust Anchor. Jede Produktionsrecovery erhält einen neuen Production-Anchor auf ihrer frischen Main-basierten Branch. |
+| CI-Follow-up | Der Architecture-Validation-Workflow bleibt bindend. Für WP-019 und Folgepakete sind reale Unity-/CI-Nachweise sowie Astra-/Sol-QC Pflicht; fehlende Lizenz/Runner bleiben Blocker. |
 
 ## Verbindliche Grundlage
 
-Die Projektquellen und ihre Hierarchie stehen in [`AGENTS.md`](../AGENTS.md). ADR-031 ist die alleinige ergänzende Architekturentscheidung für Solvermetriken und Proofregeneration. Die ursprünglichen Produktentscheidungen bleiben unverändert: Schwierigkeit entsteht aus erklärbaren Schlussketten; normale Kampagnenlevel verlangen kein blindes Raten.
+Die Quellenhierarchie in [`AGENTS.md`](../AGENTS.md) gilt unverändert. Der spätere separate Manus-Chat ist ausdrücklich keine Architekturquelle. ADR-031 ergänzt ADR-007 und ADR-021 ausschließlich für die dort beschriebenen `solver-v2`-Zielmetriken, die Proofregeneration und Strict-Semantik; bis WP-017 ersetzt sie keine gegenwärtige Schemaimplementierung.
 
 ## Verbindliche Integrations- und Umsetzungsreihenfolge
 
-1. **Governance-PR:** ADR-031, Quellenklarstellung, aktualisierte Steuerungsdokumente und WP-014 bis WP-016 nur nach unabhängiger Astra-/Sol-QC nach `main` integrieren.
-2. **Bestehende Vorgänger:** WP-008 auf seinem bestehenden Scope abschließen und integrieren; danach WP-009 auf seinem bestehenden Scope abschließen und integrieren.
-3. **Kein Direktmerge von WP-013:** Der Branch ist wegen fehlender Main-Basis und Vertragsbrüchen archivierter Vergleichskorpus.
-4. **Neue Folgearbeit:** WP-015, danach WP-016, danach WP-017 ausführen. Jeder Schritt benötigt eigene Branch, Trust Anchor, CI-Evidenz und unabhängige QC.
-5. **Erst danach:** Konkrete Season-1-Level, Generatorprofile, Zeitkalibrierung und weitere Produktionsblöcke planen oder beginnen.
+1. **Governance-QC:** WP-018 schließt die HIGH-Befunde; erst nach neuen unabhängigen PASS-Berichten wird die Governance-Branch mit WP-014 bis WP-020 nach `main` integriert.
+2. **Produktionsbasis:** WP-019 rekonstruiert das Unity-Scaffold auf einer neuen Main-basierten Branch mit neuem Trust Anchor und realen CI-Nachweisen. Der historische WP-008-Branch wird nicht verwendet.
+3. **Puzzle-Kern:** WP-020 rekonstruiert Domain/Solver auf einer neuen, nach WP-019 integrierten Main-Branch. Der historische WP-009-Branch wird nicht verwendet.
+4. **Content-/Proofkette:** Erst danach folgen in harter Reihenfolge WP-015 → WP-016 → WP-017.
+5. **Contentproduktion:** Erst nach WP-017 dürfen konkrete Season-1-Level, Generatorprofile, Zeitkalibrierung und weitere Produktionsblöcke geplant oder begonnen werden.
 
 ## Offene Produktfolgeblocker
 
@@ -34,18 +33,19 @@ Die Projektquellen und ihre Hierarchie stehen in [`AGENTS.md`](../AGENTS.md). AD
 | `BLOCKER-PROD-002` | Offen, fail-closed | Kalendertag-, Zeitzonen-, Offline- und Manipulationspolicy für Tagesansprüche. |
 | `BLOCKER-PROD-003` | Offen, fail-closed | Produktfreigegebenes Generator-Qualitätsprofil für Dauerbaustellenlevel. |
 
-Diese Blocker bleiben unverändert. Sie werden durch ADR-031, WP-014 sowie WP-015, WP-016 und WP-017 nicht gelöst oder umgangen.
+Diese Blocker bleiben unverändert. Die zusätzliche Unity-Lizenz-/Runnerverfügbarkeit ist ein operativer Abschlussblocker für WP-019, jedoch keine Änderung dieser Produktblocker.
 
 ## Einstieg für die nächste Instanz
 
 | Datei | Zweck |
 |---|---|
 | `../AGENTS.md` | Verbindliche Lesereihenfolge und Quellenhierarchie. |
-| `../PROJECT_CONTROL/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur, ausgeschlossener separater Chat und Wiederanlauf. |
-| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindende Solver-/Proofentscheidung. |
-| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | WP-014 ist der Governance-Vorläufer; dieser erste Implementierungsauftrag folgt nach WP-008 und WP-009. |
-| `../WORK_PACKAGES/WP-016_Solver-v2-Metriken-und-Deduktionsspur.md` | Zweiter neuer Implementierungsauftrag. |
-| `../WORK_PACKAGES/WP-017_Proof-v1-Regeneration-und-Strict-Validation.md` | Dritter neuer Implementierungsauftrag. |
-| `../PROJECT_CONTROL/WORK_QUEUE.md` | Priorisierte Reihenfolge. |
+| `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur sowie Abgrenzung aller historischen Prototypbranches. |
+| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindender `solver-v2`-Zielvertrag und Übergang bis WP-017. |
+| `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Aktiver Governance-Korrekturauftrag. |
+| `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Erster Main-basierter Produktionsrecovery-Auftrag. |
+| `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Zweiter Main-basierter Produktionsrecovery-Auftrag. |
+| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Folgender Level-/Hashauftrag nach WP-020. |
+| `../PROJECT_CONTROL/WORK_QUEUE.md` | Priorisierte, harte Reihenfolge. |
 
-Eine neue Instanz beginnt erneut mit `AGENTS.md`; Chatkontext oder ein nicht persistierter Fremdchat ersetzt keinen Repositoryzustand.
+Eine neue Instanz beginnt erneut mit `AGENTS.md`; Chatkontext und historische Branches ersetzen keinen aktuellen Repository- und Evidenzstand.

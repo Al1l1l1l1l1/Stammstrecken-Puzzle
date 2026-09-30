@@ -11,7 +11,7 @@
 ## Voraussetzungen
 
 1. Vollständige Pflichtlektüre nach [`AGENTS.md`](../AGENTS.md).
-2. WP-014, WP-008, WP-009, WP-015 und WP-016 sind abgeschlossen und nach `main` integriert.
+2. WP-014, WP-018, WP-019, WP-020, WP-015 und WP-016 sind abgeschlossen und nach `main` integriert. Die historischen WP-008-/WP-009-Branches sind nur Vergleichskorpora.
 3. [`ADR-007`](../DECISIONS/ADR-007-solver-und-eindeutigkeitspruefung.md), [`ADR-021`](../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md), [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md), [`ARCHITECTURE/LEVEL_DATA_FORMAT.md`](../ARCHITECTURE/LEVEL_DATA_FORMAT.md), [`ARCHITECTURE/CONTENT_PIPELINE.md`](../ARCHITECTURE/CONTENT_PIPELINE.md) und dieses Work Package sind gelesen.
 4. WP-016 liefert eine auditable `solver-v2`-Spur und alle vier definierten Metriken.
 5. Der historische WP-013-Branch darf ausschließlich als lesbare Negativreferenz genutzt werden.
