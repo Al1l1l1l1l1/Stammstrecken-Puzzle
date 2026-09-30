@@ -6,8 +6,8 @@
 | Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-014/WP-018 sind ebenfalls abgeschlossen. Die Trust-Anchor-Korrektur aus PR #8 ist integriert: WP-019/WP-020 bleiben vor Implementierung zurückgezogene Planungsunterlagen, weil sie vor ihren eigenen Manifesten auf `main` lagen. |
 | Historische Branches | `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` sind archivierte, lesbare Vergleichskorpora. Keiner ist direkt integrierbar oder darf gerebased, gecherry-picked oder konfliktaufgelöst werden. |
 | Letzter verifizierter Nachweis | PR #8 ist als Merge-Commit `3032371…` integriert; Push- und PR-Actions waren SUCCESS. Die erneute unabhängige Astra-/Sol-QC auf `0b1e3c4…` war PASS ohne BLOCKER/HIGH. Die ADR-030-Trust-Anchor-Bindung bleibt unverändert. |
-| Aktuell zu prüfender Schritt | Vor jeder WP-021-Verankerung muss die reale Verfügbarkeit von `UNITY_LICENSE` und der dokumentierten Linux/Android- sowie macOS/iOS-Runner belegt werden. In dieser Sandbox fehlen Unity und `UNITY_LICENSE`; die GitHub-App kann Actions-Secrets/Variablen nicht lesen. Das ist fail-closed **nicht nachgewiesen**, kein Negativnachweis für die Repository-Konfiguration. |
-| Nächster vorgesehener Schritt | Nach explizit belegter WP-021-Startvoraussetzung erstellt die Geschäftsführung auf einer frischen Main-basierten Branch **gleichzeitig** das ausführbare WP-021 und sein Production-Scope-Manifest als Trust Anchor. Erst danach darf Kimi ausschließlich dessen Produktionsscope ausführen. |
+| Aktuell zu prüfender Schritt | **Projekt-Hold bestätigt am 2026-09-30:** Die WP-021-Voraussetzungen sind noch nicht bereit. Vor jeder WP-021-Verankerung muss künftig die reale Verfügbarkeit von `UNITY_LICENSE` und der dokumentierten Linux/Android- sowie macOS/iOS-Runner belegt werden. Keine Branch-, Anchor- oder Kimi-Aktion ist bis zu diesem Nachweis zulässig. |
+| Nächster vorgesehener Schritt | Erst nach ausdrücklicher Aufhebung des Holds und belegter WP-021-Startvoraussetzung erstellt die Geschäftsführung auf einer frischen Main-basierten Branch **gleichzeitig** das ausführbare WP-021 und sein Production-Scope-Manifest als Trust Anchor. Erst danach darf Kimi ausschließlich dessen Produktionsscope ausführen. |
 | Produktionscode | **Nicht freigegeben.** WP-019/WP-020 sind keine Lieferbranches; historische Produktbranches und Governance-Historie ersetzen weder einen eigenen Recovery-Anchor noch reale CI-Nachweise. |
 | Architekturentscheidungen | Architecture v1.0; 31 ADRs, davon 22 angenommen und aktuell wirksam. ADR-031 bleibt ein verbindlicher Zielvertrag; dessen Proofschema-Implementierung liegt ausschließlich in WP-017 nach der künftigen Recovery-Kette. |
 | Scope-Vertrauensanker | WP-014/WP-018 bleiben unverändert. Für WP-021 und WP-022 gilt ohne Ausnahme: das ausführbare Work Package und sein eigenes Production-Scope-Manifest müssen gemeinsam erstmals auf ihrer jeweiligen frischen Implementierungsbranch hinzugefügt werden. |
@@ -34,7 +34,7 @@ Die Quellenhierarchie in [`AGENTS.md`](../AGENTS.md) gilt unverändert. Der spä
 | `BLOCKER-PROD-002` | Offen, fail-closed | Kalendertag-, Zeitzonen-, Offline- und Manipulationspolicy für Tagesansprüche. |
 | `BLOCKER-PROD-003` | Offen, fail-closed | Produktfreigegebenes Generator-Qualitätsprofil für Dauerbaustellenlevel. |
 
-Diese Produktblocker bleiben unverändert. Zusätzlich ist die echte WP-021-Lizenz-/Runnerverfügbarkeit noch nicht nachgewiesen; sie ist ein operatives Start-/Abschlussgate, keine Änderung eines Produktblockers.
+Diese Produktblocker bleiben unverändert. Zusätzlich sind die WP-021-Lizenz-/Runnervoraussetzungen gemäß Projekt-Hold noch nicht bereit; sie bleiben ein operatives Start-/Abschlussgate, keine Änderung eines Produktblockers.
 
 ## Einstieg für die nächste Instanz
 
