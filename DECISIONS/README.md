@@ -39,8 +39,9 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-028](./ADR-028-cosmetics-reservation-binding.md) | Bindende Cosmetics-Claim-Reservation | **Angenommen** | Gültig; ersetzt die Meilensteinclaim-Reservation/-Commitbindung aus ADR-023. |
 | [ADR-029](./ADR-029-rollout-reducer-semantik.md) | Vollständige Rollout-Reducer-Semantik | **Angenommen** | Gültig; präzisiert den operativen Rolloutvertrag aus ADR-010 und ADR-023. |
 | [ADR-030](./ADR-030-wp-scope-trust-anchor.md) | Gemeinsamer historischer WP-/Scope-Trust-Anchor | **Angenommen** | Gültig; ersetzt die historische WP-/Manifestbindung aus ADR-026. |
+| [ADR-031](./ADR-031-solver-v2-metriken-und-proof-regeneration.md) | Solver-v2-Metriken und Proofregeneration | **Angenommen** | Gültig; ergänzt ADR-007 und ADR-021 für Metriksemantik, solver-v2 und regenerierbare Proofcaches. |
 
-Damit existieren **30 ADRs**: 21 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **31 ADRs**: 22 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 

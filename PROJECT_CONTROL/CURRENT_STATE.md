@@ -2,68 +2,50 @@
 
 | Feld | Aktueller Stand |
 |---|---|
-| Projektstatus | Produktkonzeption und fachliche Spezifikationen sind verbindlich. **Architecture v1.0** ist der freigegebene Architekturstand; Produktionscode existiert weiterhin nicht. |
-| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-006 führte ausschließlich die formale administrative Promotion des unabhängig freigegebenen Architecture-v0.5-Stands auf Architecture v1.0 durch, ohne Architekturänderung, neue Produktentscheidung oder neue Reviewrunde. WP-007 richtete das zwingende CI-Gate vor Produktionscoding ein: GitHub-Actions-Workflow mit gepinnter Laufzeitumgebung, kanonischer Architekturvalidator einschließlich Self-/Negativtests, positiver und negativer commitgebundener CI-Nachweis auf dem Branch `chore/ci-setup`, ohne Merge nach `main`. `WP-011` (PR-Scope-Checkout-Korrektur) ist nach `main` gemergt (Merge-Commit `dca18b8fe228b6e852a0603b6cfeafc1795589bc`) und behebt den bestätigten Scope-Checkout-Deadlock bei Pull Requests; der main-CI-Lauf ist PASS. `WP-010` (Unity-Testassembly-Standort-Klarstellung) ist auf dem Branch `docs/wp-010-tests-standort` abgeschlossen und behebt den unabhängig durch GPT-5.6 Sol High bestätigten Architektur-Dokumentationsfehler B-01 ausschließlich in `ARCHITECTURE/MODULE_BOUNDARIES.md`; ein Merge nach `main` ist noch nicht erfolgt. |
-| Letzter abgeschlossener Schritt | WP-010 ist auf dem Branch `docs/wp-010-tests-standort` abgeschlossen: `ARCHITECTURE/MODULE_BOUNDARIES.md` dokumentiert in Abschnitt 2 die tatsächliche physische Unity-Testverzeichnisstruktur unter `Assets/StammstreckenPuzzle/Tests/` und ordnet in Abschnitt 4 alle neun Testassemblies eindeutig diesen Pfaden zu, einschließlich `STP.Tests.Bootstrap.PlayMode`; wurzelige `Tests/`-Darstellung, Modulgraphsemantik, Referenzregeln und Teststrategie blieben unverändert, kein neuer ADR. `.github/workflows/validate.yml` zeigt mit `STP_SCOPE_MANIFEST` auf das verankerte WP-010-Manifest; der WP-011-PR-Head-Checkout ist unverändert. Die commitgebundenen Nachweise stehen in `../WORK_PACKAGES/WP-010_Unity-Testassembly-Standort-Klarstellung.md`. |
-| Nächster vorgesehener Schritt | Verbindliche Integrationsreihenfolge: 1. `WP-011` nach `main` mergen (erledigt, Merge-Commit `dca18b8`); 2. danach `WP-010` nach `main` mergen; 3. danach `WP-008` auf dem unveränderten Branch `feat/wp-008-unity-scaffold` fortsetzen, fertigstellen und als PR gegen `main` integrieren (WP-008-Trust-Anchor und WP-008-Manifest bleiben unverändert); 4. `WP-009` erst nach Abschluss von `WP-008` beginnen. Bis dahin gilt weiterhin: Jedes künftige Work Package verankert sein eigenes Scope-Manifest im gemeinsamen Trust-Anchor-Commit und setzt `STP_SCOPE_MANIFEST` in `../.github/workflows/validate.yml` auf dieses Manifest. |
-| Produktionscode | **Nicht vorhanden.** Das Repository enthält Konzept-, Architektur-, Governance-, Schema-, Fixture-, Validator- und CI-Artefakte. |
-| Aktuell gültige Architekturversion | **Architecture v1.0**, angenommen am 2026-09-13; Einstieg: `../ARCHITECTURE/ARCHITECTURE.md`. |
-| Architekturentscheidungen | 30 ADRs: 21 angenommen und aktuell wirksam, 9 als ersetzte Historie erhalten. Autoritativer Index: `../DECISIONS/README.md`. |
-| Scope-Vertrauensanker | `WP-006` und `WP-006.documentation.scope.json` wurden gemeinsam in Commit `3e8441830552a2d99c4546fcebc2dc1b23de58cf` eingeführt; der WP-005-Anker `ebf522a9ef3c28035341cc04dbd6d8251b107603` bleibt als historischer Nachweis bestehen. `WP-007` und `WP-007.documentation.scope.json` wurden gemeinsam im Trust-Anchor-Commit `280dbee4ea0134e18a21317ea87ee22aafd68852` auf `chore/ci-setup` eingeführt; der Validator liest beide historischen Blobs und ihre exakte Verknüpfung aus diesem Commit. `WP-011` und `WP-011.documentation.scope.json` wurden gemeinsam im Trust-Anchor-Commit `78f38fa90b3ca492ce33da5423215056056bee1b` auf `chore/wp-011-pr-scope-checkout` eingeführt; dessen Elterncommit und Manifest-`baseCommit` ist `3c1a6988c1aab2084763edf772b6adc268874865`. `WP-010` und `WP-010.documentation.scope.json` wurden gemeinsam im Trust-Anchor-Commit `2357d51b1da3d92f351e5494cdaafe139e4c7497` auf `docs/wp-010-tests-standort` eingeführt; dessen Elterncommit und Manifest-`baseCommit` ist `dca18b8fe228b6e852a0603b6cfeafc1795589bc`. |
-| CI-Follow-up | **Abgeschlossen (`WP-007`).** Das CI-Gate ist eingerichtet und commitgebunden nachgewiesen: autorisierter Workflow `../.github/workflows/validate.yml`, gepinnte Umgebung (`ubuntu-24.04`, CPython 3.11.13, Node.js 22.20.0, SHA-gepinnte Actions, `contents: read`), Architecture Validator mit Self-/Negativtests, commitgebundener PASS für den WP-007-Scope und der eindeutige Check `Architecture Validation / validate`, der als Required Merge Check verwendbar ist. |
+| Projektstatus | Produktkonzeption und **Architecture v1.0** sind verbindlich. `main` enthält keinen freigegebenen Produktionscode. Die Governance-Branch enthält WP-014/ADR-031 und die WP-018-Korrektur; bis zur erneuten Astra-/Sol-QC wird nichts davon nach `main` integriert. |
+| Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen. WP-014-QC hat zwei HIGH-Befunde ergeben. WP-018 korrigiert die Zielzeitformulierung von ADR-031 und ersetzt den nicht ausführbaren historischen Integrationsweg durch WP-019/WP-020. Produktionsimplementierung hat nicht begonnen. |
+| Historische Branches | `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` sind archivierte, lesbare Vergleichskorpora. Keiner ist direkt integrierbar oder darf gerebased, gecherry-picked oder konfliktaufgelöst werden. |
+| Letzter verifizierter Nachweis | WP-014-Dokumentationsscope auf Commit `9336dff…`: Validator mit 18 lokalen Prüfgruppen PASS, Trust Anchor/Manifestbindung PASS, Arbeitsbaum sauber. Die unabhängige QC deckte anschließend die Zielvertrags- und Reintegrationslücken auf. |
+| Aktuell zu prüfender Schritt | WP-018-Governance-Korrektur: nach aktualisierten Artefakten müssen Astra und Sol erneut unabhängig prüfen; bis dahin kein Merge und kein Implementierungsauftrag. |
+| Nächster vorgesehener Schritt | Nach fehlerfreier WP-018-QC wird die gesamte Governance-Branch nach `main` integriert. Danach: WP-019 abschließen/integrieren, WP-020 abschließen/integrieren, dann WP-015 → WP-016 → WP-017. |
+| Produktionscode | **Nicht freigegeben.** Weder historische Produktbranches noch die Governance-Branch sind ein direkter Ersatz für die geforderten Recovery- und CI-Nachweise. |
+| Architekturentscheidungen | Architecture v1.0; 31 ADRs, davon 22 angenommen und aktuell wirksam. ADR-031 ist ein verbindlicher Zielvertrag, dessen Proofschema-Implementierung erst WP-017 herstellt. |
+| Scope-Vertrauensanker | WP-014 und WP-018 besitzen jeweils eigenen dokumentationsweiten Trust Anchor. Jede Produktionsrecovery erhält einen neuen Production-Anchor auf ihrer frischen Main-basierten Branch. |
+| CI-Follow-up | Der Architecture-Validation-Workflow bleibt bindend. Für WP-019 und Folgepakete sind reale Unity-/CI-Nachweise sowie Astra-/Sol-QC Pflicht; fehlende Lizenz/Runner bleiben Blocker. |
 
 ## Verbindliche Grundlage
 
-Die Konzeptdateien definieren unverändert den bestätigten Produktstand. Architecture v1.0 übersetzt ihn in technische Grenzen und dokumentiert fehlende Produktentscheidungen als fail-closed Folgeblocker. Lokale Struktur-, Semantik- und Scopebelege bleiben ausdrücklich von manuellen Dokumentreviews sowie späteren Unity-, Produktionscode-, Geräte-, SDK- und Storebelegen getrennt. Der CI-Nachweis des Architecture Validators ist seit WP-007 verbindlicher Bestandteil jedes Work-Package-Abschlusses.
+Die Quellenhierarchie in [`AGENTS.md`](../AGENTS.md) gilt unverändert. Der spätere separate Manus-Chat ist ausdrücklich keine Architekturquelle. ADR-031 ergänzt ADR-007 und ADR-021 ausschließlich für die dort beschriebenen `solver-v2`-Zielmetriken, die Proofregeneration und Strict-Semantik; bis WP-017 ersetzt sie keine gegenwärtige Schemaimplementierung.
 
-## Work-Package-Kette
+## Verbindliche Integrations- und Umsetzungsreihenfolge
 
-`WP-001` dokumentiert die ursprüngliche technische Produktionsspezifikation. `WP-002` schloss zwölf Sol-Review-Findings und hob auf Architecture v0.2. `WP-003` adressierte acht Astra-Findings und hob auf Architecture v0.3. `WP-004` schloss sieben verbliebene V03-Befunde und hob auf Architecture v0.4. `WP-005` schloss ausschließlich vier letzte HIGH-Lücken und hob den angenommenen Zwischenstand auf Architecture v0.5. `WP-006` promovierte den unabhängig freigegebenen v0.5-Stand rein formal auf Architecture v1.0, ohne eine technische Änderung. `WP-007` richtete das zwingende CI-Gate vor Produktionscoding ein und wies es commitgebunden auf `chore/ci-setup` nach, ohne Architekturänderung und ohne Merge. `WP-011` korrigierte auf `chore/wp-011-pr-scope-checkout` den bestätigten Scope-Checkout-Deadlock bei Pull Requests (Scope-Lauf auf tatsächlichem PR-Head, Architecture-only-Lauf unverändert auf synthetischem Merge-Stand), ohne Validator-, ADR- oder Architekturänderung; WP-011 ist inzwischen nach `main` gemergt. `WP-010` korrigierte auf `docs/wp-010-tests-standort` die dokumentierte physische Testverzeichnisstruktur in `ARCHITECTURE/MODULE_BOUNDARIES.md` (Tests physisch unter `Assets/StammstreckenPuzzle/Tests/`, alle neun Testassemblies eindeutig zugeordnet), ohne neue Architekturentscheidung, ohne ADR-Änderung und ohne Merge nach `main`.
-
-Der kanonische lokale Abnahmelauf lautet:
-
-```bash
-../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
-  --scope documentation \
-  --scope-manifest tools/architecture-validation/scopes/WP-007.documentation.scope.json \
-  --self-test
-```
-
-Ein Abschluss ist nur gültig, wenn Architecture-only- und Documentation-Scope-Lauf, Self-/Negativtests, `git diff --check`, Scope-/Secret-/Produktdateiprüfung und Remote-Nachweis erfolgreich sind. Der GitHub-Actions-Nachweis des Checks `Architecture Validation / validate` ist seit WP-007 **verbindlich** und wurde in WP-007 positiv (Implementierungsstand und Abschlusscommit PASS) und negativ (absichtlich ungültiger Commit FAIL) ausgeführt. Unity-, Geräte-, SDK- und Storetests bleiben **REQUIRED_LATER/NOT_EXECUTED**, weil weiterhin kein Produktionscode oder Unity-Scaffold existiert.
-
-## CI-Gate vor Produktionscoding: erfüllt
-
-Das zwingende CI-Gate vor Produktionscoding ist mit WP-007 vollständig erfüllt:
-
-1. GitHub-Actions-Workflow mit autorisierter Workflowberechtigung: `../.github/workflows/validate.yml` ist remote wirksam; nach dem dokumentierten Berechtigungsbefund der aktiven GitHub-Integration (fehlender `workflow`-Scope) wurde die Datei autorisiert durch den Owner manuell über die Weboberfläche eingestellt und läuft in der CI.
-2. Gepinnte Python-/Node-Umgebung: `ubuntu-24.04`, CPython 3.11.13, Node.js 22.20.0, Abhängigkeiten exakt aus `tools/architecture-validation/requirements.lock.txt` in einer repositoryexternen virtuellen Umgebung; eine spätere Unity-Umgebung folgt mit dem ersten Coding-Work-Package.
-3. Der Architecture Validator läuft in der CI einschließlich Self-/Negativtests fail-closed.
-4. Der commitgebundene PASS für den tatsächlichen WP-007-Scope ist nachgewiesen.
-5. Der eindeutig benannte Check `Architecture Validation / validate` läuft auf Pull Requests gegen `main` und ist technisch als Required Merge Check verwendbar; die verbindliche Branch-Schutz-Konfiguration obliegt einer separaten Owner-Entscheidung.
+1. **Governance-QC:** WP-018 schließt die HIGH-Befunde; erst nach neuen unabhängigen PASS-Berichten wird die Governance-Branch mit WP-014 bis WP-020 nach `main` integriert.
+2. **Produktionsbasis:** WP-019 rekonstruiert das Unity-Scaffold auf einer neuen Main-basierten Branch mit neuem Trust Anchor und realen CI-Nachweisen. Der historische WP-008-Branch wird nicht verwendet.
+3. **Puzzle-Kern:** WP-020 rekonstruiert Domain/Solver auf einer neuen, nach WP-019 integrierten Main-Branch. Der historische WP-009-Branch wird nicht verwendet.
+4. **Content-/Proofkette:** Erst danach folgen in harter Reihenfolge WP-015 → WP-016 → WP-017.
+5. **Contentproduktion:** Erst nach WP-017 dürfen konkrete Season-1-Level, Generatorprofile, Zeitkalibrierung und weitere Produktionsblöcke geplant oder begonnen werden.
 
 ## Offene Produktfolgeblocker
 
 | ID | Status | Blockiert |
 |---|---|---|
-| `BLOCKER-PROD-001` | **Offen, fail-closed** | Produktvertrag für Hinweisanspruch, Lebensdauer, Moduswirkung und Rewarded-Hint-Economy. |
-| `BLOCKER-PROD-002` | **Offen, fail-closed** | Kalendertag-, Zeitzonen-, Offline- und Manipulationspolicy für den Tagesanspruch. |
-| `BLOCKER-PROD-003` | **Offen, fail-closed** | Kalibriertes, produktfreigegebenes Generator-Qualitätsprofil für die Dauerbaustelle. |
+| `BLOCKER-PROD-001` | Offen, fail-closed | Hint-Entitlement / Rewarded-Hint-Economy. |
+| `BLOCKER-PROD-002` | Offen, fail-closed | Kalendertag-, Zeitzonen-, Offline- und Manipulationspolicy für Tagesansprüche. |
+| `BLOCKER-PROD-003` | Offen, fail-closed | Produktfreigegebenes Generator-Qualitätsprofil für Dauerbaustellenlevel. |
 
-Diese Punkte blockieren Architecture v1.0 nicht, solange betroffene Features deaktiviert bleiben. Das autoritative Register ist `../ARCHITECTURE/OPEN_BLOCKERS.md`.
+Diese Blocker bleiben unverändert. Die zusätzliche Unity-Lizenz-/Runnerverfügbarkeit ist ein operativer Abschlussblocker für WP-019, jedoch keine Änderung dieser Produktblocker.
 
 ## Einstieg für die nächste Instanz
 
 | Datei | Zweck |
 |---|---|
-| `../ARCHITECTURE/ARCHITECTURE.md` | Verbindlicher Einstieg und Systemübersicht für Architecture v1.0. |
-| `../DECISIONS/README.md` | Aktueller ADR-Index, Status und Superseding-Regeln. |
-| `../WORK_PACKAGES/WP-007_CI-Setup.md` | CI-Setup, WP-007-Trust-Anchor und commitgebundene CI-Nachweise. |
-| `../WORK_PACKAGES/WP-011_PR-Scope-Checkout-Korrektur.md` | PR-Scope-Checkout-Korrektur, WP-011-Trust-Anchor und Abschlussnachweise. |
-| `../WORK_PACKAGES/WP-010_Unity-Testassembly-Standort-Klarstellung.md` | B-01-Testpfad-Klarstellung, WP-010-Trust-Anchor und Abschlussnachweise. |
-| `../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md` | Formale v1.0-Promotion, Trust-Anchor und Abschlussnachweise. |
-| `../WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md` | Vier HIGH-Korrekturen, WP-005-Trust-Anchor und Abschlussnachweise. |
-| `../tools/architecture-validation/README.md` | Reproduzierbarer Scope-, Setup-, Evidenz-, Validator- und CI-Integrationsvertrag. |
-| `../ARCHITECTURE/OPEN_BLOCKERS.md` | Drei offene Produktfolgeblocker. |
-| `WORK_QUEUE.md` | Priorisierte nächste Produktionsblöcke und erfülltes CI-Gate. |
+| `../AGENTS.md` | Verbindliche Lesereihenfolge und Quellenhierarchie. |
+| `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur sowie Abgrenzung aller historischen Prototypbranches. |
+| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindender `solver-v2`-Zielvertrag und Übergang bis WP-017. |
+| `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Aktiver Governance-Korrekturauftrag. |
+| `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Erster Main-basierter Produktionsrecovery-Auftrag. |
+| `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Zweiter Main-basierter Produktionsrecovery-Auftrag. |
+| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Folgender Level-/Hashauftrag nach WP-020. |
+| `../PROJECT_CONTROL/WORK_QUEUE.md` | Priorisierte, harte Reihenfolge. |
 
-Eine neue Instanz beginnt erneut mit `AGENTS.md` und der dort vorgeschriebenen Lesereihenfolge. Chatkontext ersetzt keinen Repositoryzustand.
+Eine neue Instanz beginnt erneut mit `AGENTS.md`; Chatkontext und historische Branches ersetzen keinen aktuellen Repository- und Evidenzstand.
