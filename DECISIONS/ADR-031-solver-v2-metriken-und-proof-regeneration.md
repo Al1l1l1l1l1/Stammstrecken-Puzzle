@@ -79,7 +79,7 @@ ADR-007 verlangt sowohl erklärbare Deduktionen als auch Versionswechsel bei Met
 
 - Alle bisherigen `solver-v1`-Prooffixtures werden als historische Prototypfixtures behandelt und in WP-017 bewusst durch `solver-v2`-Goldens ersetzt.
 - Der historische WP-013-Branch wird nicht direkt integriert.
-- Die Umsetzung des Zielvertrags ist auf WP-015, WP-016 und WP-017 aufgeteilt. Zuvor stellen WP-019 und WP-020 die ausschließlich neue Main-basierte Produktionsbasis wieder her; kein Paket darf die Grenzen des anderen still erweitern.
+- Die Umsetzung des Zielvertrags ist auf WP-015, WP-016 und WP-017 aufgeteilt. Zuvor müssen WP-021 (Unity-Scaffold-Recovery) und danach WP-022 (Puzzle-Kern-Recovery) jeweils erst zusammen mit ihrem eigenen Scope-Manifest auf einer frischen Main-basierten Branch verankert und integriert werden; kein Paket darf die Grenzen des anderen still erweitern.
 - Neue normale Kampagnenlevel dürfen erst nach WP-017 in einen importierbaren Katalog gelangen.
 - Jeder spätere Eingriff in Solver-Tiebreaker, Traceform oder Metriksemantik erfordert `solver-v3` oder höher, regenerierte Proofs und eine neue ADR-Prüfung.
 

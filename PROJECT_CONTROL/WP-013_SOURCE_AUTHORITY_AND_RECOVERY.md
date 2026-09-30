@@ -40,10 +40,11 @@ Der Branch wird nicht direkt nach `main` gemergt, weil:
 ## 5. Verbindlicher Wiederanlauf
 
 1. Die historischen Branches `WP-008` und `WP-009` sind wegen nicht vorfahriger Basen, Konflikten und unveränderlichen historischen Scope-Manifests keine Direktmergequellen. Sie bleiben lesbare Vergleichskorpora.
-2. Nach WP-014 und der WP-018-QC-Korrektur stellt WP-019 das Unity-Scaffold und danach WP-020 den Puzzle-Kern jeweils auf einer frischen Main-basierten Branch mit neuem Trust Anchor wieder her.
-3. `WP-015`, `WP-016` und `WP-017` bauen erst nach integrierten WP-019 und WP-020 auf `main` auf; sie übernehmen keinerlei Autorität aus dem separaten Chat oder dem WP-013-Prototyp.
-4. Die Architekturentscheidung ist ausschließlich [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md).
-5. Astra und Sol prüfen die Ergebnisse der jeweiligen Work Packages unabhängig und ohne gegenseitige Abstimmung. Kimi erhält ausschließlich die fertig definierten Arbeitsaufträge und keine Entscheidungsbefugnis.
+2. Die vorab auf `main` dokumentierten WP-019/WP-020 sind wegen fehlender gemeinsamer Erstverankerung mit ihren eigenen Manifesten archivierte Planungsunterlagen und nicht ausführbar.
+3. Nach der Trust-Anchor-Korrektur wird WP-021 das Unity-Scaffold und danach WP-022 den Puzzle-Kern jeweils erst gemeinsam mit einem eigenen Manifest auf einer frischen Main-basierten Branch verankern und wiederherstellen.
+4. `WP-015`, `WP-016` und `WP-017` bauen erst nach integrierten WP-021 und WP-022 auf `main` auf; sie übernehmen keinerlei Autorität aus dem separaten Chat oder dem WP-013-Prototyp.
+5. Die Architekturentscheidung ist ausschließlich [`ADR-031`](../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md).
+6. Astra und Sol prüfen die Ergebnisse der jeweiligen Work Packages unabhängig und ohne gegenseitige Abstimmung. Kimi erhält ausschließlich die fertig definierten Arbeitsaufträge und keine Entscheidungsbefugnis.
 
 ## Referenzen
 

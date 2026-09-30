@@ -4,6 +4,8 @@
 
 `WP-020`
 
+**Bearbeitungsstatus:** **Zurückgezogen vor Implementierungsbeginn am 2026-09-30.** Dieses Dokument wurde auf `main` vor einem eigenen gemeinsamen Work-Package-/Scope-Manifest-Add-Commit persistiert. Es kann deshalb die historische Trust-Anchor-Bindung aus ADR-030 nicht erfüllen und ist **kein ausführbarer Implementierungsauftrag**. Die technische Absicht dient nur als Planungsarchiv; ein neues, erst gemeinsam mit eigenem Manifest verankertes WP-022 ersetzt diese Planung. Es wurden keine Produktionsdateien, Branches, CI-Nachweise oder Freigaben aus diesem Dokument erzeugt.
+
 ## Ziel
 
 Auf einer **neu vom durch WP-019 integrierten `main` abgezweigten Branch** wird der reine Puzzle-Kern unabhängig wiederhergestellt: Domainwerte, objektive Diagnostik, Completion, immutable Session-/Command-Verarbeitung sowie der deterministische `solver-v1`-Ausgangskern mit Lösungslimit zwei. Der historische WP-009-Branch dient nur als lesbarer Vergleichskorpus; sein Code, seine Commits, seine Manifeste und seine Testprotokolle werden nicht direkt übernommen.
