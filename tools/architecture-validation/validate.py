@@ -45,6 +45,7 @@ CURRENT_ADR_STATUS = {
     21: "Angenommen", 22: "Ersetzt", 23: "Angenommen", 24: "Angenommen",
     25: "Angenommen", 26: "Angenommen",
     27: "Angenommen", 28: "Angenommen", 29: "Angenommen", 30: "Angenommen",
+    31: "Angenommen",
 }
 SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
 FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (26, 30)}
@@ -179,7 +180,7 @@ def inventory_check() -> None:
             fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
     adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
     numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 31)):
+    if numbers != list(range(1, 32)):
         fail(f"inventory:adr-sequence:{numbers}")
 
 
@@ -223,7 +224,7 @@ def section_body(text: str, heading: str, next_heading: str) -> str:
 
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 31):
+    for number in range(1, 32):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -234,7 +235,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v1.0" not in index_text or "21 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
+    if "Architecture v1.0" not in index_text or "22 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
