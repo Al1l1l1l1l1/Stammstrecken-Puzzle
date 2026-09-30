@@ -98,3 +98,5 @@ WP-018 ist erst abgeschlossen, wenn alle Akzeptanzkriterien und Tests nachweisli
 ### Nachträgliche Trust-Anchor-Korrektur
 
 Die nach PR #7 durchgeführte WP-019-Startprüfung hat die ADR-030-Regel erneut angewandt: Ein ausführbares Work Package muss zusammen mit seinem eigenen Manifest erstmals im selben Add-Commit erscheinen. WP-019 und WP-020 waren bereits als Planungsdateien auf `main` angelegt und können daher nicht mehr ihre eigenen Trust-Anchor-Kandidaten sein. Sie sind ohne Implementierung zurückgezogen; die nächsten zulässigen Recovery-IDs sind WP-021 und WP-022, jeweils erst auf ihrer frischen Main-basierten Implementierungsbranch mit gemeinsamem Anchor. Diese Korrektur hält die Trust-Grenze aufrecht und ändert keine Produkt- oder Metrikentscheidung.
+
+Die Korrektur wurde nach erneuter unabhängiger Astra-/Sol-QC ohne BLOCKER/HIGH als [PR #8](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/8) in Merge-Commit `3032371a5931f82cdb7f46622f1b12ba0aaca13a` integriert. Bis die echte Unity-Lizenz- und Runnerverfügbarkeit belegt ist, bleibt die gemeinsame WP-021-/Manifest-Erstverankerung und jede Kimi-Implementierung gesperrt.
