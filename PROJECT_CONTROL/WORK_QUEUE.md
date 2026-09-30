@@ -6,8 +6,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
-| 0 | WP-018 – QC-Korrektur und Produktionsbasis-Reintegration | **In Prüfung** | Schließt die HIGH-Befunde von WP-014: Proofschema als WP-017-Zielzustand und Main-basierte Reintegrationskette. Kein Governance-Merge vor erneuter Astra-/Sol-QC. |
-| 1 | WP-019 – Unity-Scaffold-Recovery | Definiert, nicht begonnen | Nach integrierter Governance: Scaffold auf frischer Main-Branch, eigener Production-Anchor, reale Unity-/CI-Evidenz. Historisches WP-008 bleibt nur Vergleich. |
+| 0 | WP-018 – QC-Korrektur und Produktionsbasis-Reintegration | **Abgeschlossen** | Beide unabhängigen QC-Berichte PASS ohne BLOCKER/HIGH; PR #6 ist als Merge-Commit `7b0d65a…` nach `main` integriert. |
+| 1 | WP-019 – Unity-Scaffold-Recovery | Freigegeben, nicht begonnen | Nächster Auftrag auf frischer Main-Branch, eigener Production-Anchor und reale Unity-/CI-Evidenz. Start/Abschluss nur bei verfügbarer Unity-Lizenz und Linux/Android-/macOS/iOS-Runnern. Historisches WP-008 bleibt nur Vergleich. |
 | 2 | WP-020 – Puzzle-Kern-Recovery | Definiert, nicht begonnen | Nach integriertem WP-019: Domain und `solver-v1` auf frischer Main-Branch, eigener Production-Anchor. Historisches WP-009 bleibt nur Vergleich. |
 | 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-020: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
 | 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-019/WP-020 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
@@ -37,7 +37,7 @@ Sie bleiben nur lesbare Vergleichskorpora. Insbesondere sind Direktmerge, Cherry
 
 ```text
 main
-  → WP-014 + WP-018 Governance nach unabhängiger QC integrieren
+  → WP-014 + WP-018 Governance integriert (PR #6)
   → WP-019 auf frischer Main-Branch abschließen und integrieren
   → WP-020 auf frischer Main-Branch abschließen und integrieren
   → WP-015
@@ -76,7 +76,7 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | `CURRENT_STATE.md` | Autoritativer Phasen- und Integrationsstand. |
 | `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur und Abgrenzung der historischen Branches. |
 | `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindender `solver-v2`-Zielvertrag und Zeitpunkt der Schemaumsetzung. |
-| `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Aktive QC-Korrektur. |
+| `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Abgeschlossene QC-Korrektur und Recovery-Freigabe. |
 | `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Erste Produktionsrecovery. |
 | `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Zweite Produktionsrecovery. |
 | `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Level-/Hashfolgeauftrag. |
