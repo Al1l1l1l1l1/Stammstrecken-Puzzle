@@ -380,7 +380,9 @@ jobs:
       - name: Xcode 26+ auswählen und iOS-SDK prüfen
         run: |
           set -euo pipefail
-          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sort -V | tail -n 1)"
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sed 's/\.app$//' \
+            | awk -F'_' '{n=split($2,v,"."); printf "%d %d %d %s.app\n", v[1], (n>1?v[2]:0), (n>2?v[3]:0), $0}' \
+            | sort -k1,1n -k2,2n -k3,3n | tail -n 1 | cut -d' ' -f4-)"
           XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
           if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
             echo "ENVIRONMENT FAIL xcode: Neuester installierter Xcode ist ${XCODE_APP}, benötigt wird 26+."
@@ -589,7 +591,9 @@ jobs:
       - name: Xcode 26+ auswählen und iOS-SDK prüfen
         run: |
           set -euo pipefail
-          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sort -V | tail -n 1)"
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sed 's/\.app$//' \
+            | awk -F'_' '{n=split($2,v,"."); printf "%d %d %d %s.app\n", v[1], (n>1?v[2]:0), (n>2?v[3]:0), $0}' \
+            | sort -k1,1n -k2,2n -k3,3n | tail -n 1 | cut -d' ' -f4-)"
           XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
           if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
             echo "Kein Xcode 26+ auf dem macos-15-Runner gefunden (neuestes: ${XCODE_APP})."
