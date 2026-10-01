@@ -1,21 +1,32 @@
-# Unity CI (WP-008)
+# Unity CI (WP-008; CI-Readiness-Haertung vor WP-021)
 #
 # Unity-Nachweis-Workflow fuer das Produktionsscaffold gemäß
-# ARCHITECTURE/BUILD_AND_RELEASE.md Abschnitt 5 und ARCHITECTURE/TEST_STRATEGY.md
-# Abschnitt 11.
+# ARCHITECTURE/BUILD_AND_RELEASE.md Abschnitt 5 und 6 sowie
+# ARCHITECTURE/TEST_STRATEGY.md Abschnitt 11.
 #
 # - project-preflight laeuft immer: autoritative Unity-Versionspin-Pruefung,
 #   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normativen
 #   Allowlists aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion)
 #   und Abschnitt 4 (Tests) sowie Skelett-Konventionspruefungen. Das ist ein
 #   echter, ausgefuehrter Check.
-# - Die Unity-ausfuehrenden Jobs (Compile, EditMode, Bootstrap-PlayMode-Smoke,
-#   Android-Development-IL2CPP, iOS-Export) laufen erst, wenn Unity-Lizenz und
-#   reproduzierbare Runner konfiguriert sind (secrets.UNITY_LICENSE und
-#   vars.UNITY_RUNNERS_READY = "true"). Ohne diese Konfiguration schlaegt der
-#   unity-evidence-guard fail-closed fehl und meldet den Befund NOT_EXECUTED/
-#   BLOCKED wahrheitsgemaess; kein Job tauscht einen erfolgreichen
-#   Unity-Nachweis vor.
+# - unity-environment-linux/-android/-ios laufen immer und ohne Secrets: Sie
+#   weisen die Runnerbereitschaft ausgefuehrt nach (Editor-Headless-Start per
+#   ALF-Sonde, Android-Toolchain-Pfade, Xcode-26+-Auswahl mit iOS-SDK). Sie
+#   behaupten keinen Compile-, Test- oder Buildnachweis.
+# - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode,
+#   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
+#   laufen erst, wenn Unity-Lizenz und reproduzierbare Runner konfiguriert sind
+#   (secrets.UNITY_LICENSE und vars.UNITY_RUNNERS_READY = "true"). Ohne diese
+#   Konfiguration schlaegt der unity-evidence-guard fail-closed fehl und meldet
+#   den Befund NOT_EXECUTED/BLOCKED wahrheitsgemaess; kein Job tauscht einen
+#   erfolgreichen Unity-Nachweis vor.
+# - Runnerbilder gemaess BUILD_AND_RELEASE.md Abschnitt 6 ("Container oder
+#   reproduzierbares Runnerimage"): Linux/Android laufen in per Tag und Digest
+#   gepinnten unityci/editor-Containern der exakten Editorversion
+#   (6000.3.23f1; unityci-Release 3.2.2); iOS laeuft auf macos-15 mit per
+#   Changeset 09d2ecc7fb28 gepinntem Unity-Hub-Install und expliziter
+#   Xcode-26+-Auswahl. Die Container enthalten unity-editor auf PATH sowie
+#   (android-Variante) das Unity-gebuendelte Android-SDK/NDK/OpenJDK.
 # - Alle Actions sind per vollstaendigem Commit-SHA gepinnt; Permissions folgen
 #   Least Privilege (contents: read). Keine Secrets im Repository.
 
@@ -33,6 +44,7 @@ permissions:
 
 env:
   STP_UNITY_VERSION: 6000.3.23f1
+  STP_UNITY_CHANGESET: 09d2ecc7fb28
 
 jobs:
   project-preflight:
@@ -241,14 +253,131 @@ jobs:
         if: needs.unity-config.outputs.ready == 'true'
         run: echo "Unity-Lizenz und Runner sind konfiguriert; die Unity-Nachweisjobs dieses Workflows sind der verbindliche Nachweis."
 
+  unity-environment-linux:
+    name: unity-environment-linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
+    steps:
+      - name: Editor-Version und Headless-Start ohne Lizenz prüfen
+        run: |
+          set -euo pipefail
+          unity-editor -version
+          cd /tmp
+          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile /tmp/unity-alf-probe.log
+          test -f /tmp/Unity_lic.alf
+          rm -f /tmp/Unity_lic.alf /tmp/unity-alf-probe.log
+          echo "ENVIRONMENT PASS linux-base: Unity ${STP_UNITY_VERSION} startet headless im CI-Container (ALF-Sonde ohne Lizenz)."
+
+  unity-environment-android:
+    name: unity-environment-android
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28
+    steps:
+      - name: Editor-Version und Headless-Start ohne Lizenz prüfen
+        run: |
+          set -euo pipefail
+          unity-editor -version
+          cd /tmp
+          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile /tmp/unity-alf-probe.log
+          test -f /tmp/Unity_lic.alf
+          rm -f /tmp/Unity_lic.alf /tmp/unity-alf-probe.log
+          echo "ENVIRONMENT PASS linux-android: Unity ${STP_UNITY_VERSION} startet headless im CI-Container (ALF-Sonde ohne Lizenz)."
+
+      - name: Android-Toolchain und IL2CPP im Container prüfen
+        run: |
+          set -euo pipefail
+          AP=/opt/unity/Editor/Data/PlaybackEngines/AndroidPlayer
+          test -d "${AP}"
+          test -d "${AP}/SDK"
+          test -d "${AP}/NDK"
+          test -d "${AP}/OpenJDK"
+          test -f "${AP}/NDK/source.properties"
+          grep "Pkg.Revision" "${AP}/NDK/source.properties"
+          ls "${AP}/SDK/platforms"
+          ls "${AP}/SDK/build-tools"
+          test -d /opt/unity/Editor/Data/il2cpp
+          echo "ENVIRONMENT PASS android-toolchain: SDK/NDK/OpenJDK und IL2CPP vorhanden."
+
+  unity-environment-ios:
+    name: unity-environment-ios
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - name: Unity-Editor-Installation aus Cache wiederherstellen
+        id: cache-unity
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: /Applications/Unity/Hub/Editor/6000.3.23f1
+          key: unity-editor-macos15-6000.3.23f1-ios-v1
+
+      - name: Unity Hub installieren
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: brew install --cask unity-hub
+
+      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
+            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
+            --module ios --architecture arm64
+          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+
+      - name: unity-editor verlinken und Version prüfen
+        run: |
+          set -euo pipefail
+          sudo ln -sfn "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" /usr/local/bin/unity-editor
+          unity-editor -version
+
+      - name: Editor-Headless-Start ohne Lizenz prüfen (ALF-Sonde)
+        run: |
+          set -euo pipefail
+          cd "${RUNNER_TEMP}"
+          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile "${RUNNER_TEMP}/unity-alf-probe.log"
+          test -f "${RUNNER_TEMP}/Unity_lic.alf"
+          rm -f "${RUNNER_TEMP}/Unity_lic.alf" "${RUNNER_TEMP}/unity-alf-probe.log"
+          echo "ENVIRONMENT PASS macos-editor: Unity ${STP_UNITY_VERSION} startet headless auf macos-15 (ALF-Sonde ohne Lizenz)."
+
+      - name: Xcode 26+ auswählen und iOS-SDK prüfen
+        run: |
+          set -euo pipefail
+          XCODE_APP="$(ls -d /Applications/Xcode_2[6-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -n 1)"
+          if [ -z "${XCODE_APP}" ]; then
+            echo "ENVIRONMENT FAIL xcode: Kein Xcode 26+ auf dem macos-15-Runner gefunden."
+            exit 1
+          fi
+          sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
+          xcodebuild -version
+          XC_MAJOR="$(xcodebuild -version | sed -n 's/^Xcode \([0-9][0-9]*\).*$/\1/p')"
+          test "${XC_MAJOR}" -ge 26
+          xcodebuild -showsdks | grep "iphoneos"
+          echo "ENVIRONMENT PASS xcode: ${XCODE_APP} (Major ${XC_MAJOR}) mit iOS-SDK ausgewählt."
+
   unity-compile-editmode:
     name: unity-compile-editmode
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
     steps:
       - name: Repository auschecken
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-6000.3.23f1-
 
       - name: Unity-Lizenz bereitstellen
         env:
@@ -283,9 +412,19 @@ jobs:
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
     steps:
       - name: Repository auschecken
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-6000.3.23f1-
 
       - name: Unity-Lizenz bereitstellen
         env:
@@ -317,9 +456,19 @@ jobs:
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28
     steps:
       - name: Repository auschecken
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-android-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-android-6000.3.23f1-
 
       - name: Unity-Lizenz bereitstellen
         env:
@@ -352,9 +501,59 @@ jobs:
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     runs-on: macos-15
+    timeout-minutes: 180
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
     steps:
       - name: Repository auschecken
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Editor-Installation aus Cache wiederherstellen
+        id: cache-unity
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: /Applications/Unity/Hub/Editor/6000.3.23f1
+          key: unity-editor-macos15-6000.3.23f1-ios-v1
+
+      - name: Unity Hub installieren
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: brew install --cask unity-hub
+
+      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
+            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
+            --module ios --architecture arm64
+          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+
+      - name: unity-editor verlinken
+        run: |
+          set -euo pipefail
+          sudo ln -sfn "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" /usr/local/bin/unity-editor
+          unity-editor -version
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-macos-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-macos-6000.3.23f1-
+
+      - name: Xcode 26+ auswählen und iOS-SDK prüfen
+        run: |
+          set -euo pipefail
+          XCODE_APP="$(ls -d /Applications/Xcode_2[6-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -n 1)"
+          if [ -z "${XCODE_APP}" ]; then
+            echo "Kein Xcode 26+ auf dem macos-15-Runner gefunden."
+            exit 1
+          fi
+          sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
+          xcodebuild -version
+          XC_MAJOR="$(xcodebuild -version | sed -n 's/^Xcode \([0-9][0-9]*\).*$/\1/p')"
+          test "${XC_MAJOR}" -ge 26
 
       - name: Unity-Lizenz bereitstellen
         env:
