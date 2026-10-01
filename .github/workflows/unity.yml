@@ -27,6 +27,10 @@
 #   Changeset 09d2ecc7fb28 gepinntem Unity-Hub-Install und expliziter
 #   Xcode-26+-Auswahl. Die Container enthalten unity-editor auf PATH sowie
 #   (android-Variante) das Unity-gebuendelte Android-SDK/NDK/OpenJDK.
+#   Das grosse Android-Image ueberschreitet die freie SSD der Standard-Runner
+#   (~14 GB); die Android-Jobs bereinigen daher zuerst ungenutzte
+#   vorinstallierte Toolchains und fuehren das Image per explizitem
+#   docker run aus (Job-Container wuerden vor jedem Schritt pullen).
 # - Alle Actions sind per vollstaendigem Commit-SHA gepinnt; Permissions folgen
 #   Least Privilege (contents: read). Keine Secrets im Repository.
 
@@ -283,40 +287,45 @@ jobs:
   unity-environment-android:
     name: unity-environment-android
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    container:
-      image: unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28
+    timeout-minutes: 45
     steps:
-      - name: Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen
+      - name: Speicherplatz für das Unity-Android-Image freigeben
         run: |
           set -euo pipefail
-          unity-editor -version
-          PROBE_DIR=/tmp/stp-editor-probe
-          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
-          set +e
-          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
-          code=$?
-          set -e
-          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
-          test "${code}" -ne 0
-          grep -qi "licen" "${PROBE_DIR}/editor.log"
-          rm -rf "${PROBE_DIR}"
-          echo "ENVIRONMENT PASS linux-android: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
+          df -h /
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/powershell /usr/share/swift /opt/hostedtoolcache/CodeQL
+          df -h /
 
-      - name: Android-Toolchain und IL2CPP im Container prüfen
+      - name: Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)
+        run: docker pull "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28"
+
+      - name: Editor-Start und Android-Toolchain im Container prüfen
         run: |
           set -euo pipefail
-          AP=/opt/unity/Editor/Data/PlaybackEngines/AndroidPlayer
-          test -d "${AP}"
-          test -d "${AP}/SDK"
-          test -d "${AP}/NDK"
-          test -d "${AP}/OpenJDK"
-          test -f "${AP}/NDK/source.properties"
-          grep "Pkg.Revision" "${AP}/NDK/source.properties"
-          ls "${AP}/SDK/platforms"
-          ls "${AP}/SDK/build-tools"
-          test -d /opt/unity/Editor/Data/il2cpp
-          echo "ENVIRONMENT PASS android-toolchain: SDK/NDK/OpenJDK und IL2CPP vorhanden."
+          docker run --rm \
+            "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
+            bash -c '
+              set -euo pipefail
+              unity-editor -version
+              PROBE_DIR=/tmp/stp-editor-probe
+              mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+              set +e
+              unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+              code=$?
+              set -e
+              grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+              test "${code}" -ne 0
+              grep -qi "licen" "${PROBE_DIR}/editor.log"
+              AP=/opt/unity/Editor/Data/PlaybackEngines/AndroidPlayer
+              test -d "${AP}/SDK"
+              test -d "${AP}/NDK"
+              test -d "${AP}/OpenJDK"
+              grep "Pkg.Revision" "${AP}/NDK/source.properties"
+              ls "${AP}/SDK/platforms"
+              ls "${AP}/SDK/build-tools"
+              test -d /opt/unity/Editor/Data/il2cpp
+              echo "ENVIRONMENT PASS linux-android: Editor startet headless bis zur Lizenzprüfung (Exitcode ${code}); SDK/NDK/OpenJDK und IL2CPP vorhanden."
+            '
 
   unity-environment-ios:
     name: unity-environment-ios
@@ -332,6 +341,7 @@ jobs:
         with:
           path: /Applications/Unity/Hub/Editor/6000.3.23f1
           key: unity-editor-macos15-6000.3.23f1-ios-v1
+          save-always: true
 
       - name: Unity Hub installieren
         if: steps.cache-unity.outputs.cache-hit != 'true'
@@ -346,11 +356,10 @@ jobs:
             --module ios --architecture arm64
           test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
 
-      - name: unity-editor verlinken und Version prüfen
+      - name: Editor-Version prüfen (direkter Bundle-Pfad)
         run: |
           set -euo pipefail
-          sudo ln -sfn "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" /usr/local/bin/unity-editor
-          unity-editor -version
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" -version
 
       - name: Editor-Headless-Start bis zur Lizenzprüfung prüfen
         run: |
@@ -358,7 +367,8 @@ jobs:
           PROBE_DIR="${RUNNER_TEMP}/stp-editor-probe"
           mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
           set +e
-          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
+            -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
           code=$?
           set -e
           grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
@@ -370,17 +380,16 @@ jobs:
       - name: Xcode 26+ auswählen und iOS-SDK prüfen
         run: |
           set -euo pipefail
-          XCODE_APP="$(ls -d /Applications/Xcode_2[6-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -n 1)"
-          if [ -z "${XCODE_APP}" ]; then
-            echo "ENVIRONMENT FAIL xcode: Kein Xcode 26+ auf dem macos-15-Runner gefunden."
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sort -V | tail -n 1)"
+          XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
+          if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
+            echo "ENVIRONMENT FAIL xcode: Neuester installierter Xcode ist ${XCODE_APP}, benötigt wird 26+."
             exit 1
           fi
           sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
           xcodebuild -version
-          XC_MAJOR="$(xcodebuild -version | sed -n 's/^Xcode \([0-9][0-9]*\).*$/\1/p')"
-          test "${XC_MAJOR}" -ge 26
           xcodebuild -showsdks | grep "iphoneos"
-          echo "ENVIRONMENT PASS xcode: ${XCODE_APP} (Major ${XC_MAJOR}) mit iOS-SDK ausgewählt."
+          echo "ENVIRONMENT PASS xcode: ${XCODE_APP} mit iOS-SDK ausgewählt."
 
   unity-compile-editmode:
     name: unity-compile-editmode
@@ -478,12 +487,20 @@ jobs:
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
-    container:
-      image: unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28
+    timeout-minutes: 150
     steps:
       - name: Repository auschecken
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Speicherplatz für das Unity-Android-Image freigeben
+        run: |
+          set -euo pipefail
+          df -h /
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/powershell /usr/share/swift /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)
+        run: docker pull "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28"
 
       - name: Unity-Library aus Cache wiederherstellen
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -496,20 +513,25 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         run: |
-          printf '%s' "${UNITY_LICENSE}" > /tmp/unity-license.ulf
-          chmod 600 /tmp/unity-license.ulf
+          printf '%s' "${UNITY_LICENSE}" > "${RUNNER_TEMP}/unity-license.ulf"
+          chmod 600 "${RUNNER_TEMP}/unity-license.ulf"
 
       - name: Android-Development-IL2CPP-Build
         run: |
-          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -manualLicenseFile /tmp/unity-license.ulf \
-            -buildTarget android \
-            -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
-            -quit -logFile -
+          docker run --rm \
+            -v "${GITHUB_WORKSPACE}:${GITHUB_WORKSPACE}" \
+            -v "${RUNNER_TEMP}:/tmp/stp-tmp" \
+            -w "${GITHUB_WORKSPACE}" \
+            "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
+            unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+              -manualLicenseFile /tmp/stp-tmp/unity-license.ulf \
+              -buildTarget android \
+              -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
+              -quit -logFile -
 
       - name: Unity-Lizenz entfernen
         if: always()
-        run: rm -f /tmp/unity-license.ulf
+        run: rm -f "${RUNNER_TEMP}/unity-license.ulf"
 
       - name: Android-Buildartefakt archivieren
         if: always()
@@ -537,6 +559,7 @@ jobs:
         with:
           path: /Applications/Unity/Hub/Editor/6000.3.23f1
           key: unity-editor-macos15-6000.3.23f1-ios-v1
+          save-always: true
 
       - name: Unity Hub installieren
         if: steps.cache-unity.outputs.cache-hit != 'true'
@@ -551,11 +574,10 @@ jobs:
             --module ios --architecture arm64
           test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
 
-      - name: unity-editor verlinken
+      - name: Editor-Version prüfen (direkter Bundle-Pfad)
         run: |
           set -euo pipefail
-          sudo ln -sfn "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" /usr/local/bin/unity-editor
-          unity-editor -version
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" -version
 
       - name: Unity-Library aus Cache wiederherstellen
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -567,15 +589,14 @@ jobs:
       - name: Xcode 26+ auswählen und iOS-SDK prüfen
         run: |
           set -euo pipefail
-          XCODE_APP="$(ls -d /Applications/Xcode_2[6-9]*.app /Applications/Xcode_[3-9][0-9]*.app 2>/dev/null | sort -V | tail -n 1)"
-          if [ -z "${XCODE_APP}" ]; then
-            echo "Kein Xcode 26+ auf dem macos-15-Runner gefunden."
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sort -V | tail -n 1)"
+          XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
+          if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
+            echo "Kein Xcode 26+ auf dem macos-15-Runner gefunden (neuestes: ${XCODE_APP})."
             exit 1
           fi
           sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
           xcodebuild -version
-          XC_MAJOR="$(xcodebuild -version | sed -n 's/^Xcode \([0-9][0-9]*\).*$/\1/p')"
-          test "${XC_MAJOR}" -ge 26
 
       - name: Unity-Lizenz bereitstellen
         env:
@@ -586,7 +607,8 @@ jobs:
 
       - name: iOS-Xcodeprojekt exportieren und kompilieren
         run: |
-          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
+            -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -manualLicenseFile /tmp/unity-license.ulf \
             -buildTarget ios \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.ExportIosXcodeProjectIl2Cpp \
