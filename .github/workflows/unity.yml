@@ -10,9 +10,9 @@
 #   und Abschnitt 4 (Tests) sowie Skelett-Konventionspruefungen. Das ist ein
 #   echter, ausgefuehrter Check.
 # - unity-environment-linux/-android/-ios laufen immer und ohne Secrets: Sie
-#   weisen die Runnerbereitschaft ausgefuehrt nach (Editor-Headless-Start per
-#   ALF-Sonde, Android-Toolchain-Pfade, Xcode-26+-Auswahl mit iOS-SDK). Sie
-#   behaupten keinen Compile-, Test- oder Buildnachweis.
+#   weisen die Runnerbereitschaft ausgefuehrt nach (Editor-Headless-Start bis
+#   zur erwarteten Lizenzpruefung, Android-Toolchain-Pfade, Xcode-26+-Auswahl
+#   mit iOS-SDK). Sie behaupten keinen Compile-, Test- oder Buildnachweis.
 # - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode,
 #   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
 #   laufen erst, wenn Unity-Lizenz und reproduzierbare Runner konfiguriert sind
@@ -41,6 +41,10 @@ on:
 
 permissions:
   contents: read
+
+defaults:
+  run:
+    shell: bash
 
 env:
   STP_UNITY_VERSION: 6000.3.23f1
@@ -260,15 +264,21 @@ jobs:
     container:
       image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
     steps:
-      - name: Editor-Version und Headless-Start ohne Lizenz prüfen
+      - name: Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen
         run: |
           set -euo pipefail
           unity-editor -version
-          cd /tmp
-          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile /tmp/unity-alf-probe.log
-          test -f /tmp/Unity_lic.alf
-          rm -f /tmp/Unity_lic.alf /tmp/unity-alf-probe.log
-          echo "ENVIRONMENT PASS linux-base: Unity ${STP_UNITY_VERSION} startet headless im CI-Container (ALF-Sonde ohne Lizenz)."
+          PROBE_DIR=/tmp/stp-editor-probe
+          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+          set +e
+          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          code=$?
+          set -e
+          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+          test "${code}" -ne 0
+          grep -qi "licen" "${PROBE_DIR}/editor.log"
+          rm -rf "${PROBE_DIR}"
+          echo "ENVIRONMENT PASS linux-base: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
 
   unity-environment-android:
     name: unity-environment-android
@@ -277,15 +287,21 @@ jobs:
     container:
       image: unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28
     steps:
-      - name: Editor-Version und Headless-Start ohne Lizenz prüfen
+      - name: Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen
         run: |
           set -euo pipefail
           unity-editor -version
-          cd /tmp
-          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile /tmp/unity-alf-probe.log
-          test -f /tmp/Unity_lic.alf
-          rm -f /tmp/Unity_lic.alf /tmp/unity-alf-probe.log
-          echo "ENVIRONMENT PASS linux-android: Unity ${STP_UNITY_VERSION} startet headless im CI-Container (ALF-Sonde ohne Lizenz)."
+          PROBE_DIR=/tmp/stp-editor-probe
+          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+          set +e
+          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          code=$?
+          set -e
+          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+          test "${code}" -ne 0
+          grep -qi "licen" "${PROBE_DIR}/editor.log"
+          rm -rf "${PROBE_DIR}"
+          echo "ENVIRONMENT PASS linux-android: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
 
       - name: Android-Toolchain und IL2CPP im Container prüfen
         run: |
@@ -336,14 +352,20 @@ jobs:
           sudo ln -sfn "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" /usr/local/bin/unity-editor
           unity-editor -version
 
-      - name: Editor-Headless-Start ohne Lizenz prüfen (ALF-Sonde)
+      - name: Editor-Headless-Start bis zur Lizenzprüfung prüfen
         run: |
           set -euo pipefail
-          cd "${RUNNER_TEMP}"
-          unity-editor -batchmode -nographics -createManualActivationFile -quit -logFile "${RUNNER_TEMP}/unity-alf-probe.log"
-          test -f "${RUNNER_TEMP}/Unity_lic.alf"
-          rm -f "${RUNNER_TEMP}/Unity_lic.alf" "${RUNNER_TEMP}/unity-alf-probe.log"
-          echo "ENVIRONMENT PASS macos-editor: Unity ${STP_UNITY_VERSION} startet headless auf macos-15 (ALF-Sonde ohne Lizenz)."
+          PROBE_DIR="${RUNNER_TEMP}/stp-editor-probe"
+          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+          set +e
+          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          code=$?
+          set -e
+          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+          test "${code}" -ne 0
+          grep -qi "licen" "${PROBE_DIR}/editor.log"
+          rm -rf "${PROBE_DIR}"
+          echo "ENVIRONMENT PASS macos-editor: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
 
       - name: Xcode 26+ auswählen und iOS-SDK prüfen
         run: |
