@@ -33,7 +33,8 @@ permissions:
   contents: read
 
 env:
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-018.documentation.scope.json
+  STP_SCOPE: production
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-021.production.scope.json
 
 jobs:
   validate:
@@ -78,6 +79,6 @@ jobs:
         if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
         run: |
           ../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
-            --scope documentation \
+            --scope "$STP_SCOPE" \
             --scope-manifest "$STP_SCOPE_MANIFEST" \
             --self-test
