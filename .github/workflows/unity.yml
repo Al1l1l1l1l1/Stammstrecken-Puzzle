@@ -264,7 +264,7 @@ jobs:
           exit 1
       - name: Unity-Nachweiskonfiguration vorhanden
         if: needs.unity-config.outputs.ready == 'true'
-        run: echo "Unity-Lizenz und Runner sind konfiguriert; die Unity-Nachweisjobs dieses Workflows sind der verbindliche Nachweis."
+        run: echo "Unity-Zugangsdaten und Runner sind konfiguriert; die Unity-Nachweisjobs dieses Workflows sind der verbindliche Nachweis."
 
   unity-environment-linux:
     name: unity-environment-linux
@@ -432,6 +432,13 @@ jobs:
     name: unity-compile-editmode
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
+    # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
+    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
+    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
+    # bleiben davon unberuehrt.
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     container:
@@ -466,6 +473,15 @@ jobs:
             -runTests -testPlatform EditMode -testResults TestResults/editmode.xml \
             -logFile -
 
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
+
       - name: Testergebnisse archivieren
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa2d68b232a9cfa0e3d4fba2b29c5ee8 # v7.0.0
@@ -477,6 +493,13 @@ jobs:
     name: unity-playmode-bootstrap-smoke
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
+    # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
+    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
+    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
+    # bleiben davon unberuehrt.
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     container:
@@ -508,6 +531,15 @@ jobs:
             -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
             -logFile -
 
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
+
       - name: Testergebnisse archivieren
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa2d68b232a9cfa0e3d4fba2b29c5ee8 # v7.0.0
@@ -519,6 +551,13 @@ jobs:
     name: unity-android-development-il2cpp
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
+    # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
+    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
+    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
+    # bleiben davon unberuehrt.
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     timeout-minutes: 150
     steps:
@@ -556,6 +595,8 @@ jobs:
             bash -c '
               set -euo pipefail
               LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+              deactivate() { "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true; }
+              trap deactivate EXIT
               "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
               "${LIC_CLIENT}" --showEntitlements
               unity-editor -batchmode -nographics -projectPath "${STP_PROJECT_PATH}" \
@@ -575,6 +616,13 @@ jobs:
     name: unity-ios-export
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
+    # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
+    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
+    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
+    # bleiben davon unberuehrt.
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
     runs-on: macos-15
     timeout-minutes: 180
     env:
@@ -652,3 +700,12 @@ jobs:
             -scheme Unity-iPhone -configuration Release \
             -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO build
+
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
