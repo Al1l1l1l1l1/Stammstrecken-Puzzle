@@ -12,7 +12,7 @@ mit Commit-Bezug ergänzt und dürfen nicht geraten werden.
 |---|---|---|
 | Unity Editor | `6000.3.23f1` | ADR-001 / `ProjectSettings/ProjectVersion.txt` (autoritativ) |
 | Editor-Changeset | `09d2ecc7fb28` | `m_EditorVersionWithRevision` in `ProjectSettings/ProjectVersion.txt` |
-| Unity-Installationsmodule (Android Build Support, iOS Build Support, IL2CPP) | **NOT_DETERMINED** | Erst aus WP-021-Runner-Installation auslesbar |
+| Unity-Installationsmodule (Android Build Support, iOS Build Support, IL2CPP) | Android Build Support + iOS Build Support auf den WP-021-Runnern; IL2CPP im Editor enthalten (`Data/il2cpp`, CI-Umgebungsjob belegt) | WP-021 CI-Run `37069959561` |
 
 ## Sprache und Runtime
 
@@ -55,12 +55,13 @@ Services / Unity Analytics (Architekturverbot), Visual Scripting (Architekturver
 |---|---|---|
 | Android minSdk / targetSdk / compileSdk | 26 / 36 / 36 | ADR-012; Google-Play-Mandat API 36 seit 2026-08-31 |
 | Android ABI | ARM64 | ADR-012 |
-| JDK (Unity-gebündelt) | **NOT_DETERMINED** | Erst aus WP-021-Runner-Installation auslesbar |
-| Android SDK / NDK (Unity-gebündelt) | **NOT_DETERMINED** | Erst aus WP-021-Runner-Installation auslesbar |
-| Gradle (Unity-gebündelt) | **NOT_DETERMINED** | Erst aus WP-021-Runner-Installation auslesbar |
-| Xcode | 26 oder neuer mit iOS-26-SDK+ | ADR-012; App-Store-Mandat seit 2026-04-28 |
+| JDK (Unity-gebündelt) | **NOT_DETERMINED** | In den WP-021-CI-Logs nicht ausgegeben; Auslesung mit einem späteren Lauf nachholen |
+| Android SDK Plattformen (Unity-gebündelt) | `android-34`, `android-35`, `android-36`, `android-37.0`; Build-Tools `36.0.0` | WP-021 CI-Run `37069959561` (unity-environment-android, `SDK/platforms`, `SDK/build-tools`) |
+| Android NDK (Unity-gebündelt) | `27.2.12479018` (r27c) | WP-021 CI-Run `37069959561` (`NDK/source.properties`) |
+| Gradle (Unity-gebündelt) | `9.1.0` (Android Plugin `9.0.0`) | WP-021 CI-Run `37069959561` (unity-android-development-il2cpp, Buildlog) |
+| Xcode | `26.3` mit `iphoneos26.2`-SDK | WP-021 CI-Run `37069959561` (unity-environment-ios, `xcodebuild -version`, `xcodebuild -showsdks`) |
 | iOS Deployment Target | 15.0 | ADR-012 |
-| CocoaPods / Ruby / Fastlane / Store-CLIs | **NOT_DETERMINED** | Erst aus WP-021-macOS-Runner auslesbar |
+| CocoaPods / Ruby / Fastlane / Store-CLIs | **NOT_DETERMINED** | Für WP-021 nicht erforderlich und nicht aus dem Runner ausgelesen |
 
 ## CI-Laufzeitumgebungen
 

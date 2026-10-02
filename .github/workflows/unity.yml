@@ -478,20 +478,28 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          find TestResults/Coverage -maxdepth 3 -type f | head -30 || true
+          find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
-          import pathlib, re
-          hits = []
-          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("*")):
-              if path.is_file() and path.suffix.lower() in (".xml", ".htm", ".html"):
-                  text = path.read_text(encoding="utf-8", errors="replace")
-                  if "STP." in text:
-                      hits.append(path)
-          for path in hits[:6]:
+          import pathlib, xml.etree.ElementTree as ET
+          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
+              if not path.name.endswith("_0000.xml"):
+                  continue
               print(f"--- {path} ---")
-              for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
-                  if "STP." in line and ("%" in line or "coverage" in line.lower()):
-                      print(re.sub(r"<[^>]+>", " ", line).strip()[:220])
+              root = ET.parse(path).getroot()
+              for module in root.iter("Module"):
+                  name_el = module.find("ModuleName")
+                  summary = module.find("Summary")
+                  if name_el is None or summary is None:
+                      continue
+                  name = (name_el.text or "")
+                  if not name.lower().startswith("stp"):
+                      continue
+                  print(
+                      f"{name}: sequenceCoverage={summary.get('sequenceCoverage')} "
+                      f"({summary.get('visitedSequencePoints')}/{summary.get('numSequencePoints')} Punkte), "
+                      f"branchCoverage={summary.get('branchCoverage')} "
+                      f"({summary.get('visitedBranchPoints')}/{summary.get('numBranchPoints')}), "
+                      f"methoden={summary.get('visitedMethods')}/{summary.get('numMethods')}")
           PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
@@ -542,11 +550,40 @@ jobs:
           "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
           "${LIC_CLIENT}" --showEntitlements
 
-      - name: BootstrapCompositionSmoke (PlayMode, QA-Szene)
+      - name: BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)
         run: |
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
+            -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
             -logFile -
+
+      - name: Coverage-Baseline je Assembly ausgeben
+        if: always()
+        run: |
+          set -euo pipefail
+          find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
+          python3 - <<'PYEOF'
+          import pathlib, xml.etree.ElementTree as ET
+          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
+              if not path.name.endswith("_0000.xml"):
+                  continue
+              print(f"--- {path} ---")
+              root = ET.parse(path).getroot()
+              for module in root.iter("Module"):
+                  name_el = module.find("ModuleName")
+                  summary = module.find("Summary")
+                  if name_el is None or summary is None:
+                      continue
+                  name = (name_el.text or "")
+                  if not name.lower().startswith("stp"):
+                      continue
+                  print(
+                      f"{name}: sequenceCoverage={summary.get('sequenceCoverage')} "
+                      f"({summary.get('visitedSequencePoints')}/{summary.get('numSequencePoints')} Punkte), "
+                      f"branchCoverage={summary.get('branchCoverage')} "
+                      f"({summary.get('visitedBranchPoints')}/{summary.get('numBranchPoints')}), "
+                      f"methoden={summary.get('visitedMethods')}/{summary.get('numMethods')}")
+          PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()
