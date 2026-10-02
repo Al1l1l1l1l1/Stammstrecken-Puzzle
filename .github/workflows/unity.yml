@@ -433,9 +433,10 @@ jobs:
     needs: [project-preflight, unity-config]
     if: needs.unity-config.outputs.ready == 'true'
     # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
-    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
-    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
-    # bleiben davon unberuehrt.
+    # Terms §2.8). Die vier Lizenzjobs sind zusaetzlich per needs-Kette strikt
+    # nacheinander geschaltet, weil GitHub pro Concurrency-Gruppe nur einen
+    # laufenden und einen wartenden Job zulaesst und weitere Jobs verwirft;
+    # die Gruppe schuetzt den Seat zusaetzlich run-uebergreifend.
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -491,12 +492,13 @@ jobs:
 
   unity-playmode-bootstrap-smoke:
     name: unity-playmode-bootstrap-smoke
-    needs: [project-preflight, unity-config]
+    needs: [project-preflight, unity-config, unity-compile-editmode]
     if: needs.unity-config.outputs.ready == 'true'
     # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
-    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
-    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
-    # bleiben davon unberuehrt.
+    # Terms §2.8). Die vier Lizenzjobs sind zusaetzlich per needs-Kette strikt
+    # nacheinander geschaltet, weil GitHub pro Concurrency-Gruppe nur einen
+    # laufenden und einen wartenden Job zulaesst und weitere Jobs verwirft;
+    # die Gruppe schuetzt den Seat zusaetzlich run-uebergreifend.
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -549,12 +551,13 @@ jobs:
 
   unity-android-development-il2cpp:
     name: unity-android-development-il2cpp
-    needs: [project-preflight, unity-config]
+    needs: [project-preflight, unity-config, unity-playmode-bootstrap-smoke]
     if: needs.unity-config.outputs.ready == 'true'
     # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
-    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
-    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
-    # bleiben davon unberuehrt.
+    # Terms §2.8). Die vier Lizenzjobs sind zusaetzlich per needs-Kette strikt
+    # nacheinander geschaltet, weil GitHub pro Concurrency-Gruppe nur einen
+    # laufenden und einen wartenden Job zulaesst und weitere Jobs verwirft;
+    # die Gruppe schuetzt den Seat zusaetzlich run-uebergreifend.
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -614,12 +617,13 @@ jobs:
 
   unity-ios-export:
     name: unity-ios-export
-    needs: [project-preflight, unity-config]
+    needs: [project-preflight, unity-config, unity-android-development-il2cpp]
     if: needs.unity-config.outputs.ready == 'true'
     # Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
-    # Terms §2.8); die vier Lizenzjobs werden daher global serialisiert, auch
-    # ueber gleichzeitige Workflow-Runs hinweg. Preflight- und Umgebungsjobs
-    # bleiben davon unberuehrt.
+    # Terms §2.8). Die vier Lizenzjobs sind zusaetzlich per needs-Kette strikt
+    # nacheinander geschaltet, weil GitHub pro Concurrency-Gruppe nur einen
+    # laufenden und einen wartenden Job zulaesst und weitere Jobs verwirft;
+    # die Gruppe schuetzt den Seat zusaetzlich run-uebergreifend.
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
