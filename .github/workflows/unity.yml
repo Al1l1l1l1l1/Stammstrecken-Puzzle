@@ -1,0 +1,720 @@
+# Unity CI (WP-021)
+#
+# Unity-Nachweis-Workflow für das Produktionsscaffold gemäß
+# ARCHITECTURE/BUILD_AND_RELEASE.md Abschnitt 5 und 6 sowie
+# ARCHITECTURE/TEST_STRATEGY.md Abschnitt 11.
+#
+# - project-preflight läuft immer: autoritative Unity-Versionspin-Prüfung,
+#   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normativen
+#   Tabellen aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion)
+#   und Abschnitt 4 (Tests) sowie Skelett-Konventionsprüfungen. Das ist ein
+#   echter, ausgeführter Check.
+# - unity-environment-linux/-android/-ios laufen immer und ohne Secrets: Sie
+#   weisen die Runnerbereitschaft ausgeführt nach (Editor-Headless-Start bis
+#   zur erwarteten Lizenzprüfung, Android-Toolchain-Pfade, Xcode-26+-Auswahl
+#   mit iOS-SDK, Lizenz-Client-Aufrufbarkeit). Sie behaupten keinen Compile-,
+#   Test- oder Buildnachweis.
+# - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode inkl. Coverage,
+#   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
+#   laufen erst, wenn die Unity-Personal-Aktivierung und reproduzierbare Runner
+#   konfiguriert sind (secrets.UNITY_EMAIL und secrets.UNITY_PASSWORD für die
+#   Aktivierung per "Unity.Licensing.Client --activate-all --include-personal"
+#   sowie vars.UNITY_RUNNERS_READY = "true"). Ohne diese Konfiguration schlägt
+#   der unity-evidence-guard fail-closed fehl und meldet den Befund
+#   NOT_EXECUTED/BLOCKED wahrheitsgemäß; kein Job täuscht einen erfolgreichen
+#   Unity-Nachweis vor.
+# - Ein Personal-Seat erlaubt nur eine Instanz gleichzeitig (Unity Editor
+#   Terms §2.8). Die vier Lizenzjobs sind per needs-Kette strikt nacheinander
+#   geschaltet (GitHub lässt pro Concurrency-Gruppe nur einen laufenden und
+#   einen wartenden Job zu und verwirft weitere); die Concurrency-Gruppe
+#   schützt den Seat zusätzlich run-übergreifend. Jeder Lizenzjob gibt den
+#   Seat nach Laufende best-effort frei.
+# - Runnerbilder gemäß BUILD_AND_RELEASE.md Abschnitt 6 ("Container oder
+#   reproduzierbares Runnerimage"): Linux/Android laufen in per Tag und Digest
+#   gepinnten unityci/editor-Containern der exakten Editorversion
+#   (6000.3.23f1; unityci-Release 3.2.2); iOS läuft auf macos-15 mit per
+#   Changeset 09d2ecc7fb28 gepinntem Unity-Hub-Install und expliziter
+#   Xcode-26+-Auswahl. Das große Android-Image überschreitet die freie SSD der
+#   Standard-Runner (~14 GB); die Android-Jobs bereinigen daher zuerst
+#   ungenutzte vorinstallierte Toolchains und führen das Image per explizitem
+#   docker run aus (Job-Container würden vor jedem Schritt pullen).
+# - Alle Actions sind per vollständigem Commit-SHA gepinnt; Permissions folgen
+#   Least Privilege (contents: read). Keine Secrets im Repository.
+
+name: Unity CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  STP_UNITY_VERSION: 6000.3.23f1
+  STP_UNITY_CHANGESET: 09d2ecc7fb28
+
+jobs:
+  project-preflight:
+    name: project-preflight
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Repository mit vollständiger Historie auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: CPython 3.11.13 einrichten
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11.13"
+
+      - name: Unity-Versionspin und Projektartefakte prüfen
+        run: |
+          set -euo pipefail
+          grep -q "^m_EditorVersion: ${STP_UNITY_VERSION}$" ProjectSettings/ProjectVersion.txt
+          test -f Packages/manifest.json
+          test -f Packages/packages-lock.json
+          test -f Toolchain.lock.md
+          test -f Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity
+          test -f Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.meta
+          echo "Unity-Versionspin ${STP_UNITY_VERSION} und Pflichtartefakte vorhanden."
+
+      - name: Statischer Modulgraph-Check der realen .asmdef-Dateien
+        run: |
+          python3 - <<'PYEOF'
+          import json, pathlib, sys
+
+          root = pathlib.Path(".")
+          # Spiegel der einzigen normativen Tabellen aus
+          # ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion) und
+          # Abschnitt 4 (Testassemblies), Stand Architecture v1.0 inkl. WP-010.
+          expected = {
+              "STP.Puzzle.Domain": set(),
+              "STP.Puzzle.Solver": {"STP.Puzzle.Domain"},
+              "STP.Application": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
+              "STP.Infrastructure.Content": {"STP.Application", "STP.Puzzle.Domain"},
+              "STP.Infrastructure.Persistence": {"STP.Application", "STP.Puzzle.Domain"},
+              "STP.MobileServices.Google": {"STP.Application"},
+              "STP.MobileServices.Store": {"STP.Application"},
+              "STP.Platform": {"STP.Application"},
+              "STP.Audio": {"STP.Application"},
+              "STP.Presentation.UI": {"STP.Application", "STP.Puzzle.Domain"},
+              "STP.Presentation.World": {"STP.Application", "STP.Puzzle.Domain"},
+              "STP.Bootstrap": {
+                  "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
+                  "STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform",
+                  "STP.Audio", "STP.Presentation.UI", "STP.Presentation.World",
+              },
+              "STP.Editor.Content": {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Infrastructure.Content"},
+              "STP.Editor.Build": {"STP.Bootstrap"},
+          }
+          # Interne Referenzen der neun Testassemblies (Abschnitt 4); die
+          # Unity-Testrunner-Referenzen werden separat geprüft.
+          test_expected = {
+              "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
+              "STP.Tests.Solver.EditMode": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
+              "STP.Tests.Application.EditMode": {"STP.Application"},
+              "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
+              "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Editor.Content"},
+              "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
+              "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
+              "STP.Tests.Bootstrap.PlayMode": {
+                  "STP.Bootstrap", "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
+                  "STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform",
+                  "STP.Audio", "STP.Presentation.UI", "STP.Presentation.World",
+              },
+              "STP.Tests.Device": {"STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform"},
+          }
+          pure = {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Application"}
+          editors = {"STP.Editor.Content", "STP.Editor.Build"}
+          editmode_tests = {name for name in test_expected if name.endswith(".EditMode")}
+          test_runner_refs = {"UnityEngine.TestRunner", "UnityEditor.TestRunner"}
+
+          errors = []
+          found = {}
+          for asmdef in sorted(root.glob("Assets/**/*.asmdef")):
+              data = json.loads(asmdef.read_text(encoding="utf-8"))
+              name = data.get("name")
+              if name in found:
+                  errors.append(f"duplicate-assembly:{name}")
+              found[name] = (asmdef, data)
+
+          all_expected = set(expected) | set(test_expected)
+          if set(found) != all_expected:
+              errors.append(f"assembly-set: fehlen={sorted(all_expected - set(found))} unbekannt={sorted(set(found) - all_expected)}")
+
+          for name, (path, data) in sorted(found.items()):
+              refs = set(data.get("references", []))
+              if name in expected:
+                  if refs != expected[name]:
+                      errors.append(f"references:{name}: erwartet={sorted(expected[name])} tatsaechlich={sorted(refs)}")
+              elif name in test_expected:
+                  internal = refs - test_runner_refs
+                  if internal != test_expected[name]:
+                      errors.append(f"test-references:{name}: erwartet={sorted(test_expected[name])} tatsaechlich={sorted(internal)}")
+                  if not test_runner_refs.issubset(refs):
+                      errors.append(f"test-runner-references:{name}")
+                  if data.get("overrideReferences") is not True:
+                      errors.append(f"test-override-references:{name}")
+                  if "nunit.framework.dll" not in data.get("precompiledReferences", []):
+                      errors.append(f"test-nunit-reference:{name}")
+                  if "UNITY_INCLUDE_TESTS" not in data.get("defineConstraints", []):
+                      errors.append(f"test-define-constraint:{name}")
+                  if data.get("autoReferenced") is not False:
+                      errors.append(f"test-auto-referenced:{name}")
+              if name in pure and data.get("noEngineReferences") is not True:
+                  errors.append(f"no-engine-references:{name}")
+              if name not in pure and data.get("noEngineReferences") is True:
+                  errors.append(f"unexpected-no-engine-references:{name}")
+              if name in editors or name in editmode_tests:
+                  if data.get("includePlatforms") != ["Editor"]:
+                      errors.append(f"editor-platforms:{name}")
+              elif data.get("includePlatforms") not in (None, []):
+                  errors.append(f"unexpected-platforms:{name}")
+
+          # Azyklizitaet des internen Produktionsgraphen
+          edges = {name: expected[name] for name in expected if name in found}
+          visiting, visited = set(), set()
+          def visit(node):
+              if node in visited:
+                  return False
+              if node in visiting:
+                  return True
+              visiting.add(node)
+              cycle = any(visit(target) for target in edges.get(node, set()) if target in edges)
+              visiting.discard(node)
+              visited.add(node)
+              return cycle
+          if any(visit(node) for node in sorted(edges)):
+              errors.append("assembly-cycle")
+
+          # Keine Assembly darf eine Testassembly referenzieren (Tests sind Blaetter).
+          for name, (path, data) in sorted(found.items()):
+              if any(ref in test_expected for ref in data.get("references", [])):
+                  errors.append(f"test-assembly-referenced:{name}")
+
+          # Skelett-Konventionen: Nullable und Warnungen-als-Fehler pro Assembly.
+          for name, (path, data) in sorted(found.items()):
+              rsp = path.parent / "csc.rsp"
+              if not rsp.is_file():
+                  errors.append(f"csc-rsp-missing:{name}")
+              else:
+                  content = rsp.read_text(encoding="utf-8")
+                  if "-nullable:enable" not in content or "-warnaserror+" not in content:
+                      errors.append(f"csc-rsp-content:{name}")
+              meta = pathlib.Path(str(path) + ".meta")
+              if not meta.is_file():
+                  errors.append(f"asmdef-meta-missing:{name}")
+
+          # Verbotene Bereiche in Skeletten (stichprobenartige Guardrails).
+          banned_tokens = ("PlayerPrefs", "Resources.Load", "ServiceLocator")
+          for cs in sorted(root.glob("Assets/**/*.cs")):
+              text = cs.read_text(encoding="utf-8")
+              for token in banned_tokens:
+                  if token in text:
+                      errors.append(f"banned-token:{cs}:{token}")
+
+          if errors:
+              for item in errors:
+                  print(f"FAIL {item}")
+              sys.exit(1)
+          print(f"MODULGRAPH PASS: {len(expected)} Produktions- und {len(test_expected)} Testassemblies, Allowlists exakt, Graph azyklisch, noEngineReferences und Testkonfiguration korrekt.")
+          PYEOF
+
+  unity-config:
+    name: unity-config
+    runs-on: ubuntu-24.04
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - name: Unity-Zugangsdaten und Runner-Konfiguration prüfen
+        id: check
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_RUNNERS_READY: ${{ vars.UNITY_RUNNERS_READY }}
+        run: |
+          set -euo pipefail
+          ready="false"
+          if [ -n "${UNITY_EMAIL}" ] && [ -n "${UNITY_PASSWORD}" ] && [ "${UNITY_RUNNERS_READY}" = "true" ]; then
+            ready="true"
+          fi
+          echo "ready=${ready}" >> "${GITHUB_OUTPUT}"
+
+  unity-evidence-guard:
+    name: unity-evidence-guard
+    needs: [project-preflight, unity-config]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Wahrheitsgemäßer Unity-Nachweisstatus
+        if: needs.unity-config.outputs.ready != 'true'
+        run: |
+          echo "NOT_EXECUTED/BLOCKED unity-compile: Unity-Zugangsdaten (secrets.UNITY_EMAIL/UNITY_PASSWORD) oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED unity-editmode: Unity-Zugangsdaten oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED bootstrap-playmode-smoke: Unity-Zugangsdaten oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED android-development-il2cpp: Unity-Zugangsdaten oder reproduzierbarer Android-Build-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED ios-export-compile: Unity-Zugangsdaten oder macOS-Runner mit Xcode 26+ nicht konfiguriert."
+          echo "WP-021 kann ohne diese Nachweise nicht abgeschlossen werden. Es wird kein erfolgreicher Unity-Nachweis vorgetaeuscht."
+          exit 1
+      - name: Unity-Nachweiskonfiguration vorhanden
+        if: needs.unity-config.outputs.ready == 'true'
+        run: echo "Unity-Zugangsdaten und Runner sind konfiguriert; die Unity-Nachweisjobs dieses Workflows sind der verbindliche Nachweis."
+
+  unity-environment-linux:
+    name: unity-environment-linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
+    steps:
+      - name: Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen
+        run: |
+          set -euo pipefail
+          unity-editor -version
+          PROBE_DIR=/tmp/stp-editor-probe
+          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+          set +e
+          unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          code=$?
+          set -e
+          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+          test "${code}" -ne 0
+          grep -qi "licen" "${PROBE_DIR}/editor.log"
+          rm -rf "${PROBE_DIR}"
+          echo "ENVIRONMENT PASS linux-base: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
+
+      - name: Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)
+        run: |
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          test -x "${LIC_CLIENT}"
+          "${LIC_CLIENT}" --version
+          set +e
+          OUT="$("${LIC_CLIENT}" --username "ci-readiness-dummy@example.com" --password "ci-readiness-dummy" --activate-all --include-personal 2>&1)"
+          code=$?
+          set -e
+          printf '%s\n' "${OUT}" | head -20
+          test "${code}" -ne 0
+          if printf '%s' "${OUT}" | grep -qiE "unknown option|parse error|missing required|usage:"; then
+            echo "ENVIRONMENT FAIL licensing-api: CLI-Aufruf selbst fehlerhaft (kein Authentifizierungsfehler)."
+            exit 1
+          fi
+          printf '%s' "${OUT}" | grep -qiE "licen|credential|unauthor|authentic|invalid|forbidden|401"
+          echo "ENVIRONMENT PASS licensing-api: Lizenzserver erreichbar; Aktivierung scheitert erwartungsgemäß nur an fehlenden Zugangsdaten (Exitcode ${code})."
+
+  unity-environment-android:
+    name: unity-environment-android
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Speicherplatz für das Unity-Android-Image freigeben
+        run: |
+          set -euo pipefail
+          df -h /
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/powershell /usr/share/swift /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)
+        run: docker pull "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28"
+
+      - name: Editor-Start und Android-Toolchain im Container prüfen
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
+            bash -c '
+              set -euo pipefail
+              unity-editor -version
+              PROBE_DIR=/tmp/stp-editor-probe
+              mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+              set +e
+              unity-editor -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+              code=$?
+              set -e
+              grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+              test "${code}" -ne 0
+              grep -qi "licen" "${PROBE_DIR}/editor.log"
+              AP=/opt/unity/Editor/Data/PlaybackEngines/AndroidPlayer
+              test -d "${AP}/SDK"
+              test -d "${AP}/NDK"
+              test -d "${AP}/OpenJDK"
+              grep "Pkg.Revision" "${AP}/NDK/source.properties"
+              ls "${AP}/SDK/platforms"
+              ls "${AP}/SDK/build-tools"
+              test -d /opt/unity/Editor/Data/il2cpp
+              LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+              test -x "${LIC_CLIENT}"
+              "${LIC_CLIENT}" --version
+              rm -rf "${PROBE_DIR}"
+              echo "ENVIRONMENT PASS linux-android: Editor startet headless bis zur Lizenzprüfung (Exitcode ${code}); SDK/NDK/OpenJDK, IL2CPP und Lizenz-Client vorhanden."
+            '
+
+  unity-environment-ios:
+    name: unity-environment-ios
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - name: Unity-Editor-Installation aus Cache wiederherstellen
+        id: cache-unity
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: /Applications/Unity/Hub/Editor/6000.3.23f1
+          key: unity-editor-macos15-6000.3.23f1-ios-v1
+          save-always: true
+
+      - name: Unity Hub installieren
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: brew install --cask unity-hub
+
+      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
+            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
+            --module ios --architecture arm64
+          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+
+      - name: Editor-Version prüfen (direkter Bundle-Pfad)
+        run: |
+          set -euo pipefail
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" -version
+
+      - name: Editor-Headless-Start bis zur Lizenzprüfung prüfen
+        run: |
+          set -euo pipefail
+          PROBE_DIR="${RUNNER_TEMP}/stp-editor-probe"
+          mkdir -p "${PROBE_DIR}/Assets" "${PROBE_DIR}/ProjectSettings"
+          set +e
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
+            -batchmode -nographics -projectPath "${PROBE_DIR}" -quit -logFile "${PROBE_DIR}/editor.log"
+          code=$?
+          set -e
+          grep -i "licen" "${PROBE_DIR}/editor.log" | head -5
+          test "${code}" -ne 0
+          grep -qi "licen" "${PROBE_DIR}/editor.log"
+          rm -rf "${PROBE_DIR}"
+          echo "ENVIRONMENT PASS macos-editor: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
+
+      - name: Xcode 26+ auswählen und iOS-SDK prüfen
+        run: |
+          set -euo pipefail
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sed 's/\.app$//' \
+            | awk -F'_' '{n=split($2,v,"."); printf "%d %d %d %s.app\n", v[1], (n>1?v[2]:0), (n>2?v[3]:0), $0}' \
+            | sort -k1,1n -k2,2n -k3,3n | tail -n 1 | cut -d' ' -f4-)"
+          XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
+          if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
+            echo "ENVIRONMENT FAIL xcode: Neuester installierter Xcode ist ${XCODE_APP}, benötigt wird 26+."
+            exit 1
+          fi
+          sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
+          xcodebuild -version
+          xcodebuild -showsdks | grep "iphoneos"
+          echo "ENVIRONMENT PASS xcode: ${XCODE_APP} mit iOS-SDK ausgewählt."
+
+      - name: Lizenz-Client auf macOS vorhanden und aufrufbar
+        run: |
+          set -euo pipefail
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          test -x "${LIC_CLIENT}"
+          "${LIC_CLIENT}" --version
+          echo "ENVIRONMENT PASS macos-licensing-client: Unity.Licensing.Client vorhanden."
+
+  unity-compile-editmode:
+    name: unity-compile-editmode
+    needs: [project-preflight, unity-config]
+    if: needs.unity-config.outputs.ready == 'true'
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-6000.3.23f1-
+
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
+
+      - name: Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage
+        run: |
+          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+            -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
+            -quit -logFile -
+          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+            -runTests -testPlatform EditMode -testResults TestResults/editmode.xml \
+            -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
+            -logFile -
+
+      - name: Coverage-Baseline je Assembly ausgeben
+        if: always()
+        run: |
+          set -euo pipefail
+          find TestResults/Coverage -maxdepth 3 -type f | head -30 || true
+          python3 - <<'PYEOF'
+          import pathlib, re
+          hits = []
+          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("*")):
+              if path.is_file() and path.suffix.lower() in (".xml", ".htm", ".html"):
+                  text = path.read_text(encoding="utf-8", errors="replace")
+                  if "STP." in text:
+                      hits.append(path)
+          for path in hits[:6]:
+              print(f"--- {path} ---")
+              for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+                  if "STP." in line and ("%" in line or "coverage" in line.lower()):
+                      print(re.sub(r"<[^>]+>", " ", line).strip()[:220])
+          PYEOF
+
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
+
+      - name: Testergebnisse archivieren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: editmode-results
+          path: TestResults/
+
+  unity-playmode-bootstrap-smoke:
+    name: unity-playmode-bootstrap-smoke
+    needs: [project-preflight, unity-config, unity-compile-editmode]
+    if: needs.unity-config.outputs.ready == 'true'
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    container:
+      image: unityci/editor:ubuntu-6000.3.23f1-base-3.2.2@sha256:11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-6000.3.23f1-
+
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
+
+      - name: BootstrapCompositionSmoke (PlayMode, QA-Szene)
+        run: |
+          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+            -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
+            -logFile -
+
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
+
+      - name: Testergebnisse archivieren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playmode-results
+          path: TestResults/
+
+  unity-android-development-il2cpp:
+    name: unity-android-development-il2cpp
+    needs: [project-preflight, unity-config, unity-playmode-bootstrap-smoke]
+    if: needs.unity-config.outputs.ready == 'true'
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Speicherplatz für das Unity-Android-Image freigeben
+        run: |
+          set -euo pipefail
+          df -h /
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/powershell /usr/share/swift /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)
+        run: docker pull "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28"
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-linux-android-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-linux-android-6000.3.23f1-
+
+      - name: Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          docker run --rm \
+            -v "${GITHUB_WORKSPACE}:${GITHUB_WORKSPACE}" \
+            -w "${GITHUB_WORKSPACE}" \
+            -e UNITY_EMAIL -e UNITY_PASSWORD \
+            -e STP_PROJECT_PATH="${GITHUB_WORKSPACE}" \
+            "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
+            bash -c '
+              set -euo pipefail
+              LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+              deactivate() { "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true; }
+              trap deactivate EXIT
+              "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+              "${LIC_CLIENT}" --showEntitlements
+              unity-editor -batchmode -nographics -projectPath "${STP_PROJECT_PATH}" \
+                -buildTarget android \
+                -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
+                -quit -logFile -
+            '
+
+      - name: Android-Buildartefakt archivieren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: android-development-il2cpp
+          path: Builds/Android/
+
+  unity-ios-export:
+    name: unity-ios-export
+    needs: [project-preflight, unity-config, unity-android-development-il2cpp]
+    if: needs.unity-config.outputs.ready == 'true'
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    runs-on: macos-15
+    timeout-minutes: 180
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Unity-Editor-Installation aus Cache wiederherstellen
+        id: cache-unity
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: /Applications/Unity/Hub/Editor/6000.3.23f1
+          key: unity-editor-macos15-6000.3.23f1-ios-v1
+          save-always: true
+
+      - name: Unity Hub installieren
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: brew install --cask unity-hub
+
+      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
+        if: steps.cache-unity.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
+            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
+            --module ios --architecture arm64
+          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+
+      - name: Editor-Version prüfen (direkter Bundle-Pfad)
+        run: |
+          set -euo pipefail
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" -version
+
+      - name: Unity-Library aus Cache wiederherstellen
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: Library
+          key: Library-macos-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-macos-6000.3.23f1-
+
+      - name: Xcode 26+ auswählen und iOS-SDK prüfen
+        run: |
+          set -euo pipefail
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sed 's/\.app$//' \
+            | awk -F'_' '{n=split($2,v,"."); printf "%d %d %d %s.app\n", v[1], (n>1?v[2]:0), (n>2?v[3]:0), $0}' \
+            | sort -k1,1n -k2,2n -k3,3n | tail -n 1 | cut -d' ' -f4-)"
+          XC_MAJOR="$(basename "${XCODE_APP}" | sed -n 's/^Xcode_\([0-9][0-9]*\)\..*$/\1/p')"
+          if [ -z "${XC_MAJOR}" ] || [ "${XC_MAJOR}" -lt 26 ]; then
+            echo "Kein Xcode 26+ auf dem macos-15-Runner gefunden (neuestes: ${XCODE_APP})."
+            exit 1
+          fi
+          sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
+          xcodebuild -version
+
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
+
+      - name: iOS-Xcodeprojekt exportieren und kompilieren
+        run: |
+          "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
+            -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+            -buildTarget ios \
+            -executeMethod STP.Editor.Build.StpBuildEntrypoints.ExportIosXcodeProjectIl2Cpp \
+            -quit -logFile -
+          xcodebuild -project Builds/iOS/Xcode/Unity-iPhone.xcodeproj \
+            -scheme Unity-iPhone -configuration Release \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO build
+
+      - name: Unity-Personal-Seat freigeben (best effort)
+        if: always()
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
