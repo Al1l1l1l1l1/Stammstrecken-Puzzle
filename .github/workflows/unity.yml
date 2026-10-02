@@ -15,8 +15,12 @@
 #   mit iOS-SDK). Sie behaupten keinen Compile-, Test- oder Buildnachweis.
 # - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode,
 #   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
-#   laufen erst, wenn Unity-Lizenz und reproduzierbare Runner konfiguriert sind
-#   (secrets.UNITY_LICENSE und vars.UNITY_RUNNERS_READY = "true"). Ohne diese
+#   laufen erst, wenn die Unity-Personal-Aktivierung und reproduzierbare Runner
+#   konfiguriert sind (secrets.UNITY_EMAIL und secrets.UNITY_PASSWORD fuer die
+#   Aktivierung per "Unity.Licensing.Client --activate-all --include-personal"
+#   sowie vars.UNITY_RUNNERS_READY = "true"). Der manuelle ULF-/ALF-Weg wird
+#   von Unity fuer Personal-Lizenzen nicht mehr unterstuetzt (Unity-6000.3-
+#   Doku "Manual license activation"; Licensing Client 1.18.3). Ohne diese
 #   Konfiguration schlaegt der unity-evidence-guard fail-closed fehl und meldet
 #   den Befund NOT_EXECUTED/BLOCKED wahrheitsgemaess; kein Job tauscht einen
 #   erfolgreichen Unity-Nachweis vor.
@@ -229,15 +233,16 @@ jobs:
     outputs:
       ready: ${{ steps.check.outputs.ready }}
     steps:
-      - name: Unity-Lizenz und Runner-Konfiguration prüfen
+      - name: Unity-Zugangsdaten und Runner-Konfiguration prüfen
         id: check
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_RUNNERS_READY: ${{ vars.UNITY_RUNNERS_READY }}
         run: |
           set -euo pipefail
           ready="false"
-          if [ -n "${UNITY_LICENSE}" ] && [ "${UNITY_RUNNERS_READY}" = "true" ]; then
+          if [ -n "${UNITY_EMAIL}" ] && [ -n "${UNITY_PASSWORD}" ] && [ "${UNITY_RUNNERS_READY}" = "true" ]; then
             ready="true"
           fi
           echo "ready=${ready}" >> "${GITHUB_OUTPUT}"
@@ -250,11 +255,11 @@ jobs:
       - name: Wahrheitsgemäßer Unity-Nachweisstatus
         if: needs.unity-config.outputs.ready != 'true'
         run: |
-          echo "NOT_EXECUTED/BLOCKED unity-compile: Unity-Lizenz (secret UNITY_LICENSE) oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
-          echo "NOT_EXECUTED/BLOCKED unity-editmode: Unity-Lizenz oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
-          echo "NOT_EXECUTED/BLOCKED bootstrap-playmode-smoke: Unity-Lizenz oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
-          echo "NOT_EXECUTED/BLOCKED android-development-il2cpp: Unity-Lizenz oder reproduzierbarer Android-Build-Runner nicht konfiguriert."
-          echo "NOT_EXECUTED/BLOCKED ios-export-compile: macOS-Runner mit Xcode 26+ nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED unity-compile: Unity-Zugangsdaten (secrets.UNITY_EMAIL/UNITY_PASSWORD) oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED unity-editmode: Unity-Zugangsdaten oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED bootstrap-playmode-smoke: Unity-Zugangsdaten oder reproduzierbarer Linux-Unity-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED android-development-il2cpp: Unity-Zugangsdaten oder reproduzierbarer Android-Build-Runner nicht konfiguriert."
+          echo "NOT_EXECUTED/BLOCKED ios-export-compile: Unity-Zugangsdaten oder macOS-Runner mit Xcode 26+ nicht konfiguriert."
           echo "WP-008 kann ohne diese Nachweise nicht abgeschlossen werden. Es wird kein erfolgreicher Unity-Nachweis vorgetaeuscht."
           exit 1
       - name: Unity-Nachweiskonfiguration vorhanden
@@ -283,6 +288,25 @@ jobs:
           grep -qi "licen" "${PROBE_DIR}/editor.log"
           rm -rf "${PROBE_DIR}"
           echo "ENVIRONMENT PASS linux-base: Unity ${STP_UNITY_VERSION} startet headless und stoppt erwartungsgemäß an der Lizenzprüfung (Exitcode ${code})."
+
+      - name: Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)
+        run: |
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          test -x "${LIC_CLIENT}"
+          "${LIC_CLIENT}" --version
+          set +e
+          OUT="$("${LIC_CLIENT}" --username "ci-readiness-dummy@example.com" --password "ci-readiness-dummy" --activate-all --include-personal 2>&1)"
+          code=$?
+          set -e
+          printf '%s\n' "${OUT}" | head -20
+          test "${code}" -ne 0
+          if printf '%s' "${OUT}" | grep -qiE "unknown option|parse error|missing required|usage:"; then
+            echo "ENVIRONMENT FAIL licensing-api: CLI-Aufruf selbst fehlerhaft (kein Authentifizierungsfehler)."
+            exit 1
+          fi
+          printf '%s' "${OUT}" | grep -qiE "licen|credential|unauthor|authentic|invalid|forbidden|401"
+          echo "ENVIRONMENT PASS licensing-api: Lizenzserver erreichbar; Aktivierung scheitert erwartungsgemäß nur an fehlenden Zugangsdaten (Exitcode ${code})."
 
   unity-environment-android:
     name: unity-environment-android
@@ -324,7 +348,10 @@ jobs:
               ls "${AP}/SDK/platforms"
               ls "${AP}/SDK/build-tools"
               test -d /opt/unity/Editor/Data/il2cpp
-              echo "ENVIRONMENT PASS linux-android: Editor startet headless bis zur Lizenzprüfung (Exitcode ${code}); SDK/NDK/OpenJDK und IL2CPP vorhanden."
+              LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+              test -x "${LIC_CLIENT}"
+              "${LIC_CLIENT}" --version
+              echo "ENVIRONMENT PASS linux-android: Editor startet headless bis zur Lizenzprüfung (Exitcode ${code}); SDK/NDK/OpenJDK, IL2CPP und Lizenz-Client vorhanden."
             '
 
   unity-environment-ios:
@@ -393,6 +420,14 @@ jobs:
           xcodebuild -showsdks | grep "iphoneos"
           echo "ENVIRONMENT PASS xcode: ${XCODE_APP} mit iOS-SDK ausgewählt."
 
+      - name: Lizenz-Client auf macOS vorhanden und aufrufbar
+        run: |
+          set -euo pipefail
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          test -x "${LIC_CLIENT}"
+          "${LIC_CLIENT}" --version
+          echo "ENVIRONMENT PASS macos-licensing-client: Unity.Licensing.Client vorhanden."
+
   unity-compile-editmode:
     name: unity-compile-editmode
     needs: [project-preflight, unity-config]
@@ -412,26 +447,24 @@ jobs:
           key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-6000.3.23f1-
 
-      - name: Unity-Lizenz bereitstellen
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         run: |
-          printf '%s' "${UNITY_LICENSE}" > /tmp/unity-license.ulf
-          chmod 600 /tmp/unity-license.ulf
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
 
       - name: Editorversion verifizieren und Projekt kompilieren
         run: |
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -manualLicenseFile /tmp/unity-license.ulf \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
             -quit -logFile -
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform EditMode -testResults TestResults/editmode.xml \
             -logFile -
-
-      - name: Unity-Lizenz entfernen
-        if: always()
-        run: rm -f /tmp/unity-license.ulf
 
       - name: Testergebnisse archivieren
         if: always()
@@ -459,23 +492,21 @@ jobs:
           key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-6000.3.23f1-
 
-      - name: Unity-Lizenz bereitstellen
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         run: |
-          printf '%s' "${UNITY_LICENSE}" > /tmp/unity-license.ulf
-          chmod 600 /tmp/unity-license.ulf
+          set -euo pipefail
+          LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
 
       - name: BootstrapCompositionSmoke (PlayMode, QA-Szene)
         run: |
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -manualLicenseFile /tmp/unity-license.ulf \
             -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
             -logFile -
-
-      - name: Unity-Lizenz entfernen
-        if: always()
-        run: rm -f /tmp/unity-license.ulf
 
       - name: Testergebnisse archivieren
         if: always()
@@ -511,29 +542,27 @@ jobs:
           key: Library-linux-android-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-android-6000.3.23f1-
 
-      - name: Unity-Lizenz bereitstellen
+      - name: Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        run: |
-          printf '%s' "${UNITY_LICENSE}" > "${RUNNER_TEMP}/unity-license.ulf"
-          chmod 600 "${RUNNER_TEMP}/unity-license.ulf"
-
-      - name: Android-Development-IL2CPP-Build
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         run: |
           docker run --rm \
             -v "${GITHUB_WORKSPACE}:${GITHUB_WORKSPACE}" \
-            -v "${RUNNER_TEMP}:/tmp/stp-tmp" \
             -w "${GITHUB_WORKSPACE}" \
+            -e UNITY_EMAIL -e UNITY_PASSWORD \
+            -e STP_PROJECT_PATH="${GITHUB_WORKSPACE}" \
             "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
-            unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-              -manualLicenseFile /tmp/stp-tmp/unity-license.ulf \
-              -buildTarget android \
-              -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
-              -quit -logFile -
-
-      - name: Unity-Lizenz entfernen
-        if: always()
-        run: rm -f "${RUNNER_TEMP}/unity-license.ulf"
+            bash -c '
+              set -euo pipefail
+              LIC_CLIENT=/opt/unity/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client
+              "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+              "${LIC_CLIENT}" --showEntitlements
+              unity-editor -batchmode -nographics -projectPath "${STP_PROJECT_PATH}" \
+                -buildTarget android \
+                -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
+                -quit -logFile -
+            '
 
       - name: Android-Buildartefakt archivieren
         if: always()
@@ -602,18 +631,20 @@ jobs:
           sudo xcode-select --switch "${XCODE_APP}/Contents/Developer"
           xcodebuild -version
 
-      - name: Unity-Lizenz bereitstellen
+      - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         run: |
-          printf '%s' "${UNITY_LICENSE}" > /tmp/unity-license.ulf
-          chmod 600 /tmp/unity-license.ulf
+          set -euo pipefail
+          LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
+          "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
+          "${LIC_CLIENT}" --showEntitlements
 
       - name: iOS-Xcodeprojekt exportieren und kompilieren
         run: |
           "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
             -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -manualLicenseFile /tmp/unity-license.ulf \
             -buildTarget ios \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.ExportIosXcodeProjectIl2Cpp \
             -quit -logFile -
@@ -621,7 +652,3 @@ jobs:
             -scheme Unity-iPhone -configuration Release \
             -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO build
-
-      - name: Unity-Lizenz entfernen
-        if: always()
-        run: rm -f /tmp/unity-license.ulf
