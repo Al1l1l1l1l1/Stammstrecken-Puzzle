@@ -484,7 +484,7 @@ jobs:
 
       - name: Testergebnisse archivieren
         if: always()
-        uses: actions/upload-artifact@bbbca2ddaa2d68b232a9cfa0e3d4fba2b29c5ee8 # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: editmode-results
           path: TestResults/
@@ -542,7 +542,7 @@ jobs:
 
       - name: Testergebnisse archivieren
         if: always()
-        uses: actions/upload-artifact@bbbca2ddaa2d68b232a9cfa0e3d4fba2b29c5ee8 # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: playmode-results
           path: TestResults/
@@ -607,7 +607,7 @@ jobs:
 
       - name: Android-Buildartefakt archivieren
         if: always()
-        uses: actions/upload-artifact@bbbca2ddaa2d68b232a9cfa0e3d4fba2b29c5ee8 # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: android-development-il2cpp
           path: Builds/Android/
