@@ -455,6 +455,11 @@ jobs:
           key: Library-linux-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-6000.3.23f1-
 
+      - name: Node.js 22.20.0 einrichten (JCS-Live-Crosscheck der EditMode-Tests)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.20.0"
+
       - name: Unity-Personal-Lizenz aktivieren (Unity Licensing Client)
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
