@@ -478,6 +478,10 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
+          if [ ! -d TestResults/Coverage ]; then
+            echo "Kein Coverage-Verzeichnis vorhanden (Testlauf nicht erfolgt oder Coverage deaktiviert)."
+            exit 0
+          fi
           find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
           import pathlib, xml.etree.ElementTree as ET
@@ -563,6 +567,10 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
+          if [ ! -d TestResults/Coverage ]; then
+            echo "Kein Coverage-Verzeichnis vorhanden (Testlauf nicht erfolgt oder Coverage deaktiviert)."
+            exit 0
+          fi
           find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
           import pathlib, xml.etree.ElementTree as ET
