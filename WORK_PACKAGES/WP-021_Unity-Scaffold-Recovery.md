@@ -179,8 +179,9 @@ Die Implementierung erfolgte vollständig neu aus dem aktuellen Architekturvertr
 |---|---|---|
 | `37069959561` | `75715da` | **Alle Jobs SUCCESS**: `Architecture Validation / validate` PASS, `project-preflight` PASS (statischer Modulgraph-Check), `unity-evidence-guard` PASS (ready-Pfad), drei Umgebungsjobs PASS, `unity-compile-editmode` PASS (`STP Preflight PASS`, EditMode Exit 0, OpenCover-Aufzeichnung), `unity-playmode-bootstrap-smoke` PASS (Exit 0), `unity-android-development-il2cpp` PASS (`STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (801174900 Bytes)`), `unity-ios-export` PASS (`STP Build PASS: iOS -> Builds/iOS/Xcode`, `** BUILD SUCCEEDED **` unter Xcode 26.3). Personal-Aktivierung in jedem Lizenzjob (`Activation processed successfully`, `Seat ID …-UnityPersonal`), Seat jeweils danach freigegeben. |
 | `37078237256` | `2e12c93` | **Alle Jobs SUCCESS** (Wiederholung nach Coverage-/Lock-Ergänzung; dieselben Nachweislinien). |
+| `37083860138` | `37eb49b` (workflow_dispatch, Negativprobe mit `UNITY_RUNNERS_READY=false`) | **Fail-closed belegt**: `unity-evidence-guard` **FAILURE** mit den fünf NOT_EXECUTED/BLOCKED-Zeilen; alle vier Lizenzjobs **SKIPPED**; `project-preflight` und die drei Umgebungsjobs PASS. Kein Job täuschte einen Nachweis vor. Die Variable wurde unmittelbar danach wieder auf `true` gesetzt. |
 
-Die Lizenzjobs liefen wegen der Ein-Instanz-Bedingung des Personal-Seats serialisiert (needs-Kette plus Concurrency-Gruppe).
+Die Lizenzjobs liefen wegen der Ein-Instanz-Bedingung des Personal-Seats serialisiert (needs-Kette plus Concurrency-Gruppe). Ein vorübergehender Aktivierungsfehler (`400 Bad Request` am Lizenzserver) trat einmalig bei überlappenden Läufen auf (Seat-Konkurrenz) und war im unmittelbar folgenden Lauf wieder fehlerfrei — das dokumentierte Fluktuationsrisiko des Personal-Seats; die fail-closed-Struktur machte den Befund sichtbar, ohne ihn zu verbergen.
 
 ### Coverage-Baseline (erste Messung, WP-021-eigener PlayMode-Lauf `37078237256`, OpenCover)
 
@@ -222,6 +223,6 @@ Wahrheitsgemäß: Es existiert kein physisches Referenzgerät und keine freigege
 | `AK-03` | Erfüllt | 14+9 Assemblies an den normierten Pfaden; exakte Referenzen; azyklisch; `noEngineReferences`; EditMode-Testassemblies Editor-only; statischer Check in CI `37069959561`/`37078237256` PASS. |
 | `AK-04` | Erfüllt | Kompilation fehlerfrei mit `-warnaserror+`; 15 Ports; `ApplicationComposition` fail-closed inkl. `BindProviders`-Doppelbindung; keine Guardrail-Tokens; MonoBehaviours ohne Fachlogik. |
 | `AK-05` | Erfüllt | QA-Szene + `BootstrapCompositionSmoke` 5/5 PASS lokal und in CI (PlayMode, Runs oben). |
-| `AK-06` | Erfüllt | CI-Nachweise commitgebunden (Runs `37069959561`, `37078237256`); `Architecture Validation / validate` mit WP-021-Manifest PASS; der `unity-evidence-guard` ist implementiert und gatet. |
+| `AK-06` | Erfüllt | CI-Nachweise commitgebunden (Runs `37069959561`, `37078237256`); `Architecture Validation / validate` mit WP-021-Manifest PASS; Guard-Fail-closed ausgeführt belegt (Run `37083860138`: FAILURE + SKIPPED ohne Secrets-Bereitschaft). |
 | `AK-07` | Erfüllt | Coverage-Baseline oben (realer PlayMode-Lauf); Mutationsstand wahrheitsgemäß dokumentiert; Gerätezustand wahrheitsgemäß dokumentiert. |
 | `AK-08` | Erfüllt | Diff nur Manifest-Pfade; `git diff --check` PASS; Secret-/Produktquellenprüfung PASS; keine Historienoperation aus archivierten Branches. |
