@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Verankert; Implementierung noch nicht begonnen.
+**Bearbeitungsstatus:** Implementierung und eigene Nachweise abgeschlossen; unabhängige Astra-/Sol-QC auf dem PR-Head ausstehend (Stand, Nachweise und Akzeptanzkriterien siehe Abschnitt „Umsetzung, Nachweise und Abschlussstand").
 
 ## Ziel
 
@@ -145,3 +145,83 @@ Jeder technische Zweck wird an den aktuellen Architekturvertrag gebunden, nicht 
 WP-021 und [`tools/architecture-validation/scopes/WP-021.production.scope.json`](../tools/architecture-validation/scopes/WP-021.production.scope.json) wurden gemeinsam im ersten Commit der Branch `feat/wp-021-unity-scaffold-recovery` eingeführt (Trust-Anchor-Commit `fc10c6141c7c720215f4f1f6670f87956baa346c`; beide Pfade mit Add-Status, im Elterncommit `e4f8cc1d0f0d0590fd7508992af464c0230ef314` nicht vorhanden). Der `baseCommit` des Manifests ist exakt dieser Elterncommit.
 
 **Verifikation (2026-10-02, lokaler kanonischer Lauf):** Der Production-Scope-Validator lud Work Package und Manifest aus genau diesem Ankercommit: `SCOPE_CONTEXT workPackage=WP-021 base=e4f8cc1d0f0d0590fd7508992af464c0230ef314 head=fc10c6141c7c720215f4f1f6670f87956baa346c worktreeDirty=false`, `LOCAL_SCOPE PASS` (gemeinsamer Add-Status, `baseCommit` korrekt, historischer Manifestlink im WP-Blob exakt aufgelöst, Manifestblob bytegleich). Der Anker wurde auf `feat/wp-021-unity-scaffold-recovery` gepusht und ist remote verifiziert. Das Manifest ist seit dem Ankercommit byteunverändert.
+
+## Umsetzung, Nachweise und Abschlussstand
+
+**Bearbeitungsstatus (2026-10-02):** Implementierung und eigene Nachweise abgeschlossen; unabhängige Astra-/Sol-QC auf dem PR-Head ausstehend.
+
+### Umsetzung
+
+Die Implementierung erfolgte vollständig neu aus dem aktuellen Architekturvertrag auf `main` (`e4f8cc1`): Unity-Projekt frisch mit der lokalen gepinnten Editorinstallation `6000.3.23f1` erzeugt und normalisiert; Modulgraph, Ports, Composition, Skelette, QA-Szene und Smoke aus `ARCHITECTURE/MODULE_BOUNDARIES.md` (Abschnitte 3, 4, 6, 7), ADR-018, `ARCHITECTURE/TECH_STACK.md`, `ARCHITECTURE/BUILD_AND_RELEASE.md` und `ARCHITECTURE/TEST_STRATEGY.md` implementiert. Es wurde **keine** Datei aus den archivierten Branches (`feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern`, `feat/wp-013-level-v2-pipeline`) oder aus `chore/ci-readiness-unity` gemergt, gecherry-picked, gerebased oder kopiert und keine PASS-Aussage daraus übernommen; alle Nachweise wurden auf dieser Branch erneut ausgeführt.
+
+| Commit | Inhalt |
+|---|---|
+| `fc10c61` | Trust-Anchor: Work Package und Production-Scope-Manifest gemeinsam eingeführt (ADR-030). |
+| `f2b694c` | `validate.yml`: Scope-Lauf auf das WP-021-Production-Manifest umgeschaltet. |
+| `ae75b22` | Unity-Projektbasis `6000.3.23f1` (ProjectSettings, Paketlocks, Toolchain.lock). |
+| `81ff049` | Normativer `.asmdef`-Modulgraph (14 Produktions-, 9 Testassemblies), 15 Ports, fail-closed `ApplicationComposition`, Skelette, `BootstrapComposition`, QA-Szene, `StpBuildEntrypoints`, `BootstrapCompositionSmoke`. |
+| `d7b7274` | Unity-CI (`unity.yml`) mit Personal-Aktivierung und serialisierten Nachweisjobs. |
+| `75715da` | Trailing-Whitespace in Unity-generierten Meta-/Asset-Dateien normalisiert (`git diff --check`). |
+| `456267c` | Trust-Anchor-Nachweis im Work Package dokumentiert. |
+| `2e12c93` | PlayMode-Coverage im Workflow; Toolchain.lock-Werte aus WP-021-eigenen CI-Läufen. |
+
+### Lokale Verifikation (Unity `6000.3.23f1`, 2026-10-02)
+
+| Nachweis | Ergebnis |
+|---|---|
+| Compile aller Assemblies | PASS (Import fehlerfrei, `-warnaserror+` aktiv) |
+| EditMode | Exit 0 (`Test run completed. Exiting with code 0`; 1 Addressables-Paketstub `DocExampleCode.TestStub`, keine Scaffold-eigenen EditMode-Tests) |
+| PlayMode | **5/5 PASS** (`QaScene_ComposesCompleteGraph_ExactlyOneBindingPerPort_NoProviderStart`, `Composition_RejectsNullPort_FailClosed`, `Composition_SecondBindProviders_FailsAsDoubleBinding`, `Composition_Get_UnboundPort_FailsWithoutFallback`, `Composition_Get_ProviderPort_BeforeBindProviders_FailsWithoutFallback`) |
+
+### CI-Nachweise auf `feat/wp-021-unity-scaffold-recovery`
+
+| Lauf | Commit | Ergebnis |
+|---|---|---|
+| `37069959561` | `75715da` | **Alle Jobs SUCCESS**: `Architecture Validation / validate` PASS, `project-preflight` PASS (statischer Modulgraph-Check), `unity-evidence-guard` PASS (ready-Pfad), drei Umgebungsjobs PASS, `unity-compile-editmode` PASS (`STP Preflight PASS`, EditMode Exit 0, OpenCover-Aufzeichnung), `unity-playmode-bootstrap-smoke` PASS (Exit 0), `unity-android-development-il2cpp` PASS (`STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (801174900 Bytes)`), `unity-ios-export` PASS (`STP Build PASS: iOS -> Builds/iOS/Xcode`, `** BUILD SUCCEEDED **` unter Xcode 26.3). Personal-Aktivierung in jedem Lizenzjob (`Activation processed successfully`, `Seat ID …-UnityPersonal`), Seat jeweils danach freigegeben. |
+| `37078237256` | `2e12c93` | **Alle Jobs SUCCESS** (Wiederholung nach Coverage-/Lock-Ergänzung; dieselben Nachweislinien). |
+
+Die Lizenzjobs liefen wegen der Ein-Instanz-Bedingung des Personal-Seats serialisiert (needs-Kette plus Concurrency-Gruppe).
+
+### Coverage-Baseline (erste Messung, WP-021-eigener PlayMode-Lauf `37078237256`, OpenCover)
+
+Sequenzpunkte besucht/gesamt (besucht: `_0001.xml`, gesamt: `_0000.xml`); Branchpunkte liegen im Skelett nicht vor (`0/0`).
+
+| Assembly | Sequenzpunkte | Methoden |
+|---|---|---|
+| `STP.Application` | 34/34 (**100,0 %**) | 8/8 |
+| `STP.Bootstrap` | 40/41 (**97,6 %**) | 14/15 |
+| `STP.Editor.Build` | 0/37 (**0,0 %** — Entrypoints werden nicht durch Tests, sondern durch die CI selbst ausgeführt) | 0/4 |
+| `STP.MobileServices.Google` | 1/5 (**20,0 %** — Skelett; `Initialize` bleibt bewusst ungestartet) | 1/3 |
+| `STP.MobileServices.Store` | 1/5 (**20,0 %** — Skelett; `Initialize` bleibt bewusst ungestartet) | 1/3 |
+| `STP.Tests.Bootstrap.PlayMode` | 67/67 (**100,0 %**) | 11/11 |
+| `STP.Puzzle.Domain`, `STP.Puzzle.Solver`, `STP.Infrastructure.Content`, `STP.Infrastructure.Persistence`, `STP.Platform`, `STP.Audio`, `STP.Presentation.UI`, `STP.Presentation.World`, `STP.Editor.Content` | keine Sequenzpunkte (typenlose Skelette) | — |
+
+**Mutationsstand (wahrheitsgemäß):** `STP.Puzzle.Domain` und `STP.Puzzle.Solver` enthalten keine Typen; es existieren keine Mutationsgegenstände. Die erste reale Mutationsbaseline wird mit WP-022 (Puzzle-Kern) erhoben. Die EditMode-Coverage des Scaffolds ist wahrheitsgemäß **0 %** (der Scaffold besitzt noch keine eigenen EditMode-Tests; die Composition wird im PlayMode-Smoke ausgeführt und ist dort gemessen).
+
+### Geräte-/Device-Farm-Zustand
+
+Wahrheitsgemäß: Es existiert kein physisches Referenzgerät und keine freigegebene Device-Farm. Ein physischer Gerätesmoke ist für WP-021 nicht erforderlich und bleibt **REQUIRED_LATER/NOT_EXECUTED**; Store-/SDK-Sandboxtests bleiben **REQUIRED_LATER/NOT_EXECUTED**.
+
+### Scope-, Diff- und Quellennachweise
+
+| Nachweis | Ergebnis |
+|---|---|
+| Production-Scope-Validator (`--self-test`, kanonischer Befehl) | `LOCAL_SCOPE PASS` gegen `WP-021.production.scope.json` |
+| Architecture-only-Validator (`--self-test`) | PASS in der CI (lokal unter Windows scheitert weiterhin nur das vorab existierende POSIX-Selbsttest-Artefakt `V03-005-ABSOLUTE`) |
+| `git diff --check` gegen `e4f8cc1` | PASS (nach Meta-Whitespace-Normalisierung in `75715da`) |
+| Manifest-Bytegleichheit | PASS (seit `fc10c61` unverändert) |
+| Secret-/Produktquellenprüfung | Keine Secrets im Repository; Aktivierung ausschließlich über `secrets.UNITY_EMAIL`/`secrets.UNITY_PASSWORD`; keine Produktdateien außerhalb des Manifests |
+| Historienabgrenzung | Keine Git-Übernahme aus archivierten Branches oder `chore/ci-readiness-unity` (Umsetzung aus dem Vertrag, eigenständig verifiziert) |
+
+### Akzeptanzkriterien im Einzelnen
+
+| AK | Ergebnis | Beleg |
+|---|---|---|
+| `AK-01` | Erfüllt | Trust-Anchor `fc10c61`, Verifikation oben; remote verifiziert. |
+| `AK-02` | Erfüllt | `ProjectVersion.txt` exakt `6000.3.23f1`; C# 9/Nullable/Force Text/Visible Meta Files; Paketlocks gepinnt; `Toolchain.lock.md` mit WP-021-eigenen Runner-Werten (Run `37069959561`). |
+| `AK-03` | Erfüllt | 14+9 Assemblies an den normierten Pfaden; exakte Referenzen; azyklisch; `noEngineReferences`; EditMode-Testassemblies Editor-only; statischer Check in CI `37069959561`/`37078237256` PASS. |
+| `AK-04` | Erfüllt | Kompilation fehlerfrei mit `-warnaserror+`; 15 Ports; `ApplicationComposition` fail-closed inkl. `BindProviders`-Doppelbindung; keine Guardrail-Tokens; MonoBehaviours ohne Fachlogik. |
+| `AK-05` | Erfüllt | QA-Szene + `BootstrapCompositionSmoke` 5/5 PASS lokal und in CI (PlayMode, Runs oben). |
+| `AK-06` | Erfüllt | CI-Nachweise commitgebunden (Runs `37069959561`, `37078237256`); `Architecture Validation / validate` mit WP-021-Manifest PASS; der `unity-evidence-guard` ist implementiert und gatet. |
+| `AK-07` | Erfüllt | Coverage-Baseline oben (realer PlayMode-Lauf); Mutationsstand wahrheitsgemäß dokumentiert; Gerätezustand wahrheitsgemäß dokumentiert. |
+| `AK-08` | Erfüllt | Diff nur Manifest-Pfade; `git diff --check` PASS; Secret-/Produktquellenprüfung PASS; keine Historienoperation aus archivierten Branches. |

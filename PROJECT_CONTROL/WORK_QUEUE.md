@@ -7,7 +7,7 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
-| 1 | WP-021 – Unity-Scaffold-Recovery | **Projekt-Hold – Voraussetzungen noch nicht bereit** | Der Projektinhaber hat am 2026-09-30 bestätigt, dass die Readiness-Voraussetzungen nicht bereit sind. Weder eine WP-021-Branch, der gemeinsame WP-021-/Manifest-Anchor noch eine Kimi-Beauftragung dürfen vor ausdrücklicher Hold-Aufhebung und Nachweis von `UNITY_LICENSE` sowie Linux/Android- und macOS/iOS-Runnern erfolgen. |
+| 1 | WP-021 – Unity-Scaffold-Recovery | **Verankert; eigene Nachweise erbracht; QC ausstehend** | Die Geschäftsführung hat den Hold ausdrücklich aufgehoben: Die CI-Readiness-Voraussetzungen (Unity-Personal-Aktivierung, Linux, Android, macOS/iOS, Compile, EditMode, PlayMode, Android-IL2CPP, iOS-Compile) sind real nachgewiesen. WP-021 und sein Production-Scope-Manifest wurden gemeinsam im Trust-Anchor-Commit `fc10c61` auf `feat/wp-021-unity-scaffold-recovery` (Basis `e4f8cc1`) verankert; die Implementierung erfolgte vollständig neu aus dem aktuellen Architekturvertrag (keine Übernahme aus archivierten Branches oder dem CI-Readiness-Branch). Eigene commitgebundene CI-Nachweise sind vollständig grün (Runs `37069959561`, `37078237256`: Compile, EditMode, PlayMode 5/5, Android-IL2CPP, iOS-Export/Compile unter Xcode 26.3, Scope PASS, Trust-Anchor PASS). Anschließend: PR gegen `main`, unabhängige Astra-/Sol-QC, Integration. |
 | 2 | WP-022 – Puzzle-Kern-Recovery | Reserviert, noch nicht definiert | Erst nach integriertem WP-021: WP-022 und eigenes Manifest im selben Add-Commit auf neuer Main-Branch definieren und verankern. |
 | 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
 | 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
@@ -31,15 +31,16 @@ Die Vorgeschichte `WP-001` bis `WP-005` ist abgeschlossen; Architecture v1.0 ble
 
 ## Integrationsregel für historische Branches
 
-`origin/feat/wp-008-unity-scaffold`, `origin/feat/wp-009-puzzle-kern` und `origin/feat/wp-013-level-v2-pipeline` sind **keine** direkt integrierbaren Branches. Ihre Basen sind nicht Vorfahren des aktuellen Governance-/Main-Stands; ein read-only `merge-tree` belegt Konflikte in Workflow- und Steuerungsdateien. Die historischen Scope-Manifeste bleiben unverändert und können keine Konfliktauflösung gegen den aktuellen `main` legitimieren.
+`origin/feat/wp-008-unity-scaffold`, `origin/feat/wp-009-puzzle-kern` und `origin/feat/wp-013-level-v2-pipeline` sind **keine** direkt integrierbaren Branches. Ihre Basen sind nicht Vorfahren des aktuellen Governance-/Main-Stands; ein read-only `merge-tree` belegt Konflikte in Workflow- und Steuerungsdateien. Die historischen Scope-Manifeste bleiben unverändert und können keine Konfliktauflösung gegen den aktuellen `main` legitimieren. Zusätzlich ist `origin/chore/ci-readiness-unity` **kein** Produktions-Branch, sondern ein historischer technischer Befund zur CI-Readiness (Lizenzweg, Runner, Toolchains); auch er ist keine Lieferquelle.
 
 Sie bleiben nur lesbare Vergleichskorpora. Insbesondere sind Direktmerge, Cherry-Pick, Rebase, Konfliktauflösung auf historischen Branches und Übernahme historischer CI-PASS-Aussagen verboten.
 
 ```text
 main
   → Trust-Anchor-Korrektur integriert (PR #8)
-  → Projekt-Hold: Unity-Lizenz und Linux/Android-/macOS/iOS-Runner bereitstellen und explizit nachweisen
-  → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
+  → Hold durch Geschäftsführung aufgehoben; CI-Readiness real nachgewiesen
+  → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (fc10c61);
+    eigene CI-Nachweise grün; PR; Astra-/Sol-QC; danach integrieren
   → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
   → WP-015
   → WP-016

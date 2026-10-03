@@ -481,25 +481,27 @@ jobs:
           find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
           import pathlib, xml.etree.ElementTree as ET
+          totals, visited = {}, {}
           for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
-              if not path.name.endswith("_0000.xml"):
-                  continue
-              print(f"--- {path} ---")
               root = ET.parse(path).getroot()
+              target = totals if path.name.endswith("_0000.xml") else visited
               for module in root.iter("Module"):
                   name_el = module.find("ModuleName")
                   summary = module.find("Summary")
                   if name_el is None or summary is None:
                       continue
-                  name = (name_el.text or "")
-                  if not name.lower().startswith("stp"):
-                      continue
-                  print(
-                      f"{name}: sequenceCoverage={summary.get('sequenceCoverage')} "
-                      f"({summary.get('visitedSequencePoints')}/{summary.get('numSequencePoints')} Punkte), "
-                      f"branchCoverage={summary.get('branchCoverage')} "
-                      f"({summary.get('visitedBranchPoints')}/{summary.get('numBranchPoints')}), "
-                      f"methoden={summary.get('visitedMethods')}/{summary.get('numMethods')}")
+                  target[(name_el.text or "")] = summary
+          print("Coverage-Baseline (Sequence Points, besucht/gesamt; OpenCover _0001 besucht, _0000 gesamt):")
+          for name in sorted(set(totals) | set(visited)):
+              if not name.lower().startswith("stp"):
+                  continue
+              t = totals.get(name); v = visited.get(name)
+              t_seq = int(t.get("numSequencePoints", 0)) if t is not None else 0
+              v_seq = int(v.get("visitedSequencePoints", 0)) if v is not None else 0
+              t_m = int(t.get("numMethods", 0)) if t is not None else 0
+              v_m = int(v.get("visitedMethods", 0)) if v is not None else 0
+              pct = (100.0 * v_seq / t_seq) if t_seq else 0.0
+              print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
           PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
@@ -564,25 +566,27 @@ jobs:
           find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
           import pathlib, xml.etree.ElementTree as ET
+          totals, visited = {}, {}
           for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
-              if not path.name.endswith("_0000.xml"):
-                  continue
-              print(f"--- {path} ---")
               root = ET.parse(path).getroot()
+              target = totals if path.name.endswith("_0000.xml") else visited
               for module in root.iter("Module"):
                   name_el = module.find("ModuleName")
                   summary = module.find("Summary")
                   if name_el is None or summary is None:
                       continue
-                  name = (name_el.text or "")
-                  if not name.lower().startswith("stp"):
-                      continue
-                  print(
-                      f"{name}: sequenceCoverage={summary.get('sequenceCoverage')} "
-                      f"({summary.get('visitedSequencePoints')}/{summary.get('numSequencePoints')} Punkte), "
-                      f"branchCoverage={summary.get('branchCoverage')} "
-                      f"({summary.get('visitedBranchPoints')}/{summary.get('numBranchPoints')}), "
-                      f"methoden={summary.get('visitedMethods')}/{summary.get('numMethods')}")
+                  target[(name_el.text or "")] = summary
+          print("Coverage-Baseline (Sequence Points, besucht/gesamt; OpenCover _0001 besucht, _0000 gesamt):")
+          for name in sorted(set(totals) | set(visited)):
+              if not name.lower().startswith("stp"):
+                  continue
+              t = totals.get(name); v = visited.get(name)
+              t_seq = int(t.get("numSequencePoints", 0)) if t is not None else 0
+              v_seq = int(v.get("visitedSequencePoints", 0)) if v is not None else 0
+              t_m = int(t.get("numMethods", 0)) if t is not None else 0
+              v_m = int(v.get("visitedMethods", 0)) if v is not None else 0
+              pct = (100.0 * v_seq / t_seq) if t_seq else 0.0
+              print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
           PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
