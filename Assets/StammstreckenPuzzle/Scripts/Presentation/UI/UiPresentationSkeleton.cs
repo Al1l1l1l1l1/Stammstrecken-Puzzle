@@ -1,3 +1,6 @@
+using System;
+using STP.Application;
+
 namespace STP.Presentation.UI
 {
     /// <summary>
@@ -7,5 +10,13 @@ namespace STP.Presentation.UI
     /// </summary>
     public sealed class UiPresentationSkeleton
     {
+        /// <summary>Verdrahtet die UI mit der zuvor erstellten ApplicationRoot.</summary>
+        public UiPresentationSkeleton(ApplicationRoot application)
+        {
+            this.Application = application ?? throw new ArgumentNullException(nameof(application));
+        }
+
+        /// <summary>Die von Bootstrap explizit injizierte ApplicationRoot.</summary>
+        public ApplicationRoot Application { get; }
     }
 }

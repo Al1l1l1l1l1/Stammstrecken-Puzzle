@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Implementierung und eigene Nachweise abgeschlossen; unabhängige Astra-/Sol-QC auf dem PR-Head ausstehend (Stand, Nachweise und Akzeptanzkriterien siehe Abschnitt „Umsetzung, Nachweise und Abschlussstand").
+**Bearbeitungsstatus:** WP-021-Korrekturrunde in Bearbeitung (2026-10-03): H1–H3 lokal korrigiert und getestet; H4/M1 implementiert und lokal geprüft. Die Geschäftsführung hat die abschließende Arbeitsbaum-/Scope-Prüfung, anschließend Commit und Push auf den bestehenden Branch sowie die vollständige Auswertung neuer commitgebundener CI-Nachweise freigegeben. Neue CI-/iOS-Nachweise und unabhängige QC stehen aus. Kein Merge, kein Schließen des PRs und keine Folgeaufgaben. Die Nachweise vom 2026-10-02 bleiben historische Ausgangsnachweise.
 
 ## Ziel
 
@@ -148,7 +148,7 @@ WP-021 und [`tools/architecture-validation/scopes/WP-021.production.scope.json`]
 
 ## Umsetzung, Nachweise und Abschlussstand
 
-**Bearbeitungsstatus (2026-10-02):** Implementierung und eigene Nachweise abgeschlossen; unabhängige Astra-/Sol-QC auf dem PR-Head ausstehend.
+**Historischer Bearbeitungsstatus (2026-10-02):** Implementierung und eigene Nachweise abgeschlossen; unabhängige Astra-/Sol-QC auf dem PR-Head ausstehend. Aktueller Korrekturstand: siehe nachfolgenden Abschnitt „Korrekturrunde 2026-10-03“.
 
 ### Umsetzung
 
@@ -226,3 +226,109 @@ Wahrheitsgemäß: Es existiert kein physisches Referenzgerät und keine freigege
 | `AK-06` | Erfüllt | CI-Nachweise commitgebunden (Runs `37069959561`, `37078237256`); `Architecture Validation / validate` mit WP-021-Manifest PASS; Guard-Fail-closed ausgeführt belegt (Run `37083860138`: FAILURE + SKIPPED ohne Secrets-Bereitschaft). |
 | `AK-07` | Erfüllt | Coverage-Baseline oben (realer PlayMode-Lauf); Mutationsstand wahrheitsgemäß dokumentiert; Gerätezustand wahrheitsgemäß dokumentiert. |
 | `AK-08` | Erfüllt | Diff nur Manifest-Pfade; `git diff --check` PASS; Secret-/Produktquellenprüfung PASS; keine Historienoperation aus archivierten Branches. |
+
+## Korrekturrunde 2026-10-03 – uncommitteter Zwischenstand
+
+### Übernahme und Quellenprüfung
+
+Pflichtlektüre nach AGENTS.md und den Voraussetzungen dieses Work Packages vollständig gelesen; Änderungen ausschließlich gegen den aktuellen Architekturvertrag implementiert. Ausgangscheckout: `C:/STP/Stammstrecken-Puzzle-WP008`, Branch `feat/wp-021-unity-scaffold-recovery`, HEAD `ca5236f64af3304203270739a959e2d82111ab82`. `git status --short --untracked-files=all` war bei Übernahme **leer**. Die im Auftrag angekündigten uncommitteten H1–H3-Korrekturen waren in diesem Checkout nicht vorhanden. `Assets/Editor/StpQcWp021Setup.cs` war ebenfalls nicht vorhanden. Es wurde nichts verworfen, zurückgesetzt, gelöscht, committed oder gepusht. Die folgenden Korrekturen stammen aus dieser Runde; sie sind kein Wiederherstellen aus historischen Branches.
+
+### Befunde und Korrekturen
+
+| Befund | Anfangsbefund im tatsächlichen Code | Aktueller Stand |
+|---|---|---|
+| H1 | `Bindings` gab das mutable Dictionary als `IReadOnlyDictionary` zurück; Cast und externe Mutation waren möglich. | **PASS lokal**: private Binding-Tabelle hinter `ReadOnlyDictionary`; generische/nichtgenerische Mutationsversuche werden abgewiesen. |
+| H2 | Die fünf Providerports wurden einzeln validiert und sofort gesetzt; Null an Position 2–5 hinterließ Teilbindings. | **PASS lokal**: alle fünf Argumente werden vor der ersten Mutation geprüft; jeder Nullfall lässt alle fünf Ports ungebunden, lokale Bindings unverändert und vollständigen Retry möglich; Doppelbindung bleibt fail-closed. |
+| H3 | UI/World waren parameterlos und wurden vor ApplicationRoot erstellt; kein tatsächliches Application-Wiring. | **PASS lokal**: lokale Portbindung → ApplicationRoot → UI/World mit derselben injizierten Root → Google/Store → Providerbindung. Szene prüft Referenzidentität; zusätzlicher Test prüft die echten Konstruktorinstruktionen der kompilierten Compose-Methode, ohne Produktions-Reflexions-Wiring. |
+| H4 | URP-Paket und Global Settings existierten; Graphics/Quality hatten keine aktive Pipeline. | Implementiert und lokal geprüft: eingecheckte URP-Pipeline mit 2D-Renderer, Graphics-Zuweisung und explizite identische Zuweisung für alle sechs Quality-Level. Assettypen, Rendererreferenz, Defaultindex und effektive Pipeline sind geprüft. Neue CI-/Plattformnachweise ausstehend. |
+| M1 | `managedStrippingLevel: {}`; Toolchain-Lock behauptete erst später zu setzenden Medium-Startwert. | Implementiert und lokal geprüft: Android und iOS explizit Medium, über Unity-API verifiziert; Toolchain-Lock korrigiert. Preflight und beide Plattformbuilds prüfen URP und Medium fail-closed. Neue commitgebundene IL2CPP-/iOS-CI-Nachweise ausstehend. |
+
+Die neuen URP-Assets stammen aus dem 2D-Projekttemplate der installierten, gepinnten Unity-Version `6000.3.23f1` (`com.unity.template.2d-cross-platform-2d-6.1.6.tgz`), wurden unter den WP-021-Assetpfaden mit eigenen stabilen GUIDs angelegt und durch URP `17.3.0` importiert/normalisiert. Keine Datei und kein PASS aus einem historischen Branch wurden übernommen. Paketpins, Architektur-/Produktquellen, Scope-Manifest und Trust Anchor bleiben unverändert. Keine Puzzlefachlogik, keine SDKs, kein neues Work Package, keine lokale Unity-/UPM-Reparatur oder Installation.
+
+### Reale lokale Tests und Grenzen
+
+| Nachweis | Ergebnis / Artefakt |
+|---|---|
+| H1/H2-Negativprobe vor Korrektur | **11 Tests, 6 PASS / 5 FAIL**: H1 sowie Nullpositionen 2–5 scheitern wie erwartet; `Logs/wp021-before-playmode.xml`, `Logs/wp021-before-playmode-retry.log`. |
+| H1–H3 nach Korrektur | **12/12 PASS** im realen Unity-PlayMode; `Logs/wp021-h123-playmode.xml`, zugehörige `.log`. |
+| Gesamte Korrektursuite | **15/15 PASS** im realen Unity-PlayMode inkl. QA-Szene, kompiliertem Reihenfolgenachweis, URP und Medium; `Logs/wp021-corrections-playmode.xml`, zugehörige `.log`. Nach den URP-Normalisierungen des Android-Builds erneut **15/15 PASS** (`Logs/wp021-final-playmode.xml`, zugehörige `.log`). |
+| EditMode | **1/1 PASS**, ausschließlich vorhandener Addressables-Paketstub; kein neuer Application-EditMode-Nachweis behauptet. `Logs/wp021-corrections-editmode.xml`, zugehörige `.log`. |
+| Unity-/CI-Preflight | **PASS**: `STP Rendering/Stripping PASS: URP mit 2D-Renderer, 6 Quality-Level, Android/iOS Medium`, anschließend Versionspreflight PASS; `Logs/wp021-corrections-preflight.log`. Eigene Assemblies kompilieren mit Nullable und Warnungen als Fehler. |
+| Statischer Modulgraph | **PASS**: bestehender Python-Code des `project-preflight` aus `unity.yml` unverändert lokal ausgeführt; 14 Produktions-/9 Testassemblies, exakte Allowlist. `Logs/wp021-modulgraph.log`. |
+| Positiver Architektur-/Scope-Lauf | **PASS** (17 lokale Prüfgruppen); `Logs/wp021-before-scope-positive.log`. |
+| Vollständiger Scope-Selbsttest | **FAIL nur `self-test:not-detected:V03-005-ABSOLUTE`**, bereits vor dieser Runde dokumentierter Windows-/POSIX-Befund; `Logs/wp021-before-scope-utf8.log`. Kein Abschwächen oder Ändern des Validators. Vollständiger grüner Selbsttest auf dem vorgesehenen Linux-CI-Weg bleibt erforderlich. |
+| Manifestbytegleichheit | Git-Blob `734e7f676a7c80f49e2524a565055a96ab5ff33f` entspricht exakt dem Blob aus Trust Anchor `fc10c61`; Scope-Validator bestätigt gemeinsamen historischen WP-/Manifestanker. |
+| Android Development IL2CPP / ARM64 | **PASS lokal** mit vorhandener Toolchain und API 36, `Logs/wp021-corrections-android.log`, `STP Build PASS`; APK `Builds/Android/stp-qa-development.apk`, tatsächliche Dateigröße **40.062.614 Bytes**, SHA-256 `4866fd9a99a97ce2571193e2f1c9908205ff55c123d7ba9c6b263f0de5e8ec87`. Keine Aussage über physischen Gerätesmoke. |
+| Reales Linkerprofil | UnityLinker-RSP `Library/Bee/artifacts/rsp/11358533424958198342.rsp`: `--rule-set=Aggressive`, `--platform=Android`. Unity 6000.3 ordnet Medium diesem Ruleset zu; High wäre Experimental ([Unity-Referenzquelle](https://github.com/Unity-Technologies/UnityCsReference/blob/6000.3/Editor/Mono/Modules/BeeBuildPostprocessor.cs)). Die Unity-API-Tests bestätigen zusätzlich Medium für Android und iOS. |
+
+Der erste sandboxierte Unity-Testversuch blieb bei der Lizenzinitialisierung stehen. Nur der selbst gestartete Testprozess wurde beendet; derselbe Test lief anschließend mit der vorhandenen Installation und vorhandenen Lizenz erfolgreich. Ein zweiter Zwischenversuch endete wegen des noch belegten Projekts. Diese Versuche bleiben als Logs erhalten und zählen nicht als PASS. Es erfolgte keine Lizenzaktivierung, Kontoreparatur, Paketänderung oder Installation durch diese Runde.
+
+### Belegkategorien
+
+- `LOCAL_DOCUMENT_STRUCTURE`: positive Validatorprüfungen; finaler positiver Lauf nach Dokumentnachführung in `Logs/wp021-final-scope-positive.log`.
+- `LOCAL_ARCHITECTURE_SEMANTICS`: positive Validatorgruppen, tatsächlicher statischer Modulgraph und oben getrennt ausgewiesene reale Unitytests; Windows-Selbsttest weiterhin eingeschränkt.
+- `MANUAL_ARCHITECTURE_REVIEW`: Architekturabgleich von Portbindung, Konstruktorinjektion, Reihenfolge, Assemblygrenzen und fehlendem Providerstart; keine neue Architekturentscheidung.
+- `LOCAL_SCOPE`: aktueller Arbeitsbaum gegen unverändertes WP-021-Manifest; finaler positiver Lauf in `Logs/wp021-final-scope-positive.log`.
+- `CONTRACT_ONLY`: übrige unveränderte Architekturfixtures; keine ausgeführte Fach-/SDK-/Storeimplementierung.
+- `REQUIRED_LATER/NOT_EXECUTED`: neue commitgebundene CI-Nachweise, macOS/iOS-Compile sowie physische Geräte-/SDK-/Storeprüfungen. Die alten CI-Runs belegen den neuen Arbeitsbaum nicht.
+- `BLOCKED` im vorangegangenen Zwischenstand: Commit/Push waren zunächst nicht freigegeben. Diese Einschränkung wurde anschließend ausdrücklich aufgehoben; die drei Produktfolgeblocker bleiben unverändert. Ein Dispatch auf dem alten Commit wäre weiterhin kein Korrekturbeleg.
+
+### Zu behaltende Änderungen und temporäre Artefakte
+
+Alle fachlichen Korrekturdateien dieser Runde sollen für die nächste WP-021-Prüfung **behalten** werden:
+
+- ApplicationComposition.cs (H1/H2), ApplicationRoot.cs (korrekte Dokumentation der Bindungsphasen).
+- BootstrapComposition.cs, UiPresentationSkeleton.cs, WorldPresentationSkeleton.cs (H3).
+- BootstrapCompositionSmoke.cs (H1–H4/M1-Regressionen).
+- StpBuildEntrypoints.cs (fail-closed URP-/Medium-Preflight vor jedem Plattformbuild).
+- ProjectSettings/GraphicsSettings.asset, QualitySettings.asset (H4), ProjectSettings.asset (M1).
+- Assets/DefaultVolumeProfile.asset und Assets/UniversalRenderPipelineGlobalSettings.asset (beim aktiven URP-Android-Build von Unity ergänzte Standard-Volume-Komponenten bzw. Runtime-Settings-Referenzen; für H4 behalten, keine manuelle visuelle Produktentscheidung).
+- Assets/StammstreckenPuzzle/Settings.meta, Settings/StpUniversalRP.asset und `.meta`, Settings/StpRenderer2D.asset und `.meta` (H4; neu/untracked, dauerhafte Projektartefakte).
+- Toolchain.lock.md und die drei Steuerungsdateien dieses WP, CURRENT_STATE.md und WORK_QUEUE.md (wahrheitsgemäßer Korrektur-/Übergabestand).
+
+Unity schreibt beim Import zusätzliche Leerzeichen in serialisierte Dateien. Reine durch diese Testläufe erzeugte Whitespace-Differenzen werden ohne Git-Reset am Ende normalisiert; fachliche Unterschiede bleiben erhalten. `ShaderGraphSettings.asset` besitzt keinen fachlichen Korrekturdiff.
+
+**Temporär, behalten:** vorhandene ignorierte `Library/`, `UserSettings/`, die älteren Logs `wp012-editmode.log`, `wp012-playmode.log`, `wp013-editmode.log` sowie sämtliche neuen `Logs/wp021-*` (einschließlich Test-XMLs und Fehlversuchen), lokale Buildausgaben und Unity-Temporärdateien. Alte Logs sind kein Nachweis des aktuellen WP-021-Korrekturstands. Keine Löschentscheidung getroffen. `Assets/Editor/StpQcWp021Setup.cs` fehlt in diesem Checkout; keine Lösch-/Behaltenentscheidung zu einer nicht vorliegenden Datei möglich.
+
+Ein Scope-Lauf **während** des Android-Builds (`Logs/wp021-corrections-scope-positive.log`) scheiterte an vier vorübergehend vom bereits vorhandenen Performance-Test-Paket erzeugten `Assets/Resources/PerformanceTestRun*.json[.meta]` und an Unity-Whitespace. Das Paket entfernte seine eigenen temporären Resources im vorgesehenen Postprocess-Cleanup automatisch; der Agent löschte nichts und änderte kein Scope-Muster. Scope-Prüfungen erfolgen deshalb erst nach beendeten Unity-Prozessen. Whitespace wurde anschließend normalisiert, ohne fachliche Änderungen zurückzusetzen. Finale Befunde und Dateihashes werden in `Logs/wp021-verification-summary.json` aufbewahrt.
+
+### Nächster Schritt / Abschlussgate
+
+Die Geschäftsführung hat Commit/Push nach abschließender Prüfung freigegeben. Die Korrekturrunde bleibt bis zu neuen Nachweisen offen. Die bestehenden `validate.yml`-/`unity.yml`-Jobs laufen mit dem unveränderten WP-021-Manifest einschließlich Compile, EditMode, PlayMode, Coverage, Android-Development-IL2CPP und iOS-Export/Compile auf dem neuen Korrekturcommit. Die neuen Tests werden bereits vom bestehenden PlayMode-Job erfasst; beide Plattformentrypoints führen den erweiterten Preflight aus. Keine CI- oder Scopeabschwächung erforderlich. Der aktuelle Auftrag endet nach der vollständigen CI-Auswertung und dem Statusbericht; unabhängige Astra-/Sol-QC und Integration bleiben separate Gates. WP-021 ist nicht abgeschlossen, WP-022 bleibt gesperrt.
+
+### Finale Dateiliste des uncommitteten Standes (2026-10-03)
+
+Alle folgenden **21 Dateien behalten**; 16 versionierte Dateien geändert, 5 neue untracked Projektdateien. Keine dieser Dateien ist ein wegwerfbares Setup-Skript.
+
+| Status | Pfad | Entscheidung |
+|---|---|---|
+| modified_tracked | `Assets/DefaultVolumeProfile.asset` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Application/ApplicationComposition.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Application/ApplicationRoot.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapComposition.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Presentation/UI/UiPresentationSkeleton.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Scripts/Presentation/World/WorldPresentationSkeleton.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs` | KEEP_WP021 |
+| modified_tracked | `Assets/UniversalRenderPipelineGlobalSettings.asset` | KEEP_WP021 |
+| modified_tracked | `PROJECT_CONTROL/CURRENT_STATE.md` | KEEP_WP021 |
+| modified_tracked | `PROJECT_CONTROL/WORK_QUEUE.md` | KEEP_WP021 |
+| modified_tracked | `ProjectSettings/GraphicsSettings.asset` | KEEP_WP021 |
+| modified_tracked | `ProjectSettings/ProjectSettings.asset` | KEEP_WP021 |
+| modified_tracked | `ProjectSettings/QualitySettings.asset` | KEEP_WP021 |
+| modified_tracked | `Toolchain.lock.md` | KEEP_WP021 |
+| modified_tracked | `WORK_PACKAGES/WP-021_Unity-Scaffold-Recovery.md` | KEEP_WP021 |
+| untracked_new | `Assets/StammstreckenPuzzle/Settings.meta` | KEEP_WP021 |
+| untracked_new | `Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset` | KEEP_WP021 |
+| untracked_new | `Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset.meta` | KEEP_WP021 |
+| untracked_new | `Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset` | KEEP_WP021 |
+| untracked_new | `Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset.meta` | KEEP_WP021 |
+
+Finaler positiver Architektur-/Scope-Lauf: **PASS (17 lokale Prüfgruppen)**. Finale Architecture-only- und Scope-Selbsttests: jeweils **FAIL ausschließlich V03-005-ABSOLUTE**, Protokolle in "Logs/wp021-final-architecture-selftest.log" und "Logs/wp021-final-scope-selftest.log". Vollständiger Diffcheck gegen e4f8cc1: **PASS**, Guardrail-/Secret-Pattern-Scan: **PASS**, Paket-/Produkt-/Architektur-/Workflow-/Manifestdiff: **leer**. HEAD unverändert ca5236f, Index unverändert, kein Commit/Push. APK-/Dateihashes und Testzahlen in "Logs/wp021-verification-summary.json". WP-021 bleibt offen.
+### Freigegebene Abschlussprüfung vor dem Korrekturcommit
+
+Die Geschäftsführung hat die 21 vorgesehenen Änderungen bestätigt und Commit/Push nach erneuter Prüfung freigegeben. Alle 18 technischen Dateien entsprechen per SHA-256 exakt dem zuvor getesteten Stand; ausschließlich die drei Steuerungsdateien wurden mechanisch auf die neue Freigabe nachgeführt. Kein Scope-, Trust-Anchor-, Architektur-, Produkt-, Paket- oder Workflowdiff wurde eingeführt.
+
+Erneut real ausgeführt: PlayMode **15/15 PASS** (`Logs/wp021-precommit-playmode.xml`), EditMode **1/1 PASS** (Paketstub, `Logs/wp021-precommit-editmode.xml`), erweiterter Unity-Preflight **PASS** (`Logs/wp021-precommit-preflight.log`), unveränderter CI-Modulgraph **PASS 14+9** (`Logs/wp021-precommit-modulgraph.log`). Production-Scope positiv **PASS 17 Prüfgruppen** (`Logs/wp021-precommit-positive.log`); Architecture-only- und Scope-Selbsttests jeweils **FAIL ausschließlich V03-005-ABSOLUTE**, bekannte Windows-/POSIX-Einschränkung, keine Validatoränderung. Vollständiger Diffcheck, exaktes 21-Datei-Inventar, Guardrail-/Secretpatternscan und unveränderlicher Manifestblob **PASS**. Der vorherige lokale Android-IL2CPP-Nachweis bleibt per unverändertem technischem Dateistand und APK-SHA-256 nachvollziehbar; neu commitgebundene Plattformnachweise werden ausschließlich aus den jetzt folgenden CI-Läufen anerkannt.
+
+PR #11 bleibt offen. Keine temporären Logs, Caches, Test-XMLs oder Buildausgaben werden eingecheckt. Der aktuelle Auftrag umfasst die neuen CI-Nachweise und ihren Abschlussbericht; unabhängige QC, Merge und Folgepakete werden nicht ausgeführt.

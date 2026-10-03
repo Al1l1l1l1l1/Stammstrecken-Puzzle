@@ -23,7 +23,7 @@ mit Commit-Bezug ergänzt und dürfen nicht geraten werden.
 | Eigene Warnungen als Fehler | aktiviert (`-warnaserror+` je `csc.rsp`) | ADR-002 |
 | Release-Scripting-Backend | IL2CPP (per Build-Entrypoint je Plattform gesetzt) | ADR-002 |
 | API Compatibility | `.NET Standard 2.1` (`apiCompatibilityLevel: 3`) | `ARCHITECTURE/TECH_STACK.md` Abschnitt 4 |
-| Managed Stripping | Unity-Plattformdefault (Medium als Startwert gemäß TECH_STACK; explizite Setzung erfolgt mit dem ersten realen Buildprofil) | `ARCHITECTURE/TECH_STACK.md` Abschnitt 4 |
+| Managed Stripping | Explizit **Medium** für Android und iOS; Preflight und beide Buildentrypoints prüfen fail-closed | `ARCHITECTURE/TECH_STACK.md` Abschnitt 4; `ProjectSettings/ProjectSettings.asset`, `StpBuildEntrypoints` |
 | Incremental GC | aktiviert (`gcIncremental: 1`) | `ARCHITECTURE/TECH_STACK.md` Abschnitt 4 |
 
 ## Eingecheckte Paketpins (`Packages/manifest.json`)

@@ -3,6 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace STP.Editor.Build
 {
@@ -51,6 +52,7 @@ namespace STP.Editor.Build
                 throw new InvalidOperationException($"QA-Szene fehlt: {QaScenePath}");
             }
 
+            VerifyRenderingAndStripping();
             Debug.Log($"STP Preflight PASS: Unity {Application.unityVersion}, ProjectVersion.txt konsistent, QA-Szene vorhanden.");
         }
 
@@ -91,6 +93,7 @@ namespace STP.Editor.Build
 
         private static void BuildPlayerOrThrow(string locationPathName, BuildTarget target, BuildOptions options)
         {
+            VerifyProjectVersion();
             if (!File.Exists(QaScenePath))
             {
                 throw new InvalidOperationException($"QA-Szene fehlt: {QaScenePath}");
@@ -104,6 +107,47 @@ namespace STP.Editor.Build
             }
 
             Debug.Log($"STP Build PASS: {target} -> {locationPathName} ({report.summary.totalSize} Bytes).");
+        }
+
+        private static void VerifyRenderingAndStripping()
+        {
+            var pipeline = AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(
+                "Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset");
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableObject>(
+                "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset");
+            if (pipeline == null || renderer == null ||
+                pipeline.GetType().FullName != "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset" ||
+                renderer.GetType().FullName != "UnityEngine.Rendering.Universal.Renderer2DData" ||
+                GraphicsSettings.defaultRenderPipeline != pipeline || GraphicsSettings.currentRenderPipeline != pipeline)
+            {
+                throw new InvalidOperationException("URP-Pipeline/2D-Renderer fehlt oder ist nicht aktiv zugewiesen.");
+            }
+
+            var pipelineData = new SerializedObject(pipeline);
+            var renderers = pipelineData.FindProperty("m_RendererDataList");
+            if (renderers == null || renderers.arraySize != 1 ||
+                renderers.GetArrayElementAtIndex(0).objectReferenceValue != renderer ||
+                pipelineData.FindProperty("m_DefaultRendererIndex").intValue != 0)
+            {
+                throw new InvalidOperationException("URP-Pipeline muss den dokumentierten 2D-Renderer verwenden.");
+            }
+
+            var quality = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/QualitySettings.asset")[0]);
+            var levels = quality.FindProperty("m_QualitySettings");
+            for (var index = 0; index < levels.arraySize; index++)
+            {
+                if (levels.GetArrayElementAtIndex(index).FindPropertyRelative("customRenderPipeline").objectReferenceValue != pipeline)
+                {
+                    throw new InvalidOperationException($"Quality-Level {index} besitzt nicht die dokumentierte URP-Zuweisung.");
+                }
+            }
+
+            if (PlayerSettings.GetManagedStrippingLevel(UnityEditor.Build.NamedBuildTarget.Android) != ManagedStrippingLevel.Medium ||
+                PlayerSettings.GetManagedStrippingLevel(UnityEditor.Build.NamedBuildTarget.iOS) != ManagedStrippingLevel.Medium)
+            {
+                throw new InvalidOperationException("Android/iOS Managed Stripping muss explizit Medium sein.");
+            }
+            Debug.Log($"STP Rendering/Stripping PASS: URP mit 2D-Renderer, {levels.arraySize} Quality-Level, Android/iOS Medium.");
         }
     }
 }

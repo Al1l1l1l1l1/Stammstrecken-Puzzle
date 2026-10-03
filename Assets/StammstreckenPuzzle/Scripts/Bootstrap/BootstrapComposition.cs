@@ -17,8 +17,8 @@ namespace STP.Bootstrap
     /// Audio, Application, Presentation und erst danach die erlaubten externen Adapter).
     /// Kein Service Locator, keine veränderliche Registry, kein Reflexions-Wiring, keine
     /// Szenensuche, kein Providerstart: Die Google-/Store-Adapter werden erstellt, aber
-    /// nicht initialisiert. Das abschließende Zusammenführen der Portbindung erfolgt nach
-    /// der Erstellung aller Modulinstanzen.
+    /// nicht initialisiert. Die lokale Portbindung und ApplicationRoot entstehen vor
+    /// der Presentation; beide Presentation-Skelette erhalten dieselbe Root.
     /// </summary>
     public static class BootstrapComposition
     {
@@ -29,11 +29,6 @@ namespace STP.Bootstrap
             var persistence = new PersistenceModuleSkeleton();
             var platform = new PlatformModuleSkeleton();
             var audio = new AudioModuleSkeleton();
-            var ui = new UiPresentationSkeleton();
-            var world = new WorldPresentationSkeleton();
-            var google = new GoogleModuleSkeleton();
-            var store = new StoreModuleSkeleton();
-
             var composition = ApplicationComposition.FromPorts(
                 saves: persistence,
                 levels: content,
@@ -46,6 +41,13 @@ namespace STP.Bootstrap
                 network: platform,
                 haptics: platform);
 
+            var root = new ApplicationRoot(composition);
+            var ui = new UiPresentationSkeleton(root);
+            var world = new WorldPresentationSkeleton(root);
+
+            var google = new GoogleModuleSkeleton();
+            var store = new StoreModuleSkeleton();
+
             // Erst danach die erlaubten externen Adapter binden (Abschnitt 7).
             composition.BindProviders(
                 ads: google,
@@ -53,8 +55,6 @@ namespace STP.Bootstrap
                 consent: google,
                 analytics: google,
                 crashes: google);
-
-            var root = new ApplicationRoot(composition);
 
             return new BootstrapCompositionResult(
                 content, persistence, platform, audio, ui, world, google, store, root);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 using STP.Application;
 using STP.Application.Ports;
@@ -10,9 +11,18 @@ using STP.Infrastructure.Persistence;
 using STP.MobileServices.Google;
 using STP.MobileServices.Store;
 using STP.Platform;
+using STP.Presentation.UI;
+using STP.Presentation.World;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+#if UNITY_EDITOR
+using System.Reflection;
+using System.Reflection.Emit;
+using UnityEditor;
+using UnityEditor.Build;
+using UnityEngine.Rendering;
+#endif
 
 namespace STP.Tests.Bootstrap.PlayMode
 {
@@ -28,6 +38,177 @@ namespace STP.Tests.Bootstrap.PlayMode
     public class BootstrapCompositionSmoke
     {
         private const string QaScenePath = "Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity";
+
+#if UNITY_EDITOR
+        [Test]
+        public void Composition_CompiledConstructorOrder_PlacesApplicationBeforePresentationBeforeProviders()
+        {
+            // Prüft die echten newobj-Instruktionen der kompilierten Root, keine
+            // separat gepflegte Reihenfolgenliste im Produktionscode.
+            var method = typeof(BootstrapComposition).GetMethod(nameof(BootstrapComposition.Compose))!;
+            var code = method.GetMethodBody()!.GetILAsByteArray();
+            var opcodes = new Dictionary<short, OpCode>();
+            foreach (var field in typeof(OpCodes).GetFields(BindingFlags.Public | BindingFlags.Static))
+            {
+                if (field.GetValue(null) is OpCode opcode)
+                {
+                    opcodes[opcode.Value] = opcode;
+                }
+            }
+            var constructors = new List<Type>();
+            for (var offset = 0; offset < code.Length;)
+            {
+                short value = code[offset++];
+                if (value == 0xfe)
+                {
+                    value = (short)(0xfe00 | code[offset++]);
+                }
+                var opcode = opcodes[value];
+                if (opcode == OpCodes.Newobj)
+                {
+                    constructors.Add(method.Module.ResolveMethod(BitConverter.ToInt32(code, offset))!.DeclaringType!);
+                }
+                switch (opcode.OperandType)
+                {
+                    case OperandType.InlineNone: break;
+                    case OperandType.ShortInlineBrTarget:
+                    case OperandType.ShortInlineI:
+                    case OperandType.ShortInlineVar: offset += 1; break;
+                    case OperandType.InlineVar: offset += 2; break;
+                    case OperandType.InlineI8:
+                    case OperandType.InlineR: offset += 8; break;
+                    case OperandType.InlineSwitch:
+                        offset += 4 + (4 * BitConverter.ToInt32(code, offset)); break;
+                    default: offset += 4; break;
+                }
+            }
+            CollectionAssert.AreEqual(new[]
+            {
+                typeof(ContentModuleSkeleton), typeof(PersistenceModuleSkeleton),
+                typeof(PlatformModuleSkeleton), typeof(AudioModuleSkeleton), typeof(ApplicationRoot),
+                typeof(UiPresentationSkeleton), typeof(WorldPresentationSkeleton),
+                typeof(GoogleModuleSkeleton), typeof(StoreModuleSkeleton), typeof(BootstrapCompositionResult),
+            }, constructors);
+        }
+
+        [Test]
+        public void Project_UrpAssetAndRenderer_AreAssignedForEveryQualityLevel()
+        {
+            var pipeline = AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(
+                "Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset");
+            Assert.NotNull(pipeline);
+            Assert.AreEqual("UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset", pipeline.GetType().FullName);
+            var renderer = AssetDatabase.LoadAssetAtPath<ScriptableObject>(
+                "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset");
+            Assert.NotNull(renderer);
+            Assert.AreEqual("UnityEngine.Rendering.Universal.Renderer2DData", renderer.GetType().FullName);
+            var data = new SerializedObject(pipeline);
+            var renderers = data.FindProperty("m_RendererDataList");
+            Assert.AreEqual(1, renderers.arraySize);
+            Assert.AreSame(renderer, renderers.GetArrayElementAtIndex(0).objectReferenceValue);
+            Assert.AreEqual(0, data.FindProperty("m_DefaultRendererIndex").intValue);
+            Assert.AreSame(pipeline, GraphicsSettings.defaultRenderPipeline);
+            var previous = QualitySettings.GetQualityLevel();
+            try
+            {
+                for (var quality = 0; quality < QualitySettings.names.Length; quality++)
+                {
+                    QualitySettings.SetQualityLevel(quality, false);
+                    Assert.AreSame(pipeline, QualitySettings.renderPipeline, QualitySettings.names[quality]);
+                    Assert.AreSame(pipeline, GraphicsSettings.currentRenderPipeline);
+                }
+            }
+            finally
+            {
+                QualitySettings.SetQualityLevel(previous, false);
+            }
+        }
+
+        [Test]
+        public void Project_AndroidAndIos_ExplicitlyUseMediumManagedStripping()
+        {
+            Assert.AreEqual(ManagedStrippingLevel.Medium, PlayerSettings.GetManagedStrippingLevel(NamedBuildTarget.Android));
+            Assert.AreEqual(ManagedStrippingLevel.Medium, PlayerSettings.GetManagedStrippingLevel(NamedBuildTarget.iOS));
+        }
+#endif
+
+        [Test]
+        public void Presentation_RequiresApplication_AndCanBeWiredBeforeProviders()
+        {
+            var composition = CreateLocalComposition();
+            var root = new ApplicationRoot(composition);
+            var ui = new UiPresentationSkeleton(root);
+            var world = new WorldPresentationSkeleton(root);
+            Assert.AreSame(root, ui.Application);
+            Assert.AreSame(root, world.Application);
+            Assert.AreEqual(10, root.Composition.Bindings.Count);
+            Assert.Throws<InvalidOperationException>(() => ui.Application.Composition.Get<IAdsPort>());
+            Assert.Throws<InvalidOperationException>(() => world.Application.Composition.Get<IPurchasePort>());
+            Assert.Throws<ArgumentNullException>(() => new UiPresentationSkeleton(null!));
+            Assert.Throws<ArgumentNullException>(() => new WorldPresentationSkeleton(null!));
+            var google = new GoogleModuleSkeleton();
+            var store = new StoreModuleSkeleton();
+            composition.BindProviders(google, store, google, google, google);
+            Assert.AreSame(google, ui.Application.Composition.Get<IAdsPort>());
+            Assert.AreSame(store, world.Application.Composition.Get<IPurchasePort>());
+        }
+
+        [Test]
+        public void Composition_Bindings_CannotBeMutatedThroughDictionaryInterfaces()
+        {
+            var result = BootstrapComposition.Compose();
+            var composition = result.Root.Composition;
+            Assert.IsFalse(composition.Bindings is Dictionary<Type, object>);
+            var dictionary = (IDictionary<Type, object>)composition.Bindings;
+            Assert.IsTrue(dictionary.IsReadOnly);
+            Assert.Throws<NotSupportedException>(() => dictionary.Clear());
+            Assert.Throws<NotSupportedException>(() => dictionary.Remove(typeof(IAdsPort)));
+            Assert.Throws<NotSupportedException>(() => dictionary[typeof(IAdsPort)] = new GoogleModuleSkeleton());
+            var legacy = (IDictionary)composition.Bindings;
+            Assert.Throws<NotSupportedException>(() => legacy.Clear());
+            Assert.Throws<NotSupportedException>(() => legacy.Remove(typeof(IAdsPort)));
+            Assert.Throws<NotSupportedException>(() => legacy[typeof(IAdsPort)] = new GoogleModuleSkeleton());
+            Assert.AreEqual(15, composition.Bindings.Count);
+            Assert.AreSame(result.Google, composition.Get<IAdsPort>());
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        public void Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(int nullIndex)
+        {
+            var composition = CreateLocalComposition();
+            var google = new GoogleModuleSkeleton();
+            var store = new StoreModuleSkeleton();
+            var view = composition.Bindings;
+            var original = new Dictionary<Type, object>(view);
+            Assert.Throws<ArgumentNullException>(() => composition.BindProviders(
+                nullIndex == 0 ? null! : google,
+                nullIndex == 1 ? null! : store,
+                nullIndex == 2 ? null! : google,
+                nullIndex == 3 ? null! : google,
+                nullIndex == 4 ? null! : google));
+            Assert.AreEqual(10, view.Count);
+            foreach (var pair in original)
+            {
+                Assert.AreSame(pair.Value, view[pair.Key]);
+            }
+            Assert.Throws<InvalidOperationException>(() => composition.Get<IAdsPort>());
+            Assert.Throws<InvalidOperationException>(() => composition.Get<IPurchasePort>());
+            Assert.Throws<InvalidOperationException>(() => composition.Get<IConsentPort>());
+            Assert.Throws<InvalidOperationException>(() => composition.Get<IAnalyticsPort>());
+            Assert.Throws<InvalidOperationException>(() => composition.Get<ICrashReportingPort>());
+            composition.BindProviders(google, store, google, google, google);
+            Assert.AreEqual(15, view.Count);
+            AssertBinding<IAdsPort>(composition, google);
+            AssertBinding<IPurchasePort>(composition, store);
+            AssertBinding<IConsentPort>(composition, google);
+            AssertBinding<IAnalyticsPort>(composition, google);
+            AssertBinding<ICrashReportingPort>(composition, google);
+            Assert.Throws<InvalidOperationException>(() => composition.BindProviders(google, store, google, google, google));
+        }
 
         [UnityTest]
         public IEnumerator QaScene_ComposesCompleteGraph_ExactlyOneBindingPerPort_NoProviderStart()
@@ -45,6 +226,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.NotNull(result.Root.Composition, "ApplicationComposition fehlt.");
             Assert.NotNull(result.Ui, "UI-Präsentation fehlt.");
             Assert.NotNull(result.World, "Welt-Präsentation fehlt.");
+            Assert.AreSame(result.Root, result.Ui.Application, "UI muss die echte ApplicationRoot erhalten.");
+            Assert.AreSame(result.Root, result.World.Application, "World muss die echte ApplicationRoot erhalten.");
 
             // Genau ein Binding pro Application-Port, referenzgleich gegen die erstellten Instanzen.
             var bindings = result.Root.Composition.Bindings;
@@ -132,6 +315,13 @@ namespace STP.Tests.Bootstrap.PlayMode
 
         private static ApplicationComposition CreateCompleteComposition(GoogleModuleSkeleton google, StoreModuleSkeleton store)
         {
+            var composition = CreateLocalComposition();
+            composition.BindProviders(google, store, google, google, google);
+            return composition;
+        }
+
+        private static ApplicationComposition CreateLocalComposition()
+        {
             var content = new ContentModuleSkeleton();
             var persistence = new PersistenceModuleSkeleton();
             var platform = new PlatformModuleSkeleton();
@@ -146,13 +336,6 @@ namespace STP.Tests.Bootstrap.PlayMode
                 lifecycle: platform,
                 network: platform,
                 haptics: platform);
-
-            composition.BindProviders(
-                ads: google,
-                purchases: store,
-                consent: google,
-                analytics: google,
-                crashes: google);
 
             return composition;
         }

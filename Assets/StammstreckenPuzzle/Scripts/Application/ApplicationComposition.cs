@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using STP.Application.Ports;
 
 namespace STP.Application
@@ -19,15 +20,17 @@ namespace STP.Application
     public sealed class ApplicationComposition
     {
         private readonly Dictionary<Type, object> bindings;
+        private readonly ReadOnlyDictionary<Type, object> bindingView;
         private bool providersBound;
 
         private ApplicationComposition(Dictionary<Type, object> bindings)
         {
             this.bindings = bindings;
+            this.bindingView = new ReadOnlyDictionary<Type, object>(bindings);
         }
 
         /// <summary>Alle Bindungen nach Porttyp (schreibgeschützt, für den Composition-Smoke).</summary>
-        public IReadOnlyDictionary<Type, object> Bindings => this.bindings;
+        public IReadOnlyDictionary<Type, object> Bindings => this.bindingView;
 
         /// <summary>
         /// Erstellt die Portbindung der zehn nicht-providernahen Ports. Jeder Port muss
@@ -81,11 +84,19 @@ namespace STP.Application
                     "Unzulässige Doppelbindung: die Providerports wurden bereits gebunden.");
             }
 
-            this.bindings[typeof(IAdsPort)] = Require(ads, nameof(ads));
-            this.bindings[typeof(IPurchasePort)] = Require(purchases, nameof(purchases));
-            this.bindings[typeof(IConsentPort)] = Require(consent, nameof(consent));
-            this.bindings[typeof(IAnalyticsPort)] = Require(analytics, nameof(analytics));
-            this.bindings[typeof(ICrashReportingPort)] = Require(crashes, nameof(crashes));
+            // Alle Eingaben vor der ersten Mutation prüfen. Ein Nullfehler lässt
+            // sämtliche Providerports ungebunden und erlaubt einen vollständigen Retry.
+            Require(ads, nameof(ads));
+            Require(purchases, nameof(purchases));
+            Require(consent, nameof(consent));
+            Require(analytics, nameof(analytics));
+            Require(crashes, nameof(crashes));
+
+            this.bindings.Add(typeof(IAdsPort), ads);
+            this.bindings.Add(typeof(IPurchasePort), purchases);
+            this.bindings.Add(typeof(IConsentPort), consent);
+            this.bindings.Add(typeof(IAnalyticsPort), analytics);
+            this.bindings.Add(typeof(ICrashReportingPort), crashes);
             this.providersBound = true;
         }
 
