@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** WP-021-Korrekturrunde in Bearbeitung (2026-10-03): H1–H3 lokal korrigiert und getestet; H4/M1 implementiert und lokal geprüft. Die Geschäftsführung hat die abschließende Arbeitsbaum-/Scope-Prüfung, anschließend Commit und Push auf den bestehenden Branch sowie die vollständige Auswertung neuer commitgebundener CI-Nachweise freigegeben. Neue CI-/iOS-Nachweise und unabhängige QC stehen aus. Kein Merge, kein Schließen des PRs und keine Folgeaufgaben. Die Nachweise vom 2026-10-02 bleiben historische Ausgangsnachweise.
+**Bearbeitungsstatus:** WP-021-Korrekturen H1–H4/M1 lokal geprüft und im Commit `2868df4e2f3529d2d81d213ede745f1507558244` auf den bestehenden Branch gepusht (2026-10-03), Remote-HEAD verifiziert. Alle vier neuen CI-Läufe sind beendet und vollständig ausgewertet: GitHub-Account-/Billing-Sperre verhindert jeden Runnerstart; keine neuen ausgeführten CI-/iOS-/Coverage-/Guard-Nachweise. WP-021 bleibt **BLOCKED für den technischen Abschluss** und offen für unabhängige QC. Kein Merge, kein Schließen des PRs und keine Folgeaufgaben. Alte CI-Runs werden nicht als Korrekturbeleg anerkannt.
 
 ## Ziel
 
@@ -332,3 +332,34 @@ Die Geschäftsführung hat die 21 vorgesehenen Änderungen bestätigt und Commit
 Erneut real ausgeführt: PlayMode **15/15 PASS** (`Logs/wp021-precommit-playmode.xml`), EditMode **1/1 PASS** (Paketstub, `Logs/wp021-precommit-editmode.xml`), erweiterter Unity-Preflight **PASS** (`Logs/wp021-precommit-preflight.log`), unveränderter CI-Modulgraph **PASS 14+9** (`Logs/wp021-precommit-modulgraph.log`). Production-Scope positiv **PASS 17 Prüfgruppen** (`Logs/wp021-precommit-positive.log`); Architecture-only- und Scope-Selbsttests jeweils **FAIL ausschließlich V03-005-ABSOLUTE**, bekannte Windows-/POSIX-Einschränkung, keine Validatoränderung. Vollständiger Diffcheck, exaktes 21-Datei-Inventar, Guardrail-/Secretpatternscan und unveränderlicher Manifestblob **PASS**. Der vorherige lokale Android-IL2CPP-Nachweis bleibt per unverändertem technischem Dateistand und APK-SHA-256 nachvollziehbar; neu commitgebundene Plattformnachweise werden ausschließlich aus den jetzt folgenden CI-Läufen anerkannt.
 
 PR #11 bleibt offen. Keine temporären Logs, Caches, Test-XMLs oder Buildausgaben werden eingecheckt. Der aktuelle Auftrag umfasst die neuen CI-Nachweise und ihren Abschlussbericht; unabhängige QC, Merge und Folgepakete werden nicht ausgeführt.
+### Korrekturcommit und vollständige neue CI-Auswertung
+
+Korrekturcommit: **`2868df4e2f3529d2d81d213ede745f1507558244`**, 21 freigegebene Projektdateien. Auf `feat/wp-021-unity-scaffold-recovery` gepusht; `git ls-remote` bestätigt denselben SHA. PR #11 bleibt offen und ungemerged. Der Arbeitsbaum war nach dem Push sauber; ignorierte Logs/Caches/Testartefakte wurden nicht committed.
+
+Alle folgenden Läufe beziehen sich laut GitHub `head_sha` exakt auf diesen neuen Korrekturcommit, nicht auf alte Implementierungsstände:
+
+| Lauf | Ereignis / Workflow | Vollständiges Ergebnis |
+|---|---|---|
+| [37149786899](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37149786899) | push / Architecture Validation | COMPLETED / FAILURE: `validate` startete wegen GitHub-Account-/Billing-Sperre nicht. |
+| [37149790370](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37149790370) | pull_request / Architecture Validation | COMPLETED / FAILURE: gleicher Startblocker, kein Validator ausgeführt. |
+| [37149786865](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37149786865) | push / Unity CI | COMPLETED / FAILURE: fünf Startjobs FAILURE vor Runnerstart; fünf abhängige Jobs SKIPPED. |
+| [37149790412](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37149790412) | pull_request / Unity CI | COMPLETED / FAILURE: gleiche vollständige Jobverteilung. |
+
+GitHub-Check-Annotations melden für alle zwölf fehlgeschlagenen Startjobs, dass sie wegen fehlgeschlagener Accountzahlungen oder eines zu niedrigen Ausgabenlimits nicht gestartet wurden; GitHub verweist auf „Billing & plans“. Welche dieser beiden Accountursachen konkret vorliegt, ist nicht bestimmt. macOS ergänzt einen allgemeinen Kapazitätshinweis; dieser ersetzt den expliziten Billing-Startblocker nicht. Runner-ID 0, leere Steps; ein exemplarischer Logabruf liefert 404/BlobNotFound, weil kein Joblog entstand. Alle vier Läufe besitzen **0 Artefakte**. Repositoryvariable `UNITY_RUNNERS_READY` ist lesend als `true` bestätigt; sie wurde nicht verändert. Keine Secrets, Zahlungsdaten, Ausgabenlimits oder Runnerkonfiguration geändert; keine sinnlosen Wiederholungen und keine lokale Umgebungsreparatur.
+
+| Angeforderter neuer Nachweis | Ergebnis für den Korrekturcommit |
+|---|---|
+| Architecture Validation inkl. Self-/Negativtests | **BLOCKED / NOT_EXECUTED**, Job `validate` FAILURE vor Runnerstart. |
+| Production Scope und Trust Anchor | **BLOCKED / NOT_EXECUTED in CI**; lokale Scope-/Bytegleichheits-/historische Anchorprüfung PASS bleibt getrennt ausgewiesen. |
+| Compile / EditMode | `unity-compile-editmode` **SKIPPED**, kein neuer CI-Compile-/Testbeleg. |
+| PlayMode | `unity-playmode-bootstrap-smoke` **SKIPPED**, keine neuen CI-Testzahlen. |
+| Android Development IL2CPP | `unity-android-development-il2cpp` **SKIPPED**, kein neues CI-APK. Lokaler Build-PASS bleibt separat. |
+| iOS Export / Xcode Compile | `unity-ios-export` **SKIPPED**, kein neuer iOS-Nachweis. |
+| Coverage / Preflight | Coverage **NOT_EXECUTED**, keine OpenCover-Artefakte; `project-preflight` FAILURE vor Runnerstart. |
+| Guard / Konfiguration / Umgebung | `unity-config` und alle drei `unity-environment-*` FAILURE vor Runnerstart; `unity-evidence-guard` **SKIPPED**. Weder ready- noch Negativpfad neu ausgeführt; alte Guard-Runs kein Korrekturbeleg. |
+
+**Befundabschluss:** H1, H2 und H3 **PASS lokal / Vertragsreview**. H4 und M1 **implementiert, lokale Tests/Preflight und Android-PASS**, jedoch neue CI-/iOS-Nachweise blockiert. Kein Implementierungsfehler aus diesen nicht gestarteten Jobs ableitbar, kein CI-PASS behauptet. AK-01–AK-05 und AK-08 lokal geprüft; AK-06 und die neue CI-Coverage aus AK-07 bleiben für die Korrekturrunde offen. Vollständige DoD und unabhängige Astra-/Sol-QC sind nicht erfüllt. WP-021 bleibt offen, WP-022 gesperrt.
+
+Die drei Steuerungsdateien dokumentieren diese tatsächliche Auswertung in einem reinen Evidenzcommit; alle technischen Dateien bleiben identisch zum Korrekturcommit. Auch dessen neue CI-Läufe müssen abschließend betrachtet werden. Der Implementierungsauftrag endet mit dem Statusbericht; der externe Billing-Blocker, ein späterer erneuter CI-Lauf und unabhängige QC sind nur dokumentierte offene Gates, keine gestarteten Folgeaufgaben. Keine Merge-/Close-Aktion.
+
+Lokale Rohbefunde werden ausschließlich ignoriert unter `Logs/wp021-ci-*` aufbewahrt (Run-/Job-/Check-/Annotations-/Artefakt-JSON). `Logs/wp021-github.ps1` ist ein ignorierter temporärer API-Lesehelfer ohne gespeicherte Zugangsdaten. Keine temporären Artefakte werden versioniert oder gelöscht.
