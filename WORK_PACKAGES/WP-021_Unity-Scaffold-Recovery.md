@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Astra-QC-01/QC-02 bleiben korrigiert. Zusätzlich wurden am 2026-10-05 die unabhängigen Befunde **QC-CI-01/QC-CI-02** auf Ausgangs-HEAD `c8936852a5f33994d74074aaecb184d2cebbba19` ausschließlich in den CI-Evidenzgates korrigiert: konkrete PlayMode-Smoke-Identität und fail-closed Coverage-Pflichtdaten. **51 lokale Gateregressionen PASS (5 positive, 46 erwartete Fehler)**; keine neue Unity-/Coverage-Messung behauptet. Commit/Push und neue CI-Auswertung folgen unten. **WP-021 bleibt offen für die Gesamt-DoD**; bisheriger externer GitHub-Billing-Evidence-Gap und bekannte Windows-Selbsttestgrenze bleiben getrennt ausgewiesen. Kein Merge.
+**Bearbeitungsstatus:** Astra-QC-01/QC-02 bleiben korrigiert. **QC-CI-01/QC-CI-02** wurden am 2026-10-05 auf Ausgangs-HEAD `c8936852a5f33994d74074aaecb184d2cebbba19` ausschließlich in den CI-Evidenzgates korrigiert und als **`c2f75a2863ac9695ee8d2d0219c8b182bbd9e810` gepusht/remote verifiziert**. **51 lokale Gateregressionen PASS (5 positive, 46 erwartete Fehler)**; keine neue Unity-/Coverage-Messung behauptet. Vier neue CI-Läufe vollständig ausgewertet: weiterhin GitHub-Billing vor Runnerstart, keine Steps/Artefakte, abhängige Jobs SKIPPED. **WP-021 bleibt offen/BLOCKED für die Gesamt-DoD**; externer Evidence Gap und bekannte Windows-Selbsttestgrenze getrennt ausgewiesen. Kein Merge.
 
 ## Ziel
 
@@ -468,4 +468,30 @@ Ergebnis: **51/51 Gateregressionen wie erwartet (5 positive PASS, 46 korrekt erk
 
 ### Vollständiger Scope und verbleibende Gates
 
-AK-01/AK-08: historischer gemeinsamer Add-Anker, immutable Manifest, voller Branchdiff und aktuelle vier erlaubte Änderungsdateien geprüft. AK-02–AK-05: der unabhängig geprüfte Scaffoldstand einschließlich Astra-QC-01/QC-02 ist technisch unverändert; Modulgraph/QA-Preflight erneut ausgeführt. AK-06/AK-07: Evidenzgates korrigiert und lokal positiv/negativ geprüft, reale neue commitgebundene CI-/Coverage-/iOS-Nachweise erst nach Push auswertbar. Keine neue unabhängige QC, kein neuer Unity-/Android-/iOS-Build behauptet. Gesamt-DoD offen, WP-022 gesperrt. Commit, Remote-Verifikation und tatsächliche neue CI-Auswertung werden nach dem Push im folgenden Abschnitt dokumentiert.
+AK-01/AK-08: historischer gemeinsamer Add-Anker, immutable Manifest, voller Branchdiff und aktuelle vier erlaubte Änderungsdateien geprüft. AK-02–AK-05: der unabhängig geprüfte Scaffoldstand einschließlich Astra-QC-01/QC-02 ist technisch unverändert; Modulgraph/QA-Preflight erneut ausgeführt. AK-06/AK-07: Evidenzgates korrigiert und lokal positiv/negativ geprüft, reale neue commitgebundene CI-/Coverage-/iOS-Nachweise extern blockiert. Keine neue unabhängige QC, kein neuer Unity-/Android-/iOS-Build behauptet. Gesamt-DoD offen, WP-022 gesperrt.
+
+### Korrekturcommit, Remote und neue CI-Auswertung
+
+**Korrekturcommit `c2f75a2863ac9695ee8d2d0219c8b182bbd9e810`**, genau vier freigegebene Dateien, auf den bestehenden Branch gepusht. `git ls-remote` und GitHub-PR-API bestätigen exakt diesen SHA; PR #11 **open**, `merged=false`. Arbeitsbaum nach Push sauber. Der volle Diff gegen `e4f8cc1` besteht `git diff --check`; Produktions-/Architektur-/Paket-/Toolchain-/Validator-/Manifestdiff gegenüber `c893685` leer. Technischer Workflow-SHA-256 nach UTF-8/LF-Normalisierung: **`657b8f242b3702deef7a907e039e8c37b0bd3c0e4e8b4803646d650578fff143`**, identisch zum Gateteststand.
+
+Alle folgenden neuen Runs binden laut GitHub `head_sha` exakt den Korrekturcommit:
+
+| Run | Workflow / Ereignis | Tatsächlicher Status |
+|---|---|---|
+| [37346941104](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37346941104) | Architecture Validation / push | COMPLETED / FAILURE vor Runnerstart, `validate` nicht ausgeführt. |
+| [37346946256](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37346946256) | Architecture Validation / pull_request | COMPLETED / FAILURE vor Runnerstart, `validate` nicht ausgeführt. |
+| [37346940889](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37346940889) | Unity CI / push | COMPLETED / FAILURE; fünf Startjobs FAILURE vor Runnerstart, fünf Folgejobs SKIPPED. |
+| [37346946248](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37346946248) | Unity CI / pull_request | COMPLETED / FAILURE; dieselbe Verteilung, keine ausgeführten Gates. |
+
+**Externer Evidence Gap:** zwölf Billing-Annotations bestätigen fehlgeschlagene Accountzahlungen oder ein zu niedriges Ausgabenlimit („Billing & plans“). Alle zwölf fehlgeschlagenen Startjobs haben **Runner-ID 0 und 0 Steps**; alle vier Runs haben **0 Artefakte**. Die konkrete Accountursache bleibt unbestimmt. Keine Wiederholungs-/Umgehungsaktion, keine Änderung von Runnern, Secrets, Limits oder Lizenz-/Unity-/UPM-Umgebung.
+
+| Kategorie | Ergebnis |
+|---|---|
+| **PASS lokal** | QC-CI-01/QC-CI-02-Gateverhalten, 51 Regressionen, vorhandenes reales PlayMode-XML als Gateinput, synthetische Coverageinputs einschließlich 0 %, statische Modulgraph-/Identitätschecks, vollständiger positiver Scope/Trust/Diffcheck. |
+| **FAIL lokal** | Beide vorgeschriebenen Validator-Selbsttests ausschließlich mit unverändertem `V03-005-ABSOLUTE` auf Windows. Keine Abschwächung. |
+| **BLOCKED / NOT_EXECUTED in CI** | Architecture Validation; Projektpreflight/Konfiguration/Umgebungen; Compile/EditMode, PlayMode-Gate, Coverage-Gates, Guard, Android-IL2CPP und iOS-Export/Compile. GitHub FAILURE/SKIPPED ist kein Test-/Code-PASS. |
+| **INFORMATIONAL** | Keine neue Unity-Ausführung, keine echte Coverage-Messung und keine unabhängige Abschluss-QC in diesem Implementierungsauftrag; physische Geräte-/Store-/SDK-Nachweise unverändert REQUIRED_LATER. |
+
+Keine verbleibende Implementierungsabweichung der zwei korrigierten Befunde aus den ausgeführten Gatetests bekannt. Reale Coverage-Pflichtdaten können weiterhin fehlen; das wird nun als FAILURE sichtbar statt als 0 % akzeptiert. WP-021-Gesamt-DoD und neue unabhängige QC bleiben offen, WP-022 gesperrt. Die CI-Auswertung wird ausschließlich in einem reinen Evidenzcommit der drei Steuerungsdateien persistiert; dessen Workflow und alle technischen Dateien bleiben identisch zu `c2f75a2`. Die dadurch automatisch ausgelösten Runs werden abschließend ebenfalls gelesen und im Statusbericht ausgewiesen. Kein Merge.
+
+Rohbefunde: `Logs/wp021-ci-gates-c2f75a2863ac9695ee8d2d0219c8b182bbd9e810-summary.json` und `Logs/wp021-ci-gates-<run>-{jobs,annotations,artifacts}.json`. Die temporäre API-Hilfe arbeitet ausschließlich lesend, speichert keine Zugangsdaten und bleibt wie Testhilfen/Fixtures/Logs ignoriert. Nächstes externes Gate: Billing-Sperre beheben, bestehende CI mit diesem geprüften technischen Stand ausführen, fehlende tatsächliche Mess-/Buildnachweise erbringen, danach unabhängige Abschluss-QC und Integrationsentscheidung. Keine Folgeaufgabe gestartet.
