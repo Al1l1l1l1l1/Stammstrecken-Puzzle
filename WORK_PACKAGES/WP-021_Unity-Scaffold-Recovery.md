@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Astra-QC-01/QC-02 auf Ausgangs-HEAD `1a9f569` korrigiert und lokal geprüft (2026-10-05): PlayMode 27/27, EditMode-Paketstub 1/1, Preflight, Modulgraph und Android-IL2CPP mit tatsächlicher QA-Paket-ID PASS. Schlussprüfung/Commit/Push und neue CI-Auswertung folgen im aktuellen Auftrag. WP-021 bleibt offen; technische Gesamt-DoD erfordert neue commitgebundene CI-/iOS-/Coverage-Nachweise und unabhängige QC. Kein Merge.
+**Bearbeitungsstatus:** Astra-QC-01/QC-02 korrigiert, lokal geprüft und in `95e92ee7ea8d2e1cba6c5dda8169a5a1d35f86e4` auf den bestehenden WP-021-Branch gepusht (2026-10-05), Remote identisch verifiziert. PlayMode 27/27, EditMode-Paketstub 1/1, Preflight/Modulgraph/Negativproben und Android-IL2CPP mit tatsächlicher QA-ID PASS. Vier neue CI-Läufe vollständig ausgewertet: GitHub-Billing-Sperre vor Runnerstart, keine ausgeführten CI-Tests oder Artefakte. **Externer Evidence Gap; WP-021 bleibt offen/BLOCKED für die Gesamt-DoD**, unabhängige QC ausstehend. Kein Merge.
 
 ## Ziel
 
@@ -401,6 +401,33 @@ Der erste sandboxierte Unity-Aufruf endete ohne Testausführung wegen fehlendem 
 - **LOCAL_SCOPE:** vollständiger Diff ab `e4f8cc1` gegen unverändertes WP-021-Manifest **PASS**, nicht nur Korrekturdiff. Diffcheck, Secret-Patternscan und Guardrailprüfung **PASS**. Architektur-/Produkt-/Paket-/Validator-/Toolchain-/Manifestdiff gegenüber Ausgangs-HEAD leer. Genau 13 Korrektur-/Steuerungsdateien; Unity-Whitespace normalisiert, keine semantischen Buildnebenänderungen. Keine ignorierten Logs/Caches/Buildausgaben eingecheckt.
 - **CONTRACT_ONLY:** unveränderte Architektur-/Fachfixtures; kein vorgezogener Puzzle-/SDK-/Produktionsumfang.
 - **REQUIRED_LATER/NOT_EXECUTED:** neue commitgebundene CI-/iOS-/Coverage-/Guardnachweise sowie physische Geräte-/Storetests.
-- **BLOCKED:** bekannte externe GitHub-Billing-Sperre wird nach Push neu geprüft; Produktfolgeblocker unverändert.
+- **BLOCKED:** externe GitHub-Billing-Sperre auf dem neuen Korrekturcommit erneut nachgewiesen (siehe unten); Produktfolgeblocker unverändert.
 
-AK-01–AK-05 und AK-08 sind lokal prüfbar; AK-06 und neue CI-Coverage aus AK-07 bleiben bis tatsächlich ausgeführten commitgebundenen Läufen offen. WP-021 ist deshalb nicht als vollständig abgeschlossen oder integriert freigegeben; WP-022 bleibt gesperrt. Nach sauberer lokaler Schlussprüfung: Korrekturcommit auf bestehendem Branch pushen, neue bestehende Workflows auswerten und den tatsächlichen Status persistieren. Kein Merge, keine Folgeaufgabe, kein Umgehen der Billing-Sperre.
+AK-01–AK-05 und AK-08 sind lokal geprüft; AK-06 und neue CI-Coverage aus AK-07 bleiben bis tatsächlich ausgeführten commitgebundenen Läufen offen. WP-021 ist deshalb nicht als vollständig abgeschlossen oder integriert freigegeben; WP-022 bleibt gesperrt. Die lokale Schlussprüfung, der Push und die neue CI-Auswertung sind im folgenden Abschnitt belegt. Kein Merge, keine Folgeaufgabe, kein Umgehen der Billing-Sperre.
+
+### Korrekturcommit, Push und neue CI-Auswertung
+
+**Korrekturcommit `95e92ee7ea8d2e1cba6c5dda8169a5a1d35f86e4`**, 13 geprüfte Dateien, am 2026-10-05 auf den bestehenden Branch gepusht und per `git ls-remote` identisch verifiziert. Der Arbeitsbaum war danach sauber. Der Push hat die vorhandenen Workflows für Push und PR neu ausgelöst; es wurden keine alten Läufe wiederverwendet und keine Billing-/Runner-/Secretkonfiguration geändert.
+
+Alle vier neuen Runs binden laut GitHub `head_sha` exakt diesen Korrekturcommit und sind vollständig ausgewertet:
+
+| Run | Workflow / Ereignis | Ergebnis |
+|---|---|---|
+| [37250456199](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37250456199) | Architecture Validation / push | **COMPLETED / FAILURE**, `validate` vor Runnerstart blockiert. |
+| [37250459407](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37250459407) | Architecture Validation / pull_request | **COMPLETED / FAILURE**, `validate` vor Runnerstart blockiert. |
+| [37250456203](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37250456203) | Unity CI / push | **COMPLETED / FAILURE**, fünf Startjobs vor Runnerstart blockiert, fünf Folgejobs SKIPPED. |
+| [37250459412](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37250459412) | Unity CI / pull_request | **COMPLETED / FAILURE**, dieselbe Jobverteilung. |
+
+**Externer Evidence Gap:** Alle zwölf fehlgeschlagenen Startjobs melden ausdrücklich fehlgeschlagene Accountzahlungen oder ein zu niedriges Ausgabenlimit und verweisen auf „Billing & plans“. Runner-ID **0**, **0 Steps**, alle vier Runs mit **0 Artefakten**. Der zusätzliche allgemeine macOS-Kapazitätshinweis ändert den expliziten Billing-Startblocker nicht. Welche der beiden Accountursachen konkret vorliegt, bleibt unbestimmt. Der Fehler enthält keine ausgeführte Code-/Testfehlermeldung.
+
+| Geforderter neuer CI-Nachweis | Tatsächlicher Status |
+|---|---|
+| Architektur-/Production-Scope-/Trust-Anchor-Selbsttests | **NOT_EXECUTED**, `validate` konnte nicht starten; lokaler positiver Scope und bekannte Windows-Selbsttestgrenze bleiben getrennt. |
+| Projektpreflight mit neuer QA-Identität / Konfiguration / Umgebungen | **NOT_EXECUTED**, `project-preflight`, `unity-config` und drei `unity-environment-*` scheitern vor Runnerstart. |
+| Compile / EditMode / PlayMode | **SKIPPED**, keine neuen CI-Testzahlen. Lokale 27/27 bzw. 1/1 werden nicht zu CI-PASS umgedeutet. |
+| Android IL2CPP / iOS Export und Xcode Compile | **SKIPPED**, kein CI-APK/Xcodeartefakt. Lokales APK und dessen tatsächliche QA-ID sind separat belegt. |
+| Coverage / Evidence Guard | Coverage **NOT_EXECUTED**, Guard **SKIPPED**; weder neuer Ready- noch Negativpfad nachgewiesen. |
+
+**Befundabschluss:** QC-01 und QC-02 sind implementiert und lokal durch positive und negative Regressionen geprüft. Keine verbleibende Implementierungsabweichung dieser beiden Befunde bekannt. Die vollständige WP-021-DoD bleibt wegen neuer CI-/iOS-/Coverage-/Guard-Evidenz und der unabhängigen QC offen; der bekannte Windows-Selbsttestbefund bleibt unverändert dokumentiert. Kein Merge, PR #11 bleibt offen, WP-022 bleibt gesperrt.
+
+Diese Auswertung wird in einem reinen Evidenzcommit der drei Steuerungsdateien persistiert; dessen technische Dateien sind identisch mit `95e92ee`. Die dadurch automatisch entstehenden Runs werden ebenfalls abschließend betrachtet. Rohdaten: `Logs/wp021-qc-ci-95e92ee-summary.json` und `Logs/wp021-qc-ci-*-{jobs,annotations,artifacts}.json`; temporäre Hilfen, Logs, XMLs, APK und Caches bleiben ignoriert und erhalten. Nächstes externes Gate: Billing-Sperre beheben, danach denselben geprüften technischen Stand über vorhandene CI erneut nachweisen und unabhängige Astra-/Sol-QC ausführen. Dieser Auftrag startet keine Folgeaufgabe.
