@@ -19,6 +19,8 @@ namespace STP.Bootstrap
     {
         /// <summary>Erstellt das Ergebnis mit allen Modulinstanzen und der Application-Root.</summary>
         public BootstrapCompositionResult(
+            BootstrapConfiguration configuration,
+            LocalBootstrapLogger logger,
             ContentModuleSkeleton content,
             PersistenceModuleSkeleton persistence,
             PlatformModuleSkeleton platform,
@@ -29,6 +31,8 @@ namespace STP.Bootstrap
             StoreModuleSkeleton store,
             ApplicationRoot root)
         {
+            this.Configuration = configuration;
+            this.Logger = logger;
             this.Content = content;
             this.Persistence = persistence;
             this.Platform = platform;
@@ -39,6 +43,12 @@ namespace STP.Bootstrap
             this.Store = store;
             this.Root = root;
         }
+
+        /// <summary>Explizite unveränderliche QA-Konfiguration.</summary>
+        public BootstrapConfiguration Configuration { get; }
+
+        /// <summary>Lokaler Logger, der dieselbe Konfiguration nutzt.</summary>
+        public LocalBootstrapLogger Logger { get; }
 
         /// <summary>Content-Modul (vier Katalogports).</summary>
         public ContentModuleSkeleton Content { get; }

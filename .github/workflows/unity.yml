@@ -88,6 +88,23 @@ jobs:
           test -f Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.meta
           echo "Unity-Versionspin ${STP_UNITY_VERSION} und Pflichtartefakte vorhanden."
 
+      - name: Explizite QA-Identitaeten vor Unity pruefen
+        run: |
+          python3 - <<'PYEOF'
+          import pathlib, re
+          settings = pathlib.Path("ProjectSettings/ProjectSettings.asset").read_text(encoding="utf-8")
+          block = re.search(r"^  applicationIdentifier:\n((?:    .*\n)+)", settings, re.MULTILINE)
+          if block is None:
+              raise SystemExit("Scaffold identity: explizite Android-/iOS-IDs fehlen")
+          identities = dict(re.findall(r"^    (\w+): (\S+)\s*$", block.group(1), re.MULTILINE))
+          for platform in ("Android", "iPhone"):
+              if identities.get(platform) != "com.STP.StammstreckenPuzzle.qa":
+                  raise SystemExit(f"Scaffold identity: {platform} ist nicht die festgelegte QA-ID")
+          if not re.search(r"^  overrideDefaultApplicationIdentifier: 1$", settings, re.MULTILINE):
+              raise SystemExit("Scaffold identity: generierte Default-ID ist nicht erlaubt")
+          print("SCAFFOLD IDENTITY PASS: profile=qa, Android/iOS=com.STP.StammstreckenPuzzle.qa")
+          PYEOF
+
       - name: Statischer Modulgraph-Check der realen .asmdef-Dateien
         run: |
           python3 - <<'PYEOF'

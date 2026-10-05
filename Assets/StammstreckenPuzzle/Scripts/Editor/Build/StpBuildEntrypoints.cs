@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using STP.Bootstrap;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -32,6 +33,7 @@ namespace STP.Editor.Build
         /// </summary>
         public static void VerifyProjectVersion()
         {
+            VerifyScaffoldBuildIdentity();
             var versionFile = Path.Combine("ProjectSettings", "ProjectVersion.txt");
             var content = File.ReadAllText(versionFile);
             var expectedLine = $"m_EditorVersion: {ExpectedEditorVersion}";
@@ -63,6 +65,7 @@ namespace STP.Editor.Build
         /// </summary>
         public static void BuildAndroidDevelopmentIl2Cpp()
         {
+            VerifyScaffoldBuildIdentity();
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
@@ -82,6 +85,7 @@ namespace STP.Editor.Build
         /// </summary>
         public static void ExportIosXcodeProjectIl2Cpp()
         {
+            VerifyScaffoldBuildIdentity();
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.iOS.targetOSVersionString = "15.0";
 
@@ -89,6 +93,26 @@ namespace STP.Editor.Build
                 locationPathName: "Builds/iOS/Xcode",
                 target: BuildTarget.iOS,
                 options: BuildOptions.None);
+        }
+
+        /// <summary>
+        /// Prüft beide eingecheckten Plattformidentitäten gegen das explizite QA-Profil.
+        /// Leere, Production-, fremde oder andere Profil-IDs brechen vor jeder Buildmutation
+        /// ab; eine Fehlkonfiguration wird niemals durch automatisches Überschreiben verdeckt.
+        /// </summary>
+        public static void VerifyScaffoldBuildIdentity()
+        {
+            var configuration = new BootstrapConfiguration();
+            foreach (var target in new[] { UnityEditor.Build.NamedBuildTarget.Android, UnityEditor.Build.NamedBuildTarget.iOS })
+            {
+                var identifier = PlayerSettings.GetApplicationIdentifier(target);
+                if (!string.Equals(identifier, configuration.ApplicationIdentifier, StringComparison.Ordinal))
+                {
+                    throw new InvalidOperationException(
+                        $"Scaffold identity: {target.TargetName} muss fuer Profil {configuration.Profile} exakt '{configuration.ApplicationIdentifier}' verwenden; gefunden '{identifier}'.");
+                }
+            }
+            Debug.Log($"STP Scaffold identity PASS: profile={configuration.Profile}, Android/iOS={configuration.ApplicationIdentifier}.");
         }
 
         private static void BuildPlayerOrThrow(string locationPathName, BuildTarget target, BuildOptions options)

@@ -25,6 +25,9 @@ namespace STP.Bootstrap
         /// <summary>Erstellt den vollständigen Composition Graph ohne jede Providerinitialisierung.</summary>
         public static BootstrapCompositionResult Compose()
         {
+            var configuration = new BootstrapConfiguration();
+            var logger = new LocalBootstrapLogger(configuration);
+            logger.LogCompositionStarted();
             var content = new ContentModuleSkeleton();
             var persistence = new PersistenceModuleSkeleton();
             var platform = new PlatformModuleSkeleton();
@@ -56,8 +59,9 @@ namespace STP.Bootstrap
                 analytics: google,
                 crashes: google);
 
+            logger.LogCompositionCompleted();
             return new BootstrapCompositionResult(
-                content, persistence, platform, audio, ui, world, google, store, root);
+                configuration, logger, content, persistence, platform, audio, ui, world, google, store, root);
         }
     }
 }

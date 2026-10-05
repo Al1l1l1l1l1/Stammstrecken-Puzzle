@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** WP-021-Korrekturen H1–H4/M1 lokal geprüft und im Commit `2868df4e2f3529d2d81d213ede745f1507558244` auf den bestehenden Branch gepusht (2026-10-03), Remote-HEAD verifiziert. Alle vier neuen CI-Läufe sind beendet und vollständig ausgewertet: GitHub-Account-/Billing-Sperre verhindert jeden Runnerstart; keine neuen ausgeführten CI-/iOS-/Coverage-/Guard-Nachweise. WP-021 bleibt **BLOCKED für den technischen Abschluss** und offen für unabhängige QC. Kein Merge, kein Schließen des PRs und keine Folgeaufgaben. Alte CI-Runs werden nicht als Korrekturbeleg anerkannt.
+**Bearbeitungsstatus:** Astra-QC-01/QC-02 auf Ausgangs-HEAD `1a9f569` korrigiert und lokal geprüft (2026-10-05): PlayMode 27/27, EditMode-Paketstub 1/1, Preflight, Modulgraph und Android-IL2CPP mit tatsächlicher QA-Paket-ID PASS. Schlussprüfung/Commit/Push und neue CI-Auswertung folgen im aktuellen Auftrag. WP-021 bleibt offen; technische Gesamt-DoD erfordert neue commitgebundene CI-/iOS-/Coverage-Nachweise und unabhängige QC. Kein Merge.
 
 ## Ziel
 
@@ -363,3 +363,44 @@ GitHub-Check-Annotations melden für alle zwölf fehlgeschlagenen Startjobs, das
 Die drei Steuerungsdateien dokumentieren diese tatsächliche Auswertung in einem reinen Evidenzcommit; alle technischen Dateien bleiben identisch zum Korrekturcommit. Auch dessen neue CI-Läufe müssen abschließend betrachtet werden. Der Implementierungsauftrag endet mit dem Statusbericht; der externe Billing-Blocker, ein späterer erneuter CI-Lauf und unabhängige QC sind nur dokumentierte offene Gates, keine gestarteten Folgeaufgaben. Keine Merge-/Close-Aktion.
 
 Lokale Rohbefunde werden ausschließlich ignoriert unter `Logs/wp021-ci-*` aufbewahrt (Run-/Job-/Check-/Annotations-/Artefakt-JSON). `Logs/wp021-github.ps1` ist ein ignorierter temporärer API-Lesehelfer ohne gespeicherte Zugangsdaten. Keine temporären Artefakte werden versioniert oder gelöscht.
+
+## Astra-QC-Korrekturrunde QC-01/QC-02 (2026-10-05)
+
+### Ausgangsstand und Umsetzung
+
+Ausgangspunkt ist der saubere aktuelle Branch `feat/wp-021-unity-scaffold-recovery`, HEAD **`1a9f569beb487245621b4e4a9cda4e080a6b73bf`**, identisch mit Remote und offenem, ungemergtem PR #11. AGENTS.md und die dort bzw. hier vorgeschriebene Pflichtlektüre wurden in Reihenfolge gelesen. Keine Datei oder Evidenz aus historischen Branches verwendet. Die Geschäftsführung hat die Korrektur beider Befunde einschließlich lokaler Tests, Scopeprüfung, Commit/Push und anschließender CI-Auswertung freigegeben; kein Merge.
+
+| Befund | Konkrete Korrektur und Regression |
+|---|---|
+| **QC-01: fehlende Konfiguration und lokaler Logger** | `BootstrapConfiguration` und `LocalBootstrapLogger` werden tatsächlich vor Content konstruiert. Der Logger erhält dieselbe immutable QA-Konfiguration per Konstruktor und schreibt feste lokale Start-/Abschlussdiagnosen ohne Nutzerdaten oder Provider. `BootstrapCompositionResult` hält die tatsächlich verwendeten Instanzen. Der Test prüft die echten kompilierten Konstruktorinstruktionen in der vollständigen Vertragsreihenfolge: Konfiguration → Logger → Content → Persistence → Clock/Lifecycle (und lokales Audio) → Application → UI/World → externe Adapter. Szenen-/Referenztests und Log-Erwartungen belegen tatsächliche Verdrahtung/Nutzung. Kein neuer Port, keine Assemblykante, kein globaler Zustand, keine Providerinitialisierung. |
+| **QC-02: fehlende Nicht-Production-Identität** | Explizites Scaffoldprofil `qa`, Android und iOS jeweils **`com.STP.StammstreckenPuzzle.qa`**, eingecheckt in `ProjectSettings.asset` mit explizitem Override. Die Konfiguration ist zugleich Sollquelle für den Unity-Buildpreflight. Alle drei Entrypoints prüfen beide IDs fail-closed; die Plattformbuilds prüfen vor jeder Einstellungsänderung und nochmals vor BuildPlayer. Falsche IDs werden nicht still überschrieben. Tests variieren beide Plattformen mit Production-/leerer/fremder/`.dev`-/`.staging`-ID und rufen die echten Entrypoints auf. Der immer laufende CI-Projektpreflight prüft zusätzlich die serialisierten IDs und den Override vor Unity. Keine Festlegung finaler Store-IDs, keine Productionprovider oder Dienst-IDs. |
+
+Geänderte technische Dateien: `BootstrapComposition.cs`, `BootstrapCompositionResult.cs`, neue `BootstrapConfiguration.cs` und `LocalBootstrapLogger.cs` einschließlich Meta-Dateien (alle in `Scripts/Bootstrap/`), `Scripts/Editor/Build/StpBuildEntrypoints.cs`, `Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs`, `ProjectSettings/ProjectSettings.asset`, `.github/workflows/unity.yml`. Hinzu kommen ausschließlich die drei mechanischen Steuerungsdateien dieses WP, CURRENT_STATE und WORK_QUEUE. Produktions-/Test-Assemblygraph, Pakete, Toolchain, Architektur-/Produktquellen und Validator bleiben unverändert.
+
+### Tatsächlich ausgeführte lokale Nachweise
+
+| Nachweis | Ergebnis |
+|---|---|
+| Regression vor Korrektur | **24 Tests: 14 PASS / 10 erwartete FAIL** gegen den bisherigen Produktionscode. Vollständige Reihenfolge, QA-ID und acht Negativfälle reproduzieren die Befunde; kein Build wurde durch die Negativprobe gestartet. `Logs/wp021-qc-before.xml`, `Logs/wp021-qc-before-host.log`. |
+| Korrigierter Bootstrap-PlayMode-Smoke | **27/27 PASS**, reale Unity-Ausführung einschließlich QA-Szene, vollständiger Konstruktorreihenfolge, Logger-Wiring/-Ausgaben und zehn Identitätsnegativfällen mit je drei echten Entrypoints. Vorhandene H1–H4/M1-Regressionen bleiben grün. `Logs/wp021-qc-after.xml`, zugehörige `.log`. |
+| EditMode | **1/1 PASS**, vorhandener Addressables-Paketstub; keine fachlichen Application-EditMode-Tests behauptet. `Logs/wp021-qc-editmode.xml`, zugehörige `.log`. |
+| Unity-Preflight / Compile | **PASS**, Unity `6000.3.23f1`, explizites QA-Profil/IDs, URP/2D-Renderer auf allen sechs Quality-Leveln, Android/iOS Medium; eigener Code kompiliert mit Nullable/Warnungen als Fehler. `Logs/wp021-qc-preflight.log`, Exit 0. |
+| CI-Preflight lokal | **PASS**: unveränderter Modulgraph 14+9; neuer serialisierter Identitätscheck positiv und **12/12 Negativmutationen erkannt** (beide Plattformen, fehlender Block, Default-Override). Aus dem aktuellen Workflow extrahierter Originalcode; `Logs/wp021-qc-static.log`, reproduzierbarer lokaler Helfer `Logs/wp021-qc-static.py`. |
+| Architecture-only-Selbsttest | **FAIL ausschließlich `V03-005-ABSOLUTE`**, bekannter Windows-/POSIX-Befund. `Logs/wp021-qc-architecture-selftest.log`. Keine Abschwächung oder Änderung. |
+| Production-Scope / Trust Anchor | Final nach Build/Statusnachführung **PASS, 17 Prüfgruppen** (`Logs/wp021-qc-final-scope-positive.log`); historischer gemeinsamer Add-Commit und Basecommit verifiziert. Manifestblob **`734e7f676a7c80f49e2524a565055a96ab5ff33f`** unverändert gegenüber `fc10c61`. Scope-Selbsttest ausschließlich bekannter **`V03-005-ABSOLUTE`** (`Logs/wp021-qc-final-scope-selftest.log`). |
+| Android Development IL2CPP | **PASS**, vorhandene Toolchain, Build-Exit 0 (`Logs/wp021-qc-android.log`). `aapt dump badging` bestätigt im realen APK **`com.STP.StammstreckenPuzzle.qa`**, minSdk 26, target/compileSdk 36 (`Logs/wp021-qc-apk-badging.log`). APK `Builds/Android/stp-qa-development.apk`: **40.066.830 Bytes**, SHA-256 **`6a4442d0dac31e740087ecf22fef60b38302c1e94fa63c0a9eaf0550a4c9d92b`**. Kein physischer Gerätesmoke behauptet. |
+| iOS / Coverage / Geräte / Stores | Neuer iOS-Export/Compile und Coverage nur durch die bestehenden CI-Jobs nach Push; auf diesem Windows-Host kein Xcode-Nachweis. Geräte-/Store-/SDK-Smokes unverändert **REQUIRED_LATER/NOT_EXECUTED**. Alte CI-Runs sind kein Nachweis dieser Korrektur. |
+
+Der erste sandboxierte Unity-Aufruf endete ohne Testausführung wegen fehlendem Zugriff auf die vorhandene Lizenz (Exit 198). Der reguläre Aufruf derselben vorhandenen Installation/Lizenz außerhalb der Sandbox führte die Tests aus. Keine Aktivierung, Installation, Unity-/UPM-Reparatur oder Änderung der Entwicklungsumgebung. Der bestehende Python-Runtimezugriff benötigte ebenfalls Ausführung außerhalb der Sandbox. Der Validator läuft mit `PYTHONUTF8=1`; ohne diesen Modus führte Windows-Textdecodierung zunächst zu `adr:016-historical-decision-mutated`, obwohl die ADR-Datei unverändert ist. Unity-generierter Whitespace wird nach beendeten Prozessen normalisiert. Diese Fehlversuche zählen nicht als PASS.
+
+### Scope, Evidenzkategorien und Abschlussgate
+
+- **LOCAL_DOCUMENT_STRUCTURE:** aktuelle Steuerungsdateien, Pflichtstruktur und Links durch Validator geprüft.
+- **LOCAL_ARCHITECTURE_SEMANTICS:** ausgeführte positive Validatorgruppen; realer Modulgraph, Unity-Regressionen und Buildpreflight separat wie oben; Selbsttestgrenze ausdrücklich ausgewiesen.
+- **MANUAL_ARCHITECTURE_REVIEW:** alle WP-021-Scopepunkte/AK gegen den aktuellen Vertrag geprüft: reine Skelette, 15 unveränderte Ports, 14+9 Assemblies, manuelle Konstruktion in vollständiger Reihenfolge, Provider bleiben ungestartet, getrennte QA-Identitäten. Keine neue Architektur-/Produktentscheidung.
+- **LOCAL_SCOPE:** vollständiger Diff ab `e4f8cc1` gegen unverändertes WP-021-Manifest **PASS**, nicht nur Korrekturdiff. Diffcheck, Secret-Patternscan und Guardrailprüfung **PASS**. Architektur-/Produkt-/Paket-/Validator-/Toolchain-/Manifestdiff gegenüber Ausgangs-HEAD leer. Genau 13 Korrektur-/Steuerungsdateien; Unity-Whitespace normalisiert, keine semantischen Buildnebenänderungen. Keine ignorierten Logs/Caches/Buildausgaben eingecheckt.
+- **CONTRACT_ONLY:** unveränderte Architektur-/Fachfixtures; kein vorgezogener Puzzle-/SDK-/Produktionsumfang.
+- **REQUIRED_LATER/NOT_EXECUTED:** neue commitgebundene CI-/iOS-/Coverage-/Guardnachweise sowie physische Geräte-/Storetests.
+- **BLOCKED:** bekannte externe GitHub-Billing-Sperre wird nach Push neu geprüft; Produktfolgeblocker unverändert.
+
+AK-01–AK-05 und AK-08 sind lokal prüfbar; AK-06 und neue CI-Coverage aus AK-07 bleiben bis tatsächlich ausgeführten commitgebundenen Läufen offen. WP-021 ist deshalb nicht als vollständig abgeschlossen oder integriert freigegeben; WP-022 bleibt gesperrt. Nach sauberer lokaler Schlussprüfung: Korrekturcommit auf bestehendem Branch pushen, neue bestehende Workflows auswerten und den tatsächlichen Status persistieren. Kein Merge, keine Folgeaufgabe, kein Umgehen der Billing-Sperre.

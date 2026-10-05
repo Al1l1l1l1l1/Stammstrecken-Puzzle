@@ -41,7 +41,7 @@ namespace STP.Tests.Bootstrap.PlayMode
 
 #if UNITY_EDITOR
         [Test]
-        public void Composition_CompiledConstructorOrder_PlacesApplicationBeforePresentationBeforeProviders()
+        public void Composition_CompiledConstructorOrder_IncludesConfigurationAndLoggerBeforeContent()
         {
             // Prüft die echten newobj-Instruktionen der kompilierten Root, keine
             // separat gepflegte Reihenfolgenliste im Produktionscode.
@@ -55,7 +55,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                     opcodes[opcode.Value] = opcode;
                 }
             }
-            var constructors = new List<Type>();
+            var constructors = new List<string>();
             for (var offset = 0; offset < code.Length;)
             {
                 short value = code[offset++];
@@ -66,7 +66,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                 var opcode = opcodes[value];
                 if (opcode == OpCodes.Newobj)
                 {
-                    constructors.Add(method.Module.ResolveMethod(BitConverter.ToInt32(code, offset))!.DeclaringType!);
+                    constructors.Add(method.Module.ResolveMethod(BitConverter.ToInt32(code, offset))!.DeclaringType!.FullName!);
                 }
                 switch (opcode.OperandType)
                 {
@@ -84,12 +84,56 @@ namespace STP.Tests.Bootstrap.PlayMode
             }
             CollectionAssert.AreEqual(new[]
             {
-                typeof(ContentModuleSkeleton), typeof(PersistenceModuleSkeleton),
-                typeof(PlatformModuleSkeleton), typeof(AudioModuleSkeleton), typeof(ApplicationRoot),
-                typeof(UiPresentationSkeleton), typeof(WorldPresentationSkeleton),
-                typeof(GoogleModuleSkeleton), typeof(StoreModuleSkeleton), typeof(BootstrapCompositionResult),
+                "STP.Bootstrap.BootstrapConfiguration", "STP.Bootstrap.LocalBootstrapLogger",
+                typeof(ContentModuleSkeleton).FullName, typeof(PersistenceModuleSkeleton).FullName,
+                typeof(PlatformModuleSkeleton).FullName, typeof(AudioModuleSkeleton).FullName, typeof(ApplicationRoot).FullName,
+                typeof(UiPresentationSkeleton).FullName, typeof(WorldPresentationSkeleton).FullName,
+                typeof(GoogleModuleSkeleton).FullName, typeof(StoreModuleSkeleton).FullName, typeof(BootstrapCompositionResult).FullName,
             }, constructors);
         }
+
+        [Test]
+        public void Project_ScaffoldIdentity_IsExplicitQaOnAndroidAndIos()
+        {
+            Assert.AreEqual("com.STP.StammstreckenPuzzle.qa", PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android));
+            Assert.AreEqual("com.STP.StammstreckenPuzzle.qa", PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.iOS));
+            BuildEntrypoint("VerifyProjectVersion").Invoke(null, null);
+        }
+
+        [TestCase("Android", "com.STP.StammstreckenPuzzle")]
+        [TestCase("iOS", "com.STP.StammstreckenPuzzle")]
+        [TestCase("Android", "")]
+        [TestCase("iOS", "")]
+        [TestCase("Android", "com.STP.StammstreckenPuzzle.dev")]
+        [TestCase("iOS", "com.STP.StammstreckenPuzzle.dev")]
+        [TestCase("Android", "com.STP.StammstreckenPuzzle.staging")]
+        [TestCase("iOS", "com.STP.StammstreckenPuzzle.staging")]
+        [TestCase("Android", "com.other.product.qa")]
+        [TestCase("iOS", "com.other.product.qa")]
+        public void BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(string platform, string identifier)
+        {
+            var target = platform == "Android" ? NamedBuildTarget.Android : NamedBuildTarget.iOS;
+            var original = PlayerSettings.GetApplicationIdentifier(target);
+            try
+            {
+                PlayerSettings.SetApplicationIdentifier(target, identifier);
+                foreach (var entrypoint in new[] { "VerifyProjectVersion", "BuildAndroidDevelopmentIl2Cpp", "ExportIosXcodeProjectIl2Cpp" })
+                {
+                    var failure = Assert.Throws<TargetInvocationException>(() => BuildEntrypoint(entrypoint).Invoke(null, null));
+                    Assert.That(failure!.InnerException, Is.TypeOf<InvalidOperationException>());
+                    StringAssert.Contains("Scaffold identity", failure.InnerException!.Message, entrypoint);
+                    Assert.AreEqual(identifier, PlayerSettings.GetApplicationIdentifier(target), "Fehlkonfiguration darf nicht still korrigiert werden.");
+                }
+            }
+            finally
+            {
+                PlayerSettings.SetApplicationIdentifier(target, original);
+            }
+        }
+
+        // Nur Testaufruf: keine Editor-Abhängigkeit in der playerfähigen Testassembly.
+        private static MethodInfo BuildEntrypoint(string name) =>
+            Type.GetType("STP.Editor.Build.StpBuildEntrypoints, STP.Editor.Build", true)!.GetMethod(name)!;
 
         [Test]
         public void Project_UrpAssetAndRenderer_AreAssignedForEveryQualityLevel()
@@ -131,6 +175,22 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.AreEqual(ManagedStrippingLevel.Medium, PlayerSettings.GetManagedStrippingLevel(NamedBuildTarget.iOS));
         }
 #endif
+
+        [Test]
+        public void Composition_ConfigurationAndLocalLogger_AreWiredAndUsedWithoutGlobalState()
+        {
+            LogAssert.Expect(LogType.Log, "STP Bootstrap [qa]: composition started.");
+            LogAssert.Expect(LogType.Log, "STP Bootstrap [qa]: composition completed; providers not initialized.");
+            var result = BootstrapComposition.Compose();
+            Assert.AreEqual("qa", result.Configuration.Profile);
+            Assert.AreEqual("com.STP.StammstreckenPuzzle.qa", result.Configuration.ApplicationIdentifier);
+            Assert.AreSame(result.Configuration, result.Logger.Configuration);
+            Assert.Throws<ArgumentNullException>(() => new LocalBootstrapLogger(null!));
+            var second = BootstrapComposition.Compose();
+            Assert.AreNotSame(result.Configuration, second.Configuration);
+            Assert.AreNotSame(result.Logger, second.Logger);
+            Assert.AreSame(second.Configuration, second.Logger.Configuration);
+        }
 
         [Test]
         public void Presentation_RequiresApplication_AndCanBeWiredBeforeProviders()
@@ -220,6 +280,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.NotNull(installer, "BootstrapInstaller fehlt in der QA-Szene.");
             var result = installer.Result;
             Assert.NotNull(result, "BootstrapCompositionResult wurde nicht erstellt.");
+            Assert.AreEqual("qa", result.Configuration.Profile);
+            Assert.AreSame(result.Configuration, result.Logger.Configuration);
 
             // Vollständiger Application-/UI-/World-Graph.
             Assert.NotNull(result.Root, "ApplicationRoot fehlt.");
