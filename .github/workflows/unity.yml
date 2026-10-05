@@ -483,9 +483,44 @@ jobs:
 
       - name: Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage
         run: |
+          set -euo pipefail
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
             -quit -logFile -
+          # UPM ist jetzt aufgeloest. Der gepinnte 1.3.0-Collector exportiert
+          # standardmaessig CoveredMethodsOnly und entfernt unbesuchte Assemblies.
+          # Nur den Exportmodus in der ignorierten Paketkopie auf Full umstellen:
+          # Full liest dieselben echten hitCount-Werte, auch explizite Nullen.
+          # FullEmpty (_0000), Mess-API, Filter und Evidenzgate bleiben unveraendert.
+          python3 - <<'PYEOF'
+          import hashlib, json, pathlib
+
+          packages = list(pathlib.Path("Library/PackageCache").glob("com.unity.testtools.codecoverage@*"))
+          if len(packages) != 1 or json.loads((packages[0] / "package.json").read_text())["version"] != "1.3.0":
+              raise SystemExit("Coverage collector FAILURE: genau Code Coverage 1.3.0 erforderlich")
+          source = packages[0] / "Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs"
+          original = source.read_text(encoding="utf-8")
+          digest = hashlib.sha256(original.encode()).hexdigest()
+          upstream = "f6e219730c2b59f83b715e062a11785fc60e21d0f6f4e1594c3e970c50d610b2"
+          full = "5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2"
+          if digest not in {upstream, full}:
+              raise SystemExit(f"Coverage collector FAILURE: unbekannter Collector-Quellstand {digest}")
+          if digest == upstream:
+              replacements = {
+                  "GenerateOpenCoverSession(CoverageReportType.CoveredMethodsOnly, testMethodInfo)":
+                      "GenerateOpenCoverSession(CoverageReportType.Full, testMethodInfo)",
+                  "m_Writer.WriteCoverageSession(CoverageReportType.CoveredMethodsOnly)":
+                      "m_Writer.WriteCoverageSession(CoverageReportType.Full)",
+              }
+              for before, after in replacements.items():
+                  if original.count(before) != 1:
+                      raise SystemExit("Coverage collector FAILURE: Exportstelle nicht eindeutig")
+                  original = original.replace(before, after)
+              if hashlib.sha256(original.encode()).hexdigest() != full:
+                  raise SystemExit("Coverage collector FAILURE: Full-Export-Quellstand inkonsistent")
+              source.write_text(original, encoding="utf-8", newline="\n")
+          print(f"Coverage collector PASS: 1.3.0 Full, echte hitCount-Werte, SHA256={full}")
+          PYEOF
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform EditMode -testResults TestResults/editmode.xml \
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
@@ -624,6 +659,40 @@ jobs:
 
       - name: BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)
         run: |
+          set -euo pipefail
+          unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
+            -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
+            -quit -logFile -
+          # Dieselbe fail-closed Full-Export-Anpassung wie im EditMode-Job.
+          python3 - <<'PYEOF'
+          import hashlib, json, pathlib
+
+          packages = list(pathlib.Path("Library/PackageCache").glob("com.unity.testtools.codecoverage@*"))
+          if len(packages) != 1 or json.loads((packages[0] / "package.json").read_text())["version"] != "1.3.0":
+              raise SystemExit("Coverage collector FAILURE: genau Code Coverage 1.3.0 erforderlich")
+          source = packages[0] / "Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs"
+          original = source.read_text(encoding="utf-8")
+          digest = hashlib.sha256(original.encode()).hexdigest()
+          upstream = "f6e219730c2b59f83b715e062a11785fc60e21d0f6f4e1594c3e970c50d610b2"
+          full = "5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2"
+          if digest not in {upstream, full}:
+              raise SystemExit(f"Coverage collector FAILURE: unbekannter Collector-Quellstand {digest}")
+          if digest == upstream:
+              replacements = {
+                  "GenerateOpenCoverSession(CoverageReportType.CoveredMethodsOnly, testMethodInfo)":
+                      "GenerateOpenCoverSession(CoverageReportType.Full, testMethodInfo)",
+                  "m_Writer.WriteCoverageSession(CoverageReportType.CoveredMethodsOnly)":
+                      "m_Writer.WriteCoverageSession(CoverageReportType.Full)",
+              }
+              for before, after in replacements.items():
+                  if original.count(before) != 1:
+                      raise SystemExit("Coverage collector FAILURE: Exportstelle nicht eindeutig")
+                  original = original.replace(before, after)
+              if hashlib.sha256(original.encode()).hexdigest() != full:
+                  raise SystemExit("Coverage collector FAILURE: Full-Export-Quellstand inkonsistent")
+              source.write_text(original, encoding="utf-8", newline="\n")
+          print(f"Coverage collector PASS: 1.3.0 Full, echte hitCount-Werte, SHA256={full}")
+          PYEOF
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \

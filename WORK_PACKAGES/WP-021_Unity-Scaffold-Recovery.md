@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Astra-QC-01/QC-02 bleiben korrigiert. **QC-CI-01/QC-CI-02** wurden am 2026-10-05 auf Ausgangs-HEAD `c8936852a5f33994d74074aaecb184d2cebbba19` ausschließlich in den CI-Evidenzgates korrigiert und als **`c2f75a2863ac9695ee8d2d0219c8b182bbd9e810` gepusht/remote verifiziert**. **51 lokale Gateregressionen PASS (5 positive, 46 erwartete Fehler)**; keine neue Unity-/Coverage-Messung behauptet. Vier neue CI-Läufe vollständig ausgewertet: weiterhin GitHub-Billing vor Runnerstart, keine Steps/Artefakte, abhängige Jobs SKIPPED. **WP-021 bleibt offen/BLOCKED für die Gesamt-DoD**; externer Evidence Gap und bekannte Windows-Selbsttestgrenze getrennt ausgewiesen. Kein Merge.
+**Bearbeitungsstatus:** Coverage-Erzeugung am 2026-10-06 auf selbst verifiziertem PR-HEAD `4be3937cb4e329f0738be6c223c3b1d434a3ec27` korrigiert; echte lokale EditMode-/PlayMode-Messungen mit allen acht Pflichtassemblies bestehen die unveränderten Evidenzgates. Astra-QC-01/QC-02 und QC-CI-01/QC-CI-02 bleiben erhalten. Neue commitgebundene CI-Nachweise werden nach Push geprüft; Gesamt-DoD und unabhängige Abschluss-QC noch offen. Bekannter Windows-Selbsttestbefund unverändert. Kein Merge.
 
 ## Ziel
 
@@ -493,5 +493,45 @@ Alle folgenden neuen Runs binden laut GitHub `head_sha` exakt den Korrekturcommi
 | **INFORMATIONAL** | Keine neue Unity-Ausführung, keine echte Coverage-Messung und keine unabhängige Abschluss-QC in diesem Implementierungsauftrag; physische Geräte-/Store-/SDK-Nachweise unverändert REQUIRED_LATER. |
 
 Keine verbleibende Implementierungsabweichung der zwei korrigierten Befunde aus den ausgeführten Gatetests bekannt. Reale Coverage-Pflichtdaten können weiterhin fehlen; das wird nun als FAILURE sichtbar statt als 0 % akzeptiert. WP-021-Gesamt-DoD und neue unabhängige QC bleiben offen, WP-022 gesperrt. Die CI-Auswertung wird ausschließlich in einem reinen Evidenzcommit der drei Steuerungsdateien persistiert; dessen Workflow und alle technischen Dateien bleiben identisch zu `c2f75a2`. Die dadurch automatisch ausgelösten Runs werden abschließend ebenfalls gelesen und im Statusbericht ausgewiesen. Kein Merge.
+
+## Eng begrenzte Coverage-Erzeugungskorrektur – 2026-10-06
+
+### Selbst verifizierter Ausgangsbefund und Umsetzung
+
+PR #11 ist offen und nicht integriert; lokaler und per GitHub-API gelesener HEAD sind `4be3937cb4e329f0738be6c223c3b1d434a3ec27`. Architecture Validation [37347568464](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37347568464) SUCCESS. Unity CI [37347568546](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37347568546), Job `111976793747`, scheitert nach erfolgreichem Compile/EditMode am Schritt „Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben“: `explizite Messdaten fehlen (nicht als 0 % gewertet)` für Bootstrap, Editor.Build, Google, Store, UI und World. Billing ist bei diesem Run kein Blocker mehr. Unity führt den PR-Mergecommit `90d95e711ced2c0c1af69890af93d6df4856d6a9` aus, dessen PR-Parent der genannte HEAD ist.
+
+Ursache ist der `CoveredMethodsOnly`-Export des gepinnten offiziellen Code-Coverage-Pakets 1.3.0: Methoden ohne Treffer werden verworfen, damit fehlen ganze Assemblies in der Abschlussmessung. `_0000` ist ein künstlich genullter Inventarbericht und bleibt ausdrücklich kein Messbeleg. Der schon vorhandene Collector-Modus `Full` liest dagegen `CoveredSequencePoint.hitCount` einschließlich tatsächlicher Nullen, behält unbesuchte instrumentierbare Methoden und berechnet daraus die Summaries.
+
+Nur `.github/workflows/unity.yml` ändert die technische Erzeugung: nach erfolgreicher UPM-Auflösung/Versionsprüfung wird die ignorierte `Library/PackageCache`-Kopie des Collectors in beiden Testjobs an genau zwei Exportaufrufen von `CoveredMethodsOnly` auf `Full` umgestellt. Version 1.3.0 und der UTF-8/LF-Quell-SHA-256 werden fail-closed geprüft: upstream `f6e219730c2b59f83b715e062a11785fc60e21d0f6f4e1594c3e970c50d610b2`, Full-Export `5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2`. Der bereits angepasste Cachestand ist idempotent zulässig; unbekannte Quellen, falsche Version oder fehlendes Paket scheitern. Die nächste Unity-Instanz kompiliert diese Collector-Kopie. Keine Paket-/Lock-/Produktionscode-/Assembly-/Validator-/Architekturänderung; kein Ersetzen oder Auffüllen von Coverage-XMLs. Mess-API, Filter, FullEmpty-Inventar und beide Coverage- sowie das PlayMode-Evidenzgate bleiben unverändert. Shell-Schritte sind fail-closed (`set -euo pipefail`). Die Anpassung muss bei einer künftig separat autorisierten Paketaktualisierung erneut geprüft werden.
+
+### Tatsächliche lokale Prüfungen
+
+| Prüfung | Ergebnis |
+|---|---|
+| Collector-Regression | **5/5 PASS**: upstream, idempotenter Cache, unbekannte Quelle, falsche Version, fehlendes Paket; beide Jobadapter identisch. |
+| QC-CI-01/QC-CI-02 | **51/51 erwartete Ergebnisse** (5 positive, 46 erwartete Fehler); Coverage-/PlayMode-Gates bytegleich zum Ausgangs-HEAD. Synthetische Gateregression getrennt von echter Messung. |
+| Unity 6000.3.23f1 Compile/EditMode | **1/1 Passed**, Log meldet Exit 0; echte Abschlussmessung mit acht Assemblies und expliziten Nullwerten, unverändertes Coverage-Gate PASS. |
+| Unity 6000.3.23f1 PlayMode | **27/27 Passed, Exit 0**, QA-Szenen-Smoke und Coverage-Gate PASS. Jeder Rohpunkt besitzt `vc`; Summary-Zähler stimmen mit den Rohpunkten überein. |
+| Modulgraph/QA-Identitäten | **PASS**, 14 Produktions-/9 Testassemblies; 12/12 ungültige Identitätskonfigurationen erkannt. Astra-QC-01/QC-02-Quellen unverändert. |
+| Architecture-only/Production-Scope mit `--self-test` | Beide **FAIL ausschließlich `self-test:not-detected:V03-005-ABSOLUTE`**; keine Windows-/Validatorreparatur und kein PASS behauptet. |
+| Production-Scope ohne Selftest | **PASS, 17 lokale Prüfgruppen**; historischer gemeinsamer Add-Anker `fc10c6141c7c720215f4f1f6670f87956baa346c`, Elterncommit/Basis `e4f8cc1`, Manifestblob `734e7f676a7c80f49e2524a565055a96ab5ff33f` unverändert. |
+| Shell-/Diff-/Quellen-/Secretprüfung | **PASS**, 31 `bash -n`-Blöcke, voller Basisdiff `git diff --check`, keine Secret-Literale; gegenüber Ausgangs-HEAD alle geschützten Quellen ohne Diff. Ausschließlich bei den lokalen Unity-Läufen erzeugte ProjectSettings-Serialisierungsänderungen zurückgesetzt. |
+
+| Assembly | EditMode besuchte/Gesamt-Sequenzpunkte | PlayMode besuchte/Gesamt-Sequenzpunkte |
+|---|---:|---:|
+| STP.Application | 0/40 | 40/40 |
+| STP.Bootstrap | 0/60 | 59/60 |
+| STP.Editor.Build | 0/82 | 47/82 |
+| STP.MobileServices.Google | 0/5 | 1/5 |
+| STP.MobileServices.Store | 0/5 | 1/5 |
+| STP.Presentation.UI | 0/5 | 5/5 |
+| STP.Presentation.World | 0/5 | 5/5 |
+| STP.Tests.Bootstrap.PlayMode | 0/271 | 262/271 |
+
+Ignorierte Reproduktionshilfen: `Logs/wp021-full-collector-test.py`, `Logs/wp021-full-measurements.py`, `Logs/wp021-full-review.py`; tatsächliche XMLs unter `Logs/wp021-full-{editmode,playmode}/TestResults/`, Unity-Logs und Gateausgaben unter `Logs/wp021-full-*`. Keine Messartefakte oder Cachequellen werden committed. Geänderte Steuerungsdateien: dieses WP, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`.
+
+### Übergabe und noch ausstehende Evidenz
+
+Die eng begrenzte Korrektur ist lokal umgesetzt und geprüft. Nach Commit/Push sind Remote/PR-HEAD und sämtliche neuen GitHub-Actions-Läufe zu prüfen, insbesondere Architecture-Selbsttests unter Ubuntu, EditMode-/PlayMode-Coverage, Android-IL2CPP und iOS-Export/Compile. Erst deren tatsächliche Ergebnisse werden als CI-Nachweis fortgeschrieben. AK-01/AK-08 lokal erfüllt; AK-02–AK-05 technisch unverändert und Compile/Smoke erneut bestanden; AK-06/AK-07 lokal belegt, neue CI noch ausstehend. Keine unabhängige QC in diesem Implementierungsauftrag; WP-021 bleibt bis zur vollständigen Evidenz und nachfolgenden unabhängigen QC/Integrationsentscheidung offen, WP-022 gesperrt. Physische Geräte-/Store-/SDK-Nachweise unverändert REQUIRED_LATER, Domain/Solver typenlos und Mutationsbaseline erst WP-022. Kein Merge.
 
 Rohbefunde: `Logs/wp021-ci-gates-c2f75a2863ac9695ee8d2d0219c8b182bbd9e810-summary.json` und `Logs/wp021-ci-gates-<run>-{jobs,annotations,artifacts}.json`. Die temporäre API-Hilfe arbeitet ausschließlich lesend, speichert keine Zugangsdaten und bleibt wie Testhilfen/Fixtures/Logs ignoriert. Nächstes externes Gate: Billing-Sperre beheben, bestehende CI mit diesem geprüften technischen Stand ausführen, fehlende tatsächliche Mess-/Buildnachweise erbringen, danach unabhängige Abschluss-QC und Integrationsentscheidung. Keine Folgeaufgabe gestartet.
