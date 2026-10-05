@@ -491,38 +491,87 @@ jobs:
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
             -logFile -
 
-      - name: Coverage-Baseline je Assembly ausgeben
+      - name: Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben
         if: always()
         run: |
           set -euo pipefail
-          if [ ! -d TestResults/Coverage ]; then
-            echo "Kein Coverage-Verzeichnis vorhanden (Testlauf nicht erfolgt oder Coverage deaktiviert)."
-            exit 0
-          fi
-          find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
-          import pathlib, xml.etree.ElementTree as ET
+          import pathlib, re, xml.etree.ElementTree as ET
+
+          def fail(message):
+              raise SystemExit(f"Coverage evidence FAILURE: {message}")
+
+          # WP-021-Assemblies mit instrumentierbaren Methoden; typenlose/Interface-Skelette sind keine Messgegenstaende.
+          required = {
+              "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
+              "STP.MobileServices.Google", "STP.MobileServices.Store",
+              "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
+          }
+          directory = pathlib.Path("TestResults/Coverage")
+          if not directory.is_dir():
+              fail(f"{directory} fehlt")
+          paths = sorted(directory.rglob("TestCoverageResults_*.xml"))
+          if not paths:
+              fail("keine TestCoverageResults_*.xml")
           totals, visited = {}, {}
-          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
-              root = ET.parse(path).getroot()
-              target = totals if path.name.endswith("_0000.xml") else visited
-              for module in root.iter("Module"):
-                  name_el = module.find("ModuleName")
-                  summary = module.find("Summary")
-                  if name_el is None or summary is None:
+          parents = set()
+          for path in paths:
+              match = re.fullmatch(r"TestCoverageResults_(\d{4})\.xml", path.name)
+              if match is None:
+                  fail(f"nicht unterstuetzter Pflichtdaten-Dateiname: {path}")
+              try:
+                  root = ET.parse(path).getroot()
+              except (OSError, ET.ParseError) as error:
+                  fail(f"{path} nicht lesbar/parsebar: {error}")
+              if root.tag != "CoverageSession" or root.find("Modules") is None:
+                  fail(f"{path}: kein OpenCover CoverageSession/Modules")
+              target = totals if match[1] == "0000" else visited
+              parents.add(path.parent)
+              names = set()
+              for module in root.findall("./Modules/Module"):
+                  name = (module.findtext("ModuleName") or "").strip()
+                  if not name:
+                      fail(f"{path}: ModuleName fehlt")
+                  if name in names:
+                      fail(f"{path}: doppelte Assembly {name}")
+                  names.add(name)
+                  if not name.startswith("STP."):
                       continue
-                  target[(name_el.text or "")] = summary
-          print("Coverage-Baseline (Sequence Points, besucht/gesamt; OpenCover _0001 besucht, _0000 gesamt):")
-          for name in sorted(set(totals) | set(visited)):
-              if not name.lower().startswith("stp"):
-                  continue
-              t = totals.get(name); v = visited.get(name)
-              t_seq = int(t.get("numSequencePoints", 0)) if t is not None else 0
-              v_seq = int(v.get("visitedSequencePoints", 0)) if v is not None else 0
-              t_m = int(t.get("numMethods", 0)) if t is not None else 0
-              v_m = int(v.get("visitedMethods", 0)) if v is not None else 0
-              pct = (100.0 * v_seq / t_seq) if t_seq else 0.0
+                  summary = module.find("Summary")
+                  if summary is None:
+                      fail(f"{path}: {name} ohne Summary")
+                  values = {}
+                  for field in ("numSequencePoints", "visitedSequencePoints", "numMethods", "visitedMethods"):
+                      raw = summary.get(field)
+                      if raw is None or re.fullmatch(r"\d+", raw) is None:
+                          fail(f"{path}: {name} ohne gueltiges {field}")
+                      values[field] = int(raw)
+                  if values["visitedSequencePoints"] > values["numSequencePoints"] or values["visitedMethods"] > values["numMethods"]:
+                      fail(f"{path}: {name} mit widerspruechlichen Zaehlern")
+                  # Keine stille Ueberschreibung oder Vermischung mehrerer Sitzungen.
+                  if name in target:
+                      fail(f"mehrdeutige Assembly-Messung: {name}")
+                  target[name] = values
+          if len(parents) != 1:
+              fail("mehrere Coverage-Sitzungen statt eines aktuellen Testlaufs")
+          missing = required - totals.keys()
+          if missing:
+              fail(f"Gesamtpunktdaten fehlen: {sorted(missing)}")
+          missing = (required | totals.keys()) - visited.keys()
+          if missing:
+              fail(f"explizite Messdaten fehlen (nicht als 0 % gewertet): {sorted(missing)}")
+          if visited.keys() - totals.keys():
+              fail("Messdaten ohne Gesamtpunktdaten")
+          print("Coverage-Baseline (explizite Messwerte; _0000 Gesamtpunkte, Folgedatei besuchte Punkte):")
+          for name in sorted(totals):
+              total, measured = totals[name], visited[name]
+              t_seq, t_m = total["numSequencePoints"], total["numMethods"]
+              v_seq, v_m = measured["visitedSequencePoints"], measured["visitedMethods"]
+              if t_seq == 0 or t_m == 0 or measured["numSequencePoints"] > t_seq or measured["numMethods"] > t_m:
+                  fail(f"{name}: keine verwertbaren oder widerspruechliche Gesamtpunktdaten")
+              pct = 100.0 * v_seq / t_seq
               print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
+          print(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")
           PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
@@ -580,38 +629,126 @@ jobs:
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
             -logFile -
 
-      - name: Coverage-Baseline je Assembly ausgeben
+      - name: PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren
         if: always()
         run: |
           set -euo pipefail
-          if [ ! -d TestResults/Coverage ]; then
-            echo "Kein Coverage-Verzeichnis vorhanden (Testlauf nicht erfolgt oder Coverage deaktiviert)."
-            exit 0
-          fi
-          find TestResults/Coverage -maxdepth 4 -type f -name "TestCoverageResults_*.xml" | head -10
           python3 - <<'PYEOF'
           import pathlib, xml.etree.ElementTree as ET
-          totals, visited = {}, {}
-          for path in sorted(pathlib.Path("TestResults/Coverage").rglob("TestCoverageResults_*.xml")):
+
+          def fail(message):
+              raise SystemExit(f"PlayMode evidence FAILURE: {message}")
+
+          path = pathlib.Path("TestResults/playmode.xml")
+          if not path.is_file():
+              fail(f"{path} fehlt")
+          try:
               root = ET.parse(path).getroot()
-              target = totals if path.name.endswith("_0000.xml") else visited
-              for module in root.iter("Module"):
-                  name_el = module.find("ModuleName")
-                  summary = module.find("Summary")
-                  if name_el is None or summary is None:
+          except (OSError, ET.ParseError) as error:
+              fail(f"{path} nicht lesbar/parsebar: {error}")
+          if root.tag != "test-run":
+              fail("kein NUnit test-run")
+          cases = list(root.iter("test-case"))
+          executed = [case for case in cases if case.get("result") in {"Passed", "Failed", "Inconclusive"}]
+          if not executed:
+              fail("keine ausgefuehrten Testfaelle")
+          fixture = "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke"
+          smoke = [case for case in cases if case.get("classname") == fixture
+                   and (case.get("fullname") or "").startswith(fixture + ".")]
+          if not smoke:
+              fail(f"{fixture} fehlt als test-case")
+          scene_name = fixture + ".QaScene_ComposesCompleteGraph_ExactlyOneBindingPerPort_NoProviderStart"
+          scene = [case for case in smoke if case.get("fullname") == scene_name]
+          if len(scene) != 1 or scene[0].get("result") != "Passed":
+              fail("vorgeschriebener QA-Szenen-Smoke fehlt, ist mehrfach vorhanden oder nicht Passed")
+          if any(case.get("result") != "Passed" for case in smoke):
+              fail("BootstrapCompositionSmoke enthaelt einen nicht bestandenen Testfall")
+          if root.get("result") != "Passed" or any(case.get("result") in {"Failed", "Inconclusive"} for case in executed):
+              fail("PlayMode-Testlauf nicht bestanden")
+          print(f"PlayMode evidence PASS: {len(executed)} ausgefuehrte Tests, {len(smoke)} Smoke-Faelle, QA-Szene Passed")
+          PYEOF
+
+      - name: Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import pathlib, re, xml.etree.ElementTree as ET
+
+          def fail(message):
+              raise SystemExit(f"Coverage evidence FAILURE: {message}")
+
+          # WP-021-Assemblies mit instrumentierbaren Methoden; typenlose/Interface-Skelette sind keine Messgegenstaende.
+          required = {
+              "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
+              "STP.MobileServices.Google", "STP.MobileServices.Store",
+              "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
+          }
+          directory = pathlib.Path("TestResults/Coverage")
+          if not directory.is_dir():
+              fail(f"{directory} fehlt")
+          paths = sorted(directory.rglob("TestCoverageResults_*.xml"))
+          if not paths:
+              fail("keine TestCoverageResults_*.xml")
+          totals, visited = {}, {}
+          parents = set()
+          for path in paths:
+              match = re.fullmatch(r"TestCoverageResults_(\d{4})\.xml", path.name)
+              if match is None:
+                  fail(f"nicht unterstuetzter Pflichtdaten-Dateiname: {path}")
+              try:
+                  root = ET.parse(path).getroot()
+              except (OSError, ET.ParseError) as error:
+                  fail(f"{path} nicht lesbar/parsebar: {error}")
+              if root.tag != "CoverageSession" or root.find("Modules") is None:
+                  fail(f"{path}: kein OpenCover CoverageSession/Modules")
+              target = totals if match[1] == "0000" else visited
+              parents.add(path.parent)
+              names = set()
+              for module in root.findall("./Modules/Module"):
+                  name = (module.findtext("ModuleName") or "").strip()
+                  if not name:
+                      fail(f"{path}: ModuleName fehlt")
+                  if name in names:
+                      fail(f"{path}: doppelte Assembly {name}")
+                  names.add(name)
+                  if not name.startswith("STP."):
                       continue
-                  target[(name_el.text or "")] = summary
-          print("Coverage-Baseline (Sequence Points, besucht/gesamt; OpenCover _0001 besucht, _0000 gesamt):")
-          for name in sorted(set(totals) | set(visited)):
-              if not name.lower().startswith("stp"):
-                  continue
-              t = totals.get(name); v = visited.get(name)
-              t_seq = int(t.get("numSequencePoints", 0)) if t is not None else 0
-              v_seq = int(v.get("visitedSequencePoints", 0)) if v is not None else 0
-              t_m = int(t.get("numMethods", 0)) if t is not None else 0
-              v_m = int(v.get("visitedMethods", 0)) if v is not None else 0
-              pct = (100.0 * v_seq / t_seq) if t_seq else 0.0
+                  summary = module.find("Summary")
+                  if summary is None:
+                      fail(f"{path}: {name} ohne Summary")
+                  values = {}
+                  for field in ("numSequencePoints", "visitedSequencePoints", "numMethods", "visitedMethods"):
+                      raw = summary.get(field)
+                      if raw is None or re.fullmatch(r"\d+", raw) is None:
+                          fail(f"{path}: {name} ohne gueltiges {field}")
+                      values[field] = int(raw)
+                  if values["visitedSequencePoints"] > values["numSequencePoints"] or values["visitedMethods"] > values["numMethods"]:
+                      fail(f"{path}: {name} mit widerspruechlichen Zaehlern")
+                  # Keine stille Ueberschreibung oder Vermischung mehrerer Sitzungen.
+                  if name in target:
+                      fail(f"mehrdeutige Assembly-Messung: {name}")
+                  target[name] = values
+          if len(parents) != 1:
+              fail("mehrere Coverage-Sitzungen statt eines aktuellen Testlaufs")
+          missing = required - totals.keys()
+          if missing:
+              fail(f"Gesamtpunktdaten fehlen: {sorted(missing)}")
+          missing = (required | totals.keys()) - visited.keys()
+          if missing:
+              fail(f"explizite Messdaten fehlen (nicht als 0 % gewertet): {sorted(missing)}")
+          if visited.keys() - totals.keys():
+              fail("Messdaten ohne Gesamtpunktdaten")
+          print("Coverage-Baseline (explizite Messwerte; _0000 Gesamtpunkte, Folgedatei besuchte Punkte):")
+          for name in sorted(totals):
+              total, measured = totals[name], visited[name]
+              t_seq, t_m = total["numSequencePoints"], total["numMethods"]
+              v_seq, v_m = measured["visitedSequencePoints"], measured["visitedMethods"]
+              if t_seq == 0 or t_m == 0 or measured["numSequencePoints"] > t_seq or measured["numMethods"] > t_m:
+                  fail(f"{name}: keine verwertbaren oder widerspruechliche Gesamtpunktdaten")
+              pct = 100.0 * v_seq / t_seq
               print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
+          print(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")
           PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
