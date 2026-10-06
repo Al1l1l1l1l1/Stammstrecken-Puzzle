@@ -4,7 +4,7 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Coverage-Erzeugung am 2026-10-06 auf selbst verifiziertem PR-HEAD `4be3937cb4e329f0738be6c223c3b1d434a3ec27` korrigiert; echte lokale EditMode-/PlayMode-Messungen mit allen acht Pflichtassemblies bestehen die unveränderten Evidenzgates. Astra-QC-01/QC-02 und QC-CI-01/QC-CI-02 bleiben erhalten. Neue commitgebundene CI-Nachweise werden nach Push geprüft; Gesamt-DoD und unabhängige Abschluss-QC noch offen. Bekannter Windows-Selbsttestbefund unverändert. Kein Merge.
+**Bearbeitungsstatus:** Eng begrenzte Coverage-Erzeugungskorrektur als `133ca696d4a35eaa4297c3f3dc8976912e989e2d` gepusht und remote/PR-verifiziert. Alle vier neuen PR-/Push-Läufe von Architecture Validation und Unity CI vollständig SUCCESS, einschließlich vollständiger echter Coverage für acht Assemblies, 27/27 PlayMode-Smokes, Android-IL2CPP und iOS-Export/Compile. Astra-QC-01/QC-02 und QC-CI-01/QC-CI-02 unverändert erhalten. Technisch abnahmebereit für die nachfolgende unabhängige Abschluss-QC; keine formale Abnahme oder Integration durch den Implementierungsagenten. Bekannter lokaler Windows-Selbsttestbefund unverändert. Kein Merge.
 
 ## Ziel
 
@@ -535,3 +535,33 @@ Ignorierte Reproduktionshilfen: `Logs/wp021-full-collector-test.py`, `Logs/wp021
 Die eng begrenzte Korrektur ist lokal umgesetzt und geprüft. Nach Commit/Push sind Remote/PR-HEAD und sämtliche neuen GitHub-Actions-Läufe zu prüfen, insbesondere Architecture-Selbsttests unter Ubuntu, EditMode-/PlayMode-Coverage, Android-IL2CPP und iOS-Export/Compile. Erst deren tatsächliche Ergebnisse werden als CI-Nachweis fortgeschrieben. AK-01/AK-08 lokal erfüllt; AK-02–AK-05 technisch unverändert und Compile/Smoke erneut bestanden; AK-06/AK-07 lokal belegt, neue CI noch ausstehend. Keine unabhängige QC in diesem Implementierungsauftrag; WP-021 bleibt bis zur vollständigen Evidenz und nachfolgenden unabhängigen QC/Integrationsentscheidung offen, WP-022 gesperrt. Physische Geräte-/Store-/SDK-Nachweise unverändert REQUIRED_LATER, Domain/Solver typenlos und Mutationsbaseline erst WP-022. Kein Merge.
 
 Rohbefunde: `Logs/wp021-ci-gates-c2f75a2863ac9695ee8d2d0219c8b182bbd9e810-summary.json` und `Logs/wp021-ci-gates-<run>-{jobs,annotations,artifacts}.json`. Die temporäre API-Hilfe arbeitet ausschließlich lesend, speichert keine Zugangsdaten und bleibt wie Testhilfen/Fixtures/Logs ignoriert. Nächstes externes Gate: Billing-Sperre beheben, bestehende CI mit diesem geprüften technischen Stand ausführen, fehlende tatsächliche Mess-/Buildnachweise erbringen, danach unabhängige Abschluss-QC und Integrationsentscheidung. Keine Folgeaufgabe gestartet.
+
+### Commitgebundene CI-Auswertung und Abschlussübergabe
+
+Korrekturcommit **`133ca696d4a35eaa4297c3f3dc8976912e989e2d`** umfasst genau vier erlaubte Dateien: `.github/workflows/unity.yml` und die drei Steuerungsdateien. Nach Push bestätigen `git ls-remote` und GitHub-PR-API exakt diesen HEAD; PR #11 offen, nicht integriert, Basis unverändert `e4f8cc1`. Der ausgeführte PR-Mergecommit ist `7aa55bdcbe09394804d9c7ec457c3f33be2ca2ab` (Eltern: Korrektur-HEAD und Basis). Technischer Workflow-SHA-256 (UTF-8/LF): **`7f42b080d6625c71a0f4b351e05da5140343a49549ef8c13f8fbedd66ff438e7`**.
+
+| Run | Ereignis / Workflow | Tatsächliches Ergebnis |
+|---|---|---|
+| [37384642475](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37384642475) | push / Architecture Validation | COMPLETED / SUCCESS; Architecture-only mit Selftest 17 Prüfgruppen, Production-Scope mit Selftest 18 Prüfgruppen PASS. |
+| [37384647879](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37384647879) | pull_request / Architecture Validation | COMPLETED / SUCCESS; Scope-Schritt checkt tatsächlichen PR-HEAD `133ca696` aus; beide Selbsttestmodi PASS. |
+| [37384642579](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37384642579) | push / Unity CI | COMPLETED / SUCCESS; alle zehn Jobs ausgeführt und erfolgreich, keine ausgelassenen Nachweisjobs. |
+| [37384647796](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37384647796) | pull_request / Unity CI | COMPLETED / SUCCESS; alle zehn Jobs ausgeführt und erfolgreich, keine ausgelassenen Nachweisjobs. |
+
+Alle vier Runs binden laut GitHub `head_sha` exakt `133ca696d4a35eaa4297c3f3dc8976912e989e2d`. Die Lizenzjob-Logs wurden direkt gelesen: EditMode `112014906940` / `112014908510`, PlayMode `112016961876` / `112018974908`, Android `112020159037` / `112021199974`, iOS `112027823501` / `112034953705` (push / PR). Beide EditMode-Läufe melden Exit 0 und `Coverage evidence PASS: 8 STP-Assemblies`; beide PlayMode-Läufe `27 ausgefuehrte Tests, 27 Smoke-Faelle, QA-Szene Passed` sowie dasselbe Coverage-PASS. Beide Android-Logs melden `STP Build PASS: Android -> Builds/Android/stp-qa-development.apk` und erfolgreichen Batchmode-Abschluss. Beide iOS-Logs melden `STP Build PASS: iOS -> Builds/iOS/Xcode` und **`** BUILD SUCCEEDED **`** (Xcode 26.3, Build 17C529; iOS-SDK 26.2 aus der eigenen Umgebungsprobe, unverändert zum dokumentierten Toolchain-Stand).
+
+Die echten CI-XML-Artefakte wurden zusätzlich heruntergeladen, gegen ihren GitHub-Digest geprüft und gegen Rohpunkte/Summaries sowie die unveränderten Gates ausgewertet: `editmode-results` **11378695331**, ZIP-SHA-256 `1b09765191abf81e9a57bf002b118fde31f2ef96e151d03aa99a547b0e8f604e`; `playmode-results` **11379645395**, ZIP-SHA-256 `cbb613dc7d70f03bee7e6c4b41f6dca05513bf02d2e4e369f9d54fdc758def00`. Alle acht STP-Module haben vollständige tatsächliche Rohpunkte mit explizitem `vc`, einschließlich Nullen; Summaries stimmen mit den Rohpunkten überein. Die oben dokumentierte lokale Assembly-Tabelle ist **auch die tatsächliche CI-Baseline**, nicht eine angenommene Übertragung. Android-Artefakt **11379899342** ebenfalls vorhanden, GitHub-ZIP-Digest `2066a79f343c7cecccd8d7a559f147ab6ca15aef122132ea99257fd7ccbb298d`. Keine Messdaten werden aufgefüllt oder committed.
+
+| Kriterium | Abschlussnachweis der Implementierungsrolle |
+|---|---|
+| AK-01 | Gemeinsamer historischer Add-Anker, immutable Manifest und Remote-Branch verifiziert; lokaler positiver Scope und beide CI-Scope-Selbsttests PASS. |
+| AK-02 | Projekt-/Paket-/Toolchain-Quellen unverändert zum Ausgangs-HEAD; gepinnte Unity-Version und QA-/Rendering-/Stripping-Preflights in den tatsächlichen CI-Jobs PASS. |
+| AK-03 | Normativer Modulgraph 14+9 lokal und in beiden CI-Preflights PASS; kein neuer Assembly-/Referenzgraph. |
+| AK-04 | Produktionsquellen bytegleich zum Ausgangs-HEAD; statische Skelett-/Guardrail-Prüfungen und echter Unity-Compile PASS. Keine Puzzlefachlogik ergänzt. |
+| AK-05 | Echte lokale und beide CI-PlayMode-Läufe 27/27 PASS einschließlich vorgeschriebener QA-Szene, Doppel-/Null-/fehlender Bindungen und fehlendem Providerstart. |
+| AK-06 | Beide Architecture-Läufe einschließlich Selftests und beide vollständigen Unity-Läufe PASS; fail-closed Guard-/Nachweismechanik unverändert erhalten. |
+| AK-07 | Echte EditMode-Baseline für acht Assemblies vollständig, auch gemessene Nullen; Mutations-/Gerätestand unverändert wahrheitsgemäß REQUIRED_LATER. |
+| AK-08 | Vollständiger Basisdiff, Scope/Trust/Secret-/Quellen-/Shellsyntaxprüfungen PASS; keine Historienoperation und kein Scope-/Validator-/Manifest-/Architekturumbau. |
+
+**Ergebnis:** Die beauftragte Erzeugungskorrektur ist umgesetzt und mit echten vollständigen GitHub-Actions-Messdaten nachgewiesen. Kein bekannter verbleibender Implementierungsblocker dieses Befunds. Der bekannte lokale Windows-Befund `V03-005-ABSOLUTE` bleibt ausdrücklich ein lokaler FAIL; die verbindlichen Ubuntu-Selbsttests sind tatsächlich PASS. Physische Geräte-, SDK-Sandbox- und Store-Nachweise gehören unverändert in die späteren Gates und sind kein WP-021-Gerätesmoke-Auftrag.
+
+Die CI-Auswertung wird jetzt ausschließlich in einem **reinen Evidenzcommit dieser drei Steuerungsdateien** persistiert; alle technischen Quellen und der oben gehashte Workflow bleiben bytegleich zum Korrekturcommit. Remote/PR-HEAD und die dadurch automatisch ausgelösten CI-Läufe werden anschließend nochmals tatsächlich gelesen. Danach ist der HEAD für die **separate unabhängige Astra-/Sol-Abschluss-QC** einzufrieren. Technisch abnahmebereit, keine formale QC-Abnahme oder Integration behauptet; WP-022 bleibt bis zur Integration gesperrt. Kein Merge/Close, keine neue unabhängige QC oder Folgeimplementierung gestartet.
