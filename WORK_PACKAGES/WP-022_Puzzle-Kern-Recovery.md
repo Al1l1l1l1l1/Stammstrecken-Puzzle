@@ -143,6 +143,31 @@ Es gilt vollständig die [projektweite Definition of Done](../PROJECT_CONTROL/DE
 
 ## Verankerungsnachweis und aktueller Ausführungsstand
 
-Die Phase-A-Ergebnisse werden nach Erstellung des gemeinsamen Ankers in diesem Abschnitt commitbezogen ergänzt. Bis dahin sind Prüfungen des neuen Ankers/Remote-/Ubuntu-CI **ausstehend**; es gibt keine Implementierungs-/QC-/Integrationsbehauptung. Bereits tatsächlich ausgeführter Basislauf: Architecture-only mit Selftest auf unverändertem Main-Baum **FAIL ausschließlich self-test:not-detected:V03-005-ABSOLUTE** unter Windows, Protokoll ignoriert unter `Logs/wp022-pre-anchor-architecture-selftest.log`. Keine Validatoränderung.
+### Tatsächlicher gemeinsamer Anker und lokale Prüfung – 2026-10-07
 
-**Nächster zulässiger Schritt:** Phase A abschließen und ihren Anker sichern/prüfen; anschließend separater Implementierungsauftrag für Phase B auf dieser Branch. WP-015/016/017 bleiben gesperrt, bis ihre jeweiligen Vorgänger integriert sind. BLOCKER-PROD-001/002/003 bleiben offen, betreffen die ausgeschlossenen Folgefeatures und sind keine Definitionsblocker dieses Puzzle-Kern-Auftrags.
+Trust-Anchor-Commit **`ed898894573f2bb3456d21f22a8522c6b8825621`**, erster Commit auf `codex/wp-022-puzzle-kern-recovery`, einziger Elterncommit/Manifestbasis **`8c0d73ac72c01c8bc079a69a00ccf4e5b759c1aa`**. Sein Diff enthält exakt zwei Adds: dieses Work Package und das eigene Manifest. Beide fehlen im Elternbaum. Der historische WP-Blob bindet die korrekten H1-/Body-IDs und den exakt lokal aufgelösten Manifestlink. Manifestblob **`1cd2def6f6f79da01e1e93173832df380e4d9ac1`**, SHA-256 der unveränderten Bytes **`003f5d47d1177d70fa49359200127a243ca4265f2124a1dc2401ac36ea2988e6`**.
+
+| Phase-A-Prüfung | Tatsächliches Ergebnis |
+|---|---|
+| Basis/Closeout | Frisches Git-Fetch/ls-remote und GitHub-PR-Metadaten: main 8c0d73a, PR #11/#12 merged; integrierter Closeoutbaum identisch zu 7575f45. |
+| Positiver kanonischer WP-022-Production-Scope | **PASS, 17 lokale Prüfgruppen**, eigener historischer Anker und vollständiger Branch-/Arbeitsbaumdiff gegen 8c0d73a. |
+| Architecture-only und Production-Scope mit Selftest auf Windows | Jeweils **FAIL ausschließlich self-test:not-detected:V03-005-ABSOLUTE**. Derselbe Fehler schon auf unveränderter Basis; keine Ausnahme oder Validatoränderung. Vollständiger Ubuntu-Nachweis noch ausstehend. |
+| Separater Trust-/Grenzenreview | **PASS**: gemeinsamer erster Zwei-Datei-Add, Elternbasis, historischer Link/IDs, genau ein erreichbarer Manifest-Add, Ancestry und Bytegleichheit; 9 erlaubte Pfadproben akzeptiert und 32 verbotene Pfadproben korrekt abgewiesen, einschließlich Content-/Proof-/Application-/Architektur-/Folge-WP-/Altmanifestpfaden. |
+| Vollständiger Basisdiff/Quellen | **PASS**, exakt fünf Phase-A-Dateien; git diff --check, Secret-Patternscan und Quellenreview. Alle Produktions-/Test-/Architektur-/Produkt-/Validator-/Unity-CI-/Altmanifestquellen ohne Diff; validate.yml nach Rücknahme allein der Manifestzeile bytegleich. Keine Mergecommits nach Basis, keine historische Dateiübernahme. |
+| Akzeptanz-/DoD-Abgrenzung | AK-01 lokal und Phase-A-Anteil AK-10 lokal erfüllt; Remote-/Ubuntu-Nachweis folgt. AK-02–AK-09, Implementierung, unabhängige QC und Integration **nicht ausgeführt/offen**. |
+
+Der erste sandboxierte Scopeversuch konnte den Manifestpfad nicht auflösen; der bestehende externe Lockinterpreter wurde anschließend mit tatsächlichem Lesezugriff ausgeführt. Dessen erster Scopeversuch zeigte den noch veralteten lokalen main-Verweis cd1a048 gegenüber frisch abgerufenem origin/main 8c0d73a. Ausschließlich dieser lokale Verweis wurde per nicht erzwungenem Fast-Forward auf den **bereits integrierten** Stand synchronisiert; kein neuer Main-Commit und kein Remote-Main-Schreibzugriff. Danach bestand der positive Scope, die zwei Selftestmodi scheitern nur am bekannten Windowsbefund. Diese Zwischenversuche sind kein PASS und erfordern keine Produkt-/Architekturentscheidung.
+
+Ignorierte Reproduktionsnachweise: `Logs/wp022-pre-anchor-{architecture-selftest,structure}.log`, `Logs/wp022-anchor-{architecture-selftest,scope-selftest,scope-positive}.log`, `Logs/wp022-anchor-review.py` und `.json`. Kein temporäres Artefakt wird versioniert. Keine Produktionslogik/Test-C# implementiert, unity.yml unverändert.
+
+### Evidenzkategorien und Übergabe
+
+- **LOCAL_DOCUMENT_STRUCTURE:** Pflichtstruktur/IDs, lokale Links und konsistenter Status tatsächlich geprüft.
+- **LOCAL_ARCHITECTURE_SEMANTICS:** positive Schema-/Fixture-/Modell-/Crosscheck-Gruppen ausgeführt; Windows-Selftestgrenze separat als FAIL, keine C#-Solvervalidierung behauptet.
+- **MANUAL_ARCHITECTURE_REVIEW:** Quellenabgleich und Scopegrenzen gegen ADR-005/007/021/030/031 und Folge-WPs geprüft; keine neue Architekturentscheidung und keine unabhängige Astra-/Sol-Abnahme.
+- **LOCAL_SCOPE:** vollständiger realer Diff/Trust-/Manifestcheck PASS, enge eigene Allowlist.
+- **CONTRACT_ONLY:** Domain-/Solver-/Session-/Test-/Proofverträge; deren Implementierung bleibt ausstehend.
+- **REQUIRED_LATER/NOT_EXECUTED:** Phase-B-Produktionscodevalidierung, physische Geräte-/SDK-/Storegates; automatisch ausgelöste Scaffold-CI wird separat berichtet.
+- **BLOCKED:** BLOCKER-PROD-001/002/003 bleiben offen und fail-closed; sie betreffen ausgeschlossene Folgefeatures und sind keine WP-022-Definitionsblocker. Kein offener Definitionswiderspruch aus dem Quellenreview.
+
+**Nächster zulässiger Schritt:** Phase-A-Remote-/Ubuntu-Nachweise sichern und dokumentieren; danach separater Implementierungsauftrag für Phase B auf dieser Branch. WP-022-Gesamtstatus bleibt offen/nicht implementiert; WP-015/016/017 bleiben bis zur jeweiligen Vorgängerintegration gesperrt.
