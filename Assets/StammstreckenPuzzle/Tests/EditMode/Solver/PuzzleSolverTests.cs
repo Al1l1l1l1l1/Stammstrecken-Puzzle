@@ -183,6 +183,42 @@ namespace STP.Tests.Solver.EditMode
             Assert.That(PuzzleSolver.Solve(null).Classification, Is.EqualTo(SolverClassification.INDETERMINATE));
         }
 
+        [TestCase(0, 8, 1, "timeout")] [TestCase(1, 11, 1, "timeout")] [TestCase(2, 51, 5, "timeout")]
+        [TestCase(0, 8, 1, "cancellation")] [TestCase(1, 11, 1, "cancellation")] [TestCase(2, 51, 5, "cancellation")]
+        [TestCase(0, 8, 1, "clock-backwards")] [TestCase(1, 11, 1, "clock-backwards")] [TestCase(2, 51, 5, "clock-backwards")]
+        public void FinalClassification_RechecksTimeoutCancellationAndMonotonicity(int expectedCount, int searchClockReads, int exactStates, string interruption)
+        {
+            // FIXTURE_ONLY: no path can connect N/0 to W/0 with counts
+            // (2,0)/(1,1); (1,0)/(1,0) is the single WN cell; the 3x3
+            // Hamiltonian fixture has two paths. The fixed clock scripts leave
+            // every search/propagation probe at 1 ms, and change only the next
+            // read after search and completion (8/11/51 reads including start).
+            // These scripts fail on the old solver, which omits that final read.
+            var p = expectedCount == 2 ? Multiple() : Define(2, 2,
+                new SmallPathOracle.Edge(0, 0), new SmallPathOracle.Edge(3, 0),
+                new[] { expectedCount == 0 ? 2 : 1, 0 }, new[] { 1, expectedCount == 0 ? 1 : 0 });
+            var baseline = PuzzleSolver.Solve(p, new SolverLimits(maxStates: exactStates, monotonicNow: () => 1));
+            Assert.That(baseline.Classification, Is.EqualTo(Class(expectedCount)), "Exactly consumed state allowance still permits a completed search");
+            Assert.That(baseline.SolutionCount, Is.EqualTo(expectedCount));
+            Assert.That(PuzzleSolver.Solve(p, new SolverLimits(maxStates: exactStates - 1, monotonicNow: () => 1)).Classification, Is.EqualTo(SolverClassification.INDETERMINATE));
+            {
+                using var token = new CancellationTokenSource(); int reads = 0;
+                long Now()
+                {
+                    if (++reads <= searchClockReads) return 1;
+                    Assert.That(reads, Is.EqualTo(searchClockReads + 1), "Only the final classification probe may observe this interruption");
+                    if (interruption == "cancellation") token.Cancel();
+                    return interruption == "timeout" ? 11 : interruption == "clock-backwards" ? 0 : 1;
+                }
+                var result = PuzzleSolver.Solve(p, new SolverLimits(maxStates: exactStates, timeBudgetMs: 10, cancellation: token.Token, monotonicNow: Now));
+                Assert.That(result.Classification, Is.EqualTo(SolverClassification.INDETERMINATE), interruption);
+                Assert.That(reads, Is.EqualTo(searchClockReads + 1), interruption);
+                Assert.That(result.SolutionCount, Is.EqualTo(expectedCount), "Interruption must occur after all completion processing");
+                Assert.That(result.Path.Select(c => (c.X, c.Y)), Is.EqualTo(baseline.Path.Select(c => (c.X, c.Y))));
+                Assert.That(result.Reductions.Select(r => r.ToString()), Is.EqualTo(baseline.Reductions.Select(r => r.ToString())));
+            }
+        }
+
         private static IEnumerable<PuzzleDefinition> BudgetCorpus()
         {
             // FIXTURE_ONLY, not Season-1 content. Three 10-cell straight paths,

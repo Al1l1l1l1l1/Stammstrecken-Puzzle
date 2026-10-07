@@ -232,9 +232,12 @@ namespace STP.Puzzle.Solver
                 }
             }
             Search(Enumerable.Repeat((byte)127, p.Grid.CellCount).ToArray());
-            var classification = interrupted ? SolverClassification.INDETERMINATE : found == 0 ? SolverClassification.UNSATISFIABLE : found == 1 ? SolverClassification.UNIQUE : SolverClassification.MULTIPLE_OR_MORE;
             var uniqueTrace = new HashSet<string>(StringComparer.Ordinal);
-            return new SolverResult(classification, found, path, trace.Where(r => uniqueTrace.Add(r.ToString())));
+            var reductions = trace.Where(r => uniqueTrace.Add(r.ToString())).ToArray();
+            // Completion and reduction materialization are still budgeted work.
+            CheckBudget();
+            var classification = interrupted ? SolverClassification.INDETERMINATE : found == 0 ? SolverClassification.UNSATISFIABLE : found == 1 ? SolverClassification.UNIQUE : SolverClassification.MULTIPLE_OR_MORE;
+            return new SolverResult(classification, found, path, reductions);
         }
     }
 }
