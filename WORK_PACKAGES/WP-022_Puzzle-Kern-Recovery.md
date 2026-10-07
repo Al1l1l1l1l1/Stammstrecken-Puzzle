@@ -4,7 +4,7 @@
 
 `WP-022`
 
-**Bearbeitungsstatus (2026-10-07):** **Phase A abgeschlossen; Phase B separat ausdrücklich beauftragt und auf derselben Branch neu implementiert. Eigene abschließende Build-/CI-/Coverage-/Mutationsnachweise laufen.** Branch `codex/wp-022-puzzle-kern-recovery`, reviewbarer [PR #13](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/13) (Draft). Anker und Manifest unverändert; kein Definitionswiderspruch. Die historischen Phase-A-Abschnitte unten dokumentieren damalige Zwischenstände; der aktuelle Phase-B-Abschnitt schreibt sie fort. WP-022 ist als Produktionspaket weder unabhängig abgenommen noch integriert.
+**Bearbeitungsstatus (2026-10-07):** **Phase A abgeschlossen; Phase B vollständig neu implementiert, eigene technische Akzeptanz-/Test-/Coverage-/Mutations-/Budget-/Build-/Governance-Nachweise auf Commit 1b6e9ef erfüllt. Technisch bereit für unabhängige Abschluss-QC, kein offener technischer Scopeblocker.** Branch `codex/wp-022-puzzle-kern-recovery`, [PR #13](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/13) (Draft). Anker und Manifest unverändert; kein Definitionswiderspruch. Historische Zwischenstände unten werden durch den aktuellen Abschlussabschnitt fortgeschrieben. WP-022 ist als Produktionspaket **noch nicht unabhängig abgenommen oder integriert; Gesamt-DoD offen**.
 
 ## Ziel
 
@@ -228,7 +228,7 @@ Lokaler instrumentierter 10×10-Korpus `10x10-5-forced-paths-v1`: fünf Warm-ups
 
 **Erste echte Regel-Mutationsbaseline**, ausschließlich Kopien dieser neuen Produktionsquellen in ignoriertem Logs-Verzeichnis, keine SUT-Arbeitsbaumänderung. Bestehendes .NET SDK 10.0.401/Runtime 10.0.12, C#9/NUnit der vorhandenen Unity-Testabhängigkeit, jeweils ein kompilierter Mutant und die tatsächlichen fachlichen Tests. Originalharness 32/32 PASS, 0 Warnungen/Fehler. Jede der sechs isolierten Propagationsstufen gezielt entfernt und vom jeweiligen Constrainttest erkannt; Line-min/max/alle-belegt/Ziel-erreicht, Subtourerkennung/-pruning, MRV/Tie, DFS-Wertordnung, Queueordnung, Limit zwei, Klassifikationen und alle drei Unterbrechungen zusätzlich geprüft. Nachbar-Bikonditionalität einschließlich beidseitig fehlender Ports wird positiv/negativ geprüft. Keine synthetischen PASS-Werte; Rohlogs/Source-SHA-256 unter `Logs/wp022-mutation-baseline.json`, Mutator `Logs/wp022-mutations.py`, Harness `Logs/wp022-harness/`, alle ignoriert.
 
-| Assembly | Erzeugt/kompiliert | Erkannt | Roh überlebt | Begründet äquivalent ausgeschlossen | Nicht äquivalente Überlebende | Score ohne Ausschlüsse |
+| Assembly | Erzeugt/kompiliert | Erkannt | Roh überlebt | Begründet äquivalent ausgeschlossen | Nicht äquivalente Überlebende | Score nach Äquivalenzausschluss |
 |---|---:|---:|---:|---:|---:|---:|
 | Domain | 73 | 67 | 6 | 6 | 0 | 100 % (67/67) |
 | Solver | 24 | 23 | 1 | 1 | 0 | 100 % (23/23) |
@@ -247,3 +247,61 @@ Keine ungültigen Compilemutanten oder Timeouts in der finalen Baseline. Der Roh
 **Ausgeführter Katalog zur Reproduktion:** Domain: je vier Raster- und Koordinatengrenzen; sechs Formportmasken; Endpoint-Negativindex, -Indexobergrenze, -Seitenunter/-obergrenze; Ruleset, Zeilen-/Spaltenlänge und -Unter/-Obergrenze, gleiche Endpoints, positive/equal Summe, jeweils A/B-Zeile/-Spalte; sichtbares MARK_OCCUPIED; jede der sechs Diagnoseemissionen; Completion-Zeilen/-Spalten/-Grad/-alle-Tracks/-A-Port/-B-Port; Commands stale, doppelte/leere ID, negative/Rückwärtszeit, Batch-unique/null/empty, Contentbereich, Koordinatengrenze, No-op/changed-only, Sortierung, Undo-cap/-inverse, Revision, Korrekturen/-historie, beide sticky Flags, Undo-Flags, Timerstart/-aktive Zeit/-Pause, Solvedphase/-event, Identität/-Hintcount. Solver: sechs ganze Constraintstufen; Line-min/-max/-alle-belegt/-Ziel; Subtour-detect/-prune; B-Erreichbarkeitsguard; MRV-tie/-size; Timeout/Cancellation/Node-Limit/Unterbrechungsklassifikation; Lösungslimit/DFS-Wertordnung/Nullklassifikation; Queueordnung und Nachbar-Absenzsemantik. Guardmutationen ersetzen jeweils das entsprechende Prädikat mit false/true bzw. entfernen den benannten Effekt; Formports → 0, Undo inverse vertauscht, MRV <= statt <, DFS-/Queueordnung umgekehrt, Limit 1 statt 2, Klassifikation 0 → UNIQUE. Jede fachliche Regelgruppe besitzt einen erkannten Mutanten; Äquivalenzausschlüsse bleiben der unabhängigen QC zur Prüfung offen.
 
 Vollständiger lokaler Basisdiff inklusive neuer C#/Metas, unveränderte historische Manifestbytes/Link/Elternbasis, 9 erlaubte/32 verbotene Scopeproben, rückführbar exakt erlaubte Unity-CI-Deltas und validate-Manifestzeile, Secret-/Abhängigkeits-/Quellencheck: **PASS**. Positiver kanonischer Production-Scope **PASS, 17 Prüfgruppen**. Durch Unity erzeugte Projektsettings-Serialisierungen vollständig aus unverändertem HEAD wiederhergestellt, kein Settingsdiff geliefert. Windows-Selftestgrenze bleibt unverändert; beide vollständigen Ubuntu-CI-Modi und die eigentlichen Branch-Builds sind noch ausstehend.
+
+### Gepushter Implementierungscommit und neue gepinnte CI
+
+Implementierungscommit **`1b6e9ef08c2d12d0ebec835f4147891855e41f28`** normal auf bestehenden Branch/PR #13 gepusht; Remote/main frisch 1b6e9ef/8c0d73a bestätigt. 22 Dateien in diesem Commit: vier Produktions-C#, fünf Test-C#, je eigene Meta (18 Adds), unity.yml und drei Steuerungsdateien. Gesamter Branchbasisdiff **24 erlaubte Dateien** einschließlich bereits verankerter Phase-A-Dateien. Kein Settings-/Assembly-/Paket-/Architektur-/Produktdiff. Draft-PR offen, unmerged.
+
+Die isolierte Mutationsbaseline ist genau an die neuen Produktionsblobs dieses Commits gebunden (SHA-256 der UTF-8/LF-Dateien):
+
+| Quelle | SHA-256 |
+|---|---|
+| Domain/PuzzleValues.cs | a94e1eebcf7db5eff82f5dacea52a456bae3140b60558858512a76bb3a2e2ad9 |
+| Domain/PuzzleEvaluator.cs | 6e3e46ad636d3410076fd40af2820bafb2e39d54085e9628cfa6dbf26a94b5f6 |
+| Domain/PuzzleSession.cs | 2764d3a36c513505554cf60fbbb68dba046bb99145ba6ca20c20662d46732bf3 |
+| Solver/PuzzleSolver.cs | 9fdb3f6bdc556ee7f4f6266c9217f5bb02cc738b622283f723926933a2ec0239 |
+
+[Architecture-PR 37653358842](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37653358842), Job **112902125592**, **COMPLETED/SUCCESS** auf 1b6e9ef. Direkte tatsächliche Logs: CPython 3.11.13/Node 22.20.0/Lockdependencies, **Architecture-only mit Self-/Negativtests 17 PASS**, **Production-Scope/Trust mit Self-/Negativtests 18 PASS**, `worktreeDirty=false`, `head=1b6e9ef...`. Zusätzlicher Architecture-Push **37653352967** SUCCESS. Beide Windows-Modi erneut auf dem Implementierungscommit ausgeführt: je FAIL ausschließlich **self-test:not-detected:V03-005-ABSOLUTE**, keine Reparatur/Absenkung; Ubuntu erfüllt das kanonische Gate. Ignorierte reale Logs `Logs/wp022-ci-37653358842-112902125592.log` und Windows-selftestlogs.
+
+[Unity-Push 37653352943](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37653352943) auf 1b6e9ef ist vollständig **COMPLETED/SUCCESS, alle zehn Jobs SUCCESS**. [Unity-PR 37653358829](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37653358829) hat auf demselben Head bereits Compile/EditMode, PlayMode und Android SUCCESS; seine zusätzliche iOS-Wiederholung läuft bei dieser Dokumentation noch und wird nicht als PASS behauptet. Projektpreflight/14+9-Modulgraph, Zugangskonfiguration, Linux-/Android-/iOS-Umgebungschecks und Evidenceguard tatsächlich SUCCESS. Cachebedingte Installationssteps auf iOS sind Skipped, Editor-/SDK-/Licensingproben und reale Buildjobs eigenständig ausgeführt; kein Skipped-Test/-Build als PASS.
+
+| Nachweis auf 1b6e9ef | Push-Job | PR-Job | Tatsächliches Ergebnis |
+|---|---:|---:|---|
+| Unity Compile/EditMode | 112902245001 | 112902275624 | Beide **SUCCESS**, **33/33** (Domain 19, Solver 13, Addressables-Doc-Smoke 1), neues tatsächliches Testgate PASS; beide Coveragepflichtgates echte Messwerte für 12 Assemblies. |
+| Bootstrap PlayMode/QA | 112903886374 | 112905532139 | Beide **SUCCESS**, **27 ausgeführte/27 bestandene Smoke-Fälle**, QA-Szene Passed, Coverage 12 Assemblies einschließlich expliziter neuer Nullen. |
+| Android Development IL2CPP | 112906893374 | 112908603457 | Beide **SUCCESS**. Pushlogs `Build Finished, Result: Success` und `STP Build PASS: Android -> Builds/Android/stp-qa-development.apk`, APK 683.441.571 Bytes. |
+| iOS Export/Xcode Compile | 112909577596 | 112913336358 | Push **SUCCESS**: Unity `Build Finished, Result: Success`, `STP Build PASS: iOS -> Builds/iOS/Xcode` (900.428.238 Bytes) und Xcode **BUILD SUCCEEDED**, 17:20:52 UTC, Xcode 26.3/iOS-SDK 26.2, Release/generic iOS/CODE_SIGNING_ALLOWED=NO. PR-Wiederholung bei dieser Dokumentation laufend; kein zusätzlicher PASS behauptet. |
+
+**Finale bisher tatsächlich gemessene CI-Coverage:** Domain **527/545 = 96,70 %, Methoden 114/117**; Solver **373/378 = 98,68 %, Methoden 39/39**; Domaintests **339/339 = 100 %**, Solvertests **524/525 = 99,81 %**. Beide CI-EditMode-Läufe identisch. Sämtliche neuen Branchpunkte **0/0**, keine Branchcoverage behauptet. PlayMode explizit 0/545, 0/378, 0/339, 0/525 für diese vier Assemblies; vorhandene acht Assemblies weiter Pflicht und gemessen. Collector weiterhin 1.3.0/Full mit unverändertem gepinntem SHA-256 5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2.
+
+**Echte CI-Budgetartefakte geöffnet und Digest geprüft:** Korpus `10x10-5-forced-paths-v1`, 5 Warm-ups, 50 Wiederholungen × 5 = 250 Samples, Unity 6000.3.23f1/Mono 4.0.30319.42000, Unix 6.17.0.1022. Push: Container/Rechner **08105ed3e926**, `GITHUB_SHA=1b6e9ef...`, **p95 4,589 ms / Maximum 23,222 ms**. PR: **79ee168165ec**, `GITHUB_SHA=3e790f88550692a90d041cd2e5dd8be5bf173861`, **p95 7,644 ms / Maximum 30,519 ms**. Beide klar unter 250/2000 ms; keine Gerätebehauptung. Synthetischer PR-Mergecommit ausschließlich gefetcht/gelesen: Eltern exakt main 8c0d73a und Implementierungs-HEAD 1b6e9ef, technischer Baum ohne Diff zu 1b6e9ef. Kein Merge/Rebase/Cherry-Pick ausgeführt.
+
+| CI-Artefakt | ID | Tatsächlicher ZIP-Digest SHA-256 |
+|---|---:|---|
+| Push editmode-results, geöffnet | 11496953590 | 2a79f4f409af612ec1a356422009a6297595653ec6b947c1933a82e79d634e17 |
+| PR editmode-results, geöffnet | 11498366674 | 71e5b70b350b4ba67f7f826e2883d7be0ecefe132feada1a06277600cbcfd2d2 |
+| Push playmode-results | 11496829959 | 4b54fd73df9ac0d70a3083bd3868e6825943a27fbcbbdfbac47fb57240dc36b5 |
+| Push android-development-il2cpp | 11498980098 | bf0462a7760fc640176594fc9df19db18eda9301f2ff7b8d4424c1baea81e97b |
+
+ZIPs/JSON-Auswertungen/jobgebundene Rohlogs unter `Logs/wp022-ci-*`, ignoriert. CI-Artifactmetadaten binden an tatsächlichen Run/Head; keine Credentials gespeichert. Die geöffneten EditMode-XMLs bestätigen alle Orakelzählungen einschließlich 134.456 Completionboards/104 akzeptierten Belegungen. Der bestehende iOS-Job hat **keinen Artefakt-Uploadstep**; sein echter Export-/Xcode-Nachweis ist der direkt gelesene jobgebundene Buildlog, keine erfundene iOS-Artefakt-ID. Die zusätzliche PR-Wiederholung ist nicht Ersatz für den vollständig abgeschlossenen Pushlauf und kein verbleibender Implementierungsblocker.
+
+### Akzeptanzabgleich und technische Übergabe
+
+| AK | Eigene technische Prüfung auf 1b6e9ef |
+|---|---|
+| AK-01 | **PASS**: historischer erster gemeinsamer Zwei-Datei-Add/Elternbasis, Bindung, unveränderte Manifestbytes, Remote-Ancestry und Branch-Head. |
+| AK-02 | **PASS**: vollständige Definition-/Werte-/Grenz-/Endpoint-/Defensivkopietests, gültige und ungültige exhaustive Countkombinationen, Ein-Zellen-Pfade im gültigen Raster. |
+| AK-03 | **PASS**: sechs sichtbare objektive Diagnosefälle, Markersemantik/offene Nachbarn und stabile Sortierung; keine Authoring-/Solverabhängigkeit. |
+| AK-04 | **PASS**: konkrete Counts/Grade/Außenports/alle Tracks/einfache Traversierung; zusätzlicher unabhängiger Vergleich aller 134.456 2×2-Boards. |
+| AK-05 | **PASS**: immutable/atomare Einzel-/Batch-/Undo-Verarbeitung, No-op, stale/doppelte IDs, ganze Batchabweisung, 256/257-Diffs, Flags/Korrekturen, einmaliger Abschluss und geschlossene Phase. |
+| AK-06 | **PASS**: injizierte monotone aktive Perioden, Pause/Resume/Undo/Phasenabweisung; drei feste Replayseeds je 500 Commands mit identischer testseitiger Projektion/Diagnosen/Events. |
+| AK-07 | **PASS**: isolierte Constraint-/Fixpunkt-/Queue-/MRV-/Wertordnungs-/Limit-/Klassifikationstests, Unterbrechung auch nach erster Lösung; Recovery-v1 ohne spätere Metrik-/Proof-/Hintfunktion. |
+| AK-08 | **PASS**: unabhängige exhaustive 2×2/2×3-Matrix einschließlich geordneter Endpoints/Transposition/acht Transformationen; protokollierter 3×3-Teilkorpus/Swap. |
+| AK-09 | **PASS**: tatsächlicher vollständiger Unity-Pushlauf mit Compile/EditMode/PlayMode/Android-IL2CPP/iOS-Xcode, echte neue Coveragepflichtmesswerte, 97 ausgeführte Mutanten mit offengelegten Ausschlüssen, CI-Budget unter 250/2000 ms. |
+| AK-10 | **Technischer Implementierungsanteil PASS**: beide gepinnten Ubuntu-Self-/Negativtestmodi, vollständiger erlaubter Basisdiff/Scope-/Trust-/Secret-/Quellencheck, ausschließlich erlaubte CI-Deltas. Unabhängige QC und Integration bleiben gesondert offen. |
+
+**Phase B technisch vollständig, bereit für unabhängige Abschluss-QC.** Kein offener Definitionswiderspruch, BLOCKER/HIGH oder technischer Restblocker im Scope. Der folgende reine Evidenzcommit aktualisiert ausschließlich dieses WP, CURRENT_STATE und WORK_QUEUE; Produktions-/Test-/Workflow-/Manifestblobs sind bytegleich zum vollständig getesteten/pushten 1b6e9ef. Der aktuelle Remote-/PR-HEAD ist nach dem Evidenzpush zu lesen; ausstehenden automatisch neu ausgelösten Läufen wird kein PASS vorweggenommen. Der technische Nachweis bleibt eindeutig an den unveränderten Codecommit und die oben benannten tatsächlichen Runs gebunden.
+
+**Gesamt-DoD noch nicht erfüllt:** Astra und Sol müssen unabhängig denselben abschließenden eingefrorenen Branch-HEAD prüfen, ohne Berichtsaustausch vor eigener Abgabe. Es wurden keine QC-Berichte in ihrem Namen erstellt. Erst danach ausdrückliche Integrationsentscheidung/Integration; Draft-PR #13 nicht mergen. WP-015/016/017 und Contentproduktion bleiben gesperrt. Physische Domain-/Completionbudgets auf niedrigstem Referenzgerät sowie Hint-/SDK-/Store-Smokes bleiben ausdrücklich REQUIRED_LATER/NOT_EXECUTED gemäß bestehender Scopeabgrenzung, keine falschen Geräte-/Store-PASS. PROD-001/002/003 unverändert offen/fail-closed, außerhalb dieses Scopes.
+
+**Evidenzkategorien:** LOCAL_DOCUMENT_STRUCTURE, LOCAL_SCOPE und eigene LOCAL_ARCHITECTURE_SEMANTICS mit tatsächlichen Prüfungen PASS; MANUAL_ARCHITECTURE_REVIEW als Implementierer durchgeführt, keine unabhängige Abschluss-QC. PRODUCTION_CODE_VALIDATION durch reale eigene Unity-/CI-/Buildläufe oben belegt. Ausgeschlossene Folgefeatures bleiben CONTRACT_ONLY; Geräte/SDK/Store REQUIRED_LATER/NOT_EXECUTED und Produktfolgeblocker BLOCKED. Neue Instanz beginnt wieder mit AGENTS und Pflichtreihenfolge, liest diesen Abschlussabschnitt und prüft tatsächlich aktuellen Branch-/PR-HEAD/CI sowie unveränderten Anker; keine historischen PASS- oder Chatannahmen.
