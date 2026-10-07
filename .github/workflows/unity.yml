@@ -526,6 +526,42 @@ jobs:
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
             -logFile -
 
+      - name: Domain-/Solver-EditMode-Ausfuehrung verifizieren
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PYEOF'
+          import pathlib, xml.etree.ElementTree as ET
+
+          def fail(message):
+              raise SystemExit(f"EditMode evidence FAILURE: {message}")
+
+          path = pathlib.Path("TestResults/editmode.xml")
+          if not path.is_file():
+              fail(f"{path} fehlt")
+          try:
+              root = ET.parse(path).getroot()
+          except (OSError, ET.ParseError) as error:
+              fail(f"{path} nicht lesbar/parsebar: {error}")
+          if root.tag != "test-run" or root.get("result") != "Passed":
+              fail("kein bestandener NUnit test-run")
+          measured = []
+          for assembly in ("STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode"):
+              suites = [suite for suite in root.iter("test-suite")
+                        if suite.get("type") == "Assembly"
+                        and suite.get("name") in {assembly, assembly + ".dll"}]
+              if len(suites) != 1:
+                  fail(f"{assembly}: genau eine Assembly-Suite erforderlich")
+              cases = list(suites[0].iter("test-case"))
+              if not cases or any(case.get("result") != "Passed" for case in cases):
+                  fail(f"{assembly}: fehlende, leere, Skipped oder nicht bestandene Testfaelle")
+              if any(not (case.get("classname") or "").startswith(assembly + ".") for case in cases):
+                  fail(f"{assembly}: ungueltige Testidentitaet")
+              measured.append((assembly, len(cases)))
+          for assembly, count in measured:
+              print(f"EditMode evidence PASS: {assembly}, {count} tatsaechlich bestandene Testfaelle")
+          PYEOF
+
       - name: Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben
         if: always()
         run: |
@@ -536,11 +572,13 @@ jobs:
           def fail(message):
               raise SystemExit(f"Coverage evidence FAILURE: {message}")
 
-          # WP-021-Assemblies mit instrumentierbaren Methoden; typenlose/Interface-Skelette sind keine Messgegenstaende.
+          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module.
           required = {
               "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
               "STP.MobileServices.Google", "STP.MobileServices.Store",
               "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
+              "STP.Puzzle.Domain", "STP.Puzzle.Solver",
+              "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
           }
           directory = pathlib.Path("TestResults/Coverage")
           if not directory.is_dir():
@@ -747,11 +785,13 @@ jobs:
           def fail(message):
               raise SystemExit(f"Coverage evidence FAILURE: {message}")
 
-          # WP-021-Assemblies mit instrumentierbaren Methoden; typenlose/Interface-Skelette sind keine Messgegenstaende.
+          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module.
           required = {
               "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
               "STP.MobileServices.Google", "STP.MobileServices.Store",
               "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
+              "STP.Puzzle.Domain", "STP.Puzzle.Solver",
+              "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
           }
           directory = pathlib.Path("TestResults/Coverage")
           if not directory.is_dir():
