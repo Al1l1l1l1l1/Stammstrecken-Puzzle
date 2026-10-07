@@ -4,7 +4,9 @@
 
 `WP-021`
 
-**Bearbeitungsstatus:** Eng begrenzte Coverage-Erzeugungskorrektur als `133ca696d4a35eaa4297c3f3dc8976912e989e2d` gepusht und remote/PR-verifiziert. Alle vier neuen PR-/Push-Läufe von Architecture Validation und Unity CI vollständig SUCCESS, einschließlich vollständiger echter Coverage für acht Assemblies, 27/27 PlayMode-Smokes, Android-IL2CPP und iOS-Export/Compile. Astra-QC-01/QC-02 und QC-CI-01/QC-CI-02 unverändert erhalten. Technisch abnahmebereit für die nachfolgende unabhängige Abschluss-QC; keine formale Abnahme oder Integration durch den Implementierungsagenten. Bekannter lokaler Windows-Selbsttestbefund unverändert. Kein Merge.
+**Bearbeitungsstatus:** Abgeschlossen und am 2026-10-06 nach unabhängiger Abschluss-QC mit **PASS** sowie Freigabe durch die Geschäftsführung integriert. [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11) wurde als Merge-Commit `cd1a048fe7c77f971c00613de5687a0cac1ec395` nach `main` übernommen; integrierter PR-Head `c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`. Vor der Integration bestand kein technischer Restblocker. Der formale Dokumentations-Closeout ändert ausschließlich dieses Work Package, `PROJECT_CONTROL/CURRENT_STATE.md` und `PROJECT_CONTROL/WORK_QUEUE.md`; WP-022 wird hier nicht begonnen.
+
+Die nachfolgenden Implementierungs- und Korrekturabschnitte bleiben historische, commitgebundene Nachweise. Ihre damaligen Offen-/Sperrvermerke werden durch den Abschnitt „Formaler Closeout nach Integration“ am Dokumentende fortgeschrieben.
 
 ## Ziel
 
@@ -565,3 +567,38 @@ Die echten CI-XML-Artefakte wurden zusätzlich heruntergeladen, gegen ihren GitH
 **Ergebnis:** Die beauftragte Erzeugungskorrektur ist umgesetzt und mit echten vollständigen GitHub-Actions-Messdaten nachgewiesen. Kein bekannter verbleibender Implementierungsblocker dieses Befunds. Der bekannte lokale Windows-Befund `V03-005-ABSOLUTE` bleibt ausdrücklich ein lokaler FAIL; die verbindlichen Ubuntu-Selbsttests sind tatsächlich PASS. Physische Geräte-, SDK-Sandbox- und Store-Nachweise gehören unverändert in die späteren Gates und sind kein WP-021-Gerätesmoke-Auftrag.
 
 Die CI-Auswertung wird jetzt ausschließlich in einem **reinen Evidenzcommit dieser drei Steuerungsdateien** persistiert; alle technischen Quellen und der oben gehashte Workflow bleiben bytegleich zum Korrekturcommit. Remote/PR-HEAD und die dadurch automatisch ausgelösten CI-Läufe werden anschließend nochmals tatsächlich gelesen. Danach ist der HEAD für die **separate unabhängige Astra-/Sol-Abschluss-QC** einzufrieren. Technisch abnahmebereit, keine formale QC-Abnahme oder Integration behauptet; WP-022 bleibt bis zur Integration gesperrt. Kein Merge/Close, keine neue unabhängige QC oder Folgeimplementierung gestartet.
+
+## Formaler Closeout nach Integration – 2026-10-06
+
+### Abschluss und Quellenabgleich
+
+- **WP-021 ist abgeschlossen und integriert.** Die Geschäftsführung hat im ausdrücklichen Closeout-Auftrag die erfolgte unabhängige Abschluss-QC mit **PASS**, ihre Integrationsfreigabe und das Fehlen eines technischen Restblockers vor Integration bestätigt. Diese Abschlussfeststellung wird hier persistent dokumentiert; sie ist keine neue QC durch den Closeout-Agenten.
+- Die Integration ist zusätzlich unabhängig über GitHub-PR-Metadaten und die frisch abgerufene Git-Historie geprüft: [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11), `merged=true`, Integration am 2026-10-06, Merge-Commit **`cd1a048fe7c77f971c00613de5687a0cac1ec395`**, Eltern `e4f8cc1d0f0d0590fd7508992af464c0230ef314` und finaler PR-Head **`c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`**. `origin/main` steht bei Closeout-Beginn exakt auf diesem Merge; sein Baum ist identisch zum integrierten PR-Head.
+- Der gemeinsame historische WP-/Manifest-Add-Anker **`fc10c6141c7c720215f4f1f6670f87956baa346c`** bleibt in der Main-Historie erhalten; Elterncommit/Manifestbasis **`e4f8cc1d0f0d0590fd7508992af464c0230ef314`**, unveränderlicher Manifestblob **`734e7f676a7c80f49e2524a565055a96ab5ff33f`**. Kein neuer oder umgedeuteter Trust Anchor.
+
+### Finale commitgebundene Integrationsnachweise
+
+Die vier finalen Runs binden laut GitHub `head_sha` exakt den integrierten PR-Head `c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`. Run- und Jobstatus wurden für diesen Closeout erneut lesend geprüft:
+
+| Run | Ereignis / Workflow | Ergebnis |
+|---|---|---|
+| [37394167950](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37394167950) | push / Architecture Validation | COMPLETED / SUCCESS; `validate` ausgeführt und erfolgreich. |
+| [37394173626](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37394173626) | pull_request / Architecture Validation | COMPLETED / SUCCESS; `validate` ausgeführt und erfolgreich. |
+| [37394167674](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37394167674) | push / Unity CI | COMPLETED / SUCCESS; alle zehn Jobs ausgeführt, kein Nachweisjob ausgelassen. |
+| [37394172281](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/37394172281) | pull_request / Unity CI | COMPLETED / SUCCESS; alle zehn Jobs ausgeführt, kein Nachweisjob ausgelassen. |
+
+AK-01–AK-08 sind durch die oben einzeln dokumentierten Implementierungsnachweise und die finale unabhängige Abschluss-QC erfüllt. Die finale Coverage-/PlayMode-Erzeugung und alle technischen Quellen des integrierten PR-Heads sind gegenüber `133ca696d4a35eaa4297c3f3dc8976912e989e2d` unverändert; die echte Acht-Assembly-Baseline und die dort dokumentierten Artefaktprüfungen bleiben gültige commitgebundene Nachweise. Die Definition of Done ist erfüllt: Umsetzung vollständig, Tests/Builds erfolgreich, Akzeptanzkriterien erfüllt, unabhängige QC PASS und Integration freigegeben; Abschluss- und Übergabestatus werden in den drei vorgesehenen Steuerungsdateien konsistent fortgeschrieben.
+
+### Umfang und Prüfung des Dokumentations-Closeouts
+
+Der separate Closeout auf `codex/wp-021-closeout` basiert auf `cd1a048` und führt genau drei Dateien fort: dieses Work Package (Abschlussnachweis), `PROJECT_CONTROL/CURRENT_STATE.md` (Phase und nächster Schritt) und `PROJECT_CONTROL/WORK_QUEUE.md` (Integrationsgate und Produktionsreihenfolge). Er verwendet wie die bisherigen Closeouts den bestehenden unveränderlichen WP-Scope; kein neues Work Package oder Scope-Manifest wird angelegt. Historische Zwischenstände bleiben erhalten und werden ausschließlich durch diesen Abschlussabschnitt fortgeschrieben.
+
+Die Closeout-Prüfungen umfassen Architecture-only und den kanonischen WP-021-Production-Scope jeweils mit Self-/Negativtests, positiven Scope-Lauf, historischen Trust Anchor und Manifestbytegleichheit, `git diff --check`, exakte Drei-Datei-Allowlist gegen `cd1a048`, unveränderte Produktions-/Architektur-/Produkt-/CI-/Validatorquellen sowie Remote-/PR-Head-Abgleich. Der bekannte Windows-Befund `V03-005-ABSOLUTE` wird weiterhin getrennt als lokaler FAIL ausgewiesen; verbindliche Ubuntu-Selbsttests müssen im Closeout-PR PASS sein. Unity-CI bleibt unverändert und läuft für den PR automatisch; keine neue technische Implementierung.
+
+**Tatsächliche lokale Closeout-Ergebnisse:** Positiver kanonischer Production-Scope-Lauf **PASS, 17 Prüfgruppen**, einschließlich Dokumentstruktur/Links, Scope, Trust Anchor und Secret-Patternprüfung. Architecture-only und Production-Scope mit `--self-test` jeweils **FAIL ausschließlich `self-test:not-detected:V03-005-ABSOLUTE`** auf Windows; keine Abschwächung oder Validatoränderung. `git diff --check`, exakte Drei-Datei-Allowlist gegen `cd1a048`, geschützte Quellen ohne Diff, Manifestbytegleichheit und Anker-Ancestry **PASS**. Lokale Protokolle bleiben ignoriert unter `Logs/wp021-closeout-{architecture-selftest,scope-selftest,scope-positive}.log`. Der veraltete lokale `main`-Verweis wurde lediglich per Fast-Forward zum bereits integrierten `origin/main` synchronisiert; kein neuer Main-Commit oder Remote-Main-Schreibzugriff.
+
+### Übergabe und unveränderte Folgegates
+
+**WP-022 ist durch die erfolgreiche WP-021-Integration als nächster Produktionsschritt freigegeben, aber noch nicht definiert, verankert oder begonnen.** Geschäftsführung / Projektarchitekt müssen es auf einer neuen Branch vom dann aktuellen `main` zusammen mit seinem eigenen Production-Scope-Manifest erstmals im selben Add-Commit vollständig definieren und verankern (ADR-030). Erst danach darf eine separate Implementierungsbeauftragung erfolgen. Dieser Closeout beginnt WP-022 nicht und legt weder dessen Datei noch Manifest an.
+
+Die harte Folge bleibt WP-022 → WP-015 → WP-016 → WP-017 → Contentproduktion. Architecture v1.0, alle bestehenden ADRs einschließlich des ADR-031-Zielvertrags und `BLOCKER-PROD-001/002/003` bleiben unverändert. Physische Geräte-, SDK-Sandbox- und Store-Nachweise bleiben REQUIRED_LATER/NOT_EXECUTED; die erste Domain-/Solver-Mutationsbaseline gehört zu WP-022. Diese späteren Pflichten und der dokumentierte lokale Windows-Selbsttestbefund sind keine offenen technischen Restblocker der abgenommenen WP-021-Integration.

@@ -7,8 +7,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
-| 1 | WP-021 – Unity-Scaffold-Recovery | **Coverage korrigiert; technisch abnahmebereit für unabhängige QC** | Korrekturcommit `133ca696d4a35eaa4297c3f3dc8976912e989e2d` gepusht, Remote/PR-HEAD bestätigt. Vier PR-/Push-Läufe vollständig SUCCESS: Architecture `37384642475`/`37384647879`, Unity `37384642579`/`37384647796`; vollständige echte Coverage für acht Assemblies, EditMode 1/1, PlayMode 27/27 samt QA-Szene, Android-IL2CPP, iOS BUILD SUCCEEDED. Collector-Full-Export versions-/SHA-geprüft; Gates unverändert, Astra-QC-01/QC-02/QC-CI-01/QC-CI-02 erhalten. Lokal 5 Collector-/51 Gateregressionen sowie Scope/Trust/Diff/Modulgraph/QA PASS; Windows-Selbsttests bekannter V03-005-ABSOLUTE-FAIL, Ubuntu-Selbsttests PASS. CI-Evidenzcommit nur der drei Steuerungsdateien, anschließend abschließende Remote-/HEAD-/CI-Verifikation. Kein bekannter Implementierungsblocker; unabhängige QC/Integrationsentscheidung folgen separat, WP-022 bis Integration gesperrt, kein Merge. |
-| 2 | WP-022 – Puzzle-Kern-Recovery | Reserviert, noch nicht definiert | Erst nach integriertem WP-021: WP-022 und eigenes Manifest im selben Add-Commit auf neuer Main-Branch definieren und verankern. |
+| 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unabhängige Abschluss-QC **PASS**, Geschäftsführungsfreigabe; vor Integration kein technischer Restblocker. [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11) am 2026-10-06 als `cd1a048fe7c77f971c00613de5687a0cac1ec395` nach `main` integriert; PR-Head `c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`. Vier finale Architecture-/Unity-Runs SUCCESS, AK-01–AK-08 und echte Mess-/Buildnachweise im WP-021 dokumentiert; Trust Anchor und Manifest unverändert. |
+| 2 | WP-022 – Puzzle-Kern-Recovery | **Als nächster Produktionsschritt freigegeben; noch nicht definiert oder begonnen** | WP-021-Integrationsgate erfüllt. Geschäftsführung / Projektarchitekt definieren WP-022 und eigenes Production-Scope-Manifest erst gemeinsam im selben ersten Add-Commit auf einer neuen Branch vom aktuellen `main` (ADR-030). Erst danach separate Implementierungsbeauftragung; dieser Closeout beginnt WP-022 nicht. |
 | 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
 | 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
 | 5 | WP-017 – Proof-v1-Regeneration und Strict-Validation | Definiert, nicht begonnen | Nach WP-016 sowie allen Vorgängern auf `main`: `minimum: 0`-Schema, schema-valider `solver-v2`-Proof, bytegenaue Regeneration und Strict-Gate. |
@@ -40,7 +40,8 @@ main
   → Trust-Anchor-Korrektur integriert (PR #8)
   → Hold durch Geschäftsführung aufgehoben; CI-Readiness real nachgewiesen
   → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (fc10c61);
-    eigene CI-Nachweise grün; PR; Astra-/Sol-QC; danach integrieren
+    eigene CI-Nachweise grün; unabhängige Abschluss-QC PASS; Geschäftsführungsfreigabe;
+    integriert über PR #11 (cd1a048), formal abgeschlossen
   → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
   → WP-015
   → WP-016
