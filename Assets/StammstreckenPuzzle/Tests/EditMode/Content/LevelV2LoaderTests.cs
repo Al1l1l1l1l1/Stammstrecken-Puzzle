@@ -52,7 +52,7 @@ namespace STP.Tests.Content.EditMode
         {
             var result = LevelV2Loader.Load(Doc());
             Assert.That(result.IsValid, Is.True);
-            Assert.That(result.ImportBlockers, Has.Count.EqualTo(1));
+            Assert.That(result.ImportBlockers.Count, Is.EqualTo(1));
             Assert.That(result.ImportBlockers[0].Code, Is.EqualTo("LVL-IMPORT-PROOF-GATE-MISSING"));
             Assert.That(result.IsRuntimeImportable, Is.False);
         }
