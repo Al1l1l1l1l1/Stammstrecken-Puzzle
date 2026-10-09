@@ -9,7 +9,7 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
 | 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unity-Scaffold freigegeben; formaler Closeout über PR #12. |
 | 2 | WP-022 – Puzzle-Kern-Recovery | **Abgeschlossen und integriert** | Finaler PR-HEAD `b257efd98bd14e7f66ffc40916a0b584c3f51fb7` unabhängig PASS; Geschäftsführungsfreigabe; Integration über PR #13, formaler Closeout über PR #14. |
-| 3 | WP-023 – Level-v2-Foundation und Hashverträge | **Definiert/verankert; Phase-A-Prüfung läuft; Implementierung nicht begonnen** | Frische Branch `codex/wp-023-level-v2-foundation` vom aktuellen `main` `ad0ac1b6b12f9c0acbf59d90734b3c574a2a15d7`. WP-023 und eigenes Production-Scope-Manifest gemeinsam im ersten Commit `a1d284caec7746a4aa48fbe564d37d179d60fed8` verankert; Manifest danach unveränderlich. Die vorhandene WP-015-Datei bleibt Planungsgrundlage und ist kein ausführbarer Trust Anchor. Vor Phase B müssen Governance-/Scope-/Trust-Gates PASS sein. |
+| 3 | WP-023 – Level-v2-Foundation und Hashverträge | **Phase A abgeschlossen; bereit für Implementierung** | Branch `codex/wp-023-level-v2-foundation` vom `main` `ad0ac1b6b12f9c0acbf59d90734b3c574a2a15d7`. WP-023 und eigenes Production-Scope-Manifest gemeinsam im ersten Commit `a1d284caec7746a4aa48fbe564d37d179d60fed8` verankert; Manifest unverändert. Architecture Validation PR-Run `37984954679` inklusive Architecture-only und kanonischem WP-023-Production-Scope mit Self-/Negativtests **SUCCESS**. Kein Definitions-, Scope- oder Trust-Blocker; Produktionsimplementierung noch nicht begonnen. |
 | 4 | Solver-v2-Metriken und Deduktionsspur | **Gesperrt bis WP-023 integriert** | Fachlich auf Basis der vorhandenen WP-016-Planung; ausführbarer eigener Startanker erst nach WP-023-Integration. |
 | 5 | Proof-v1-Regeneration und Strict-Validation | **Gesperrt bis Solver-v2 integriert** | Fachlich auf Basis der vorhandenen WP-017-Planung; eigener ausführbarer Startanker erst nach Vorgängerintegration. |
 | 6 | 240 konkrete Rätselinstanzen | Blockiert durch Proof-v1 | Erst nach vollständiger Level-/Solver-/Proofpipeline. |
@@ -68,7 +68,7 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | Datei | Relevanz |
 |---|---|
 | `CURRENT_STATE.md` | Autoritativer Phasen- und Integrationsstand. |
-| `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Aktueller ausführbarer Produktionsauftrag. |
+| `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Aktueller ausführbarer Produktionsauftrag; Phase A abgeschlossen. |
 | `../tools/architecture-validation/scopes/WP-023.production.scope.json` | Eigenes unveränderliches Production-Scope-Manifest. |
 | `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Historische Planungsgrundlage des fachlichen Blocks. |
 | `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur und Abgrenzung historischer Lieferstände. |

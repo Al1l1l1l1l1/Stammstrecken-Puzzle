@@ -4,7 +4,7 @@
 
 `WP-023`
 
-**Bearbeitungsstatus:** Phase A – Definition und Trust-Anchor-Verankerung. Noch keine Implementierung.
+**Bearbeitungsstatus:** **Phase A abgeschlossen: definiert, ADR-030-konform verankert und durch die kanonische Governance-/Scope-/Trust-CI erfolgreich geprüft. Implementierung noch nicht begonnen; bereit für separaten Phase-B-Implementierungsauftrag.**
 
 [Scope](../tools/architecture-validation/scopes/WP-023.production.scope.json)
 
@@ -124,3 +124,13 @@ Phase A allein endet mit: **definiert, ADR-030-konform verankert und bereit für
 ## Herkunft / Abgrenzung zu WP-015
 
 `WP-015_Level-v2-Foundation-und-Hashvertraege.md` bleibt als vorab angelegte Planungsfassung lesbar. Die fachliche Absicht wird nur soweit übernommen, wie sie mit dem heutigen `main`, den integrierten WP-021/WP-022-Ergebnissen und den aktuell bindenden ADRs übereinstimmt. WP-023 ist der erste ausführbare, historisch korrekt verankerte Auftrag für diesen Block.
+
+## Phase-A-Nachweis – 2026-10-09
+
+- Verifizierte Ausgangsbasis: `main` `ad0ac1b6b12f9c0acbf59d90734b3c574a2a15d7`.
+- Verbindlicher Trust Anchor: `a1d284caec7746a4aa48fbe564d37d179d60fed8`; exakt dieses Work Package und das eigene Production-Scope-Manifest wurden gemeinsam im ersten Branchcommit eingeführt. Der historische WP-Text verlinkt das Manifest ausdrücklich; `baseCommit` entspricht dem einzigen Elterncommit.
+- Das Production-Scope-Manifest ist seit dem Anker unverändert.
+- Phase-A-Folgediff beschränkt sich auf `CURRENT_STATE.md`, `WORK_QUEUE.md` und die Manifestzuordnung in `.github/workflows/validate.yml`; keine Produktions-, Test-, Schema-, Architektur- oder Unity-CI-Implementierung.
+- Kanonische GitHub-PR-CI auf Head `b7bf1c845a660afdee7d0bb9f9cb13d4775ae61c`: Architecture Validation Run `37984954679`, Job `114004511519`, **COMPLETED / SUCCESS**. Architecture-only-Lauf mit Self-/Negativtests und kanonischer WP-023-Production-Scope-Lauf mit Self-/Negativtests jeweils erfolgreich.
+- Der zunächst vor Produktionsbeginn angelegte fehlerhafte Phase-A-Anker wurde verworfen, nachdem die fail-closed Prüfung einen fehlenden historischen Markdown-Link zwischen WP und Manifest korrekt beanstandet hatte. Zu diesem Zeitpunkt existierte keinerlei WP-023-Produktionsimplementierung; die aktuelle Branchhistorie enthält ausschließlich den korrigierten gültigen Anker.
+- Ergebnis: **Phase A abgeschlossen. Kein Definitions-, Scope- oder Trust-Blocker. WP-023 ist bereit für einen separaten Implementierungsauftrag.**
