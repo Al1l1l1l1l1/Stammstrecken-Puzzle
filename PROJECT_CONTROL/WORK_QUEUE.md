@@ -7,11 +7,11 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
-| 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unabhängige Abschluss-QC **PASS**, Geschäftsführungsfreigabe; vor Integration kein technischer Restblocker. [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11) am 2026-10-06 als `cd1a048fe7c77f971c00613de5687a0cac1ec395` nach `main` integriert; PR-Head `c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`. Vier finale Architecture-/Unity-Runs SUCCESS, AK-01–AK-08 und echte Mess-/Buildnachweise im WP-021 dokumentiert; Trust Anchor und Manifest unverändert. |
-| 2 | WP-022 – Puzzle-Kern-Recovery | **AK-07 korrigiert; technisch erneut bereit für unabhängige Abschluss-QC** | Bestehende Branch codex/wp-022-puzzle-kern-recovery/Draft-PR #13, Basis 8c0d73a, Anker ed89889/Manifest unverändert. Korrekturcommit 22f4444: finale Zeit/Cancellation/Monotonieprüfung; neun deterministische Regressionen alt FAIL/neu PASS, Unity 42/42. Neue Solvermutation 25/24/1 äquivalent, Coverage, CI-Budget und vollständiger Unity-PR-Run 37666423945 (27/27 PlayMode/QA, Android-IL2CPP/iOS-Xcode) SUCCESS; Ubuntu-17/18 PASS. Source-/Artifactnachweise im jüngsten WP-Abschluss; Evidencefolgecommit nur drei Steuerungsdateien. Keine unabhängige Abnahme/Integration/Folgefreigabe. |
-| 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
-| 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
-| 5 | WP-017 – Proof-v1-Regeneration und Strict-Validation | Definiert, nicht begonnen | Nach WP-016 sowie allen Vorgängern auf `main`: `minimum: 0`-Schema, schema-valider `solver-v2`-Proof, bytegenaue Regeneration und Strict-Gate. |
+| 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unabhängige Abschluss-QC **PASS**, Geschäftsführungsfreigabe; vor Integration kein technischer Restblocker. [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11) am 2026-10-06 als `cd1a048fe7c77f971c00613de5687a0cac1ec395` nach `main` integriert; formaler Closeout über PR #12. |
+| 2 | WP-022 – Puzzle-Kern-Recovery | **Abgeschlossen und integriert** | Finaler geprüfter PR-HEAD `b257efd98bd14e7f66ffc40916a0b584c3f51fb7`; unabhängige Abschluss-QC **PASS**, Geschäftsführungsfreigabe und Integration über [PR #13](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/13) als Merge-Commit `a85ea224d109ad1713a226481a91f6e24208177d`. AK-01–AK-10 und vollständige Unity-/Governance-/Coverage-/Mutations-/Budget-/Android-/iOS-Nachweise dokumentiert; Anker/Manifest unverändert. |
+| 3 | Level-v2-Foundation und Hashverträge | **Nächster Produktionsblock; Startvorbereitung erforderlich** | Fachlich entspricht der nächste Block der vorhandenen WP-015-Planung: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. Die vorhandene Datei `WP-015_Level-v2-Foundation-und-Hashvertraege.md` liegt jedoch bereits auf `main` und kann deshalb die ADR-030-Forderung einer gemeinsamen erstmaligen WP-/Manifest-Verankerung nicht selbst erfüllen. Vor Implementierung ist ein sauberer ausführbarer Main-basierter Work-Package-/Manifest-Startzustand herzustellen; bis dahin kein Produktionscoding. |
+| 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach integrierter Level-v2-Foundation sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
+| 5 | WP-017 – Proof-v1-Regeneration und Strict-Validation | Definiert, nicht begonnen | Nach integrierter Solver-v2-Stufe: `minimum: 0`-Schema, schema-valider `solver-v2`-Proof, bytegenaue Regeneration und Strict-Gate. |
 | 6 | 240 konkrete Rätselinstanzen | Blockiert durch WP-017 | Erst nach vollständiger Level-/Solver-/Proofpipeline. |
 | 7 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen. |
 | 8 | Finale Asset-Bible | Nicht begonnen | Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Objekte, Motion und Sound. |
@@ -39,15 +39,13 @@ Sie bleiben nur lesbare Vergleichskorpora. Insbesondere sind Direktmerge, Cherry
 main
   → Trust-Anchor-Korrektur integriert (PR #8)
   → Hold durch Geschäftsführung aufgehoben; CI-Readiness real nachgewiesen
-  → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (fc10c61);
-    eigene CI-Nachweise grün; unabhängige Abschluss-QC PASS; Geschäftsführungsfreigabe;
-    integriert über PR #11 (cd1a048), formal abgeschlossen
-  → WP-021-Closeout PR #12 integriert (8c0d73a)
-  → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (ed89889);
-    Phase B implementiert → AK-07 korrigiert/neue technische Evidenz PASS → unabhängige QC → Integration
-  → WP-015
-  → WP-016
-  → WP-017
+  → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (fc10c61)
+    → implementiert → unabhängige QC PASS → integriert → formal abgeschlossen
+  → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (ed89889)
+    → implementiert → AK-07 korrigiert → unabhängige QC PASS → integriert über PR #13 (a85ea22)
+  → Level-v2-/Hash-Foundation: vor Implementierung erst ADR-030-konformen ausführbaren WP-/Manifest-Startzustand herstellen
+  → Solver-v2
+  → Proof-v1
   → erst dann Contentproduktion
 ```
 
@@ -55,14 +53,7 @@ Jeder Pfeil ist eine harte Voraussetzung. Ein Agent darf keinen späteren Schrit
 
 ## QC- und Rollenregel
 
-| Rolle | Zulässige Verantwortung |
-|---|---|
-| Geschäftsführung / Projektarchitekt | ADRs, Work-Package-Grenzen, Reihenfolge und Freigabe der nächsten Phase. |
-| Kimi / Implementierung | Ausschließlich Umsetzung eines vollständig definierten, freigegebenen Work Packages; keine Architektur- oder Scopeentscheidung. |
-| Astra | Unabhängige Architektur-/Vertrags-QC auf eingefrorenem PR-Head. |
-| Sol | Unabhängige Test-/Scope-/CI-/Integrations-QC auf eingefrorenem PR-Head. |
-
-Astra und Sol erhalten keine gegenseitigen Ergebnisse vor Abgabe des eigenen Reviews. Ein Merge ist ausgeschlossen, solange einer der beiden einen offenen Blocker oder High-Befund meldet.
+Die Schutzfunktion ist eine **unabhängige Abschlussprüfung auf einem eingefrorenen Stand vor Integration**. Das konkrete ausführende KI-System ist kein Bestandteil der Projektarchitektur und darf zwischen Arbeitsschritten wechseln. Zusätzliche parallele Prüfungen sind nur erforderlich, wenn das konkrete Work Package oder eine ausdrückliche Geschäftsführungsentscheidung sie wegen des Risikos verlangt. Ein Merge ist ausgeschlossen, solange die erforderliche unabhängige Prüfung einen offenen Blocker oder High-Befund meldet.
 
 ## Offene Produktfolgeblocker
 
@@ -80,11 +71,9 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 |---|---|
 | `CURRENT_STATE.md` | Autoritativer Phasen- und Integrationsstand. |
 | `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur und Abgrenzung der historischen Branches. |
+| `../DECISIONS/ADR-030-wp-scope-trust-anchor.md` | Verbindliche gemeinsame historische WP-/Manifest-Erstverankerung. |
 | `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Bindender `solver-v2`-Zielvertrag und Zeitpunkt der Schemaumsetzung. |
-| `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Abgeschlossene QC-Korrektur und Recovery-Freigabe. |
-| `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
-| `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
-| `../WORK_PACKAGES/WP-022_Puzzle-Kern-Recovery.md` | Aktuell vollständig definierter Auftrag; Phase-A-Verankerung und spätere Implementierung getrennt, keine Vorwegnahme WP-015/016/017. |
-| `../tools/architecture-validation/scopes/WP-022.production.scope.json` | Eigenes immutable Manifest, gemeinsame historische Erstverankerung ed89889 auf Basis 8c0d73a. |
-| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Level-/Hashfolgeauftrag. |
+| `../WORK_PACKAGES/WP-022_Puzzle-Kern-Recovery.md` | Abgeschlossener und integrierter Puzzle-Kern mit eigenem Trust Anchor und Abschlussnachweisen. |
+| `../tools/architecture-validation/scopes/WP-022.production.scope.json` | Unverändertes WP-022-Production-Scope-Manifest. |
+| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Bestehende Planungsfassung des nächsten fachlichen Blocks; wegen Vorabexistenz auf `main` nicht unmittelbar als ADR-030-Anker-WP ausführbar. |
 | `../PROJECT_CONTROL/DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |
