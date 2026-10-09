@@ -8,7 +8,7 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 |---:|---|---|---|
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
 | 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unabhängige Abschluss-QC **PASS**, Geschäftsführungsfreigabe; vor Integration kein technischer Restblocker. [PR #11](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/11) am 2026-10-06 als `cd1a048fe7c77f971c00613de5687a0cac1ec395` nach `main` integriert; PR-Head `c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b`. Vier finale Architecture-/Unity-Runs SUCCESS, AK-01–AK-08 und echte Mess-/Buildnachweise im WP-021 dokumentiert; Trust Anchor und Manifest unverändert. |
-| 2 | WP-022 – Puzzle-Kern-Recovery | **Als nächster Produktionsschritt freigegeben; noch nicht definiert oder begonnen** | WP-021-Integrationsgate erfüllt. Geschäftsführung / Projektarchitekt definieren WP-022 und eigenes Production-Scope-Manifest erst gemeinsam im selben ersten Add-Commit auf einer neuen Branch vom aktuellen `main` (ADR-030). Erst danach separate Implementierungsbeauftragung; dieser Closeout beginnt WP-022 nicht. |
+| 2 | WP-022 – Puzzle-Kern-Recovery | **AK-07 korrigiert; technisch erneut bereit für unabhängige Abschluss-QC** | Bestehende Branch codex/wp-022-puzzle-kern-recovery/Draft-PR #13, Basis 8c0d73a, Anker ed89889/Manifest unverändert. Korrekturcommit 22f4444: finale Zeit/Cancellation/Monotonieprüfung; neun deterministische Regressionen alt FAIL/neu PASS, Unity 42/42. Neue Solvermutation 25/24/1 äquivalent, Coverage, CI-Budget und vollständiger Unity-PR-Run 37666423945 (27/27 PlayMode/QA, Android-IL2CPP/iOS-Xcode) SUCCESS; Ubuntu-17/18 PASS. Source-/Artifactnachweise im jüngsten WP-Abschluss; Evidencefolgecommit nur drei Steuerungsdateien. Keine unabhängige Abnahme/Integration/Folgefreigabe. |
 | 3 | WP-015 – Level-v2-Foundation und Hashverträge | Definiert, nicht begonnen | Nach WP-022: Parser, Levelstruktur, Semantik und Hashbasis ohne Proofruntime. |
 | 4 | WP-016 – Solver-v2-Metriken und Deduktionsspur | Definiert, nicht begonnen | Nach WP-015 sowie WP-014/WP-018/WP-021/WP-022 auf `main`: Root-Logikmetriken, auditable Spur und deterministische Suchpfadtiefe gemäß ADR-031. |
 | 5 | WP-017 – Proof-v1-Regeneration und Strict-Validation | Definiert, nicht begonnen | Nach WP-016 sowie allen Vorgängern auf `main`: `minimum: 0`-Schema, schema-valider `solver-v2`-Proof, bytegenaue Regeneration und Strict-Gate. |
@@ -42,7 +42,9 @@ main
   → WP-021 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (fc10c61);
     eigene CI-Nachweise grün; unabhängige Abschluss-QC PASS; Geschäftsführungsfreigabe;
     integriert über PR #11 (cd1a048), formal abgeschlossen
-  → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankern, abschließen und integrieren
+  → WP-021-Closeout PR #12 integriert (8c0d73a)
+  → WP-022 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert (ed89889);
+    Phase B implementiert → AK-07 korrigiert/neue technische Evidenz PASS → unabhängige QC → Integration
   → WP-015
   → WP-016
   → WP-017
@@ -82,5 +84,7 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | `../WORK_PACKAGES/WP-018_QC-Korrektur-und-Produktionsbasis-Reintegration.md` | Abgeschlossene QC-Korrektur und Recovery-Freigabe. |
 | `../WORK_PACKAGES/WP-019_Unity-Scaffold-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
 | `../WORK_PACKAGES/WP-020_Puzzle-Kern-Recovery-auf-aktuellem-Main.md` | Archivierte Planungsunterlage, nicht ausführbar. |
+| `../WORK_PACKAGES/WP-022_Puzzle-Kern-Recovery.md` | Aktuell vollständig definierter Auftrag; Phase-A-Verankerung und spätere Implementierung getrennt, keine Vorwegnahme WP-015/016/017. |
+| `../tools/architecture-validation/scopes/WP-022.production.scope.json` | Eigenes immutable Manifest, gemeinsame historische Erstverankerung ed89889 auf Basis 8c0d73a. |
 | `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Level-/Hashfolgeauftrag. |
 | `../PROJECT_CONTROL/DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |
