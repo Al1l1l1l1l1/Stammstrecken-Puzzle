@@ -4,7 +4,7 @@
 
 `WP-023`
 
-**Bearbeitungsstatus:** **Phase A abgeschlossen: definiert, ADR-030-konform verankert und durch die kanonische Governance-/Scope-/Trust-CI erfolgreich geprüft. Implementierung noch nicht begonnen; bereit für separaten Phase-B-Implementierungsauftrag.**
+**Bearbeitungsstatus:** **Phase B implementiert und lokal verifiziert (Implementierungsstand `4e5fbd327cacd021a35f8a8c839fb69f92dbe9f2`); Architecture Validation inklusive Golden-Crosscheck auf dem Implementierungsstand PASS. Die echten Unity-CI-Nachweise (Compile, EditMode inklusive `STP.Tests.Content.EditMode`, Coverage-Evidenz) sind NICHT erbracht: Die Unity-Jobs sind bisher am Docker-Hub-Pull-Limit der GitHub-Runner gescheitert (Infrastruktur, siehe Abschnitt Phase-B-Nachweis). Unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD steht aus; Integration nicht freigegeben.**
 
 [Scope](../tools/architecture-validation/scopes/WP-023.production.scope.json)
 
@@ -134,3 +134,99 @@ Phase A allein endet mit: **definiert, ADR-030-konform verankert und bereit für
 - Kanonische GitHub-PR-CI auf Head `b7bf1c845a660afdee7d0bb9f9cb13d4775ae61c`: Architecture Validation Run `37984954679`, Job `114004511519`, **COMPLETED / SUCCESS**. Architecture-only-Lauf mit Self-/Negativtests und kanonischer WP-023-Production-Scope-Lauf mit Self-/Negativtests jeweils erfolgreich.
 - Der zunächst vor Produktionsbeginn angelegte fehlerhafte Phase-A-Anker wurde verworfen, nachdem die fail-closed Prüfung einen fehlenden historischen Markdown-Link zwischen WP und Manifest korrekt beanstandet hatte. Zu diesem Zeitpunkt existierte keinerlei WP-023-Produktionsimplementierung; die aktuelle Branchhistorie enthält ausschließlich den korrigierten gültigen Anker.
 - Ergebnis: **Phase A abgeschlossen. Kein Definitions-, Scope- oder Trust-Blocker. WP-023 ist bereit für einen separaten Implementierungsauftrag.**
+
+## Phase-B-Nachweis – 2026-10-09
+
+### Stand
+
+- Branch `codex/wp-023-level-v2-foundation`, Draft-PR #15. Implementierungsstand: Commit `4e5fbd327cacd021a35f8a8c839fb69f92dbe9f2` auf `d59bd394…` (Phase A). Spätere Commits ändern ausschließlich Dokumentation (`WP-023`, `CURRENT_STATE.md`, `WORK_QUEUE.md`) und lassen alle Unity-relevanten Eingaben (Assets, Workflows, Schemas, Beispiele) unberührt.
+- Trust Anchor `a1d284caec7746a4aa48fbe564d37d179d60fed8` und Basis `ad0ac1b6b12f9c0acbf59d90734b3c574a2a15d7` unverändert. Das Manifest hat SHA-256 `a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0` und ist am Anker, im lokalen Branch und im Remote-Stand byteidentisch.
+- PR #15 ist nicht gemergt und bleibt Draft.
+
+### Funktional umgesetzt (`Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/`)
+
+| Baustein | Aufgabe |
+|---|---|
+| `StrictJsonParser`, `JsonValue` | Strikter, nie werfender Parser: BOM, ungültiges UTF-8, Kommentare, nachlaufende Kommas/Inhalte, doppelte Schlüssel, Float/Exponent, `-0`, Zahlen außerhalb ±(2^53−1), lone Surrogates, Steuerzeichen; Grenzen 256 KiB / Tiefe 16 / String 8192 / Array 1024 / Objekt 64. |
+| `LevelV2Contract`, `LevelSchemaReader`, `LevelV2Reader`, `LevelV2Document` | Geschlossener Strukturvertrag (spiegelt `level-v2.schema.json`), typisierte DTOs, keine stillen Defaults, jede Abweichung genau eine stabile Diagnose (`LVL-VERSION-*`, `LVL-SCHEMA-*`). |
+| `LevelV2DomainMapper`, `LevelV2Semantics` | Deterministische Abbildung auf die vorhandene `PuzzleDefinition` über deren öffentliche Verträge; die Domain bleibt autoritativ. Zusatzprüfung Listenreihenfolge der Authoringlösung A→B, Zeilen-/Spaltenzahlen, Zeitordnung, Importzustand `AwaitingProofGate` (`LVL-IMPORT-PROOF-GATE-MISSING`, `IsRuntimeImportable` stets `false`). |
+| `JcsSerializer` | RFC-8785-Kanonisierung für Integer-JSON (UTF-16-Schlüsselordnung, RFC-Escaping, UTF-8 ohne BOM, ohne Newline). |
+| `LevelHashing` | Content-Hash (SHA-256 über JCS des Gesamtdokuments, bare Hex `documentSha256`), Public-Puzzle-Hash (`STP-PUZZLE-SEMANTIC-JCS-1`), Lösungshash (`STP-SOLUTION-JCS-1`), Proof-Projektionshash (`STP-PROOF-JCS-1`), Legacy-v1-Puzzlehash (`STP-LEVEL-V1-PUZZLE-JCS-1`); Projektionen strikt getrennt. |
+| `LevelV1Reader`, `LevelV1Document`, `LevelV1ToV2Migrator` | Strikter v1-Leser; Migration v1→v2 deterministisch und idempotent, auf Kopie, mit Neuberechnung und Abgleich der drei aufgezeichneten v1-Hashes; `proofRef` nur aus aufgezeichneten v1-Fakten abgeleitet; bei nicht neutral übernehmbaren Werten `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`. |
+| `LevelV2Loader` | Fassade Parse → Schema → Domain-Abbildung → Semantik (`Load(byte[] \| JsonValue)`, `LoadText`); eine spätere Stufe verdeckt nie eine frühere. |
+| `LevelDiagnostic` | Stabile Diagnosecodes mit Pfad; Codefamilien in `LEVEL_DATA_FORMAT.md` §8 dokumentiert. |
+
+### Geänderte Dateigruppen
+
+| Gruppe | Dateien |
+|---|---|
+| Produktion | 15 neue `*.cs` samt `.meta` in `Scripts/Infrastructure/Content/` (flach, keine neue Assembly, `asmdef`/`csc.rsp` unverändert). |
+| Tests | 9 neue `*.cs` samt `.meta` und `level-v2-jcs-golden.json` samt `.meta` in `Tests/EditMode/Content/`. |
+| Architekturdokumente | `ARCHITECTURE/LEVEL_DATA_FORMAT.md` (§6.1 Content-/Public-Puzzle-Hash, §6.2 JCS-Profil und Grenzen, Diagnosefamilien, Pipeline-/Importzustand, Migrationsumsetzung, Parsergrenzen), `ARCHITECTURE/CONTENT_PIPELINE.md` (Umsetzungsstand). |
+| CI | `.github/workflows/validate.yml` (Schritt „JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen“), `.github/workflows/unity.yml` (Content-Assemblies in EditMode-Evidenz und beiden Coverage-Pflichtmengen; keine Gateabsenkung). |
+| Projektsteuerung | dieses WP, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`. |
+| Bewusst unverändert | `level-v2.schema.json`, beide Level-v2-Beispiele, `proof-v1.schema.json`, WP-023-Manifest, Domain-/Solver-Code, `asmdef`/`csc.rsp`. Die bestehenden Artefakte waren mit der Implementierung bereits konsistent; die Konsistenz wird durch `SchemaParityTests` und das Golden-Crosscheck dauerhaft geprüft. |
+
+### Tests und Nachweise
+
+Lokal ist kein Unity-Editor verfügbar. Die Verifikation lief deshalb in einem unabhängigen .NET-8-Harness (außerhalb des Repositorys), der dieselben Quelldateien von Domain, Solver und Content mit NUnit kompiliert und ausführt. Das ist **kein** Ersatz für den Unity-Compile.
+
+| Nachweis | Ergebnis |
+|---|---|
+| Content-EditMode-Tests (Harness) | **307 / 307 bestanden**: `StrictJsonParserTests` 16, `JcsSerializerTests` 9, `LevelV2ReaderTests` 140, `LevelV2SemanticsTests` 43, `LevelHashingTests` 17, `LevelMigrationTests` 43, `LevelV2LoaderTests` 24, `SchemaParityTests` 15 (ausgeführte Testfälle je Klasse). Abgedeckt: Positiv-/Negativkatalog je Stufe, alle Feld- und Typfehler, Grenzwerte, Zufallsdokumente gegen die Domain, Determinismus und Feldreihenfolge-Invarianz, Hashprojektionen und deren Trennung, Migration inklusive Idempotenz und Editorialfälle, Schema-Parität (Parser akzeptiert/verwirft exakt wie das JSON-Schema). |
+| Bestehende Domain-/Solver-Regressionen (Harness) | 41 / 41 bestanden. |
+| Kompilierbarkeit gegen `netstandard2.1` / NUnit 3.5 (Unity-nahe Zielplattform, `warnaserror`, nullable) | Produktion und Tests kompilieren ohne Warnungen. |
+| Golden-Vektoren | 12 JCS-Fälle, 37 Ablehnungsfälle (davon 32 zusätzlich von der Node-Referenz abgelehnt, die übrigen 5 sind C#-spezifisch, weil die Node-Referenz `-0`, ungültiges UTF-8 und unbegrenzte Tiefe akzeptiert), 2 v2- und 2 v1-Dokumentvektoren. Die Werte stammen aus der unabhängigen Node-Referenz `tools/architecture-validation/jcs_crosscheck.mjs`, nicht aus der C#-Implementierung. |
+| Mutationsprobe | Eine absichtliche Änderung der Rastergrenze in `LevelV2Contract` lässt Tests fehlschlagen; Datei danach byteidentisch wiederhergestellt. |
+| Architecture-only- und Production-Scope-Validator (lokal) | PASS inklusive Self-/Negativtests; Manifest-Unveränderlichkeit lokal und remote belegt. |
+| Preflight (verbotene Tokens `PlayerPrefs`, `Resources.Load`, `ServiceLocator`) | PASS. |
+
+### Tatsächliche GitHub-Actions-Ergebnisse auf `4e5fbd327cacd021a35f8a8c839fb69f92dbe9f2`
+
+| Workflow / Job | Ergebnis |
+|---|---|
+| Architecture Validation, PR-Run `37992242788`, Job `114029128592` (Architecture-only mit Self-/Negativtests, Golden-Crosscheck gegen Node-Referenz, kanonischer WP-023-Production-Scope mit Self-/Negativtests) | **SUCCESS** |
+| Architecture Validation, Push-Run `37992238851`, Job `114029114318` | **SUCCESS** |
+| Unity CI `37992242745` (PR) und `37992238852` (Push): `project-preflight`, `unity-config`, `unity-evidence-guard`, `unity-environment-ios` | **SUCCESS** |
+| Unity CI: `unity-compile-editmode`, `unity-environment-linux`, `unity-environment-android` | **FAILURE vor jeder Codeausführung**: Schritt „Initialize containers“ bzw. Image-Pull scheitert mit `toomanyrequests: You have reached your unauthenticated pull rate limit` (Docker Hub). Das Unity-Image wurde nie gestartet; es liegt kein Compile-, Test- oder Coverage-Ergebnis vor. Mehrfache Wiederholungen (`rerun-failed-jobs`, Attempts 2 und 3) scheitern identisch. |
+| Unity CI: `unity-android-development-il2cpp`, `unity-playmode-bootstrap-smoke`, `unity-ios-export` | **SKIPPED** (abhängig von `unity-compile-editmode`) |
+
+**Bewertung:** Die Unity-Compile-/EditMode-/Coverage-Evidenz für die Content-Assemblies ist **NOT_EXECUTED** (Docker-Hub-Pull-Limit der Runner, Infrastrukturfehler vor dem Containerstart; der Code wurde in diesen Jobs nie ausgeführt). Sie darf nicht als PASS gelten. Eine Gateabsenkung, ein Umgehen des Pull-Schritts oder ein Wechsel der Imagequelle ist nicht Teil von WP-023 und wurde nicht vorgenommen. Maßgeblich ist das Unity-CI-Ergebnis auf dem eingefrorenen finalen PR-HEAD; es ist dort neu zu erheben (Re-Run der Unity-Jobs, sobald das Limit abgelaufen ist) und hier nicht vorweggenommen.
+
+### Auslegungsentscheidungen (in `LEVEL_DATA_FORMAT.md` dokumentiert)
+
+1. **Content-Hash** = SHA-256 über die JCS-Kanonisierung des vollständigen Level-v2-Dokuments (bare Hex, `documentSha256`); trägt kein Profil und wird nie mit den vier Profilhashes vermischt.
+2. Die Begriffe `schemaVersion` und `ruleset` im WP-Text entsprechen im Vertrag `documentSchemaVersion` und `rulesetVersion`.
+3. Parsergrenzen (256 KiB, Tiefe 16, String 8192, Array 1024, Objekt 64) sind Implementierungsgrenzen des Parsers; das Schema begrenzt das Raster weiterhin auf höchstens 10×10.
+4. `-0` wird abgelehnt (`LVL-PARSE-*`), obwohl JSON es syntaktisch erlaubt: Integer-JCS kennt keine negative Null.
+5. Zusätzliche Diagnosefamilien (`LVL-PARSE-*`, `LVL-VERSION-*`, `LVL-SCHEMA-*`, `LVL-DOMAIN-*`, `LVL-JCS-*`, `LVL-IMPORT-*`) ergänzen die vorhandenen Codes; keine vorhandene Bedeutung wurde geändert.
+6. Die Listenreihenfolge der Authoringlösung muss von A nach B laufen; die Domain bewertet dieselbe Lösung als ungeordnete Zellmenge. Beides muss gelten.
+7. Der Importzustand einer fehlerfreien Quelle ist stets `AwaitingProofGate`; `IsRuntimeImportable` ist in WP-023 immer `false`.
+
+### Einschränkungen und offene Punkte
+
+- **Unity-CI-Evidenz offen** (siehe oben). Sie ist Voraussetzung für `AK-08`/`AK-09` und für die Abschluss-QC; bis dahin ist WP-023 nicht abgeschlossen.
+- Keine Proofartefakt-Erzeugung, kein Solver-v2, keine Rootspur, keine ADR-031-Metriken, keine Proof-v1-Regeneration, keine Strict-Validation-Pipeline: `proofRef` wird in der Migration nur als Referenz aus aufgezeichneten v1-Fakten abgeleitet. Das Proofgate schließt der spätere Solver-v2-/Proof-Block.
+- Katalogübergreifende Season-1-Prüfungen (Cross-reference, 5×4×12-Struktur) sind nicht Teil von WP-023.
+- Die Node-Referenz akzeptiert `-0`, ungültiges UTF-8 und unbegrenzte Tiefe; diese Ablehnungsfälle sind im Golden mit `nodeCrosscheckRejects: false` markiert und nur durch die C#-Tests abgesichert.
+- Der Harness ist ein unabhängiger .NET-Lauf, kein Unity-Compile. Unity-spezifische Abweichungen (Compilerversion, Analyzer, Coverage-Instrumentierung) sind erst durch den echten Unity-Lauf ausgeschlossen.
+
+### Akzeptanzkriterien
+
+| ID | Stand | Nachweis |
+|---|---|---|
+| `AK-01` | **PASS** | Anker `a1d284ca…` (Elterncommit `ad0ac1b6…`) führt WP-023 und Manifest gemeinsam ein; Manifest-SHA-256 `a8a3a506…776b0` an Anker, lokal und remote identisch; WP verlinkt das Manifest; Architecture-Validation-Production-Scope-Lauf SUCCESS. |
+| `AK-02` | Lokal belegt; Unity-Lauf offen | `StrictJsonParserTests`, `LevelV2ReaderTests`, `SchemaParityTests`, `LevelV2LoaderTests` (Harness 307/307). |
+| `AK-03` | Lokal belegt; Unity-Lauf offen | `LevelV2SemanticsTests` inklusive Zufallsdokumente gegen `PuzzleDefinition`/`PuzzleEvaluator`; Domainregeln nicht dupliziert. |
+| `AK-04` | **Lokal und CI belegt** (Kanonisierung) | `JcsSerializerTests` und 12 JCS- sowie 37 Ablehnungsfälle; unabhängiger Node-Crosscheck in Architecture Validation SUCCESS. Die C#-Ausführung auf Unity bleibt offen. |
+| `AK-05` | **Lokal und CI belegt** (Vektoren) | `LevelHashingTests`; v2- und v1-Dokumentvektoren durch die Node-Referenz in Architecture Validation reproduziert (SUCCESS). Die C#-Ausführung auf Unity bleibt offen. |
+| `AK-06` | Lokal belegt; Unity-Lauf offen | `LevelMigrationTests` (43 Testfälle): Golden, Idempotenz, Editorialfälle, alle sechs Legacy-Fokuswerte; Ergebnis ist stets schema- und semantikgültig. |
+| `AK-07` | **Lokal und CI belegt** | Schema, Beispiele, Doku und Implementierung widerspruchsfrei (`SchemaParityTests`, Architecture-Validator); proof-v1-Schema unverändert; `proofRef` nur Pass-through bzw. Ableitung aus v1-Fakten. |
+| `AK-08` | Teilweise: lokal belegt, Unity-Lauf **NOT_EXECUTED** | Alle Testgruppen vorhanden, Harness 307/307 und Domain-/Solver-Regression 41/41; kein Unity-EditMode-Ergebnis. |
+| `AK-09` | Teilweise: Governance/Scope/Trust **PASS**, Unity **NOT_EXECUTED** | Architecture Validation SUCCESS (PR und Push); Preflight/Config/Evidence-Guard/iOS-Umgebung SUCCESS; Unity-Compile/EditMode/Coverage und Android-/Linux-Umgebung am Docker-Hub-Limit gescheitert; keine Gateabsenkung; keine Änderung außerhalb des Manifests. |
+
+### Nächster Schritt
+
+1. Unity-CI-Jobs auf dem finalen PR-HEAD erneut ausführen, sobald das Docker-Hub-Limit nicht mehr greift, und das Ergebnis (Compile, EditMode `STP.Tests.Content.EditMode`, Coverage-Evidenz) prüfen. Etwaige Unity-spezifische Befunde innerhalb des WP-023-Scopes beheben, ohne Gates abzusenken.
+2. Danach unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD; das ausführende System darf nicht der Implementierungsagent sein.
+3. Erst nach PASS und Geschäftsführungsfreigabe Integration. PR #15 wird bis dahin nicht gemergt.
