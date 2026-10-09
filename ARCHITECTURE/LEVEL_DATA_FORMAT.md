@@ -68,6 +68,23 @@ Alle Projektionen werden nach RFC 8785/JCS als UTF-8 ohne BOM und Abschlussnewli
 
 Jeder Hash wird als `{profile, sha256}` gespeichert. Ein unbekanntes Profil ist ein harter Fehler; kein Hash wird anhand seines Wertes heuristisch gedeutet. Formatierung, Schlüsselreihenfolge, `documentSchemaVersion`, `contentRevision`, Texte, Assets und Proofregeneration ändern den semantischen Puzzlehash nicht. Eine Änderung von Puzzle-ID, Ruleset, Raster, Endpoints oder Counts ändert ihn.
 
+### 6.1 Content-Hash und Public-Puzzle-Hash
+
+Die beiden Hashes sind getrennte Verträge und werden nie vermischt:
+
+| Hash | Definition | Form | Bindet |
+|---|---|---|---|
+| **Public-Puzzle-Hash** | `STP-PUZZLE-SEMANTIC-JCS-1` über die Projektion der Tabelle oben | `{profile, sha256}` | ausschließlich den öffentlichen Rätselinput unter derselben `puzzleId`; Progress, Drafts und Release-Lock-Semantik hängen daran. |
+| **Content-Hash** | SHA-256 über die JCS-Kanonisierung des **vollständigen** Level-v2-Dokuments | 64-stellige Kleinbuchstaben-Hexfolge, im Release-Lock und im Migrationsgolden als `documentSha256` | jedes Feld des Dokuments einschließlich Texte, Produktionsdaten, Authoringlösung und `proofRef`; Dokumentidentität, nicht Rätselidentität. |
+
+Der Content-Hash trägt kein Profil, ersetzt keines der vier Profile und darf nie als Public-Puzzle-Hash, Lösungshash oder Proofhash verwendet werden. Er ändert sich bei jeder Dokumentänderung, der Public-Puzzle-Hash nur bei einer Änderung seiner Projektion.
+
+### 6.2 JCS-Profil und Grenzen
+
+JCS-Eingaben sind ausschließlich Integer-JSON: Zahlen im sicheren Bereich ±(2^53−1), kein Float, kein Exponent, kein `-0`. Objektschlüssel werden nach UTF-16-Codeeinheiten aufsteigend sortiert; Strings werden nach RFC 8785 maskiert (übrige Steuerzeichen als `\u00xx` in Kleinbuchstaben); Ausgabe ist UTF-8 ohne BOM und ohne Abschlussnewline. Alleinstehende Surrogate und Integer außerhalb des sicheren Bereichs sind harte Fehler (`LVL-JCS-*`). Die Implementierung wird durch unabhängig erzeugte Testvektoren (`Assets/StammstreckenPuzzle/Tests/EditMode/Content/level-v2-jcs-golden.json`, zusätzlich per Node-Referenzimplementierung nachgerechnet) abgesichert.
+
+`STP-PROOF-JCS-1` wird für ein Level-v2-Dokument nur als **Projektionshash** berechnet (vollständiges `proof-v1`-Objekt ohne `proofHash`). Das Proofartefakt selbst entsteht erst im späteren Solver-/Proofblock.
+
 ## 7. Proof-v1
 
 [`proof-v1.schema.json`](./schemas/proof-v1.schema.json) definiert das geschlossene Proofartefakt. Es bindet `puzzleId`, profilierten Puzzlehash, profilierten Lösungshash, `solverVersion`, `solutionCount` und Metriken. Der Proofhash schließt alle diese Werte ein. Copy-Paste eines Proofs auf ein anderes Puzzle, ein stale Lösungshash oder eine Metrikänderung wird deshalb erkannt.
@@ -88,14 +105,27 @@ Der Architecture-v0.4-Validator rehasht und bindet Fixtures und zählt ihre klei
 | `LVL-COUNT-*` | aus der Lösung abgeleitete Zeilen-/Spaltenzahlen. |
 | `LVL-TIME-ORDER` | `threeStars < twoStars` oder vollständig `null`. |
 | `LVL-HASH-*` | bekannte Profile und exakte JCS-Projektionen. |
+| `LVL-PARSE-*` | Parserstufe: leere/zu große Eingabe, BOM, ungültiges UTF-8, Syntax, Kommentare, doppelte Schlüssel, Float/Exponent, Zahlenbereich, `-0`, Surrogate, Escapes, Steuerzeichen, nachlaufender Inhalt, Tiefen-/Längengrenzen. |
+| `LVL-VERSION-*` | unbekannte `documentSchemaVersion`, unbekanntes Ruleset oder Proofformat; bei unbekannter Dokumentversion wird ausschließlich dieser Code gemeldet. |
+| `LVL-SCHEMA-*` | Strukturstufe gegen das geschlossene Schema: Typ, Pflichtfeld, unbekannte Eigenschaft, Konstante, Enum, Pattern, Wertebereich, Länge, Eindeutigkeit. |
+| `LVL-DOMAIN-*` | Abbildung auf die Domain: Definition oder Ruleset von der Domain abgelehnt, Authoringlösung von der Domain nicht als abgeschlossen bewertet. |
+| `LVL-JCS-*` | Kanonisierung: Integer außerhalb des sicheren Bereichs, alleinstehendes Surrogat, ungültige Eingabe. |
+| `LVL-IMPORT-*` | Importgate; `LVL-IMPORT-PROOF-GATE-MISSING`: kein Proofartefakt gebunden, kein Release-Lock, Level nicht in einen Laufzeitkatalog importierbar. |
+| `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION` | Migration: ein v1-Wert lässt sich nicht neutral und schemagültig übernehmen. |
 | `PRF-*` | Artefaktformat, Puzzle-/Lösungsbindung, Lösung genau eins und Proofhash. |
 | `LOCK-*` | vollständiger aktueller Lock und keine publizierte semantische Mutation. |
+
+Die Pipeline läuft strikt Parse → Schema → Domain-Abbildung → Semantik; eine spätere Stufe verdeckt nie eine frühere. Die Domain (`GridSize`, `Endpoint`, `PuzzleDefinition.Create`, `PuzzleEvaluator`) bleibt die alleinige Autorität über Rätselgültigkeit; die `LVL-GRID-*`-/`LVL-ENDPOINT-*`-Codes ordnen eine Domain-Ablehnung nur einer autorenfreundlichen Ursache zu. Das Dokument verlangt zusätzlich die Listenreihenfolge der Authoringlösung von A nach B; die Domain bewertet dagegen eine ungeordnete Zellmenge. Ein Dokument ist daher nur gültig, wenn die Domain die Lösung als abgeschlossen bewertet **und** die Listenreihenfolge A→B stimmt.
+
+Eine Level-v2-Quelle, die alle Stufen besteht, hat den Importzustand `AwaitingProofGate` und ist nie laufzeitimportierbar, solange kein gebundenes Proofartefakt und kein Release-Lock existieren (`LVL-IMPORT-PROOF-GATE-MISSING`). Eine abgelehnte Quelle meldet ihre Diagnosen als Importblocker.
 
 Ein `PRODUCT_APPROVED`-Season-1-Katalog muss exakt 5 Abschnitte × 4 Routen × 12 Level enthalten. Kleine `FIXTURE_ONLY`-Kataloge dürfen unvollständig sein, müssen aber ID-/Content-/Parentkonsistenz erfüllen.
 
 ## 9. Migration und Fortschritt
 
 `level-v1 -> level-v2` läuft auf Kopie, ist deterministisch und idempotent. `id` wird zu `puzzleId`; alle öffentlichen Eingaben, Lösung, Texte, Completion- und Produktionsfelder bleiben erhalten. Die neue semantische Projektion und der Proof werden erzeugt, ohne `contentRevision` allein wegen des Formats zu erhöhen. Jeder v1-Positivfixture wird programmatisch migriert; zusätzlich setzt der Validator nacheinander alle sechs historischen Fokuswerte ein und verlangt, dass sie im v2-Schema unverändert gültig bleiben. Fehlende nicht neutral ableitbare Felder führen zu `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`.
+
+Umsetzung der Migration (`LevelV1ToV2Migrator`): Zuerst werden die drei in der v1-Quelle aufgezeichneten Hashes (Puzzle-, Lösungs-, Proofhash) neu berechnet und gegen die Quelle geprüft (`LVL-HASH-MISMATCH`). `proofRef` wird ausschließlich aus aufgezeichneten v1-Fakten abgeleitet: `artifactId = proofs/<puzzleId>/<solverVersion>.proof-v1.json`, `proofFormatVersion = 1`, `proofHash` = `STP-PROOF-JCS-1`-Projektionshash aus puzzleId, beiden Hashes, `solverVersion`, `solutionCount` und den vier Metriken. Es läuft kein Solver und es entsteht kein Proofartefakt. Eine Editorialentscheidung ist nötig, wenn der v1-Wert das strengere v2-Schema verletzt (zum Beispiel `chainDepth` 0, ein Raster über 10, ein Schlüssel ohne gültiges v2-Muster) oder eine aufgezeichnete Proofmetrik unter dem `proof-v1`-Minimum von 1 liegt; es wird nie ein Wert erfunden. `MigrateToCurrent` migriert `schemaVersion 1`, validiert und reicht `documentSchemaVersion 2` unverändert durch (Idempotenz) und meldet jede andere oder gleichzeitig vorhandene Version als `LVL-VERSION-UNKNOWN`.
 
 Progress und Drafts binden an `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}`. Das Migrationsgolden nennt repositoryrelative Pfade und vollständige JCS-Dokumenthashes der tatsächlichen v1-Quelle, des v2-Ziels und des Release-Locks. Der Validator lädt diese drei Dateien, prüft die Hashes, die semantisch neutrale Feldabbildung und den exakten Legacy-/Zielhasheintrag im Lock. Bei eindeutiger neutraler Zuordnung bleiben Erstabschluss, höchste Sterne, terminale Rewards, zulässige Bestzeit, direkte Lösung und Resume erhalten. Ohne eindeutige Bindung bleibt die Quelle unangetastet und `SAVE_LEVEL_IDENTITY_UNRESOLVED` wird gemeldet.
 
@@ -106,6 +136,18 @@ Progress und Drafts binden an `{puzzleId, publicPuzzleHash.profile, publicPuzzle
 ## 11. Robustheit
 
 Parser behandeln auch lokale Dateien als untrusted Input. Dateigröße, Verschachtelung, Stringlänge und technische Rastergröße werden begrenzt. Polymorphe JSON-Typnamen und automatische Typkonstruktion sind deaktiviert. Lokalisierungsschlüssel, Completionreferenzen und Assets müssen vollständig auflösbar sein.
+
+Der strenge C#-Parser (`StrictJsonParser`) setzt dies mit folgenden Implementierungsgrenzen um; es sind Parsergrenzen, keine Schemagrenzen:
+
+| Grenze | Wert |
+|---|---|
+| Eingabegröße | 256 KiB |
+| Verschachtelungstiefe | 16 |
+| String- und Schlüssellänge | 8192 UTF-16-Codeeinheiten |
+| Arraylänge | 1024 Einträge |
+| Objektmitglieder | 64 |
+
+Abgelehnt werden ferner: UTF-8-BOM, ungültiges UTF-8, Kommentare, nachlaufende Kommas und nachlaufender Inhalt, doppelte Schlüssel (mit Pfad), Float-/Exponent-Token, Zahlen außerhalb von ±(2^53−1), `-0`, alleinstehende Surrogate (roh und als `\u`-Escape) und rohe Steuerzeichen in Strings. Der Parser wirft nie; jeder Fehler ist genau eine stabile Diagnose. Das Level-v2-Schema erlaubt höchstens ein Raster von 10×10; eine spätere Anhebung ist eine Schemaänderung und keine Parserfrage.
 
 ## 12. Referenzen
 
