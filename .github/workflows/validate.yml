@@ -17,6 +17,12 @@
 #   erfolgt kein zweiter Checkout.
 # - Jedes künftige Work Package setzt STP_SCOPE_MANIFEST auf sein eigenes
 #   verankertes Manifest und nimmt diese Workflowdatei in seine Allowlist auf.
+# - WP-023: Die JCS-/Hash-Goldenvektoren der Level-v2-Foundation
+#   (level-v2-jcs-golden.json) werden unabhängig von der C#-Implementierung
+#   durch die Node-Referenz tools/architecture-validation/jcs_crosscheck.mjs
+#   nachgerechnet (Kanonisierung, Ablehnungsfälle, Content-, Public-Puzzle-,
+#   Lösungs-, Proof- und Legacy-v1-Hashes der Beispieldokumente). Die
+#   Unity-Seite derselben Vektoren prüft der Content-EditMode-Lauf in unity.yml.
 # - Fail-closed: jeder Validatorfehler (Exitcode ungleich 0) lässt den Check
 #   "Architecture Validation / validate" fehlschlagen.
 
@@ -34,7 +40,7 @@ permissions:
 
 env:
   STP_SCOPE: production
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-022.production.scope.json
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-023.production.scope.json
 
 jobs:
   validate:
@@ -67,6 +73,119 @@ jobs:
         run: |
           ../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
             --self-test
+
+      - name: JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen
+        run: |
+          ../.venv-stp-architecture/bin/python - <<'PY'
+          import base64
+          import json
+          import pathlib
+          import subprocess
+          import sys
+          import tempfile
+
+          GOLDEN = "Assets/StammstreckenPuzzle/Tests/EditMode/Content/level-v2-jcs-golden.json"
+          NODE = ["node", "tools/architecture-validation/jcs_crosscheck.mjs"]
+          errors = []
+
+
+          def load(path):
+              return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+
+
+          def node(data):
+              with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as handle:
+                  handle.write(data)
+                  name = handle.name
+              try:
+                  return subprocess.run(NODE + [name], capture_output=True, text=True)
+              finally:
+                  pathlib.Path(name).unlink()
+
+
+          def canonical(value):
+              result = node(json.dumps(value, ensure_ascii=False).encode("utf-8"))
+              if result.returncode != 0:
+                  errors.append("node rejected a projection: " + result.stderr.strip())
+                  return None, None
+              answer = json.loads(result.stdout)
+              return answer["canonicalBase64"], answer["sha256"]
+
+
+          def expect(label, actual, expected):
+              if actual != expected:
+                  errors.append(f"{label}: expected {expected!r} but node produced {actual!r}")
+
+
+          golden = load(GOLDEN)
+
+          for case in golden["jcsCases"]:
+              result = node(case["inputJson"].encode("utf-8"))
+              if result.returncode != 0:
+                  errors.append(f"jcs:{case['name']}: node rejected a valid case: {result.stderr.strip()}")
+                  continue
+              answer = json.loads(result.stdout)
+              expect(f"jcs:{case['name']}:canonical", answer["canonicalBase64"], case["canonicalBase64"])
+              expect(f"jcs:{case['name']}:sha256", answer["sha256"], case["sha256"])
+
+          rejected = 0
+          for case in golden["rejectCases"]:
+              if not case.get("nodeCrosscheckRejects"):
+                  continue
+              result = node(base64.b64decode(case["inputBase64"]))
+              if result.returncode == 0:
+                  errors.append(f"reject:{case['name']}: node accepted an input that must be rejected")
+              rejected += 1
+
+          for vector in golden["hashVectors"]:
+              name = vector["name"]
+              path = vector["document"]
+              document = load(path)
+              expect(f"v2:{name}:content", json.loads(node(pathlib.Path(path).read_bytes()).stdout)["sha256"], vector["contentHashSha256"])
+              projection = {key: document[key] for key in ("puzzleId", "rulesetVersion", "grid", "endpoints", "rowCounts", "columnCounts")}
+              base64_value, digest = canonical(projection)
+              expect(f"v2:{name}:publicProjection", base64_value, vector["publicPuzzleProjectionBase64"])
+              expect(f"v2:{name}:publicHash", digest, vector["publicPuzzleHash"]["sha256"])
+              solution = {"puzzleId": document["puzzleId"], "publicPuzzleHash": vector["publicPuzzleHash"], "path": document["solution"]["path"]}
+              base64_value, digest = canonical(solution)
+              expect(f"v2:{name}:solutionProjection", base64_value, vector["solutionProjectionBase64"])
+              expect(f"v2:{name}:solutionHash", digest, vector["solutionHash"]["sha256"])
+              expect(f"v2:{name}:proofRefHash", document["proofRef"]["proofHash"], vector["proofRefHash"])
+              proof_path = path.replace("level-v2", "proof-v1")
+              proof = load(proof_path)
+              stored = proof.pop("proofHash")
+              _, proof_digest = canonical(proof)
+              expect(f"v2:{name}:proofExampleHash", proof_digest, stored["sha256"])
+              expect(f"v2:{name}:proofExampleBinding", stored, vector["proofRefHash"])
+
+          for vector in golden["legacyHashVectors"]:
+              name = vector["name"]
+              path = vector["document"]
+              document = load(path)
+              expect(f"v1:{name}:content", json.loads(node(pathlib.Path(path).read_bytes()).stdout)["sha256"], vector["contentHashSha256"])
+              projection = {key: document[key] for key in ("schemaVersion", "rulesetVersion", "id", "grid", "endpoints", "rowCounts", "columnCounts")}
+              base64_value, digest = canonical(projection)
+              expect(f"v1:{name}:projection", base64_value, vector["puzzleProjectionBase64"])
+              expect(f"v1:{name}:puzzleHash", digest, vector["legacyPuzzleHash"]["sha256"])
+              expect(f"v1:{name}:recordedPuzzleHash", digest, document["validation"]["puzzleHashSha256"])
+              _, digest = canonical({"id": document["id"], "path": document["solution"]["path"]})
+              expect(f"v1:{name}:solutionHash", digest, vector["solutionHashSha256"])
+              expect(f"v1:{name}:recordedSolutionHash", digest, document["validation"]["solutionHashSha256"])
+              validation = document["validation"]
+              proof = {"solverVersion": validation["solverVersion"], "solutionCount": validation["solutionCount"]}
+              proof.update({key: validation["proof"][key] for key in ("searchNodes", "deductionSteps", "maxDeductionDepth", "requiredGuessDepth")})
+              _, digest = canonical(proof)
+              expect(f"v1:{name}:proofHash", digest, vector["proofHashSha256"])
+              expect(f"v1:{name}:recordedProofHash", digest, validation["proof"]["proofHashSha256"])
+
+          if errors:
+              print("JCS golden cross-check FAILED:")
+              for error in errors:
+                  print("  - " + error)
+              sys.exit(1)
+          print(f"JCS golden cross-check passed: {len(golden['jcsCases'])} canonicalization cases, {rejected} rejected inputs, "
+                f"{len(golden['hashVectors'])} v2 and {len(golden['legacyHashVectors'])} v1 document vectors reproduced by the Node reference.")
+          PY
 
       - name: Tatsächlichen PR-Head für Scope-Prüfung auschecken
         if: github.event_name == 'pull_request'

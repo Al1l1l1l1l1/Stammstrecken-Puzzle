@@ -526,7 +526,7 @@ jobs:
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
             -logFile -
 
-      - name: Domain-/Solver-EditMode-Ausfuehrung verifizieren
+      - name: Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren
         if: always()
         run: |
           set -euo pipefail
@@ -546,7 +546,7 @@ jobs:
           if root.tag != "test-run" or root.get("result") != "Passed":
               fail("kein bestandener NUnit test-run")
           measured = []
-          for assembly in ("STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode"):
+          for assembly in ("STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode", "STP.Tests.Content.EditMode"):
               suites = [suite for suite in root.iter("test-suite")
                         if suite.get("type") == "Assembly"
                         and suite.get("name") in {assembly, assembly + ".dll"}]
@@ -572,13 +572,15 @@ jobs:
           def fail(message):
               raise SystemExit(f"Coverage evidence FAILURE: {message}")
 
-          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module.
+          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module
+          # plus die mit WP-023 instrumentierbaren Content-Module (Level-v2-Foundation).
           required = {
               "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
               "STP.MobileServices.Google", "STP.MobileServices.Store",
               "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
               "STP.Puzzle.Domain", "STP.Puzzle.Solver",
               "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
+              "STP.Infrastructure.Content", "STP.Tests.Content.EditMode",
           }
           directory = pathlib.Path("TestResults/Coverage")
           if not directory.is_dir():
@@ -785,13 +787,15 @@ jobs:
           def fail(message):
               raise SystemExit(f"Coverage evidence FAILURE: {message}")
 
-          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module.
+          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module
+          # plus die mit WP-023 instrumentierbaren Content-Module (Level-v2-Foundation).
           required = {
               "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
               "STP.MobileServices.Google", "STP.MobileServices.Store",
               "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
               "STP.Puzzle.Domain", "STP.Puzzle.Solver",
               "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
+              "STP.Infrastructure.Content", "STP.Tests.Content.EditMode",
           }
           directory = pathlib.Path("TestResults/Coverage")
           if not directory.is_dir():

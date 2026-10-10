@@ -85,6 +85,8 @@ Alle Authoringoberflächen, CI und Build verwenden dieselbe `LevelValidationPipe
 | Quality | Proof + Katalog | Bericht, keine automatische Produktfreigabe. |
 | Import | nur fehlerfreier Datensatz | deterministisches Runtimeartefakt. |
 
+**Umsetzungsstand (WP-023):** Die Stufen Parse, Schema, Domain map und Semantic sind für Level v2 in `STP.Infrastructure.Content` implementiert (`LevelV2Loader`; Einzelstufen `StrictJsonParser`, `LevelV2Reader`, `LevelV2DomainMapper`, `LevelV2Semantics`). Dazu gehören Content-Hash, Public-Puzzle-Hash und Lösungshash über die kanonische JCS-Serialisierung sowie die Migration `level-v1 -> level-v2`. Die Stufen Solver, Cross-reference, Quality und der Import mit Proofgate existieren noch nicht. Bis dahin bleibt jede fehlerfreie Level-v2-Quelle im Zustand `AwaitingProofGate` (`LVL-IMPORT-PROOF-GATE-MISSING`) und ist nicht in einen Laufzeitkatalog importierbar; das Proofgate schließt der spätere Solver-v2-/Proof-v1-Block. Die Diagnosecodes und die Parsergrenzen stehen in [`LEVEL_DATA_FORMAT.md`](./LEVEL_DATA_FORMAT.md).
+
 Ein `--strict`-Modus behandelt Warnungen als Fehler und ist in CI/Release verbindlich. Ausnahmen sind versionierte Allowlist-Einträge mit Diagnosecode, Level-ID, Begründung, Eigentümer und Ablaufdatum.
 
 Die globale Reihenfolge über mehrere Dateien lautet: alle Quellen ohne Duplicate Keys parsen → jedes Schema → kataloginterne Semantik → Levelsemantik → Puzzle-/Lösungshash → Solver/Proofregeneration → Campaign-zu-Puzzle → Level-zu-Completion → Completion/Cosmetics zu Assets/Lokalisation → Produktwertprüfung → Release-Lock → Freigabestatus. Ein späterer Schritt darf einen früheren Fehler nicht durch Fallback verdecken.
