@@ -71,8 +71,8 @@ namespace STP.Infrastructure.Content
         public static JsonParseResult ParseText(string? text, JsonParserLimits? limits = null)
         {
             var effective = limits ?? JsonParserLimits.Default;
-            if (string.IsNullOrEmpty(text)) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseEmpty, string.Empty, "Input is empty.");
-            if (Utf8SizeExceeds(text!, effective.MaxBytes)) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseSize, string.Empty, "Input exceeds " + effective.MaxBytes.ToString(CultureInfo.InvariantCulture) + " bytes.");
+            if (text == null || text.Length == 0) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseEmpty, string.Empty, "Input is empty.");
+            if (Utf8SizeExceeds(text, effective.MaxBytes)) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseSize, string.Empty, "Input exceeds " + effective.MaxBytes.ToString(CultureInfo.InvariantCulture) + " bytes.");
             if (text[0] == '\uFEFF') return JsonParseResult.Fail(LevelDiagnosticCodes.ParseBom, string.Empty, "Byte order mark is not allowed.");
             return ParseCore(text, effective);
         }
