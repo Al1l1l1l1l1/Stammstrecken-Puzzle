@@ -9,8 +9,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
 | 1 | WP-021 – Unity-Scaffold-Recovery | **Abgeschlossen und integriert** | Unity-Scaffold freigegeben; formaler Closeout über PR #12. |
 | 2 | WP-022 – Puzzle-Kern-Recovery | **Abgeschlossen und integriert** | Finaler PR-HEAD `b257efd98bd14e7f66ffc40916a0b584c3f51fb7` unabhängig PASS; Geschäftsführungsfreigabe; Integration über PR #13, formaler Closeout über PR #14. |
-| 3 | WP-023 – Level-v2-Foundation und Hashverträge | **Phase B implementiert; erste Abschluss-QC (auf `182db13…`) = FAIL, Nachbesserung implementiert und CI-verifiziert; erneute unabhängige Abschluss-QC offen (Draft-PR #15, nicht gemergt)** | Branch `codex/wp-023-level-v2-foundation` vom `main` `ad0ac1b6b12f9c0acbf59d90734b3c574a2a15d7`; Trust Anchor `a1d284caec7746a4aa48fbe564d37d179d60fed8`, Manifest unverändert. Code-Stand `167a6ac920a87d74b63d4cf63426e8d9d4909145`: strikter Level-v2-Parser/DTO, Domainabbildung, JCS, Content-/Public-Puzzle-Hash, v1→v2-Migration, Content-EditMode-Tests, Schema-/Doku-Konsistenz sowie die Behebung der vier QC-Befunde (Surrogat im DOM als Diagnose, UTF-8-Bytegrenze in `ParseText`, schreibgeschützte Sichten, Surrogatpaar-Stringgrenze). Architecture Validation PR-Run `38014310417` / Push-Run `38014306432` **SUCCESS** (inklusive Golden-Crosscheck). Unity CI Push-Run `38014306441` / PR-Run `38014310372` **SUCCESS**: Compile, EditMode 380/380 (Content 338), Coverage-Evidenz (`STP.Infrastructure.Content` 97,7 %), PlayMode-Smoke, Android-IL2CPP, iOS-Export. Keine Gateabsenkung. Nächster Schritt: erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD, dann Geschäftsführungsfreigabe. |
-| 4 | Solver-v2-Metriken und Deduktionsspur | **Gesperrt bis WP-023 integriert** | Fachlich auf Basis der vorhandenen WP-016-Planung; ausführbarer eigener Startanker erst nach WP-023-Integration. |
+| 3 | WP-023 – Level-v2-Foundation und Hashverträge | **Abgeschlossen und integriert** | Erste unabhängige Abschluss-QC auf `182db13…` = FAIL; vier Befunde innerhalb WP-023 reproduziert und behoben. Erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD `f56eab34dca0346d0e339a1c5cde650e15955f68` = **PASS**, AK-01 bis AK-09 erfüllt, kein integrationsblockierender Befund. Geschäftsführungsfreigabe erteilt; PR #15 als Merge-Commit `10405370967496f51be9e5c00c381fd8052ec072` in `main` integriert. Trust Anchor `a1d284caec7746a4aa48fbe564d37d179d60fed8`; Manifest bis zur Integration byteunverändert. |
+| 4 | Solver-v2-Metriken und Deduktionsspur | **Nächster Produktionsblock; noch nicht ausführbar** | Fachlich auf Basis der vorhandenen WP-016-Planung und ADR-031. Da WP-016 bereits vorab auf `main` liegt, ist sie kein ausführbarer Trust Anchor. Vor Implementierung muss ein neuer ausführbarer Solver-v2-Auftrag gemeinsam mit eigenem unveränderlichem Production-Scope-Manifest auf einer frischen Branch vom aktuellen `main` nach ADR-030 verankert und Phase A erfolgreich geprüft werden. |
 | 5 | Proof-v1-Regeneration und Strict-Validation | **Gesperrt bis Solver-v2 integriert** | Fachlich auf Basis der vorhandenen WP-017-Planung; eigener ausführbarer Startanker erst nach Vorgängerintegration. |
 | 6 | 240 konkrete Rätselinstanzen | Blockiert durch Proof-v1 | Erst nach vollständiger Level-/Solver-/Proofpipeline. |
 | 7 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen. |
@@ -37,13 +37,11 @@ Die Vorgeschichte `WP-001` bis `WP-005` ist abgeschlossen; Architecture v1.0 ble
 main
   → WP-021 integriert und geschlossen
   → WP-022 integriert und geschlossen
-  → WP-023 + eigenes Manifest gemeinsam auf frischer Main-Branch verankert
-    → Phase-A-Governance PASS
-    → Phase-B-Implementierung (erledigt, CI-verifiziert)
-    → erste unabhängige Abschluss-QC: FAIL → Nachbesserung (erledigt, CI-verifiziert)
-    → erneute unabhängige Abschluss-QC
-    → Integration
-  → eigener ausführbarer Solver-v2-Block
+  → WP-023 integriert; finale unabhängige Abschluss-QC PASS, GF-Freigabe erfolgt
+  → neuer ausführbarer Solver-v2-Block
+    → eigenes WP + eigenes unveränderliches Manifest gemeinsam auf frischer Main-Branch verankern
+    → Phase-A-Governance-/Scope-/Trust-Prüfung
+    → erst danach separater Implementierungsauftrag
   → eigener ausführbarer Proof-v1-Block
   → erst dann Contentproduktion
 ```
@@ -69,11 +67,9 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | Datei | Relevanz |
 |---|---|
 | `CURRENT_STATE.md` | Autoritativer Phasen- und Integrationsstand. |
-| `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Aktueller ausführbarer Produktionsauftrag; Phase A abgeschlossen, Phase B implementiert (Abschnitt „Phase-B-Nachweis“), erste Abschluss-QC FAIL, Nachbesserung CI-verifiziert (Abschnitt „QC-FAIL-Nachbesserung“); erneute Abschluss-QC offen. |
-| `../tools/architecture-validation/scopes/WP-023.production.scope.json` | Eigenes unveränderliches Production-Scope-Manifest. |
-| `../WORK_PACKAGES/WP-015_Level-v2-Foundation-und-Hashvertraege.md` | Historische Planungsgrundlage des fachlichen Blocks. |
-| `WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md` | Quellenkorrektur und Abgrenzung historischer Lieferstände. |
-| `../DECISIONS/ADR-030-wp-scope-trust-anchor.md` | Verbindliche gemeinsame historische WP-/Manifest-Erstverankerung. |
-| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Grenze zum späteren Solver-v2-/Proofvertrag. |
+| `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Abgeschlossener und integrierter Level-v2-/Hash-Block als technische Basis. |
+| `../WORK_PACKAGES/WP-016_Solver-v2-Metriken-und-Deduktionsspur.md` | Historische Planungsgrundlage des nächsten Solver-v2-Blocks; nicht selbst ausführbarer Trust Anchor. |
+| `../DECISIONS/ADR-030-wp-scope-trust-anchor.md` | Verbindliche gemeinsame historische WP-/Manifest-Erstverankerung für den neu anzulegenden Solver-v2-Auftrag. |
+| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Verbindlicher Zielvertrag und Grenze für Solver-v2 und den späteren Proof-v1-Block. |
 | `../WORK_PACKAGES/WP-022_Puzzle-Kern-Recovery.md` | Integrierter Puzzle-Kern als technische Basis. |
 | `DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |

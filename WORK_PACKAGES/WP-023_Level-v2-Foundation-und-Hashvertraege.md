@@ -4,7 +4,7 @@
 
 `WP-023`
 
-**Bearbeitungsstatus:** **Phase B implementiert; die erste unabhängige Abschluss-QC auf `182db13af5f8e2d1db3acadc1318153575baac85` endete mit FAIL (vier Befunde). Die vier Befunde wurden eigenständig reproduziert und im Scope von WP-023 behoben (Code-Stand `167a6ac920a87d74b63d4cf63426e8d9d4909145`, Abschnitt „QC-FAIL-Nachbesserung“; alle GitHub-Actions-Workflows inklusive Unity-Compile, EditMode 380/380, Coverage-Evidenz, PlayMode-Smoke, Android-IL2CPP und iOS-Export SUCCESS). Eine erneute unabhängige Abschluss-QC auf dem dann eingefrorenen finalen PR-HEAD und die Geschäftsführungsfreigabe stehen aus; WP-023 ist nicht abgeschlossen und nicht integriert.**
+**Bearbeitungsstatus:** **Abgeschlossen und integriert. Die erste unabhängige Abschluss-QC auf `182db13af5f8e2d1db3acadc1318153575baac85` endete mit FAIL (vier Befunde). Die vier Befunde wurden eigenständig reproduziert und im Scope von WP-023 behoben. Die erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD `f56eab34dca0346d0e339a1c5cde650e15955f68` meldete PASS ohne integrationsblockierenden Befund; AK-01 bis AK-09 wurden als erfüllt bewertet. Die Geschäftsführung erteilte die Integrationsfreigabe. PR #15 wurde als Merge-Commit `10405370967496f51be9e5c00c381fd8052ec072` in `main` integriert.**
 
 [Scope](../tools/architecture-validation/scopes/WP-023.production.scope.json)
 
@@ -153,7 +153,7 @@ Phase A allein endet mit: **definiert, ADR-030-konform verankert und bereit für
 | `JcsSerializer` | RFC-8785-Kanonisierung für Integer-JSON (UTF-16-Schlüsselordnung, RFC-Escaping, UTF-8 ohne BOM, ohne Newline). |
 | `LevelHashing` | Content-Hash (SHA-256 über JCS des Gesamtdokuments, bare Hex `documentSha256`), Public-Puzzle-Hash (`STP-PUZZLE-SEMANTIC-JCS-1`), Lösungshash (`STP-SOLUTION-JCS-1`), Proof-Projektionshash (`STP-PROOF-JCS-1`), Legacy-v1-Puzzlehash (`STP-LEVEL-V1-PUZZLE-JCS-1`); Projektionen strikt getrennt. |
 | `LevelV1Reader`, `LevelV1Document`, `LevelV1ToV2Migrator` | Strikter v1-Leser; Migration v1→v2 deterministisch und idempotent, auf Kopie, mit Neuberechnung und Abgleich der drei aufgezeichneten v1-Hashes; `proofRef` nur aus aufgezeichneten v1-Fakten abgeleitet; bei nicht neutral übernehmbaren Werten `LVL_MIGRATION_NEEDS_EDITORIAL_DECISION`. |
-| `LevelV2Loader` | Fassade Parse → Schema → Domain-Abbildung → Semantik (`Load(byte[] \| JsonValue)`, `LoadText`); eine spätere Stufe verdeckt nie eine frühere. |
+| `LevelV2Loader` | Fassade Parse → Schema → Domain-Abbildung → Semantik (`Load(byte[] | JsonValue)`, `LoadText`); eine spätere Stufe verdeckt nie eine frühere. |
 | `LevelDiagnostic` | Stabile Diagnosecodes mit Pfad; Codefamilien in `LEVEL_DATA_FORMAT.md` §8 dokumentiert. |
 
 ### Geänderte Dateigruppen
@@ -307,14 +307,22 @@ Lokal ist weiterhin kein Unity-Editor verfügbar; der .NET-8-Harness (außerhalb
 
 ### Einschränkungen und offene Punkte
 
-- **Eine erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD und die Geschäftsführungsfreigabe stehen aus.** Diese Nachbesserung ersetzt sie nicht; es wurde keine QC simuliert.
-- Der finale PR-HEAD ist ein reiner Dokumentationsnachfolger des Code-Stands `167a6ac…`; die QC erhebt die Checks auf dem eingefrorenen HEAD neu.
+- **Überholt durch den Abschlussabschnitt unten:** Die erneute unabhängige Abschluss-QC und die Geschäftsführungsfreigabe standen zum Zeitpunkt der Nachbesserung noch aus.
+- Der finale PR-HEAD ist ein reiner Dokumentationsnachfolger des Code-Stands `167a6ac…`; die finale QC erhob die Checks auf dem eingefrorenen Head neu.
 - Die unter Befund 3 genannte Ausweitung auf die Ergebnislisten ist eine Erweiterung innerhalb desselben Moduls und derselben Ursache (herausgegebener veränderlicher Speicher), keine neue Funktion.
-- `JcsSerializer.Serialize` und die DTO-Projektionen rekursieren über die Tiefe eines von Hand gebauten DOM; die Tiefe ist nur für Parser-Eingaben begrenzt (Tiefe 16). Das ist kein Teil der gemeldeten Befunde und wurde nicht verändert.
+- `JcsSerializer.Serialize` und die DTO-Projektionen rekursieren über die Tiefe eines von Hand gebauten DOM; die Tiefe ist nur für Parser-Eingaben begrenzt (Tiefe 16). Die finale unabhängige QC bewertete diesen dokumentierten Randfall als nicht integrationsblockierend, da die geschlossenen Levelverträge solche Strukturen vor der Hashberechnung abweisen.
 - Alle Einschränkungen des Phase-B-Abschnitts (Node-Referenz akzeptiert `-0`/ungültiges UTF-8/unbegrenzte Tiefe, Gerätetests und Store-Uploads `REQUIRED_LATER`) gelten unverändert.
 
 ### Nächster Schritt
 
-1. Erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD von PR #15 (nicht durch den Implementierungsagenten); Checks dort neu erheben.
-2. Erst nach PASS der Abschluss-QC und Geschäftsführungsfreigabe Integration. PR #15 bleibt bis dahin Draft und wird nicht gemergt.
-3. Danach Freigabe des separaten Solver-v2-Blocks (ADR-031); er wird durch WP-023 nicht vorgezogen.
+Der in diesem Abschnitt beschriebene Prüf- und Integrationsschritt ist erledigt. Maßgeblich ist der folgende Abschlussabschnitt.
+
+## Abschluss und Integration – 2026-10-10
+
+- **Finale unabhängige Abschluss-QC:** PASS auf dem eingefrorenen PR-HEAD `f56eab34dca0346d0e339a1c5cde650e15955f68`; kein integrationsblockierender Befund. AK-01 bis AK-09 wurden als erfüllt bewertet.
+- **Finale CI-/Build-Evidenz auf dem geprüften Head:** Architecture Validation PR-Run `38017495962` und Push-Run `38017492793` SUCCESS; Unity CI PR-Run `38017495922` und Push-Run `38017492821` SUCCESS mit Compile, EditMode 380/380, Coverage-Evidenz, PlayMode-Smoke 27/27, Android-IL2CPP und iOS-Export/Xcode-Build.
+- **Trust/Sscope:** Trust Anchor `a1d284caec7746a4aa48fbe564d37d179d60fed8`; Manifest bis zur Integration byteunverändert, SHA-256 `a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0`.
+- **Geschäftsführungsfreigabe:** erteilt nach PASS der unabhängigen Abschluss-QC.
+- **Integration:** PR #15 wurde mit exakt dem geprüften Head in `main` integriert. Merge-Commit: `10405370967496f51be9e5c00c381fd8052ec072`.
+- **Definition of Done:** Für WP-023 vollständig erfüllt. Die bewusst späteren Punkte (physische Gerätetests, Store-/Release-Schritte sowie Solver-v2/Proof/Strict-Validation/Contentproduktion) liegen außerhalb des WP-023-Abschlusses.
+- **Nächster Produktionsblock:** Solver-v2-Metriken und Deduktionsspur gemäß ADR-031. Die vorhandene WP-016-Datei bleibt Planungsgrundlage; vor Implementierung ist ein neuer ausführbarer Work-Package-/Manifest-Trust-Anchor nach ADR-030 auf frischem `main` erforderlich.
