@@ -4,7 +4,7 @@
 
 `WP-024`
 
-**Bearbeitungsstatus:** **Phase A (Definition und Verankerung) in Arbeit. Die Implementierung (Phase B) ist nicht beauftragt und darf erst nach erfolgreicher Phase-A-Prüfung und separatem Auftrag beginnen.**
+**Bearbeitungsstatus:** **Phase A (Definition und Verankerung) abgeschlossen. Die Implementierung (Phase B) ist nicht beauftragt und darf erst nach separatem Auftrag beginnen.**
 
 [Scope](../tools/architecture-validation/scopes/WP-024.production.scope.json)
 
@@ -162,3 +162,13 @@ Diese Punkte sind kein Phase-A-Blocker, aber vor der Implementierung zu beachten
 1. ADR-031 definiert die vier Metriken für den Fall einer einzigen gefundenen Lösung. Für `UNSATISFIABLE`, `MULTIPLE_OR_MORE` und `INDETERMINATE` legt keine Quelle fest, wie `requiredGuessDepth` oder die übrigen Werte auszuweisen sind. Phase B darf dafür keine eigene Produkt- oder Architekturentscheidung treffen. Zulässig ist nur die konservative Lesart aus ADR-031 Abschnitt 4 und `SOLVER_ARCHITECTURE.md`: Solange das Ergebnis nicht `UNIQUE` ist, gibt es keine freigabefähige Kampagnenaussage und kein Pfadmetrikergebnis wird als gültig ausgegeben. Lässt sich das nicht ohne neue Festlegung umsetzen, ist es als Blocker zu dokumentieren.
 2. Das heutige Ergebnis enthält keine Metriken. `Reductions` ist ein Recovery-Protokoll, das ausdrücklich „kein Beweis, kein Hint und keine auditierbare solver-v2-Rootspur“ ist, und der interne Zustandszähler dient nur dem Budget. Beides darf nicht unbesehen als Metrik oder Spur weiterverwendet werden.
 3. Solange der Proof-Block fehlt, bleiben neue Production-Proofausgaben fail-closed deaktiviert. Ein Root-only-`solver-v2`-Ergebnis ist nicht als schema-valide, importierbar oder releasefähig zu behaupten.
+
+## Phase-A-Nachweis – 2026-10-10
+
+- Verifizierte Ausgangsbasis: `main` `ab117f459689d2b2937d436bb1a763296a65d52a` (WP-023 formal geschlossen). Keine bestehenden WP-024-Refs auf dem Remote.
+- Verbindlicher Trust Anchor: `3e7f1ab2e56853294a4f09650d8ec361ab4eca1a`, erster Branchcommit. Exakt dieses Work Package und das eigene Production-Scope-Manifest wurden dort gemeinsam als neue Dateien (`A`) eingeführt; im Elternbaum existiert keine von beiden. Der einzige Elterncommit ist `ab117f45…`, entspricht dem `baseCommit` des Manifests und ist Vorfahre des Branch-HEAD. Der historische WP-Text verlinkt das Manifest ausdrücklich.
+- Das Manifest hat SHA-256 `2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631` und ist am Anker, im Branch-HEAD und im Arbeitsbaum byteidentisch; nach dem Anker gibt es keine Manifest-Änderung.
+- Phase-A-Folgediff gegen die Basis beschränkt sich auf `CURRENT_STATE.md`, `WORK_QUEUE.md` und die Manifestzuordnung in `.github/workflows/validate.yml` (eine Zeile). Keine Produktions-, Test-, Schema-, Architektur-, ADR- oder Unity-CI-Änderung; kein Pfad außerhalb des Manifests; `git diff --check` gegen die Basis sauber; Secret-Scan des Diffs ohne Treffer.
+- Lokale Validatorläufe (CPython 3.13, die CI nutzt 3.11.13): Architecture-only mit Self-/Negativtests PASS (17 Gruppen); Production-Scope mit WP-024-Manifest und Self-/Negativtests PASS (18 Gruppen). Eigene Negativproben auf Wegwerfbranches (Änderung an `proof-v1.schema.json` außerhalb des Manifests; nachträglich erweitertes Manifest) schlugen wie vorgesehen mit `scope:out-of-scope` bzw. `scope:manifest-mutated-after-anchor` fehl.
+- Kanonische GitHub-PR-CI auf Head `ffa615dbe6e920ae5bacd83a2181515cd6eb1a94` (Draft-PR #17): Architecture Validation PR-Run `38088889033` (Job `114321045127`) und Push-Run `38088879224` (Job `114321017889`), **COMPLETED / SUCCESS**. Unity CI war zum Zeitpunkt dieser Eintragung noch nicht abgeschlossen; `project-preflight`, `unity-config`, `unity-environment-linux` und `unity-evidence-guard` waren erfolgreich. Da Phase A keinen Unity-relevanten Inhalt ändert, ist Unity CI kein Kriterium der Phase-A-Abnahme und wird hier nicht als PASS gewertet.
+- Ergebnis: **Phase A abgeschlossen. Kein Definitions-, Scope- oder Trust-Blocker. WP-024 ist bereit für einen separaten Implementierungsauftrag.** Kein Merge; PR #17 bleibt Draft.
