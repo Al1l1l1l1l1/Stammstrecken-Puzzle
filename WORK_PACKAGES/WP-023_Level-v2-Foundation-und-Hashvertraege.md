@@ -4,7 +4,7 @@
 
 `WP-023`
 
-**Bearbeitungsstatus:** **Phase B implementiert und verifiziert (Code-Stand `716e9fb3c1e23103e65ed9c6dc382437c228b05c`): Alle GitHub-Actions-Workflows (Architecture Validation und Unity CI inklusive Compile, EditMode 349/349, Coverage-Evidenz, PlayMode-Smoke, Android-IL2CPP und iOS-Export) sind auf diesem Stand SUCCESS. Technisch bereit für die unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD. Abschluss-QC und Geschäftsführungsfreigabe stehen aus; WP-023 ist nicht abgeschlossen und nicht integriert.**
+**Bearbeitungsstatus:** **Phase B implementiert; die erste unabhängige Abschluss-QC auf `182db13af5f8e2d1db3acadc1318153575baac85` endete mit FAIL (vier Befunde). Die vier Befunde wurden eigenständig reproduziert und im Scope von WP-023 behoben (Code-Stand `167a6ac920a87d74b63d4cf63426e8d9d4909145`, Abschnitt „QC-FAIL-Nachbesserung“; alle GitHub-Actions-Workflows inklusive Unity-Compile, EditMode 380/380, Coverage-Evidenz, PlayMode-Smoke, Android-IL2CPP und iOS-Export SUCCESS). Eine erneute unabhängige Abschluss-QC auf dem dann eingefrorenen finalen PR-HEAD und die Geschäftsführungsfreigabe stehen aus; WP-023 ist nicht abgeschlossen und nicht integriert.**
 
 [Scope](../tools/architecture-validation/scopes/WP-023.production.scope.json)
 
@@ -213,7 +213,7 @@ Lokal ist kein Unity-Editor verfügbar. Die lokale Verifikation lief deshalb in 
 
 ### Einschränkungen und offene Punkte
 
-- **Abschluss-QC und Geschäftsführungsfreigabe stehen aus.** Die Unity-CI-Evidenz ist auf dem Code-Stand `716e9fb…` erbracht. Der finale PR-HEAD ist ein reiner Dokumentationsnachfolger davon; die Abschluss-QC prüft dessen Checks auf dem eingefrorenen HEAD neu.
+- **Überholt durch den Abschnitt „QC-FAIL-Nachbesserung“:** Die erste Abschluss-QC auf `182db13…` (reiner Dokumentationsnachfolger von `716e9fb…`) endete mit FAIL. Der maßgebliche Code-Stand und die maßgebliche CI-Evidenz sind seither die des Nachbesserungsabschnitts; die Testzahlen dieses Abschnitts (307 Content-Tests, 349 EditMode gesamt) gelten nur für `716e9fb…`/`182db13…`.
 - Keine Proofartefakt-Erzeugung, kein Solver-v2, keine Rootspur, keine ADR-031-Metriken, keine Proof-v1-Regeneration, keine Strict-Validation-Pipeline: `proofRef` wird in der Migration nur als Referenz aus aufgezeichneten v1-Fakten abgeleitet. Das Proofgate schließt der spätere Solver-v2-/Proof-Block.
 - Katalogübergreifende Season-1-Prüfungen (Cross-reference, 5×4×12-Struktur) sind nicht Teil von WP-023.
 - Die Node-Referenz akzeptiert `-0`, ungültiges UTF-8 und unbegrenzte Tiefe; diese Ablehnungsfälle sind im Golden mit `nodeCrosscheckRejects: false` markiert und nur durch die C#-Tests abgesichert.
@@ -236,6 +236,85 @@ Lokal ist kein Unity-Editor verfügbar. Die lokale Verifikation lief deshalb in 
 
 ### Nächster Schritt
 
-1. Unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD von PR #15; das ausführende System darf nicht der Implementierungsagent sein. Die Checks des dann eingefrorenen HEADs sind dort neu zu erheben.
-2. Erst nach PASS der Abschluss-QC und Geschäftsführungsfreigabe Integration. PR #15 wird bis dahin nicht gemergt (Draft).
+Siehe Abschnitt „QC-FAIL-Nachbesserung“ (Nächster Schritt) am Ende dieser Datei; dieser Abschnitt ist durch die FAIL-Entscheidung der ersten Abschluss-QC überholt.
+
+## QC-FAIL-Nachbesserung – 2026-10-10
+
+### Anlass und Vorgehen
+
+- Die erste unabhängige Abschluss-QC auf dem PR-HEAD `182db13af5f8e2d1db3acadc1318153575baac85` endete mit **FAIL** und meldete vier Befunde. Die Nachbesserung erfolgt innerhalb von WP-023 auf demselben Branch `codex/wp-023-level-v2-foundation`; PR #15 bleibt Draft und ist nicht gemergt.
+- Die Befunde wurden als zu verifizierend behandelt: Zuerst wurden Regressionstests geschrieben und gegen den **unveränderten** Produktionscode von `182db13…` ausgeführt (21 von 337 Content-Tests rot, ausschließlich die neuen Tests; die übrigen 316 grün). Erst danach wurde korrigiert. Trust Anchor `a1d284ca…`, Basis `ad0ac1b6…` und das Manifest (SHA-256 `a8a3a506…776b0`, byteidentisch) sind unverändert; alle geänderten Dateien liegen in der Manifest-Allowlist.
+- Keine Produkt- oder Architekturentscheidung, keine Scope-Erweiterung, keine Vorwegnahme von Solver-v2/Proof-v1.
+
+### Befunde, eigene Reproduktion und Korrektur
+
+| # | Befund | Reproduktion auf `182db13…` | Vertragsgrundlage | Korrektur |
+|---|---|---|---|---|
+| 1 | Alleinstehendes Surrogat in einem per `JsonValue`-Fabriken gebauten Dokument erreicht am Eingang `LevelV2Loader.Load(JsonValue)` die Hashberechnung und löst eine unbehandelte Exception aus. | **Bestätigt** (Testlauf und separater Reproduktionslauf gegen `182db13…`). `LevelV2Loader.Load` mit `CreateString("note\ud800")` in `/production/qualityNote` → `InvalidOperationException: LVL-JCS-SURROGATE @ /production/qualityNote` aus dem `LevelV2LoadResult`-Konstruktor (`LevelHashing.HashProjection` → `JcsSerializer.SerializeOrThrow`). Ebenso betroffen (von der QC nicht genannt, gleiche Ursache): `LevelV1ToV2Migrator.Migrate` (v1-Freitext `qualityNote`, nicht Teil der Legacy-Hashes), `MigrateToCurrent` (v2-Pass-through) und der Struktur-Fuzz nach Erweiterung um Surrogatwerte. | `LEVEL_DATA_FORMAT.md` §6.2 (alleinstehende Surrogate sind harte Fehler `LVL-JCS-*`), §8 (`LVL-JCS-*` ist eine stabile Diagnosefamilie der Kanonisierung; eine abgelehnte Quelle meldet Diagnosen als Importblocker), `CONTENT_PIPELINE.md` §5 (Stufen liefern Diagnosen, eine spätere Stufe verdeckt nie eine frühere). Die Diagnose existiert im Vertrag bereits; nur der Weg dorthin warf. | Neuer interner, nicht werfender `LevelHashing.TryComputeDocumentHashes` (nutzt `JcsSerializer.Serialize` und `LevelHashing.Compute`); `LevelV2LoadResult` und `LevelMigrationResult` melden den Fehler als einzige Hash-Stufen-Diagnose (`LVL-JCS-SURROGATE`, Pfad des Strings): Ergebnis `Rejected`, keine Hashes, `ImportBlockers` = Diagnosen; Migration liefert `Document == null`, `WasMigrated == false`. Frühere Stufen behalten Vorrang. Die öffentlichen werfenden Hash-Helfer bleiben, sind jetzt per XML-Doku als „nur für bekannt gültige Projektionen“ gekennzeichnet. |
+| 2 | `StrictJsonParser.ParseText` misst `MaxBytes` mit `text.Length`. | **Bestätigt.** Ein Array aus 20 Strings zu je 8000 × U+20AC (alle innerhalb der String-/Arraygrenzen): ca. 160 000 Zeichen, ca. 480 000 UTF-8-Bytes. `ParseText` akzeptierte das Dokument (`Error == null`), `Parse(byte[])` lehnte es mit `LVL-PARSE-SIZE` ab. Zusätzlich lieferte die Fehlermeldung „characters“. | `LEVEL_DATA_FORMAT.md` §11: „Eingabegröße 256 KiB“ (Byte-Einheit); `StrictJsonParser`/`JsonParserLimits.MaxBytes` heißt und dokumentiert Bytes; beide Eingänge sollen dasselbe Dokument gleich bewerten. | `ParseText` zählt UTF-8-Bytes (`Utf8SizeExceeds`, bricht bei Überschreitung sofort ab, kein Werfen bei alleinstehenden Surrogaten: sie zählen wie ihr Ersatzzeichen drei Bytes und werden danach ohnehin inhaltlich abgelehnt); Meldung „bytes“; Größe bleibt das erste Tor wie beim Byte-Eingang. §11 präzisiert die Einheit. |
+| 3 | `JsonValue.Items`/`Members` geben die internen Arrays heraus; Rückkonvertierung und Mutation erzeugen doppelte Schlüssel, die anschließend kanonisiert werden. | **Bestätigt**, zusätzlich in einem separaten Reproduktionslauf gegen den ausgecheckten Stand `182db13…`: `doc.Members is JsonMember[]` → `True`; `((JsonMember[])doc.Members)[1] = new JsonMember("a", …)` auf `{"a":1,"b":2}` lieferte kanonisiert `{"a":1,"a":99}`. Bei der Durchsicht fand sich dieselbe Ursache in den Ergebnistypen (derselbe Lauf): `LevelV2LoadResult.Diagnostics` war eine `List<LevelDiagnostic>`; nach `((IList<LevelDiagnostic>)result.Diagnostics).Clear()` meldete ein semantisch abgelehntes Dokument `IsValid == true`, `ImportState == AwaitingProofGate` bei `ContentHash == null`. | `JsonValue` ist als unveränderlicher DOM dokumentiert; `CreateObject` verbietet doppelte Namen (Parser: `LVL-PARSE-*`, doppelte Schlüssel); `LEVEL_DATA_FORMAT.md` §11 „doppelte Schlüssel (mit Pfad)“ sind verboten; die DTOs verwenden bereits schreibgeschützte Sichten. | `Items`/`Members` liefern `ReadOnlyCollection`-Sichten (kein Array, keine `List`), leere Container teilen unveränderliche statische Sichten. Gleiche Maßnahme für alle öffentlichen Ergebnislisten (`LevelV2ReadResult`, `LevelV1ReadResult`, `LevelV2MapResult`, `LevelV2LoadResult` inkl. `ImportBlockers`, `LevelMigrationResult`, Rückgabe von `LevelV2Semantics.Validate`) über `LevelDiagnosticList.Freeze` (schreibgeschützte Momentaufnahme). Die Klassendoku von `JsonValue` ist korrigiert (Strings können alleinstehende Surrogate tragen; Kanonisierung lehnt sie ab). |
+| 4 | Beim Anhängen eines Surrogatpaars kann `MaxStringLength` um eine UTF-16-Codeeinheit überschritten werden. | **Bestätigt.** Mit Limit 4: `["abc🚀"]` (roh und als `\ud83d\ude80`) wurde akzeptiert (5 Codeeinheiten); Standardgrenze: 8191 × `a` + Paar ergab 8193 Codeeinheiten. Gilt für Strings und Objektschlüssel. | `LEVEL_DATA_FORMAT.md` §11: „String- und Schlüssellänge 8192 UTF-16-Codeeinheiten“. | Vor dem Anhängen eines Paares (rohe und `\u`-Form) wird Platz für zwei Codeeinheiten verlangt (`LVL-PARSE-STRING-LENGTH`); gemeinsamer Helfer für die Meldung. §11 präzisiert „ein Paar zählt als zwei“. |
+
+### Geänderte Dateien
+
+| Datei | Änderung |
+|---|---|
+| `Scripts/Infrastructure/Content/JsonValue.cs` | Schreibgeschützte Sichten für `Items`/`Members`; Doku korrigiert (Befund 3). |
+| `Scripts/Infrastructure/Content/StrictJsonParser.cs` | UTF-8-Bytemessung in `ParseText`; Platzprüfung für Surrogatpaare (Befunde 2 und 4). |
+| `Scripts/Infrastructure/Content/LevelHashing.cs` | Nicht werfender `TryComputeDocumentHashes`; Doku der werfenden Helfer (Befund 1). |
+| `Scripts/Infrastructure/Content/LevelV2Loader.cs`, `LevelV1ToV2Migrator.cs` | Hash-Stufen-Diagnose statt Exception; schreibgeschützte Ergebnislisten (Befunde 1 und 3). |
+| `Scripts/Infrastructure/Content/LevelDiagnostic.cs` | Interner Helfer `LevelDiagnosticList.Freeze` (Befund 3, gleiche Ursache). |
+| `Scripts/Infrastructure/Content/LevelV2Reader.cs`, `LevelV1Document.cs`, `LevelV2DomainMapper.cs`, `LevelV2Semantics.cs` | Ergebnislisten werden eingefroren (Befund 3, gleiche Ursache). |
+| `Tests/EditMode/Content/JsonValueTests.cs` (+ `.meta`, neu) | 6 Tests zur Unveränderlichkeit des DOM. |
+| `Tests/EditMode/Content/StrictJsonParserTests.cs`, `LevelV2LoaderTests.cs`, `LevelMigrationTests.cs` | Regressionstests zu den Befunden 1 bis 4, erweiterter Struktur-Fuzz um Surrogatwerte. |
+| `ARCHITECTURE/LEVEL_DATA_FORMAT.md` | Klarstellungen §6.2 (Surrogate im DOM, werfende vs. diagnostizierende Hashwege) und §11 (Einheiten, unveränderlicher DOM). Keine Vertragsänderung. |
+| `WORK_PACKAGES/WP-023_…md`, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md` | Statusfortschreibung. |
+| Bewusst unverändert | WP-023-Manifest, Schema, Beispiele, Golden-Vektoren (`level-v2-jcs-golden.json`), Workflows, `asmdef`/`csc.rsp`, Domain-/Solver-Code. |
+
+### Tests und Nachweise
+
+Lokal ist weiterhin kein Unity-Editor verfügbar; der .NET-8-Harness (außerhalb des Repositorys, dieselben Quelldateien) ist kein Ersatz für den Unity-Lauf.
+
+| Nachweis | Ergebnis |
+|---|---|
+| Reproduktion auf unverändertem Produktionscode von `182db13…` | 21 von 337 Content-Tests rot, davon Befund 1 (DOM-Loader, Migration direkt und Pass-through, Reihenfolge-Test, Struktur-Fuzz), Befund 2 (4 Grenzfälle, Mehrbyte-Test), Befund 3 (4 DOM-Tests, 2 Ergebnislisten-Tests), Befund 4 (4 Fälle, Standardgrenze). Der anschließend geschärfte Mehrbyte-Test wurde gegen den alten Parser erneut rot bestätigt (`ParseText` ohne Fehler). |
+| Content-EditMode-Tests (Harness), nach der Korrektur | **338 / 338 bestanden**: `JcsSerializerTests` 9, `JsonValueTests` 6, `LevelHashingTests` 17, `LevelMigrationTests` 46, `LevelV2LoaderTests` 30, `LevelV2ReaderTests` 140, `LevelV2SemanticsTests` 43, `SchemaParityTests` 15, `StrictJsonParserTests` 32. |
+| Domain-/Solver-Regressionen (Harness) | 41 / 41 bestanden. |
+| Kompilierbarkeit gegen `netstandard2.1` / NUnit 3.5 (`warnaserror`, nullable) | Produktion und Tests ohne Warnungen. |
+| Golden-Crosscheck gegen Node-Referenz (lokal) | PASS: 12 JCS-Fälle, 32 abgelehnte Eingaben, 2 v2- und 2 v1-Dokumentvektoren. |
+| Architecture-only- und Production-Scope-Validator (lokal, Self-/Negativtests) | PASS (17 bzw. 18 Prüfgruppen); Manifest-SHA-256 unverändert. |
+| Preflight (verbotene Tokens) | PASS (keine Treffer). |
+
+### Tatsächliche GitHub-Actions-Ergebnisse
+
+**Maßgeblicher Code-Stand `167a6ac920a87d74b63d4cf63426e8d9d4909145`** (enthält die Korrekturen aus `28b0f72…` plus eine Compilekorrektur, siehe Verlauf):
+
+| Workflow / Job | Ergebnis |
+|---|---|
+| Architecture Validation, PR-Run `38014310417` und Push-Run `38014306432` (Architecture-only mit Self-/Negativtests, Golden-Crosscheck gegen Node-Referenz, kanonischer WP-023-Production-Scope mit Self-/Negativtests) | **SUCCESS** |
+| Unity CI, Push-Run `38014306441` (alle Jobs) | **SUCCESS** |
+| Unity CI, PR-Run `38014310372` (Versuch 2, alle Jobs) | **SUCCESS** (Versuch 1: Job `unity-compile-editmode` wurde durch die Concurrency-Gruppe `unity-personal-seat` als wartender Job ersetzt und auf `cancelled` gesetzt, ohne Code auszuführen; Wiederholung per „Re-run failed jobs“, keine Änderung) |
+| Darin: `project-preflight`, `unity-config`, `unity-evidence-guard`, `unity-environment-linux/android/ios` | **SUCCESS** |
+| Darin: `unity-compile-editmode` (Push-Job `114101144699`, PR-Job `114106061621`): Editor 6000.3.23f1, Kompilierung, EditMode mit Coverage | **SUCCESS**. NUnit-Ergebnis `editmode.xml` (beide Läufe): **380 / 380 bestanden, 0 fehlgeschlagen, 0 übersprungen**; `STP.Tests.Content.EditMode` 338 / 338, `STP.Tests.Domain.EditMode` 19 / 19, `STP.Tests.Solver.EditMode` 22 / 22 (plus 1 Fremdtest aus dem Addressables-Paket). |
+| Darin: Coverage-Evidenz (Pflichtmenge unverändert, keine Mindest-Coverage, keine Gateabsenkung) | **PASS**. Gemessene Baseline: `STP.Infrastructure.Content` 1961/2008 Sequenzpunkte (97,7 %), Methoden 310/316; `STP.Tests.Content.EditMode` 2774/2812 (98,6 %); `STP.Puzzle.Domain` 96,9 %; `STP.Puzzle.Solver` 98,7 %. |
+| Darin: `unity-playmode-bootstrap-smoke`, `unity-android-development-il2cpp`, `unity-ios-export` | **SUCCESS** (Push- und PR-Lauf) |
+
+**Verlauf (zur Nachvollziehbarkeit, nicht als PASS gewertet):**
+
+1. Auf `28b0f72eaf342d8b8d01ab993757005d448d7c58` waren beide Architecture-Validation-Läufe SUCCESS (PR `38014007238`, Push `38014002671`), aber `unity-compile-editmode` schlug in beiden Unity-Läufen (PR `38014007166`, Push `38014002745`) mit einem **echten Compilefehler** fehl: `StrictJsonParser.cs(76,17): error CS8602: Dereference of a possibly null reference.` Ursache: Nach `string.IsNullOrEmpty(text)` blieb im Unity-Compiler (unannotierte `netstandard2.1`-Referenzen) der Nullzustand von `text` „möglicherweise null“; der lokale .NET-Harness kennt die Annotation und hat den Fehler nicht gezeigt. Das war ein Fehler der Nachbesserung selbst, kein Infrastrukturproblem. `28b0f72…` ist deshalb **nicht** Unity-grün und überholt.
+2. Behoben in `167a6ac…` durch eine explizite `text == null || text.Length == 0`-Prüfung (kein Verhaltenswechsel); alle Gates unverändert. Die Unity-Läufe auf `167a6ac…` sind vollständig grün.
+3. Lehre für künftige Arbeiten am Content-Modul: Nullable-Flow darf nicht von BCL-Annotationen wie `[NotNullWhen]` abhängen; der lokale Harness ersetzt den Unity-Compile nicht.
+
+### Einschränkungen und offene Punkte
+
+- **Eine erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD und die Geschäftsführungsfreigabe stehen aus.** Diese Nachbesserung ersetzt sie nicht; es wurde keine QC simuliert.
+- Der finale PR-HEAD ist ein reiner Dokumentationsnachfolger des Code-Stands `167a6ac…`; die QC erhebt die Checks auf dem eingefrorenen HEAD neu.
+- Die unter Befund 3 genannte Ausweitung auf die Ergebnislisten ist eine Erweiterung innerhalb desselben Moduls und derselben Ursache (herausgegebener veränderlicher Speicher), keine neue Funktion.
+- `JcsSerializer.Serialize` und die DTO-Projektionen rekursieren über die Tiefe eines von Hand gebauten DOM; die Tiefe ist nur für Parser-Eingaben begrenzt (Tiefe 16). Das ist kein Teil der gemeldeten Befunde und wurde nicht verändert.
+- Alle Einschränkungen des Phase-B-Abschnitts (Node-Referenz akzeptiert `-0`/ungültiges UTF-8/unbegrenzte Tiefe, Gerätetests und Store-Uploads `REQUIRED_LATER`) gelten unverändert.
+
+### Nächster Schritt
+
+1. Erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD von PR #15 (nicht durch den Implementierungsagenten); Checks dort neu erheben.
+2. Erst nach PASS der Abschluss-QC und Geschäftsführungsfreigabe Integration. PR #15 bleibt bis dahin Draft und wird nicht gemergt.
 3. Danach Freigabe des separaten Solver-v2-Blocks (ADR-031); er wird durch WP-023 nicht vorgezogen.
