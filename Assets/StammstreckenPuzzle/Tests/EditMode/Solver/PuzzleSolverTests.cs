@@ -29,7 +29,7 @@ namespace STP.Tests.Solver.EditMode
             var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(Class(expected)), label);
             Assert.That(result.SolutionCount, Is.EqualTo(expected), label);
-            Assert.That(result.SolverVersion, Is.EqualTo("solver-v1"));
+            Assert.That(result.SolverVersion, Is.EqualTo("solver-v2"));
             if (expected > 0)
             {
                 Assert.That(result.Path[0].X, Is.EqualTo(def.A.Cell.X)); Assert.That(result.Path[0].Y, Is.EqualTo(def.A.Cell.Y));

@@ -52,6 +52,28 @@ Tests verwenden Builder mit sinnvollen Defaults und nennen die fachliche Behaupt
 
 Der vollständige kuratierte Katalog wird bei jedem Release neu bis Lösungslimit zwei geprüft. Ein gespeicherter Proof allein genügt nicht.
 
+### 4.1 Solver-v2-Referenztests (WP-024)
+
+Die folgenden expliziten Referenztests in `STP.Tests.Solver.EditMode` (`SolverV2MetricsTests`, Hilfscode `TraceAudit`) belegen Spur, Metriken und Kampagnengate von `solver-v2`. Exakte Metrikgoldens gibt es nur für absichtlich festgelegte Referenzfälle; alle übrigen Behauptungen sind Invarianten.
+
+| Test | Nachweis |
+|---|---|
+| Version | Konstante und Ergebnisse aller Klassen (UNIQUE, 0, 2+, INDETERMINATE, `null`) melden `solver-v2`. |
+| Rein deduktive Referenzen | Ein-Zellen-Pfad und 2×2-Paar: wörtlich festgelegte Spur, `searchNodes = 0`, `requiredGuessDepth = 0`, Schritte/Tiefe aus der Spur nachrechenbar. |
+| Nullwert | Kein Root-Schritt ergibt `maxDeductionDepth = 0` (interne Metrikfabrik), Suchmetriken bleiben unabhängig. |
+| Suchfälle | 2×3 (`guess` 1), 4×4 mit tiefem verworfenem Zweig (`guess` 1, 10 Knoten), 4×4 `guess` 2 und 3: Knoten zählen alle Annahmen, Tiefe nur den Erfolgspfad; Root-only-Neuberechnung ohne DFS reproduziert die Spur; kleinstes ausreichendes Zustandsbudget ist `searchNodes + 1`. |
+| Exhaustive Kleinraster | Alle 39.664 gültigen Definitionen für 2×2, 2×3, 3×2, 3×3 gegen den unabhängigen Oracle: Klassifikation; bei UNIQUE ist jede Spur sicher (entfernte Werte enthalten nie den Wert der Lösung), aus sich selbst nachrechenbar, irredundant und intern ableitbar; nur UNIQUE trägt Metriken. |
+| Seeded 4×4 | 400 feste Zufallsfälle mit tieferer Suche. |
+| Nicht eindeutig/Limit | Weder Metriken noch Spur bei 0, 2+, Budget, Zeit und Cancellation, auch nach der ersten gefundenen Lösung. |
+| Kampagnengate | ELIGIBLE nur für UNIQUE mit Tiefe 0; GUESS_DEPTH_REQUIRED, NOT_UNIQUE und INDETERMINATE fail-closed für alle Klassifikations-/Metrikkombinationen. |
+| Determinismus | Wiederholte Läufe und andere Limits liefern identische Spuren, Pfade und Metriken. |
+| 10×10-Budget | Fünf Referenzfälle sind rein deduktiv, vollständig auditiert und halten p95 < 250 ms sowie Maximum < 2 s einschließlich Spur. |
+| Unveränderlichkeit | Spurtypen haben keine öffentlichen Setter oder Konstruktoren, nur schreibgeschützte Listen und keine Engine-, UI-, Persistenz- oder Asset-Typen. |
+| Tracer/Auditor | Spur wird aus den Reduktionen identisch neu aufgebaut; Duplikate, No-ops, nicht ableitbare Reduktionen und fehlende Prämissen werden erkannt; verfälschte Spuren (fehlende/überflüssige Prämisse, falsche Tiefe, Vorwärtsreferenz, falscher Regelcode oder Index) werden vom Auditor abgewiesen. |
+| Klassifikationstabelle | 0/1/2+ bleibt erhalten; ein Spurfehler macht ein eindeutiges Ergebnis zu `INDETERMINATE`. |
+
+Mutationsnachweis: 26 absichtlich verfälschte Solvervarianten (Root als Suchknoten, Branchreduktionen in der Spur, verworfene Zweigtiefe in `requiredGuessDepth`, fehlende Deduplizierung, fehlende Prämissenminimierung, falsche Tiefenformeln, Gate-Aufweichungen, Version `solver-v1` u. a.) werden lokal auf gepatchten Scratchkopien ausgeführt; jede Variante lässt mindestens einen Test scheitern. Dieser Lauf ist lokale Evidenz und nicht Teil der CI.
+
 ## 5. Datenvertrags- und Contenttests
 
 - jedes neue Level gegen `level-v2`, Legacyfixtures zusätzlich gegen `level-v1`; jeder v1-Positivfixture muss durch den neutralen Migrator auch v2-Schema und -Semantik bestehen;
