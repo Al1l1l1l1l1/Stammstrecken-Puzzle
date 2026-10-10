@@ -71,15 +71,15 @@ namespace STP.Tests.Solver.EditMode
             {
                 var step = trace[i];
                 Assert.That(step.Index, Is.EqualTo(i), label);
-                Assert.That(RuleCodes, Does.Contain(step.RuleCode), label);
+                Assert.That(RuleCodes, Has.Member(step.RuleCode), label);
                 Assert.That(step.RemovedValues, Is.Not.Empty, label); Assert.That(step.RemainingValues, Is.Not.Empty, label);
                 Assert.That(step.RemovedValues.Intersect(step.RemainingValues), Is.Empty, label);
                 Assert.That(step.RemovedValues.Select(v => (int)v), Is.Ordered.And.Unique, label);
                 Assert.That(seen.Add(step.RuleCode + step.Cell.X + "," + step.Cell.Y + string.Join(",", step.RemovedValues)), Is.True, label + " duplicates must be removed");
                 int cell = step.Cell.Y * def.Grid.Width + step.Cell.X;
                 // Safe: the removed values never include the value of the one solution; the remaining ones always do.
-                Assert.That(step.RemovedValues.Select(v => (int)v), Does.Not.Contain(solution[cell]), $"{label} step {i} {step.RuleCode} removes the solution value");
-                Assert.That(step.RemainingValues.Select(v => (int)v), Does.Contain(solution[cell]), label);
+                Assert.That(step.RemovedValues.Select(v => (int)v), Has.No.Member(solution[cell]), $"{label} step {i} {step.RuleCode} removes the solution value");
+                Assert.That(step.RemainingValues.Select(v => (int)v), Has.Member(solution[cell]), label);
                 var facts = step.Premises.Where(q => q.IsPublicFact).ToArray();
                 Assert.That(step.Premises.Take(facts.Length).All(q => q.IsPublicFact), Is.True, label + " public facts come first");
                 var refs = step.Premises.Where(q => !q.IsPublicFact).Select(q => q.TraceIndex).ToArray();
