@@ -331,6 +331,7 @@ namespace STP.Tests.Content.EditMode
             {
                 () => JsonValue.Null, () => JsonValue.FromBoolean(true), () => JsonValue.CreateInteger(0), () => JsonValue.CreateInteger(-1), () => JsonValue.CreateInteger(JsonValue.MaxSafeInteger),
                 () => JsonValue.CreateString(string.Empty), () => JsonValue.CreateString("x"), () => JsonValue.CreateArray(new JsonValue[0]), () => JsonValue.CreateObject(new JsonMember[0]),
+                () => JsonValue.CreateString("\ud800"), () => JsonValue.CreateString("a\udc00b"), () => JsonValue.CreateString("tail\ud83d"),
             };
             for (int i = 0; i < 800; i++)
             {
@@ -338,6 +339,121 @@ namespace STP.Tests.Content.EditMode
                 var json = random.Next(3) == 0 && path.Length > 0 ? JsonEdit.Remove(Doc(), path) : JsonEdit.Set(Doc(), path, replacements[random.Next(replacements.Length)]());
                 AssertInvariants(LevelV2Loader.Load(json), "round " + i + " " + path);
             }
+        }
+
+        // ---- QC finding 1: a DOM that was not produced by the parser may carry unpaired surrogates ----------------
+
+        private static readonly (string Path, string Text)[] LoneSurrogateStrings =
+        {
+            ("/production/qualityNote", "note\ud800"),
+            ("/production/qualityNote", "\udc00note"),
+            ("/production/timeClass", "a\ud83d"),
+            ("/completion/mapSegmentId", "seg\udc00ment"),
+            ("/completion/trainMomentId", "\ud800"),
+        };
+
+        [Test]
+        public void ALoneSurrogateInADomString_IsADiagnosedHashStageRejection_NeverAnException()
+        {
+            foreach (var (path, text) in LoneSurrogateStrings)
+            {
+                var json = JsonEdit.Set(Doc(), path, JsonValue.CreateString(text));
+                LevelV2LoadResult result = null!;
+                Assert.DoesNotThrow(() => result = LevelV2Loader.Load(json), path);
+                Assert.That(result.IsValid, Is.False, path);
+                Assert.That(result.Diagnostics.Select(d => (d.Stage, d.Code, d.Path)).ToArray(),
+                    Is.EqualTo(new[] { (LevelDiagnosticStage.Hash, LevelDiagnosticCodes.JcsSurrogate, path) }), Codes.Describe(result.Diagnostics));
+                Assert.That(result.ImportState, Is.EqualTo(LevelImportState.Rejected), path);
+                Assert.That(result.ImportBlockers, Is.EqualTo(result.Diagnostics), path);
+                Assert.That(result.Document, Is.Not.Null, "the schema stage passed, so the typed document is still reported");
+                AssertNoHashes(result);
+                AssertInvariants(result, path);
+            }
+        }
+
+        [Test]
+        public void ALoneSurrogateInADomMemberName_IsRejectedBySchemaAsAnUnknownProperty()
+        {
+            LevelV2LoadResult result = null!;
+            Assert.DoesNotThrow(() => result = LevelV2Loader.Load(JsonEdit.Add(Doc(), string.Empty, "bad\ud800", JsonValue.Null)));
+            Assert.That(result.IsValid, Is.False);
+            Assert.That(result.Diagnostics.Select(d => d.Code).ToArray(), Is.EqualTo(new[] { LevelDiagnosticCodes.SchemaUnknownProperty }));
+            AssertNoHashes(result);
+        }
+
+        [Test]
+        public void AnEarlierStageFailure_StillWinsOverALoneSurrogate_AndTheSurrogateAppearsOnceTheEarlierErrorIsFixed()
+        {
+            var surrogate = JsonEdit.Set(Doc(), "/production/qualityNote", JsonValue.CreateString("x\ud800"));
+            var both = JsonEdit.Set(surrogate, "/solution/path/1/track", JsonEdit.Str("TRACK_EW"));
+            var early = LevelV2Loader.Load(both);
+            Assert.That(early.IsValid, Is.False);
+            Assert.That(early.Diagnostics, Is.Not.Empty);
+            Assert.That(early.Diagnostics.All(d => d.Stage != LevelDiagnosticStage.Hash), Is.True, "a later stage never masks an earlier failure: " + Codes.Describe(early.Diagnostics));
+            var late = LevelV2Loader.Load(surrogate);
+            Assert.That(Codes.Of(late.Diagnostics), Is.EqualTo(new[] { LevelDiagnosticCodes.JcsSurrogate }));
+        }
+
+        [Test]
+        public void ADocumentWithOnlyPairedSurrogates_IsValid_AndHashesLikeItsParsedTextForm()
+        {
+            var json = JsonEdit.Set(Doc(), "/production/qualityNote", JsonValue.CreateString("rocket \U0001F680 note"));
+            var result = LevelV2Loader.Load(json);
+            Assert.That(result.IsValid, Is.True, Codes.Describe(result.Diagnostics));
+            var reparsed = LevelV2Loader.LoadText(JcsSerializer.Serialize(json).Text);
+            Assert.That(reparsed.ContentHash, Is.EqualTo(result.ContentHash));
+        }
+
+        // ---- QC finding 3 (same root cause): result lists are read-only views, so validity cannot be flipped ----------
+
+        [Test]
+        public void EveryPublicResultList_IsAReadOnlyView_SoACallerCannotChangeValidityOrBlockers()
+        {
+            var probe = new LevelDiagnostic(LevelDiagnosticStage.Parse, "LVL-TEST", string.Empty, "probe");
+            var schemaFailure = JsonEdit.Set(Doc(), "/grid/width", JsonEdit.Int(1));
+            var domainFailure = JsonEdit.Set(Doc(), "/rowCounts/0", JsonEdit.Int(0));
+            var semanticFailure = JsonEdit.Set(Doc(), "/solution/path/1/track", JsonEdit.Str("TRACK_EW"));
+            var results = new[] { LevelV2Loader.Load(schemaFailure), LevelV2Loader.Load(domainFailure), LevelV2Loader.Load(semanticFailure), LevelV2Loader.Load(Doc()), LevelV2Loader.Load(new byte[0]) };
+            Assert.That(results.Select(r => r.IsValid).ToArray(), Is.EqualTo(new[] { false, false, false, true, false }), "the samples must cover all outcomes");
+            for (int i = 0; i < results.Length; i++)
+            {
+                JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(results[i].Diagnostics, probe, "LoadResult.Diagnostics #" + i);
+                JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(results[i].ImportBlockers, probe, "LoadResult.ImportBlockers #" + i);
+            }
+
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV2Reader.Read(schemaFailure).Diagnostics, probe, "LevelV2ReadResult.Diagnostics");
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV2Reader.Read(Doc()).Diagnostics, probe, "LevelV2ReadResult.Diagnostics (valid)");
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV1Reader.Read(Examples.Json(Examples.V1)).Diagnostics, probe, "LevelV1ReadResult.Diagnostics (valid)");
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV1Reader.Read(JsonEdit.Set(Examples.Json(Examples.V1), "/grid/width", JsonEdit.Int(1))).Diagnostics, probe, "LevelV1ReadResult.Diagnostics");
+
+            var domainDocument = LevelV2Reader.Read(domainFailure).Document!;
+            var mapped = LevelV2DomainMapper.Map(domainDocument);
+            Assert.That(mapped.Diagnostics, Is.Not.Empty);
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(mapped.Diagnostics, probe, "LevelV2MapResult.Diagnostics");
+            var goodDocument = Examples.V2Document();
+            var goodMap = LevelV2DomainMapper.Map(goodDocument);
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(goodMap.Diagnostics, probe, "LevelV2MapResult.Diagnostics (valid)");
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV2Semantics.Validate(goodDocument, goodMap.Definition), probe, "LevelV2Semantics.Validate (valid)");
+            var semanticDocument = LevelV2Reader.Read(semanticFailure).Document!;
+            var semantic = LevelV2Semantics.Validate(semanticDocument, LevelV2DomainMapper.Map(semanticDocument).Definition);
+            Assert.That(semantic, Is.Not.Empty);
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(semantic, probe, "LevelV2Semantics.Validate");
+
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV1ToV2Migrator.Migrate(Examples.Json(Examples.V1)).Diagnostics, probe, "LevelMigrationResult.Diagnostics (success)");
+            JsonValueTests.AssertReadOnlyView<LevelDiagnostic>(LevelV1ToV2Migrator.Migrate(JsonEdit.Set(Examples.Json(Examples.V1), "/validation/puzzleHashSha256", JsonEdit.Str(new string('0', 64)))).Diagnostics, probe, "LevelMigrationResult.Diagnostics (failure)");
+        }
+
+        [Test]
+        public void ARejectedResult_CannotBecomeValid_ByEmptyingItsDiagnostics()
+        {
+            var result = LevelV2Loader.Load(JsonEdit.Set(Doc(), "/solution/path/1/track", JsonEdit.Str("TRACK_EW")));
+            Assert.That(result.IsValid, Is.False);
+            if (result.Diagnostics is IList<LevelDiagnostic> list)
+                Assert.Throws<NotSupportedException>(() => list.Clear());
+            if (result.Diagnostics is System.Collections.IList legacy)
+                Assert.Throws<NotSupportedException>(() => legacy.Clear());
+            Assert.That(result.IsValid, Is.False);
+            Assert.That(result.ImportState, Is.EqualTo(LevelImportState.Rejected));
         }
 
         // ---- helpers ---------------------------------------------------------------------------------------------

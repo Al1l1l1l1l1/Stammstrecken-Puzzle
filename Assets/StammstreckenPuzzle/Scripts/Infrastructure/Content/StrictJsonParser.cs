@@ -62,14 +62,35 @@ namespace STP.Infrastructure.Content
             return ParseCore(text, effective);
         }
 
-        /// <summary>Parses already decoded text; raw lone surrogates are rejected like escaped ones.</summary>
+        /// <summary>
+        /// Parses already decoded text; raw lone surrogates are rejected like escaped ones. The size limit
+        /// (<see cref="JsonParserLimits.MaxBytes"/>) is measured in UTF-8 bytes exactly like <see cref="Parse"/>, so both
+        /// entries accept and reject the same document for size (a lone surrogate counts as the three bytes of its
+        /// replacement character; it is rejected by content afterwards anyway).
+        /// </summary>
         public static JsonParseResult ParseText(string? text, JsonParserLimits? limits = null)
         {
             var effective = limits ?? JsonParserLimits.Default;
             if (string.IsNullOrEmpty(text)) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseEmpty, string.Empty, "Input is empty.");
-            if (text!.Length > effective.MaxBytes) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseSize, string.Empty, "Input exceeds " + effective.MaxBytes.ToString(CultureInfo.InvariantCulture) + " characters.");
+            if (Utf8SizeExceeds(text!, effective.MaxBytes)) return JsonParseResult.Fail(LevelDiagnosticCodes.ParseSize, string.Empty, "Input exceeds " + effective.MaxBytes.ToString(CultureInfo.InvariantCulture) + " bytes.");
             if (text[0] == '\uFEFF') return JsonParseResult.Fail(LevelDiagnosticCodes.ParseBom, string.Empty, "Byte order mark is not allowed.");
             return ParseCore(text, effective);
+        }
+
+        /// <summary>True when the UTF-8 encoding of <paramref name="text"/> is longer than <paramref name="maxBytes"/>; stops counting as soon as the limit is passed.</summary>
+        private static bool Utf8SizeExceeds(string text, int maxBytes)
+        {
+            long bytes = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                if (c < 0x80) bytes += 1;
+                else if (c < 0x800) bytes += 2;
+                else if (char.IsHighSurrogate(c) && i + 1 < text.Length && char.IsLowSurrogate(text[i + 1])) { bytes += 4; i++; }
+                else bytes += 3;
+                if (bytes > maxBytes) return true;
+            }
+            return false;
         }
 
         private static JsonParseResult ParseCore(string text, JsonParserLimits limits)
@@ -245,7 +266,7 @@ namespace STP.Infrastructure.Content
                         _pos++;
                         return builder.ToString();
                     }
-                    if (builder.Length >= _limits.MaxStringLength) throw Failure(LevelDiagnosticCodes.ParseStringLength, path, "String longer than " + _limits.MaxStringLength.ToString(CultureInfo.InvariantCulture) + " UTF-16 code units");
+                    if (builder.Length >= _limits.MaxStringLength) throw StringLengthFailure(path);
                     if (c < 0x20) throw Failure(LevelDiagnosticCodes.ParseControlCharacter, path, "Unescaped control character");
                     if (c == '\\')
                     {
@@ -273,6 +294,8 @@ namespace STP.Infrastructure.Content
                                     int second = ReadHex4(path);
                                     if (second < 0xDC00 || second > 0xDFFF)
                                         throw Failure(LevelDiagnosticCodes.ParseSurrogate, path, "Unpaired high surrogate escape");
+                                    // A pair adds two UTF-16 code units at once: it needs room for both.
+                                    if (builder.Length + 2 > _limits.MaxStringLength) throw StringLengthFailure(path);
                                     builder.Append((char)first).Append((char)second);
                                 }
                                 else if (first >= 0xDC00 && first <= 0xDFFF)
@@ -289,6 +312,7 @@ namespace STP.Infrastructure.Content
                     if (char.IsHighSurrogate(c))
                     {
                         if (_pos + 1 >= _text.Length || !char.IsLowSurrogate(_text[_pos + 1])) throw Failure(LevelDiagnosticCodes.ParseSurrogate, path, "Unpaired high surrogate");
+                        if (builder.Length + 2 > _limits.MaxStringLength) throw StringLengthFailure(path);
                         builder.Append(c).Append(_text[_pos + 1]);
                         _pos += 2;
                         continue;
@@ -298,6 +322,9 @@ namespace STP.Infrastructure.Content
                     _pos++;
                 }
             }
+
+            private ParseFailure StringLengthFailure(string path) =>
+                Failure(LevelDiagnosticCodes.ParseStringLength, path, "String longer than " + _limits.MaxStringLength.ToString(CultureInfo.InvariantCulture) + " UTF-16 code units");
 
             private int ReadHex4(string path)
             {

@@ -19,13 +19,13 @@ namespace STP.Infrastructure.Content
             if (document == null || definition == null)
             {
                 diagnostics.Add(Diagnostic(LevelDiagnosticCodes.DomainInvalidDefinition, string.Empty, "Semantic validation requires a document and its mapped definition."));
-                return diagnostics;
+                return LevelDiagnosticList.Freeze(diagnostics);
             }
             CheckIdentity(document, diagnostics);
             CheckTimeOrder(document, diagnostics);
             CheckProofReference(document, diagnostics);
             CheckSolution(document, definition, diagnostics);
-            return diagnostics;
+            return LevelDiagnosticList.Freeze(diagnostics);
         }
 
         private static void CheckIdentity(LevelV2Document document, List<LevelDiagnostic> diagnostics)

@@ -11,7 +11,7 @@ namespace STP.Infrastructure.Content
         public IReadOnlyList<LevelDiagnostic> Diagnostics { get; }
         public bool Succeeded => Document != null && Diagnostics.Count == 0;
 
-        internal LevelV2ReadResult(LevelV2Document? document, IReadOnlyList<LevelDiagnostic> diagnostics) { Document = document; Diagnostics = diagnostics; }
+        internal LevelV2ReadResult(LevelV2Document? document, IReadOnlyList<LevelDiagnostic> diagnostics) { Document = document; Diagnostics = LevelDiagnosticList.Freeze(diagnostics); }
     }
 
     /// <summary>

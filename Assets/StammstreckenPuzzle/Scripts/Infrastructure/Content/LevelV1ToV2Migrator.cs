@@ -19,14 +19,26 @@ namespace STP.Infrastructure.Content
 
         internal LevelMigrationResult(LevelV2Document? document, bool wasMigrated, IReadOnlyList<LevelDiagnostic> diagnostics)
         {
-            Document = document; WasMigrated = wasMigrated; Diagnostics = diagnostics;
             if (document != null && diagnostics.Count == 0)
             {
-                Json = document.ToJson();
-                ContentHash = LevelHashing.ComputeContentHash(Json);
-                PublicPuzzleHash = LevelHashing.ComputePublicPuzzleHash(document);
-                SolutionHash = LevelHashing.ComputeSolutionHash(document);
+                // Hash stage: free text of a valid document may still hold an unpaired surrogate (v1 text fields are not part
+                // of the legacy hashes, and a v2 DOM can be built programmatically). That is a rejected migration, never an
+                // exception; no half-built document is reported.
+                var hashes = LevelHashing.TryComputeDocumentHashes(document);
+                if (hashes.Error != null)
+                {
+                    document = null; wasMigrated = false;
+                    diagnostics = new[] { hashes.Error };
+                }
+                else
+                {
+                    Json = document.ToJson();
+                    ContentHash = hashes.ContentHash;
+                    PublicPuzzleHash = hashes.PublicPuzzleHash;
+                    SolutionHash = hashes.SolutionHash;
+                }
             }
+            Document = document; WasMigrated = wasMigrated; Diagnostics = LevelDiagnosticList.Freeze(diagnostics);
         }
     }
 

@@ -20,7 +20,7 @@ namespace STP.Infrastructure.Content
         public LevelV2Document? Document { get; }
         /// <summary>The integrated Domain definition once the mapping stage passed.</summary>
         public PuzzleDefinition? Definition { get; }
-        /// <summary>Content-Hash (<c>documentSha256</c>); only set for valid documents.</summary>
+        /// <summary>Content-Hash (<c>documentSha256</c>); only set for valid documents (a hash-stage rejection leaves it unset).</summary>
         public string? ContentHash { get; }
         /// <summary>Public-Puzzle-Hash (<c>STP-PUZZLE-SEMANTIC-JCS-1</c>); only set for valid documents.</summary>
         public ProfiledHash? PublicPuzzleHash { get; }
@@ -36,19 +36,28 @@ namespace STP.Infrastructure.Content
 
         internal LevelV2LoadResult(LevelV2Document? document, PuzzleDefinition? definition, IReadOnlyList<LevelDiagnostic> diagnostics)
         {
-            Document = document; Definition = definition; Diagnostics = diagnostics;
+            Document = document; Definition = definition;
             if (diagnostics.Count == 0 && document != null && definition != null)
             {
-                ContentHash = LevelHashing.ComputeContentHash(document);
-                PublicPuzzleHash = LevelHashing.ComputePublicPuzzleHash(document);
-                SolutionHash = LevelHashing.ComputeSolutionHash(document);
-                ImportBlockers = new[]
+                // Hash stage: a document the earlier stages accepted can still carry an unpaired surrogate in a free-text
+                // string when the DOM was built programmatically. That is a regular rejection, never an exception.
+                var hashes = LevelHashing.TryComputeDocumentHashes(document);
+                if (hashes.Error != null) diagnostics = new[] { hashes.Error };
+                else
+                {
+                    ContentHash = hashes.ContentHash;
+                    PublicPuzzleHash = hashes.PublicPuzzleHash;
+                    SolutionHash = hashes.SolutionHash;
+                }
+            }
+            Diagnostics = LevelDiagnosticList.Freeze(diagnostics);
+            ImportBlockers = IsValid
+                ? LevelDiagnosticList.Freeze(new[]
                 {
                     new LevelDiagnostic(LevelDiagnosticStage.Import, LevelDiagnosticCodes.ImportProofGateMissing, "/proofRef",
                         "No proof artifact is loaded, generated or bound and no release lock exists; the proof gate is closed by the later Solver-v2/Proof block.")
-                };
-            }
-            else ImportBlockers = diagnostics;
+                })
+                : Diagnostics;
         }
     }
 

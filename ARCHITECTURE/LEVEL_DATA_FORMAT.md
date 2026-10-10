@@ -83,6 +83,8 @@ Der Content-Hash trägt kein Profil, ersetzt keines der vier Profile und darf ni
 
 JCS-Eingaben sind ausschließlich Integer-JSON: Zahlen im sicheren Bereich ±(2^53−1), kein Float, kein Exponent, kein `-0`. Objektschlüssel werden nach UTF-16-Codeeinheiten aufsteigend sortiert; Strings werden nach RFC 8785 maskiert (übrige Steuerzeichen als `\u00xx` in Kleinbuchstaben); Ausgabe ist UTF-8 ohne BOM und ohne Abschlussnewline. Alleinstehende Surrogate und Integer außerhalb des sicheren Bereichs sind harte Fehler (`LVL-JCS-*`). Die Implementierung wird durch unabhängig erzeugte Testvektoren (`Assets/StammstreckenPuzzle/Tests/EditMode/Content/level-v2-jcs-golden.json`, zusätzlich per Node-Referenzimplementierung nachgerechnet) abgesichert.
 
+Ein programmgesteuert aufgebautes `JsonValue`-DOM kann Strings mit alleinstehenden Surrogaten enthalten (`JsonValue.CreateString` nimmt jeden .NET-String an); der Parser erzeugt sie nie. Gelangt ein solcher Freitext durch Schema, Domain-Abbildung und Semantik, melden `LevelV2Loader.Load(JsonValue)` und `LevelV1ToV2Migrator` ihn als reguläre Diagnose `LVL-JCS-SURROGATE` (Stufe Hash, Pfad des Strings): das Ergebnis ist `Rejected`, es werden keine Hashes gesetzt, und es wird keine Exception geworfen. Die öffentlichen werfenden Hash-Helfer (`LevelHashing.HashProjection`, `ComputeContentHash` u. a.) sind für bekannt gültige Projektionen bestimmt und werfen `InvalidOperationException`; für Projektionen aus nicht vertrauenswürdiger Quelle dienen `LevelHashing.Compute` und `JcsSerializer.Serialize`, die den Fehler als Diagnose zurückgeben.
+
 `STP-PROOF-JCS-1` wird für ein Level-v2-Dokument nur als **Projektionshash** berechnet (vollständiges `proof-v1`-Objekt ohne `proofHash`). Das Proofartefakt selbst entsteht erst im späteren Solver-/Proofblock.
 
 ## 7. Proof-v1
@@ -141,13 +143,15 @@ Der strenge C#-Parser (`StrictJsonParser`) setzt dies mit folgenden Implementier
 
 | Grenze | Wert |
 |---|---|
-| Eingabegröße | 256 KiB |
+| Eingabegröße | 256 KiB (UTF-8-Bytes; `Parse(byte[])` und `ParseText(string)` messen identisch) |
 | Verschachtelungstiefe | 16 |
-| String- und Schlüssellänge | 8192 UTF-16-Codeeinheiten |
+| String- und Schlüssellänge | 8192 UTF-16-Codeeinheiten (ein Surrogatpaar zählt als zwei und darf die Grenze nicht überschreiten) |
 | Arraylänge | 1024 Einträge |
 | Objektmitglieder | 64 |
 
 Abgelehnt werden ferner: UTF-8-BOM, ungültiges UTF-8, Kommentare, nachlaufende Kommas und nachlaufender Inhalt, doppelte Schlüssel (mit Pfad), Float-/Exponent-Token, Zahlen außerhalb von ±(2^53−1), `-0`, alleinstehende Surrogate (roh und als `\u`-Escape) und rohe Steuerzeichen in Strings. Der Parser wirft nie; jeder Fehler ist genau eine stabile Diagnose. Das Level-v2-Schema erlaubt höchstens ein Raster von 10×10; eine spätere Anhebung ist eine Schemaänderung und keine Parserfrage.
+
+Der DOM (`JsonValue`) ist nach der Konstruktion unveränderlich: `Items` und `Members` sind schreibgeschützte Sichten und geben nie den internen Speicher heraus, sodass ein Objekt nach der Erzeugung keine doppelten Schlüssel erhalten kann. Aus demselben Grund sind alle öffentlichen Ergebnislisten der Pipeline (`Diagnostics`, `ImportBlockers`) schreibgeschützte Momentaufnahmen; ein Aufrufer kann die Gültigkeit eines abgelehnten Ergebnisses nicht durch Leeren der Liste ändern.
 
 ## 12. Referenzen
 

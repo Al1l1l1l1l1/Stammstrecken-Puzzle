@@ -501,6 +501,67 @@ namespace STP.Tests.Content.EditMode
             }
         }
 
+        // ---- QC finding 1, migration entry points: a hand-built DOM with an unpaired surrogate in free text ---------
+
+        [Test]
+        public void ALoneSurrogateInALegacyFreeTextField_IsADiagnosedRejection_NeverAnException()
+        {
+            // qualityNote is the v1 free-text field: it is not part of any legacy hash and not pattern-restricted, so a lone
+            // surrogate there passes the v1 schema stage and the legacy hash check and only fails at the v2 hash stage.
+            var cases = new[]
+            {
+                ("/production/qualityNote", "note\ud800"),
+                ("/production/qualityNote", "\udc00"),
+                ("/production/qualityNote", "a\ud83d"),
+                ("/production/qualityNote", "\ud800\ud800"),
+            };
+            foreach (var (path, text) in cases)
+            {
+                var v1 = Rehash(JsonEdit.Set(V1(), path, JsonEdit.Str(text)));
+                LevelMigrationResult direct = null!, current = null!;
+                Assert.DoesNotThrow(() => direct = LevelV1ToV2Migrator.Migrate(v1), path);
+                Assert.DoesNotThrow(() => current = LevelV1ToV2Migrator.MigrateToCurrent(v1), path);
+                foreach (var result in new[] { direct, current })
+                {
+                    Assert.That(result.Succeeded, Is.False, path);
+                    Assert.That(result.Document, Is.Null, path);
+                    Assert.That(result.Json, Is.Null, path);
+                    Assert.That(result.WasMigrated, Is.False, path);
+                    Assert.That(result.ContentHash, Is.Null, path);
+                    Assert.That(result.PublicPuzzleHash, Is.Null, path);
+                    Assert.That(result.SolutionHash, Is.Null, path);
+                    Assert.That(result.Diagnostics.Select(d => (d.Stage, d.Code, d.Path)).ToArray(),
+                        Is.EqualTo(new[] { (LevelDiagnosticStage.Hash, LevelDiagnosticCodes.JcsSurrogate, path) }), Codes.Describe(result.Diagnostics));
+                }
+            }
+        }
+
+        [Test]
+        public void ALoneSurrogateInAPatternRestrictedLegacyField_IsASchemaRejection_NeverAnException()
+        {
+            foreach (string path in new[] { "/completion/mapSegmentId", "/completion/trainMomentId" })
+            {
+                var v1 = JsonEdit.Set(V1(), path, JsonEdit.Str("a\ud800"));
+                LevelMigrationResult result = null!;
+                Assert.DoesNotThrow(() => result = LevelV1ToV2Migrator.Migrate(v1), path);
+                Assert.That(result.Succeeded, Is.False, path);
+                Assert.That(result.Document, Is.Null, path);
+                Assert.That(result.Diagnostics, Is.Not.Empty, path);
+                Assert.That(result.Diagnostics.Any(d => d.Stage == LevelDiagnosticStage.Schema && d.Path == path), Is.True, Codes.Describe(result.Diagnostics));
+            }
+        }
+
+        [Test]
+        public void ALoneSurrogateInACurrentV2Document_IsRejectedByTheMigrationPassThroughToo()
+        {
+            var v2 = JsonEdit.Set(Examples.Json(Examples.V2), "/production/qualityNote", JsonEdit.Str("x\ud800"));
+            LevelMigrationResult result = null!;
+            Assert.DoesNotThrow(() => result = LevelV1ToV2Migrator.MigrateToCurrent(v2));
+            Assert.That(result.Succeeded, Is.False);
+            Assert.That(result.Document, Is.Null);
+            Assert.That(Codes.Of(result.Diagnostics), Is.EqualTo(new[] { LevelDiagnosticCodes.JcsSurrogate }));
+        }
+
         private static void AssertEditorial(LevelMigrationResult result, string? path)
         {
             Assert.That(result.Document, Is.Null, Codes.Describe(result.Diagnostics));

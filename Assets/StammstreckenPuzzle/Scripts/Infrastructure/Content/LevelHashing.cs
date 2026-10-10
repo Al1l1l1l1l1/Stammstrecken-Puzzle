@@ -16,6 +16,26 @@ namespace STP.Infrastructure.Content
     }
 
     /// <summary>
+    /// The hashes of one Level-v2 document or exactly one hash-stage diagnostic (never both). Internal: the public
+    /// pipeline results expose the individual values.
+    /// </summary>
+    internal sealed class LevelDocumentHashes
+    {
+        internal string? ContentHash { get; }
+        internal ProfiledHash? PublicPuzzleHash { get; }
+        internal ProfiledHash? SolutionHash { get; }
+        internal LevelDiagnostic? Error { get; }
+
+        private LevelDocumentHashes(string? content, ProfiledHash? publicPuzzle, ProfiledHash? solution, LevelDiagnostic? error)
+        {
+            ContentHash = content; PublicPuzzleHash = publicPuzzle; SolutionHash = solution; Error = error;
+        }
+
+        internal static LevelDocumentHashes Ok(string content, ProfiledHash publicPuzzle, ProfiledHash solution) => new LevelDocumentHashes(content, publicPuzzle, solution, null);
+        internal static LevelDocumentHashes Fail(LevelDiagnostic error) => new LevelDocumentHashes(null, null, null, error);
+    }
+
+    /// <summary>
     /// The binding hash contracts (LEVEL_DATA_FORMAT.md Abschnitt 6, ADR-021). Every hash is
     /// <c>SHA-256(JCS(projection))</c>; the projections are strictly separated:
     /// <list type="bullet">
@@ -44,7 +64,12 @@ namespace STP.Infrastructure.Content
 
         private static char HexDigit(int value) => (char)(value < 10 ? '0' + value : 'a' + (value - 10));
 
-        /// <summary>SHA-256 over the JCS bytes of an arbitrary projection (lowercase hex).</summary>
+        /// <summary>
+        /// SHA-256 over the JCS bytes of an arbitrary projection (lowercase hex).
+        /// Throws <see cref="InvalidOperationException"/> when the projection cannot be canonicalised (for example an unpaired
+        /// surrogate, <c>LVL-JCS-SURROGATE</c>): use it for projections that are known to be valid, and use
+        /// <see cref="Compute"/> or <see cref="JcsSerializer.Serialize"/> for any projection that may come from untrusted input.
+        /// </summary>
         public static string HashProjection(JsonValue projection) => Sha256Hex(JcsSerializer.SerializeOrThrow(projection));
 
         /// <summary>Profile registry: unknown profile names are a hard error; the projection must already match the profile.</summary>
@@ -59,7 +84,11 @@ namespace STP.Infrastructure.Content
 
         // ---- Content-Hash --------------------------------------------------------------------------------------
 
-        /// <summary>Content-Hash of a complete document: SHA-256 of its JCS bytes. Independent of formatting and member order.</summary>
+        /// <summary>
+        /// Content-Hash of a complete document: SHA-256 of its JCS bytes. Independent of formatting and member order.
+        /// Throws <see cref="InvalidOperationException"/> when the document cannot be canonicalised (see <see cref="HashProjection"/>);
+        /// the pipeline results (<see cref="LevelV2Loader"/>, <see cref="LevelV1ToV2Migrator"/>) report that case as a diagnostic instead.
+        /// </summary>
         public static string ComputeContentHash(JsonValue document) => HashProjection(document ?? throw new ArgumentNullException(nameof(document)));
 
         public static string ComputeContentHash(LevelV2Document document) => ComputeContentHash((document ?? throw new ArgumentNullException(nameof(document))).ToJson());
@@ -82,6 +111,7 @@ namespace STP.Infrastructure.Content
                 ("rowCounts", LevelJson.IntArray(rowCounts)),
                 ("columnCounts", LevelJson.IntArray(columnCounts)));
 
+        /// <summary>Throws <see cref="InvalidOperationException"/> when the projection cannot be canonicalised (see <see cref="HashProjection"/>).</summary>
         public static ProfiledHash ComputePublicPuzzleHash(LevelV2Document document) =>
             new ProfiledHash(LevelHashProfiles.PuzzleSemantic, HashProjection(PublicPuzzleProjection(document)));
 
@@ -98,8 +128,29 @@ namespace STP.Infrastructure.Content
                 ("path", LevelPathCellDto.PathToJson(path)));
         }
 
+        /// <summary>Throws <see cref="InvalidOperationException"/> when the projection cannot be canonicalised (see <see cref="HashProjection"/>).</summary>
         public static ProfiledHash ComputeSolutionHash(LevelV2Document document) =>
             new ProfiledHash(LevelHashProfiles.Solution, HashProjection(SolutionProjection(document.PuzzleId, ComputePublicPuzzleHash(document), document.SolutionPath)));
+
+        // ---- All hashes of a document, without exceptions -----------------------------------------------------
+
+        /// <summary>
+        /// Computes the Content-Hash, the Public-Puzzle-Hash and the Solution-Hash of a schema-valid document through the
+        /// non-throwing canonicalisation. A document the schema stage accepted can still hold a .NET string that is not
+        /// canonicalisable (a DOM built programmatically may carry unpaired surrogates in free text); that is reported as
+        /// the single hash-stage diagnostic of the canonicaliser (<c>LVL-JCS-SURROGATE</c>), never as an exception.
+        /// </summary>
+        internal static LevelDocumentHashes TryComputeDocumentHashes(LevelV2Document document)
+        {
+            if (document == null) throw new ArgumentNullException(nameof(document));
+            var content = JcsSerializer.Serialize(document.ToJson());
+            if (content.Utf8 == null) return LevelDocumentHashes.Fail(content.Error!);
+            var publicPuzzle = Compute(LevelHashProfiles.PuzzleSemantic, PublicPuzzleProjection(document));
+            if (publicPuzzle.Hash == null) return LevelDocumentHashes.Fail(publicPuzzle.Error!);
+            var solution = Compute(LevelHashProfiles.Solution, SolutionProjection(document.PuzzleId, publicPuzzle.Hash, document.SolutionPath));
+            if (solution.Hash == null) return LevelDocumentHashes.Fail(solution.Error!);
+            return LevelDocumentHashes.Ok(Sha256Hex(content.Utf8), publicPuzzle.Hash, solution.Hash);
+        }
 
         // ---- Proof-Hash (projection only) ----------------------------------------------------------------------
 
@@ -107,6 +158,7 @@ namespace STP.Infrastructure.Content
         /// Hash of a proof-v1 object <b>without</b> its <c>proofHash</c> member. This computes the identity of a given projection;
         /// it neither generates a proof nor binds a proof artifact (solver/proof regeneration is a later work package).
         /// </summary>
+        /// <remarks>Throws <see cref="InvalidOperationException"/> when the projection cannot be canonicalised (see <see cref="HashProjection"/>).</remarks>
         public static ProfiledHash ComputeProofHash(JsonValue proofWithoutProofHash)
         {
             if (proofWithoutProofHash == null) throw new ArgumentNullException(nameof(proofWithoutProofHash));

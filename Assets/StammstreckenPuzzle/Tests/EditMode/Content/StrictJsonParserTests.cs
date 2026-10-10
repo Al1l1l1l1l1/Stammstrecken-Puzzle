@@ -132,6 +132,88 @@ namespace STP.Tests.Content.EditMode
             Assert.Throws<ArgumentOutOfRangeException>(() => new JsonParserLimits(0, 1, 1, 1, 1));
         }
 
+        // ---- QC finding 2: the input size limit is a limit in UTF-8 bytes on every entry ---------------------------
+
+        [TestCase("[\"abc\"]")]
+        [TestCase("[\"\u00E9\u00E9\u00E9\"]")]
+        [TestCase("[\"\u20AC\u20AC\u20AC\"]")]
+        [TestCase("[\"\U0001F680\U0001F680\"]")]
+        [TestCase("[\"a\u00E9\u20AC\U0001F680\"]")]
+        public void TheSizeLimit_IsMeasuredInUtf8Bytes_AndTextAndByteEntriesAgreeExactlyAtTheBoundary(string text)
+        {
+            int bytes = new UTF8Encoding(false).GetByteCount(text);
+            var atLimit = new JsonParserLimits(bytes, 16, 8192, 1024, 64);
+            var belowLimit = new JsonParserLimits(bytes - 1, 16, 8192, 1024, 64);
+            Assert.That(StrictJsonParser.Parse(new UTF8Encoding(false).GetBytes(text), atLimit).Succeeded, Is.True, "bytes at the limit");
+            Assert.That(StrictJsonParser.ParseText(text, atLimit).Succeeded, Is.True, "text at the limit");
+            Assert.That(StrictJsonParser.Parse(new UTF8Encoding(false).GetBytes(text), belowLimit).Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSize), "bytes one over");
+            Assert.That(StrictJsonParser.ParseText(text, belowLimit).Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSize), "text one over");
+        }
+
+        [Test]
+        public void MultiByteText_ThatFitsInCharactersButNotInBytes_IsRejectedLikeTheByteEntry()
+        {
+            // Reproduction of the QC finding with the default limits: 20 strings of 8000 x U+20AC (every string is within
+            // the 8192 string limit, the array within 1024) are about 160 thousand characters (below 256 KiB) but about
+            // 480 thousand UTF-8 bytes (above 256 KiB). Before the fix the text entry accepted this document.
+            string text = "[" + string.Join(",", Enumerable.Repeat("\"" + new string('\u20AC', 8000) + "\"", 20)) + "]";
+            Assert.That(text.Length, Is.LessThan(JsonParserLimits.Default.MaxBytes));
+            byte[] bytes = new UTF8Encoding(false).GetBytes(text);
+            Assert.That(bytes.Length, Is.GreaterThan(JsonParserLimits.Default.MaxBytes));
+            var byteEntry = StrictJsonParser.Parse(bytes);
+            var textEntry = StrictJsonParser.ParseText(text);
+            Assert.That(byteEntry.Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSize));
+            Assert.That(textEntry.Error, Is.Not.Null, "the text entry must not accept what the byte entry rejects for size");
+            Assert.That(textEntry.Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSize));
+            Assert.That(textEntry.Error.Message, Does.Contain("bytes"));
+
+            // The same document within the byte limit is accepted by both entries.
+            string small = "[" + string.Join(",", Enumerable.Repeat("\"" + new string('\u20AC', 8000) + "\"", 10)) + "]";
+            Assert.That(new UTF8Encoding(false).GetByteCount(small), Is.LessThanOrEqualTo(JsonParserLimits.Default.MaxBytes));
+            Assert.That(StrictJsonParser.ParseText(small).Succeeded, Is.True);
+            Assert.That(StrictJsonParser.Parse(new UTF8Encoding(false).GetBytes(small)).Succeeded, Is.True);
+        }
+
+        [Test]
+        public void TheTextSizeCheck_IsAFirstGate_AndNeverThrowsForLoneSurrogates()
+        {
+            var tiny = new JsonParserLimits(4, 16, 8192, 1024, 64);
+            Assert.That(StrictJsonParser.ParseText("[\"\ud800\"]", tiny).Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSize), "size is decided before content, like the byte entry");
+            Assert.That(StrictJsonParser.ParseText("[\"\ud800\"]").Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseSurrogate));
+        }
+
+        // ---- QC finding 4: the string length limit holds across surrogate pairs ----------------------------------
+
+        [TestCase("[\"ab\U0001F680\"]", true)]
+        [TestCase("[\"abc\U0001F680\"]", false)]
+        [TestCase("[\"ab\\ud83d\\ude80\"]", true)]
+        [TestCase("[\"abc\\ud83d\\ude80\"]", false)]
+        [TestCase("[\"\U0001F680\U0001F680\"]", true)]
+        [TestCase("[\"a\U0001F680\U0001F680\"]", false)]
+        [TestCase("{\"ab\U0001F680\":1}", true)]
+        [TestCase("{\"abc\U0001F680\":1}", false)]
+        public void AStringIsBoundedInUtf16CodeUnits_ASurrogatePairCountsTwo(string text, bool accepted)
+        {
+            var limits = new JsonParserLimits(1024, 16, 4, 1024, 64);
+            foreach (var result in new[] { StrictJsonParser.ParseText(text, limits), StrictJsonParser.Parse(new UTF8Encoding(false).GetBytes(text), limits) })
+            {
+                if (accepted) Assert.That(result.Succeeded, Is.True, result.Error?.ToString());
+                else Assert.That(result.Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseStringLength), text);
+            }
+        }
+
+        [Test]
+        public void TheDefaultStringLimit_CannotBeExceededByAFinalSurrogatePair()
+        {
+            string fits = "[\"" + new string('a', 8190) + "\U0001F680\"]";
+            string over = "[\"" + new string('a', 8191) + "\U0001F680\"]";
+            string escapedOver = "[\"" + new string('a', 8191) + "\\ud83d\\ude80\"]";
+            Assert.That(StrictJsonParser.ParseText(fits).Succeeded, Is.True);
+            Assert.That(StrictJsonParser.ParseText(fits).Value!.Items[0].StringValue.Length, Is.EqualTo(8192));
+            Assert.That(StrictJsonParser.ParseText(over).Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseStringLength));
+            Assert.That(StrictJsonParser.ParseText(escapedOver).Error!.Code, Is.EqualTo(LevelDiagnosticCodes.ParseStringLength));
+        }
+
         [Test]
         public void DeepNesting_NeverOverflowsTheStack()
         {

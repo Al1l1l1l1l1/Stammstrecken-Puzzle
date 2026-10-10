@@ -12,7 +12,7 @@ namespace STP.Infrastructure.Content
         public IReadOnlyList<LevelDiagnostic> Diagnostics { get; }
         public bool Succeeded => Definition != null && Diagnostics.Count == 0;
 
-        internal LevelV2MapResult(PuzzleDefinition? definition, IReadOnlyList<LevelDiagnostic> diagnostics) { Definition = definition; Diagnostics = diagnostics; }
+        internal LevelV2MapResult(PuzzleDefinition? definition, IReadOnlyList<LevelDiagnostic> diagnostics) { Definition = definition; Diagnostics = LevelDiagnosticList.Freeze(diagnostics); }
     }
 
     /// <summary>

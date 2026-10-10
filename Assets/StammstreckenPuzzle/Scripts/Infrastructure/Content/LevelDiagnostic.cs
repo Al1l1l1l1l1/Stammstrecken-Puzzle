@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace STP.Infrastructure.Content
 {
@@ -12,6 +14,24 @@ namespace STP.Infrastructure.Content
         Hash,
         Migration,
         Import
+    }
+
+    /// <summary>
+    /// Result lists are handed out as read-only snapshots, never as the producer's mutable list or array: a caller that
+    /// downcasts a result list must not be able to empty a rejected result's diagnostics and thereby flip its validity.
+    /// </summary>
+    internal static class LevelDiagnosticList
+    {
+        internal static readonly IReadOnlyList<LevelDiagnostic> None = new ReadOnlyCollection<LevelDiagnostic>(Array.Empty<LevelDiagnostic>());
+
+        /// <summary>A read-only snapshot of <paramref name="source"/>; later changes to the source do not show through.</summary>
+        internal static IReadOnlyList<LevelDiagnostic> Freeze(IReadOnlyList<LevelDiagnostic> source)
+        {
+            if (source.Count == 0) return None;
+            var copy = new LevelDiagnostic[source.Count];
+            for (int i = 0; i < copy.Length; i++) copy[i] = source[i];
+            return Array.AsReadOnly(copy);
+        }
     }
 
     /// <summary>
