@@ -4,7 +4,7 @@
 
 `WP-024`
 
-**Bearbeitungsstatus:** **Phase A (Definition und Verankerung) abgeschlossen. Die Implementierung (Phase B) ist nicht beauftragt und darf erst nach separatem Auftrag beginnen.**
+**Bearbeitungsstatus:** **Phase A (Definition und Verankerung) abgeschlossen. Phase B (Implementierung) ist umgesetzt und technisch bereit für die unabhängige Abschlussprüfung auf dem eingefrorenen finalen PR-HEAD; die Abschlussprüfung selbst und die Integration stehen aus (kein Merge, PR #17 bleibt Draft).**
 
 [Scope](../tools/architecture-validation/scopes/WP-024.production.scope.json)
 
@@ -172,3 +172,57 @@ Diese Punkte sind kein Phase-A-Blocker, aber vor der Implementierung zu beachten
 - Lokale Validatorläufe (CPython 3.13, die CI nutzt 3.11.13): Architecture-only mit Self-/Negativtests PASS (17 Gruppen); Production-Scope mit WP-024-Manifest und Self-/Negativtests PASS (18 Gruppen). Eigene Negativproben auf Wegwerfbranches (Änderung an `proof-v1.schema.json` außerhalb des Manifests; nachträglich erweitertes Manifest) schlugen wie vorgesehen mit `scope:out-of-scope` bzw. `scope:manifest-mutated-after-anchor` fehl.
 - Kanonische GitHub-PR-CI auf Head `ffa615dbe6e920ae5bacd83a2181515cd6eb1a94` (Draft-PR #17): Architecture Validation PR-Run `38088889033` (Job `114321045127`) und Push-Run `38088879224` (Job `114321017889`), **COMPLETED / SUCCESS**. Unity CI war zum Zeitpunkt dieser Eintragung noch nicht abgeschlossen; `project-preflight`, `unity-config`, `unity-environment-linux` und `unity-evidence-guard` waren erfolgreich. Da Phase A keinen Unity-relevanten Inhalt ändert, ist Unity CI kein Kriterium der Phase-A-Abnahme und wird hier nicht als PASS gewertet.
 - Ergebnis: **Phase A abgeschlossen. Kein Definitions-, Scope- oder Trust-Blocker. WP-024 ist bereit für einen separaten Implementierungsauftrag.** Kein Merge; PR #17 bleibt Draft.
+
+## Phase-B-Nachweis – 2026-10-11
+
+Ausgangs-HEAD des Auftrags: `aa9349b616f467107e0604f3b0d79b8c7bdd07e8`. Code-Stand dieses Nachweises: Commit `fa64a83` (Docs-Folgecommits ändern keinen Code).
+
+### Gelieferter Umfang
+
+- `PuzzleSolver.SolverVersion` und jedes Ergebnis: `solver-v2`. Root-Propagation wird getrennt von der Suche über den internen `RootDeductionTracer` protokolliert; `searchNodes` und `requiredGuessDepth` kommen aus dem DFS, `deductionSteps` und `maxDeductionDepth` ausschließlich aus der Spur. Zustandsbudget, Prüfreihenfolge, MRV, Wertreihenfolge, Lösungslimit zwei und die Klassifikation bleiben unverändert.
+- Neue öffentliche Typen: `DeductionStep`, `DeductionPremise`, `PublicFactKind`, `CandidateValue`, `SolverMetrics`, `CampaignGate`, `CampaignGateOutcome`. `SolverResult` trägt `DeductionTrace` und `Metrics`.
+- Metriken und Spur gibt es nur bei `UNIQUE`; bei 0, 2+, `INDETERMINATE` sind sie leer. Ein nicht ableitbarer Spureintrag macht ein eindeutiges Ergebnis zu `INDETERMINATE` (fail-closed).
+- Der Kampagnengate (`CampaignGate.Evaluate`) ist fail-closed: freigabefähig ist nur `UNIQUE` mit Metriken und `requiredGuessDepth = 0`.
+- Dokumentation: `SOLVER_ARCHITECTURE.md` (Abschnitt 13) und `TEST_STRATEGY.md` (Abschnitt 4.1) auf den gelieferten Stand gebracht.
+
+### Geänderte Dateigruppen
+
+Alle Änderungen liegen innerhalb des Manifests: `Scripts/Puzzle/Solver/` (`PuzzleSolver.cs`, neu `DeductionTrace.cs`, `RootDeductionTracer.cs`, `CampaignGate.cs` samt `.meta`), `Tests/EditMode/Solver/` (`PuzzleSolverTests.cs` nur Kennung `solver-v2`; neu `TraceAudit.cs`, `SolverV2MetricsTests.cs`, `TracerPredicateTests.cs` samt `.meta`), `ARCHITECTURE/SOLVER_ARCHITECTURE.md`, `ARCHITECTURE/TEST_STRATEGY.md`, dieses Work Package, `PROJECT_CONTROL/CURRENT_STATE.md`, `PROJECT_CONTROL/WORK_QUEUE.md`. Unverändert: Manifest, `.github/workflows/*`, `asmdef`/`csc.rsp`, Domain, Content, Schemas, ADRs.
+
+### Akzeptanzkriterien
+
+| ID | Stand | Nachweis |
+|---|---|---|
+| `AK-01` | erfüllt | Phase-A-Nachweis; Manifest-SHA-256 `2055ed1a…e631` unverändert gegen den Anker `3e7f1ab2…` und gegen den HEAD. |
+| `AK-02` | erfüllt | `SolverVersion_IsSolverV2_ForTheConstantAndEveryResultKind`; `PuzzleSolverTests` auf `solver-v2`. |
+| `AK-03` | erfüllt | `TraceTypes_AreImmutable…`, `Tracer_Replays…`, `TraceAudit_RejectsForgedTraces…`, `TracerPredicateTests`, Auditor-Prüfung aller Spuren der Exhaustive-/Seeded-Läufe (Sicherheit, Prämissenreihenfolge, Irredundanz). |
+| `AK-04` | erfüllt | `PureDeductive_SingleCell…`, `PureDeductive_TopPair…` (wörtliche Spuren, `searchNodes = 0`, `requiredGuessDepth = 0`), `NoRootStep_GivesMaxDeductionDepthZero…`. |
+| `AK-05` | erfüllt | `SearchCases_CountEveryAssumption…` (u. a. 4×4 mit tiefem verworfenem Zweig: 10 Knoten, 20 Root-Schritte, Tiefe 2). |
+| `AK-06` | erfüllt | `SearchCases…` (`requiredGuessDepth` 1, 2 und 3 bei 2, 4 bzw. 6 begonnenen Annahmen) und Seeded-4×4. |
+| `AK-07` | erfüllt | `TraceAudit.Recompute` rechnet Schritte und Tiefe unabhängig aus den Prämissen nach; in allen Metriktests verglichen. |
+| `AK-08` | erfüllt | `CampaignGate_*`, `NonUniqueAndLimitedResults_*`, `Classify_*`. |
+| `AK-09` | erfüllt | Bestehende Exhaustive-/Metamorphose-/Determinismus-/Budgettests unverändert grün; Exhaustive 39.664 Definitionen gegen den unabhängigen Oracle (1.800 UNIQUE, davon 1.600 Root-only, 200 mit einer Annahme). |
+| `AK-10` | erfüllt | `RepeatedRuns_AreByteIdentical…`; 10×10-Budget in CI: p95 14,5 ms, Maximum 36,0 ms (Grenzen 250 ms / 2 s). |
+| `AK-11` | erfüllt | Abschnitt 13 / 4.1; Solver hängt weiter nur von der Domain ab; keine Proof-, Schema-, Pipeline-, Strict-, Generator- oder Contentänderung. |
+| `AK-12` | erfüllt, siehe Evidenz | Validatoren, Scope, Unity-CI; Solver-Coverage 99,4 % gegenüber Baseline 98,7 %. |
+
+### Tests und Evidenz
+
+- Solver-EditMode lokal (NUnit 3.14, .NET 8): 43/43. Unity-EditMode in CI auf `fa64a83`: 401/401, davon Solver 43/43. Der lokale Harness ist nur Vorprüfung; ein zusätzlicher NUnit-3.5.0-Kompilierlauf hat den CI-Fehler `Does.Not.Contain(int)` (Commit `2ff6dc0`) reproduziert, der in `9e6b066` behoben wurde.
+- Mutationsnachweis (lokal, auf Scratchkopien): 26 verfälschte Solvervarianten, alle von mindestens einem Test erkannt (siehe `TEST_STRATEGY.md` 4.1). Nicht Teil der CI.
+- Coverage `STP.Puzzle.Solver` (Unity-OpenCover, Zeilen): Baseline WP-023 98,7 % (375/380); erster Stand von Phase B 90,7 % (747/824), weil Prädikate für `LOOP_PREVENTION`, `LOCAL_DEGREE_REQUIRED` und `CONNECTIVITY_PRESERVATION` in keinem Root-Lauf feuern; nach `TracerPredicateTests` **99,4 % (819/824)**. Die fünf verbleibenden unbedeckten Zeilen liegen in `PuzzleSolver.cs` und sind unverändert die des Baselinelaufs. Keine Ausnahme nötig.
+- Performance: `WP024_BUDGET solver=solver-v2 … p95_ms=14.490 max_ms=35.967` (PR-Run `38094975426`); `WP022_BUDGET` p95 14,859 ms, Maximum 39,766 ms.
+- CI auf `fa64a83`: Architecture Validation PR-Run `38094975504` und Push-Run `38094972446` SUCCESS. Unity CI Push-Run `38094972458` (Wiederholung 2) **SUCCESS** über alle Jobs: Compile/EditMode 401/401, PlayMode-Smoke, Android-IL2CPP, iOS-Export. Der erste Versuch dieses Laufs und Teile des PR-Runs `38094975426` (PlayMode, Android, iOS) wurden ohne Testergebnis von der Concurrency-Gruppe `unity-personal-seat` verdrängt (Runner-Abbruch nach vier Sekunden ohne Schritte, kein Fehlschlag). Der PR-Run lieferte Compile/EditMode SUCCESS mit denselben 401/401. Der Nachweis auf dem finalen PR-HEAD (Docs-Commit) wird nach dessen Läufen im Abschlussbericht ausgewiesen.
+- Lokal: Architecture- und Production-Scope-Validator mit `--self-test` PASS; `git diff --check` sauber; Manifest unverändert.
+
+### Bekannte Einschränkungen
+
+1. Metriken und Spur nur für `UNIQUE` (konservative Lesart von ADR-031 Abschnitt 4, „Offene Grenzfälle“ Nr. 1). Keine eigene Festlegung für 0, 2+ und `INDETERMINATE`; kein Blocker.
+2. Bei mehreren irredundanten Prämissenmengen wählt eine feste Löschreihenfolge (jüngster Eintrag zuerst) genau eine. Das ist eine Festlegung innerhalb von ADR-031 und wird erst mit `solver-v3` änderbar.
+3. `CONNECTIVITY_PRESERVATION`, `LOOP_PREVENTION` und `LOCAL_DEGREE_REQUIRED` treten in den untersuchten Root-Läufen (rund 19.000) nicht auf; ihre Ableitungsprüfungen sind durch White-Box-Tests gegen die echten Stufen belegt, nicht durch Rootläufe.
+4. Kein Proof, keine Schemaänderung, keine Strict-Validation: ein Root-only-`solver-v2`-Ergebnis ist weiterhin nicht importierbar oder releasefähig. `BLOCKER-PROD-001` bis `-003` bleiben unberührt.
+5. Es gibt keine unabhängige Abschluss-QC; sie wurde nicht simuliert.
+
+### Nächster Schritt
+
+Unabhängige Abschlussprüfung auf dem eingefrorenen finalen PR-HEAD, danach Geschäftsführungsentscheidung zur Integration. Erst nach Integration von WP-024 erhält der Proof-v1-Block einen eigenen ausführbaren Startanker (ADR-030).
