@@ -29,7 +29,7 @@ namespace STP.Tests.Solver.EditMode
             var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(Class(expected)), label);
             Assert.That(result.SolutionCount, Is.EqualTo(expected), label);
-            Assert.That(result.SolverVersion, Is.EqualTo("solver-v1"));
+            Assert.That(result.SolverVersion, Is.EqualTo("solver-v2"));
             if (expected > 0)
             {
                 Assert.That(result.Path[0].X, Is.EqualTo(def.A.Cell.X)); Assert.That(result.Path[0].Y, Is.EqualTo(def.A.Cell.Y));
@@ -217,6 +217,83 @@ namespace STP.Tests.Solver.EditMode
                 Assert.That(result.Path.Select(c => (c.X, c.Y)), Is.EqualTo(baseline.Path.Select(c => (c.X, c.Y))));
                 Assert.That(result.Reductions.Select(r => r.ToString()), Is.EqualTo(baseline.Reductions.Select(r => r.ToString())));
             }
+        }
+
+        // FIXTURE_ONLY (QC finding 2 of PR #17). Forced serpentine in an n x n grid: the full rows 0, 2, .., 2m are joined by one
+        // connector cell on every odd row, alternating right and left. The root propagation alone solves it, so the single
+        // solution carries a long root trace (1639 steps for 32x32, m = 14) whose construction is the post-search work.
+        private static PuzzleDefinition Serpentine(int n, int m)
+        {
+            var rows = new int[n]; var cols = new int[n];
+            for (int j = 0; j <= m; j++) { rows[2 * j] = n; for (int x = 0; x < n; x++) cols[x]++; }
+            for (int j = 0; j < m; j++) { rows[2 * j + 1] = 1; cols[j % 2 == 0 ? n - 1 : 0]++; }
+            return Define(n, n, new SmallPathOracle.Edge(3, 0), new SmallPathOracle.Edge(m % 2 == 0 ? 1 : 3, 2 * m), rows, cols);
+        }
+
+        [TestCase(10, 4)] [TestCase(32, 14)]
+        public void HardBudget_UniqueNeedsAProbeAfterTheWholeTraceBuild_AtEveryInterruptionKind(int n, int m)
+        {
+            // The scripted clock stays at 1 ms for every probe but the last and flips only the last one. The last probe is the
+            // one after dedup, trace build, metrics and result construction; a flip there must never end as UNIQUE or eligible.
+            var def = Serpentine(n, m); int total = 0;
+            var baseline = PuzzleSolver.Solve(def, new SolverLimits(maxStates: 5000000, timeBudgetMs: 10, monotonicNow: () => { total++; return 1; }));
+            Assert.That(baseline.Classification, Is.EqualTo(SolverClassification.UNIQUE));
+            Assert.That(baseline.DeductionTrace.Count, Is.GreaterThan(n), "the trace must be large enough to be real post-search work");
+            Assert.That(CampaignGate.Evaluate(baseline), Is.EqualTo(CampaignGateOutcome.ELIGIBLE));
+            Assert.That(total, Is.GreaterThan(2));
+            foreach (var interruption in new[] { "timeout", "cancellation", "clock-backwards" })
+            {
+                using var token = new CancellationTokenSource(); int reads = 0;
+                long Now()
+                {
+                    if (++reads < total) return 1;
+                    Assert.That(reads, Is.EqualTo(total), "no probe may follow the last one");
+                    if (interruption == "cancellation") token.Cancel();
+                    return interruption == "timeout" ? 11 : interruption == "clock-backwards" ? 0 : 1;
+                }
+                var result = PuzzleSolver.Solve(def, new SolverLimits(maxStates: 5000000, timeBudgetMs: 10, cancellation: token.Token, monotonicNow: Now));
+                Assert.That(reads, Is.EqualTo(total), interruption);
+                Assert.That(result.Classification, Is.EqualTo(SolverClassification.INDETERMINATE), interruption);
+                Assert.That(CampaignGate.Evaluate(result), Is.EqualTo(CampaignGateOutcome.INDETERMINATE), interruption);
+                Assert.That(result.Metrics, Is.Null, interruption); Assert.That(result.DeductionTrace, Is.Empty, interruption);
+                Assert.That(result.SolutionCount, Is.EqualTo(1), "the search itself was complete");
+            }
+            {
+                // The limit is exclusive at the budget: the last probe sitting exactly on it is exhausted, one millisecond earlier is not.
+                int reads = 0;
+                long FinalAt(long finalNow) { return ++reads < total ? 1 : finalNow; }
+                Assert.That(PuzzleSolver.Solve(def, new SolverLimits(maxStates: 5000000, timeBudgetMs: 10, monotonicNow: () => FinalAt(11))).Classification, Is.EqualTo(SolverClassification.INDETERMINATE));
+                reads = 0;
+                var inside = PuzzleSolver.Solve(def, new SolverLimits(maxStates: 5000000, timeBudgetMs: 10, monotonicNow: () => FinalAt(10)));
+                Assert.That(inside.Classification, Is.EqualTo(SolverClassification.UNIQUE));
+                Assert.That(inside.DeductionTrace.Count, Is.EqualTo(baseline.DeductionTrace.Count));
+            }
+            // The state limit shares the fail-closed rule: it is checked before work starts, never after the fact.
+            Assert.That(PuzzleSolver.Solve(def, new SolverLimits(maxStates: 1, monotonicNow: () => 1)).Classification, Is.EqualTo(SolverClassification.UNIQUE), "the root alone fits one state");
+            Assert.That(PuzzleSolver.Solve(def, new SolverLimits(maxStates: 0, monotonicNow: () => 1)).Classification, Is.EqualTo(SolverClassification.INDETERMINATE));
+        }
+
+        [Test]
+        public void HardBudget_NoBudgetedWorkRunsBetweenTheLastProbeAndTheReturn()
+        {
+            // Before the correction the trace build, the metrics and the result object were created after the last probe
+            // (about 1.3 ms of 50 ms on the 32x32 serpentine). Wall-clock based, therefore robust by construction: the
+            // minimum over repeated runs of (return - last probe) is compared with the minimum of the whole call, so a
+            // scheduler hiccup can only raise single samples and a slow machine scales both sides alike.
+            var def = Serpentine(32, 14); var sw = new Stopwatch(); long lastProbe = 0;
+            long Now() { lastProbe = sw.ElapsedTicks; return lastProbe * 1000 / Stopwatch.Frequency; }
+            var limits = new SolverLimits(maxStates: 5000000, timeBudgetMs: 600000, monotonicNow: Now);
+            for (int i = 0; i < 3; i++) Assert.That(PuzzleSolver.Solve(def, limits).Classification, Is.EqualTo(SolverClassification.UNIQUE));
+            double minTail = double.MaxValue, minTotal = double.MaxValue;
+            for (int i = 0; i < 25; i++)
+            {
+                sw.Restart(); lastProbe = 0;
+                var result = PuzzleSolver.Solve(def, limits); long end = sw.ElapsedTicks;
+                Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE));
+                minTail = Math.Min(minTail, (end - lastProbe) * 1000.0 / Stopwatch.Frequency); minTotal = Math.Min(minTotal, end * 1000.0 / Stopwatch.Frequency);
+            }
+            TestContext.WriteLine($"WP024_HARD_BUDGET tail_after_last_probe_ms={minTail:F4} total_ms={minTotal:F3} ratio={minTail / minTotal:P3}");
+            Assert.That(minTail, Is.LessThan(minTotal * 0.005), "work after the last budget probe is not covered by the hard budget");
         }
 
         private static IEnumerable<PuzzleDefinition> BudgetCorpus()
