@@ -76,15 +76,20 @@ namespace STP.Tests.Solver.EditMode
             // the three border cells keep only the shapes that do not leave the grid [#1..#3]; (1,0) and (0,1) then
             // lose the shape that would need an E/S port of the WN cell [#4,#5]; (1,1) loses WN because its N
             // neighbour (1,0) is empty, which needs both of its entries (#1 removes the S shapes NS/ES, #4 SW).
+            // Public facts (QC finding 1 of PR #17, corrected): whether a border side carries an exterior port of the
+            // puzzle depends on BOTH endpoints. #1..#3 remove shapes because their exterior port is no endpoint port,
+            // which would be false if A or B were moved onto that port, so they declare A and B next to the grid size
+            // (the earlier golden declared the grid size only and was not sufficient). #0 reads B because A and B share
+            // the cell and the W port of the cell is B's. The NEIGHBOR steps read the grid size and earlier entries only.
             var def = SolverV2Fixtures.SingleCell(); var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE)); Assert.That(OracleCount(def), Is.EqualTo(1));
             Assert.That(Quad(result.Metrics!), Is.EqualTo((0, 7, 3, 0)));
             Assert.That(result.DeductionTrace.Select(Fmt), Is.EqualTo(new[]
             {
                 "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+NS+EW+NE+ES+SW =WN <grid A B> d1",
-                "BORDER_PORT_FORBIDDEN@1,0 -NS+EW+NE+ES+WN =EMPTY+SW <grid> d1",
-                "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid> d1",
-                "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid> d1",
+                "BORDER_PORT_FORBIDDEN@1,0 -NS+EW+NE+ES+WN =EMPTY+SW <grid A B> d1",
+                "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid A B> d1",
+                "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid A B> d1",
                 "NEIGHBOR_PORT_REQUIRED@1,0 -SW =EMPTY <grid #0> d2",
                 "NEIGHBOR_PORT_REQUIRED@0,1 -NE =EMPTY <grid #0> d2",
                 "NEIGHBOR_PORT_REQUIRED@1,1 -WN =EMPTY <grid #1 #4> d3"
@@ -100,15 +105,19 @@ namespace STP.Tests.Solver.EditMode
             // N/0 -> N/1 on 2x2, rows (2,0): both top cells must open to the north [#0,#1], the bottom cells keep
             // EMPTY or their border-legal shape [#2,#3], row 1 has target 0 [#4,#5] and with it the south-facing
             // top shapes disappear [#6,#7]. The root alone solves the puzzle.
+            // Public facts (QC finding 1 of PR #17, corrected): #0 removes WN because the W port of (0,0) is no endpoint
+            // port, which depends on B, and #1 removes NE because the E port of (1,0) is no endpoint port, which depends
+            // on A (the earlier golden declared A resp. B only and was not sufficient). The border steps #2/#3 declare
+            // both endpoints, the LINE_ZERO steps only their row fact, the NEIGHBOR steps the grid size and entries.
             var def = SolverV2Fixtures.TopPair(); var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE)); Assert.That(OracleCount(def), Is.EqualTo(1));
             Assert.That(Quad(result.Metrics!), Is.EqualTo((0, 8, 2, 0)));
             Assert.That(result.DeductionTrace.Select(Fmt), Is.EqualTo(new[]
             {
-                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+EW+ES+SW+WN =NS+NE <grid A> d1",
-                "ENDPOINT_ENTRY_REQUIRED@1,0 -EMPTY+EW+NE+ES+SW =NS+WN <grid B> d1",
-                "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid> d1",
-                "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid> d1",
+                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+EW+ES+SW+WN =NS+NE <grid A B> d1",
+                "ENDPOINT_ENTRY_REQUIRED@1,0 -EMPTY+EW+NE+ES+SW =NS+WN <grid A B> d1",
+                "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid A B> d1",
+                "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid A B> d1",
                 "LINE_ZERO@0,1 -NE =EMPTY <row1> d1",
                 "LINE_ZERO@1,1 -WN =EMPTY <row1> d1",
                 "NEIGHBOR_PORT_REQUIRED@0,0 -NS =NE <grid #2 #4> d2",

@@ -9,8 +9,11 @@ namespace STP.Puzzle.Solver
     /// <summary>
     /// Records the root propagation (before the first DFS assumption) as an auditable
     /// solver-v2 trace. Each entry is the atomic fact "cell cannot take the removed values".
-    /// Its premises are the public facts of its rule plus an irredundant set of earlier
+    /// Its premises are the public facts its derivation consults plus an irredundant set of earlier
     /// entries from which the rule alone re-derives the removal. DFS branches never reach this class.
+    /// A published step is sound for every valid puzzle that agrees with it on its declared public facts:
+    /// the derivation is a deterministic function of exactly the facts it reads, so a fact it does not
+    /// read cannot influence the conclusion, and a fact it reads is always declared (QC finding 1 of PR #17).
     /// </summary>
     internal sealed class RootDeductionTracer
     {
@@ -18,7 +21,10 @@ namespace STP.Puzzle.Solver
         {
             public int Cell; public string Rule = ""; public byte Removed; public byte After; public string? Axis; public int Line; public int Depth;
             public int[] Premises = Array.Empty<int>();
+            public int Facts; // bit set (FactGrid, FactA, FactB, FactLine) of the public facts the derivation consulted
         }
+        // Public fact bits of Entry.Facts, in the canonical declaration order GRID_SIZE, ENDPOINT_A, ENDPOINT_B, line count.
+        private const int FactGrid = 1, FactA = 2, FactB = 4, FactLine = 8;
         private readonly PuzzleDefinition p;
         private readonly List<Entry> entries = new List<Entry>();
         private readonly HashSet<string> keys = new HashSet<string>(StringComparer.Ordinal);
@@ -51,6 +57,10 @@ namespace STP.Puzzle.Solver
             int depth = 0;
             for (int j = 0; j < included.Length; j++) if (included[j]) { premises.Add(j); depth = Math.Max(depth, entries[j].Depth); }
             entry.Premises = premises.ToArray(); entry.Depth = depth + 1;
+            // The facts are what the derivation reads on exactly the chosen premises. An underivable step is a fault and
+            // never published; for diagnostics it declares every fact its rule can consult.
+            int consulted = Derive(entry, View(included));
+            entry.Facts = consulted >= 0 ? consulted : AllFacts(rule);
             entries.Add(entry);
         }
 
@@ -86,9 +96,7 @@ namespace STP.Puzzle.Solver
                 foreach (var q in step.Premises.Where(q => q.IsPublicFact && (q.PublicFact == PublicFactKind.ROW_COUNT || q.PublicFact == PublicFactKind.COLUMN_COUNT)))
                 { e.Axis = q.PublicFact == PublicFactKind.ROW_COUNT ? "ROW" : "COLUMN"; e.Line = q.LineIndex; }
                 if ((e.Rule.StartsWith("LINE_", StringComparison.Ordinal)) && (e.Axis == null || e.Line < 0 || e.Line >= (e.Axis == "ROW" ? definition.Grid.Height : definition.Grid.Width))) return "step " + i + ": line fact";
-                var expectedFacts = auditor.FactsOf(e).ToArray();
                 var declaredFacts = step.Premises.Where(q => q.IsPublicFact).ToArray();
-                if (expectedFacts.Length != declaredFacts.Length || expectedFacts.Where((q, k) => q.PublicFact != declaredFacts[k].PublicFact || q.LineIndex != declaredFacts[k].LineIndex).Any()) return "step " + i + ": public facts";
                 var refs = step.Premises.Where(q => !q.IsPublicFact).Select(q => q.TraceIndex).ToArray();
                 if (step.Premises.Take(declaredFacts.Length).Any(q => !q.IsPublicFact) || refs.Zip(refs.Skip(1), (x, y) => x >= y).Any(b => b) || refs.Any(r => r < 0 || r >= i)) return "step " + i + ": premise order or forward reference";
                 int depth = 0; foreach (int r in refs) depth = Math.Max(depth, depths[r]);
@@ -103,7 +111,13 @@ namespace STP.Puzzle.Solver
                     foreach (int r in set) view[auditor.entries[r].Cell] &= (byte)~auditor.entries[r].Removed;
                     return view;
                 }
-                if (!auditor.Holds(e, ViewOf(refs))) return "step " + i + ": not derivable from its premises";
+                int consulted = auditor.Derive(e, ViewOf(refs));
+                if (consulted < 0) return "step " + i + ": not derivable from its premises";
+                // The declared public facts must be exactly the facts the derivation reads: a missing one would let an
+                // undeclared fact change the conclusion, an additional one is not a premise of the derivation.
+                e.Facts = consulted;
+                var expectedFacts = auditor.FactsOf(e).ToArray();
+                if (expectedFacts.Length != declaredFacts.Length || expectedFacts.Where((q, k) => q.PublicFact != declaredFacts[k].PublicFact || q.LineIndex != declaredFacts[k].LineIndex).Any()) return "step " + i + ": public facts";
                 if (requireIrredundant)
                     foreach (int dropped in refs)
                         if (auditor.Holds(e, ViewOf(refs.Where(r => r != dropped)))) return "step " + i + ": premise #" + dropped + " is redundant";
@@ -119,30 +133,10 @@ namespace STP.Puzzle.Solver
 
         private IEnumerable<DeductionPremise> FactsOf(Entry e)
         {
-            switch (e.Rule)
-            {
-                case "BORDER_PORT_FORBIDDEN":
-                case "ENDPOINT_ENTRY_REQUIRED":
-                case "LOCAL_DEGREE_REQUIRED":
-                    yield return DeductionPremise.Fact(PublicFactKind.GRID_SIZE);
-                    if (e.Cell == p.Index(p.A.Cell)) yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_A);
-                    if (e.Cell == p.Index(p.B.Cell)) yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_B);
-                    break;
-                case "NEIGHBOR_PORT_REQUIRED":
-                case "LOOP_PREVENTION":
-                    yield return DeductionPremise.Fact(PublicFactKind.GRID_SIZE);
-                    break;
-                case "CONNECTIVITY_PRESERVATION":
-                    yield return DeductionPremise.Fact(PublicFactKind.GRID_SIZE);
-                    yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_A);
-                    yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_B);
-                    break;
-                case "LINE_ZERO":
-                case "LINE_TARGET_REACHED":
-                case "LINE_ALL_REMAINING_OCCUPIED":
-                    yield return DeductionPremise.Fact(e.Axis == "ROW" ? PublicFactKind.ROW_COUNT : PublicFactKind.COLUMN_COUNT, e.Line);
-                    break;
-            }
+            if ((e.Facts & FactGrid) != 0) yield return DeductionPremise.Fact(PublicFactKind.GRID_SIZE);
+            if ((e.Facts & FactA) != 0) yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_A);
+            if ((e.Facts & FactB) != 0) yield return DeductionPremise.Fact(PublicFactKind.ENDPOINT_B);
+            if ((e.Facts & FactLine) != 0) yield return DeductionPremise.Fact(e.Axis == "ROW" ? PublicFactKind.ROW_COUNT : PublicFactKind.COLUMN_COUNT, e.Line);
         }
 
         // The cells whose earlier entries the rule can read; null means the whole grid.
@@ -185,80 +179,140 @@ namespace STP.Puzzle.Solver
         }
 
         // True when the entry's rule, applied to the view alone, rejects every value the entry removed.
-        private bool Holds(Entry e, byte[] view)
+        private bool Holds(Entry e, byte[] view) => Derive(e, view) >= 0;
+
+        private static int AllFacts(string rule)
+        {
+            switch (rule)
+            {
+                case "BORDER_PORT_FORBIDDEN":
+                case "ENDPOINT_ENTRY_REQUIRED":
+                case "LOCAL_DEGREE_REQUIRED":
+                case "CONNECTIVITY_PRESERVATION": return FactGrid | FactA | FactB;
+                case "NEIGHBOR_PORT_REQUIRED":
+                case "LOOP_PREVENTION": return FactGrid;
+                case "LINE_ALL_REMAINING_OCCUPIED": return FactGrid | FactLine;
+                case "LINE_ZERO":
+                case "LINE_TARGET_REACHED": return FactLine;
+                default: return 0;
+            }
+        }
+
+        // Re-derives the removal from the view alone. The result is -1 when the rule does not reject every removed value,
+        // otherwise the bit set of the public facts that derivation consulted. A fact is consulted exactly when a different
+        // value of it could change the outcome of the chosen derivation, so the conclusion holds for every valid puzzle that
+        // agrees on these facts. The rule is evaluated as its stage defines it. Where a rule rejects a value by any one of
+        // several violated conditions (border, neighbor), the violated condition consulting the fewest facts is named
+        // (the first on a tie); a counting rule (degree) consults everything it counts.
+        private int Derive(Entry e, byte[] view)
         {
             switch (e.Rule)
             {
                 case "BORDER_PORT_FORBIDDEN":
                 case "ENDPOINT_ENTRY_REQUIRED":
-                    return All(e, v => RejectsBorder(e.Cell, v));
+                    return Each(e, v => BorderReason(e.Cell, v));
                 case "NEIGHBOR_PORT_REQUIRED":
-                    return All(e, v => RejectsNeighbor(view, e.Cell, v));
+                    return Each(e, v => NeighborReason(view, e.Cell, v));
                 case "LOCAL_DEGREE_REQUIRED":
-                    return All(e, v => RejectsDegree(view, e.Cell, v));
+                    return Each(e, v => DegreeReason(view, e.Cell, v));
                 case "LINE_ALL_REMAINING_OCCUPIED":
                 {
+                    // The number of cells that can still be occupied depends on the line length, hence on the grid size.
                     int max = 0, target = e.Axis == "ROW" ? p.RowCounts[e.Line] : p.ColumnCounts[e.Line];
                     foreach (int cell in LineCells(e)) if ((view[cell] & 126) != 0) max++;
-                    return max == target && (view[e.Cell] & 126) != 0 && All(e, v => v == 0);
+                    return max == target && (view[e.Cell] & 126) != 0 ? Each(e, v => v == 0 ? FactGrid | FactLine : -1) : -1;
                 }
                 case "LINE_ZERO":
                 case "LINE_TARGET_REACHED":
                 {
+                    // Only cells already known to be occupied are counted, so the length of the line does not matter.
                     int min = 0, target = e.Axis == "ROW" ? p.RowCounts[e.Line] : p.ColumnCounts[e.Line];
                     foreach (int cell in LineCells(e)) if ((view[cell] & 1) == 0) min++;
-                    return min == target && (view[e.Cell] & 1) != 0 && (e.Rule == "LINE_ZERO") == (target == 0) && All(e, v => v != 0);
+                    return min == target && (view[e.Cell] & 1) != 0 && (e.Rule == "LINE_ZERO") == (target == 0) ? Each(e, v => v != 0 ? FactLine : -1) : -1;
                 }
                 case "LOOP_PREVENTION":
-                    return LoopHolds(e, view);
+                    return LoopReason(e, view);
                 case "CONNECTIVITY_PRESERVATION":
-                    return ConnectivityHolds(e, view);
+                    return ConnectivityReason(e, view);
                 default:
-                    return false;
+                    return -1;
             }
         }
 
-        private static bool All(Entry e, Func<int, bool> rejects)
+        // Union of the facts of every removed value; -1 as soon as one removed value is not rejected.
+        private static int Each(Entry e, Func<int, int> reason)
         {
-            for (int v = 0; v < 7; v++) if ((e.Removed & (1 << v)) != 0 && !rejects(v)) return false;
-            return true;
+            int facts = 0;
+            for (int v = 0; v < 7; v++)
+            {
+                if ((e.Removed & (1 << v)) == 0) continue;
+                int r = reason(v);
+                if (r < 0) return -1;
+                facts |= r;
+            }
+            return facts;
         }
 
-        private bool RejectsBorder(int cell, int value)
+        private static int FactCount(int facts) { int n = 0; for (; facts != 0; facts &= facts - 1) n++; return n; }
+        private static int Cheaper(int best, int offer) => offer >= 0 && (best < 0 || FactCount(offer) < FactCount(best)) ? offer : best;
+
+        private bool EndpointMatches(Endpoint endpoint, int cell, int direction) => endpoint.Side == (Direction)direction && p.Index(endpoint.Cell) == cell;
+
+        // Public endpoint port of the puzzle at the exterior side of a cell. A matching endpoint settles it alone; a
+        // negative answer needs both endpoints, because either could be moved onto the port.
+        private bool EndpointPort(int cell, int direction, out int facts)
         {
-            int x = cell % p.Grid.Width, y = cell / p.Grid.Width;
-            bool endpoint = cell == p.Index(p.A.Cell) || cell == p.Index(p.B.Cell);
-            if (value == 0 && endpoint) return true;
+            if (EndpointMatches(p.A, cell, direction)) { facts = FactA; return true; }
+            if (EndpointMatches(p.B, cell, direction)) { facts = FactB; return true; }
+            facts = FactA | FactB; return false;
+        }
+
+        // The border rule: the removed value either leaves an endpoint cell empty or disagrees with the exterior port
+        // of a border side. Which cells and sides are border or endpoint is a property of the grid and the endpoints.
+        private int BorderReason(int cell, int value)
+        {
+            int best = -1;
+            if (value == 0)
+            {
+                if (cell == p.Index(p.A.Cell)) best = Cheaper(best, FactGrid | FactA);
+                else if (cell == p.Index(p.B.Cell)) best = Cheaper(best, FactGrid | FactB);
+            }
             for (int d = 0; d < 4; d++)
-                if (PuzzleSolver.Neighbor(p, cell, d) == -1 && ((PuzzleSolver.Ports(value) & (1 << d)) != 0) != p.IsEndpointPort(x, y, (Direction)d)) return true;
-            return false;
+            {
+                if (PuzzleSolver.Neighbor(p, cell, d) != -1) continue;
+                bool has = (PuzzleSolver.Ports(value) & (1 << d)) != 0;
+                if (has != EndpointPort(cell, d, out int facts)) best = Cheaper(best, FactGrid | facts);
+            }
+            return best;
         }
 
-        private bool RejectsNeighbor(byte[] view, int cell, int value)
+        private int NeighborReason(byte[] view, int cell, int value)
         {
             for (int d = 0; d < 4; d++)
             {
                 int n = PuzzleSolver.Neighbor(p, cell, d);
-                if (n >= 0 && !PuzzleSolver.Has(view[n], (d + 2) % 4, (PuzzleSolver.Ports(value) & (1 << d)) != 0)) return true;
+                if (n >= 0 && !PuzzleSolver.Has(view[n], (d + 2) % 4, (PuzzleSolver.Ports(value) & (1 << d)) != 0)) return FactGrid;
             }
-            return false;
+            return -1;
         }
 
-        private bool RejectsDegree(byte[] view, int cell, int value)
+        // The degree rule counts the supported ports of the value (stage 3), so it consults the support of every port:
+        // the neighbor of an interior port, the public endpoint port of an exterior one.
+        private int DegreeReason(byte[] view, int cell, int value)
         {
-            if (value == 0) return false;
-            int supported = 0;
+            if (value == 0) return -1;
+            int supported = 0, facts = 0;
             for (int d = 0; d < 4; d++)
             {
                 if ((PuzzleSolver.Ports(value) & (1 << d)) == 0) continue;
-                int n = PuzzleSolver.Neighbor(p, cell, d);
+                int n = PuzzleSolver.Neighbor(p, cell, d); facts |= FactGrid;
                 if (n >= 0) { if (PuzzleSolver.Has(view[n], (d + 2) % 4, true)) supported++; }
-                else if (p.IsEndpointPort(cell % p.Grid.Width, cell / p.Grid.Width, (Direction)d)) supported++;
+                else { if (EndpointPort(cell, d, out int portFacts)) supported++; facts |= portFacts; }
             }
-            return supported != 2;
+            return supported != 2 ? facts : -1;
         }
 
-        private bool LoopHolds(Entry e, byte[] view)
+        private int LoopReason(Entry e, byte[] view)
         {
             int count = view.Length;
             var parents = Enumerable.Range(0, count).ToArray();
@@ -269,22 +323,23 @@ namespace STP.Puzzle.Solver
                     int neighbor = PuzzleSolver.Neighbor(p, cell, d);
                     if (neighbor <= cell || PuzzleSolver.Has(view[cell], d, false) || PuzzleSolver.Has(view[neighbor], (d + 2) % 4, false)) continue;
                     int left = Root(cell), right = Root(neighbor);
-                    if (left == right) return false;
+                    if (left == right) return -1;
                     parents[left] = right;
                 }
-            return All(e, value =>
+            return Each(e, value =>
             {
-                if (value == 0) return false;
+                if (value == 0) return -1;
                 var adjacent = new List<int>(2);
                 for (int d = 0; d < 4; d++) if ((PuzzleSolver.Ports(value) & (1 << d)) != 0)
                 {
                     int n = PuzzleSolver.Neighbor(p, e.Cell, d); if (n >= 0 && !PuzzleSolver.Has(view[n], (d + 2) % 4, false)) adjacent.Add(n);
                 }
-                return adjacent.Count == 2 && Root(adjacent[0]) == Root(adjacent[1]) && Root(e.Cell) != Root(adjacent[0]);
+                return adjacent.Count == 2 && Root(adjacent[0]) == Root(adjacent[1]) && Root(e.Cell) != Root(adjacent[0]) ? FactGrid : -1;
             });
         }
 
-        private bool ConnectivityHolds(Entry e, byte[] view)
+        // Connectivity starts at endpoint A, requires endpoint B to be reached and walks the grid.
+        private int ConnectivityReason(Entry e, byte[] view)
         {
             var reached = new bool[view.Length]; var queue = new Queue<int>(); int start = p.Index(p.A.Cell); reached[start] = true; queue.Enqueue(start);
             while (queue.Count > 0)
@@ -296,7 +351,7 @@ namespace STP.Puzzle.Solver
                     if (n >= 0 && !reached[n] && PuzzleSolver.Has(view[cell], d, true) && PuzzleSolver.Has(view[n], (d + 2) % 4, true)) { reached[n] = true; queue.Enqueue(n); }
                 }
             }
-            return reached[p.Index(p.B.Cell)] && !reached[e.Cell] && All(e, v => v != 0);
+            return reached[p.Index(p.B.Cell)] && !reached[e.Cell] ? Each(e, v => v != 0 ? FactGrid | FactA | FactB : -1) : -1;
         }
     }
 }

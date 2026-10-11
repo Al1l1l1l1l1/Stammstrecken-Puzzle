@@ -246,15 +246,22 @@ namespace STP.Puzzle.Solver
                 }
             }
             Search(Enumerable.Repeat((byte)127, p.Grid.CellCount).ToArray(), 0);
+            // Everything below up to the single final CheckBudget() is budgeted work: reduction dedup, the trace build,
+            // the metrics and the construction of the UNIQUE result. A UNIQUE verdict is only handed out when the last
+            // budget probe, taken after all of this work, still sits inside the budget (ADR-031: a timeout is never UNIQUE).
             var uniqueTrace = new HashSet<string>(StringComparer.Ordinal);
             var reductions = trace.Where(r => uniqueTrace.Add(r.ToString())).ToArray();
-            // Completion and reduction materialization are still budgeted work.
+            var candidate = Classify(interrupted, found, tracer.Faulted);
+            SolverResult? unique = null;
+            if (candidate == SolverClassification.UNIQUE)
+            {
+                var steps = tracer.Build();
+                unique = new SolverResult(candidate, found, path, reductions, SolverMetrics.FromTrace(searchNodes, steps, guessDepth), steps);
+            }
+            // The probe is the last operation that takes time; only returning the finished object follows it.
             CheckBudget();
-            var classification = Classify(interrupted, found, tracer.Faulted);
-            if (classification != SolverClassification.UNIQUE) return new SolverResult(classification, found, path, reductions);
-            var steps = tracer.Build();
-            var metrics = SolverMetrics.FromTrace(searchNodes, steps, guessDepth);
-            return new SolverResult(classification, found, path, reductions, metrics, steps);
+            if (interrupted) return new SolverResult(SolverClassification.INDETERMINATE, found, path, reductions);
+            return unique ?? new SolverResult(candidate, found, path, reductions);
         }
     }
 }
