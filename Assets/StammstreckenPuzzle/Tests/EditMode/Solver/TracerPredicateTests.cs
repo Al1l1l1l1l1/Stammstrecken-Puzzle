@@ -111,6 +111,11 @@ namespace STP.Tests.Solver.EditMode
             Assert.That(TraceAudit.Audit(def, Replace(Make("LINE_ZERO", s0.RemovedValues.ToArray(), s0.RemainingValues.ToArray(), grid)), false), Does.Contain("line fact"), "a line rule needs its row or column fact");
             Assert.That(TraceAudit.Audit(def, Replace(Make("LINE_ZERO", s0.RemovedValues.ToArray(), s0.RemainingValues.ToArray(), new[] { TraceAudit.Fact(PublicFactKind.ROW_COUNT, 9) })), false), Does.Contain("line fact"), "row index out of range");
             Assert.That(TraceAudit.Audit(def, Replace(Make("LINE_ZERO", s0.RemovedValues.ToArray(), s0.RemainingValues.ToArray(), new[] { TraceAudit.Fact(PublicFactKind.COLUMN_COUNT, 2) })), false), Does.Contain("line fact"), "column index out of range");
+            // A line step must name the line through its own cell: LINE_ZERO at (0,1) with the count of row 0 instead of row 1.
+            var s4 = trace[4]; Assert.That((s4.RuleCode, s4.Cell.Y), Is.EqualTo(("LINE_ZERO", 1)));
+            DeductionStep[] ReplaceAt(int index, DeductionStep step) { var copy = (DeductionStep[])trace.Clone(); copy[index] = step; return copy; }
+            Assert.That(TraceAudit.Audit(def, ReplaceAt(4, TraceAudit.With(s4, def, new[] { TraceAudit.Fact(PublicFactKind.ROW_COUNT, 0) })), false), Does.Contain("line fact"), "row of another cell");
+            Assert.That(TraceAudit.Audit(def, ReplaceAt(4, TraceAudit.With(s4, def, new[] { TraceAudit.Fact(PublicFactKind.COLUMN_COUNT, 1) })), false), Does.Contain("line fact"), "column of another cell");
         }
     }
 }

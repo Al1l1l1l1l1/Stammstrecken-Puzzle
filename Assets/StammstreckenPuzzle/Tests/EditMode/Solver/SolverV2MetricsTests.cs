@@ -76,23 +76,27 @@ namespace STP.Tests.Solver.EditMode
             // the three border cells keep only the shapes that do not leave the grid [#1..#3]; (1,0) and (0,1) then
             // lose the shape that would need an E/S port of the WN cell [#4,#5]; (1,1) loses WN because its N
             // neighbour (1,0) is empty, which needs both of its entries (#1 removes the S shapes NS/ES, #4 SW).
-            // Public facts (QC finding 1 of PR #17, corrected): whether a border side carries an exterior port of the
-            // puzzle depends on BOTH endpoints. #1..#3 remove shapes because their exterior port is no endpoint port,
-            // which would be false if A or B were moved onto that port, so they declare A and B next to the grid size
-            // (the earlier golden declared the grid size only and was not sufficient). #0 reads B because A and B share
-            // the cell and the W port of the cell is B's. The NEIGHBOR steps read the grid size and earlier entries only.
+            // Public facts are minimal (ADR-031 section 3, irredundant), derived by hand:
+            // #0 needs A (N port of the cell must be used) and B (W port must be used: NS, NE, ES lack it); the grid size is
+            // not needed, because (0,0) has only the exterior sides N and W in every grid of 2..32 cells per side.
+            // #1 (1,0) and #2 (0,1) need A and B (their N resp. W port is no endpoint port; either endpoint could sit there)
+            // and the grid size (EW/ES at (1,0) use the E side, which is exterior only if the grid is two wide; SW/ES at
+            // (0,1) use the S side likewise). #3 (1,1) has only the E and S sides as possible exterior sides: grid, A, B.
+            // #4/#5: the WN cell (0,0) has no E and no S port, so SW at (1,0) and NE at (0,1) lose their counter port;
+            // #0 alone carries this in every grid (second QC of PR #17, finding 2: the earlier golden also declared
+            // GRID_SIZE, which no valid puzzle needs). #6 needs #1 (no S shapes at (1,0)) and #4 (no SW), no public fact.
             var def = SolverV2Fixtures.SingleCell(); var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE)); Assert.That(OracleCount(def), Is.EqualTo(1));
             Assert.That(Quad(result.Metrics!), Is.EqualTo((0, 7, 3, 0)));
             Assert.That(result.DeductionTrace.Select(Fmt), Is.EqualTo(new[]
             {
-                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+NS+EW+NE+ES+SW =WN <grid A B> d1",
+                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+NS+EW+NE+ES+SW =WN <A B> d1",
                 "BORDER_PORT_FORBIDDEN@1,0 -NS+EW+NE+ES+WN =EMPTY+SW <grid A B> d1",
                 "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid A B> d1",
                 "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid A B> d1",
-                "NEIGHBOR_PORT_REQUIRED@1,0 -SW =EMPTY <grid #0> d2",
-                "NEIGHBOR_PORT_REQUIRED@0,1 -NE =EMPTY <grid #0> d2",
-                "NEIGHBOR_PORT_REQUIRED@1,1 -WN =EMPTY <grid #1 #4> d3"
+                "NEIGHBOR_PORT_REQUIRED@1,0 -SW =EMPTY <#0> d2",
+                "NEIGHBOR_PORT_REQUIRED@0,1 -NE =EMPTY <#0> d2",
+                "NEIGHBOR_PORT_REQUIRED@1,1 -WN =EMPTY <#1 #4> d3"
             }));
             Assert.That(result.Reductions.Count, Is.EqualTo(7), "A purely deductive run has no branch reductions");
             Assert.That(result.Path.Select(c => (c.X, c.Y)), Is.EqualTo(new[] { (0, 0) }));
@@ -105,23 +109,27 @@ namespace STP.Tests.Solver.EditMode
             // N/0 -> N/1 on 2x2, rows (2,0): both top cells must open to the north [#0,#1], the bottom cells keep
             // EMPTY or their border-legal shape [#2,#3], row 1 has target 0 [#4,#5] and with it the south-facing
             // top shapes disappear [#6,#7]. The root alone solves the puzzle.
-            // Public facts (QC finding 1 of PR #17, corrected): #0 removes WN because the W port of (0,0) is no endpoint
-            // port, which depends on B, and #1 removes NE because the E port of (1,0) is no endpoint port, which depends
-            // on A (the earlier golden declared A resp. B only and was not sufficient). The border steps #2/#3 declare
-            // both endpoints, the LINE_ZERO steps only their row fact, the NEIGHBOR steps the grid size and entries.
+            // Public facts are minimal (ADR-031 section 3, irredundant), derived by hand:
+            // #0 (0,0): A, because (0,0) must use A's N port (EMPTY, EW, ES, SW lack it), and B, because WN uses the W port,
+            // which would be legal with B there; no grid size, (0,0) has only the exterior sides N and W in every grid.
+            // #1 (1,0): B (N port), A (NE would be legal with A on the E port of (1,0)) and the grid size (NE uses the E
+            // side, which is exterior only if the grid is two wide). #2/#3: grid, A, B as in SingleCell. #4/#5: row 1 only.
+            // #6/#7: NS needs an S neighbor port; #2 resp. #3 leave the bottom cell only NE resp. WN plus EMPTY, #4 resp. #5
+            // remove that shape. No public fact: the cells are named by the premises (second QC of PR #17, finding 2: the
+            // earlier golden declared GRID_SIZE for #6/#7 and for #0, which no valid puzzle needs).
             var def = SolverV2Fixtures.TopPair(); var result = PuzzleSolver.Solve(def);
             Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE)); Assert.That(OracleCount(def), Is.EqualTo(1));
             Assert.That(Quad(result.Metrics!), Is.EqualTo((0, 8, 2, 0)));
             Assert.That(result.DeductionTrace.Select(Fmt), Is.EqualTo(new[]
             {
-                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+EW+ES+SW+WN =NS+NE <grid A B> d1",
+                "ENDPOINT_ENTRY_REQUIRED@0,0 -EMPTY+EW+ES+SW+WN =NS+NE <A B> d1",
                 "ENDPOINT_ENTRY_REQUIRED@1,0 -EMPTY+EW+NE+ES+SW =NS+WN <grid A B> d1",
                 "BORDER_PORT_FORBIDDEN@0,1 -NS+EW+ES+SW+WN =EMPTY+NE <grid A B> d1",
                 "BORDER_PORT_FORBIDDEN@1,1 -NS+EW+NE+ES+SW =EMPTY+WN <grid A B> d1",
                 "LINE_ZERO@0,1 -NE =EMPTY <row1> d1",
                 "LINE_ZERO@1,1 -WN =EMPTY <row1> d1",
-                "NEIGHBOR_PORT_REQUIRED@0,0 -NS =NE <grid #2 #4> d2",
-                "NEIGHBOR_PORT_REQUIRED@1,0 -NS =WN <grid #3 #5> d2"
+                "NEIGHBOR_PORT_REQUIRED@0,0 -NS =NE <#2 #4> d2",
+                "NEIGHBOR_PORT_REQUIRED@1,0 -NS =WN <#3 #5> d2"
             }));
             Assert.That(result.Reductions.Count, Is.EqualTo(8));
             Assert.That(result.Path.Select(c => (c.X, c.Y)), Is.EqualTo(new[] { (0, 0), (1, 0) }));
@@ -450,9 +458,18 @@ namespace STP.Tests.Solver.EditMode
             Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, depth: 3)), true), Does.Contain("depth"), "depth must follow from the premises");
             Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, Premises(2, 7))), true), Is.Not.Null, "forward reference");
             Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, Premises(4, 2))), true), Is.Not.Null, "premises must be in ascending order");
-            Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, facts6.Skip(1).Concat(new[] { TraceAudit.Entry(2), TraceAudit.Entry(4) }).ToArray())), true), Is.Not.Null, "public fact missing");
+            // Public facts: a border step without one of its facts, and the neighbor step with a fact no valid puzzle needs.
+            var s2 = trace[2]; var facts2 = s2.Premises.Where(q => q.IsPublicFact).ToArray();
+            Assert.That(facts2.Select(q => q.PublicFact), Is.EqualTo(new PublicFactKind?[] { PublicFactKind.GRID_SIZE, PublicFactKind.ENDPOINT_A, PublicFactKind.ENDPOINT_B }));
+            Assert.That(TraceAudit.Audit(def, Replace(2, TraceAudit.With(s2, def, facts2.Skip(1).ToArray())), true), Does.Contain("public facts"), "public fact missing");
+            Assert.That(facts6, Is.Empty, "a neighbor step names its cells through its entries and needs no public fact");
+            Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, new[] { TraceAudit.Fact(PublicFactKind.GRID_SIZE), TraceAudit.Entry(2), TraceAudit.Entry(4) })), true), Does.Contain("public facts"), "dispensable GRID_SIZE");
             Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, index: 5)), true), Is.Not.Null, "index must equal position");
-            Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, rule: "LOCAL_DEGREE_REQUIRED")), true), Is.Not.Null, "wrong rule code");
+            // A rule code under which the premises do not carry the conclusion is rejected. (LOCAL_DEGREE_REQUIRED is no such code
+            // here: with #2 and #4 the S port of NS at (0,0) has no counter port either, so that rule derives the same conclusion
+            // from the same premises; the audit checks derivability, the solver's own code is pinned by the goldens.)
+            Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, rule: "LOOP_PREVENTION")), true), Is.Not.Null, "wrong rule code");
+            Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, rule: "BORDER_PORT_FORBIDDEN")), true), Is.Not.Null, "wrong rule code");
             Assert.That(TraceAudit.Audit(def, Replace(6, TraceAudit.With(s6, def, rule: "MADE_UP_RULE")), true), Is.Not.Null, "unknown rule");
             // A public-fact-only step cannot be replaced by an invented conclusion.
             var s4 = trace[4];

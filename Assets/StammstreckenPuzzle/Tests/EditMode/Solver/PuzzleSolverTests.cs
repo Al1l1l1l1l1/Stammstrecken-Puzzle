@@ -296,6 +296,115 @@ namespace STP.Tests.Solver.EditMode
             Assert.That(minTail, Is.LessThan(minTotal * 0.005), "work after the last budget probe is not covered by the hard budget");
         }
 
+        // FIXTURE_ONLY (second QC of PR #17, finding 1). The 3x3 ambiguity of Multiple() (N/0 to N/2, all counts 3) in the
+        // top left corner of a 32x32 grid whose other rows and columns are 0, as reported: MULTIPLE_OR_MORE with a recovery
+        // protocol of about 1,200 reductions, all of which were copied into the result after the last budget probe.
+        private static PuzzleDefinition AmbiguousCorner32()
+        {
+            var rows = new int[32]; var cols = new int[32];
+            for (int i = 0; i < 3; i++) { rows[i] = 3; cols[i] = 3; }
+            return Define(32, 32, new SmallPathOracle.Edge(0, 0), new SmallPathOracle.Edge(0, 2), rows, cols);
+        }
+
+        // FIXTURE_ONLY. A long first path with an ambiguous start: A = N/0 enters a 3x3 block that has two Hamiltonian
+        // routes from (0,0) to (2,0) (via (1,0)/(1,1)/(0,1) or via (0,1)/(0,2)/../(2,1)), both leaving east along row 0;
+        // the path then runs down column 31 to row 4 and continues as a serpentine of full rows 4, 6, .., 28 joined by
+        // single connector cells, ending at the W or E border of row 28. Same counts for both block routes, so the result
+        // is MULTIPLE_OR_MORE with a first path of several hundred cells.
+        private static PuzzleDefinition AmbiguousLongPath32()
+        {
+            var cells = new List<(int X, int Y)>();
+            for (int x = 0; x < 32; x++) cells.Add((x, 0));
+            foreach (var c in new[] { (0, 1), (1, 1), (2, 1), (0, 2), (1, 2), (2, 2) }) cells.Add(c);
+            for (int y = 1; y <= 3; y++) cells.Add((31, y));
+            int last = 4; bool leftward = true;
+            for (int y = 4; y <= 28; y += 2)
+            {
+                for (int x = 0; x < 32; x++) cells.Add((x, y));
+                if (y + 2 <= 28) cells.Add((leftward ? 0 : 31, y + 1));
+                last = y; leftward = !leftward;
+            }
+            var rows = new int[32]; var cols = new int[32];
+            foreach (var (x, y) in cells) { rows[y]++; cols[x]++; }
+            // After the last full row the serpentine leaves at the side opposite to its entry connector.
+            int exitSide = leftward ? 1 : 3;
+            return Define(32, 32, new SmallPathOracle.Edge(0, 0), new SmallPathOracle.Edge(exitSide, last), rows, cols);
+        }
+
+        // FIXTURE_ONLY. The forced 32x32 serpentine with one track moved from column 31 to column 30: the root propagation
+        // records about 1,700 reductions before it runs into the contradiction, so the result is a large UNSATISFIABLE one.
+        private static PuzzleDefinition UnsatisfiableSerpentine32()
+        {
+            var def = Serpentine(32, 14); var cols = def.ColumnCounts.ToArray(); cols[31]--; cols[30]++;
+            return Define(32, 32, new SmallPathOracle.Edge((int)def.A.Side, def.A.Index), new SmallPathOracle.Edge((int)def.B.Side, def.B.Index), def.RowCounts.ToArray(), cols);
+        }
+
+        [Test]
+        public void HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind()
+        {
+            // Second QC of PR #17, finding 1: the first correction built the UNIQUE result before the last probe, but an
+            // UNSATISFIABLE, MULTIPLE_OR_MORE or INDETERMINATE result was still constructed after it, copying path and recovery
+            // protocol. A definitive verdict could therefore be returned after the budget had run out. Wall clock, because the
+            // public API exposes nothing that runs after the last probe: for each result kind with a large result, the time from
+            // the last probe to the return, minus the same time for a tiny result (the constant cost of returning, measured in the
+            // same run), must stay below a quarter of what building such a result object costs (the copy of path and protocol the
+            // old code made after the probe, measured on the same machine). Minima over repeated runs, so scheduler noise only
+            // raises single samples.
+            var cases = new (string Name, PuzzleDefinition Def, long MaxStates, SolverClassification Expected)[]
+            {
+                ("tiny unsatisfiable 2x2 (baseline)", Define(2, 2, new SmallPathOracle.Edge(0, 0), new SmallPathOracle.Edge(3, 0), new[] { 2, 0 }, new[] { 1, 1 }), 5000000, SolverClassification.UNSATISFIABLE),
+                ("unsatisfiable serpentine 32x32", UnsatisfiableSerpentine32(), 5000000, SolverClassification.UNSATISFIABLE),
+                ("ambiguous corner 32x32", AmbiguousCorner32(), 5000000, SolverClassification.MULTIPLE_OR_MORE),
+                ("ambiguous long path 32x32", AmbiguousLongPath32(), 5000000, SolverClassification.MULTIPLE_OR_MORE),
+                ("interrupted long path 32x32", AmbiguousLongPath32(), 0, SolverClassification.INDETERMINATE),
+                ("unique serpentine 32x32", Serpentine(32, 14), 5000000, SolverClassification.UNIQUE)
+            };
+            var late = new List<string>(); double baseline = double.NaN;
+            foreach (var c in cases)
+            {
+                long maxStates = c.MaxStates;
+                if (c.Expected == SolverClassification.INDETERMINATE)
+                {
+                    // Smallest state allowance that has found the first solution but not finished the search.
+                    for (maxStates = 1; maxStates < 10000; maxStates++)
+                    {
+                        var probe = PuzzleSolver.Solve(c.Def, new SolverLimits(maxStates: maxStates));
+                        if (probe.Classification == SolverClassification.INDETERMINATE && probe.SolutionCount == 1) break;
+                    }
+                    Assert.That(maxStates, Is.LessThan(10000), c.Name);
+                }
+                var sw = new Stopwatch(); long lastProbe = 0;
+                long Now() { lastProbe = sw.ElapsedTicks; return lastProbe * 1000 / Stopwatch.Frequency; }
+                var limits = new SolverLimits(maxStates: maxStates, timeBudgetMs: 600000, monotonicNow: Now);
+                for (int i = 0; i < 2; i++) Assert.That(PuzzleSolver.Solve(c.Def, limits).Classification, Is.EqualTo(c.Expected), c.Name);
+                double minTail = double.MaxValue, minBuild = double.MaxValue; int size = 0;
+                for (int i = 0; i < 25; i++)
+                {
+                    sw.Restart(); lastProbe = 0;
+                    var result = PuzzleSolver.Solve(c.Def, limits); long end = sw.ElapsedTicks;
+                    Assert.That(result.Classification, Is.EqualTo(c.Expected), c.Name);
+                    minTail = Math.Min(minTail, (end - lastProbe) * 1e6 / Stopwatch.Frequency);
+                    size = result.Path.Count + result.Reductions.Count;
+                    // The work the result constructor does: copy path and protocol into fresh read-only collections.
+                    long before = sw.ElapsedTicks;
+                    var rebuilt = (Array.AsReadOnly(result.Path.ToArray()), Array.AsReadOnly(result.Reductions.ToArray()));
+                    long after = sw.ElapsedTicks; GC.KeepAlive(rebuilt.Item1); GC.KeepAlive(rebuilt.Item2);
+                    minBuild = Math.Min(minBuild, (after - before) * 1e6 / Stopwatch.Frequency);
+                }
+                if (double.IsNaN(baseline))
+                {
+                    baseline = minTail; Assert.That(size, Is.LessThan(20), c.Name);
+                    TestContext.WriteLine($"WP024_HARD_BUDGET_KIND {c.Name}: tail_after_last_probe_us={minTail:F3}");
+                    continue;
+                }
+                double excess = minTail - baseline;
+                TestContext.WriteLine($"WP024_HARD_BUDGET_KIND {c.Name}: class={c.Expected} maxStates={maxStates} path+protocol={size} tail_after_last_probe_us={minTail:F3} excess_over_baseline_us={excess:F3} result_build_us={minBuild:F3}");
+                Assert.That(size, Is.GreaterThan(1000), c.Name + ": the result must be large enough to make its construction measurable");
+                if (!(excess < minBuild * 0.25)) late.Add($"{c.Name}: {excess:F3} us more after the last probe than for a tiny result, building the result takes {minBuild:F3} us");
+            }
+            Assert.That(late, Is.Empty, "a result object is built after the last budget probe");
+        }
+
         private static IEnumerable<PuzzleDefinition> BudgetCorpus()
         {
             // FIXTURE_ONLY, not Season-1 content. Three 10-cell straight paths,

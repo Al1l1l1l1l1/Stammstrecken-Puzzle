@@ -246,22 +246,26 @@ namespace STP.Puzzle.Solver
                 }
             }
             Search(Enumerable.Repeat((byte)127, p.Grid.CellCount).ToArray(), 0);
-            // Everything below up to the single final CheckBudget() is budgeted work: reduction dedup, the trace build,
-            // the metrics and the construction of the UNIQUE result. A UNIQUE verdict is only handed out when the last
-            // budget probe, taken after all of this work, still sits inside the budget (ADR-031: a timeout is never UNIQUE).
+            // Everything below up to the single final CheckBudget() is budgeted work for EVERY result kind: reduction
+            // dedup, the trace build and metrics of a UNIQUE result, and the construction of the result object itself,
+            // including the copies of path and recovery protocol of an UNSATISFIABLE or MULTIPLE_OR_MORE result. A
+            // definitive verdict is only handed out when the last budget probe, taken after all of this work, still sits
+            // inside the budget (ADR-031: a timeout is INDETERMINATE). The fail-closed INDETERMINATE result is built
+            // before the probe as well, so that nothing but the return of a finished object follows the probe.
             var uniqueTrace = new HashSet<string>(StringComparer.Ordinal);
             var reductions = trace.Where(r => uniqueTrace.Add(r.ToString())).ToArray();
             var candidate = Classify(interrupted, found, tracer.Faulted);
-            SolverResult? unique = null;
+            SolverResult result;
             if (candidate == SolverClassification.UNIQUE)
             {
                 var steps = tracer.Build();
-                unique = new SolverResult(candidate, found, path, reductions, SolverMetrics.FromTrace(searchNodes, steps, guessDepth), steps);
+                result = new SolverResult(candidate, found, path, reductions, SolverMetrics.FromTrace(searchNodes, steps, guessDepth), steps);
             }
-            // The probe is the last operation that takes time; only returning the finished object follows it.
+            else result = new SolverResult(candidate, found, path, reductions);
+            var exhausted = candidate == SolverClassification.INDETERMINATE ? result : new SolverResult(SolverClassification.INDETERMINATE, found, path, reductions);
+            // The probe is the last operation that takes time; only returning one of the finished objects follows it.
             CheckBudget();
-            if (interrupted) return new SolverResult(SolverClassification.INDETERMINATE, found, path, reductions);
-            return unique ?? new SolverResult(candidate, found, path, reductions);
+            return interrupted ? exhausted : result;
         }
     }
 }
