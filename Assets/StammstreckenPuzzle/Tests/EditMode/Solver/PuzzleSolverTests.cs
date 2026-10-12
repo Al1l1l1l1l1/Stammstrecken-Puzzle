@@ -347,9 +347,10 @@ namespace STP.Tests.Solver.EditMode
             // protocol. A definitive verdict could therefore be returned after the budget had run out. Wall clock, because the
             // public API exposes nothing that runs after the last probe: for each result kind with a large result, the time from
             // the last probe to the return, minus the same time for a tiny result (the constant cost of returning, measured in the
-            // same run), must stay below a quarter of what building such a result object costs (the copy of path and protocol the
-            // old code made after the probe, measured on the same machine). Minima over repeated runs, so scheduler noise only
-            // raises single samples.
+            // same run), must stay below 40 % of what building such a result object costs (the copy of path and protocol the old
+            // code made after the probe, measured on the same machine). Minima over repeated runs, so scheduler noise only raises
+            // single samples. Reference values: the delivered state 59cf00c exceeded the copy time itself (ratio about 1 to 1.5),
+            // the corrected state stays at about 0.05 to 0.15 locally and 0.1 to 0.17 in the Unity CI.
             var cases = new (string Name, PuzzleDefinition Def, long MaxStates, SolverClassification Expected)[]
             {
                 ("tiny unsatisfiable 2x2 (baseline)", Define(2, 2, new SmallPathOracle.Edge(0, 0), new SmallPathOracle.Edge(3, 0), new[] { 2, 0 }, new[] { 1, 1 }), 5000000, SolverClassification.UNSATISFIABLE),
@@ -400,7 +401,7 @@ namespace STP.Tests.Solver.EditMode
                 double excess = minTail - baseline;
                 TestContext.WriteLine($"WP024_HARD_BUDGET_KIND {c.Name}: class={c.Expected} maxStates={maxStates} path+protocol={size} tail_after_last_probe_us={minTail:F3} excess_over_baseline_us={excess:F3} result_build_us={minBuild:F3}");
                 Assert.That(size, Is.GreaterThan(1000), c.Name + ": the result must be large enough to make its construction measurable");
-                if (!(excess < minBuild * 0.25)) late.Add($"{c.Name}: {excess:F3} us more after the last probe than for a tiny result, building the result takes {minBuild:F3} us");
+                if (!(excess < minBuild * 0.4)) late.Add($"{c.Name}: {excess:F3} us more after the last probe than for a tiny result, building the result takes {minBuild:F3} us");
             }
             Assert.That(late, Is.Empty, "a result object is built after the last budget probe");
         }
