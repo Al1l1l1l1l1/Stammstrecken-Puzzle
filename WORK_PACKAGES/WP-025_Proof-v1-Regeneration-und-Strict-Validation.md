@@ -161,3 +161,41 @@ Das gesamte WP-025 ist erst nach vollständig beauftragter/gelieferter Phase B a
 | Pipelinevertrag enthält noch WP-023-Zwischenstand | Tatsächlicher später integrierter Solverstand steht in `SOLVER_ARCHITECTURE.md` Abschnitt 13 und WP-024; gemeinsame Proofpipeline weiterhin unimplementiert. Phase B führt allein den zugehörigen Lieferstand nach. |
 
 WP-023-/WP-024-Abschlüsse sind Voraussetzungenbelege, keine neu ausgeführte fachliche QC. Physische Geräte-/SDK-/Storeevidenz und Produktfolgeblocker behalten ihre dokumentierten Grenzen. Ein tatsächlich ungelöster Quellen- oder Scopewiderspruch stoppt den betroffenen Teil und wird persistent dokumentiert.
+
+## Phase-A-Nachweis – 2026-10-13
+
+### Ausgangsbasis, Lieferverträge und gemeinsame Verankerung
+
+- Tatsächlicher Remote-main nach vollständigem Fetch: `5f5127362b101dd4e066b68b21d3e35a5af314df`. Lokaler alter Checkout war WP-022; dessen Branch/Prüfstand wurde nicht verändert. Neue Branch direkt von origin/main; der lokale main-Verweis wurde anschließend ausschließlich per normalem Fast-forward-Fetch synchronisiert (keine Integration oder Historienumschreibung).
+- Remote-Branches und offene PRs vor Änderungen abgefragt: kein paralleler Proofauftrag/offener PR; vollständige abgerufene Historie ohne vergebenes WP-025 oder WP-025-Manifest. Keine neue fachliche WP-024-Abschluss-QC.
+- Liefermetadaten selbst gelesen: PR #15 mit geprüftem HEAD `f56eab34…` als `10405370…` integriert; PR #17 mit geprüftem HEAD `64d8801…` als `22ff7455…` integriert. WP-023-/WP-024-Abschlussdokumentation und WP-024-Review 5502357045 gelesen; dortige Prüferexperimente nicht erneut ausgeführt und nicht als eigene Evidenz ausgegeben.
+- Gemeinsamer historischer Erstanker **`de314dbd6e928d4ffb8893fe4f1ee7e6c7873132`**, exakt zwei `A`-Dateien: dieses neue WP und eigenes Manifest. Einziger Elterncommit = Manifestbasis = `5f5127362b101dd4e066b68b21d3e35a5af314df`. Historischer Markdownlink war bereits im Anker vorhanden. Kein alter Planungs-WP wurde geändert.
+- Manifest-SHA-256 **`1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d`**. Historischer Gitblob und Working-Tree-Bytes direkt verglichen: identisch. Nach dem Anker keine Manifeständerung.
+- Mechanischer Folgediff: `CURRENT_STATE.md` und `WORK_QUEUE.md` nennen WP-025-Vorbereitungsphase und separate Phase B; `validate.yml` ändert allein `STP_SCOPE_MANIFEST` von WP-024 auf WP-025. Kein Produkt-, Test-, Schema-, Golden-, Architektur-, Unity-CI- oder Validatorcode geändert.
+
+### Lokale Prüfungen und noch ausstehende Remote-Evidenz
+
+| Prüfgegenstand | Tatsächlicher Stand |
+|---|---|
+| Sauberer Anker `de314db…` – Architecture-only | Linux/WSL, CPython 3.11.13, Node 22.20.0, exakt die sechs unveränderten Lockpakete; kanonischer `--self-test`-Lauf Exit 0, `RESULT PASS`, **17 Prüfgruppen**. |
+| Sauberer Anker `de314db…` – eigener Production-Scope | Gleiche Umgebung; kanonischer WP-025-Lauf inklusive Self-/Negativtests Exit 0, `RESULT PASS`, **18 Prüfgruppen**, `worktreeDirty=false`, konkrete Base/HEAD ausgegeben. Historische gemeinsame ID-/Link-/Add-Bindung, Segmentglobs, Manifestmutation/-Escape und späterer legitimer Production-Anker in bestehender Selftest-Suite enthalten. |
+| Vollständiger Folgediff / bestehender Node-Goldencheck | Beide kanonischen Linuxläufe auf dem vollständigen Folgediff bei HEAD `de314db…`, `worktreeDirty=true`: Exit 0, 17/18 Gruppen PASS. Unveränderter Workflow-Crosscheck lokal mit Node 22.20.0: 12 Kanonisierungsfälle, 32 Ablehnungen, 2 v2-/2 v1-Dokumentvektoren PASS. Scratch-Extraktion zunächst mit falschem Pythonpfad gescheitert; Hilfsskript korrigiert und dieser Crosscheck erfolgreich erneut ausgeführt. Repositorytool/Tests unverändert. |
+| Baseline-main Architecture CI | Run [38387795432](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38387795432), `push`, HEAD `5f5127362b101dd4e066b68b21d3e35a5af314df`, selbst abgefragter Status **completed/success**. Baselinebeleg, keine eigene WP-025-PR-CI. |
+| Zusätzliche Baseline-main Unity CI | Run [38387795108](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38387795108), derselbe main-HEAD. Anfangs `in_progress`, iOS pending; vor eigener Remoteaktion frisch als **completed/success, alle zehn Jobs success** verifiziert, einschließlich iOS-Job `115278887464`. Der Run wurde weder abgebrochen noch neu gestartet. Diese Zusatz-CI ist auf main gebunden, kein eigener Proofnachweis. |
+| Eigene Remote-/Draft-PR-CI | Noch ausstehend; kein Remote-PASS behauptet. |
+
+Die Prüfumgebung wurde isoliert außerhalb versionierter Projektdateien eingerichtet; keine Abhängigkeit oder Toollogik des Repositorys geändert. Eigene lokale Linuxausgaben liegen zusätzlich in ignorierten Scratchlogs; die maßgeblichen Befehle, Versionen und Ergebnisse sind hier persistent, eigene CI wird mit Run-/Job-/Commitbezug ergänzt.
+
+### Belegkategorien und Übergabegrenze
+
+| Kategorie | Stand / Grenze |
+|---|---|
+| `LOCAL_DOCUMENT_STRUCTURE` | Auf Anker und vollständigem Vorbereitungsfolgediff ausgeführte Inventar-/WP-/Link-/ADR-/Statusprüfungen PASS; eigene Remote-PR-CI noch ausstehend. |
+| `LOCAL_ARCHITECTURE_SEMANTICS` | Auf Anker und Folgediff ausgeführte Schema-/Hash-/Fixture-/Reducer-/Self-/Negativprüfungen PASS; bestehender Node-Goldencheck PASS; kein neuer C#-Proofbeleg. |
+| `MANUAL_ARCHITECTURE_REVIEW` | Quellenhierarchie, Lieferzuordnung, vollständiger geplanter Scope, Modulgrenzen und zwei Abschlussrollen abgeglichen; kein automatisches PASS für reine Textsemantik. |
+| `LOCAL_SCOPE` | Historisch gebundener vollständiger Basisdiff inklusive Folgestand PASS; genau fünf erlaubte Phase-A-Dateien, alleinige Manifestzeile im Workflow, `git diff --check` sauber, keine untracked Scopepfade; Remote-PR-Diff noch ausstehend. |
+| `CONTRACT_ONLY` | Proof-v1-/Strict-/Generator-/Import-/Releaseverträge weiterhin ohne neue Implementierung. |
+| `REQUIRED_LATER/NOT_EXECUTED` | AK-B01–B07, Produktionsproof, zugehörige Unity-/Node-Proofprüfungen und beide unabhängigen Abschluss-QCs erst Phase B; Geräte-/SDK-/Storetests bleiben später. |
+| `BLOCKED` | Produktfolgeblocker 001–003 unverändert. Kein fachlicher Definitions-/Trust-Blocker festgestellt; eigene Remote-/CI-Nachweise stehen noch aus. |
+
+Letzter abgeschlossener Schritt: gemeinsame Definition/Verankerung und vollständige lokale Vorbereitungsprüfung. Nächster Schritt innerhalb des jetzigen Auftrags: vollständigen Folgediff lokal/remote mit eigener PR-CI prüfen und Übergabe persistieren. Erst danach separater ausdrücklicher Phase-B-Auftrag; keine Implementierungsfreigabe durch diese Eintragung.
