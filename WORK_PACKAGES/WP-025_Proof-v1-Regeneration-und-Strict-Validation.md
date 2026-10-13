@@ -4,7 +4,7 @@
 
 `WP-025`
 
-**Bearbeitungsstatus:** **Phase B am 13.10.2026 separat ausdrücklich beauftragt und vollständig implementiert einschließlich Produktionsgoldens, Regressionstests und eigener Scopekorrekturen.** Tatsächliche Nachweise sind unten nach Lieferstand getrennt; die finale HEAD-/CI-/Abnahmebindung und die beiden vollständigen unabhängigen Berichte werden in [PR #19](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19) persistiert. Phase A ist abgeschlossen; ihre unten dokumentierten Autorisierungsgrenzen beschreiben den vorherigen Auftrag. Anforderungen, Paketdefinition, Manifest und Freigabegrenzen bleiben unverändert. Das Gesamtpaket bleibt bis den vorgeschriebenen Nachweisen/Abnahmen und separater Integration offen. Integration und Release sind nicht beauftragt.
+**Bearbeitungsstatus:** **Abgeschlossen und integriert.** Phase B auf `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f` vollständig geliefert; beide unabhängigen Abschlussrollen PASS, AK-B01 bis AK-B07 erfüllt, `QC-STRICT-01` geschlossen. Der Auftraggeber hat am 13.10.2026 mit „übernehmen“ die Integration samt Abschlussdokumentation ausdrücklich freigegeben. PR #19 wurde mit Expected-HEAD-Absicherung als `f496ab9001d2043a17c3ffd2ff2a8a39d175495b` in `main` integriert; der Merge enthält exakt den abgenommenen Git-Baum. Vollständige Berichte, Freigabe, Nachweise und Grenzen stehen im abschließenden Closeout-Abschnitt. Die folgenden Phase-A-/Phase-B-Autorisierungs- und Nachweisstände bleiben unveränderte Historie; offene Formulierungen früherer Zwischenstände gelten nicht als aktueller Status. Anforderungen, Paketdefinition und Manifest bleiben unverändert. Keine Folgeimplementierungs-, Contentproduktions- oder Releasefreigabe.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-025.production.scope.json)
 
@@ -338,3 +338,41 @@ Bestätigter Befund: Der Batchzweig für doppelte normalisierte Quellen ließ `A
 Neue eingecheckte Regression `DuplicateSources_RetainEachRestriction_AndStayOrderedWhenInputsReverse(False/True)`: zuerst **2/2 FAIL** gegen alten Diagnoseverlust; nach bloßer Erhaltung erneut **2/2 FAIL** wegen umgekehrter Resultatreihenfolge; nach vollständiger Korrektur breiter getrennter Assemblylauf **453/453 PASS**, darunter **379 Content, 19 Domain, 55 Solver**, keine Failed/Skipped/Inconclusive/Warnings, Build ohne Compilerwarnungen/-fehler (39,006 s). Tatsächliche Zusatzlogs/XML in `.utmp/wp025-duplicate-{red,order-red,all-tests}.*`; dieselben zwei Regressionen gehören zur bestehenden Unity-Contentassembly. Fachdokumentation zur gelieferten Diagnoseerhaltung/Reihenfolge und Teststrategie nachgeführt.
 
 **Geänderter Lieferstand benötigt neue eigene CI und beide erneuten unabhängigen Abschlussabnahmen.** Beide kanonischen Linuxläufe und neuer Nodeabgleich sind nochmals auf seinen tatsächlichen sauberen Commit zu binden; kein früheres PASS wird übertragen. Exakte neue HEAD-/CI-Bindung und beide neuen vollständigen Berichte werden nach Ausführung in PR #19 persistiert, damit diese finale Evidenzfortschreibung den erneut eingefrorenen Stand nicht verändert. Gesamtpaket und Integration bleiben offen. Letzter abgeschlossener Schritt: bestätigten eigenen Abnahmebefund korrigiert und tatsächliche breite Regression bestanden. Nächster Schritt: normaler Commit/Push, neue echte CI und danach beide erneuten unabhängigen Abnahmen; anschließend ausschließlich ausdrückliche Auftraggeberentscheidung zur Integration. Produktfolgeblocker und übrige Freigabegrenzen unverändert.
+
+## Integration und formaler Abschluss – 13.10.2026
+
+**Endstatus: abgeschlossen und integriert.** Dieser Abschnitt führt ausschließlich den tatsächlichen Abschluss nach. Die unveränderten Anforderungen und die historische Nachweiskette oben bleiben erhalten.
+
+| Gegenstand | Verifizierter Abschlussstand |
+|---|---|
+| Abgenommener finaler HEAD | `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f` |
+| Geprüfte tatsächliche Basis | `5f5127362b101dd4e066b68b21d3e35a5af314df` |
+| Technische Integration | [PR #19](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19), Merge-Commit `f496ab9001d2043a17c3ffd2ff2a8a39d175495b`; Expected-HEAD-Absicherung auf dem abgenommenen HEAD |
+| Inhaltsgleichheit | GitHub-Commitvergleich vom abgenommenen HEAD zum tatsächlichen Merge: keine Dateiänderung; abgenommener Git-Baum `3159dfe2349d6273fa923eda87dba1164559d024` erhalten |
+| Auftraggeberentscheidung | Ausdrückliches „übernehmen“ nach koordinierender Empfehlung; [Freigabe mit Standbindung](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6154248884) |
+| Proof-/Vertrags-QC | [Vollständiger unabhängiger PASS-Bericht](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150287241), exakt finaler HEAD; 415/415 eigene Content-/Zusatzfälle laut Prüfer, keine offenen Befunde |
+| Strict-/Tests-/Scope-/CI-QC | [Vollständiger unabhängiger PASS-Bericht](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150288578), exakt finaler HEAD; 480/480 eigene Fälle laut Prüfer, QC-STRICT-01 geschlossen, keine offenen Befunde |
+| Finale Architecture-CI | [38421061552](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38421061552) SUCCESS; Scopekontext bindet finalen HEAD und Basis, 17/18 Prüfgruppen einschließlich Self-/Negativtests |
+| Finale Unity-PR-CI | [38421061511](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38421061511) SUCCESS; zehn erfolgreiche Jobs einschließlich Compile, EditMode, Coverage, PlayMode/QA, Android-IL2CPP und iOS/Xcode |
+| Eigenständig abgeglichene Testartefakte | EditMode-Archiv 11827535199: SHA-256 `0c58d808485488493b75b67c39c71693a43f50df690e15a4d79694de8c4773eb`, XML 454/454 Passed, beide Duplikatregressionen Passed; PlayMode-Archiv 11828276251: SHA-256 `369b2415f5a9d8a422fded7f6c95a70108143694faf560fb7103f9cba1aae182`, XML 27/27 Passed |
+| Manifest | Gemeinsamer Anker `de314dbd6e928d4ffb8893fe4f1ee7e6c7873132`, SHA-256 `1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d`, unverändert |
+
+### Endbewertung der fachlichen Akzeptanzkriterien
+
+| Kriterium | Abschluss und Nachweis |
+|---|---|
+| AK-B01 | Erfüllt: Format 1, vier nichtnegative Minima, deduktive Nullfälle; GeneratedGoldens/SchemaParity und beide Abschlussberichte. |
+| AK-B02 | Erfüllt: echte Produktionsgoldens, Selbsthash/Reader und byteidentische Regeneration; Produktions- und unabhängige Nodeprüfungen dokumentiert. |
+| AK-B03 | Erfüllt: selbstkonsistent neu gehashte falsche Metriken werden durch frische Regeneration als PRF-NONDETERMINISTIC abgewiesen. |
+| AK-B04 | Erfüllt: vollständige Artefakt-/Puzzle-/Lösungs-/Profil-/Versionsbindung und stabile fail-closed Codes, unabhängige Gegenproben. |
+| AK-B05 | Erfüllt: Warnungserhaltung und zentrale Strict-Promotion, Einzel-/Batchstatus und Zähler konsistent; QC-STRICT-01 unabhängig geschlossen. |
+| AK-B06 | Erfüllt: Proofregeneration und unverändertes CampaignGate zwingend; spätere Runtime-/Release-Lock-Gates bleiben geschlossen. |
+| AK-B07 | Erfüllt: Proofbytes, Diagnose-/Quell-/Batchreihenfolge und Gleichstände deterministisch; Snapshots und Gegenmutationen geprüft. |
+
+Die Koordination hat die vollständigen persistierten Rollenberichte und ihre Standbindung eingeordnet, aktuelle Remote-/CI-Metadaten abgeglichen sowie die heruntergeladenen Testarchive selbst gehasht und deren XML ausgewertet. Die lokalen Prüferexperimente und die fachliche Gesamt-QC wurden nicht nochmals ausgeführt. Das ist keine dritte unabhängige Abnahme. Fehlgeschlagene historische Läufe bleiben Historie und werden nicht als PASS umetikettiert.
+
+Die Abschlussnachführung betrifft ausschließlich dieses Work Package, `PROJECT_CONTROL/CURRENT_STATE.md` und `PROJECT_CONTROL/WORK_QUEUE.md`. Keine Änderung an Produktionscode, Tests, Schema, Goldens, Architektur, Workflow, Anker oder Manifest. Die CI des Dokumentationsstands wird getrennt nach ihrem tatsächlichen Ergebnis am Closeout-PR dokumentiert; erfolgreiche fachliche Nachweise bleiben dem abgenommenen Programmstand zugeordnet.
+
+**Weiterhin offen, außerhalb WP-025:** Katalog-/Cross-Reference-/Produkt-/Release-Lock-Produktion und deren Freigaben, Produktfolgeblocker 001–003 sowie physische Geräte-/SDK-/Store-/Releaseprüfungen. Technisch gültige Proofs sind keine Produktionscontent- oder Importfreigabe; `IsRuntimeImportable` und `IsReleaseLockEligible` bleiben geschlossen.
+
+Letzter abgeschlossener Schritt: beide unabhängigen Abnahmen, ausdrückliche Auftraggeberfreigabe und unveränderte technische Integration von WP-025. Nächster vorgesehener Schritt: den laut WORK_QUEUE folgenden Contentblock anhand seiner bestehenden Quellen und noch offenen Voraussetzungen in der normalen Koordination für eine separate Beauftragung bestimmen. Diese Übernahme erteilt keinen Folgeauftrag und überspringt keine noch fehlenden Pipeline-/Katalog-/Releasegates.

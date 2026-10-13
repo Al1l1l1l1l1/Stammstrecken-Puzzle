@@ -11,8 +11,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | 2 | WP-022 – Puzzle-Kern-Recovery | **Abgeschlossen und integriert** | Finaler PR-HEAD `b257efd98bd14e7f66ffc40916a0b584c3f51fb7` unabhängig PASS; Geschäftsführungsfreigabe; Integration über PR #13, formaler Closeout über PR #14. |
 | 3 | WP-023 – Level-v2-Foundation und Hashverträge | **Abgeschlossen und integriert** | Erste unabhängige Abschluss-QC auf `182db13…` = FAIL; vier Befunde innerhalb WP-023 reproduziert und behoben. Erneute unabhängige Abschluss-QC auf dem eingefrorenen finalen PR-HEAD `f56eab34dca0346d0e339a1c5cde650e15955f68` = **PASS**, AK-01 bis AK-09 erfüllt, kein integrationsblockierender Befund. Geschäftsführungsfreigabe erteilt; PR #15 als Merge-Commit `10405370967496f51be9e5c00c381fd8052ec072` in `main` integriert. Trust Anchor `a1d284caec7746a4aa48fbe564d37d179d60fed8`; Manifest bis zur Integration byteunverändert. |
 | 4 | WP-024 – Solver-v2-Metriken und Deduktionsspur | **Abgeschlossen und integriert** | Nach zwei korrigierten QC-FAIL-Runden vollständige unabhängige Abschluss-QC **PASS** auf `64d8801ee28d68dc0c8ec9800898b7862977c32c` gegen `ab117f459689d2b2937d436bb1a763296a65d52a`; AK-01 bis AK-12 erfüllt, keine integrationsblockierenden Befunde. Übermittelter Bericht und ausdrückliche Geschäftsführungsfreigabe vom 13.10.2026 („übernehmen“) in [PR #17, Review 5502357045](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/17#pullrequestreview-5502357045). Integration des unveränderten geprüften HEAD mit Expected-HEAD-Absicherung als Merge-Commit `22ff74558259c7ba1f9a157280e4d70b909bac26`. Trust Anchor `3e7f1ab2e56853294a4f09650d8ec361ab4eca1a`, Manifest unverändert. Finale PR-CI: Architecture Validation `38324116629` und Unity CI `38324116596` SUCCESS. Frühere FAIL-Berichte und Korrekturen bleiben im WP als Historie erhalten; keine weitere Reparatur oder automatische zusätzliche Abschluss-QC offen. |
-| 5 | WP-025 – Proof-v1-Regeneration und Strict-Validation | **Phase B implementiert; Abnahmekorrektur geliefert; nicht integriert** | Produktionsproof, Regeneration/Bindung, Strict-/Batchmodelle, Goldens und Fachdokumentation geliefert. Volle CI auf f7e657f (Architecture + Unity zehn Jobs) SUCCESS; danach unabhängige Proof-QC PASS und Strict-QC FAIL, Medium QC-STRICT-01 (Diagnoseverlust bei Duplikatquellen, AK-B05). Beide Berichte in [PR #19](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19). Scopekorrektur erhält Zusatzdiagnosen und deterministische Gleichrangreihenfolge; lokale Regression zuerst rot, danach 453/453 STP PASS. Neuer Lieferstand erhält neue CI und beide erneuten unabhängigen Abnahmen; finale SHA-/CI-/Berichtbindung am PR, kein übertragenes PASS. Manifest/Anker unverändert; weiterhin ausdrückliche Integrationsentscheidung erforderlich. |
-| 6 | 240 konkrete Rätselinstanzen | Blockiert durch Proof-v1 | Erst nach vollständiger Level-/Solver-/Proofpipeline. |
+| 5 | WP-025 – Proof-v1-Regeneration und Strict-Validation | **Abgeschlossen und integriert** | Beide unabhängigen Abschlussrollen PASS auf `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f` gegen `5f5127362b101dd4e066b68b21d3e35a5af314df`; AK-B01 bis AK-B07 erfüllt, QC-STRICT-01 geschlossen. [Proof-QC](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150287241), [Strict-/Tests-/Scope-/CI-QC](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150288578), [Auftraggeberfreigabe vom 13.10.2026](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6154248884). PR #19 mit Expected-HEAD-Absicherung als `f496ab9001d2043a17c3ffd2ff2a8a39d175495b` integriert; keine Dateiänderung gegenüber dem abgenommenen HEAD. Finale Architecture PR 38421061552 und Unity PR 38421061511 SUCCESS; 454/454 EditMode, 27/27 PlayMode, Coverage, Android-IL2CPP/iOS-Xcode. Anker und Manifest unverändert, frühere Befunde/Nachweise im WP erhalten. |
+| 6 | 240 konkrete Rätselinstanzen | **Proofblock integriert; eigener Folgeauftrag und übrige Voraussetzungen ausstehend** | Erst nach vollständiger Level-/Solver-/Proofpipeline. WP-025 erfüllt die Proofblock-Voraussetzung; nachgelagerte Katalog-/Cross-Reference-/Produkt-/Release-Lock-Gates bleiben offen. Die Übernahme ist keine Contentproduktions- oder Importfreigabe. |
 | 7 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen. |
 | 8 | Finale Asset-Bible | Nicht begonnen | Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Objekte, Motion und Sound. |
 | 9 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen. |
@@ -38,12 +38,14 @@ main
   → WP-021 integriert und geschlossen
   → WP-022 integriert und geschlossen
   → WP-023 integriert und geschlossen
-  → WP-024 integriert; finale unabhängige Abschluss-QC PASS, GF-Freigabe erfolgt
-  → WP-025: vollständiger bestehender Proof-v1-/Strict-Validation-Block
-    → eigenes WP + unveränderliches Manifest gemeinsam verankert (de314db auf 5f51273)
-    → Governance-/Scope-/Trust-Prüfung und Remote-Übergabe abgeschlossen (Draft-PR #19)
-    → erst danach separater Implementierungsauftrag
-  → erst dann Contentproduktion
+  → WP-024 integriert und geschlossen
+  → WP-025 integriert und geschlossen
+    → gemeinsamer Anker de314db auf 5f51273 unverändert
+    → Phase A und separat beauftragte Phase B abgeschlossen
+    → beide unabhängigen Abschlussrollen PASS auf 92842bc
+    → ausdrückliche Auftraggeberfreigabe und Integration f496ab9
+  → nächster Contentblock: bestehende Voraussetzungen und eigenen Auftrag klären
+  → erst bei erfüllten Voraussetzungen Contentproduktion
 ```
 
 Jeder Pfeil ist eine harte Voraussetzung. Ein Agent darf keinen späteren Schritt beginnen, um Scope-, CI-, Lizenz-/Runner- oder Vertragsnachweise zu umgehen.
@@ -67,17 +69,21 @@ Diese Blocker bleiben unverändert und werden nicht durch Recovery-, Solver- ode
 | Datei | Relevanz |
 |---|---|
 | `CURRENT_STATE.md` | Autoritativer Phasen- und Integrationsstand. |
-| `../WORK_PACKAGES/WP-025_Proof-v1-Regeneration-und-Strict-Validation.md` | Vollständiger ausführbarer Proof-/Strict-Auftrag mit Quellenzuordnung; Phase B separat beauftragt und implementiert; finale CI/QC mit SHA-Bindung am PR. |
+| `../WORK_PACKAGES/WP-025_Proof-v1-Regeneration-und-Strict-Validation.md` | Abgeschlossener Proof-/Strict-Auftrag: unveränderte Definition, historische Nachweise, beide finale QC-Berichte, Auftraggeberfreigabe und Integration. |
 | `../tools/architecture-validation/scopes/WP-025.production.scope.json` | Eigenes unveränderliches Manifest ab gemeinsamem ADR-030-Anker de314db, Basis 5f51273. |
 | `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Abgeschlossener und integrierter Level-v2-/Hash-Block als technische Basis. |
 | `../WORK_PACKAGES/WP-024_Solver-v2-Metriken-und-Deduktionsspur.md` | Abgeschlossener und integrierter Solver-v2-Block mit beiden Korrekturrunden, finaler unabhängiger Abnahme, Freigabe und Integration. |
-| `../WORK_PACKAGES/WP-017_Proof-v1-Regeneration-und-Strict-Validation.md` | Historische Planungsgrundlage für den nächsten fachlichen Block; kein ausführbarer Trust Anchor. |
+| `../WORK_PACKAGES/WP-017_Proof-v1-Regeneration-und-Strict-Validation.md` | Historische Planungsgrundlage von WP-025; kein ausführbarer Trust Anchor. |
 | `../WORK_PACKAGES/WP-016_Solver-v2-Metriken-und-Deduktionsspur.md` | Historische Planungsgrundlage für WP-024; nicht selbst ausführbarer Trust Anchor. |
-| `../DECISIONS/ADR-030-wp-scope-trust-anchor.md` | Verbindliche gemeinsame historische WP-/Manifest-Erstverankerung; neuer Anchor für den Proofblock erforderlich. |
-| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Verbindlicher Vertrag und Grenze für Solver-v2 und den späteren Proof-v1-Block. |
+| `../DECISIONS/ADR-030-wp-scope-trust-anchor.md` | Verbindliche gemeinsame historische WP-/Manifest-Erstverankerung. |
+| `../DECISIONS/ADR-031-solver-v2-metriken-und-proof-regeneration.md` | Verbindlicher Solver-v2-/Proofvertrag. |
 | `../WORK_PACKAGES/WP-022_Puzzle-Kern-Recovery.md` | Integrierter Puzzle-Kern als technische Basis. |
 | `DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |
 
-## WP-025 Phase-B-Autorisierung – 13.10.2026
+## WP-025 Phase-B-Autorisierung – 13.10.2026 (historischer Beginn)
 
 Separater ausdrücklicher Implementierungsauftrag eingegangen; Phase B in Bearbeitung auf bestehender Branch und PR #19 ab verifiziertem Vorbereitungs-HEAD 5e4b986bf29a3223e96b5993f37a99882581dab2. Die bisherige Phase-A-Beschränkung ist historisch. Priorität 5, sämtliche Anforderungen, Manifest, unabhängige Abschlussrollen und Integrationsgates bleiben unverändert. Erst nach tatsächlicher Implementierungs-CI wird derselbe finale HEAD für beide unabhängigen Prüfungen eingefroren; Integration benötigt weiterhin die ausdrückliche Auftraggeberentscheidung.
+
+## WP-025 Abschluss – 13.10.2026
+
+Die oben historisch verlangte Integration wurde nach erfolgreicher finaler CI, beiden unabhängigen PASS-Berichten und ausdrücklicher Auftraggeberentscheidung tatsächlich ausgeführt. Abschlussnachführung nur in WP-025, CURRENT_STATE und WORK_QUEUE; keine Änderung der Prioritäten oder Anforderungen. Nachgelagerte Dokumentations-CI bleibt separat auszuweisen. Es wurde kein Folgepaket erstellt, keine Folgeimplementierung gestartet und keine Veröffentlichung freigegeben.
