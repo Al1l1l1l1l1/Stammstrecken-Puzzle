@@ -4,7 +4,7 @@
 
 `WP-025`
 
-**Bearbeitungsstatus:** Phase A beauftragt: vollständige Vorbereitung und gemeinsame historische Verankerung. Phase B (Implementierung), unabhängige Abschluss-QC, Integration und Release sind nicht beauftragt. Das gesamte Work Package bleibt offen.
+**Bearbeitungsstatus:** **Phase A abgeschlossen: vollständig vorbereitet, gemeinsam historisch verankert, lokal und durch eigene PR-CI geprüft; bereit für separaten Phase-B-Auftrag.** Phase B (Implementierung), unabhängige Abschluss-QC, Integration und Release sind nicht beauftragt. Das gesamte Work Package bleibt offen. Aktueller Übergabenachweis und finale Remote-/CI-Bindung am Ende sowie in Draft-PR #19.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-025.production.scope.json)
 
@@ -182,7 +182,7 @@ WP-023-/WP-024-Abschlüsse sind Voraussetzungenbelege, keine neu ausgeführte fa
 | Vollständiger Folgediff / bestehender Node-Goldencheck | Beide kanonischen Linuxläufe auf dem vollständigen Folgediff bei HEAD `de314db…`, `worktreeDirty=true`: Exit 0, 17/18 Gruppen PASS. Unveränderter Workflow-Crosscheck lokal mit Node 22.20.0: 12 Kanonisierungsfälle, 32 Ablehnungen, 2 v2-/2 v1-Dokumentvektoren PASS. Scratch-Extraktion zunächst mit falschem Pythonpfad gescheitert; Hilfsskript korrigiert und dieser Crosscheck erfolgreich erneut ausgeführt. Repositorytool/Tests unverändert. |
 | Baseline-main Architecture CI | Run [38387795432](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38387795432), `push`, HEAD `5f5127362b101dd4e066b68b21d3e35a5af314df`, selbst abgefragter Status **completed/success**. Baselinebeleg, keine eigene WP-025-PR-CI. |
 | Zusätzliche Baseline-main Unity CI | Run [38387795108](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38387795108), derselbe main-HEAD. Anfangs `in_progress`, iOS pending; vor eigener Remoteaktion frisch als **completed/success, alle zehn Jobs success** verifiziert, einschließlich iOS-Job `115278887464`. Der Run wurde weder abgebrochen noch neu gestartet. Diese Zusatz-CI ist auf main gebunden, kein eigener Proofnachweis. |
-| Eigene Remote-/Draft-PR-CI | Noch ausstehend; kein Remote-PASS behauptet. |
+| Eigene Remote-/Draft-PR-CI | Vorbereitungscommit `fb9ddb5880b0619e37c7464234ad8207eb0ea309`: Architecture Push **38395357162**, Job **115289054494**, und PR **38395554524**, Job **115289734763**, beide completed/success. Beide vollständigen Logs selbst gelesen: 17/18 Gruppen mit Self-/Negativtests und bestehender Node-Crosscheck PASS. PR-Architecture-only/Node auf synthetischem Merge `854e845136a83f57b97d2095b26bba1a779c6ecb`; Scope nach echtem Head-Checkout auf `fb9ddb…`, `worktreeDirty=false`, Basis 5f51273. |
 
 Die Prüfumgebung wurde isoliert außerhalb versionierter Projektdateien eingerichtet; keine Abhängigkeit oder Toollogik des Repositorys geändert. Eigene lokale Linuxausgaben liegen zusätzlich in ignorierten Scratchlogs; die maßgeblichen Befehle, Versionen und Ergebnisse sind hier persistent, eigene CI wird mit Run-/Job-/Commitbezug ergänzt.
 
@@ -190,12 +190,31 @@ Die Prüfumgebung wurde isoliert außerhalb versionierter Projektdateien eingeri
 
 | Kategorie | Stand / Grenze |
 |---|---|
-| `LOCAL_DOCUMENT_STRUCTURE` | Auf Anker und vollständigem Vorbereitungsfolgediff ausgeführte Inventar-/WP-/Link-/ADR-/Statusprüfungen PASS; eigene Remote-PR-CI noch ausstehend. |
+| `LOCAL_DOCUMENT_STRUCTURE` | Auf Anker und vollständigem Vorbereitungsfolgediff ausgeführte Inventar-/WP-/Link-/ADR-/Statusprüfungen PASS; eigene Push-/PR-Architecture-CI zusätzlich PASS auf fb9ddb. |
 | `LOCAL_ARCHITECTURE_SEMANTICS` | Auf Anker und Folgediff ausgeführte Schema-/Hash-/Fixture-/Reducer-/Self-/Negativprüfungen PASS; bestehender Node-Goldencheck PASS; kein neuer C#-Proofbeleg. |
 | `MANUAL_ARCHITECTURE_REVIEW` | Quellenhierarchie, Lieferzuordnung, vollständiger geplanter Scope, Modulgrenzen und zwei Abschlussrollen abgeglichen; kein automatisches PASS für reine Textsemantik. |
-| `LOCAL_SCOPE` | Historisch gebundener vollständiger Basisdiff inklusive Folgestand PASS; genau fünf erlaubte Phase-A-Dateien, alleinige Manifestzeile im Workflow, `git diff --check` sauber, keine untracked Scopepfade; Remote-PR-Diff noch ausstehend. |
+| `LOCAL_SCOPE` | Historisch gebundener vollständiger Basisdiff inklusive Folgestand PASS; genau fünf erlaubte Phase-A-Dateien, alleinige Manifestzeile im Workflow, `git diff --check` sauber, keine untracked Scopepfade; vollständiger Remote-PR-Diff exakt gleich lokalem Basisdiff (50.877 Zeichen auf fb9ddb). |
 | `CONTRACT_ONLY` | Proof-v1-/Strict-/Generator-/Import-/Releaseverträge weiterhin ohne neue Implementierung. |
 | `REQUIRED_LATER/NOT_EXECUTED` | AK-B01–B07, Produktionsproof, zugehörige Unity-/Node-Proofprüfungen und beide unabhängigen Abschluss-QCs erst Phase B; Geräte-/SDK-/Storetests bleiben später. |
-| `BLOCKED` | Produktfolgeblocker 001–003 unverändert. Kein fachlicher Definitions-/Trust-Blocker festgestellt; eigene Remote-/CI-Nachweise stehen noch aus. |
+| `BLOCKED` | Produktfolgeblocker 001–003 unverändert. Kein offener Phase-A-Definitions-/Scope-/Trust-/CI-Blocker. Spätere Implementierung und ihre Nachweise ausdrücklich unbeauftragt. |
 
-Letzter abgeschlossener Schritt: gemeinsame Definition/Verankerung und vollständige lokale Vorbereitungsprüfung. Nächster Schritt innerhalb des jetzigen Auftrags: vollständigen Folgediff lokal/remote mit eigener PR-CI prüfen und Übergabe persistieren. Erst danach separater ausdrücklicher Phase-B-Auftrag; keine Implementierungsfreigabe durch diese Eintragung.
+Letzter abgeschlossener Schritt: vollständige Phase-A-Vorbereitung einschließlich eigener PR-CI und Remote-Diffprüfung. Nächster zulässiger Schritt: **separater ausdrücklicher Implementierungsauftrag für Phase B von WP-025 auf derselben verankerten Branch**. Keine Implementierungsfreigabe durch diese Eintragung.
+
+
+### Phase-A-Übergabe und finale Nachweisbindung
+
+**Ergebnis: Vorbereitung abgeschlossen; WP-025 als Gesamtpaket offen.** Branch `codex/wp-025-proof-v1-strict-preparation`, [Draft-PR #19](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19) gegen main. Der geprüfte Vorbereitungs-HEAD ist `fb9ddb5880b0619e37c7464234ad8207eb0ea309`; die anschließende Übergabefortschreibung ändert ausschließlich dieses WP, `CURRENT_STATE.md` und `WORK_QUEUE.md`. Anchor, Manifest, Manifestzuordnung und alle fachlichen Dateien bleiben identisch. Der finale Übergabe-HEAD ist der letzte normale Dokumentationscommit der Branch; seine vollständige SHA und eigene nachgelagerte CI werden nach Push in der **Beschreibung von PR #19** konkret persistiert. Diese CI wird selbst abgerufen und nicht aus dem vorherigen PASS abgeleitet. Die finale Remote-/Diff-/Manifestprüfung folgt ebenfalls auf diesem tatsächlichen HEAD, keine Prüfung nur der zuletzt nachgeführten Dateien.
+
+| Phase-A-Kriterium | Ergebnis / Nachweis |
+|---|---|
+| AK-A01 | Erfüllt: vollständige unveränderte WP-017-Absicht, aktuelle Lieferzuordnung, Grenzen und beide unabhängigen späteren Abschlussrollen dokumentiert; bestehende Paketdefinitionen/ADRs unverändert. |
+| AK-A02 | Erfüllt: gemeinsamer Erst-Add de314db, genau ein Elterncommit 5f51273; historische IDs/Link, Schema, Base-/Anchor-Ancestry und unveränderte Manifestbytes mit direkter Gitblobprüfung lokal/HEAD/Remote belegt. |
+| AK-A03 | Erfüllt: gesamter Basisdiff genau fünf Phase-A-Dateien; Workflowblob exakt Baseline mit einzigem Ersatz WP-024→WP-025-Manifest; keine untracked Scopepfade, keine fremden Produktions-/Schema-/Test-/Golden-/Architekturänderungen. |
+| AK-A04 | Erfüllt: lokale Linux-Selftestläufe 17/18 PASS, voller Scope-/Secret-/Whitespace-/Trustnachweis; eigene Ubuntu-Push-/PR-CI auf fb9ddb mit gelesenen Logs PASS. Finaler Dokumentationsnachfolger erhält separate, am PR persistierte Nachweise. |
+| AK-A05 | Erfüllt: normale eigene Branchcommits/Push, Draft-PR #19, vollständiger PR-Diff auf fb9ddb exakt lokal, HEAD/Base frisch gelesen. Finale Dokumentations-HEAD-/CI-/Diffbindung wird in PR #19 festgehalten; Übergabe und separater nächster Auftrag hier persistent. |
+
+Geänderte Dateien und Funktionen: neues WP (vollständiger Auftrag/Quellenabgleich/Evidenz/Übergabe), neues Manifest (immutable vollständige Außengrenze), `CURRENT_STATE.md` (Phasen-/Ergebnis-/Blocker-/Nachweisstand), `WORK_QUEUE.md` (mechanischer Stand bei unveränderter Priorität 5 und Startgates), `validate.yml` (ausschließlich vorhandene Manifestzuordnung).
+
+Die zusätzliche eigene Unity-CI auf fb9ddb ist **kein Phase-A-Abnahmekriterium**: Push-Run `38395357226` und PR-Run `38395554553` waren bei dieser Eintragung noch nicht vollständig abgeschlossen. project-preflight/config/evidence-guard erfolgreich; Push-EditMode aktiv, PR-EditMode im gemeinsamen Lizenzslot wartend; übrige Umgebungs-/Folgejobs nach tatsächlichem Zustand. Keine vollständige PASS-Aussage. Eigene Push-/PR-Ereignisse wurden zeitlich getrennt und erst nach SUCCESS des bestehenden main-Unity-Runs ausgelöst; keine laufende fremde CI abgebrochen oder neu gestartet. Ein weiterer normaler Dokumentationspush löst nach unverändertem Workflow eigene Runs aus; deren tatsächliche Zustände stehen separat am PR. Natürliches Scheduling/Concurrency-CANCELLED wäre kein bestandener Test und wird nicht umetikettiert. Es erfolgt kein vorsorglicher CI-Abbruch oder Neustart.
+
+Keine offene Phase-A-Korrektur und kein neuer Produkt-/Architekturentscheid nötig. Die kurze anfänglich fehlgeschlagene Node-Scratch-Extraktion ist behoben; kein Repositoryvalidator oder Gate wurde geändert. Die bewusst späteren Prüfungen bleiben AK-B01–B07, tatsächliche Produktions-Proofregeneration/Node-Proofprojektion, Unity-Content-/Solvernachweise und zwei unabhängige Abschluss-QCs. Integration und Contentproduktion bleiben hinter ihren separaten Gates; die drei Produktfolgeblocker und Geräte-/SDK-/Storeeinschränkungen bleiben unverändert.
