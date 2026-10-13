@@ -96,3 +96,46 @@ git diff --check c9516bdbd5858fd9003d5207ec37d180ccc6ae23 --
 ## Definition of Done
 
 Die [projektweite DoD](../PROJECT_CONTROL/DEFINITION_OF_DONE.md) gilt vollständig. AK-01 bis AK-08 einzeln prüfen; tatsächliche Tests, Dateien, Einschränkungen, externe Prüfrollen und Folgegates in diesem WP und CURRENT_STATE dokumentieren. Kein Gesamtabschluss bei fehlenden Rätseln, nicht regenerierten Proofs, unerfüllten Voraussetzungen oder ausstehender vorgeschriebener Abnahme. Die Verankerung dieses Auftrags ist keine Lieferung der 240 Rätsel. Normale Remoteübergabe mit konkretem HEAD, Draft-PR und tatsächlichen CI-Status sichern; spätere Integration bleibt ausdrücklich ausgeschlossen.
+
+## Ausführung und blockierte Übergabe – 13.10.2026
+
+**Status: offen/blockiert durch BLOCKER-WP026-001; 0/240 konkrete Rätsel und 0/240 neue Proofs.** Keine formale Gesamtabnahme. Die Paketdefinition oben bleibt unverändert; dieser Abschnitt hält den tatsächlichen Ausführungsstand fest.
+
+### Anker und tatsächliche Dateien
+
+Gemeinsamer Erst-Add von genau WP und eigenem Manifest in `f9231c73e45ade33450c541e77dbeff5d2eae162`; einziger Elterncommit = Manifestbasis = `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`. Manifest-SHA-256 `981cd37f45c0bb73106d321ad450fbf8ad8e210a508b8a177d25892058ef018c`, nach dem Anker unverändert. Kein anderer WP-/Manifest-/Architektur-/Produktionsbestand verändert.
+
+Nach dem Anker erstellt: [Startgate-/Übergabebericht](../Content/Reviews/season-1/START_GATE_REVIEW.md), [vollständiger unabhängiger Gegenbericht](../Content/Reviews/season-1/INDEPENDENT_START_GATE_REVIEW.md), [tatsächliche API-Ausgabe](../Content/Reviews/season-1/reference-gate-probe.txt) und reproduzierbarer isolierter Diagnosewrapper `tools/season1-authoring/reference_gate_probe.py` / `ReferenceGateProbe.cs`. CURRENT_STATE und WORK_QUEUE führen ausschließlich den erteilten Folgeauftrag und Blocker nach; validate.yml ändert ausschließlich die vorhandene Manifestzuordnung. Keine Level-/Proof-, Katalog-, Lokalisierungs-, Asset- oder Release-Lock-Datei angelegt.
+
+### Blocker und unabhängige Gegenprüfung
+
+Für sämtliche 240 IDs fehlen belegte Werte von `/content/titleKey`, `/content/statusKey`, `/production/entryDeductionKey`, `/completion/mapSegmentId`, `/completion/trainMomentId`, `/completion/resultTextKey`. Level-v2-Schema und Produktionsreader verlangen sie vor dem Solver. Die tatsächliche Main-Basis enthält keine kanonischen Contentquellen; vorhandene Beispiele sind FIXTURE_ONLY. Der Nutzer schließt das Erfinden solcher Referenzen aus. Ein bestehender regelkonformer Logik-only-Quell-/Proofweg wurde nicht gefunden. Die getrennte reine Quellen-/Codegegenprüfung durch `/root/content_startgate_review` bestätigt den engen Befund; sie ist keine WP-025-Abnahme oder finale WP-026-Contentprüfung.
+
+Fehlende finale Assets, Produktfreigaben und Release-Locks sind ausdrücklich **nicht** zum generellen Authoringstartgate erklärt; DRAFT-Authoring bleibt laut Vertrag zulässig. Hier scheitert bereits die Belegung der Pflichtfelder ohne erfundene Referenzen. Pure Solverexperimente wären nur Zwischenevidenz und kein Ersatz für den kanonischen Produktionsproof. Bewusst schemaungültige Entwürfe oder ein neues Datenformat wurden mangels dokumentierter Ausnahme nicht als Produktion persistiert.
+
+Auflösung: tatsächliche maßgebliche Zuordnungen durch Text-/Lokalisierungs- und Completion-/World-Verantwortliche liefern, oder die Vertragslücke separat nach bestehendem Entscheidungsverfahren bestätigen lassen. Kein bloßer neuer Fortsetzungsauftrag erforderlich. Dieser Agent verändert dafür keine Architektur oder Schemaprüfung. Details und weitere offene Nachweise im verlinkten Bericht.
+
+### Tatsächliche Prüfungen und Evidenzgrenzen
+
+| Prüfung/Kategorie | Tatsächliches Ergebnis |
+|---|---|
+| API-Gegenprobe, eigener Zusatzharness | SDK 10.0.401, getrennte pure Assemblies aus unveränderten Quellen; Build Exit 0, 0 Warnungen/Fehler. Eine gültige bestehende Fixture als positive Kontrolle, 18 fehlend/null/leer-Mutationen der sechs Referenzen erwartungsgemäß vor Solver abgewiesen. Produktionsgenerator liefert keinen Proof. Eingecheckter Reproduktionswrapper ebenfalls Exit 0. Kein Season-1-Solvernachweis, kein Unityersatz. |
+| LOCAL_DOCUMENT_STRUCTURE / LOCAL_ARCHITECTURE_SEMANTICS | Erster kanonischer Linuxlauf mit CPython 3.11.13/Node 22.20.0 und exakt sechs Lockpaketen: Architecture-only 17 Gruppen PASS einschließlich Self-/Negativtests. Bestehender Nodecheck 12 Kanonisierungen/32 Ablehnungen/2 v2-/2 v1-Vektoren PASS. Nur Governance-/Contractnachweis. |
+| LOCAL_SCOPE, erster Lauf | FAIL `git:main-changed`: unbenutzter lokaler main-Verweis war noch 5f51273, origin/main bereits c9516bd. Daraufhin ausschließlich normaler Fast-forward-Fetch `git fetch origin main:main`; keine Integration, kein Merge oder Rebase. Betroffener Scope-Lauf vor Remoteübergabe erneut auszuführen, keine PASS-Übertragung. |
+| MANUAL_ARCHITECTURE_REVIEW | Konkrete Pflichtfeld-/Quellen-/Produktionspfadgrenze selbst gelesen und unabhängig gegengeprüft; kein automatischer PASS für fachliche Textsemantik. |
+| CONTRACT_ONLY | Vollständiger 240er-Auftrag vorhanden; tatsächliche Rätsel, Rootspuren und Produktionsproofs fehlen. |
+| REQUIRED_LATER/NOT_EXECUTED | 240er-Schema/Domain/Solver-/Proof-/Metrik-/Ähnlichkeits-/Leveldesign-/Spieltest-/Abnahmenachweise noch nicht ausgeführt; kreative Cross-References, Pseudolocale, Doppelimport, Addressables, Lizenz-/Größen-/Release-/Geräte-/Storeprüfungen nicht als erfüllt dargestellt. |
+| BLOCKED | BLOCKER-WP026-001 wie oben. Produktfolgeblocker 001–003 bleiben unverändert und sind keine zusätzliche allgemeine Contentstartsperre. |
+
+Erste .NET-Scratchausführung scheiterte am fehlenden Restore (NETSDK1004); nach regulärem Restore und mit dem reproduzierbaren Wrapper bestanden. Die kurzlebige Linuxumgebung unter `/tmp` war in einer späteren Sitzung nicht mehr verfügbar; ein solcher Startversuch ist kein Testlauf/PASS. Der folgende kanonische Wiederholungslauf richtet dieselbe isolierte gepinnte Umgebung neu ein, ohne Repositoryabhängigkeiten oder Validatoren zu ändern. Finale saubere HEAD-/CI-/Remote-/Scopebindung wird nach tatsächlicher Ausführung im Draft-PR persistiert, damit der Bericht keinen rekursiven Prüfcommit erzeugt.
+
+### Akzeptanzkriterien und nächster Schritt
+
+| Kriterien | Status |
+|---|---|
+| AK-01 | Gemeinsamer Anker vorhanden; vollständige finale Scope-/CI-/Remoteevidenz vor Übergabe nachzuführen. |
+| AK-02 bis AK-06 | Nicht erfüllt; keine 240-Level-Lieferung und keine entsprechenden Nachweise behauptet. Blocker verhindert den vorhandenen vollständigen Produktionsweg. |
+| AK-07 | Fehlende Felder, alle betroffenen IDs, Zuständigkeiten und nachgelagerte Gates konkret dokumentiert, keine falsche Freigabe. |
+| AK-08 | Keine Abschlussabnahme des Bestands; nur tatsächliche Startgate-Gegenprüfung. Vollständiger Auftrag bleibt offen/blockiert. |
+
+Letzter abgeschlossener fachlicher Schritt: Main-/PR-Rekonstruktion, Auftragsverankerung und konkrete Pflichtreferenz-Gegenprobe. Nächster fachlicher Schritt: belegte Referenzzuordnung oder separat bestätigte Vertragslösung. Erreichter Stand wird normal auf eigener Branch und als Draft-PR gesichert; keine Merge-/Runtime-/Releaseaktion. Nach Auflösung Blocker und aktuellen Parallelstand prüfen und denselben vollständigen Auftrag fortsetzen.
