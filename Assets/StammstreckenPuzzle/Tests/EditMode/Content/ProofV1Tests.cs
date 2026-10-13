@@ -323,5 +323,34 @@ namespace STP.Tests.Content.EditMode
                 Assert.Throws<ArgumentOutOfRangeException>(() => new LevelDiagnostic(LevelDiagnosticStage.Import,
                     "TEST-INVALID-SEVERITY", "/test", "invalid severity", (LevelDiagnosticSeverity)invalid));
         }
+
+        [TestCase(false)][TestCase(true)]
+        public void DuplicateSources_RetainEachRestriction_AndStayOrderedWhenInputsReverse(bool strict)
+        {
+            var warning = new LevelDiagnostic(LevelDiagnosticStage.Schema, "TEST-DUPLICATE-WARNING", "/notice", "schema notice", LevelDiagnosticSeverity.Warning);
+            var error = new LevelDiagnostic(LevelDiagnosticStage.Import, "TEST-DUPLICATE-ERROR", "/restriction", "import restriction");
+            var a = Input(GoldenLevel("root"), RepoFiles.Bytes(Prefix+"root.json"), "Content/./dupe.json", new[] { warning, error });
+            var b = Input(GoldenLevel("root"), RepoFiles.Bytes(Prefix+"root.json"), "Content//dupe.json", new[] { warning });
+            var args = strict ? new[] { "--strict" } : Array.Empty<string>();
+            var forward = LevelValidationCommand.ValidateBatch(new[] { a,b }, args);
+            var reverse = LevelValidationCommand.ValidateBatch(new[] { b,a }, args);
+            Assert.That(forward.ErrorCount, Is.EqualTo(strict ? 5 : 3));
+            Assert.That(forward.WarningCount, Is.EqualTo(strict ? 0 : 2));
+            Assert.That(forward.FailedCount, Is.EqualTo(2)); Assert.That(forward.Succeeded, Is.False);
+            Assert.That(forward.FailedStage, Is.EqualTo(LevelDiagnosticStage.Parse));
+            foreach (var result in forward.Results)
+            {
+                Rejected(result, "LVL-SOURCE-DUPLICATE");
+                var effective = result.Diagnostics.Single(d => d.Code == warning.Code);
+                Assert.That(effective.Stage, Is.EqualTo(warning.Stage)); Assert.That(effective.Path, Is.EqualTo(warning.Path));
+                Assert.That(effective.Message, Is.EqualTo(warning.Message));
+                Assert.That(effective.Severity, Is.EqualTo(strict ? LevelDiagnosticSeverity.Error : LevelDiagnosticSeverity.Warning));
+                Assert.That(result.FailedStage, Is.EqualTo(LevelDiagnosticStage.Parse));
+            }
+            Assert.That(forward.Results.Sum(r => r.Diagnostics.Count(d => d.Code == error.Code)), Is.EqualTo(1));
+            Assert.That(forward.Results.Select(r => Codes.Describe(r.Diagnostics)), Is.EqualTo(reverse.Results.Select(r => Codes.Describe(r.Diagnostics))));
+            Assert.That(reverse.ErrorCount, Is.EqualTo(forward.ErrorCount)); Assert.That(reverse.WarningCount, Is.EqualTo(forward.WarningCount));
+            Assert.That(warning.Severity, Is.EqualTo(LevelDiagnosticSeverity.Warning));
+        }
     }
 }

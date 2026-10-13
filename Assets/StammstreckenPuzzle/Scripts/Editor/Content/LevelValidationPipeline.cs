@@ -42,6 +42,24 @@ namespace STP.Editor.Content
     /// <summary>Shared Parse → Schema → Domain → Semantic → Hash → Solver/regeneration → Proof pipeline. No import or release side effects.</summary>
     public static class LevelValidationPipeline
     {
+        private static readonly IComparer<LevelValidationInput> AdditionalDiagnosticOrder = Comparer<LevelValidationInput>.Create((a, b) =>
+        {
+            IOrderedEnumerable<LevelDiagnostic> Ordered(LevelValidationInput input) => input.AdditionalDiagnostics.Distinct()
+                .OrderBy(d => d.Stage).ThenBy(d => d.Path, StringComparer.Ordinal).ThenBy(d => d.Code, StringComparer.Ordinal)
+                .ThenBy(d => d.Message, StringComparer.Ordinal).ThenBy(d => d.Severity);
+            var left = Ordered(a).ToArray(); var right = Ordered(b).ToArray();
+            for (int i = 0; i < Math.Min(left.Length, right.Length); i++)
+            {
+                int order = left[i].Stage.CompareTo(right[i].Stage);
+                if (order == 0) order = StringComparer.Ordinal.Compare(left[i].Path, right[i].Path);
+                if (order == 0) order = StringComparer.Ordinal.Compare(left[i].Code, right[i].Code);
+                if (order == 0) order = StringComparer.Ordinal.Compare(left[i].Message, right[i].Message);
+                if (order == 0) order = left[i].Severity.CompareTo(right[i].Severity);
+                if (order != 0) return order;
+            }
+            return left.Length.CompareTo(right.Length);
+        });
+
         public static LevelValidationResult ValidateOne(LevelValidationInput input, bool strict = false, SolverLimits? limits = null)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
@@ -82,7 +100,8 @@ namespace STP.Editor.Content
         {
             var ordered = (inputs ?? throw new ArgumentNullException(nameof(inputs))).OrderBy(i => i.SourcePath, StringComparer.Ordinal)
                 .ThenBy(i => LevelHashing.Sha256Hex(i.LevelBytes ?? Array.Empty<byte>()), StringComparer.Ordinal)
-                .ThenBy(i => LevelHashing.Sha256Hex(i.ProofBytes ?? Array.Empty<byte>()), StringComparer.Ordinal).ThenBy(i => i.ArtifactId, StringComparer.Ordinal).ToArray();
+                .ThenBy(i => LevelHashing.Sha256Hex(i.ProofBytes ?? Array.Empty<byte>()), StringComparer.Ordinal).ThenBy(i => i.ArtifactId, StringComparer.Ordinal)
+                .ThenBy(i => i, AdditionalDiagnosticOrder).ToArray();
             var duplicates = new HashSet<string>(ordered.GroupBy(i => i.SourcePath, StringComparer.Ordinal).Where(g => g.Count() > 1).Select(g => g.Key), StringComparer.Ordinal);
             // All sources finish each existing stage before any source enters the next stage (CONTENT_PIPELINE section 5).
             var parsed = ordered.Select(i => StrictJsonParser.Parse(i.LevelBytes)).ToArray();
@@ -99,7 +118,7 @@ namespace STP.Editor.Content
                 var input = ordered[i];
                 if (duplicates.Contains(input.SourcePath))
                     results.Add(new LevelValidationResult(input.SourcePath, loaded[i], null,
-                        new[] { new LevelDiagnostic(LevelDiagnosticStage.Parse, "LVL-SOURCE-DUPLICATE", string.Empty, "Normalized source path occurs more than once.") }, strict));
+                        input.AdditionalDiagnostics.Concat(new[] { new LevelDiagnostic(LevelDiagnosticStage.Parse, "LVL-SOURCE-DUPLICATE", string.Empty, "Normalized source path occurs more than once.") }), strict));
                 else results.Add(ValidateLoaded(input, loaded[i], strict, limits));
             }
             return new LevelValidationReport(results);
