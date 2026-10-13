@@ -4,7 +4,7 @@
 
 `WP-024`
 
-**Bearbeitungsstatus:** **Phase A (Definition und Verankerung) abgeschlossen. Phase B (Implementierung) ist umgesetzt. Die erste unabhängige Abschluss-QC (Head `6f74ebb…`) und die erneute unabhängige Abschluss-QC (Head `59cf00c…`) endeten jeweils mit FAIL; beide Befundrunden sind innerhalb von WP-024 korrigiert (Abschnitte „QC-Korrektur nach der ersten unabhängigen Abschluss-QC“ und „Zweite QC-Korrektur nach der erneuten unabhängigen Abschluss-QC“). Der Stand ist technisch bereit für eine weitere unabhängige Abschlussprüfung auf dem eingefrorenen finalen PR-HEAD; diese Prüfung und die Integration stehen aus (kein Merge, PR #17 bleibt Draft).**
+**Bearbeitungsstatus:** **Abgeschlossen und auf `main` integriert.** Nach beiden korrigierten QC-FAIL-Runden bestand der eingefrorene finale PR-HEAD `64d8801ee28d68dc0c8ec9800898b7862977c32c` die vollständige unabhängige Abschluss-QC: **PASS**, AK-01 bis AK-12 erfüllt, keine integrationsblockierenden Befunde. Die Geschäftsführung erteilte am 13.10.2026 mit „übernehmen“ die Integrationsfreigabe samt Abschlussdokumentation. PR #17 wurde mit Expected-HEAD-Absicherung als Merge-Commit `22ff74558259c7ba1f9a157280e4d70b909bac26` integriert. Der aktuelle Abschlussnachweis steht im Abschnitt „Finale unabhängige Abschluss-QC und Integration“ am Ende dieser Datei. Frühere Aussagen zu ausstehender QC, Draft und fehlendem Merge sind historische Zwischenstände; die Nachweise und Korrekturen bleiben unverändert nachvollziehbar.
 
 [Scope](../tools/architecture-validation/scopes/WP-024.production.scope.json)
 
@@ -375,3 +375,68 @@ Die übrigen als „konservativ“ bezeichneten Punkte wurden gegen die Quellen 
 4. Die Notwendigkeit eines Fakts wird im Test durch Gegenmodelle in Rastern bis eine Spalte und Zeile größer gezeigt; die exakte Prüfung im Tracer deckt alle Größen 2..32 ab (größere Raster als +1 verhalten sich für die Regeln gleich, siehe `SOLVER_ARCHITECTURE.md` 13.3).
 5. Metriken und Spur nur bei `UNIQUE`, kein Proof, keine Schemaänderung, keine Strict-Validation; `BLOCKER-PROD-001` bis `-003` unberührt.
 6. Nächster Schritt: weitere **unabhängige** Abschluss-QC auf dem eingefrorenen finalen PR-HEAD, danach Geschäftsführungsentscheidung zur Integration. Keine Selbst-QC, kein Merge.
+
+## Finale unabhängige Abschluss-QC und Integration – 2026-10-13
+
+**Endstatus: PASS, abgeschlossen und integriert.** Dieser Abschnitt ersetzt ausschließlich die früheren Zwischenstände „Abschluss-QC ausstehend“, „Draft“, „kein Merge“ und den damaligen nächsten Schritt. Die historischen Befunde, Korrekturen und ihre jeweilige Evidenz bleiben erhalten; Anforderungen, Architektur und Scope werden nicht verändert.
+
+### Herkunft, Freigabe und Standbindung
+
+Der Auftraggeber übermittelte den Bericht der separat beauftragten unabhängigen Abschlussprüfung. Der vollständige Bericht ist zusammen mit der nachfolgenden Geschäftsführungsfreigabe in [PR #17, Review 5502357045](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/17#pullrequestreview-5502357045) persistiert. Die eigenen Experimente dieses Berichts sind Leistungen des unabhängigen Prüfers, keine erneut ausgeführte Abschluss-QC der Koordination.
+
+| Bezug | Nachweis |
+|---|---|
+| Unabhängig geprüfter finaler HEAD | `64d8801ee28d68dc0c8ec9800898b7862977c32c` |
+| Geprüfte tatsächliche Base | `ab117f459689d2b2937d436bb1a763296a65d52a` |
+| Nachbesserungsdiff zusätzlich geprüft gegen | `59cf00c6a526d3434c178b44f5ac4b09cacadcc5` |
+| Umfang des Abschlussurteils | Vollständiges WP-024, vollständiger PR-Diff mit 23 Dateien; keine bloße Teilprüfung der Reparaturen. |
+| Gesamturteil | **PASS. Technisch integrationsbereit, vor Integration keine technische Korrektur erforderlich, keine integrationsblockierenden Befunde.** |
+| Geschäftsführungsfreigabe | Alexander, 13.10.2026: „übernehmen“, bezogen auf den geprüften Stand samt Abschlussdokumentation; kein Folgeimplementierungs- oder Releaseauftrag. |
+| Tatsächliche technische Integration | [PR #17](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/17), Merge-Commit `22ff74558259c7ba1f9a157280e4d70b909bac26`, 13.10.2026. Merge mit `expected_head_sha` auf den freigegebenen HEAD; kein Squash oder Rebase. |
+| Inhaltsbindung | Geprüfter HEAD, CI-Mergecommit `8f18c185cb2d0492839e8e449a41cb81064a91ef` und tatsächlicher Merge-Commit besitzen denselben Git-Baum `ce7f255b0518c7d8eec976ce86827f591556bb04`. |
+| Trust Anchor / Manifest | `3e7f1ab2e56853294a4f09650d8ec361ab4eca1a`; Manifest-SHA-256 unverändert `2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631`. |
+
+### Endbewertung der Akzeptanzkriterien
+
+Die folgende Zusammenfassung gibt das unabhängige Abschlussurteil wieder. Sie ersetzt keine eigene zusätzliche QC und überträgt keine früheren PASS-Zahlen auf einen ungeprüften Codezustand.
+
+| ID | Endurteil | Entscheidender Nachweis der Abschlussprüfung |
+|---|---|---|
+| `AK-01` | PASS | Gemeinsamer Erst-Add von WP und Manifest; alleiniger Elterncommit gleich Base; historischer Link und Manifestbytes korrekt. |
+| `AK-02` | PASS | Konstante und alle Ergebniswege melden `solver-v2`. |
+| `AK-03` | PASS | Unveränderliche, deduplizierte Rootspur; öffentliche Fakten und frühere Einträge; Prämissen hinreichend und irredundant. |
+| `AK-04` | PASS | Korrigierte deduktive Goldens; Root-only ohne Suche/Annahmen; Tiefe ohne Root-Schritt null. |
+| `AK-05` | PASS | Erfolgreiche und verworfene DFS-Annahmen zählen, Zweigreduktionen gehen nicht in Root-Metriken ein. |
+| `AK-06` | PASS | Verworfene tiefere Zweige erhöhen die Erfolgspfadtiefe nicht. |
+| `AK-07` | PASS | Unabhängiger Testcode rekonstruiert Schrittzahl und Tiefe allein aus der Spur. |
+| `AK-08` | PASS | Fail-closed Gate; Budget, Cancellation und rückläufige Uhr führen zu `INDETERMINATE`. |
+| `AK-09` | PASS | Klassifikation, Lösungslimit, MRV, Tiebreaker und Wertefolge erhalten; Enumerator-, Metamorphose- und Abbruchtests erfolgreich. |
+| `AK-10` | PASS | Determinismus bestätigt; finale CI p95 15,544 ms, Maximum 58,686 ms, innerhalb 250 ms / 2 s. |
+| `AK-11` | PASS | Architektur und Dokumentation konsistent, ausschließlich Domainreferenz, verbotene Artefakte unverändert. |
+| `AK-12` | PASS | Governance, Scope, Trust und reale CI vollständig; Diffprüfung sauber, Secret-Mustersuche ohne Treffer; Coverage-Ausnahme begründet. |
+
+Alle vier früheren integrationsblockierenden Befunde sind laut Abschlussprüfung behoben: fehlende öffentliche Fakten (erste Runde), Ergebnisarbeit nach der letzten Budgetprüfung bei `UNIQUE` (erste Runde, Korrektur erhalten), entsprechende Ergebnisbildung der übrigen Klassen (zweite Runde) und entbehrliche öffentliche Prämissen (zweite Runde). Es besteht keine offene Solverkorrektur.
+
+### Tatsächlich gebundene Evidenz und Einschränkungen
+
+- **Finale CI des geprüften Lieferstands:** [Architecture Validation 38324116629](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38324116629) SUCCESS (17 Architecture-only- und 18 Scope-Prüfgruppen einschließlich Self-/Negativtests); [Unity CI 38324116596](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38324116596) SUCCESS über zehn Jobs. Der unabhängige Prüfer las XML, Coverage und entscheidende Buildlogs: EditMode 413/413, Solver 55/55, PlayMode 27/27, Android Development IL2CPP und iOS-Export/Xcode-Compile erfolgreich. Abgebrochene parallele Läufe wurden nicht als PASS gewertet.
+- **Prämissen:** Finale CI laut geprüftem Artefakt: 724 Referenzpuzzles, 9.289 Schritte, 106.758 Perturbationen, davon 5.956 leer erfüllt. Der zusätzliche eigene BFS-Prüfer der Abschluss-QC untersuchte 488 Faktenkombinationen auf 61 Zuständen über alle jeweils zulässigen Rastergrößen 2..32 ohne Abweichung; ausdrücklich keine vollständige Enumeration aller Zustände. Die regelbezogene Begründung und der Irredundanzvertrag wurden akzeptiert, keine global kürzeste Beweisführung verlangt.
+- **Budgetschwelle 40 %:** Der Prüfer trennte Produktionskorrektheit, Regressionsschutz und Messstabilität. Eigene .NET-Allokationsprobe: für alle vier Ergebnisarten keine Allokationen nach der letzten Prüfung; der historische Fehler reproduzierbar. Unter Unity 6000.3.23f1 auf Windows, auch mit CI-Coverage-/Debugflags, scheitern historischer Fehler, nachgelagerter Ergebnisbau und Doppelbau-Variante am finalen Test. Verhältnis zur Kopierzeit: korrekter Code 0,13–0,17, fehlerhafte Doppelbauvarianten 0,68–0,90; finale Ubuntu-CI beim korrekten Code höchstens etwa 0,134. Die knappe .NET-Erkennung bleibt umgebungsbezogene Einschränkung; keine allgemeine Stabilitätsgarantie für jede Maschine und kein behaupteter Ubuntu-Mutantengegenlauf. Kein integrationsblockierender Verlust des Regressionsschutzes festgestellt.
+- **Goldens, Mutationen, Coverage:** Geänderte Goldens korrigieren die falschen Prämissenerwartungen, ohne Suchwerte, Schrittzahlen oder Tiefen zu ändern. Der Prüfer stellte die vier vorgeschriebenen Metrik-/Deduplizierungsmutationen selbst nach und erkannte sie. Die fünf als äquivalent ausgeschlossenen Varianten wurden nach Codewirkung geprüft und nachgebildet, jeweils 55/55 Solver-Tests; der gesamte 38er-Lauf bleibt Implementierer-Evidenz, kein vollständig wiederholter Prüferlauf. Direkt verglichene Coverage: Sequenzpunkte 868/875 → 1.022/1.031, Zeilen 473/475 → 563/564; der defensive, vorgeschaltet ausgeschlossene Pfad begründet die akzeptierte Ausnahme.
+- **Koordinierende Verifikation:** PR-HEAD/Base vor Integration nochmals abgefragt und unverändert; erfolgreiche finale CI-Läufe und entscheidende Jobs sowie Git-Baumgleichheit selbst abgeglichen. Tatsächlichen Merge und dessen Eltern/Baum nach der Aktion gelesen. Keine erneute fachliche Abschluss-QC und keine eigene Ausführung der lokalen Prüferexperimente behauptet.
+
+| Belegkategorie | Abschlussstand |
+|---|---|
+| `LOCAL_DOCUMENT_STRUCTURE` | Durch die ausgeführten Validatoren der finalen CI belegt. |
+| `LOCAL_ARCHITECTURE_SEMANTICS` | Durch die ausgeführten Validatoren der finalen CI belegt; keine Gleichsetzung mit Unity-/Geräteprüfungen. |
+| `MANUAL_ARCHITECTURE_REVIEW` | Zusätzlich durch den unabhängigen Prüfer bewertet; kein automatisches PASS-Label für reine Textverträge. |
+| `LOCAL_SCOPE` | Tatsächlicher vollständiger Diff gegen das unveränderte Manifest in finaler CI und Abschluss-QC geprüft. |
+| `CONTRACT_ONLY` | Proof-/Strict-/Generatorverträge weiterhin ohne Umsetzung dieses Folgeblocks. |
+| `REQUIRED_LATER/NOT_EXECUTED` | Physische Geräte-, SDK- und Storeprüfungen bleiben spätere Nachweise. |
+| `BLOCKED` | `BLOCKER-PROD-001` bis `BLOCKER-PROD-003` unverändert offen und fail-closed. |
+
+### Formaler Closeout und nächster Schritt
+
+Der formale Closeout führt ausschließlich diese Datei, `PROJECT_CONTROL/CURRENT_STATE.md` und `PROJECT_CONTROL/WORK_QUEUE.md` nach. Keine Produktions-, Test-, Architektur-, Workflow-, Manifest- oder Anforderungsänderung. Die fachliche Abnahme bleibt exakt auf `64d8801ee28d68dc0c8ec9800898b7862977c32c` gebunden; nachgelagerte CI-Läufe der Dokumentation sind getrennt nach ihrem tatsächlichen Stand auszuweisen, nicht vorab als PASS zu behaupten.
+
+Die technischen DoD-Voraussetzungen sind durch die unabhängige Abschluss-QC erfüllt; QC-Ergebnis, Geschäftsführungsfreigabe und tatsächliche Integration sind persistiert. WP-024 ist abgeschlossen. Der nächste fachliche Block ist Proof-v1/Strict-Validation auf Grundlage der historischen WP-017-Planung und ADR-031. Er benötigt nach ADR-030 einen eigenen neuen ausführbaren Startanker vom dann aktuellen `main` und den vorgesehenen separaten Auftrag. Es wurde kein Folgepaket implementiert oder freigegeben. Ein Root-only-Ergebnis ist weiterhin kein importierbarer oder releasefähiger Proof.
