@@ -315,5 +315,13 @@ namespace STP.Tests.Content.EditMode
                 Assert.That(batch.WarningCount, Is.EqualTo(strict ? 0 : 1)); Assert.That(batch.FailedStage, Is.EqualTo(LevelDiagnosticStage.Parse));
             }
         }
+
+        [Test]
+        public void InvalidDiagnosticSeverity_CannotBypassStrictPromotion()
+        {
+            foreach (int invalid in new[] { -1, 2, int.MaxValue })
+                Assert.Throws<ArgumentOutOfRangeException>(() => new LevelDiagnostic(LevelDiagnosticStage.Import,
+                    "TEST-INVALID-SEVERITY", "/test", "invalid severity", (LevelDiagnosticSeverity)invalid));
+        }
     }
 }

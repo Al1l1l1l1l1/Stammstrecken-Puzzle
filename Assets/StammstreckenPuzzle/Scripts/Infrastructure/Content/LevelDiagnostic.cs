@@ -54,6 +54,8 @@ namespace STP.Infrastructure.Content
 
         public LevelDiagnostic(LevelDiagnosticStage stage, string code, string path, string message, LevelDiagnosticSeverity severity = LevelDiagnosticSeverity.Error)
         {
+            if (severity != LevelDiagnosticSeverity.Error && severity != LevelDiagnosticSeverity.Warning)
+                throw new ArgumentOutOfRangeException(nameof(severity), "Severity must be Error or Warning.");
             Stage = stage;
             Code = code ?? throw new ArgumentNullException(nameof(code));
             Path = path ?? throw new ArgumentNullException(nameof(path));
