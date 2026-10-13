@@ -4,7 +4,7 @@
 
 `WP-025`
 
-**Bearbeitungsstatus:** **Phase A abgeschlossen: vollständig vorbereitet, gemeinsam historisch verankert, lokal und durch eigene PR-CI geprüft; bereit für separaten Phase-B-Auftrag.** Phase B (Implementierung), unabhängige Abschluss-QC, Integration und Release sind nicht beauftragt. Das gesamte Work Package bleibt offen. Aktueller Übergabenachweis und finale Remote-/CI-Bindung am Ende sowie in Draft-PR #19.
+**Bearbeitungsstatus:** **Phase B am 13.10.2026 separat ausdrücklich beauftragt und begonnen.** Phase A ist abgeschlossen; ihre unten dokumentierten Autorisierungsgrenzen beschreiben den vorherigen Auftrag. Anforderungen, Paketdefinition, Manifest und Freigabegrenzen bleiben unverändert. Das Gesamtpaket bleibt bis Implementierung, tatsächlichen vorgeschriebenen Nachweisen und zwei unabhängigen Abschlussprüfungen offen. Integration und Release sind nicht beauftragt.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-025.production.scope.json)
 
@@ -218,3 +218,75 @@ Geänderte Dateien und Funktionen: neues WP (vollständiger Auftrag/Quellenabgle
 Die zusätzliche eigene Unity-CI auf fb9ddb ist **kein Phase-A-Abnahmekriterium**: Push-Run `38395357226` und PR-Run `38395554553` waren bei dieser Eintragung noch nicht vollständig abgeschlossen. project-preflight/config/evidence-guard erfolgreich; Push-EditMode aktiv, PR-EditMode im gemeinsamen Lizenzslot wartend; übrige Umgebungs-/Folgejobs nach tatsächlichem Zustand. Keine vollständige PASS-Aussage. Eigene Push-/PR-Ereignisse wurden zeitlich getrennt und erst nach SUCCESS des bestehenden main-Unity-Runs ausgelöst; keine laufende fremde CI abgebrochen oder neu gestartet. Ein weiterer normaler Dokumentationspush löst nach unverändertem Workflow eigene Runs aus; deren tatsächliche Zustände stehen separat am PR. Natürliches Scheduling/Concurrency-CANCELLED wäre kein bestandener Test und wird nicht umetikettiert. Es erfolgt kein vorsorglicher CI-Abbruch oder Neustart.
 
 Keine offene Phase-A-Korrektur und kein neuer Produkt-/Architekturentscheid nötig. Die kurze anfänglich fehlgeschlagene Node-Scratch-Extraktion ist behoben; kein Repositoryvalidator oder Gate wurde geändert. Die bewusst späteren Prüfungen bleiben AK-B01–B07, tatsächliche Produktions-Proofregeneration/Node-Proofprojektion, Unity-Content-/Solvernachweise und zwei unabhängige Abschluss-QCs. Integration und Contentproduktion bleiben hinter ihren separaten Gates; die drei Produktfolgeblocker und Geräte-/SDK-/Storeeinschränkungen bleiben unverändert.
+
+## Phase B – separat beauftragte Implementierung, 13.10.2026
+
+Der neue ausdrückliche Auftrag erlaubt den vollständigen oben definierten Phase-B-Scope einschließlich eigener Korrekturen, vorgeschriebener Prüfungen, normaler Commits/Pushes und Dokumentation auf der bestehenden Branch und PR #19. Die Phase-A-Beschränkungen oben sind die Historie des früheren Auftrags; keine Anforderung oder Paketdefinition wurde geändert. Integration, Rebase, Force-Push, Release, Folgepakete und Contentproduktion bleiben ausgeschlossen.
+
+### Einstieg und tatsächlicher Lieferumfang
+
+Vor Änderungen: vollständige Pflichtlektüre/Quellenhierarchie, sauberer Working Tree, lokaler/Remote-/PR-HEAD `5e4b986bf29a3223e96b5993f37a99882581dab2`, main/PR-/Manifestbasis `5f5127362b101dd4e066b68b21d3e35a5af314df`, kein zweiter offener Proof-PR. Der bestehende Unity-PR-Lauf `38396165644` wurde weiterlaufen gelassen. Beginn in diesem WP, CURRENT_STATE und WORK_QUEUE vor fachlichen Änderungen persistiert. Anker und Manifest-SHA-256 `1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d` unverändert.
+
+| Dateien | Tatsächliche Funktion |
+|---|---|
+| `Scripts/Infrastructure/Content/ProofV1.cs` (+ Meta) | Immutable Proof-/Metrik-DTOs, strikter Parser/geschlossene Schemalesung, exakte Projektion, kanonische Bytes, Selbsthash, bekannte Profile/Versionen und vollständige Level-/Referenz-/Artefaktbindung mit stabilen PRF-Codes. |
+| `Scripts/Infrastructure/Content/LevelValidationResult.cs` (+ Meta), `LevelDiagnostic.cs` | Immutable Einzel-/Batchmodelle, Error/Warning-Severity, Strict-Promotion vor Status/Stufe/Zählern, spätere Import-/Releasegates geschlossen. |
+| `Scripts/Infrastructure/Content/ContentEditorAccess.cs` (+ Meta) | Nur die bereits referenzierende Editorassembly darf intern Pipelineergebnisse konstruieren; keine neue Assemblyreferenz. |
+| `Scripts/Editor/Content/ProofGenerator.cs` (+ Meta) | Echte integrierte solver-v2-Regeneration aus öffentlichem Input, einziges Ergebnis und kanonischen Lösungshash vergleichen, unveränderte vier Metrics konsumieren, vollständige frische Ausgabe vor Verwendung selbst prüfen. |
+| `Scripts/Editor/Content/LevelValidationPipeline.cs`, `LevelValidationCommand.cs` (+ Metas) | Gemeinsamer stufenweiser Einzel-/Batchweg; normalisierte/sortierte Quellen, doppelte Quellen abweisen, CampaignGate unverändert, gespeicherte/frische Proofbytes vergleichen; headless `--strict`-Adapter ohne Import-/Dateisystem-Nebenwirkung. |
+| `ARCHITECTURE/schemas/proof-v1.schema.json` | Ausschließlich die drei bisher positiven Metrikminima auf 0; alle vier nichtnegative Integer, Proofformat und Objektform unverändert. |
+| `LevelV1ToV2Migrator.cs`, `LevelMigrationTests.cs` | An das ausdrücklich gelieferte Schema angepasste nichtnegative Metrikgrenze; aufgezeichnete Zero-v1-Fakten neutral erhalten, kein aktuelles Proofartefakt durch Migration. |
+| `Tests/EditMode/Content/ProofV1Tests.cs` (+ Meta), Ergänzung `SchemaParityTests.cs` | Produktionsgoldens, echte Byte-Regeneration, selbstgehashte Divergenz, vollständige Bindung, Parser/Schema-/Versions-/Budget-/Kampagnenfehler, Strict/Non-strict jeder Stufe, Einzel-/Batchzähler, Ordnung und Unveränderlichkeit. |
+| `Tests/EditMode/Content/proof-v1-solver-v2-{root,single,search}.json` und jeweils `.level.json` (+ Metas) | Drei ausschließlich vom Produktionsgenerator erzeugte FIXTURE_ONLY-Goldens mit gebundener Levelquelle. Keine Season-1-Produktion und keine erfundenen Metriken. |
+| `LEVEL_DATA_FORMAT.md`, `CONTENT_PIPELINE.md`, `SOLVER_ARCHITECTURE.md`, `TEST_STRATEGY.md` | Tatsächlich gelieferten Proof-/Strict-/Regressionsstand und übrige unveränderte Freigabegrenzen dokumentiert. |
+| Dieses WP, `CURRENT_STATE.md`, `WORK_QUEUE.md` | Separaten Auftrag, Ergebnis, tatsächliche Nachweise, Korrekturen und nächste Freigabepunkte dokumentiert. |
+
+Alle `Scripts/...`-/`Tests/...`-Pfade in der Tabelle sind unter `Assets/StammstreckenPuzzle/`. Solver-Produktionscode, asmdefs, csc.rsp, Unityworkflow, Validator/Abhängigkeiten, historische Beispiele/Hashvektoren, ADRs, Projektregeln, andere WPs und sämtliche Manifeste unverändert. Der vollständige Basisdiff enthält weiterhin den historischen Erstanker und die alleinige Manifestzuordnung in validate.yml aus Phase A.
+
+### Tatsächliche lokale Nachweise
+
+Die Produktionsgoldens wurden per `STP.Tests.Content.EditMode.ProofV1Tests.RegenerateGoldens()` aus dem neuen `ProofGenerator` erzeugt (expliziter Aufruf im ignorierten C#-Harness, derselbe statische Entry ist im Unity-Editor aufrufbar). Vor jedem Schreiben prüft der Produktionscodec die Ausgabe; die eingecheckten Tests regenerieren jeden Fall dreimal.
+
+| Golden | Tatsächliche vier Metriken `(searchNodes,deductionSteps,maxDeductionDepth,requiredGuessDepth)` | Proofhash `STP-PROOF-JCS-1` |
+|---|---|---|
+| root | `(0,35,5,0)` | `dfdc03486b04a333b70e46d76a45e33bb5d3ae84580aa494558512352a0baa70` |
+| single | `(0,7,3,0)` | `40acb1f2a6f680430334d214f62039ac66a8d983e4ad73ae3b355d336d653386` |
+| search | `(2,12,2,1)` | `296f2020a176c72320254e95015a5586bf895fd40559875038d473744f9d1389` |
+
+Der search-Proof ist schema-/hash-/regenerationsgültig, wird jedoch durch das unveränderte CampaignGate abgewiesen. Die beiden deduktiven Proofs passieren das technische Proofgate. Alle Ergebnisse bleiben ohne die späteren Cross-Reference-/Produkt-/Release-Lock-Gates nicht runtimeimportierbar und nicht release-lock-fähig.
+
+| Ausführung | Tatsächliches Ergebnis / Grenze |
+|---|---|
+| Getrennte Domain-/Solver-/Infrastructure.Content-/Editor.Content-/Contenttest-Assemblies, .NET SDK 10.0.401, CLR 10.0.12, NUnit/NUnitLite 3.14.0 | Compile Exit 0, keine Compilerwarnungen/-fehler. Bestehendes unberührtes Content-Skeleton ist nur im Zusatzharness wegen seiner Applicationports ausgeschlossen; echte Unityassembly-/Projektkompilierung bleibt eigenes CI-Gate. |
+| Vollständiger lokaler Contentlauf nach Assemblytrennung | 366/366 PASS; nach zehn zusätzlichen Every-stage-/Mixed-batch-Fällen **376/376 PASS**, keine Skips/Inconclusive/Warnings. Scratch-XML/Logs unter `.utmp/`. |
+| Breiter lokaler Domain-/Solver-/Contentlauf | 440/440 PASS im ersten breiten Lauf; final mit den zehn zusätzlichen Contentfällen **450/450 PASS**, darunter 376 Content-, 19 Domain- und 55 unveränderte Solvertests (40,989 s). Keine Skips/Inconclusive/Warnings. Lokaler Zusatzbeleg, kein Unityersatz. |
+| Kanonische Linuxvalidatoren auf vollständigem Phase-B-Working-Tree | WSL/Linux, CPython 3.11.13, Node 22.20.0, exakt requirements.lock: Architecture-only **17 Gruppen PASS**, eigener WP-025-Production-Scope **18 Gruppen PASS**, beide mit Self-/Negativtests. Scopekontext Basis 5f51273/HEAD 5e4b986/worktreeDirty=true; diese Bindung wird nicht als sauberer späterer Commit ausgegeben. |
+| Bestehender unabhängiger Nodecheck | 12 Kanonisierungen, 32 Ablehnungen, zwei v2-/zwei v1-Vertragsvektoren PASS. Historischer Hash-/Legacybeleg, kein alleiniger neuer Proofnachweis. |
+| **Tatsächliche neue Proofprojektion gegen Node** | Alle drei neuen Goldens: Draft-2020-12-Proof-/Levelschema, komplette kanonische Artefaktbytes, SHA-256 der vollständigen Projektion ohne proofHash, öffentlicher Puzzle-/Lösungshash und Artefaktreferenz **PASS**. Gepinnt Node 22.20.0, unverändert `jcs_crosscheck.mjs`; Outputs entsprechen exakt der Tabelle oben. |
+| Whitespace/Manifest | `git diff --check 5f5127362b101dd4e066b68b21d3e35a5af314df --` Exit 0; Working-Tree-Manifestsha unverändert. Vollständiger Scope-/Trustlauf umfasst auch neue Dateien; finale HEAD/Remote-Bindung folgt nach Commit/Push. |
+
+Kanonische Validatorbefehle bleiben unverändert wie im Testabschnitt. Der neue Node-Scratchbefehl lädt die drei `proof-v1-solver-v2-*.json` plus `.level.json`, validiert die echten Schemas und ruft für jedes vollständige Artefakt sowie `{proof ohne proofHash}`, `{puzzleId,rulesetVersion,grid,endpoints,rowCounts,columnCounts}` und `{puzzleId,publicPuzzleHash,path}` auf:
+
+```text
+node tools/architecture-validation/jcs_crosscheck.mjs <temporäre UTF-8-Projektionsdatei>
+```
+
+Jeder Rückgabewert `canonicalBase64`/`sha256` wird gegen die tatsächlichen C#-Bytes bzw. gespeicherten profilierten Hashes verglichen. Der ausgeführte Scratchwrapper liegt in `.utmp/wp025_proof_node.py`; Gesamtaufruf im gepinnten Linuxsetup `.utmp/wp025_linux_validation.py`, Output zusätzlich `.utmp/wp025-linux-production-proof-node.log`. Keine Node-/Workflow-/Repositoryabhängigkeit geändert. Scratchartefakte sind Zusatzlogs, die oben genannten Befehle, Inputs und tatsächlichen Outputs sind hier persistent.
+
+Eigene korrigierte Zwischenbefunde: anfänglich unvollständige Applicationreferenz des Zusatzharness korrigiert; dessen erste Einzelassemblytests verdeckten einen internen Serializeraufruf im neuen Test, durch echte Assemblytrennung entdeckt und auf die öffentliche API korrigiert. Ein neuer Bindungstest erwartete PRF statt des vorhandenen früheren LVL-Semantikcodes; Stufengrenze und bestehender Code erhalten und Test entsprechend präzisiert. Linuxruntime unter Windowsmount extrahierte zu langsam; eigener unvollständiger Setupversuch beendet, danach vollständig erfolgreicher isolierter temporärer Lauf inklusive neuer Node-Projektion. Kein abgebrochener Versuch als PASS gewertet, keine fremde CI abgebrochen, keine Gateabsenkung.
+
+### AK-/CI-/Abnahmegrenze vor dem ersten Implementierungspush
+
+| Kriterium | Lokaler Implementierungsnachweis; spätere CI/QC bleibt separat |
+|---|---|
+| AK-B01 | GeneratedGoldens (root/single), EveryMetric und echte Schemaparität: Format 1, alle Minima 0, deduktiver searchNodes-Nullfall gültig. |
+| AK-B02 | RegenerateGoldens + drei GeneratedGoldens-Testfälle: Codec/Selbsthash und dreifache echte bytegenaue Regeneration. Neue Nodeprüfung auf denselben Bytes PASS. |
+| AK-B03 | SelfConsistentChangedMetric, vier Fälle: neuer Selbsthash intern gültig, Pipeline dennoch PRF-NONDETERMINISTIC. |
+| AK-B04 | RehashedBindingMutations, WrongSlotAndUnknownProfiles, CrossPuzzleCopy, MalformedMissingUnknown: vollständige fail-closed Bindungs-/Versions-/Fehlercodeprüfung. |
+| AK-B05 | StrictCommand, neun StrictPromotesWarningsFromEveryStage-Fälle, MixedBatch: Promotion jedes Einzelresultats vor Status/Stufe/Zählern; --strict und Report konsistent. |
+| AK-B06 | CrossPuzzleCopy/ReferenceFailures, EarlierLevelFailures, FreshRegenerationAlwaysRuns, MultiplePublicSolutions und Suchgolden: Proof-/Kampagnengate geschlossen; spätere Import-/Lock-/Produktgates werden nie freigegeben. |
+| AK-B07 | CanonicalProof, DiagnosticsAndBatchOrdering, MixedBatch: Objekt-/Quell-/Diagnosereihenfolge, Snapshotunveränderlichkeit und reproduzierbare kanonische Bytes. |
+
+**Neue eigene Implementierungs-CI, tatsächliche Logs/XML/Coverage/Android/iOS-Artefakte und die beiden unabhängigen Abschlussprüfungen stehen vor Push noch aus. Kein Gesamt-PASS.** Phase-A-CI ersetzt keine davon. Verfügbare getrennte Subagent-Prüfer können nach erfolgreicher Implementierungs-CI beide Rollen ausführen; sie werden erst dann auf demselben eingefrorenen finalen HEAD separat beauftragt und dürfen keine Ergebnisse vor Berichtsabgabe austauschen. Ihre tatsächlichen Berichte und die finale SHA-/Remote-/CI-Bindung werden in PR #19 persistent verlinkt. Änderungen während laufender Abschlussprüfungen sind ausgeschlossen; bestätigte Befunde erfordern Scopekorrektur und erneute unabhängige Prüfung des geänderten Stands.
+
+Letzter abgeschlossener Schritt: vollständige lokale Implementierung, Produktionsgoldens, Content-/Domain-/Solver-, Linux- und unabhängige Node-Nachweise sowie Fachdokumentation. Nächster Schritt: normaler Commit/Push auf bestehender Branch, neue eigene CI selbst prüfen, finalen Stand dokumentieren und für beide unabhängigen Abschlussrollen einfrieren. Gesamtpaket und Integrationsgate bleiben offen; Produktfolgeblocker 001–003, physische Geräte-/SDK-/Storegrenzen unverändert.

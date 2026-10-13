@@ -13,8 +13,13 @@ namespace STP.Infrastructure.Content
         Semantic,
         Hash,
         Migration,
+        Solver,
+        Proof,
         Import
     }
+
+    /// <summary>Warnings remain visible in authoring; strict validation promotes them to errors.</summary>
+    public enum LevelDiagnosticSeverity { Error, Warning }
 
     /// <summary>
     /// Result lists are handed out as read-only snapshots, never as the producer's mutable list or array: a caller that
@@ -45,16 +50,18 @@ namespace STP.Infrastructure.Content
         /// <summary>JSON-Pointer-like location (RFC 6901 style, without escaping), empty for the document root.</summary>
         public string Path { get; }
         public string Message { get; }
+        public LevelDiagnosticSeverity Severity { get; }
 
-        public LevelDiagnostic(LevelDiagnosticStage stage, string code, string path, string message)
+        public LevelDiagnostic(LevelDiagnosticStage stage, string code, string path, string message, LevelDiagnosticSeverity severity = LevelDiagnosticSeverity.Error)
         {
             Stage = stage;
             Code = code ?? throw new ArgumentNullException(nameof(code));
             Path = path ?? throw new ArgumentNullException(nameof(path));
             Message = message ?? throw new ArgumentNullException(nameof(message));
+            Severity = severity;
         }
 
-        public bool Equals(LevelDiagnostic? other) => other != null && Stage == other.Stage && Code == other.Code && Path == other.Path && Message == other.Message;
+        public bool Equals(LevelDiagnostic? other) => other != null && Stage == other.Stage && Code == other.Code && Path == other.Path && Message == other.Message && Severity == other.Severity;
         public override bool Equals(object? obj) => Equals(obj as LevelDiagnostic);
         public override int GetHashCode()
         {
@@ -63,7 +70,7 @@ namespace STP.Infrastructure.Content
                 int hash = (int)Stage;
                 hash = hash * 31 + StringComparer.Ordinal.GetHashCode(Code);
                 hash = hash * 31 + StringComparer.Ordinal.GetHashCode(Path);
-                return hash * 31 + StringComparer.Ordinal.GetHashCode(Message);
+                return (hash * 31 + StringComparer.Ordinal.GetHashCode(Message)) * 31 + (int)Severity;
             }
         }
         public override string ToString() => Code + " @ " + (Path.Length == 0 ? "/" : Path) + ": " + Message;

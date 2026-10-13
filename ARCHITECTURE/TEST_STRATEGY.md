@@ -99,6 +99,16 @@ Mutationsnachweis (lokal auf gepatchten Scratchkopien, nicht Teil der CI; die L�
 
 Das Beispiel unter `ARCHITECTURE/examples/` wird bereits in der Architekturphase gegen Schema und Eindeutigkeit geprüft. Spätere Schemaimplementierungen übernehmen es als Golden Fixture.
 
+### 5.1 WP-025: Produktions-Proof-/Strict-Regressionen
+
+`ProofV1Tests` und die ergänzte Proofschema-Parität in `SchemaParityTests` prüfen die tatsächliche Produktion aus `ProofGenerator`: zwei deduktive Fälle mit `searchNodes = 0` sowie ein eindeutiger Suchfall, der trotz gültigem Proof am Kampagnengate scheitert. Goldens sind vollständige kanonische UTF-8-Artefakte plus entsprechend gebundene FIXTURE_ONLY-Levelquellen; sie werden ausschließlich durch `STP.Tests.Content.EditMode.ProofV1Tests.RegenerateGoldens()` erzeugt (Unity-Editor-executeMethod bzw. derselbe Aufruf im zusätzlichen lokalen C#-Harness). Jede Ausgabe wird vom Produktionscodec vor dem Schreiben schema-/hashvalidiert; die Tests regenerieren jede Quelle dreimal und vergleichen jedes Byte. Bestehende solver-v1-/WP-023-Vektoren bleiben historische Reader-/Hash-/Migrationstests.
+
+Negativfälle umfassen alle vier separat neu gehashten falschen Metriken (`PRF-NONDETERMINISTIC`), Cross-Puzzle-Copy, stale Puzzle-/Lösungshash, falsche Artefakt-ID/Versionseintrag, falsche bzw. unbekannte Profile, unbekannte/historische Solverversion, fehlenden/ungültigen Proof, Parserfehler und geschlossene Schemaproperties. Alle vier Minima 0, negative/Float-/fehlende Werte, Selbsthash, exakte Projektionsform, kanonische Formatierungsneutralität, Budget-/Zeit-/Cancellationabbruch, mehrere öffentliche Lösungen sowie frühere Levelstufen sind separat geprüft. Zero-v1-Metriken bleiben bei neutraler Migration unverändert; daraus entsteht weiterhin kein aktueller Produktionsproof.
+
+Strict- und Non-strict-Tests geben explizite Zusatzwarnungen an denselben Einzel-/Batch-/`--strict`-Adapterweg. Sie prüfen unveränderte Codes/Stufen/Pfade/Nachrichten, Promotion direkt in jedem Resultat, Status/FailedStage/Zähler, unveränderliche Listen/Bytes, sortierte/reversierte Quellen-/Diagnosereihenfolge und doppelte normalisierte Quellen. Weder abgelehnte Proofs noch ein technisch bestandener Proof können die noch fehlenden Cross-Reference-/Produkt-/Release-Lock-Gates umgehen.
+
+Der unabhängige Node-Nachweis verwendet unverändert `tools/architecture-validation/jcs_crosscheck.mjs` auf den drei **neuen tatsächlichen** Artefakten und ihren vollständigen Projektionen ohne `proofHash`; verglichen werden die kompletten kanonischen Bytes, Proofhash, öffentliche Puzzleprojektion und Lösungshashbindung. Zusätzlich werden die echten eingecheckten Level-/Proofschemata mit Draft 2020-12 validiert. Der konkrete Scratchbefehl, Versionen, Inputs, Outputs und Liefercommit gehören in WP-025; der vorhandene Legacy-Workflowcheck ersetzt diesen Nachweis nicht. Zwei getrennte unabhängige Abschlussrollen prüfen nach erfolgreicher Implementierungs-CI denselben eingefrorenen finalen HEAD, ohne Ergebnisaustausch vor Berichtsabgabe.
+
 ## 6. Persistenz- und Migrationstests
 
 | Risiko | Pflichtfälle |
