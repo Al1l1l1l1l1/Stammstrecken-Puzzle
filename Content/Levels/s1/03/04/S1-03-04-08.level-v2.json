@@ -1,0 +1,190 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-04-08",
+  "contentRevision": 1,
+  "grid": {
+    "width": 7,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 0
+    },
+    "b": {
+      "side": "E",
+      "index": 2
+    }
+  },
+  "rowCounts": [
+    1,
+    4,
+    4,
+    4,
+    4,
+    6
+  ],
+  "columnCounts": [
+    6,
+    1,
+    5,
+    1,
+    5,
+    1,
+    4
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 4,
+    "position": 8,
+    "titleKey": "level.s1.03.04.08.title",
+    "statusKey": "level.s1.03.04.08.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.04.08.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "OCCUPANCY",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 14,
+    "qualityNote": "Authorbewertung S1-03-04-08, globale Route 12, Gruppe 3: Mittlere Zahlen, wenige Extreme. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 45 konkrete Anschlussfolgen und 16 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 23/42 Zellen, 8 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-04-08-map",
+    "trainMomentId": "draft-s1-03-04-08-train",
+    "resultTextKey": "level.s1.03.04.08.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_ES"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-04-08/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "19f82f331964080c53497622299d278f1bbf0dea91b23fafc166f47e1d90c633"
+    }
+  }
+}

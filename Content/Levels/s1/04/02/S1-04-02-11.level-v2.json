@@ -1,0 +1,231 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-02-11",
+  "contentRevision": 1,
+  "grid": {
+    "width": 7,
+    "height": 7
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 2
+    },
+    "b": {
+      "side": "N",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    1,
+    1,
+    5,
+    6,
+    5,
+    6,
+    7
+  ],
+  "columnCounts": [
+    6,
+    5,
+    5,
+    4,
+    3,
+    3,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 2,
+    "position": 11,
+    "titleKey": "level.s1.04.02.11.title",
+    "statusKey": "level.s1.04.02.11.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.02.11.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "OCCUPANCY",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 24,
+    "qualityNote": "Authorbewertung S1-04-02-11, globale Route 14, Gruppe 5: Lange Schlusskette. Lesbarer öffentlicher Einstieg: Zeile 6 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 58 konkrete Anschlussfolgen und 18 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 31/49 Zellen, 22 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 24. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-02-11-map",
+    "trainMomentId": "draft-s1-04-02-11-train",
+    "resultTextKey": "level.s1.04.02.11.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-02-11/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "4f8828dc1b9c9be38de2e414f20b25a4ee88f342ad6124bb8b01554e5214c00f"
+    }
+  }
+}

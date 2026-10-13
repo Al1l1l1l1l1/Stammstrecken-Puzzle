@@ -1,0 +1,158 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-02-03-06",
+  "contentRevision": 1,
+  "grid": {
+    "width": 6,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 3
+    },
+    "b": {
+      "side": "S",
+      "index": 5
+    }
+  },
+  "rowCounts": [
+    0,
+    5,
+    5,
+    5,
+    2
+  ],
+  "columnCounts": [
+    1,
+    3,
+    3,
+    2,
+    4,
+    4
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 2,
+    "route": 3,
+    "position": 6,
+    "titleKey": "level.s1.02.03.06.title",
+    "statusKey": "level.s1.02.03.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.02.03.06.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "EXCLUSION",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 11,
+    "qualityNote": "Authorbewertung S1-02-03-06, globale Route 7, Gruppe 3: Teilwege durch Folgeausschlüsse. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 33 konkrete Anschlussfolgen und 7 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/30 Zellen, 13 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-02-03-06-map",
+    "trainMomentId": "draft-s1-02-03-06-train",
+    "resultTextKey": "level.s1.02.03.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-02-03-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "a747d9606b94792c0859be6bca72cee2fca82b13d6836f8ed683e961fd931376"
+    }
+  }
+}

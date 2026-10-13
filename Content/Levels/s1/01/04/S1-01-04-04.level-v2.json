@@ -1,0 +1,106 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-04-04",
+  "contentRevision": 1,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 1
+    },
+    "b": {
+      "side": "S",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    2,
+    2,
+    1,
+    1,
+    1
+  ],
+  "columnCounts": [
+    2,
+    5,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 4,
+    "position": 4,
+    "titleKey": "level.s1.01.04.04.title",
+    "statusKey": "level.s1.01.04.04.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.04.04.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "EXCLUSION",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "Authorbewertung S1-01-04-04, globale Route 4, Gruppe 2: Hohe und niedrige Randzahlen. Lesbarer öffentlicher Einstieg: Spalte 2 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 14 konkrete Anschlussfolgen und 5 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 7/20 Zellen, 3 Kurven, 2 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-04-04-map",
+    "trainMomentId": "draft-s1-01-04-04-train",
+    "resultTextKey": "level.s1.01.04.04.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-04-04/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "8e01848f20bc9293b3a512df0727b20abc47e47a658d4fc9d007905ee1669925"
+    }
+  }
+}

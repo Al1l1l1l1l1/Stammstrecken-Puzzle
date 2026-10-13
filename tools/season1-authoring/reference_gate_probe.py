@@ -1,4 +1,4 @@
-"""Reproduce WP-026's missing-reference blocker; creates only an ignored .utmp harness.
+"""Probe WP-026's reference boundaries; creates only an ignored .utmp harness.
 
 Requires Python 3 and installed .NET SDK 10.0.401 (net10.0). No NuGet packages.
 Compiles unchanged repository sources in their separate pure assemblies. This is

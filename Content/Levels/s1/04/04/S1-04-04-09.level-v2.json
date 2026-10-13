@@ -1,0 +1,203 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-04-09",
+  "contentRevision": 1,
+  "grid": {
+    "width": 8,
+    "height": 8
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 6
+    },
+    "b": {
+      "side": "W",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    0,
+    0,
+    2,
+    5,
+    4,
+    2,
+    5,
+    7
+  ],
+  "columnCounts": [
+    1,
+    4,
+    6,
+    6,
+    4,
+    1,
+    1,
+    2
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 4,
+    "position": 9,
+    "titleKey": "level.s1.04.04.09.title",
+    "statusKey": "level.s1.04.04.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.04.09.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "EXCLUSION",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 11,
+    "qualityNote": "Authorbewertung S1-04-04-09, globale Route 16, Gruppe 4: Knappe Counts und andere Endpunkte. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 47 konkrete Anschlussfolgen und 23 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 25/64 Zellen, 20 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-04-09-map",
+    "trainMomentId": "draft-s1-04-04-09-train",
+    "resultTextKey": "level.s1.04.04.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 7,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-04-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "b478e70f3594b8183ff769daa526186a3bd24fc9e102951bd8c7d1a5d612af19"
+    }
+  }
+}

@@ -1,4 +1,6 @@
 Existing FIXTURE_ONLY baseline: succeeded=True; solver=UNIQUE
+Populated unresolved scratch references: succeeded=True; solverInvoked=True; sameProofBytes=True
+Strict technical proof boundary: succeeded=True; proofGatePassed=True; runtimeImportable=False; releaseLockEligible=False
 content/titleKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/content/titleKey
 content/titleKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/content/titleKey
 content/titleKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/content/titleKey
@@ -17,4 +19,4 @@ completion/trainMomentId empty: succeeded=False; solverInvoked=False; proofPrese
 completion/resultTextKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/completion/resultTextKey
 completion/resultTextKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/completion/resultTextKey
 completion/resultTextKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/completion/resultTextKey
-PASS: existing fixture positive control; 18 incomplete-reference variants rejected before solver. No Season-1 puzzle generated.
+PASS: fixture and populated unresolved scratch references pass the technical proof boundary; 18 incomplete-reference variants rejected. Cross-references NOT verified. No Season-1 puzzle generated.

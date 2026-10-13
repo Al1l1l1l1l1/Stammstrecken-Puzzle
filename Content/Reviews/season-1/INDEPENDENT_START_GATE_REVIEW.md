@@ -1,5 +1,11 @@
 # Unabhängige Startgate-Gegenprüfung
 
+**Historische Prüfer-Evidenz, Schlussfolgerung überholt.** Dieser Bericht wurde
+vor der Auftraggeberkorrektur erstellt. Seine Übernahme einer Koordinatorprämisse
+belegt keine Manus-/Nutzervorgabe. Der Originalbericht bleibt unverändert;
+die aktuelle Neubewertung und eigene widerlegende Probe stehen in
+[ORDER_CORRECTION.md](ORDER_CORRECTION.md). Keine erneute unabhängige Abnahme.
+
 Herkunft: tatsächlich getrennte, rein lesende Instanz `/root/content_startgate_review`, 13.10.2026; geprüfte Produktionsbasis `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`. Kein Level-/Proof-/Freigabenachweis. Nachstehend vollständiger Ergebnistext des Prüfers; seine Quellenlektüre ist Prüfer-Evidenz, die Hauptinstanz hat die API-Gegenprobe separat ausgeführt.
 
 Prüfergebnis: **Die fehlenden Referenzen blockieren den vorhandenen kanonischen Level-v2-/Produktionsproof-Weg. Fehlende spätere Freigaben allein blockieren dagegen nicht jedes Authoring.** Ein bereits dokumentierter Ersatzweg für 240 reine Logikquellen ohne diese Pflichtfelder wurde nicht gefunden.

@@ -1,5 +1,11 @@
 # WP-026: tatsächliches Startgate und Übergabe
 
+**Historischer Bericht vor Auftragskorrektur.** Die Zuschreibung eines pauschalen
+Nutzerverbots technischer Entwurfsreferenzen und der daraus gezogene allgemeine
+Startblocker sind zurückgenommen. Maßgeblich ist [ORDER_CORRECTION.md](ORDER_CORRECTION.md).
+Die damaligen 18 Negativproben belegen nur Pflichtfeldstruktur, keine Prüfung
+ausgefüllter Referenzen. Bericht bleibt als Historie, kein aktueller Blockerbeleg.
+
 Stand 13.10.2026. **0/240 konkrete Rätsel, 0/240 neue Proofs, keine Leveldesignabnahme.** Geliefert sind der vollständige verankerte Auftrag und die nachstehende konkrete Blockeranalyse. Kein Produktionscontent, keine kreative Änderung, keine Seasonfreigabe.
 
 ## Tatsächliche Basis

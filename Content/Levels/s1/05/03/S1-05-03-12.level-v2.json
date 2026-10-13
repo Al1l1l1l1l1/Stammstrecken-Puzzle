@@ -1,0 +1,190 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-03-12",
+  "contentRevision": 1,
+  "grid": {
+    "width": 9,
+    "height": 9
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 8
+    },
+    "b": {
+      "side": "W",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    4,
+    3,
+    1,
+    2,
+    2,
+    2,
+    1,
+    1,
+    6
+  ],
+  "columnCounts": [
+    2,
+    3,
+    6,
+    6,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 3,
+    "position": 12,
+    "titleKey": "level.s1.05.03.12.title",
+    "statusKey": "level.s1.05.03.12.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.03.12.entry",
+    "focus": [
+      "ROW_COLUMN_COUNTS",
+      "OCCUPANCY",
+      "ENDPOINT_GEOMETRY",
+      "CHAIN"
+    ],
+    "chainDepth": 29,
+    "qualityNote": "Authorbewertung S1-05-03-12, globale Route 19, Gruppe 5: Große prüfbare Höhepunkte. Lesbarer öffentlicher Einstieg: A an E/8 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 83 konkrete Anschlussfolgen und 59 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 22/81 Zellen, 12 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 29. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-03-12-map",
+    "trainMomentId": "draft-s1-05-03-12-train",
+    "resultTextKey": "level.s1.05.03.12.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 8,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-03-12/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "734733214f2918f6c55f4b2788dad0bc91780f0b961a5273d907615601167fa9"
+    }
+  }
+}

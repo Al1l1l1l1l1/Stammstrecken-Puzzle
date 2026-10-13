@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** Beauftragt am 13.10.2026; Voraussetzungenprüfung. Noch keine Rätsel geliefert und keine fachliche Abnahme. Dieses Package verankert den vom Auftraggeber verlangten vollständigen logischen Bestand, keine neue Seasonplanung. Fehlende Voraussetzungen bleiben echte Übergabepunkte; es gibt keine künstliche Beispiel- oder Teilmengenbegrenzung.
+**Status:** 240/240 logische Authoringrätsel und echte Proofs geliefert, eigene technische/fachliche Prüfung erfolgt; offen zur externen Abnahme und wegen konkret fehlender Folgegates. Auftraggeberkorrektur vom 13.10.2026: Der Koordinatorzusatz zu Platzhaltern/technischen Referenzen ist keine Nutzervorgabe. Der bisherige allgemeine Startblocker ist widerlegt; siehe [Auftragskorrektur](../Content/Reviews/season-1/ORDER_CORRECTION.md) und den aktuellen Folgeabschnitt am Dateiende. Historischer Anker, Paketgrenzen, Manifest und Akzeptanzkriterien bleiben unverändert. Keine fachliche Gesamtabnahme.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -97,7 +97,7 @@ git diff --check c9516bdbd5858fd9003d5207ec37d180ccc6ae23 --
 
 Die [projektweite DoD](../PROJECT_CONTROL/DEFINITION_OF_DONE.md) gilt vollständig. AK-01 bis AK-08 einzeln prüfen; tatsächliche Tests, Dateien, Einschränkungen, externe Prüfrollen und Folgegates in diesem WP und CURRENT_STATE dokumentieren. Kein Gesamtabschluss bei fehlenden Rätseln, nicht regenerierten Proofs, unerfüllten Voraussetzungen oder ausstehender vorgeschriebener Abnahme. Die Verankerung dieses Auftrags ist keine Lieferung der 240 Rätsel. Normale Remoteübergabe mit konkretem HEAD, Draft-PR und tatsächlichen CI-Status sichern; spätere Integration bleibt ausdrücklich ausgeschlossen.
 
-## Ausführung und blockierte Übergabe – 13.10.2026
+## Historische Ausführung und blockierte Übergabe – vor Auftragskorrektur
 
 **Status: offen/blockiert durch BLOCKER-WP026-001; 0/240 konkrete Rätsel und 0/240 neue Proofs.** Keine formale Gesamtabnahme. Die Paketdefinition oben bleibt unverändert; dieser Abschnitt hält den tatsächlichen Ausführungsstand fest.
 
@@ -139,3 +139,58 @@ Erste .NET-Scratchausführung scheiterte am fehlenden Restore (NETSDK1004); nach
 | AK-08 | Keine Abschlussabnahme des Bestands; nur tatsächliche Startgate-Gegenprüfung. Vollständiger Auftrag bleibt offen/blockiert. |
 
 Letzter abgeschlossener fachlicher Schritt: Main-/PR-Rekonstruktion, Auftragsverankerung und konkrete Pflichtreferenz-Gegenprobe. Nächster fachlicher Schritt: belegte Referenzzuordnung oder separat bestätigte Vertragslösung. Erreichter Stand wird normal auf eigener Branch und als Draft-PR gesichert; keine Merge-/Runtime-/Releaseaktion. Nach Auflösung Blocker und aktuellen Parallelstand prüfen und denselben vollständigen Auftrag fortsetzen.
+
+## Auftragskorrektur und Fortsetzung – 13.10.2026
+
+Die historische Zuschreibung „Der Nutzer schließt das Erfinden solcher Referenzen aus“ war in ihrer Ausdehnung auf technische Entwurfsreferenzen falsch. Voraussetzungen 5 und das entsprechende ursprüngliche Zusatzverbot sind insoweit eine Koordinatorinterpretation, keine von Manus bestätigte Regel und keine unabhängige Quelle. Die ausdrücklich verlangte Korrektur ist im [Quellen-/Gegenprobenbericht](../Content/Reviews/season-1/ORDER_CORRECTION.md) dokumentiert; dort steht die maßgebliche heutige Anwendung. Keine Scope-/Manifest-/Architekturänderung und keine erneute Paketverankerung.
+
+Der korrigierte Harness zeigt mit ausgefüllten, nicht auflösbaren Scratchreferenzen einen echten Generator-/Strict-Proof-PASS. Die 18 Negativfälle bleiben PASS für ihre enge Strukturbehauptung, belegen aber kein Verbot solcher Entwürfe. BLOCKER-WP026-001 sperrt daher nicht länger die logische Erstellung; tatsächliche Cross-Reference-/Contentabschluss-/Importfreigaben bleiben offen. Der frühere unabhängige Bericht bleibt unveränderte historische Prüfer-Evidenz mit überholter Schlussfolgerung, keine neue Abnahme.
+
+Fortsetzung im unveränderten 240er-Scope auf derselben Branch/PR #21, ab HEAD `43f737e5a2581e01eb79583d08a9551c4bec95ca`, main weiterhin `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`; Working Tree bei Übernahme sauber, kein weiterer offener PR. Keine neue Parallelbearbeitung. Technische Authoringhilfen konstruieren nur Kandidaten; unveränderte Domain/Solver/Proofgenerator entscheiden. Individuelle Entwurfsreferenzen bleiben mit fehlenden Zielquellen im Reviewinventar sichtbar. Pflichtprüfungen und DoD werden weder abgesenkt noch als bereits erfüllt behauptet.
+
+## Tatsächlicher Liefer- und externer Übergabestand – 14.10.2026
+
+**240/240 logische Authoringquellen und 240/240 echte Produktionsproofs, keine fertig ausgestaltete/freigegebene Season.** Vollständiger [Liefer-/Prüfbericht](../Content/Reviews/season-1/HANDOVER.md) mit Quellenkorrektur, Reproduktion, fachlichen Risiken, Zuständigkeiten und unverändert offenen Pflichtgates. Alle IDs, Routen und Größenwechsel aus der Content-Bible sind in [level-inventory.json](../Content/Reviews/season-1/level-inventory.json) nachgewiesen.
+
+### Erstellte und geänderte Dateien
+
+- 240 neue `Content/Levels/s1/<section>/<route>/<id>.level-v2.json`, 240 neue `Content/Proofs/<id>/solver-v2.proof-v1.json`.
+- 20 Rootspur-JSONs und 20 eigene Leveldesign-MDs im bestehenden Reviewscope; je Level konkreter öffentlicher Einstieg, tatsächliche längste Prämissenkette, Counts/A/B, konkrete Lösungsgitter und fachliche Begründung.
+- Technische Evidenz, Schema-/Node-/Hashbindungen, echte Konsolenausgaben, NUnit-Original-XMLbytes als erlaubte TXT plus Hashbeleg, Ähnlichkeitsbericht und alle 1.440 offenen Referenzziele.
+- Zusätzliche reine Authoring-/Prüfhilfen innerhalb der vorhandenen Allowlist: vorhandene APIs konsumieren, keine Modul-/Solver-/Schemadefinition oder Abhängigkeit ändern. CURRENT_STATE/WORK_QUEUE mechanisch fortgeschrieben; bestehende historische Startberichte als überholte Historie gekennzeichnet.
+- Bestehende Manus-Konzepte, Projektregeln, ADRs, Architektur, Manifest, Produktionsmodule, Unityprojekt, Schemata, Fixtures, Tests und Kreativinhalte unverändert. validate.yml hat weiterhin ausschließlich die historische WP-026-Manifestzuordnung; keine weitere Workflowänderung.
+
+### Tatsächlich ausgeführte Prüfungen
+
+| Nachweis | Endergebnis und Grenze |
+|---|---|
+| Neue Produktionsquellen/Proofs | 240 UNIQUE/1, searchNodes=0, requiredGuessDepth=0; Domain-/Form-/Pfad-/Counts-Semantik bestanden. Drei frische Regenerationen je Quelle, gespeicherte kanonische Bytes gleich; Strict-One 240/240, Strict-Command-Batch und Reverse-Batch PASS. |
+| Metamorphose/Mutation | 3.840 D4-/A-B-Prüfungen PASS, 1.440 negative Counts-/Endpoint-/Form-/Hash-/Metrik-/Artefaktmutationen verworfen; keine Ersatzregelautorität. |
+| Rootspur/Metriken | 240 vollständige Spuren aus dem Produktionssolver persistiert und an echte Puzzle-/Proofhashes gebunden. Schrittzahl, Tiefe, frühere Prämissen, Deduplizierung und Sicherheit gegen nachgewiesene Lösung nachgerechnet. Keine Recovery-/Suchzweige in den Metriken. |
+| Schema/Node | Linux CPython 3.11.13/Node 22.20.0 mit genau sechs bestehenden Lockpaketen: 240 tatsächliche Level-/Proofschemas und 1.200 neue Node-JCS-Projektions-/Artefakt-/Dokumentprüfungen PASS; 240er-Hierarchie, Hash-/Artefakt-/Trace-/Inventarbindungen PASS. Original Goldens ersetzen keinen dieser neuen Belege. |
+| Vorhandene Regressionen | 453/453 unveränderte Domain-/Solver-/Contenttests PASS, 0 failed/skipped/warnings; Original-XML und Bytehash persistiert. Separater net10.0-Zusatzharness, SDK 10.0.401, getrennte Assemblies; Build 0 Warnungen/Fehler. Kein Unityersatz oder erneute unabhängige WP-025-Abnahme. |
+| Eigene Leveldesign-/Ähnlichkeitsprüfung | 240 eigene konkrete Bewertungen/Einsteige und 20 Routenberichte. Keine öffentliche D4-/A-B-Kopie. Zwei schmale spätere Korridore und zwei zu ähnliche Zwischenwahlpaare ersetzt, betroffene Nachweise erneuert. Humanreview/Spieltest nicht simuliert. |
+| Lokale Leistung | Vollständige technische Prüfung 7.379 s, Strict-Batch 146.602 ms; sieben echte 10×10: p95/max 2.028 ms. Tatsächliche lokale Werte, kein CI-Referenz- oder Spielerzeitbeleg. Vorgeschriebener neuer CI-Corpus-Leistungsbeleg bleibt extern offen. |
+| Cross-References | FAIL_MISSING_TARGET_SOURCES, alle sechs Felder × 240 IDs einzeln inventarisiert. Keine Zielquellen/Freigaben erfunden. |
+| Governance/Remote/CI | Abschließende 17-/18-Gruppen-Läufe mit Self-/Negativtests, Manifest-/Diff-/HEAD-/Remotebindung werden nach tatsächlichem Lauf am finalen Draft-PR ergänzt. Vorläufer-CI nicht auf neue Quellen übertragen. |
+
+Eigene Fehlerbehebung: korrigierter Helper-Compilefehler beim String-Rückgabewert von ComputeContentHash; tatsächlicher erfolgreicher Neubuild danach. Autorenauswahl nach konkretem eigenen Qualitäts-/Ähnlichkeitsbefund korrigiert; kein Schema-/Metrik-/Qualitätsgate abgeschwächt. Der unpassende `python`-Alias war kein ausgeführter Test; vorhandenes CPython 3.11.13 verwendet.
+
+Erster finaler Governanceversuch: Architecture-only 17 PASS, Scope FAIL wegen einer selbst erzeugten untracked Python-Importcachedatei `tools/season1-authoring/__pycache__/select_candidates.cpython-311.pyc` außerhalb der Allowlist. Ausschließlich diese eigene Cachedatei entfernt; Reviewhilfe verhindert weitere Bytecodeerzeugung. Manifest und Validator unverändert. Der finale Scope wird nach der Korrektur erneut tatsächlich ausgeführt, kein FAIL als PASS ausgegeben.
+
+### Akzeptanzkriterien, DoD und echte Übergabepunkte
+
+| AK | Heutiger belegter Stand |
+|---|---|
+| AK-01 | Bestehender Anker/Manifest unverändert; finale Scope-/CI-/Remotebindung im Draft-PR nach tatsächlichen Läufen. Keine neue Verankerung. |
+| AK-02 | 240 eindeutige konkrete Quellen, 5×4×12, Größen-/Routen-/Gruppenfolge dokumentiert. Eigene Bewertung geliefert, unabhängige Lernbogenabnahme offen. |
+| AK-03 | Alle 240 Quellen: Schema, alleinige Domainautorität, vollständiger einfacher A→B-Pfad, sechs Formen und neu abgeleitete Counts bestanden. |
+| AK-04 | Alle 240 echte solver-v2-Proofs UNIQUE/1 und Guessdepth 0, alle vier Metriken tatsächlich erzeugt, sämtliche Bindungen und vollständige Rootspuren belegt. |
+| AK-05 | Frische Regeneration/Bytegleichheit/Strict-Einzel-/Batch-/Reverse und unabhängige Nodeberechnung der 240 realen neuen Projektionen bestanden. |
+| AK-06 | Individuelle Authorbewertung, konkrete Einstiegsschlüsse und 20 Routen-/Ähnlichkeitsberichte geliefert. Unabhängige fachliche Abnahme und menschlicher Spieltest offen; kein Gesamt-PASS. |
+| AK-07 | Alle fehlenden Referenzziele, unbestimmte Zeitklasse und spätere kreative/Import-/Releasegates konkret benannt; Cross-Reference-FAIL unverändert sichtbar, keine Freigabe. |
+| AK-08 | Eigene tatsächliche Nachweise über reale Inputs persistiert. Unabhängige Abschlussprüfung desselben finalen HEAD, CI-Referenz-Leistung und weitere Gesamtgates offen. |
+
+Die DoD ist **nicht insgesamt erfüllt**: technische logische Lieferung und eigene Nachweise vorhanden; vorgeschriebene unabhängige Abnahme/Spieltests, neue CI-Referenz-Leistung, Referenzauflösung sowie fremde Content-/Import-/Produkt-/Releasepflichten fehlen. `UNCALIBRATED` ist ein klar offener Authoringmarker, keine bestätigte Sollzeitklasse; finale Sekunden null. Keine automatische Ausnahme/Nichtanwendbarkeit angenommen.
+
+BLOCKER-WP026-001 als allgemeiner Erstellungs-/Proofstartblocker widerlegt. Konkrete offene Cross-Reference-/Abnahme-/Folgegates bleiben echte Übergabepunkte. Letzter abgeschlossener fachlicher Schritt: vollständige logische Lieferung, eigene Fehlerbehebung und eigene technische/fachliche Bewertung. Nächster Schritt: externe unabhängige technische/Contentprüfung und menschlicher Spieltest des eingefrorenen finalen Draft-PR-HEAD; fehlende Referenzziele und unbestimmte Zeitklasse durch zuständige Folgearbeiten lösen. Keine neue Parallelbearbeitung durch diesen Agenten, kein Merge/Runtimeimport/Release und keine Fortsetzungsfrage nach internen Teilschritten.
