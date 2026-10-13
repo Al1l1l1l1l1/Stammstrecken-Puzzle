@@ -136,9 +136,10 @@ namespace STP.Infrastructure.Content
         {
             var errors = new List<LevelDiagnostic>();
             var v = source.Validation;
-            if (v.SearchNodes < 1) errors.Add(Editorial("/validation/proof/searchNodes", "proof-v1 requires searchNodes >= 1"));
-            if (v.DeductionSteps < 1) errors.Add(Editorial("/validation/proof/deductionSteps", "proof-v1 requires deductionSteps >= 1"));
-            if (v.MaxDeductionDepth < 1) errors.Add(Editorial("/validation/proof/maxDeductionDepth", "proof-v1 requires maxDeductionDepth >= 1"));
+            if (v.SearchNodes < 0) errors.Add(Editorial("/validation/proof/searchNodes", "proof-v1 requires searchNodes >= 0"));
+            if (v.DeductionSteps < 0) errors.Add(Editorial("/validation/proof/deductionSteps", "proof-v1 requires deductionSteps >= 0"));
+            if (v.MaxDeductionDepth < 0) errors.Add(Editorial("/validation/proof/maxDeductionDepth", "proof-v1 requires maxDeductionDepth >= 0"));
+            if (v.RequiredGuessDepth < 0) errors.Add(Editorial("/validation/proof/requiredGuessDepth", "proof-v1 requires requiredGuessDepth >= 0"));
             return errors;
         }
 

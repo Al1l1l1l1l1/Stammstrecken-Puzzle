@@ -595,6 +595,38 @@ namespace STP.Tests.Content.EditMode
 
         // ---- helpers ---------------------------------------------------------------------------------------------
 
+        [Test]
+        public void ProofV1StructuralReader_MatchesTheRealSchema_ForRequiredClosedTypedAndBoundedFields()
+        {
+            var schema = Schema("ARCHITECTURE/schemas/proof-v1.schema.json");
+            var validator = new MiniValidator(schema);
+            var baseline = Examples.Json("Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.json");
+            var candidates = new List<JsonValue> { baseline };
+            foreach (string path in new[] { "", "/metrics", "/publicPuzzleHash", "/solutionHash", "/proofHash" })
+            {
+                var node = JsonEdit.Resolve(baseline, path);
+                candidates.Add(JsonEdit.Add(baseline, path, "unknown", JsonEdit.Int(1)));
+                foreach (var member in node.Members)
+                {
+                    string child = path + "/" + member.Name;
+                    candidates.Add(JsonEdit.Remove(baseline, child));
+                    foreach (var value in new[] { JsonValue.Null, JsonValue.FromBoolean(true), Parse("[]"), Parse("{}"), JsonEdit.Int(-1) })
+                        candidates.Add(JsonEdit.Set(baseline, child, value));
+                }
+            }
+            foreach (string metric in new[] { "searchNodes", "deductionSteps", "maxDeductionDepth", "requiredGuessDepth" })
+                foreach (long value in new[] { -1L, 0L, 1L, 42L, JsonValue.MaxSafeInteger })
+                    candidates.Add(JsonEdit.Set(baseline, "/metrics/" + metric, JsonEdit.Int(value)));
+            foreach (var candidate in candidates)
+            {
+                var projection = JsonValue.CreateObject(candidate.Members.Where(m => m.Name != "proofHash").ToList());
+                var hash = candidate.Get("proofHash");
+                var rehashed = hash != null && hash.Kind == JsonKind.Object && hash.Get("sha256") != null
+                    ? JsonEdit.Set(candidate, "/proofHash/sha256", JsonEdit.Str(LevelHashing.ComputeProofHash(projection).Sha256)) : candidate;
+                Assert.That(ProofV1Codec.Read(rehashed).Succeeded, Is.EqualTo(validator.IsValid(schema, rehashed)), Jcs(rehashed));
+            }
+        }
+
         private static JsonValue Walk(JsonValue root, string pointer)
         {
             var node = root;

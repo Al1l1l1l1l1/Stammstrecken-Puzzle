@@ -16,9 +16,9 @@
       "type": "object", "additionalProperties": false,
       "required": ["searchNodes", "deductionSteps", "maxDeductionDepth", "requiredGuessDepth"],
       "properties": {
-        "searchNodes": {"type": "integer", "minimum": 1},
-        "deductionSteps": {"type": "integer", "minimum": 1},
-        "maxDeductionDepth": {"type": "integer", "minimum": 1},
+        "searchNodes": {"type": "integer", "minimum": 0},
+        "deductionSteps": {"type": "integer", "minimum": 0},
+        "maxDeductionDepth": {"type": "integer", "minimum": 0},
         "requiredGuessDepth": {"type": "integer", "minimum": 0}
       }
     },

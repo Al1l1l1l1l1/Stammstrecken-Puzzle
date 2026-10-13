@@ -218,7 +218,7 @@ Ein kleiner unabhängiger Exhaustive Enumerator prüft alle sehr kleinen Rasters
 
 ## 13. Implementierungsstand `solver-v2` (WP-024)
 
-Dieser Abschnitt beschreibt den tatsächlich gelieferten Stand von `STP.Puzzle.Solver`. Er ändert den Vertrag von ADR-031 nicht. Proofschema, Proofdateien, Strict-Validation und Contentpipeline gehören zum späteren Proof-v1-Block und sind nicht Teil dieses Stands.
+Dieser Abschnitt beschreibt den tatsächlich gelieferten Stand von `STP.Puzzle.Solver`. Er ändert den Vertrag von ADR-031 nicht. WP-025 konsumiert diesen unveränderten Stand in `STP.Editor.Content` für Proof-v1 und Strict-Validation; die Solverimplementierung wird dadurch nicht geändert.
 
 ### 13.1 Ergebnisobjekt
 
@@ -288,7 +288,7 @@ Kann der Tracer eine Root-Reduktion nicht aus ihrer Regel ableiten, ist die Spur
 
 ### 13.6 Grenzen dieses Stands
 
-- Es gibt weder `proof-v1`-Ausgabe noch Schemaänderung noch Strict-Validation. Ein Root-only-`solver-v2`-Ergebnis ist nicht als schema-valide, importierbar oder releasefähig zu behaupten (ADR-031 Abschnitt 2; `BLOCKER-PROD-001` bis `-003` bleiben unberührt).
+- Der Solver selbst erzeugt keine Proofdateien. WP-025 erzeugt sie über `ProofGenerator` aus dem öffentlichen Input, prüft die Lösungshashbindung und validiert die kanonische Ausgabe durch `ProofV1Codec` vor Verwendung. Die Produktionsgoldens und Regenerationstests binden seine unveränderten vier Metriken; Root-only erlaubt `searchNodes = 0`. Das unveränderte `CampaignGate` blockiert Suchlösungen, 0/2+ und unbestimmte Ergebnisse. Ein bestandenes Proofgate allein ist keine Import- oder Releasefreigabe; Cross-References, Produktstatus und Release-Lock sowie `BLOCKER-PROD-001` bis `-003` behalten ihre Grenzen.
 - Die Wahl unter mehreren irredundanten Prämissenmengen (Abschnitt 13.3: Löschreihenfolge der Einträge und der Fakten) ist eine Festlegung der Implementierung innerhalb von ADR-031 und wird von `solver-v2` nicht mehr geändert; ein späterer Eingriff erfordert `solver-v3`.
 - Ein Leistungsbeleg liegt nur für die 10×10-Referenzfälle vor. Große Raster ohne Kuratierung können in der Suche weiterhin das Zeitbudget erreichen; das Ergebnis ist dann `INDETERMINATE`.
 

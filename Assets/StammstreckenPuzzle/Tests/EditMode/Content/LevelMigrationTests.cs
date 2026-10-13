@@ -339,10 +339,15 @@ namespace STP.Tests.Content.EditMode
         [TestCase("/validation/proof/searchNodes")]
         [TestCase("/validation/proof/deductionSteps")]
         [TestCase("/validation/proof/maxDeductionDepth")]
-        public void ProofFactsBelowTheProofV1Minimum_NeedAnEditorialDecision(string path)
+        public void ZeroProofFacts_ArePreservedUnderTheAdr031NonnegativeSchema(string path)
         {
             var result = LevelV1ToV2Migrator.Migrate(Rehash(JsonEdit.Set(V1(), path, JsonEdit.Int(0))));
-            AssertEditorial(result, path);
+            Assert.That(result.Succeeded, Is.True, Codes.Describe(result.Diagnostics));
+            var source = LevelV1Reader.Read(Rehash(JsonEdit.Set(V1(), path, JsonEdit.Int(0)))).Document!;
+            var expected = ProofV1Codec.Create(result.Document!.PuzzleId, result.PublicPuzzleHash!, result.SolutionHash!, source.Validation.SolverVersion,
+                source.Validation.SearchNodes, source.Validation.DeductionSteps, source.Validation.MaxDeductionDepth, source.Validation.RequiredGuessDepth);
+            Assert.That(expected.Succeeded, Is.True, Codes.Describe(expected.Diagnostics));
+            Assert.That(result.Document.ProofRef.ProofHash, Is.EqualTo(expected.Document!.ProofHash));
         }
 
         [Test]
