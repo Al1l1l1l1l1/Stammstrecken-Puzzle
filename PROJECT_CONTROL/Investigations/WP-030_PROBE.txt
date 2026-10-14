@@ -1,0 +1,26 @@
+$ dotnet restore C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Probe\Probe.csproj --ignore-failed-sources
+  Wiederherzustellende Projekte werden ermittelt...
+  "C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Probe\Probe.csproj" wiederhergestellt (in 69 ms.).
+  "C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Domain\Domain.csproj" wiederhergestellt (in 60 ms.).
+  "C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Solver\Solver.csproj" wiederhergestellt (in 69 ms.).
+
+$ dotnet build C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Probe\Probe.csproj -c Release --no-restore
+  Domain -> C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Domain\bin\Release\net10.0\STP.Puzzle.Domain.dll
+  Solver -> C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Solver\bin\Release\net10.0\STP.Puzzle.Solver.dll
+  Probe -> C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Probe\bin\Release\net10.0\STP.Tests.Solver.EditMode.dll
+
+Der Buildvorgang wurde erfolgreich ausgeführt.
+    0 Warnung(en)
+    0 Fehler
+
+Verstrichene Zeit 00:00:01.58
+
+$ dotnet C:\STP\Stammstrecken-Puzzle-WP008\.utmp\wp030-probe\Probe\bin\Release\net10.0\STP.Tests.Solver.EditMode.dll
+WP030_RUNTIME 10.0.12 Microsoft Windows NT 10.0.26300.0 processors=16
+WP030_PHASE tiny unsatisfiable 2x2 (baseline)|wall_ms=29,2002|cpu_ms=31,25|allocated_bytes=988360|gen0=0
+WP030_PHASE unsatisfiable serpentine 32x32|wall_ms=1387,5715|cpu_ms=1578,125|allocated_bytes=1534484232|gen0=31
+WP030_PHASE ambiguous corner 32x32|wall_ms=699,085|cpu_ms=765,625|allocated_bytes=1252422488|gen0=25
+WP030_PHASE ambiguous long path 32x32|wall_ms=1129,5302|cpu_ms=1156,25|allocated_bytes=1616355352|gen0=33
+WP030_PHASE interrupted long path 32x32|wall_ms=1538,4395|cpu_ms=1562,5|allocated_bytes=1685978328|gen0=35
+WP030_PHASE unique serpentine 32x32|wall_ms=1468,1473|cpu_ms=1500|allocated_bytes=1531348088|gen0=32
+WP030_ORIGINAL_ASSERTIONS_COMPLETED wall_ms=6377,2318

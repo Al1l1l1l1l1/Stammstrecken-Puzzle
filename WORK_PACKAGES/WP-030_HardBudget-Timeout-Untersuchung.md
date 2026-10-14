@@ -46,3 +46,7 @@ Mittel: Untersuchung ohne Produktionsänderung; unbelegte Ursachenbehauptung kö
 ## Definition of Done
 
 Projektweite DoD gilt. AK einzeln mit tatsächlicher Evidenz bewerten; echte Ursache oder präzise offene kausale Lücke und Entscheidung dokumentieren. Eine vollständig ausgeführte Untersuchung kann eine offene Ursache ergeben; sie ist dann ausdrücklich keine Reparatur/Schließung des WP-026-Zuverlässigkeitsbefunds. Unabhängige Nachprüfung vor technischer Gesamtfreigabe bleibt erhalten.
+
+## Ergebnis und Übergabe – 15.10.2026
+
+Anker 438b45e, Parent/Manifestbasis f8e1dfc, Manifest unverändert. Originalbefund mit Hash und allen sechs Ausgaben rekonstruiert; 37 Testdauern verglichen, Test-/Domain-/Solverblobs identisch. Instrumentierte Scratchprobe hat alle Originalassertionen tatsächlich ausgeführt; hohe Allokationslast auf großen 32×32-Fällen nachgewiesen, historische GC-/CPU-/Schedulingursache nicht bewiesen. Eigene vollständige Evidenz und konkreter diagnostischer Folgeauftrag in PROJECT_CONTROL/Investigations/WP-030_TIMEOUT.md. Keine Reparatur angewandt, O-02 bleibt offen. AK-02/03/04 erbracht im Untersuchungsumfang, AK-01 kanonischer eigener Scope vor Freeze, AK-05 prüffertige externe Nachprüfung/CI nach tatsächlicher Ausführung. Kein Gesamt-DoD-/Freigabe-PASS. Letzter Schritt: kausale Grenze mit gezielten Kontrollen eingegrenzt; nächster Schritt: vorgeschlagenen engen Testdiagnostikauftrag entscheiden und unabhängige Prüfung des Freeze.

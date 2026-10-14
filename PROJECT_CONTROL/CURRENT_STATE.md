@@ -76,3 +76,7 @@ Diese Produktblocker bleiben unverändert. Physische Geräte-, SDK-, Privacy-, S
 | `DEFINITION_OF_DONE.md` | Mindestnachweise für jeden technischen Abschluss. |
 
 Eine neue Instanz beginnt erneut mit `AGENTS.md`; der aktuelle Repository-Stand ersetzt jeden Chatkontext.
+
+## WP-030: Timeoutuntersuchung – 15.10.2026
+
+Originaltimeout analysiert, sechs abgeschlossene Fälle und gleiche Zustandsgrenze 2 im alten FAIL/PASS belegt. Große 32×32-Budgetfälle im Push rund doppelt so langsam; nicht alle Tests pauschal verlangsamt. Neue instrumentierte Originaltestprobe, Quellgleichheit und hoher Allokationsaufwand dokumentiert. Ursache nicht bewiesen, O-02 nicht geschlossen, keine Reparatur. Konkreter eng begrenzter Testdiagnostikbedarf zur Entscheidung: [WP-030-Bericht](Investigations/WP-030_TIMEOUT.md). Nächster beauftragter Schritt: WP-031 isolierte konfliktaufgelöste Kombination tatsächlich prüfen und verlustfreie Originalberichtpersistierung korrigieren; unabhängige Nachprüfung bleibt erforderlich.

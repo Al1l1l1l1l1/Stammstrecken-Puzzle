@@ -93,3 +93,7 @@ Die oben historisch verlangte Integration wurde nach erfolgreicher finaler CI, b
 ## Aktuelle technische Nacharbeit – 15.10.2026
 
 WP-027 auf main d90e798 entscheidet R01-FIRST/R18-MIDDLE. WP-028 über PR #25 ausschließlich in PR #21 integriert; CI-PERF auf b1457ba erfüllt. Neue Gesamtabnahme durchgeführt, kein Gesamt-PASS. WP-029 führt F-01/Status nach; getrennte Untersuchungs-/Integrationsvorbereitung für O-02/O-04, keine neue Produktplanung. Ursprüngliche Pakete/Manifestbasen bleiben unverändert.
+
+## WP-030: Timeoutuntersuchung – 15.10.2026
+
+Originaltimeout analysiert, sechs abgeschlossene Fälle und gleiche Zustandsgrenze 2 im alten FAIL/PASS belegt. Große 32×32-Budgetfälle im Push rund doppelt so langsam; nicht alle Tests pauschal verlangsamt. Neue instrumentierte Originaltestprobe, Quellgleichheit und hoher Allokationsaufwand dokumentiert. Ursache nicht bewiesen, O-02 nicht geschlossen, keine Reparatur. Konkreter eng begrenzter Testdiagnostikbedarf zur Entscheidung: [WP-030-Bericht](Investigations/WP-030_TIMEOUT.md). Nächster beauftragter Schritt: WP-031 isolierte konfliktaufgelöste Kombination tatsächlich prüfen und verlustfreie Originalberichtpersistierung korrigieren; unabhängige Nachprüfung bleibt erforderlich.
