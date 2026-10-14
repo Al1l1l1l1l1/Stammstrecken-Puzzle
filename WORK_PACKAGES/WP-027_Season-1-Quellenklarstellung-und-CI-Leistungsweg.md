@@ -4,7 +4,7 @@
 
 `WP-027`
 
-**Status:** In Bearbeitung. Dieses Paket trifft und persistiert die ausdrücklich angeforderte Geschäftsführungsentscheidung zu den zwei eng begrenzten Content-Bible-Auslegungen und beschließt den technischen CI-Leistungsweg. Es erstellt den verbindlichen Ausführungsbrief für das nachfolgende, noch nicht gestartete WP-028, aber **nicht** dessen eigenen Trust Anchor. Es ersetzt weder den bestehenden WP-026-Umfang noch seinen unveränderlichen Scope.
+**Status:** Lokale Validierung und getrennte Astra-/Sol-QC bestanden; Ersatz-PR-/CI-Integration nach `main` steht aus. Dieses Paket trifft und persistiert die ausdrücklich angeforderte Geschäftsführungsentscheidung zu den zwei eng begrenzten Content-Bible-Auslegungen und beschließt den technischen CI-Leistungsweg. Es erstellt den verbindlichen Ausführungsbrief für das nachfolgende, noch nicht gestartete WP-028, aber **nicht** dessen eigenen Trust Anchor. Es ersetzt weder den bestehenden WP-026-Umfang noch seinen unveränderlichen Scope.
 
 [Governance-Scope-Manifest](../tools/architecture-validation/scopes/WP-027.governance.scope.json)
 
