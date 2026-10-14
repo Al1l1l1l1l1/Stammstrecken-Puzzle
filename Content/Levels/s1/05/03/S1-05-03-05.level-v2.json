@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-03-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.03.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 15,
-    "qualityNote": "Authorbewertung S1-05-03-05, globale Route 19, Gruppe 2: Mehrere lange Ketten. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 69 konkrete Anschlussfolgen und 40 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 28/81 Zellen, 10 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 15. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Zwei äußere Sechserbänder und drei innere Viererbänder verteilen fünf Teilgebiete über die ganze Höhe. Einsercounts in den äußeren Spalten machen Übergänge knapp; die direkte N/1–S/8-Verbindung erfüllt die hohen mittleren Counts nicht. Die wechselnde Bandbreite ist der konkrete Unterschied zu 2.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

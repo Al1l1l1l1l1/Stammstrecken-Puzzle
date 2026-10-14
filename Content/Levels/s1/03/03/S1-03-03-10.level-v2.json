@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-03-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 6
@@ -45,13 +45,10 @@
   "production": {
     "entryDeductionKey": "level.s1.03.03.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 12,
-    "qualityNote": "Authorbewertung S1-03-03-10, globale Route 11, Gruppe 4: Entfernte A/B und Kurven. Lesbarer öffentlicher Einstieg: Spalte 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 38 konkrete Anschlussfolgen und 14 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 15/42 Zellen, 8 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 12. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Die zwei rechten Nullspalten und oberen Einserzeilen lenken den langen Eingang erst an den rechten aktiven Rand. Der Südport an Spalte 3 liegt innerhalb eines unteren Doppelbogens; die Portentfernung ist sechs Zellschritte und fordert eine andere Ecke als Position 9.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-11",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.11.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 33,
-    "qualityNote": "Authorbewertung S1-04-04-11, globale Route 16, Gruppe 5: Strategischer Abschnittsabschluss. Lesbarer öffentlicher Einstieg: A an W/7 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 71 konkrete Anschlussfolgen und 47 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/64 Zellen, 11 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 33. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Drei untere Einserzeilen begrenzen den linken Schenkel, mehrere Einserspalten den mittleren Querweg. Der rechte Kopf enthält dagegen drei kleine Bögen; die lange Schlussfolge wechselt hier zwischen weit auseinanderliegenden Verpflichtungen statt nur eine dichte Fläche zu lesen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

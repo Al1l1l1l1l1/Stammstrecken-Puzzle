@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-03-08",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.03.08.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 16,
-    "qualityNote": "Authorbewertung S1-05-03-08, globale Route 19, Gruppe 3: Wenige direkte Extreme. Lesbarer öffentlicher Einstieg: Spalte 8 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 69 konkrete Anschlussfolgen und 27 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 36/81 Zellen, 10 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 16. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 8,
+    "qualityNote": "Die unteren Fünferbänder beginnen erst in Spalte 3; oben müssen die seitlichen Dreier-/Zweiercounts erfüllt bleiben. Ein gleichmäßig breiter Serpentinenzug würde diese Reste verletzen; diese ungleiche Bandverteilung erklärt die Kombinationslast und die Nähe zum späteren breiteren Wiedergreifen von S1-05-04-03.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-03-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.03.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 33,
-    "qualityNote": "Authorbewertung S1-04-03-12, globale Route 15, Gruppe 5: Anspruchsvolle 8×8-Puzzles. Lesbarer öffentlicher Einstieg: A an E/0 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 71 konkrete Anschlussfolgen und 47 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/64 Zellen, 11 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 33. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Die versetzte Treppe führt durch mehrere kleine Restzahlen bis zu einem linken Doppelknick unten. Kein Voll-/Nullanker erleichtert eine ganze Linie; das ist ein anderer dünner Abschlusstyp als der weite Querarm in 11, trotz ähnlicher technischer Tiefe 33/34.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

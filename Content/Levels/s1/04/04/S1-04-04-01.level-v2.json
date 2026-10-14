@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-01",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,12 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.01.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY"
+      "OCCUPANCY",
+      "EXCLUSION"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-04-04-01, globale Route 16, Gruppe 1: Klare Startanker. Lesbarer öffentlicher Einstieg: Zeile 2 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 19 konkrete Anschlussfolgen und 2 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 14/64 Zellen, 12 Kurven, 6 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Zwei Einsercounts markieren gerade Kopfstücke, die Zweiercounts die kleinen Rückknicke. Als einzelne ruhige Aktivierung im 8×8-Feld behalten; der nachfolgende breite Einstieg muss dann eine andere Geometrie tragen, um kein allgemeines Streifenpaar zu wiederholen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

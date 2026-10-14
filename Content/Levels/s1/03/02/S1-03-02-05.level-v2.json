@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-02-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,13 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.02.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 10,
-    "qualityNote": "Authorbewertung S1-03-02-05, globale Route 10, Gruppe 2: Zahlenverteilung variieren. Lesbarer öffentlicher Einstieg: Spalte 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 29 konkrete Anschlussfolgen und 12 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/36 Zellen, 13 Kurven, 1 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 10. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Der Nordport links und die rechte Nullspalte schließen zwei Ränder; die unteren Fünfer-/Viererreihen müssen mit den oberen Dreier-/Zweiercounts kombiniert werden. Der dichte Bereich liegt nun unten, die Kurvenserie rechts; klare Verteilungsvariation zu 3.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

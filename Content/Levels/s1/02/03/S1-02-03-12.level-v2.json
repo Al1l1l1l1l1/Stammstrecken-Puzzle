@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-03-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 5
@@ -43,13 +43,11 @@
   "production": {
     "entryDeductionKey": "level.s1.02.03.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "DENSITY"
     ],
-    "chainDepth": 16,
-    "qualityNote": "Authorbewertung S1-02-03-12, globale Route 7, Gruppe 5: Anspruchsvolle 6×5-Kette. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 39 konkrete Anschlussfolgen und 6 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 22/30 Zellen, 16 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 16. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 8,
+    "qualityNote": "Drei Fünferzeilen verteilen ihre einzelnen Lücken verschieden; Count 1 in Spalte 4 bestimmt den späten Querübergang nach rechts. Die sehr dichte Formfolge verlangt 16 Kurven und ist ein plausibler anspruchsvoller Abschluss, aber ihr Lesbarkeitsrisiko muss extern gespielt werden.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

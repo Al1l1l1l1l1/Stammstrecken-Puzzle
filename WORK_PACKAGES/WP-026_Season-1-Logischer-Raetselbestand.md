@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** 240/240 logische Authoringrätsel und echte Proofs geliefert, eigene technische/fachliche Prüfung erfolgt; offen zur externen Abnahme und wegen konkret fehlender Folgegates. Auftraggeberkorrektur vom 13.10.2026: Der Koordinatorzusatz zu Platzhaltern/technischen Referenzen ist keine Nutzervorgabe. Der bisherige allgemeine Startblocker ist widerlegt; siehe [Auftragskorrektur](../Content/Reviews/season-1/ORDER_CORRECTION.md) und den aktuellen Folgeabschnitt am Dateiende. Historischer Anker, Paketgrenzen, Manifest und Akzeptanzkriterien bleiben unverändert. Keine fachliche Gesamtabnahme.
+**Status:** Nachbesserung der unabhängigen Prüfung zu PR #21 / 3c9b7d0: 240 individuelle Level- und 20 Routenbewertungen, 15 gezielte Logikkorrekturen und aktuelle eigene Nachweise geliefert. Erneute unabhängige Abnahme, Spieltest und konkrete Entscheidungs-/CI-/Referenzgates offen; keine Gesamtabnahme. Bestehender Auftrag, Manifest und Grenzen unverändert.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -194,3 +194,59 @@ Erster finaler Governanceversuch: Architecture-only 17 PASS, Scope FAIL wegen ei
 Die DoD ist **nicht insgesamt erfüllt**: technische logische Lieferung und eigene Nachweise vorhanden; vorgeschriebene unabhängige Abnahme/Spieltests, neue CI-Referenz-Leistung, Referenzauflösung sowie fremde Content-/Import-/Produkt-/Releasepflichten fehlen. `UNCALIBRATED` ist ein klar offener Authoringmarker, keine bestätigte Sollzeitklasse; finale Sekunden null. Keine automatische Ausnahme/Nichtanwendbarkeit angenommen.
 
 BLOCKER-WP026-001 als allgemeiner Erstellungs-/Proofstartblocker widerlegt. Konkrete offene Cross-Reference-/Abnahme-/Folgegates bleiben echte Übergabepunkte. Letzter abgeschlossener fachlicher Schritt: vollständige logische Lieferung, eigene Fehlerbehebung und eigene technische/fachliche Bewertung. Nächster Schritt: externe unabhängige technische/Contentprüfung und menschlicher Spieltest des eingefrorenen finalen Draft-PR-HEAD; fehlende Referenzziele und unbestimmte Zeitklasse durch zuständige Folgearbeiten lösen. Keine neue Parallelbearbeitung durch diesen Agenten, kein Merge/Runtimeimport/Release und keine Fortsetzungsfrage nach internen Teilschritten.
+
+## Nachbesserung der unabhängigen Prüfung – 14.10.2026
+
+Fortsetzung desselben WP/Branch/Draft-PR #21 von geprüftem
+`3c9b7d0b3e74bd79c0ba4e1c0a20d9379b697d5e`; bei Übernahme sauber und keine
+weitere laufende Bearbeitung. AGENTS-Lesereihenfolge und Auftragskorrektur erneut
+geprüft. Originalbericht unverändert persistiert, SHA256
+`7c5782eb33517f244eb9f6e102ecc2acb0ebb8acb48622feff83916d49918130`;
+Prüferarchiv nur isoliert, kein Manifestzugang für dessen Quellcode.
+
+[Vollständige Befundbearbeitung](../Content/Reviews/season-1/REVIEW_RESOLUTION.md)
+und [aktuelle Übergabe](../Content/Reviews/season-1/REPAIR_HANDOVER.md) ersetzen
+die pauschale bisherige Eigenbewertung. Die früheren Liefer-/Startgateabschnitte
+sind Historie; weder ihre Handkuratierungsbehauptung noch der ursprüngliche
+technische Teil-PASS gelten ungeprüft für neue Inputs.
+
+240 literal individuell verfasste Urteile/Einstiege/Fokuszuordnungen und
+vorläufige gedankliche Kettenschätzungen, 20 echte Routenurteile, 15 gezielte
+Logikänderungen mit Alt-/Neu-/Kandidatenbezug. 225 öffentliche Inputs und
+225 Proofbytes unverändert. Tools transportieren gebundene Urteile oder Fakten;
+kein allgemeines Skriptverbot, keine Qualitätsgrenzwerte oder Zeitkalibrierung.
+V-01 bis V-03 als eigene Authorleistung nachgebessert; Q-01 bis Q-06 einzeln
+bewertet, bestätigte lokale Mängel korrigiert, begründete Wiederholungen benannt.
+
+Eigene Produktionsregeneration, Strict-Einzel/Batch/Reverse, 3.840 Metamorphosen,
+1.440 Mutationen, echte Schema-/Node-/Rootbindungen und 453 bestehende Regressionen
+erneut ausgeführt. Archivgegenprüfungen (Zählung/Propagation/Metamorphose/Trace/Node)
+sind vom Autor betrieben und keine unabhängige Neuabnahme. Finale gemeinsame
+Governance-/Scope-/HEAD-/CI-Bindung im aktuellen Übergabebeleg und Draft-PR nach
+tatsächlicher Ausführung. Originale neue Outputs stehen im erlaubten Reviewscope.
+
+Tatsächlich alte CI-Logs und sämtliche drei verfügbaren Artefakte abgerufen,
+Hashes/Archive/XML/Coverage/Buildbelege geprüft: EditMode 454/454, PlayMode 27/27,
+Android Development IL2CPP und iOS Export/Xcode erfolgreich auf 3c9b7d0. Keine
+Übertragung auf die neue CI oder den fehlenden Korpus-Leistungsnachweis.
+
+| AK | Nachbesserungsstand |
+|---|---|
+| AK-01 | Anker/Manifest unverändert; abschließender realer Scope-/Remote-/CI-Beleg am eingefrorenen Stand, kein neues Paket. |
+| AK-02 | 240 Quellen und geplante Größen/5×4×12 erhalten; 15 lokale Brief-/Redundanzkorrekturen. Auslegung „erste unterschiedliche A/B-Kanten“ in Route 1 konkret offen. |
+| AK-03 bis AK-05 | Eigene echte Schema-/Domain-/Counts-/UNIQUE-/Guessdepth-0-/Regeneration-/Strict-/Node-/Rootnachweise über aktuelle Inputs; endgültige Outputs und Bindung in den Reviewdateien. |
+| AK-06 | Neue individuelle Autorbewertungen und vollständige D4-Sicht mit expliziten Paarentscheidungen vorhanden; unabhängige Contentabnahme und menschlicher Spieltest bleiben erforderlich. |
+| AK-07 | Alle 1.440 offenen Ziele, Zeitklassengrenze und spätere kreative/Import-/Releasegates erhalten; keine Fallbacks/Freigaben. |
+| AK-08 | Aktuelle eigene Evidenz persistiert; erneute unabhängige technische/fachliche Prüfung desselben Frozen-HEAD erforderlich, niemals alter Teil-PASS. CI-Referenz-Leistung bleibt ohne zulässigen Ausführungsweg offen. |
+
+DoD nicht insgesamt erfüllt. Echte Übergabepunkte: DECISION-WP026-R01-FIRST
+(Bible §4, Bedeutung „erste“ und erlaubte frühere Portseitenvielfalt), CI-PERF-WP026
+(WP Tests 5; neuer CI-Korpusschritt außerhalb bestehender Befugnis), menschlicher
+Spieltest/Abnahme, nicht vollständig wiederherstellbare historische Auswahlprovenienz
+und fehlende Fremdquellen. Die erneute unabhängige Prüfung wird nur tatsächlich
+unabhängig nach Freeze organisiert; sonst externer prüffertiger Stand.
+
+Letzter fachlicher Schritt: vollständige zulässige Nachbesserung und eigene
+Fehlerbehebung samt erneuerten Nachweisen. Nächster Schritt: neue unabhängige
+Prüfung, konkrete Eigentümerentscheidung und separat autorisierter CI-Leistungsweg;
+danach betreffende Gates erneut ausführen. Kein Merge, Runtimeimport oder Release.

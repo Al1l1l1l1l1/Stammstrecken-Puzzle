@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-04-09, globale Route 4, Gruppe 4: Gegenüberliegende Endpunkte. Lesbarer öffentlicher Einstieg: Zeile 4 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 15 konkrete Anschlussfolgen und 4 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 12/20 Zellen, 10 Kurven, 1 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "W/1 und E/3 liegen auf gegenüberliegenden Kanten; der Ausgang sitzt unter dem dichten Kopfbereich. Der rechte doppelte Knick verknüpft diesen Bereich mit der niedrigeren Zeilendichte und verändert den oberen Kurvenzug von S1-01-02-04.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

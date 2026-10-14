@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-02-02",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -10,31 +10,31 @@
   "endpoints": {
     "a": {
       "side": "W",
-      "index": 0
+      "index": 1
     },
     "b": {
       "side": "E",
-      "index": 0
+      "index": 6
     }
   },
   "rowCounts": [
-    6,
-    4,
-    4,
-    4,
-    4,
-    4,
-    5,
-    3
+    0,
+    2,
+    2,
+    1,
+    1,
+    2,
+    7,
+    6
   ],
   "columnCounts": [
-    8,
-    1,
-    8,
-    1,
     7,
+    5,
+    2,
+    2,
     1,
-    7,
+    2,
+    1,
     1
   ],
   "content": {
@@ -48,12 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.02.02.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "OCCUPANCY",
-      "ENDPOINT_GEOMETRY"
+      "COMBINATION"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-05-02-02, globale Route 18, Gruppe 1: Ruhige klare Belegung. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 56 konkrete Anschlussfolgen und 30 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 34/64 Zellen, 8 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Gezielt ersetzt durch 21 Zellen mit zwei unteren verschieden dichten Querreihen 7/6. Links müssen die fast volle Spalte 0 und Fünferspalte 1 zusammenpassen, rechts erlauben Einsercounts einen langen Ausgangsarm. Das aktiviert bekannte Belegung in einer anderen Raumstruktur als der Vierarmzug der Vorroute; die anspruchsvollere Formlast bleibt Spieltestpunkt.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -66,18 +65,23 @@
     "path": [
       {
         "x": 0,
-        "y": 0,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 1,
         "track": "TRACK_SW"
       },
       {
-        "x": 0,
-        "y": 1,
-        "track": "TRACK_NS"
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_WN"
       },
       {
         "x": 0,
         "y": 2,
-        "track": "TRACK_NS"
+        "track": "TRACK_ES"
       },
       {
         "x": 0,
@@ -92,12 +96,22 @@
       {
         "x": 0,
         "y": 5,
-        "track": "TRACK_NS"
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_WN"
       },
       {
         "x": 0,
         "y": 6,
-        "track": "TRACK_NS"
+        "track": "TRACK_ES"
       },
       {
         "x": 0,
@@ -117,121 +131,41 @@
       {
         "x": 2,
         "y": 6,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 0,
         "track": "TRACK_ES"
       },
       {
         "x": 3,
-        "y": 0,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 4,
-        "y": 0,
+        "y": 6,
         "track": "TRACK_SW"
       },
       {
-        "x": 4,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 6,
+        "x": 3,
+        "y": 7,
         "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "track": "TRACK_WN"
       },
       {
         "x": 5,
         "y": 6,
-        "track": "TRACK_EW"
+        "track": "TRACK_ES"
       },
       {
         "x": 6,
         "y": 6,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 6,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 0,
-        "track": "TRACK_ES"
+        "track": "TRACK_EW"
       },
       {
         "x": 7,
-        "y": 0,
+        "y": 6,
         "track": "TRACK_EW"
       }
     ]
@@ -241,7 +175,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "72708646ba3a5f415306c86a10c307d83d28782313c89845a11fdaa642524b94"
+      "sha256": "ed7184476cbdd4a99527c2b845fee32e90ee48dc174c6a3419e4cf67f3aad51b"
     }
   }
 }

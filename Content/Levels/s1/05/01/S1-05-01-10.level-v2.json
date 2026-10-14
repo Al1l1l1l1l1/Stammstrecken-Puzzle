@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-01-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.01.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-05-01-10, globale Route 17, Gruppe 4: Lange Pfade und Kurven. Lesbarer öffentlicher Einstieg: Zeile 6 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 48 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 20/64 Zellen, 13 Kurven, 5 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Der Nordport ganz rechts verbraucht einen der zwei Counts in Spalte 7; links begrenzen drei Nullspalten den langen Gegenschenkel. Die kleine rechte Rückkurve liegt an einem anderen Teilraum als der obere Bogen und wird aus mittleren Vierer-/Fünfercounts spät geometrisch bestimmt.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

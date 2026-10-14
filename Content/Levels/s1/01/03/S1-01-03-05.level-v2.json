@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-03-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,10 @@
   "production": {
     "entryDeductionKey": "level.s1.01.03.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-03-05, globale Route 3, Gruppe 2: Angrenzende Endpunktkanten. Lesbarer öffentlicher Einstieg: Zeile 1 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 13 konkrete Anschlussfolgen und 10 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 10/20 Zellen, 5 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Spalte 3 ist voll, während zwei mittlere Einserzeilen den langen rechten Schenkel festlegen. Der Nordbogen muss über die Dreierspalte 2 zurückkehren; fünf statt neun Kurven entlasten bewusst vor der anschließenden Verdichtung.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

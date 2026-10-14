@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-03-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,13 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.03.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 10,
-    "qualityNote": "Authorbewertung S1-03-03-05, globale Route 11, Gruppe 2: Teilpfade durch Counts trennen. Lesbarer öffentlicher Einstieg: Spalte 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 22 konkrete Anschlussfolgen und 17 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 14/36 Zellen, 11 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 10. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Der lange linke Eingang muss erst den oberen kleinen Rechtsbogen erreichen und dann zur Südspalte 4 zurückkehren. Die Einsercounts in Spalten 1/4 und die rechte Nullspalte beschränken die möglichen Übergänge; gute dünne Gegenvariante zu den dichten Teilwegfeldern 3/4.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

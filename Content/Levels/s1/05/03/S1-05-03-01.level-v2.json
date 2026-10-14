@@ -2,42 +2,42 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-03-01",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
   },
   "endpoints": {
     "a": {
-      "side": "S",
-      "index": 1
+      "side": "E",
+      "index": 8
     },
     "b": {
-      "side": "W",
-      "index": 1
+      "side": "N",
+      "index": 0
     }
   },
   "rowCounts": [
-    3,
-    3,
-    2,
-    2,
+    9,
+    4,
     2,
     1,
     1,
     1,
+    1,
+    2,
     2
   ],
   "columnCounts": [
-    9,
-    6,
     2,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    5,
+    9
   ],
   "content": {
     "season": 1,
@@ -50,12 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.03.01.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY"
+      "OCCUPANCY",
+      "COMBINATION"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-05-03-01, globale Route 19, Gruppe 1: Bekannte Startmuster. Lesbarer öffentlicher Einstieg: Spalte 3 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 30 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/81 Zellen, 13 Kurven, 6 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Gezielt ersetzt: alle neun Zeilen und Spalten sind aktiv, keine öffentliche Nullzahl reduziert das Raster auf einen kleinen Teil. Der Nordport links und Ostport rechts unten liegen an zwei verschiedenen Kurvengebieten; Fünferreste in Spalte 7 und Zweierreihen oben/unten verlangen genaue Formfestlegung trotz sicherer Rahmenbelegung. Der Wiedereinstieg behält echte 9×9-Ausdehnung bei kurzer Rootfolge.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -67,89 +66,119 @@
   "solution": {
     "path": [
       {
-        "x": 1,
+        "x": 8,
         "y": 8,
-        "track": "TRACK_SW"
+        "track": "TRACK_EW"
       },
       {
-        "x": 0,
+        "x": 7,
         "y": 8,
         "track": "TRACK_NE"
       },
       {
-        "x": 0,
+        "x": 7,
         "y": 7,
-        "track": "TRACK_NS"
+        "track": "TRACK_ES"
       },
       {
-        "x": 0,
+        "x": 8,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
         "y": 6,
         "track": "TRACK_NS"
       },
       {
-        "x": 0,
+        "x": 8,
         "y": 5,
         "track": "TRACK_NS"
       },
       {
-        "x": 0,
+        "x": 8,
         "y": 4,
-        "track": "TRACK_ES"
+        "track": "TRACK_NS"
       },
       {
-        "x": 1,
-        "y": 4,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 1,
+        "x": 8,
         "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 2,
         "track": "TRACK_SW"
       },
       {
-        "x": 0,
-        "y": 3,
+        "x": 7,
+        "y": 2,
         "track": "TRACK_NE"
       },
       {
-        "x": 0,
-        "y": 2,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 1,
-        "y": 2,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 1,
+        "x": 7,
         "y": 1,
         "track": "TRACK_ES"
       },
       {
-        "x": 2,
+        "x": 8,
         "y": 1,
         "track": "TRACK_WN"
       },
       {
-        "x": 2,
+        "x": 8,
         "y": 0,
         "track": "TRACK_SW"
       },
       {
-        "x": 1,
+        "x": 7,
         "y": 0,
         "track": "TRACK_EW"
       },
       {
-        "x": 0,
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
         "y": 0,
         "track": "TRACK_ES"
       },
       {
-        "x": 0,
+        "x": 1,
         "y": 1,
         "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NS"
       }
     ]
   },
@@ -158,7 +187,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "844829e5d6dda66468f98c5e3920fc916371b0b3559af1fb92a47f26423934bb"
+      "sha256": "3e850a0d03c056d254be5075e958c8874d394490540c2a0e87d4776f75f22294"
     }
   }
 }

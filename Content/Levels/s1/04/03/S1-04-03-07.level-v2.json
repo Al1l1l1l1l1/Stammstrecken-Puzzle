@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-03-07",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.03.07.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-04-03-07, globale Route 15, Gruppe 3: Parallele Teilketten. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 67 konkrete Anschlussfolgen und 27 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 35/64 Zellen, 8 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Die drei Einserspalten dazwischen koppeln ihre Querübergänge, der rechte Siebenerarm hängt am Ostport in Zeile 1. Bekannte Armgeometrie wird auf 8×8 übertragen; die nachfolgende fast gedrehte 35-Zellen-Variante 8 wurde ersetzt, damit diese Verdichtung nicht zweimal denselben Lösungsrhythmus verlangt.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

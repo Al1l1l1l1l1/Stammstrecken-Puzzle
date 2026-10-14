@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-02-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.02.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "EXCLUSION"
     ],
-    "chainDepth": 30,
-    "qualityNote": "Authorbewertung S1-05-02-12, globale Route 18, Gruppe 5: 9×9-Meisterschaft. Lesbarer öffentlicher Einstieg: A an S/8 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 91 konkrete Anschlussfolgen und 55 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 22/81 Zellen, 11 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 30. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Fünf weitere Einserspalten zwingen einen sehr langen Bodenquerarm, während die drei linken Sechser-/Vierercounts zwei obere Knicke und die mittlere Vertikale bestimmen. Die luftige 22-Zellen-Lösung ist räumlich klar, aber die obere Formfestlegung ergibt einen langen zweiten Meisterschaftsabschluss.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

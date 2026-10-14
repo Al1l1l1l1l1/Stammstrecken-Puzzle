@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,10 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-04-05, globale Route 4, Gruppe 2: Hohe und niedrige Randzahlen. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 18 konkrete Anschlussfolgen und 5 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 15/20 Zellen, 12 Kurven, 0 Null- und 4 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Der Einserengpass in Zeile 3 verhindert das einfache Fortsetzen der vollen Fläche bis unten. Die Endpunkte liegen in derselben Spalte, aber der volle Count 5 sitzt daneben; diese Konstellation verbindet hohe Werte mit einer nicht direkten Endgeometrie.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

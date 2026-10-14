@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-01-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.01.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 30,
-    "qualityNote": "Authorbewertung S1-05-01-12, globale Route 17, Gruppe 5: Faire große Abschlüsse. Lesbarer öffentlicher Einstieg: A an E/0 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 71 konkrete Anschlussfolgen und 44 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 19/64 Zellen, 12 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 30. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Drei weitere Einserzeilen machen den langen mittleren Arm sicher, unten tragen zwei Fünferreihen verschiedene Doppelknicke. Der Westport innen liegt am anderen Ende dieses Bodenbereichs; die dünne vertikale und kurvenreiche untere Folge kontrastiert den oberen Abschlusstyp 11.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,35 +2,35 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-04-07",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 5
   },
   "endpoints": {
     "a": {
-      "side": "W",
-      "index": 2
+      "side": "E",
+      "index": 3
     },
     "b": {
-      "side": "E",
-      "index": 2
+      "side": "W",
+      "index": 1
     }
   },
   "rowCounts": [
-    0,
-    6,
-    6,
-    0,
-    0
+    2,
+    4,
+    4,
+    3,
+    3
   ],
   "columnCounts": [
     2,
     2,
+    5,
+    4,
     2,
-    2,
-    2,
-    2
+    1
   ],
   "content": {
     "season": 1,
@@ -43,13 +43,11 @@
   "production": {
     "entryDeductionKey": "level.s1.02.04.07.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 9,
-    "qualityNote": "Authorbewertung S1-02-04-07, globale Route 8, Gruppe 3: Kreuzschlussketten. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 21 konkrete Anschlussfolgen und 0 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 12/30 Zellen, 12 Kurven, 3 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 9. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Gezielt ersetzt durch 16 Zellen auf allen sechs Spalten und fünf Zeilen, zwölf Kurven und nur einen Vollanker. Die beiden Viererzeilen und Spalte 3 mit Count 4 koppeln linken Westport, oberen Rückknick und rechten Ostzugang; die Zweiercounts links bestimmen zuerst einen eng begrenzten Bereich, dessen Folgeausschlüsse im rechten Querarm wirken.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -61,64 +59,84 @@
   "solution": {
     "path": [
       {
-        "x": 0,
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
         "y": 2,
         "track": "TRACK_WN"
       },
       {
-        "x": 0,
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
         "y": 1,
         "track": "TRACK_ES"
       },
       {
         "x": 1,
-        "y": 1,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 1,
-        "y": 2,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 2,
         "y": 2,
         "track": "TRACK_WN"
       },
       {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
-        "y": 1,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 3,
+        "x": 0,
         "y": 2,
         "track": "TRACK_NE"
       },
       {
-        "x": 4,
-        "y": 2,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 5,
+        "x": 0,
         "y": 1,
         "track": "TRACK_SW"
-      },
-      {
-        "x": 5,
-        "y": 2,
-        "track": "TRACK_NE"
       }
     ]
   },
@@ -127,7 +145,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "4cec3590b574be1bdf970e829d3c0c817dbbd003d430916d504a26a067f1f85c"
+      "sha256": "42c4473755f7bdb30d0ef24d9b2af308f948846cb2c48ac77a1f6d9b1373447e"
     }
   }
 }

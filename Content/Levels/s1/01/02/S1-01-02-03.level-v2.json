@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-02-03",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.02.03.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-02-03, globale Route 2, Gruppe 2: Belegung als optionale Notiz. Lesbarer öffentlicher Einstieg: Zeile 3 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 13 konkrete Anschlussfolgen und 7 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 13/20 Zellen, 11 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Drei obere Zweierzeilen begrenzen die Breite der Kurvenfolge, bevor die volle Zeile 3 die linke Hälfte einbindet. Eine Notiz trennt hier anschaulich sichere Belegung und noch offene Form; elf Kurven sind die neue Geometrielast.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

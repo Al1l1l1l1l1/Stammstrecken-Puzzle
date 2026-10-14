@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-03-04",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.03.04.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 10,
-    "qualityNote": "Authorbewertung S1-05-03-04, globale Route 19, Gruppe 2: Mehrere lange Ketten. Lesbarer öffentlicher Einstieg: Zeile 8 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 52 konkrete Anschlussfolgen und 59 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 22/81 Zellen, 11 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 10. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Die oberen Einserzeilen legen den rechten Startarm fest, eine Zweierzeile erzeugt jedoch einen Versatz. Der kleine untere Doppelknick links muss mit den zwei Zweierspalten abgestimmt werden; die sichere Bodenbelegung eröffnet erst zusammen mit dem rechten Restcount die Form.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

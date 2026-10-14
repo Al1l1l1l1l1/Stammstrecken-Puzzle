@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "DENSITY"
     ],
-    "chainDepth": 30,
-    "qualityNote": "Authorbewertung S1-04-04-12, globale Route 16, Gruppe 5: Strategischer Abschnittsabschluss. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 83 konkrete Anschlussfolgen und 26 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 32/64 Zellen, 19 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 30. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Der Nordport innen und der Westport unten liegen auf unterschiedlichen Seiten zweier großer Querbögen. Count 1 in Spalte 4 bestimmt den einzigen mittleren Übergang, die unteren Zweierzeilen den kleinen Rückknick; 32 Zellen und 19 Kurven bilden den breiteren Gegenabschluss zu 11.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

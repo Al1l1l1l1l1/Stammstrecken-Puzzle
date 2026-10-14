@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-03-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 6
@@ -45,13 +45,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.03.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "DENSITY"
     ],
-    "chainDepth": 23,
-    "qualityNote": "Authorbewertung S1-03-03-12, globale Route 11, Gruppe 5: Große 7×6-Abschlüsse. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 55 konkrete Anschlussfolgen und 10 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 28/42 Zellen, 19 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 23. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 9,
+    "qualityNote": "28 Zellen verteilen sich über obere breite Bögen und einen unteren rechteckigen Umweg, verbunden durch unterschiedliche Fünfer-/Sechsercounts. Die West-/Südports liegen unterhalb verschiedener Teilgebiete; dieser dichte Abschluss kontrastiert 11 räumlich und trägt bei geringerer technischer Tiefe mehr Formlast.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

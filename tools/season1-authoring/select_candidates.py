@@ -157,19 +157,13 @@ def main():
             used.add(best['symmetry']);route_candidates.append(best);copydoc=copy.deepcopy(best['document'])
             id=f'S1-{section:02}-{local:02}-{p:02}';ns=f'level.s1.{section:02}.{local:02}.{p:02}'
             copydoc['puzzleId']=id;copydoc['content'].update(networkSection=section,route=local,position=p,titleKey=ns+'.title',statusKey=ns+'.status')
-            copydoc['production']['entryDeductionKey']=ns+'.entry';copydoc['production']['chainDepth']=max(1,best['depth'])
+            copydoc['production']['entryDeductionKey']=ns+'.entry';copydoc['production']['chainDepth']=1
             copydoc['completion']=dict(mapSegmentId=f'draft-s1-{section:02}-{local:02}-{p:02}-map',trainMomentId=f'draft-s1-{section:02}-{local:02}-{p:02}-train',resultTextKey=ns+'.result')
             copydoc['proofRef']['artifactId']=f'proofs/{id}/solver-v2.proof-v1.json'
             focus=BRIEFS[route-1][group(p)];f=best['features'];w,h=dimensions(route,p)
-            copydoc['production']['focus']=['ROW_COLUMN_COUNTS','EXCLUSION' if f['zeros'] else 'OCCUPANCY','ENDPOINT_GEOMETRY']+(['CHAIN'] if p>2 else [])
-            a,b=copydoc['endpoints'].values()
-            note=(f'Interner Authoringentwurf, globale Route {route}, Position {p}: {focus}. '
-                  f'{w}×{h}, {f["length"]} Gleisfelder, {f["zeros"]} Null- und {f["full"]} Voll-Linien; '
-                  f'A={a["side"]}/{a["index"]}, B={b["side"]}/{b["index"]}, {f["turns"]} Kurven. '
-                  f'Die öffentliche solver-v2-Rootspur erreicht Tiefe {best["depth"]} ohne Suchannahme. '
-                  f'Der Count-Vektor und die Endpunktlage tragen den genannten Schwerpunkt; Lösung ist nicht als Spielervorgabe gesetzt. '
-                  f'Keine symmetrische Kopie im ausgewählten Bestand. Lesbarkeit und Lernwirkung benötigen weiterhin unabhängigen Review und Spieltest.')
-            copydoc['production']['qualityNote']=note
+            copydoc['production']['qualityNote']='Scratch candidate: individual leveldesign review pending.'
+            # Candidate scratch metadata is not an author judgment. Explicit input-bound
+            # review must assign focus, entry and expected chain before acceptance.
             chosen.append(dict(document=copydoc,pool=best['pool'],candidate=best['candidate'],brief=focus,metrics=best['metrics'],features=f))
         print(f'Route {route:02}: '+', '.join(f'{c["depth"]}/{c["features"]["length"]}/{c["features"]["relation"]}' for c in route_candidates))
     target=ROOT/'.utmp/wp026-selection.json';target.write_text(json.dumps(chosen,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

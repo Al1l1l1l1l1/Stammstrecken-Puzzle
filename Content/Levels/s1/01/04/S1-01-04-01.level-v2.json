@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-01",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,12 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.01.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "EXCLUSION",
-      "ENDPOINT_GEOMETRY"
+      "OCCUPANCY"
     ],
-    "chainDepth": 4,
-    "qualityNote": "Authorbewertung S1-01-04-01, globale Route 4, Gruppe 1: Einstiegsmuster. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 7 konkrete Anschlussfolgen und 4 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 8/20 Zellen, 6 Kurven, 2 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 4. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 3,
+    "qualityNote": "Der volle Boden und A an W/2 verknüpfen den Einseranschluss mit einem kurzen Rückknick rechts. Gegenüber dem vorherigen diagonalen Finale kehren klare Flächenanker zurück; die reduzierte Höhe dient dem geforderten schnellen Wiedereinstieg.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

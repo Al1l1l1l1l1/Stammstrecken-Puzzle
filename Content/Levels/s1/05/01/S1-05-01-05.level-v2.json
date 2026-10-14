@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-01-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.01.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 10,
-    "qualityNote": "Authorbewertung S1-05-01-05, globale Route 17, Gruppe 2: Entfernte Belegungsbereiche. Lesbarer öffentlicher Einstieg: Zeile 6 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 40 konkrete Anschlussfolgen und 27 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 18/64 Zellen, 11 Kurven, 2 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 10. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Die unteren Einserzeilen zwingen einen linken Schenkel, während der Nordport rechts eine obere Doppelkurve einbindet. Die klar getrennten Kopf- und linke Endgebiete werden über vier Zweiercounts gekoppelt; weniger räumliche Verzahnung als 4, aber ein nachvollziehbarer zweiter Ankertyp.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

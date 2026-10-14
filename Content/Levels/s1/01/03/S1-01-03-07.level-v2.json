@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-03-07",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.03.07.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-03-07, globale Route 3, Gruppe 3: Belegung und Geometrie. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 18 konkrete Anschlussfolgen und 8 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 12/20 Zellen, 7 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Die volle obere Zeile ist ein zweiter, weit entfernter Anker; dazwischen verlangt Zeile 2 eine einzelne Zelle links. So entsteht ein Umweg über den Rand, bevor die beiden rechten Endpunktgebiete geometrisch zusammenfinden.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

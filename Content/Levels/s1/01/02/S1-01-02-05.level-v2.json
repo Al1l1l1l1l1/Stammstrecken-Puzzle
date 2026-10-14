@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-02-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.02.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-02-05, globale Route 2, Gruppe 2: Belegung als optionale Notiz. Lesbarer öffentlicher Einstieg: Zeile 4 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 16 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 11/20 Zellen, 7 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Die volle linke Spalte kreuzt den unteren Anker, aber der Nordport sitzt daneben. Counts 1 in den rechten Spalten erlauben frühe Restzahlabschlüsse; die zwei linken Rückknicke zeigen erneut, warum grau noch keine Gleisform ist.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

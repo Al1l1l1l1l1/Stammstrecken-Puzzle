@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-04-06",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 10,
     "height": 10
@@ -52,13 +52,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.04.06.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 23,
-    "qualityNote": "Authorbewertung S1-05-04-06, globale Route 20, Gruppe 3: Mehrere tiefe 10×10-Ketten. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 82 konkrete Anschlussfolgen und 35 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 38/100 Zellen, 10 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 23. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 9,
+    "qualityNote": "Zwei Nullspalten grenzen die Fläche ein, mehrere breite Querbänder werden nach unten kürzer. Die fünf mittleren Spaltencounts und Einserübergänge verzahnen die getrennten Bandfolgen; die Folge bis Tiefe 23 ist auf echter Rootspur gebunden, ihre menschliche Last bleibt offen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

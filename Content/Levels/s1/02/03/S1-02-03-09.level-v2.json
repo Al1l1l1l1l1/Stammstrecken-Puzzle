@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-03-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 5
@@ -43,13 +43,11 @@
   "production": {
     "entryDeductionKey": "level.s1.02.03.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY"
     ],
-    "chainDepth": 8,
-    "qualityNote": "Authorbewertung S1-02-03-09, globale Route 7, Gruppe 4: Asymmetrie und Kurven. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 17 konkrete Anschlussfolgen und 15 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 15/30 Zellen, 11 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 8. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Der Nordport liegt innen, während der Ostport weit unten sitzt; der dichte obere Kurvenzug endet in einem langen klaren rechten Schenkel. Als bewusste asymmetrische Variation darf die Kurvenlast fast ganz oben liegen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

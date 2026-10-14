@@ -32,7 +32,8 @@ def jcs(value, name):
     return canonical,output['sha256']
 
 def main():
-    assert subprocess.check_output(['node','--version'],text=True).strip()=='v22.20.0'
+    node_version=subprocess.check_output(['node','--version'],text=True).strip()
+    assert node_version.split('.')[0]=='v22', 'WP-026 allows Node 22.x'
     SCRATCH.mkdir(parents=True,exist_ok=True)
     levels=sorted((ROOT/'Content/Levels/s1').rglob('*.level-v2.json'))
     assert len(levels)==240
@@ -83,7 +84,7 @@ def main():
     references=strict_read(OUT/'unresolved-references.json');assert references['unresolvedCount']==1440 and references['gate']=='FAIL_MISSING_TARGET_SOURCES'
     report=dict(schemaLevelsPassed=240,schemaProofsPassed=240,nodePublicSolutionProofProjectionArtifactAndDocumentChecks=1200,
                 rootTraceAndInventoryBindingsPassed=240,full5x4x12InventoryPassed=True,unresolvedReferences=1440,crossReferenceGate='FAIL_MISSING_TARGET_SOURCES',
-                nodeVersion='22.20.0',entries=entries)
+                nodeVersion=node_version,entries=entries)
     (OUT/'schema-node-evidence.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print('PASS: 240 real Level-/Proofschemas, 1200 actual Node projections/artifacts/documents, 240 trace/inventory bindings; cross-reference gate remains FAIL.')
 

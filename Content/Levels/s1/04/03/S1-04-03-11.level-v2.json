@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-03-11",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.03.11.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "EXCLUSION"
     ],
-    "chainDepth": 34,
-    "qualityNote": "Authorbewertung S1-04-03-11, globale Route 15, Gruppe 5: Anspruchsvolle 8×8-Puzzles. Lesbarer öffentlicher Einstieg: A an N/5 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 75 konkrete Anschlussfolgen und 45 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 19/64 Zellen, 10 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 34. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Vier Einserspalten fixieren den langen Querweg in Zeile 6, während die rechte obere Doppelkurve erst aus den Dreier-/Vierercounts folgt. 19 Zellen durch alle Achsen sind leicht zu orientieren, aber die lange Folge bis zum rechten Kopf bleibt ein gezieltes Risiko für den Spieltest.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

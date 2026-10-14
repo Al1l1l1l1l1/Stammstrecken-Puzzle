@@ -1,0 +1,27 @@
+ARCHITECTURE VALIDATION v1.0 scope=production
+LOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar
+LOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur
+LOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding
+LOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks
+LOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle
+LOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck
+LOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker
+LOCAL_SCOPE PASS  Git-Diff gegen versioniertes Scope-Manifest
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt
+SCOPE_CONTEXT  workPackage=WP-026 base=c9516bdbd5858fd9003d5207ec37d180ccc6ae23 head=3c9b7d0b3e74bd79c0ba4e1c0a20d9379b697d5e worktreeDirty=true
+MANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS
+CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode
+REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP
+REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox
+REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion
+BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed
+RESULT PASS (18 lokale Prüfgruppen)

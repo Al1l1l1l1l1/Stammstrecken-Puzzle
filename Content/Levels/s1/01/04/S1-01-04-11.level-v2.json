@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-11",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.11.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 9,
-    "qualityNote": "Authorbewertung S1-01-04-11, globale Route 4, Gruppe 5: Abschnittskompetenz. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 22 konkrete Anschlussfolgen und 8 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 12/20 Zellen, 5 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 9. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Count 1 in Spalte 1 erlaubt nur den Übergang im Kopf, während die beiden Dreierspalten rechts einen versetzten Rückweg erzwingen. Der übersichtliche Umriss ist für den Abschnittsabschluss fair zugänglich; die Formbestimmung ist länger als die bloße Belegung.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,32 +2,32 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-01-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 4
   },
   "endpoints": {
     "a": {
-      "side": "E",
-      "index": 2
+      "side": "N",
+      "index": 1
     },
     "b": {
-      "side": "S",
-      "index": 1
+      "side": "W",
+      "index": 3
     }
   },
   "rowCounts": [
+    1,
     2,
     3,
-    4,
-    1
+    3
   ],
   "columnCounts": [
     2,
     4,
     3,
-    1
+    0
   ],
   "content": {
     "season": 1,
@@ -40,13 +40,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.01.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 9,
-    "qualityNote": "Authorbewertung S1-01-01-12, globale Route 1, Gruppe 5: Einstiegsmuster kombinieren. Lesbarer öffentlicher Einstieg: Zeile 2 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 17 konkrete Anschlussfolgen und 5 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 10/16 Zellen, 7 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 9. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Gezielt ersetzt, um das Nullmuster ebenfalls im zweiten Abschluss anzuwenden. Der Nordport belegt die einzige obere Zelle; darunter müssen der mittlere Rechtsbogen und die untere Rückkehr zum Westport mit den Zweier-/Dreierrestzahlen zusammenpassen. Gegenüber dem horizontalen Abschluss 11 wechselt der Vollanker auf eine innere Spalte. Eine zunächst erwogene Variante wurde vor dem Einfrieren verworfen, weil sie fast die Maske von Position 1 wiederholte; diese kleine verschachtelte Anordnung hat einen eigenständigen Abschlusszugang.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -58,54 +56,49 @@
   "solution": {
     "path": [
       {
-        "x": 3,
-        "y": 2,
-        "track": "TRACK_EW"
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_NS"
       },
       {
-        "x": 2,
-        "y": 2,
+        "x": 1,
+        "y": 1,
         "track": "TRACK_NE"
       },
       {
         "x": 2,
         "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
         "track": "TRACK_NS"
       },
       {
         "x": 2,
-        "y": 0,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 1,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 1,
-        "y": 1,
+        "y": 3,
         "track": "TRACK_WN"
-      },
-      {
-        "x": 0,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 0,
-        "y": 2,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 1,
-        "y": 2,
-        "track": "TRACK_SW"
       },
       {
         "x": 1,
         "y": 3,
-        "track": "TRACK_NS"
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_WN"
       }
     ]
   },
@@ -114,7 +107,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "902daf44c38c37a72bcaa96e31924134d54981ae49ce80289c785c953a1a19db"
+      "sha256": "b0414f996571b4853faf633e8e49f308be0e05a9d256a2d026eb7f9f4c881e71"
     }
   }
 }

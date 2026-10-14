@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-04-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 6
@@ -45,13 +45,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.04.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 12,
-    "qualityNote": "Authorbewertung S1-03-04-05, globale Route 12, Gruppe 2: Abhängige Ketten. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 37 konkrete Anschlussfolgen und 16 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 21/42 Zellen, 13 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 12. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Die fast volle Unterzeile verbindet eine linke Wechselkurve mit dem rechten senkrechten Ausgang; zwei mittige Einsercounts erlauben nur diesen weiten Querweg. Die rechte Formfolge hängt an Restzahlen, die links erzeugt werden, statt an einem weiteren direkten Vollanker.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

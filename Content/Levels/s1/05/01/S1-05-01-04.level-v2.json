@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-01-04",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.01.04.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "EXCLUSION"
     ],
-    "chainDepth": 11,
-    "qualityNote": "Authorbewertung S1-05-01-04, globale Route 17, Gruppe 2: Entfernte Belegungsbereiche. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 45 konkrete Anschlussfolgen und 35 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/64 Zellen, 9 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Der rechte Eingang beginnt weit vom unteren Südport links; zwei linke Nullspalten begrenzen den Bodenarm. Der Sechserquerweg in Zeile 5 verbindet zwei getrennte Kurvenfolgen und kann erst mit den mittleren Dreier-/Vierercounts festgelegt werden.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

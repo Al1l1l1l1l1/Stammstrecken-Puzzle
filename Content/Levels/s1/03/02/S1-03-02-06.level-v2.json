@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-02-06",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,13 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.02.06.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 11,
-    "qualityNote": "Authorbewertung S1-03-02-06, globale Route 10, Gruppe 3: Teilräume zusammenführen. Lesbarer öffentlicher Einstieg: Zeile 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 34 konkrete Anschlussfolgen und 13 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 13/36 Zellen, 7 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Linke und untere Nullachse begrenzen fünf aktive Zeilen/Spalten. Der Einsercount von Spalte 3 koppelt den linken Nordarm mit dem rechten Ostgebiet nur im unteren Querweg; genau dieser Übergang führt zwei Teilräume zusammen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

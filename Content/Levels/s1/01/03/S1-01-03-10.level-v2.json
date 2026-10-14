@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-03-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.03.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-03-10, globale Route 3, Gruppe 4: Dichtekontrast. Lesbarer öffentlicher Einstieg: Zeile 1 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 20 konkrete Anschlussfolgen und 6 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 13/20 Zellen, 11 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Der volle Anker liegt nun in Zeile 1, darunter nimmt die Belegung schrittweise ab. Obwohl beide Varianten 13 Zellen haben, liegen der dichte Teil und die Eintrittsrichtung anders als in Position 9; der Dichtebrief ist durch diese räumliche Umkehr nachvollziehbar.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

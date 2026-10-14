@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-05",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.05.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "EXCLUSION",
+      "COMBINATION"
     ],
-    "chainDepth": 12,
-    "qualityNote": "Authorbewertung S1-04-04-05, globale Route 16, Gruppe 2: Alternativen schrittweise ausschließen. Lesbarer öffentlicher Einstieg: Spalte 1 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 45 konkrete Anschlussfolgen und 45 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 19/64 Zellen, 8 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 12. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Drei mittlere Einserzeilen sichern den linken Schenkel; fünf Einserspalten bestimmen die lange untere Ostzufahrt. Die beiden Dreiercounts im unteren Innenbogen müssen mit dem Vollanker zusammenpassen und verhindern eine direkte Querabkürzung.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

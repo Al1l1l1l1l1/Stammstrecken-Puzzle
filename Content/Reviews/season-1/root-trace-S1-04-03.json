@@ -27870,10 +27870,10 @@
     "puzzleId": "S1-04-03-08",
     "publicPuzzleHash": {
       "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
-      "sha256": "ce2f10411fb70d4b08e1b54896bed8aa7af13cbbd0deb3ab03e7d16e153a4647"
+      "sha256": "81c265693fdbd89b78bd2068038c85dd1aead60d1f10ac960a4290c7da5d687d"
     },
     "solverVersion": "solver-v2",
-    "proofHash": "d2da74046d7b4436abe7f9e879b0c4c4e51a86ac9c6a44330c681281c263ecf5",
+    "proofHash": "55cfd9919c1d91d22b9e7da57c33ac1814c15d0e5b370c6b4b9b52b4d9cae6eb",
     "steps": [
       {
         "index": 0,
@@ -27911,25 +27911,31 @@
       },
       {
         "index": 1,
-        "ruleCode": "ENDPOINT_ENTRY_REQUIRED",
+        "ruleCode": "BORDER_PORT_FORBIDDEN",
         "cell": {
           "x": 1,
           "y": 0
         },
         "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
           "EMPTY",
           "TRACK_EW",
           "TRACK_ES",
           "TRACK_SW"
         ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_WN"
-        ],
         "premises": [
           {
             "publicFact": "ENDPOINT_A",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "ENDPOINT_B",
             "lineIndex": -1,
             "traceIndex": -1,
             "isPublicFact": true
@@ -28297,29 +28303,23 @@
       },
       {
         "index": 12,
-        "ruleCode": "BORDER_PORT_FORBIDDEN",
+        "ruleCode": "ENDPOINT_ENTRY_REQUIRED",
         "cell": {
           "x": 0,
           "y": 3
         },
         "removedValues": [
-          "TRACK_EW",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
           "EMPTY",
           "TRACK_NS",
           "TRACK_NE",
           "TRACK_ES"
         ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
         "premises": [
-          {
-            "publicFact": "ENDPOINT_A",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
           {
             "publicFact": "ENDPOINT_B",
             "lineIndex": -1,
@@ -28553,21 +28553,21 @@
       },
       {
         "index": 19,
-        "ruleCode": "BORDER_PORT_FORBIDDEN",
+        "ruleCode": "ENDPOINT_ENTRY_REQUIRED",
         "cell": {
           "x": 7,
           "y": 6
         },
         "removedValues": [
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
           "EMPTY",
           "TRACK_NS",
           "TRACK_SW",
           "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES"
         ],
         "premises": [
           {
@@ -28581,33 +28581,27 @@
             "lineIndex": -1,
             "traceIndex": -1,
             "isPublicFact": true
-          },
-          {
-            "publicFact": "ENDPOINT_B",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
           }
         ],
         "depth": 1
       },
       {
         "index": 20,
-        "ruleCode": "ENDPOINT_ENTRY_REQUIRED",
+        "ruleCode": "BORDER_PORT_FORBIDDEN",
         "cell": {
           "x": 0,
           "y": 7
         },
         "removedValues": [
-          "EMPTY",
+          "TRACK_NS",
           "TRACK_EW",
-          "TRACK_NE",
+          "TRACK_ES",
           "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_NS",
-          "TRACK_ES"
+          "EMPTY",
+          "TRACK_NE"
         ],
         "premises": [
           {
@@ -28913,177 +28907,254 @@
       },
       {
         "index": 28,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 0,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 29,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 0,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 30,
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 0,
           "y": 2
         },
         "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
           "TRACK_NS",
           "TRACK_NE",
           "TRACK_ES"
         ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 29,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 1,
-          "y": 2
-        },
-        "removedValues": [
+        "remainingValues": [
           "EMPTY"
         ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 30,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 2,
-          "y": 2
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
+            "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "traceIndex": 12,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
+        "depth": 2
       },
       {
         "index": 31,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 3,
-          "y": 2
+          "x": 0,
+          "y": 4
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
         ],
         "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "EMPTY"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
+        "depth": 2
       },
       {
         "index": 32,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 4,
-          "y": 2
+          "x": 0,
+          "y": 5
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
         ],
         "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "EMPTY"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
+        "depth": 2
       },
       {
         "index": 33,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 0,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 34,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 0,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 0,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 35,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
-          "x": 5,
-          "y": 2
+          "x": 6,
+          "y": 0
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
+            "traceIndex": -1,
+            "isPublicFact": true
+          }
+        ],
+        "depth": 1
+      },
+      {
+        "index": 36,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 6,
+          "y": 1
         },
         "removedValues": [
           "EMPTY"
@@ -29104,8 +29175,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29113,7 +29184,7 @@
         "depth": 1
       },
       {
-        "index": 34,
+        "index": 37,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
           "x": 6,
@@ -29138,104 +29209,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 35,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 7,
-          "y": 2
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 2,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 36,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 0,
-          "y": 4
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 37,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 1,
-          "y": 4
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29246,8 +29221,8 @@
         "index": 38,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
-          "x": 2,
-          "y": 4
+          "x": 6,
+          "y": 3
         },
         "removedValues": [
           "EMPTY"
@@ -29268,8 +29243,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29280,7 +29255,7 @@
         "index": 39,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
-          "x": 3,
+          "x": 6,
           "y": 4
         },
         "removedValues": [
@@ -29302,8 +29277,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29314,8 +29289,8 @@
         "index": 40,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
-          "x": 4,
-          "y": 4
+          "x": 6,
+          "y": 5
         },
         "removedValues": [
           "EMPTY"
@@ -29336,8 +29311,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29348,8 +29323,8 @@
         "index": 41,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
-          "x": 5,
-          "y": 4
+          "x": 6,
+          "y": 6
         },
         "removedValues": [
           "EMPTY"
@@ -29370,8 +29345,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29383,17 +29358,14 @@
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
           "x": 6,
-          "y": 4
+          "y": 7
         },
         "removedValues": [
           "EMPTY"
         ],
         "remainingValues": [
-          "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
           "TRACK_WN"
         ],
         "premises": [
@@ -29404,8 +29376,8 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           }
@@ -29414,312 +29386,323 @@
       },
       {
         "index": 43,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 7,
-          "y": 4
+          "x": 1,
+          "y": 0
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_EW",
+          "TRACK_SW"
         ],
         "remainingValues": [
-          "TRACK_NS",
-          "TRACK_SW",
-          "TRACK_WN"
+          "EMPTY",
+          "TRACK_ES"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
+            "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "traceIndex": 0,
+            "isPublicFact": false
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 4,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 28,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
+        "depth": 3
       },
       {
         "index": 44,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 0,
-          "y": 6
+          "x": 1,
+          "y": 1
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
         ],
         "remainingValues": [
+          "EMPTY",
           "TRACK_NS",
           "TRACK_NE",
           "TRACK_ES"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
+            "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "traceIndex": 8,
+            "isPublicFact": false
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 29,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
+        "depth": 3
       },
       {
         "index": 45,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 1,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 10,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 30,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 46,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 0,
+          "y": 3
+        },
+        "removedValues": [
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_EW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 10,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 14,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 30,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 31,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 47,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 1,
+          "y": 3
+        },
+        "removedValues": [
+          "EMPTY",
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 12,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 46,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 4
+      },
+      {
+        "index": 48,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 1,
+          "y": 4
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 14,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 31,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 49,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 1,
+          "y": 5
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 16,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 32,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 50,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 1,
           "y": 6
         },
         "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
           "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
           "TRACK_SW",
           "TRACK_WN"
         ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 46,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 2,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
         "remainingValues": [
+          "EMPTY",
           "TRACK_NS",
-          "TRACK_EW",
           "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "TRACK_ES"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
+            "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "traceIndex": 18,
+            "isPublicFact": false
           },
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 47,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 3,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
+            "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "traceIndex": 33,
+            "isPublicFact": false
           }
         ],
-        "depth": 1
-      },
-      {
-        "index": 48,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 4,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 49,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 5,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 50,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 6,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
+        "depth": 3
       },
       {
         "index": 51,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 7,
-          "y": 6
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "index": 52,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 1,
           "y": 7
         },
         "removedValues": [
           "TRACK_EW",
-          "TRACK_NE",
           "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_NE"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 20,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 34,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 52,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 4
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
         ],
         "remainingValues": [
           "EMPTY"
@@ -29727,14 +29710,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29745,11 +29728,14 @@
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 2,
-          "y": 7
+          "y": 4
         },
         "removedValues": [
+          "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -29758,14 +29744,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29776,11 +29762,14 @@
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 3,
-          "y": 7
+          "y": 4
         },
         "removedValues": [
+          "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -29789,14 +29778,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29807,11 +29796,14 @@
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 4,
-          "y": 7
+          "y": 4
         },
         "removedValues": [
+          "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -29820,14 +29812,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29838,11 +29830,14 @@
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 5,
-          "y": 7
+          "y": 4
         },
         "removedValues": [
+          "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -29851,14 +29846,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29868,12 +29863,12 @@
         "index": 57,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 6,
-          "y": 7
+          "x": 7,
+          "y": 4
         },
         "removedValues": [
-          "TRACK_EW",
-          "TRACK_NE",
+          "TRACK_NS",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -29882,14 +29877,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 4,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 39,
             "isPublicFact": false
           }
         ],
@@ -29899,11 +29894,13 @@
         "index": 58,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 7,
-          "y": 7
+          "x": 1,
+          "y": 5
         },
         "removedValues": [
-          "TRACK_WN"
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
         ],
         "remainingValues": [
           "EMPTY"
@@ -29911,14 +29908,14 @@
         "premises": [
           {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 7,
+            "lineIndex": 5,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 40,
             "isPublicFact": false
           }
         ],
@@ -29928,8 +29925,8 @@
         "index": 59,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 1,
-          "y": 1
+          "x": 2,
+          "y": 5
         },
         "removedValues": [
           "TRACK_NS",
@@ -29944,33 +29941,15 @@
         ],
         "premises": [
           {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 1,
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 5,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 1,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 29,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 37,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 45,
+            "traceIndex": 40,
             "isPublicFact": false
           }
         ],
@@ -29980,8 +29959,8 @@
         "index": 60,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 1,
-          "y": 3
+          "x": 3,
+          "y": 5
         },
         "removedValues": [
           "TRACK_NS",
@@ -29996,33 +29975,15 @@
         ],
         "premises": [
           {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 1,
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 5,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 1,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 29,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 37,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 45,
+            "traceIndex": 40,
             "isPublicFact": false
           }
         ],
@@ -30032,7 +29993,7 @@
         "index": 61,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 1,
+          "x": 4,
           "y": 5
         },
         "removedValues": [
@@ -30048,11 +30009,522 @@
         ],
         "premises": [
           {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 40,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 62,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 5,
+          "y": 5
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 40,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 63,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 7,
+          "y": 5
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 40,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 2
+      },
+      {
+        "index": 64,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
             "publicFact": "COLUMN_COUNT",
             "lineIndex": 1,
             "traceIndex": -1,
             "isPublicFact": true
           },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 5
+      },
+      {
+        "index": 65,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 5
+      },
+      {
+        "index": 66,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 5
+      },
+      {
+        "index": 67,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 5
+      },
+      {
+        "index": 68,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 1,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 5
+      },
+      {
+        "index": 69,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 0
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 70,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 1
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 71,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 2
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 72,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 3
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 73,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 6
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 74,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 5,
+          "y": 7
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 5,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 56,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 75,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 2,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_ES"
+        ],
+        "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
@@ -30062,75 +30534,20 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 29,
+            "traceIndex": 43,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 37,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 45,
+            "traceIndex": 64,
             "isPublicFact": false
           }
         ],
-        "depth": 2
+        "depth": 6
       },
       {
-        "index": 62,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 1,
-          "y": 0
-        },
-        "removedValues": [
-          "TRACK_NS"
-        ],
-        "remainingValues": [
-          "TRACK_NE",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 59,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 63,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 1
-        },
-        "removedValues": [
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "EMPTY",
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 59,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 64,
+        "index": 76,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 2,
@@ -30151,67 +30568,7 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 59,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 65,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 1,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 59,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 60,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 66,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "TRACK_EW",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 29,
+            "traceIndex": 44,
             "isPublicFact": false
           },
           {
@@ -30221,39 +30578,14 @@
             "isPublicFact": false
           }
         ],
-        "depth": 4
+        "depth": 6
       },
       {
-        "index": 67,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 3
-        },
-        "removedValues": [
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "EMPTY",
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 60,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 68,
+        "index": 77,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 2,
-          "y": 3
+          "y": 2
         },
         "removedValues": [
           "TRACK_EW",
@@ -30270,23 +30602,26 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 60,
+            "traceIndex": 45,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 66,
             "isPublicFact": false
           }
         ],
-        "depth": 3
+        "depth": 6
       },
       {
-        "index": 69,
+        "index": 78,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 1,
-          "y": 4
+          "y": 3
         },
         "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
           "TRACK_SW",
           "TRACK_WN"
         ],
@@ -30297,126 +30632,13 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 60,
+            "traceIndex": 45,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 61,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 70,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "TRACK_EW",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 37,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 69,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 4
-      },
-      {
-        "index": 71,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 5
-        },
-        "removedValues": [
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "EMPTY",
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 61,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 72,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 5
-        },
-        "removedValues": [
-          "TRACK_EW",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY",
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 61,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 73,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 1,
-          "y": 6
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 21,
+            "traceIndex": 48,
             "isPublicFact": false
           },
           {
@@ -30428,20 +30650,21 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 61,
+            "traceIndex": 66,
             "isPublicFact": false
           }
         ],
-        "depth": 3
+        "depth": 6
       },
       {
-        "index": 74,
+        "index": 79,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 2,
-          "y": 6
+          "y": 3
         },
         "removedValues": [
+          "EMPTY",
           "TRACK_NS",
           "TRACK_NE",
           "TRACK_ES",
@@ -30455,13 +30678,7 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 22,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 45,
+            "traceIndex": 47,
             "isPublicFact": false
           },
           {
@@ -30473,18 +30690,18 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 73,
+            "traceIndex": 78,
             "isPublicFact": false
           }
         ],
-        "depth": 4
+        "depth": 7
       },
       {
-        "index": 75,
+        "index": 80,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 3,
-          "y": 6
+          "y": 3
         },
         "removedValues": [
           "TRACK_NS",
@@ -30492,17 +30709,12 @@
           "TRACK_SW"
         ],
         "remainingValues": [
+          "EMPTY",
           "TRACK_EW",
           "TRACK_NE",
           "TRACK_WN"
         ],
         "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 23,
-            "isPublicFact": false
-          },
           {
             "publicFact": null,
             "lineIndex": -1,
@@ -30513,11 +30725,11 @@
         "depth": 3
       },
       {
-        "index": 76,
+        "index": 81,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 4,
-          "y": 6
+          "y": 3
         },
         "removedValues": [
           "TRACK_NS",
@@ -30525,17 +30737,12 @@
           "TRACK_SW"
         ],
         "remainingValues": [
+          "EMPTY",
           "TRACK_EW",
           "TRACK_NE",
           "TRACK_WN"
         ],
         "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 24,
-            "isPublicFact": false
-          },
           {
             "publicFact": null,
             "lineIndex": -1,
@@ -30546,11 +30753,11 @@
         "depth": 3
       },
       {
-        "index": 77,
+        "index": 82,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 5,
-          "y": 6
+          "y": 3
         },
         "removedValues": [
           "TRACK_NS",
@@ -30563,12 +30770,6 @@
           "TRACK_WN"
         ],
         "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 25,
-            "isPublicFact": false
-          },
           {
             "publicFact": null,
             "lineIndex": -1,
@@ -30579,27 +30780,25 @@
         "depth": 3
       },
       {
-        "index": 78,
+        "index": 83,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 6,
-          "y": 6
+          "x": 7,
+          "y": 3
         },
         "removedValues": [
           "TRACK_NS",
-          "TRACK_ES",
           "TRACK_SW"
         ],
         "remainingValues": [
-          "TRACK_EW",
-          "TRACK_NE",
+          "EMPTY",
           "TRACK_WN"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 26,
+            "traceIndex": 15,
             "isPublicFact": false
           },
           {
@@ -30612,492 +30811,66 @@
         "depth": 3
       },
       {
-        "index": 79,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 7,
-          "y": 6
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_SW"
-        ],
-        "remainingValues": [
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 27,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 58,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 80,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 7
-        },
-        "removedValues": [
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 21,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 52,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 3
-      },
-      {
-        "index": 81,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS"
-        ],
-        "remainingValues": [
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 29,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 65,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 4
-      },
-      {
-        "index": 82,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS"
-        ],
-        "remainingValues": [
-          "TRACK_NE",
-          "TRACK_ES"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 37,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 69,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 4
-      },
-      {
-        "index": 83,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 7,
-          "y": 5
-        },
-        "removedValues": [
-          "EMPTY",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_NS",
-          "TRACK_SW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 19,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 51,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 79,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 4
-      },
-      {
         "index": 84,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 0,
-          "y": 6
+          "x": 6,
+          "y": 4
         },
         "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE"
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_ES"
+          "TRACK_NS"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 20,
+            "traceIndex": 15,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 45,
+            "traceIndex": 56,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 73,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 80,
+            "traceIndex": 57,
             "isPublicFact": false
           }
         ],
-        "depth": 4
+        "depth": 3
       },
       {
         "index": 85,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 6,
-          "y": 6
-        },
-        "removedValues": [
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW",
-          "TRACK_NE"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 19,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 51,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 79,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 4
-      },
-      {
-        "index": 86,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
           "y": 5
         },
         "removedValues": [
-          "TRACK_NS"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 18,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 84,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 5
-      },
-      {
-        "index": 87,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "TRACK_NE"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 16,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 71,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 86,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 6
-      },
-      {
-        "index": 88,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 3
-        },
-        "removedValues": [
-          "EMPTY"
-        ],
-        "remainingValues": [
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 14,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 36,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 87,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 7
-      },
-      {
-        "index": 89,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NE"
-        ],
-        "remainingValues": [
-          "TRACK_ES"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 12,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 67,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 88,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 8
-      },
-      {
-        "index": 90,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 1
-        },
-        "removedValues": [
-          "TRACK_NS"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 10,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 81,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 89,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 91,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 0,
-          "y": 0
-        },
-        "removedValues": [
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 8,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 63,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 90,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 10
-      },
-      {
-        "index": 92,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 1,
-          "y": 0
-        },
-        "removedValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_NE"
+          "TRACK_NS"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 0,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 91,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 11
-      },
-      {
-        "index": 93,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 0
-        },
-        "removedValues": [
-          "EMPTY",
-          "TRACK_ES"
-        ],
-        "remainingValues": [
-          "TRACK_EW",
-          "TRACK_SW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 1,
+            "traceIndex": 17,
             "isPublicFact": false
           },
           {
@@ -31109,483 +30882,783 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 92,
+            "traceIndex": 63,
             "isPublicFact": false
           }
         ],
-        "depth": 12
+        "depth": 3
+      },
+      {
+        "index": 86,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 2,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 50,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 59,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 67,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 6
+      },
+      {
+        "index": 87,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 60,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 88,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 61,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 89,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 62,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 90,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 40,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 85,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 4
+      },
+      {
+        "index": 91,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 7,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 17,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 63,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 3
+      },
+      {
+        "index": 92,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 2,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_NE"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 21,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 51,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 68,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 6
+      },
+      {
+        "index": 93,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 3
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 39,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 84,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 4
       },
       {
         "index": 94,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 3,
-          "y": 0
+          "y": 3
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_EW",
-          "TRACK_ES",
-          "TRACK_SW"
+          "EMPTY"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 0,
+            "lineIndex": 3,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 0,
+            "traceIndex": 12,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 91,
+            "traceIndex": 38,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 72,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 79,
             "isPublicFact": false
           }
         ],
-        "depth": 11
+        "depth": 8
       },
       {
         "index": 95,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 4,
-          "y": 0
+          "y": 3
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_EW",
-          "TRACK_ES",
-          "TRACK_SW"
+          "EMPTY"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 0,
+            "lineIndex": 3,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 0,
+            "traceIndex": 12,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 91,
+            "traceIndex": 38,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 72,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 79,
             "isPublicFact": false
           }
         ],
-        "depth": 11
+        "depth": 8
       },
       {
         "index": 96,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 5,
-          "y": 0
+          "x": 7,
+          "y": 3
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_EW",
-          "TRACK_ES",
-          "TRACK_SW"
+          "EMPTY"
         ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 0,
+            "lineIndex": 3,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 0,
+            "traceIndex": 12,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 91,
+            "traceIndex": 38,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 47,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 72,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 79,
             "isPublicFact": false
           }
         ],
-        "depth": 11
+        "depth": 8
       },
       {
         "index": 97,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 6,
-          "y": 0
+          "x": 2,
+          "y": 6
         },
         "removedValues": [
-          "EMPTY"
+          "TRACK_ES"
         ],
         "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 6,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 19,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 41,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 73,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 4
+      },
+      {
+        "index": 98,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 3,
+          "y": 6
+        },
+        "removedValues": [
           "TRACK_EW",
           "TRACK_ES",
           "TRACK_SW"
         ],
-        "premises": [
-          {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 0,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 0,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 91,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 11
-      },
-      {
-        "index": 98,
-        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
-        "cell": {
-          "x": 7,
-          "y": 0
-        },
-        "removedValues": [
+        "remainingValues": [
           "EMPTY"
         ],
-        "remainingValues": [
-          "TRACK_SW"
-        ],
         "premises": [
           {
-            "publicFact": "GRID_SIZE",
-            "lineIndex": -1,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
             "publicFact": "ROW_COUNT",
-            "lineIndex": 0,
+            "lineIndex": 6,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 0,
+            "traceIndex": 19,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 91,
+            "traceIndex": 41,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 73,
             "isPublicFact": false
           }
         ],
-        "depth": 11
+        "depth": 4
       },
       {
         "index": 99,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
+          "x": 4,
+          "y": 6
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 6,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 19,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 41,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 73,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 4
+      },
+      {
+        "index": 100,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 80,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 94,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 101,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 81,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 95,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 102,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 7,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "EMPTY",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 13,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 83,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 96,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 103,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
           "x": 2,
           "y": 3
         },
         "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES"
+          "TRACK_EW"
         ],
         "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 88,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 8
-      },
-      {
-        "index": 100,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 3,
-          "y": 3
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
           "TRACK_WN"
         ],
-        "remainingValues": [
-          "EMPTY"
-        ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 80,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 88,
+            "traceIndex": 94,
             "isPublicFact": false
           }
         ],
-        "depth": 8
+        "depth": 9
       },
       {
-        "index": 101,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 4,
-          "y": 3
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 88,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 8
-      },
-      {
-        "index": 102,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "index": 104,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 5,
           "y": 3
         },
         "removedValues": [
-          "TRACK_NS",
           "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
-          "EMPTY"
+          "TRACK_NE"
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 81,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 88,
+            "traceIndex": 95,
             "isPublicFact": false
           }
         ],
-        "depth": 8
+        "depth": 9
       },
       {
-        "index": 103,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "index": 105,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 6,
           "y": 3
         },
         "removedValues": [
           "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 88,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 8
-      },
-      {
-        "index": 104,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 7,
-          "y": 3
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 3,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 88,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 8
-      },
-      {
-        "index": 105,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 2,
-          "y": 5
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
           "TRACK_ES"
         ],
         "remainingValues": [
-          "EMPTY"
+          "TRACK_SW"
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 5,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 72,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 83,
+            "traceIndex": 82,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 104,
             "isPublicFact": false
           }
         ],
-        "depth": 5
+        "depth": 10
       },
       {
         "index": 106,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 3,
-          "y": 5
+          "x": 5,
+          "y": 6
         },
         "removedValues": [
-          "TRACK_NS",
           "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "TRACK_SW"
         ],
         "remainingValues": [
-          "EMPTY"
+          "TRACK_ES"
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 5,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 88,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 83,
+            "traceIndex": 99,
             "isPublicFact": false
           }
         ],
@@ -31593,85 +31666,108 @@
       },
       {
         "index": 107,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 4,
-          "y": 5
+          "x": 6,
+          "y": 6
         },
         "removedValues": [
           "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "TRACK_NE"
         ],
         "remainingValues": [
-          "EMPTY"
+          "TRACK_WN"
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 5,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 73,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 83,
+            "traceIndex": 89,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 106,
             "isPublicFact": false
           }
         ],
-        "depth": 5
+        "depth": 6
       },
       {
         "index": 108,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 5,
-          "y": 5
+          "x": 7,
+          "y": 6
         },
         "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "TRACK_EW"
         ],
         "remainingValues": [
-          "EMPTY"
+          "TRACK_ES"
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 5,
-            "traceIndex": -1,
-            "isPublicFact": true
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 90,
+            "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 83,
+            "traceIndex": 107,
             "isPublicFact": false
           }
         ],
-        "depth": 5
+        "depth": 7
       },
       {
         "index": 109,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 6,
-          "y": 5
+          "x": 2,
+          "y": 7
         },
         "removedValues": [
-          "TRACK_NS",
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 86,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 97,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 7
+      },
+      {
+        "index": 110,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 7
+        },
+        "removedValues": [
           "TRACK_EW",
           "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
           "TRACK_WN"
         ],
         "remainingValues": [
@@ -31679,22 +31775,316 @@
         ],
         "premises": [
           {
-            "publicFact": "ROW_COUNT",
-            "lineIndex": 5,
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 22,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 87,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 92,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 98,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 109,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 8
+      },
+      {
+        "index": 111,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 23,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 88,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 99,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 110,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 112,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_NE"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 24,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 111,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 10
+      },
+      {
+        "index": 113,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 7
+        },
+        "removedValues": [
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_EW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 90,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 107,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 7
+      },
+      {
+        "index": 114,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 7,
+          "y": 7
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 19,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 91,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 108,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 8
+      },
+      {
+        "index": 115,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 2,
+          "y": 2
+        },
+        "removedValues": [
+          "EMPTY",
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 79,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 103,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 10
+      },
+      {
+        "index": 116,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 72,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 82,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 104,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 10
+      },
+      {
+        "index": 117,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 93,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 105,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 11
+      },
+      {
+        "index": 118,
+        "ruleCode": "LINE_TARGET_REACHED",
+        "cell": {
+          "x": 2,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "EMPTY"
+        ],
+        "premises": [
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 2,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 83,
+            "traceIndex": 79,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 115,
             "isPublicFact": false
           }
         ],
-        "depth": 5
+        "depth": 11
       },
       {
-        "index": 110,
+        "index": 119,
         "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 2,
@@ -31718,49 +32108,40 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 30,
+            "traceIndex": 79,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 38,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 46,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 93,
+            "traceIndex": 115,
             "isPublicFact": false
           }
         ],
-        "depth": 13
+        "depth": 11
       },
       {
-        "index": 111,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "index": 120,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
           "x": 3,
-          "y": 1
+          "y": 0
         },
         "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
           "EMPTY"
         ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
         "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
           {
             "publicFact": "COLUMN_COUNT",
             "lineIndex": 3,
@@ -31770,19 +32151,31 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 31,
+            "traceIndex": 23,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 39,
+            "traceIndex": 54,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 47,
+            "traceIndex": 60,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 80,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 87,
             "isPublicFact": false
           },
           {
@@ -31790,18 +32183,460 @@
             "lineIndex": -1,
             "traceIndex": 94,
             "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 98,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 110,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 121,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 3,
+          "y": 1
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 3,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 23,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 54,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 60,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 80,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 87,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 94,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 98,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 110,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 122,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 3,
+          "y": 2
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "COLUMN_COUNT",
+            "lineIndex": 3,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 23,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 54,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 60,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 80,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 87,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 94,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 98,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 110,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 9
+      },
+      {
+        "index": 123,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 2,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 75,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 118,
+            "isPublicFact": false
           }
         ],
         "depth": 12
       },
       {
-        "index": 112,
-        "ruleCode": "LINE_TARGET_REACHED",
+        "index": 124,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 0
+        },
+        "removedValues": [
+          "EMPTY",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 3,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 120,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 123,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 125,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_ES",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_NS",
+          "TRACK_NE"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 3,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 76,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 119,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 120,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 123,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 126,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 2,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS"
+        ],
+        "remainingValues": [
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 76,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 119,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 12
+      },
+      {
+        "index": 127,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 3,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NE"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 77,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 115,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 126,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 128,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
+        "cell": {
+          "x": 7,
+          "y": 0
+        },
+        "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 0,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 0,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 1,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 2,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 28,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 43,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 64,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 75,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 118,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 12
+      },
+      {
+        "index": 129,
+        "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
           "x": 4,
           "y": 1
         },
         "removedValues": [
+          "EMPTY"
+        ],
+        "remainingValues": [
           "TRACK_NS",
           "TRACK_EW",
           "TRACK_NE",
@@ -31809,149 +32644,60 @@
           "TRACK_SW",
           "TRACK_WN"
         ],
-        "remainingValues": [
-          "EMPTY"
-        ],
         "premises": [
           {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 4,
+            "publicFact": "GRID_SIZE",
+            "lineIndex": -1,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 1,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 32,
+            "traceIndex": 8,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 40,
+            "traceIndex": 29,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 48,
+            "traceIndex": 44,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 95,
+            "traceIndex": 65,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 76,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 119,
             "isPublicFact": false
           }
         ],
         "depth": 12
       },
       {
-        "index": 113,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 5,
-          "y": 1
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 5,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 33,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 41,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 49,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 96,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 12
-      },
-      {
-        "index": 114,
-        "ruleCode": "LINE_TARGET_REACHED",
-        "cell": {
-          "x": 6,
-          "y": 1
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_EW",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "EMPTY"
-        ],
-        "premises": [
-          {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 6,
-            "traceIndex": -1,
-            "isPublicFact": true
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 34,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 42,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 50,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 97,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 12
-      },
-      {
-        "index": 115,
+        "index": 130,
         "ruleCode": "LINE_ALL_REMAINING_OCCUPIED",
         "cell": {
           "x": 7,
@@ -31973,313 +32719,230 @@
             "isPublicFact": true
           },
           {
-            "publicFact": "COLUMN_COUNT",
-            "lineIndex": 7,
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 1,
             "traceIndex": -1,
             "isPublicFact": true
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 13,
+            "traceIndex": 8,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 27,
+            "traceIndex": 29,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 58,
+            "traceIndex": 44,
             "isPublicFact": false
           },
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 104,
+            "traceIndex": 65,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 76,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 119,
             "isPublicFact": false
           }
         ],
-        "depth": 9
+        "depth": 12
       },
       {
-        "index": 116,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 0
-        },
-        "removedValues": [
-          "TRACK_SW"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 64,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 110,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 14
-      },
-      {
-        "index": 117,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 3,
-          "y": 0
-        },
-        "removedValues": [
-          "TRACK_ES",
-          "TRACK_SW"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 111,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 13
-      },
-      {
-        "index": 118,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "index": 131,
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
           "x": 4,
-          "y": 0
+          "y": 2
         },
         "removedValues": [
-          "TRACK_ES",
-          "TRACK_SW"
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "EMPTY"
         ],
         "premises": [
           {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 2,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 112,
+            "traceIndex": 37,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 71,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 115,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 122,
             "isPublicFact": false
           }
         ],
-        "depth": 13
+        "depth": 11
       },
       {
-        "index": 119,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "index": 132,
+        "ruleCode": "LINE_TARGET_REACHED",
         "cell": {
-          "x": 5,
-          "y": 0
+          "x": 7,
+          "y": 2
         },
         "removedValues": [
-          "TRACK_ES",
-          "TRACK_SW"
+          "TRACK_WN"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "EMPTY"
         ],
         "premises": [
           {
+            "publicFact": "ROW_COUNT",
+            "lineIndex": 2,
+            "traceIndex": -1,
+            "isPublicFact": true
+          },
+          {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 113,
+            "traceIndex": 37,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 71,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 115,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 122,
             "isPublicFact": false
           }
         ],
-        "depth": 13
+        "depth": 11
       },
       {
-        "index": 120,
+        "index": 133,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 6,
           "y": 0
         },
         "removedValues": [
-          "TRACK_ES",
           "TRACK_SW"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "TRACK_EW",
+          "TRACK_ES"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 114,
+            "traceIndex": 7,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 128,
             "isPublicFact": false
           }
         ],
         "depth": 13
       },
       {
-        "index": 121,
+        "index": 134,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_ES",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 101,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 131,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 12
+      },
+      {
+        "index": 135,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 7,
           "y": 1
         },
         "removedValues": [
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 114,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 13
-      },
-      {
-        "index": 122,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 64,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 68,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 99,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 110,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 14
-      },
-      {
-        "index": 123,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 3,
-          "y": 2
-        },
-        "removedValues": [
           "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
+          "TRACK_SW"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "TRACK_WN"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 100,
+            "traceIndex": 11,
             "isPublicFact": false
           },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 111,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 13
-      },
-      {
-        "index": 124,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 4,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 101,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 112,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 13
-      },
-      {
-        "index": 125,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 5,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
@@ -32289,412 +32952,383 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 113,
+            "traceIndex": 132,
             "isPublicFact": false
           }
         ],
-        "depth": 13
-      },
-      {
-        "index": 126,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 6,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 103,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 114,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 13
-      },
-      {
-        "index": 127,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 7,
-          "y": 2
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_SW"
-        ],
-        "remainingValues": [
-          "TRACK_WN"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 13,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 104,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 128,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 68,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 72,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 99,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 105,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 129,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 3,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 100,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 106,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 130,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 4,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 101,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 107,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 131,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 5,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 102,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 108,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 132,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 6,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_NE",
-          "TRACK_ES",
-          "TRACK_SW",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 103,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 109,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 133,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 7,
-          "y": 4
-        },
-        "removedValues": [
-          "TRACK_NS",
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_SW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 13,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 104,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 9
-      },
-      {
-        "index": 134,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 7,
-          "y": 5
-        },
-        "removedValues": [
-          "TRACK_SW"
-        ],
-        "remainingValues": [
-          "TRACK_NS"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 109,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 6
-      },
-      {
-        "index": 135,
-        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
-        "cell": {
-          "x": 2,
-          "y": 6
-        },
-        "removedValues": [
-          "TRACK_WN"
-        ],
-        "remainingValues": [
-          "TRACK_EW"
-        ],
-        "premises": [
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 72,
-            "isPublicFact": false
-          },
-          {
-            "publicFact": null,
-            "lineIndex": -1,
-            "traceIndex": 105,
-            "isPublicFact": false
-          }
-        ],
-        "depth": 6
+        "depth": 12
       },
       {
         "index": 136,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
           "x": 3,
-          "y": 6
+          "y": 2
         },
         "removedValues": [
-          "TRACK_NE",
-          "TRACK_WN"
+          "TRACK_EW"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "TRACK_WN"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 106,
+            "traceIndex": 101,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 131,
             "isPublicFact": false
           }
         ],
-        "depth": 6
+        "depth": 12
       },
       {
         "index": 137,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 4,
-          "y": 6
+          "x": 5,
+          "y": 2
         },
         "removedValues": [
-          "TRACK_NE",
-          "TRACK_WN"
+          "TRACK_SW"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "TRACK_NS",
+          "TRACK_ES"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 107,
+            "traceIndex": 101,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 131,
             "isPublicFact": false
           }
         ],
-        "depth": 6
+        "depth": 12
       },
       {
         "index": 138,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 5,
-          "y": 6
+          "x": 6,
+          "y": 2
         },
         "removedValues": [
-          "TRACK_NE",
-          "TRACK_WN"
+          "TRACK_EW",
+          "TRACK_NE"
         ],
         "remainingValues": [
-          "TRACK_EW"
+          "TRACK_WN"
         ],
         "premises": [
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 108,
+            "traceIndex": 11,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 102,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 132,
             "isPublicFact": false
           }
         ],
-        "depth": 6
+        "depth": 12
       },
       {
         "index": 139,
         "ruleCode": "NEIGHBOR_PORT_REQUIRED",
         "cell": {
-          "x": 6,
-          "y": 6
+          "x": 3,
+          "y": 1
         },
         "removedValues": [
           "TRACK_NE"
+        ],
+        "remainingValues": [
+          "TRACK_NS"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 100,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 122,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 136,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 140,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_NE"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 125,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 139,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 14
+      },
+      {
+        "index": 141,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_NE",
+          "TRACK_ES"
+        ],
+        "remainingValues": [
+          "TRACK_EW",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 129,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 134,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 140,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 15
+      },
+      {
+        "index": 142,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_NS",
+          "TRACK_EW",
+          "TRACK_NE",
+          "TRACK_SW",
+          "TRACK_WN"
+        ],
+        "remainingValues": [
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 9,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 37,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 117,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 130,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 135,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 138,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 143,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 2
+        },
+        "removedValues": [
+          "TRACK_NS"
+        ],
+        "remainingValues": [
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 37,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 117,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 138,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 13
+      },
+      {
+        "index": 144,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 4,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_EW"
+        ],
+        "remainingValues": [
+          "TRACK_SW"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 129,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 134,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 140,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 15
+      },
+      {
+        "index": 145,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_ES"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 4,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 124,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 144,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 16
+      },
+      {
+        "index": 146,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 6,
+          "y": 0
+        },
+        "removedValues": [
+          "TRACK_ES"
         ],
         "remainingValues": [
           "TRACK_EW"
@@ -32703,11 +33337,47 @@
           {
             "publicFact": null,
             "lineIndex": -1,
-            "traceIndex": 109,
+            "traceIndex": 142,
             "isPublicFact": false
           }
         ],
-        "depth": 6
+        "depth": 14
+      },
+      {
+        "index": 147,
+        "ruleCode": "NEIGHBOR_PORT_REQUIRED",
+        "cell": {
+          "x": 5,
+          "y": 1
+        },
+        "removedValues": [
+          "TRACK_EW",
+          "TRACK_SW"
+        ],
+        "remainingValues": [
+          "TRACK_WN"
+        ],
+        "premises": [
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 116,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 142,
+            "isPublicFact": false
+          },
+          {
+            "publicFact": null,
+            "lineIndex": -1,
+            "traceIndex": 143,
+            "isPublicFact": false
+          }
+        ],
+        "depth": 14
       }
     ]
   },

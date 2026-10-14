@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-01-08",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 4
@@ -40,13 +40,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.01.08.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "OCCUPANCY",
+      "EXCLUSION"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-01-08, globale Route 1, Gruppe 3: Volle Linien. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 11 konkrete Anschlussfolgen und 7 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 6/16 Zellen, 3 Kurven, 1 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 3,
+    "qualityNote": "Bewusst luftiger Rückgriff nach zwei dichten Kurvenfeldern: drei einzelne Einserzeilen und die Nullspalte rechts lassen einen langen vertikalen Schenkel entstehen. Die geringere räumliche Last entlastet vor der Endpunktvariation, die Form am oberen Übergang bleibt ein echter Schluss.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

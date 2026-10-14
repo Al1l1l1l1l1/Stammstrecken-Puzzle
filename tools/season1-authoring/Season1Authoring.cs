@@ -56,7 +56,9 @@ if (args[0] == "materialize") {
   var result=LevelValidationPipeline.ValidateOne(new LevelValidationInput(source,bytes,ProofV1Codec.ArtifactId(id,"solver-v2"),generated.Proof.CanonicalBytes),strict:true);
   if(!result.Succeeded)throw new InvalidOperationException(id+": "+string.Join(",",result.Diagnostics.Select(d=>d.Code)));
   Directory.CreateDirectory(Path.GetDirectoryName(source)!);Directory.CreateDirectory(Path.GetDirectoryName(proofPath)!);
-  File.WriteAllBytes(source,bytes);File.WriteAllBytes(proofPath,generated.Proof.CanonicalBytes!);
+  // Avoid rewriting identical reviewed artifacts (and needless Windows file locks).
+  if(!File.Exists(source)||!File.ReadAllBytes(source).SequenceEqual(bytes))File.WriteAllBytes(source,bytes);
+  if(!File.Exists(proofPath)||!File.ReadAllBytes(proofPath).SequenceEqual(generated.Proof.CanonicalBytes!))File.WriteAllBytes(proofPath,generated.Proof.CanonicalBytes!);
  }
  Console.WriteLine("MATERIALIZED 240 canonical authoring sources and 240 genuine solver-v2 proofs; cross-reference/import/release gates remain open.");
  return 0;
@@ -133,7 +135,7 @@ if(args[0]=="verify") {
   ["wholeVerificationMilliseconds"]=(long)allTimer.Elapsed.TotalMilliseconds,["crossReferencesPassed"]=false,["runtimeImported"]=false,["levelsEvidence"]=evidence};
  summary["strictBatchWallMicroseconds"]=(long)(batchTimer.Elapsed.TotalMilliseconds*1000);
  File.WriteAllText("Content/Reviews/season-1/technical-evidence.json",summary.ToJsonString(options)+"\n",new UTF8Encoding(false));
- Console.WriteLine($"PASS technical: 240 levels/proofs, {metamorphoses} metamorphoses, {mutations} rejected mutations; verification={allTimer.ElapsedMilliseconds}ms; 10x10 p95={P95(bigTimes):F3}ms/max={bigTimes.Max():F3}ms. NOT a cross-reference/quality/import/release PASS.");
+ Console.WriteLine($"PASS technical: 240 levels/proofs, {metamorphoses} metamorphoses, {mutations} rejected mutations; verification={allTimer.ElapsedMilliseconds}ms; 10x10 p95={summary["tenByTenP95Microseconds"]!.GetValue<long>()}us/max={summary["tenByTenMaxMicroseconds"]!.GetValue<long>()}us. NOT a cross-reference/quality/import/release PASS.");
  return 0;
 }
 throw new ArgumentException("Unknown mode");

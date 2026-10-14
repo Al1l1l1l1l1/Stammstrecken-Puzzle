@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-03-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.03.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 12,
-    "qualityNote": "Authorbewertung S1-01-03-12, globale Route 3, Gruppe 5: Sichere Ecken und Kette. Lesbarer öffentlicher Einstieg: A an S/3 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 20 konkrete Anschlussfolgen und 11 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 9/20 Zellen, 8 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 12. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Kein öffentlicher Extremwert liefert eine ganze Linie, die fast diagonale kurze Treppe muss aus Endpunkten und Restzahlen aufgebaut werden. Der dünne Weg ist optisch übersichtlich, hat aber eine lange technische Anschlusskette; passend als anderer Höhepunkt neben dem dichten Abschluss 11, menschliche Tiefe offen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-02-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.02.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-05-02-09, globale Route 18, Gruppe 4: Hohe Dichte und Geometrie. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 82 konkrete Anschlussfolgen und 33 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 44/81 Zellen, 10 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Die rechte Teilkurve beginnt erst in Zeile 2 und endet am Ostport vor dem Boden. Mit 44 Zellen ist das Feld tatsächlich dicht; die unterschiedliche Höhe der fünf Arme verlangt Spaltenreste statt einer vollständig regelmäßigen Serpentine.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

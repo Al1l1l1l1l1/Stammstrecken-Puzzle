@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-01-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 4
@@ -40,13 +40,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.01.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
       "ENDPOINT_GEOMETRY",
       "CHAIN"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-01-09, globale Route 1, Gruppe 4: Verschiedene A/B-Kanten. Lesbarer öffentlicher Einstieg: A an W/0 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 12 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 7/16 Zellen, 4 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Die gegenüberliegenden Anschlüsse liegen maximal höhenversetzt und die Counts enthalten weder Null- noch Volllinie. Damit ersetzt die Endpoint-Information den gewohnten Extremwertanker; der diagonale Versatz ist eine neue räumliche Anwendung der Einserlogik.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

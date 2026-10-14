@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-02-12",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.02.12.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "DENSITY"
     ],
-    "chainDepth": 11,
-    "qualityNote": "Authorbewertung S1-01-02-12, globale Route 2, Gruppe 5: Längere eindeutige Kette. Lesbarer öffentlicher Einstieg: Zeile 1 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 26 konkrete Anschlussfolgen und 3 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/20 Zellen, 15 Kurven, 0 Null- und 5 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "15 Kurven auf 17 Zellen verlangen die genaue Formfestlegung durch die Randcounts 4/5/5/3. Der dichte Abschluss ist klar an mehreren Linien zugänglich, aber der Sprung von Tiefe 6 in Position 10 zu 11 hier ist im Spieltest auf Überlastung zu prüfen; technische Lösbarkeit allein genügt nicht.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

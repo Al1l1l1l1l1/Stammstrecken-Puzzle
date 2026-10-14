@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-04-08",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 5
@@ -43,13 +43,11 @@
   "production": {
     "entryDeductionKey": "level.s1.02.04.08.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 9,
-    "qualityNote": "Authorbewertung S1-02-04-08, globale Route 8, Gruppe 3: Kreuzschlussketten. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 27 konkrete Anschlussfolgen und 5 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 15/30 Zellen, 12 Kurven, 2 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 9. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 6,
+    "qualityNote": "Die unteren Viererzeilen müssen an den oben engeren Zweier-/Dreierbereich anschließen. Nord und Süd liegen in Spalte 2, die volle Achse jedoch rechts davon; die direkte Verbindung scheitert an den verteilten Randcounts und verlangt einen linken unteren Umweg.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-01-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 4
@@ -40,13 +40,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.01.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-01-10, globale Route 1, Gruppe 4: Verschiedene A/B-Kanten. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 11 konkrete Anschlussfolgen und 4 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 8/16 Zellen, 4 Kurven, 1 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Der große freie Innenbereich kontrastiert mit Position 9. Beide Endpunkte liegen auf gegenüberliegenden horizontalen Kanten; die volle Spalte 3 verhindert die naheliegende direkte Verbindung und erzeugt zwei räumlich getrennte Ecken.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

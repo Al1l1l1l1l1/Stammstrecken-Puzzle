@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-08",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.08.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-04-04-08, globale Route 16, Gruppe 3: Hohe Verzahnung. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 62 konkrete Anschlussfolgen und 35 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 25/64 Zellen, 15 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 8,
+    "qualityNote": "Der Nordbogen reicht bis Spalte 5, der Ostport liegt mittig rechts; Count 1 in Spalten 3/4/7 begrenzt deren Übergänge. Der untere Südport ist durch die linke Wechselkurve vom oberen Querbogen getrennt, also wirken die Teilgebiete gegenseitig über mehrere Counts.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

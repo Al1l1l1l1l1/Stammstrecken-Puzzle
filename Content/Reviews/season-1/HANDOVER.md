@@ -1,3 +1,7 @@
+# Historische Lieferung vor unabhängiger Nachbesserung
+
+Dieser Bericht beschreibt den Stand bis `3c9b7d0…`. Seine schematische Eigenbewertung wurde durch die unabhängige Prüfung beanstandet und ist keine aktuelle Abnahme. Aktueller Stand: [REPAIR_HANDOVER.md](REPAIR_HANDOVER.md), Befundregister [REVIEW_RESOLUTION.md](REVIEW_RESOLUTION.md). Alter Teil-PASS wird nicht übertragen.
+
 # WP-026: logischer Season-1-Authoringbestand zur externen Abnahme
 
 Liefer-/Übergabestand 14.10.2026 (Europe/Berlin); Auftrag und Korrektur begannen

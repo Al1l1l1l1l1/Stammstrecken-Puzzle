@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
       "ENDPOINT_GEOMETRY",
       "CHAIN"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-04-10, globale Route 4, Gruppe 4: Gegenüberliegende Endpunkte. Lesbarer öffentlicher Einstieg: Spalte 3 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 19 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 11/20 Zellen, 6 Kurven, 0 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Der volle rechte Schenkel ist leicht sichtbar, der Westport sitzt jedoch eine Zeile darunter und zwingt den langen unteren Umweg. Die asymmetrische Zweier-/Dreierfolge unterscheidet die Variante vom dichten Vorgänger trotz gleichartiger gegenüberliegender Kanten.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

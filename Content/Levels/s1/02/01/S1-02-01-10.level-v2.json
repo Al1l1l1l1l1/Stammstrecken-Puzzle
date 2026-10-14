@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-01-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 5,
     "height": 5
@@ -42,13 +42,10 @@
   "production": {
     "entryDeductionKey": "level.s1.02.01.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 8,
-    "qualityNote": "Authorbewertung S1-02-01-10, globale Route 5, Gruppe 4: Andere Eckzwänge. Lesbarer öffentlicher Einstieg: A an E/3 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 20 konkrete Anschlussfolgen und 12 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 10/25 Zellen, 6 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 8. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Ohne Null-/Volllinie müssen der obere Arm, die fast volle Mittelsäule und die untere Rückkehr aus Restzahlen kombiniert werden. Beide Endpunkte liegen höhenversetzt an gegenüberliegenden Seiten; der klare dünne Umriss rechtfertigt die geringere Dichte als räumliche Variante.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

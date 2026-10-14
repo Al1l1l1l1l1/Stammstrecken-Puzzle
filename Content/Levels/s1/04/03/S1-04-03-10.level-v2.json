@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-03-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.03.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-04-03-10, globale Route 15, Gruppe 4: Geometrie aus Belegung. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 54 konkrete Anschlussfolgen und 23 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 21/64 Zellen, 17 Kurven, 3 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Eine diagonale Folge führt in zwei dichte Bodenbögen, die über mittlere Spaltencounts verbunden werden. Die oberen Ausschlüsse sichern zunächst Belegung, die konkreten Kurven folgen erst aus dem Anschluss an die unteren Sechser-/Fünferreihen; andere Geometrie als 9.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

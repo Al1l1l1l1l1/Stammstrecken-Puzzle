@@ -6,7 +6,7 @@
 | Derzeitige Phase | `WP-001` bis `WP-007` sind abgeschlossen; WP-014/WP-018 und WP-021 bis WP-025 ebenfalls abgeschlossen und integriert. WP-025 bestand nach Korrektur des Befunds QC-STRICT-01 beide unabhängigen Abschlussrollen auf `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f`: PASS, AK-B01 bis AK-B07 erfüllt, keine offenen Befunde. Der Auftraggeber erteilte am 13.10.2026 mit „übernehmen“ die ausdrückliche Integration samt Abschlussdokumentation. PR #19 wurde mit Expected-HEAD-Absicherung als `f496ab9001d2043a17c3ffd2ff2a8a39d175495b` integriert. Vorab angelegte WP-015/WP-016/WP-017 bleiben historische Planungsquellen, keine ausführbaren Trust Anchors. |
 | Historische Branches | `feat/wp-008-unity-scaffold`, `feat/wp-009-puzzle-kern` und `feat/wp-013-level-v2-pipeline` bleiben ausschließlich lesbare Vergleichskorpora; kein Merge, Cherry-Pick, Rebase, Copy oder Übernahme ihrer PASS-Aussagen. `chore/ci-readiness-unity` bleibt historischer technischer Befund, keine Lieferquelle. Die integrierten WP-023-/WP-024-/WP-025-Arbeitsbranches sind Historie; maßgeblich ist `main`. |
 | Letzter verifizierter Nachweis | **WP-025:** [Proof-/Vertrags-QC PASS](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150287241) und [Strict-/Tests-/Scope-/CI-QC PASS](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150288578), beide auf `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f` gegen `5f5127362b101dd4e066b68b21d3e35a5af314df`. [Ausdrückliche Freigabe](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6154248884). Architecture PR 38421061552 und Unity PR 38421061511 SUCCESS. Der tatsächliche Integrationscommit enthält gegenüber dem abgenommenen HEAD keine Dateiänderung; Git-Baum `3159dfe2349d6273fa923eda87dba1164559d024` erhalten. |
-| Aktuell zu prüfender Schritt | **WP-026: 240/240 logische Authoringrätsel, 240 echte Proofs und eigene Einzel-/Routenbewertungen geliefert; Paket offen zur externen Abnahme.** Auftragskorrektur und widerlegter Startblocker im Folgeabschnitt unten. WP-025 einschließlich Closeout auf main abgeschlossen. |
+| Aktuell zu prüfender Schritt | **WP-026: unabhängige Nachbesserung mit 240 individuellen Bewertungen und 15 gezielten Logikkorrekturen; Paket offen für neue Abnahme und konkrete Folgegates.** Auftragskorrektur und widerlegter Startblocker im Folgeabschnitt unten. WP-025 einschließlich Closeout auf main abgeschlossen. |
 | Nächster vorgesehener Schritt | WP-026: finalen Draft-PR-HEAD unabhängig technisch/fachlich prüfen und menschlich spieltesten; fehlende Referenzziele, Zeitklassenzuordnung und spätere Pflichtgates erfüllen. Vorhandener Anker/Manifest unverändert, keine Integration oder Import-/Releasefreigabe. Konkrete Übergabe unten. |
 | Produktionscode | Auf `main`: WP-021-Scaffold; WP-022-Puzzle-Kern mit validierter Puzzledefinition, Diagnostik/Completion, immutable Session/Commands/Timer; WP-023-Level-v2-/Hash-Foundation mit Parser, Domainabbildung, JCS, profilierten Hashes und neutraler Migration; WP-024-`solver-v2` mit auditierbarer Rootspur, vier ADR-031-Metriken und fail-closed CampaignGate; **WP-025** mit immutable Proof-/Ergebnismodellen, geschlossenem Proofcodec, Produktionsgenerator, vollständiger Bindung, frischer bytegenauer Regeneration, gemeinsamer LevelValidationPipeline und Strict-Einzel-/Batch-/Commandsemantik. Zusatzdiagnosen bei Duplikaten bleiben erhalten und deterministisch geordnet. Die neutrale Migrationsgrenze entspricht den vier nichtnegativen Proofmetriken. |
 | Fortbestehende Produktionsgrenze | Technisch gültige Proofs passieren ausschließlich das Proofgate. Katalog-, Cross-Reference-, Produkt- und Release-Lock-Gates werden nicht umgangen. `IsRuntimeImportable` und `IsReleaseLockEligible` bleiben `false`. Drei generierte Goldens sind FIXTURE_ONLY, keine Season-1-Produktion. Keine UI-/Asset-/Generator-/Monetarisierungsarbeit durch WP-025. |
@@ -22,13 +22,33 @@
 
 **Aktueller Folgeauftrag:** [WP-026](../WORK_PACKAGES/WP-026_Season-1-Logischer-Raetselbestand.md), vollständige 240 logische Rätsel einschließlich Lösungen, Produktionsproofs und fachlicher Bewertung. Der separate Contentauftrag ist jetzt ausdrücklich erteilt; die vorherigen Aussagen der WP-025-Übernahme, es sei noch kein Folgeauftrag erteilt, beschreiben deren historischen Zeitpunkt. Keine kreative Arbeit, Zeitkalibrierung, Architektur-/Gateänderung oder Integration autorisiert.
 
-**Status: logischer Authoringbestand prüffertig, Paket weiterhin offen. 240/240 Level-v2-Quellen und 240/240 echte solver-v2-Proofs.** Tatsächliche Main-Basis `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`; unverändert bei Fortsetzung. Eigene Branch `codex/wp-026-season1-logical-content`, gemeinsamer erster Anker `f9231c73e45ade33450c541e77dbeff5d2eae162` mit einzigem Elterncommit = Basis; eigenes Manifest byteunveränderlich. Bestehender Draft-PR #21 fortgeführt; bei Übernahme HEAD `43f737e5a2581e01eb79583d08a9551c4bec95ca`, Working Tree sauber, kein weiterer offener PR. Keine neue Parallelbearbeitung, keine Wiederaufnahme WP-025.
+**Aktueller WP-026-Stand: Nachbesserung der unabhängigen Prüfung zu PR #21.**
+240 individuelle Level-/20 Routenurteile, 15 gezielte Logikkorrekturen, 225 erhaltene
+öffentliche Inputs und Proofbytes. V-01 bis V-03 nachgebessert, Q-01 bis Q-06
+einzeln bewertet; [aktueller Befund-/Übergabestand](../Content/Reviews/season-1/REPAIR_HANDOVER.md).
+Originalbericht unverändert persistiert, alte Teil-PASS-/Handkuratierungsbehauptungen
+nicht übertragen. Bestehender Anker f9231c7, Basis c9516bd und Manifest unverändert;
+keine weitere Implementierung oder Wiederaufnahme WP-025.
 
-**Auftragskorrektur:** Das pauschale Verbot technischer Entwurfsreferenzen war ein Koordinatorzusatz, keine Nutzervorgabe oder unabhängig belegte Manus-Regel. [Quellenprüfung und tatsächliche Gegenprobe](../Content/Reviews/season-1/ORDER_CORRECTION.md) widerlegen BLOCKER-WP026-001 als Erstellungs-/Proofstartblocker: ausgefüllte unaufgelöste Scratchreferenzen passieren den bestehenden Generator und Strict-Proofweg, gleiche Proofbytes, Runtime-/Release-Gates weiterhin false. Die 18 alten Negativfälle belegen nur fehlend/null/leer-Strukturfehler. Alte Berichte bleiben gekennzeichnete Historie; kein alter unabhängiger PASS für den neuen Bestand.
+Die Auftragskorrektur bleibt wirksam: BLOCKER-WP026-001 als pauschaler Startblocker
+widerlegt, technische Entwurfsreferenzen sind keine erfundenen Zielquellen. Alle
+1.440 fehlenden Ziele bleiben Cross-Reference-FAIL. Eigene aktuelle Produktions-,
+Schema-/Node-/Root-/Symmetrie-/Mutations-/Regressionsnachweise vorhanden; alte CI-Logs
+und Artefakte tatsächlich abgerufen, ausschließlich an ihren alten HEAD gebunden.
 
-**Tatsächliche Lieferung/Nachweise:** 5×4×12 Quellen, A→B-Lösungen, Counts, Produktionsproofs, 240 konkrete Einstiegsschlüsse, vollständige Rootspuren, 20 eigene Leveldesignberichte und Ähnlichkeitsinventar. Alle UNIQUE/1, Guessdepth und Searchnodes 0; drei Regenerationen plus Strict-Einzel-/Batch-/Reverse-Batchprüfung, 3.840 D4-/A-B-Metamorphosen und 1.440 verworfene Mutationen bestanden. Echtes Draft-2020-12-Level-/Proofschema und 1.200 Node-Projektions-/Artefakt-/Dokumentprüfungen bestanden. 453 unveränderte Domain-/Solver-/Contentregressionen bestanden im zusätzlichen net10.0-Harness, kein Unityersatz. Vollständige Angaben und offene Gates: [Liefer-/Prüfübergabe](../Content/Reviews/season-1/HANDOVER.md).
+**Echte offene Übergabepunkte:** neue unabhängige technische/Contentprüfung nach
+Freeze, menschlicher Spieltest (besonders lange dünne Finales, Route 18 Gruppe 3→6),
+DECISION-WP026-R01-FIRST (Bible §4 „erste unterschiedliche A/B-Kanten“),
+CI-PERF-WP026 (kein erlaubter Korpus-Leistungsschritt in den vorhandenen Workflows),
+historisch nicht vollständig persistierte Auswahlseeds/Toolvarianten, fehlende
+Referenzziele/Zeitklassenzuordnung und kreative/Import-/Releasegates. Quellen und
+konkrete fehlende Entscheidungen in [REVIEW_RESOLUTION.md](../Content/Reviews/season-1/REVIEW_RESOLUTION.md).
+Keine Selbstfreigabe, kein Gesamt-DoD-PASS und keine fertig freigegebene Season.
 
-**Echte offene Punkte:** 1.440 individuelle Referenzziele fehlen; der entsprechende Cross-Reference-Befund bleibt FAIL, keine generische Fallback-ID oder erfundene Zielquelle. UNCALIBRATED ist nur ein unbestimmter Authoringmarker, keine bestätigte Sollzeitklasse; Sternsekunden bleiben null. Unabhängige technische/Contentabnahme, menschlicher Spieltest, CI-Referenz-Leistungsbeleg sowie kreative Präsentations-, Import- und Releasepflichten offen. Letzter abgeschlossener fachlicher Schritt: vollständiger logischer Bestand und eigene technische/Leveldesignprüfung. Nächster Schritt: externe Abnahme desselben eingefrorenen finalen Draft-PR-HEAD. Finale Governance-/CI-/Remotebindung wird nach tatsächlicher Ausführung im PR geführt. Keine Paketgesamtabnahme oder Seasonfreigabe.
+Letzter fachlicher Schritt: vollständige eigene Nachbesserung/Fehlerbehebung mit
+erneuerter Evidenz. Nächster Schritt: eingefrorenen neuen HEAD unabhängig prüfen,
+konkrete Entscheidung/CI-Ausführungsweg übergeben; Remote-/CI-Bindung nach tatsächlichem
+Lauf am bestehenden Draft-PR #21 persistieren. Kein Merge, Runtimeimport oder Release.
 
 ## Verbindliche Grundlage
 

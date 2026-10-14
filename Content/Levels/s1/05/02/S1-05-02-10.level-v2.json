@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-02-10",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.02.10.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY",
+      "COMBINATION"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-05-02-10, globale Route 18, Gruppe 4: Hohe Dichte und Geometrie. Lesbarer öffentlicher Einstieg: Spalte 8 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 81 konkrete Anschlussfolgen und 31 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 41/81 Zellen, 10 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Die beiden oberen kürzeren Bänder müssen aus Sechser-/Siebenercounts und einer verlagerten Rückkehrspalte folgen. Die ähnliche Maskennähe zu 9 wird als bewusst horizontaler/vertikaler Dichtevergleich behalten: ein anderer Nullanker, veränderte Bandbreiten und Nord-/Südports ändern die Zugänge.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

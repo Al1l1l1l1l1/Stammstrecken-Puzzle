@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-03",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.04.03.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "DENSITY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-01-04-03, globale Route 4, Gruppe 2: Hohe und niedrige Randzahlen. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 20 konkrete Anschlussfolgen und 4 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 16/20 Zellen, 10 Kurven, 0 Null- und 4 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Die einzelne Zelle in Zeile 2 zwingt eine schmale Verbindung zwischen zwei dichten Bereichen. Nähe zu S1-01-02-07 ist sachlich vorhanden, aber der Engpass wandert in die Mitte und der Südanschluss fordert den unteren Rückknick; behalten als Abschnittsvergleich hoher und niedriger Zahlen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-02-02",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 7
@@ -46,12 +46,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.02.02.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "OCCUPANCY",
-      "ENDPOINT_GEOMETRY"
+      "COMBINATION"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-04-02-02, globale Route 14, Gruppe 1: Deutlicher Anfang. Lesbarer öffentlicher Einstieg: Spalte 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 42 konkrete Anschlussfolgen und 20 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 29/49 Zellen, 8 Kurven, 0 Null- und 2 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Beide Endpunkte sitzen an der oberen Zeile, doch die zwei rechten Arme enden in verschiedenen Höhen; Counts 6 statt 7 bestimmen dort die Rückkehr. Das wiederholte Langarmmotiv dient hier einem klaren Start mit asymmetrischen Resten; die Nähe zum späteren S1-04-03-02 bleibt im Paarbericht sichtbar.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

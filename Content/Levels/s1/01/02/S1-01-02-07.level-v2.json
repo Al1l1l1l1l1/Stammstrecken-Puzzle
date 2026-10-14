@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-02-07",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.02.07.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "COMBINATION",
+      "DENSITY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-02-07, globale Route 2, Gruppe 3: Gekreuzte Belegungs-/Ausschlusslogik. Lesbarer öffentlicher Einstieg: Zeile 0 verlangt die gesamte Linienlänge: alle Zellen dieser Linie müssen belegt sein. Die Form bleibt zunächst offen. 22 konkrete Anschlussfolgen und 3 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 16/20 Zellen, 11 Kurven, 0 Null- und 3 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 5,
+    "qualityNote": "Das dichte 16-Zellen-Feld lässt unten ein L-förmiges Restgebiet frei; ein langer linker Schenkel und ein kurzer rechter Ausgang tragen unterschiedliche Counts. Die später ähnliche S1-01-04-03 verschiebt den südlichen Rückweg und die Ports; die Paarentscheidung wird im Ähnlichkeitsbericht separat festgehalten.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-03-02",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,12 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.03.02.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "EXCLUSION",
       "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-03-03-02, globale Route 11, Gruppe 1: Vertraute Linien. Lesbarer öffentlicher Einstieg: Spalte 3 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 15 konkrete Anschlussfolgen und 12 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 9/36 Zellen, 4 Kurven, 3 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 3,
+    "qualityNote": "Drei Nullspalten rechts und drei mittlere Einserzeilen begrenzen einen langen linken Schenkel. Der kurze obere Versatz und der untere Dreierrückweg reaktivieren bekannte sichere Linien vor dem Größenwechsel; die geringe aktive Breite hat hier einen benannten Entlastungszweck.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

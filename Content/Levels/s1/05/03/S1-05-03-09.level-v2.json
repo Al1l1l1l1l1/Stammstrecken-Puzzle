@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-03-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.03.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
       "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY"
     ],
-    "chainDepth": 14,
-    "qualityNote": "Authorbewertung S1-05-03-09, globale Route 19, Gruppe 4: Problematische Kanten und Kurven. Lesbarer öffentlicher Einstieg: Zeile 6 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 51 konkrete Anschlussfolgen und 25 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 25/81 Zellen, 21 Kurven, 3 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 14. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Der innenliegende Nordport und der Ostport rechts unten verlangen eine lange Wechselkurve mit 21 Kurven. Drei untere Nullzeilen erleichtern Orientierung, aber die oberen Zweiercounts begrenzen mehrere kleine Rückknicke; eine konzentrierte Endpunktvariation statt volle 9×9-Flächenlast.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

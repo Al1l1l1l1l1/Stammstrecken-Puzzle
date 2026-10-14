@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-03-08",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 4,
     "height": 5
@@ -41,13 +41,11 @@
   "production": {
     "entryDeductionKey": "level.s1.01.03.08.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "EXCLUSION"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Authorbewertung S1-01-03-08, globale Route 3, Gruppe 3: Belegung und Geometrie. Lesbarer öffentlicher Einstieg: Spalte 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 17 konkrete Anschlussfolgen und 7 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 9/20 Zellen, 5 Kurven, 1 Null- und 1 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 7. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Die unteren Einserzeilen sichern einen langen Schenkel, oben muss ein kurzer Rückknick aus den Counts 3/2/2 folgen. Der Wechsel zur schmalen, luftigen Struktur gibt einen kleinen Zwischenabschluss; die Tiefe 7 stammt hier aus der Anschlussfolge und entspricht keiner dichten Flächenlast.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

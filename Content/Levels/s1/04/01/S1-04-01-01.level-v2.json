@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-01-01",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 7
@@ -46,12 +46,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.01.01.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY"
+      "COMBINATION",
+      "EXCLUSION"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-04-01-01, globale Route 13, Gruppe 1: Kontrollierter 7×7-Übergang. Lesbarer öffentlicher Einstieg: Zeile 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 35 konkrete Anschlussfolgen und 15 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 20/49 Zellen, 8 Kurven, 2 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Die unteren zwei Nullzeilen und drei Einserspalten machen vier vertikale Arme im neuen 7×7-Feld ruhig lesbar. Der Eintritt links oben liegt unter dem Ausgang; kontrollierter Größenwechsel mit einem vertrauten Querübergangsmotiv.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

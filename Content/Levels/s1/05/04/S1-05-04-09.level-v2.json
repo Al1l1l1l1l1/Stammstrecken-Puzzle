@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-04-09",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 10,
     "height": 10
@@ -52,13 +52,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.04.09.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 15,
-    "qualityNote": "Authorbewertung S1-05-04-09, globale Route 20, Gruppe 4: Finale räumliche Variation. Lesbarer öffentlicher Einstieg: Zeile 0 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 63 konkrete Anschlussfolgen und 40 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 27/100 Zellen, 13 Kurven, 3 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 15. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Der Westport links und Südport innen sind durch einen zentralen Querarm und rechten Doppelbogen verbunden. Drei Einsercounts links legen die lange Zufahrt fest, zwei weitere Einserzeilen den rechten Schenkel; diese finale Variante verteilt Planung in klar getrennte Flächen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

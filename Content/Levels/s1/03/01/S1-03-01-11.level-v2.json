@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-01-11",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,13 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.01.11.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 22,
-    "qualityNote": "Authorbewertung S1-03-01-11, globale Route 9, Gruppe 5: Faire 6×6-Höhepunkte. Lesbarer öffentlicher Einstieg: A an N/3 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 40 konkrete Anschlussfolgen und 21 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 15/36 Zellen, 9 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 22. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 8,
+    "qualityNote": "Der obere linke Bogen und der untere kleine Rückknick müssen durch die Vierercounts der beiden mittleren Spalten verbunden werden. Nur 15 Zellen bei voller Achsenabdeckung machen die lange serielle Kette sichtbar; Tiefe 22 bedeutet hier nicht 22 unbekannte neue Regeln, menschliche Last bleibt offen.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

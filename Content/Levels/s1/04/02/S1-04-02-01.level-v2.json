@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-02-01",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 7,
     "height": 7
@@ -46,12 +46,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.02.01.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
       "EXCLUSION",
       "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Authorbewertung S1-04-02-01, globale Route 14, Gruppe 1: Deutlicher Anfang. Lesbarer öffentlicher Einstieg: Zeile 5 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 17 konkrete Anschlussfolgen und 9 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 11/49 Zellen, 7 Kurven, 5 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 6. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 4,
+    "qualityNote": "Der Nordport verbraucht Count 1 in Spalte 3; die Einserzeilen 1/2 lenken den Arm nach links. Der untere kurze Bogen um W/3 ist als deutliche Anfangsentscheidung zugänglich, kein behaupteter voller 7×7-Komplexitätsabruf.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-01-06",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 6,
     "height": 6
@@ -44,13 +44,11 @@
   "production": {
     "entryDeductionKey": "level.s1.03.01.06.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "EXCLUSION"
     ],
-    "chainDepth": 11,
-    "qualityNote": "Authorbewertung S1-03-01-06, globale Route 9, Gruppe 3: Lokale Ketten wirken entfernt. Lesbarer öffentlicher Einstieg: A an N/0 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 36 konkrete Anschlussfolgen und 19 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 17/36 Zellen, 8 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 11. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Die Einserzeile 3 setzt einen weit entfernten rechten Engpass, während die obere linke A-Folge an den Fünfercount in Zeile 2 anschließt. Deren Ausschlüsse wirken über die beiden Einserspalten im Zentrum bis zum unteren Ausgang; ein tatsächlicher entfernter Folgeeffekt.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

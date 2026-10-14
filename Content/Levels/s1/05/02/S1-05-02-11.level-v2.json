@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-02-11",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 9,
     "height": 9
@@ -50,13 +50,11 @@
   "production": {
     "entryDeductionKey": "level.s1.05.02.11.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "EXCLUSION",
-      "ENDPOINT_GEOMETRY",
-      "CHAIN"
+      "CHAIN",
+      "COMBINATION"
     ],
-    "chainDepth": 32,
-    "qualityNote": "Authorbewertung S1-05-02-11, globale Route 18, Gruppe 5: 9×9-Meisterschaft. Lesbarer öffentlicher Einstieg: Spalte 8 hat Count 0: alle Zellen dieser Linie sind leer. Das ist eine sichere öffentliche Aussage, keine Spielermarkierungspflicht. 79 konkrete Anschlussfolgen und 52 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 21/81 Zellen, 14 Kurven, 1 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 32. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 10,
+    "qualityNote": "Die obere und mittlere Einzelstrecke öffnet erst links einen unteren Bogen; der Südport rechts muss über Fünfer-/Viererreste erreicht werden. Eine rechte Nullspalte begrenzt die Breite, beseitigt aber die lange zentrale Kurvenfolge nicht; 32 tiefe Folge bleibt Spieltestfrage.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },

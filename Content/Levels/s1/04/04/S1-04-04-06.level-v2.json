@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-04-04-06",
-  "contentRevision": 1,
+  "contentRevision": 2,
   "grid": {
     "width": 8,
     "height": 8
@@ -48,13 +48,11 @@
   "production": {
     "entryDeductionKey": "level.s1.04.04.06.entry",
     "focus": [
-      "ROW_COLUMN_COUNTS",
-      "OCCUPANCY",
-      "ENDPOINT_GEOMETRY",
+      "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 12,
-    "qualityNote": "Authorbewertung S1-04-04-06, globale Route 16, Gruppe 3: Hohe Verzahnung. Lesbarer öffentlicher Einstieg: A an E/5 erzwingt Belegung und passenden Außenport der angrenzenden Zelle. Von dort Randzahlreste und Gegenports kombinieren. 61 konkrete Anschlussfolgen und 34 Restzahlabschlüsse verbinden die Belegung mit Geometrie. 25/64 Zellen, 10 Kurven, 0 Null- und 0 Voll-Linien ergeben die konkrete räumliche Variante. Fairness technisch belegt: UNIQUE/1 ohne Suchannahme; maximale tatsächliche Root-Prämissenkette 12. Keine identische öffentliche Aufgabe unter Rotation, Spiegelung oder A/B-Tausch im 240er-Bestand. Wiederkehrende Regeln dienen dem Lernbogen; menschliche Lesbarkeit, erwartete Schwierigkeit und Nichtredundanz benötigen unabhängigen Contentreview und Spieltest.",
+    "chainDepth": 7,
+    "qualityNote": "Obere fast volle Belegung, linker Westarm und unterer U-Bogen werden über die mittleren Vierer-/Fünfercounts verbunden. Die Einserzeile 4 trennt diese Gebiete; hohe Verzahnung ist hier als Austausch von Restzahlen zwischen mindestens drei Bereichen nachvollziehbar.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
