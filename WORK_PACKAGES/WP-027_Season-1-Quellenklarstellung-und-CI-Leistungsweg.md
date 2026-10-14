@@ -4,7 +4,7 @@
 
 `WP-027`
 
-**Status:** Lokale Validierung und getrennte Astra-/Sol-QC bestanden; Ersatz-PR-/CI-Integration nach `main` steht aus. Dieses Paket trifft und persistiert die ausdrücklich angeforderte Geschäftsführungsentscheidung zu den zwei eng begrenzten Content-Bible-Auslegungen und beschließt den technischen CI-Leistungsweg. Es erstellt den verbindlichen Ausführungsbrief für das nachfolgende, noch nicht gestartete WP-028, aber **nicht** dessen eigenen Trust Anchor. Es ersetzt weder den bestehenden WP-026-Umfang noch seinen unveränderlichen Scope.
+**Status:** Abgeschlossen und auf `main` integriert am 14.10.2026. Der geprüfte Ersatz-PR #23 (`91daceaf3fa89aac4ec70fc16479b145a63f8084`) bestand alle 22 regulären Checks und wurde mit Expected-Head-Absicherung als Merge-Commit `7d95b59b867b96656ef0815e2066169a6a627b21` integriert. Der technisch fehlerhafte Vorläufer PR #22 blieb unintegriert und ist transparent geschlossen. Dieses Paket persistiert die ausdrücklich angeforderte Geschäftsführungsentscheidung zu den zwei eng begrenzten Content-Bible-Auslegungen und beschließt den technischen CI-Leistungsweg. Es erstellt den verbindlichen Ausführungsbrief für das nachfolgende, noch nicht gestartete WP-028, aber **nicht** dessen eigenen Trust Anchor. Es ersetzt weder den bestehenden WP-026-Umfang noch seinen unveränderlichen Scope.
 
 [Governance-Scope-Manifest](../tools/architecture-validation/scopes/WP-027.governance.scope.json)
 
