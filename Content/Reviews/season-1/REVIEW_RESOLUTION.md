@@ -31,11 +31,11 @@ Bewertung ist eigene Autorarbeit; Spieltest und unabhängige Rollen bleiben getr
 | V-02 | **Behoben als eigene Authorleistung.** Alle 240 Raster/Ports/Counts/Lösungen und konkreten Folgezusammenhänge gelesen; 20 unterschiedliche Routenurteile und 240 literal verfasste Entscheidungen in `author-decisions.txt` / `author-review.json`. 15 gezielte Logikänderungen, 225 Inputs erhalten. Die alten vier Routenabsätze und pauschalen Notizen ersetzen diese Arbeit nicht und sind entfernt. Unabhängige Bestätigung dieser Leistung noch erforderlich. |
 | V-03 | **Behoben im beauftragten Umfang, Auslegungsvorbehalt eng behandelt.** Kein automatisch formulierter Bewertungs-/Einstiegstext; Fokus und vorläufige gedankliche Kettenschätzung individuell verfasst, von den technischen Rootmetriken getrennt. Hashgebundener Transport prüft aktuellen öffentlichen Input und Lösung vor jedem Schreibzugriff; reale stale-Public-/Lösungsgegenproben verworfen. `--annotate` entfernt, Kandidatenskript ohne Autorurteile. Kein pauschales Skriptverbot und keine neu erfundene Regel. |
 | Q-01 | **Bestätigte lokale Redundanz behoben; restliche Nähe begründet behalten.** Der wiederholte Zweispaltenkorridor 01-04-08, Vollstreifen 02-02-06/02-04-07, direkte Serpentinenzwillinge 03-02-02/04-03-08 und späte Wiedereinstiege 04-04-02/05-02-02/05-04-02 ersetzt. Die 15 verbleibenden Paare der deskriptiven ≥0,85-Sicht einzeln beurteilt; wiederkehrende Familien bleiben für externen Contentreview sichtbar. Keine automatische Neuheitsfreigabe aus abweichenden Hashes. |
-| Q-02 | **Konkrete Mängel behoben, ein Auslegungspunkt offen.** Erste Abschlüsse 01-01-11/12 enthalten nun jeweils Null- und Vollmuster. 05-03-01 hat alle neun Achsen aktiv und keine öffentliche Nullzahl statt sechs leerer Spalten. Zusätzlich 02-04-05 für entfernte Gebiete und 05-02-03/04/05 für alleinigen mittleren Hinweiszugriff korrigiert. **DECISION-WP026-R01-FIRST:** Bible §4 nennt 9/10 „erste unterschiedliche A/B-Kanten“, frühe Felder haben bereits angrenzende oder gegenüberliegende Seiten. Unklar ist, ob „erste“ deren früheres Auftreten ausschließt oder den expliziten Unterrichtsschwerpunkt meint. Master/ADRs bestätigen keine engere Start-Portfolge. Manus-/Produkteigentümerentscheidung erforderlich; kein eigenmächtiges Verbot früherer Kanten oder Änderung der Planung. Die übrige Nachbesserung ist davon unabhängig. |
+| Q-02 | **Konkrete Teilmängel behoben, zwei Auslegungen offen.** Null-/Vollmuster in 01-01-11/12, entfernte Gebiete in 02-04-05/07 und volle 9×9-Achsenausdehnung in 05-03-01 sind belegt. Route 18/3–5 besitzt keine 0-/Vollzahlen und notwendige mittlere Restkombination, aber direkte Einser-Portanker. DECISION-WP026-R01-FIRST und DECISION-WP026-R18-MIDDLE bleiben konkrete Eigentümerentscheidungen; Details und IDs im Nachprüfungsabschnitt. Keine eigene engere Portfolge oder Einsergrenze. |
 | Q-03 | **Technischer Befund bestätigt; daraus abgeleiteter zwingender Mangel begründet widerlegt.** Alle aktuellen Aufgaben lösen ohne globale NO_LOOP/CONNECTIVITY-Schritte; die Archivpropagation bestätigt das. Keine Quelle verlangt eine Regelquote. Das Abschnitt-4-Lernziel betrifft das Erkennen global nicht passender Verbindungen; solche Abkürzungen scheitern in den individuell benannten Feldern bereits an entfernten Counts und Gegenports. Globaler Zusammenhang und menschliche Lernwirkung bleiben offen zur fachlichen Abnahme, ohne eine neue Regelpflicht einzuführen. |
 | Q-04 | **Risiko konkret offen zum Spieltest; keine automatische Austauschentscheidung.** Alle 20 Abschlussübergänge auf tatsächlicher Geometrie bewertet, technische 10→11-Tiefen separat in `repair-summary-facts.json`. Dünne serielle Abschlüsse und dichte Formabschlüsse haben unterschiedliche Last; insbesondere die Finales 05-04-11/12 (42/40) und der neue Wechsel Route 18, Gruppe 3→6, sind explizite Risiken. Es gibt weder eine bestätigte menschliche Schwelle noch Spieltestdaten, deshalb keine behauptete finale Schwierigkeit oder willkürliche Tiefenkappung. |
 | Q-05 | **Briefbezogene Einzelmängel behoben; pauschaler Flächenmangel widerlegt.** Kleine Wiedereinstiege und räumliche Dichtevarianten sind in Bible §2/§§4–8 ausdrücklich möglich. 05-03-01 wird wegen „ohne Vereinfachung“ geändert; mehrere frühe Verdichtungs-/Gebietsfelder aus Q-01/Q-02 ebenfalls. Verbleibende reduzierte Achsen in 1/2 oder 9/10 sind je ID begründet. Die Prüfersicht 70 % wird ausschließlich beschrieben, nicht zur neuen Annahmegrenze gemacht. |
-| Q-06 | **Aktuelle Kuratierung behoben; ursprüngliche Provenienzlücke konkret offen.** Der frühere Score-/Perzentilprozess belegt keine damalige vollständige Handkuratierung. Neue Einzelurteile und die 15 ausdrücklichen Auswahlentscheidungen sind persistiert. `candidate-provenance.json` enthält echte Poolbytes-/Hash-/Kandidatenbezüge und exakte aktuelle Matches aller 240 Felder. Historische Originalseedaufrufe und zwischenzeitliche Generatorsnapshots sind nicht vollständig persistiert, werden nicht erfunden und sind nicht rückwirkend als reproduzierbare Auswahl ausgegeben. Der aktuelle kanonische Korpus/Proof ist vollständig reproduzierbar. Ob weitergehende historische Auswahlreproduktion für die Abnahme nötig ist, bleibt der unabhängigen Prüfstelle vorbehalten. |
+| Q-06 | **Aktuelle Kuratierung nachgebessert und auf 96697ab unabhängig fachlich bestätigt; ursprüngliche Provenienzlücke bleibt dokumentiert.** Score-/Perzentilauswahl belegt keine damalige Handkuratierung. Aktuelle Einzelurteile, 15 Auswahlentscheidungen, echte Poolhashes und 240 vollständige Matches sind nachvollziehbar. Nicht persistierte Originalseedaufrufe/Generatorsnapshots bleiben unbekannt; der heutige kanonische Korpus/Proof ist reproduzierbar. Keine zusätzliche rückwirkende Kampagnen-Seedpflicht aus Endless-Regeln ableiten. Die drei neuen Textkorrekturen benötigen ihre tatsächliche Nachprüfung auf neuem Freeze. |
 | O-01 | **Behoben.** Nullbasierte Koordinaten/Linien-/Portindizes ausdrücklich in allen 20 Berichten und im Autorenmaterial. |
 | O-02 | **Behoben.** Node 22.x wie WP Tests 1 akzeptiert; tatsächliche Patchversion berichtet, die ausgeführte CI-/lokale Referenz bleibt 22.20.0. Kein Lock-/Workflowwechsel. |
 | O-03 | **Behoben.** Neue Konsolenendwerte verwenden dieselben ganzzahligen Mikrosekunden wie JSON; keine localeabhängige ms-Rundungsdarstellung mehr. Lokale Werte bleiben ausdrücklich lokale Prüflaufzeiten. |
@@ -93,3 +93,43 @@ Referenzauflösung (1.440 fehlende Ziele), menschlicher Spieltest, vorläufige
 Zeitklassenzuordnung, kreative Miniaturen/Präsentation, Pseudolocale, Doppelimport,
 Addressables/Lizenz-/Größen-/Produkt-/Releasegates bleiben unverändert offen.
 Kein Merge, Runtimeimport, Release oder Gesamt-DoD-PASS.
+
+## Tatsächliche unabhängige Nachprüfung und eigene Sachkorrektur
+
+Die getrennten vollständigen Rollenberichte auf `96697ab749fbea859fde8a4d4fcb42149cc2e89c`
+sind unverändert als [technische Prüfung](INDEPENDENT_TECHNICAL_96697ab.md),
+[zugehöriger CI-Nachtrag](INDEPENDENT_TECHNICAL_CI_ADDENDUM_96697ab.md) und
+[fachliche 240er-/20-Routen-Prüfung](INDEPENDENT_CONTENT_96697ab.md) persistiert.
+Der technische lokale Teil-PASS ist begrenzt; der CI-Nachtrag gehört zwingend
+dazu. Die fachliche Prüfung bestätigt die individuelle Substanz und die
+15 gezielten Eingriffe, entdeckt aber drei begrenzte sachliche Textfehler.
+Keiner der alten oder dieser Teilbefunde wird auf Folgeänderungen übertragen.
+
+| Neuer Befund | Eigene Bearbeitung und heutige Grenze |
+|---|---|
+| CF-01 / S1-03-02-01 | **Sachlich korrigiert.** Der frühere fast gedrehte 19-Zellen-Nachbar wird als Historie bezeichnet; der tatsächliche Ersatz an Position 2 hat 16 Zellen und andere Kopf-/Boden-Vollanker. |
+| CF-02 / S1-04-02-02 | **Sachlich korrigiert.** Beide rechten Arme x4/x6 kehren gemeinsam auf y5 um; beide linken x0/x2 auf y6. Unterschied zwischen Armpaaren statt falschem Unterschied innerhalb des rechten Paares. |
+| CF-03 / S1-05-01-02 | **Sachlich korrigiert.** Rechte Sechserarme kehren auf y5 um, linkes Vollarmpaar auf y7: zwei Zeilen Unterschied. |
+| CF-SOURCE-01 | **Konkret offen.** DECISION-WP026-R01-FIRST bleibt wie oben; keine eigene Erstkontakt-Portregel. |
+| CF-SOURCE-02 | **Konkret offen: DECISION-WP026-R18-MIDDLE.** Bible 14 §8, Route 18/3–5, verlangt „mehrere mittlere Hinweise als einziges Orientierungsmittel“. S1-05-02-03 startet über E7/rowCounts[7]=1, 04 über N7/columnCounts[7]=1, 05 über W0/columnCounts[0]=1; danach sind mehrere mittlere Reste nötig. Fehlende Eigentümerentscheidung: sind solche elementaren vorbereitenden Einser-Portanker zulässig, wenn die weitere Lösung mittlere Kombination erfordert, oder schließt „einziges“ diese Anfangsorientierung aus? Weder Null-/Voll-Abwesenheit allein noch ein eigenes Einserverbot beantwortet das. |
+| CI-GATE-WP026-UNITY-FAIL | **Tatsächlicher Push-FAIL dokumentiert, Ursache offen.** Run 38490243240 / Job 115613547399: 454 Tests, 453 PASS, 1 Timeout nach 180.000 ms im unveränderten HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind; Folgejobs skipped. Getrennter PR-Run 38490247420 besteht denselben Test in 100,490521 s und EditMode 454/454, PlayMode 27/27. Ein erfolgreicher anderer Lauf beweist keine Timeoutursache; kein Test-/Workflow-/Produktionscode außerhalb des Scopes geändert, kein Retry zur verdeckten Grün-Erzeugung. Tatsächliche Schlussstände/Logs/Artefakte getrennt am PR und im CI-Nachweis. |
+
+Die drei Einzelkorrekturen und das eng offene Routenurteil sind literal verfasst
+und erneut getreu gebunden/transportiert. Nur diese drei Levelmetadaten steigen
+auf Revision 3; alle öffentlichen Inputs, Lösungen und Proofbytes bleiben
+gegenüber `96697ab` gleich. Der Transport erhält bei unveränderten Urteilen die
+vorhandene Revision, statt spätere Revisionen wieder auf 2 zu setzen. Aktuelle
+Dokumenthash-/Node-/Inventarbindungen werden tatsächlich erneut geprüft.
+
+**Aktualisierte Einordnung Q-02:** Die konkret fehlenden Null-/Vollmuster,
+Gebietsdarstellungen und 9×9-Achsenausdehnung sind korrigiert. Route 1 „erste“
+und Route 18 „einziges“ bleiben beide Eigentümerentscheidungen; die Aussage,
+der Route-18-Brief sei durch Entfernung von 0/Voll uneingeschränkt erfüllt,
+wird nicht aufrechterhalten. Das aktuelle Routenurteil benennt den Einserzugang
+und den ganzen Restzahlenzugriff ausdrücklich. Keine zusätzliche Inputänderung
+ohne die fehlende bestätigte Lesart.
+
+Nächster Schritt nach eigener Fehlerbehebung: neuer eingefrorener HEAD und
+tatsächliche unabhängige Nachprüfung der korrigierten gebundenen Evidenz;
+Ergebnisse/Scope/Remote/CI am bestehenden Draft-PR persistieren. Menschlicher
+Spieltest, beide Quellenentscheidungen, CI-PERF-WP026 und Fremdgates bleiben offen.

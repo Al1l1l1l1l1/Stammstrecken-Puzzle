@@ -34,8 +34,14 @@ def main():
         proof=json.loads((ROOT/f'Content/Proofs/{id}/solver-v2.proof-v1.json').read_text())
         validate_binding(d,r,proof)
         assert r['qualityNote'] and r['entryDeduction'] and r['focus'] and r['expectedChainDepth']>=1
+        # A repeated transport of identical judgments must preserve the current
+        # revision. A later explicit metadata correction advances it once.
+        changed=any(d['production'][key]!=value for key,value in (
+            ('qualityNote',r['qualityNote']),('focus',r['focus']),
+            ('chainDepth',r['expectedChainDepth'])))
         d['production']['qualityNote']=r['qualityNote'];d['production']['focus']=r['focus']
-        d['production']['chainDepth']=r['expectedChainDepth'];d['contentRevision']=2
+        d['production']['chainDepth']=r['expectedChainDepth']
+        if changed:d['contentRevision']+=1
         pending.append((path,d))
     # Preflight every binding before any canonical document is touched.
     for path,d in pending:path.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

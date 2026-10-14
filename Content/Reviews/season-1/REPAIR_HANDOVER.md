@@ -14,7 +14,7 @@ nicht auf den geänderten Bestand übertragen.
 
 ## Nachprüfbare Artefakte
 
-- Kanonische 240 Level-v2-Quellen und 240 `solver-v2.proof-v1.json`; Revision 2 für die tatsächlich neu bewerteten Produktionsmetadaten, Sternsekunden weiterhin null.
+- Kanonische 240 Level-v2-Quellen und 240 `solver-v2.proof-v1.json`; Revision 2, bei drei sachlichen Nachkorrekturen Revision 3; Sternsekunden weiterhin null.
 - `author-decisions.txt`: tatsächliche literal verfasste Einstiege/Fokuswerte/Qualitätsurteile, 20 Routenurteile, 240 vorläufige gedankliche Kettenschätzungen; `author-review.json`: Public-Puzzle-/Lösungsbindungen.
 - 20 `leveldesign-S1-*.md` mit konkretem Gitter, Counts, Ports, tatsächlicher maximaler Rootkette und eigenem Urteil; 20 frische Rootspurdateien.
 - `targeted-changes.json`, `candidate-provenance.json`, `repair-summary-facts.json`, `similarity-report.json` und `PAIR_ADJUDICATION.md` für Änderungen, tatsächliche Provenienzgrenzen und vollständige D4-Ähnlichkeit.
@@ -39,18 +39,34 @@ dem Archiv laufen ausschließlich isoliert; der vorübergehend dafür bereitgest
 Compiler ist keine Projektabhängigkeit. Autorbetrieb mit unabhängig geschriebenem
 Prüfercode ist eigene Zusatzprüfung, keine unabhängige Freigaberolle.
 
-Die neue unabhängige technische und fachliche Prüfung muss auf dem nach eigener
-Fehlerbehebung eingefrorenen Stand stattfinden. Sie wird nur bei tatsächlich
-vorhandener unabhängiger Ausführung organisiert; menschlicher Spieltest wird
-damit weder ersetzt noch behauptet. Gesamt-DoD und Integrationsfreigabe bleiben offen.
+Die unabhängigen Rollen haben den gesamten Stand `96697ab` selbst geprüft;
+ihre vollständigen Berichte und der zwingende CI-Nachtrag sind unverändert als
+`INDEPENDENT_TECHNICAL_96697ab.md`, `INDEPENDENT_TECHNICAL_CI_ADDENDUM_96697ab.md`
+und `INDEPENDENT_CONTENT_96697ab.md` persistiert. Drei begrenzte sachliche
+Textfehler wurden daraufhin korrigiert; public Inputs/Lösungen/Proofbytes bleiben
+gleich, betroffene Dokumentbindungen und das Route-18-Urteil sind erneuert.
+Tatsächliche unabhängige Nachprüfung dieser Folgeänderungen nach neuem Freeze,
+abschließender HEAD/Scope/Remote/CI-Bezug und unveränderte vollständige Berichte
+werden am bestehenden Draft-PR persistiert. Kein alter Teil-PASS gilt automatisch.
+Menschlicher Spieltest, Gesamt-DoD und Integrationsfreigabe bleiben offen.
 
 ## Echte Übergabepunkte
 
 1. **DECISION-WP026-R01-FIRST:** Quellenbeleg Bible 14 §4, Route 1, 9/10 „erste unterschiedliche A/B-Kanten“. Entscheidung, ob frühere Seitenvielfalt ausgeschlossen ist oder der ausdrückliche Schwerpunkt gemeint ist; kein eigenmächtiger Ersatzplan. Nach Entscheidung betroffene erste Route erneut prüfen.
+   **DECISION-WP026-R18-MIDDLE:** Bible 14 §8, Route 18/3–5 „mehrere mittlere Hinweise als einziges Orientierungsmittel“. Konkrete Einser-Portzugänge in 05-02-03/04/05 und danach notwendige mittlere Kombination sind im Register benannt. Entscheidung über zulässige vorbereitende Einseranker oder deren Ausschluss durch „einziges“ fehlt; kein eigener Zahlenbereich oder Ersatzplan.
 2. **CI-PERF-WP026:** 10×10 p95 < 250 ms/max 2 s und Gesamtbestand < 60 s auf CI-Referenzrechner (WP Tests 5, SOLVER_ARCHITECTURE §10). Bestehende Workflowbefugnis erlaubt nur Manifestzuordnung, keinen neuen Korpus-Leistungsschritt. Separater beauftragter Ausführungsweg nötig; lokale Millisekunden sind kein Ersatz.
 3. **Unabhängige Neuabnahme und menschlicher Spieltest:** insbesondere Nichtredundanz verbleibender Armfamilien, sehr lange dünne Finales und neuer Route-18-Wechsel 3→6. Kein alter Teil-PASS und keine Selbstfreigabe.
-4. **Historische Auswahlprovenienz:** tatsächliche Pools/Matches wiedergefunden, ursprüngliche nicht persistierte Seeds-/Generatorvarianten nicht erfunden. Aktueller Source-/Proofkorpus reproduzierbar; Entscheidung über zusätzliche historische Abnahmeanforderung beim unabhängigen Prüfer.
+4. **Dokumentierte historische Auswahlgrenze:** tatsächliche Pools/Matches wiedergefunden, ursprüngliche nicht persistierte Seeds-/Generatorvarianten nicht erfunden. Aktueller Source-/Proofkorpus reproduzierbar. Unabhängige Prüfer bestätigen heutige Kuratierung; keine zusätzliche rückwirkende Kampagnen-Seedpflicht aus Endless-Regeln ableiten.
 5. **Fremde Content-/Folgegates:** 1.440 fehlende Referenzziele bleiben Cross-Reference-FAIL; vorläufige Zeitklasse unbestimmt. Kreative Ausgestaltung/Miniaturen/Präsentation, Pseudolocale, Doppelimport, Addressables, Lizenz/Größen, Produkt-/Release-/Geräte-/Storegates bleiben offen und werden nicht abgeschwächt.
+
+Zusätzliche tatsächliche CI-Grenze: Unity-Push auf `96697ab` scheiterte am
+180-s-Timeout eines unveränderten Solverfixturetests (453/454). Der getrennte
+PR-Lauf besteht EditMode 454/454 und PlayMode 27/27; verfügbare neue Logs und
+Artefakte wurden tatsächlich abgerufen und gehasht. Endstände getrennt in
+`ci-repair-96697ab-artifact-evidence.json`/PR. Die Timeoutursache ist offen;
+gegebenenfalls nötige Test-/Workflow-/Produktionscodekorrektur liegt außerhalb
+dieses Manifests. Keine ungeprüfte Flaky-/Quarantänefreigabe und kein Ersatz
+des gesondert fehlenden Korpus-Leistungsnachweises.
 
 Bestehende Branch `codex/wp-026-season1-logical-content`; Basis
 `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`; gemeinsamer Anker

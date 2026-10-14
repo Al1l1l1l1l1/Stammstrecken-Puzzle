@@ -46,7 +46,7 @@ Alle nachfolgenden Urteile und Einstiege sind wörtlich aus dem an öffentliche 
 - Einstieg: Die vollen Spalten 0 und 2 liefern zwei deutliche Anfangsanker. Belegschritte: `[24, 25, 26, 27, 28, 29]`.
 - Eine tatsächliche maximale Prämissenkette: `[17, 38, 43, 61, 62, 82, 93]` im zugehörigen Rootspurbericht.
 - Individueller Fokus: `['OCCUPANCY', 'COMBINATION']`; erwartete gedankliche Folge 5 (eigene vorläufige Schätzung, nicht gemessen).
-- Individuelle fachliche Entscheidung: Beide Endpunkte sitzen an der oberen Zeile, doch die zwei rechten Arme enden in verschiedenen Höhen; Counts 6 statt 7 bestimmen dort die Rückkehr. Das wiederholte Langarmmotiv dient hier einem klaren Start mit asymmetrischen Resten; die Nähe zum späteren S1-04-03-02 bleibt im Paarbericht sichtbar.
+- Individuelle fachliche Entscheidung: Beide Endpunkte sitzen an der oberen Zeile. Die rechten Arme in Spalten 4/6 kehren gemeinsam in Zeile 5 zurück, die linken Vollarme in Spalten 0/2 erst in Zeile 6; Counts 6 statt 7 bestimmen diese unterschiedliche Höhe der Armpaare. Das Langarmmotiv dient einem klaren Start mit asymmetrischen Resten; die Nähe zum späteren S1-04-03-02 bleibt im Paarbericht sichtbar.
 - Grenze: Lesbarkeit, erwartete menschliche Schlusskettentiefe und Lernwirkung noch nicht im Spieltest bestätigt. Nutzertexte und Referenzziele offen; Zeitklasse unbestimmt, Sternsekunden null.
 
 ```text

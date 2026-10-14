@@ -36,17 +36,33 @@ widerlegt, technische Entwurfsreferenzen sind keine erfundenen Zielquellen. Alle
 Schema-/Node-/Root-/Symmetrie-/Mutations-/Regressionsnachweise vorhanden; alte CI-Logs
 und Artefakte tatsächlich abgerufen, ausschließlich an ihren alten HEAD gebunden.
 
-**Echte offene Übergabepunkte:** neue unabhängige technische/Contentprüfung nach
-Freeze, menschlicher Spieltest (besonders lange dünne Finales, Route 18 Gruppe 3→6),
+Tatsächliche unabhängige technische und fachliche Prüfung auf `96697ab` geliefert,
+vollständige unveränderte Berichte im Reviewscope. Alle 240 Felder und 20 Routen
+fachlich gelesen, D4-/Kandidatenfakten bestätigt. Drei begrenzte Sachtextfehler
+an 03-02-01/04-02-02/05-01-02 korrigiert, Metadaten Revision 3; public Inputs,
+Lösungen und Proofbytes gegenüber96697ab unverändert. Betroffene aktuelle
+Dokument-/Inventar-/Node-/Produktionsbindungen erneuert; tatsächliche erneute
+unabhängige Nachprüfung nach neuem Freeze am bestehenden PR, kein Alt-PASS-Transfer.
+
+**Echte offene Übergabepunkte:** unabhängige Nachprüfung der Sachkorrekturen nach
+neuem Freeze, menschlicher Spieltest (besonders lange dünne Finales, Route 18 Gruppe 3→6),
 DECISION-WP026-R01-FIRST (Bible §4 „erste unterschiedliche A/B-Kanten“),
+DECISION-WP026-R18-MIDDLE (Bible §8 „mittlere Hinweise als einziges Orientierungsmittel“
+bei konkreten Einser-Portankern in 05-02-03/04/05; bestätigte Lesart fehlt),
 CI-PERF-WP026 (kein erlaubter Korpus-Leistungsschritt in den vorhandenen Workflows),
-historisch nicht vollständig persistierte Auswahlseeds/Toolvarianten, fehlende
-Referenzziele/Zeitklassenzuordnung und kreative/Import-/Releasegates. Quellen und
+CI-GATE-WP026-UNITY-FAIL (Push96697ab:180s-Timeout im unveränderten Solverfixturetest,
+453/454; getrennter PRlauf EditMode454/454/PlayMode27/27; Ursache offen und kein
+Test-/Workflow-/Produktionscode-Fix in diesem Manifest), fehlende
+Referenzziele/Zeitklassenzuordnung und kreative/Import-/Releasegates. Die tatsächliche
+neue CI, verfügbaren Logs/Artefakte und Schlussstände getrennt am PR persistiert.
+Historisch nicht vollständig persistierte Auswahlseeds/Toolvarianten bleiben
+dokumentierte Grenze, kein zusätzlich erfundenes Kampagnen-Seedgate. Quellen und
 konkrete fehlende Entscheidungen in [REVIEW_RESOLUTION.md](../Content/Reviews/season-1/REVIEW_RESOLUTION.md).
 Keine Selbstfreigabe, kein Gesamt-DoD-PASS und keine fertig freigegebene Season.
 
-Letzter fachlicher Schritt: vollständige eigene Nachbesserung/Fehlerbehebung mit
-erneuerter Evidenz. Nächster Schritt: eingefrorenen neuen HEAD unabhängig prüfen,
+Letzter fachlicher Schritt: vollständige tatsächliche unabhängige Nachprüfung und
+Behebung der drei eigenen Sachtextfehler mit erneuerter Evidenz. Nächster Schritt:
+eingefrorenen neuen HEAD in den betroffenen unabhängigen Rollen nachprüfen,
 konkrete Entscheidung/CI-Ausführungsweg übergeben; Remote-/CI-Bindung nach tatsächlichem
 Lauf am bestehenden Draft-PR #21 persistieren. Kein Merge, Runtimeimport oder Release.
 

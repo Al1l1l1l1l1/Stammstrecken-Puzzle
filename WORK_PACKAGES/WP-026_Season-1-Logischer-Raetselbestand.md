@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** Nachbesserung der unabhängigen Prüfung zu PR #21 / 3c9b7d0: 240 individuelle Level- und 20 Routenbewertungen, 15 gezielte Logikkorrekturen und aktuelle eigene Nachweise geliefert. Erneute unabhängige Abnahme, Spieltest und konkrete Entscheidungs-/CI-/Referenzgates offen; keine Gesamtabnahme. Bestehender Auftrag, Manifest und Grenzen unverändert.
+**Status:** Nachbesserung zu PR #21: 240 individuelle Level- und 20 Routenbewertungen, 15 gezielte Logikkorrekturen geliefert und auf 96697ab tatsächlich unabhängig geprüft. Drei begrenzte sachliche Textbefunde anschließend korrigiert, betroffene Nachweise erneuert; erneute Nachprüfung auf neuem Freeze am PR. Beide Quellenentscheidungen, Spieltest und CI-/Referenzgates offen; keine Gesamtabnahme. Bestehender Auftrag, Manifest und Grenzen unverändert.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -250,3 +250,50 @@ Letzter fachlicher Schritt: vollständige zulässige Nachbesserung und eigene
 Fehlerbehebung samt erneuerten Nachweisen. Nächster Schritt: neue unabhängige
 Prüfung, konkrete Eigentümerentscheidung und separat autorisierter CI-Leistungsweg;
 danach betreffende Gates erneut ausführen. Kein Merge, Runtimeimport oder Release.
+
+## Tatsächliche Nachprüfung und zweite Sachkorrektur – 14.10.2026
+
+Auf eingefrorenem `96697ab749fbea859fde8a4d4fcb42149cc2e89c` unabhängige
+technische und fachliche Prüfung tatsächlich ausgeführt, keine Übernahme der
+Autor-/Alt-PASS-Aussagen. Vollständige unveränderte Berichte im Reviewscope:
+`INDEPENDENT_TECHNICAL_96697ab.md` (SHA256 4ebc2656cab50209dadd17b23d6792b6b8aa981df3ca884b709179e8b9ee424d),
+zwingender `INDEPENDENT_TECHNICAL_CI_ADDENDUM_96697ab.md` (7cb754ab2d91ba4c7fa646bbfa8bdad3b3079de175838b3bba2cfd8a6c6de795),
+`INDEPENDENT_CONTENT_96697ab.md` (fbf6e8bb10f38ecfe9c8e1ee2895f61ce273ff547263c158749f2c6c214becdb).
+Fachprüfer las alle 240 Raster/Counts/Ports/Lösungen und 20 Routen, mit 240 eigenen
+Einzelnotizen; D4-/Kandidatengegenrechnung und 15 gezielte Änderungen bestätigt.
+Keine neuen bestätigten Inputdefekte. Technischer lokaler Teil-PASS ist ausdrücklich
+begrenzt und mit CI-Nachtrag zu lesen, kein technischer Gesamtabschluss.
+
+CF-01 (03-02-01, unmarkierter alter 19-Zellen-Nachbar), CF-02 (04-02-02,
+Armhöhenvergleich) und CF-03 (05-01-02, zwei statt eine Zeile Rückkehrdifferenz)
+am tatsächlichen Raster selbst verifiziert und sachlich korrigiert. Alle betroffenen
+Literale/JSON-/Level-/Inventar-/Berichtswerte werden getreu erneuert, nur diese drei
+Metadaten auf Revision 3. Alle 240 public Inputs, Lösungen und Proofbytes gegenüber
+96697ab gleich; weiterhin 15 Logikänderungen/225 erhaltene Proofbytes gegenüber3c9b7d0.
+Transport behält bestehende Revision bei identischen Urteilen; spätere explizite
+Metadatenkorrektur erhöht sie einmal. Keine Produkt-/Schema-/Produktionsmoduländerung.
+
+Zusätzlich **DECISION-WP026-R18-MIDDLE** offen: Bible §8, Route18/3–5,
+„mehrere mittlere Hinweise als einziges Orientierungsmittel“. Konkrete
+Einser-Portanker E7/row7=1, N7/col7=1 und W0/col0=1 geben Anfangsorientierung;
+danach ist mittlere Restkombination notwendig. Eigentümer muss die zulässige
+Lesart des Wortes „einziges“ bestätigen. Keine neue Einserquote/Bandgrenze oder
+Ersatzplanung; Q-02 ist in diesen Punkten teilweise/klar offen. R01-FIRST bleibt
+ebenfalls offen. Historische Auswahlprovenienz ehrlich begrenzt; kein zusätzliches
+rückwirkendes Kampagnen-Seedgate aus Endless-Regeln abgeleitet.
+
+Tatsächliche neue Unity-CI getrennt: Push38490243240 auf96697ab FAIL, ein
+180000-ms-Timeout im unveränderten Solverfixturetest (453/454, Folgejobs skipped).
+PR38490247420 besteht EditMode454/454 und PlayMode27/27; verfügbare neue Logs,
+XML/Coverage/APK-Artefakte tatsächlich abgerufen und gegen GitHub-Digests geprüft.
+Schlussstände und nachfolgende neue CI am PR konkret fortgeschrieben. Timeoutursache
+offen, keine eigenmächtige Änderung des ausgeschlossenen Tests/Workflows; kein lokaler
+Ersatz-PASS. CI-PERF-WP026 über den neuen 240er-Korpus bleibt davon getrennt offen.
+
+Aktuelle eigene Nachweise nach Sachkorrektur erneut ausgeführt und persistiert;
+neuer Frozen-HEAD/Scope/Remote und tatsächlich unabhängige Nachprüfung der betroffenen
+Evidenz werden am bestehenden Draft-PR21 verknüpft. Kein alter Teil-PASS wird auf
+geänderte Dokumente übertragen. AK-02/AK-06/AK-08 und Gesamt-DoD bleiben wegen
+Quellenentscheidungen, menschlichem Spieltest, CI-Referenzleistung und Fremdgates
+offen. Nächster Schritt: betreffende Quellenauslegungen und passenden CI-Leistungsweg
+extern entscheiden/beauftragen, anschließend betroffene Gates tatsächlich prüfen.

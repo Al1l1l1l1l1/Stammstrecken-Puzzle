@@ -53,3 +53,12 @@ dem unveränderten WP-026-Scopebefehl ausgeführt. Die neu hinzugefügten Toolhi
 ändern keine Produktionsmodule, Schemas, Validatoren oder Projektabhängigkeiten.
 Das Archiv `wp026-review-verifiers.tgz` bleibt ausschließlich in ignoriertem Scratch.
 Eine vom Autor ausgeführte Gegenprüfung mit Prüfercode ist keine unabhängige Abnahme.
+
+Die tatsächlichen unabhängigen Nachprüfungen auf 96697ab sind unverändert im
+Reviewscope persistiert. Drei dort bestätigte Sachtextfehler wurden individuell
+korrigiert, das Route-18-Urteil hält den Wortlautvorbehalt offen. Der Transport
+erhöht die Inhaltsrevision nur bei einer tatsächlichen Änderung der expliziten
+Qualitäts-/Fokus-/Kettenschätzung und behält sie bei identischer erneuter Ausführung.
+Diese Idempotenz verhindert eine Rücksetzung späterer Korrekturen auf Revision 2;
+Public-Puzzle-/Lösungsbindung und vollständige Vorprüfung bleiben unverändert.
+Neue unabhängige Nachprüfung nach Freeze bleibt erforderlich.

@@ -25,7 +25,7 @@ Alle nachfolgenden Urteile und Einstiege sind wörtlich aus dem an öffentliche 
 - Einstieg: Die obere Nullzeile begrenzt drei lange Belegungsarme. Belegschritte: `[20, 21, 22, 23, 24, 25]`.
 - Eine tatsächliche maximale Prämissenkette: `[19, 40, 48, 55, 57, 65]` im zugehörigen Rootspurbericht.
 - Individueller Fokus: `['EXCLUSION', 'OCCUPANCY']`; erwartete gedankliche Folge 4 (eigene vorläufige Schätzung, nicht gemessen).
-- Individuelle fachliche Entscheidung: Counts 1 in Spalten 1/3/5 bestimmen die drei Querübergänge. Das klare Muster ist als Wiedereinstieg passend; unmittelbar folgende Position 2 wiederholt es allerdings fast gedreht mit nur einer zusätzlichen Zelle, weshalb dort gezielt eine andere Anfangsgeometrie gewählt wird.
+- Individuelle fachliche Entscheidung: Counts 1 in Spalten 1/3/5 bestimmen die drei Querübergänge. Das klare Dreiarmmuster ist als Wiedereinstieg passend. Der frühere fast gedrehte 19-Zellen-Nachbar an Position 2 wurde ersetzt; die aktuelle 16-Zellen-Lösung kombiniert einen rechten Vollarm, einen vollen Boden und ein kleines Kopfstück statt drei paralleler Arme.
 - Grenze: Lesbarkeit, erwartete menschliche Schlusskettentiefe und Lernwirkung noch nicht im Spieltest bestätigt. Nutzertexte und Referenzziele offen; Zeitklasse unbestimmt, Sternsekunden null.
 
 ```text

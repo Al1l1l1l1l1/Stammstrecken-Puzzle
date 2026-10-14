@@ -47,7 +47,7 @@ Alle nachfolgenden Urteile und Einstiege sind wörtlich aus dem an öffentliche 
 - Einstieg: Die vollen Spalten 0 und 2 geben sichere lange Anfangsarme. Belegschritte: `[28, 29, 30, 31, 32, 33, 34]`.
 - Eine tatsächliche maximale Prämissenkette: `[20, 58, 70, 88, 89, 111, 122]` im zugehörigen Rootspurbericht.
 - Individueller Fokus: `['OCCUPANCY', 'COMBINATION']`; erwartete gedankliche Folge 5 (eigene vorläufige Schätzung, nicht gemessen).
-- Individuelle fachliche Entscheidung: Die beiden rechten Sechserarme müssen eine Zeile früher zurückkehren als der linke Vollarm. Bekanntes Muster mit asymmetrischen Resten bleibt als Wiedereinstieg; die nachfolgende ähnliche Querbandbelegung verwendet weniger direkte Vollanker und neue Bandbreiten, weshalb ihre höhere Schlusslast gesondert begründbar ist.
+- Individuelle fachliche Entscheidung: Die rechten Sechserarme in Spalten 4/6 kehren in Zeile 5 zurück, das linke Vollarmpaar in Spalten 0/2 erst in Zeile 7: zwei Zeilen früher. Bekanntes Muster mit asymmetrischen Resten bleibt als Wiedereinstieg; die nachfolgende ähnliche Querbandbelegung verwendet weniger direkte Vollanker und neue Bandbreiten, weshalb ihre höhere Schlusslast gesondert begründbar ist.
 - Grenze: Lesbarkeit, erwartete menschliche Schlusskettentiefe und Lernwirkung noch nicht im Spieltest bestätigt. Nutzertexte und Referenzziele offen; Zeitklasse unbestimmt, Sternsekunden null.
 
 ```text

@@ -6,9 +6,9 @@ Test Files
     C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp025-separated/Tests/bin/Release/net10.0/STP.Tests.Content.EditMode.dll
 
 Test Discovery
-  Start time: 2026-10-14 00:02:41Z
-    End time: 2026-10-14 00:02:41Z
-    Duration: 0.155 seconds
+  Start time: 2026-10-14 01:13:09Z
+    End time: 2026-10-14 01:13:09Z
+    Duration: 0.151 seconds
 
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.Completion_AllTwoByTwoConcreteBoardsAgainstIndependentPaths
 COMPLETION_ORACLE exhaustive 2x2: boards=134456; accepted=104
@@ -17,16 +17,16 @@ ORACLE exhaustive 2x2: 400 valid definitions x 8 transforms; 4136 invalid defini
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.Exhaustive_AllOrderedEndpointAndCountCombinations_WithAllDihedralTransforms(2,3)
 ORACLE exhaustive 2x3: 2774 valid definitions x 8 transforms; 36106 invalid definition combinations; all ordered endpoint pairs, transposed 3x2 included.
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoBudgetedWorkRunsBetweenTheLastProbeAndTheReturn
-WP024_HARD_BUDGET tail_after_last_probe_ms=0,0001 total_ms=28,589 ratio=0,000 %
+WP024_HARD_BUDGET tail_after_last_probe_ms=0,0000 total_ms=41,854 ratio=0,000 %
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind
 WP024_HARD_BUDGET_KIND tiny unsatisfiable 2x2 (baseline): tail_after_last_probe_us=0,000
-WP024_HARD_BUDGET_KIND unsatisfiable serpentine 32x32: class=UNSATISFIABLE maxStates=5000000 path+protocol=1693 tail_after_last_probe_us=0,000 excess_over_baseline_us=0,000 result_build_us=3,000
-WP024_HARD_BUDGET_KIND ambiguous corner 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=1176 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=2,500
-WP024_HARD_BUDGET_KIND ambiguous long path 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=2116 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=3,200
-WP024_HARD_BUDGET_KIND interrupted long path 32x32: class=INDETERMINATE maxStates=2 path+protocol=2109 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=2,300
-WP024_HARD_BUDGET_KIND unique serpentine 32x32: class=UNIQUE maxStates=5000000 path+protocol=2133 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=1,400
+WP024_HARD_BUDGET_KIND unsatisfiable serpentine 32x32: class=UNSATISFIABLE maxStates=5000000 path+protocol=1693 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=2,900
+WP024_HARD_BUDGET_KIND ambiguous corner 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=1176 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=1,900
+WP024_HARD_BUDGET_KIND ambiguous long path 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=2116 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=2,700
+WP024_HARD_BUDGET_KIND interrupted long path 32x32: class=INDETERMINATE maxStates=2 path+protocol=2109 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=2,500
+WP024_HARD_BUDGET_KIND unique serpentine 32x32: class=UNIQUE maxStates=5000000 path+protocol=2133 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=1,800
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.TenByTen_FixedCorpus_WarmupAndCIReferenceBudget
-WP022_BUDGET corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,812 max_ms=1,724 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
+WP022_BUDGET corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,851 max_ms=2,505 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
 => STP.Tests.Solver.EditMode.PuzzleSolverTests.ThreeByThree_FixedSeed22022_RecordedSubsetAndSwapMetamorphoses
 seed=22022; accepted=0; draw=17; A=0/0; B=0/2; 3,2,0;1,2,2
 seed=22022; accepted=1; draw=24; A=1/1; B=0/2; 2,1,0;2,0,1
@@ -289,7 +289,7 @@ SOLVER_V2_EXHAUSTIVE definitions=39664 unique=1800 rootOnly=1600 oneAssumption=2
 => STP.Tests.Solver.EditMode.SolverV2MetricsTests.SeededFourByFour_Sample_TraceIsSoundAndSearchMetricsAreConsistent
 SOLVER_V2_SEEDED_4X4 cases=400 deepestRequiredGuessDepth=3
 => STP.Tests.Solver.EditMode.SolverV2MetricsTests.TenByTen_ForcedPaths_AreDeductive_FullyAudited_AndWithinTheTraceInclusiveBudget
-WP024_BUDGET solver=solver-v2 corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,739 max_ms=1,320 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
+WP024_BUDGET solver=solver-v2 corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,896 max_ms=1,388 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
 => STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.EveryDeclaredPremise_IsNecessary_EachFactAndEachEntryIsRefutedByAValidPuzzleWhenLeftOut
 WP024_PREMISE_NECESSITY BORDER_PORT_FORBIDDEN without A: refuted 939 of 939
 WP024_PREMISE_NECESSITY BORDER_PORT_FORBIDDEN without B: refuted 939 of 939
@@ -317,8 +317,8 @@ Run Settings
 Test Run Summary
   Overall result: Passed
   Test Count: 453, Passed: 453, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
-  Start time: 2026-10-14 00:02:41Z
-    End time: 2026-10-14 00:02:59Z
-    Duration: 17.959 seconds
+  Start time: 2026-10-14 01:13:09Z
+    End time: 2026-10-14 01:13:30Z
+    Duration: 20.915 seconds
 
 Results (nunit3) saved as C:\STP\Stammstrecken-Puzzle-WP008\.utmp/wp026-repair-regression.xml
