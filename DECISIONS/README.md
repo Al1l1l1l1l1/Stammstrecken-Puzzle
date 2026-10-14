@@ -40,8 +40,9 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-029](./ADR-029-rollout-reducer-semantik.md) | Vollständige Rollout-Reducer-Semantik | **Angenommen** | Gültig; präzisiert den operativen Rolloutvertrag aus ADR-010 und ADR-023. |
 | [ADR-030](./ADR-030-wp-scope-trust-anchor.md) | Gemeinsamer historischer WP-/Scope-Trust-Anchor | **Angenommen** | Gültig; ersetzt die historische WP-/Manifestbindung aus ADR-026. |
 | [ADR-031](./ADR-031-solver-v2-metriken-und-proof-regeneration.md) | Solver-v2-Metriken und Proofregeneration | **Angenommen** | Gültig; ergänzt ADR-007 und ADR-021 für Metriksemantik, solver-v2 und regenerierbare Proofcaches. |
+| [ADR-032](./ADR-032-season1-ci-korpus-leistungsnachweis.md) | CI-Referenz-Leistungsnachweis für den Season-1-Korpus | **Angenommen** | Gültig; konkretisiert den bestehenden Budgetnachweis für reale Season-1-Inputs, ohne Solver- oder Contentsemantik zu ändern. |
 
-Damit existieren **31 ADRs**: 22 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **32 ADRs**: 23 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 

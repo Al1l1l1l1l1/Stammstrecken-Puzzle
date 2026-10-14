@@ -45,7 +45,7 @@ CURRENT_ADR_STATUS = {
     21: "Angenommen", 22: "Ersetzt", 23: "Angenommen", 24: "Angenommen",
     25: "Angenommen", 26: "Angenommen",
     27: "Angenommen", 28: "Angenommen", 29: "Angenommen", 30: "Angenommen",
-    31: "Angenommen",
+    31: "Angenommen", 32: "Angenommen",
 }
 SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
 FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (26, 30)}
@@ -180,7 +180,7 @@ def inventory_check() -> None:
             fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
     adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
     numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 32)):
+    if numbers != list(range(1, 33)):
         fail(f"inventory:adr-sequence:{numbers}")
 
 
@@ -224,7 +224,7 @@ def section_body(text: str, heading: str, next_heading: str) -> str:
 
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 32):
+    for number in range(1, 33):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -235,7 +235,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v1.0" not in index_text or "22 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
+    if "Architecture v1.0" not in index_text or "23 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
@@ -1309,11 +1309,16 @@ def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requeste
     for rel in changed:
         if rel.startswith("/") or "\\" in rel or ".." in PurePosixPath(rel).parts: errors.append(f"scope:unsafe-path:{rel}"); continue
         if not any(segment_glob_match(rel, pattern) for pattern in patterns): errors.append(f"scope:out-of-scope:{rel}")
-        if rel.startswith("Stammstrecken_Puzzle_Konzept_00-15/"): errors.append(f"scope:product-source:{rel}")
+        if rel.startswith("Stammstrecken_Puzzle_Konzept_00-15/") and requested_scope != "governance": errors.append(f"scope:product-source:{rel}")
         if requested_scope == "documentation":
             forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
             forbidden_suffixes = {".cs", ".asmdef", ".unity", ".prefab", ".uxml", ".uss", ".shader"}
             if rel.startswith(forbidden_roots) or Path(rel).suffix.lower() in forbidden_suffixes: errors.append(f"scope:production-artifact:{rel}")
+        if requested_scope == "governance":
+            forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
+            forbidden_suffixes = {".cs", ".asmdef", ".unity", ".prefab", ".uxml", ".uss", ".shader"}
+            if rel.startswith(forbidden_roots) or Path(rel).suffix.lower() in forbidden_suffixes: errors.append(f"scope:governance-production-artifact:{rel}")
+            if rel.startswith(".github/") and rel != ".github/workflows/validate.yml": errors.append(f"scope:governance-workflow-artifact:{rel}")
     return errors
 
 
@@ -1639,6 +1644,12 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("V03-005-PRODUCTION", not scope_manifest_errors(production, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "production"))
     product_scope = copy.deepcopy(production); product_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/**"]
     expect("V03-005-PRODUCT-SOURCE", any(item.startswith("scope:product-source:") for item in scope_manifest_errors(product_scope, ["Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md"], "production")))
+    governance_scope = copy.deepcopy(manifest); governance_scope["scope"] = "governance"; governance_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md"]
+    expect("V03-005-GOVERNANCE-PRODUCT-SOURCE", not scope_manifest_errors(governance_scope, ["Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md"], "governance"))
+    expect("V03-005-GOVERNANCE-NO-PRODUCTION", "scope:governance-production-artifact:Assets/StammstreckenPuzzle/Scripts/Foo.cs" in scope_manifest_errors(governance_scope, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "governance"))
+    governance_workflow = copy.deepcopy(governance_scope); governance_workflow["allowedPathPatterns"] = [".github/workflows/validate.yml"]
+    expect("V03-005-GOVERNANCE-VALIDATE-WORKFLOW", not scope_manifest_errors(governance_workflow, [".github/workflows/validate.yml"], "governance"))
+    expect("V03-005-GOVERNANCE-NO-OTHER-WORKFLOW", "scope:governance-workflow-artifact:.github/workflows/unity.yml" in scope_manifest_errors(governance_workflow, [".github/workflows/unity.yml"], "governance"))
     wp_rel = f"WORK_PACKAGES/{manifest['workPackageId']}_Test.md"
     wp_link = f"../{manifest_rel}"
     historical_wp = f"# {manifest['workPackageId']} – Test\n\n## ID\n\n`{manifest['workPackageId']}`\n\n[Scope]({wp_link})\n"
@@ -1711,6 +1722,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
     index_text = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
     expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-026", "ADR-X26"))))
+    expect("REG-ADR-032-MISSING", "adr-index:missing:032" in adr_index_errors(index_text.replace("ADR-032", "ADR-X32")))
     inconsistent_level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     inconsistent_level["content"]["season"] = 2
     expect("REG-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, proof))
@@ -1727,7 +1739,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v1.0")
-    parser.add_argument("--scope", choices=("documentation", "production"))
+    parser.add_argument("--scope", choices=("documentation", "production", "governance"))
     parser.add_argument("--scope-manifest", type=Path)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
