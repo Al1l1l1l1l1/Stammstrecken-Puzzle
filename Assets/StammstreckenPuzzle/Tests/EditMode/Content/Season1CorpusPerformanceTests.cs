@@ -207,11 +207,17 @@ namespace STP.Tests.Content.EditMode
         {
             var start = new ProcessStartInfo("git", "rev-parse HEAD")
             { WorkingDirectory = root, UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true, CreateNoWindow = true };
+            // Actions checkout and the Unity container can have different owners. Trust only this
+            // already selected checkout for this read-only subprocess, without changing Git config or CI.
+            start.EnvironmentVariables["GIT_CONFIG_COUNT"] = "1";
+            start.EnvironmentVariables["GIT_CONFIG_KEY_0"] = "safe.directory";
+            start.EnvironmentVariables["GIT_CONFIG_VALUE_0"] = root;
             using (var process = Process.Start(start)!)
             {
                 string commit = process.StandardOutput.ReadToEnd().Trim();
+                string error = process.StandardError.ReadToEnd().Trim();
                 process.WaitForExit();
-                Assert.That(process.ExitCode, Is.EqualTo(0), "cannot resolve checkout commit");
+                Assert.That(process.ExitCode, Is.EqualTo(0), "cannot resolve checkout commit: " + error);
                 Assert.That(commit, Does.Match("^[0-9a-f]{40}$"));
                 string? githubSha = Environment.GetEnvironmentVariable("GITHUB_SHA");
                 if (!string.IsNullOrEmpty(githubSha)) Assert.That(commit, Is.EqualTo(githubSha), "CI checkout/SHA mismatch");
