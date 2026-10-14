@@ -97,3 +97,7 @@ WP-027 auf main d90e798 entscheidet R01-FIRST/R18-MIDDLE. WP-028 über PR #25 au
 ## WP-030: Timeoutuntersuchung – 15.10.2026
 
 Originaltimeout analysiert, sechs abgeschlossene Fälle und gleiche Zustandsgrenze 2 im alten FAIL/PASS belegt. Große 32×32-Budgetfälle im Push rund doppelt so langsam; nicht alle Tests pauschal verlangsamt. Neue instrumentierte Originaltestprobe, Quellgleichheit und hoher Allokationsaufwand dokumentiert. Ursache nicht bewiesen, O-02 nicht geschlossen, keine Reparatur. Konkreter eng begrenzter Testdiagnostikbedarf zur Entscheidung: [WP-030-Bericht](Investigations/WP-030_TIMEOUT.md). Nächster beauftragter Schritt: WP-031 isolierte konfliktaufgelöste Kombination tatsächlich prüfen und verlustfreie Originalberichtpersistierung korrigieren; unabhängige Nachprüfung bleibt erforderlich.
+
+## WP-031: tatsächliche Integrationsvorbereitung – 15.10.2026
+
+Originalbericht ohne Inhaltsänderung vollständig verlustfrei Base64-kodiert; Dekodierung/Originalhash/Bytegleichheit bestanden. Eigener f8e1dfc-Whitespace-FAIL bleibt als Historie dokumentiert. Main d90e798 und WP-026-Lieferstand werden ausschließlich in isoliertem Git-Preview konfliktaufgelöst und tatsächlich geprüft. Die Einzelmanifestgrenze für fremde Manifest-/Produktquellenimporte bleibt Pflichtgate; keine Regeländerung und keine Übernahme nach main. Vollständiger neuer Stand in PROJECT_CONTROL/Integration/WP-031_HANDOVER.md nach Ausführung.

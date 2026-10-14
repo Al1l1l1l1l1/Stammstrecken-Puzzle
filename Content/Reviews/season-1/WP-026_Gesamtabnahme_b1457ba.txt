@@ -1,324 +1,701 @@
-WP-026 – Neue unabhängige Gesamtabnahme nach Integration von WP-028
-Repository: Al1l1l1l1l1/Stammstrecken-Puzzle
-PR: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/21
-Prüfung: 14./15.10.2026 (Europe/Berlin)
-Rolle: unabhängige technische und fachliche KI-Prüfung; keine Autor-, Reparatur- oder menschliche Spieltestrolle.
-
-1. Urteil
-
-KEIN GESAMT-PASS / NICHT INTEGRATIONSBEREIT.
-
-Der vollständige logische Bestand ist technisch nachgewiesen: 240 gültige, eindeutige und ohne Suchannahmen lösbare Rätsel, gebundene regenerierbare Produktionsproofs, nachvollziehbare Rootspuren und bestandene aktuelle CI einschließlich des echten WP-028-Korpusleistungsnachweises. Die vollständige fachliche Sicht auf alle 240 Felder und 20 Routen ergibt unter den verbindlichen WP-027-Klarstellungen keinen neuen belegten Fehler der Puzzlelogik oder der vorgeschriebenen Raster-/Lernbogenfolge. Die beiden früheren Quellenentscheidungen sind entschieden; CI-PERF-WP026 ist auf dem geprüften Lieferstand erfüllt.
-
-Ein neuer begrenzter Sachfehler in einer Qualitätsnotiz bleibt jedoch zu bearbeiten (F-01, niedrig/P3). Deshalb wird AK-06 nicht vorbehaltlos als vollständig erfüllt abgenommen. Menschliche Fairness, tatsächlicher Schwierigkeitsverlauf und Spielwirkung sind weiterhin nicht durch Spieltests nachgewiesen. Der historische Unity-Timeoutbefund ist nicht ursächlich erledigt. Hinzu kommen veraltete aktuelle Statusdarstellungen, drei tatsächliche Main-Konflikte und die getrennten offenen Content-/Import-/Produkt-/Releasevoraussetzungen.
-
-Diese Prüfung ist durchgeführt und als vollständiges externes Artefakt persistiert. Das bedeutet weder Abschluss von WP-026 noch Freigabe der Season. Es wurden keine Repositorydateien, Branches, Anforderungen, PR-Texte oder Kommentare geändert, keine Tests in GitHub ausgelöst und keine Änderungen integriert. Alle eigenen erzeugenden Prüfungen liefen außerhalb des Repositorys in einem isolierten Export.
-
-2. Stände und Quellenhierarchie
-
-Lieferstand H:
-b1457ba6a61826fe3b64a83323c27a13e9d23080
-Tree: 2bc50e6fffa987ecb543b98d1014084846d1a6fa
-Eltern:
-- d97c39d03f59a2dbc34930f14e3cb74ebeb2e118 (WP-026 vor Unter-PR)
-- b449ab761dca98ab6d7af387efba81886118428b (geprüfter WP-028-Head)
-Der Tree von b449ab7 und H ist identisch; dennoch wurden die Folge-CI und ihre Commitbindung auf H selbst geprüft.
-
-Autoritativer Quellenstand M / tatsächliches main:
-d90e798dd9b26d3f152f3b0c2d1d52cae641eb16
-Er enthält WP-027, die korrigierte Content-Bible, ADR-032 und PROJECT_CONTROL/WP-028_EXECUTION_BRIEF.md. Der Ausführungsbrief ist nicht mit der erst auf dem Kindzweig angelegten WORK_PACKAGES/WP-028-Datei zu verwechseln.
-
-Merge-Base H/M:
-c9516bdbd5858fd9003d5207ec37d180ccc6ae23
-
-Historische Scopeanker:
-- WP-026: f9231c73e45ade33450c541e77dbeff5d2eae162; einziger Parent und Manifestbasis c9516bdbd5858fd9003d5207ec37d180ccc6ae23.
-  Manifest-SHA256: 981cd37f45c0bb73106d321ad450fbf8ad8e210a508b8a177d25892058ef018c.
-- WP-028: 0d17996819ed8ed346cbdf1d25739dd37b46be97; einziger Parent und Manifestbasis d97c39d03f59a2dbc34930f14e3cb74ebeb2e118.
-  Manifest-SHA256: 419ac8e075d582fc099fa7def7610fa7fb48e254be7684ec63f03bf13abff4bb.
-
-Diese Basen werden nicht auf M umgedeutet. Die getrennte, durch ADR-032 ausdrücklich erlaubte Branchschichtung ist kein nachträgliches Erweitern des WP-026-Manifests. WP-026 bis d97 umfasst 590 erlaubte Pfade; WP-028 von d97 bis H fünf erlaubte Pfade; deren Vereinigung umfasst 594 Pfade. Gemeinsamer Erst-Add, Parent, historischer Manifestlink, unveränderte Manifestbytes, tatsächliche Pfadmengen und Whitespace wurden selbst geprüft. WP-028 verändert den Content nicht; unity.yml bleibt gegenüber der ursprünglichen Basis unverändert. validate.yml ändert im Kindpaket ausschließlich STP_SCOPE_MANIFEST.
-
-Zu Beginn und am Abschluss wurden PR-Head, Remote-main und Merge-Base abgeglichen. Das PR-Metadatenfeld base_sha lieferte c9516bd; es wurde ausdrücklich nicht als aktuelles main verwendet. git ls-remote bestätigte M, Branchhead und refs/pull/21/head bestätigten H. Die abschließende maschinenlesbare Abfrage mit UTC-Zeit steht in final-state.txt/final-api.json. PR #21 ist weiterhin open, draft, nicht gemergt und mergeable=false. PR #25 ist korrekt ausschließlich in den WP-026-Zweig gemergt. Bei den Chatbestandsabfragen war keine weitere aktive WP-026-Gesamtabnahme sichtbar; die Autor-/WP-028-Chats waren idle. Es wurde keine Doppelbeauftragung gestartet.
-
-Verbindliche Lesereihenfolge wurde eingehalten: AGENTS, Übergabe 15, Konzeptindex 00, Master 09, CURRENT_STATE und vollständiges WP-026 einschließlich Auftragskorrektur und Nachbesserungen, anschließend WP-028 und einschlägige Fachquellen. Ergänzend gelesen: Konzept 03/04/14, WP-027 auf M, ADR-007/021/030/031/032, CONTENT_PIPELINE, LEVEL_DATA_FORMAT, relevante SOLVER_ARCHITECTURE-, CONTENT_CATALOGS-, TEST_STRATEGY- und BUILD_AND_RELEASE-Verträge, DoD, AI_HANDOVER_RULES, WORK_PACKAGE_RULES, Queue, Validator-README, tatsächliche Schema-/Prüf-/Authoringquellen und aktuelle Übergaben.
-
-Wesentliche Quellen, jeweils commitgebunden:
-- H/WORK_PACKAGES/WP-026_Season-1-Logischer-Raetselbestand.md: Scope 2–7, AK-01–08, Tests 1–7, DoD und Auftragskorrektur.
-- M/WORK_PACKAGES/WP-027_Season-1-Quellenklarstellung-und-CI-Leistungsweg.md.
-- M/Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md, insbesondere §§4.1 und 8.1.
-- M/DECISIONS/ADR-032-season1-ci-korpus-leistungsnachweis.md.
-- M/PROJECT_CONTROL/WP-028_EXECUTION_BRIEF.md, insbesondere Scope, Verbote und DoD.
-- H/ARCHITECTURE/CONTENT_PIPELINE.md §§3.2/3.3; SOLVER_ARCHITECTURE §§5–7/10/13; TEST_STRATEGY §§5/10–13.
-- H/PROJECT_CONTROL/DEFINITION_OF_DONE.md und AI_HANDOVER_RULES.md.
-
-Commitlinks lassen sich mit https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/blob/<vollständiger SHA>/<Pfad> auflösen. Die maßgeblichen Quellen sind zusätzlich im Evidence-Archiv unter sources/ mit ihren exakten Gitbytes enthalten.
-
-Aktuelle Vorberichte wurden gelesen und als standgebundene Evidenz behandelt:
-- PR21 technische Nachprüfung d97: issuecomment-6158956999.
-- PR21 fachliche Nachprüfung d97: issuecomment-6159083126.
-- PR21 vollständiger CI-Nachtrag d97: issuecomment-6159555477.
-- PR21 abschließende Übergabe: issuecomment-6159566672.
-- PR25 Astra: issuecomment-6177968383; Sol: issuecomment-6178408515.
-- PR25 Integration/Folgenachweis: issuecomment-6179033852, anschließend 6179047023.
-Vollständige abgerufene Kommentartexte sind in pr21-comments.json/pr25-comments.json gesichert. Kein früheres Teil-PASS wurde als neue Gesamtspezifikation oder pauschaler Gesamt-PASS übernommen.
-
-3. Eigene technische Gegenprüfungen
-
-Prüfbereich: isolierter git-archive-Export von H unter wp026-audit/delivery. Originalrepository ausschließlich lesend. Die Produktionsregeneration sowie Metadatentransportproben durften nur diesen Export verändern. Gelesene frühere unabhängige Prüferprogramme wurden in den externen Prüfbereich kopiert, am aktuellen vollständigen Bestand tatsächlich neu ausgeführt und durch neue History-, CI-, Referenz-, Bindungs- und Gegenproben ergänzt. Alte Konsolenausgaben wurden nicht wieder als neue Ausführung ausgegeben.
-
-Ergebnisse:
-- Schema/Identität: 240 Level und 240 passende Proofverzeichnisse, keine fehlenden/zusätzlichen IDs; 5×4×12 und Bible-Rasterwechsel, echter Draft-2020-12-Schemacheck, sechs Formen, Ports, einfacher Pfad, neu gezählte Zeilen/Spalten und Hashbindungen: 0 Befunde.
-- Unabhängiger C++-Pfadzähler aus gelesenem Quellcode frisch kompiliert, Lösungslimit 3: 240/240 genau eine Lösung. Jede vollständige Koordinatenfolge wurde anschließend gegen die gelieferte A→B-Lösung verglichen.
-- Unabhängige Constraint-Propagation: alle 240 vollständig gelöst, ohne Suche, exakt dieselbe Lösung.
-- Produktionsprüfung mit unveränderten getrennten reinen Assemblies, .NET SDK 10.0.401: Build ohne Fehler/Warnungen; je Level drei frische Proofregenerationen bytegleich; Strict-One 240/240; Strict-Batch und Reverse-Batch bestanden.
-- Produktionsmetamorphosen: 3.840 D4-/A-B-Varianten; 1.440 Counts-/Endpoint-/Form-/Hash-/Metrik-/Artefaktmutationen erwartungsgemäß abgewiesen.
-- Rootaudit: 240 Spuren / 23.164 Schritte, 0 Befunde bei Hashbindung, Index-/Prämissenfolge, Tiefe, Deduplizierung, Domänenfolge und Sicherheit gegen die unabhängig bestätigte Lösung. 20 frisch erzeugte Rootdateien entsprechen den gelieferten Dateien; technische Evidenz entspricht nach Ausnehmen der Messzeitfelder der Lieferung.
-- Alle 240 Proofs: UNIQUE/1, searchNodes=0, requiredGuessDepth=0; vier tatsächliche Produktionsmetriken. Keine Suchzweigmetriken als Rootwerte ausgegeben.
-- Frischer Node-JCS-Abgleich: 1.200 Projektionen/Artefakte/Dokumente, 0 Abweichungen. Verwendet wurden die tatsächlichen neuen 240 Quellen und Proofs.
-- Vollständige unabhängige D4-Rechnung: 3.183 dimensionkompatible Paare und 240 nächste Nachbarn stimmen mit dem Bericht; keine exakte öffentliche Kopie unter Rotation, Spiegelung oder A/B-Tausch. Vier countnahe und 15 maskennahe Paare in den vorhandenen deskriptiven Sichten; keine neue Qualitätsquote daraus.
-- Alle 240 Literale, Einstiege, Fokus-/Qualitätswerte, Lösungsgitter und Bindungen gegen JSON, Level und gerenderte Einzelberichte geprüft; 20 Routenliterale stimmen mit JSON und Routen-MD überein.
-- Autorenquellhash: 4d07f7c585c6c4ee94431807bae549b96e42769e0a2382321d6f4d8089d88c34.
-- Aktuellen tatsächlichen Transport zweimal im Export ausgeführt: 240 Quellen byteidentisch und Revisionen erhalten. Stale Publicinput im letzten sortierten Level wird vor jedem Schreibaufruf abgewiesen; Scratchmutation anschließend zurückgesetzt.
-- Gegenüber ursprünglichem Prüfstand 3c9b7d0: 15 tatsächliche logische Änderungen; 225 öffentliche Inputs und zugehörige Proofbytes erhalten. Gegen d97 keine Contentänderung durch WP-028.
-- 19 vorhandene historische Kandidatenpools samt Hash/Länge, 240 aktuelle Kandidatenmatches und 15 Alt-/Neu-Zuordnungen neu gegengeprüft. Das belegt Zuordnung, nicht nachträglich unbekannte Auswahlseeds oder die ursprüngliche kognitive Autorleistung.
-- 1.440 Referenzeinträge gegen die tatsächlichen sechs Felder aller 240 Quellen abgeglichen, keine doppelten ID/Pointer-Paare oder Fallbacks. 960 Localization-Ziele und 480 Completion/World-Ziele bleiben unaufgelöst.
-
-Methodische Grenzen:
-Die ergänzenden eigenen Läufe verwendeten Windows-Python 3.12.14 bzw. WSL-Python 3.14.4 mit jsonschema 4.19.2, Node 22.20.0 und .NET 10.0.401. Das sind keine als kanonisch ausgegebenen lokalen Python-3.11-Governanceläufe. Der vorgeschriebene gepinnte Governanceweg ist durch die tatsächlich geprüfte CI mit Python 3.11.13/Node 22.20.0 belegt. Die eigene geschichtete vollständige Pfad-/Manifestprüfung ergänzt den aktuellen CI-Scope, der nur das WP-028-Delta ab d97 abdeckt.
-
-Der .NET-Zusatzharness ersetzt weder Unity noch den CI-Referenzbenchmark. Sein gesamter Prüflauf dauerte 6.203 ms; diese lokale Zahl erteilt keine Leistungsfreigabe. Rootaudit und unabhängige Lösungskontrolle sind keine zusätzliche erschöpfende Minimalitätsperturbation jedes Spurschritts über alle denkbaren Fremdpuzzles. Die tatsächlichen vorhandenen Tracer-/Auditorregressionen liefen in der aktuellen CI.
-
-Anfängliche eigene Hilfsfehler (Sandbox-Restore/WSL, fehlendes jsonschema im Windows-Python, Standardencoding einer kopierten Prüfhilfe, falsches Arbeitsverzeichnis einer Gitabfrage) wurden isoliert korrigiert. Sie sind weder Produktfehler noch bestandene Prüfungen. Insbesondere wurde eine zunächst angenommene Rawfingerprint-Gleichheit des CRLF-Exports mit Linux verworfen und anschließend korrekt direkt aus Gitblobs geprüft.
-
-4. Tatsächliche aktuelle CI und Artefakte
-
-Aktuelle CI auf H:
-Architecture: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38637012841
-Unity: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38637012837
-
-Alle elf gemeldeten Checks completed/success; keine offenen Checks. Die zehn Unityjobs umfassen Umgebungs-/Konfigurations-/Preflight-/Evidencegates, EditMode, PlayMode, Android und iOS. Fünf entscheidende vollständige Joblogs wurden selbst abgerufen und gesichert; Hilfsgates wurden anhand tatsächlicher Job-/Schrittmetadaten geprüft.
-
-- Architecture Job 116102625902: 17 Architecture-only- und 18 Production-Scope-Gruppen mit Self-/Negativtests bestanden; tatsächlicher Scope WP-028, base=d97, head=H, worktreeDirty=false. Keine Behauptung, dieser einzelne Scopeaufruf prüfe rückwirkend allein die 590 WP-026-Pfade.
-- EditMode Job 116102758801: tatsächliches NUnit-XML 455/455 Passed; failed/skipped/inconclusive=0; Dauer 286,9419534 s.
-- PlayMode Job 116106383299: tatsächliches NUnit-XML 27/27 Passed; keine übersprungenen Fälle.
-- Android Job 116107815924: Development-IL2CPP-Build erfolgreich. Tatsächlich heruntergeladenes APK 40.066.242 Bytes, SHA256 3d8e55b87f1ed4d651515cd0859814dd425009d238bd44dc1b1e3ba7e71b15f5; AndroidManifest.xml und lib/arm64-v8a/libil2cpp.so im APK vorhanden.
-- iOS Job 116111918869: tatsächlicher Unity-Export und Xcode BUILD SUCCEEDED. Unsignierter generischer iOS-Kompilierungsnachweis, kein IPA-/Store-/Gerätebeleg. Kein iOS-ZIP erfunden.
-- Echte Coverage: EditMode 9.979/10.615 Sequence Points besucht (94,01 %), PlayMode 420/10.615 (3,96 %). Die separaten Null-Coverage-Ausgangsdateien sind nicht als alleinige Ergebnisse interpretiert. Keine erfundene Coverage-Schwelle.
-- iOS-Checkannotationen: zwei bestehende cache/save-always-Abkündigungswarnungen und ein macOS-arm64-Kapazitätshinweis. Keine fehlgeschlagene Pflichtprüfung; kein WP-026-Contentdefekt.
-
-Frisch heruntergeladene ZIPs, gegen GitHub-Digest geprüft:
-EditMode, Artefakt 11928099307:
-c52d5f753f44063db91d07c5fd14086f16580a1e0192e5c03478e04e31fc0808
-PlayMode, Artefakt 11928453877:
-6f256fa784a222696b51e996cab187f42b56bff251ae392e3319225a2cc45ca0
-Android, Artefakt 11929448517:
-d6311fd42aa221ef177dae4688e14003f8b13f088a7e039d414764c4eaac3c06
-
-Original-XML:
-EditMode SHA256 dc26c014ac9b44d0c5e40b2e57426d0eb956871e6e583faaabe5c5d38d940ed3.
-PlayMode SHA256 ddc9509c3008284f0bea3ac55ec834f98239089c77dbcbd64e0a94bc22f9bba4.
-Logs und alle gesicherten Evidenzdateien sind im separaten SHA256-Inventar gebunden.
-
-5. WP-028 / ADR-032 eigenständig nachgeprüft
-
-Code, Messprotokoll und tatsächlicher NUnit-Output wurden selbst geprüft, nicht nur die Rollenberichte von PR25 übernommen.
-
-WP-028-AK-01: PASS. Gemeinsamer historischer Anker, d97-Parent/Base, unveränderte Manifestbytes und korrekte Unter-PR-Richtung.
-AK-02: PASS. Exakte 240er-ID-Menge und kanonische Pfade, kein Fixture-/Scratchfallback, ProofRef-Abgleich, solver-v2 und Format 1.
-AK-03: PASS. Frische unveränderte Strict-Produktionspipeline je Eingang; Ergebnis ist nur ProofGatePassed; Import-/Releaseflags bleiben false.
-AK-04: PASS. Genau S1-05-04-06 bis -12; fünf Warm-ups je Input, 50 Messungen je Input, insgesamt 350. Vollständiges direktes Solve einschließlich Rootspur/Ergebniskonstruktion; jeder Lauf wird auf UNIQUE/1/searchNodes=0/guess=0 geprüft.
-AK-05: PASS. Vier feste Partitionen, MaxDegreeOfParallelism=4, unabhängige Eingaben, ordinale Auswertung, Fehler/Exception/Missing/Warning/Timeout/Indeterminate werden nicht zu Erfolg umgewertet. Gesamtdauer umfasst neue Lese-/Parse-/Validierungsschritte und Auswertung.
-AK-06: PASS. Genau eine maschinenlesbare Ergebniszeile im tatsächlichen Testoutput; Commit, Versionen, Fingerprint, Parameter, 350 Rohsamples, sieben Metriksätze und Umgebung vorhanden.
-AK-07: PASS für H. Aktuelle reguläre Folge-CI und tatsächliche Artefakte gelesen, erlaubtes Delta/Whitespace selbst geprüft.
-AK-08: Erforderliche zwei voneinander getrennte Rollenberichte auf b449ab7 vorhanden, ohne offene BLOCKER/HIGH-Befunde vor Integration; tatsächliche Mergeeltern und gleicher Tree bestätigt. Das ist historische Rollenevidenz des Unterpakets, keine neue parallele Gesamtabnahme durch diese Prüfung.
-
-Eigene Nachrechnung der tatsächlichen 350 Samples:
-- n=350, p95-Index ceil(0,95×350)−1 = 332 (nullbasiert).
-- p95 = 38,2026 ms < 250 ms.
-- Maximum = 72,0952 ms < 2.000 ms.
-- Vollkorpus = 2.586,8097 ms < 60.000 ms.
-- 240/240 Proofgates, failures leer, vier Arbeiter.
-- Unity 6000.3.23f1; Mono 6.13.0; Unix 6.17.0.1022; X64; AMD EPYC 9V74; vier Prozessoren.
-- Tatsächlicher Ubuntu-24.04-Job und gepinnter Container unityci/editor:ubuntu-6000.3.23f1-base-3.2.2, Digest 11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c; Lizenzaktivierung im Log erfolgreich.
-
-CI-Fingerprint:
-6fc307231c43d3f09c60fa3116c8517588a40855c4266e8ec4dd120ed0b6372a
-Selbst aus allen 480 exakten Gitblobs nachgerechnet: ordinale relative Pfade, UTF-8-Pfad und Rohbytes jeweils UInt64-Big-Endian-längengerahmt.
-Windows-/Exportfingerprint:
-29c16b2704125ea1f38dda74e1a9016e631c6f4ae9e19f3161d1009f4ee4b679
-Die Differenz stammt ausschließlich von CRLF in 240 Leveldateien gegenüber LF in Git/Linux; 240 Proofbytes unverändert. Der Rawfingerprint ist absichtlich byteempfindlich. Keine Datenmanipulation oder falsche CI-Korpusbindung daraus.
-
-Ergebnis: CI-PERF-WP026 ist auf H tatsächlich erbracht. Ältere NOT_EXECUTED-Aussagen bleiben historische Evidenz und müssen in der aktuellen Statusübersicht überholt werden.
-
-6. Vollständige fachliche Bestandsbewertung
-
-Alle 240 Einzelabschnitte wurden anhand öffentlicher Counts/Ports, tatsächlicher Lösungsgitter, Einstiegsbegründung und individueller Qualitätsnotiz betrachtet; die Gitter wurden maschinell gegen die kanonischen Pfade gebunden. Alle 20 Routen wurden in den fünf vorgesehenen Gruppen 1–2 / 3–5 / 6–8 / 9–10 / 11–12 gegen die aktuelle Bible beurteilt. Folgende Tabelle fasst die eigene fachliche Bewertung zusammen; sie ist kein menschlicher Spieltest.
-
-01 S1-01-01: 4×4. Klare Null-/Vollanker, danach bewusste Portvariation; die korrigierten 11/12 kombinieren tatsächlich bekannte Anker. WP-027 erlaubt frühere verschiedene Seiten. Hohe frühe Kurvendichte in 01/03 bleibt Spieltestrisiko.
-02 S1-01-02: 4×5. Hohe Counts, optionale Belegungsnotizen und gekreuzte Achsen nachvollziehbar; 09/10 nahe Endpunkte, längerer kurvenreicher Abschluss. Kein Beleg für einen neuen geometrischen Regelzwang.
-03 S1-01-03: 4×5. Angrenzende Kanten in 03–05, Belegung/Formkombination, gegensätzliche Dichteverteilungen; dünner zweiter Abschluss unterscheidet sich vom ersten.
-04 S1-01-04: 4×5. Neuer 08er verbindet tatsächliche Belegungsgebiete; 09/10 gegenüberliegende Ports, Abschlussformen variieren. Keine bloß umbenannte Kopie.
-05 S1-02-01: 5×5. Kontrollierter Größenwechsel, Null-/Vollkreuzungen und mehrere Achsen. Abschlussdichten unterschiedlich; keine dokumentierte Prozentgrenze für „mittlere Dichte“ erfunden.
-06 S1-02-02: 5×5. Dichtere Einführung, ersetzter 06er mit anderem Gebietsbezug; enger 07er als benannter Kontrast. Lange dünnere Verbindungen in 09/10 passen zur Variation.
-07 S1-02-03: 5×5, ab 06 6×5. Mittlere Restzahlen und Folgeausschlüsse; 09/10 bewusster oberer/unterer Dichtevergleich. Dichter Schluss erhöht Formenlast.
-08 S1-02-04: 6×5. Ersetzte 05/07 haben konkrete entfernte Gebiete/Achsenbezüge; hohe Dichte in 09/10 und längere Schlüsse. Viele Kurven sind ein Lesbarkeitsrisiko, kein neuer maschineller Ausschlusswert.
-09 S1-03-01: 6×6. Ports fern von Vollankern, lokale Engpässe wirken auf entfernte Arme; spätere geringere öffentliche Extremwerte, dünne lange Finalketten.
-10 S1-03-02: 6×6. CF-01 korrekt: aktueller Nachbar 02 hat 16 Zellen, Vollrand/Boden und Kopfknick, kein heutiger 19-Zellen-Zwilling. Unterschiedliche Verteilung/Teilraumkopplung und asymmetrische Varianten.
-11 S1-03-03: 6×6, ab 06 7×6. Teilpfade, Wechsel von Belegung/Ausschluss/Form und zwei unterschiedliche dichte/dünne Schlussfelder. Sachliche Ortsangabe bei 03 fehlerhaft (F-01); kein Fehler der Counts/Pfadlogik.
-12 S1-03-04: 7×6. Entfernte abhängige Ketten; 06–08 wenige öffentliche Extreme. Bekannte Armform in 08 besitzt andere Informationslage. Unterschiedliche Anschlussstellen und Schlussgeometrien.
-13 S1-04-01: 7×7. Kontrollierter Übergang, mehrere entfernte Gebiete, hohe Dichtevarianten; direkte Abkürzungen lassen Counts unerfüllt. Fehlende globale Regelcodes widerlegen diese räumliche Kombination nicht.
-14 S1-04-02: 7×7. 03–08 ohne öffentliche Null-/Vollcounts, Kombination von Ports und Restzahlen. CF-02 sachlich behoben: rechte Arme x4/x6 gemeinsam bis y5, linke x0/x2 bis y6. Dichter und dünner Abschluss belasten unterschiedliche Aspekte.
-15 S1-04-03: 7×7, ab 06 8×8. Bekannte Starts; Ausschlüsse, parallele Teilketten und neue Verdichtung in Ersatz 08. Früheres fast gedrehtes Nachbarpaar aufgelöst. Dünne Finalfolgen erfordern menschliche Lastprüfung.
-16 S1-04-04: 8×8. Ersatz 02 unterbricht die Startarmserie; Kopf/Mitte/Boden kombinieren konkrete Restzahlen. 09/10 andere Anschluss- und Kurvenlast; serielle und flächige Finales.
-17 S1-05-01: 8×8. Vorgesehene Extremwertstarts, dann entfernte Bereiche. CF-03 behoben: rechte Arme y5, linke y7, zwei Reihen Differenz. Ähnliche Bandfamilie wird als Rückgriff begründet, nicht als völlig neue Idee ausgegeben.
-18 S1-05-02: 8×8, ab 06 9×9. 03–05 mit Einser-Portzugang und anschließender notwendiger mittlerer Restkoordination entsprechen der WP-027-Klarstellung. Wechsel 05→06 mit technischer Tiefe 24→14 ist kein automatisch bewiesener menschlicher Schwierigkeitsanstieg. Dieser Übergang bleibt Spieltestpunkt.
-19 S1-05-03: 9×9. Ersatz 01 erhält volle Achsenausdehnung ohne Nullzahl; mehrere lange Ketten und wenige direkte Extreme in der Verdichtung. Gleichportige Finales verteilen ihre 22 Zellen unterschiedlich.
-20 S1-05-04: 9×9, ab 06 10×10. Ersatz 02 eigenständige Kopf-/Mittel-/Bodengeometrie; reale tiefe 10×10-Ketten in 06–08; 09/10 verschiedene räumliche Zugänge. Dünne Finales 22/100 und 24/100 mit Roottiefen 42/40 sind erklärbar, aber menschlich unbestätigt.
-
-WP-027 gezielt angewandt:
-R01-FIRST bezeichnet den ersten bewussten didaktischen Schwerpunkt. Frühere verschiedene Portseiten sind kein Verstoß.
-R18-MIDDLE erlaubt lokale elementare Einser-/Portanker, wenn die weitere Lösung mittlere Hinweise kombinieren muss. Konkret:
-- 03: E7 erschöpft rowCounts[7]=1; linke 4/4/4 und rechte 3/4 koordinieren Kopf und Strang.
-- 04: N7 erschöpft columnCounts[7]=1; linke 6/5/3/4 sowie untere 4/4 koordinieren Strang und Doppelknick.
-- 05: W0 erschöpft columnCounts[0]=1; rechte 5/6/7 und mehrere mittlere Zeilenreste bestimmen die unteren/oberen Knicke.
-Zusätzliche isolierte Gegenprobe: Werden sämtliche Nicht-Einsercounts weggelassen, bleiben im unabhängigen Propagator 40/32/40 Zellen mehrdeutig; mit vollständigen Counts jeweils null. Das unterstützt die Trennung von einfachem Einstieg und weiterer Kombination. Es ist weder ein menschlicher Test noch allein ein formaler Beweis, dass jede einzelne mittlere Zahl notwendig wäre.
-
-Nichtredundanz:
-Die 15 verbleibenden nahen Paare wurden samt PAIR_ADJUDICATION gelesen und mit den aktuellen Feldern verglichen. Beispielsweise R14/02–R15/02 ist bewusst nahe Wiederaktivierung mit verändertem Rücklauf; die späteren Positions-2-Ersatzfelder unterbrechen die Serie. R18/09–10 vergleicht verschiedene Null-/Vollanker und Portachsen in derselben geometrischen Familie. Keine exakte öffentliche D4-/A-B-Kopie; verbleibende Wiedererkennbarkeit ist ausdrücklich benannt. Eine subjektive Monotoniefreigabe folgt daraus nicht.
-
-Keine zusätzlichen Regeln erfunden: keine 70%-Mindestfläche, keine Einserquote, keine neue Dichte-/Tiefen-/Ähnlichkeitsschwelle, keine Pflicht zum Auftreten von LOOP_PREVENTION/CONNECTIVITY in jeder Route. Die 23.164 Produktionsschritte verwenden sechs lokale Regelcodes; entfernte Countkopplung kann trotzdem fachlich real sein. Technische Tiefe ist weder menschliche Schwierigkeit noch Spielerzeit.
-
-7. Befunde und getrennte offene Voraussetzungen
-
-F-01 – Niedrig/P3, neue begrenzte Vertragsabweichung: sachlich falsche räumliche Qualitätsbegründung.
-Quelle: H/Content/Levels/s1/03/03/S1-03-03-03.level-v2.json:51; H/Content/Reviews/season-1/leveldesign-S1-03-03.md:68; identisch gebundenes Autorenliteral/-JSON.
-Wortlaut: „Die Nullspalte links und der Fünfercount daneben …“
-Reproduktion: columnCounts=[0,2,3,6,5,3]. Linke Nullspalte ist x0; unmittelbar daneben x1 mit Count 2. Count 5 liegt x4, rechts der vollen Spalte x3. Die behauptete Nachbarschaft zur Nullspalte stimmt nicht.
-Maßstab: WP-026 Scope 5/AK-06 verlangt sachliche individuelle Qualitätsnotizen; CONTENT_PIPELINE §§3.2/3.3 fordert explizite belastbare Autorenentscheidungen.
-Auswirkung: Ein Teil der individuellen geometrischen Begründung ist unzutreffend. Kein falsches Puzzle, kein fehlerhafter Proof, keine notwendige Neuerzeugung des 240er-Korpus. Verhindert vorbehaltloses PASS der sachlichen Dokumentationskomponente von AK-06. Enger späterer Korrekturbedarf: präzise Ortsbegründung und alle daran gebundenen Metadaten/Revision-/Dokumenthashnachweise; tatsächlicher neuer Stand müsste gezielt nachgeprüft werden. Hier nicht repariert. Kein BLOCKER/HIGH an der Puzzlelogik daraus.
-
-O-01 – Menschlicher Spieltest: NOT_EXECUTED, verbindliche offene Qualitätsvoraussetzung.
-Quellen: WP-026 Scope 5/Tests 6/DoD, Bible Qualitätsmaßstab, CONTENT_PIPELINE, M/WP-028_EXECUTION_BRIEF DoD.
-Verhindert menschliche Fairness-/Lesbarkeits-/Dramaturgieabnahme und Gesamtabschluss. KI-Einzelprüfung, Solvermetriken und diese Gegenprobe ersetzen ihn nicht.
-Konkrete Risikofelder: frühe dichte Kurven R1/01/03, R2/12; wiederkehrende lange Arme; R18/03–06; dünne späte Finales insbesondere R20/11–12. Dies sind Prüfempfehlungen innerhalb des bestehenden Spieltestbedarfs, keine neue verpflichtende numerische Testquote oder Ersatzplanung.
-
-O-02 – Historischer Unity-Timeout: eigenständiger offener technischer Befund.
-Originalstand 96697ab, Pushrun 38490243240, HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind: 180.000-ms-Timeout, tatsächliche Falldauer 197,533248 s; 453/454 Passed.
-Das in der Repositoryevidenz archivierte Original-XML wurde selbst dekomprimiert, gehasht und geparst (SHA256 8ef8f9bf3baae10555a238d132a79b0289f2173149a5a9939d94c7390fd82bf1). Dieser alte Lauf wurde nicht als heutiger Lauf dargestellt und nicht neu remote heruntergeladen.
-Auf H besteht derselbe Test mit 104,169501 s. Das widerlegt nicht den alten FAIL und erklärt seine Ursache nicht.
-Quellen: TEST_STRATEGY §13; ADR-032 Ausführungsgrenze; WP-028-Brief ausdrückliches Änderungs-/Retry-/Quarantäneverbot.
-Verhindert Schließung des bekannten Zuverlässigkeitsbefunds und uneingeschränkte technische Gesamtfreigabe/Integration. Kein aktueller CI-FAIL und kein Season-1-Benchmarkfehler. Erfordert eigenen passenden Untersuchungsauftrag; keine stillschweigende Timeout-/Budgeterhöhung oder Quarantäne.
-
-O-03 – Aktuelle Statusnachführung ausstehend, kein wiedereröffneter Quellenblocker.
-Beispiele: H/WP-026:7, CURRENT_STATE:49–52, REVIEW_RESOLUTION:82/113–114 und PR21-Beschreibung führen die beiden Entscheidungen/CI-PERF weiterhin offen oder NOT_EXECUTED; PR21 beschreibt d97/590 Dateien, tatsächlich H/594.
-M sowie PR25 enthalten die späteren Entscheidungen und tatsächlichen Nachweise. Historische Berichte waren zum damaligen Stand korrekt und dürfen nicht rückwirkend umgeschrieben werden.
-Verhindert eine widerspruchsfreie aktuelle repositorybasierte Übergabe und die DoD-Punkte Dokumentation/CURRENT_STATE. Verhindert nicht die jetzige technische oder fachliche Prüfung, weil die maßgeblichen Quellen explizit vorgegeben und verifiziert sind.
-WP-028 durfte globale Steuerungsdateien gemäß abschließender Fünf-Dateien-Allowlist nicht selbst ändern; deshalb keine unzulässige nachträgliche Schuldzuweisung an WP-028. Nötig ist autorisierte mechanische aktuelle Statusfortschreibung mit historischen Berichten unverändert. Diese Prüfung ändert sie auftragsgemäß nicht.
-
-O-04 – Main-Konflikte, konkrete Integrationssperre.
-Rein lesendes git merge-tree mit B=c951, M=d90, H=b145 bestätigt Textkonflikte in:
-.github/workflows/validate.yml
-PROJECT_CONTROL/CURRENT_STATE.md
-PROJECT_CONTROL/WORK_QUEUE.md
-GitHub bestätigt mergeable=false.
-Verhindert direkte Integration von PR21 in aktuelles main. Die jetzige grüne Push-CI auf H ist kein Test eines konfliktaufgelösten kombinierten Integrationsstands mit WP-027. Eine spätere autorisierte Konfliktauflösung muss beide Quellenstände erhalten; neuer Head erfordert passende neue Checks/Standbindung. Hier weder Konfliktlösung noch ein ungetesteter virtueller Gesamt-PASS.
-
-O-05 – 1.440 fehlende Referenzziele / Cross-Reference-FAIL.
-960 Localization: titleKey, statusKey, entryDeductionKey, resultTextKey; 480 Completion/World: mapSegmentId, trainMomentId. Je Feld alle 240 IDs; exakte Liste in unresolved-references.json, neu abgeglichen.
-Verhindert Cross-Reference-Gate, Contentfertigstellung, vollständigen Import und folgende Produkt-/Releasefreigaben.
-Verhindert gemäß ausdrücklich korrigiertem WP-026-Auftrag nicht technische Draft-Authoringquellen, Proofgenerierung oder unabhängige Prüfung des logischen Bestands. Kein generelles Verbot technischer Entwurfsreferenzen wieder eingeführt.
-
-O-06 – Zeitklasse/Kalibrierung.
-Alle Quellen weiter UNCALIBRATED, starThresholdsSeconds=null. Keine bestätigte vorläufige menschliche Zeitklassenzuordnung; keine finalen Sekunden.
-Verhindert fertige Zeit-/Sternkalibrierung und entsprechende Content-/Produktfreigabe. Kein Fehler der Schemalesbarkeit oder Solverbudgets; keine Erlaubnis, Werte aus Laufzeiten oder Rastergröße zu erfinden.
-
-O-07 – Nachgelagerte Gates.
-Kreative Miniatur-/Präsentationsnachweise, deutsche Zieltexte/Pseudolocale, zwei saubere Importe mit gleichem Kataloghash, Addressables, Asset-/Lizenz-/Größenprüfungen am vollständigen Content, Produktfreigabe und Release-Lock: REQUIRED_LATER/NOT_EXECUTED, soweit fehlende Zielinhalte bzw. expliziter Kreativ-/Importausschluss die Durchführung verhindern.
-Physische Android-/iOS-Geräte-, Privacy-, Signing-, Store- und Releasefreigaben ebenfalls nicht durch aktuelle Buildjobs erfüllt.
-Diese Punkte verhindern jeweils die bezeichnete Content-/Import-/Releasephase. Sie werden nicht pauschal zu nachträglichen Startverboten für die erlaubte logische Teillieferung umgedeutet. Auch wird keine Ausnahme von der Gesamt-DoD angenommen: vollständiger Paket-/Seasonabschluss bleibt offen. Der WP-028-Brief hält diese Voraussetzungen vor einer späteren Main-Integration ausdrücklich sichtbar; dieser Bericht erteilt keine abweichende Mergefreigabe.
-
-Empfehlungen, keine neuen Vertragsverletzungen:
-- Verbleibende Armfamilien und die genannten Übergänge im realen Spieltest gezielt beobachten; keinen numerischen Schwierigkeitsgrenzwert nachträglich setzen.
-- Bestehende CI-Cache-Abkündigungswarnungen in einem dafür autorisierten Wartungsscope behandeln.
-- Historische fehlende Auswahlseeds/Toolvarianten weiterhin ehrlich kennzeichnen; kein rückwirkendes Endless-Seedgate für diesen Kampagnenbestand.
-
-8. WP-026-Akzeptanzkriterien, einzeln
-
-AK-01 – Technischer Scope-/Ankerteil PASS; aktuelle Übergabestatusführung noch offen.
-Beide erlaubten Paketschichten getrennt nachgewiesen, Manifestbytes unverändert, keine unzulässige Korpuserweiterung durch WP-028. Aktuelle CI-Zuordnung ist WP-028; 590+5-Pfadprüfung ergänzt sie. Stale Gesamtstatus und Main-Konflikte sind eigene Punkte O-03/O-04, kein Anlass zum Umschreiben historischer Manifestbasen.
-
-AK-02 – PASS für vorhandenen logischen Bestand und quellenbezogene fachliche Prüfung.
-240/240, 5×4×12, alle erlaubten Raster-/Gruppenwechsel, kein exaktes D4-/A-B-Duplikat. Alle 20 Lernbögen unter WP-027 bewertet. Menschliche Wirkung bleibt O-01; der isolierte Notizfehler F-01 gehört AK-06.
-
-AK-03 – PASS.
-Alle 240 gegen echte Schemas, Produktionsloader/Domain und unabhängige Geometrie-/Countprüfung. Sechs Formen, einfacher verbundener A→B-Pfad, keine Zyklen/Kreuzung/Extrazellen.
-
-AK-04 – PASS.
-240 aktuelle solver-v2-Proofs UNIQUE/1, tatsächliche vier Metriken, Guessdepth/SearchNodes 0, richtige Public-/Solution-/Proof-/Refbindung. Vollständige Rootspuren und Metrikrekonstruktion geprüft.
-
-AK-05 – PASS.
-Frische dreifache Regeneration je Quelle, bytegleiche Proofs, Strict-Einzel-/Batch-/Reverseprüfung, 1.200 neue Node-JCS-Abgleiche. Keine bloße Übernahme alter Goldens.
-
-AK-06 – TEILWEISE ERFÜLLT, kein vorbehaltloses PASS.
-240 substanzielle Einstiege/Notizen und 20 Routenurteile, volle Ähnlichkeitssicht und individuelle Paarentscheidungen vorhanden und eigenständig bewertet. F-01 ist eine begrenzte sachliche Abweichung. Menschlicher Spieltest wird korrekt getrennt, bleibt tatsächlich offen; diese KI-Contentprüfung wird nicht als solcher ausgegeben.
-
-AK-07 – PASS für transparente Offenlegung der fremden Content-/Import-/Releasegrenzen.
-Alle betroffenen IDs/Felder/Zuständigkeiten konkret nachgewiesen; fehlende Referenzen, Zeitwerte und Folgegates nicht verdeckt. Aktuelle überholte Entscheidungs-/CI-Statusaussagen separat O-03 nachzuführen.
-
-AK-08 – Neue unabhängige Prüfung und aktuelle technische/CI-Evidenz jetzt auf H belegt; Gesamtabschluss weiterhin NEIN.
-Dieser Bericht samt Originalartefakten ist außerhalb des Repositorys persistiert und unverändert weitergebbar. Repository-/PR-Nachführung erfolgt hier wegen ausdrücklichem Schreibverbot nicht. Alte d97-/b449-Berichte bleiben an ihren Stand gebunden. Offene Voraussetzungen werden nicht als erledigt erklärt.
-
-9. Gesamt-DoD und Integrationsbereitschaft
-
-DoD-Bedingung / Ergebnis:
-- Implementierung vollständig: logischer und WP-028-technischer Umfang vorhanden; F-01 begrenzte Notiznachbesserung, offene fremde Teilvoraussetzungen ausdrücklich sichtbar.
-- Vorgeschriebene Tests vorhanden: technische Nachweise vorhanden; menschliche und spätere Content-/Importnachweise noch nicht erbracht, keine vorab genehmigte pauschale Nichtanwendbarkeit angenommen.
-- Tests erfolgreich: heutige technische Prüfungen/CI PASS; historischer Zuverlässigkeitsbefund O-02 ungelöst, O-01/O-07 nicht ausgeführt.
-- Projekt baut: PASS für aktuellen Development-Android-IL2CPP und iOS-Export/Compile; keine Storebehauptung.
-- Alle AK erfüllt: NEIN, insbesondere AK-06 und Abschluss-/Nachführungskomponenten.
-- Dokumentation aktuell: NEIN, O-03 und F-01.
-- CURRENT_STATE aktuell: NEIN, O-03.
-- Keine undokumentierte Architekturänderung: PASS im geprüften Lieferumfang; WP-028 ist durch angenommenen ADR-032 auf M legitimiert.
-
-Integrationsbereitschaft: NEIN.
-Unmittelbare technische Mergebarriere sind die drei Konflikte. Selbst eine konfliktfreie Kombination würde O-01/O-02, den begrenzten Sachbefund und die erforderliche Status-/Abnahmebindung nicht automatisch erledigen. Die aktuelle grüne CI belegt H, keinen noch nicht existierenden neuen Integrationshead. Cross-Reference-/Zeit-/Import-/Produkt-/Releasegates haben die oben einzeln bezeichnete Reichweite; sie dürfen weder als Proofdefekte noch als bereits erfüllt behandelt werden.
-
-Nächste sachlich begründete Schritte innerhalb jeweils ausdrücklich autorisierter Folgearbeit:
-1. F-01 eng korrigieren und betroffene Bindungs-/Revisionsnachweise erneuern; keine komplette neue Rätselgeneration erforderlich.
-2. Aktuellen Status mechanisch um WP-027-Entscheidungen, erfülltes CI-PERF und diese Abnahme ergänzen; historische Reports unverändert lassen.
-3. Menschliche Spieltestvoraussetzung und historischen Timeoutbefund im jeweils zuständigen Auftrag tatsächlich bearbeiten.
-4. Main-Konflikte nur in autorisiertem Integrationsschritt lösen; den dann neuen gemeinsamen Stand erneut passend prüfen.
-5. Fehlende Zielinhalte/Zeitklassen und jeweils fällige Folgegates durch die dokumentierten Verantwortlichkeiten erfüllen.
-Dies sind aus bestehenden Anforderungen abgeleitete Übergabepunkte, keine Änderung von Manus’ Planung oder Beauftragung ihrer Umsetzung.
-
-10. Belegkategorien und Reproduktion
-
-LOCAL_DOCUMENT_STRUCTURE: eigene Bestands-/ID-/Bindungs-/Statusprüfung; gepinnte CI-Inventar-/Link-/Governancegruppen PASS. Aktuelle Statuslücken ausdrücklich nicht verschwiegen.
-LOCAL_ARCHITECTURE_SEMANTICS: eigene Schema-/Geometrie-/Hash-/Solver-/Mutationsprüfungen und tatsächliche CI-Vertragsregressionen PASS im angegebenen Umfang.
-LOCAL_SCOPE: eigene geschichtete vollständige Diff-/Anker-/Manifestprüfung PASS; aktueller kanonischer CI-WP-028-Scope PASS.
-MANUAL_ARCHITECTURE_REVIEW: Quellenhierarchie, Produktgrenzen, Autorwerkzeuggrenzen, Lernbogen- und Integrationsbewertung tatsächlich manuell geprüft; kein automatischer PASS für menschliche Wirkung.
-CONTRACT_ONLY: vorhandene normative Folgegate-Verträge sind keine ausgeführten Content-/Geräte-/Storefreigaben.
-REQUIRED_LATER/NOT_EXECUTED: Spieltest und konkret benannte Content-/Import-/Geräte-/Storegates.
-BLOCKED/offen: F-01-Nachbesserung, aktueller Übergabestatus, Main-Konflikte, Timeoutursache und fehlende externe Zielquellen gemäß Reichweite oben; R01-FIRST/R18-MIDDLE und CI-PERF sind nicht mehr als offene Sachentscheidungen/fehlender Lauf zu führen.
-
-Eigene reproduzierbare Hauptaufrufe (immer isoliert; Variablen A=Auditverzeichnis, D=A/delivery):
-- git archive H, anschließend Extraktion nach D.
-- Python -B D/tools/season1-authoring/run_authoring.py verify (unveränderte Produktionsquellen im Export).
-- WSL: python3 -B A/verifiers/v1_structure.py D A/dims.json.
-- WSL: python3 -B A/verifiers/v3_propagate.py D.
-- g++ -O3 -std=c++17 A/verifiers/count.cpp -o A/verifiers/count-new; make_in.py D; count-new 3 < counter-input.txt.
-- Python -B A/verifiers/v4_traces.py D.
-- Node22 im PATH: python3 -B A/verifiers/v2_nodejcs.py D A/node.
-- Python -B A/audit_history.py: Anker/Diffs/Manifest-/Pfadprüfung, Pfadzählergleichheit, frischer Root-/Evidenzvergleich, tatsächliche Wiederholung gelesener unabhängiger Voll-/Ähnlichkeitsprüfer.
-- Python -B A/audit_extra.py: Referenzinventar, Autorenquellhash, echter zweimaliger Transport, Negativprobe, Route-18-Ablation.
-- Python -B A/inspect_ci.py: echte Original-XML-/Coverage-/Sample-/Fingerprintprüfung.
-- Python -B A/audit_persistence.py: Routenbindung, archiviertes historisches Original-XML und Quellensnapshots.
-- git merge-tree B M H: nur lesende Konfliktdiagnose, keine Index-/Working-Tree-Änderung.
-Die Hilfen enthalten absolute Pfade dieser Sitzung; bei Weiterverwendung ausschließlich deren Audit-/Repositorypfade anpassen. Frühere Prüferquellen sind ausdrücklich als solche gekennzeichnet; nur die hier tatsächlich ausgeführten Programme tragen zu den neuen Ergebnissen bei.
-
-Dateien im Evidence-Archiv:
-Original-CI-ZIPs und vollständige entscheidende Logs; ci-analysis.json und performance-original.json; history-analysis.json; extra-analysis.json; historisches XML-Auswertungsergebnis; Struktur-/Propagation-/Counter-/Trace-/Node-/Produktionsausgaben; frische technische Produktionsausgabe; neue und erneut ausgeführte gelesene Prüferquellen; Kommentartexte; maßgebliche Quellenblobs; finale Standabfragen; SHA256-Inventar. Temporäre Download-URLs, SDK-Caches und der große Arbeitsbaumexport sind nicht Bestandteil des weiterzugebenden Archivs.
-
-Prüfbericht und Evidenz sind getrennte unveränderbare Übergabeartefakte dieser Sitzung. Eine spätere Korrektur oder Integration erzeugt einen neuen zu prüfenden Stand. Dieses Urteil gilt ausschließlich für H mit dem ausdrücklich benannten maßgeblichen Quellenstand M.
-
+STP_ORIGINAL_REPORT_BASE64_V1
+originalName=WP-026_Gesamtabnahme_b1457ba.txt
+originalSha256=9c0a03fe060e86e69d5041bb3e72e72a55c198029ac3a9990222e16d99e15433
+encoding=base64; decode payload to recover every original UTF-8 byte including final blank line
+base64:
+V1AtMDI2IOKAkyBOZXVlIHVuYWJow6RuZ2lnZSBHZXNhbXRhYm5haG1lIG5hY2ggSW50ZWdyYXRp
+b24gdm9uIFdQLTAyOApSZXBvc2l0b3J5OiBBbDFsMWwxbDFsMS9TdGFtbXN0cmVja2VuLVB1enps
+ZQpQUjogaHR0cHM6Ly9naXRodWIuY29tL0FsMWwxbDFsMWwxL1N0YW1tc3RyZWNrZW4tUHV6emxl
+L3B1bGwvMjEKUHLDvGZ1bmc6IDE0Li8xNS4xMC4yMDI2IChFdXJvcGUvQmVybGluKQpSb2xsZTog
+dW5hYmjDpG5naWdlIHRlY2huaXNjaGUgdW5kIGZhY2hsaWNoZSBLSS1QcsO8ZnVuZzsga2VpbmUg
+QXV0b3ItLCBSZXBhcmF0dXItIG9kZXIgbWVuc2NobGljaGUgU3BpZWx0ZXN0cm9sbGUuCgoxLiBV
+cnRlaWwKCktFSU4gR0VTQU1ULVBBU1MgLyBOSUNIVCBJTlRFR1JBVElPTlNCRVJFSVQuCgpEZXIg
+dm9sbHN0w6RuZGlnZSBsb2dpc2NoZSBCZXN0YW5kIGlzdCB0ZWNobmlzY2ggbmFjaGdld2llc2Vu
+OiAyNDAgZ8O8bHRpZ2UsIGVpbmRldXRpZ2UgdW5kIG9obmUgU3VjaGFubmFobWVuIGzDtnNiYXJl
+IFLDpHRzZWwsIGdlYnVuZGVuZSByZWdlbmVyaWVyYmFyZSBQcm9kdWt0aW9uc3Byb29mcywgbmFj
+aHZvbGx6aWVoYmFyZSBSb290c3B1cmVuIHVuZCBiZXN0YW5kZW5lIGFrdHVlbGxlIENJIGVpbnNj
+aGxpZcOfbGljaCBkZXMgZWNodGVuIFdQLTAyOC1Lb3JwdXNsZWlzdHVuZ3NuYWNod2Vpc2VzLiBE
+aWUgdm9sbHN0w6RuZGlnZSBmYWNobGljaGUgU2ljaHQgYXVmIGFsbGUgMjQwIEZlbGRlciB1bmQg
+MjAgUm91dGVuIGVyZ2lidCB1bnRlciBkZW4gdmVyYmluZGxpY2hlbiBXUC0wMjctS2xhcnN0ZWxs
+dW5nZW4ga2VpbmVuIG5ldWVuIGJlbGVndGVuIEZlaGxlciBkZXIgUHV6emxlbG9naWsgb2RlciBk
+ZXIgdm9yZ2VzY2hyaWViZW5lbiBSYXN0ZXItL0xlcm5ib2dlbmZvbGdlLiBEaWUgYmVpZGVuIGZy
+w7xoZXJlbiBRdWVsbGVuZW50c2NoZWlkdW5nZW4gc2luZCBlbnRzY2hpZWRlbjsgQ0ktUEVSRi1X
+UDAyNiBpc3QgYXVmIGRlbSBnZXByw7xmdGVuIExpZWZlcnN0YW5kIGVyZsO8bGx0LgoKRWluIG5l
+dWVyIGJlZ3Jlbnp0ZXIgU2FjaGZlaGxlciBpbiBlaW5lciBRdWFsaXTDpHRzbm90aXogYmxlaWJ0
+IGplZG9jaCB6dSBiZWFyYmVpdGVuIChGLTAxLCBuaWVkcmlnL1AzKS4gRGVzaGFsYiB3aXJkIEFL
+LTA2IG5pY2h0IHZvcmJlaGFsdGxvcyBhbHMgdm9sbHN0w6RuZGlnIGVyZsO8bGx0IGFiZ2Vub21t
+ZW4uIE1lbnNjaGxpY2hlIEZhaXJuZXNzLCB0YXRzw6RjaGxpY2hlciBTY2h3aWVyaWdrZWl0c3Zl
+cmxhdWYgdW5kIFNwaWVsd2lya3VuZyBzaW5kIHdlaXRlcmhpbiBuaWNodCBkdXJjaCBTcGllbHRl
+c3RzIG5hY2hnZXdpZXNlbi4gRGVyIGhpc3RvcmlzY2hlIFVuaXR5LVRpbWVvdXRiZWZ1bmQgaXN0
+IG5pY2h0IHVyc8OkY2hsaWNoIGVybGVkaWd0LiBIaW56dSBrb21tZW4gdmVyYWx0ZXRlIGFrdHVl
+bGxlIFN0YXR1c2RhcnN0ZWxsdW5nZW4sIGRyZWkgdGF0c8OkY2hsaWNoZSBNYWluLUtvbmZsaWt0
+ZSB1bmQgZGllIGdldHJlbm50ZW4gb2ZmZW5lbiBDb250ZW50LS9JbXBvcnQtL1Byb2R1a3QtL1Jl
+bGVhc2V2b3JhdXNzZXR6dW5nZW4uCgpEaWVzZSBQcsO8ZnVuZyBpc3QgZHVyY2hnZWbDvGhydCB1
+bmQgYWxzIHZvbGxzdMOkbmRpZ2VzIGV4dGVybmVzIEFydGVmYWt0IHBlcnNpc3RpZXJ0LiBEYXMg
+YmVkZXV0ZXQgd2VkZXIgQWJzY2hsdXNzIHZvbiBXUC0wMjYgbm9jaCBGcmVpZ2FiZSBkZXIgU2Vh
+c29uLiBFcyB3dXJkZW4ga2VpbmUgUmVwb3NpdG9yeWRhdGVpZW4sIEJyYW5jaGVzLCBBbmZvcmRl
+cnVuZ2VuLCBQUi1UZXh0ZSBvZGVyIEtvbW1lbnRhcmUgZ2XDpG5kZXJ0LCBrZWluZSBUZXN0cyBp
+biBHaXRIdWIgYXVzZ2Vsw7ZzdCB1bmQga2VpbmUgw4RuZGVydW5nZW4gaW50ZWdyaWVydC4gQWxs
+ZSBlaWdlbmVuIGVyemV1Z2VuZGVuIFByw7xmdW5nZW4gbGllZmVuIGF1w59lcmhhbGIgZGVzIFJl
+cG9zaXRvcnlzIGluIGVpbmVtIGlzb2xpZXJ0ZW4gRXhwb3J0LgoKMi4gU3TDpG5kZSB1bmQgUXVl
+bGxlbmhpZXJhcmNoaWUKCkxpZWZlcnN0YW5kIEg6CmIxNDU3YmE2YTYxODI2ZmUzYjY0YTgzMzIz
+YzI3YTEzZTlkMjMwODAKVHJlZTogMmJjNTBlNmZmZmE5ODdlY2I1NDNiOThkMTAxNDA4NDg0NmQx
+YTZmYQpFbHRlcm46Ci0gZDk3YzM5ZDAzZjU5YTJkYmMzNDkzMGYxNGUzY2I3NGViZWIyZTExOCAo
+V1AtMDI2IHZvciBVbnRlci1QUikKLSBiNDQ5YWI3NjFkY2E5OGFiNmQ3YWYzODdlZmJhODE4ODYx
+MTg0MjhiIChnZXByw7xmdGVyIFdQLTAyOC1IZWFkKQpEZXIgVHJlZSB2b24gYjQ0OWFiNyB1bmQg
+SCBpc3QgaWRlbnRpc2NoOyBkZW5ub2NoIHd1cmRlbiBkaWUgRm9sZ2UtQ0kgdW5kIGlocmUgQ29t
+bWl0YmluZHVuZyBhdWYgSCBzZWxic3QgZ2VwcsO8ZnQuCgpBdXRvcml0YXRpdmVyIFF1ZWxsZW5z
+dGFuZCBNIC8gdGF0c8OkY2hsaWNoZXMgbWFpbjoKZDkwZTc5OGRkOWIyNmQzZjE1MmYzYjBjMmQx
+ZDUyY2FlNjQxZWIxNgpFciBlbnRow6RsdCBXUC0wMjcsIGRpZSBrb3JyaWdpZXJ0ZSBDb250ZW50
+LUJpYmxlLCBBRFItMDMyIHVuZCBQUk9KRUNUX0NPTlRST0wvV1AtMDI4X0VYRUNVVElPTl9CUklF
+Ri5tZC4gRGVyIEF1c2bDvGhydW5nc2JyaWVmIGlzdCBuaWNodCBtaXQgZGVyIGVyc3QgYXVmIGRl
+bSBLaW5kendlaWcgYW5nZWxlZ3RlbiBXT1JLX1BBQ0tBR0VTL1dQLTAyOC1EYXRlaSB6dSB2ZXJ3
+ZWNoc2Vsbi4KCk1lcmdlLUJhc2UgSC9NOgpjOTUxNmJkYmQ1ODU4ZmQ5MDAzZDUyMDdlYzM3ZDE4
+MGNjYzZhZTIzCgpIaXN0b3Jpc2NoZSBTY29wZWFua2VyOgotIFdQLTAyNjogZjkyMzFjNzNlNDVh
+ZGUzMzQ1MGM1NDFlNzdkYmVmZjVkMmVhZTE2MjsgZWluemlnZXIgUGFyZW50IHVuZCBNYW5pZmVz
+dGJhc2lzIGM5NTE2YmRiZDU4NThmZDkwMDNkNTIwN2VjMzdkMTgwY2NjNmFlMjMuCiAgTWFuaWZl
+c3QtU0hBMjU2OiA5ODFjZDM3ZjQ1YzBiYjczMTA2ZDMyMWFkNDUwZmJmOGFkOGUyMTBhNTA4Yjhh
+MTc3ZDI1ODkyMDU4ZWYwMThjLgotIFdQLTAyODogMGQxNzk5NjgxOWVkOGVkMzQ2Y2JkZjFkMjU3
+MzlkZDM3YjQ2YmU5NzsgZWluemlnZXIgUGFyZW50IHVuZCBNYW5pZmVzdGJhc2lzIGQ5N2MzOWQw
+M2Y1OWEyZGJjMzQ5MzBmMTRlM2NiNzRlYmViMmUxMTguCiAgTWFuaWZlc3QtU0hBMjU2OiA0MTlh
+YzhlMDc1ZDU4MmZjMDk5ZmE3ZGVmNzYxMGZhN2ZiNDhlMjU0YmU3Njg0ZWM2M2YwM2JmMTNhYmZm
+NGJiLgoKRGllc2UgQmFzZW4gd2VyZGVuIG5pY2h0IGF1ZiBNIHVtZ2VkZXV0ZXQuIERpZSBnZXRy
+ZW5udGUsIGR1cmNoIEFEUi0wMzIgYXVzZHLDvGNrbGljaCBlcmxhdWJ0ZSBCcmFuY2hzY2hpY2h0
+dW5nIGlzdCBrZWluIG5hY2h0csOkZ2xpY2hlcyBFcndlaXRlcm4gZGVzIFdQLTAyNi1NYW5pZmVz
+dHMuIFdQLTAyNiBiaXMgZDk3IHVtZmFzc3QgNTkwIGVybGF1YnRlIFBmYWRlOyBXUC0wMjggdm9u
+IGQ5NyBiaXMgSCBmw7xuZiBlcmxhdWJ0ZSBQZmFkZTsgZGVyZW4gVmVyZWluaWd1bmcgdW1mYXNz
+dCA1OTQgUGZhZGUuIEdlbWVpbnNhbWVyIEVyc3QtQWRkLCBQYXJlbnQsIGhpc3RvcmlzY2hlciBN
+YW5pZmVzdGxpbmssIHVudmVyw6RuZGVydGUgTWFuaWZlc3RieXRlcywgdGF0c8OkY2hsaWNoZSBQ
+ZmFkbWVuZ2VuIHVuZCBXaGl0ZXNwYWNlIHd1cmRlbiBzZWxic3QgZ2VwcsO8ZnQuIFdQLTAyOCB2
+ZXLDpG5kZXJ0IGRlbiBDb250ZW50IG5pY2h0OyB1bml0eS55bWwgYmxlaWJ0IGdlZ2Vuw7xiZXIg
+ZGVyIHVyc3Byw7xuZ2xpY2hlbiBCYXNpcyB1bnZlcsOkbmRlcnQuIHZhbGlkYXRlLnltbCDDpG5k
+ZXJ0IGltIEtpbmRwYWtldCBhdXNzY2hsaWXDn2xpY2ggU1RQX1NDT1BFX01BTklGRVNULgoKWnUg
+QmVnaW5uIHVuZCBhbSBBYnNjaGx1c3Mgd3VyZGVuIFBSLUhlYWQsIFJlbW90ZS1tYWluIHVuZCBN
+ZXJnZS1CYXNlIGFiZ2VnbGljaGVuLiBEYXMgUFItTWV0YWRhdGVuZmVsZCBiYXNlX3NoYSBsaWVm
+ZXJ0ZSBjOTUxNmJkOyBlcyB3dXJkZSBhdXNkcsO8Y2tsaWNoIG5pY2h0IGFscyBha3R1ZWxsZXMg
+bWFpbiB2ZXJ3ZW5kZXQuIGdpdCBscy1yZW1vdGUgYmVzdMOkdGlndGUgTSwgQnJhbmNoaGVhZCB1
+bmQgcmVmcy9wdWxsLzIxL2hlYWQgYmVzdMOkdGlndGVuIEguIERpZSBhYnNjaGxpZcOfZW5kZSBt
+YXNjaGluZW5sZXNiYXJlIEFiZnJhZ2UgbWl0IFVUQy1aZWl0IHN0ZWh0IGluIGZpbmFsLXN0YXRl
+LnR4dC9maW5hbC1hcGkuanNvbi4gUFIgIzIxIGlzdCB3ZWl0ZXJoaW4gb3BlbiwgZHJhZnQsIG5p
+Y2h0IGdlbWVyZ3QgdW5kIG1lcmdlYWJsZT1mYWxzZS4gUFIgIzI1IGlzdCBrb3JyZWt0IGF1c3Nj
+aGxpZcOfbGljaCBpbiBkZW4gV1AtMDI2LVp3ZWlnIGdlbWVyZ3QuIEJlaSBkZW4gQ2hhdGJlc3Rh
+bmRzYWJmcmFnZW4gd2FyIGtlaW5lIHdlaXRlcmUgYWt0aXZlIFdQLTAyNi1HZXNhbXRhYm5haG1l
+IHNpY2h0YmFyOyBkaWUgQXV0b3ItL1dQLTAyOC1DaGF0cyB3YXJlbiBpZGxlLiBFcyB3dXJkZSBr
+ZWluZSBEb3BwZWxiZWF1ZnRyYWd1bmcgZ2VzdGFydGV0LgoKVmVyYmluZGxpY2hlIExlc2VyZWlo
+ZW5mb2xnZSB3dXJkZSBlaW5nZWhhbHRlbjogQUdFTlRTLCDDnGJlcmdhYmUgMTUsIEtvbnplcHRp
+bmRleCAwMCwgTWFzdGVyIDA5LCBDVVJSRU5UX1NUQVRFIHVuZCB2b2xsc3TDpG5kaWdlcyBXUC0w
+MjYgZWluc2NobGllw59saWNoIEF1ZnRyYWdza29ycmVrdHVyIHVuZCBOYWNoYmVzc2VydW5nZW4s
+IGFuc2NobGllw59lbmQgV1AtMDI4IHVuZCBlaW5zY2hsw6RnaWdlIEZhY2hxdWVsbGVuLiBFcmfD
+pG56ZW5kIGdlbGVzZW46IEtvbnplcHQgMDMvMDQvMTQsIFdQLTAyNyBhdWYgTSwgQURSLTAwNy8w
+MjEvMDMwLzAzMS8wMzIsIENPTlRFTlRfUElQRUxJTkUsIExFVkVMX0RBVEFfRk9STUFULCByZWxl
+dmFudGUgU09MVkVSX0FSQ0hJVEVDVFVSRS0sIENPTlRFTlRfQ0FUQUxPR1MtLCBURVNUX1NUUkFU
+RUdZLSB1bmQgQlVJTERfQU5EX1JFTEVBU0UtVmVydHLDpGdlLCBEb0QsIEFJX0hBTkRPVkVSX1JV
+TEVTLCBXT1JLX1BBQ0tBR0VfUlVMRVMsIFF1ZXVlLCBWYWxpZGF0b3ItUkVBRE1FLCB0YXRzw6Rj
+aGxpY2hlIFNjaGVtYS0vUHLDvGYtL0F1dGhvcmluZ3F1ZWxsZW4gdW5kIGFrdHVlbGxlIMOcYmVy
+Z2FiZW4uCgpXZXNlbnRsaWNoZSBRdWVsbGVuLCBqZXdlaWxzIGNvbW1pdGdlYnVuZGVuOgotIEgv
+V09SS19QQUNLQUdFUy9XUC0wMjZfU2Vhc29uLTEtTG9naXNjaGVyLVJhZXRzZWxiZXN0YW5kLm1k
+OiBTY29wZSAy4oCTNywgQUstMDHigJMwOCwgVGVzdHMgMeKAkzcsIERvRCB1bmQgQXVmdHJhZ3Nr
+b3JyZWt0dXIuCi0gTS9XT1JLX1BBQ0tBR0VTL1dQLTAyN19TZWFzb24tMS1RdWVsbGVua2xhcnN0
+ZWxsdW5nLXVuZC1DSS1MZWlzdHVuZ3N3ZWcubWQuCi0gTS9TdGFtbXN0cmVja2VuX1B1enpsZV9L
+b256ZXB0XzAwLTE1LzE0X1NlYXNvbl8xX0NvbnRlbnRfQmlibGUubWQsIGluc2Jlc29uZGVyZSDC
+p8KnNC4xIHVuZCA4LjEuCi0gTS9ERUNJU0lPTlMvQURSLTAzMi1zZWFzb24xLWNpLWtvcnB1cy1s
+ZWlzdHVuZ3NuYWNod2Vpcy5tZC4KLSBNL1BST0pFQ1RfQ09OVFJPTC9XUC0wMjhfRVhFQ1VUSU9O
+X0JSSUVGLm1kLCBpbnNiZXNvbmRlcmUgU2NvcGUsIFZlcmJvdGUgdW5kIERvRC4KLSBIL0FSQ0hJ
+VEVDVFVSRS9DT05URU5UX1BJUEVMSU5FLm1kIMKnwqczLjIvMy4zOyBTT0xWRVJfQVJDSElURUNU
+VVJFIMKnwqc14oCTNy8xMC8xMzsgVEVTVF9TVFJBVEVHWSDCp8KnNS8xMOKAkzEzLgotIEgvUFJP
+SkVDVF9DT05UUk9ML0RFRklOSVRJT05fT0ZfRE9ORS5tZCB1bmQgQUlfSEFORE9WRVJfUlVMRVMu
+bWQuCgpDb21taXRsaW5rcyBsYXNzZW4gc2ljaCBtaXQgaHR0cHM6Ly9naXRodWIuY29tL0FsMWwx
+bDFsMWwxL1N0YW1tc3RyZWNrZW4tUHV6emxlL2Jsb2IvPHZvbGxzdMOkbmRpZ2VyIFNIQT4vPFBm
+YWQ+IGF1ZmzDtnNlbi4gRGllIG1hw59nZWJsaWNoZW4gUXVlbGxlbiBzaW5kIHp1c8OkdHpsaWNo
+IGltIEV2aWRlbmNlLUFyY2hpdiB1bnRlciBzb3VyY2VzLyBtaXQgaWhyZW4gZXhha3RlbiBHaXRi
+eXRlcyBlbnRoYWx0ZW4uCgpBa3R1ZWxsZSBWb3JiZXJpY2h0ZSB3dXJkZW4gZ2VsZXNlbiB1bmQg
+YWxzIHN0YW5kZ2VidW5kZW5lIEV2aWRlbnogYmVoYW5kZWx0OgotIFBSMjEgdGVjaG5pc2NoZSBO
+YWNocHLDvGZ1bmcgZDk3OiBpc3N1ZWNvbW1lbnQtNjE1ODk1Njk5OS4KLSBQUjIxIGZhY2hsaWNo
+ZSBOYWNocHLDvGZ1bmcgZDk3OiBpc3N1ZWNvbW1lbnQtNjE1OTA4MzEyNi4KLSBQUjIxIHZvbGxz
+dMOkbmRpZ2VyIENJLU5hY2h0cmFnIGQ5NzogaXNzdWVjb21tZW50LTYxNTk1NTU0NzcuCi0gUFIy
+MSBhYnNjaGxpZcOfZW5kZSDDnGJlcmdhYmU6IGlzc3VlY29tbWVudC02MTU5NTY2NjcyLgotIFBS
+MjUgQXN0cmE6IGlzc3VlY29tbWVudC02MTc3OTY4MzgzOyBTb2w6IGlzc3VlY29tbWVudC02MTc4
+NDA4NTE1LgotIFBSMjUgSW50ZWdyYXRpb24vRm9sZ2VuYWNod2VpczogaXNzdWVjb21tZW50LTYx
+NzkwMzM4NTIsIGFuc2NobGllw59lbmQgNjE3OTA0NzAyMy4KVm9sbHN0w6RuZGlnZSBhYmdlcnVm
+ZW5lIEtvbW1lbnRhcnRleHRlIHNpbmQgaW4gcHIyMS1jb21tZW50cy5qc29uL3ByMjUtY29tbWVu
+dHMuanNvbiBnZXNpY2hlcnQuIEtlaW4gZnLDvGhlcmVzIFRlaWwtUEFTUyB3dXJkZSBhbHMgbmV1
+ZSBHZXNhbXRzcGV6aWZpa2F0aW9uIG9kZXIgcGF1c2NoYWxlciBHZXNhbXQtUEFTUyDDvGJlcm5v
+bW1lbi4KCjMuIEVpZ2VuZSB0ZWNobmlzY2hlIEdlZ2VucHLDvGZ1bmdlbgoKUHLDvGZiZXJlaWNo
+OiBpc29saWVydGVyIGdpdC1hcmNoaXZlLUV4cG9ydCB2b24gSCB1bnRlciB3cDAyNi1hdWRpdC9k
+ZWxpdmVyeS4gT3JpZ2luYWxyZXBvc2l0b3J5IGF1c3NjaGxpZcOfbGljaCBsZXNlbmQuIERpZSBQ
+cm9kdWt0aW9uc3JlZ2VuZXJhdGlvbiBzb3dpZSBNZXRhZGF0ZW50cmFuc3BvcnRwcm9iZW4gZHVy
+ZnRlbiBudXIgZGllc2VuIEV4cG9ydCB2ZXLDpG5kZXJuLiBHZWxlc2VuZSBmcsO8aGVyZSB1bmFi
+aMOkbmdpZ2UgUHLDvGZlcnByb2dyYW1tZSB3dXJkZW4gaW4gZGVuIGV4dGVybmVuIFByw7xmYmVy
+ZWljaCBrb3BpZXJ0LCBhbSBha3R1ZWxsZW4gdm9sbHN0w6RuZGlnZW4gQmVzdGFuZCB0YXRzw6Rj
+aGxpY2ggbmV1IGF1c2dlZsO8aHJ0IHVuZCBkdXJjaCBuZXVlIEhpc3RvcnktLCBDSS0sIFJlZmVy
+ZW56LSwgQmluZHVuZ3MtIHVuZCBHZWdlbnByb2JlbiBlcmfDpG56dC4gQWx0ZSBLb25zb2xlbmF1
+c2dhYmVuIHd1cmRlbiBuaWNodCB3aWVkZXIgYWxzIG5ldWUgQXVzZsO8aHJ1bmcgYXVzZ2VnZWJl
+bi4KCkVyZ2Vibmlzc2U6Ci0gU2NoZW1hL0lkZW50aXTDpHQ6IDI0MCBMZXZlbCB1bmQgMjQwIHBh
+c3NlbmRlIFByb29mdmVyemVpY2huaXNzZSwga2VpbmUgZmVobGVuZGVuL3p1c8OkdHpsaWNoZW4g
+SURzOyA1w5c0w5cxMiB1bmQgQmlibGUtUmFzdGVyd2VjaHNlbCwgZWNodGVyIERyYWZ0LTIwMjAt
+MTItU2NoZW1hY2hlY2ssIHNlY2hzIEZvcm1lbiwgUG9ydHMsIGVpbmZhY2hlciBQZmFkLCBuZXUg
+Z2V6w6RobHRlIFplaWxlbi9TcGFsdGVuIHVuZCBIYXNoYmluZHVuZ2VuOiAwIEJlZnVuZGUuCi0g
+VW5hYmjDpG5naWdlciBDKystUGZhZHrDpGhsZXIgYXVzIGdlbGVzZW5lbSBRdWVsbGNvZGUgZnJp
+c2NoIGtvbXBpbGllcnQsIEzDtnN1bmdzbGltaXQgMzogMjQwLzI0MCBnZW5hdSBlaW5lIEzDtnN1
+bmcuIEplZGUgdm9sbHN0w6RuZGlnZSBLb29yZGluYXRlbmZvbGdlIHd1cmRlIGFuc2NobGllw59l
+bmQgZ2VnZW4gZGllIGdlbGllZmVydGUgQeKGkkItTMO2c3VuZyB2ZXJnbGljaGVuLgotIFVuYWJo
+w6RuZ2lnZSBDb25zdHJhaW50LVByb3BhZ2F0aW9uOiBhbGxlIDI0MCB2b2xsc3TDpG5kaWcgZ2Vs
+w7ZzdCwgb2huZSBTdWNoZSwgZXhha3QgZGllc2VsYmUgTMO2c3VuZy4KLSBQcm9kdWt0aW9uc3By
+w7xmdW5nIG1pdCB1bnZlcsOkbmRlcnRlbiBnZXRyZW5udGVuIHJlaW5lbiBBc3NlbWJsaWVzLCAu
+TkVUIFNESyAxMC4wLjQwMTogQnVpbGQgb2huZSBGZWhsZXIvV2FybnVuZ2VuOyBqZSBMZXZlbCBk
+cmVpIGZyaXNjaGUgUHJvb2ZyZWdlbmVyYXRpb25lbiBieXRlZ2xlaWNoOyBTdHJpY3QtT25lIDI0
+MC8yNDA7IFN0cmljdC1CYXRjaCB1bmQgUmV2ZXJzZS1CYXRjaCBiZXN0YW5kZW4uCi0gUHJvZHVr
+dGlvbnNtZXRhbW9ycGhvc2VuOiAzLjg0MCBENC0vQS1CLVZhcmlhbnRlbjsgMS40NDAgQ291bnRz
+LS9FbmRwb2ludC0vRm9ybS0vSGFzaC0vTWV0cmlrLS9BcnRlZmFrdG11dGF0aW9uZW4gZXJ3YXJ0
+dW5nc2dlbcOkw58gYWJnZXdpZXNlbi4KLSBSb290YXVkaXQ6IDI0MCBTcHVyZW4gLyAyMy4xNjQg
+U2Nocml0dGUsIDAgQmVmdW5kZSBiZWkgSGFzaGJpbmR1bmcsIEluZGV4LS9QcsOkbWlzc2VuZm9s
+Z2UsIFRpZWZlLCBEZWR1cGxpemllcnVuZywgRG9tw6RuZW5mb2xnZSB1bmQgU2ljaGVyaGVpdCBn
+ZWdlbiBkaWUgdW5hYmjDpG5naWcgYmVzdMOkdGlndGUgTMO2c3VuZy4gMjAgZnJpc2NoIGVyemV1
+Z3RlIFJvb3RkYXRlaWVuIGVudHNwcmVjaGVuIGRlbiBnZWxpZWZlcnRlbiBEYXRlaWVuOyB0ZWNo
+bmlzY2hlIEV2aWRlbnogZW50c3ByaWNodCBuYWNoIEF1c25laG1lbiBkZXIgTWVzc3plaXRmZWxk
+ZXIgZGVyIExpZWZlcnVuZy4KLSBBbGxlIDI0MCBQcm9vZnM6IFVOSVFVRS8xLCBzZWFyY2hOb2Rl
+cz0wLCByZXF1aXJlZEd1ZXNzRGVwdGg9MDsgdmllciB0YXRzw6RjaGxpY2hlIFByb2R1a3Rpb25z
+bWV0cmlrZW4uIEtlaW5lIFN1Y2h6d2VpZ21ldHJpa2VuIGFscyBSb290d2VydGUgYXVzZ2VnZWJl
+bi4KLSBGcmlzY2hlciBOb2RlLUpDUy1BYmdsZWljaDogMS4yMDAgUHJvamVrdGlvbmVuL0FydGVm
+YWt0ZS9Eb2t1bWVudGUsIDAgQWJ3ZWljaHVuZ2VuLiBWZXJ3ZW5kZXQgd3VyZGVuIGRpZSB0YXRz
+w6RjaGxpY2hlbiBuZXVlbiAyNDAgUXVlbGxlbiB1bmQgUHJvb2ZzLgotIFZvbGxzdMOkbmRpZ2Ug
+dW5hYmjDpG5naWdlIEQ0LVJlY2hudW5nOiAzLjE4MyBkaW1lbnNpb25rb21wYXRpYmxlIFBhYXJl
+IHVuZCAyNDAgbsOkY2hzdGUgTmFjaGJhcm4gc3RpbW1lbiBtaXQgZGVtIEJlcmljaHQ7IGtlaW5l
+IGV4YWt0ZSDDtmZmZW50bGljaGUgS29waWUgdW50ZXIgUm90YXRpb24sIFNwaWVnZWx1bmcgb2Rl
+ciBBL0ItVGF1c2NoLiBWaWVyIGNvdW50bmFoZSB1bmQgMTUgbWFza2VubmFoZSBQYWFyZSBpbiBk
+ZW4gdm9yaGFuZGVuZW4gZGVza3JpcHRpdmVuIFNpY2h0ZW47IGtlaW5lIG5ldWUgUXVhbGl0w6R0
+c3F1b3RlIGRhcmF1cy4KLSBBbGxlIDI0MCBMaXRlcmFsZSwgRWluc3RpZWdlLCBGb2t1cy0vUXVh
+bGl0w6R0c3dlcnRlLCBMw7ZzdW5nc2dpdHRlciB1bmQgQmluZHVuZ2VuIGdlZ2VuIEpTT04sIExl
+dmVsIHVuZCBnZXJlbmRlcnRlIEVpbnplbGJlcmljaHRlIGdlcHLDvGZ0OyAyMCBSb3V0ZW5saXRl
+cmFsZSBzdGltbWVuIG1pdCBKU09OIHVuZCBSb3V0ZW4tTUQgw7xiZXJlaW4uCi0gQXV0b3JlbnF1
+ZWxsaGFzaDogNGQwN2Y3YzU4NWM2YzRlZTk0NDMxODA3YmFlNTQ5Yjk2ZTQyNzY5ZTBhMjM4MjMy
+MWQ2ZjRkODA4OWQ4OGMzNC4KLSBBa3R1ZWxsZW4gdGF0c8OkY2hsaWNoZW4gVHJhbnNwb3J0IHp3
+ZWltYWwgaW0gRXhwb3J0IGF1c2dlZsO8aHJ0OiAyNDAgUXVlbGxlbiBieXRlaWRlbnRpc2NoIHVu
+ZCBSZXZpc2lvbmVuIGVyaGFsdGVuLiBTdGFsZSBQdWJsaWNpbnB1dCBpbSBsZXR6dGVuIHNvcnRp
+ZXJ0ZW4gTGV2ZWwgd2lyZCB2b3IgamVkZW0gU2NocmVpYmF1ZnJ1ZiBhYmdld2llc2VuOyBTY3Jh
+dGNobXV0YXRpb24gYW5zY2hsaWXDn2VuZCB6dXLDvGNrZ2VzZXR6dC4KLSBHZWdlbsO8YmVyIHVy
+c3Byw7xuZ2xpY2hlbSBQcsO8ZnN0YW5kIDNjOWI3ZDA6IDE1IHRhdHPDpGNobGljaGUgbG9naXNj
+aGUgw4RuZGVydW5nZW47IDIyNSDDtmZmZW50bGljaGUgSW5wdXRzIHVuZCB6dWdlaMO2cmlnZSBQ
+cm9vZmJ5dGVzIGVyaGFsdGVuLiBHZWdlbiBkOTcga2VpbmUgQ29udGVudMOkbmRlcnVuZyBkdXJj
+aCBXUC0wMjguCi0gMTkgdm9yaGFuZGVuZSBoaXN0b3Jpc2NoZSBLYW5kaWRhdGVucG9vbHMgc2Ft
+dCBIYXNoL0zDpG5nZSwgMjQwIGFrdHVlbGxlIEthbmRpZGF0ZW5tYXRjaGVzIHVuZCAxNSBBbHQt
+L05ldS1adW9yZG51bmdlbiBuZXUgZ2VnZW5nZXByw7xmdC4gRGFzIGJlbGVndCBadW9yZG51bmcs
+IG5pY2h0IG5hY2h0csOkZ2xpY2ggdW5iZWthbm50ZSBBdXN3YWhsc2VlZHMgb2RlciBkaWUgdXJz
+cHLDvG5nbGljaGUga29nbml0aXZlIEF1dG9ybGVpc3R1bmcuCi0gMS40NDAgUmVmZXJlbnplaW50
+csOkZ2UgZ2VnZW4gZGllIHRhdHPDpGNobGljaGVuIHNlY2hzIEZlbGRlciBhbGxlciAyNDAgUXVl
+bGxlbiBhYmdlZ2xpY2hlbiwga2VpbmUgZG9wcGVsdGVuIElEL1BvaW50ZXItUGFhcmUgb2RlciBG
+YWxsYmFja3MuIDk2MCBMb2NhbGl6YXRpb24tWmllbGUgdW5kIDQ4MCBDb21wbGV0aW9uL1dvcmxk
+LVppZWxlIGJsZWliZW4gdW5hdWZnZWzDtnN0LgoKTWV0aG9kaXNjaGUgR3JlbnplbjoKRGllIGVy
+Z8OkbnplbmRlbiBlaWdlbmVuIEzDpHVmZSB2ZXJ3ZW5kZXRlbiBXaW5kb3dzLVB5dGhvbiAzLjEy
+LjE0IGJ6dy4gV1NMLVB5dGhvbiAzLjE0LjQgbWl0IGpzb25zY2hlbWEgNC4xOS4yLCBOb2RlIDIy
+LjIwLjAgdW5kIC5ORVQgMTAuMC40MDEuIERhcyBzaW5kIGtlaW5lIGFscyBrYW5vbmlzY2ggYXVz
+Z2VnZWJlbmVuIGxva2FsZW4gUHl0aG9uLTMuMTEtR292ZXJuYW5jZWzDpHVmZS4gRGVyIHZvcmdl
+c2NocmllYmVuZSBnZXBpbm50ZSBHb3Zlcm5hbmNld2VnIGlzdCBkdXJjaCBkaWUgdGF0c8OkY2hs
+aWNoIGdlcHLDvGZ0ZSBDSSBtaXQgUHl0aG9uIDMuMTEuMTMvTm9kZSAyMi4yMC4wIGJlbGVndC4g
+RGllIGVpZ2VuZSBnZXNjaGljaHRldGUgdm9sbHN0w6RuZGlnZSBQZmFkLS9NYW5pZmVzdHByw7xm
+dW5nIGVyZ8Okbnp0IGRlbiBha3R1ZWxsZW4gQ0ktU2NvcGUsIGRlciBudXIgZGFzIFdQLTAyOC1E
+ZWx0YSBhYiBkOTcgYWJkZWNrdC4KCkRlciAuTkVULVp1c2F0emhhcm5lc3MgZXJzZXR6dCB3ZWRl
+ciBVbml0eSBub2NoIGRlbiBDSS1SZWZlcmVuemJlbmNobWFyay4gU2VpbiBnZXNhbXRlciBQcsO8
+ZmxhdWYgZGF1ZXJ0ZSA2LjIwMyBtczsgZGllc2UgbG9rYWxlIFphaGwgZXJ0ZWlsdCBrZWluZSBM
+ZWlzdHVuZ3NmcmVpZ2FiZS4gUm9vdGF1ZGl0IHVuZCB1bmFiaMOkbmdpZ2UgTMO2c3VuZ3Nrb250
+cm9sbGUgc2luZCBrZWluZSB6dXPDpHR6bGljaGUgZXJzY2jDtnBmZW5kZSBNaW5pbWFsaXTDpHRz
+cGVydHVyYmF0aW9uIGplZGVzIFNwdXJzY2hyaXR0cyDDvGJlciBhbGxlIGRlbmtiYXJlbiBGcmVt
+ZHB1enpsZXMuIERpZSB0YXRzw6RjaGxpY2hlbiB2b3JoYW5kZW5lbiBUcmFjZXItL0F1ZGl0b3Jy
+ZWdyZXNzaW9uZW4gbGllZmVuIGluIGRlciBha3R1ZWxsZW4gQ0kuCgpBbmbDpG5nbGljaGUgZWln
+ZW5lIEhpbGZzZmVobGVyIChTYW5kYm94LVJlc3RvcmUvV1NMLCBmZWhsZW5kZXMganNvbnNjaGVt
+YSBpbSBXaW5kb3dzLVB5dGhvbiwgU3RhbmRhcmRlbmNvZGluZyBlaW5lciBrb3BpZXJ0ZW4gUHLD
+vGZoaWxmZSwgZmFsc2NoZXMgQXJiZWl0c3ZlcnplaWNobmlzIGVpbmVyIEdpdGFiZnJhZ2UpIHd1
+cmRlbiBpc29saWVydCBrb3JyaWdpZXJ0LiBTaWUgc2luZCB3ZWRlciBQcm9kdWt0ZmVobGVyIG5v
+Y2ggYmVzdGFuZGVuZSBQcsO8ZnVuZ2VuLiBJbnNiZXNvbmRlcmUgd3VyZGUgZWluZSB6dW7DpGNo
+c3QgYW5nZW5vbW1lbmUgUmF3ZmluZ2VycHJpbnQtR2xlaWNoaGVpdCBkZXMgQ1JMRi1FeHBvcnRz
+IG1pdCBMaW51eCB2ZXJ3b3JmZW4gdW5kIGFuc2NobGllw59lbmQga29ycmVrdCBkaXJla3QgYXVz
+IEdpdGJsb2JzIGdlcHLDvGZ0LgoKNC4gVGF0c8OkY2hsaWNoZSBha3R1ZWxsZSBDSSB1bmQgQXJ0
+ZWZha3RlCgpBa3R1ZWxsZSBDSSBhdWYgSDoKQXJjaGl0ZWN0dXJlOiBodHRwczovL2dpdGh1Yi5j
+b20vQWwxbDFsMWwxbDEvU3RhbW1zdHJlY2tlbi1QdXp6bGUvYWN0aW9ucy9ydW5zLzM4NjM3MDEy
+ODQxClVuaXR5OiBodHRwczovL2dpdGh1Yi5jb20vQWwxbDFsMWwxbDEvU3RhbW1zdHJlY2tlbi1Q
+dXp6bGUvYWN0aW9ucy9ydW5zLzM4NjM3MDEyODM3CgpBbGxlIGVsZiBnZW1lbGRldGVuIENoZWNr
+cyBjb21wbGV0ZWQvc3VjY2Vzczsga2VpbmUgb2ZmZW5lbiBDaGVja3MuIERpZSB6ZWhuIFVuaXR5
+am9icyB1bWZhc3NlbiBVbWdlYnVuZ3MtL0tvbmZpZ3VyYXRpb25zLS9QcmVmbGlnaHQtL0V2aWRl
+bmNlZ2F0ZXMsIEVkaXRNb2RlLCBQbGF5TW9kZSwgQW5kcm9pZCB1bmQgaU9TLiBGw7xuZiBlbnRz
+Y2hlaWRlbmRlIHZvbGxzdMOkbmRpZ2UgSm9ibG9ncyB3dXJkZW4gc2VsYnN0IGFiZ2VydWZlbiB1
+bmQgZ2VzaWNoZXJ0OyBIaWxmc2dhdGVzIHd1cmRlbiBhbmhhbmQgdGF0c8OkY2hsaWNoZXIgSm9i
+LS9TY2hyaXR0bWV0YWRhdGVuIGdlcHLDvGZ0LgoKLSBBcmNoaXRlY3R1cmUgSm9iIDExNjEwMjYy
+NTkwMjogMTcgQXJjaGl0ZWN0dXJlLW9ubHktIHVuZCAxOCBQcm9kdWN0aW9uLVNjb3BlLUdydXBw
+ZW4gbWl0IFNlbGYtL05lZ2F0aXZ0ZXN0cyBiZXN0YW5kZW47IHRhdHPDpGNobGljaGVyIFNjb3Bl
+IFdQLTAyOCwgYmFzZT1kOTcsIGhlYWQ9SCwgd29ya3RyZWVEaXJ0eT1mYWxzZS4gS2VpbmUgQmVo
+YXVwdHVuZywgZGllc2VyIGVpbnplbG5lIFNjb3BlYXVmcnVmIHByw7xmZSByw7xja3dpcmtlbmQg
+YWxsZWluIGRpZSA1OTAgV1AtMDI2LVBmYWRlLgotIEVkaXRNb2RlIEpvYiAxMTYxMDI3NTg4MDE6
+IHRhdHPDpGNobGljaGVzIE5Vbml0LVhNTCA0NTUvNDU1IFBhc3NlZDsgZmFpbGVkL3NraXBwZWQv
+aW5jb25jbHVzaXZlPTA7IERhdWVyIDI4Niw5NDE5NTM0IHMuCi0gUGxheU1vZGUgSm9iIDExNjEw
+NjM4MzI5OTogdGF0c8OkY2hsaWNoZXMgTlVuaXQtWE1MIDI3LzI3IFBhc3NlZDsga2VpbmUgw7xi
+ZXJzcHJ1bmdlbmVuIEbDpGxsZS4KLSBBbmRyb2lkIEpvYiAxMTYxMDc4MTU5MjQ6IERldmVsb3Bt
+ZW50LUlMMkNQUC1CdWlsZCBlcmZvbGdyZWljaC4gVGF0c8OkY2hsaWNoIGhlcnVudGVyZ2VsYWRl
+bmVzIEFQSyA0MC4wNjYuMjQyIEJ5dGVzLCBTSEEyNTYgM2Q4ZTU1Yjg3ZjFlZDRkNjUxNTE1Y2Qw
+ODU5ODE0ZGQ0MjUwMDlkMjM4YmQ0NGRjMWIxZTNiYTdlNzFiMTVmNTsgQW5kcm9pZE1hbmlmZXN0
+LnhtbCB1bmQgbGliL2FybTY0LXY4YS9saWJpbDJjcHAuc28gaW0gQVBLIHZvcmhhbmRlbi4KLSBp
+T1MgSm9iIDExNjExMTkxODg2OTogdGF0c8OkY2hsaWNoZXIgVW5pdHktRXhwb3J0IHVuZCBYY29k
+ZSBCVUlMRCBTVUNDRUVERUQuIFVuc2lnbmllcnRlciBnZW5lcmlzY2hlciBpT1MtS29tcGlsaWVy
+dW5nc25hY2h3ZWlzLCBrZWluIElQQS0vU3RvcmUtL0dlcsOkdGViZWxlZy4gS2VpbiBpT1MtWklQ
+IGVyZnVuZGVuLgotIEVjaHRlIENvdmVyYWdlOiBFZGl0TW9kZSA5Ljk3OS8xMC42MTUgU2VxdWVu
+Y2UgUG9pbnRzIGJlc3VjaHQgKDk0LDAxICUpLCBQbGF5TW9kZSA0MjAvMTAuNjE1ICgzLDk2ICUp
+LiBEaWUgc2VwYXJhdGVuIE51bGwtQ292ZXJhZ2UtQXVzZ2FuZ3NkYXRlaWVuIHNpbmQgbmljaHQg
+YWxzIGFsbGVpbmlnZSBFcmdlYm5pc3NlIGludGVycHJldGllcnQuIEtlaW5lIGVyZnVuZGVuZSBD
+b3ZlcmFnZS1TY2h3ZWxsZS4KLSBpT1MtQ2hlY2thbm5vdGF0aW9uZW46IHp3ZWkgYmVzdGVoZW5k
+ZSBjYWNoZS9zYXZlLWFsd2F5cy1BYmvDvG5kaWd1bmdzd2FybnVuZ2VuIHVuZCBlaW4gbWFjT1Mt
+YXJtNjQtS2FwYXppdMOkdHNoaW53ZWlzLiBLZWluZSBmZWhsZ2VzY2hsYWdlbmUgUGZsaWNodHBy
+w7xmdW5nOyBrZWluIFdQLTAyNi1Db250ZW50ZGVmZWt0LgoKRnJpc2NoIGhlcnVudGVyZ2VsYWRl
+bmUgWklQcywgZ2VnZW4gR2l0SHViLURpZ2VzdCBnZXByw7xmdDoKRWRpdE1vZGUsIEFydGVmYWt0
+IDExOTI4MDk5MzA3OgpjNTJkNWY3NTNmNDQwNjNkYjkxZDA3YzVmZDE0MDg2ZjE2NTgwYTFlMDE5
+MmU1YzAzNDc4ZTA0ZTMxZmMwODA4ClBsYXlNb2RlLCBBcnRlZmFrdCAxMTkyODQ1Mzg3NzoKNmYy
+NTZmYTc4NGEyMjI2OTZiNTFlOTk2Y2FiMTg3ZjQyYjU2YmZmMjUxYWUzOTJlMzMxOTIyNWEyY2M0
+NWNhMApBbmRyb2lkLCBBcnRlZmFrdCAxMTkyOTQ0ODUxNzoKZDYzMTFmZDQyYWEyMjFlZjE3N2Rh
+ZTQ2ODhlMTQwMDNmOGIxM2YwODhhN2UwMzlkNDE0NzY0YzRlYWFjM2MwNgoKT3JpZ2luYWwtWE1M
+OgpFZGl0TW9kZSBTSEEyNTYgZGMyNmMwMTRhYzliNDRkMGM1ZTQwYjJlNTc0MjZkMGViOTU2ODcx
+ZTZlNTgzZmFhYWJlNWM1ZDM4ZDk0MGVkMy4KUGxheU1vZGUgU0hBMjU2IGRkYzk1MDljMzAwODI4
+NGYwYmVhM2FjNTVlYzgzNGY5ODIzOTA4OWM3N2RiY2JkNjRlMGE5NGJjMjJmOWJiYTQuCkxvZ3Mg
+dW5kIGFsbGUgZ2VzaWNoZXJ0ZW4gRXZpZGVuemRhdGVpZW4gc2luZCBpbSBzZXBhcmF0ZW4gU0hB
+MjU2LUludmVudGFyIGdlYnVuZGVuLgoKNS4gV1AtMDI4IC8gQURSLTAzMiBlaWdlbnN0w6RuZGln
+IG5hY2hnZXByw7xmdAoKQ29kZSwgTWVzc3Byb3Rva29sbCB1bmQgdGF0c8OkY2hsaWNoZXIgTlVu
+aXQtT3V0cHV0IHd1cmRlbiBzZWxic3QgZ2VwcsO8ZnQsIG5pY2h0IG51ciBkaWUgUm9sbGVuYmVy
+aWNodGUgdm9uIFBSMjUgw7xiZXJub21tZW4uCgpXUC0wMjgtQUstMDE6IFBBU1MuIEdlbWVpbnNh
+bWVyIGhpc3RvcmlzY2hlciBBbmtlciwgZDk3LVBhcmVudC9CYXNlLCB1bnZlcsOkbmRlcnRlIE1h
+bmlmZXN0Ynl0ZXMgdW5kIGtvcnJla3RlIFVudGVyLVBSLVJpY2h0dW5nLgpBSy0wMjogUEFTUy4g
+RXhha3RlIDI0MGVyLUlELU1lbmdlIHVuZCBrYW5vbmlzY2hlIFBmYWRlLCBrZWluIEZpeHR1cmUt
+L1NjcmF0Y2hmYWxsYmFjaywgUHJvb2ZSZWYtQWJnbGVpY2gsIHNvbHZlci12MiB1bmQgRm9ybWF0
+IDEuCkFLLTAzOiBQQVNTLiBGcmlzY2hlIHVudmVyw6RuZGVydGUgU3RyaWN0LVByb2R1a3Rpb25z
+cGlwZWxpbmUgamUgRWluZ2FuZzsgRXJnZWJuaXMgaXN0IG51ciBQcm9vZkdhdGVQYXNzZWQ7IElt
+cG9ydC0vUmVsZWFzZWZsYWdzIGJsZWliZW4gZmFsc2UuCkFLLTA0OiBQQVNTLiBHZW5hdSBTMS0w
+NS0wNC0wNiBiaXMgLTEyOyBmw7xuZiBXYXJtLXVwcyBqZSBJbnB1dCwgNTAgTWVzc3VuZ2VuIGpl
+IElucHV0LCBpbnNnZXNhbXQgMzUwLiBWb2xsc3TDpG5kaWdlcyBkaXJla3RlcyBTb2x2ZSBlaW5z
+Y2hsaWXDn2xpY2ggUm9vdHNwdXIvRXJnZWJuaXNrb25zdHJ1a3Rpb247IGplZGVyIExhdWYgd2ly
+ZCBhdWYgVU5JUVVFLzEvc2VhcmNoTm9kZXM9MC9ndWVzcz0wIGdlcHLDvGZ0LgpBSy0wNTogUEFT
+Uy4gVmllciBmZXN0ZSBQYXJ0aXRpb25lbiwgTWF4RGVncmVlT2ZQYXJhbGxlbGlzbT00LCB1bmFi
+aMOkbmdpZ2UgRWluZ2FiZW4sIG9yZGluYWxlIEF1c3dlcnR1bmcsIEZlaGxlci9FeGNlcHRpb24v
+TWlzc2luZy9XYXJuaW5nL1RpbWVvdXQvSW5kZXRlcm1pbmF0ZSB3ZXJkZW4gbmljaHQgenUgRXJm
+b2xnIHVtZ2V3ZXJ0ZXQuIEdlc2FtdGRhdWVyIHVtZmFzc3QgbmV1ZSBMZXNlLS9QYXJzZS0vVmFs
+aWRpZXJ1bmdzc2Nocml0dGUgdW5kIEF1c3dlcnR1bmcuCkFLLTA2OiBQQVNTLiBHZW5hdSBlaW5l
+IG1hc2NoaW5lbmxlc2JhcmUgRXJnZWJuaXN6ZWlsZSBpbSB0YXRzw6RjaGxpY2hlbiBUZXN0b3V0
+cHV0OyBDb21taXQsIFZlcnNpb25lbiwgRmluZ2VycHJpbnQsIFBhcmFtZXRlciwgMzUwIFJvaHNh
+bXBsZXMsIHNpZWJlbiBNZXRyaWtzw6R0emUgdW5kIFVtZ2VidW5nIHZvcmhhbmRlbi4KQUstMDc6
+IFBBU1MgZsO8ciBILiBBa3R1ZWxsZSByZWd1bMOkcmUgRm9sZ2UtQ0kgdW5kIHRhdHPDpGNobGlj
+aGUgQXJ0ZWZha3RlIGdlbGVzZW4sIGVybGF1YnRlcyBEZWx0YS9XaGl0ZXNwYWNlIHNlbGJzdCBn
+ZXByw7xmdC4KQUstMDg6IEVyZm9yZGVybGljaGUgendlaSB2b25laW5hbmRlciBnZXRyZW5udGUg
+Um9sbGVuYmVyaWNodGUgYXVmIGI0NDlhYjcgdm9yaGFuZGVuLCBvaG5lIG9mZmVuZSBCTE9DS0VS
+L0hJR0gtQmVmdW5kZSB2b3IgSW50ZWdyYXRpb247IHRhdHPDpGNobGljaGUgTWVyZ2VlbHRlcm4g
+dW5kIGdsZWljaGVyIFRyZWUgYmVzdMOkdGlndC4gRGFzIGlzdCBoaXN0b3Jpc2NoZSBSb2xsZW5l
+dmlkZW56IGRlcyBVbnRlcnBha2V0cywga2VpbmUgbmV1ZSBwYXJhbGxlbGUgR2VzYW10YWJuYWht
+ZSBkdXJjaCBkaWVzZSBQcsO8ZnVuZy4KCkVpZ2VuZSBOYWNocmVjaG51bmcgZGVyIHRhdHPDpGNo
+bGljaGVuIDM1MCBTYW1wbGVzOgotIG49MzUwLCBwOTUtSW5kZXggY2VpbCgwLDk1w5czNTAp4oiS
+MSA9IDMzMiAobnVsbGJhc2llcnQpLgotIHA5NSA9IDM4LDIwMjYgbXMgPCAyNTAgbXMuCi0gTWF4
+aW11bSA9IDcyLDA5NTIgbXMgPCAyLjAwMCBtcy4KLSBWb2xsa29ycHVzID0gMi41ODYsODA5NyBt
+cyA8IDYwLjAwMCBtcy4KLSAyNDAvMjQwIFByb29mZ2F0ZXMsIGZhaWx1cmVzIGxlZXIsIHZpZXIg
+QXJiZWl0ZXIuCi0gVW5pdHkgNjAwMC4zLjIzZjE7IE1vbm8gNi4xMy4wOyBVbml4IDYuMTcuMC4x
+MDIyOyBYNjQ7IEFNRCBFUFlDIDlWNzQ7IHZpZXIgUHJvemVzc29yZW4uCi0gVGF0c8OkY2hsaWNo
+ZXIgVWJ1bnR1LTI0LjA0LUpvYiB1bmQgZ2VwaW5udGVyIENvbnRhaW5lciB1bml0eWNpL2VkaXRv
+cjp1YnVudHUtNjAwMC4zLjIzZjEtYmFzZS0zLjIuMiwgRGlnZXN0IDExODYwZGYwNTE1MDMwNjkz
+NGUyMTkzY2VhNmIwOGJkZTBjYzI5NTY3NTY0NjRkMTIyNDNhOTA3NmY2NTQ3NmM7IExpemVuemFr
+dGl2aWVydW5nIGltIExvZyBlcmZvbGdyZWljaC4KCkNJLUZpbmdlcnByaW50Ogo2ZmMzMDcyMzFj
+NDNkM2YwOWM2MGZhMzExNmM4NTE3NTg4YTQwODU1YzQyNjZlOGVjNGRkMTIwZWQwYjYzNzJhClNl
+bGJzdCBhdXMgYWxsZW4gNDgwIGV4YWt0ZW4gR2l0YmxvYnMgbmFjaGdlcmVjaG5ldDogb3JkaW5h
+bGUgcmVsYXRpdmUgUGZhZGUsIFVURi04LVBmYWQgdW5kIFJvaGJ5dGVzIGpld2VpbHMgVUludDY0
+LUJpZy1FbmRpYW4tbMOkbmdlbmdlcmFobXQuCldpbmRvd3MtL0V4cG9ydGZpbmdlcnByaW50Ogoy
+OWMxNmIyNzA0MTI1ZWExZjM4ZGRhNzRlMWE5MDE2ZTYzMWM2ZjRhZTllMTlmMzE2MWQxMDA5ZjRl
+ZTRiNjc5CkRpZSBEaWZmZXJlbnogc3RhbW10IGF1c3NjaGxpZcOfbGljaCB2b24gQ1JMRiBpbiAy
+NDAgTGV2ZWxkYXRlaWVuIGdlZ2Vuw7xiZXIgTEYgaW4gR2l0L0xpbnV4OyAyNDAgUHJvb2ZieXRl
+cyB1bnZlcsOkbmRlcnQuIERlciBSYXdmaW5nZXJwcmludCBpc3QgYWJzaWNodGxpY2ggYnl0ZWVt
+cGZpbmRsaWNoLiBLZWluZSBEYXRlbm1hbmlwdWxhdGlvbiBvZGVyIGZhbHNjaGUgQ0ktS29ycHVz
+YmluZHVuZyBkYXJhdXMuCgpFcmdlYm5pczogQ0ktUEVSRi1XUDAyNiBpc3QgYXVmIEggdGF0c8Ok
+Y2hsaWNoIGVyYnJhY2h0LiDDhGx0ZXJlIE5PVF9FWEVDVVRFRC1BdXNzYWdlbiBibGVpYmVuIGhp
+c3RvcmlzY2hlIEV2aWRlbnogdW5kIG3DvHNzZW4gaW4gZGVyIGFrdHVlbGxlbiBTdGF0dXPDvGJl
+cnNpY2h0IMO8YmVyaG9sdCB3ZXJkZW4uCgo2LiBWb2xsc3TDpG5kaWdlIGZhY2hsaWNoZSBCZXN0
+YW5kc2Jld2VydHVuZwoKQWxsZSAyNDAgRWluemVsYWJzY2huaXR0ZSB3dXJkZW4gYW5oYW5kIMO2
+ZmZlbnRsaWNoZXIgQ291bnRzL1BvcnRzLCB0YXRzw6RjaGxpY2hlciBMw7ZzdW5nc2dpdHRlciwg
+RWluc3RpZWdzYmVncsO8bmR1bmcgdW5kIGluZGl2aWR1ZWxsZXIgUXVhbGl0w6R0c25vdGl6IGJl
+dHJhY2h0ZXQ7IGRpZSBHaXR0ZXIgd3VyZGVuIG1hc2NoaW5lbGwgZ2VnZW4gZGllIGthbm9uaXNj
+aGVuIFBmYWRlIGdlYnVuZGVuLiBBbGxlIDIwIFJvdXRlbiB3dXJkZW4gaW4gZGVuIGbDvG5mIHZv
+cmdlc2VoZW5lbiBHcnVwcGVuIDHigJMyIC8gM+KAkzUgLyA24oCTOCAvIDnigJMxMCAvIDEx4oCT
+MTIgZ2VnZW4gZGllIGFrdHVlbGxlIEJpYmxlIGJldXJ0ZWlsdC4gRm9sZ2VuZGUgVGFiZWxsZSBm
+YXNzdCBkaWUgZWlnZW5lIGZhY2hsaWNoZSBCZXdlcnR1bmcgenVzYW1tZW47IHNpZSBpc3Qga2Vp
+biBtZW5zY2hsaWNoZXIgU3BpZWx0ZXN0LgoKMDEgUzEtMDEtMDE6IDTDlzQuIEtsYXJlIE51bGwt
+L1ZvbGxhbmtlciwgZGFuYWNoIGJld3Vzc3RlIFBvcnR2YXJpYXRpb247IGRpZSBrb3JyaWdpZXJ0
+ZW4gMTEvMTIga29tYmluaWVyZW4gdGF0c8OkY2hsaWNoIGJla2FubnRlIEFua2VyLiBXUC0wMjcg
+ZXJsYXVidCBmcsO8aGVyZSB2ZXJzY2hpZWRlbmUgU2VpdGVuLiBIb2hlIGZyw7xoZSBLdXJ2ZW5k
+aWNodGUgaW4gMDEvMDMgYmxlaWJ0IFNwaWVsdGVzdHJpc2lrby4KMDIgUzEtMDEtMDI6IDTDlzUu
+IEhvaGUgQ291bnRzLCBvcHRpb25hbGUgQmVsZWd1bmdzbm90aXplbiB1bmQgZ2VrcmV1enRlIEFj
+aHNlbiBuYWNodm9sbHppZWhiYXI7IDA5LzEwIG5haGUgRW5kcHVua3RlLCBsw6RuZ2VyZXIga3Vy
+dmVucmVpY2hlciBBYnNjaGx1c3MuIEtlaW4gQmVsZWcgZsO8ciBlaW5lbiBuZXVlbiBnZW9tZXRy
+aXNjaGVuIFJlZ2VsendhbmcuCjAzIFMxLTAxLTAzOiA0w5c1LiBBbmdyZW56ZW5kZSBLYW50ZW4g
+aW4gMDPigJMwNSwgQmVsZWd1bmcvRm9ybWtvbWJpbmF0aW9uLCBnZWdlbnPDpHR6bGljaGUgRGlj
+aHRldmVydGVpbHVuZ2VuOyBkw7xubmVyIHp3ZWl0ZXIgQWJzY2hsdXNzIHVudGVyc2NoZWlkZXQg
+c2ljaCB2b20gZXJzdGVuLgowNCBTMS0wMS0wNDogNMOXNS4gTmV1ZXIgMDhlciB2ZXJiaW5kZXQg
+dGF0c8OkY2hsaWNoZSBCZWxlZ3VuZ3NnZWJpZXRlOyAwOS8xMCBnZWdlbsO8YmVybGllZ2VuZGUg
+UG9ydHMsIEFic2NobHVzc2Zvcm1lbiB2YXJpaWVyZW4uIEtlaW5lIGJsb8OfIHVtYmVuYW5udGUg
+S29waWUuCjA1IFMxLTAyLTAxOiA1w5c1LiBLb250cm9sbGllcnRlciBHcsO2w59lbndlY2hzZWws
+IE51bGwtL1ZvbGxrcmV1enVuZ2VuIHVuZCBtZWhyZXJlIEFjaHNlbi4gQWJzY2hsdXNzZGljaHRl
+biB1bnRlcnNjaGllZGxpY2g7IGtlaW5lIGRva3VtZW50aWVydGUgUHJvemVudGdyZW56ZSBmw7xy
+IOKAnm1pdHRsZXJlIERpY2h0ZeKAnCBlcmZ1bmRlbi4KMDYgUzEtMDItMDI6IDXDlzUuIERpY2h0
+ZXJlIEVpbmbDvGhydW5nLCBlcnNldHp0ZXIgMDZlciBtaXQgYW5kZXJlbSBHZWJpZXRzYmV6dWc7
+IGVuZ2VyIDA3ZXIgYWxzIGJlbmFubnRlciBLb250cmFzdC4gTGFuZ2UgZMO8bm5lcmUgVmVyYmlu
+ZHVuZ2VuIGluIDA5LzEwIHBhc3NlbiB6dXIgVmFyaWF0aW9uLgowNyBTMS0wMi0wMzogNcOXNSwg
+YWIgMDYgNsOXNS4gTWl0dGxlcmUgUmVzdHphaGxlbiB1bmQgRm9sZ2VhdXNzY2hsw7xzc2U7IDA5
+LzEwIGJld3Vzc3RlciBvYmVyZXIvdW50ZXJlciBEaWNodGV2ZXJnbGVpY2guIERpY2h0ZXIgU2No
+bHVzcyBlcmjDtmh0IEZvcm1lbmxhc3QuCjA4IFMxLTAyLTA0OiA2w5c1LiBFcnNldHp0ZSAwNS8w
+NyBoYWJlbiBrb25rcmV0ZSBlbnRmZXJudGUgR2ViaWV0ZS9BY2hzZW5iZXrDvGdlOyBob2hlIERp
+Y2h0ZSBpbiAwOS8xMCB1bmQgbMOkbmdlcmUgU2NobMO8c3NlLiBWaWVsZSBLdXJ2ZW4gc2luZCBl
+aW4gTGVzYmFya2VpdHNyaXNpa28sIGtlaW4gbmV1ZXIgbWFzY2hpbmVsbGVyIEF1c3NjaGx1c3N3
+ZXJ0LgowOSBTMS0wMy0wMTogNsOXNi4gUG9ydHMgZmVybiB2b24gVm9sbGFua2VybiwgbG9rYWxl
+IEVuZ3DDpHNzZSB3aXJrZW4gYXVmIGVudGZlcm50ZSBBcm1lOyBzcMOkdGVyZSBnZXJpbmdlcmUg
+w7ZmZmVudGxpY2hlIEV4dHJlbXdlcnRlLCBkw7xubmUgbGFuZ2UgRmluYWxrZXR0ZW4uCjEwIFMx
+LTAzLTAyOiA2w5c2LiBDRi0wMSBrb3JyZWt0OiBha3R1ZWxsZXIgTmFjaGJhciAwMiBoYXQgMTYg
+WmVsbGVuLCBWb2xscmFuZC9Cb2RlbiB1bmQgS29wZmtuaWNrLCBrZWluIGhldXRpZ2VyIDE5LVpl
+bGxlbi1ad2lsbGluZy4gVW50ZXJzY2hpZWRsaWNoZSBWZXJ0ZWlsdW5nL1RlaWxyYXVta29wcGx1
+bmcgdW5kIGFzeW1tZXRyaXNjaGUgVmFyaWFudGVuLgoxMSBTMS0wMy0wMzogNsOXNiwgYWIgMDYg
+N8OXNi4gVGVpbHBmYWRlLCBXZWNoc2VsIHZvbiBCZWxlZ3VuZy9BdXNzY2hsdXNzL0Zvcm0gdW5k
+IHp3ZWkgdW50ZXJzY2hpZWRsaWNoZSBkaWNodGUvZMO8bm5lIFNjaGx1c3NmZWxkZXIuIFNhY2hs
+aWNoZSBPcnRzYW5nYWJlIGJlaSAwMyBmZWhsZXJoYWZ0IChGLTAxKTsga2VpbiBGZWhsZXIgZGVy
+IENvdW50cy9QZmFkbG9naWsuCjEyIFMxLTAzLTA0OiA3w5c2LiBFbnRmZXJudGUgYWJow6RuZ2ln
+ZSBLZXR0ZW47IDA24oCTMDggd2VuaWdlIMO2ZmZlbnRsaWNoZSBFeHRyZW1lLiBCZWthbm50ZSBB
+cm1mb3JtIGluIDA4IGJlc2l0enQgYW5kZXJlIEluZm9ybWF0aW9uc2xhZ2UuIFVudGVyc2NoaWVk
+bGljaGUgQW5zY2hsdXNzc3RlbGxlbiB1bmQgU2NobHVzc2dlb21ldHJpZW4uCjEzIFMxLTA0LTAx
+OiA3w5c3LiBLb250cm9sbGllcnRlciDDnGJlcmdhbmcsIG1laHJlcmUgZW50ZmVybnRlIEdlYmll
+dGUsIGhvaGUgRGljaHRldmFyaWFudGVuOyBkaXJla3RlIEFia8O8cnp1bmdlbiBsYXNzZW4gQ291
+bnRzIHVuZXJmw7xsbHQuIEZlaGxlbmRlIGdsb2JhbGUgUmVnZWxjb2RlcyB3aWRlcmxlZ2VuIGRp
+ZXNlIHLDpHVtbGljaGUgS29tYmluYXRpb24gbmljaHQuCjE0IFMxLTA0LTAyOiA3w5c3LiAwM+KA
+kzA4IG9obmUgw7ZmZmVudGxpY2hlIE51bGwtL1ZvbGxjb3VudHMsIEtvbWJpbmF0aW9uIHZvbiBQ
+b3J0cyB1bmQgUmVzdHphaGxlbi4gQ0YtMDIgc2FjaGxpY2ggYmVob2JlbjogcmVjaHRlIEFybWUg
+eDQveDYgZ2VtZWluc2FtIGJpcyB5NSwgbGlua2UgeDAveDIgYmlzIHk2LiBEaWNodGVyIHVuZCBk
+w7xubmVyIEFic2NobHVzcyBiZWxhc3RlbiB1bnRlcnNjaGllZGxpY2hlIEFzcGVrdGUuCjE1IFMx
+LTA0LTAzOiA3w5c3LCBhYiAwNiA4w5c4LiBCZWthbm50ZSBTdGFydHM7IEF1c3NjaGzDvHNzZSwg
+cGFyYWxsZWxlIFRlaWxrZXR0ZW4gdW5kIG5ldWUgVmVyZGljaHR1bmcgaW4gRXJzYXR6IDA4LiBG
+csO8aGVyZXMgZmFzdCBnZWRyZWh0ZXMgTmFjaGJhcnBhYXIgYXVmZ2Vsw7ZzdC4gRMO8bm5lIEZp
+bmFsZm9sZ2VuIGVyZm9yZGVybiBtZW5zY2hsaWNoZSBMYXN0cHLDvGZ1bmcuCjE2IFMxLTA0LTA0
+OiA4w5c4LiBFcnNhdHogMDIgdW50ZXJicmljaHQgZGllIFN0YXJ0YXJtc2VyaWU7IEtvcGYvTWl0
+dGUvQm9kZW4ga29tYmluaWVyZW4ga29ua3JldGUgUmVzdHphaGxlbi4gMDkvMTAgYW5kZXJlIEFu
+c2NobHVzcy0gdW5kIEt1cnZlbmxhc3Q7IHNlcmllbGxlIHVuZCBmbMOkY2hpZ2UgRmluYWxlcy4K
+MTcgUzEtMDUtMDE6IDjDlzguIFZvcmdlc2VoZW5lIEV4dHJlbXdlcnRzdGFydHMsIGRhbm4gZW50
+ZmVybnRlIEJlcmVpY2hlLiBDRi0wMyBiZWhvYmVuOiByZWNodGUgQXJtZSB5NSwgbGlua2UgeTcs
+IHp3ZWkgUmVpaGVuIERpZmZlcmVuei4gw4RobmxpY2hlIEJhbmRmYW1pbGllIHdpcmQgYWxzIFLD
+vGNrZ3JpZmYgYmVncsO8bmRldCwgbmljaHQgYWxzIHbDtmxsaWcgbmV1ZSBJZGVlIGF1c2dlZ2Vi
+ZW4uCjE4IFMxLTA1LTAyOiA4w5c4LCBhYiAwNiA5w5c5LiAwM+KAkzA1IG1pdCBFaW5zZXItUG9y
+dHp1Z2FuZyB1bmQgYW5zY2hsaWXDn2VuZGVyIG5vdHdlbmRpZ2VyIG1pdHRsZXJlciBSZXN0a29v
+cmRpbmF0aW9uIGVudHNwcmVjaGVuIGRlciBXUC0wMjctS2xhcnN0ZWxsdW5nLiBXZWNoc2VsIDA1
+4oaSMDYgbWl0IHRlY2huaXNjaGVyIFRpZWZlIDI04oaSMTQgaXN0IGtlaW4gYXV0b21hdGlzY2gg
+YmV3aWVzZW5lciBtZW5zY2hsaWNoZXIgU2Nod2llcmlna2VpdHNhbnN0aWVnLiBEaWVzZXIgw5xi
+ZXJnYW5nIGJsZWlidCBTcGllbHRlc3RwdW5rdC4KMTkgUzEtMDUtMDM6IDnDlzkuIEVyc2F0eiAw
+MSBlcmjDpGx0IHZvbGxlIEFjaHNlbmF1c2RlaG51bmcgb2huZSBOdWxsemFobDsgbWVocmVyZSBs
+YW5nZSBLZXR0ZW4gdW5kIHdlbmlnZSBkaXJla3RlIEV4dHJlbWUgaW4gZGVyIFZlcmRpY2h0dW5n
+LiBHbGVpY2hwb3J0aWdlIEZpbmFsZXMgdmVydGVpbGVuIGlocmUgMjIgWmVsbGVuIHVudGVyc2No
+aWVkbGljaC4KMjAgUzEtMDUtMDQ6IDnDlzksIGFiIDA2IDEww5cxMC4gRXJzYXR6IDAyIGVpZ2Vu
+c3TDpG5kaWdlIEtvcGYtL01pdHRlbC0vQm9kZW5nZW9tZXRyaWU7IHJlYWxlIHRpZWZlIDEww5cx
+MC1LZXR0ZW4gaW4gMDbigJMwODsgMDkvMTAgdmVyc2NoaWVkZW5lIHLDpHVtbGljaGUgWnVnw6Ru
+Z2UuIETDvG5uZSBGaW5hbGVzIDIyLzEwMCB1bmQgMjQvMTAwIG1pdCBSb290dGllZmVuIDQyLzQw
+IHNpbmQgZXJrbMOkcmJhciwgYWJlciBtZW5zY2hsaWNoIHVuYmVzdMOkdGlndC4KCldQLTAyNyBn
+ZXppZWx0IGFuZ2V3YW5kdDoKUjAxLUZJUlNUIGJlemVpY2huZXQgZGVuIGVyc3RlbiBiZXd1c3N0
+ZW4gZGlkYWt0aXNjaGVuIFNjaHdlcnB1bmt0LiBGcsO8aGVyZSB2ZXJzY2hpZWRlbmUgUG9ydHNl
+aXRlbiBzaW5kIGtlaW4gVmVyc3Rvw58uClIxOC1NSURETEUgZXJsYXVidCBsb2thbGUgZWxlbWVu
+dGFyZSBFaW5zZXItL1BvcnRhbmtlciwgd2VubiBkaWUgd2VpdGVyZSBMw7ZzdW5nIG1pdHRsZXJl
+IEhpbndlaXNlIGtvbWJpbmllcmVuIG11c3MuIEtvbmtyZXQ6Ci0gMDM6IEU3IGVyc2Now7ZwZnQg
+cm93Q291bnRzWzddPTE7IGxpbmtlIDQvNC80IHVuZCByZWNodGUgMy80IGtvb3JkaW5pZXJlbiBL
+b3BmIHVuZCBTdHJhbmcuCi0gMDQ6IE43IGVyc2Now7ZwZnQgY29sdW1uQ291bnRzWzddPTE7IGxp
+bmtlIDYvNS8zLzQgc293aWUgdW50ZXJlIDQvNCBrb29yZGluaWVyZW4gU3RyYW5nIHVuZCBEb3Bw
+ZWxrbmljay4KLSAwNTogVzAgZXJzY2jDtnBmdCBjb2x1bW5Db3VudHNbMF09MTsgcmVjaHRlIDUv
+Ni83IHVuZCBtZWhyZXJlIG1pdHRsZXJlIFplaWxlbnJlc3RlIGJlc3RpbW1lbiBkaWUgdW50ZXJl
+bi9vYmVyZW4gS25pY2tlLgpadXPDpHR6bGljaGUgaXNvbGllcnRlIEdlZ2VucHJvYmU6IFdlcmRl
+biBzw6RtdGxpY2hlIE5pY2h0LUVpbnNlcmNvdW50cyB3ZWdnZWxhc3NlbiwgYmxlaWJlbiBpbSB1
+bmFiaMOkbmdpZ2VuIFByb3BhZ2F0b3IgNDAvMzIvNDAgWmVsbGVuIG1laHJkZXV0aWc7IG1pdCB2
+b2xsc3TDpG5kaWdlbiBDb3VudHMgamV3ZWlscyBudWxsLiBEYXMgdW50ZXJzdMO8dHp0IGRpZSBU
+cmVubnVuZyB2b24gZWluZmFjaGVtIEVpbnN0aWVnIHVuZCB3ZWl0ZXJlciBLb21iaW5hdGlvbi4g
+RXMgaXN0IHdlZGVyIGVpbiBtZW5zY2hsaWNoZXIgVGVzdCBub2NoIGFsbGVpbiBlaW4gZm9ybWFs
+ZXIgQmV3ZWlzLCBkYXNzIGplZGUgZWluemVsbmUgbWl0dGxlcmUgWmFobCBub3R3ZW5kaWcgd8Ok
+cmUuCgpOaWNodHJlZHVuZGFuejoKRGllIDE1IHZlcmJsZWliZW5kZW4gbmFoZW4gUGFhcmUgd3Vy
+ZGVuIHNhbXQgUEFJUl9BREpVRElDQVRJT04gZ2VsZXNlbiB1bmQgbWl0IGRlbiBha3R1ZWxsZW4g
+RmVsZGVybiB2ZXJnbGljaGVuLiBCZWlzcGllbHN3ZWlzZSBSMTQvMDLigJNSMTUvMDIgaXN0IGJl
+d3Vzc3QgbmFoZSBXaWVkZXJha3RpdmllcnVuZyBtaXQgdmVyw6RuZGVydGVtIFLDvGNrbGF1Zjsg
+ZGllIHNww6R0ZXJlbiBQb3NpdGlvbnMtMi1FcnNhdHpmZWxkZXIgdW50ZXJicmVjaGVuIGRpZSBT
+ZXJpZS4gUjE4LzA54oCTMTAgdmVyZ2xlaWNodCB2ZXJzY2hpZWRlbmUgTnVsbC0vVm9sbGFua2Vy
+IHVuZCBQb3J0YWNoc2VuIGluIGRlcnNlbGJlbiBnZW9tZXRyaXNjaGVuIEZhbWlsaWUuIEtlaW5l
+IGV4YWt0ZSDDtmZmZW50bGljaGUgRDQtL0EtQi1Lb3BpZTsgdmVyYmxlaWJlbmRlIFdpZWRlcmVy
+a2VubmJhcmtlaXQgaXN0IGF1c2Ryw7xja2xpY2ggYmVuYW5udC4gRWluZSBzdWJqZWt0aXZlIE1v
+bm90b25pZWZyZWlnYWJlIGZvbGd0IGRhcmF1cyBuaWNodC4KCktlaW5lIHp1c8OkdHpsaWNoZW4g
+UmVnZWxuIGVyZnVuZGVuOiBrZWluZSA3MCUtTWluZGVzdGZsw6RjaGUsIGtlaW5lIEVpbnNlcnF1
+b3RlLCBrZWluZSBuZXVlIERpY2h0ZS0vVGllZmVuLS/DhGhubGljaGtlaXRzc2Nod2VsbGUsIGtl
+aW5lIFBmbGljaHQgenVtIEF1ZnRyZXRlbiB2b24gTE9PUF9QUkVWRU5USU9OL0NPTk5FQ1RJVklU
+WSBpbiBqZWRlciBSb3V0ZS4gRGllIDIzLjE2NCBQcm9kdWt0aW9uc3NjaHJpdHRlIHZlcndlbmRl
+biBzZWNocyBsb2thbGUgUmVnZWxjb2RlczsgZW50ZmVybnRlIENvdW50a29wcGx1bmcga2FubiB0
+cm90emRlbSBmYWNobGljaCByZWFsIHNlaW4uIFRlY2huaXNjaGUgVGllZmUgaXN0IHdlZGVyIG1l
+bnNjaGxpY2hlIFNjaHdpZXJpZ2tlaXQgbm9jaCBTcGllbGVyemVpdC4KCjcuIEJlZnVuZGUgdW5k
+IGdldHJlbm50ZSBvZmZlbmUgVm9yYXVzc2V0enVuZ2VuCgpGLTAxIOKAkyBOaWVkcmlnL1AzLCBu
+ZXVlIGJlZ3Jlbnp0ZSBWZXJ0cmFnc2Fid2VpY2h1bmc6IHNhY2hsaWNoIGZhbHNjaGUgcsOkdW1s
+aWNoZSBRdWFsaXTDpHRzYmVncsO8bmR1bmcuClF1ZWxsZTogSC9Db250ZW50L0xldmVscy9zMS8w
+My8wMy9TMS0wMy0wMy0wMy5sZXZlbC12Mi5qc29uOjUxOyBIL0NvbnRlbnQvUmV2aWV3cy9zZWFz
+b24tMS9sZXZlbGRlc2lnbi1TMS0wMy0wMy5tZDo2ODsgaWRlbnRpc2NoIGdlYnVuZGVuZXMgQXV0
+b3JlbmxpdGVyYWwvLUpTT04uCldvcnRsYXV0OiDigJ5EaWUgTnVsbHNwYWx0ZSBsaW5rcyB1bmQg
+ZGVyIEbDvG5mZXJjb3VudCBkYW5lYmVuIOKApuKAnApSZXByb2R1a3Rpb246IGNvbHVtbkNvdW50
+cz1bMCwyLDMsNiw1LDNdLiBMaW5rZSBOdWxsc3BhbHRlIGlzdCB4MDsgdW5taXR0ZWxiYXIgZGFu
+ZWJlbiB4MSBtaXQgQ291bnQgMi4gQ291bnQgNSBsaWVndCB4NCwgcmVjaHRzIGRlciB2b2xsZW4g
+U3BhbHRlIHgzLiBEaWUgYmVoYXVwdGV0ZSBOYWNoYmFyc2NoYWZ0IHp1ciBOdWxsc3BhbHRlIHN0
+aW1tdCBuaWNodC4KTWHDn3N0YWI6IFdQLTAyNiBTY29wZSA1L0FLLTA2IHZlcmxhbmd0IHNhY2hs
+aWNoZSBpbmRpdmlkdWVsbGUgUXVhbGl0w6R0c25vdGl6ZW47IENPTlRFTlRfUElQRUxJTkUgwqfC
+pzMuMi8zLjMgZm9yZGVydCBleHBsaXppdGUgYmVsYXN0YmFyZSBBdXRvcmVuZW50c2NoZWlkdW5n
+ZW4uCkF1c3dpcmt1bmc6IEVpbiBUZWlsIGRlciBpbmRpdmlkdWVsbGVuIGdlb21ldHJpc2NoZW4g
+QmVncsO8bmR1bmcgaXN0IHVuenV0cmVmZmVuZC4gS2VpbiBmYWxzY2hlcyBQdXp6bGUsIGtlaW4g
+ZmVobGVyaGFmdGVyIFByb29mLCBrZWluZSBub3R3ZW5kaWdlIE5ldWVyemV1Z3VuZyBkZXMgMjQw
+ZXItS29ycHVzLiBWZXJoaW5kZXJ0IHZvcmJlaGFsdGxvc2VzIFBBU1MgZGVyIHNhY2hsaWNoZW4g
+RG9rdW1lbnRhdGlvbnNrb21wb25lbnRlIHZvbiBBSy0wNi4gRW5nZXIgc3DDpHRlcmVyIEtvcnJl
+a3R1cmJlZGFyZjogcHLDpHppc2UgT3J0c2JlZ3LDvG5kdW5nIHVuZCBhbGxlIGRhcmFuIGdlYnVu
+ZGVuZW4gTWV0YWRhdGVuL1JldmlzaW9uLS9Eb2t1bWVudGhhc2huYWNod2Vpc2U7IHRhdHPDpGNo
+bGljaGVyIG5ldWVyIFN0YW5kIG3DvHNzdGUgZ2V6aWVsdCBuYWNoZ2VwcsO8ZnQgd2VyZGVuLiBI
+aWVyIG5pY2h0IHJlcGFyaWVydC4gS2VpbiBCTE9DS0VSL0hJR0ggYW4gZGVyIFB1enpsZWxvZ2lr
+IGRhcmF1cy4KCk8tMDEg4oCTIE1lbnNjaGxpY2hlciBTcGllbHRlc3Q6IE5PVF9FWEVDVVRFRCwg
+dmVyYmluZGxpY2hlIG9mZmVuZSBRdWFsaXTDpHRzdm9yYXVzc2V0enVuZy4KUXVlbGxlbjogV1At
+MDI2IFNjb3BlIDUvVGVzdHMgNi9Eb0QsIEJpYmxlIFF1YWxpdMOkdHNtYcOfc3RhYiwgQ09OVEVO
+VF9QSVBFTElORSwgTS9XUC0wMjhfRVhFQ1VUSU9OX0JSSUVGIERvRC4KVmVyaGluZGVydCBtZW5z
+Y2hsaWNoZSBGYWlybmVzcy0vTGVzYmFya2VpdHMtL0RyYW1hdHVyZ2llYWJuYWhtZSB1bmQgR2Vz
+YW10YWJzY2hsdXNzLiBLSS1FaW56ZWxwcsO8ZnVuZywgU29sdmVybWV0cmlrZW4gdW5kIGRpZXNl
+IEdlZ2VucHJvYmUgZXJzZXR6ZW4gaWhuIG5pY2h0LgpLb25rcmV0ZSBSaXNpa29mZWxkZXI6IGZy
+w7xoZSBkaWNodGUgS3VydmVuIFIxLzAxLzAzLCBSMi8xMjsgd2llZGVya2VocmVuZGUgbGFuZ2Ug
+QXJtZTsgUjE4LzAz4oCTMDY7IGTDvG5uZSBzcMOkdGUgRmluYWxlcyBpbnNiZXNvbmRlcmUgUjIw
+LzEx4oCTMTIuIERpZXMgc2luZCBQcsO8ZmVtcGZlaGx1bmdlbiBpbm5lcmhhbGIgZGVzIGJlc3Rl
+aGVuZGVuIFNwaWVsdGVzdGJlZGFyZnMsIGtlaW5lIG5ldWUgdmVycGZsaWNodGVuZGUgbnVtZXJp
+c2NoZSBUZXN0cXVvdGUgb2RlciBFcnNhdHpwbGFudW5nLgoKTy0wMiDigJMgSGlzdG9yaXNjaGVy
+IFVuaXR5LVRpbWVvdXQ6IGVpZ2Vuc3TDpG5kaWdlciBvZmZlbmVyIHRlY2huaXNjaGVyIEJlZnVu
+ZC4KT3JpZ2luYWxzdGFuZCA5NjY5N2FiLCBQdXNocnVuIDM4NDkwMjQzMjQwLCBIYXJkQnVkZ2V0
+X05vUmVzdWx0SXNCdWlsdEFmdGVyVGhlTGFzdFByb2JlX0ZvckV2ZXJ5UmVzdWx0S2luZDogMTgw
+LjAwMC1tcy1UaW1lb3V0LCB0YXRzw6RjaGxpY2hlIEZhbGxkYXVlciAxOTcsNTMzMjQ4IHM7IDQ1
+My80NTQgUGFzc2VkLgpEYXMgaW4gZGVyIFJlcG9zaXRvcnlldmlkZW56IGFyY2hpdmllcnRlIE9y
+aWdpbmFsLVhNTCB3dXJkZSBzZWxic3QgZGVrb21wcmltaWVydCwgZ2VoYXNodCB1bmQgZ2VwYXJz
+dCAoU0hBMjU2IDhlZjhmOWJmM2JhYWUxMDU1NWEyMzhkMTMyYTc5YjAyODlmMjE3MzE0OWE1YTk5
+MzlkOTRjNzM5MGZkODJiZjEpLiBEaWVzZXIgYWx0ZSBMYXVmIHd1cmRlIG5pY2h0IGFscyBoZXV0
+aWdlciBMYXVmIGRhcmdlc3RlbGx0IHVuZCBuaWNodCBuZXUgcmVtb3RlIGhlcnVudGVyZ2VsYWRl
+bi4KQXVmIEggYmVzdGVodCBkZXJzZWxiZSBUZXN0IG1pdCAxMDQsMTY5NTAxIHMuIERhcyB3aWRl
+cmxlZ3QgbmljaHQgZGVuIGFsdGVuIEZBSUwgdW5kIGVya2zDpHJ0IHNlaW5lIFVyc2FjaGUgbmlj
+aHQuClF1ZWxsZW46IFRFU1RfU1RSQVRFR1kgwqcxMzsgQURSLTAzMiBBdXNmw7xocnVuZ3NncmVu
+emU7IFdQLTAyOC1CcmllZiBhdXNkcsO8Y2tsaWNoZXMgw4RuZGVydW5ncy0vUmV0cnktL1F1YXJh
+bnTDpG5ldmVyYm90LgpWZXJoaW5kZXJ0IFNjaGxpZcOfdW5nIGRlcyBiZWthbm50ZW4gWnV2ZXJs
+w6Rzc2lna2VpdHNiZWZ1bmRzIHVuZCB1bmVpbmdlc2NocsOkbmt0ZSB0ZWNobmlzY2hlIEdlc2Ft
+dGZyZWlnYWJlL0ludGVncmF0aW9uLiBLZWluIGFrdHVlbGxlciBDSS1GQUlMIHVuZCBrZWluIFNl
+YXNvbi0xLUJlbmNobWFya2ZlaGxlci4gRXJmb3JkZXJ0IGVpZ2VuZW4gcGFzc2VuZGVuIFVudGVy
+c3VjaHVuZ3NhdWZ0cmFnOyBrZWluZSBzdGlsbHNjaHdlaWdlbmRlIFRpbWVvdXQtL0J1ZGdldGVy
+aMO2aHVuZyBvZGVyIFF1YXJhbnTDpG5lLgoKTy0wMyDigJMgQWt0dWVsbGUgU3RhdHVzbmFjaGbD
+vGhydW5nIGF1c3N0ZWhlbmQsIGtlaW4gd2llZGVyZXLDtmZmbmV0ZXIgUXVlbGxlbmJsb2NrZXIu
+CkJlaXNwaWVsZTogSC9XUC0wMjY6NywgQ1VSUkVOVF9TVEFURTo0OeKAkzUyLCBSRVZJRVdfUkVT
+T0xVVElPTjo4Mi8xMTPigJMxMTQgdW5kIFBSMjEtQmVzY2hyZWlidW5nIGbDvGhyZW4gZGllIGJl
+aWRlbiBFbnRzY2hlaWR1bmdlbi9DSS1QRVJGIHdlaXRlcmhpbiBvZmZlbiBvZGVyIE5PVF9FWEVD
+VVRFRDsgUFIyMSBiZXNjaHJlaWJ0IGQ5Ny81OTAgRGF0ZWllbiwgdGF0c8OkY2hsaWNoIEgvNTk0
+LgpNIHNvd2llIFBSMjUgZW50aGFsdGVuIGRpZSBzcMOkdGVyZW4gRW50c2NoZWlkdW5nZW4gdW5k
+IHRhdHPDpGNobGljaGVuIE5hY2h3ZWlzZS4gSGlzdG9yaXNjaGUgQmVyaWNodGUgd2FyZW4genVt
+IGRhbWFsaWdlbiBTdGFuZCBrb3JyZWt0IHVuZCBkw7xyZmVuIG5pY2h0IHLDvGNrd2lya2VuZCB1
+bWdlc2NocmllYmVuIHdlcmRlbi4KVmVyaGluZGVydCBlaW5lIHdpZGVyc3BydWNoc2ZyZWllIGFr
+dHVlbGxlIHJlcG9zaXRvcnliYXNpZXJ0ZSDDnGJlcmdhYmUgdW5kIGRpZSBEb0QtUHVua3RlIERv
+a3VtZW50YXRpb24vQ1VSUkVOVF9TVEFURS4gVmVyaGluZGVydCBuaWNodCBkaWUgamV0emlnZSB0
+ZWNobmlzY2hlIG9kZXIgZmFjaGxpY2hlIFByw7xmdW5nLCB3ZWlsIGRpZSBtYcOfZ2VibGljaGVu
+IFF1ZWxsZW4gZXhwbGl6aXQgdm9yZ2VnZWJlbiB1bmQgdmVyaWZpemllcnQgc2luZC4KV1AtMDI4
+IGR1cmZ0ZSBnbG9iYWxlIFN0ZXVlcnVuZ3NkYXRlaWVuIGdlbcOkw58gYWJzY2hsaWXDn2VuZGVy
+IEbDvG5mLURhdGVpZW4tQWxsb3dsaXN0IG5pY2h0IHNlbGJzdCDDpG5kZXJuOyBkZXNoYWxiIGtl
+aW5lIHVuenVsw6Rzc2lnZSBuYWNodHLDpGdsaWNoZSBTY2h1bGR6dXdlaXN1bmcgYW4gV1AtMDI4
+LiBOw7Z0aWcgaXN0IGF1dG9yaXNpZXJ0ZSBtZWNoYW5pc2NoZSBha3R1ZWxsZSBTdGF0dXNmb3J0
+c2NocmVpYnVuZyBtaXQgaGlzdG9yaXNjaGVuIEJlcmljaHRlbiB1bnZlcsOkbmRlcnQuIERpZXNl
+IFByw7xmdW5nIMOkbmRlcnQgc2llIGF1ZnRyYWdzZ2Vtw6TDnyBuaWNodC4KCk8tMDQg4oCTIE1h
+aW4tS29uZmxpa3RlLCBrb25rcmV0ZSBJbnRlZ3JhdGlvbnNzcGVycmUuClJlaW4gbGVzZW5kZXMg
+Z2l0IG1lcmdlLXRyZWUgbWl0IEI9Yzk1MSwgTT1kOTAsIEg9YjE0NSBiZXN0w6R0aWd0IFRleHRr
+b25mbGlrdGUgaW46Ci5naXRodWIvd29ya2Zsb3dzL3ZhbGlkYXRlLnltbApQUk9KRUNUX0NPTlRS
+T0wvQ1VSUkVOVF9TVEFURS5tZApQUk9KRUNUX0NPTlRST0wvV09SS19RVUVVRS5tZApHaXRIdWIg
+YmVzdMOkdGlndCBtZXJnZWFibGU9ZmFsc2UuClZlcmhpbmRlcnQgZGlyZWt0ZSBJbnRlZ3JhdGlv
+biB2b24gUFIyMSBpbiBha3R1ZWxsZXMgbWFpbi4gRGllIGpldHppZ2UgZ3LDvG5lIFB1c2gtQ0kg
+YXVmIEggaXN0IGtlaW4gVGVzdCBlaW5lcyBrb25mbGlrdGF1ZmdlbMO2c3RlbiBrb21iaW5pZXJ0
+ZW4gSW50ZWdyYXRpb25zc3RhbmRzIG1pdCBXUC0wMjcuIEVpbmUgc3DDpHRlcmUgYXV0b3Jpc2ll
+cnRlIEtvbmZsaWt0YXVmbMO2c3VuZyBtdXNzIGJlaWRlIFF1ZWxsZW5zdMOkbmRlIGVyaGFsdGVu
+OyBuZXVlciBIZWFkIGVyZm9yZGVydCBwYXNzZW5kZSBuZXVlIENoZWNrcy9TdGFuZGJpbmR1bmcu
+IEhpZXIgd2VkZXIgS29uZmxpa3Rsw7ZzdW5nIG5vY2ggZWluIHVuZ2V0ZXN0ZXRlciB2aXJ0dWVs
+bGVyIEdlc2FtdC1QQVNTLgoKTy0wNSDigJMgMS40NDAgZmVobGVuZGUgUmVmZXJlbnp6aWVsZSAv
+IENyb3NzLVJlZmVyZW5jZS1GQUlMLgo5NjAgTG9jYWxpemF0aW9uOiB0aXRsZUtleSwgc3RhdHVz
+S2V5LCBlbnRyeURlZHVjdGlvbktleSwgcmVzdWx0VGV4dEtleTsgNDgwIENvbXBsZXRpb24vV29y
+bGQ6IG1hcFNlZ21lbnRJZCwgdHJhaW5Nb21lbnRJZC4gSmUgRmVsZCBhbGxlIDI0MCBJRHM7IGV4
+YWt0ZSBMaXN0ZSBpbiB1bnJlc29sdmVkLXJlZmVyZW5jZXMuanNvbiwgbmV1IGFiZ2VnbGljaGVu
+LgpWZXJoaW5kZXJ0IENyb3NzLVJlZmVyZW5jZS1HYXRlLCBDb250ZW50ZmVydGlnc3RlbGx1bmcs
+IHZvbGxzdMOkbmRpZ2VuIEltcG9ydCB1bmQgZm9sZ2VuZGUgUHJvZHVrdC0vUmVsZWFzZWZyZWln
+YWJlbi4KVmVyaGluZGVydCBnZW3DpMOfIGF1c2Ryw7xja2xpY2gga29ycmlnaWVydGVtIFdQLTAy
+Ni1BdWZ0cmFnIG5pY2h0IHRlY2huaXNjaGUgRHJhZnQtQXV0aG9yaW5ncXVlbGxlbiwgUHJvb2Zn
+ZW5lcmllcnVuZyBvZGVyIHVuYWJow6RuZ2lnZSBQcsO8ZnVuZyBkZXMgbG9naXNjaGVuIEJlc3Rh
+bmRzLiBLZWluIGdlbmVyZWxsZXMgVmVyYm90IHRlY2huaXNjaGVyIEVudHd1cmZzcmVmZXJlbnpl
+biB3aWVkZXIgZWluZ2Vmw7xocnQuCgpPLTA2IOKAkyBaZWl0a2xhc3NlL0thbGlicmllcnVuZy4K
+QWxsZSBRdWVsbGVuIHdlaXRlciBVTkNBTElCUkFURUQsIHN0YXJUaHJlc2hvbGRzU2Vjb25kcz1u
+dWxsLiBLZWluZSBiZXN0w6R0aWd0ZSB2b3Jsw6R1ZmlnZSBtZW5zY2hsaWNoZSBaZWl0a2xhc3Nl
+bnp1b3JkbnVuZzsga2VpbmUgZmluYWxlbiBTZWt1bmRlbi4KVmVyaGluZGVydCBmZXJ0aWdlIFpl
+aXQtL1N0ZXJua2FsaWJyaWVydW5nIHVuZCBlbnRzcHJlY2hlbmRlIENvbnRlbnQtL1Byb2R1a3Rm
+cmVpZ2FiZS4gS2VpbiBGZWhsZXIgZGVyIFNjaGVtYWxlc2JhcmtlaXQgb2RlciBTb2x2ZXJidWRn
+ZXRzOyBrZWluZSBFcmxhdWJuaXMsIFdlcnRlIGF1cyBMYXVmemVpdGVuIG9kZXIgUmFzdGVyZ3LD
+tsOfZSB6dSBlcmZpbmRlbi4KCk8tMDcg4oCTIE5hY2hnZWxhZ2VydGUgR2F0ZXMuCktyZWF0aXZl
+IE1pbmlhdHVyLS9QcsOkc2VudGF0aW9uc25hY2h3ZWlzZSwgZGV1dHNjaGUgWmllbHRleHRlL1Bz
+ZXVkb2xvY2FsZSwgendlaSBzYXViZXJlIEltcG9ydGUgbWl0IGdsZWljaGVtIEthdGFsb2doYXNo
+LCBBZGRyZXNzYWJsZXMsIEFzc2V0LS9MaXplbnotL0dyw7bDn2VucHLDvGZ1bmdlbiBhbSB2b2xs
+c3TDpG5kaWdlbiBDb250ZW50LCBQcm9kdWt0ZnJlaWdhYmUgdW5kIFJlbGVhc2UtTG9jazogUkVR
+VUlSRURfTEFURVIvTk9UX0VYRUNVVEVELCBzb3dlaXQgZmVobGVuZGUgWmllbGluaGFsdGUgYnp3
+LiBleHBsaXppdGVyIEtyZWF0aXYtL0ltcG9ydGF1c3NjaGx1c3MgZGllIER1cmNoZsO8aHJ1bmcg
+dmVyaGluZGVybi4KUGh5c2lzY2hlIEFuZHJvaWQtL2lPUy1HZXLDpHRlLSwgUHJpdmFjeS0sIFNp
+Z25pbmctLCBTdG9yZS0gdW5kIFJlbGVhc2VmcmVpZ2FiZW4gZWJlbmZhbGxzIG5pY2h0IGR1cmNo
+IGFrdHVlbGxlIEJ1aWxkam9icyBlcmbDvGxsdC4KRGllc2UgUHVua3RlIHZlcmhpbmRlcm4gamV3
+ZWlscyBkaWUgYmV6ZWljaG5ldGUgQ29udGVudC0vSW1wb3J0LS9SZWxlYXNlcGhhc2UuIFNpZSB3
+ZXJkZW4gbmljaHQgcGF1c2NoYWwgenUgbmFjaHRyw6RnbGljaGVuIFN0YXJ0dmVyYm90ZW4gZsO8
+ciBkaWUgZXJsYXVidGUgbG9naXNjaGUgVGVpbGxpZWZlcnVuZyB1bWdlZGV1dGV0LiBBdWNoIHdp
+cmQga2VpbmUgQXVzbmFobWUgdm9uIGRlciBHZXNhbXQtRG9EIGFuZ2Vub21tZW46IHZvbGxzdMOk
+bmRpZ2VyIFBha2V0LS9TZWFzb25hYnNjaGx1c3MgYmxlaWJ0IG9mZmVuLiBEZXIgV1AtMDI4LUJy
+aWVmIGjDpGx0IGRpZXNlIFZvcmF1c3NldHp1bmdlbiB2b3IgZWluZXIgc3DDpHRlcmVuIE1haW4t
+SW50ZWdyYXRpb24gYXVzZHLDvGNrbGljaCBzaWNodGJhcjsgZGllc2VyIEJlcmljaHQgZXJ0ZWls
+dCBrZWluZSBhYndlaWNoZW5kZSBNZXJnZWZyZWlnYWJlLgoKRW1wZmVobHVuZ2VuLCBrZWluZSBu
+ZXVlbiBWZXJ0cmFnc3ZlcmxldHp1bmdlbjoKLSBWZXJibGVpYmVuZGUgQXJtZmFtaWxpZW4gdW5k
+IGRpZSBnZW5hbm50ZW4gw5xiZXJnw6RuZ2UgaW0gcmVhbGVuIFNwaWVsdGVzdCBnZXppZWx0IGJl
+b2JhY2h0ZW47IGtlaW5lbiBudW1lcmlzY2hlbiBTY2h3aWVyaWdrZWl0c2dyZW56d2VydCBuYWNo
+dHLDpGdsaWNoIHNldHplbi4KLSBCZXN0ZWhlbmRlIENJLUNhY2hlLUFia8O8bmRpZ3VuZ3N3YXJu
+dW5nZW4gaW4gZWluZW0gZGFmw7xyIGF1dG9yaXNpZXJ0ZW4gV2FydHVuZ3NzY29wZSBiZWhhbmRl
+bG4uCi0gSGlzdG9yaXNjaGUgZmVobGVuZGUgQXVzd2FobHNlZWRzL1Rvb2x2YXJpYW50ZW4gd2Vp
+dGVyaGluIGVocmxpY2gga2VubnplaWNobmVuOyBrZWluIHLDvGNrd2lya2VuZGVzIEVuZGxlc3Mt
+U2VlZGdhdGUgZsO8ciBkaWVzZW4gS2FtcGFnbmVuYmVzdGFuZC4KCjguIFdQLTAyNi1Ba3plcHRh
+bnprcml0ZXJpZW4sIGVpbnplbG4KCkFLLTAxIOKAkyBUZWNobmlzY2hlciBTY29wZS0vQW5rZXJ0
+ZWlsIFBBU1M7IGFrdHVlbGxlIMOcYmVyZ2FiZXN0YXR1c2bDvGhydW5nIG5vY2ggb2ZmZW4uCkJl
+aWRlIGVybGF1YnRlbiBQYWtldHNjaGljaHRlbiBnZXRyZW5udCBuYWNoZ2V3aWVzZW4sIE1hbmlm
+ZXN0Ynl0ZXMgdW52ZXLDpG5kZXJ0LCBrZWluZSB1bnp1bMOkc3NpZ2UgS29ycHVzZXJ3ZWl0ZXJ1
+bmcgZHVyY2ggV1AtMDI4LiBBa3R1ZWxsZSBDSS1adW9yZG51bmcgaXN0IFdQLTAyODsgNTkwKzUt
+UGZhZHByw7xmdW5nIGVyZ8Okbnp0IHNpZS4gU3RhbGUgR2VzYW10c3RhdHVzIHVuZCBNYWluLUtv
+bmZsaWt0ZSBzaW5kIGVpZ2VuZSBQdW5rdGUgTy0wMy9PLTA0LCBrZWluIEFubGFzcyB6dW0gVW1z
+Y2hyZWliZW4gaGlzdG9yaXNjaGVyIE1hbmlmZXN0YmFzZW4uCgpBSy0wMiDigJMgUEFTUyBmw7xy
+IHZvcmhhbmRlbmVuIGxvZ2lzY2hlbiBCZXN0YW5kIHVuZCBxdWVsbGVuYmV6b2dlbmUgZmFjaGxp
+Y2hlIFByw7xmdW5nLgoyNDAvMjQwLCA1w5c0w5cxMiwgYWxsZSBlcmxhdWJ0ZW4gUmFzdGVyLS9H
+cnVwcGVud2VjaHNlbCwga2VpbiBleGFrdGVzIEQ0LS9BLUItRHVwbGlrYXQuIEFsbGUgMjAgTGVy
+bmLDtmdlbiB1bnRlciBXUC0wMjcgYmV3ZXJ0ZXQuIE1lbnNjaGxpY2hlIFdpcmt1bmcgYmxlaWJ0
+IE8tMDE7IGRlciBpc29saWVydGUgTm90aXpmZWhsZXIgRi0wMSBnZWjDtnJ0IEFLLTA2LgoKQUst
+MDMg4oCTIFBBU1MuCkFsbGUgMjQwIGdlZ2VuIGVjaHRlIFNjaGVtYXMsIFByb2R1a3Rpb25zbG9h
+ZGVyL0RvbWFpbiB1bmQgdW5hYmjDpG5naWdlIEdlb21ldHJpZS0vQ291bnRwcsO8ZnVuZy4gU2Vj
+aHMgRm9ybWVuLCBlaW5mYWNoZXIgdmVyYnVuZGVuZXIgQeKGkkItUGZhZCwga2VpbmUgWnlrbGVu
+L0tyZXV6dW5nL0V4dHJhemVsbGVuLgoKQUstMDQg4oCTIFBBU1MuCjI0MCBha3R1ZWxsZSBzb2x2
+ZXItdjItUHJvb2ZzIFVOSVFVRS8xLCB0YXRzw6RjaGxpY2hlIHZpZXIgTWV0cmlrZW4sIEd1ZXNz
+ZGVwdGgvU2VhcmNoTm9kZXMgMCwgcmljaHRpZ2UgUHVibGljLS9Tb2x1dGlvbi0vUHJvb2YtL1Jl
+ZmJpbmR1bmcuIFZvbGxzdMOkbmRpZ2UgUm9vdHNwdXJlbiB1bmQgTWV0cmlrcmVrb25zdHJ1a3Rp
+b24gZ2VwcsO8ZnQuCgpBSy0wNSDigJMgUEFTUy4KRnJpc2NoZSBkcmVpZmFjaGUgUmVnZW5lcmF0
+aW9uIGplIFF1ZWxsZSwgYnl0ZWdsZWljaGUgUHJvb2ZzLCBTdHJpY3QtRWluemVsLS9CYXRjaC0v
+UmV2ZXJzZXByw7xmdW5nLCAxLjIwMCBuZXVlIE5vZGUtSkNTLUFiZ2xlaWNoZS4gS2VpbmUgYmxv
+w59lIMOcYmVybmFobWUgYWx0ZXIgR29sZGVucy4KCkFLLTA2IOKAkyBURUlMV0VJU0UgRVJGw5xM
+TFQsIGtlaW4gdm9yYmVoYWx0bG9zZXMgUEFTUy4KMjQwIHN1YnN0YW56aWVsbGUgRWluc3RpZWdl
+L05vdGl6ZW4gdW5kIDIwIFJvdXRlbnVydGVpbGUsIHZvbGxlIMOEaG5saWNoa2VpdHNzaWNodCB1
+bmQgaW5kaXZpZHVlbGxlIFBhYXJlbnRzY2hlaWR1bmdlbiB2b3JoYW5kZW4gdW5kIGVpZ2Vuc3TD
+pG5kaWcgYmV3ZXJ0ZXQuIEYtMDEgaXN0IGVpbmUgYmVncmVuenRlIHNhY2hsaWNoZSBBYndlaWNo
+dW5nLiBNZW5zY2hsaWNoZXIgU3BpZWx0ZXN0IHdpcmQga29ycmVrdCBnZXRyZW5udCwgYmxlaWJ0
+IHRhdHPDpGNobGljaCBvZmZlbjsgZGllc2UgS0ktQ29udGVudHByw7xmdW5nIHdpcmQgbmljaHQg
+YWxzIHNvbGNoZXIgYXVzZ2VnZWJlbi4KCkFLLTA3IOKAkyBQQVNTIGbDvHIgdHJhbnNwYXJlbnRl
+IE9mZmVubGVndW5nIGRlciBmcmVtZGVuIENvbnRlbnQtL0ltcG9ydC0vUmVsZWFzZWdyZW56ZW4u
+CkFsbGUgYmV0cm9mZmVuZW4gSURzL0ZlbGRlci9adXN0w6RuZGlna2VpdGVuIGtvbmtyZXQgbmFj
+aGdld2llc2VuOyBmZWhsZW5kZSBSZWZlcmVuemVuLCBaZWl0d2VydGUgdW5kIEZvbGdlZ2F0ZXMg
+bmljaHQgdmVyZGVja3QuIEFrdHVlbGxlIMO8YmVyaG9sdGUgRW50c2NoZWlkdW5ncy0vQ0ktU3Rh
+dHVzYXVzc2FnZW4gc2VwYXJhdCBPLTAzIG5hY2h6dWbDvGhyZW4uCgpBSy0wOCDigJMgTmV1ZSB1
+bmFiaMOkbmdpZ2UgUHLDvGZ1bmcgdW5kIGFrdHVlbGxlIHRlY2huaXNjaGUvQ0ktRXZpZGVueiBq
+ZXR6dCBhdWYgSCBiZWxlZ3Q7IEdlc2FtdGFic2NobHVzcyB3ZWl0ZXJoaW4gTkVJTi4KRGllc2Vy
+IEJlcmljaHQgc2FtdCBPcmlnaW5hbGFydGVmYWt0ZW4gaXN0IGF1w59lcmhhbGIgZGVzIFJlcG9z
+aXRvcnlzIHBlcnNpc3RpZXJ0IHVuZCB1bnZlcsOkbmRlcnQgd2VpdGVyZ2ViYmFyLiBSZXBvc2l0
+b3J5LS9QUi1OYWNoZsO8aHJ1bmcgZXJmb2xndCBoaWVyIHdlZ2VuIGF1c2Ryw7xja2xpY2hlbSBT
+Y2hyZWlidmVyYm90IG5pY2h0LiBBbHRlIGQ5Ny0vYjQ0OS1CZXJpY2h0ZSBibGVpYmVuIGFuIGlo
+cmVuIFN0YW5kIGdlYnVuZGVuLiBPZmZlbmUgVm9yYXVzc2V0enVuZ2VuIHdlcmRlbiBuaWNodCBh
+bHMgZXJsZWRpZ3QgZXJrbMOkcnQuCgo5LiBHZXNhbXQtRG9EIHVuZCBJbnRlZ3JhdGlvbnNiZXJl
+aXRzY2hhZnQKCkRvRC1CZWRpbmd1bmcgLyBFcmdlYm5pczoKLSBJbXBsZW1lbnRpZXJ1bmcgdm9s
+bHN0w6RuZGlnOiBsb2dpc2NoZXIgdW5kIFdQLTAyOC10ZWNobmlzY2hlciBVbWZhbmcgdm9yaGFu
+ZGVuOyBGLTAxIGJlZ3Jlbnp0ZSBOb3Rpem5hY2hiZXNzZXJ1bmcsIG9mZmVuZSBmcmVtZGUgVGVp
+bHZvcmF1c3NldHp1bmdlbiBhdXNkcsO8Y2tsaWNoIHNpY2h0YmFyLgotIFZvcmdlc2NocmllYmVu
+ZSBUZXN0cyB2b3JoYW5kZW46IHRlY2huaXNjaGUgTmFjaHdlaXNlIHZvcmhhbmRlbjsgbWVuc2No
+bGljaGUgdW5kIHNww6R0ZXJlIENvbnRlbnQtL0ltcG9ydG5hY2h3ZWlzZSBub2NoIG5pY2h0IGVy
+YnJhY2h0LCBrZWluZSB2b3JhYiBnZW5laG1pZ3RlIHBhdXNjaGFsZSBOaWNodGFud2VuZGJhcmtl
+aXQgYW5nZW5vbW1lbi4KLSBUZXN0cyBlcmZvbGdyZWljaDogaGV1dGlnZSB0ZWNobmlzY2hlIFBy
+w7xmdW5nZW4vQ0kgUEFTUzsgaGlzdG9yaXNjaGVyIFp1dmVybMOkc3NpZ2tlaXRzYmVmdW5kIE8t
+MDIgdW5nZWzDtnN0LCBPLTAxL08tMDcgbmljaHQgYXVzZ2Vmw7xocnQuCi0gUHJvamVrdCBiYXV0
+OiBQQVNTIGbDvHIgYWt0dWVsbGVuIERldmVsb3BtZW50LUFuZHJvaWQtSUwyQ1BQIHVuZCBpT1Mt
+RXhwb3J0L0NvbXBpbGU7IGtlaW5lIFN0b3JlYmVoYXVwdHVuZy4KLSBBbGxlIEFLIGVyZsO8bGx0
+OiBORUlOLCBpbnNiZXNvbmRlcmUgQUstMDYgdW5kIEFic2NobHVzcy0vTmFjaGbDvGhydW5nc2tv
+bXBvbmVudGVuLgotIERva3VtZW50YXRpb24gYWt0dWVsbDogTkVJTiwgTy0wMyB1bmQgRi0wMS4K
+LSBDVVJSRU5UX1NUQVRFIGFrdHVlbGw6IE5FSU4sIE8tMDMuCi0gS2VpbmUgdW5kb2t1bWVudGll
+cnRlIEFyY2hpdGVrdHVyw6RuZGVydW5nOiBQQVNTIGltIGdlcHLDvGZ0ZW4gTGllZmVydW1mYW5n
+OyBXUC0wMjggaXN0IGR1cmNoIGFuZ2Vub21tZW5lbiBBRFItMDMyIGF1ZiBNIGxlZ2l0aW1pZXJ0
+LgoKSW50ZWdyYXRpb25zYmVyZWl0c2NoYWZ0OiBORUlOLgpVbm1pdHRlbGJhcmUgdGVjaG5pc2No
+ZSBNZXJnZWJhcnJpZXJlIHNpbmQgZGllIGRyZWkgS29uZmxpa3RlLiBTZWxic3QgZWluZSBrb25m
+bGlrdGZyZWllIEtvbWJpbmF0aW9uIHfDvHJkZSBPLTAxL08tMDIsIGRlbiBiZWdyZW56dGVuIFNh
+Y2hiZWZ1bmQgdW5kIGRpZSBlcmZvcmRlcmxpY2hlIFN0YXR1cy0vQWJuYWhtZWJpbmR1bmcgbmlj
+aHQgYXV0b21hdGlzY2ggZXJsZWRpZ2VuLiBEaWUgYWt0dWVsbGUgZ3LDvG5lIENJIGJlbGVndCBI
+LCBrZWluZW4gbm9jaCBuaWNodCBleGlzdGllcmVuZGVuIG5ldWVuIEludGVncmF0aW9uc2hlYWQu
+IENyb3NzLVJlZmVyZW5jZS0vWmVpdC0vSW1wb3J0LS9Qcm9kdWt0LS9SZWxlYXNlZ2F0ZXMgaGFi
+ZW4gZGllIG9iZW4gZWluemVsbiBiZXplaWNobmV0ZSBSZWljaHdlaXRlOyBzaWUgZMO8cmZlbiB3
+ZWRlciBhbHMgUHJvb2ZkZWZla3RlIG5vY2ggYWxzIGJlcmVpdHMgZXJmw7xsbHQgYmVoYW5kZWx0
+IHdlcmRlbi4KCk7DpGNoc3RlIHNhY2hsaWNoIGJlZ3LDvG5kZXRlIFNjaHJpdHRlIGlubmVyaGFs
+YiBqZXdlaWxzIGF1c2Ryw7xja2xpY2ggYXV0b3Jpc2llcnRlciBGb2xnZWFyYmVpdDoKMS4gRi0w
+MSBlbmcga29ycmlnaWVyZW4gdW5kIGJldHJvZmZlbmUgQmluZHVuZ3MtL1JldmlzaW9uc25hY2h3
+ZWlzZSBlcm5ldWVybjsga2VpbmUga29tcGxldHRlIG5ldWUgUsOkdHNlbGdlbmVyYXRpb24gZXJm
+b3JkZXJsaWNoLgoyLiBBa3R1ZWxsZW4gU3RhdHVzIG1lY2hhbmlzY2ggdW0gV1AtMDI3LUVudHNj
+aGVpZHVuZ2VuLCBlcmbDvGxsdGVzIENJLVBFUkYgdW5kIGRpZXNlIEFibmFobWUgZXJnw6RuemVu
+OyBoaXN0b3Jpc2NoZSBSZXBvcnRzIHVudmVyw6RuZGVydCBsYXNzZW4uCjMuIE1lbnNjaGxpY2hl
+IFNwaWVsdGVzdHZvcmF1c3NldHp1bmcgdW5kIGhpc3RvcmlzY2hlbiBUaW1lb3V0YmVmdW5kIGlt
+IGpld2VpbHMgenVzdMOkbmRpZ2VuIEF1ZnRyYWcgdGF0c8OkY2hsaWNoIGJlYXJiZWl0ZW4uCjQu
+IE1haW4tS29uZmxpa3RlIG51ciBpbiBhdXRvcmlzaWVydGVtIEludGVncmF0aW9uc3NjaHJpdHQg
+bMO2c2VuOyBkZW4gZGFubiBuZXVlbiBnZW1laW5zYW1lbiBTdGFuZCBlcm5ldXQgcGFzc2VuZCBw
+csO8ZmVuLgo1LiBGZWhsZW5kZSBaaWVsaW5oYWx0ZS9aZWl0a2xhc3NlbiB1bmQgamV3ZWlscyBm
+w6RsbGlnZSBGb2xnZWdhdGVzIGR1cmNoIGRpZSBkb2t1bWVudGllcnRlbiBWZXJhbnR3b3J0bGlj
+aGtlaXRlbiBlcmbDvGxsZW4uCkRpZXMgc2luZCBhdXMgYmVzdGVoZW5kZW4gQW5mb3JkZXJ1bmdl
+biBhYmdlbGVpdGV0ZSDDnGJlcmdhYmVwdW5rdGUsIGtlaW5lIMOEbmRlcnVuZyB2b24gTWFudXPi
+gJkgUGxhbnVuZyBvZGVyIEJlYXVmdHJhZ3VuZyBpaHJlciBVbXNldHp1bmcuCgoxMC4gQmVsZWdr
+YXRlZ29yaWVuIHVuZCBSZXByb2R1a3Rpb24KCkxPQ0FMX0RPQ1VNRU5UX1NUUlVDVFVSRTogZWln
+ZW5lIEJlc3RhbmRzLS9JRC0vQmluZHVuZ3MtL1N0YXR1c3Byw7xmdW5nOyBnZXBpbm50ZSBDSS1J
+bnZlbnRhci0vTGluay0vR292ZXJuYW5jZWdydXBwZW4gUEFTUy4gQWt0dWVsbGUgU3RhdHVzbMO8
+Y2tlbiBhdXNkcsO8Y2tsaWNoIG5pY2h0IHZlcnNjaHdpZWdlbi4KTE9DQUxfQVJDSElURUNUVVJF
+X1NFTUFOVElDUzogZWlnZW5lIFNjaGVtYS0vR2VvbWV0cmllLS9IYXNoLS9Tb2x2ZXItL011dGF0
+aW9uc3Byw7xmdW5nZW4gdW5kIHRhdHPDpGNobGljaGUgQ0ktVmVydHJhZ3NyZWdyZXNzaW9uZW4g
+UEFTUyBpbSBhbmdlZ2ViZW5lbiBVbWZhbmcuCkxPQ0FMX1NDT1BFOiBlaWdlbmUgZ2VzY2hpY2h0
+ZXRlIHZvbGxzdMOkbmRpZ2UgRGlmZi0vQW5rZXItL01hbmlmZXN0cHLDvGZ1bmcgUEFTUzsgYWt0
+dWVsbGVyIGthbm9uaXNjaGVyIENJLVdQLTAyOC1TY29wZSBQQVNTLgpNQU5VQUxfQVJDSElURUNU
+VVJFX1JFVklFVzogUXVlbGxlbmhpZXJhcmNoaWUsIFByb2R1a3RncmVuemVuLCBBdXRvcndlcmt6
+ZXVnZ3JlbnplbiwgTGVybmJvZ2VuLSB1bmQgSW50ZWdyYXRpb25zYmV3ZXJ0dW5nIHRhdHPDpGNo
+bGljaCBtYW51ZWxsIGdlcHLDvGZ0OyBrZWluIGF1dG9tYXRpc2NoZXIgUEFTUyBmw7xyIG1lbnNj
+aGxpY2hlIFdpcmt1bmcuCkNPTlRSQUNUX09OTFk6IHZvcmhhbmRlbmUgbm9ybWF0aXZlIEZvbGdl
+Z2F0ZS1WZXJ0csOkZ2Ugc2luZCBrZWluZSBhdXNnZWbDvGhydGVuIENvbnRlbnQtL0dlcsOkdGUt
+L1N0b3JlZnJlaWdhYmVuLgpSRVFVSVJFRF9MQVRFUi9OT1RfRVhFQ1VURUQ6IFNwaWVsdGVzdCB1
+bmQga29ua3JldCBiZW5hbm50ZSBDb250ZW50LS9JbXBvcnQtL0dlcsOkdGUtL1N0b3JlZ2F0ZXMu
+CkJMT0NLRUQvb2ZmZW46IEYtMDEtTmFjaGJlc3NlcnVuZywgYWt0dWVsbGVyIMOcYmVyZ2FiZXN0
+YXR1cywgTWFpbi1Lb25mbGlrdGUsIFRpbWVvdXR1cnNhY2hlIHVuZCBmZWhsZW5kZSBleHRlcm5l
+IFppZWxxdWVsbGVuIGdlbcOkw58gUmVpY2h3ZWl0ZSBvYmVuOyBSMDEtRklSU1QvUjE4LU1JRERM
+RSB1bmQgQ0ktUEVSRiBzaW5kIG5pY2h0IG1laHIgYWxzIG9mZmVuZSBTYWNoZW50c2NoZWlkdW5n
+ZW4vZmVobGVuZGVyIExhdWYgenUgZsO8aHJlbi4KCkVpZ2VuZSByZXByb2R1emllcmJhcmUgSGF1
+cHRhdWZydWZlIChpbW1lciBpc29saWVydDsgVmFyaWFibGVuIEE9QXVkaXR2ZXJ6ZWljaG5pcywg
+RD1BL2RlbGl2ZXJ5KToKLSBnaXQgYXJjaGl2ZSBILCBhbnNjaGxpZcOfZW5kIEV4dHJha3Rpb24g
+bmFjaCBELgotIFB5dGhvbiAtQiBEL3Rvb2xzL3NlYXNvbjEtYXV0aG9yaW5nL3J1bl9hdXRob3Jp
+bmcucHkgdmVyaWZ5ICh1bnZlcsOkbmRlcnRlIFByb2R1a3Rpb25zcXVlbGxlbiBpbSBFeHBvcnQp
+LgotIFdTTDogcHl0aG9uMyAtQiBBL3ZlcmlmaWVycy92MV9zdHJ1Y3R1cmUucHkgRCBBL2RpbXMu
+anNvbi4KLSBXU0w6IHB5dGhvbjMgLUIgQS92ZXJpZmllcnMvdjNfcHJvcGFnYXRlLnB5IEQuCi0g
+ZysrIC1PMyAtc3RkPWMrKzE3IEEvdmVyaWZpZXJzL2NvdW50LmNwcCAtbyBBL3ZlcmlmaWVycy9j
+b3VudC1uZXc7IG1ha2VfaW4ucHkgRDsgY291bnQtbmV3IDMgPCBjb3VudGVyLWlucHV0LnR4dC4K
+LSBQeXRob24gLUIgQS92ZXJpZmllcnMvdjRfdHJhY2VzLnB5IEQuCi0gTm9kZTIyIGltIFBBVEg6
+IHB5dGhvbjMgLUIgQS92ZXJpZmllcnMvdjJfbm9kZWpjcy5weSBEIEEvbm9kZS4KLSBQeXRob24g
+LUIgQS9hdWRpdF9oaXN0b3J5LnB5OiBBbmtlci9EaWZmcy9NYW5pZmVzdC0vUGZhZHByw7xmdW5n
+LCBQZmFkesOkaGxlcmdsZWljaGhlaXQsIGZyaXNjaGVyIFJvb3QtL0V2aWRlbnp2ZXJnbGVpY2gs
+IHRhdHPDpGNobGljaGUgV2llZGVyaG9sdW5nIGdlbGVzZW5lciB1bmFiaMOkbmdpZ2VyIFZvbGwt
+L8OEaG5saWNoa2VpdHNwcsO8ZmVyLgotIFB5dGhvbiAtQiBBL2F1ZGl0X2V4dHJhLnB5OiBSZWZl
+cmVuemludmVudGFyLCBBdXRvcmVucXVlbGxoYXNoLCBlY2h0ZXIgendlaW1hbGlnZXIgVHJhbnNw
+b3J0LCBOZWdhdGl2cHJvYmUsIFJvdXRlLTE4LUFibGF0aW9uLgotIFB5dGhvbiAtQiBBL2luc3Bl
+Y3RfY2kucHk6IGVjaHRlIE9yaWdpbmFsLVhNTC0vQ292ZXJhZ2UtL1NhbXBsZS0vRmluZ2VycHJp
+bnRwcsO8ZnVuZy4KLSBQeXRob24gLUIgQS9hdWRpdF9wZXJzaXN0ZW5jZS5weTogUm91dGVuYmlu
+ZHVuZywgYXJjaGl2aWVydGVzIGhpc3RvcmlzY2hlcyBPcmlnaW5hbC1YTUwgdW5kIFF1ZWxsZW5z
+bmFwc2hvdHMuCi0gZ2l0IG1lcmdlLXRyZWUgQiBNIEg6IG51ciBsZXNlbmRlIEtvbmZsaWt0ZGlh
+Z25vc2UsIGtlaW5lIEluZGV4LS9Xb3JraW5nLVRyZWUtw4RuZGVydW5nLgpEaWUgSGlsZmVuIGVu
+dGhhbHRlbiBhYnNvbHV0ZSBQZmFkZSBkaWVzZXIgU2l0enVuZzsgYmVpIFdlaXRlcnZlcndlbmR1
+bmcgYXVzc2NobGllw59saWNoIGRlcmVuIEF1ZGl0LS9SZXBvc2l0b3J5cGZhZGUgYW5wYXNzZW4u
+IEZyw7xoZXJlIFByw7xmZXJxdWVsbGVuIHNpbmQgYXVzZHLDvGNrbGljaCBhbHMgc29sY2hlIGdl
+a2VubnplaWNobmV0OyBudXIgZGllIGhpZXIgdGF0c8OkY2hsaWNoIGF1c2dlZsO8aHJ0ZW4gUHJv
+Z3JhbW1lIHRyYWdlbiB6dSBkZW4gbmV1ZW4gRXJnZWJuaXNzZW4gYmVpLgoKRGF0ZWllbiBpbSBF
+dmlkZW5jZS1BcmNoaXY6Ck9yaWdpbmFsLUNJLVpJUHMgdW5kIHZvbGxzdMOkbmRpZ2UgZW50c2No
+ZWlkZW5kZSBMb2dzOyBjaS1hbmFseXNpcy5qc29uIHVuZCBwZXJmb3JtYW5jZS1vcmlnaW5hbC5q
+c29uOyBoaXN0b3J5LWFuYWx5c2lzLmpzb247IGV4dHJhLWFuYWx5c2lzLmpzb247IGhpc3Rvcmlz
+Y2hlcyBYTUwtQXVzd2VydHVuZ3NlcmdlYm5pczsgU3RydWt0dXItL1Byb3BhZ2F0aW9uLS9Db3Vu
+dGVyLS9UcmFjZS0vTm9kZS0vUHJvZHVrdGlvbnNhdXNnYWJlbjsgZnJpc2NoZSB0ZWNobmlzY2hl
+IFByb2R1a3Rpb25zYXVzZ2FiZTsgbmV1ZSB1bmQgZXJuZXV0IGF1c2dlZsO8aHJ0ZSBnZWxlc2Vu
+ZSBQcsO8ZmVycXVlbGxlbjsgS29tbWVudGFydGV4dGU7IG1hw59nZWJsaWNoZSBRdWVsbGVuYmxv
+YnM7IGZpbmFsZSBTdGFuZGFiZnJhZ2VuOyBTSEEyNTYtSW52ZW50YXIuIFRlbXBvcsOkcmUgRG93
+bmxvYWQtVVJMcywgU0RLLUNhY2hlcyB1bmQgZGVyIGdyb8OfZSBBcmJlaXRzYmF1bWV4cG9ydCBz
+aW5kIG5pY2h0IEJlc3RhbmR0ZWlsIGRlcyB3ZWl0ZXJ6dWdlYmVuZGVuIEFyY2hpdnMuCgpQcsO8
+ZmJlcmljaHQgdW5kIEV2aWRlbnogc2luZCBnZXRyZW5udGUgdW52ZXLDpG5kZXJiYXJlIMOcYmVy
+Z2FiZWFydGVmYWt0ZSBkaWVzZXIgU2l0enVuZy4gRWluZSBzcMOkdGVyZSBLb3JyZWt0dXIgb2Rl
+ciBJbnRlZ3JhdGlvbiBlcnpldWd0IGVpbmVuIG5ldWVuIHp1IHByw7xmZW5kZW4gU3RhbmQuIERp
+ZXNlcyBVcnRlaWwgZ2lsdCBhdXNzY2hsaWXDn2xpY2ggZsO8ciBIIG1pdCBkZW0gYXVzZHLDvGNr
+bGljaCBiZW5hbm50ZW4gbWHDn2dlYmxpY2hlbiBRdWVsbGVuc3RhbmQgTS4KCg==

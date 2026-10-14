@@ -4,7 +4,7 @@
 
 `WP-030`
 
-Status: verankert, Untersuchung noch nicht begonnen. Enger Untersuchungsauftrag O-02 aus dem Nutzerauftrag vom 15.10.2026; keine Wiederaufnahme oder Erweiterung von WP-024/WP-026/WP-028.
+Status: Untersuchung mit Original-/Gegenproben geliefert; historische Ursache nicht bewiesen, O-02 bleibt offen. Enger diagnostischer Folgeauftrag zur Entscheidung; keine Reparatur oder Selbstfreigabe.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-030.production.scope.json)
 

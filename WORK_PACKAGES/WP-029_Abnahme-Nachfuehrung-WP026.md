@@ -4,7 +4,7 @@
 
 `WP-029`
 
-Status: verankert, Bearbeitung noch nicht begonnen. Nutzerauftrag vom 15.10.2026 autorisiert die eng begrenzte Dokumentationsnacharbeit F-01/O-03. Kein Ersatz oder Erweiterung von WP-026/WP-028.
+Status: Eigene Umsetzung/Prüfungen geliefert, unabhängige gezielte Nachprüfung offen. WP-029: F-01 korrigiert; Originaltransport-Whitespacegrenze unter WP-031 verlustfrei nachgeführt.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-029.production.scope.json)
 

@@ -1,3 +1,9 @@
+## Aktueller Originaltransport / WP-031 – 15.10.2026
+
+Die Gesamtabnahme ist am verlinkten TXT-Pfad als **STP_ORIGINAL_REPORT_BASE64_V1** verlustfrei gespeichert. Original-SHA256 9c0a03fe060e86e69d5041bb3e72e72a55c198029ac3a9990222e16d99e15433 bezeichnet die vollständig dekodierten Originalbytes, einschließlich der zusätzlichen Schlussleerzeile. Der Transportcontainer hat einen eigenen Dateihash in F01_BINDINGS.json. `tools/wp031-integration/prepare.py decode --output <Scratchdatei>` stellt die unveränderte Originaldatei wieder her und prüft ihren Hash. Kein Originaltext wurde getrimmt oder redigiert. Der unveränderte Klartext und das isolierte Archiv liegen weiter in der ursprünglichen externen Auditablage.
+
+Eigener erster Nacharbeitsstand f8e1dfc: Architecture Run38651701033 / Job116151786197 scheiterte tatsächlich an `scope:diff-check`: zusätzliche Schlussleerzeile des unveränderten Originalberichts. Lokaler vorheriger Scope lief vor diesem Commit mit untracked Originaldatei; dessen Whitespaceprüfung deckte die erst eingecheckte Schlussleerzeile nicht ab. Der neue verlustfreie Transport behebt die eigene Persistierungsgrenze, ohne Originalbytes oder Qualitätsanforderung zu ändern. Neuer finaler CI-Stand muss separat bestehen. O-02 bleibt ursächlich offen; aktuelle unabhängige gezielte Prüfung und Gesamt-DoD bleiben offen.
+
 ## Aktuelle Nachführung zur Gesamtabnahme – 15.10.2026
 
 Maßgeblicher geprüfter Lieferstand: `b1457ba6a61826fe3b64a83323c27a13e9d23080`; Quellenstand main: `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`. Historische Manifestbasen bleiben WP-026=c9516bd und WP-028=d97c39d. Keine Umdeutung des PR-Metadatenfelds base_sha zu aktuellem main.
