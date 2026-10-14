@@ -224,7 +224,7 @@ def section_body(text: str, heading: str, next_heading: str) -> str:
 
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 32):
+    for number in range(1, 33):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -1718,6 +1718,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
     index_text = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
     expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-026", "ADR-X26"))))
+    expect("REG-ADR-032-MISSING", "adr-index:missing:032" in adr_index_errors(index_text.replace("ADR-032", "ADR-X32")))
     inconsistent_level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     inconsistent_level["content"]["season"] = 2
     expect("REG-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, proof))

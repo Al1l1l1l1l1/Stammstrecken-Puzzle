@@ -47,7 +47,10 @@ Diese Produktblocker bleiben unverändert. Physische Geräte-, SDK-, Privacy-, S
 | Datei | Zweck |
 |---|---|
 | `../AGENTS.md` | Verbindliche Lesereihenfolge und Quellenhierarchie. |
-| `WORK_QUEUE.md` | Unveränderte Priorisierung; WP-025 abgeschlossen, nächster Contentblock noch nicht beauftragt. |
+| `WORK_QUEUE.md` | Aktuelle Priorisierung: WP-026/PR #21 bleibt offen; WP-027 liegt im Governance-QC; WP-028 ist nur als Ausführungsbrief definiert und nicht begonnen. |
+| `../WORK_PACKAGES/WP-027_Season-1-Quellenklarstellung-und-CI-Leistungsweg.md` | Aktueller Governanceauftrag für die zwei Content-Bible-Klarstellungen und den getrennten CI-Leistungsweg. |
+| `WP-028_EXECUTION_BRIEF.md` | Verbindliche Folgeanweisung; erst auf dem kindlichen PR-21-Branch entsteht der eigene WP-028-/Manifestanker. |
+| `../DECISIONS/ADR-032-season1-ci-korpus-leistungsnachweis.md` | CI-Referenz-Leistungsnachweis für reale Season-1-Inputs; keine Content- oder Releasefreigabe. |
 | `../WORK_PACKAGES/WP-025_Proof-v1-Regeneration-und-Strict-Validation.md` | Vollständiger abgeschlossener Auftrag mit historischer Vorbereitung, Implementierung, Korrektur, beiden finalen Abnahmen, Freigabe und Integration. |
 | `../tools/architecture-validation/scopes/WP-025.production.scope.json` | Unveränderlicher Scope ab gemeinsamem Anker de314db auf Basis 5f51273. |
 | `../WORK_PACKAGES/WP-023_Level-v2-Foundation-und-Hashvertraege.md` | Integrierter Level-v2-/Hash-Block. |
