@@ -1,0 +1,51 @@
+diff --git a/PROJECT_CONTROL/CURRENT_STATE.md b/PROJECT_CONTROL/CURRENT_STATE.md
+index 5a6a5a1..6662291 100644
+--- a/PROJECT_CONTROL/CURRENT_STATE.md
++++ b/PROJECT_CONTROL/CURRENT_STATE.md
+@@ -5 +5 @@
+-| Projektstatus | Produktkonzeption und **Architecture v1.0** sind verbindlich. **WP-021 bis WP-025 sind abgeschlossen und auf `main` integriert.** Puzzle-Kern, Level-v2-/Hash-Foundation, Solver-v2 und Produktions-Proof-v1-/Strict-Validation sind geliefert. Keine Produktionscontent- oder Releasefreigabe. |
++| Projektstatus | Produktkonzeption und **Architecture v1.0** sind verbindlich. **WP-021 bis WP-025 sowie WP-027 sind abgeschlossen und auf `main` integriert.** Puzzle-Kern, Level-v2-/Hash-Foundation, Solver-v2 und Produktions-Proof-v1-/Strict-Validation sind geliefert. WP-026 liegt als Draft-PR #21 mit 240 logischen Quellen/Proofs vor, bleibt aber offen. WP-027 klärt zwei Content-Bible-Auslegungen; WP-028 hat den getrennten CI-Leistungsnachweis im offenen Lieferzweig erbracht; dies ist weder Produktionscontent- noch Releasefreigabe. |
+@@ -8 +8 @@
+-| Letzter verifizierter Nachweis | **WP-025:** [Proof-/Vertrags-QC PASS](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150287241) und [Strict-/Tests-/Scope-/CI-QC PASS](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6150288578), beide auf `92842bc653bf364bd7ade5bbff7c37f71bf9fd1f` gegen `5f5127362b101dd4e066b68b21d3e35a5af314df`. [Ausdrückliche Freigabe](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/19#issuecomment-6154248884). Architecture PR 38421061552 und Unity PR 38421061511 SUCCESS. Der tatsächliche Integrationscommit enthält gegenüber dem abgenommenen HEAD keine Dateiänderung; Git-Baum `3159dfe2349d6273fa923eda87dba1164559d024` erhalten. |
++| Letzter verifizierter Nachweis | Gesamtabnahme b1457ba durchgeführt, kein Gesamt-PASS; F-01 und neue eigene Nachweise unter WP-029, Timeoutuntersuchung unter WP-030. Dieser kombinierte Preview wird neu geprüft, keine Übertragung alter PASS-Aussagen. |
+@@ -13 +13 @@
+-| Architekturentscheidungen | Architecture v1.0 unverändert; ADR-030 regelt historische Scope-Verankerung, ADR-031 den integrierten Solver-v2-/Proofregenerationsvertrag. Keine neue Architektur- oder Produktentscheidung durch Integration oder Closeout. |
++| Architekturentscheidungen | Architecture v1.0 unverändert; ADR-030 regelt historische Scope-Verankerung, ADR-031 den integrierten Solver-v2-/Proofregenerationsvertrag. ADR-032 konkretisiert ausschließlich den CI-Referenz-Leistungsnachweis für reale Season-1-Inputs; Solver-, Proof- und Contentsemantik bleiben unverändert. |
+@@ -16,0 +17,2 @@
++| Scope-Vertrauensanker WP-027 | Gemeinsamer Erst-Add von WP-027 und eigenem Governance-Manifest in `4d145a04702c394616f4a18331c8c2970cdac1ea`; einziger Elterncommit/Manifestbasis `c9516bdbd5858fd9003d5207ec37d180ccc6ae23`; Manifest-SHA-256 `af42b035ba821c870cb8e5b21612644a707474fc20b07258abf55047796457b1`, danach unverändert zu halten. Der vorherige veröffentlichte Anker `95547a0…` in PR #22 enthielt `validate.yml` nicht in der Allowlist; die reale CI lehnte ihn deshalb korrekt ab, und er wird nicht integriert. WP-028 besitzt seinen eigenen Anker 0d17996 auf d97c39d; unverändert. |
++| CI WP-027 | PR #23 auf `91dacea…`: Architecture Validation Push/Pull-Request SUCCESS sowie 20 Unity Push/Pull-Request-Checks SUCCESS (insgesamt 22). Die CI installierte die gelockten Architekturabhängigkeiten und prüfte den neuen `governance`-Scope gegen das verankerte WP-027-Manifest. PR #22 bleibt ein dokumentierter, unintegrierter CI-FAIL; er ist keine Evidenzquelle. |
+@@ -86,0 +89,4 @@ Originalbericht ohne Inhaltsänderung vollständig verlustfrei Base64-kodiert; D
++
++## Erhaltener WP-027-Quellen-/Integrationsnachweis
++
++WP-027 ist auf main d90e798 abgeschlossen und integriert (PR #23 / 7d95b59; Closeout PR #24). Content-Bible §§4.1/8.1, ADR-032 und WP-028_EXECUTION_BRIEF werden byteunverändert aus main übernommen. WP-028 ist inzwischen ausschließlich im WP-026-Lieferzweig integriert; dessen Nachweis und die neue Gesamtabnahme sind oben aktuell eingeordnet. Keine Produkt-/Architekturentscheidung durch die Konfliktauflösung.
+diff --git a/PROJECT_CONTROL/WORK_QUEUE.md b/PROJECT_CONTROL/WORK_QUEUE.md
+index 87e785c..332a9a1 100644
+--- a/PROJECT_CONTROL/WORK_QUEUE.md
++++ b/PROJECT_CONTROL/WORK_QUEUE.md
+@@ -15,8 +15,10 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
+-| 6 | WP-026 – 240 konkrete logische Rätselinstanzen | **Gesamtabnahme durchgeführt, Paket offen** | b1457ba: technische 240er-/20-Routen-Prüfung unter WP-027 und CI-PERF erbracht. F-01 unter WP-029 eng korrigiert, gezielte Nachprüfung ausstehend. O-02 Timeoutursache/O-04 Main-Kombination getrennte Aufträge. Menschlicher Spieltest, 1.440 Ziele, Zeitklasse/Folgegates bleiben offen. |
+-| 7 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen. |
+-| 8 | Finale Asset-Bible | Nicht begonnen | Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Objekte, Motion und Sound. |
+-| 9 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen. |
+-| 10 | Finale Zug- und Objektkataloge | Nicht begonnen | Züge, Betriebsobjekte, Preise, Freischaltreihenfolge, Aussehen, Sound und Kartenreaktion. |
+-| 11 | Werbefrei-Produkt | Nicht begonnen | Plattformpreis, Kaufwiederherstellung, Consent- und Datenschutzflows. |
+-| 12 | Rechtliche Endprüfung | Nicht begonnen | Marken-, Urheber- und Herkunftseindruck durch qualifizierte Rechtsberatung. |
+-| 13 | Launchpaket | Nicht begonnen | Store-Metadaten, Screenshots, Trailer, Influencer-/Community- und Messplan. |
++| 6 | WP-026 – Season-1-logischer Rätselbestand | **Gesamtabnahme durchgeführt, weiterhin offen** | b1457ba unter WP-027 geprüft; F-01 eng korrigiert. Menschlicher Spieltest, historische Timeoutursache, zulässiger Integrationsscope/QC, 1440 Ziele, Zeitklasse und Folgegates offen. |
++| 7 | WP-027 – Season-1-Quellenklarstellung und CI-Leistungsweg | **Abgeschlossen und integriert** | Geschäftsführungsentscheidung präzisiert Route 1/9–10 und Route 18/3–5 in der Content-Bible; ADR-032 und der WP-028-Ausführungsbrief definieren den CI-Weg. Der erste veröffentlichte Anker enthielt `validate.yml` nicht in seiner Allowlist; die reale CI lehnte ihn korrekt ab, PR #22 blieb unintegriert. Der neu verankerte Ersatz-PR #23 bestand lokale Validierung, Astra PASS, Sol PASS sowie alle 22 regulären Checks und wurde als `7d95b59…` nach `main` integriert. Keine Veränderung oder Freigabe des WP-026-Korpus. |
++| 8 | WP-028 – CI-Referenz-Leistungsnachweis Season-1-Korpus | **Technisch erbracht, ausschließlich im offenen WP-026 integriert** | PR #25: b449ab7 unabhängig geprüft, Merge b1457ba nur in WP-026; Folge-CI und reale 350 Samples/240 Proofgates erfüllt. Keine Gesamt-/Import-/Releasefreigabe. |
++| 9 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen und menschlicher Kalibrierung. |
++| 10 | Finale Asset-Bible | Nicht begonnen | Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Objekte, Motion und Sound. |
++| 11 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen. |
++| 12 | Finale Zug- und Objektkataloge | Nicht begonnen | Züge, Betriebsobjekte, Preise, Freischaltreihenfolge, Aussehen, Sound und Kartenreaktion. |
++| 13 | Werbefrei-Produkt | Nicht begonnen | Plattformpreis, Kaufwiederherstellung, Consent- und Datenschutzflows. |
++| 14 | Rechtliche Endprüfung | Nicht begonnen | Marken-, Urheber- und Herkunftseindruck durch qualifizierte Rechtsberatung. |
++| 15 | Launchpaket | Nicht begonnen | Store-Metadaten, Screenshots, Trailer, Influencer-/Community- und Messplan. |
+@@ -47,4 +49,2 @@ main
+-  → WP-026: vollständiger logischer Contentauftrag erteilt und gemeinsam verankert
+-  → Auftragskorrektur: BLOCKER-WP026-001 als allgemeiner Startblocker widerlegt
+-  → 240er-logischer Authoringbestand mit echten Proofs und eigenen Bewertungen geliefert
+-  → unabhängige Abnahme/Spieltest, Referenzauflösung und alle weiteren betroffenen Pflichtgates offen
++  → nächster Contentblock: bestehende Voraussetzungen und eigenen Auftrag klären
++  → erst bei erfüllten Voraussetzungen Contentproduktion

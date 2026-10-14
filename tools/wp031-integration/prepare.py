@@ -72,6 +72,14 @@ def preview():
  git('add','--',*CONFLICTS,cwd=target);assert not git('diff','--name-only','--diff-filter=U',cwd=target).stdout
  git('-c','core.safecrlf=false','commit','-m','merge: isolated WP-026/main preview; scope approval explicitly unresolved',cwd=target)
  head=git('rev-parse','HEAD',cwd=target).stdout.decode().strip();tree=git('rev-parse','HEAD^{tree}',cwd=target).stdout.decode().strip()
+ # The immutable-byte validator compares physical bytes with Git blobs.
+ # A Windows checkout may have converted these to CRLF; restore exact committed
+ # bytes, without changing a Git blob, before the Linux byte-equality probe.
+ for manifest_path in (target/'tools/architecture-validation/scopes').glob('*.json'):
+  committed=blob(head,manifest_path.relative_to(target).as_posix(),target)
+  if manifest_path.read_bytes()!=committed:
+   assert manifest_path.read_bytes().replace(b'\r\n',b'\n')==committed
+   manifest_path.write_bytes(committed)
  # Gather the complete union of the three input trees explicitly.
  names=set()
  for rev in [source,MAIN,BASE]:names.update(git('ls-tree','-r','--name-only',rev,cwd=target).stdout.decode().splitlines())
@@ -84,7 +92,7 @@ def preview():
   elif b==old:expected=a
   else:raise AssertionError('unaccounted overlapping change '+p)
   assert c==expected,p;verified+=1
- patch=git('diff',source,head,'--',*CONFLICTS,cwd=target).stdout; (OUT/'WP-031_CONFLICT_RESOLUTION.patch').write_bytes(patch)
+ patch=git('diff','--unified=0',source,head,'--',*CONFLICTS,cwd=target).stdout; (OUT/'WP-031_CONFLICT_RESOLUTION.patch').write_bytes(patch)
  result=dict(deliverySource=source,mainSource=MAIN,mergeBase=BASE,previewBranch='codex/wp-031-integration-preview',previewCommit=head,previewTree=tree,parents=git('show','-s','--format=%P',head,cwd=target).stdout.decode().strip().split(),resolvedConflicts=CONFLICTS,nonConflictPathsVerified=verified,originalDecodedSha256=hashlib.sha256(decode(target/REPORT)).hexdigest(),status='CONTENT_COMBINATION_CREATED; checks and scope decision pending; no main merge',scratchCheckout=str(target))
  write(OUT/'WP-031_PREVIEW.json',json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
 def main():
