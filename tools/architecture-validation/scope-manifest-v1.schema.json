@@ -9,7 +9,7 @@
     "manifestVersion": {"const": 1},
     "workPackageId": {"type": "string", "pattern": "^WP-[0-9]{3}$"},
     "baseCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-    "scope": {"type": "string", "enum": ["documentation", "production"]},
+    "scope": {"type": "string", "enum": ["documentation", "production", "governance"]},
     "allowedPathPatterns": {
       "type": "array",
       "minItems": 1,
