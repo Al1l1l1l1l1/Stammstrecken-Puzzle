@@ -65,7 +65,7 @@ Alle nachfolgenden Urteile und Einstiege sind wörtlich aus dem an öffentliche 
 - Einstieg: Spalte 3 ist voll und kreuzt den Nordanschluss. Belegschritte: `[30, 31, 32, 33, 34]`.
 - Eine tatsächliche maximale Prämissenkette: `[3, 23, 35, 51, 65, 78, 79, 80, 82]` im zugehörigen Rootspurbericht.
 - Individueller Fokus: `['COMBINATION', 'EXCLUSION']`; erwartete gedankliche Folge 6 (eigene vorläufige Schätzung, nicht gemessen).
-- Individuelle fachliche Entscheidung: Oben bleiben Zweierreihen schmal, unten verteilen Fünferreihen verschiedene Einzelücken. Die Nullspalte links und der Fünfercount daneben trennen den rechten unteren Teilweg von der oberen Kurvenfolge; plausible Teilwege werden durch dieselben Counts unterschiedlich eingegrenzt.
+- Individuelle fachliche Entscheidung: Oben bleiben Zweierreihen schmal, unten verteilen Fünferreihen verschiedene Einzelücken. Die linke Nullspalte x0 und der Fünfercount in x4, rechts der vollen Spalte x3, trennen den rechten unteren Teilweg von der oberen Kurvenfolge; plausible Teilwege werden durch dieselben Counts unterschiedlich eingegrenzt.
 - Grenze: Lesbarkeit, erwartete menschliche Schlusskettentiefe und Lernwirkung noch nicht im Spieltest bestätigt. Nutzertexte und Referenzziele offen; Zeitklasse unbestimmt, Sternsekunden null.
 
 ```text

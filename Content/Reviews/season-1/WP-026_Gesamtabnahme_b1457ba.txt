@@ -1,0 +1,324 @@
+WP-026 – Neue unabhängige Gesamtabnahme nach Integration von WP-028
+Repository: Al1l1l1l1l1/Stammstrecken-Puzzle
+PR: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/21
+Prüfung: 14./15.10.2026 (Europe/Berlin)
+Rolle: unabhängige technische und fachliche KI-Prüfung; keine Autor-, Reparatur- oder menschliche Spieltestrolle.
+
+1. Urteil
+
+KEIN GESAMT-PASS / NICHT INTEGRATIONSBEREIT.
+
+Der vollständige logische Bestand ist technisch nachgewiesen: 240 gültige, eindeutige und ohne Suchannahmen lösbare Rätsel, gebundene regenerierbare Produktionsproofs, nachvollziehbare Rootspuren und bestandene aktuelle CI einschließlich des echten WP-028-Korpusleistungsnachweises. Die vollständige fachliche Sicht auf alle 240 Felder und 20 Routen ergibt unter den verbindlichen WP-027-Klarstellungen keinen neuen belegten Fehler der Puzzlelogik oder der vorgeschriebenen Raster-/Lernbogenfolge. Die beiden früheren Quellenentscheidungen sind entschieden; CI-PERF-WP026 ist auf dem geprüften Lieferstand erfüllt.
+
+Ein neuer begrenzter Sachfehler in einer Qualitätsnotiz bleibt jedoch zu bearbeiten (F-01, niedrig/P3). Deshalb wird AK-06 nicht vorbehaltlos als vollständig erfüllt abgenommen. Menschliche Fairness, tatsächlicher Schwierigkeitsverlauf und Spielwirkung sind weiterhin nicht durch Spieltests nachgewiesen. Der historische Unity-Timeoutbefund ist nicht ursächlich erledigt. Hinzu kommen veraltete aktuelle Statusdarstellungen, drei tatsächliche Main-Konflikte und die getrennten offenen Content-/Import-/Produkt-/Releasevoraussetzungen.
+
+Diese Prüfung ist durchgeführt und als vollständiges externes Artefakt persistiert. Das bedeutet weder Abschluss von WP-026 noch Freigabe der Season. Es wurden keine Repositorydateien, Branches, Anforderungen, PR-Texte oder Kommentare geändert, keine Tests in GitHub ausgelöst und keine Änderungen integriert. Alle eigenen erzeugenden Prüfungen liefen außerhalb des Repositorys in einem isolierten Export.
+
+2. Stände und Quellenhierarchie
+
+Lieferstand H:
+b1457ba6a61826fe3b64a83323c27a13e9d23080
+Tree: 2bc50e6fffa987ecb543b98d1014084846d1a6fa
+Eltern:
+- d97c39d03f59a2dbc34930f14e3cb74ebeb2e118 (WP-026 vor Unter-PR)
+- b449ab761dca98ab6d7af387efba81886118428b (geprüfter WP-028-Head)
+Der Tree von b449ab7 und H ist identisch; dennoch wurden die Folge-CI und ihre Commitbindung auf H selbst geprüft.
+
+Autoritativer Quellenstand M / tatsächliches main:
+d90e798dd9b26d3f152f3b0c2d1d52cae641eb16
+Er enthält WP-027, die korrigierte Content-Bible, ADR-032 und PROJECT_CONTROL/WP-028_EXECUTION_BRIEF.md. Der Ausführungsbrief ist nicht mit der erst auf dem Kindzweig angelegten WORK_PACKAGES/WP-028-Datei zu verwechseln.
+
+Merge-Base H/M:
+c9516bdbd5858fd9003d5207ec37d180ccc6ae23
+
+Historische Scopeanker:
+- WP-026: f9231c73e45ade33450c541e77dbeff5d2eae162; einziger Parent und Manifestbasis c9516bdbd5858fd9003d5207ec37d180ccc6ae23.
+  Manifest-SHA256: 981cd37f45c0bb73106d321ad450fbf8ad8e210a508b8a177d25892058ef018c.
+- WP-028: 0d17996819ed8ed346cbdf1d25739dd37b46be97; einziger Parent und Manifestbasis d97c39d03f59a2dbc34930f14e3cb74ebeb2e118.
+  Manifest-SHA256: 419ac8e075d582fc099fa7def7610fa7fb48e254be7684ec63f03bf13abff4bb.
+
+Diese Basen werden nicht auf M umgedeutet. Die getrennte, durch ADR-032 ausdrücklich erlaubte Branchschichtung ist kein nachträgliches Erweitern des WP-026-Manifests. WP-026 bis d97 umfasst 590 erlaubte Pfade; WP-028 von d97 bis H fünf erlaubte Pfade; deren Vereinigung umfasst 594 Pfade. Gemeinsamer Erst-Add, Parent, historischer Manifestlink, unveränderte Manifestbytes, tatsächliche Pfadmengen und Whitespace wurden selbst geprüft. WP-028 verändert den Content nicht; unity.yml bleibt gegenüber der ursprünglichen Basis unverändert. validate.yml ändert im Kindpaket ausschließlich STP_SCOPE_MANIFEST.
+
+Zu Beginn und am Abschluss wurden PR-Head, Remote-main und Merge-Base abgeglichen. Das PR-Metadatenfeld base_sha lieferte c9516bd; es wurde ausdrücklich nicht als aktuelles main verwendet. git ls-remote bestätigte M, Branchhead und refs/pull/21/head bestätigten H. Die abschließende maschinenlesbare Abfrage mit UTC-Zeit steht in final-state.txt/final-api.json. PR #21 ist weiterhin open, draft, nicht gemergt und mergeable=false. PR #25 ist korrekt ausschließlich in den WP-026-Zweig gemergt. Bei den Chatbestandsabfragen war keine weitere aktive WP-026-Gesamtabnahme sichtbar; die Autor-/WP-028-Chats waren idle. Es wurde keine Doppelbeauftragung gestartet.
+
+Verbindliche Lesereihenfolge wurde eingehalten: AGENTS, Übergabe 15, Konzeptindex 00, Master 09, CURRENT_STATE und vollständiges WP-026 einschließlich Auftragskorrektur und Nachbesserungen, anschließend WP-028 und einschlägige Fachquellen. Ergänzend gelesen: Konzept 03/04/14, WP-027 auf M, ADR-007/021/030/031/032, CONTENT_PIPELINE, LEVEL_DATA_FORMAT, relevante SOLVER_ARCHITECTURE-, CONTENT_CATALOGS-, TEST_STRATEGY- und BUILD_AND_RELEASE-Verträge, DoD, AI_HANDOVER_RULES, WORK_PACKAGE_RULES, Queue, Validator-README, tatsächliche Schema-/Prüf-/Authoringquellen und aktuelle Übergaben.
+
+Wesentliche Quellen, jeweils commitgebunden:
+- H/WORK_PACKAGES/WP-026_Season-1-Logischer-Raetselbestand.md: Scope 2–7, AK-01–08, Tests 1–7, DoD und Auftragskorrektur.
+- M/WORK_PACKAGES/WP-027_Season-1-Quellenklarstellung-und-CI-Leistungsweg.md.
+- M/Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md, insbesondere §§4.1 und 8.1.
+- M/DECISIONS/ADR-032-season1-ci-korpus-leistungsnachweis.md.
+- M/PROJECT_CONTROL/WP-028_EXECUTION_BRIEF.md, insbesondere Scope, Verbote und DoD.
+- H/ARCHITECTURE/CONTENT_PIPELINE.md §§3.2/3.3; SOLVER_ARCHITECTURE §§5–7/10/13; TEST_STRATEGY §§5/10–13.
+- H/PROJECT_CONTROL/DEFINITION_OF_DONE.md und AI_HANDOVER_RULES.md.
+
+Commitlinks lassen sich mit https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/blob/<vollständiger SHA>/<Pfad> auflösen. Die maßgeblichen Quellen sind zusätzlich im Evidence-Archiv unter sources/ mit ihren exakten Gitbytes enthalten.
+
+Aktuelle Vorberichte wurden gelesen und als standgebundene Evidenz behandelt:
+- PR21 technische Nachprüfung d97: issuecomment-6158956999.
+- PR21 fachliche Nachprüfung d97: issuecomment-6159083126.
+- PR21 vollständiger CI-Nachtrag d97: issuecomment-6159555477.
+- PR21 abschließende Übergabe: issuecomment-6159566672.
+- PR25 Astra: issuecomment-6177968383; Sol: issuecomment-6178408515.
+- PR25 Integration/Folgenachweis: issuecomment-6179033852, anschließend 6179047023.
+Vollständige abgerufene Kommentartexte sind in pr21-comments.json/pr25-comments.json gesichert. Kein früheres Teil-PASS wurde als neue Gesamtspezifikation oder pauschaler Gesamt-PASS übernommen.
+
+3. Eigene technische Gegenprüfungen
+
+Prüfbereich: isolierter git-archive-Export von H unter wp026-audit/delivery. Originalrepository ausschließlich lesend. Die Produktionsregeneration sowie Metadatentransportproben durften nur diesen Export verändern. Gelesene frühere unabhängige Prüferprogramme wurden in den externen Prüfbereich kopiert, am aktuellen vollständigen Bestand tatsächlich neu ausgeführt und durch neue History-, CI-, Referenz-, Bindungs- und Gegenproben ergänzt. Alte Konsolenausgaben wurden nicht wieder als neue Ausführung ausgegeben.
+
+Ergebnisse:
+- Schema/Identität: 240 Level und 240 passende Proofverzeichnisse, keine fehlenden/zusätzlichen IDs; 5×4×12 und Bible-Rasterwechsel, echter Draft-2020-12-Schemacheck, sechs Formen, Ports, einfacher Pfad, neu gezählte Zeilen/Spalten und Hashbindungen: 0 Befunde.
+- Unabhängiger C++-Pfadzähler aus gelesenem Quellcode frisch kompiliert, Lösungslimit 3: 240/240 genau eine Lösung. Jede vollständige Koordinatenfolge wurde anschließend gegen die gelieferte A→B-Lösung verglichen.
+- Unabhängige Constraint-Propagation: alle 240 vollständig gelöst, ohne Suche, exakt dieselbe Lösung.
+- Produktionsprüfung mit unveränderten getrennten reinen Assemblies, .NET SDK 10.0.401: Build ohne Fehler/Warnungen; je Level drei frische Proofregenerationen bytegleich; Strict-One 240/240; Strict-Batch und Reverse-Batch bestanden.
+- Produktionsmetamorphosen: 3.840 D4-/A-B-Varianten; 1.440 Counts-/Endpoint-/Form-/Hash-/Metrik-/Artefaktmutationen erwartungsgemäß abgewiesen.
+- Rootaudit: 240 Spuren / 23.164 Schritte, 0 Befunde bei Hashbindung, Index-/Prämissenfolge, Tiefe, Deduplizierung, Domänenfolge und Sicherheit gegen die unabhängig bestätigte Lösung. 20 frisch erzeugte Rootdateien entsprechen den gelieferten Dateien; technische Evidenz entspricht nach Ausnehmen der Messzeitfelder der Lieferung.
+- Alle 240 Proofs: UNIQUE/1, searchNodes=0, requiredGuessDepth=0; vier tatsächliche Produktionsmetriken. Keine Suchzweigmetriken als Rootwerte ausgegeben.
+- Frischer Node-JCS-Abgleich: 1.200 Projektionen/Artefakte/Dokumente, 0 Abweichungen. Verwendet wurden die tatsächlichen neuen 240 Quellen und Proofs.
+- Vollständige unabhängige D4-Rechnung: 3.183 dimensionkompatible Paare und 240 nächste Nachbarn stimmen mit dem Bericht; keine exakte öffentliche Kopie unter Rotation, Spiegelung oder A/B-Tausch. Vier countnahe und 15 maskennahe Paare in den vorhandenen deskriptiven Sichten; keine neue Qualitätsquote daraus.
+- Alle 240 Literale, Einstiege, Fokus-/Qualitätswerte, Lösungsgitter und Bindungen gegen JSON, Level und gerenderte Einzelberichte geprüft; 20 Routenliterale stimmen mit JSON und Routen-MD überein.
+- Autorenquellhash: 4d07f7c585c6c4ee94431807bae549b96e42769e0a2382321d6f4d8089d88c34.
+- Aktuellen tatsächlichen Transport zweimal im Export ausgeführt: 240 Quellen byteidentisch und Revisionen erhalten. Stale Publicinput im letzten sortierten Level wird vor jedem Schreibaufruf abgewiesen; Scratchmutation anschließend zurückgesetzt.
+- Gegenüber ursprünglichem Prüfstand 3c9b7d0: 15 tatsächliche logische Änderungen; 225 öffentliche Inputs und zugehörige Proofbytes erhalten. Gegen d97 keine Contentänderung durch WP-028.
+- 19 vorhandene historische Kandidatenpools samt Hash/Länge, 240 aktuelle Kandidatenmatches und 15 Alt-/Neu-Zuordnungen neu gegengeprüft. Das belegt Zuordnung, nicht nachträglich unbekannte Auswahlseeds oder die ursprüngliche kognitive Autorleistung.
+- 1.440 Referenzeinträge gegen die tatsächlichen sechs Felder aller 240 Quellen abgeglichen, keine doppelten ID/Pointer-Paare oder Fallbacks. 960 Localization-Ziele und 480 Completion/World-Ziele bleiben unaufgelöst.
+
+Methodische Grenzen:
+Die ergänzenden eigenen Läufe verwendeten Windows-Python 3.12.14 bzw. WSL-Python 3.14.4 mit jsonschema 4.19.2, Node 22.20.0 und .NET 10.0.401. Das sind keine als kanonisch ausgegebenen lokalen Python-3.11-Governanceläufe. Der vorgeschriebene gepinnte Governanceweg ist durch die tatsächlich geprüfte CI mit Python 3.11.13/Node 22.20.0 belegt. Die eigene geschichtete vollständige Pfad-/Manifestprüfung ergänzt den aktuellen CI-Scope, der nur das WP-028-Delta ab d97 abdeckt.
+
+Der .NET-Zusatzharness ersetzt weder Unity noch den CI-Referenzbenchmark. Sein gesamter Prüflauf dauerte 6.203 ms; diese lokale Zahl erteilt keine Leistungsfreigabe. Rootaudit und unabhängige Lösungskontrolle sind keine zusätzliche erschöpfende Minimalitätsperturbation jedes Spurschritts über alle denkbaren Fremdpuzzles. Die tatsächlichen vorhandenen Tracer-/Auditorregressionen liefen in der aktuellen CI.
+
+Anfängliche eigene Hilfsfehler (Sandbox-Restore/WSL, fehlendes jsonschema im Windows-Python, Standardencoding einer kopierten Prüfhilfe, falsches Arbeitsverzeichnis einer Gitabfrage) wurden isoliert korrigiert. Sie sind weder Produktfehler noch bestandene Prüfungen. Insbesondere wurde eine zunächst angenommene Rawfingerprint-Gleichheit des CRLF-Exports mit Linux verworfen und anschließend korrekt direkt aus Gitblobs geprüft.
+
+4. Tatsächliche aktuelle CI und Artefakte
+
+Aktuelle CI auf H:
+Architecture: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38637012841
+Unity: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/38637012837
+
+Alle elf gemeldeten Checks completed/success; keine offenen Checks. Die zehn Unityjobs umfassen Umgebungs-/Konfigurations-/Preflight-/Evidencegates, EditMode, PlayMode, Android und iOS. Fünf entscheidende vollständige Joblogs wurden selbst abgerufen und gesichert; Hilfsgates wurden anhand tatsächlicher Job-/Schrittmetadaten geprüft.
+
+- Architecture Job 116102625902: 17 Architecture-only- und 18 Production-Scope-Gruppen mit Self-/Negativtests bestanden; tatsächlicher Scope WP-028, base=d97, head=H, worktreeDirty=false. Keine Behauptung, dieser einzelne Scopeaufruf prüfe rückwirkend allein die 590 WP-026-Pfade.
+- EditMode Job 116102758801: tatsächliches NUnit-XML 455/455 Passed; failed/skipped/inconclusive=0; Dauer 286,9419534 s.
+- PlayMode Job 116106383299: tatsächliches NUnit-XML 27/27 Passed; keine übersprungenen Fälle.
+- Android Job 116107815924: Development-IL2CPP-Build erfolgreich. Tatsächlich heruntergeladenes APK 40.066.242 Bytes, SHA256 3d8e55b87f1ed4d651515cd0859814dd425009d238bd44dc1b1e3ba7e71b15f5; AndroidManifest.xml und lib/arm64-v8a/libil2cpp.so im APK vorhanden.
+- iOS Job 116111918869: tatsächlicher Unity-Export und Xcode BUILD SUCCEEDED. Unsignierter generischer iOS-Kompilierungsnachweis, kein IPA-/Store-/Gerätebeleg. Kein iOS-ZIP erfunden.
+- Echte Coverage: EditMode 9.979/10.615 Sequence Points besucht (94,01 %), PlayMode 420/10.615 (3,96 %). Die separaten Null-Coverage-Ausgangsdateien sind nicht als alleinige Ergebnisse interpretiert. Keine erfundene Coverage-Schwelle.
+- iOS-Checkannotationen: zwei bestehende cache/save-always-Abkündigungswarnungen und ein macOS-arm64-Kapazitätshinweis. Keine fehlgeschlagene Pflichtprüfung; kein WP-026-Contentdefekt.
+
+Frisch heruntergeladene ZIPs, gegen GitHub-Digest geprüft:
+EditMode, Artefakt 11928099307:
+c52d5f753f44063db91d07c5fd14086f16580a1e0192e5c03478e04e31fc0808
+PlayMode, Artefakt 11928453877:
+6f256fa784a222696b51e996cab187f42b56bff251ae392e3319225a2cc45ca0
+Android, Artefakt 11929448517:
+d6311fd42aa221ef177dae4688e14003f8b13f088a7e039d414764c4eaac3c06
+
+Original-XML:
+EditMode SHA256 dc26c014ac9b44d0c5e40b2e57426d0eb956871e6e583faaabe5c5d38d940ed3.
+PlayMode SHA256 ddc9509c3008284f0bea3ac55ec834f98239089c77dbcbd64e0a94bc22f9bba4.
+Logs und alle gesicherten Evidenzdateien sind im separaten SHA256-Inventar gebunden.
+
+5. WP-028 / ADR-032 eigenständig nachgeprüft
+
+Code, Messprotokoll und tatsächlicher NUnit-Output wurden selbst geprüft, nicht nur die Rollenberichte von PR25 übernommen.
+
+WP-028-AK-01: PASS. Gemeinsamer historischer Anker, d97-Parent/Base, unveränderte Manifestbytes und korrekte Unter-PR-Richtung.
+AK-02: PASS. Exakte 240er-ID-Menge und kanonische Pfade, kein Fixture-/Scratchfallback, ProofRef-Abgleich, solver-v2 und Format 1.
+AK-03: PASS. Frische unveränderte Strict-Produktionspipeline je Eingang; Ergebnis ist nur ProofGatePassed; Import-/Releaseflags bleiben false.
+AK-04: PASS. Genau S1-05-04-06 bis -12; fünf Warm-ups je Input, 50 Messungen je Input, insgesamt 350. Vollständiges direktes Solve einschließlich Rootspur/Ergebniskonstruktion; jeder Lauf wird auf UNIQUE/1/searchNodes=0/guess=0 geprüft.
+AK-05: PASS. Vier feste Partitionen, MaxDegreeOfParallelism=4, unabhängige Eingaben, ordinale Auswertung, Fehler/Exception/Missing/Warning/Timeout/Indeterminate werden nicht zu Erfolg umgewertet. Gesamtdauer umfasst neue Lese-/Parse-/Validierungsschritte und Auswertung.
+AK-06: PASS. Genau eine maschinenlesbare Ergebniszeile im tatsächlichen Testoutput; Commit, Versionen, Fingerprint, Parameter, 350 Rohsamples, sieben Metriksätze und Umgebung vorhanden.
+AK-07: PASS für H. Aktuelle reguläre Folge-CI und tatsächliche Artefakte gelesen, erlaubtes Delta/Whitespace selbst geprüft.
+AK-08: Erforderliche zwei voneinander getrennte Rollenberichte auf b449ab7 vorhanden, ohne offene BLOCKER/HIGH-Befunde vor Integration; tatsächliche Mergeeltern und gleicher Tree bestätigt. Das ist historische Rollenevidenz des Unterpakets, keine neue parallele Gesamtabnahme durch diese Prüfung.
+
+Eigene Nachrechnung der tatsächlichen 350 Samples:
+- n=350, p95-Index ceil(0,95×350)−1 = 332 (nullbasiert).
+- p95 = 38,2026 ms < 250 ms.
+- Maximum = 72,0952 ms < 2.000 ms.
+- Vollkorpus = 2.586,8097 ms < 60.000 ms.
+- 240/240 Proofgates, failures leer, vier Arbeiter.
+- Unity 6000.3.23f1; Mono 6.13.0; Unix 6.17.0.1022; X64; AMD EPYC 9V74; vier Prozessoren.
+- Tatsächlicher Ubuntu-24.04-Job und gepinnter Container unityci/editor:ubuntu-6000.3.23f1-base-3.2.2, Digest 11860df05150306934e2193cea6b08bde0cc2956756464d12243a9076f65476c; Lizenzaktivierung im Log erfolgreich.
+
+CI-Fingerprint:
+6fc307231c43d3f09c60fa3116c8517588a40855c4266e8ec4dd120ed0b6372a
+Selbst aus allen 480 exakten Gitblobs nachgerechnet: ordinale relative Pfade, UTF-8-Pfad und Rohbytes jeweils UInt64-Big-Endian-längengerahmt.
+Windows-/Exportfingerprint:
+29c16b2704125ea1f38dda74e1a9016e631c6f4ae9e19f3161d1009f4ee4b679
+Die Differenz stammt ausschließlich von CRLF in 240 Leveldateien gegenüber LF in Git/Linux; 240 Proofbytes unverändert. Der Rawfingerprint ist absichtlich byteempfindlich. Keine Datenmanipulation oder falsche CI-Korpusbindung daraus.
+
+Ergebnis: CI-PERF-WP026 ist auf H tatsächlich erbracht. Ältere NOT_EXECUTED-Aussagen bleiben historische Evidenz und müssen in der aktuellen Statusübersicht überholt werden.
+
+6. Vollständige fachliche Bestandsbewertung
+
+Alle 240 Einzelabschnitte wurden anhand öffentlicher Counts/Ports, tatsächlicher Lösungsgitter, Einstiegsbegründung und individueller Qualitätsnotiz betrachtet; die Gitter wurden maschinell gegen die kanonischen Pfade gebunden. Alle 20 Routen wurden in den fünf vorgesehenen Gruppen 1–2 / 3–5 / 6–8 / 9–10 / 11–12 gegen die aktuelle Bible beurteilt. Folgende Tabelle fasst die eigene fachliche Bewertung zusammen; sie ist kein menschlicher Spieltest.
+
+01 S1-01-01: 4×4. Klare Null-/Vollanker, danach bewusste Portvariation; die korrigierten 11/12 kombinieren tatsächlich bekannte Anker. WP-027 erlaubt frühere verschiedene Seiten. Hohe frühe Kurvendichte in 01/03 bleibt Spieltestrisiko.
+02 S1-01-02: 4×5. Hohe Counts, optionale Belegungsnotizen und gekreuzte Achsen nachvollziehbar; 09/10 nahe Endpunkte, längerer kurvenreicher Abschluss. Kein Beleg für einen neuen geometrischen Regelzwang.
+03 S1-01-03: 4×5. Angrenzende Kanten in 03–05, Belegung/Formkombination, gegensätzliche Dichteverteilungen; dünner zweiter Abschluss unterscheidet sich vom ersten.
+04 S1-01-04: 4×5. Neuer 08er verbindet tatsächliche Belegungsgebiete; 09/10 gegenüberliegende Ports, Abschlussformen variieren. Keine bloß umbenannte Kopie.
+05 S1-02-01: 5×5. Kontrollierter Größenwechsel, Null-/Vollkreuzungen und mehrere Achsen. Abschlussdichten unterschiedlich; keine dokumentierte Prozentgrenze für „mittlere Dichte“ erfunden.
+06 S1-02-02: 5×5. Dichtere Einführung, ersetzter 06er mit anderem Gebietsbezug; enger 07er als benannter Kontrast. Lange dünnere Verbindungen in 09/10 passen zur Variation.
+07 S1-02-03: 5×5, ab 06 6×5. Mittlere Restzahlen und Folgeausschlüsse; 09/10 bewusster oberer/unterer Dichtevergleich. Dichter Schluss erhöht Formenlast.
+08 S1-02-04: 6×5. Ersetzte 05/07 haben konkrete entfernte Gebiete/Achsenbezüge; hohe Dichte in 09/10 und längere Schlüsse. Viele Kurven sind ein Lesbarkeitsrisiko, kein neuer maschineller Ausschlusswert.
+09 S1-03-01: 6×6. Ports fern von Vollankern, lokale Engpässe wirken auf entfernte Arme; spätere geringere öffentliche Extremwerte, dünne lange Finalketten.
+10 S1-03-02: 6×6. CF-01 korrekt: aktueller Nachbar 02 hat 16 Zellen, Vollrand/Boden und Kopfknick, kein heutiger 19-Zellen-Zwilling. Unterschiedliche Verteilung/Teilraumkopplung und asymmetrische Varianten.
+11 S1-03-03: 6×6, ab 06 7×6. Teilpfade, Wechsel von Belegung/Ausschluss/Form und zwei unterschiedliche dichte/dünne Schlussfelder. Sachliche Ortsangabe bei 03 fehlerhaft (F-01); kein Fehler der Counts/Pfadlogik.
+12 S1-03-04: 7×6. Entfernte abhängige Ketten; 06–08 wenige öffentliche Extreme. Bekannte Armform in 08 besitzt andere Informationslage. Unterschiedliche Anschlussstellen und Schlussgeometrien.
+13 S1-04-01: 7×7. Kontrollierter Übergang, mehrere entfernte Gebiete, hohe Dichtevarianten; direkte Abkürzungen lassen Counts unerfüllt. Fehlende globale Regelcodes widerlegen diese räumliche Kombination nicht.
+14 S1-04-02: 7×7. 03–08 ohne öffentliche Null-/Vollcounts, Kombination von Ports und Restzahlen. CF-02 sachlich behoben: rechte Arme x4/x6 gemeinsam bis y5, linke x0/x2 bis y6. Dichter und dünner Abschluss belasten unterschiedliche Aspekte.
+15 S1-04-03: 7×7, ab 06 8×8. Bekannte Starts; Ausschlüsse, parallele Teilketten und neue Verdichtung in Ersatz 08. Früheres fast gedrehtes Nachbarpaar aufgelöst. Dünne Finalfolgen erfordern menschliche Lastprüfung.
+16 S1-04-04: 8×8. Ersatz 02 unterbricht die Startarmserie; Kopf/Mitte/Boden kombinieren konkrete Restzahlen. 09/10 andere Anschluss- und Kurvenlast; serielle und flächige Finales.
+17 S1-05-01: 8×8. Vorgesehene Extremwertstarts, dann entfernte Bereiche. CF-03 behoben: rechte Arme y5, linke y7, zwei Reihen Differenz. Ähnliche Bandfamilie wird als Rückgriff begründet, nicht als völlig neue Idee ausgegeben.
+18 S1-05-02: 8×8, ab 06 9×9. 03–05 mit Einser-Portzugang und anschließender notwendiger mittlerer Restkoordination entsprechen der WP-027-Klarstellung. Wechsel 05→06 mit technischer Tiefe 24→14 ist kein automatisch bewiesener menschlicher Schwierigkeitsanstieg. Dieser Übergang bleibt Spieltestpunkt.
+19 S1-05-03: 9×9. Ersatz 01 erhält volle Achsenausdehnung ohne Nullzahl; mehrere lange Ketten und wenige direkte Extreme in der Verdichtung. Gleichportige Finales verteilen ihre 22 Zellen unterschiedlich.
+20 S1-05-04: 9×9, ab 06 10×10. Ersatz 02 eigenständige Kopf-/Mittel-/Bodengeometrie; reale tiefe 10×10-Ketten in 06–08; 09/10 verschiedene räumliche Zugänge. Dünne Finales 22/100 und 24/100 mit Roottiefen 42/40 sind erklärbar, aber menschlich unbestätigt.
+
+WP-027 gezielt angewandt:
+R01-FIRST bezeichnet den ersten bewussten didaktischen Schwerpunkt. Frühere verschiedene Portseiten sind kein Verstoß.
+R18-MIDDLE erlaubt lokale elementare Einser-/Portanker, wenn die weitere Lösung mittlere Hinweise kombinieren muss. Konkret:
+- 03: E7 erschöpft rowCounts[7]=1; linke 4/4/4 und rechte 3/4 koordinieren Kopf und Strang.
+- 04: N7 erschöpft columnCounts[7]=1; linke 6/5/3/4 sowie untere 4/4 koordinieren Strang und Doppelknick.
+- 05: W0 erschöpft columnCounts[0]=1; rechte 5/6/7 und mehrere mittlere Zeilenreste bestimmen die unteren/oberen Knicke.
+Zusätzliche isolierte Gegenprobe: Werden sämtliche Nicht-Einsercounts weggelassen, bleiben im unabhängigen Propagator 40/32/40 Zellen mehrdeutig; mit vollständigen Counts jeweils null. Das unterstützt die Trennung von einfachem Einstieg und weiterer Kombination. Es ist weder ein menschlicher Test noch allein ein formaler Beweis, dass jede einzelne mittlere Zahl notwendig wäre.
+
+Nichtredundanz:
+Die 15 verbleibenden nahen Paare wurden samt PAIR_ADJUDICATION gelesen und mit den aktuellen Feldern verglichen. Beispielsweise R14/02–R15/02 ist bewusst nahe Wiederaktivierung mit verändertem Rücklauf; die späteren Positions-2-Ersatzfelder unterbrechen die Serie. R18/09–10 vergleicht verschiedene Null-/Vollanker und Portachsen in derselben geometrischen Familie. Keine exakte öffentliche D4-/A-B-Kopie; verbleibende Wiedererkennbarkeit ist ausdrücklich benannt. Eine subjektive Monotoniefreigabe folgt daraus nicht.
+
+Keine zusätzlichen Regeln erfunden: keine 70%-Mindestfläche, keine Einserquote, keine neue Dichte-/Tiefen-/Ähnlichkeitsschwelle, keine Pflicht zum Auftreten von LOOP_PREVENTION/CONNECTIVITY in jeder Route. Die 23.164 Produktionsschritte verwenden sechs lokale Regelcodes; entfernte Countkopplung kann trotzdem fachlich real sein. Technische Tiefe ist weder menschliche Schwierigkeit noch Spielerzeit.
+
+7. Befunde und getrennte offene Voraussetzungen
+
+F-01 – Niedrig/P3, neue begrenzte Vertragsabweichung: sachlich falsche räumliche Qualitätsbegründung.
+Quelle: H/Content/Levels/s1/03/03/S1-03-03-03.level-v2.json:51; H/Content/Reviews/season-1/leveldesign-S1-03-03.md:68; identisch gebundenes Autorenliteral/-JSON.
+Wortlaut: „Die Nullspalte links und der Fünfercount daneben …“
+Reproduktion: columnCounts=[0,2,3,6,5,3]. Linke Nullspalte ist x0; unmittelbar daneben x1 mit Count 2. Count 5 liegt x4, rechts der vollen Spalte x3. Die behauptete Nachbarschaft zur Nullspalte stimmt nicht.
+Maßstab: WP-026 Scope 5/AK-06 verlangt sachliche individuelle Qualitätsnotizen; CONTENT_PIPELINE §§3.2/3.3 fordert explizite belastbare Autorenentscheidungen.
+Auswirkung: Ein Teil der individuellen geometrischen Begründung ist unzutreffend. Kein falsches Puzzle, kein fehlerhafter Proof, keine notwendige Neuerzeugung des 240er-Korpus. Verhindert vorbehaltloses PASS der sachlichen Dokumentationskomponente von AK-06. Enger späterer Korrekturbedarf: präzise Ortsbegründung und alle daran gebundenen Metadaten/Revision-/Dokumenthashnachweise; tatsächlicher neuer Stand müsste gezielt nachgeprüft werden. Hier nicht repariert. Kein BLOCKER/HIGH an der Puzzlelogik daraus.
+
+O-01 – Menschlicher Spieltest: NOT_EXECUTED, verbindliche offene Qualitätsvoraussetzung.
+Quellen: WP-026 Scope 5/Tests 6/DoD, Bible Qualitätsmaßstab, CONTENT_PIPELINE, M/WP-028_EXECUTION_BRIEF DoD.
+Verhindert menschliche Fairness-/Lesbarkeits-/Dramaturgieabnahme und Gesamtabschluss. KI-Einzelprüfung, Solvermetriken und diese Gegenprobe ersetzen ihn nicht.
+Konkrete Risikofelder: frühe dichte Kurven R1/01/03, R2/12; wiederkehrende lange Arme; R18/03–06; dünne späte Finales insbesondere R20/11–12. Dies sind Prüfempfehlungen innerhalb des bestehenden Spieltestbedarfs, keine neue verpflichtende numerische Testquote oder Ersatzplanung.
+
+O-02 – Historischer Unity-Timeout: eigenständiger offener technischer Befund.
+Originalstand 96697ab, Pushrun 38490243240, HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind: 180.000-ms-Timeout, tatsächliche Falldauer 197,533248 s; 453/454 Passed.
+Das in der Repositoryevidenz archivierte Original-XML wurde selbst dekomprimiert, gehasht und geparst (SHA256 8ef8f9bf3baae10555a238d132a79b0289f2173149a5a9939d94c7390fd82bf1). Dieser alte Lauf wurde nicht als heutiger Lauf dargestellt und nicht neu remote heruntergeladen.
+Auf H besteht derselbe Test mit 104,169501 s. Das widerlegt nicht den alten FAIL und erklärt seine Ursache nicht.
+Quellen: TEST_STRATEGY §13; ADR-032 Ausführungsgrenze; WP-028-Brief ausdrückliches Änderungs-/Retry-/Quarantäneverbot.
+Verhindert Schließung des bekannten Zuverlässigkeitsbefunds und uneingeschränkte technische Gesamtfreigabe/Integration. Kein aktueller CI-FAIL und kein Season-1-Benchmarkfehler. Erfordert eigenen passenden Untersuchungsauftrag; keine stillschweigende Timeout-/Budgeterhöhung oder Quarantäne.
+
+O-03 – Aktuelle Statusnachführung ausstehend, kein wiedereröffneter Quellenblocker.
+Beispiele: H/WP-026:7, CURRENT_STATE:49–52, REVIEW_RESOLUTION:82/113–114 und PR21-Beschreibung führen die beiden Entscheidungen/CI-PERF weiterhin offen oder NOT_EXECUTED; PR21 beschreibt d97/590 Dateien, tatsächlich H/594.
+M sowie PR25 enthalten die späteren Entscheidungen und tatsächlichen Nachweise. Historische Berichte waren zum damaligen Stand korrekt und dürfen nicht rückwirkend umgeschrieben werden.
+Verhindert eine widerspruchsfreie aktuelle repositorybasierte Übergabe und die DoD-Punkte Dokumentation/CURRENT_STATE. Verhindert nicht die jetzige technische oder fachliche Prüfung, weil die maßgeblichen Quellen explizit vorgegeben und verifiziert sind.
+WP-028 durfte globale Steuerungsdateien gemäß abschließender Fünf-Dateien-Allowlist nicht selbst ändern; deshalb keine unzulässige nachträgliche Schuldzuweisung an WP-028. Nötig ist autorisierte mechanische aktuelle Statusfortschreibung mit historischen Berichten unverändert. Diese Prüfung ändert sie auftragsgemäß nicht.
+
+O-04 – Main-Konflikte, konkrete Integrationssperre.
+Rein lesendes git merge-tree mit B=c951, M=d90, H=b145 bestätigt Textkonflikte in:
+.github/workflows/validate.yml
+PROJECT_CONTROL/CURRENT_STATE.md
+PROJECT_CONTROL/WORK_QUEUE.md
+GitHub bestätigt mergeable=false.
+Verhindert direkte Integration von PR21 in aktuelles main. Die jetzige grüne Push-CI auf H ist kein Test eines konfliktaufgelösten kombinierten Integrationsstands mit WP-027. Eine spätere autorisierte Konfliktauflösung muss beide Quellenstände erhalten; neuer Head erfordert passende neue Checks/Standbindung. Hier weder Konfliktlösung noch ein ungetesteter virtueller Gesamt-PASS.
+
+O-05 – 1.440 fehlende Referenzziele / Cross-Reference-FAIL.
+960 Localization: titleKey, statusKey, entryDeductionKey, resultTextKey; 480 Completion/World: mapSegmentId, trainMomentId. Je Feld alle 240 IDs; exakte Liste in unresolved-references.json, neu abgeglichen.
+Verhindert Cross-Reference-Gate, Contentfertigstellung, vollständigen Import und folgende Produkt-/Releasefreigaben.
+Verhindert gemäß ausdrücklich korrigiertem WP-026-Auftrag nicht technische Draft-Authoringquellen, Proofgenerierung oder unabhängige Prüfung des logischen Bestands. Kein generelles Verbot technischer Entwurfsreferenzen wieder eingeführt.
+
+O-06 – Zeitklasse/Kalibrierung.
+Alle Quellen weiter UNCALIBRATED, starThresholdsSeconds=null. Keine bestätigte vorläufige menschliche Zeitklassenzuordnung; keine finalen Sekunden.
+Verhindert fertige Zeit-/Sternkalibrierung und entsprechende Content-/Produktfreigabe. Kein Fehler der Schemalesbarkeit oder Solverbudgets; keine Erlaubnis, Werte aus Laufzeiten oder Rastergröße zu erfinden.
+
+O-07 – Nachgelagerte Gates.
+Kreative Miniatur-/Präsentationsnachweise, deutsche Zieltexte/Pseudolocale, zwei saubere Importe mit gleichem Kataloghash, Addressables, Asset-/Lizenz-/Größenprüfungen am vollständigen Content, Produktfreigabe und Release-Lock: REQUIRED_LATER/NOT_EXECUTED, soweit fehlende Zielinhalte bzw. expliziter Kreativ-/Importausschluss die Durchführung verhindern.
+Physische Android-/iOS-Geräte-, Privacy-, Signing-, Store- und Releasefreigaben ebenfalls nicht durch aktuelle Buildjobs erfüllt.
+Diese Punkte verhindern jeweils die bezeichnete Content-/Import-/Releasephase. Sie werden nicht pauschal zu nachträglichen Startverboten für die erlaubte logische Teillieferung umgedeutet. Auch wird keine Ausnahme von der Gesamt-DoD angenommen: vollständiger Paket-/Seasonabschluss bleibt offen. Der WP-028-Brief hält diese Voraussetzungen vor einer späteren Main-Integration ausdrücklich sichtbar; dieser Bericht erteilt keine abweichende Mergefreigabe.
+
+Empfehlungen, keine neuen Vertragsverletzungen:
+- Verbleibende Armfamilien und die genannten Übergänge im realen Spieltest gezielt beobachten; keinen numerischen Schwierigkeitsgrenzwert nachträglich setzen.
+- Bestehende CI-Cache-Abkündigungswarnungen in einem dafür autorisierten Wartungsscope behandeln.
+- Historische fehlende Auswahlseeds/Toolvarianten weiterhin ehrlich kennzeichnen; kein rückwirkendes Endless-Seedgate für diesen Kampagnenbestand.
+
+8. WP-026-Akzeptanzkriterien, einzeln
+
+AK-01 – Technischer Scope-/Ankerteil PASS; aktuelle Übergabestatusführung noch offen.
+Beide erlaubten Paketschichten getrennt nachgewiesen, Manifestbytes unverändert, keine unzulässige Korpuserweiterung durch WP-028. Aktuelle CI-Zuordnung ist WP-028; 590+5-Pfadprüfung ergänzt sie. Stale Gesamtstatus und Main-Konflikte sind eigene Punkte O-03/O-04, kein Anlass zum Umschreiben historischer Manifestbasen.
+
+AK-02 – PASS für vorhandenen logischen Bestand und quellenbezogene fachliche Prüfung.
+240/240, 5×4×12, alle erlaubten Raster-/Gruppenwechsel, kein exaktes D4-/A-B-Duplikat. Alle 20 Lernbögen unter WP-027 bewertet. Menschliche Wirkung bleibt O-01; der isolierte Notizfehler F-01 gehört AK-06.
+
+AK-03 – PASS.
+Alle 240 gegen echte Schemas, Produktionsloader/Domain und unabhängige Geometrie-/Countprüfung. Sechs Formen, einfacher verbundener A→B-Pfad, keine Zyklen/Kreuzung/Extrazellen.
+
+AK-04 – PASS.
+240 aktuelle solver-v2-Proofs UNIQUE/1, tatsächliche vier Metriken, Guessdepth/SearchNodes 0, richtige Public-/Solution-/Proof-/Refbindung. Vollständige Rootspuren und Metrikrekonstruktion geprüft.
+
+AK-05 – PASS.
+Frische dreifache Regeneration je Quelle, bytegleiche Proofs, Strict-Einzel-/Batch-/Reverseprüfung, 1.200 neue Node-JCS-Abgleiche. Keine bloße Übernahme alter Goldens.
+
+AK-06 – TEILWEISE ERFÜLLT, kein vorbehaltloses PASS.
+240 substanzielle Einstiege/Notizen und 20 Routenurteile, volle Ähnlichkeitssicht und individuelle Paarentscheidungen vorhanden und eigenständig bewertet. F-01 ist eine begrenzte sachliche Abweichung. Menschlicher Spieltest wird korrekt getrennt, bleibt tatsächlich offen; diese KI-Contentprüfung wird nicht als solcher ausgegeben.
+
+AK-07 – PASS für transparente Offenlegung der fremden Content-/Import-/Releasegrenzen.
+Alle betroffenen IDs/Felder/Zuständigkeiten konkret nachgewiesen; fehlende Referenzen, Zeitwerte und Folgegates nicht verdeckt. Aktuelle überholte Entscheidungs-/CI-Statusaussagen separat O-03 nachzuführen.
+
+AK-08 – Neue unabhängige Prüfung und aktuelle technische/CI-Evidenz jetzt auf H belegt; Gesamtabschluss weiterhin NEIN.
+Dieser Bericht samt Originalartefakten ist außerhalb des Repositorys persistiert und unverändert weitergebbar. Repository-/PR-Nachführung erfolgt hier wegen ausdrücklichem Schreibverbot nicht. Alte d97-/b449-Berichte bleiben an ihren Stand gebunden. Offene Voraussetzungen werden nicht als erledigt erklärt.
+
+9. Gesamt-DoD und Integrationsbereitschaft
+
+DoD-Bedingung / Ergebnis:
+- Implementierung vollständig: logischer und WP-028-technischer Umfang vorhanden; F-01 begrenzte Notiznachbesserung, offene fremde Teilvoraussetzungen ausdrücklich sichtbar.
+- Vorgeschriebene Tests vorhanden: technische Nachweise vorhanden; menschliche und spätere Content-/Importnachweise noch nicht erbracht, keine vorab genehmigte pauschale Nichtanwendbarkeit angenommen.
+- Tests erfolgreich: heutige technische Prüfungen/CI PASS; historischer Zuverlässigkeitsbefund O-02 ungelöst, O-01/O-07 nicht ausgeführt.
+- Projekt baut: PASS für aktuellen Development-Android-IL2CPP und iOS-Export/Compile; keine Storebehauptung.
+- Alle AK erfüllt: NEIN, insbesondere AK-06 und Abschluss-/Nachführungskomponenten.
+- Dokumentation aktuell: NEIN, O-03 und F-01.
+- CURRENT_STATE aktuell: NEIN, O-03.
+- Keine undokumentierte Architekturänderung: PASS im geprüften Lieferumfang; WP-028 ist durch angenommenen ADR-032 auf M legitimiert.
+
+Integrationsbereitschaft: NEIN.
+Unmittelbare technische Mergebarriere sind die drei Konflikte. Selbst eine konfliktfreie Kombination würde O-01/O-02, den begrenzten Sachbefund und die erforderliche Status-/Abnahmebindung nicht automatisch erledigen. Die aktuelle grüne CI belegt H, keinen noch nicht existierenden neuen Integrationshead. Cross-Reference-/Zeit-/Import-/Produkt-/Releasegates haben die oben einzeln bezeichnete Reichweite; sie dürfen weder als Proofdefekte noch als bereits erfüllt behandelt werden.
+
+Nächste sachlich begründete Schritte innerhalb jeweils ausdrücklich autorisierter Folgearbeit:
+1. F-01 eng korrigieren und betroffene Bindungs-/Revisionsnachweise erneuern; keine komplette neue Rätselgeneration erforderlich.
+2. Aktuellen Status mechanisch um WP-027-Entscheidungen, erfülltes CI-PERF und diese Abnahme ergänzen; historische Reports unverändert lassen.
+3. Menschliche Spieltestvoraussetzung und historischen Timeoutbefund im jeweils zuständigen Auftrag tatsächlich bearbeiten.
+4. Main-Konflikte nur in autorisiertem Integrationsschritt lösen; den dann neuen gemeinsamen Stand erneut passend prüfen.
+5. Fehlende Zielinhalte/Zeitklassen und jeweils fällige Folgegates durch die dokumentierten Verantwortlichkeiten erfüllen.
+Dies sind aus bestehenden Anforderungen abgeleitete Übergabepunkte, keine Änderung von Manus’ Planung oder Beauftragung ihrer Umsetzung.
+
+10. Belegkategorien und Reproduktion
+
+LOCAL_DOCUMENT_STRUCTURE: eigene Bestands-/ID-/Bindungs-/Statusprüfung; gepinnte CI-Inventar-/Link-/Governancegruppen PASS. Aktuelle Statuslücken ausdrücklich nicht verschwiegen.
+LOCAL_ARCHITECTURE_SEMANTICS: eigene Schema-/Geometrie-/Hash-/Solver-/Mutationsprüfungen und tatsächliche CI-Vertragsregressionen PASS im angegebenen Umfang.
+LOCAL_SCOPE: eigene geschichtete vollständige Diff-/Anker-/Manifestprüfung PASS; aktueller kanonischer CI-WP-028-Scope PASS.
+MANUAL_ARCHITECTURE_REVIEW: Quellenhierarchie, Produktgrenzen, Autorwerkzeuggrenzen, Lernbogen- und Integrationsbewertung tatsächlich manuell geprüft; kein automatischer PASS für menschliche Wirkung.
+CONTRACT_ONLY: vorhandene normative Folgegate-Verträge sind keine ausgeführten Content-/Geräte-/Storefreigaben.
+REQUIRED_LATER/NOT_EXECUTED: Spieltest und konkret benannte Content-/Import-/Geräte-/Storegates.
+BLOCKED/offen: F-01-Nachbesserung, aktueller Übergabestatus, Main-Konflikte, Timeoutursache und fehlende externe Zielquellen gemäß Reichweite oben; R01-FIRST/R18-MIDDLE und CI-PERF sind nicht mehr als offene Sachentscheidungen/fehlender Lauf zu führen.
+
+Eigene reproduzierbare Hauptaufrufe (immer isoliert; Variablen A=Auditverzeichnis, D=A/delivery):
+- git archive H, anschließend Extraktion nach D.
+- Python -B D/tools/season1-authoring/run_authoring.py verify (unveränderte Produktionsquellen im Export).
+- WSL: python3 -B A/verifiers/v1_structure.py D A/dims.json.
+- WSL: python3 -B A/verifiers/v3_propagate.py D.
+- g++ -O3 -std=c++17 A/verifiers/count.cpp -o A/verifiers/count-new; make_in.py D; count-new 3 < counter-input.txt.
+- Python -B A/verifiers/v4_traces.py D.
+- Node22 im PATH: python3 -B A/verifiers/v2_nodejcs.py D A/node.
+- Python -B A/audit_history.py: Anker/Diffs/Manifest-/Pfadprüfung, Pfadzählergleichheit, frischer Root-/Evidenzvergleich, tatsächliche Wiederholung gelesener unabhängiger Voll-/Ähnlichkeitsprüfer.
+- Python -B A/audit_extra.py: Referenzinventar, Autorenquellhash, echter zweimaliger Transport, Negativprobe, Route-18-Ablation.
+- Python -B A/inspect_ci.py: echte Original-XML-/Coverage-/Sample-/Fingerprintprüfung.
+- Python -B A/audit_persistence.py: Routenbindung, archiviertes historisches Original-XML und Quellensnapshots.
+- git merge-tree B M H: nur lesende Konfliktdiagnose, keine Index-/Working-Tree-Änderung.
+Die Hilfen enthalten absolute Pfade dieser Sitzung; bei Weiterverwendung ausschließlich deren Audit-/Repositorypfade anpassen. Frühere Prüferquellen sind ausdrücklich als solche gekennzeichnet; nur die hier tatsächlich ausgeführten Programme tragen zu den neuen Ergebnissen bei.
+
+Dateien im Evidence-Archiv:
+Original-CI-ZIPs und vollständige entscheidende Logs; ci-analysis.json und performance-original.json; history-analysis.json; extra-analysis.json; historisches XML-Auswertungsergebnis; Struktur-/Propagation-/Counter-/Trace-/Node-/Produktionsausgaben; frische technische Produktionsausgabe; neue und erneut ausgeführte gelesene Prüferquellen; Kommentartexte; maßgebliche Quellenblobs; finale Standabfragen; SHA256-Inventar. Temporäre Download-URLs, SDK-Caches und der große Arbeitsbaumexport sind nicht Bestandteil des weiterzugebenden Archivs.
+
+Prüfbericht und Evidenz sind getrennte unveränderbare Übergabeartefakte dieser Sitzung. Eine spätere Korrektur oder Integration erzeugt einen neuen zu prüfenden Stand. Dieses Urteil gilt ausschließlich für H mit dem ausdrücklich benannten maßgeblichen Quellenstand M.
+

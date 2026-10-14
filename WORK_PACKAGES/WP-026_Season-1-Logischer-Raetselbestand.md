@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** Nachbesserung zu PR #21: 240 individuelle Level- und 20 Routenbewertungen, 15 gezielte Logikkorrekturen geliefert und auf 96697ab tatsächlich unabhängig geprüft. Drei begrenzte sachliche Textbefunde anschließend korrigiert, betroffene Nachweise erneuert; erneute Nachprüfung auf neuem Freeze am PR. Beide Quellenentscheidungen, Spieltest und CI-/Referenzgates offen; keine Gesamtabnahme. Bestehender Auftrag, Manifest und Grenzen unverändert.
+**Status:** Offen. Neue unabhängige Gesamtabnahme auf b1457ba durchgeführt (kein Gesamt-PASS); F-01 eng korrigiert, neue gezielte Nachprüfung ausstehend. WP-027-Auslegungen entschieden und CI-PERF durch WP-028 auf b1457ba erbracht. Menschlicher Spieltest, historische Timeoutursache, Main-Konflikte und fremde Folgegates getrennt offen. Definition/Anker/Manifest unverändert.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -297,3 +297,7 @@ geänderte Dokumente übertragen. AK-02/AK-06/AK-08 und Gesamt-DoD bleiben wegen
 Quellenentscheidungen, menschlichem Spieltest, CI-Referenzleistung und Fremdgates
 offen. Nächster Schritt: betreffende Quellenauslegungen und passenden CI-Leistungsweg
 extern entscheiden/beauftragen, anschließend betroffene Gates tatsächlich prüfen.
+
+## Abnahme-Nachführung unter WP-029 – 15.10.2026
+
+F-01 (S1-03-03-03) räumlich korrigiert, betroffene Metadaten/Revision und Bindungen erneuert. Kein Puzzle-/Lösungs-/Proofinput geändert. Vollständige neue Gesamtabnahme b1457ba byteunverändert im Reviewscope, neue eigene Nachweise getrennt. WP-027-Entscheidungen und erbrachte CI-PERF werden als erledigte Teilaussagen eingeordnet. [Aktuelle Befundübergabe](../Content/Reviews/season-1/ACCEPTANCE_FOLLOWUP.md). AK-01 bis AK-05 technische Teilaussagen bleiben standgebunden; AK-06 erfordert gezielte neue Prüfung und menschlichen Spieltest; AK-07 Fremdgates offen benannt; AK-08 neue Gesamtabnahme vorhanden, Folgeänderungen nicht selbst freigegeben. Gesamt-DoD bleibt offen. Nächster Schritt: getrennte O-02-Untersuchung/O-04-Vorbereitung und unabhängige Nachprüfung des neuen Freeze.

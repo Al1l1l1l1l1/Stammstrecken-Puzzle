@@ -49,3 +49,13 @@ Mittel: begrenzte redaktionelle Korrektur und Nachweisführung; falsche Einordnu
 ## Definition of Done
 
 Projektweite DoD bleibt unverändert. AK einzeln mit realen Ergebnissen dokumentieren; CURRENT_STATE aktualisieren. Gesamt-WP-026 bleibt offen. Fehlende unabhängige Nachprüfung/CI konkret ausweisen; keine Selbstfreigabe.
+
+## Ausführung und prüffertige Übergabe – 15.10.2026
+
+Anker `78e8dc9`, einziger Parent/Manifestbasis b1457ba. F-01 und O-03 umgesetzt; keine Definition oder bestehendes Manifest verändert. 240 öffentliche Inputs/Lösungen und 240 Proofbytes erhalten; genau S1-03-03-03 Revision 2→3, zweimaliger Transport byte-idempotent. Ortsprüfung am Array [0,2,3,6,5,3] bestanden. Literal, gebundenes Autoren-JSON, drei aktuelle Routenurteile/-berichte und Inventar konsistent; R01/R18 nur mechanisch auf die bestätigte Quellenentscheidung bezogen.
+
+Originalgesamtabnahme byteunverändert persistiert (SHA256 9c0a03fe060e86e69d5041bb3e72e72a55c198029ac3a9990222e16d99e15433); 42.903.748-Byte-Evidenzarchiv isoliert, SHA256 e1a974ebfdf1f87ee9af6bb08981563e8ce3a5a3166c0c21aada92d81cfb4258. Kein Archivprogramm als Repositoryproduktion übernommen. [Eigene aktuelle Befundführung](../Content/Reviews/season-1/ACCEPTANCE_FOLLOWUP.md), F01_VALIDATION.txt/F01_BINDINGS.json und aktualisierte Produktions-/Schema-/Node-Evidenz dokumentieren die tatsächlichen Folgeänderungen.
+
+Reale eigene Prüfungen: Produktionsharness net10.0 Build 0 Fehler/Warnungen; 240 dreifache Regenerationen, Strict-One/Batch/Reverse, 3840 Metamorphosen, 1440 Mutationen bestanden. Linux CPython 3.11.13, Node 22.20.0, exakt sechs Lockpakete: 240 Level-/240 Proofschemas, 1200 echte Nodeabgleiche, 240 Trace-/Inventarbindungen bestanden. Kanonische eigene Scopevorprüfung mit Self-/Negativtests 18 Gruppen PASS; eingefrorene Nachweise/aktuelle CI werden nach tatsächlich erfolgtem Lauf am PR gesichert. Historische WP-026-/WP-028-Schichten bleiben getrennt.
+
+AK-01 bis AK-04 eigene Prüfung erfüllt; AK-05 Original-/Standtrennung geliefert, gezielte unabhängige Nachprüfung/aktuelle CI noch extern bzw. nach tatsächlichem Freeze. Kein verfügbarer dedizierter unabhängiger Prüfausführungsdienst ist hier eingerichtet; eine Selbstausführung mit früherem Prüfercode wäre keine unabhängige Rolle. Deshalb **prüffertig, nicht selbst abgenommen**. Gesamt-DoD weiterhin offen. Letzter Schritt: F-01/Statuskorrektur und echte eigene Gegenprüfungen. Nächster Schritt: getrennte WP-030-Timeoutuntersuchung, WP-031-Integrationsvorbereitung, neue unabhängige gezielte Prüfung. Kein Merge nach main, Runtimeimport oder Release.
