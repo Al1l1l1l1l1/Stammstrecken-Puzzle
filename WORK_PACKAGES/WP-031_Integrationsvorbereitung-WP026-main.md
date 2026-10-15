@@ -4,7 +4,7 @@
 
 `WP-031`
 
-Status: verankert, Vorbereitung noch nicht begonnen. Nutzerauftrag O-04 sowie notwendige verlustfreie Originalbericht-Nachweisführung vom 15.10.2026. Keine Integration nach main und keine Erweiterung bestehender Pakete/Manifeste.
+Status: Gemeinsame Vorbereitung/Prüfung und zwei unabhängige Rollen auf93/C060 geliefert. Alter Importscope FAIL9 bleibt; drei P2-Status-/Hashprofil-/Verfahrensbefunde eng korrigiert, gezielte Diffnachprüfung offen. Eigener prospektiver WP032-Auftrag aufC060 nach ADR030 zulässig und separat vor weiteren Änderungen zu verankern; keine generelle neue externe Verfahrensentscheidung behauptet. Keine Gesamt-/Mainfreigabe.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-031.production.scope.json)
 
@@ -50,3 +50,11 @@ Hoch: kombinierte Quellen-/Integrations- und Scopegrenzen. Technische Konfliktfr
 ## Definition of Done
 
 Projektweite DoD unverändert. Nur tatsächlich erfüllte Kriterien als erfüllt kennzeichnen. Der isolierte Preview kann technisch konfliktfrei und inhaltlich geprüft sein, während Scope-/QC-/Human-/Fremdgates weiterhin eine Übernahme verhindern. Eigene Ergebnisse/CURRENT_STATE und konkrete Branch-/PR-/Commit-/Treeübergabe sichern; keine Gesamtfreigabe.
+
+## Tatsächliche Ausführung und Übergabe – 15.10.2026
+
+Anker f1f0c65 mit Parent/Manifestbasis 21f8ce5; Manifest unverändert. Originalbericht vollständig verlustfrei dekodiert/hashgeprüft, eigener f8-Whitespace-FAIL separat erhalten, d7-CI Architecture SUCCESS und 455/455 EditMode-XML nachgerechnet. Gemeinsamer Preview 060c1c4 (Tree652661d, Eltern d7f69f6/d90e798) isoliert erstellt, drei Konflikte gelöst, 1109 Nichtkonfliktpfade gegen Eltern geprüft. Produktionsverify, 1200 Node-/Schema-/Rootbindungen und 17 Architecture-Gruppen wirklich im gemeinsamen Baum bestanden. Lokale und echte CI-Scopeprüfung melden neun konkrete Mainimport-Fehler, nicht umgangen. Tatsächliche weitere CI wird an diesem Preview und dem reinen Übergabecommit getrennt am PR nachgeführt. [Vollständige AK-/Grenzen-/Nachweisübergabe](../PROJECT_CONTROL/Integration/WP-031_HANDOVER.md). AK-01/02 eigene Umsetzung erfüllt; AK-03 gemeinsame Prüfungen geliefert, Scopepflichtgate FAIL; AK-04 konkrete Grenze dokumentiert; AK-05 prüffertige externe gezielte Nachprüfung, keine Selbstfreigabe. Kein Gesamt-DoD-PASS, keine Main-Integration/Import/Release.
+
+## Gezielte QC-Nacharbeit – nach Freeze93
+
+AK05 unabhängige Rollen tatsächlich ausgeführt; Originalberichte und drei P2-Korrekturen [hier](../PROJECT_CONTROL/Integration/WP-031_QC_CORRECTIONS.md). Quellenhierarchie korrigiert die frühere pauschale externe Verfahrenssperre: neuer ausdrücklich autorisierter prospektiver WP032-Anker aufC060 mit separater zwingender Provenienz-/Konflikt-/CI-Abnahme ist zulässig; der alte kombinierte WP031-Scope bleibt FAIL9. Keine Änderung dieser historischen Paketdefinition/Manifestgrenze, kein rückwirkender PASS. Gezielte unabhängige Korrekturdiffprüfung separat belegen.
