@@ -4,7 +4,7 @@
 
 `WP-031`
 
-Status: Gemeinsame Vorbereitung/Prüfung und zwei unabhängige Rollen auf93/C060 geliefert. Alter Importscope FAIL9 bleibt; drei P2-Status-/Hashprofil-/Verfahrensbefunde eng korrigiert, gezielte Diffnachprüfung offen. Eigener prospektiver WP032-Auftrag aufC060 nach ADR030 zulässig und separat vor weiteren Änderungen zu verankern; keine generelle neue externe Verfahrensentscheidung behauptet. Keine Gesamt-/Mainfreigabe.
+Status: Historische Integrationsprobe C060 tatsächlich erstellt/geprüft und als solche abgegeben; alter Importscope FAIL9 unverändert, kein rückwirkender Production-PASS. Drei P2-Nacharbeiten auf 9c1859f gezielt unabhängig geschlossen. Eigener prospektiver WP-032-StandB83 anschließend mit getrennter Herkunfts-/Konflikt-/vollständiger CI-/Rollenabnahme technisch erbracht; reine Schlussnachführung WP-033. Keine Definition-/Manifestaufweitung, neue externe Verfahrenssperre oder Gesamt-/Mainfreigabe.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-031.production.scope.json)
 
@@ -58,3 +58,7 @@ Anker f1f0c65 mit Parent/Manifestbasis 21f8ce5; Manifest unverändert. Originalb
 ## Gezielte QC-Nacharbeit – nach Freeze93
 
 AK05 unabhängige Rollen tatsächlich ausgeführt; Originalberichte und drei P2-Korrekturen [hier](../PROJECT_CONTROL/Integration/WP-031_QC_CORRECTIONS.md). Quellenhierarchie korrigiert die frühere pauschale externe Verfahrenssperre: neuer ausdrücklich autorisierter prospektiver WP032-Anker aufC060 mit separater zwingender Provenienz-/Konflikt-/CI-Abnahme ist zulässig; der alte kombinierte WP031-Scope bleibt FAIL9. Keine Änderung dieser historischen Paketdefinition/Manifestgrenze, kein rückwirkender PASS. Gezielte unabhängige Korrekturdiffprüfung separat belegen.
+
+## Aktuelle standgebundene Schlussnachführung – WP-033
+
+Diese Nachführung ändert ausschließlich Bearbeitungs-/Ergebnisstatus, keine Definition, AK, Scopegrenze oder historische Manifestbasis. [Vollständige aktuelle Nachweise und Grenzen](../PROJECT_CONTROL/Integration/WP-033_HANDOVER.md). Frühere Ausführungsabschnitte bleiben ihre standgebundene Historie; keine Umdeutung alter FAILs und keine Gesamtfreigabe.

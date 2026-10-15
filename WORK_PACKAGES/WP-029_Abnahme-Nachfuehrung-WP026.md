@@ -4,7 +4,7 @@
 
 `WP-029`
 
-Status: Eigene Umsetzung/Prüfungen geliefert, unabhängige gezielte Nachprüfung offen. WP-029: F-01 korrigiert; Originaltransport-Whitespacegrenze unter WP-031 verlustfrei nachgeführt.
+Status: F-01-/Statusnacharbeit geliefert und im engen fachlichen/technischen Umfang unabhängig bestätigt; kanonische Hash-/Statusnachkorrekturen auf 9c1859f von beiden getrennten Rollen geschlossen. Tatsächliche gemeinsame technische Folgeprüfung unter eigenem WP-032 auf B83 erbracht, reine Schlussdokumentation WP-033. Keine Gesamt-WP-026-/Human-/Import-/Releasefreigabe; Definition/Manifest unverändert.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-029.production.scope.json)
 
@@ -59,3 +59,7 @@ Originalgesamtabnahme byteunverändert persistiert (SHA256 9c0a03fe060e86e69d504
 Reale eigene Prüfungen: Produktionsharness net10.0 Build 0 Fehler/Warnungen; 240 dreifache Regenerationen, Strict-One/Batch/Reverse, 3840 Metamorphosen, 1440 Mutationen bestanden. Linux CPython 3.11.13, Node 22.20.0, exakt sechs Lockpakete: 240 Level-/240 Proofschemas, 1200 echte Nodeabgleiche, 240 Trace-/Inventarbindungen bestanden. Kanonische eigene Scopevorprüfung mit Self-/Negativtests 18 Gruppen PASS; eingefrorene Nachweise/aktuelle CI werden nach tatsächlich erfolgtem Lauf am PR gesichert. Historische WP-026-/WP-028-Schichten bleiben getrennt.
 
 AK-01 bis AK-04 eigene Prüfung erfüllt; AK-05 Original-/Standtrennung geliefert, gezielte unabhängige Nachprüfung/aktuelle CI noch extern bzw. nach tatsächlichem Freeze. Kein verfügbarer dedizierter unabhängiger Prüfausführungsdienst ist hier eingerichtet; eine Selbstausführung mit früherem Prüfercode wäre keine unabhängige Rolle. Deshalb **prüffertig, nicht selbst abgenommen**. Gesamt-DoD weiterhin offen. Letzter Schritt: F-01/Statuskorrektur und echte eigene Gegenprüfungen. Nächster Schritt: getrennte WP-030-Timeoutuntersuchung, WP-031-Integrationsvorbereitung, neue unabhängige gezielte Prüfung. Kein Merge nach main, Runtimeimport oder Release.
+
+## Aktuelle standgebundene Schlussnachführung – WP-033
+
+Diese Nachführung ändert ausschließlich Bearbeitungs-/Ergebnisstatus, keine Definition, AK, Scopegrenze oder historische Manifestbasis. [Vollständige aktuelle Nachweise und Grenzen](../PROJECT_CONTROL/Integration/WP-033_HANDOVER.md). Frühere Ausführungsabschnitte bleiben ihre standgebundene Historie; keine Umdeutung alter FAILs und keine Gesamtfreigabe.

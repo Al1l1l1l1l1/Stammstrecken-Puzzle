@@ -1,3 +1,15 @@
+## Aktueller Abschlussstand der technischen Nacharbeiten – WP-033, 15.10.2026
+
+F-01 ist sachlich korrigiert, Revision2→3 und kanonische Metadaten-/Nachweisbindungen konsistent; beide unabhängigen Rollen bestätigen die Korrektur. Alle240 öffentlichen Inputs, Lösungen und Proofbytes erhalten. Drei später gefundene P2-Status-/Byteprofil-/Verfahrensbefunde sind auf 9c1859f gezielt unabhängig geschlossen. O-03: Manus' WP-027-Auslegungen entschieden, WP-028-CI-Leistungsnachweis erbracht und Gesamtabnahme b1457ba tatsächlich durchgeführt, weiterhin kein Gesamt-PASS; Originalberichte unverändert.
+
+O-04 ist im zulässigen gemeinsamen Nicht-main-Arbeitsstand unter eigenem WP-032 technisch erbracht: Freeze B83, eigene unveränderte prospektive Verankerung auf C060, getrennte vollständige Herkunfts-/Einzelanker-/Manifest-/Konfliktabnahme, neue tatsächliche gemeinsame Produktion/Schema/Node/Root, Architecture17+Scope18 sowie alle zehn regulären Unity-Jobs bestanden (455 EditMode,27 PlayMode, Android-Development-IL2CPP, iOS/Xcode). Beide unabhängigen Rollen und gesondertes technisches CI-Schlussaddendum bestätigen ihren tatsächlichen Umfang; keine Selbstfreigabe. Der alte WP-031-Importscope bleibt als historischer FAIL9 unverändert. Keine Erweiterung alter Manifeste, keine neue Architektur-/Validatorregel, keine Testlockerung.
+
+O-02 wurde anhand Originalbefund, vollständiger Originaljoblogs und gezielter Gegenprüfungen untersucht; Ursache unbewiesen. Eng vorgeschlagene reguläre Phasen-/CPU-/GC-/Allokationsdiagnostik bleibt zur Entscheidung, keine Reparatur ausgeführt. Menschlicher Spieltest,1440 Referenzziele/Cross-Reference-FAIL,UNCALIBRATED/null Sternsekunden sowie kreative/Import-/Produkt-/Release-/Geräte-/Storegates bleiben offen. Kein Gesamt-WP-026-PASS, keine Main-Integration, kein Runtimeimport oder Release.
+
+Diese WP-033-Nachführung verändert ausschließlich Status-/Evidenz-/eigene CI-Zuordnungsdokumentation. Sämtliche technischen Quellen und Inputs bleiben exakt zu B83 erhalten; neue Scope-/Diff-QC-/nachgelagerte CI-Ergebnisse werden separat am tatsächlichen Dokumentationscommit/PR gebunden. Die folgenden älteren Kopfblöcke und Tabellen sind standgebundene Historie des technischen B83-Arbeitsstands und seiner Vorgänger; dort früher ausstehende Prüfungen sind durch die hier verlinkten tatsächlichen Schlussnachweise fortgeschrieben.
+
+[Aktuelle vollständige Übergabe](../../../PROJECT_CONTROL/Integration/WP-033_HANDOVER.md).
+
 ## Aktueller gemeinsamer Prüfstand – WP-032, 15.10.2026
 
 F-01 ist sachlich korrigiert und durch beide unabhängigen Rollen bestätigt; auf dem Korrekturfreeze 9c1859f sind QC-CONTENT-01 und QC-TECH-01/02 gezielt nachgeprüft und geschlossen. Kanonische Gitblobbindungen sind explizit, Originalberichte unverändert. Manus' WP-027-Auslegungen sind entschieden, WP-028-CI-PERF und die durchgeführte Gesamtabnahme auf b1457ba bleiben standgebundene Teilnachweise ohne Gesamt-PASS.

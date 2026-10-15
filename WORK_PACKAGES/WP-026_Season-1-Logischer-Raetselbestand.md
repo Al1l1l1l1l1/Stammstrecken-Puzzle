@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** Offen. Neue unabhängige Gesamtabnahme auf b1457ba durchgeführt (kein Gesamt-PASS); F-01 eng korrigiert, neue gezielte Nachprüfung ausstehend. WP-027-Auslegungen entschieden und CI-PERF durch WP-028 auf b1457ba erbracht. Menschlicher Spieltest, historische Timeoutursache, Main-Konflikte und fremde Folgegates getrennt offen. Definition/Anker/Manifest unverändert.
+**Status:** Insgesamt offen, kein Gesamt-PASS. Gesamtabnahme b1457ba durchgeführt; F-01 korrigiert und durch getrennte unabhängige Fach-/Technikrollen bestätigt, P2-Nachweis-/Statuskorrekturen auf 9c1859f geschlossen. Manus/WP-027-Auslegungen entschieden, WP-028-CI-PERF erbracht. Main-Konflikte im zulässigen gemeinsamen WP-032-StandB83 tatsächlich gelöst und mit vollständiger CI/Quellen-/Konflikt-/Scope-/Rollenprüfung technisch nachgewiesen; keine Integration nach main. O-02-Ursache, menschlicher Spieltest,1440 Referenzziele, Zeitklasse und fremde Folgegates offen. Definition/Anker/Manifest unverändert; aktuelle Abschlussnachweise unter WP-033.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -301,3 +301,7 @@ extern entscheiden/beauftragen, anschließend betroffene Gates tatsächlich prü
 ## Abnahme-Nachführung unter WP-029 – 15.10.2026
 
 F-01 (S1-03-03-03) räumlich korrigiert, betroffene Metadaten/Revision und Bindungen erneuert. Kein Puzzle-/Lösungs-/Proofinput geändert. Vollständige neue Gesamtabnahme b1457ba byteunverändert im Reviewscope, neue eigene Nachweise getrennt. WP-027-Entscheidungen und erbrachte CI-PERF werden als erledigte Teilaussagen eingeordnet. [Aktuelle Befundübergabe](../Content/Reviews/season-1/ACCEPTANCE_FOLLOWUP.md). AK-01 bis AK-05 technische Teilaussagen bleiben standgebunden; AK-06 erfordert gezielte neue Prüfung und menschlichen Spieltest; AK-07 Fremdgates offen benannt; AK-08 neue Gesamtabnahme vorhanden, Folgeänderungen nicht selbst freigegeben. Gesamt-DoD bleibt offen. Nächster Schritt: getrennte O-02-Untersuchung/O-04-Vorbereitung und unabhängige Nachprüfung des neuen Freeze.
+
+## Aktuelle standgebundene Schlussnachführung – WP-033
+
+Diese Nachführung ändert ausschließlich Bearbeitungs-/Ergebnisstatus, keine Definition, AK, Scopegrenze oder historische Manifestbasis. [Vollständige aktuelle Nachweise und Grenzen](../PROJECT_CONTROL/Integration/WP-033_HANDOVER.md). Frühere Ausführungsabschnitte bleiben ihre standgebundene Historie; keine Umdeutung alter FAILs und keine Gesamtfreigabe.
