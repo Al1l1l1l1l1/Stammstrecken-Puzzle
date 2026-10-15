@@ -4,7 +4,7 @@
 
 `WP-030`
 
-Status: Untersuchung mit Original-/Gegenproben geliefert; historische Ursache nicht bewiesen, O-02 bleibt offen. Enger diagnostischer Folgeauftrag zur Entscheidung; keine Reparatur oder Selbstfreigabe.
+Status: Enger Untersuchungsauftrag mit Originalbefund, gezielten Gegenprüfungen und getrenntem Nachweis geliefert und unabhängig technisch bestätigt. Historische Ursache unbewiesen, O-02-Zuverlässigkeit bleibt offen; konkrete reguläre Testdiagnostik zur Entscheidung, keine Reparatur. Erfolgreiche neue CI erklärt die Ursache nicht. Definition/Manifest unverändert; aktuelle Schlussnachweise WP-033.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-030.production.scope.json)
 
@@ -50,3 +50,7 @@ Projektweite DoD gilt. AK einzeln mit tatsächlicher Evidenz bewerten; echte Urs
 ## Ergebnis und Übergabe – 15.10.2026
 
 Anker 438b45e, Parent/Manifestbasis f8e1dfc, Manifest unverändert. Originalbefund mit Hash und allen sechs Ausgaben rekonstruiert; 37 Testdauern verglichen, Test-/Domain-/Solverblobs identisch. Instrumentierte Scratchprobe hat alle Originalassertionen tatsächlich ausgeführt; hohe Allokationslast auf großen 32×32-Fällen nachgewiesen, historische GC-/CPU-/Schedulingursache nicht bewiesen. Eigene vollständige Evidenz und konkreter diagnostischer Folgeauftrag in PROJECT_CONTROL/Investigations/WP-030_TIMEOUT.md. Keine Reparatur angewandt, O-02 bleibt offen. AK-02/03/04 erbracht im Untersuchungsumfang, AK-01 kanonischer eigener Scope vor Freeze, AK-05 prüffertige externe Nachprüfung/CI nach tatsächlicher Ausführung. Kein Gesamt-DoD-/Freigabe-PASS. Letzter Schritt: kausale Grenze mit gezielten Kontrollen eingegrenzt; nächster Schritt: vorgeschlagenen engen Testdiagnostikauftrag entscheiden und unabhängige Prüfung des Freeze.
+
+## Aktuelle standgebundene Schlussnachführung – WP-033
+
+Diese Nachführung ändert ausschließlich Bearbeitungs-/Ergebnisstatus, keine Definition, AK, Scopegrenze oder historische Manifestbasis. [Vollständige aktuelle Nachweise und Grenzen](../PROJECT_CONTROL/Integration/WP-033_HANDOVER.md). Frühere Ausführungsabschnitte bleiben ihre standgebundene Historie; keine Umdeutung alter FAILs und keine Gesamtfreigabe.
