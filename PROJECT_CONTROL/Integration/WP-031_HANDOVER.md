@@ -1,3 +1,11 @@
+# Aktuelle QC-Korrektur und nächste eng verankerte Integrationsvorbereitung
+
+Die getrennten unabhängigen Rollenprüfungen auf93/C060 sind tatsächlich ausgeführt. F-01 bestätigt; drei P2-Status-/Hashprofil-/Verfahrensbefunde wurden konkret nachgearbeitet. [Originalberichte, Korrektur und tatsächliche CI-Schlussstände](WP-031_QC_CORRECTIONS.md). Gezielte unabhängige Prüfung des Korrekturdiffs bleibt standgebunden nachzuweisen.
+
+Die frühere pauschale Forderung eines neuen externen Integrationsverfahrensentscheids war zu weit gefasst: ADR030 erlaubt einen ausdrücklich autorisierten prospektiven engen Auftrag auf ParentC060, mit zwingend getrennter Herkunfts-/Konflikt-/CI-Abnahme. WP032 ist dafür separat vor neuen Änderungen zu verankern. Die neun alten Scopefehler bleiben unverändert und werden weder umgedeutet noch durch bloßes Zurücksetzen einer Basis verdeckt. Kein Gesamt-PASS, Main-Merge, Runtimeimport oder Release.
+
+## Nachfolgende ursprüngliche standgebundene Übergabe auf93b49a9
+
 # WP-026-Nacharbeiten: prüffertige Übergabe vom 15.10.2026
 
 **Kein Gesamt-PASS, keine Main-Integration, kein Runtimeimport oder Release.** F-01 und aktuelle Statuskorrekturen umgesetzt; O-02 untersucht und kausal offen; O-04 im isolierten gemeinsamen Git-Baum aufgelöst und tatsächlich geprüft, Übernahme am unveränderten Scopegate blockiert. Unabhängige gezielte Nachprüfung bleibt erforderlich; eigene Werkzeuge/CI ersetzen sie nicht.

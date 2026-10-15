@@ -19,16 +19,16 @@
   "transportRuns": 2,
   "transportByteIdempotent": true,
   "authorSourceSha256": "24dbd36a77c1723c8f7f0115930f6931b56663b622b778eaec826deef9fa3555",
-  "independentReview": "REQUIRED_AFTER_FREEZE",
+  "independentReview": "F01_CONFIRMED_BY_SEPARATE_CONTENT_ROLE_ON_93b49a9; byte-profile correction requires targeted technical recheck",
   "files": {
     "author-decisions.txt": "24dbd36a77c1723c8f7f0115930f6931b56663b622b778eaec826deef9fa3555",
     "author-review.json": "ca9c7a3a30419f1378322d49b7e0a178fa08f14a6fd01bb4b86a9b6d2f222266",
-    "level-inventory.json": "0d730782ba74c763f8b4cafaf7989a45d60e5bd2dc4e0087ea80387c4e5513f2",
-    "technical-evidence.json": "df7163c09ead115cf30c18dbd4a34414f7cb87c00ea93cd35c3828b828a1a5a4",
+    "level-inventory.json": "835a960cb4ab9acf1fc861c4c5ff4caf766d973663ea8067a8705b75d1fdf59d",
+    "technical-evidence.json": "c4aac1763431ea10cc66ee622dcce77dc60dddb828143c6af125d5f7994d0aa6",
     "schema-node-evidence.json": "a72a1e90b619f54248acc9ac2141e5345d4ffc03e96e64d992537f66b3fb5923",
-    "leveldesign-S1-01-01.md": "573765efce01b01e199c8f81457479bbcf118bafa7b412f9aa9cf1eee2a03105",
-    "leveldesign-S1-03-03.md": "078c0c576c2f3009369ac868a8a096884be59a4def094c9287edc4a14f05c3be",
-    "leveldesign-S1-05-02.md": "f923826bae176e16fd4c3888fe82dc7d6cf0e28aa31ede45813f84d2b883e0ed",
+    "leveldesign-S1-01-01.md": "c0be736126c628e6243777ad7eb070e34b52beaf3390103cdaff6c2ee8334ea4",
+    "leveldesign-S1-03-03.md": "5b9347de9073612bdfcd1f2b5fe77ca70f66be5b80c24e17bb661b0a8d1641a1",
+    "leveldesign-S1-05-02.md": "dd4ee69ac11047851ba09bcdcca4adef1a0f46af37eb609c33bdd164a13cba18",
     "WP-026_Gesamtabnahme_b1457ba.txt": "a8a68428785fb5964d23a4dd700f4ef0d3798c1bdbe999b7bd1652e9d5a14238"
   },
   "originalReportTransport": {
@@ -37,5 +37,11 @@
     "originalByteCount": 39661,
     "fullByteEqualityVerified": true,
     "reason": "preserve original final blank line without violating diff --check; no original text trimmed"
+  },
+  "fileHashProfile": {
+    "algorithm": "SHA-256",
+    "byteBasis": "canonical Git blob bytes (UTF-8/LF for these text artifacts), not Windows checkout bytes",
+    "boundContentCommit": "93b49a9c9439d8aaab0540a15181b0431751a1fb",
+    "originalReportDecodedBytes": "separate originalReportTransport.decodedSha256; no newline normalization of decoded original"
   }
 }
