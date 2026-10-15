@@ -4,6 +4,8 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 ## Aktuelle Prioritätsreihenfolge
 
+O-02 wird unter ausdrücklich beauftragtem, eigenständig prospektiv verankertem WP-034 bearbeitet, ohne Änderung der folgenden Prioritäten oder alter Paketgrenzen. Nachgewiesener Prämissensicht-Aufwand äquivalent korrigiert; lokale Regression/240er-Nachweise bestanden, finale optimierte CI und unabhängige technische Abnahme offen. [Aktuelle Übergabe](Investigations/WP-034_HANDOVER.md). Ältere Angaben „Diagnostik zur Entscheidung“ sind historische Stände; der neue O-02-Auftrag liegt vor. WP026 bleibt insgesamt offen; kein Main-Merge.
+
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|
 | 0 | Trust-Anchor-Korrektur (WP-018-Amendment) | **Abgeschlossen** | PR #8 ist integriert; WP-019/WP-020 sind endgültig archivierte, nicht ausführbare Planungen. |
