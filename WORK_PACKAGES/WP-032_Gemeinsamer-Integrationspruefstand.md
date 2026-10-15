@@ -4,7 +4,7 @@
 
 `WP-032`
 
-Status: Prospektiv beauftragt und vor weiteren Änderungen gemeinsam mit eigenem Manifest auf Parent 060c1c4 verankert; Prüfung und unabhängige gezielte Abnahme ausstehend. Keine Main-Integration.
+Status: Eigenständiger gemeinsamer prüffertiger Nicht-main-Stand auf vorab verankertem Parent C060 hergestellt. Eigene Herkunfts-/Produktions-/Schema-/Node-/Rootnachweise geliefert; finale Scope-/CI-/QC-Ergebnisse werden an den tatsächlichen Freeze im eigenen Übergabepunkt und PR gebunden. Keine Gesamt-/Main-/Import-/Releasefreigabe.
 
 [Eigenes Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-032.production.scope.json)
 
@@ -53,3 +53,7 @@ Hoch: gemeinsame Integrationsvorbereitung und Scope-/Nachweisgrenzen. Technische
 ## Definition of Done
 
 Projektweite DoD unverändert. AK einzeln am tatsächlichen neuen Prüfstand nachweisen, eigenes Paket/CURRENT_STATE und PR aktualisieren. Originalgesamtabnahme und alle historischen Einzelmanifest-/Prüfstände bleiben unverändert. Keine Ableitung eines Gesamt-PASS aus erledigten Teilaufgaben; O-02-Zuverlässigkeit und sämtliche Human-/Fremdgates ausdrücklich getrennt offen.
+
+## Tatsächliche Ausführung und Übergabe
+
+Anker fdee9569eb52ee66b23028433c86d5d9f56dacdb, genau ein Parent C060, Manifest unverändert. Dokumentarischen Korrekturfreeze9c1859f im gemeinsamen37aff06 erhalten; keine neue Produkt-/Test-/Level-/Proof-/Regeländerung. Lokale tatsächliche Eingangs-/Produktions-/Schema-/Node-/Rootprüfung und getrennte Original-Nachprüfungen in [WP-032_HANDOVER](../PROJECT_CONTROL/Integration/WP-032_HANDOVER.md). Abschließende Scope-/CI-/unabhängige Ergebnisse stets am tatsächlichen gemeinsamen Freeze/PR nachweisen; keine vorweggenommene Gesamtfreigabe. O02 und Human-/Fremdgates bleiben offen.

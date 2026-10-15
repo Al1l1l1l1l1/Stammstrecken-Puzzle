@@ -1,0 +1,34 @@
+# Gezielte unabhängige Fach-/Statusnachprüfung 93b49a9 → 9c1859f
+
+Prüfer: dieselbe separate frisch instanziierte Codex-Fachprüfrolle `/root/independent_content_qc`, keine Autoren-/Reparaturrolle und keine Behauptung einer Astra-/Sol-Modellidentität. Datum: 15.10.2026, Europe/Berlin. Eigenes Addendum; der Originalbericht auf93 bleibt unverändert. Keine Ergebnisabstimmung mit der technischen Prüfrolle. Der bereits abgegebene technische Originalbericht wurde nun als ausdrücklich benannte neue Prüfevidenz gelesen.
+
+**Urteil: PASS für den eng geprüften Fach-/Statuskorrekturdiff. QC-CONTENT-01/P2 auf `9c1859f649201602e34770c5399f8fca5a39c878` geschlossen. Kein neuer fachlicher/statusbezogener Befund in diesem Diff. Keine Gesamt-, Scope-, Main-, Import- oder Releasefreigabe.**
+
+Basis ist `93b49a9c9439d8aaab0540a15181b0431751a1fb`; neuer lokaler Lieferfreeze exakt `9c1859f649201602e34770c5399f8fca5a39c878`. Git-HEAD selbst geprüft. Ausschließlich den Diff dieser beiden Stände und seine notwendigen Quellen-/Bindungsbezüge nachgeprüft. Der eingefrorene Preview `060c1c4b01458a80835094d5bd004be8c36eec54` wird dadurch nicht geändert oder neu als gesamthaft freigegeben. Ein noch entstehender WP-032-Stand ist ausdrücklich nicht Gegenstand dieses Berichts.
+
+## Eigene Prüfung
+
+Die AGENTS-Pflichtlesefolge und maßgeblichen Quellen wurden in derselben fortgeführten unabhängigen Prüfung bereits gelesen. Neu gelesen: vollständiger technischer Originalbericht `PROJECT_CONTROL/Integration/WP-031_QC_TECHNICAL_93_C060.md`, insbesondere QC-TECH-02 mit ADR-026/030-Auslegung; `WP-031_QC_CORRECTIONS.md`; aktuelle Änderungen der vier Reviewköpfe, CURRENT_STATE, WP-031-Status und WP-031_HANDOVER; beide Bindungsdateidiffs. Die vier Reviewköpfe ändern jeweils dieselben fünf aktuellen Aussagen; historische Abschnitte bleiben bytegleich.
+
+Eigene reproduzierbare Gegenrechnung: `pwsh -NoProfile -File .utmp/wp031-independent-content-recheck.ps1`. Daten: `.utmp/wp031-independent-content-recheck-9c1859f.json`. Der erfolgreiche Endlauf umfasst:
+
+- Keine Änderungen zwischen93/9c an `Content/Levels`, `Content/Proofs`, Autorenwerkzeugen, Assets/Tests/Produktion, Entscheidungen, Konzeptquellen oder Architekturvalidatoren/Manifesten. Keine erneute Levelrevision oder Autorenentscheidung. Der auf93 tatsächlich bestätigte F-01-Sachstand bleibt dadurch derselbe.
+- Alle vier aktuellen Reviewköpfe nennen jetzt ausdrücklich die tatsächlich gelösten drei Konflikte, den tatsächlich geprüften gemeinsamen Preview060 und die neun weiterhin wirkenden alten WP-031-Scopefehler. Sie unterscheiden den noch offenen getrennten Integrations-/Prüfschritt von der schon ausgeführten eigenen gemeinsamen Prüfung.
+- CURRENT_STATE:10 benennt nun den prospektiven WP-032-Anker auf dem bereits geprüften C060, getrennte Herkunfts-/Konfliktabnahme und die gezielte Status-/Hashdiffprüfung. Die alte pauschale Ankündigung einer erst noch auszuführenden gemeinsamen Probe ist dort behoben. CURRENT_STATE:33 hat dieselbe präzise O-04-Einordnung wie die Reviewköpfe.
+- Bei allen vier Reviewdateien sind die vollständigen Suffixe ab „Die nachfolgenden älteren Abschnitte beschreiben ihren damaligen Stand.“ exakt bytegleich zu93. Der Originalgesamtbericht-Transportcontainer bleibt exakt derselbe Gitblob. Der persistierte eigene Originalbericht `WP-031_QC_CONTENT_93.md` hat unverändert SHA256 `1a0e1613da60aa3a87ff4c611324d50c65d45a50ef4c87d375791bc35db53a2d`.
+- F01_BINDINGS benennt jetzt ausdrücklich kanonische Gitblobbytes und den gebundenen Contentcommit93. Alle neun Dateihashes wurden von mir über tatsächliche rohe Gitblobs sowohl auf93 als auch auf9c nachgerechnet und passen. Alle 21 Einträge in WP-031_SHA256 wurden mit rohen Gitblobs auf9c nachgerechnet: Hash und Bytezahl passen. Das ergänzt die fachliche Konsistenzprüfung; die technische Abnahme von QC-TECH-01 bleibt die Aufgabe der technischen Rolle.
+- `git diff --check 93b49a9 9c1859f --` bestanden; keine eigenen getrackten Änderungen.
+
+## Präzisierter prospektiver Integrationsweg
+
+QC-TECH-02 ist für die Statusaussage relevant und wird sachlich berücksichtigt: ADR-030 bindet den neuen Auftrag und dessen unveränderliches Manifest prospektiv an seinen tatsächlichen Parent; er verlangt nicht allgemein main als Parent jedes Folgepakets. Ein ausdrücklich autorisierter, vor neuen Änderungen gemeinsam verankerter enger WP-032-Auftrag auf C060 ist daher grundsätzlich zulässig. Die in der Nachprüfung benannte Nutzerautorisierung ist nach der Beauftragung der Koordination vorhanden; diese Prüferrolle erteilt sie nicht selbst.
+
+Die neue Dokumentation verlangt zusätzlich ausdrücklich die getrennte Abnahme der eingefrorenen Elternlieferungen, historischen Anker/Manifestbytes, vollständigen Blobprovenienz, drei Konfliktlösungen und gemeinsamen echten technischen CI. Sie nennt einen Null-/Kleindiff nicht als Ersatzbeleg und erklärt weder die alten neun Fehler rückwirkend für bestanden noch erweitert sie ein altes Manifest. Damit ist die Beschränkung auf den neuen engen eigenen Delta allein kein behaupteter Herkunftsbeweis.
+
+Mein Originalbericht hatte den damaligen noch nicht bestätigten Integrationsweg als offene Grenze wiedergegeben und in QC-CONTENT-01 eine präzise Offenlegung des fehlenden bestätigten Integrationsverfahrens gefordert. Dieses Addendum präzisiert diese Reichweite anhand der jetzt vorliegenden unabhängigen technischen Gegenprüfung: Eine allgemeine neue externe Architektur-/Verfahrensentscheidung ist für den beschriebenen autorisierten prospektiven ADR-030-Weg nicht zwingend. Zwingend bleiben der eigene vorherige Auftrag/Anker, seine konkrete Abnahme und alle Herkunfts-/Konflikt-/CI-Nachweise. Der konkrete WP-032-Freeze ist erst nach seiner tatsächlichen Erstellung eigenständig zu prüfen. Keine neue Produkt- oder Architekturregel wird hier eingeführt.
+
+## Fortbestehende Grenzen
+
+O-02 bleibt ursächlich offen; kein erfolgreicher aktueller Lauf wird als Erklärung des alten Timeouts ausgegeben. Menschlicher Spieltest, 1.440 Referenzziele/Cross-Reference-FAIL, `UNCALIBRATED`/null Sternsekunden und kreative/Import-/Produkt-/Release-/Geräte-/Storegates bleiben ausdrücklich offen. Aussagen zu vollständigen CI-Schlussständen auf93/C060 sind im Diff ihren jeweiligen historischen Ständen zugeordnet; ich habe in dieser engen Nachprüfung keine neue CI gestartet oder remote heruntergeladen. Neue CI und neue unabhängige Prüfung bleiben an den tatsächlichen jeweiligen neuen Freeze zu binden.
+
+Der eng korrigierte Statusbefund ist geschlossen. Das Gesamt-WP-026 und seine DoD sind dadurch nicht abgeschlossen. Nächster vorgesehener Schritt ist die gezielte unabhängige Prüfung des erst noch final einzufrierenden WP-032-Integrationsvorbereitungsstands samt getrennten Abnahmeeingängen. Dieser Bericht bleibt ein eigenständiges, unverändertes Addendum.

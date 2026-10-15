@@ -1,3 +1,13 @@
+## Aktueller gemeinsamer Prüfstand – WP-032, 15.10.2026
+
+F-01 ist sachlich korrigiert und durch beide unabhängigen Rollen bestätigt; auf dem Korrekturfreeze 9c1859f sind QC-CONTENT-01 und QC-TECH-01/02 gezielt nachgeprüft und geschlossen. Kanonische Gitblobbindungen sind explizit, Originalberichte unverändert. Manus' WP-027-Auslegungen sind entschieden, WP-028-CI-PERF und die durchgeführte Gesamtabnahme auf b1457ba bleiben standgebundene Teilnachweise ohne Gesamt-PASS.
+
+O-04: eigener prospektiver WP-032-Anker fdee9569eb52ee66b23028433c86d5d9f56dacdb, einziger Parent/Manifestbasis C060. Beide Lieferungen und die drei Konfliktlösungen bleiben erhalten; 1109 Nichtkonfliktpfade und unveränderte Produktions-/Mainquellen sind zusätzlich zur eigenen künftigen Scopeprüfung nachgewiesen. Die geprüfte dokumentarische Nachführung 9c1859f ist im gemeinsamen Folgecommit 37aff06 erhalten. Darin erneut tatsächliche Produktion (240×3, Strict/3840/1440), Schema240/240, Node1200 und Root240 bestanden. Neuer finaler Scope, reguläre CI und zwei gezielte unabhängige Rollen werden separat an den tatsächlichen WP-032-Freeze gebunden; deren verbindlicher Schlussstand steht in der WP-032-Übergabe und den PR-Nachweisen. Der alte WP-031-Importscope bleibt FAIL9, kein rückwirkender PASS und keine neue externe Architekturentscheidung behauptet.
+
+O-02 ist untersucht, historische Ursache unbewiesen; konkrete Testdiagnostik bleibt zur Entscheidung. Menschlicher Spieltest,1440 Referenzziele, Zeitklasse und kreative/Import-/Produkt-/Release-/Geräte-/Storegates bleiben offen. Kein Gesamt-PASS und kein Merge nach main.
+
+Die nachfolgende Nachführung ist unveränderte standgebundene Historie des Korrekturfreezes 9c1859f; dort genannte künftige WP-032-Schritte sind durch diesen neuen eigenen Prüfstand fortgeschrieben.
+
 ## Aktueller Originaltransport / WP-031 – 15.10.2026
 
 Die Gesamtabnahme ist am verlinkten TXT-Pfad als **STP_ORIGINAL_REPORT_BASE64_V1** verlustfrei gespeichert. Original-SHA256 9c0a03fe060e86e69d5041bb3e72e72a55c198029ac3a9990222e16d99e15433 bezeichnet die vollständig dekodierten Originalbytes, einschließlich der zusätzlichen Schlussleerzeile. Der Transportcontainer hat einen eigenen Dateihash in F01_BINDINGS.json. `tools/wp031-integration/prepare.py decode --output <Scratchdatei>` stellt die unveränderte Originaldatei wieder her und prüft ihren Hash. Kein Originaltext wurde getrimmt oder redigiert. Der unveränderte Klartext und das isolierte Archiv liegen weiter in der ursprünglichen externen Auditablage.
