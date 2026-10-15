@@ -8,6 +8,8 @@ Status: Technischer Umfang abgeschlossen und unabhängig PASS auf Korrekturfreez
 
 Aktueller Ausführungsstand: Anker f59d28b auf exakt a2e; echte unveränderte Diagnosebaseline840b929 bestanden. Kontrolliert belegte Prämissensicht-Aufwandskorrektur implementiert, ursprüngliche Budgetaussagen erhalten;454reineRegressionen/12Ausgabebindungen/1639erTracebindung/dreiFehlermutationen/240erProduktion bestanden. Korrekturfreeze f34d6f4: Architecture38725866779 und alle10Unityjobs38725866769 SUCCESS,456EditMode/27PlayMode, Android-Development-IL2CPP, iOS/Xcode; getrennte unabhängige technische Rolle PASS ohne offene Befunde. [Eigene vollständige Übergabe mit AK/DoD und Lieferbindung](../PROJECT_CONTROL/Investigations/WP-034_HANDOVER.md), [unveränderter unabhängiger Originalbericht](../PROJECT_CONTROL/Investigations/WP-034_QC.md). Historische Original-Hostumstände nicht rekonstruierbar; kein Main-/WP026-Gesamt-PASS.
 
+Integration: Die geprüfte Lieferung 7eed2483 ist am 15.10.2026 als Merge-Commit 085357d59a62dae73189ea76051c73f0ffb78ae3 (Tree 58ee055410afd3c5e6a3acba9c47ff4f42050cf8, Parents a2e26a6 und 7eed248) in `codex/wp-026-season1-logical-content` integriert; PR #29 gemerged, Anker f59d28b und Manifest unverändert. Neue Architecture 38738775296/38738782949 und Unity 38738775650/38738782830 auf 085357d bestanden. Keine Main-Integration, keine WP026-Gesamtabnahme. [Integrationsnachweis mit Prüfgrenzen](../PROJECT_CONTROL/Investigations/WP-034_INTEGRATION.md).
+
 [Eigenes Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-034.production.scope.json)
 
 ## Ziel
