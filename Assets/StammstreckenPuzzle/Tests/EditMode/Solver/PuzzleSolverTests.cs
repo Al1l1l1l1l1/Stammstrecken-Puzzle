@@ -363,6 +363,15 @@ namespace STP.Tests.Solver.EditMode
             var late = new List<string>(); double baseline = double.NaN;
             foreach (var c in cases)
             {
+                // WP-034 diagnostics stay outside the tail/copy timing intervals. Mono does not expose a portable
+                // allocation counter here; live managed bytes are a heap snapshot, not total allocated bytes.
+                var phase = Stopwatch.StartNew();
+                using var process = Process.GetCurrentProcess();
+                double cpuStart = process.TotalProcessorTime.TotalMilliseconds;
+                long heapStart = GC.GetTotalMemory(false);
+                int gc0 = GC.CollectionCount(0), gc1 = GC.CollectionCount(1), gc2 = GC.CollectionCount(2);
+                void ReportPhase(string name) => TestContext.WriteLine(FormattableString.Invariant(
+                    $"WP034_PHASE kind={c.Name}|phase={name}|wall_ms={phase.Elapsed.TotalMilliseconds:R}|cpu_ms={process.TotalProcessorTime.TotalMilliseconds - cpuStart:R}|gen0={GC.CollectionCount(0) - gc0}|gen1={GC.CollectionCount(1) - gc1}|gen2={GC.CollectionCount(2) - gc2}|live_heap_delta_bytes={GC.GetTotalMemory(false) - heapStart}|allocated_bytes=UNAVAILABLE|runtime={Environment.Version}|processors={Environment.ProcessorCount}"));
                 long maxStates = c.MaxStates;
                 if (c.Expected == SolverClassification.INDETERMINATE)
                 {
@@ -373,11 +382,13 @@ namespace STP.Tests.Solver.EditMode
                         if (probe.Classification == SolverClassification.INDETERMINATE && probe.SolutionCount == 1) break;
                     }
                     Assert.That(maxStates, Is.LessThan(10000), c.Name);
+                    ReportPhase("state-search-complete");
                 }
                 var sw = new Stopwatch(); long lastProbe = 0;
                 long Now() { lastProbe = sw.ElapsedTicks; return lastProbe * 1000 / Stopwatch.Frequency; }
                 var limits = new SolverLimits(maxStates: maxStates, timeBudgetMs: 600000, monotonicNow: Now);
                 for (int i = 0; i < 2; i++) Assert.That(PuzzleSolver.Solve(c.Def, limits).Classification, Is.EqualTo(c.Expected), c.Name);
+                ReportPhase("warmups-complete");
                 double minTail = double.MaxValue, minBuild = double.MaxValue; int size = 0;
                 for (int i = 0; i < 25; i++)
                 {
@@ -392,6 +403,7 @@ namespace STP.Tests.Solver.EditMode
                     long after = sw.ElapsedTicks; GC.KeepAlive(rebuilt.Item1); GC.KeepAlive(rebuilt.Item2);
                     minBuild = Math.Min(minBuild, (after - before) * 1e6 / Stopwatch.Frequency);
                 }
+                ReportPhase("samples-complete");
                 if (double.IsNaN(baseline))
                 {
                     baseline = minTail; Assert.That(size, Is.LessThan(20), c.Name);

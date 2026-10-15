@@ -4,7 +4,7 @@
 
 `WP-026`
 
-**Status:** Insgesamt offen, kein Gesamt-PASS. Gesamtabnahme b1457ba durchgeführt; F-01 korrigiert und durch getrennte unabhängige Fach-/Technikrollen bestätigt, P2-Nachweis-/Statuskorrekturen auf 9c1859f geschlossen. Manus/WP-027-Auslegungen entschieden, WP-028-CI-PERF erbracht. Main-Konflikte im zulässigen gemeinsamen WP-032-StandB83 tatsächlich gelöst und mit vollständiger CI/Quellen-/Konflikt-/Scope-/Rollenprüfung technisch nachgewiesen; keine Integration nach main. O-02-Ursache, menschlicher Spieltest,1440 Referenzziele, Zeitklasse und fremde Folgegates offen. Definition/Anker/Manifest unverändert; aktuelle Abschlussnachweise unter WP-033.
+**Status:** Insgesamt offen, kein Gesamt-PASS. Gesamtabnahme b1457ba durchgeführt; F-01 korrigiert und durch getrennte unabhängige Fach-/Technikrollen bestätigt, P2-Nachweis-/Statuskorrekturen auf 9c1859f geschlossen. Manus/WP-027-Auslegungen entschieden, WP-028-CI-PERF erbracht. Main-Konflikte im zulässigen gemeinsamen WP-032-StandB83 tatsächlich gelöst und mit vollständiger CI/Quellen-/Konflikt-/Scope-/Rollenprüfung technisch nachgewiesen; keine Integration nach main. O-02 technisch unter WP034/f34d6f4 äquivalent korrigiert und vollständig echtCI-/unabhängig geprüft; historische Hostursache unbewiesen, Unterlieferung PR29 separat gegen WP026. Menschlicher Spieltest,1440 Referenzziele, Zeitklasse und fremde Folgegates offen. Definition/Anker/Manifest unverändert; aktuelle Abschlussnachweise unter WP-033 und dem eigenen WP034-Schlussabschnitt.
 
 [Production-Scope-Manifest](../tools/architecture-validation/scopes/WP-026.production.scope.json)
 
@@ -301,6 +301,10 @@ extern entscheiden/beauftragen, anschließend betroffene Gates tatsächlich prü
 ## Abnahme-Nachführung unter WP-029 – 15.10.2026
 
 F-01 (S1-03-03-03) räumlich korrigiert, betroffene Metadaten/Revision und Bindungen erneuert. Kein Puzzle-/Lösungs-/Proofinput geändert. Vollständige neue Gesamtabnahme b1457ba byteunverändert im Reviewscope, neue eigene Nachweise getrennt. WP-027-Entscheidungen und erbrachte CI-PERF werden als erledigte Teilaussagen eingeordnet. [Aktuelle Befundübergabe](../Content/Reviews/season-1/ACCEPTANCE_FOLLOWUP.md). AK-01 bis AK-05 technische Teilaussagen bleiben standgebunden; AK-06 erfordert gezielte neue Prüfung und menschlichen Spieltest; AK-07 Fremdgates offen benannt; AK-08 neue Gesamtabnahme vorhanden, Folgeänderungen nicht selbst freigegeben. Gesamt-DoD bleibt offen. Nächster Schritt: getrennte O-02-Untersuchung/O-04-Vorbereitung und unabhängige Nachprüfung des neuen Freeze.
+
+## O-02-Folgeauftrag WP-034 – 15.10.2026
+
+Eigener ausdrücklich beauftragter und vorab verankerter Reparaturscope, keine Erweiterung dieser Definition oder des WP026-Manifests. Millionen vollständiger Prämissensicht-Neuaufbauten im Roottracer kontrolliert nachgewiesen und äquivalent korrigiert. Original-FAIL/PASS und echte unveränderte Diagnosebaseline geprüft; lokale vollständige Regression/240er-Produktion und Ausgabebindungen bestanden. Technischer O-02-Umfang auf f34d6f4 abgeschlossen: neue Architecture38725866779 und alle10Unityjobs38725866769 SUCCESS,456EditMode/27PlayMode, Android-Development-IL2CPP, iOS/Xcode; getrennte unabhängige technische Abschlussrolle PASS ohne offene Befunde. Reine Nachweis-/Statuslieferung mit separater tatsächlicher CI-/Diff-QC-Bindung im Draft-Unter-PR29. Historische konkrete Hostursache weiter unbewiesen; keine Integration dieser Unterlieferung ausgeführt. [Aktuelle WP034-Übergabe](../PROJECT_CONTROL/Investigations/WP-034_HANDOVER.md). Gesamt-WP026 und alle anderen bestehenden Human-/Fremdgates bleiben offen. Ältere Diagnoseentscheidungsangaben sind Historie.
 
 ## Aktuelle standgebundene Schlussnachführung – WP-033
 
