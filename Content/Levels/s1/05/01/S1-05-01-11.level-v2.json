@@ -1,0 +1,161 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-01-11",
+  "contentRevision": 2,
+  "grid": {
+    "width": 8,
+    "height": 8
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 7
+    },
+    "b": {
+      "side": "W",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    4,
+    4,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1
+  ],
+  "columnCounts": [
+    2,
+    2,
+    1,
+    2,
+    2,
+    1,
+    2,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 1,
+    "position": 11,
+    "titleKey": "level.s1.05.01.11.title",
+    "statusKey": "level.s1.05.01.11.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.01.11.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 10,
+    "qualityNote": "Vier untere Einserzeilen erzeugen den langen rechten Schenkel, die oberen vier Reihen dagegen elf unterschiedliche Kurven. Der kleine linke Anfangsbogen ist über einen diagonalen Querzug mit dem Schenkel verbunden; die lange technische Folge 32 betrifft vor allem diese obere Formlast.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-01-11-map",
+    "trainMomentId": "draft-s1-05-01-11-train",
+    "resultTextKey": "level.s1.05.01.11.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 7,
+        "y": 7,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-01-11/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "59231b08e64e757fa4c8d7edd10c4b1e0c469d62e29e0e671bfde1a5daf2ee76"
+    }
+  }
+}

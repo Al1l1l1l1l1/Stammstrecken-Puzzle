@@ -1,0 +1,98 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-01-08",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 4
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 3
+    },
+    "b": {
+      "side": "N",
+      "index": 2
+    }
+  },
+  "rowCounts": [
+    3,
+    1,
+    1,
+    1
+  ],
+  "columnCounts": [
+    4,
+    1,
+    1,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 1,
+    "position": 8,
+    "titleKey": "level.s1.01.01.08.title",
+    "statusKey": "level.s1.01.01.08.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.01.08.entry",
+    "focus": [
+      "OCCUPANCY",
+      "EXCLUSION"
+    ],
+    "chainDepth": 3,
+    "qualityNote": "Bewusst luftiger Rückgriff nach zwei dichten Kurvenfeldern: drei einzelne Einserzeilen und die Nullspalte rechts lassen einen langen vertikalen Schenkel entstehen. Die geringere räumliche Last entlastet vor der Endpunktvariation, die Form am oberen Übergang bleibt ein echter Schluss.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-01-08-map",
+    "trainMomentId": "draft-s1-01-01-08-train",
+    "resultTextKey": "level.s1.01.01.08.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-01-08/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "047afc99930dfad79dae7a52b8980a48efd3de42cc173aa299c54389c94aafc7"
+    }
+  }
+}

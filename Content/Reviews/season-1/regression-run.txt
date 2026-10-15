@@ -1,0 +1,324 @@
+Runtime Environment
+   OS Version: Microsoft Windows 10.0.26300
+  CLR Version: 10.0.12
+
+Test Files
+    C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp025-separated/Tests/bin/Release/net10.0/STP.Tests.Content.EditMode.dll
+
+Test Discovery
+  Start time: 2026-10-13 21:52:48Z
+    End time: 2026-10-13 21:52:48Z
+    Duration: 0.141 seconds
+
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.Completion_AllTwoByTwoConcreteBoardsAgainstIndependentPaths
+COMPLETION_ORACLE exhaustive 2x2: boards=134456; accepted=104
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.Exhaustive_AllOrderedEndpointAndCountCombinations_WithAllDihedralTransforms(2,2)
+ORACLE exhaustive 2x2: 400 valid definitions x 8 transforms; 4136 invalid definition combinations; all ordered endpoint pairs, transposed 3x2 included.
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.Exhaustive_AllOrderedEndpointAndCountCombinations_WithAllDihedralTransforms(2,3)
+ORACLE exhaustive 2x3: 2774 valid definitions x 8 transforms; 36106 invalid definition combinations; all ordered endpoint pairs, transposed 3x2 included.
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoBudgetedWorkRunsBetweenTheLastProbeAndTheReturn
+WP024_HARD_BUDGET tail_after_last_probe_ms=0,0000 total_ms=29,762 ratio=0,000 %
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind
+WP024_HARD_BUDGET_KIND tiny unsatisfiable 2x2 (baseline): tail_after_last_probe_us=0,000
+WP024_HARD_BUDGET_KIND unsatisfiable serpentine 32x32: class=UNSATISFIABLE maxStates=5000000 path+protocol=1693 tail_after_last_probe_us=0,000 excess_over_baseline_us=0,000 result_build_us=1,300
+WP024_HARD_BUDGET_KIND ambiguous corner 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=1176 tail_after_last_probe_us=0,000 excess_over_baseline_us=0,000 result_build_us=1,100
+WP024_HARD_BUDGET_KIND ambiguous long path 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=2116 tail_after_last_probe_us=0,000 excess_over_baseline_us=0,000 result_build_us=1,400
+WP024_HARD_BUDGET_KIND interrupted long path 32x32: class=INDETERMINATE maxStates=2 path+protocol=2109 tail_after_last_probe_us=0,100 excess_over_baseline_us=0,100 result_build_us=1,700
+WP024_HARD_BUDGET_KIND unique serpentine 32x32: class=UNIQUE maxStates=5000000 path+protocol=2133 tail_after_last_probe_us=0,000 excess_over_baseline_us=0,000 result_build_us=1,000
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.TenByTen_FixedCorpus_WarmupAndCIReferenceBudget
+WP022_BUDGET corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,668 max_ms=1,253 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
+=> STP.Tests.Solver.EditMode.PuzzleSolverTests.ThreeByThree_FixedSeed22022_RecordedSubsetAndSwapMetamorphoses
+seed=22022; accepted=0; draw=17; A=0/0; B=0/2; 3,2,0;1,2,2
+seed=22022; accepted=1; draw=24; A=1/1; B=0/2; 2,1,0;2,0,1
+seed=22022; accepted=2; draw=77; A=2/1; B=1/2; 2,1,3;3,1,2
+seed=22022; accepted=3; draw=121; A=2/0; B=3/0; 1,3,1;3,2,0
+seed=22022; accepted=4; draw=133; A=0/1; B=2/0; 3,1,2;2,3,1
+seed=22022; accepted=5; draw=135; A=0/2; B=1/2; 2,1,2;1,2,2
+seed=22022; accepted=6; draw=150; A=1/2; B=0/1; 2,1,3;3,2,1
+seed=22022; accepted=7; draw=151; A=0/2; B=2/2; 2,0,3;2,2,1
+seed=22022; accepted=8; draw=185; A=1/2; B=3/1; 2,3,2;3,1,3
+seed=22022; accepted=9; draw=220; A=1/1; B=3/2; 0,2,3;3,0,2
+seed=22022; accepted=10; draw=263; A=3/1; B=2/0; 0,2,2;2,1,1
+seed=22022; accepted=11; draw=329; A=3/0; B=0/1; 3,1,1;2,2,1
+seed=22022; accepted=12; draw=336; A=2/1; B=3/1; 0,3,2;2,3,0
+seed=22022; accepted=13; draw=390; A=2/0; B=3/1; 2,3,3;3,3,2
+seed=22022; accepted=14; draw=406; A=0/2; B=2/1; 2,1,3;2,3,1
+seed=22022; accepted=15; draw=413; A=3/2; B=0/0; 3,0,3;3,1,2
+seed=22022; accepted=16; draw=462; A=2/1; B=3/2; 1,3,2;3,2,1
+seed=22022; accepted=17; draw=530; A=3/0; B=1/0; 3,2,2;2,3,2
+seed=22022; accepted=18; draw=532; A=2/1; B=0/0; 1,2,3;2,2,2
+seed=22022; accepted=19; draw=548; A=0/0; B=3/2; 2,1,1;1,3,0
+seed=22022; accepted=20; draw=549; A=1/0; B=2/2; 2,0,3;1,2,2
+seed=22022; accepted=21; draw=613; A=3/0; B=3/1; 1,2,2;2,0,3
+seed=22022; accepted=22; draw=616; A=0/2; B=3/1; 3,2,0;1,3,1
+seed=22022; accepted=23; draw=619; A=0/2; B=2/0; 3,2,2;1,3,3
+seed=22022; accepted=24; draw=621; A=0/0; B=2/0; 2,1,1;3,0,1
+seed=22022; accepted=25; draw=628; A=2/1; B=2/2; 3,1,2;2,3,1
+seed=22022; accepted=26; draw=663; A=0/2; B=2/0; 3,2,2;1,3,3
+seed=22022; accepted=27; draw=682; A=3/2; B=1/1; 0,2,3;2,0,3
+seed=22022; accepted=28; draw=693; A=3/0; B=1/1; 2,2,0;1,1,2
+seed=22022; accepted=29; draw=709; A=1/0; B=1/2; 1,1,3;2,0,3
+seed=22022; accepted=30; draw=728; A=1/1; B=2/2; 2,2,1;1,2,2
+seed=22022; accepted=31; draw=732; A=3/0; B=2/2; 2,1,1;3,0,1
+seed=22022; accepted=32; draw=763; A=2/1; B=1/1; 0,1,3;0,3,1
+seed=22022; accepted=33; draw=777; A=3/1; B=3/2; 3,1,3;1,3,3
+seed=22022; accepted=34; draw=778; A=0/2; B=2/2; 2,2,3;2,3,2
+seed=22022; accepted=35; draw=784; A=0/2; B=2/1; 3,3,3;3,3,3
+seed=22022; accepted=36; draw=791; A=2/1; B=2/0; 3,0,2;1,1,3
+seed=22022; accepted=37; draw=795; A=1/2; B=2/1; 0,3,2;2,1,2
+seed=22022; accepted=38; draw=809; A=1/0; B=2/1; 1,1,2;1,1,2
+seed=22022; accepted=39; draw=826; A=0/0; B=3/0; 1,0,3;1,3,0
+seed=22022; accepted=40; draw=841; A=2/1; B=0/0; 2,0,3;3,2,0
+seed=22022; accepted=41; draw=866; A=1/2; B=2/2; 2,0,2;2,1,1
+seed=22022; accepted=42; draw=880; A=0/2; B=1/0; 1,0,3;1,0,3
+seed=22022; accepted=43; draw=900; A=1/2; B=2/2; 1,3,1;2,0,3
+seed=22022; accepted=44; draw=926; A=1/2; B=3/0; 2,3,2;3,3,1
+seed=22022; accepted=45; draw=941; A=1/0; B=3/0; 3,3,3;3,3,3
+seed=22022; accepted=46; draw=979; A=3/1; B=3/2; 2,3,2;2,3,2
+seed=22022; accepted=47; draw=986; A=0/1; B=1/2; 2,2,1;1,2,2
+seed=22022; accepted=48; draw=988; A=0/2; B=2/1; 2,2,3;3,2,2
+seed=22022; accepted=49; draw=993; A=2/2; B=3/2; 1,3,2;2,2,2
+seed=22022; accepted=50; draw=1010; A=3/2; B=2/0; 2,2,2;1,2,3
+seed=22022; accepted=51; draw=1056; A=3/0; B=2/2; 3,1,2;3,0,3
+seed=22022; accepted=52; draw=1072; A=3/0; B=0/0; 1,2,1;2,0,2
+seed=22022; accepted=53; draw=1090; A=1/0; B=0/2; 3,0,2;1,1,3
+seed=22022; accepted=54; draw=1164; A=2/0; B=1/2; 0,3,2;1,3,1
+seed=22022; accepted=55; draw=1165; A=3/0; B=2/1; 3,3,1;3,2,2
+seed=22022; accepted=56; draw=1181; A=0/1; B=1/2; 2,2,3;3,2,2
+seed=22022; accepted=57; draw=1218; A=1/0; B=1/1; 3,2,2;2,2,3
+seed=22022; accepted=58; draw=1231; A=3/1; B=3/2; 3,3,1;3,1,3
+seed=22022; accepted=59; draw=1260; A=0/2; B=3/0; 1,3,1;1,3,1
+seed=22022; accepted=60; draw=1302; A=2/2; B=1/1; 2,3,1;2,2,2
+seed=22022; accepted=61; draw=1303; A=3/2; B=2/2; 2,0,2;1,1,2
+seed=22022; accepted=62; draw=1306; A=3/2; B=3/1; 3,3,2;3,2,3
+seed=22022; accepted=63; draw=1314; A=0/1; B=1/2; 1,3,2;1,2,3
+seed=22022; accepted=64; draw=1320; A=1/1; B=0/0; 1,2,3;3,0,3
+seed=22022; accepted=65; draw=1337; A=1/1; B=1/0; 3,2,1;1,2,3
+seed=22022; accepted=66; draw=1343; A=0/1; B=1/0; 2,2,2;3,1,2
+seed=22022; accepted=67; draw=1364; A=0/1; B=2/0; 3,2,3;3,3,2
+seed=22022; accepted=68; draw=1366; A=3/0; B=0/0; 2,3,3;3,3,2
+seed=22022; accepted=69; draw=1380; A=0/0; B=1/0; 2,3,1;2,2,2
+seed=22022; accepted=70; draw=1387; A=0/1; B=3/0; 2,1,2;2,2,1
+seed=22022; accepted=71; draw=1398; A=1/1; B=0/2; 3,2,0;0,3,2
+seed=22022; accepted=72; draw=1428; A=2/1; B=3/1; 3,3,2;3,3,2
+seed=22022; accepted=73; draw=1432; A=2/0; B=3/0; 2,2,2;2,2,2
+seed=22022; accepted=74; draw=1480; A=1/2; B=3/0; 3,3,2;3,2,3
+seed=22022; accepted=75; draw=1498; A=3/1; B=1/2; 1,3,1;2,1,2
+seed=22022; accepted=76; draw=1505; A=2/0; B=0/1; 2,3,3;2,3,3
+seed=22022; accepted=77; draw=1517; A=0/0; B=3/0; 2,2,3;3,3,1
+seed=22022; accepted=78; draw=1524; A=0/2; B=1/2; 2,1,2;2,2,1
+seed=22022; accepted=79; draw=1533; A=3/0; B=2/2; 2,0,3;2,0,3
+seed=22022; accepted=80; draw=1535; A=0/1; B=1/0; 2,1,3;1,3,2
+seed=22022; accepted=81; draw=1541; A=0/1; B=2/1; 2,2,1;0,2,3
+seed=22022; accepted=82; draw=1555; A=1/1; B=2/0; 3,2,1;2,3,1
+seed=22022; accepted=83; draw=1587; A=0/2; B=2/1; 1,3,1;2,1,2
+seed=22022; accepted=84; draw=1588; A=0/1; B=3/2; 3,0,3;1,2,3
+seed=22022; accepted=85; draw=1647; A=3/0; B=3/2; 2,0,1;3,0,0
+seed=22022; accepted=86; draw=1652; A=3/0; B=1/1; 1,3,1;1,2,2
+seed=22022; accepted=87; draw=1662; A=1/2; B=3/0; 2,0,2;2,0,2
+seed=22022; accepted=88; draw=1674; A=2/1; B=2/0; 2,2,2;2,2,2
+seed=22022; accepted=89; draw=1691; A=1/2; B=3/1; 0,3,3;1,2,3
+seed=22022; accepted=90; draw=1712; A=2/2; B=2/0; 1,3,1;2,2,1
+seed=22022; accepted=91; draw=1719; A=0/0; B=2/1; 3,0,2;3,2,0
+seed=22022; accepted=92; draw=1732; A=2/2; B=3/2; 3,0,3;3,1,2
+seed=22022; accepted=93; draw=1744; A=0/0; B=2/0; 2,3,1;2,2,2
+seed=22022; accepted=94; draw=1765; A=2/2; B=2/1; 3,1,2;3,1,2
+seed=22022; accepted=95; draw=1800; A=2/0; B=0/2; 2,3,3;2,3,3
+seed=22022; accepted=96; draw=1804; A=0/0; B=1/1; 3,2,1;3,1,2
+seed=22022; accepted=97; draw=1809; A=1/1; B=2/1; 2,3,3;3,2,3
+seed=22022; accepted=98; draw=1842; A=2/1; B=2/0; 1,1,1;1,2,0
+seed=22022; accepted=99; draw=1871; A=1/0; B=0/0; 3,1,1;2,0,3
+seed=22022; accepted=100; draw=1882; A=3/0; B=2/2; 2,2,1;1,1,3
+seed=22022; accepted=101; draw=1886; A=1/2; B=2/2; 2,1,3;3,0,3
+seed=22022; accepted=102; draw=1888; A=0/0; B=2/0; 3,3,3;3,3,3
+seed=22022; accepted=103; draw=1897; A=1/0; B=1/1; 3,1,1;1,3,1
+seed=22022; accepted=104; draw=1974; A=3/1; B=3/0; 1,3,0;3,1,0
+seed=22022; accepted=105; draw=2010; A=1/2; B=1/0; 2,0,2;2,1,1
+seed=22022; accepted=106; draw=2012; A=2/2; B=2/1; 2,2,2;0,3,3
+seed=22022; accepted=107; draw=2014; A=1/1; B=3/2; 0,1,2;2,0,1
+seed=22022; accepted=108; draw=2024; A=3/0; B=1/2; 2,1,3;3,0,3
+seed=22022; accepted=109; draw=2033; A=1/2; B=0/0; 3,2,3;3,2,3
+seed=22022; accepted=110; draw=2035; A=3/0; B=0/1; 1,1,3;2,3,0
+seed=22022; accepted=111; draw=2039; A=0/1; B=2/2; 2,0,3;0,2,3
+seed=22022; accepted=112; draw=2075; A=1/2; B=1/1; 0,3,2;0,3,2
+seed=22022; accepted=113; draw=2078; A=3/1; B=0/0; 1,1,2;1,1,2
+seed=22022; accepted=114; draw=2082; A=3/1; B=2/1; 0,2,3;1,3,1
+seed=22022; accepted=115; draw=2109; A=3/0; B=1/0; 2,3,3;3,2,3
+seed=22022; accepted=116; draw=2133; A=2/2; B=2/0; 0,1,3;1,0,3
+seed=22022; accepted=117; draw=2171; A=2/1; B=1/2; 1,3,2;2,2,2
+seed=22022; accepted=118; draw=2193; A=2/0; B=3/2; 1,1,3;3,2,0
+seed=22022; accepted=119; draw=2213; A=1/2; B=1/0; 2,0,3;1,1,3
+seed=22022; accepted=120; draw=2234; A=2/1; B=1/0; 2,3,1;3,1,2
+seed=22022; accepted=121; draw=2286; A=3/1; B=3/2; 2,2,3;3,3,1
+seed=22022; accepted=122; draw=2288; A=3/1; B=2/2; 0,1,1;1,0,1
+seed=22022; accepted=123; draw=2291; A=1/2; B=2/1; 2,0,2;0,1,3
+seed=22022; accepted=124; draw=2313; A=0/1; B=3/0; 2,3,3;2,3,3
+seed=22022; accepted=125; draw=2327; A=2/2; B=2/0; 1,1,3;3,1,1
+seed=22022; accepted=126; draw=2335; A=2/0; B=0/0; 1,0,2;2,1,0
+seed=22022; accepted=127; draw=2357; A=1/0; B=1/1; 2,3,0;1,3,1
+seed=22022; accepted=128; draw=2363; A=2/0; B=2/1; 2,2,1;2,3,0
+seed=22022; accepted=129; draw=2387; A=0/1; B=3/0; 2,2,0;1,1,2
+seed=22022; accepted=130; draw=2389; A=2/1; B=1/0; 3,3,1;2,2,3
+seed=22022; accepted=131; draw=2391; A=1/2; B=0/1; 2,0,3;1,1,3
+seed=22022; accepted=132; draw=2403; A=3/2; B=1/1; 0,2,3;2,0,3
+seed=22022; accepted=133; draw=2442; A=1/0; B=2/0; 2,2,1;2,0,3
+seed=22022; accepted=134; draw=2452; A=3/0; B=3/1; 2,1,2;2,0,3
+seed=22022; accepted=135; draw=2459; A=2/1; B=3/0; 3,0,1;2,2,0
+seed=22022; accepted=136; draw=2461; A=1/1; B=0/1; 1,3,2;2,2,2
+seed=22022; accepted=137; draw=2484; A=2/1; B=1/1; 0,1,2;0,2,1
+seed=22022; accepted=138; draw=2491; A=3/0; B=2/1; 1,0,3;1,2,1
+seed=22022; accepted=139; draw=2518; A=2/0; B=3/2; 3,2,3;3,2,3
+seed=22022; accepted=140; draw=2525; A=2/2; B=2/1; 0,3,2;1,2,2
+seed=22022; accepted=141; draw=2534; A=2/0; B=1/0; 3,1,3;3,1,3
+seed=22022; accepted=142; draw=2535; A=3/0; B=3/2; 1,1,2;3,1,0
+seed=22022; accepted=143; draw=2545; A=1/0; B=0/2; 1,0,0;0,0,1
+seed=22022; accepted=144; draw=2571; A=3/0; B=0/1; 2,2,3;3,1,3
+seed=22022; accepted=145; draw=2588; A=3/1; B=2/0; 2,3,3;3,2,3
+seed=22022; accepted=146; draw=2592; A=3/0; B=0/0; 2,2,1;3,0,2
+seed=22022; accepted=147; draw=2595; A=0/1; B=1/0; 3,2,3;3,3,2
+seed=22022; accepted=148; draw=2615; A=3/1; B=2/0; 0,1,2;2,1,0
+seed=22022; accepted=149; draw=2637; A=1/1; B=1/2; 0,1,3;1,2,1
+seed=22022; accepted=150; draw=2660; A=0/0; B=2/2; 1,2,3;1,2,3
+seed=22022; accepted=151; draw=2670; A=1/0; B=0/2; 3,1,1;3,1,1
+seed=22022; accepted=152; draw=2691; A=2/2; B=2/1; 1,2,3;3,2,1
+seed=22022; accepted=153; draw=2700; A=1/0; B=2/0; 2,3,1;3,0,3
+seed=22022; accepted=154; draw=2730; A=1/1; B=2/2; 2,2,2;3,1,2
+seed=22022; accepted=155; draw=2747; A=1/0; B=0/0; 3,1,2;1,2,3
+seed=22022; accepted=156; draw=2754; A=3/1; B=3/2; 2,2,2;3,1,2
+seed=22022; accepted=157; draw=2778; A=2/0; B=2/2; 1,1,2;1,0,3
+seed=22022; accepted=158; draw=2793; A=0/2; B=3/0; 2,1,1;2,0,2
+seed=22022; accepted=159; draw=2803; A=0/0; B=1/2; 2,2,3;1,3,3
+seed=22022; accepted=160; draw=2817; A=1/1; B=3/2; 3,3,2;2,3,3
+seed=22022; accepted=161; draw=2819; A=2/1; B=2/0; 3,3,1;3,2,2
+seed=22022; accepted=162; draw=2834; A=2/0; B=0/0; 2,1,1;3,1,0
+seed=22022; accepted=163; draw=2867; A=1/1; B=2/1; 2,2,1;0,3,2
+seed=22022; accepted=164; draw=2886; A=3/1; B=2/1; 1,2,3;1,2,3
+seed=22022; accepted=165; draw=2901; A=1/1; B=0/0; 3,2,1;2,3,1
+seed=22022; accepted=166; draw=2903; A=3/1; B=1/1; 0,3,2;2,1,2
+seed=22022; accepted=167; draw=2916; A=1/0; B=0/0; 1,2,3;2,1,3
+seed=22022; accepted=168; draw=2961; A=0/0; B=3/0; 2,2,2;3,2,1
+seed=22022; accepted=169; draw=2962; A=3/0; B=1/0; 1,2,1;2,0,2
+seed=22022; accepted=170; draw=2996; A=0/0; B=0/2; 1,3,2;1,3,2
+seed=22022; accepted=171; draw=3074; A=0/0; B=0/2; 3,1,2;1,2,3
+seed=22022; accepted=172; draw=3079; A=0/1; B=2/0; 3,2,1;3,3,0
+seed=22022; accepted=173; draw=3090; A=2/1; B=3/0; 2,3,3;3,3,2
+seed=22022; accepted=174; draw=3111; A=0/0; B=1/1; 2,3,0;3,0,2
+seed=22022; accepted=175; draw=3128; A=1/1; B=1/2; 3,3,1;3,3,1
+seed=22022; accepted=176; draw=3129; A=2/2; B=1/2; 1,2,1;1,1,2
+seed=22022; accepted=177; draw=3137; A=0/2; B=3/0; 1,2,2;2,0,3
+seed=22022; accepted=178; draw=3140; A=0/1; B=2/0; 3,3,1;3,1,3
+seed=22022; accepted=179; draw=3141; A=0/0; B=2/1; 2,1,2;1,1,3
+seed=22022; accepted=180; draw=3143; A=0/1; B=3/2; 2,3,2;3,3,1
+seed=22022; accepted=181; draw=3144; A=1/2; B=2/2; 1,0,2;0,1,2
+seed=22022; accepted=182; draw=3160; A=2/0; B=3/0; 2,0,3;2,1,2
+seed=22022; accepted=183; draw=3171; A=3/0; B=0/1; 3,2,0;2,1,2
+seed=22022; accepted=184; draw=3190; A=0/0; B=2/2; 1,2,2;1,3,1
+seed=22022; accepted=185; draw=3227; A=2/1; B=2/2; 1,3,3;3,2,2
+seed=22022; accepted=186; draw=3250; A=3/0; B=0/2; 3,0,2;1,2,2
+seed=22022; accepted=187; draw=3354; A=2/1; B=3/1; 2,2,2;3,3,0
+seed=22022; accepted=188; draw=3363; A=2/0; B=3/0; 3,2,1;2,3,1
+seed=22022; accepted=189; draw=3380; A=3/0; B=0/1; 2,2,0;2,2,0
+seed=22022; accepted=190; draw=3393; A=3/1; B=0/2; 2,2,0;1,2,1
+seed=22022; accepted=191; draw=3424; A=3/1; B=0/2; 2,2,2;1,2,3
+seed=22022; accepted=192; draw=3466; A=1/2; B=1/1; 0,3,1;1,2,1
+seed=22022; accepted=193; draw=3476; A=0/1; B=3/0; 3,2,2;2,2,3
+seed=22022; accepted=194; draw=3487; A=0/0; B=2/0; 1,1,2;3,1,0
+seed=22022; accepted=195; draw=3489; A=0/1; B=2/1; 1,0,3;0,3,1
+seed=22022; accepted=196; draw=3535; A=3/1; B=2/0; 0,3,1;3,0,1
+seed=22022; accepted=197; draw=3547; A=1/1; B=2/2; 1,2,2;0,3,2
+seed=22022; accepted=198; draw=3554; A=3/1; B=1/0; 2,2,2;1,2,3
+seed=22022; accepted=199; draw=3577; A=0/2; B=3/1; 1,2,0;2,0,1
+seed=22022; accepted=200; draw=3611; A=2/0; B=1/2; 1,2,1;2,0,2
+seed=22022; accepted=201; draw=3618; A=2/0; B=1/2; 3,2,1;2,3,1
+seed=22022; accepted=202; draw=3626; A=2/1; B=2/0; 2,1,3;1,2,3
+seed=22022; accepted=203; draw=3672; A=3/0; B=0/0; 1,3,1;1,1,3
+seed=22022; accepted=204; draw=3678; A=3/1; B=2/0; 1,1,3;3,1,1
+seed=22022; accepted=205; draw=3695; A=1/2; B=2/0; 3,0,2;3,0,2
+seed=22022; accepted=206; draw=3697; A=2/1; B=3/1; 2,2,1;2,2,1
+seed=22022; accepted=207; draw=3727; A=2/0; B=3/2; 3,1,1;1,3,1
+seed=22022; accepted=208; draw=3729; A=1/1; B=1/2; 1,1,1;1,0,2
+seed=22022; accepted=209; draw=3734; A=2/1; B=1/0; 1,3,2;2,1,3
+seed=22022; accepted=210; draw=3764; A=1/2; B=0/0; 1,3,1;1,1,3
+seed=22022; accepted=211; draw=3798; A=1/1; B=0/0; 2,1,2;3,0,2
+seed=22022; accepted=212; draw=3800; A=1/1; B=1/0; 1,1,3;1,3,1
+seed=22022; accepted=213; draw=3802; A=1/0; B=2/0; 1,0,3;2,1,1
+seed=22022; accepted=214; draw=3815; A=1/2; B=2/1; 0,3,3;2,1,3
+seed=22022; accepted=215; draw=3843; A=3/1; B=0/0; 3,2,1;2,3,1
+seed=22022; accepted=216; draw=3846; A=3/2; B=1/0; 1,2,2;3,0,2
+seed=22022; accepted=217; draw=3874; A=2/2; B=0/2; 1,1,3;1,1,3
+seed=22022; accepted=218; draw=3889; A=3/2; B=1/2; 3,0,1;2,0,2
+seed=22022; accepted=219; draw=3893; A=2/0; B=0/0; 3,0,2;2,0,3
+seed=22022; accepted=220; draw=3898; A=1/0; B=0/0; 2,2,3;3,3,1
+seed=22022; accepted=221; draw=3903; A=2/2; B=1/0; 2,0,2;0,3,1
+seed=22022; accepted=222; draw=3920; A=2/1; B=0/0; 1,2,1;3,1,0
+seed=22022; accepted=223; draw=3922; A=2/2; B=0/0; 1,3,3;2,2,3
+seed=22022; accepted=224; draw=3926; A=3/0; B=2/0; 3,2,1;2,1,3
+seed=22022; accepted=225; draw=3949; A=1/0; B=0/1; 3,2,1;0,3,3
+seed=22022; accepted=226; draw=3950; A=2/2; B=0/0; 1,3,1;3,1,1
+seed=22022; accepted=227; draw=3963; A=1/2; B=3/2; 1,1,2;1,1,2
+seed=22022; accepted=228; draw=4039; A=2/2; B=1/1; 3,1,1;0,2,3
+seed=22022; accepted=229; draw=4040; A=1/0; B=2/0; 3,2,2;2,2,3
+seed=22022; accepted=230; draw=4083; A=0/2; B=1/1; 2,1,1;2,0,2
+seed=22022; accepted=231; draw=4087; A=0/1; B=0/2; 2,2,3;3,1,3
+seed=22022; accepted=232; draw=4097; A=0/0; B=1/1; 1,1,3;2,1,2
+seed=22022; accepted=233; draw=4103; A=3/0; B=0/1; 2,3,0;2,2,1
+seed=22022; accepted=234; draw=4130; A=3/0; B=3/2; 2,3,2;3,1,3
+seed=22022; accepted=235; draw=4163; A=1/1; B=2/0; 1,2,1;2,0,2
+seed=22022; accepted=236; draw=4179; A=3/0; B=2/2; 2,1,3;1,3,2
+seed=22022; accepted=237; draw=4209; A=1/2; B=2/0; 1,3,1;2,2,1
+seed=22022; accepted=238; draw=4237; A=2/2; B=3/1; 1,3,1;2,2,1
+seed=22022; accepted=239; draw=4242; A=3/0; B=3/2; 2,2,2;2,3,1
+seed=22022; accepted=240; draw=4253; A=3/2; B=0/0; 3,3,2;3,3,2
+seed=22022; accepted=241; draw=4286; A=2/2; B=3/1; 3,2,3;2,3,3
+seed=22022; accepted=242; draw=4317; A=1/0; B=2/0; 2,2,3;1,3,3
+seed=22022; accepted=243; draw=4323; A=2/2; B=1/1; 3,2,3;3,3,2
+seed=22022; accepted=244; draw=4366; A=1/2; B=2/1; 2,0,1;0,2,1
+seed=22022; accepted=245; draw=4390; A=1/2; B=1/1; 3,1,2;2,1,3
+seed=22022; accepted=246; draw=4394; A=1/2; B=1/0; 3,0,3;2,3,1
+seed=22022; accepted=247; draw=4400; A=3/2; B=2/0; 3,0,3;2,2,2
+seed=22022; accepted=248; draw=4401; A=1/1; B=2/0; 0,2,1;2,0,1
+seed=22022; accepted=249; draw=4409; A=2/2; B=0/2; 1,0,3;1,0,3
+seed=22022; accepted=250; draw=4424; A=3/2; B=2/0; 1,2,3;1,2,3
+seed=22022; accepted=251; draw=4462; A=2/2; B=1/1; 3,2,3;3,2,3
+seed=22022; accepted=252; draw=4467; A=3/2; B=2/2; 0,2,2;2,0,2
+seed=22022; accepted=253; draw=4479; A=0/2; B=2/2; 2,1,3;2,1,3
+seed=22022; accepted=254; draw=4490; A=2/0; B=1/0; 2,2,1;2,0,3
+seed=22022; accepted=255; draw=4496; A=1/2; B=2/1; 1,3,3;3,2,2
+=> STP.Tests.Solver.EditMode.SolverV2MetricsTests.Exhaustive_SmallShapes_TraceIsSoundAndMetricsFollowFromIt_OnlyUniqueExposesMetrics
+SOLVER_V2_EXHAUSTIVE definitions=39664 unique=1800 rootOnly=1600 oneAssumption=200
+=> STP.Tests.Solver.EditMode.SolverV2MetricsTests.SeededFourByFour_Sample_TraceIsSoundAndSearchMetricsAreConsistent
+SOLVER_V2_SEEDED_4X4 cases=400 deepestRequiredGuessDepth=3
+=> STP.Tests.Solver.EditMode.SolverV2MetricsTests.TenByTen_ForcedPaths_AreDeductive_FullyAudited_AndWithinTheTraceInclusiveBudget
+WP024_BUDGET solver=solver-v2 corpus=10x10-5-forced-paths-v1 warmup=5 repeats=50 samples=250 p95_ms=0,989 max_ms=2,265 machine=DESKTOP-QG2J9IR os=Microsoft Windows NT 10.0.26300.0 runtime=10.0.12 commit=LOCAL_WORKTREE
+=> STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.EveryDeclaredPremise_IsNecessary_EachFactAndEachEntryIsRefutedByAValidPuzzleWhenLeftOut
+WP024_PREMISE_NECESSITY BORDER_PORT_FORBIDDEN without A: refuted 939 of 939
+WP024_PREMISE_NECESSITY BORDER_PORT_FORBIDDEN without B: refuted 939 of 939
+WP024_PREMISE_NECESSITY BORDER_PORT_FORBIDDEN without grid: refuted 615 of 615
+WP024_PREMISE_NECESSITY ENDPOINT_ENTRY_REQUIRED without A: refuted 435 of 435
+WP024_PREMISE_NECESSITY ENDPOINT_ENTRY_REQUIRED without B: refuted 433 of 433
+WP024_PREMISE_NECESSITY ENDPOINT_ENTRY_REQUIRED without grid: refuted 334 of 334
+WP024_PREMISE_NECESSITY LINE_ALL_REMAINING_OCCUPIED without an entry: refuted 16 of 16
+WP024_PREMISE_NECESSITY LINE_ALL_REMAINING_OCCUPIED without grid: refuted 528 of 528
+WP024_PREMISE_NECESSITY LINE_ALL_REMAINING_OCCUPIED without line: refuted 528 of 528
+WP024_PREMISE_NECESSITY LINE_TARGET_REACHED without an entry: refuted 254 of 254
+WP024_PREMISE_NECESSITY LINE_TARGET_REACHED without line: refuted 229 of 229
+WP024_PREMISE_NECESSITY LINE_ZERO without line: refuted 175 of 175
+WP024_PREMISE_NECESSITY NEIGHBOR_PORT_REQUIRED without an entry: refuted 1684 of 1684
+=> STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.EveryPublishedStep_IsDerivedByTheRealStage_ForEveryValidPuzzleAgreeingOnItsDeclaredFacts
+WP024_PREMISE_SUFFICIENCY puzzles=724 steps=9289 perturbedPuzzles=106758 vacuous=5956 BORDER_PORT_FORBIDDEN=2811/13724 ENDPOINT_ENTRY_REQUIRED=1423/8970 LINE_ALL_REMAINING_OCCUPIED=1475/25959 LINE_TARGET_REACHED=737/9619 LINE_ZERO=600/3566 NEIGHBOR_PORT_REQUIRED=2243/44920
+=> STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.ReportedBorderCounterexample_IsRefutedByTheIndependentEnumeratorWithoutEndpointFacts_AndHoldsWithThem
+WP024_QC_COUNTEREXAMPLE grid-size-only: 3x3 A=0/0 B=0/1 board=360000000; A free: 3x3 A=0/1 B=1/2 board=035001003; B free: 3x3 A=3/0 B=0/1 board=260000000
+
+Run Settings
+    Number of Test Workers: 16
+    Work Directory: C:\STP\Stammstrecken-Puzzle-WP008
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Passed
+  Test Count: 453, Passed: 453, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
+  Start time: 2026-10-13 21:52:48Z
+    End time: 2026-10-13 21:53:07Z
+    Duration: 18.176 seconds
+
+Results (nunit3) saved as C:\STP\Stammstrecken-Puzzle-WP008\.utmp/wp026-regression-results.xml

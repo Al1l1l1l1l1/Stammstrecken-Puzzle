@@ -1,0 +1,176 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-02-04-10",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 1
+    },
+    "b": {
+      "side": "S",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    5,
+    5,
+    3,
+    4,
+    4
+  ],
+  "columnCounts": [
+    5,
+    5,
+    4,
+    5,
+    2,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 2,
+    "route": 4,
+    "position": 10,
+    "titleKey": "level.s1.02.04.10.title",
+    "statusKey": "level.s1.02.04.10.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.02.04.10.entry",
+    "focus": [
+      "DENSITY",
+      "COMBINATION"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "21 Zellen im 5×5-aktiven Gebiet kontrastieren den spitz zulaufenden Vorgänger. Der Westport liegt innen, der Südport unten daneben; mehrere Kurven müssen durch die Dreierzeile 2 hindurch mit den fast vollen Querreihen zusammenpassen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-02-04-10-map",
+    "trainMomentId": "draft-s1-02-04-10-train",
+    "resultTextKey": "level.s1.02.04.10.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-02-04-10/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "7c5d303971e0c53c4ca8b67f828ec9291e707e584c4956f6de45ddf9f8112d1f"
+    }
+  }
+}

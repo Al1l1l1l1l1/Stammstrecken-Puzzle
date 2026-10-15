@@ -1,0 +1,401 @@
+{
+  "role": "author-operated investigation, no independent or Unity CI approval",
+  "sourceHead": "438b45e58f359caa4f0b37077c4b8ae19f6ce848",
+  "originalRuns": [
+    {
+      "run": 38490243240,
+      "commit": "96697ab749fbea859fde8a4d4fcb42149cc2e89c",
+      "xmlSha256": "8ef8f9bf3baae10555a238d132a79b0289f2173149a5a9939d94c7390fd82bf1",
+      "test": {
+        "id": "1486",
+        "name": "HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "fullname": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "methodname": "HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "classname": "STP.Tests.Solver.EditMode.PuzzleSolverTests",
+        "runstate": "Runnable",
+        "seed": "2029578782",
+        "result": "Failed",
+        "start-time": "2026-10-14 00:33:12Z",
+        "end-time": "2026-10-14 00:36:29Z",
+        "duration": "197.533248",
+        "asserts": "0"
+      },
+      "output": "WP024_HARD_BUDGET_KIND tiny unsatisfiable 2x2 (baseline): tail_after_last_probe_us=0.100\nWP024_HARD_BUDGET_KIND unsatisfiable serpentine 32x32: class=UNSATISFIABLE maxStates=5000000 path+protocol=1693 tail_after_last_probe_us=0.900 excess_over_baseline_us=0.800 result_build_us=5.000\nWP024_HARD_BUDGET_KIND ambiguous corner 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=1176 tail_after_last_probe_us=1.000 excess_over_baseline_us=0.900 result_build_us=4.700\nWP024_HARD_BUDGET_KIND ambiguous long path 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=2116 tail_after_last_probe_us=1.000 excess_over_baseline_us=0.900 result_build_us=5.500\nWP024_HARD_BUDGET_KIND interrupted long path 32x32: class=INDETERMINATE maxStates=2 path+protocol=2109 tail_after_last_probe_us=1.100 excess_over_baseline_us=1.000 result_build_us=5.700\nWP024_HARD_BUDGET_KIND unique serpentine 32x32: class=UNIQUE maxStates=5000000 path+protocol=2133 tail_after_last_probe_us=0.700 excess_over_baseline_us=0.600 result_build_us=5.400\n",
+      "failure": "Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.",
+      "allSixKindsLogged": true
+    },
+    {
+      "run": 38490247420,
+      "commit": "96697ab749fbea859fde8a4d4fcb42149cc2e89c",
+      "xmlSha256": "8c8350bcca006d31f56dfae51ed03f09453c3040b39b2af771ec244a4a06130c",
+      "test": {
+        "id": "1486",
+        "name": "HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "fullname": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "methodname": "HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "classname": "STP.Tests.Solver.EditMode.PuzzleSolverTests",
+        "runstate": "Runnable",
+        "seed": "424321973",
+        "result": "Passed",
+        "start-time": "2026-10-14 00:43:21Z",
+        "end-time": "2026-10-14 00:45:01Z",
+        "duration": "100.490521",
+        "asserts": "0"
+      },
+      "output": "WP024_HARD_BUDGET_KIND tiny unsatisfiable 2x2 (baseline): tail_after_last_probe_us=0.200\nWP024_HARD_BUDGET_KIND unsatisfiable serpentine 32x32: class=UNSATISFIABLE maxStates=5000000 path+protocol=1693 tail_after_last_probe_us=0.800 excess_over_baseline_us=0.600 result_build_us=5.000\nWP024_HARD_BUDGET_KIND ambiguous corner 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=1176 tail_after_last_probe_us=0.700 excess_over_baseline_us=0.500 result_build_us=4.900\nWP024_HARD_BUDGET_KIND ambiguous long path 32x32: class=MULTIPLE_OR_MORE maxStates=5000000 path+protocol=2116 tail_after_last_probe_us=0.800 excess_over_baseline_us=0.600 result_build_us=6.000\nWP024_HARD_BUDGET_KIND interrupted long path 32x32: class=INDETERMINATE maxStates=2 path+protocol=2109 tail_after_last_probe_us=0.800 excess_over_baseline_us=0.600 result_build_us=5.900\nWP024_HARD_BUDGET_KIND unique serpentine 32x32: class=UNIQUE maxStates=5000000 path+protocol=2133 tail_after_last_probe_us=0.800 excess_over_baseline_us=0.600 result_build_us=6.200\n",
+      "failure": null,
+      "allSixKindsLogged": true
+    }
+  ],
+  "comparisonTestDurations": [
+    {
+      "test": "STP.Tests.Content.EditMode.LevelMigrationTests.RandomValidPuzzles_SurviveALegacyRoundTrip_WithIdenticalPublicIdentity",
+      "pushSeconds": 1.998335,
+      "prSeconds": 1.145012,
+      "ratio": 1.7452524515026917,
+      "pushStart": "2026-10-14 00:31:28Z",
+      "prStart": "2026-10-14 00:41:50Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.LevelV2LoaderTests.ByteLevelMutationsOfAValidDocument_NeverThrow_AndKeepTheResultInvariants",
+      "pushSeconds": 1.805723,
+      "prSeconds": 0.955487,
+      "ratio": 1.8898457017206933,
+      "pushStart": "2026-10-14 00:31:30Z",
+      "prStart": "2026-10-14 00:41:51Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.LevelV2LoaderTests.StructuralMutationsOfAValidTree_NeverThrow_AndKeepTheResultInvariants",
+      "pushSeconds": 1.359365,
+      "prSeconds": 0.648458,
+      "ratio": 2.096303846972356,
+      "pushStart": "2026-10-14 00:31:32Z",
+      "prStart": "2026-10-14 00:41:52Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.LevelV2ReaderTests.Reader_NeverThrowsOnStructuralNoise",
+      "pushSeconds": 1.083433,
+      "prSeconds": 0.564456,
+      "ratio": 1.9194286179967972,
+      "pushStart": "2026-10-14 00:31:34Z",
+      "prStart": "2026-10-14 00:41:53Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.LevelV2SemanticsTests.RandomValidPuzzles_AreValid_AndTheDomainEvaluatorAgrees",
+      "pushSeconds": 1.401558,
+      "prSeconds": 0.594552,
+      "ratio": 2.3573345981512133,
+      "pushStart": "2026-10-14 00:31:35Z",
+      "prStart": "2026-10-14 00:41:54Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.LevelV2SemanticsTests.SemanticVerdict_IsSoundAgainstTheDomainEvaluator_UnderRandomPathMutations",
+      "pushSeconds": 4.759429,
+      "prSeconds": 5.35806,
+      "ratio": 0.8882746740424706,
+      "pushStart": "2026-10-14 00:31:37Z",
+      "prStart": "2026-10-14 00:41:54Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.ProofV1Tests.CrossPuzzleCopy_AndArtifactReferenceFailures_CannotReachImportOrRelease",
+      "pushSeconds": 0.060255,
+      "prSeconds": 0.130325,
+      "ratio": 0.46234413965087284,
+      "pushStart": "2026-10-14 00:31:42Z",
+      "prStart": "2026-10-14 00:42:00Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.SchemaParityTests.AWrongKind_AtEveryNode_IsASchemaTypeError_AtThatPath",
+      "pushSeconds": 0.090206,
+      "prSeconds": 0.26142,
+      "ratio": 0.34506158671869025,
+      "pushStart": "2026-10-14 00:31:42Z",
+      "prStart": "2026-10-14 00:42:01Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.SchemaParityTests.IntegerBounds_AreExactlyThoseOfTheSchema",
+      "pushSeconds": 0.069897,
+      "prSeconds": 0.16752,
+      "ratio": 0.41724570200573063,
+      "pushStart": "2026-10-14 00:31:42Z",
+      "prStart": "2026-10-14 00:42:02Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.SchemaParityTests.LevelV1Reader_GivesTheSameVerdictAsTheLegacySchema_ForRandomMutants",
+      "pushSeconds": 9.673719,
+      "prSeconds": 13.95855,
+      "ratio": 0.6930317977153787,
+      "pushStart": "2026-10-14 00:31:42Z",
+      "prStart": "2026-10-14 00:42:02Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.SchemaParityTests.LevelV2Reader_GivesTheSameVerdictAsTheSchema_ForRandomMutants",
+      "pushSeconds": 8.760089,
+      "prSeconds": 9.123769,
+      "ratio": 0.960139280159329,
+      "pushStart": "2026-10-14 00:31:52Z",
+      "prStart": "2026-10-14 00:42:16Z"
+    },
+    {
+      "test": "STP.Tests.Content.EditMode.StrictJsonParserTests.Fuzz_RandomBytes_AndSingleByteMutations_NeverThrow_AndAlwaysReturnExactlyOneOutcome",
+      "pushSeconds": 0.189917,
+      "prSeconds": 0.188638,
+      "ratio": 1.0067801821478175,
+      "pushStart": "2026-10-14 00:32:01Z",
+      "prStart": "2026-10-14 00:42:25Z"
+    },
+    {
+      "test": "STP.Tests.Domain.EditMode.PuzzleSessionTests.FixedSeedProperty_ReplaysIdenticalSnapshotsEventsAndRevisions(2201)",
+      "pushSeconds": 2.43898,
+      "prSeconds": 2.728948,
+      "ratio": 0.8937436697218122,
+      "pushStart": "2026-10-14 00:32:01Z",
+      "prStart": "2026-10-14 00:42:25Z"
+    },
+    {
+      "test": "STP.Tests.Domain.EditMode.PuzzleSessionTests.FixedSeedProperty_ReplaysIdenticalSnapshotsEventsAndRevisions(2202)",
+      "pushSeconds": 1.915753,
+      "prSeconds": 2.597792,
+      "ratio": 0.737454345844471,
+      "pushStart": "2026-10-14 00:32:04Z",
+      "prStart": "2026-10-14 00:42:28Z"
+    },
+    {
+      "test": "STP.Tests.Domain.EditMode.PuzzleSessionTests.FixedSeedProperty_ReplaysIdenticalSnapshotsEventsAndRevisions(2203)",
+      "pushSeconds": 2.057758,
+      "prSeconds": 2.821562,
+      "ratio": 0.7292974600593572,
+      "pushStart": "2026-10-14 00:32:06Z",
+      "prStart": "2026-10-14 00:42:31Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.CancellationTimeoutAndNodeBudget_AreIndeterminateAlsoAfterFirstSolution",
+      "pushSeconds": 0.064459,
+      "prSeconds": 0.110451,
+      "ratio": 0.5835981566486497,
+      "pushStart": "2026-10-14 00:32:08Z",
+      "prStart": "2026-10-14 00:42:34Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.Completion_AllTwoByTwoConcreteBoardsAgainstIndependentPaths",
+      "pushSeconds": 7.48071,
+      "prSeconds": 10.597415,
+      "ratio": 0.705899504737712,
+      "pushStart": "2026-10-14 00:32:08Z",
+      "prStart": "2026-10-14 00:42:34Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.Exhaustive_AllOrderedEndpointAndCountCombinations_WithAllDihedralTransforms(2,2)",
+      "pushSeconds": 1.473161,
+      "prSeconds": 1.527733,
+      "ratio": 0.9642790985073962,
+      "pushStart": "2026-10-14 00:32:15Z",
+      "prStart": "2026-10-14 00:42:44Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.Exhaustive_AllOrderedEndpointAndCountCombinations_WithAllDihedralTransforms(2,3)",
+      "pushSeconds": 14.566826,
+      "prSeconds": 14.079694,
+      "ratio": 1.0345981951028198,
+      "pushStart": "2026-10-14 00:32:17Z",
+      "prStart": "2026-10-14 00:42:46Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoBudgetedWorkRunsBetweenTheLastProbeAndTheReturn",
+      "pushSeconds": 40.101345,
+      "prSeconds": 20.655385,
+      "ratio": 1.9414474724145787,
+      "pushStart": "2026-10-14 00:32:31Z",
+      "prStart": "2026-10-14 00:43:00Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+      "pushSeconds": 197.533248,
+      "prSeconds": 100.490521,
+      "ratio": 1.965690356008802,
+      "pushStart": "2026-10-14 00:33:12Z",
+      "prStart": "2026-10-14 00:43:21Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_UniqueNeedsAProbeAfterTheWholeTraceBuild_AtEveryInterruptionKind(10,4)",
+      "pushSeconds": 0.166307,
+      "prSeconds": 0.115849,
+      "ratio": 1.435549724209963,
+      "pushStart": "2026-10-14 00:36:29Z",
+      "prStart": "2026-10-14 00:45:01Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_UniqueNeedsAProbeAfterTheWholeTraceBuild_AtEveryInterruptionKind(32,14)",
+      "pushSeconds": 10.029191,
+      "prSeconds": 5.046811,
+      "ratio": 1.9872333241724331,
+      "pushStart": "2026-10-14 00:36:29Z",
+      "prStart": "2026-10-14 00:45:01Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.TenByTen_FixedCorpus_WarmupAndCIReferenceBudget",
+      "pushSeconds": 5.634386,
+      "prSeconds": 3.957982,
+      "ratio": 1.4235501828962336,
+      "pushStart": "2026-10-14 00:36:39Z",
+      "prStart": "2026-10-14 00:45:06Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.PuzzleSolverTests.ThreeByThree_FixedSeed22022_RecordedSubsetAndSwapMetamorphoses",
+      "pushSeconds": 2.194666,
+      "prSeconds": 2.083266,
+      "ratio": 1.0534737282708975,
+      "pushStart": "2026-10-14 00:36:45Z",
+      "prStart": "2026-10-14 00:45:10Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.Exhaustive_SmallShapes_TraceIsSoundAndMetricsFollowFromIt_OnlyUniqueExposesMetrics",
+      "pushSeconds": 40.10397,
+      "prSeconds": 39.272,
+      "ratio": 1.0211848136076593,
+      "pushStart": "2026-10-14 00:36:47Z",
+      "prStart": "2026-10-14 00:45:12Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.NonUniqueAndLimitedResults_ExposeNeitherMetricsNorTrace_AndNeverPassTheGate",
+      "pushSeconds": 1.72381,
+      "prSeconds": 1.343481,
+      "ratio": 1.283092205993237,
+      "pushStart": "2026-10-14 00:37:27Z",
+      "prStart": "2026-10-14 00:45:52Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.RepeatedRuns_AreByteIdenticalForTraceAndMetrics_AlsoAcrossLimitVariants",
+      "pushSeconds": 0.821984,
+      "prSeconds": 0.885884,
+      "ratio": 0.9278686600051474,
+      "pushStart": "2026-10-14 00:37:29Z",
+      "prStart": "2026-10-14 00:45:53Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.SearchCases_CountEveryAssumption_ButOnlyRootDeductionsAndOnlyActivePathDepth",
+      "pushSeconds": 0.144134,
+      "prSeconds": 0.11571,
+      "ratio": 1.245648604269294,
+      "pushStart": "2026-10-14 00:37:30Z",
+      "prStart": "2026-10-14 00:45:54Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.SeededFourByFour_Sample_TraceIsSoundAndSearchMetricsAreConsistent",
+      "pushSeconds": 3.701588,
+      "prSeconds": 3.776843,
+      "ratio": 0.9800746284661555,
+      "pushStart": "2026-10-14 00:37:30Z",
+      "prStart": "2026-10-14 00:45:54Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.SolverV2MetricsTests.TenByTen_ForcedPaths_AreDeductive_FullyAudited_AndWithinTheTraceInclusiveBudget",
+      "pushSeconds": 5.555683,
+      "prSeconds": 4.115419,
+      "ratio": 1.3499677675590263,
+      "pushStart": "2026-10-14 00:37:34Z",
+      "prStart": "2026-10-14 00:45:58Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.Audit_RejectsAnyPublicFactSetThatIsInsufficientOrRedundant",
+      "pushSeconds": 0.094484,
+      "prSeconds": 0.101848,
+      "ratio": 0.9276961746916975,
+      "pushStart": "2026-10-14 00:37:39Z",
+      "prStart": "2026-10-14 00:46:02Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.BorderPredicate_AgreesWithTheRealStageZero_ForEveryCellValueAndEndpointPair",
+      "pushSeconds": 1.071499,
+      "prSeconds": 1.526226,
+      "ratio": 0.7020578865777414,
+      "pushStart": "2026-10-14 00:37:39Z",
+      "prStart": "2026-10-14 00:46:02Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.EveryDeclaredPremise_IsNecessary_EachFactAndEachEntryIsRefutedByAValidPuzzleWhenLeftOut",
+      "pushSeconds": 34.317619,
+      "prSeconds": 32.543942,
+      "ratio": 1.054500988233079,
+      "pushStart": "2026-10-14 00:37:40Z",
+      "prStart": "2026-10-14 00:46:04Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.EveryPublishedStep_IsDerivedByTheRealStage_ForEveryValidPuzzleAgreeingOnItsDeclaredFacts",
+      "pushSeconds": 12.375497,
+      "prSeconds": 10.069955,
+      "ratio": 1.2289525623500799,
+      "pushStart": "2026-10-14 00:38:15Z",
+      "prStart": "2026-10-14 00:46:36Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.RareRules_DegreeLoopAndConnectivity_DeclareSufficientAndIrredundantFacts",
+      "pushSeconds": 0.856535,
+      "prSeconds": 0.709851,
+      "ratio": 1.206640548509476,
+      "pushStart": "2026-10-14 00:38:27Z",
+      "prStart": "2026-10-14 00:46:46Z"
+    },
+    {
+      "test": "STP.Tests.Solver.EditMode.TracePremiseSufficiencyTests.SecondQcFinding2_NeighborStepRestsOnItsEntryAlone_InEveryGridSize",
+      "pushSeconds": 0.625194,
+      "prSeconds": 0.550098,
+      "ratio": 1.13651385753084,
+      "pushStart": "2026-10-14 00:38:28Z",
+      "prStart": "2026-10-14 00:46:47Z"
+    }
+  ],
+  "medianRatioFor37TestsOver100ms": 1.0345981951028198,
+  "sourceBlobs": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs",
+      "gitBlobContentSha256": "5925f3bf3f83861796360e93b4972bb87aa031f3007ecd4a343f2f10ea24f59d",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SmallPathOracle.cs",
+      "gitBlobContentSha256": "4126ba83cf619ca1b17f09e7ccb4a12f1e0d149b74e56cb239fe9480f2982098",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleEvaluator.cs",
+      "gitBlobContentSha256": "6e3e46ad636d3410076fd40af2820bafb2e39d54085e9628cfa6dbf26a94b5f6",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSession.cs",
+      "gitBlobContentSha256": "2764d3a36c513505554cf60fbbb68dba046bb99145ba6ca20c20662d46732bf3",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleValues.cs",
+      "gitBlobContentSha256": "a94e1eebcf7db5eff82f5dacea52a456bae3140b60558858512a76bb3a2e2ad9",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/CampaignGate.cs",
+      "gitBlobContentSha256": "d2511d25c295fda3b7391c7af8b16efe7260d5b458cbb0bdaa36e6d514be2ff0",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/DeductionTrace.cs",
+      "gitBlobContentSha256": "ecba2950985b1bd6c4c6d60712ae341b0d2df052fbb36ef6e2084b3265109beb",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs",
+      "gitBlobContentSha256": "81835d5d4cd28975ba09ef9d569bba6838ec44e959015826b62ea3649af0bc19",
+      "unchangedSinceOriginal": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs",
+      "gitBlobContentSha256": "6f93777af94c6fde5eb0afe16969b09ea2a3c95a64b72518cb610a2e27efce30",
+      "unchangedSinceOriginal": true
+    }
+  ],
+  "instrumentedScratchSourceSha256": "ae24ecd1a4112712a45413beff1cfa36dc30b662e2a953074243957bc6b61154",
+  "localProbe": "WP030_RUNTIME 10.0.12 Microsoft Windows NT 10.0.26300.0 processors=16\nWP030_PHASE tiny unsatisfiable 2x2 (baseline)|wall_ms=29,2002|cpu_ms=31,25|allocated_bytes=988360|gen0=0\nWP030_PHASE unsatisfiable serpentine 32x32|wall_ms=1387,5715|cpu_ms=1578,125|allocated_bytes=1534484232|gen0=31\nWP030_PHASE ambiguous corner 32x32|wall_ms=699,085|cpu_ms=765,625|allocated_bytes=1252422488|gen0=25\nWP030_PHASE ambiguous long path 32x32|wall_ms=1129,5302|cpu_ms=1156,25|allocated_bytes=1616355352|gen0=33\nWP030_PHASE interrupted long path 32x32|wall_ms=1538,4395|cpu_ms=1562,5|allocated_bytes=1685978328|gen0=35\nWP030_PHASE unique serpentine 32x32|wall_ms=1468,1473|cpu_ms=1500|allocated_bytes=1531348088|gen0=32\nWP030_ORIGINAL_ASSERTIONS_COMPLETED wall_ms=6377,2318\n",
+  "originalCause": "NOT_PROVEN: historic CPU/scheduler/GC telemetry unavailable; elapsed workload and completed assertions are evidenced, runner contention is a hypothesis",
+  "repairApplied": false,
+  "originalTimeoutClosed": false
+}

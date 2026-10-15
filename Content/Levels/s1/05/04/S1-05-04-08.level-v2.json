@@ -1,0 +1,220 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-08",
+  "contentRevision": 2,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 0
+    },
+    "b": {
+      "side": "N",
+      "index": 6
+    }
+  },
+  "rowCounts": [
+    6,
+    6,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    1,
+    1
+  ],
+  "columnCounts": [
+    3,
+    1,
+    8,
+    8,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 8,
+    "titleKey": "level.s1.05.04.08.title",
+    "statusKey": "level.s1.05.04.08.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.08.entry",
+    "focus": [
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 10,
+    "qualityNote": "Die beiden Achterspalten 2/3 tragen einen langen mittleren Wechselzug, der oben zu einem separaten Doppelbogen und unten zum Südport links führen muss. 22 Kurven statt zehn in 6/7 erhöhen die Formlast; die zwei Kopfsechserreihen hängen an anderen Spaltenresten als die mittleren Zweierzeilen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-08-map",
+    "trainMomentId": "draft-s1-05-04-08-train",
+    "resultTextKey": "level.s1.05.04.08.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 9,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-08/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "130237f7d68dfc09e9571d31759b90a74212a3acebae46c6bed23039a49a6c0a"
+    }
+  }
+}

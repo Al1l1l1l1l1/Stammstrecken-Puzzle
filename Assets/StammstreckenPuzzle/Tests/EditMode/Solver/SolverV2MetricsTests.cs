@@ -54,6 +54,23 @@ namespace STP.Tests.Solver.EditMode
 
         private static (int Nodes, int Steps, int Depth, int Guess) Quad(SolverMetrics m) => (m.SearchNodes, m.DeductionSteps, m.MaxDeductionDepth, m.RequiredGuessDepth);
 
+        [Test]
+        public void LargeRootTrace_PreservesSolverV2PremiseSelectionAndMetrics()
+        {
+            // FIXTURE_ONLY. Captured from a2e26a6 before WP-034's allocation correction. Unlike a metric-only check,
+            // this binds every conclusion, premise (including order), public fact and depth in the 1,639-step trace.
+            var fixture = typeof(PuzzleSolverTests).GetMethod("Serpentine", BindingFlags.Static | BindingFlags.NonPublic)!;
+            var def = (PuzzleDefinition)fixture.Invoke(null, new object[] { 32, 14 })!;
+            var result = PuzzleSolver.Solve(def, new SolverLimits(maxStates: 1, monotonicNow: () => 1));
+            Assert.That(result.Classification, Is.EqualTo(SolverClassification.UNIQUE));
+            Assert.That(Quad(result.Metrics!), Is.EqualTo((0, 1639, 30, 0)));
+            string Format(DeductionStep x) => $"{x.Index}:{x.RuleCode}@{x.Cell.X},{x.Cell.Y}:{string.Join(",", x.RemovedValues.Select(v => (int)v))}:{string.Join(",", x.RemainingValues.Select(v => (int)v))}:{string.Join(",", x.Premises.Select(q => $"{(q.PublicFact.HasValue ? (int)q.PublicFact.Value : -1)}/{q.LineIndex}/{q.TraceIndex}"))}:{x.Depth}";
+            var bytes = System.Text.Encoding.UTF8.GetBytes(string.Join("\n", result.DeductionTrace.Select(Format)));
+            using var sha = System.Security.Cryptography.SHA256.Create();
+            Assert.That(BitConverter.ToString(sha.ComputeHash(bytes)).Replace("-", ""),
+                Is.EqualTo("6E59FFFAFB16B61C9FDDC301ED9229078FEEA11BEF1E2F44616CE7F9D8460B78"));
+        }
+
         // AK-02
         [Test]
         public void SolverVersion_IsSolverV2_ForTheConstantAndEveryResultKind()

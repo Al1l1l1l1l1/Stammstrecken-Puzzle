@@ -1,0 +1,215 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 3
+    },
+    "b": {
+      "side": "W",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    0,
+    0,
+    0,
+    3,
+    7,
+    7,
+    3,
+    1,
+    1,
+    5
+  ],
+  "columnCounts": [
+    1,
+    1,
+    1,
+    3,
+    2,
+    2,
+    3,
+    7,
+    3,
+    4
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 9,
+    "titleKey": "level.s1.05.04.09.title",
+    "statusKey": "level.s1.05.04.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.09.entry",
+    "focus": [
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 7,
+    "qualityNote": "Der Westport links und Südport innen sind durch einen zentralen Querarm und rechten Doppelbogen verbunden. Drei Einsercounts links legen die lange Zufahrt fest, zwei weitere Einserzeilen den rechten Schenkel; diese finale Variante verteilt Planung in klar getrennte Flächen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-09-map",
+    "trainMomentId": "draft-s1-05-04-09-train",
+    "resultTextKey": "level.s1.05.04.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 3,
+        "y": 9,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 9,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 9,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 7,
+        "y": 8,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 9,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "2dd0e4af08860ddb1852d429936a846b00699b7da256db80c85a46cc61ce8714"
+    }
+  }
+}

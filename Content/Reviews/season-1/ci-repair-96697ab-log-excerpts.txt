@@ -1,0 +1,29 @@
+## architecture
+2026-10-14T00:27:36.1866316Z SCOPE_CONTEXT  workPackage=WP-026 base=c9516bdbd5858fd9003d5207ec37d180ccc6ae23 head=96697ab749fbea859fde8a4d4fcb42149cc2e89c worktreeDirty=false
+## failed-push-editmode
+2026-10-14T00:38:30.1548157Z Test run completed. Exiting with code 2 (Failed). One or more tests failed.
+2026-10-14T00:38:31.2157514Z [36;1m    raise SystemExit(f"EditMode evidence FAILURE: {message}")[0m
+2026-10-14T00:38:31.2167240Z [36;1m    print(f"EditMode evidence PASS: {assembly}, {count} tatsaechlich bestandene Testfaelle")[0m
+2026-10-14T00:38:31.3005683Z EditMode evidence FAILURE: kein bestandener NUnit test-run
+2026-10-14T00:38:31.3146831Z [36;1mprint(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")[0m
+2026-10-14T00:38:31.5199941Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage
+## pr-editmode
+2026-10-14T00:46:49.0773426Z Test run completed. Exiting with code 0 (Ok). Run completed.
+2026-10-14T00:46:53.4185936Z [36;1m    raise SystemExit(f"EditMode evidence FAILURE: {message}")[0m
+2026-10-14T00:46:53.4197205Z [36;1m    print(f"EditMode evidence PASS: {assembly}, {count} tatsaechlich bestandene Testfaelle")[0m
+2026-10-14T00:46:53.5141055Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 19 tatsaechlich bestandene Testfaelle
+2026-10-14T00:46:53.5142458Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 55 tatsaechlich bestandene Testfaelle
+2026-10-14T00:46:53.5144011Z EditMode evidence PASS: STP.Tests.Content.EditMode, 379 tatsaechlich bestandene Testfaelle
+2026-10-14T00:46:53.5286917Z [36;1mprint(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")[0m
+2026-10-14T00:46:53.7468519Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage
+## pr-playmode
+2026-10-14T00:50:40.8499425Z Test run completed. Exiting with code 0 (Ok). Run completed.
+2026-10-14T00:50:46.8447207Z [36;1mprint(f"PlayMode evidence PASS: {len(executed)} ausgefuehrte Tests, {len(smoke)} Smoke-Faelle, QA-Szene Passed")[0m
+2026-10-14T00:50:46.9252695Z PlayMode evidence PASS: 27 ausgefuehrte Tests, 27 Smoke-Faelle, QA-Szene Passed
+2026-10-14T00:50:46.9381508Z [36;1mprint(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")[0m
+2026-10-14T00:50:47.1363603Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage
+## pr-android
+2026-10-14T00:58:28.7567082Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (683444699 Bytes).
+## pr-ios
+2026-10-14T01:03:57.4915790Z STP Build PASS: iOS -> Builds/iOS/Xcode (900432206 Bytes).
+2026-10-14T01:10:02.1570030Z ** BUILD SUCCEEDED **

@@ -1,0 +1,270 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-06",
+  "contentRevision": 2,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 2
+    },
+    "b": {
+      "side": "S",
+      "index": 6
+    }
+  },
+  "rowCounts": [
+    8,
+    1,
+    8,
+    1,
+    6,
+    1,
+    6,
+    1,
+    5,
+    1
+  ],
+  "columnCounts": [
+    0,
+    0,
+    7,
+    5,
+    5,
+    5,
+    6,
+    5,
+    2,
+    3
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 6,
+    "titleKey": "level.s1.05.04.06.title",
+    "statusKey": "level.s1.05.04.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.06.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 9,
+    "qualityNote": "Zwei Nullspalten grenzen die Fläche ein, mehrere breite Querbänder werden nach unten kürzer. Die fünf mittleren Spaltencounts und Einserübergänge verzahnen die getrennten Bandfolgen; die Folge bis Tiefe 23 ist auf echter Rootspur gebunden, ihre menschliche Last bleibt offen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-06-map",
+    "trainMomentId": "draft-s1-05-04-06-train",
+    "resultTextKey": "level.s1.05.04.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 9,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 9,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 8,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 9,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "c4d506300a35e540e84be47737c5fc1e4cb02c72ae53393c01b6e59afbbeb864"
+    }
+  }
+}

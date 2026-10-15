@@ -1,0 +1,173 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-04-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 1
+    },
+    "b": {
+      "side": "N",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    7,
+    7,
+    3,
+    3,
+    0,
+    0
+  ],
+  "columnCounts": [
+    2,
+    4,
+    3,
+    4,
+    3,
+    2,
+    2
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 4,
+    "position": 9,
+    "titleKey": "level.s1.03.04.09.title",
+    "statusKey": "level.s1.03.04.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.04.09.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY",
+      "DENSITY"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "N/4 sitzt innen im dichten Kopfstück, E/1 am rechten Rand. Der untere Dreierrückbogen ist nicht früh als Gerade erkennbar; das Feld kontrastiert die langen Arme von 8 mit konzentrierter Formlast an schwierigen Anschlussstellen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-04-09-map",
+    "trainMomentId": "draft-s1-03-04-09-train",
+    "resultTextKey": "level.s1.03.04.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-04-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "62d6d9aec31520fff16a7f3ef548f843030175df310cbb8ee1752e80396d3d45"
+    }
+  }
+}

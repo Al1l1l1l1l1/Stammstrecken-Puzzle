@@ -1,0 +1,22 @@
+Existing FIXTURE_ONLY baseline: succeeded=True; solver=UNIQUE
+Populated unresolved scratch references: succeeded=True; solverInvoked=True; sameProofBytes=True
+Strict technical proof boundary: succeeded=True; proofGatePassed=True; runtimeImportable=False; releaseLockEligible=False
+content/titleKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/content/titleKey
+content/titleKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/content/titleKey
+content/titleKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/content/titleKey
+content/statusKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/content/statusKey
+content/statusKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/content/statusKey
+content/statusKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/content/statusKey
+production/entryDeductionKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/production/entryDeductionKey
+production/entryDeductionKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/production/entryDeductionKey
+production/entryDeductionKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/production/entryDeductionKey
+completion/mapSegmentId missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/completion/mapSegmentId
+completion/mapSegmentId null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/completion/mapSegmentId
+completion/mapSegmentId empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-LENGTH@/completion/mapSegmentId
+completion/trainMomentId missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/completion/trainMomentId
+completion/trainMomentId null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/completion/trainMomentId
+completion/trainMomentId empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-LENGTH@/completion/trainMomentId
+completion/resultTextKey missing: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-REQUIRED@/completion/resultTextKey
+completion/resultTextKey null: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-TYPE@/completion/resultTextKey
+completion/resultTextKey empty: succeeded=False; solverInvoked=False; proofPresent=False; diagnostics=LVL-SCHEMA-PATTERN@/completion/resultTextKey
+PASS: fixture and populated unresolved scratch references pass the technical proof boundary; 18 incomplete-reference variants rejected. Cross-references NOT verified. No Season-1 puzzle generated.

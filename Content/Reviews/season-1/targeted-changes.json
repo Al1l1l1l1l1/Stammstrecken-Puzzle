@@ -1,0 +1,4499 @@
+{
+  "unchangedLogicalInputs": 225,
+  "changedLogicalInputs": 15,
+  "entries": [
+    {
+      "puzzleId": "S1-01-01-11",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "523d9e400887ba95e9890a781688570598117a2758a2ee5dc69ff17e9617a16a"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 4,
+          "height": 4
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 3
+          },
+          "b": {
+            "side": "N",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          1,
+          4,
+          4,
+          3
+        ],
+        "columnCounts": [
+          3,
+          4,
+          2,
+          3
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 3,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 4,
+          "height": 4
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 3
+          },
+          "b": {
+            "side": "E",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          4,
+          2,
+          3,
+          0
+        ],
+        "columnCounts": [
+          2,
+          3,
+          2,
+          2
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "candidatePool": "4x4.json",
+      "candidateIndex": 130,
+      "poolSha256": "91bfbe675282360f225f4b94e6f3f85116e2a238b73619eb29466f8c9578c7ef",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 41,
+        "maxDeductionDepth": 7,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-01-01-11",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "884093c3fbb039f7e09165282b6e6d9424c8f59e7bec2f185e81e0831b921b8c"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "0885e751dfefabc55ba996a5699f294bb5c4bdb44b842812723b7f0fb038f662"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "444b89c3a224db70494340bdc6e359b6159d0a5b0125e981cb56b34247f6d561"
+      }
+    },
+    {
+      "puzzleId": "S1-01-01-12",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "79ac969b4c820dddbc6421acf4451680f62a9dd9ecd6adb7d9630d16932f85dd"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 4,
+          "height": 4
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 2
+          },
+          "b": {
+            "side": "S",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          2,
+          3,
+          4,
+          1
+        ],
+        "columnCounts": [
+          2,
+          4,
+          3,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 4,
+          "height": 4
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 1
+          },
+          "b": {
+            "side": "W",
+            "index": 3
+          }
+        },
+        "rowCounts": [
+          1,
+          2,
+          3,
+          3
+        ],
+        "columnCounts": [
+          2,
+          4,
+          3,
+          0
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_WN"
+            }
+          ]
+        }
+      },
+      "candidatePool": "4x4.json",
+      "candidateIndex": 243,
+      "poolSha256": "91bfbe675282360f225f4b94e6f3f85116e2a238b73619eb29466f8c9578c7ef",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 40,
+        "maxDeductionDepth": 7,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-01-01-12",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "b5e9f80ab79cf20a52cf9276d7ce0df092110855060fb6c230cd2862687c1154"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "fa5fad40bc13d6fed7ac3b9922c4700aa7a1729f56179141f50a338fb37e72f3"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "b0414f996571b4853faf633e8e49f308be0e05a9d256a2d026eb7f9f4c881e71"
+      }
+    },
+    {
+      "puzzleId": "S1-01-04-08",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "76dfa27155e289ff9491c320e18ad67bf923b9f842b5585d9993553cc95cd7c6"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 4,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 2
+          },
+          "b": {
+            "side": "E",
+            "index": 4
+          }
+        },
+        "rowCounts": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "columnCounts": [
+          0,
+          0,
+          5,
+          5
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 4,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 1
+          },
+          "b": {
+            "side": "N",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          1,
+          3,
+          4,
+          3,
+          2
+        ],
+        "columnCounts": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "candidatePool": "4x5.json",
+      "candidateIndex": 21,
+      "poolSha256": "10b189d974048ad3d766340c1799015e534bfc9e682c09aec9f695fa1fa6ac88",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 51,
+        "maxDeductionDepth": 8,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-01-04-08",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "c74843aba79379e85340322520e2871b5f7cf1bc195cee33fa3536dbef470197"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "5e9acbd4b7301ed0749e0780e929a8c5ffdedec60964c7b5436b3b06ca18472f"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "772d1f084af2bf831493704300f3b82ff9aacff49a01223a32d07899f244b668"
+      }
+    },
+    {
+      "puzzleId": "S1-02-02-06",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "87e0759171895c4463e49655605e45fb847f7d8297c7324ee2b6345bb1d9bd13"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 5,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 3
+          },
+          "b": {
+            "side": "W",
+            "index": 4
+          }
+        },
+        "rowCounts": [
+          0,
+          0,
+          0,
+          5,
+          5
+        ],
+        "columnCounts": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_WN"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 5,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 1
+          },
+          "b": {
+            "side": "S",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          5,
+          3,
+          1,
+          2,
+          4
+        ],
+        "columnCounts": [
+          2,
+          2,
+          2,
+          5,
+          4
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_ES"
+            }
+          ]
+        }
+      },
+      "candidatePool": "5x5-262105.json",
+      "candidateIndex": 27,
+      "poolSha256": "989c49fae647b00b5752f2da9ec7cf879b4b9d93014c62fdddf6f21b320ec4e6",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 57,
+        "maxDeductionDepth": 7,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-02-02-06",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "b66eb669bcc12f9255bb799155ad43b2e911dfd7f41fdd6f922675b99c08f2c3"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "e2c8fb45c9ace1c6dbdd67649a6d36b027651c2461656c4e47b5cff3cd05e7ee"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "24c25e539cd7699583afaadaa6c3a8424657aba7104cf73a2f395e3dfc570e42"
+      }
+    },
+    {
+      "puzzleId": "S1-02-04-05",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "01f58597cd1f7deb8a8554a71941ae66d212c5166e9dcd88bdc24a2128803ae1"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 6,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "S",
+            "index": 2
+          },
+          "b": {
+            "side": "N",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "columnCounts": [
+          3,
+          4,
+          2,
+          0,
+          0,
+          0
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_NE"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 6,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 4
+          },
+          "b": {
+            "side": "E",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          0,
+          1,
+          2,
+          6,
+          6
+        ],
+        "columnCounts": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          4
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_ES"
+            }
+          ]
+        }
+      },
+      "candidatePool": "6x5-262107.json",
+      "candidateIndex": 35,
+      "poolSha256": "b04e022f3e7f002c2bdc2afb0dd53b6122e0fc16fe0a70d6f269a046fe57b62e",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 67,
+        "maxDeductionDepth": 9,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-02-04-05",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "9dc3beade671a74487db5ebd1f0656b382026a9103ccefa6658efb6f3453814e"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "56ece1596bae62b99379dc511090fd1dd445930a84558dafd0dcdbcd56d95ab5"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "73b546bd6dc985b2796f280414277c00a20eb192e859f6aa7148f8ce2f57a893"
+      }
+    },
+    {
+      "puzzleId": "S1-02-04-07",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "a3512de7ee858b53a1e6ae6302358ac19002e21d3e2d835c443774c20319a3da"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 6,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 2
+          },
+          "b": {
+            "side": "E",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          0,
+          6,
+          6,
+          0,
+          0
+        ],
+        "columnCounts": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_NE"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 6,
+          "height": 5
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 3
+          },
+          "b": {
+            "side": "W",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          2,
+          4,
+          4,
+          3,
+          3
+        ],
+        "columnCounts": [
+          2,
+          2,
+          5,
+          4,
+          2,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 5,
+              "y": 3,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_SW"
+            }
+          ]
+        }
+      },
+      "candidatePool": "6x5-262107.json",
+      "candidateIndex": 5,
+      "poolSha256": "b04e022f3e7f002c2bdc2afb0dd53b6122e0fc16fe0a70d6f269a046fe57b62e",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 70,
+        "maxDeductionDepth": 12,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-02-04-07",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "b5e7d1500307dac5d52f6e4c2229c90e49d8e1565d654352b7f10be9d4af5168"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "639fef780974a74d3dd9571f82163b9b52b8b63bb92fddfa2b1350c497fbd48f"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "42c4473755f7bdb30d0ef24d9b2af308f948846cb2c48ac77a1f6d9b1373447e"
+      }
+    },
+    {
+      "puzzleId": "S1-03-02-02",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "6d27679ddddf8f3e3718a4208f8155df5c85414d77e0564df8f767da77819554"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 6,
+          "height": 6
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 0
+          },
+          "b": {
+            "side": "S",
+            "index": 5
+          }
+        },
+        "rowCounts": [
+          6,
+          1,
+          5,
+          1,
+          5,
+          1
+        ],
+        "columnCounts": [
+          1,
+          4,
+          3,
+          3,
+          3,
+          5
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 6,
+          "height": 6
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 1
+          },
+          "b": {
+            "side": "S",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          2,
+          2,
+          2,
+          1,
+          3,
+          6
+        ],
+        "columnCounts": [
+          2,
+          2,
+          1,
+          1,
+          4,
+          6
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 5,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 5,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 5,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "candidatePool": "6x6-262109.json",
+      "candidateIndex": 80,
+      "poolSha256": "6256a10fad466b867851fea9baea879338185aecc65ca621a370f037e12a609a",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 79,
+        "maxDeductionDepth": 8,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-03-02-02",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "79ebe42a0169649298bb30084c49bcb093c4c55becc43f1ff17d8e050e6b1b7e"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "b8c36f1356f3db8c179a7480cb22c6ccf829e6b0153d2cee5f3d2d4be953cf1a"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "6bc7efc26579da17cce2e66edee5b25afd871688efa9e2f0da153ff653c23ea4"
+      }
+    },
+    {
+      "puzzleId": "S1-04-03-08",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "ce2f10411fb70d4b08e1b54896bed8aa7af13cbbd0deb3ab03e7d16e153a4647"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 1
+          },
+          "b": {
+            "side": "S",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          7,
+          1,
+          8,
+          1,
+          8,
+          1,
+          8,
+          1
+        ],
+        "columnCounts": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          6
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 6
+          },
+          "b": {
+            "side": "W",
+            "index": 3
+          }
+        },
+        "rowCounts": [
+          5,
+          5,
+          4,
+          5,
+          1,
+          1,
+          3,
+          3
+        ],
+        "columnCounts": [
+          1,
+          1,
+          2,
+          3,
+          2,
+          6,
+          8,
+          4
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 406,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 148,
+        "maxDeductionDepth": 16,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-04-03-08",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "81c265693fdbd89b78bd2068038c85dd1aead60d1f10ac960a4290c7da5d687d"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "618ad719131209d616dec362e76a04f6e8234c4ae3e4ee036b898382ecd16dab"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "55cfd9919c1d91d22b9e7da57c33ac1814c15d0e5b370c6b4b9b52b4d9cae6eb"
+      }
+    },
+    {
+      "puzzleId": "S1-04-04-02",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "20c24b233c99146df3da04819feec21da5253db9f992a0b4af79d3de09ec3c84"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 0
+          },
+          "b": {
+            "side": "E",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          1,
+          1,
+          6,
+          4,
+          4,
+          4,
+          4,
+          6
+        ],
+        "columnCounts": [
+          8,
+          1,
+          6,
+          1,
+          6,
+          1,
+          6,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 0
+          },
+          "b": {
+            "side": "S",
+            "index": 7
+          }
+        },
+        "rowCounts": [
+          8,
+          4,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2
+        ],
+        "columnCounts": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          8,
+          5
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_SW"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 728,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 134,
+        "maxDeductionDepth": 9,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-04-04-02",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "45fff7765f09ec2e87de68865ef890f51f5897fae46dd1c7ff15e547e7c573f6"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "ec816b9d11b92d286ba855705959df41dababa2cd68c53f975ea8cf1f574780e"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "c9f7e8cf85f59b181d753f580f5067d3aac42cdda53a640e2f6d2c3bf531e64c"
+      }
+    },
+    {
+      "puzzleId": "S1-05-02-02",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "c44aa40c0c275bd8520a0d81b2b93f69f9c8b92d1ea3a1beeab264839880b825"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 0
+          },
+          "b": {
+            "side": "E",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          6,
+          4,
+          4,
+          4,
+          4,
+          4,
+          5,
+          3
+        ],
+        "columnCounts": [
+          8,
+          1,
+          8,
+          1,
+          7,
+          1,
+          7,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 1
+          },
+          "b": {
+            "side": "E",
+            "index": 6
+          }
+        },
+        "rowCounts": [
+          0,
+          2,
+          2,
+          1,
+          1,
+          2,
+          7,
+          6
+        ],
+        "columnCounts": [
+          7,
+          5,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 5,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 3,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 555,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 139,
+        "maxDeductionDepth": 11,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-02-02",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "88fbcb0bbcb46e04bd512ae100f0b959985b8526c078b0921629aca6867a585f"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "3064e632a66e12ef8c31c1ecf383cce1c1d897d2a24fbe5733e36fbba81f8710"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "ed7184476cbdd4a99527c2b845fee32e90ee48dc174c6a3419e4cf67f3aad51b"
+      }
+    },
+    {
+      "puzzleId": "S1-05-02-03",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "de98c9423d34ce46d77445b218ebb27d688bd8c0538dab49bfa9ee440f3e399c"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 0
+          },
+          "b": {
+            "side": "S",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          7,
+          1,
+          6,
+          1,
+          5,
+          1,
+          4,
+          1
+        ],
+        "columnCounts": [
+          1,
+          4,
+          5,
+          4,
+          4,
+          5,
+          3,
+          0
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 7
+          },
+          "b": {
+            "side": "W",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          3,
+          3,
+          7,
+          4,
+          2,
+          1,
+          1,
+          1
+        ],
+        "columnCounts": [
+          4,
+          4,
+          4,
+          1,
+          1,
+          1,
+          3,
+          4
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_WN"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 749,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 140,
+        "maxDeductionDepth": 18,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-02-03",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "17e0bada3ea6cfb15a6b78bed5baf6fb2d8c939299d99caf124a0f667dfd475a"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "9febfcb9c904d87b3f806b088fca95ea81eca2318c782f54dcb6fd2dd7fe7f83"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "251742153e2fa0c0e8976aa604425606cd1d41e663ddf1e75881d642cfcee337"
+      }
+    },
+    {
+      "puzzleId": "S1-05-02-04",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "1b6b62a765c6b413cef2c56344d1c578dba923d553a415ea3c9ce36f00f9003b"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "S",
+            "index": 7
+          },
+          "b": {
+            "side": "N",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          5,
+          8,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "columnCounts": [
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          7
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "S",
+            "index": 3
+          },
+          "b": {
+            "side": "N",
+            "index": 7
+          }
+        },
+        "rowCounts": [
+          5,
+          4,
+          1,
+          1,
+          2,
+          1,
+          4,
+          4
+        ],
+        "columnCounts": [
+          6,
+          5,
+          3,
+          4,
+          1,
+          1,
+          1,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 3,
+              "y": 7,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_WN"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 566,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 150,
+        "maxDeductionDepth": 22,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-02-04",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "567d005c1a2fd1d27a296396ad905dfffd1b0d14913d352083fd58c0d9ab8050"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "201990036787e495294117203f487f1fa7569b5ff51cd24d8d6e91ad151b5929"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "c708429b0e2a3707241a224478ce43caf495a5e9a64d0a88a9ca58bd675b38e3"
+      }
+    },
+    {
+      "puzzleId": "S1-05-02-05",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "558150e0650f6a26ad9caa665a9b2fdd6ff30474aca909b48ab5cb9326e871c1"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 0
+          },
+          "b": {
+            "side": "E",
+            "index": 5
+          }
+        },
+        "rowCounts": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          5,
+          3,
+          6
+        ],
+        "columnCounts": [
+          8,
+          3,
+          1,
+          1,
+          3,
+          3,
+          1,
+          1
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_EW"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 8,
+          "height": 8
+        },
+        "endpoints": {
+          "a": {
+            "side": "W",
+            "index": 0
+          },
+          "b": {
+            "side": "S",
+            "index": 3
+          }
+        },
+        "rowCounts": [
+          6,
+          3,
+          3,
+          1,
+          2,
+          2,
+          3,
+          5
+        ],
+        "columnCounts": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          5,
+          6,
+          7
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 4,
+              "y": 7,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 7,
+              "track": "TRACK_ES"
+            }
+          ]
+        }
+      },
+      "candidatePool": "8x8-262116.json",
+      "candidateIndex": 493,
+      "poolSha256": "7d02891f5ca8cff2327a092e119a6b901a6f2368dad5c942c114162d9eecd1a7",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 161,
+        "maxDeductionDepth": 24,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-02-05",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "cfda4b672279cdbd095e117ccaa17b4feaa4da1db906f01ee8c34f0c282f698b"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "cd9bebc10cdca6dd02ee54b27f5ec6969c22f0f1b80cac8828490660d0f44c30"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "6c8ce960022b35ded0174e4e55836795ed80cc9731e3fb70150c9f24870fbb01"
+      }
+    },
+    {
+      "puzzleId": "S1-05-03-01",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "efd44e4e71eeba9ff53d8eebccd0084f7b125c542e0971ec91ac42028927ee85"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 9,
+          "height": 9
+        },
+        "endpoints": {
+          "a": {
+            "side": "S",
+            "index": 1
+          },
+          "b": {
+            "side": "W",
+            "index": 1
+          }
+        },
+        "rowCounts": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2
+        ],
+        "columnCounts": [
+          9,
+          6,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 1,
+              "y": 8,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 8,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 7,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_WN"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 9,
+          "height": 9
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 8
+          },
+          "b": {
+            "side": "N",
+            "index": 0
+          }
+        },
+        "rowCounts": [
+          9,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "columnCounts": [
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          9
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 8,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 8,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 7,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 8,
+              "y": 7,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 8,
+              "y": 6,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 8,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 8,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 8,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 8,
+              "y": 2,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 8,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 8,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "track": "TRACK_NS"
+            }
+          ]
+        }
+      },
+      "candidatePool": "9x9.json",
+      "candidateIndex": 561,
+      "poolSha256": "f289010bca80eb042f6ef7511aff4084f8d914572eae6f87acd92475821f2624",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 149,
+        "maxDeductionDepth": 7,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-03-01",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "c6a964b6cb541dd5bca1d27dd052ffe1b83308db7e17628ff49bcdfc6f3f246b"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "5fd1cefe0dbc4229509abbe2e09abe0146fa4ef0b767a5159e4afcee87abab76"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "3e850a0d03c056d254be5075e958c8874d394490540c2a0e87d4776f75f22294"
+      }
+    },
+    {
+      "puzzleId": "S1-05-04-02",
+      "priorPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "3df9211efcf5fcc16c9c5403e581a502c45a47339c6973bf5641aee57330ec43"
+      },
+      "oldInput": {
+        "grid": {
+          "width": 9,
+          "height": 9
+        },
+        "endpoints": {
+          "a": {
+            "side": "N",
+            "index": 1
+          },
+          "b": {
+            "side": "S",
+            "index": 8
+          }
+        },
+        "rowCounts": [
+          8,
+          1,
+          8,
+          1,
+          7,
+          1,
+          7,
+          1,
+          8
+        ],
+        "columnCounts": [
+          0,
+          7,
+          5,
+          5,
+          5,
+          5,
+          5,
+          6,
+          4
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 1,
+              "y": 0,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 8,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 8,
+              "y": 1,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 8,
+              "y": 2,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 7,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 4,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 5,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 1,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 1,
+              "y": 7,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 1,
+              "y": 8,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 2,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 5,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 6,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 7,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 8,
+              "y": 8,
+              "track": "TRACK_SW"
+            }
+          ]
+        }
+      },
+      "newInput": {
+        "grid": {
+          "width": 9,
+          "height": 9
+        },
+        "endpoints": {
+          "a": {
+            "side": "E",
+            "index": 1
+          },
+          "b": {
+            "side": "S",
+            "index": 2
+          }
+        },
+        "rowCounts": [
+          5,
+          5,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          5
+        ],
+        "columnCounts": [
+          0,
+          0,
+          1,
+          1,
+          3,
+          9,
+          6,
+          2,
+          2
+        ],
+        "solution": {
+          "path": [
+            {
+              "x": 8,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 8,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 7,
+              "y": 1,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 6,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 5,
+              "y": 2,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 3,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "track": "TRACK_NS"
+            },
+            {
+              "x": 5,
+              "y": 5,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 5,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 6,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "track": "TRACK_ES"
+            },
+            {
+              "x": 5,
+              "y": 7,
+              "track": "TRACK_NE"
+            },
+            {
+              "x": 6,
+              "y": 7,
+              "track": "TRACK_SW"
+            },
+            {
+              "x": 6,
+              "y": 8,
+              "track": "TRACK_WN"
+            },
+            {
+              "x": 5,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 4,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 3,
+              "y": 8,
+              "track": "TRACK_EW"
+            },
+            {
+              "x": 2,
+              "y": 8,
+              "track": "TRACK_ES"
+            }
+          ]
+        }
+      },
+      "candidatePool": "9x9.json",
+      "candidateIndex": 27,
+      "poolSha256": "f289010bca80eb042f6ef7511aff4084f8d914572eae6f87acd92475821f2624",
+      "candidateMetrics": {
+        "searchNodes": 0,
+        "deductionSteps": 163,
+        "maxDeductionDepth": 10,
+        "requiredGuessDepth": 0
+      },
+      "decisionSource": "author-decisions.txt: S1-05-04-02",
+      "publicationStatus": "DRAFT_ONLY_NOT_RUNTIME_IMPORTED_NOT_RELEASED",
+      "newPublicPuzzleHash": {
+        "profile": "STP-PUZZLE-SEMANTIC-JCS-1",
+        "sha256": "88f2843a764cb472b3cdfd07b88731541ae141c61d549437fe2bd9ae354f5f85"
+      },
+      "newSolutionHash": {
+        "profile": "STP-SOLUTION-JCS-1",
+        "sha256": "5b916f0a37e8c7b53531a51c7d0074c4eaac216466fcd999687e455b20085af6"
+      },
+      "newProofHash": {
+        "profile": "STP-PROOF-JCS-1",
+        "sha256": "86a0ecffcea2c26299a95f5da96a38c379ed63c3609ef608ed74439205bf0c52"
+      }
+    }
+  ],
+  "wholeSeasonLogicallyRegenerated": false
+}

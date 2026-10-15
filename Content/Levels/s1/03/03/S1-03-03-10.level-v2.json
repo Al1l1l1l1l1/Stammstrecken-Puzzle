@@ -1,0 +1,147 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-03-10",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 3
+    },
+    "b": {
+      "side": "N",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    5,
+    1,
+    1,
+    3,
+    3,
+    2
+  ],
+  "columnCounts": [
+    1,
+    1,
+    4,
+    4,
+    5,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 3,
+    "position": 10,
+    "titleKey": "level.s1.03.03.10.title",
+    "statusKey": "level.s1.03.03.10.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.03.10.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "Die zwei rechten Nullspalten und oberen Einserzeilen lenken den langen Eingang erst an den rechten aktiven Rand. Der Südport an Spalte 3 liegt innerhalb eines unteren Doppelbogens; die Portentfernung ist sechs Zellschritte und fordert eine andere Ecke als Position 9.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-03-10-map",
+    "trainMomentId": "draft-s1-03-03-10-train",
+    "resultTextKey": "level.s1.03.03.10.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-03-10/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "e0023f7f09b3c6c351711b255cd322411e047cfb981458edad8c9191e00f0d5f"
+    }
+  }
+}
