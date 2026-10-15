@@ -4,7 +4,7 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 ## Aktuelle Prioritätsreihenfolge
 
-O-02 wird unter ausdrücklich beauftragtem, eigenständig prospektiv verankertem WP-034 bearbeitet, ohne Änderung der folgenden Prioritäten oder alter Paketgrenzen. Nachgewiesener Prämissensicht-Aufwand äquivalent korrigiert; lokale Regression/240er-Nachweise bestanden, finale optimierte CI und unabhängige technische Abnahme offen. [Aktuelle Übergabe](Investigations/WP-034_HANDOVER.md). Ältere Angaben „Diagnostik zur Entscheidung“ sind historische Stände; der neue O-02-Auftrag liegt vor. WP026 bleibt insgesamt offen; kein Main-Merge.
+O-02 ist im ausdrücklich beauftragten, eigenständig prospektiv verankerten WP-034 technisch abgeschlossen, ohne Änderung der folgenden Prioritäten oder alter Paketgrenzen. Nachgewiesener Prämissensicht-Aufwand äquivalent korrigiert; lokale Regression/240er-Nachweise und vollständige echte Korrektur-CI auff34d6f4 bestanden, getrennte unabhängige technische Abschlussrolle PASS. Liefercommit-/nachgelagerteCI-/Diff-QC-Bindung im Draft-Unter-PR29. [Aktuelle Übergabe](Investigations/WP-034_HANDOVER.md). Historische konkrete Hostursache weiter unbewiesen. Ältere Angaben „Diagnostik zur Entscheidung“ sind historische Stände; der neue O-02-Auftrag liegt vor. Nächster zulässiger Schritt ist die geprüfte Unterlieferung im bestehenden WP026-Arbeitsweg; keine automatische Integration. WP026 bleibt insgesamt offen; kein Main-Merge.
 
 | Priorität | Block | Status | Verbindlicher Inhalt |
 |---:|---|---|---|

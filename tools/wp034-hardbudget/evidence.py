@@ -31,12 +31,14 @@ def main():
             xml = z.read(member)
         root = ET.fromstring(xml)
         case = next(c for c in root.iter('test-case') if c.get('name') == NAME)
+        corpus = next(json.loads(line.split(' ', 1)[1]) for c in root.iter('test-case') for line in (c.findtext('output') or '').splitlines() if line.startswith('WP028_CORPUS_PERFORMANCE '))
         times.append({c.get('fullname'): float(c.get('duration', '0')) for c in root.iter('test-case')})
-        records.append(dict(run=run, artifact=artifact, zipBytes=len(raw), zipSha256=digest,
+        records.append(dict(run=run, artifact=artifact, zipBytes=len(raw), zipSha256=digest, originalZipBase64=base64.b64encode(raw).decode(),
                             xmlMember=member, xmlBytes=len(xml), xmlSha256=sha(xml),
                             originalXmlGzipBase64=base64.b64encode(gzip.compress(xml, mtime=0)).decode(),
                             root=dict(root.attrib), test=dict(case.attrib), output=case.findtext('output'),
-                            failure=case.findtext('failure/message')))
+                            failure=case.findtext('failure/message'),
+                            observedEnvironmentAndSeparateCorpusMeasurement={k: corpus[k] for k in ['commit', 'processor', 'processorCount', 'runtime', 'os', 'p95Ms', 'maximumMs', 'corpusWallClockMs']}))
     pairs = [dict(test=n, passSeconds=times[0][n], failSeconds=times[1][n], ratio=times[1][n]/times[0][n]) for n in sorted(times[0]) if times[0][n] > .1]
     data = dict(records=records, durationPairs=pairs, medianRatio=statistics.median(p['ratio'] for p in pairs), boundary='Historical scheduling/GC/CPU circumstances not observable; artifact bytes and test outputs are evidence, not a cause claim.')
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
