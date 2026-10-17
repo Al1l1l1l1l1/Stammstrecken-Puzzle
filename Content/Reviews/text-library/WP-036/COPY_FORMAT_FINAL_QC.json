@@ -1,0 +1,163 @@
+{
+  "reportSchemaVersion": 1,
+  "reportId": "WP-036-FINAL-TECH-01-FORMAT-QC-01",
+  "workPackageId": "WP-036",
+  "language": "de-DE",
+  "reviewRole": "Schmale gesonderte unabhängige technische Schlussprüfung; keine Autorrolle und keine Ownerrolle.",
+  "verdict": {
+    "finalTech01": "PASS",
+    "summary": "Der alleinige b181-Befund FINAL-TECH-01 ist am sauberen Freeze 89c8 durch Entfernung von vier ursprünglichen Trailing-Whitespace-Zeichenfolgen in zwei historischen QC-Berichten geschlossen. Frischer Production-Scope-Selbsttest und beide Git-Diff-Checks bestehen.",
+    "scope": "Ausschließlich Format-, Gitblob-, Hash- und Scope-Nachweis für FINAL-TECH-01.",
+    "notAClaim": [
+      "neue vollständige kreative oder technische QC",
+      "erneute Prüfung der 12 Negativtests",
+      "Ownerannahme",
+      "Produktfreigabe",
+      "Runtime- oder Doppelimport",
+      "Rechts- oder Releasefreigabe",
+      "Main-Merge",
+      "reguläre CI bestanden"
+    ]
+  },
+  "binding": {
+    "immutableCheckout": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-format-final-qc",
+    "head": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+    "previousB181": "b181fecbf001397292ef0c90be1b4c2d4fb2711e",
+    "correctionAnchor6103": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
+    "manifestBaseMain": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "checkoutCleanBeforeAndAfterFreshCommands": true,
+    "source": {
+      "path": "Content/Localization/source/de-DE.json",
+      "sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+      "b181EqualsHead": true,
+      "checkoutEqualsHeadBlob": true
+    },
+    "python": {
+      "path": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python",
+      "version": "Python 3.11.13"
+    }
+  },
+  "independentReadOnlyBlobAudit": {
+    "result": "PASS",
+    "exitCode": 0,
+    "method": "Eigenes Read-only-Python-Audit gegen exakte Gitblobs von 6103, b181 und 89c8 sowie gegen Checkoutbytes; kein Eltern-Auditskript.",
+    "b181To89c8Delta": {
+      "pathCount": 5,
+      "onlyWp036ReviewPaths": true,
+      "modifiedPaths": [
+        "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md",
+        "Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.md"
+      ],
+      "newPaths": [
+        "Content/Reviews/text-library/WP-036/COPY_FINAL_QC.json",
+        "Content/Reviews/text-library/WP-036/COPY_FINAL_QC.md",
+        "Content/Reviews/text-library/WP-036/COPY_FINAL_SCOPE_RECHECK.txt"
+      ],
+      "sourceSchemaToolsWorkflowManifestArchitectureLevelsProofsAssetsCatalogsAndForeignProductBytesChanged": false
+    },
+    "frozenArtifacts": {
+      "fourGeneratedReports": [
+        {
+          "path": "Content/Reviews/text-library/WP-036/technical-validation.json",
+          "sha256": "1623bf3f034a2a7b09b8e5ae1bb2cfa209f4b791c323933f522828f1e748a5cd",
+          "b181EqualsHeadEqualsCheckout": true
+        },
+        {
+          "path": "Content/Reviews/text-library/WP-036/repetition-report.json",
+          "sha256": "82ceca54a7c0dd42c7dc3c90fd052fecdd02edc86be5afcb3c5c27d0ea9e6799",
+          "b181EqualsHeadEqualsCheckout": true
+        },
+        {
+          "path": "Content/Reviews/text-library/WP-036/pseudolocale.json",
+          "sha256": "6a263f7b0d091fc25c02877c6a6e932d3a0a6bec2f9f5996e80a13b8aaf1c5a6",
+          "b181EqualsHeadEqualsCheckout": true
+        },
+        {
+          "path": "Content/Reviews/text-library/WP-036/existing-key-inventory.json",
+          "sha256": "a5b9602755ae5fa13ce272755c4fa232ee6542403e345484f8a5d6aaaacb0100",
+          "b181EqualsHeadEqualsCheckout": true
+        }
+      ],
+      "readingEdition": {
+        "path": "Content/Reviews/text-library/WP-036/READING_EDITION.md",
+        "sha256": "c87e066b1981f54c90215238141d576586cb9dc8b064e194d449039409d0f4b9",
+        "b181EqualsHeadEqualsCheckout": true
+      },
+      "creativeScope": {
+        "path": "Content/Reviews/text-library/WP-036/CREATIVE_SCOPE.json",
+        "sha256": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+        "b181EqualsHeadEqualsCheckout": true
+      }
+    },
+    "sourceScopeAgainst6103": {
+      "entries": 1408,
+      "scopeRecords": 110,
+      "changedCopyFields": 120,
+      "textFields": 109,
+      "shortTextFields": 11,
+      "changedFieldSetExactlyCreativeScope": true,
+      "unchangedWholeEntries": 1298,
+      "rootOrderAndMetadataUnchanged": true,
+      "entryKeyOrderAndPropertyShapeUnchanged": true,
+      "protectedUnchanged": {
+        "levelTitles": 240,
+        "internalEntries": 240,
+        "uiEntries": 308,
+        "blockedProductEntries": 70
+      }
+    },
+    "historicalQcTextPreservation": [
+      {
+        "path": "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md",
+        "b181Sha256": "f3a481f644c7f88d86c0e3242ec2a8fd2bc86fc4f5fdb7c80b33a34a123f6c31",
+        "headSha256": "cea7951510d467ae6a79acc14bed10053a35cf33c4fb0fe0395620901c931d65",
+        "rstrippedLinesExactlyEqual": true,
+        "onlyOriginalTrailingWhitespaceRemovedAtLines": [3, 4, 5],
+        "historicalVerdictPreserved": "FAIL mit HIGH-01 am historischen c768-Stand"
+      },
+      {
+        "path": "Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.md",
+        "b181Sha256": "57ccee3b6872c235fc1b2253b0a1f01e6e4a2308d9d60488f32b9dd681e18d74",
+        "headSha256": "c6b9fdc7ac3f792c6d773fe4867b87bcc6fc6aeaee45f9d9e1777d91e3e37601",
+        "rstrippedLinesExactlyEqual": true,
+        "onlyOriginalTrailingWhitespaceRemovedAtLines": [3],
+        "historicalVerdictPreserved": "lokaler technischer DRAFT-/Scope-PASS am historischen c768-Stand"
+      }
+    ]
+  },
+  "historicalStandBoundEvidence": {
+    "b181CopyFinalQc": "Der an 89c8 neu gesicherte b181-Bericht dokumentiert, dass HIGH-01 kreativ geschlossen war und FINAL-TECH-01 damals allein wegen der vier Trailing-Whitespace-Zeilen offen blieb.",
+    "b181CreativeHigh01": "geschlossen als standgebundene, bytegleich bewahrte fachliche Grundlage; in diesem Auftrag nicht erneut kreativ vollgeprüft.",
+    "noHistoricalCiTransferred": true
+  },
+  "freshRequiredCommands": [
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/architecture-validation/validate.py --scope production --scope-manifest tools/architecture-validation/scopes/WP-036.production.scope.json --self-test",
+      "exitCode": 0,
+      "result": "RESULT PASS (18 lokale Prüfgruppen); LOCAL_SCOPE PASS; SCOPE_CONTEXT head=89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b, worktreeDirty=false"
+    },
+    {
+      "command": "git diff --check d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 --",
+      "exitCode": 0,
+      "result": "Keine Whitespace-Diagnose gegen main."
+    },
+    {
+      "command": "git diff --check 6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1 --",
+      "exitCode": 0,
+      "result": "Keine Whitespace-Diagnose gegen den ursprünglichen Korrekturanker."
+    }
+  ],
+  "localDeliveryBoundary": [
+    "FINAL-TECH-01 ist geschlossen und PASS.",
+    "Die reguläre CI auf 89c8 ist separat OPEN; keine Unity-, Solver-, CI- oder zusätzlichen Buildläufe wurden gestartet oder aus älteren Ständen übertragen.",
+    "Alle Inhalte bleiben DRAFT.",
+    "Keine Owner-, Produkt-, Import-, Rechts- oder Releasefreigabe und keine Main-Integration.",
+    "Offene Produkt- und Fremdgates, einschließlich der fail-closed BLOCKER-PROD-001 bis BLOCKER-PROD-003, bleiben unverändert offen."
+  ],
+  "artifacts": {
+    "markdown": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_FORMAT_FINAL_QC.md",
+    "json": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_FORMAT_FINAL_QC.json"
+  },
+  "committed": false,
+  "pushed": false
+}

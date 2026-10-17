@@ -1,0 +1,2960 @@
+{
+  "freeze_commit": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+  "source_sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+  "runs": [
+    {
+      "run": {
+        "id": 39076203467,
+        "name": "Architecture Validation",
+        "node_id": "WFR_kwLOURiA7s8AAAAJGR-Lyw",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+        "path": ".github/workflows/validate.yml",
+        "display_title": "fix(review): remove trailing whitespace without altering QC verdicts",
+        "run_number": 246,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "workflow_id": 357319394,
+        "check_suite_id": 105896699699,
+        "check_suite_node_id": "CS_kwDOURiA7s8AAAAYp-9nMw",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467",
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/31",
+            "id": 4902846589,
+            "number": 31,
+            "head": {
+              "ref": "codex/wp-036-vollstaendige-textbibliothek",
+              "sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            },
+            "base": {
+              "ref": "main",
+              "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            }
+          }
+        ],
+        "created_at": "2026-10-17T22:43:10Z",
+        "updated_at": "2026-10-17T22:43:45Z",
+        "actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [],
+        "run_started_at": "2026-10-17T22:43:10Z",
+        "triggering_actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/jobs",
+        "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/logs",
+        "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/105896699699",
+        "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/artifacts",
+        "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/cancel",
+        "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/357319394",
+        "head_commit": {
+          "id": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "tree_id": "49dd2380effea732e8e1911013127633cc1d753c",
+          "message": "fix(review): remove trailing whitespace without altering QC verdicts",
+          "timestamp": "2026-10-17T22:43:08Z",
+          "author": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        },
+        "head_repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 117523759999,
+          "run_id": 39076203467,
+          "workflow_name": "Architecture Validation",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZDfw",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523759999",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203467/job/117523759999",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:13Z",
+          "completed_at": "2026-10-17T22:43:44Z",
+          "name": "validate",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:13Z",
+              "completed_at": "2026-10-17T22:43:14Z"
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:43:17Z"
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:43:25Z"
+            },
+            {
+              "name": "Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:25Z",
+              "completed_at": "2026-10-17T22:43:30Z"
+            },
+            {
+              "name": "Gepinnte Validator-Abhängigkeiten installieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:43:30Z",
+              "completed_at": "2026-10-17T22:43:34Z"
+            },
+            {
+              "name": "Architecture-only-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:43:34Z",
+              "completed_at": "2026-10-17T22:43:35Z"
+            },
+            {
+              "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T22:43:35Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:40Z"
+            },
+            {
+              "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 10,
+              "started_at": "2026-10-17T22:43:40Z",
+              "completed_at": "2026-10-17T22:43:40Z"
+            },
+            {
+              "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-17T22:43:40Z",
+              "completed_at": "2026-10-17T22:43:41Z"
+            },
+            {
+              "name": "Post Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-10-17T22:43:41Z",
+              "completed_at": "2026-10-17T22:43:41Z"
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-10-17T22:43:41Z",
+              "completed_at": "2026-10-17T22:43:41Z"
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-10-17T22:43:41Z",
+              "completed_at": "2026-10-17T22:43:42Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-10-17T22:43:42Z",
+              "completed_at": "2026-10-17T22:43:42Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523759999",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001923,
+          "runner_name": "GitHub Actions 1000001923",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ],
+      "artifacts": []
+    },
+    {
+      "run": {
+        "id": 39076203485,
+        "name": "Unity CI",
+        "node_id": "WFR_kwLOURiA7s8AAAAJGR-L3Q",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+        "path": ".github/workflows/unity.yml",
+        "display_title": "fix(review): remove trailing whitespace without altering QC verdicts",
+        "run_number": 213,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "workflow_id": 362942037,
+        "check_suite_id": 105896699725,
+        "check_suite_node_id": "CS_kwDOURiA7s8AAAAYp-9nTQ",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/31",
+            "id": 4902846589,
+            "number": 31,
+            "head": {
+              "ref": "codex/wp-036-vollstaendige-textbibliothek",
+              "sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            },
+            "base": {
+              "ref": "main",
+              "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            }
+          }
+        ],
+        "created_at": "2026-10-17T22:43:10Z",
+        "updated_at": "2026-10-17T23:26:03Z",
+        "actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [],
+        "run_started_at": "2026-10-17T22:43:10Z",
+        "triggering_actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/jobs",
+        "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/logs",
+        "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/105896699725",
+        "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/artifacts",
+        "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/cancel",
+        "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/362942037",
+        "head_commit": {
+          "id": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "tree_id": "49dd2380effea732e8e1911013127633cc1d753c",
+          "message": "fix(review): remove trailing whitespace without altering QC verdicts",
+          "timestamp": "2026-10-17T22:43:08Z",
+          "author": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        },
+        "head_repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 117523760299,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZEqw",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523760299",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523760299",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:13Z",
+          "completed_at": "2026-10-17T22:47:53Z",
+          "name": "unity-environment-android",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:13Z",
+              "completed_at": "2026-10-17T22:43:14Z"
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:44:58Z"
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:44:58Z",
+              "completed_at": "2026-10-17T22:47:50Z"
+            },
+            {
+              "name": "Editor-Start und Android-Toolchain im Container prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:47:50Z",
+              "completed_at": "2026-10-17T22:47:52Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:47:52Z",
+              "completed_at": "2026-10-17T22:47:52Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523760299",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001925,
+          "runner_name": "GitHub Actions 1000001925",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523760368,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZE8A",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523760368",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523760368",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:13Z",
+          "completed_at": "2026-10-17T22:44:49Z",
+          "name": "unity-environment-linux",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:43:14Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:44:42Z"
+            },
+            {
+              "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:44:42Z",
+              "completed_at": "2026-10-17T22:44:43Z"
+            },
+            {
+              "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:44:43Z",
+              "completed_at": "2026-10-17T22:44:46Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:44:46Z",
+              "completed_at": "2026-10-17T22:44:46Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T22:44:46Z",
+              "completed_at": "2026-10-17T22:44:46Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523760368",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001924,
+          "runner_name": "GitHub Actions 1000001924",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523760413,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZFHQ",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523760413",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523760413",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:13Z",
+          "completed_at": "2026-10-17T22:43:15Z",
+          "name": "unity-config",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:13Z",
+              "completed_at": "2026-10-17T22:43:13Z"
+            },
+            {
+              "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:43:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:43:14Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523760413",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001926,
+          "runner_name": "GitHub Actions 1000001926",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523760436,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZFNA",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523760436",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523760436",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:18Z",
+          "completed_at": "2026-10-17T22:45:55Z",
+          "name": "unity-environment-ios",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:19Z",
+              "completed_at": "2026-10-17T22:43:20Z"
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:20Z",
+              "completed_at": "2026-10-17T22:45:43Z"
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 3,
+              "started_at": "2026-10-17T22:45:43Z",
+              "completed_at": "2026-10-17T22:45:43Z"
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4,
+              "started_at": "2026-10-17T22:45:43Z",
+              "completed_at": "2026-10-17T22:45:43Z"
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:45:43Z",
+              "completed_at": "2026-10-17T22:45:44Z"
+            },
+            {
+              "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:45:44Z",
+              "completed_at": "2026-10-17T22:45:46Z"
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T22:45:46Z",
+              "completed_at": "2026-10-17T22:45:51Z"
+            },
+            {
+              "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:45:51Z",
+              "completed_at": "2026-10-17T22:45:51Z"
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-10-17T22:45:51Z",
+              "completed_at": "2026-10-17T22:45:51Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-10-17T22:45:51Z",
+              "completed_at": "2026-10-17T22:45:53Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523760436",
+          "labels": [
+            "macos-15"
+          ],
+          "runner_id": 1000001928,
+          "runner_name": "GitHub Actions 1000001928",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523760444,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZFPA",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523760444",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523760444",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:11Z",
+          "started_at": "2026-10-17T22:43:13Z",
+          "completed_at": "2026-10-17T22:43:35Z",
+          "name": "project-preflight",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:14Z",
+              "completed_at": "2026-10-17T22:43:15Z"
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:15Z",
+              "completed_at": "2026-10-17T22:43:18Z"
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:18Z",
+              "completed_at": "2026-10-17T22:43:30Z"
+            },
+            {
+              "name": "Unity-Versionspin und Projektartefakte prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:30Z",
+              "completed_at": "2026-10-17T22:43:30Z"
+            },
+            {
+              "name": "Explizite QA-Identitaeten vor Unity pruefen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:43:30Z",
+              "completed_at": "2026-10-17T22:43:30Z"
+            },
+            {
+              "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:43:30Z",
+              "completed_at": "2026-10-17T22:43:31Z"
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-17T22:43:31Z",
+              "completed_at": "2026-10-17T22:43:31Z"
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-17T22:43:31Z",
+              "completed_at": "2026-10-17T22:43:31Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-17T22:43:31Z",
+              "completed_at": "2026-10-17T22:43:31Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523760444",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001927,
+          "runner_name": "GitHub Actions 1000001927",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523833924,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPdkRA",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523833924",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523833924",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:35Z",
+          "started_at": "2026-10-17T22:43:36Z",
+          "completed_at": "2026-10-17T22:43:39Z",
+          "name": "unity-evidence-guard",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Unity-Nachweiskonfiguration vorhanden",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523833924",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001936,
+          "runner_name": "GitHub Actions 1000001936",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523834281,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPdlqQ",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523834281",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117523834281",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:35Z",
+          "started_at": "2026-10-17T22:46:40Z",
+          "completed_at": "2026-10-17T22:54:55Z",
+          "name": "unity-compile-editmode",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:46:40Z",
+              "completed_at": "2026-10-17T22:46:41Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:46:41Z",
+              "completed_at": "2026-10-17T22:47:56Z"
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:47:56Z",
+              "completed_at": "2026-10-17T22:47:57Z"
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:47:57Z",
+              "completed_at": "2026-10-17T22:48:15Z"
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:48:15Z",
+              "completed_at": "2026-10-17T22:48:18Z"
+            },
+            {
+              "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:48:18Z",
+              "completed_at": "2026-10-17T22:54:49Z"
+            },
+            {
+              "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T22:54:49Z",
+              "completed_at": "2026-10-17T22:54:49Z"
+            },
+            {
+              "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:54:49Z",
+              "completed_at": "2026-10-17T22:54:49Z"
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T22:54:49Z",
+              "completed_at": "2026-10-17T22:54:51Z"
+            },
+            {
+              "name": "Testergebnisse archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-17T22:54:51Z",
+              "completed_at": "2026-10-17T22:54:52Z"
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-10-17T22:54:52Z",
+              "completed_at": "2026-10-17T22:54:53Z"
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-10-17T22:54:53Z",
+              "completed_at": "2026-10-17T22:54:53Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-10-17T22:54:53Z",
+              "completed_at": "2026-10-17T22:54:53Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-10-17T22:54:53Z",
+              "completed_at": "2026-10-17T22:54:53Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523834281",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001937,
+          "runner_name": "GitHub Actions 1000001937",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117526009699,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXRiXYw",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117526009699",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117526009699",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:54:56Z",
+          "started_at": "2026-10-17T22:58:16Z",
+          "completed_at": "2026-10-17T23:01:31Z",
+          "name": "unity-playmode-bootstrap-smoke",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:58:17Z",
+              "completed_at": "2026-10-17T22:58:17Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:58:17Z",
+              "completed_at": "2026-10-17T22:59:31Z"
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:59:31Z",
+              "completed_at": "2026-10-17T22:59:32Z"
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:59:32Z",
+              "completed_at": "2026-10-17T22:59:49Z"
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:59:49Z",
+              "completed_at": "2026-10-17T22:59:52Z"
+            },
+            {
+              "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:59:52Z",
+              "completed_at": "2026-10-17T23:01:26Z"
+            },
+            {
+              "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T23:01:26Z",
+              "completed_at": "2026-10-17T23:01:26Z"
+            },
+            {
+              "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T23:01:26Z",
+              "completed_at": "2026-10-17T23:01:26Z"
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T23:01:26Z",
+              "completed_at": "2026-10-17T23:01:28Z"
+            },
+            {
+              "name": "Testergebnisse archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-17T23:01:28Z",
+              "completed_at": "2026-10-17T23:01:29Z"
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-10-17T23:01:29Z",
+              "completed_at": "2026-10-17T23:01:29Z"
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-10-17T23:01:29Z",
+              "completed_at": "2026-10-17T23:01:29Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-10-17T23:01:29Z",
+              "completed_at": "2026-10-17T23:01:30Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-10-17T23:01:30Z",
+              "completed_at": "2026-10-17T23:01:30Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117526009699",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001939,
+          "runner_name": "GitHub Actions 1000001939",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117527281259,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXSv-aw",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117527281259",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117527281259",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T23:01:31Z",
+          "started_at": "2026-10-17T23:08:29Z",
+          "completed_at": "2026-10-17T23:15:59Z",
+          "name": "unity-android-development-il2cpp",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T23:08:29Z",
+              "completed_at": "2026-10-17T23:08:31Z"
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T23:08:31Z",
+              "completed_at": "2026-10-17T23:08:32Z"
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T23:08:32Z",
+              "completed_at": "2026-10-17T23:10:10Z"
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T23:10:10Z",
+              "completed_at": "2026-10-17T23:13:06Z"
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T23:13:06Z",
+              "completed_at": "2026-10-17T23:13:45Z"
+            },
+            {
+              "name": "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T23:13:45Z",
+              "completed_at": "2026-10-17T23:15:54Z"
+            },
+            {
+              "name": "Android-Buildartefakt archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T23:15:54Z",
+              "completed_at": "2026-10-17T23:15:56Z"
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-17T23:15:56Z",
+              "completed_at": "2026-10-17T23:15:56Z"
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-10-17T23:15:56Z",
+              "completed_at": "2026-10-17T23:15:56Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-10-17T23:15:56Z",
+              "completed_at": "2026-10-17T23:15:56Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117527281259",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001941,
+          "runner_name": "GitHub Actions 1000001941",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117530049555,
+          "run_id": 39076203485,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXVY8Ew",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117530049555",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076203485/job/117530049555",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T23:15:59Z",
+          "started_at": "2026-10-17T23:16:05Z",
+          "completed_at": "2026-10-17T23:26:02Z",
+          "name": "unity-ios-export",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T23:16:05Z",
+              "completed_at": "2026-10-17T23:16:06Z"
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T23:16:06Z",
+              "completed_at": "2026-10-17T23:16:08Z"
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T23:16:08Z",
+              "completed_at": "2026-10-17T23:18:17Z"
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4,
+              "started_at": "2026-10-17T23:18:17Z",
+              "completed_at": "2026-10-17T23:18:17Z"
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5,
+              "started_at": "2026-10-17T23:18:17Z",
+              "completed_at": "2026-10-17T23:18:17Z"
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T23:18:17Z",
+              "completed_at": "2026-10-17T23:18:18Z"
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T23:18:18Z",
+              "completed_at": "2026-10-17T23:18:46Z"
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T23:18:46Z",
+              "completed_at": "2026-10-17T23:18:51Z"
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T23:18:51Z",
+              "completed_at": "2026-10-17T23:18:55Z"
+            },
+            {
+              "name": "iOS-Xcodeprojekt exportieren und kompilieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-17T23:18:55Z",
+              "completed_at": "2026-10-17T23:25:52Z"
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-17T23:25:52Z",
+              "completed_at": "2026-10-17T23:25:54Z"
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-10-17T23:25:54Z",
+              "completed_at": "2026-10-17T23:25:55Z"
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-10-17T23:25:55Z",
+              "completed_at": "2026-10-17T23:25:55Z"
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-10-17T23:25:55Z",
+              "completed_at": "2026-10-17T23:25:56Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-10-17T23:25:56Z",
+              "completed_at": "2026-10-17T23:25:59Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117530049555",
+          "labels": [
+            "macos-15"
+          ],
+          "runner_id": 1000001942,
+          "runner_name": "GitHub Actions 1000001942",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 12118250758,
+          "node_id": "MDg6QXJ0aWZhY3QxMjExODI1MDc1OA==",
+          "name": "android-development-il2cpp",
+          "size_in_bytes": 38948984,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12118250758",
+          "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12118250758/zip",
+          "expired": false,
+          "digest": "sha256:88d0b4ec9d550763d0e8acb545b57e465c6aaa513f590cb89d7c4f495517e8f7",
+          "created_at": "2026-10-17T23:15:56Z",
+          "updated_at": "2026-10-17T23:15:56Z",
+          "expires_at": "2027-01-15T22:43:11Z",
+          "workflow_run": {
+            "id": 39076203485,
+            "repository_id": 1360560366,
+            "head_repository_id": 1360560366,
+            "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+            "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b"
+          }
+        },
+        {
+          "id": 12117431560,
+          "node_id": "MDg6QXJ0aWZhY3QxMjExNzQzMTU2MA==",
+          "name": "playmode-results",
+          "size_in_bytes": 346909,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12117431560",
+          "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12117431560/zip",
+          "expired": false,
+          "digest": "sha256:83e45c8d7929e1721bca3a3f403fa0116d387fddab246be3054a6d65852c572e",
+          "created_at": "2026-10-17T23:01:29Z",
+          "updated_at": "2026-10-17T23:01:29Z",
+          "expires_at": "2027-01-15T22:43:11Z",
+          "workflow_run": {
+            "id": 39076203485,
+            "repository_id": 1360560366,
+            "head_repository_id": 1360560366,
+            "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+            "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b"
+          }
+        },
+        {
+          "id": 12117352191,
+          "node_id": "MDg6QXJ0aWZhY3QxMjExNzM1MjE5MQ==",
+          "name": "editmode-results",
+          "size_in_bytes": 421489,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12117352191",
+          "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12117352191/zip",
+          "expired": false,
+          "digest": "sha256:d4f423d369ffcbdfeb56b54867e9432123538928e305ed20a4e46e39c63870db",
+          "created_at": "2026-10-17T22:54:52Z",
+          "updated_at": "2026-10-17T22:54:52Z",
+          "expires_at": "2027-01-15T22:43:11Z",
+          "workflow_run": {
+            "id": 39076203485,
+            "repository_id": 1360560366,
+            "head_repository_id": 1360560366,
+            "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+            "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b"
+          }
+        }
+      ]
+    },
+    {
+      "run": {
+        "id": 39076206173,
+        "name": "Architecture Validation",
+        "node_id": "WFR_kwLOURiA7s8AAAAJGR-WXQ",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+        "path": ".github/workflows/validate.yml",
+        "display_title": "WP-036: vollständige deutsche Textbibliothek für alle 240 Meldungen",
+        "run_number": 247,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "workflow_id": 357319394,
+        "check_suite_id": 105896706932,
+        "check_suite_node_id": "CS_kwDOURiA7s8AAAAYp--DdA",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173",
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/31",
+            "id": 4902846589,
+            "number": 31,
+            "head": {
+              "ref": "codex/wp-036-vollstaendige-textbibliothek",
+              "sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            },
+            "base": {
+              "ref": "main",
+              "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            }
+          }
+        ],
+        "created_at": "2026-10-17T22:43:13Z",
+        "updated_at": "2026-10-17T22:43:42Z",
+        "actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [],
+        "run_started_at": "2026-10-17T22:43:13Z",
+        "triggering_actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/jobs",
+        "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/logs",
+        "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/105896706932",
+        "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/artifacts",
+        "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/cancel",
+        "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/357319394",
+        "head_commit": {
+          "id": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "tree_id": "49dd2380effea732e8e1911013127633cc1d753c",
+          "message": "fix(review): remove trailing whitespace without altering QC verdicts",
+          "timestamp": "2026-10-17T22:43:08Z",
+          "author": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        },
+        "head_repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 117523768694,
+          "run_id": 39076206173,
+          "workflow_name": "Architecture Validation",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZldg",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523768694",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206173/job/117523768694",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:13Z",
+          "started_at": "2026-10-17T22:43:15Z",
+          "completed_at": "2026-10-17T22:43:41Z",
+          "name": "validate",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:43:16Z"
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:43:19Z"
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:19Z",
+              "completed_at": "2026-10-17T22:43:25Z"
+            },
+            {
+              "name": "Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:25Z",
+              "completed_at": "2026-10-17T22:43:30Z"
+            },
+            {
+              "name": "Gepinnte Validator-Abhängigkeiten installieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:43:30Z",
+              "completed_at": "2026-10-17T22:43:33Z"
+            },
+            {
+              "name": "Architecture-only-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:43:33Z",
+              "completed_at": "2026-10-17T22:43:34Z"
+            },
+            {
+              "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T22:43:34Z",
+              "completed_at": "2026-10-17T22:43:35Z"
+            },
+            {
+              "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:43:35Z",
+              "completed_at": "2026-10-17T22:43:35Z"
+            },
+            {
+              "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T22:43:35Z",
+              "completed_at": "2026-10-17T22:43:37Z"
+            },
+            {
+              "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-17T22:43:37Z",
+              "completed_at": "2026-10-17T22:43:38Z"
+            },
+            {
+              "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-17T22:43:38Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            },
+            {
+              "name": "Post Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-10-17T22:43:39Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            },
+            {
+              "name": "Post Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-10-17T22:43:39Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-10-17T22:43:39Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-10-17T22:43:39Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-10-17T22:43:39Z",
+              "completed_at": "2026-10-17T22:43:39Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523768694",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001929,
+          "runner_name": "GitHub Actions 1000001929",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        }
+      ],
+      "artifacts": []
+    },
+    {
+      "run": {
+        "id": 39076206176,
+        "name": "Unity CI",
+        "node_id": "WFR_kwLOURiA7s8AAAAJGR-WYA",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+        "path": ".github/workflows/unity.yml",
+        "display_title": "WP-036: vollständige deutsche Textbibliothek für alle 240 Meldungen",
+        "run_number": 214,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "workflow_id": 362942037,
+        "check_suite_id": 105896706953,
+        "check_suite_node_id": "CS_kwDOURiA7s8AAAAYp--DiQ",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+        "pull_requests": [
+          {
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/31",
+            "id": 4902846589,
+            "number": 31,
+            "head": {
+              "ref": "codex/wp-036-vollstaendige-textbibliothek",
+              "sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            },
+            "base": {
+              "ref": "main",
+              "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+              "repo": {
+                "id": 1360560366,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                "name": "Stammstrecken-Puzzle"
+              }
+            }
+          }
+        ],
+        "created_at": "2026-10-17T22:43:13Z",
+        "updated_at": "2026-10-17T22:47:31Z",
+        "actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "run_attempt": 1,
+        "referenced_workflows": [],
+        "run_started_at": "2026-10-17T22:43:13Z",
+        "triggering_actor": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/jobs",
+        "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/logs",
+        "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/105896706953",
+        "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/artifacts",
+        "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/cancel",
+        "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/rerun",
+        "previous_attempt_url": null,
+        "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/362942037",
+        "head_commit": {
+          "id": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "tree_id": "49dd2380effea732e8e1911013127633cc1d753c",
+          "message": "fix(review): remove trailing whitespace without altering QC verdicts",
+          "timestamp": "2026-10-17T22:43:08Z",
+          "author": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "Al1l1l1l1l1",
+            "email": "2.68204362e+08+Al1l1l1l1l1@users.noreply.github.com"
+          }
+        },
+        "repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        },
+        "head_repository": {
+          "id": 1360560366,
+          "node_id": "R_kgDOURiA7g",
+          "name": "Stammstrecken-Puzzle",
+          "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "private": false,
+          "owner": {
+            "login": "Al1l1l1l1l1",
+            "id": 268204362,
+            "node_id": "U_kgDOD_x5Sg",
+            "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Al1l1l1l1l1",
+            "html_url": "https://github.com/Al1l1l1l1l1",
+            "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+            "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+            "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+            "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+            "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "description": "Stammstrecken-Puzzle",
+          "fork": false,
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+          "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+          "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+          "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+          "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+          "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+          "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+          "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+          "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+          "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+          "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+          "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+          "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+          "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+          "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+        }
+      },
+      "jobs": [
+        {
+          "id": 117523768904,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZmSA",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523768904",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523768904",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:14Z",
+          "started_at": "2026-10-17T22:43:15Z",
+          "completed_at": "2026-10-17T22:44:46Z",
+          "name": "unity-environment-linux",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:43:16Z"
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:44:40Z"
+            },
+            {
+              "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:44:40Z",
+              "completed_at": "2026-10-17T22:44:41Z"
+            },
+            {
+              "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:44:41Z",
+              "completed_at": "2026-10-17T22:44:44Z"
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:44:44Z",
+              "completed_at": "2026-10-17T22:44:44Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-17T22:44:44Z",
+              "completed_at": "2026-10-17T22:44:44Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523768904",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001934,
+          "runner_name": "GitHub Actions 1000001934",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523769021,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZmvQ",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523769021",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523769021",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:14Z",
+          "started_at": "2026-10-17T22:43:16Z",
+          "completed_at": "2026-10-17T22:47:31Z",
+          "name": "unity-environment-android",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:43:17Z"
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:44:55Z"
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:44:55Z",
+              "completed_at": "2026-10-17T22:47:28Z"
+            },
+            {
+              "name": "Editor-Start und Android-Toolchain im Container prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:47:28Z",
+              "completed_at": "2026-10-17T22:47:29Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:47:29Z",
+              "completed_at": "2026-10-17T22:47:29Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523769021",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001933,
+          "runner_name": "GitHub Actions 1000001933",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523769025,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZmwQ",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523769025",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523769025",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:14Z",
+          "started_at": "2026-10-17T22:43:22Z",
+          "completed_at": "2026-10-17T22:46:11Z",
+          "name": "unity-environment-ios",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:23Z",
+              "completed_at": "2026-10-17T22:43:24Z"
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:24Z",
+              "completed_at": "2026-10-17T22:45:59Z"
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 3,
+              "started_at": "2026-10-17T22:45:59Z",
+              "completed_at": "2026-10-17T22:45:59Z"
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4,
+              "started_at": "2026-10-17T22:45:59Z",
+              "completed_at": "2026-10-17T22:45:59Z"
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:45:59Z",
+              "completed_at": "2026-10-17T22:46:01Z"
+            },
+            {
+              "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:46:01Z",
+              "completed_at": "2026-10-17T22:46:02Z"
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-17T22:46:02Z",
+              "completed_at": "2026-10-17T22:46:07Z"
+            },
+            {
+              "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-17T22:46:07Z",
+              "completed_at": "2026-10-17T22:46:08Z"
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-10-17T22:46:08Z",
+              "completed_at": "2026-10-17T22:46:08Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-10-17T22:46:08Z",
+              "completed_at": "2026-10-17T22:46:09Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523769025",
+          "labels": [
+            "macos-15"
+          ],
+          "runner_id": 1000001930,
+          "runner_name": "GitHub Actions 1000001930",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523769042,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZm0g",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523769042",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523769042",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:14Z",
+          "started_at": "2026-10-17T22:43:16Z",
+          "completed_at": "2026-10-17T22:43:19Z",
+          "name": "unity-config",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:43:17Z"
+            },
+            {
+              "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:43:17Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:17Z",
+              "completed_at": "2026-10-17T22:43:17Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523769042",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001931,
+          "runner_name": "GitHub Actions 1000001931",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523769062,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPZm5g",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523769062",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523769062",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:14Z",
+          "started_at": "2026-10-17T22:43:15Z",
+          "completed_at": "2026-10-17T22:43:30Z",
+          "name": "project-preflight",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:43:16Z"
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:16Z",
+              "completed_at": "2026-10-17T22:43:19Z"
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:19Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Unity-Versionspin und Projektartefakte prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Explizite QA-Identitaeten vor Unity pruefen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-17T22:43:27Z",
+              "completed_at": "2026-10-17T22:43:27Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523769062",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001932,
+          "runner_name": "GitHub Actions 1000001932",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523819103,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPcqXw",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523819103",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523819103",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-17T22:43:30Z",
+          "started_at": "2026-10-17T22:43:32Z",
+          "completed_at": "2026-10-17T22:43:36Z",
+          "name": "unity-evidence-guard",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-17T22:43:33Z",
+              "completed_at": "2026-10-17T22:43:33Z"
+            },
+            {
+              "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 2,
+              "started_at": "2026-10-17T22:43:33Z",
+              "completed_at": "2026-10-17T22:43:33Z"
+            },
+            {
+              "name": "Unity-Nachweiskonfiguration vorhanden",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-17T22:43:33Z",
+              "completed_at": "2026-10-17T22:43:33Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-17T22:43:33Z",
+              "completed_at": "2026-10-17T22:43:33Z"
+            }
+          ],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523819103",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 1000001935,
+          "runner_name": "GitHub Actions 1000001935",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions"
+        },
+        {
+          "id": 117523819618,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPcsYg",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523819618",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523819618",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-10-17T22:43:30Z",
+          "started_at": "2026-10-17T22:43:30Z",
+          "completed_at": "2026-10-17T22:43:35Z",
+          "name": "unity-compile-editmode",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523819618",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": 0,
+          "runner_name": "",
+          "runner_group_id": 0,
+          "runner_group_name": ""
+        },
+        {
+          "id": 117523836835,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPdvow",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523836835",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523836835",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-10-17T22:43:36Z",
+          "started_at": "2026-10-17T22:43:36Z",
+          "completed_at": "2026-10-17T22:43:35Z",
+          "name": "unity-playmode-bootstrap-smoke",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523836835",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 117523837081,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPdwmQ",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523837081",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523837081",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-10-17T22:43:36Z",
+          "started_at": "2026-10-17T22:43:36Z",
+          "completed_at": "2026-10-17T22:43:35Z",
+          "name": "unity-ios-export",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523837081",
+          "labels": [
+            "macos-15"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        },
+        {
+          "id": 117523837176,
+          "run_id": 39076206176,
+          "workflow_name": "Unity CI",
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176",
+          "run_attempt": 1,
+          "node_id": "CR_kwDOURiA7s8AAAAbXPdw-A",
+          "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117523837176",
+          "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39076206176/job/117523837176",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-10-17T22:43:36Z",
+          "started_at": "2026-10-17T22:43:36Z",
+          "completed_at": "2026-10-17T22:43:35Z",
+          "name": "unity-android-development-il2cpp",
+          "steps": [],
+          "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117523837176",
+          "labels": [
+            "ubuntu-24.04"
+          ],
+          "runner_id": null,
+          "runner_name": null,
+          "runner_group_id": null,
+          "runner_group_name": null
+        }
+      ],
+      "artifacts": []
+    }
+  ],
+  "all_four_runs_success": false,
+  "all_jobs_success": false,
+  "jobs_total": 22,
+  "independent_log_artifact_qc": "PENDING_SEPARATE_REVIEW",
+  "boundaries": "Actual GitHub regular workflow/job states only; no runtime import or product/legal/release approval."
+}

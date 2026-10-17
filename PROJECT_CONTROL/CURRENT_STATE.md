@@ -1,3 +1,15 @@
+## WP-036 – Copy-Nacharbeit vollständig abgeschlossen, 18.10.2026
+
+**Aktueller eigener Status: gesamte verankerte Copy-Nacharbeit umgesetzt, unabhängig geprüft und kreativ angenommen (WP-036-CREATIVE-02); keine weitere Textproduktion oder Copykorrektur innerhalb dieses Scopes offen.** Genau 110 bestehende Einträge / 120 Copy-Felder (109 text / 11 shortText), 1.298 ganze Einträge und alle anderen Properties unverändert. Geschützte 240 Titel / 240 INTERNAL / 308 UI / 70 BLOCKED_PRODUCT erhalten. Finaler Source-SHA256 `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`, geprüfter Freeze `89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b`.
+
+[Abschlussübergabe für den Koordinator](../Content/Reviews/text-library/WP-036/COPY_REWORK_HANDOVER.md), [kreative Restannahme](../Content/Reviews/text-library/WP-036/CREATIVE_FINAL_DECISION.md), [vollständiger Quellaudit](../Content/Reviews/text-library/WP-036/COPY_CHANGE_AUDIT.json). Alle 120 Änderungen wurden unabhängig nachgelesen. HIGH-01 im einzigen Kurzstatus ist behoben und gesondert bestätigt; der formale Berichtbefund FINAL-TECH-01 ist durch einen frischen Scope-/Diff-PASS geschlossen. Historische FAILs bleiben nachvollziehbare Historie.
+
+**Neue tatsächliche CI:** Beide Architecture-Läufe (39076203467/39076206173) und der vollständige Unity-Push 39076203485 mit allen zehn Jobs SUCCESS. Der separate Unity-PR 39076206176 ist CANCELLED; ausdrücklich kein vollständiger PR-PASS und kein „22 Checks PASS“. Der vollständige unabhängige CI-Evidenznachweis liegt in COPY_CI_QC.md.
+
+**Letzter Schritt:** komplette Copy-Korrektur und gebundene Abschlussnachweise. **Nächster Koordinationsschritt:** keine Textneuproduktion; den tatsächlichen PR-/Integrationsnachlauf gemäß bestehendem Verfahren klären. Main-Merge nicht ausgeführt und nicht autorisiert. Die eigene nachgelagerte CI eines reinen Abschlussdokumentationscommits wird am PR separat mit tatsächlichem Commit/Status ausgewiesen, nicht vorab als PASS bezeichnet.
+
+Alle 1.408 Einträge bleiben DRAFT. Ausdrückliche Owner-/Produkt-/Import-/Rechts-/Releaseannahme und sämtliche Fremdgates bleiben offen. Manifest, WP-Definition und AK unverändert; keine Fremdscope-/Prioritätsänderung. Die folgenden früheren Statusabschnitte sind Historie, keine neue Inhaltslücke.
+
 ## WP-036 – Letzter unabhängiger Kreativbefund korrigiert, 18.10.2026
 
 HIGH-01 aus COPY_CREATIVE_QC.md (Freeze c7683ea) ist ausschließlich im bereits freigegebenen Kurzstatus `level.s1.04.03.07.status` korrigiert: „Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.“. Alle 119 anderen Copy-Felder bleiben unverändert. Neuer Source-SHA256 `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`. Historische unabhängige Prüfung: kreativ 119/120 angenommen, ein HIGH; technische DRAFT-/Scope-QC PASS. **Jetzt:** neue schmale kreative Nachprüfung dieses Lang-/Kurzstatuskontexts, frische technische Freeze-/Artefaktprüfung und tatsächliche neue reguläre CI ausstehend. Kein Gesamt-PASS, keine Owner-/Produkt-/Import-/Rechts-/Releasefreigabe oder Main-Integration vorweggenommen.

@@ -1,3 +1,7 @@
+# Aktueller Abschluss der WP-036-Copy-Nacharbeit – 18.10.2026
+
+**Alle verankerten Copy-Korrekturen sind umgesetzt, unabhängig geprüft und kreativ angenommen.** [Abschlussübergabe für den Koordinator](COPY_REWORK_HANDOVER.md), [kreative Restannahme](CREATIVE_FINAL_DECISION.md), [unabhängiger CI-Evidenzschluss](COPY_CI_QC.md). 110 Keys / 120 Copy-Felder; keine weitere Textproduktion offen. Beide Architecture-Läufe und vollständiger Unity-Push am finalen Freeze SUCCESS; separater Unity-PR cancelled und kein vollständiger PR-PASS. DRAFT-/Produkt-/Import-/Rechts-/Releasegrenzen und Integrationsnachlauf bleiben getrennt offen. Frühere „noch offen“- und FAIL-Formulierungen unten sind ausschließlich standgebundene Historie.
+
 ## Aktueller korrigierter Finalfreeze – 18.10.2026
 
 Einziger Kreativbefund HIGH-01 im Kurzstatus S1-04-03-07 behoben; die anderen 119 Copy-Felder unverändert. Neuer Source-SHA256 `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`. Frische eigene Prüfungen PASS; neue unabhängige Restprüfung und reguläre CI noch offen. Die unten genannten alten Source-/Prüfstände sind Historie, keine aktuelle PASS-Übertragung.
