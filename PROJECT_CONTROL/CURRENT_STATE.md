@@ -1,3 +1,11 @@
+## WP-036 – Vollständige Textbibliothek, 17.10.2026
+
+Der ausdrücklich beauftragte bestehende Manus-Produktionsblock ist unter eigenem prospektivem WP-036 auf main d90e798 verankert; gemeinsame korrigierte unveröffentlichte Erstverankerung 213065f, unverändertes production-Manifest, eigene Branch codex/wp-036-vollstaendige-textbibliothek. Keine fremden WPs integriert. Frisch gelesene Fremdstände: WP-026/PR21 dc1652b und WP-035/PR30 9e3f209, beide weiterhin Draft/offen. Ownerstil Cartoon/Comic, plump-staubig-behördenhaft und glasklare Deutsche-Bahn-Anspielung ist als Textleitplanke erhalten; keine grafische Arbeit oder Annahme der konkreten Asset-Bible.
+
+Tatsächlich geliefert: 1.408 de-DE-DRAFT-Einträge in Content/Localization/source/de-DE.json, darunter 240 individuelle Meldungen mit allen **960/960** tatsächlichen Textreferenzen, 85 Kampagnen-, 308 UI-Texte und 55 Varianten. 240 Einstiege sind zwingend INTERNAL, keine automatische Hilfe. 82 Kurzfassungen, 70 wegen offener Produkt-/Katalog-/Darstellungsregeln gesperrte Entwürfe. Alle 240 Inputs/Authoring-/Revieweinstiege mit Bytebindungen; eigener Gesamtchecker inklusive zwölf negativer Mutationen bestanden. Die unabhängige Prüfung und echte reguläre CI werden erst nach tatsächlichem Freeze/Lauf als bestanden dokumentiert.
+
+Letzter Schritt: vollständige Textproduktion und eigene kritische Nacharbeit (elf frühe Ergebnisse, zwanzig späte konkrete Betriebssituationen), kanonische Quell-/Lese-/Prüfstände hergestellt. Nächster Schritt: unabhängige Abschluss-QC und echte reguläre CI am eingefrorenen Lieferstand, anschließend konkrete kreative Ownerbewertung. Vollständige [Übergabe](../Content/Reviews/text-library/WP-036/HANDOVER.md), [Abdeckung](../Content/Reviews/text-library/WP-036/COVERAGE.md). Die 480 Karten-/Zugziele, WP-026-Human-/Zeit-/Gesamtgates, Hint-/Daily-/Endlessblocker, Itemkatalog, UI-Layout/Accessibility, Produkt-/Import-/Rechts-/Release-/Geräte-/Storegates bleiben offen. Kein Main-Merge oder Runtimeimport. Die folgenden Tabellen sind der unveränderte Main-Ausgangsstand, keine neu geprüfte Gesamtfreigabe.
+
 # Aktueller Projektstand
 
 | Feld | Aktueller Stand |

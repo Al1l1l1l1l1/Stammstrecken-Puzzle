@@ -39,8 +39,8 @@ permissions:
   contents: read
 
 env:
-  STP_SCOPE: governance
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-027.governance.scope.json
+  STP_SCOPE: production
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-036.production.scope.json
 
 jobs:
   validate:
@@ -186,6 +186,14 @@ jobs:
           print(f"JCS golden cross-check passed: {len(golden['jcsCases'])} canonicalization cases, {rejected} rejected inputs, "
                 f"{len(golden['hashVectors'])} v2 and {len(golden['legacyHashVectors'])} v1 document vectors reproduced by the Node reference.")
           PY
+
+      - name: Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen
+        run: git fetch --no-tags origin dc1652befd7545b4c2a2dd0580f35a4e8e05d72d
+
+      - name: Vollständige deutsche Textquelle und Negativproben prüfen
+        run: |
+          ../.venv-stp-architecture/bin/python tools/text-library/validate.py --self-test
+          ../.venv-stp-architecture/bin/python tools/text-library/render.py --check
 
       - name: Tatsächlichen PR-Head für Scope-Prüfung auschecken
         if: github.event_name == 'pull_request'

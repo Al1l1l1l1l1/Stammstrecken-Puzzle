@@ -17,7 +17,7 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 | 8 | WP-028 – CI-Referenz-Leistungsnachweis Season-1-Korpus | **Definiert, nicht begonnen** | Nach integrierten WP-027 als eigener Kindbranch von PR-21-Head `d97c39d…`: echter 240er-Proof-/Leistungstest im vorhandenen Unity-EditMode-Job, sieben reale 10×10, vollständiger Korpus unter 60 s mit vier Arbeitern. Unter-PR nur zurück in den offenen WP-026-Zweig; kein Merge nach `main`, keine Content-/Solveränderung. |
 | 9 | Finale Zeitwerte | Nicht begonnen | Nach gebauten, getesteten Rätselinstanzen und menschlicher Kalibrierung. |
 | 10 | Finale Asset-Bible | Nicht begonnen | Wort-/Bildmarke, Icon, Schriftlizenz, Farbwerte, Zugfamilien, Objekte, Motion und Sound. |
-| 11 | Vollständige Textbibliothek | Nicht begonnen | Störungs-, Status-, Hinweis-, Abschluss-, Objekt- und Tagesmeldungen. |
+| 11 | Vollständige Textbibliothek – WP-036 | **Vollständig als DRAFT geliefert; QC/CI und kreative Annahme offen** | 1.408 Einträge, alle 960 tatsächlichen Season-1-Textreferenzen; interne Einstiege getrennt. Eigene zwölf Negativproben bestanden. Offene Produkt-/Katalog-/Import-/Releasegates bleiben erhalten. [Übergabe](../Content/Reviews/text-library/WP-036/HANDOVER.md). |
 | 12 | Finale Zug- und Objektkataloge | Nicht begonnen | Züge, Betriebsobjekte, Preise, Freischaltreihenfolge, Aussehen, Sound und Kartenreaktion. |
 | 13 | Werbefrei-Produkt | Nicht begonnen | Plattformpreis, Kaufwiederherstellung, Consent- und Datenschutzflows. |
 | 14 | Rechtliche Endprüfung | Nicht begonnen | Marken-, Urheber- und Herkunftseindruck durch qualifizierte Rechtsberatung. |

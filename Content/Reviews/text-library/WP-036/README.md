@@ -1,0 +1,40 @@
+# Vollständige Textbibliothek – WP-036
+
+Kanonische deutsche Produktionsquelle: [de-DE.json](../../../Localization/source/de-DE.json). Alle Einträge sind **DRAFT**, nicht produktfreigegeben und nicht in eine Runtime eingebunden. Die Textproduktion umfasst die gesamte beschlossene Season und die entschieden formulierbaren UI-Zustände. Konkrete Restentscheidungen und fremde Contentgates stehen in [HANDOVER.md](HANDOVER.md).
+
+Die Quelle enthält vollständige Nachrichten, keine Textbausteinverkettung. Die ersten 960 Einträge folgen exakt den tatsächlichen WP-026-Keys in der Reihenfolge fünf Netzabschnitte × vier lokale Routen × zwölf Meldungen; je Meldung Titel, Status, interner Einstieg und Ergebnis. Kampagnentexte, Oberflächen und Varianten folgen danach. Eine lokale Route 01–04 wird zusammen mit ihrem Abschnitt identifiziert; die globale Routenposition 01–20 dient nur der redaktionellen Übersicht.
+
+## Quellfelder und Grenzen
+
+| Feld | Bedeutung |
+|---|---|
+| key | Stabiler Lokalisierungsschlüssel. Vorhandene Levelkeys werden unverändert aufgelöst. Neue UI-/Kampagnenkeys bleiben nach ihrer Bedeutung stabil. |
+| text | Vollständiger deutscher Originaltext. |
+| description | Einsatzort und semantische Vorbedingungen. Gehört nicht zur Spieleranzeige. |
+| charLimit | Redaktioneller Längenvorschlag in Unicode-Codepoints der Quellnachricht; kein Pixel-/Zeilen-/Accessibilityvertrag. |
+| shortText | Wo sinnvoll, redaktionelle Kurzfassung mit denselben erlaubten Parametern. Keine Laufzeitauswahl implementiert. |
+| placeholders | Exakt erlaubte Namen und Typen. TEXT ist ein schon freigegebener lokalisierter Anzeigename, kein technischer Diagnosecode oder beliebiger Fremdinhalt. |
+| status | Überall DRAFT. Das eigene Authoringschema erlaubt absichtlich keine versehentliche Produktfreigabe. Eine spätere Freigabe muss durch zuständige Rollen und Produktionsverträge erfolgen. |
+| audience | PLAYER bezeichnet einen vorgesehenen Spielertext; INTERNAL bezeichnet ausschließlich interne Redaktionsinformation. Die 240 .entry-Keys sind zwingend INTERNAL. |
+| availability | DECIDED bedeutet: Funktion beziehungsweise Textaussage konzeptionell entschieden. Es bedeutet weder implementiert noch runtime-verfügbar. BLOCKED_PRODUCT verlangt zusätzlich die benannten Entscheidungen. |
+| blockedBy | Konkrete offene Produkt-/Darstellungs-/Katalogvoraussetzungen. Keine hier bestätigten Regeln. |
+| charLimitStatus | Überall EDITORIAL_PROPOSAL. Spätere Layout- und Accessibilityannahme erforderlich. |
+
+INTEGER-Parameter werden als nichtnegative deutsche Ganzzahlen dargestellt. FORMATTED_POINTS, FORMATTED_DURATION und FORMATTED_PRICE verlangen eine bereits korrekt für de-DE formatierte Darstellung durch die künftige Präsentationsgrenze. Die Bibliothek wählt keine Timerpräzision, Währungsregion, Zeitzone oder Storepreis. Kein Formatierungsadapter ist implementiert. Randzahlparameter für Spieler sind 1-basiert; interne Level-/Reviewkoordinaten bleiben 0-basiert. Parametrisierte UI-Nachrichten benötigen einen bestätigten Zustands-/Rewardrecord und sind keine eigene Preis- oder Rewardautorität.
+
+Kein zukünftiger Import darf die Quellliste ungefiltert als sichtbare Texte behandeln. INTERNAL muss außerhalb des Spielerexports bleiben. DRAFT und offene blockedBy-Voraussetzungen sind keine Runtimefreigabe. Eine mögliche spätere Status-/Importabbildung ist Teil des vorhandenen Produktionsverfahrens; dieses WP erzeugt weder Unity String Tables noch einen Importer. Die Variante .entry ist keine automatische Hilfe. Die separaten ui.hint.template-Entwürfe sind nur nach aktiver Anfrage und geprüftem Hintpayload vorgesehen und bleiben gesperrt.
+
+## Prüfung und Lesefassungen
+
+- [READING_EDITION.md](READING_EDITION.md): vollständige prüfbare Lesefassung sämtlicher Texte, reproduzierbar aus der einzigen kanonischen JSON-Quelle.
+- [COVERAGE.md](COVERAGE.md): genaue Bestände, Flächen, Referenzabdeckung und Abnahmegrenzen.
+- [source-bindings.json](source-bindings.json): alle 240 ID-/Key-/Level-/Reviewbytebindungen, Originaleinstieg, eigener Einstiegshash, öffentliche Fakten und individuell redaktionelle Notiz.
+- [EDITORIAL_RULES.md](EDITORIAL_RULES.md): konkrete Tonregeln mit Positiv-/Negativbeispielen.
+- [EDITORIAL_REVIEW.md](EDITORIAL_REVIEW.md): kritische Eigenprüfung, konkrete Stichprobe und Wiederholungsbewertung.
+- [technical-validation.json](technical-validation.json): tatsächlicher vollständiger Prüflauf und erkannte Negativmutationen.
+- [repetition-report.json](repetition-report.json): alle exakten Doppelungen, wiederkehrenden Sätze und häufigen Fünfwortfolgen als Prüfmaterial, kein automatisches Qualitätsurteil.
+- [pseudolocale.json](pseudolocale.json): Akzente und 35% Expansion bei erhaltenen Platzhaltern, nur Layoutprüfmaterial.
+- [existing-key-inventory.json](existing-key-inventory.json): sämtliche gefundenen Main-Schlüssel; isolierte Fixture-/Testkeys getrennt.
+- [QC.md](QC.md): gesonderte unabhängige Prüfung am tatsächlichen Freeze, soweit tatsächlich durchgeführt.
+
+Reproduzierbarer Aufruf und Prüfumfang: [tools/text-library/README.md](../../../../tools/text-library/README.md). Der fremde WP-026-Commit wird ausschließlich als gepinnte Gitobjektquelle gelesen; seine Level, Proofs und Reports werden nicht in diesen Lieferbaum integriert. Der alte fremde FAIL-/Referenzbericht bleibt unverändert. Die eigene Abdeckung liefert tatsächliche Textquellen für 960 Ziele, ersetzt aber keine ganze Cross-Reference-, Import-, Produkt- oder Releaseprüfung.
