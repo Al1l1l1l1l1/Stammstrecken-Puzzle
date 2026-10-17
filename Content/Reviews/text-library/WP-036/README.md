@@ -4,6 +4,10 @@ Kanonische deutsche Produktionsquelle: [de-DE.json](../../../Localization/source
 
 Die Quelle enthält vollständige Nachrichten, keine Textbausteinverkettung. Die ersten 960 Einträge folgen exakt den tatsächlichen WP-026-Keys in der Reihenfolge fünf Netzabschnitte × vier lokale Routen × zwölf Meldungen; je Meldung Titel, Status, interner Einstieg und Ergebnis. Kampagnentexte, Oberflächen und Varianten folgen danach. Eine lokale Route 01–04 wird zusammen mit ihrem Abschnitt identifiziert; die globale Routenposition 01–20 dient nur der redaktionellen Übersicht.
 
+## Aktuelle kreative Entscheidung – 17.10.2026
+
+Die [Geschäftsführerentscheidung WP-036-CREATIVE-01](CREATIVE_DECISION.md) nimmt 1.298 Einträge kreativ unverändert an und beauftragt gezielte Nacharbeit an 110 bestehenden Keys mit 109 text-/11 shortText-Feldern. [Nacharbeitsbrief](CORRECTION_BRIEF.md), [abschließender Eigenschaftsscope](CREATIVE_SCOPE.json) und [vollständiger Lektüreumfang](CREATIVE_READING_RECORD.json) sind ohne Chat übernehmbar. Die Textquelle bleibt bytegleich zu f217ccbd; Nacharbeit noch nicht begonnen. Alle DRAFT-/INTERNAL-/BLOCKED_PRODUCT-Grenzen bleiben erhalten; keine behauptete Owner-, Produkt-, Import- oder Releasefreigabe. Die frühere allgemeine Aufforderung zur erstmaligen kreativen Bewertung ist damit für WP-036 erledigt; als nächster eigener fachlicher Schritt folgt nur die dokumentierte Nacharbeit und ihre Restannahme.
+
 ## Quellfelder und Grenzen
 
 | Feld | Bedeutung |
