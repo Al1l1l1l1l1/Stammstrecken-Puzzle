@@ -1,0 +1,469 @@
+{
+  "kind": "WP-035 Eigenprüfung der dokumentarischen Lieferung",
+  "notIndependentApproval": true,
+  "baseCommit": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+  "filesChecked": [
+    "01_Marke_und_App-Icon.md",
+    "02_Typografie_und_Farben.md",
+    "03_UI_und_Puzzlebausteine.md",
+    "04_Zuege_Lackierungen_und_Betriebsobjekte.md",
+    "05_Welt_und_Kartenmaterial.md",
+    "06_Motion_und_Sound.md",
+    "07_Produktionsinventar_und_Uebergabe.md",
+    "README.md",
+    "build_references.py",
+    "evidence/COVERAGE_MATRIX.md",
+    "evidence/DESIGN_CONSISTENCY_AND_VALIDATION.md",
+    "evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md",
+    "evidence/architecture-initial-fail.log",
+    "evidence/architecture-local-pass.log",
+    "evidence/asset-requirements.csv",
+    "evidence/delivery-validation.json",
+    "evidence/file-manifest.json",
+    "evidence/font-license-original.txt",
+    "evidence/font-license-original.zip",
+    "evidence/font-provenance.md",
+    "evidence/render-results.json",
+    "evidence/vehicle-image-brief.md",
+    "evidence/world-image-brief.md",
+    "references/01-brand.html",
+    "references/01-brand.png",
+    "references/02-type-color.html",
+    "references/02-type-color.png",
+    "references/03-puzzle.html",
+    "references/03-puzzle.png",
+    "references/04-screens.html",
+    "references/04-screens.png",
+    "references/05-vehicles-construction.html",
+    "references/05-vehicles-construction.png",
+    "references/05-vehicles-props.png",
+    "references/06-world-construction.html",
+    "references/06-world-construction.png",
+    "references/06-worlds.png",
+    "references/07-route-map.html",
+    "references/07-route-map.png",
+    "references/08-motion-audio.html",
+    "references/08-motion-audio.png",
+    "references/Fonts/IBMPlexSans-Regular.ttf",
+    "references/Fonts/IBMPlexSans-SemiBold.ttf",
+    "references/Fonts/IBMPlexSansCondensed-SemiBold.ttf",
+    "references/app-icon.svg",
+    "references/brand-symbol.svg",
+    "references/design-tokens.json",
+    "references/track-shapes.svg",
+    "validate_delivery.py"
+  ],
+  "images": [
+    {
+      "path": "references/01-brand.png",
+      "width": 2880,
+      "height": 2348,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/02-type-color.png",
+      "width": 2880,
+      "height": 3610,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/03-puzzle.png",
+      "width": 2880,
+      "height": 3296,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/04-screens.png",
+      "width": 2880,
+      "height": 3402,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/05-vehicles-construction.png",
+      "width": 2880,
+      "height": 2556,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/05-vehicles-props.png",
+      "width": 2560,
+      "height": 1440,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/06-world-construction.png",
+      "width": 2880,
+      "height": 2290,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/06-worlds.png",
+      "width": 2560,
+      "height": 1440,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/07-route-map.png",
+      "width": 2880,
+      "height": 4366,
+      "mode": "RGB"
+    },
+    {
+      "path": "references/08-motion-audio.png",
+      "width": 2880,
+      "height": 3732,
+      "mode": "RGB"
+    }
+  ],
+  "fonts": [
+    {
+      "path": "references/Fonts/IBMPlexSans-Regular.ttf",
+      "sha256": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5",
+      "germanGlyphsPresent": true
+    },
+    {
+      "path": "references/Fonts/IBMPlexSans-SemiBold.ttf",
+      "sha256": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1",
+      "germanGlyphsPresent": true
+    },
+    {
+      "path": "references/Fonts/IBMPlexSansCondensed-SemiBold.ttf",
+      "sha256": "acc2b1e3b9597ee13b08b767f845bd038fe120cbee806859af7c01b60fe6e9e6",
+      "germanGlyphsPresent": true
+    }
+  ],
+  "inventoryRows": 40,
+  "countFixtures": [
+    {
+      "size": 4,
+      "axis": "column",
+      "index": 0,
+      "occupancy": 2,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 4,
+      "axis": "column",
+      "index": 1,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    },
+    {
+      "size": 4,
+      "axis": "column",
+      "index": 2,
+      "occupancy": 2,
+      "target": 1,
+      "state": "over"
+    },
+    {
+      "size": 4,
+      "axis": "column",
+      "index": 3,
+      "occupancy": 0,
+      "target": 1,
+      "state": "open"
+    },
+    {
+      "size": 4,
+      "axis": "row",
+      "index": 0,
+      "occupancy": 2,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 4,
+      "axis": "row",
+      "index": 1,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    },
+    {
+      "size": 4,
+      "axis": "row",
+      "index": 2,
+      "occupancy": 1,
+      "target": 0,
+      "state": "over"
+    },
+    {
+      "size": 4,
+      "axis": "row",
+      "index": 3,
+      "occupancy": 1,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 0,
+      "occupancy": 1,
+      "target": 6,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 1,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 2,
+      "occupancy": 1,
+      "target": 4,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 3,
+      "occupancy": 1,
+      "target": 0,
+      "state": "over"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 4,
+      "occupancy": 0,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 5,
+      "occupancy": 0,
+      "target": 0,
+      "state": "exact"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 6,
+      "occupancy": 1,
+      "target": 7,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 7,
+      "occupancy": 0,
+      "target": 4,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 8,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    },
+    {
+      "size": 10,
+      "axis": "column",
+      "index": 9,
+      "occupancy": 0,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 0,
+      "occupancy": 1,
+      "target": 4,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 1,
+      "occupancy": 0,
+      "target": 0,
+      "state": "exact"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 2,
+      "occupancy": 1,
+      "target": 0,
+      "state": "over"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 3,
+      "occupancy": 0,
+      "target": 2,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 4,
+      "occupancy": 1,
+      "target": 6,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 5,
+      "occupancy": 0,
+      "target": 1,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 6,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 7,
+      "occupancy": 1,
+      "target": 4,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 8,
+      "occupancy": 0,
+      "target": 3,
+      "state": "open"
+    },
+    {
+      "size": 10,
+      "axis": "row",
+      "index": 9,
+      "occupancy": 1,
+      "target": 1,
+      "state": "exact"
+    }
+  ],
+  "contrastChecks": [
+    {
+      "foreground": "ink",
+      "background": "paper",
+      "calculated": 15.1298,
+      "documented": 15.13
+    },
+    {
+      "foreground": "ink",
+      "background": "surface",
+      "calculated": 13.5318,
+      "documented": 13.53
+    },
+    {
+      "foreground": "paper",
+      "background": "ink",
+      "calculated": 15.1298,
+      "documented": 15.13
+    },
+    {
+      "foreground": "paper",
+      "background": "brand-red",
+      "calculated": 4.9889,
+      "documented": 4.99
+    },
+    {
+      "foreground": "brand-red",
+      "background": "paper",
+      "calculated": 4.9889,
+      "documented": 4.99
+    },
+    {
+      "foreground": "paper",
+      "background": "empty-red",
+      "calculated": 6.1937,
+      "documented": 6.19
+    },
+    {
+      "foreground": "paper",
+      "background": "track-brown",
+      "calculated": 6.4247,
+      "documented": 6.42
+    },
+    {
+      "foreground": "ink",
+      "background": "selection-yellow",
+      "calculated": 9.4406,
+      "documented": 9.44
+    },
+    {
+      "foreground": "selection-edge",
+      "background": "paper",
+      "calculated": 6.9692,
+      "documented": 6.97
+    },
+    {
+      "foreground": "empty-red",
+      "background": "surface",
+      "calculated": 5.5396,
+      "documented": 5.54
+    },
+    {
+      "foreground": "track-brown",
+      "background": "surface",
+      "calculated": 5.7461,
+      "documented": 5.75
+    },
+    {
+      "foreground": "assumption-gray",
+      "background": "paper",
+      "calculated": 4.3112,
+      "documented": 4.31
+    },
+    {
+      "foreground": "assumption-gray",
+      "background": "surface",
+      "calculated": 3.8559,
+      "documented": 3.86
+    },
+    {
+      "foreground": "selection-edge",
+      "background": "selection-yellow",
+      "calculated": 4.3486,
+      "documented": 4.35
+    },
+    {
+      "foreground": "brand-red",
+      "background": "surface",
+      "calculated": 4.462,
+      "documented": 4.46
+    },
+    {
+      "foreground": "selection-yellow",
+      "background": "paper",
+      "calculated": 1.6026,
+      "documented": 1.6
+    },
+    {
+      "foreground": "grid-line",
+      "background": "paper",
+      "calculated": 1.5543,
+      "documented": 1.55
+    }
+  ],
+  "protectedSourceChanges": [],
+  "errors": [],
+  "passed": true
+}

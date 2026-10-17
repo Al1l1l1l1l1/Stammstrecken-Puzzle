@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WP-035 – Puzzlebausteine</title>
+<style>
+@font-face{font-family:Plex;src:url('Fonts/IBMPlexSans-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Plex;src:url('Fonts/IBMPlexSans-SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+:root{--brand-red:#C83D45;--surface:#F4F2EE;--paper:#FFFFFF;--ink:#20272C;--track-brown:#805535;--assumption-gray:#727B82;--empty-red:#B42E39;--selection-yellow:#F1C84B;--selection-edge:#6C5717;--grid-line:#CCD0D1}
+*{box-sizing:border-box} body{margin:0;background:var(--surface);color:var(--ink);font-family:Plex;font-size:14px;line-height:1.35}.page{max-width:1260px;margin:auto;padding:28px 32px 52px}.eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--brand-red);text-transform:uppercase}.title{font-size:30px;line-height:1.1;margin:6px 0 8px;font-weight:600}.note{max-width:860px;margin:0 0 24px;color:var(--assumption-gray)}.panels{display:grid;grid-template-columns:1.02fr .98fr;gap:18px}.panel{background:var(--paper);border:1px solid var(--grid-line);padding:18px}.panel h2{font-size:18px;line-height:1.15;margin:0 0 5px;font-weight:600}.panel h3{font-size:14px;margin:18px 0 8px;font-weight:600}.sub{color:var(--assumption-gray);font-size:12px;margin:0 0 14px}.puzzle-head{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--grid-line);padding-bottom:10px;margin-bottom:13px}.back{font-size:20px;line-height:20px}.head-copy{flex:1}.head-copy b{display:block;font-size:14px}.head-copy span{font-size:12px;color:var(--assumption-gray)}.head-icons{display:flex;gap:8px}.icon-frame{width:30px;height:30px;border:1px solid var(--grid-line);display:grid;place-items:center;background:var(--paper);font-size:17px}.timer{font-variant-numeric:tabular-nums;font-size:12px;color:var(--assumption-gray);margin-left:4px}.fixture-tag{display:inline-block;background:color-mix(in srgb,var(--brand-red) 10%,var(--paper));color:var(--brand-red);font-size:11px;font-weight:600;padding:3px 6px;margin-bottom:10px}.grid-shell{display:grid;grid-template-columns:28px auto;grid-template-rows:25px auto;position:relative;justify-content:center;padding:5px 24px 19px}.top-counts{grid-column:2;display:grid;grid-template-columns:repeat(4,72px);align-items:end;text-align:center;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}.side-counts{grid-row:2;display:grid;grid-template-rows:repeat(4,72px);align-items:center;text-align:center;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}.grid4{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(4,72px);grid-template-rows:repeat(4,72px);border-top:1px solid var(--grid-line);border-left:1px solid var(--grid-line);position:relative}.cell{position:relative;background:var(--paper);border-right:1px solid var(--grid-line);border-bottom:1px solid var(--grid-line)}.cell.selected{background:color-mix(in srgb,var(--selection-yellow) 38%,var(--paper));outline:2px solid var(--selection-edge);outline-offset:-3px;z-index:1}.cell.multi::after{content:'';position:absolute;inset:7px;border:1px dashed var(--selection-edge);pointer-events:none}.port{position:absolute;width:25px;height:25px;border-radius:50%;background:var(--brand-red);color:var(--paper);display:grid;place-items:center;font-size:12px;font-weight:600;z-index:2}.port-a{left:0;top:108px;transform:translate(-100%,-50%)}.port-b{left:100%;top:252px;transform:translate(0,-50%)}.track{width:100%;height:100%;display:block;overflow:visible}.rail{fill:none;stroke:var(--track-brown);stroke-width:18;stroke-linecap:butt;stroke-linejoin:round}.xmark{position:absolute;inset:0;display:grid;place-items:center;color:var(--empty-red);font-size:40px;font-weight:400;line-height:1}.openmark{position:absolute;inset:0;display:grid;place-items:center}.open-stub{width:36%;height:20%;border:0;border-radius:0;position:relative;background:linear-gradient(to bottom,transparent 16%,var(--assumption-gray) 16% 32%,transparent 32% 68%,var(--assumption-gray) 68% 84%,transparent 84%)}.open-stub:after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 8%,var(--assumption-gray) 8% 18%,transparent 18% 45%,var(--assumption-gray) 45% 55%,transparent 55% 82%,var(--assumption-gray) 82% 92%,transparent 92%)}.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.legend span{font-size:11px;color:var(--assumption-gray);text-align:center}.count-strip{display:flex;gap:8px;flex-wrap:wrap}.count-sample{display:flex;align-items:center;gap:8px;border:1px solid var(--grid-line);padding:8px 9px;font-size:12px}.count-number{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}.open{color:var(--ink)}.exact{color:var(--assumption-gray)}.over{color:var(--empty-red)}.tool-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.tool{height:54px;border:1px solid var(--grid-line);background:var(--paper);display:grid;place-items:center;position:relative}.tool.active{background:var(--selection-yellow);border:2px solid var(--selection-edge)}.tool svg{width:37px;height:37px}.tool-label{font-size:10px;display:block;text-align:center;margin-top:4px;color:var(--assumption-gray)}.tool.x-tool{color:var(--empty-red);font-size:30px}.tool.gray-tool .open-stub{width:35%;height:18%;border-width:3px}.tool-action{font-size:23px;color:var(--ink)}.tool-wide{grid-column:span 1}.mini-caption{font-size:11px;color:var(--assumption-gray);margin:7px 0 0}.grid10-shell{display:grid;grid-template-columns:27px auto;grid-template-rows:22px auto;justify-content:center;padding:0 20px 20px}.top10{grid-column:2;display:grid;grid-template-columns:repeat(10,32px);text-align:center;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}.side10{grid-row:2;display:grid;grid-template-rows:repeat(10,32px);align-items:center;text-align:center;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}.grid10{grid-column:2;grid-row:2;width:321px;height:321px;border:1px solid var(--grid-line);position:relative;background-image:linear-gradient(to right,var(--grid-line) 1px,transparent 1px),linear-gradient(to bottom,var(--grid-line) 1px,transparent 1px);background-size:32px 32px;background-color:var(--paper)}.g10cell{position:absolute;width:32px;height:32px}.g10cell.selected{background:color-mix(in srgb,var(--selection-yellow) 38%,var(--paper));outline:2px solid var(--selection-edge);outline-offset:-2px}.g10cell .rail{stroke-width:18}.g10cell .open-stub{border-width:2px}.g10cell .xmark{font-size:22px}.port10{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--brand-red);color:var(--paper);display:grid;place-items:center;font-size:7px;font-weight:600;z-index:2}.port10.a{left:0;top:80px;transform:translate(-100%,-50%)}.port10.b{left:100%;top:272px;transform:translate(0,-50%)}.state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.state-card{border:1px solid var(--grid-line);padding:9px}.state-card .sample-cell.selected{background:color-mix(in srgb,var(--selection-yellow) 38%,var(--paper));outline:2px solid var(--selection-edge);outline-offset:-3px}.state-card .sample-cell.multi:after{content:"";position:absolute;inset:7px;border:1px dashed var(--selection-edge)}.state-card .sample-cell{width:76px;height:76px;border:1px solid var(--grid-line);position:relative;margin:0 auto 7px}.state-card strong{font-size:12px;display:block}.state-card p{font-size:11px;color:var(--assumption-gray);margin:2px 0 0}@media(max-width:900px){.panels{grid-template-columns:1fr}.page{padding:20px}.tool-row{grid-template-columns:repeat(5,1fr)}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="eyebrow">WP-035 · Teil C · statische Konstruktionsreferenz</div>
+  <h1 class="title">Puzzlebausteine und Zustandsseparation</h1>
+  <p class="note">Ansicht nur für die Gestaltungsausarbeitung. Zahlen, Zellbelegungen und Beschriftungen sind Darstellungsfixtures, kein Level, keine Laufzeit und kein Lösungs- oder Richtigkeitsnachweis.</p>
+  <div class="panels">
+    <section class="panel" aria-labelledby="small-title">
+      <h2 id="small-title">4×4 – Lesbarkeitsfixture</h2>
+      <p class="sub">Kopf, A/B-Port, Randzahlen und vier voneinander unabhängige Zellinhalte.</p>
+      <div class="puzzle-head"><div class="back">‹</div><div class="head-copy"><b>STAMMSTRECKE / MELDUNG 01</b><span>Signalstörung · Status bleibt offen</span></div><div class="head-icons"><div class="icon-frame">↶</div><div class="icon-frame">?</div></div><div class="timer">00:18</div></div>
+      <span class="fixture-tag">DARSTELLUNGSFIXTURE · KEINE LÖSUNGSLOGIK</span>
+      <div class="grid-shell">
+        <div class="top-counts"><span class="open">3</span><span class="exact">1</span><span class="over">1</span><span class="open">1</span></div>
+        <div class="side-counts"><span class="open">3</span><span class="exact">1</span><span class="over">0</span><span class="open">3</span></div>
+        <div class="grid4" aria-label="4 mal 4 Raster mit Darstellungszuständen">
+          <div class="port port-a">A</div><div class="port port-b">B</div>
+          <div class="cell"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M50 0V100"/></svg></div>
+          <div class="cell"><span class="xmark">×</span></div>
+          <div class="cell selected"><span class="openmark"><span class="open-stub"></span></span></div>
+          <div class="cell"></div>
+          <div class="cell"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M50 0A50 50 0 0 0 100 50"/></svg></div>
+          <div class="cell"></div><div class="cell selected multi"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M0 50H100"/></svg></div><div class="cell"></div><div class="cell"><span class="xmark">×</span></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"><span class="openmark"><span class="open-stub"></span></span></div><div class="cell"></div>
+        </div>
+      </div>
+      <div class="legend"><span>braun: konkrete Form</span><span>rot: Leerannahme</span><span>grau: Form offen</span><span>gelb: Auswahl</span></div>
+      <h3>Randzahlen sind Mengenfeedback, nicht Lösungsfeedback</h3>
+      <div class="count-strip"><div class="count-sample"><b class="count-number open">3</b><span>offen<br>noch nicht erfüllt</span></div><div class="count-sample"><b class="count-number exact">3</b><span>exakt<br>erfüllt</span></div><div class="count-sample"><b class="count-number over">3</b><span>überschritten<br>objektiv sichtbar</span></div></div>
+    </section>
+
+    <section class="panel" aria-labelledby="parts-title">
+      <h2 id="parts-title">Einzelbausteine</h2>
+      <p class="sub">Zellinhalt und Auswahlkontur werden getrennt aufgebaut; Gelb ersetzt nie die Inhaltsfarbe.</p>
+      <div class="state-grid">
+        <div class="state-card"><div class="sample-cell"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M100 50A50 50 0 0 0 50 100"/></svg></div><strong>Konkretes ES</strong><p>braun; E ↔ S</p></div>
+        <div class="state-card"><div class="sample-cell"><span class="openmark"><span class="open-stub"></span></span></div><strong>Graue Notiz</strong><p>nur Belegung, ohne Richtung</p></div>
+        <div class="state-card"><div class="sample-cell"><span class="xmark">×</span></div><strong>Rotes X</strong><p>optionale Leerannahme</p></div>
+        <div class="state-card"><div class="sample-cell selected"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M0 50A50 50 0 0 0 50 0"/></svg></div><strong>Auswahl auf WN</strong><p>Kontur über Inhalt</p></div>
+        <div class="state-card"><div class="sample-cell selected multi"></div><strong>Mehrfachauswahl</strong><p>Inhalt bleibt noch leer</p></div>
+        <div class="state-card"><div class="sample-cell"></div><strong>Leer</strong><p>vollständig entfernt</p></div>
+      </div>
+      <h3>Werkzeugleiste – alles unmittelbar sichtbar</h3>
+      <div class="tool-row" aria-label="Darstellungsreferenz Werkzeugleiste">
+        <div><div class="tool active"><svg viewBox="0 0 100 100"><path class="rail" d="M50 0V100"/></svg></div><span class="tool-label">NS</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M0 50H100"/></svg></div><span class="tool-label">EW</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M50 0A50 50 0 0 0 100 50"/></svg></div><span class="tool-label">NE</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M100 50A50 50 0 0 0 50 100"/></svg></div><span class="tool-label">ES</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M50 100A50 50 0 0 0 0 50"/></svg></div><span class="tool-label">SW</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M0 50A50 50 0 0 0 50 0"/></svg></div><span class="tool-label">WN</span></div>
+        <div><div class="tool x-tool">×</div><span class="tool-label">X</span></div>
+        <div><div class="tool gray-tool"><span class="open-stub"></span></div><span class="tool-label">offen</span></div>
+        <div><div class="tool tool-action">⌫</div><span class="tool-label">leeren</span></div>
+        <div><div class="tool tool-action">▣</div><span class="tool-label">mehrfach</span></div>
+      </div>
+      <p class="mini-caption">Undo und Hinweis bleiben als Kopfaktionen sichtbar; sie werden nicht als Schienentypen geführt.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="large-title">
+      <h2 id="large-title">10×10 – Dichtefixture</h2>
+      <p class="sub">Gleiche semantische Bausteine bei kleinerem Zellmaß; das Raster bleibt die Hauptfläche.</p>
+      <div class="puzzle-head"><div class="back">‹</div><div class="head-copy"><b>SCHIENENERSATZVERKEHR / MELDUNG 12</b><span>Haltausfall · Darstellungszustände</span></div><div class="head-icons"><div class="icon-frame">↶</div><div class="icon-frame">?</div></div><div class="timer">03:46</div></div>
+      <span class="fixture-tag">10×10 · TEILZUSTÄNDE, KEINE VERSTECKTE STRECKE</span>
+      <div class="grid10-shell">
+        <div class="top10"><span class="open">6</span><span class="exact">1</span><span class="open">4</span><span class="over">0</span><span class="open">3</span><span class="exact">0</span><span class="open">7</span><span class="open">4</span><span class="exact">1</span><span class="open">3</span></div>
+        <div class="side10"><span class="open">4</span><span class="exact">0</span><span class="over">0</span><span class="open">2</span><span class="open">6</span><span class="open">1</span><span class="exact">1</span><span class="open">4</span><span class="open">3</span><span class="exact">1</span></div>
+        <div class="grid10" aria-label="10 mal 10 Raster mit nicht zusammenhängenden Darstellungszuständen">
+          <div class="port10 a">A</div><div class="port10 b">B</div>
+          <div class="g10cell" style="left:64px;top:0"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M50 0V100"/></svg></div>
+          <div class="g10cell" style="left:128px;top:32px"><span class="xmark">×</span></div>
+          <div class="g10cell selected" style="left:192px;top:64px"><span class="openmark"><span class="open-stub"></span></span></div>
+          <div class="g10cell" style="left:32px;top:128px"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M50 0A50 50 0 0 0 100 50"/></svg></div>
+          <div class="g10cell" style="left:224px;top:160px"><span class="xmark">×</span></div>
+          <div class="g10cell" style="left:96px;top:192px"><span class="openmark"><span class="open-stub"></span></span></div>
+          <div class="g10cell" style="left:256px;top:224px"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M100 50A50 50 0 0 0 50 100"/></svg></div>
+          <div class="g10cell selected" style="left:160px;top:256px"><span class="xmark">×</span></div>
+          <div class="g10cell" style="left:0;top:288px"><svg class="track" viewBox="0 0 100 100"><path class="rail" d="M0 50A50 50 0 0 0 50 0"/></svg></div>
+        </div>
+      </div>
+      <h3>Dieselben zehn direkten Werkzeuge</h3>
+      <div class="tool-row" aria-label="Darstellungsreferenz Werkzeugleiste">
+        <div><div class="tool active"><svg viewBox="0 0 100 100"><path class="rail" d="M50 0V100"/></svg></div><span class="tool-label">NS</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M0 50H100"/></svg></div><span class="tool-label">EW</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M50 0A50 50 0 0 0 100 50"/></svg></div><span class="tool-label">NE</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M100 50A50 50 0 0 0 50 100"/></svg></div><span class="tool-label">ES</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M50 100A50 50 0 0 0 0 50"/></svg></div><span class="tool-label">SW</span></div>
+        <div><div class="tool"><svg viewBox="0 0 100 100"><path class="rail" d="M0 50A50 50 0 0 0 50 0"/></svg></div><span class="tool-label">WN</span></div>
+        <div><div class="tool x-tool">×</div><span class="tool-label">X</span></div>
+        <div><div class="tool gray-tool"><span class="open-stub"></span></div><span class="tool-label">offen</span></div>
+        <div><div class="tool tool-action">⌫</div><span class="tool-label">leeren</span></div>
+        <div><div class="tool tool-action">▣</div><span class="tool-label">mehrfach</span></div>
+      </div>
+
+      <p class="mini-caption">Werte und Markierungen dienen ausschließlich der Skalierungs- und Farbprüfung. Aus der Anordnung ist keine gültige Route ableitbar.</p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

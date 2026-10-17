@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stammstrecken-Puzzle — App-icon construction reference.
+     Design recommendation awaiting explicit product and legal approval.
+     The inset information tile prevents a red-square/monogram construction. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Stammstrecken-Puzzle App-Icon</title>
+  <desc id="desc">Verkehrsroter Rundquadrat-Rahmen, warme Informationsfläche und anthrazitfarbener unterbrochener Gleisknoten.</desc>
+  <rect id="outer-field" x="48" y="48" width="928" height="928" rx="216" fill="#C83D45"/>
+  <rect id="information-tile" x="128" y="128" width="768" height="768" rx="156" fill="#F4F2EE"/>
+  <g id="symbol" transform="translate(224 224) scale(6)" fill="none" stroke="#20272C" stroke-width="8" stroke-linecap="square" stroke-linejoin="round">
+    <path id="route-southwest" d="M 12,84 H 32 C 40.837,84 48,76.837 48,68 V 60"/>
+    <path id="route-northeast" d="M 84,12 V 32 C 84,40.837 76.837,48 68,48 H 60"/>
+  </g>
+</svg>

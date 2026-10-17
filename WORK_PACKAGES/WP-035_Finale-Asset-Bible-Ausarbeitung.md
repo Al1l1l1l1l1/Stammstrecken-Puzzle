@@ -59,4 +59,10 @@ Die konkret beauftragte Ausarbeitung und ihre Eigenprüfung sind vollständig un
 
 ## Bearbeitungsstatus
 
-Verankerung vorbereitet; fachliche Ausarbeitung beginnt erst nach gemeinsamem Ankercommit. Ownerfreigabe der neuen Details ausstehend. Kein Merge beauftragt.
+**Fachliche Ausarbeitung geliefert; WP-035 bleibt offen.** Gemeinsamer Erst-Add von WP/Manifest: `ec7ed3aa35c40363b0ccb0842bdb14c3fee28039` mit direkter Eltern-/Manifestbasis `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`; danach fachliche Ausarbeitung im verankerten Dokumentationsscope. Manifest unverändert.
+
+Geliefert: ein zusammenhängender Hauptreport, sieben vollständige Fachkapitel A–G, drei SVG-Konstruktionen, acht statische HTML-Quellen und zehn PNG-Ansichten (acht lokale Renderings plus zwei originale AI-Materialtafeln), drei unveränderte IBM-Plex-Original-TTFs mit gepinnter Herkunft/Lizenz/SHA-256, 40 nachverfolgbare Anforderungen, zwei reproduzierbare Liefer-/Renderingwerkzeuge und konkrete Nachweise. Hauptfundstelle: [vollständige Asset-Bible](../PROJECT_CONTROL/AssetBible/WP-035/README.md). Die AI-Tafeln sind ausdrücklich illustrativ, keine Maß-/Font-/Prop-Master; exakte Konstruktionsquellen liegen separat vor.
+
+Tatsächliche Eigenprüfung: Lieferdateien/Links/HTML-Fontpfade/PNG/SVG/JSON lesbar; drei Originalfont-Hashes und deutsche Glyphen stimmen; 40 eindeutige Inventarzeilen mit vorhandenen Referenzen; 28 Countzustände passend zur dargestellten Belegung und 17 dokumentierte Kontrastpaare bestanden. Alle zehn finalen PNGs gesichtet; keine fremden Produktions-/Konzept-/Architektur-/Workflowdateien geändert. Der eigene unveränderte Architekturvalidator hat in der gepinnten Python-3.11.13-Umgebung mit eigenem Dokumentationsmanifest und --self-test RESULT PASS erreicht und die reguläre Draft-PR-CI am tatsächlichen Head nachgewiesen. Kein Ergebnis wird als unabhängige Abnahme ausgegeben.
+
+Letzter Schritt: vollständige Gestaltung und eigene Lieferprüfung. Nächster Schritt: eigener Draft-PR mit tatsächlicher Architektur-/CI-Evidenz; ausdrückliche Annahme oder Änderung der im Hauptreport konkret benannten Vorschläge. Owner-/Produkt-/Rechtsfreigabe und spätere Runtime-/Medienproduktion ausstehend. Kein Merge beauftragt, keine fremden Branches integriert.

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stammstrecken-Puzzle — Typografie und Farben</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Sans";
+      src: url("./Fonts/IBMPlexSans-Regular.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans";
+      src: url("./Fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Condensed";
+      src: url("./Fonts/IBMPlexSansCondensed-SemiBold.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 600;
+    }
+    :root {
+      --brand-red: #C83D45;
+      --surface: #F4F2EE;
+      --paper: #FFFFFF;
+      --ink: #20272C;
+      --track-brown: #805535;
+      --assumption-gray: #727B82;
+      --empty-red: #B42E39;
+      --selection-yellow: #F1C84B;
+      --selection-edge: #6C5717;
+      --grid-line: #CCD0D1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: "IBM Plex Sans";
+      font-size: 15px;
+      line-height: 22px;
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 40px 32px 64px; }
+    header { border-top: 8px solid var(--brand-red); padding-top: 20px; }
+    .eyebrow {
+      margin: 0 0 4px;
+      color: var(--brand-red);
+      font-family: "IBM Plex Sans Condensed";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18px;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 8px;
+      font-family: "IBM Plex Sans Condensed";
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 30px;
+      letter-spacing: .026em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 32px 0 12px;
+      font-family: "IBM Plex Sans Condensed";
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: .015em;
+      text-transform: uppercase;
+    }
+    h3 { margin-bottom: 4px; font-size: 18px; font-weight: 600; line-height: 22px; }
+    .note { margin: 0; max-width: 720px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { background: var(--paper); border: 1px solid var(--grid-line); padding: 20px; }
+    .type-row { border-top: 1px solid var(--grid-line); padding: 16px 0; }
+    .type-row:last-child { border-bottom: 1px solid var(--grid-line); }
+    .type-note { color: var(--assumption-gray); font-size: 12px; line-height: 16px; }
+    .sample-wordmark { font-family: "IBM Plex Sans Condensed"; font-size: 28px; font-weight: 600; line-height: 30px; letter-spacing: .026em; text-transform: uppercase; }
+    .sample-title { font-family: "IBM Plex Sans Condensed"; font-size: 20px; font-weight: 600; line-height: 24px; letter-spacing: .015em; text-transform: uppercase; }
+    .sample-status { font-family: "IBM Plex Sans Condensed"; font-size: 14px; font-weight: 600; line-height: 18px; letter-spacing: .075em; text-transform: uppercase; }
+    .sample-heading { font-size: 18px; font-weight: 600; line-height: 22px; }
+    .sample-body { font-size: 15px; font-weight: 400; line-height: 22px; }
+    .sample-control { font-size: 12px; font-weight: 600; line-height: 16px; letter-spacing: .04em; text-transform: uppercase; }
+    .sample-number { font-size: 16px; font-weight: 600; line-height: 20px; font-variant-numeric: tabular-nums lining-nums; }
+    .palette { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .swatch { background: var(--paper); border: 1px solid var(--grid-line); padding: 8px; }
+    .chip { height: 64px; border: 1px solid var(--grid-line); }
+    .chip-brand { background: var(--brand-red); } .chip-surface { background: var(--surface); }
+    .chip-paper { background: var(--paper); } .chip-ink { background: var(--ink); }
+    .chip-track { background: var(--track-brown); } .chip-assumption { background: var(--assumption-gray); }
+    .chip-empty { background: var(--empty-red); } .chip-selection { background: var(--selection-yellow); }
+    .chip-edge { background: var(--selection-edge); } .chip-grid { background: var(--grid-line); }
+    .swatch strong { display: block; margin-top: 8px; font-size: 12px; line-height: 16px; }
+    .swatch code { color: var(--assumption-gray); font-size: 12px; }
+    .contrast { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .pair { min-height: 88px; padding: 14px; border: 1px solid var(--grid-line); font-weight: 600; }
+    .pair p { margin: 0; font-size: 12px; line-height: 16px; font-weight: 400; }
+    .ink-paper { background: var(--paper); color: var(--ink); }
+    .paper-brand { background: var(--brand-red); color: var(--paper); }
+    .paper-empty { background: var(--empty-red); color: var(--paper); }
+    .paper-track { background: var(--track-brown); color: var(--paper); }
+    .ink-yellow { background: var(--selection-yellow); color: var(--ink); }
+    .edge-paper { background: var(--paper); color: var(--selection-edge); }
+    .selection-frame { border: 2px solid var(--selection-edge); background: var(--selection-yellow); padding: 10px; }
+    .selection-frame p { margin: 0; color: var(--ink); font-size: 12px; line-height: 16px; }
+    .puzzle-reference { display: grid; grid-template-columns: 36px repeat(4, 1fr); gap: 0; width: 340px; margin-top: 12px; }
+    .count { display: grid; place-items: center; height: 42px; color: var(--ink); font-size: 16px; font-weight: 600; line-height: 20px; font-variant-numeric: tabular-nums lining-nums; }
+    .cell { position: relative; height: 42px; background: var(--paper); border-right: 1px solid var(--grid-line); border-bottom: 1px solid var(--grid-line); }
+    .cell.top { border-top: 1px solid var(--grid-line); }
+    .cell.first { border-left: 1px solid var(--grid-line); }
+    .cell.selected { background: color-mix(in srgb,var(--selection-yellow) 38%,var(--paper)); outline: 2px solid var(--selection-edge); outline-offset: -2px; }
+    .track { position: absolute; left: calc(50% - 3.78px); top: 0; width: 7.56px; height: 100%; background: var(--track-brown); }
+    .cross::before, .cross::after { content: ""; position: absolute; left: 19px; top: 7px; width: 4px; height: 28px; background: var(--empty-red); transform: rotate(45deg); }
+    .cross::after { transform: rotate(-45deg); }
+    .assume { position:absolute;left:32%;top:40%;width:36%;height:20%;background:linear-gradient(to bottom,transparent 16%,var(--assumption-gray) 16% 32%,transparent 32% 68%,var(--assumption-gray) 68% 84%,transparent 84%);}.assume:after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 8%,var(--assumption-gray) 8% 18%,transparent 18% 45%,var(--assumption-gray) 45% 55%,transparent 55% 82%,var(--assumption-gray) 82% 92%,transparent 92%)}
+    footer { margin-top: 32px; border-top: 1px solid var(--grid-line); padding-top: 16px; color: var(--assumption-gray); font-size: 12px; line-height: 16px; }
+    @media (max-width: 720px) { main { padding: 24px 16px 48px; } .grid, .contrast { grid-template-columns: 1fr; } .palette { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Dokumentarische Referenz · Freigabe ausstehend</p>
+      <h1>Stammstrecken-Puzzle</h1>
+      <p class="note">Unveränderte Farbrollen und eine konkrete Typohierarchie für die Asset-Bible. Diese statische Seite ist kein App-Screenshot, keine Runtime und keine Produktfreigabe.</p>
+    </header>
+
+    <section>
+      <h2>Typografische Stufen</h2>
+      <div class="card">
+        <div class="type-row"><div class="sample-wordmark">Stammstrecken-Puzzle</div><div class="type-note">IBM Plex Sans Condensed SemiBold · 28/30 · +0.026em · Versalien</div></div>
+        <div class="type-row"><div class="sample-title">Strecke freigegeben</div><div class="type-note">IBM Plex Sans Condensed SemiBold · 20/24 · +0.015em · Versalien</div></div>
+        <div class="type-row"><div class="sample-status">Betriebslage: beeinträchtigt</div><div class="type-note">IBM Plex Sans Condensed SemiBold · 14/18 · +0.075em · Versalien</div></div>
+        <div class="type-row"><div class="sample-heading">Meldung 07 · Bauabschnitt Mitte</div><div class="type-note">IBM Plex Sans SemiBold · 18/22 · 0em</div></div>
+        <div class="type-row"><div class="sample-body">Ihre Verbindung ist logisch. Der Fahrplan leider nicht.</div><div class="type-note">IBM Plex Sans Regular · 15/22 · 0em</div></div>
+        <div class="type-row"><div class="sample-control">Nächste Störung</div><div class="type-note">IBM Plex Sans SemiBold · 12/16 · +0.04em · Versalien</div></div>
+        <div class="type-row"><div class="sample-number">04:27 · 12 / 12 · 240</div><div class="type-note">IBM Plex Sans SemiBold · 16/20 · tabellarische, linierende Ziffern</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Farbrollen</h2>
+      <div class="palette">
+        <div class="swatch"><div class="chip chip-brand"></div><strong>brand-red</strong><code>#C83D45</code></div>
+        <div class="swatch"><div class="chip chip-surface"></div><strong>surface</strong><code>#F4F2EE</code></div>
+        <div class="swatch"><div class="chip chip-paper"></div><strong>paper</strong><code>#FFFFFF</code></div>
+        <div class="swatch"><div class="chip chip-ink"></div><strong>ink</strong><code>#20272C</code></div>
+        <div class="swatch"><div class="chip chip-track"></div><strong>track-brown</strong><code>#805535</code></div>
+        <div class="swatch"><div class="chip chip-assumption"></div><strong>assumption-gray</strong><code>#727B82</code></div>
+        <div class="swatch"><div class="chip chip-empty"></div><strong>empty-red</strong><code>#B42E39</code></div>
+        <div class="swatch"><div class="chip chip-selection"></div><strong>selection-yellow</strong><code>#F1C84B</code></div>
+        <div class="swatch"><div class="chip chip-edge"></div><strong>selection-edge</strong><code>#6C5717</code></div>
+        <div class="swatch"><div class="chip chip-grid"></div><strong>grid-line</strong><code>#CCD0D1</code></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Empfohlene Informationspaare</h2>
+      <div class="contrast">
+        <div class="pair ink-paper">15.13:1<p>ink auf paper · Standardlesetext</p></div>
+        <div class="pair paper-brand">4.99:1<p>paper auf brand-red · Statusfläche</p></div>
+        <div class="pair paper-empty">6.19:1<p>paper auf empty-red · X-Legende</p></div>
+        <div class="pair paper-track">6.42:1<p>paper auf track-brown · Gleislegende</p></div>
+        <div class="pair ink-yellow">9.44:1<p>ink auf selection-yellow · Auswahltext</p></div>
+        <div class="pair edge-paper">6.97:1<p>selection-edge auf paper · Konturhinweis</p></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Semantik bleibt getrennt</h2>
+        <div class="selection-frame"><p>Gelb kennzeichnet nur die aktuelle Auswahl. Die 2px selection-edge-Kontur hält die Auswahl geometrisch getrennt vom Feldinhalt.</p></div>
+        <div class="puzzle-reference" aria-label="statische Puzzle-Semantikreferenz">
+          <div></div><div class="count">2</div><div class="count">1</div><div class="count">2</div><div class="count">1</div>
+          <div class="count">2</div><div class="cell top first"><i class="track"></i></div><div class="cell top selected"><i class="assume"></i></div><div class="cell top"></div><div class="cell top"></div>
+          <div class="count">1</div><div class="cell first"><i class="cross"></i></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Nur statische Referenz</h2>
+        <p>Die Seite lädt lokale, in diesem Dokumentationsordner abgelegte Original-TTFs. Sie beschreibt weder Importparameter noch eine Geräte-, Accessibility- oder Laufzeitpolitik.</p>
+        <p>Gleisbraun bleibt konkrete Schiene. Grau bleibt offene Belegungsnotiz. Rot bleibt Leerannahme-X. Gelb bleibt Auswahl.</p>
+      </div>
+    </section>
+
+    <footer>Quelle der Token: OWNER_CONTEXT_AND_DESIGN_BRIEF.md · Detailregeln: 02_Typografie_und_Farben.md · Lizenz/Hashes: evidence/font-provenance.md</footer>
+  </main>
+</body>
+</html>

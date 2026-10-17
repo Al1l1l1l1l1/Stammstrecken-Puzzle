@@ -1,0 +1,165 @@
+{
+  "document": {
+    "id": "stp-wp035-type-color-reference-v1",
+    "status": "design-recommendation-pending-explicit-approval",
+    "scope": "static-documentary-reference-only",
+    "unit": "logical-px",
+    "source": "../evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md"
+  },
+  "color": {
+    "brand-red": {
+      "$type": "color",
+      "$value": "#C83D45",
+      "role": "present brand and operations-status accent"
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "#F4F2EE",
+      "role": "warm light information surface"
+    },
+    "paper": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "role": "puzzle and map surface"
+    },
+    "ink": {
+      "$type": "color",
+      "$value": "#20272C",
+      "role": "primary text and released map line"
+    },
+    "track-brown": {
+      "$type": "color",
+      "$value": "#805535",
+      "role": "six concrete track forms only"
+    },
+    "assumption-gray": {
+      "$type": "color",
+      "$value": "#727B82",
+      "role": "open occupancy note and exactly fulfilled count; never a concrete gray curve"
+    },
+    "empty-red": {
+      "$type": "color",
+      "$value": "#B42E39",
+      "role": "optional empty-cell X; objective count overrun, never an assumption truth judgment"
+    },
+    "selection-yellow": {
+      "$type": "color",
+      "$value": "#F1C84B",
+      "role": "tool and cell selection only; never solution, reward, or game state"
+    },
+    "selection-edge": {
+      "$type": "color",
+      "$value": "#6C5717",
+      "role": "geometric selection outline"
+    },
+    "grid-line": {
+      "$type": "color",
+      "$value": "#CCD0D1",
+      "role": "quiet grid line"
+    }
+  },
+  "fontFamily": {
+    "ui": {
+      "family": "IBM Plex Sans",
+      "files": [
+        "Fonts/IBMPlexSans-Regular.ttf",
+        "Fonts/IBMPlexSans-SemiBold.ttf"
+      ]
+    },
+    "condensed": {
+      "family": "IBM Plex Sans Condensed",
+      "files": [
+        "Fonts/IBMPlexSansCondensed-SemiBold.ttf"
+      ]
+    }
+  },
+  "typography": {
+    "wordmark": {
+      "family": "IBM Plex Sans Condensed",
+      "weight": 600,
+      "size": 28,
+      "lineHeight": 30,
+      "letterSpacing": "0.026em",
+      "case": "uppercase"
+    },
+    "screen-title": {
+      "family": "IBM Plex Sans Condensed",
+      "weight": 600,
+      "size": 20,
+      "lineHeight": 24,
+      "letterSpacing": "0.015em",
+      "case": "uppercase"
+    },
+    "status-label": {
+      "family": "IBM Plex Sans Condensed",
+      "weight": 600,
+      "size": 14,
+      "lineHeight": 18,
+      "letterSpacing": "0.075em",
+      "case": "uppercase"
+    },
+    "section-heading": {
+      "family": "IBM Plex Sans",
+      "weight": 600,
+      "size": 18,
+      "lineHeight": 22,
+      "letterSpacing": "0em",
+      "case": "sentence"
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "weight": 400,
+      "size": 15,
+      "lineHeight": 22,
+      "letterSpacing": "0em",
+      "case": "sentence"
+    },
+    "control-label": {
+      "family": "IBM Plex Sans",
+      "weight": 600,
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": "0.04em",
+      "case": "uppercase"
+    },
+    "grid-count": {
+      "family": "IBM Plex Sans",
+      "weight": 600,
+      "size": 16,
+      "lineHeight": 20,
+      "letterSpacing": "0em",
+      "case": "numeric",
+      "features": [
+        "tnum",
+        "lnum"
+      ]
+    },
+    "meta": {
+      "family": "IBM Plex Sans",
+      "weight": 400,
+      "size": 12,
+      "lineHeight": 16,
+      "letterSpacing": "0.01em",
+      "case": "sentence",
+      "features": [
+        "tnum",
+        "lnum"
+      ]
+    }
+  },
+  "selection": {
+    "fill": "{color.selection-yellow}",
+    "edge": "{color.selection-edge}",
+    "edgeWidth": 2,
+    "inset": 2,
+    "cornerRadius": 0,
+    "cellFillOpacity": 0.38,
+    "toolFillOpacity": 1,
+    "relativeCellEdgeWidth": 0.028
+  },
+  "numberFormatting": {
+    "timer": "tabular-lining-digits, fixed two-digit minutes and seconds",
+    "gridCounts": "tabular-lining-digits, no proportional fallback",
+    "score": "tabular-lining-digits"
+  }
+}

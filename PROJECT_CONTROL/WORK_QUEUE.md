@@ -89,3 +89,11 @@ Separater ausdrücklicher Implementierungsauftrag eingegangen; Phase B in Bearbe
 ## WP-025 Abschluss – 13.10.2026
 
 Die oben historisch verlangte Integration wurde nach erfolgreicher finaler CI, beiden unabhängigen PASS-Berichten und ausdrücklicher Auftraggeberentscheidung tatsächlich ausgeführt. Abschlussnachführung nur in WP-025, CURRENT_STATE und WORK_QUEUE; keine Änderung der Prioritäten oder Anforderungen. Nachgelagerte Dokumentations-CI bleibt separat auszuweisen. Es wurde kein Folgepaket erstellt, keine Folgeimplementierung gestartet und keine Veröffentlichung freigegeben.
+
+## Finale Asset-Bible – WP-035, eigener Lieferzweig, 17.10.2026
+
+Der bisher als nicht begonnen geführte Planblock Priorität 10 wurde durch den ausdrücklichen Ownerauftrag ausgearbeitet. **Branchlokaler Stand: Gestaltung geliefert, WP-035 offen bis zu den tatsächlich erforderlichen Abschlussnachweisen und Entscheidungen; kein Merge.** [Ein zusammenhängender Hauptreport mit allen Referenzen](AssetBible/WP-035/README.md), sieben Fachkapitel, zehn PNGs, exakte Konstruktionsquellen, Originalschrift-/Lizenznachweise und 40 Inventarzeilen liegen vor. Details sind konkrete Vorschläge, nicht bereits bestätigte Produkt- oder Rechtsfreigaben.
+
+Der [WP-035-Auftrag](../WORK_PACKAGES/WP-035_Finale-Asset-Bible-Ausarbeitung.md) und sein eigenes Manifest wurden gemeinsam vor Fachänderungen verankert. Eigenprüfung der konkreten Lieferung erfolgreich; eigener Architekturvalidator und reguläre Draft-PR-CI werden separat mit tatsächlichen Ergebnissen geführt. Die unveränderte CI-Auswahl WP-027 darf nicht zu einem erfundenen pauschalen Projektstopp umgedeutet werden.
+
+Nächster sinnvoller Schritt ist die ausdrückliche Annahme oder gezielte Änderung der zusammenhängenden Empfehlung, danach Nutzung freigegebener Quellen in den bereits vorgesehenen Produktionsblöcken. Finale Textbibliothek, Verkaufskataloge, Preise/Freischaltungen, menschliche Spieltests/Zeitkalibrierung, externe Rechtsprüfung und Release bleiben separate Arbeiten. WP-026/PR #21, der dortige aktuelle WP-034-Stand und alle Produktionsgates bleiben durch diese Dokumentationsarbeit unverändert.
