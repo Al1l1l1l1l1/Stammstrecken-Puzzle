@@ -173,13 +173,6 @@
       ]
     },
     {
-      "sentence": "der erste abschnitt ist befahrbar.",
-      "keys": [
-        "level.s1.03.01.01.result",
-        "level.s1.03.02.01.result"
-      ]
-    },
-    {
       "sentence": "der provisorische bahnsteig ist verbunden.",
       "keys": [
         "campaign.s1.route.02.01.complete",
@@ -236,17 +229,10 @@
       ]
     },
     {
-      "sentence": "die strecke ist verbunden.",
+      "sentence": "die umleitung ist ausgeschildert.",
       "keys": [
-        "level.s1.03.01.05.result",
-        "level.s1.05.02.06.result"
-      ]
-    },
-    {
-      "sentence": "die verbindung ist hergestellt.",
-      "keys": [
-        "level.s1.05.01.03.result",
-        "level.s1.05.04.05.result"
+        "level.s1.04.01.08.status",
+        "level.s1.04.04.03.status"
       ]
     },
     {
@@ -255,6 +241,7 @@
         "level.s1.01.01.01.result",
         "level.s1.04.01.12.result",
         "level.s1.04.02.01.result",
+        "level.s1.05.04.05.result",
         "ui.ride.start"
       ]
     },
@@ -277,6 +264,13 @@
       "keys": [
         "ui.hint.template.column-empty",
         "ui.hint.template.row-empty"
+      ]
+    },
+    {
+      "sentence": "ihre strecke verbindet die bahnsteige.",
+      "keys": [
+        "level.s1.04.03.04.result",
+        "level.s1.04.03.07.result"
       ]
     },
     {
@@ -333,11 +327,27 @@
       ]
     },
     {
+      "phrase": "der zug erreicht das andere",
+      "keys": [
+        "level.s1.04.01.08.result",
+        "level.s1.05.02.12.result",
+        "level.s1.05.04.04.result"
+      ]
+    },
+    {
       "phrase": "die verbindung reicht bis zum",
       "keys": [
         "level.s1.02.04.04.result",
         "level.s1.03.02.06.result",
         "level.s1.03.02.07.result"
+      ]
+    },
+    {
+      "phrase": "zug erreicht das andere ende",
+      "keys": [
+        "level.s1.04.01.08.result",
+        "level.s1.05.02.12.result",
+        "level.s1.05.04.04.result"
       ]
     }
   ]
