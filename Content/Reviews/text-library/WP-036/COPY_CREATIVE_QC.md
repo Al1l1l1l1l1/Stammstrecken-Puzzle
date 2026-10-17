@@ -1,8 +1,8 @@
 # WP-036 – unabhängige kreative Restprüfung der Copy-Korrektur
 
-**Berichtssprache:** Deutsch  
-**Prüfrolle:** Unabhängige kreative Restprüfung; keine Autorrolle, keine Beteiligung an den sieben Korrekturvorschlägen und keine Ownerrolle.  
-**Berichts-ID:** `WP-036-INDEPENDENT-CREATIVE-QC-01`  
+**Berichtssprache:** Deutsch
+**Prüfrolle:** Unabhängige kreative Restprüfung; keine Autorrolle, keine Beteiligung an den sieben Korrekturvorschlägen und keine Ownerrolle.
+**Berichts-ID:** `WP-036-INDEPENDENT-CREATIVE-QC-01`
 **Verdikt für den bestehenden Korrekturbestand:** **FAIL** – ein konkreter `HIGH` verletzt K05 (Kurzform trägt nicht dieselbe Statusaussage) und verhindert deshalb die kreative Restannahme in diesem Stand.
 
 > Dieser Bericht beurteilt ausschließlich die tatsächlich ausgeführten 120 Copy-Änderungen und ihre erhaltenen Routenkontexte. Er ist **keine** ausdrückliche Owner-, Produkt-, Import-, Rechts- oder Releaseannahme. Die delegierte eigene kreative Restentscheidung liegt beim Parent/Koordinator.

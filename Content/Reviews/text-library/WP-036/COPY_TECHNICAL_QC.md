@@ -1,6 +1,6 @@
 # WP-036 – Unabhängige technische Abschluss-QC der Copy-Nacharbeit
 
-**Ergebnis:** **PASS – vollständige technische lokale DRAFT-/Scope-Lieferung am eingefrorenen Stand.**  
+**Ergebnis:** **PASS – vollständige technische lokale DRAFT-/Scope-Lieferung am eingefrorenen Stand.**
 **Kein Gesamtabschluss / CI:** Die neue reguläre CI dieses geänderten Freeze wurde von dieser Rolle weder gestartet noch als bestanden behauptet und bleibt **OFFEN**. Dieser PASS betrifft ausschließlich die hier tatsächlich frisch geprüfte technische DRAFT-Quelle, deren eng begrenzte Copy-Änderung und den verankerten Production-Scope. Er ist keine Owner-, kreative, Produkt-, Import-, Rechts- oder Releaseannahme.
 
 ## Prüfidentität und Unabhängigkeit
