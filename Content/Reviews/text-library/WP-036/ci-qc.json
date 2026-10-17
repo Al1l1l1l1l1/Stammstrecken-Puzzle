@@ -1,0 +1,1674 @@
+{
+  "schemaVersion": 1,
+  "recordType": "Independent source-freeze CI addendum",
+  "reviewer": "/root/independent_qc",
+  "productionFreeze": "af6eb73eebc73bb3662569b2f5f610734e68b6f5",
+  "sourceSha256": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
+  "checkedAtUTC": "2026-10-17 19:14:01 UTC",
+  "result": "PR_PASS_PUSH_CANCELLED",
+  "boundary": "Exact source-freeze PR Architecture+Unity CI PASS (11 jobs), separate Architecture Push PASS. Unity Push terminal CANCELLED with 7 successes/1 cancellation/2 skips. No blanket 22-check, whole-DoD, product, import, legal or release PASS. No workflow mutation, rerun, cancellation or merge by this reviewer.",
+  "queryMethod": {
+    "runMetadata": "mcp__codex_apps__github_fetch exact actions/runs/{id}",
+    "jobs": "mcp__codex_apps__github_fetch_workflow_run_jobs exact run_id; all current jobs fit first page",
+    "logs": "mcp__codex_apps__github_fetch_workflow_job_logs exact job_id",
+    "artifacts": "mcp__codex_apps__github_fetch_workflow_run_artifacts and download_workflow_artifact; ZIP bytes checked in ignored .utmp/wp036"
+  },
+  "runs": [
+    {
+      "metadata": {
+        "id": 39058816091,
+        "name": "Architecture Validation",
+        "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "created_at": "2026-10-17T18:36:07Z",
+        "updated_at": "2026-10-17T18:36:50Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058816091"
+      },
+      "jobs": [
+        {
+          "id": 117472311700,
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816091,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Gepinnte Validator-Abhängigkeiten installieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Architecture-only-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            },
+            {
+              "name": "Post Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": 39058795864,
+        "name": "Architecture Validation",
+        "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "created_at": "2026-10-17T18:35:49Z",
+        "updated_at": "2026-10-17T18:36:30Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058795864"
+      },
+      "jobs": [
+        {
+          "id": 117472247016,
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795864,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Gepinnte Validator-Abhängigkeiten installieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Architecture-only-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 10
+            },
+            {
+              "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Node.js 22.20.0 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": 39058795866,
+        "name": "Unity CI",
+        "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "run_attempt": 1,
+        "created_at": "2026-10-17T18:35:49Z",
+        "updated_at": "2026-10-17T18:52:11Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058795866"
+      },
+      "jobs": [
+        {
+          "id": 117472246811,
+          "name": "project-preflight",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Versionspin und Projektartefakte prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Explizite QA-Identitaeten vor Unity pruefen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 117472246983,
+          "name": "unity-config",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            }
+          ]
+        },
+        {
+          "id": 117472247066,
+          "name": "unity-environment-android",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Editor-Start und Android-Toolchain im Container prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            }
+          ]
+        },
+        {
+          "id": 117472247120,
+          "name": "unity-environment-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 117472247127,
+          "name": "unity-environment-ios",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 3
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        },
+        {
+          "id": 117472320771,
+          "name": "unity-evidence-guard",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 2
+            },
+            {
+              "name": "Unity-Nachweiskonfiguration vorhanden",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": 117472320796,
+          "name": "unity-compile-editmode",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Testergebnisse archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            }
+          ]
+        },
+        {
+          "id": 117474078857,
+          "name": "unity-playmode-bootstrap-smoke",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 117475781301,
+          "name": "unity-android-development-il2cpp",
+          "status": "completed",
+          "conclusion": "skipped",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 117475782186,
+          "name": "unity-ios-export",
+          "status": "completed",
+          "conclusion": "skipped",
+          "run_id": 39058795866,
+          "logs_url": null,
+          "steps": null
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": 39058816058,
+        "name": "Unity CI",
+        "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5",
+        "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "created_at": "2026-10-17T18:36:07Z",
+        "updated_at": "2026-10-17T19:12:35Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058816058"
+      },
+      "jobs": [
+        {
+          "id": 117472311624,
+          "name": "unity-config",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            }
+          ]
+        },
+        {
+          "id": 117472311813,
+          "name": "unity-environment-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ]
+        },
+        {
+          "id": 117472311843,
+          "name": "project-preflight",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Versionspin und Projektartefakte prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Explizite QA-Identitaeten vor Unity pruefen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post CPython 3.11.13 einrichten",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Repository mit vollständiger Historie auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        },
+        {
+          "id": 117472311899,
+          "name": "unity-environment-ios",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 3
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        },
+        {
+          "id": 117472311931,
+          "name": "unity-environment-android",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Editor-Start und Android-Toolchain im Container prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            }
+          ]
+        },
+        {
+          "id": 117472376543,
+          "name": "unity-evidence-guard",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 2
+            },
+            {
+              "name": "Unity-Nachweiskonfiguration vorhanden",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            }
+          ]
+        },
+        {
+          "id": 117472376899,
+          "name": "unity-compile-editmode",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Testergebnisse archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            }
+          ]
+        },
+        {
+          "id": 117475779375,
+          "name": "unity-playmode-bootstrap-smoke",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Testergebnisse archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            }
+          ]
+        },
+        {
+          "id": 117476423121,
+          "name": "unity-android-development-il2cpp",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Speicherplatz für das Unity-Android-Image freigeben",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Android-Buildartefakt archivieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            }
+          ]
+        },
+        {
+          "id": 117478099745,
+          "name": "unity-ios-export",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 39058816058,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Unity Hub installieren",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4
+            },
+            {
+              "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5
+            },
+            {
+              "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "iOS-Xcodeprojekt exportieren und kompilieren",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Unity-Personal-Seat freigeben (best effort)",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Unity-Library aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20
+            },
+            {
+              "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21
+            },
+            {
+              "name": "Post Repository auschecken",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "logEvidence": [
+    {
+      "jobId": 117472311700,
+      "source": "independently fetched decoded GitHub connector job log; excerpts are actual output lines, not echoed source",
+      "excerpts": [
+        "2026-10-17T18:36:38.2316922Z RESULT PASS (17 lokale Prüfgruppen)",
+        "2026-10-17T18:36:40.0298707Z JCS golden cross-check passed: 12 canonicalization cases, 32 rejected inputs, 2 v2 and 2 v1 document vectors reproduced by the Node reference.",
+        "2026-10-17T18:36:43.8764440Z TEXT_LIBRARY PASS: entries=1408; season1=960/960; internal=240; foreign-unresolved=480; mutations=12",
+        "2026-10-17T18:36:43.9265322Z READING_EDITION PASS: exact canonical text projection",
+        "2026-10-17T18:36:46.2993997Z SCOPE_CONTEXT  workPackage=WP-036 base=d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 head=af6eb73eebc73bb3662569b2f5f610734e68b6f5 worktreeDirty=false",
+        "2026-10-17T18:36:46.3000399Z RESULT PASS (18 lokale Prüfgruppen)"
+      ]
+    },
+    {
+      "jobId": 117472247016,
+      "source": "independently fetched decoded GitHub connector job log; excerpts are actual output lines, not echoed source",
+      "excerpts": [
+        "2026-10-17T18:36:19.1723807Z RESULT PASS (17 lokale Prüfgruppen)",
+        "2026-10-17T18:36:21.0559748Z JCS golden cross-check passed: 12 canonicalization cases, 32 rejected inputs, 2 v2 and 2 v1 document vectors reproduced by the Node reference.",
+        "2026-10-17T18:36:24.9948600Z TEXT_LIBRARY PASS: entries=1408; season1=960/960; internal=240; foreign-unresolved=480; mutations=12",
+        "2026-10-17T18:36:25.0438524Z READING_EDITION PASS: exact canonical text projection",
+        "2026-10-17T18:36:26.8881190Z SCOPE_CONTEXT  workPackage=WP-036 base=d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 head=af6eb73eebc73bb3662569b2f5f610734e68b6f5 worktreeDirty=false",
+        "2026-10-17T18:36:26.8888055Z RESULT PASS (18 lokale Prüfgruppen)"
+      ]
+    },
+    {
+      "jobId": 117472320796,
+      "source": "independently fetched decoded GitHub connector job log; excerpts are actual output lines, not echoed source",
+      "excerpts": [
+        "2026-10-17T18:44:04.5653949Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 19 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:44:04.5654861Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 55 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:44:04.5655632Z EditMode evidence PASS: STP.Tests.Content.EditMode, 379 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:44:04.7945932Z STP.Application: 0/40 Sequenzpunkte (0.0%), Methoden 0/8",
+        "2026-10-17T18:44:04.7946414Z STP.Bootstrap: 0/60 Sequenzpunkte (0.0%), Methoden 0/24",
+        "2026-10-17T18:44:04.7946878Z STP.Editor.Build: 0/82 Sequenzpunkte (0.0%), Methoden 0/6",
+        "2026-10-17T18:44:04.7947373Z STP.Editor.Content: 199/210 Sequenzpunkte (94.8%), Methoden 45/46",
+        "2026-10-17T18:44:04.7947962Z STP.Infrastructure.Content: 2164/2216 Sequenzpunkte (97.7%), Methoden 380/386",
+        "2026-10-17T18:44:04.7948982Z STP.MobileServices.Google: 0/5 Sequenzpunkte (0.0%), Methoden 0/3",
+        "2026-10-17T18:44:04.7949531Z STP.MobileServices.Store: 0/5 Sequenzpunkte (0.0%), Methoden 0/3",
+        "2026-10-17T18:44:04.7950049Z STP.Presentation.UI: 0/5 Sequenzpunkte (0.0%), Methoden 0/2",
+        "2026-10-17T18:44:04.7950549Z STP.Presentation.World: 0/5 Sequenzpunkte (0.0%), Methoden 0/2",
+        "2026-10-17T18:44:04.7951342Z STP.Puzzle.Domain: 528/545 Sequenzpunkte (96.9%), Methoden 115/117",
+        "2026-10-17T18:44:04.7952128Z STP.Puzzle.Solver: 1022/1031 Sequenzpunkte (99.1%), Methoden 123/123",
+        "2026-10-17T18:44:04.7952709Z STP.Tests.Bootstrap.PlayMode: 0/271 Sequenzpunkte (0.0%), Methoden 0/41",
+        "2026-10-17T18:44:04.7953321Z STP.Tests.Content.EditMode: 3176/3232 Sequenzpunkte (98.3%), Methoden 440/445",
+        "2026-10-17T18:44:04.7953927Z STP.Tests.Domain.EditMode: 339/339 Sequenzpunkte (100.0%), Methoden 33/33",
+        "2026-10-17T18:44:04.7954536Z STP.Tests.Solver.EditMode: 2353/2364 Sequenzpunkte (99.5%), Methoden 252/252",
+        "2026-10-17T18:44:04.7955122Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage"
+      ]
+    },
+    {
+      "jobId": 117472376899,
+      "source": "independently fetched decoded GitHub connector job log; actual output excerpts",
+      "excerpts": [
+        "2026-10-17T18:52:02.5402784Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 19 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:52:02.5403808Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 55 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:52:02.5404992Z EditMode evidence PASS: STP.Tests.Content.EditMode, 379 tatsaechlich bestandene Testfaelle",
+        "2026-10-17T18:52:02.7656251Z STP.Application: 0/40 Sequenzpunkte (0.0%), Methoden 0/8",
+        "2026-10-17T18:52:02.7656978Z STP.Bootstrap: 0/60 Sequenzpunkte (0.0%), Methoden 0/24",
+        "2026-10-17T18:52:02.7657364Z STP.Editor.Build: 0/82 Sequenzpunkte (0.0%), Methoden 0/6",
+        "2026-10-17T18:52:02.7657767Z STP.Editor.Content: 199/210 Sequenzpunkte (94.8%), Methoden 45/46",
+        "2026-10-17T18:52:02.7658243Z STP.Infrastructure.Content: 2164/2216 Sequenzpunkte (97.7%), Methoden 380/386",
+        "2026-10-17T18:52:02.7658886Z STP.MobileServices.Google: 0/5 Sequenzpunkte (0.0%), Methoden 0/3",
+        "2026-10-17T18:52:02.7659338Z STP.MobileServices.Store: 0/5 Sequenzpunkte (0.0%), Methoden 0/3",
+        "2026-10-17T18:52:02.7659760Z STP.Presentation.UI: 0/5 Sequenzpunkte (0.0%), Methoden 0/2",
+        "2026-10-17T18:52:02.7660197Z STP.Presentation.World: 0/5 Sequenzpunkte (0.0%), Methoden 0/2",
+        "2026-10-17T18:52:02.7660625Z STP.Puzzle.Domain: 528/545 Sequenzpunkte (96.9%), Methoden 115/117",
+        "2026-10-17T18:52:02.7661066Z STP.Puzzle.Solver: 1022/1031 Sequenzpunkte (99.1%), Methoden 123/123",
+        "2026-10-17T18:52:02.7661556Z STP.Tests.Bootstrap.PlayMode: 0/271 Sequenzpunkte (0.0%), Methoden 0/41",
+        "2026-10-17T18:52:02.7662077Z STP.Tests.Content.EditMode: 3176/3232 Sequenzpunkte (98.3%), Methoden 440/445",
+        "2026-10-17T18:52:02.7662573Z STP.Tests.Domain.EditMode: 339/339 Sequenzpunkte (100.0%), Methoden 33/33",
+        "2026-10-17T18:52:02.7663069Z STP.Tests.Solver.EditMode: 2353/2364 Sequenzpunkte (99.5%), Methoden 252/252",
+        "2026-10-17T18:52:02.7663550Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage"
+      ]
+    },
+    {
+      "jobId": 117475779375,
+      "source": "independently fetched decoded GitHub connector job log; actual output excerpts",
+      "excerpts": [
+        "2026-10-17T18:55:10.5835212Z PlayMode evidence PASS: 27 ausgefuehrte Tests, 27 Smoke-Faelle, QA-Szene Passed",
+        "2026-10-17T18:55:10.7761599Z STP.Application: 40/40 Sequenzpunkte (100.0%), Methoden 8/8",
+        "2026-10-17T18:55:10.7762220Z STP.Bootstrap: 59/60 Sequenzpunkte (98.3%), Methoden 23/24",
+        "2026-10-17T18:55:10.7762629Z STP.Editor.Build: 47/82 Sequenzpunkte (57.3%), Methoden 5/6",
+        "2026-10-17T18:55:10.7763094Z STP.Editor.Content: 0/210 Sequenzpunkte (0.0%), Methoden 0/46",
+        "2026-10-17T18:55:10.7763527Z STP.Infrastructure.Content: 0/2216 Sequenzpunkte (0.0%), Methoden 0/386",
+        "2026-10-17T18:55:10.7764493Z STP.MobileServices.Google: 1/5 Sequenzpunkte (20.0%), Methoden 1/3",
+        "2026-10-17T18:55:10.7764920Z STP.MobileServices.Store: 1/5 Sequenzpunkte (20.0%), Methoden 1/3",
+        "2026-10-17T18:55:10.7765318Z STP.Presentation.UI: 5/5 Sequenzpunkte (100.0%), Methoden 2/2",
+        "2026-10-17T18:55:10.7765716Z STP.Presentation.World: 5/5 Sequenzpunkte (100.0%), Methoden 2/2",
+        "2026-10-17T18:55:10.7766105Z STP.Puzzle.Domain: 0/545 Sequenzpunkte (0.0%), Methoden 0/117",
+        "2026-10-17T18:55:10.7766497Z STP.Puzzle.Solver: 0/1031 Sequenzpunkte (0.0%), Methoden 0/123",
+        "2026-10-17T18:55:10.7766932Z STP.Tests.Bootstrap.PlayMode: 262/271 Sequenzpunkte (96.7%), Methoden 41/41",
+        "2026-10-17T18:55:10.7767379Z STP.Tests.Content.EditMode: 0/3232 Sequenzpunkte (0.0%), Methoden 0/445",
+        "2026-10-17T18:55:10.7767795Z STP.Tests.Domain.EditMode: 0/339 Sequenzpunkte (0.0%), Methoden 0/33",
+        "2026-10-17T18:55:10.7768225Z STP.Tests.Solver.EditMode: 0/2364 Sequenzpunkte (0.0%), Methoden 0/252",
+        "2026-10-17T18:55:10.7768647Z Coverage evidence PASS: 15 STP-Assemblies, keine Mindest-Coverage"
+      ]
+    },
+    {
+      "jobId": 117476423121,
+      "source": "independently fetched decoded GitHub connector job log; actual output excerpts",
+      "excerpts": [
+        "2026-10-17T19:03:04.8605884Z Build Finished, Result: Success.",
+        "2026-10-17T19:03:05.4815682Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (683444705 Bytes)."
+      ]
+    },
+    {
+      "jobId": 117478099745,
+      "source": "independently fetched decoded GitHub connector job log; actual output excerpts",
+      "excerpts": [
+        "2026-10-17T19:05:38.4698660Z Xcode 26.3",
+        "2026-10-17T19:07:05.1994640Z Build Finished, Result: Success.",
+        "2026-10-17T19:07:05.9779950Z STP Build PASS: iOS -> Builds/iOS/Xcode (900432206 Bytes).",
+        "2026-10-17T19:12:19.1061450Z ** BUILD SUCCEEDED **"
+      ]
+    }
+  ],
+  "artifactChecks": [
+    {
+      "runId": 39058795866,
+      "artifactId": 12111155483,
+      "name": "editmode-results",
+      "sizeInBytes": 421347,
+      "sha256": "fad692fc72c876454d818b7f9e9a6d0a0655a62532eaf3d3094add186a5a31d9",
+      "githubDigestMatches": true,
+      "xml": "editmode.xml",
+      "testCases": 454,
+      "passed": 454,
+      "failed": 0,
+      "skipped": 0,
+      "assemblies": [
+        {
+          "name": "STP.Tests.Content.EditMode",
+          "passed": 379
+        },
+        {
+          "name": "STP.Tests.Domain.EditMode",
+          "passed": 19
+        },
+        {
+          "name": "STP.Tests.Solver.EditMode",
+          "passed": 55
+        },
+        {
+          "name": "Unity.Addressables.DocExampleCode.Editor.Tests",
+          "passed": 1
+        }
+      ]
+    },
+    {
+      "artifactId": 12111106614,
+      "runId": 39058816058,
+      "sha256": "5138e1497ad76bf904644110010f3641d0e28c55b8d32eebd6d7df17d8898de6",
+      "sizeInBytes": 421365,
+      "githubDigestMatches": true,
+      "xml": "editmode.xml",
+      "testCases": 454,
+      "passed": 454,
+      "failed": 0,
+      "skipped": 0,
+      "assemblies": [
+        {
+          "name": "STP.Tests.Content.EditMode",
+          "passed": 379
+        },
+        {
+          "name": "STP.Tests.Domain.EditMode",
+          "passed": 19
+        },
+        {
+          "name": "STP.Tests.Solver.EditMode",
+          "passed": 55
+        },
+        {
+          "name": "Unity.Addressables.DocExampleCode.Editor.Tests",
+          "passed": 1
+        }
+      ]
+    },
+    {
+      "artifactId": 12110764083,
+      "runId": 39058816058,
+      "sha256": "cfed41ca7e9cc89f1ba98252c47bfebd3e8839125620696777401c363e6c9693",
+      "sizeInBytes": 346909,
+      "githubDigestMatches": true,
+      "tests": [
+        {
+          "xml": "playmode.xml",
+          "testCases": 27,
+          "passed": 27,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle.dev\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle.dev\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle.staging\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle.staging\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.other.product.qa\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.other.product.qa\")",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Bindings_CannotBeMutatedThroughDictionaryInterfaces",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_CompiledConstructorOrder_IncludesConfigurationAndLoggerBeforeContent",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_ConfigurationAndLocalLogger_AreWiredAndUsedWithoutGlobalState",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Get_ProviderPort_BeforeBindProviders_FailsWithoutFallback",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Get_UnboundPort_FailsWithoutFallback",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(0)",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(1)",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(2)",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(3)",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(4)",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_RejectsNullPort_FailClosed",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_SecondBindProviders_FailsAsDoubleBinding",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Presentation_RequiresApplication_AndCanBeWiredBeforeProviders",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_AndroidAndIos_ExplicitlyUseMediumManagedStripping",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_ScaffoldIdentity_IsExplicitQaOnAndroidAndIos",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_UrpAssetAndRenderer_AreAssignedForEveryQualityLevel",
+            "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.QaScene_ComposesCompleteGraph_ExactlyOneBindingPerPort_NoProviderStart"
+          ]
+        }
+      ]
+    },
+    {
+      "artifactId": 12111800078,
+      "runId": 39058816058,
+      "sha256": "0c9ef6ed74e111076884bc0c0d7560ada68d3cbfde939316cb39a803069f3f0d",
+      "sizeInBytes": 38948951,
+      "githubDigestMatches": true,
+      "zipEntries": [
+        {
+          "name": "StammstreckenPuzzle_BurstDebugInformation_DoNotShip/tempburstlibs/arm64-v8a/lib_burst_generated.txt",
+          "uncompressedBytes": 89078,
+          "compressedBytes": 5593
+        },
+        {
+          "name": "stp-qa-development.apk",
+          "uncompressedBytes": 40066238,
+          "compressedBytes": 38942910
+        }
+      ],
+      "boundary": "ZIP digest and directory only; APK not extracted, installed or device-tested"
+    }
+  ],
+  "pushBoundary": "Unity push39058795866 terminal CANCELLED; PlayMode cancelled; Android/iOS skipped. Its successful EditMode is partial evidence only. No aggregate push or 22-check PASS.",
+  "originalLocalQcSha256": "b10101b0d86a95682de4f5c1dabccab64b45654d93d4a1ea465f59c545ca5343",
+  "expectedPrUnityJobCount": 10,
+  "allExpectedPrUnityJobsSucceeded": true,
+  "artifactMetadata": {
+    "push": [
+      {
+        "id": 12111155483,
+        "name": "editmode-results",
+        "size_in_bytes": 421347,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111155483",
+        "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111155483/zip",
+        "expired": false,
+        "created_at": "2026-10-17T18:44:07Z",
+        "expires_at": "2027-01-15T18:35:49Z",
+        "updated_at": "2026-10-17T18:44:07Z",
+        "digest": "sha256:fad692fc72c876454d818b7f9e9a6d0a0655a62532eaf3d3094add186a5a31d9",
+        "workflow_run": {
+          "id": 39058795866,
+          "repository_id": 1360560366,
+          "head_repository_id": 1360560366,
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5"
+        }
+      }
+    ],
+    "pullRequest": [
+      {
+        "id": 12111800078,
+        "name": "android-development-il2cpp",
+        "size_in_bytes": 38948951,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111800078",
+        "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111800078/zip",
+        "expired": false,
+        "created_at": "2026-10-17T19:03:13Z",
+        "expires_at": "2027-01-15T18:36:08Z",
+        "updated_at": "2026-10-17T19:03:13Z",
+        "digest": "sha256:0c9ef6ed74e111076884bc0c0d7560ada68d3cbfde939316cb39a803069f3f0d",
+        "workflow_run": {
+          "id": 39058816058,
+          "repository_id": 1360560366,
+          "head_repository_id": 1360560366,
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5"
+        }
+      },
+      {
+        "id": 12111106614,
+        "name": "editmode-results",
+        "size_in_bytes": 421365,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111106614",
+        "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12111106614/zip",
+        "expired": false,
+        "created_at": "2026-10-17T18:52:06Z",
+        "expires_at": "2027-01-15T18:36:08Z",
+        "updated_at": "2026-10-17T18:52:06Z",
+        "digest": "sha256:5138e1497ad76bf904644110010f3641d0e28c55b8d32eebd6d7df17d8898de6",
+        "workflow_run": {
+          "id": 39058816058,
+          "repository_id": 1360560366,
+          "head_repository_id": 1360560366,
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5"
+        }
+      },
+      {
+        "id": 12110764083,
+        "name": "playmode-results",
+        "size_in_bytes": 346909,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12110764083",
+        "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12110764083/zip",
+        "expired": false,
+        "created_at": "2026-10-17T18:55:13Z",
+        "expires_at": "2027-01-15T18:36:08Z",
+        "updated_at": "2026-10-17T18:55:13Z",
+        "digest": "sha256:cfed41ca7e9cc89f1ba98252c47bfebd3e8839125620696777401c363e6c9693",
+        "workflow_run": {
+          "id": 39058816058,
+          "repository_id": 1360560366,
+          "head_repository_id": 1360560366,
+          "head_branch": "codex/wp-036-vollstaendige-textbibliothek",
+          "head_sha": "af6eb73eebc73bb3662569b2f5f610734e68b6f5"
+        }
+      }
+    ]
+  },
+  "buildSizeBoundary": {
+    "androidBuildReportSummaryTotalSize": 683444705,
+    "actualApkZipEntryBytes": 40066238,
+    "explanation": "An initial extra equality probe rejected the assumption that BuildReport.summary.totalSize equals APK file length. Read-only source inspection of StpBuildEntrypoints.cs:133 confirmed the log uses summary.totalSize; actual ZIP directory independently supplies APK bytes. This is a corrected reviewer assumption, not a production failure.",
+    "iosBuildReportSummaryTotalSize": 900432206,
+    "iosBinaryArtifactDownloaded": false,
+    "iosProof": "successful Unity iOS export and actual xcodebuild BUILD SUCCEEDED log plus job/run SUCCESS; workflow has no iOS artifact upload step"
+  }
+}

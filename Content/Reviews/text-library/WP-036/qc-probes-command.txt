@@ -1,0 +1,45 @@
+import copy,hashlib,importlib.util,json,re,subprocess
+from pathlib import Path
+spec=importlib.util.spec_from_file_location('independent_validator','tools/text-library/validate.py'); v=importlib.util.module_from_spec(spec); spec.loader.exec_module(v)
+spec2=importlib.util.spec_from_file_location('independent_render','tools/text-library/render.py'); renderer=importlib.util.module_from_spec(spec2); spec2.loader.exec_module(renderer)
+sraw=v.SOURCE.read_bytes(); source=v.parse(sraw); bindings=v.parse(v.BINDINGS.read_bytes()); schema=v.parse(v.SCHEMA.read_bytes())
+assert hashlib.sha256(sraw).hexdigest()=='b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be'
+paths=v.tree_paths(v.SOURCE_REF)
+selected=[p for p in paths if (p.startswith('Content/Levels/s1/') and p.endswith('.level-v2.json')) or re.fullmatch(r'Content/Reviews/season-1/leveldesign-S1-\d{2}-\d{2}\.md',p) or p in (v.UNRESOLVED,v.AUTHOR_REVIEW)]
+objects=v.git_objects(v.SOURCE_REF,selected)
+errors,report=v.validate(source,bindings,schema,objects,paths); assert not errors, errors
+saved=json.loads(Path('Content/Reviews/text-library/WP-036/technical-validation.json').read_bytes())
+for key,value in report.items(): assert saved[key]==value, ('stale-report-field',key)
+for key,path in [('sourceSha256',v.SOURCE),('sourceBindingsSha256',v.BINDINGS),('schemaSha256',v.SCHEMA)]: assert saved[key]==hashlib.sha256(path.read_bytes()).hexdigest(),key
+assert len(source['entries'])==1408
+assert len([e for e in source['entries'] if e['audience']=='INTERNAL'])==240
+assert all(e['status']=='DRAFT' for e in source['entries'])
+assert len([e for e in source['entries'] if e['availability']=='BLOCKED_PRODUCT'])==70
+pseudo=v.pseudolocale(source['entries']); assert pseudo==json.loads(Path('Content/Reviews/text-library/WP-036/pseudolocale.json').read_bytes())
+repeated=v.repeat_report(source['entries']); assert repeated==json.loads(Path('Content/Reviews/text-library/WP-036/repetition-report.json').read_bytes())
+by={e['key']:e for e in source['entries']}
+for e in pseudo['entries']:
+ assert by[e['key']]['audience']=='PLAYER'
+ assert re.findall(r'\{[^{}]*\}',e['text'])==re.findall(r'\{[^{}]*\}',by[e['key']]['text'])
+ assert e['pseudoCodePoints']>e['sourceCodePoints']
+assert len(pseudo['entries'])==1168
+assert renderer.render(source).encode('utf-8')==Path('Content/Reviews/text-library/WP-036/READING_EDITION.md').read_bytes().replace(b'\r\n',b'\n')
+probes=[]
+try: v.parse(b'{"locale":"de-DE","locale":"en-US"}')
+except ValueError as e: probes.append(('duplicate-json-property','duplicate JSON property' in str(e)))
+else: probes.append(('duplicate-json-property',False))
+for name in ('unknown-root-property','unknown-entry-property','approved-status','wrong-locale','blocked-without-dependency','review-hash','public-input','level-order','short-placeholder'):
+ c=copy.deepcopy(source); b=copy.deepcopy(bindings)
+ if name=='unknown-root-property': c['unexpected']=True
+ elif name=='unknown-entry-property': c['entries'][0]['unexpected']=True
+ elif name=='approved-status': c['entries'][0]['status']='PRODUCT_APPROVED'
+ elif name=='wrong-locale': c['locale']='en-US'
+ elif name=='blocked-without-dependency': next(e for e in c['entries'] if e['availability']=='BLOCKED_PRODUCT')['blockedBy']=[]
+ elif name=='review-hash': b['levels'][0]['reviewSha256']='0'*64
+ elif name=='public-input': b['levels'][0]['publicFacts']['rowCounts'][0]=0
+ elif name=='level-order': c['entries'][0],c['entries'][1]=c['entries'][1],c['entries'][0]
+ elif name=='short-placeholder': c['entries'][0]['shortText']='{intruder}'
+ es,_=v.validate(c,b,schema,objects,paths); probes.append((name,bool(es)))
+assert all(p for _,p in probes),probes
+p='S1-02-04-12'; l=json.loads(objects[f'Content/Levels/s1/02/04/{p}.level-v2.json']); curves=sum(c['track'] not in ('TRACK_NS','TRACK_EW') for c in l['solution']['path']); assert curves==19
+print(json.dumps({'result':'PASS','freeze':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'sourceSha256':hashlib.sha256(sraw).hexdigest(),'checks':['persisted-validation-fields-and-three-input-hashes','1408-draft/240-internal/70-blocked','pseudolocale1168-exact-reproduction-and-placeholder-preservation','repetition-report-exact-reproduction','reading-edition-exact-reproduction','S1-02-04-12-19-curves'],'additionalMutations':probes},ensure_ascii=False,indent=2))
