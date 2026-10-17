@@ -1,5 +1,8 @@
 # WP-035 Teil G – Produktionsinventar und Übergabe
 
+**Stilkorrektur 17.10.2026:** [Direkte Ownerfestlegung](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md): Cartoon-/Comic-Spielwelt, plump-staubig-behördenhaft, mit **glasklarer Deutsche-Bahn-Anspielung**. Die klare dienstliche Informationshierarchie bleibt ihr bewusstes Gegenstück, nicht ein generischer Fantasy-/Candy-Look. Konkrete Typo-/Zeichen-/Layoutwerte bleiben Vorschläge; keine Annahme der abgelehnten Realismusbilder.
+
+
 **Arbeitsrolle:** Teil-Ausarbeitung G innerhalb WP-035, keine Abnahme, keine Geschäftsführung und keine unabhängige QC.
 
 **Arbeitsstand:** Dieses Kapitel ist eine **Designempfehlung zur ausdrücklichen Ownerfreigabe**. Es importiert kein Asset, setzt keine Produktregel und erklärt keine Rechts-, Produktions- oder Releasefreigabe.
@@ -18,13 +21,13 @@ Die Referenzspalte führt die tatsächlich gelieferten Quellen. Die Eigenprüfun
 | Künftiges Runtimeasset | Späterer Import unter Assets mit .meta und Zielklasse | `FUTURE_RUNTIME—NOT_PRODUCED` |
 | Originalschrift | Drei unveränderte TTFs, Herkunft, Hashes und OFL-Originaltext | Lizenzbeleg geliefert; kein Runtimeimport autorisiert |
 
-Die tatsächliche Gesamtliste samt SHA-256 steht im [Dateimanifest](evidence/file-manifest.json); der [Hauptreport](README.md) zeigt alle zehn PNG-Ansichten. Die beiden AI-Materialtafeln sind keine Maßautorität; genaue Konstruktionen liegen separat vor.
+Die tatsächliche Gesamtliste samt SHA-256 steht im [Dateimanifest](evidence/file-manifest.json); der [Hauptreport](README.md) zeigt alle zehn PNG-Ansichten. Die beiden neuen Cartoon-Stiltafeln sind keine Maßautorität; genaue Konstruktionen liegen separat vor.
 
 ## 2. Gemeinsame unveränderte Design- und Semantikbasis
 
 Es gilt genau das gemeinsame Token- und Schriftsystem aus dem [Owner-Brief](evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md): kein Alternativsystem und keine offizielle Bahn-Schrift.
 
-| Token | Fester Empfehlungswert | Ausschließliche Verwendung im Inventar |
+| Token | Fester Empfehlungswert | Semantische UI-/Puzzleverwendung im Inventar |
 |---|---:|---|
 | `brand-red` | `#C83D45` | Marke, dienstlicher Akzent und aktuelle Störung |
 | `surface` | `#F4F2EE` | warme Informationsfläche |
@@ -84,7 +87,7 @@ Die CSV-IDs sind Identifikatoren für Design- und Übergabeverfolgung. Sie sind 
 | Notizen/Auswahl | `C-02` bis `C-04` | Leer-X, offene graue Belegung, gelbe unabhängige Auswahl |
 | Ports/Counts/Tools | `C-05` bis `C-07` | A/B-Randport, offen/exakt/überschritten, sechs Formen plus X/Grau/Leeren/Mehrfachauswahl/Undo/Hinweis |
 | Status/Navigation/Ergebnis/Karte | `C-08` bis `C-11` | Kopfstatus, drei Hauptziele außerhalb des Rätsels, Zugfahrt-vor-Ergebnis, Kartenknotenstatus |
-| Fahrzeug-/Objektmodule | `D-01` bis `D-04` | fiktive Nahverkehrsfront, Lackierungsebene, Bahnsteig/Signal/Wegweiser/Tunnel/Bake |
+| Fahrzeug-/Objektmodule | `D-01` bis `D-04` | plumpe eigene rote Nahverkehrsfront, helle Türen/Bauchzone und Cartoon-Lackierungsebene, Bahnsteig/Signal/Wegweiser/Tunnel/Bake |
 | Welt-/Kartenmodule | `E-01` bis `E-06` | fünf bestehende Netzabschnitte, vier Routen je Abschnitt, 20 sichtbare Routenkontexte ohne neuen Contentumfang |
 | Semantischer Audio/Motion | `F-01` bis `F-07` | Eingabe statt Richtigkeitsurteil, Rücknahme, Freigabe, A–B-Fahrt, Ergebnis, Karte, Kosmetik |
 

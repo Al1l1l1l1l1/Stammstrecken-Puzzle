@@ -1,100 +1,75 @@
-# 05 – Welt- und Kartenmaterial
+# 05 – Cartoon-Welt und Kartenmaterial
 
-**WP-035 · Teil E · Entwurfsstand zur ausdrücklichen Ownerfreigabe**
-**Zweck:** Wiederverwendbare Modul-, Kompositions-, Material- und Zustandsbriefe für die vorhandenen fünf Season-1-Netzabschnitte und ihre 20 vorhandenen Routen.
+**Teil E · korrigierte konkrete Empfehlung. Cartoon-/Comic-Stil und glasklare Deutsche-Bahn-Anspielung sind direkte Ownerfestlegungen.**
 
-> Alle konkretisierten Maße, Materialwerte, Kamerawinkel und Modulnamen in diesem Kapitel sind **Empfehlungen**, keine Produktregel, Rechtsfreigabe, Production-Freigabe oder Importanweisung. Sie ändern weder Umfang, Rätselkern noch die bestehende URP-2D/2.5D-Richtung.
+## 1. Bestand und Maßgeblichkeit
 
-## 1. Bindung an Bestand und Leseschlüssel
+Die [Owner-Stilkorrektur](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md) gilt ohne Realismus-Ausweichinterpretation. Die neue [Cartoon-Weltentafel](references/06-worlds-cartoon.png) zeigt die fünf bestehenden Räume. Keine Modellbahnfotografie, PBR-Materialtafel, realistische Schotter-/Beton-/Blatttextur oder glänzende Plastikproduktaufnahme.
 
-- Die unveränderte Season umfasst **fünf Abschnitte × vier Routen × zwölf Meldungen**; diese Ausarbeitung erfindet keine Welt, Route, Station oder Meldung hinzu.
-- Jede Route erhält nur ihr vorhandenes Karten-Ziel aus der Content-Bible und eine empfohlene Zusammenstellung vorhandener Weltbaustein-Kategorien.
-- Der Puzzlepfad bleibt eine einzelne, schleifenfreie A–B-Verbindung aus sechs Formen. Eine sichtbare Karten-Schleife ist ausschließlich Übersichtssymbolik und niemals eine Puzzleform.
-- Der gewählte Zug fährt nach der gültigen Lösung **den tatsächlich gebauten A–B-Pfad**, nicht eine dekorative Kartenkurve oder einen voranimierten Ersatzweg.
-- Die Karte bleibt eine reduzierte fiktive Betriebslage, keine Netzkarte, Fahrplanauskunft, Ticketansicht, Stationslogo-Sammlung oder Live-Daten-Darstellung.
-- Die Begriffe Material, Licht und Modul beschreiben statische Referenzbilder und spätere Produktionsvorbereitung; sie behaupten keine bereits angelegten Runtimeassets.
+Fünf Abschnitte × vier Routen × zwölf Rätsel bleiben unverändert. Kartenring, Weltweiche, Brücke und Bus führen keine Puzzlemechanik ein. Die Zugfahrt folgt ausschließlich dem tatsächlich gültigen A–B-Pfad. Alle nachstehenden Maße/Kompositionen sind grafische Vorschläge, keine Rendererwahl, Laufzeit-/Importregel oder Freigabe des konkreten Entwurfs.
 
-**Fachgrundlage:** [Betriebslage-Karte und Betriebsmittel](../../../Stammstrecken_Puzzle_Konzept_00-15/07_Zuege_Welten_und_Reisekarte.md), [Visuelle Identität](../../../Stammstrecken_Puzzle_Konzept_00-15/10_Visuelle_Identitaet_und_Stammstrecke.md), [Season-1-Content-Bible](../../../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md) und [Content Pipeline](../../../ARCHITECTURE/CONTENT_PIPELINE.md).
+## 2. Gemeinsame grafische Konstruktion
 
-## 2. Gemeinsame visuelle Konstruktionsregel
-
-| Feld | Empfohlene, wiederverwendbare Vorgabe |
+| Feld | Konkrete Empfehlung |
 |---|---|
-| Perspektive | Leicht räumliche 2.5D-Miniatur, orthografisch wirkend; Draufsicht um **35°** geneigt, Längsachsen bevorzugt in 30°/150° oder 0°/90°. Keine fotorealistische Kamerafahrt und keine neue Rendererwahl. |
-| Referenzmaßstab | Für Referenzzeichnungen gilt **1 Weltmodul = H**, die gemeinsame Fahrzeughöhe aus Teil D (kein reales Metermaß). Ein Standardbahnsteigsegment ist 12 × 3 Module, ein gerades Gleissegment 6 Module lang; alle fünf Abschnitte teilen diese Rasterung. |
-| Schienenquerschnitt | Zwei braune Schienenstränge, je 0,04 Module breit, Achsabstand 0,50 Module; Schwellen alle 0,20 Module, 0,90 × 0,08 Module. Kurven verwenden einen Innenradius von mindestens 4,0 Modulen. |
-| Raumtiefe | Gleisoberkante liegt bei Z=0,18; Bahnsteigoberkante bei Z=0,52; Bahnsteigkante mindestens 0,45 Module seitlich von der Gleisachse. Diese drei Höhen bleiben abschnittsübergreifend identisch. |
-| Zughülle | Standard-Endwagen: 3,18 × 0,72 × 1,00 Module; Mittelwagen 0,92 dieser Länge, identisch zu Teil D; Radlauf berührt die Gleisoberkante ohne sichtbaren Spalt. Parkende Zugteile verwenden dieselbe Hülle wie fahrende Züge. |
-| Kartenmaßstab | Jeder Routenstrang belegt eine 4:1-Langform. Ein freigegebener Teilstrang ist in der statischen Referenz 8 logische Pixel breit; ein Störungsknoten 24 logische Pixel im Durchmesser. Dies sind keine Geräte-Mindestgrößen. |
-| Detaildichte | Pro 12 × 12-Modul-Kachel höchstens ein Hero-Objekt, zwei Funktionsobjekte und sechs Kleinobjekte. Freie Bodenflächen bleiben lesbar; keine Kleindetailtapete. |
-| Text/Zeichen | Keine realen Stationsnamen, Logos, Liniennummern, Fahrplanköpfe oder kopierten Piktogramme. Wegweiser tragen nur neue, kurze fiktive Layoutplatzhalter. |
+| Perspektive | Klare gezeichnete 2.5D-/isometrisch wirkende Spielwelt. Aufsicht als Zeichnungshilfe, keine fotografische Kamerainszenierung und kein neuer technischer Renderer. |
+| Formensprache | Stämmige Quader, stumpfe Facetten, große einfache Bogen-/Trägerformen; bewusst verkürzt und überdimensioniert, nicht technisch maßstabsgetreu. |
+| Kontur | Kräftige Anthrazit-Außenlinie; innere Fuge etwa halb so stark. Kleindetails entfallen vor der Silhouette. |
+| Schattierung | Zwei bis drei klar abgegrenzte Farbflächen pro Material, breite grafische Kontaktschatten. Kein weiches fotorealistisches Ambient Occlusion. |
+| Staub/Patina | Wenige breite entsättigte Farbpatches und große Platten-/Steinfugen; keine Noise- oder Mikromaterialtapete. |
+| Fahrzeugmodul | H = Wagenkastenhöhe; L=2,60H und W=0,90H aus Teil D. Rote Hauptfläche, helle Türen/Bauchzone, dunkle Dach-/Glas-/Laufwerkgruppen. |
+| Raumanker | Zug und Bahnsteig als lesbare Größenanker. Schilder und Amtsobjekte dürfen bewusst zu groß sein; die Übertreibung ist die trockene Pointe. |
+| Detailhierarchie | Ein klares Hauptmotiv je Raum, wenige funktionale Sekundärobjekte. Der aktive Puzzlerasterraum bleibt davon frei. |
 
-## 3. Gemeinsame Material- und Tokenbindung
+## 3. Farbe und Bahn-Wiedererkennung
 
-| Rolle | Ausschließlich zu verwendender gemeinsamer Token | Materielle Anwendung |
-|---|---|---|
-| Dienstlicher Akzent / Störung | `brand-red #C83D45` | Problemknoten, Bauzaun-Kappe, Warnbake und klar abgegrenzte Kartenstatusfläche; nie flächig als Bodenmaterial. |
-| Informations- und Bahnsteigfläche | `surface #F4F2EE` / `paper #FFFFFF` | Saubere Bahnsteigplatten, Kartenhintergrund, helle Beschilderungsfelder und Rasterruhe. |
-| Feste, freigegebene Infrastruktur | `ink #20272C` | Kartenstrang, Tunnelinnenkante, Pfosten, Brückenträger und zurückhaltende Kontur. |
-| Konkrete Puzzle- und Abschlussgleise | `track-brown #805535` | Ausschließlich die sechs gesetzten Gleisformen und deren hervorgehobener echter Fahrpfad. |
-| Offene Planungsannahme | `assumption-gray #727B82` | Nur graues Standardgleis als offene Belegungsnotiz; keine graue konkrete Kurve, kein Weltpfad. |
-| Leerannahme | `empty-red #B42E39` | Ausschließlich optionales X im Raster, nie Warnschild- oder Objektfarbersatz. |
-| Aktive Auswahl | `selection-yellow #F1C84B` mit `selection-edge #6C5717` | Nur Werkzeug- oder Feldselektion; nie Stern, Gewinn, freigegebene Strecke oder Kartenroute. |
-| Trennlinie | `grid-line #CCD0D1` | Raster, Kartentrenner und feine technische Fugen. |
+**Die Deutsche-Bahn-Anspielung ist nicht optional:** rote Nahverkehrszüge, helle Tür-/Bauchzonen, anthrazitfarbene Dach-/Fenstergruppen, deutsche Bahnsteigtafeln, verdichtete Betriebslageninformation, rot-weiße Absperrungen, umständliche Wegweiser und SEV bilden zusammen die Identität. Eigenständige Fronten, eigene Beschilderung, fiktive Meldungen und eigene Karte; keine offiziellen DB-Kennzeichen oder übernommenen Screens.
 
-- Die gemeinsame Schriftfamilie bleibt **IBM Plex Sans** für UI/Zahlen und **IBM Plex Sans Condensed** für straffe Statusüberschriften; keine Alternativfamilie wird vorgeschlagen.
-- Materialgefühl entsteht über Form, Kanten und kontrollierte Rauheit: Betonplatte 0,72, lackierte Bake 0,38, Schienenkopf 0,26, feiner Kies 0,84 als Referenzrauheit auf einer 0–1-Skala.
-- Diese Werte sind Bild-/Materialreferenzwerte, keine beschlossenen Shader-, Importpreset- oder Performanceparameter.
-- `track-brown` bleibt visuell der konkrete Gleisbeweis. Weltgleis und Kartenstrang dürfen daher nicht die Semantik von Grau, Rot-X oder Gelb übernehmen.
+Das UI-/Puzzle-Tokensystem bleibt unverändert. Im Raster: Braun konkrete Gleisform, Grau offene Belegung, Rot-X Leerannahme und Gelb ausschließlich Auswahl. **Illustrationsfarben sind nicht automatisch UI-Token:** gedämpftes Ocker auf einem gezeichneten Umwegschild, Schieferblau einer Bahnsteigtafel oder entsättigte Vegetation erzeugen keinen Auswahl-, Erfolgs- oder Fehlercode. Dieser Unterschied hebt die frühere eigene pauschale Beschränkung sämtlicher Weltfarben auf zehn UI-Token auf; die Puzzle-Semantik wird dadurch nicht verändert.
 
-## 4. Kontakt-, Licht- und Maßstabsregeln
+Material wird zeichnerisch vermittelt: ein Betonblock durch große Fuge und Schattenfläche, Holz durch wenige breite Linien, Metall durch Kontur und eine flache Lichtkante. Die alten numerischen PBR-Rauheitsziele entfallen vollständig.
 
-| Prüfung | Freigabepflichtige Bildregel |
+## 4. Kontakt und Lesbarkeit
+
+Gleise und Fahrzeuge müssen sichtbar zusammenpassen; kein schwebender Zug, keine abgeschnittene Verbindung. Stämmige Radgruppen liegen auf der dargestellten Schiene. Schatten sind grafische Bodenanker, keine physikalische Simulation. Figuren in der Illustration sind Hintergrundsituationen und kein beauftragter neuer Spielfigurenkatalog. Die klare A–B-Strecke darf niemals von Weltobjekten verdeckt oder durch eine attraktivere dekorative Kurve ersetzt werden.
+
+## 5. Zustände und Dramaturgie
+
+| Zustand | Grafische Regel |
 |---|---|
-| Bodenkontakt | Sockel, Zaunfüße, Bahnsteigkanten und Fahrzeuge sitzen mit höchstens 0,02 Modulen sichtbarem Abstand auf ihrer Trägerfläche; keine schwebenden Baken oder halb eingesunkenen Räder. |
-| Gleiskontakt | Radlaufebene berührt Z=0,18; Schwellen liegen vollständig auf dem Schotterbett. Ein Zug deckt nie die Schienenverbindung so ab, dass der A–B-Pfad unlesbar wird. |
-| Schichtabstand | Parallel liegende Spiel-, Karten- und Weltlinien erhalten mindestens 0,25 Module beziehungsweise 4 Bildschirm-Pixel Luft. Der sichere Leseraum um A/B misst mindestens 0,50 Module. |
-| Hauptlicht | Ein weiches gerichtetes Oberlicht von links oben bei 35° Elevation; Schatten fallen nach rechts unten und bleiben höchstens 0,60 Module lang. |
-| Füllung | Helle Flächen bleiben mit `surface`/`paper` lesbar; `ink`-Flächen dürfen höchstens 70 % der Bildfläche eines Ausschnitts belegen. Keine farbige Gegenlichtdramaturgie außerhalb der Tokens. |
-| Kontakt- und AO-Eindruck | Kontaktzonen erhalten eine subtile, maximal 0,10 Module breite Abdunklung. Sie trennt Materiallagen, darf aber keine versteckte Spiellogik oder Richtung kodieren. |
-| Maßstabsanker | Pro Kulissenausschnitt sind ein Zugfenster, eine Bahnsteigkante oder eine Tür als menschlicher Maßstabsanker sichtbar; Figuren sind nicht erforderlich. |
-| Wiederholbarkeit | Wiederholte Objekte rotieren nur in 90°-Schritten; Bahnsteigsegmente, Zäune und Wegweiser rasten auf dem 1,0-Modul-Raster ein. |
-
-## 5. Zustandsmodell: Puzzle, Fahrt, Karte und Betriebswerk
-
-| Zustand | Sichtbare Regeln |
-|---|---|
-| Ruhiges Puzzle | Nur helle technische Arbeitsfläche, Randzahlen, A/B, sechs Formen und optionale Notizen. **Keine** Kulissenobjekte, Kartenausschnitte, Geld, Werbung oder Betriebswerk-Objekte im Raster. |
-| Gültige Lösung | Graue und X-Notizen sowie technische Nebeninformation treten zurück. Der gebaute braune Pfad bleibt vollständig lesbar; Gelb endet mit der Auswahl und bewertet nicht die Lösung. |
-| Zugfahrt | Rätselgeometrie wird als einzige befahrbare Schienenlinie räumlich lesbar. Der Zug startet am tatsächlichen A, fährt jede konkrete Gerade/Kurve in Reihenfolge ab und hält erst am tatsächlichen B. |
-| Ergebnis | Erst nach erreichter B-Position erscheint Ergebnisfläche; die Welt darf einen ruhigen Freigabezustand zeigen, ersetzt aber keinen Teil der Fahrt. |
-| Betriebslage-Karte | Abstrahierte Achsen, Knoten und Abschnittsmaterial; nur Routenfortschritt, Störung, gesperrte Verbindung und Freigabe. Sie zeigt nie Zellen, Randzahlen oder eine vermeintliche Puzzlelösung. |
-| Betriebswerk | Ruhige materielle Präsentation auf `surface`/`paper`: Zug auf kurzem geradem Gleis, Betriebsobjekt auf 12 × 12-Modul-Präsentationsplatte, kein Kauf-/Freischaltversprechen in diesem Brief. |
+| Aktives Rätsel | Ruhige dienstliche Arbeitsfläche: Kopf, Randzahlen, sechs Formen und optionale Notizen. Keine Weltkulisse im Raster. |
+| Gültiger Abschluss | Hilfen zurücknehmen, den tatsächlichen braunen Pfad hervorheben; kein Richtigkeitsfeedback für offene Einzelannahmen. |
+| Zugfahrt | Die klare Cartoon-Zugfamilie fährt dieselbe A–B-Verbindung. Volumen/Kulisse rahmen die Leistung, keine neue Strecke. |
+| Ergebnis | Erst nach Ankunft an B; dienstliche Typohierarchie und vorhandene Daten, keine neue Wertung. |
+| Betriebslage-Karte | Reduzierte fiktive Netzstabilisierung mit gezeichneten Bau-/SEV-Kontexten; keine reale Netz- oder Liveauskunft. |
+| Betriebswerk | Lesbare cartoonhafte Züge/Objekte auf ruhigem Grund, keine photorealistische Produktvitrine. |
 
 ## 6. Wiederverwendbare Modulfamilien
 
-| ID | Modul | Konstruktion und Material |
+Die vorhandenen Modulnamen werden als Zeichnungsnotation weiterverwendet; keine Runtimeadressen oder neue Inhaltsmengen.
+
+| ID | Eigene Cartoon-Konstruktion |
+|---|---|
+| MOD-TRK | Dicke braune Schienen mit wenigen breiten Schwellen; große einfache Kurve statt Ballastmikrostruktur. |
+| MOD-PLT | Breiter heller Bahnsteigblock, wenige große Platten und kräftige dunkle Unterkante. |
+| MOD-TUN | Stumpfer großer Portalbogen, wenige Stein-/Betonblöcke, flache dunkle Öffnung. |
+| MOD-SIG | Schwerfälliger Mast mit übergroßem rechteckigem Kopf und kräftigem Sockel. |
+| MOD-BAU | Eine klar abgegrenzte kantige Grube, dicke rot-weiße Baken/Zäune und wenige gezeichnete Baustoffblöcke. |
+| MOD-WEG | Breiter kantiger Fußweg mit wenigen großen Richtungswechseln und überdimensionierter Beschilderung. |
+| MOD-BRG | Übergewichtige Träger, wenige breite Streben, dicke Pfeiler; keine filigrane Stahlrekonstruktion. |
+| MOD-DEP | Kurzes geordnetes Abstellgleis mit rotem Zugteil und ein bis zwei einfachen Amtsschränken. |
+| MOD-ERS | Winziges Wartehäuschen, riesiges SEV-Schild, blockiger roter/heller Bus und deutlich umständlicher Fußweg. |
+| MOD-KAR | Ruhiger grafischer Spielkartenknoten; feste/spätere Verbindung, Störung und Fortschritt bleiben vorhandene Kartenbedeutungen. |
+
+## 7. Fünf Abschnittsbriefe
+
+| Abschnitt | Raumkomposition | Sichtbare deutsche Bahn-Alltagspointe |
 |---|---|---|
-| `MOD-TRK` | Gleisbasis | 6 × 3 Module, braune Schienen nach Abschnitt 2, Kiesbett 0,18 hoch; gerade, 90°-Kurve und Endstück als räumliche Präsentationsbausteine. |
-| `MOD-PLT` | Bahnsteig | 12 × 3 × 0,52 Module, `surface`-Platten in 3 × 3-Modul-Fugen, `ink`-Kante; wahlweise mit 1,5-Modul-Wegweiserpfosten. |
-| `MOD-TUN` | Tunnelportal | Öffnung 5,6 breit × 4,8 hoch × 2,0 tief, `ink`-Innenlaibung, `surface`-Außenkante; kein Schriftzug oder Monogramm. |
-| `MOD-SIG` | Signal-/Statusmast | 0,35 × 0,35 × 3,6 Module, `ink`-Mast und ein 0,55-Modul-Statuskopf; der Kopf ist reine Kulisse, keine Rätselregel. |
-| `MOD-BAU` | Baugrube und Sicherung | 12 × 12 Module, abgesenkte Mitte Z=−1,20, `brand-red`-Kappen an 1,0-Modul-Zaunsegmenten, zwei 1,5-Modul-Baken. |
-| `MOD-WEG` | Provisorischer Weg | 2,0 Module breit, `surface`-Platten, `grid-line`-Fuge alle 1,0 Module, maximal eine rechtwinklige Richtungsänderung je 12-Module-Segment. |
-| `MOD-BRG` | Brückenfeld | 12 × 4 × 1,20 Module, `ink`-Längsträger, `surface`-Deckrand, offene Unterseite für lesbare Überführung. |
-| `MOD-DEP` | Depot-/Abstellgleis | 18 × 6 Module mit einem 3,18-Module-Standardwagen oder einer passend kurzen Garnitur, 1,0-Modul-Sicherheitsstreifen und maximal zwei Funktionsschränken. |
-| `MOD-ERS` | Ersatzhaltestelle | 12 × 6 Module: 6 × 2-Modul-Dach, 2 × 4-Modul-Warteplatte, 1,5-Modul-Wegweiser und klar getrennte gestrichelte Kartenfortsetzung. |
-| `MOD-KAR` | Kartenknoten | 8-mm-Kreis mit `brand-red` für aktuelle Störung, `ink` für freigegebenen Zielknoten, gedämpfte `grid-line`-Kontur für noch nicht erreichbare Knoten. |
-
-## 7. Abschnittsbriefe – Raum, Komposition und Material
-
-| Abschnitt | Raumkomposition | Pflichtmodule | Material- und Zustandsbild |
-|---|---|---|---|
-| Stammstrecke | Zentraler Tunnel mit **drei** 12×3-Bahnsteigen, zwei parallelen Gleisachsen und einem 18×18-Module engen Knoten. Tunnel belegt den linken oder oberen Bildrand, sodass die drei Plattformen sofort als Engstelle lesbar sind. | `MOD-TRK`, `MOD-PLT` ×3, `MOD-TUN`, `MOD-SIG`, einzelne `MOD-WEG`-Baken. | `ink`-Tunnelinnere, helle Bahnsteigplatten, punktuelles `brand-red` nur an Störung/Bake. Der fast vollständige Hauptstrang ist sichtbar, aber nie wie eine reale Station beschriftet. |
-| Bauabschnitt Mitte | Eine offene 12×12-Baugrube versetzt die zuvor klare Mittelachse; zwei schmale 2,0-Module-Provisorien führen an ihr vorbei. Ein Kartenring entsteht nur als Überblicksstrang. | `MOD-BAU`, `MOD-WEG` ×2–3, `MOD-PLT`, `MOD-SIG`, `MOD-TRK`. | Raues Kies-/Beton-Verhältnis, kontrollierte `brand-red`-Zaunkappen, helle temporäre Gehplatten. Keine Baustellenmechanik im Puzzle. |
-| Außenast ohne Halt | Oberirdische horizontale Distanz: ein Randbahnsteig links, Gewerbeblöcke als 6×6-Volumen rechts, dazwischen 36–48 Module offene Gleisachse. Ein abgestellter Zugteil liegt seitlich in `MOD-DEP`. | `MOD-TRK`, `MOD-PLT`, `MOD-DEP`, `MOD-SIG`, reduzierte Wegweiser. | Mehr offene Bodenfläche, lange Schatten, funktionierendes Zentrum räumlich fern. Die Distanz entsteht über Leerraum statt über neue Kartenkomplexität. |
-| Umleitung über Irgendwo | Zwei `MOD-BRG` kreuzen versetzt über einer langen Nebenachse; Wegweiser zeigen bewusst gegen die intuitive Leserichtung. Die Kartenroute darf die Rückführung als Schleife darstellen. | `MOD-BRG` ×2, `MOD-TRK`, `MOD-WEG`, `MOD-SIG`, Richtungswegweiser. | `ink`-Träger, helle Deckränder, lange ruhige Horizontale. Brücken sind Kulisse; im Season-1-Puzzle entstehen weder Brückenzellen noch Kreuzungen. |
-| Schienenersatzverkehr | Der feste Schienenstrang endet vor `MOD-ERS`; eine eindeutig grafische gestrichelte Kartenlinie überbrückt den Zwischenraum und wird später wieder als feste `ink`-/braune Schienenverbindung gezeigt. | `MOD-ERS`, `MOD-WEG`, `MOD-TRK`, `MOD-PLT`, provisorische Absperrung. | Warteplatte und Wegweiser sind materiell, die gestrichelte Linie bleibt ausschließlich Kartenstatus. Kein Bus als Puzzleobjekt und keine Busroute als Ersatz für die A–B-Zugfahrt. |
+| Stammstrecke | Großer stumpfer Tunnel, drei Bahnsteige, dichtes Gleis-/Meldetafelgefüge, rote Nahverkehrszüge. | Zu viel korrekt angeordnete Information in zu wenig Bahnhof; vertrauter enger Betriebsknoten. |
+| Bauabschnitt Mitte | Eine große kantige Grube, zwei provisorische Umwege, dicke rot-weiße Zäune und übergroßes Vorübergehend-Schild. | Die Provisorik ist sorgfältiger verwaltet als das Weiterkommen. |
+| Außenast ohne Halt | Viel flache freie Bodenfläche, kleiner entfernter Bahnsteig, stämmiger roter Zugteil, wenige Gewerbe-/Buschblöcke. | Alles sieht ordnungsgemäß aus, der Anschluss ist trotzdem weit weg. |
+| Umleitung über Irgendwo | Zwei versetzte überbaute Brücken, lange lesbare Rückführung und übergroße Richtungswegweiser. | Behördenhafte Präzision organisiert den unvernünftig langen Weg. |
+| Schienenersatzverkehr | Riesiges SEV-/Ersatzhalt-Schild, winzige Wartefläche, blockiger Bus, rot-weiße Absperrung, langer Fußweg. | Unverwechselbar der zentrale deutsche Pendlerfrust; nicht nur ein beliebiges Fahrzeug am Rand. |
 
 ## 8. Routenbriefe 01–04 – Stammstrecke
 
@@ -141,16 +116,12 @@
 | 19 · Anschluss an den Ersatzverkehr | „Der letzte große Umsteigeknoten wird verbunden.“ | `MOD-ERS` + 2×`MOD-PLT` + `MOD-WEG` ×2 + `MOD-SIG`; zwei materialisierte Wechselpunkte werden durch einen klaren Kartenknoten verbunden. |
 | 20 · Betrieb bis auf Weiteres stabil | „Die gesamte Season-1-Karte wird befahrbar; Betriebsrevision und Dauerbaustelle erscheinen.“ | Reprise aller Abschnitts-Hero-Module: `MOD-TUN`, `MOD-BAU`, `MOD-DEP`, `MOD-BRG`, `MOD-ERS`; ein durchgehender, abschnittsweise lesbarer Kartenstrang trägt die symbolische Abschlussfahrt. |
 
-## 13. Statische Referenzen und Produktionsanschluss
+## 13. Tatsächliche Referenzen und technische Grenze
 
-- [Weltbild-Brief für `references/06-worlds.png`](evidence/world-image-brief.md) dokumentiert die eigene Herkunft der tatsächlich gelieferten [fünfteiligen Material-/Raumtafel](references/06-worlds.png). Die AI-Tafel ist illustrativ, keine Maß-/Font-/Objektmasterquelle; die [Weltkonstruktionsquelle](references/06-world-construction.html) und dieses Kapitel sind dafür maßgeblich.
-- [Statische 20-Routenübersicht](references/07-route-map.html) ist eine dokumentarische HTML-Referenz ohne JavaScript, Eingaben, Runtimecode oder Spielinteraktion.
-- Falls später nach ausdrücklicher Freigabe Produktionsassets entstehen, ordnet die bestehende Pipeline sie den Gruppen `core`, `season-s1`, `cosmetics`, `audio` oder `localization` und den Adressen `stp/<domain>/<stable-id>` zu; dieser Brief vergibt keine Runtimeadresse.
-- Textur-, Modell- und Audiopresets, `.meta`-Dateien, tatsächliche Adressen, Katalogreferenzen, Lizenzmetadaten und Importparameter bleiben gemäß [Content Pipeline](../../../ARCHITECTURE/CONTENT_PIPELINE.md) spätere Produktionsarbeit.
+- [Neue Cartoon-Weltentafel](references/06-worlds-cartoon.png), neu erzeugt aus [world-image-brief.md](evidence/world-image-brief.md), ohne die abgelehnten Bilder als Eingabe.
+- [Weltkonstruktionsquelle](references/06-world-construction.html) und [PNG](references/06-world-construction.png): reduzierte reproduzierbare Form-/Kontakt-/Farbzuordnung passend zu Teil D.
+- [20-Routenübersicht](references/07-route-map.html): vorhandene Routenziele, keine Änderung der Karte oder Content-Bible.
 
-## 14. Offene Freigaben und Abgrenzung
+Die generierte Tafel ist eine **Cartoon-Stil-/Kompositionsreferenz**, keine orthografisch exakte Modellzeichnung. Gezeichnete Beispieltexte, Figuren und Zahlen sind illustrative Ton-/Kontextbeispiele; keine finale Textbibliothek, realen Fahrplandaten oder neuen Produktionsaufträge. Der Stil darf daraus nicht wieder in Pseudorealismus umgedeutet werden.
 
-1. Ownerfreigabe der vorgeschlagenen Modulmaße, Perspektive, Rauheitsreferenzen, Lichtwinkel und Routenkompositionen steht aus.
-2. Die originale Material-/Raumtafel `06-worlds.png` liegt als illustrative Materialreferenz vor; ihr Erscheinen ist keine Produkt-, Rechts- oder Productionfreigabe.
-3. Alle fiktiven Beschilderungen, Fahrzeugoberflächen, finale Assetnamen und jede externe Rechtsprüfung bleiben außerhalb dieses Teilbriefs.
-4. Es wurden keine neuen Level, keine neuen Puzzleformen, keine Routen, keine Kartenregeln, keine Rendererentscheidung und kein Runtimecode festgelegt.
+Unity-/Addressables-Gruppen, Adressmuster, .meta, Importpresets und spätere Lizenz-/Localization-Arbeit folgen unverändert der vorhandenen Architektur. Keine Rendererwahl, Performancegrenze, neue Pipeline, Produktionsdatei, Audio oder Animation werden in diesem Entwurf geliefert. Der allgemeine Stil und die zentrale DB-Anspielung sind bestätigt; konkrete Konstruktionen und neue Ausführung sind noch nicht automatisch angenommen.

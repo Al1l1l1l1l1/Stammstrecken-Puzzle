@@ -1,55 +1,47 @@
-# WP-035 – Konsistenz und Eigenprüfung
+# WP-035 – Konsistenz und Eigenprüfung nach Owner-Stilkorrektur
 
-## Rollen- und Liefergrenze
+## 1. Kein technischer PASS ersetzt die gestalterische Anforderung
 
-Dies ist die Eigenprüfung des ausführenden Gestaltungsagenten, keine unabhängige QC, keine GF-Abnahme und keine Produkt-, Rechts-, Runtime- oder Releasefreigabe. Die Parallelbausteine wurden nur als Fachausarbeitung verwendet; Architektur, Produktionsplanung und Abnahmerollen wurden nicht neu delegiert oder eingeführt. Der Hauptagent hat die Kapitel und Referenzen selbst zusammengeführt und gesichtet.
+Der Owner hat am 17.10.2026 die erste Fahrzeug-/Weltbildlieferung ausdrücklich zurückgewiesen. Die Bilder waren pseudo-realistische Modellbahnansichten statt der gewünschten Cartoon-/Comic-Spielgrafik. Dies war ein Auslegungs- und Sichtprüfungsfehler des ausführenden Agenten. Bereits Konzept 10 schloss Fotorealismus aus; der Fehler wird nicht als Quellenwiderspruch entschuldigt.
 
-## Gemeinsam konsolidierte Werte
+Die alten Datei-/Hash-/Scope-/Architekturbelege sind technische Historie, **keine** Stilfreigabe. Die [unmittelbare Ownerkorrektur](OWNER_STYLE_CORRECTION_2026-10-17.md) legt Cartoon-/Comic-Stil, plump-staubig-behördenhafte Anpassung und glasklare Deutsche-Bahn-Anspielung als Kern fest. Die neue konkrete Ausführung ist nicht automatisch angenommen.
 
-Die ursprünglichen Teilentwürfe enthielten unterschiedliche Detailwerte. Vor Lieferung wurden sie in den Kapiteln, HTML-Quellen, Token-JSON und Inventar abgeglichen:
+## 2. Durchgängige Korrektur statt Bildaustausch
 
-| Gegenstand | Einheitlicher Vorschlag |
+| Gegenstand | Korrigierte gemeinsame Richtung |
 |---|---|
-| Wortmarke | IBM Plex Sans Condensed SemiBold, +0,026em; Primärsatz 52 px, Kompaktsatz 28/30 px; einzeilig. |
-| Gleise | Sechs Formen; normierte Halbkantenzentrum-Ports; 18/100 Strich; Viertelkreisradius 50/100; bündige Enden. |
-| Graue Belegung | Kantenfreies kleines Standardgleis aus zwei kurzen Strichen und drei Schwellen, innerhalb 0,36C×0,20C; keine graue Anschlussform. |
-| Zellauswahl | 38 % Gelb auf Papier; unveränderte Inhaltsfarbe; innenliegende Kontur 0,028C. Werkzeugauswahl: volle gelbe Fläche. |
-| Große Raster | Derselbe 18/100-Gleisstrich, dieselben zehn direkten Feldwerkzeuge; keine neue Bedienpolitik. |
-| Zählstatus | Offen/erfüllt/überschritten ausschließlich aus der gezeigten Belegung; Grau zählt als Belegung, X nicht. Keine versteckte Lösung. |
-| Ergebnis/Tagesmeldung | Gelb ist keine Belohnungs- oder Ergebnisfarbe; Weiß/Anthrazit/Markenrot tragen die sachliche Darstellung. |
-| Fahrzeugmaß | Wagenkastenhöhe H; L=3,18H, W=0,72H. Weltmodule benutzen H, nicht einen konkurrierenden fiktiven Metermaßstab. |
-| Puzzlefahrt | Körperlänge 0,78C und Breite 0,24C; die Portkoordinaten bleiben Halbkantenzentren. |
+| Fahrzeug | Stämmiger roter Nahverkehrswagen: L=2,60H, W=0,90H; breite getrennte Scheiben, helle Türen/Bauchzone, dunkle Kappe/Laufwerkgruppen. |
+| Grafischer Aufbau | Kräftige Außenkontur 0,025H, innere Teilung halb so stark; wenige große gezeichnete Flächen. |
+| Material | Zwei bis drei flache Schattentöne, grafische Staubpatches; PBR-Rauheitsziele und photorealistische Detailtextur entfernt. |
+| Welt | Blockige Tunnel/Brücken/Plattformen, übergroße Amtsobjekte, klare Bahnsteig-/Baustellen-/SEV-Situationen; dieselben fünf Abschnitte und 20 Routenziele. |
+| Illustrationsfarbe | Boden, Schatten, Vegetation und Weltbeschilderung dürfen eigene gedämpfte Zeichnungsfarben haben; daraus entstehen keine neuen UI-/Puzzlezustände. |
+| UI/Marke | Dienstliche Bahn-App-Anmutung und Informationsdisziplin bleiben der bewusste Kontrast zur Cartoonwelt. Keine Fantasy-/Candy-Identität und keine offizielle Kennzeichnung. |
+| Rätsel | Sechs Halbkantenzentrum-Formen, 18/100-Strich, Viertelkreisradius 50/100 unverändert; Grau kantenfreie offene Note, X optionale Leerannahme, Gelb separate Auswahl. |
+| Counts | Ausschließlich dargestellte Belegung; keine versteckte Zielgeometrie oder Lösungsbewertung. |
+| Puzzlefahrt | Grafischer Körpervorschlag 0,78C lang, 0,27C breit; unverändert echter A–B-Pfad. |
 | Abschluss | Hilfen zurücknehmen → tatsächlicher Pfad → Zug A–B → Ergebnis. |
-| Audiogrenze | Semantische Cues und Mixbrief geliefert; keine Audiodatei oder Hörprüfung behauptet. |
+| Sound | Selbst erzeugter prägnanter Bahn-/Amtsmaterialcharakter als Brief, keine reale Ansagensimulation, keine bereits gelieferten Clips. |
 
-## Sichtprüfung der tatsächlich gerenderten Ansichten
+Kapitel A–G, Hauptreport, Designbrief, Fahrzeug-/Weltkonstruktionsquellen, Screenfahrzeuge, Inventarverweise und Bildbriefe werden entsprechend nachgeführt. Die bestehenden Quellen unter Konzept/Architektur/Assets/Content/Workflows sind unverändert; das eigene Manifest bleibt unverändert.
 
-Der erste Renderingdurchgang zeigte unter anderem einen CSS-Namenskonflikt zwischen den Zeitachsen-Schritten „train“ und einer Fahrzeugklasse, unverbundene Schienen im Ergebnisfixture, eine nicht passend kleine Gleisstrichstärke im 10×10-Fixture sowie uneinheitliche Referenzfontpfade. Diese eigenen Fehler wurden innerhalb des Dokumentationsscopes korrigiert und die betroffenen Ansichten erneut gerendert. Die finalen zehn PNGs werden vollständig gesichtet, nicht nur ihre Dateinamen geprüft.
+## 3. Neue Bildherkunft und tatsächliche Sichtprüfung
 
-Die Referenzen 01/02/03/04/07/08 und die beiden zusätzlichen Konstruktionsblätter werden aus ihren lokalen HTML-Quellen mit Chromium erzeugt. `build_references.py` protokolliert Seitengröße, geladene Schriftfamilien und JavaScript-Seitenfehler; die Seiten enthalten keine App- oder Spiellaufzeit. Die Original-TTFs liegen ausschließlich im Referenzordner. Das ist keine Freigabe zum Unity-Import.
+`05-vehicles-props-cartoon.png` und `06-worlds-cartoon.png` wurden am 17.10.2026 gemeinsam über Manus `generate_image` neu erzeugt, jeweils 2560×1440 PNG. **Keine Eingabereferenzen:** die abgelehnten Bilder wurden weder neu geöffnet noch als Stil-/Kompositionsinput verwendet. Sie sind aus dem aktuellen Dateibaum entfernt, bleiben nur Git-Historie.
 
-## Generierte Materialtafeln – ausdrücklich keine Maßautorität
+Die beiden **neuen** Tafeln wurden geöffnet und einmal auf die ausdrückliche Stilvorgabe geprüft: klar gezeichnete Konturen, vereinfachte Volumen und Farbflächen, stämmige rote Nahverkehrszüge, erkennbare deutsche Bahn-Alltags-/SEV-Anspielung; keine Fotorealismus- oder Modellbahnfotografie. Das ist eine Eigenprüfung und keine behauptete Ownerannahme oder unabhängige QC.
 
-`05-vehicles-props.png` und `06-worlds.png` wurden am 17.10.2026 als originale AI-Referenztafeln erzeugt, jeweils 2560×1440 PNG. Ihre Herkunft ist die Manus-Bildgenerierung aus den eigenen, dokumentierten Fahrzeug- und Weltbildbriefen, nicht ein übernommenes Suchbild oder ein Screenshot eines bestehenden Spiels. Kein generiertes Modell, keine Texturdatei und keine Audiodatei wurde damit geliefert.
+Generierte Titel sind keine exakte Produktwortmarke/Originalfontsetzung. Das gezeichnete Fahrzeugemblem ist keine Produktionsfreigabe: für Ableitung gilt der eigene Gleisknoten aus Kapitel A. Texte, Zahlen, Figuren und Zusatzdetails sind illustrative Ton-/Raumbeispiele, keine finale Textbibliothek, Fahrplandaten, neuen Produktionsmengen oder Produktregeln. Diese Abgrenzung rechtfertigt keine Rückkehr zum Realismus.
 
-Die Tafeln zeigen die gewünschte materielle Bahnfahrerwelt, die getrennten roten Lackfragmente, die fünf Räume und den Schienenersatzverkehr. **Nicht maßhaltig** sind einzelne erzeugte Frontfenster-, Signal-, Portal- und Propdetails. Die generierte Vegetation und Schattierung begründen keine zusätzlichen UI-Farbtoken. Die erzeugten Weltbeschriftungen sind keine nachgewiesene IBM-Plex-Textsetzung. Für diese Punkte sind die exakten Markdown-/SVG-/HTML-Konstruktionen und die tatsächlich geladenen Originalschriften maßgeblich; die AI-Tafeln sind Material-/Raumreferenzen, keine Produktionsmaster. Die zusätzlichen Blätter `05-vehicles-construction.html` und `06-world-construction.html` samt PNG machen diese Trennung praktisch nutzbar.
+Die Konstruktionsblätter sind reproduzierbare flache Quellen für Relation und gemeinsame Formen. Sie ersetzen die neue Cartoon-Art-Direction nicht durch technische Modelltreue. Alle betroffenen HTML-Ansichten werden mit den unveränderten Original-TTFs neu gerendert.
 
-Diese Einschränkung ist Teil der dokumentierten Lieferung und darf nicht als stillschweigende Annahme aller AI-Details durch einen späteren Produktionsagenten verloren gehen.
+## 4. Belege und Prüfgrenzen
 
-## Nachweise und Reproduktion
+Die konkrete Lieferprüfung berechnet nach der Korrektur lokale Markdown-/HTML-/Font-/CSV-Verweise, Dateilesbarkeit, 40 eindeutige Inventarzeilen, drei Originalfont-Hashes/deutsche Glyphen, Original-Lizenzbytes im ZIP, 28 Countzustände und 17 Kontrastpaare neu. `delivery-validation.json`, `render-results.json` und `file-manifest.json` beziehen sich auf die korrigierten Dateien. Die Datei-/Link-/Inventarprüfung ist bestanden (40 Anforderungen, 28 Countzustände, 17 Kontrastpaare); die vier geänderten statischen PNGs wurden gesichtet. [Lokaler Korrektur-PASS](architecture-cartoon-local-pass.txt) liegt vor. Der bestehende Architekturvalidator wird separat mit dem eigenen unveränderten Scope und `--self-test` in der gepinnten Umgebung erneut ausgeführt. Ein solcher PASS behauptet keine Designfreigabe.
 
-- `font-provenance.md`, `font-license-original.zip` und die lesbare Textkopie: gepinnte IBM-Originalquelle, bytegleicher ZIP-Eintrag, SHA-256 und OFL-Bedingungen; keine kostenpflichtige Beschaffung.
-- `asset-requirements.csv`: 40 eindeutige Anforderungszeilen; tatsächliche lokale Referenzdateien von künftig zu produzierenden Runtimeassets getrennt.
-- `delivery-validation.json`: Datei-, Link-, PNG-, SVG-, JSON-, Originalfont-Glyphen- und Fremdquellenprüfung.
-- `render-results.json`: tatsächlich erzeugte Ansichten und Schriftladezustand.
-- `file-manifest.json`: SHA-256 und Bytegröße aller gelieferten Dateien; enthält sich selbst nicht und wird nach den letzten Dateianpassungen erneuert.
-- Der bestehende Architekturvalidator wird mit dem gemeinsam verankerten, unveränderten `WP-035.documentation.scope.json` und `--self-test` ausgeführt; Ergebnis und genaue Umgebung stehen in den zugehörigen Logs.
-- Reguläre GitHub-CI wird am eigenen Draft-PR ausgeführt. Der vorhandene Workflowselektor verweist auf WP-027. Diese nicht beauftragte Workflowkonfiguration wird weder geändert noch umgangen: Ein daraus entstehender CI-Fehler wird als tatsächlicher fehlender Abschlussnachweis dokumentiert, nicht als neue Produktregel oder pauschaler Projektstopp.
+Draft-PR #30 bleibt offen, kein Merge. Der vorherige Head `64b1cadd260958bcc34e3b2af366b2ebb5d4bbfb` hatte zwei reguläre `validate`-FAILs; mehrere Unityjobs waren bereits erfolgreich, andere noch laufend. Dieser Stand wird nicht zum PASS umgedeutet und nicht auf den Korrekturhead übertragen. Die CI-Abschlussstatusabfrage wurde durch den Nutzerstopp beendet; daraus folgt kein Abschlussnachweis. Neue reguläre CI startet durch den normalen Push; deren Ergebnis wird am tatsächlichen Head ausgewiesen, kein Ersatzlauf oder Workflowänderung.
 
-## Was die Eigenprüfung nicht belegt
+Kein menschlicher Spiel-/Hörtest, Zielgeräte-/Accessibilitynachweis, rechtliche Endprüfung, Unityimport, Audio, Animation oder funktionsfähige neue Gestaltung wurde geliefert oder als bestanden behauptet. WP-035 bleibt offen.
 
-Kein menschlicher Spieltest, kein Hörtest, kein Zielgeräte-/Accessibility-Nachweis, keine rechtliche Markenprüfung, kein Unity-Import und keine funktionsfähige Zugfahrt wurden durchgeführt. Das verhindert die vollständige Entwurfsausarbeitung nicht, verhindert aber ihre falsche Kennzeichnung als Produktions- oder unabhängige Abschlussfreigabe.
+## 5. Unveränderter Anker
 
-## Anker- und Formatkorrektur vor Erstveröffentlichung
-
-Der bestehende Validator verlangte die WP-ID zusätzlich als eigenständige Codezeile. Der erste eigene, noch unveröffentlichte WP-035-Anker hatte sie unformatiert; dieser Formfehler wurde nach vollständiger lokaler Sicherung vor jeder Veröffentlichung durch korrektes erneutes Erst-Add auf derselben Mainbasis bereinigt. Keine historische fremde WP-Definition und kein fremdes Manifest wurde geändert. Der eigene Manifestinhalt blieb identisch. Zeilenendleerzeichen der eigenen Texte wurden entfernt; die Originallizenz ist im ZIP bytegenau geschützt. Die tatsächlichen Ergebnisse beider Eigenprüfungsdurchgänge bleiben protokolliert.
+WP/Manifest-Erst-Add `ec7ed3aa35c40363b0ccb0842bdb14c3fee28039` auf Mainbasis `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`. Der zuvor noch unveröffentlichte eigene ID-Formfehler wurde vor Erstveröffentlichung korrigiert; fremde Anker wurden nicht verändert. Der Stilkorrekturauftrag liegt innerhalb desselben Dokumentationsscopes; keine neue Governance-/Abnahmeserie oder Produktionsplanung.

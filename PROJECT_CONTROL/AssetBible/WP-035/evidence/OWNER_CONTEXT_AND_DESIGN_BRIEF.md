@@ -17,11 +17,13 @@ Die ursprüngliche Konversation wurde am 30.09.2026 über Manus Tasks aus Task `
 
 Die dazu korrelierten persistenten Fachfassungen sind insbesondere Konzept 10 und 11. Die frühere technische, separate WP-013-Metrikkonversation ist keine Quelle dieser Gestaltungsentscheidung. Die historischen Zitate dienen der Herkunftsklärung, ersetzen keine später ausdrücklich bestätigte Ownerentscheidung.
 
-## Gemeinsame Empfehlung für die Ausarbeitung (noch nicht angenommen)
+## Bestätigter Stil und konkrete Empfehlung
 
-Alle Kapitel entwickeln **eine** zusammenhängende Designempfehlung. Kein Alternativenkatalog, keine neue Markenpositionierung. Strenge, vertraute deutsche Informationshierarchie, starke dienstliche Rot-/Weiß-/Anthrazitdramaturgie, sachlicher Verwaltungsduktus, fiktive eigenständige Nahverkehrsfronten und hochwertig materielle Miniaturwelt. Nicht Kindercomic, nicht Dystopie, keine niedlichen Zuggesichter, kein generischer Cozy-Fantasy-Pivot.
+Die [direkte Owner-Stilkorrektur](OWNER_STYLE_CORRECTION_2026-10-17.md) legt **Cartoon-/Comic-Grafik und die glasklare Deutsche-Bahn-Anspielung** verbindlich fest. Die frühere Realismusauslegung ist ein eigener Fehler und verworfen. Konkrete neue Maße, Token, Zeichen und Medienparameter bleiben Vorschläge zur Annahme. Die Beispielspiele beauftragen keine Kopie.
 
-Vorgeschlagene gemeinsame Starttokens:
+Alle Kapitel entwickeln **eine** zusammenhängende Designempfehlung. Kein Alternativenkatalog, keine neue Markenpositionierung. Strenge, vertraute deutsche Informationshierarchie, starke dienstliche Rot-/Weiß-/Anthrazitdramaturgie, sachlicher Verwaltungsduktus, fiktive eigenständige Nahverkehrsfronten und hochwertige Cartoon-Spielwelt mit klaren Konturen, stämmigen Formen und zwei bis drei gezeichneten Schattenflächen. Eindeutig stilisierter Cartoon-/Comic-Spielstil: plump, staubig, behördenhaft; keine Dystopie und kein generischer Cozy-Fantasy-Pivot. „Miniatur“ bezeichnet eine reduzierte Spielwelt, keinesfalls Modellbahnfotografie oder Pseudorealismus.
+
+Vorgeschlagene gemeinsame **UI-/Puzzle-Starttokens** (keine Beschränkung sämtlicher Illustrationsfarben):
 
 | Token | Wert | Rolle |
 |---|---|---|
@@ -36,7 +38,7 @@ Vorgeschlagene gemeinsame Starttokens:
 | selection-edge | `#6C5717` | geometrische Auswahlkontur |
 | grid-line | `#CCD0D1` | ruhige Rasterlinien |
 
-Vorgeschlagene Schriftfamilie: **IBM Plex Sans** für Interface und Zahlen, **IBM Plex Sans Condensed** für straffe Wortmarke/Statusüberschriften; echte License-/Embedding-/Weitergabebedingungen an den IBM-Originalquellen prüfen. Keine offizielle Bahn-Schrift verwenden. Schriftgrößen sind Designreferenzen in logischen Einheiten, keine beschlossene Geräte-/Accessibilitypolitik.
+Vorgeschlagene Schriftfamilie: **IBM Plex Sans** für Interface und Zahlen, **IBM Plex Sans Condensed** für straffe Wortmarke/Statusüberschriften; echte License-/Embedding-/Weitergabebedingungen an den IBM-Originalquellen prüfen. Keine offizielle Bahn-Schrift verwenden. Gezeichnete Weltbeschilderung darf zurückhaltende eigene Ocker-/Schiefer-/Vegetationsfarben nutzen; daraus entstehen keine neuen UI-Zustände. Die offizielle Anmutung der Informationshierarchie bleibt erhalten. Schriftgrößen sind Designreferenzen in logischen Einheiten, keine beschlossene Geräte-/Accessibilitypolitik.
 
 Konstruktionen und Quellen müssen reproduzierbar sein. SVG-/HTML-/PNG-Dateien sind hier ausschließlich source-kontrollierte, statische Gestaltungsreferenzen, keine Web-App oder alternative Runtime. Brand und UI erhalten exakte Vektorkonstruktionen; Fahrzeug-/Weltmaterial kann zusätzlich original generierte Form-/Materialreferenzen nutzen. Keine fremden Suchbilder als gekaufte/lizenzierte Assets ausgeben.
 

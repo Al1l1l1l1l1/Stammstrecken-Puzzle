@@ -4,7 +4,7 @@
 
 Die sieben Fachkapitel und **zehn tatsächlich erzeugten Referenzansichten** liegen vor. Diese Datei ist der **eine Hauptreport**: Sie verbindet die Konstruktionen, zeigt die Gestaltung und führt zu allen Quellen, Lieferdateien und Nachweisen. Die Fachkapitel sind Bestandteile derselben Bible, keine voneinander unabhängigen Alternativentwürfe.
 
-**Status:** Fachliche Ausarbeitung und eigene Datei-/Referenz-/Scope-/Architekturprüfung erfolgreich geliefert; reguläre Draft-PR-CI noch ausstehend. Das Work Package bleibt offen. **Keine Produkt-, Rechts-, Runtime- oder Releasefreigabe. Kein Merge nach main.**
+**Status:** Owner hat die erste visuelle Richtung ausdrücklich zurückgewiesen. Die Bible ist auf Cartoon-/Comic-Stil mit glasklarer Deutsche-Bahn-Anspielung korrigiert; die konkrete neue Ausführung ist nicht automatisch angenommen. Frühere technische PASS-Belege sind keine Stilfreigabe und gelten nicht als Nachweis dieses Korrekturstands. Das Work Package bleibt offen. **Keine Produkt-, Rechts-, Runtime- oder Releasefreigabe. Kein Merge nach main.**
 
 ## 1. Was jetzt konkret vorliegt
 
@@ -22,9 +22,13 @@ Die Lieferung enthält keine Modelle, Texturen, Audiodateien, Animationen oder U
 
 ## 2. Die eine gemeinsame Richtung
 
+**Direkte Ownerfestlegung:** „stlisierten Cartoon- / Comic- Grafikstil“, „plump-staubig-behördenhaftere“ Anpassung und „GLASKLARER DEUTSCHE-BAHN ANSPIELUNG. Das ist der KERN“. [Herkunft und eigener Fehler](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md) sind dokumentiert. Die abgelehnten Realismusbilder sind aus der aktuellen Lieferung entfernt und wurden nicht als Eingabereferenzen wiederverwendet.
+
+**Konkrete Art Direction:** bewusst stämmige verkürzte Formen, kräftige klare Konturen, zwei bis drei gezeichnete Schattenflächen, sparsame grafische Patina. Verkehrsrote Nahverkehrszüge, helle Tür-/Bauchzonen, dunkle Dach-/Fenstergruppen, Bahn-App-/Bahnsteig-Duktus und SEV bleiben sofort erkennbar. Keine Modellbahnfotografie, kein Pseudorealismus und kein generischer Cozy-/Fantasy-Zugstil. Clash of Clans/Candy Crush sind Qualitäts-/Stilbeispiele, keine Kopiervorlagen.
+
 **Stammstrecken-Puzzle** bleibt sehr nah an der vertrauten deutschen Bahnfahrerwelt: Rot, Weiß und Anthrazit, sachlich verdichtete Information, straffe Typografie, Betriebslagen und überpräzise Provisorien. Diese Nähe wird nicht zu beliebiger, vorsichtig entfernter Bahnsatire abgeschwächt. Die konkrete Ausführung nutzt aber **eigene Zeichen, eine eigene Fahrzeugfront, eigene Texte und eigene Konstruktionen**.
 
-Das Rätsel ist zuerst eine ruhige technische Arbeitsfläche. Nach der gültigen Verbindung tritt der tatsächliche Pfad hervor, der Zug fährt ihn ab und erst danach erscheint das Ergebnis. Die materielle Miniaturwelt gibt dieser Leistung Gewicht. Schienenersatzverkehr ist mit Buskulisse, überdimensionierter Ersatzbeschilderung, langem Fußweg und sauber verwalteten Absperrungen ein sichtbarer Lore-Kern – kein austauschbares Dekor und keine neue Puzzlemechanik.
+Das Rätsel ist zuerst eine ruhige technische Arbeitsfläche. Nach der gültigen Verbindung tritt der tatsächliche Pfad hervor, der Zug fährt ihn ab und erst danach erscheint das Ergebnis. Die sorgfältig gezeichnete Cartoon-Spielwelt gibt dieser Leistung Gewicht. Die dienstliche Informationsoberfläche ist ihr bewusstes Gegenstück; der Denkbereich bleibt ruhig. Schienenersatzverkehr ist mit Buskulisse, überdimensionierter Ersatzbeschilderung, langem Fußweg und sauber verwalteten Absperrungen ein sichtbarer Lore-Kern – kein austauschbares Dekor und keine neue Puzzlemechanik.
 
 ### Herkunft und Autorität
 
@@ -85,23 +89,23 @@ Die Screenstruktur bleibt unverändert. Außerhalb des Rätsels führen die drei
 
 ![Maßbezogene Originalfront, Wagenmodule und gemeinsame Fahrzeugfamilie](references/05-vehicles-construction.png)
 
-**Vorschlag:** Ein eigener flach facettierter Nahverkehrskasten mit zwei getrennten schmalen Rechteckscheiben, weit auseinanderliegenden kleinen Rechteckleuchten, dunkler Dachkappe und Offwhite-Seiten. Zwei Türen und getrennte rote Bandfragmente strukturieren den Wagen. Die gemeinsame Wagenkastenhöhe ist H, die Länge L=3,18H, die Breite W=0,72H. Das sind Konstruktionsrelationen, keine reale Baureihe, kein Collider und kein Metermaß.
+**Vorschlag:** Ein eigener stämmiger **verkehrsroter** Nahverkehrskasten mit zwei getrennten breiten Scheiben, großen einfachen Tür-/Fenstergruppen, hellen Türen/Bauchzone und dunkler Dach-/Laufwerkmasse. Kräftige Kontur und wenige gezeichnete Flächen statt realistischer Details. Die gemeinsame Wagenkastenhöhe ist H, die Länge L=2,60H, die Breite W=0,90H. Das sind Konstruktionsrelationen, keine reale Baureihe, kein Collider und kein Metermaß.
 
 Fünf Formen – Starttriebzug, modulare Ersatzgarnitur, funktionierender Zugteil, Wagenreihung und Anschlusswunder-Express – variieren Reihung und Lackrhythmus innerhalb derselben Familie. Ihre Arbeitsnamen sind **keine finalen Katalog-IDs, Preise oder Freischaltungen**.
 
-![Original generierte Material- und Kulissenreferenz für Fahrzeuge und Betriebsobjekte](references/05-vehicles-props.png)
+![Neu erzeugte Cartoon-Stil- und Kulissenreferenz für Fahrzeuge und Betriebsobjekte](references/05-vehicles-props-cartoon.png)
 
 Signal, Weltweiche, Bahnsteig, Bank, Meldetafel, Wegweiser, Portal, Brücke, Ersatzhaltestelle, Absperrung und Busmotiv bilden einen wiederverwendbaren Baukasten. Weiche, Brücke, Signal und Bus sind ausschließlich kosmetische Weltobjekte – keine Season-1-Felder, Werkzeuge oder alternativen A–B-Pfade.
 
-**Wichtige Nutzungsgrenze:** Die AI-Tafel vermittelt Materialität und Kulisse, ist aber nicht maßhaltig. Einzelne Signal-, Portal-, Front- und Propdetails sind illustrative Varianten. Die exakte Gestaltungsvorlage ist Kapitel D zusammen mit der [Fahrzeugkonstruktionsquelle](references/05-vehicles-construction.html), nicht die ungeprüfte Übernahme jedes AI-Details. Der [Fahrzeugbildbrief](evidence/vehicle-image-brief.md) hält die eigene Herkunft fest.
+**Wichtige Nutzungsgrenze:** Die neue Tafel vermittelt den korrigierten Cartoonstil und die klare Bahn-Anspielung, ist aber nicht maßhaltig. Einzelne Signal-, Portal-, Front- und Propdetails sind illustrative Varianten. Die exakte Gestaltungsvorlage ist Kapitel D zusammen mit der [Fahrzeugkonstruktionsquelle](references/05-vehicles-construction.html), nicht die ungeprüfte Übernahme jedes AI-Details. Der [Fahrzeugbildbrief](evidence/vehicle-image-brief.md) hält die eigene Herkunft fest.
 
 ## 7. Fünf Welten, ein zusammenhängendes Kartenmaterial
 
 ![Weltmodule mit gemeinsamem Fahrzeugmaßstab und Anschlussregeln](references/06-world-construction.png)
 
-**Vorschlag:** Alle Raumbausteine benutzen H aus der Fahrzeugkonstruktion als gemeinsame Moduleinheit. Bahnsteig, Gleis, Signalmast, Baugrube, Weg, Brücke, Depot und Ersatzhaltestelle besitzen konkrete Modul-, Kontakt- und Materialregeln. Die fünf Abschnitte differenzieren sich über Komposition und Betriebslage, nicht über eine neue Farbpalette oder Puzzlemechanik.
+**Vorschlag:** Alle Raumbausteine benutzen H aus der Fahrzeugkonstruktion als gemeinsame Moduleinheit. Bahnsteig, Gleis, Signalmast, Baugrube, Weg, Brücke, Depot und Ersatzhaltestelle besitzen konkrete Modul-, Kontakt- und Materialregeln. Die fünf Abschnitte differenzieren sich über Komposition und Betriebslage, nicht über neue Puzzlemechanik. Illustrative Schatten-/Boden-/Beschilderungs-/Vegetationsfarben sind keine zusätzlichen UI-Zustände.
 
-![Original generierte Material- und Raumtafel der fünf bestehenden Netzabschnitte](references/06-worlds.png)
+![Neu erzeugte Cartoon-Stil- und Raumtafel der fünf bestehenden Netzabschnitte](references/06-worlds-cartoon.png)
 
 1. **Stammstrecke:** Tunnel und drei Bahnsteige bilden den engen, zuerst prägenden Betriebsknoten.
 2. **Bauabschnitt Mitte:** Baugrube, kontrollierte Absperrung und zwei provisorische Wege erzeugen verwaltete Umständlichkeit.
@@ -109,7 +113,7 @@ Signal, Weltweiche, Bahnsteig, Bank, Meldetafel, Wegweiser, Portal, Brücke, Ers
 4. **Umleitung über Irgendwo:** Versetzte Brücken und widersprüchlich wirkende Wegweiser machen die Rückführung räumlich sichtbar.
 5. **Schienenersatzverkehr:** Ersatzhalt, langer Fußweg und Buskulisse stehen einer flachen gestrichelten Kartenlücke gegenüber. Der Bus ersetzt keine Zugfahrt im Rätsel.
 
-Die AI-Tafel ist eine Raum-/Materialreferenz, keine exakte Font-, Shader-, Objekt- oder Maßautorität. Vegetation und Beleuchtung begründen keine neuen UI-Token. Für Produktionskonstruktion gelten Teil E und die [Weltkonstruktionsquelle](references/06-world-construction.html). Der [Weltbildbrief](evidence/world-image-brief.md) dokumentiert die Herkunft und die Illustrationsgrenze.
+Die neue Tafel ist eine Cartoon-Stil-/Raumreferenz, keine exakte Font-, Shader-, Objekt- oder Maßautorität. Vegetation und Beleuchtung begründen keine neuen UI-Token. Für Produktionskonstruktion gelten Teil E und die [Weltkonstruktionsquelle](references/06-world-construction.html). Der [Weltbildbrief](evidence/world-image-brief.md) dokumentiert die Herkunft und die Illustrationsgrenze.
 
 ![Die 20 vorhandenen Routenziele und ihre fünf Abschnittskontexte](references/07-route-map.png)
 
@@ -123,7 +127,7 @@ Die AI-Tafel ist eine Raum-/Materialreferenz, keine exakte Font-, Shader-, Objek
 
 **Bestätigte Reihenfolge:** Hilfen zurücknehmen → tatsächlich gebauten Pfad hervorheben → Zug von A nach B → Ergebnis.
 
-**Vorschlag zur Inszenierung:** P0–P3 bereiten die Fahrt bis 900 ms vor. Die Fahrt skaliert mit der tatsächlichen Bogenlänge; die Drehgestelle liegen auf demselben aus dem gültigen logischen Pfad abgeleiteten Anschlussschema. Viertelbögen werden nach Bogenlänge durchlaufen. Der Zugkörper ist in der Puzzlefahrt 0,78C lang und 0,24C breit. Kein Physics-, Spline- oder Kamerasystem erzeugt einen Ersatzweg.
+**Vorschlag zur Inszenierung:** P0–P3 bereiten die Fahrt bis 900 ms vor. Die Fahrt skaliert mit der tatsächlichen Bogenlänge; die Drehgestelle liegen auf demselben aus dem gültigen logischen Pfad abgeleiteten Anschlussschema. Viertelbögen werden nach Bogenlänge durchlaufen. Der Zugkörper ist in der Puzzlefahrt 0,78C lang und 0,27C breit. Kein Physics-, Spline- oder Kamerasystem erzeugt einen Ersatzweg.
 
 Der Cue-Brief unterscheidet X, offene Belegung, konkrete Schiene, Auswahl und Undo über Materialcharakter, **nicht über richtig/falsch**. Die vorhandenen Unity-Mixergruppen Master, Music, SFX, Ambience und UI bleiben bestehen. Kapitel F konkretisiert relative Pegel, Fade-/Loopbedarf und 48-kHz-/24-bit-PCM-Quellen als spätere Produktionsvorschläge.
 
@@ -137,7 +141,7 @@ Das [Anforderungsinventar mit 40 Zeilen](evidence/asset-requirements.csv) enthä
 |---|---|---|
 | Dokumentation | Hauptreport, sieben Kapitel, Bildbriefe, Inventar und Nachweise | Nachführung nach ausdrücklichen Entscheidungen |
 | Exakte Referenzquellen | Drei SVGs, acht statische HTML-Quellen, Token-JSON | Freigegebene Produktionsableitungen |
-| Sichtbare Referenzen | Zehn PNGs: acht lokale Renderings und zwei originale AI-Materialtafeln | Runtimefähige Sprites, Modelle, Materialien und UI-Assets |
+| Sichtbare Referenzen | Zehn PNGs: acht lokale Renderings und zwei originale Cartoon-Stiltafeln | Runtimefähige Sprites, Modelle, Materialien und UI-Assets |
 | Schrift | Drei unveränderte IBM-Plex-TTFs plus Original-Lizenz und Hashes | Tatsächlicher Fontimport, Hinweise, Glyphen-/Zielgeräteprüfung |
 | Motion/Audio | Phasen-, Pfad-, Cue-, Mix-, Rohformat- und Loopbriefe | Eigenständige lizenzierte Medien, Schnitt, Loops, Import und Hörprüfung |
 | Unity/Addressables | Vorhandene Zielklassen, Gruppen und `stp/<domain>/<stable-id>` als Rahmen | `.meta`, konkrete versionierte Importpresets, reale Adressen/Katalogbindungen |
@@ -146,7 +150,9 @@ Die bestehenden Architekturregeln werden übernommen, aber nicht vorkonfiguriert
 
 ## 10. Prüfung und tatsächliche Grenzen
 
-Die [Konsistenz- und Eigenprüfungsnotiz](evidence/DESIGN_CONSISTENCY_AND_VALIDATION.md) dokumentiert die Zusammenführung und korrigierten Referenzfehler. Die [A–G-Quellenmatrix](evidence/COVERAGE_MATRIX.md) und der [lokale Architecture-/Scope-PASS mit Selbsttest](evidence/architecture-local-pass.log) ergänzen den Nachweis. Maschinenlesbare Belege liegen in [Lieferprüfung](evidence/delivery-validation.json), [Renderprotokoll](evidence/render-results.json) und [Dateimanifest](evidence/file-manifest.json). Die eigene Prüfung ist keine unabhängige Abschlussfreigabe.
+Die erste Sichtprüfung hat die Art Direction verfehlt: die Bilder waren pseudo-realistisch, obwohl Fotorealismus bereits ausgeschlossen war. Datei-/Hash-/Scope-PASS ist kein Nachweis der gestalterischen Eignung. Diese Korrektur ist ausdrücklich keine automatische Produktannahme.
+
+Die korrigierte Datei-/Link-/Inventarprüfung sowie der [lokale Korrekturstand-Architecture-/Scope-PASS](evidence/architecture-cartoon-local-pass.txt) sind bestanden. Dies ist technische Eigenprüfung, keine Annahme der neuen Gestaltung. Die [Konsistenz- und Eigenprüfungsnotiz](evidence/DESIGN_CONSISTENCY_AND_VALIDATION.md) dokumentiert die Zusammenführung und korrigierten Referenzfehler. Die [A–G-Quellenmatrix](evidence/COVERAGE_MATRIX.md) und der [historische lokale Architecture-/Scope-PASS vor der Stilkorrektur](evidence/architecture-local-pass.log) ergänzen den Nachweis. Maschinenlesbare Belege liegen in [Lieferprüfung](evidence/delivery-validation.json), [Renderprotokoll](evidence/render-results.json) und [Dateimanifest](evidence/file-manifest.json). Die eigene Prüfung ist keine unabhängige Abschlussfreigabe.
 
 Reproduktion der statischen PNGs: `python3 build_references.py`; konkrete Lieferprüfung: `python3 validate_delivery.py`. Benötigt werden Chromium, Python Playwright, Pillow, fontTools und BeautifulSoup in der Arbeitsumgebung; keine Repositorypaket- oder Produktionsabhängigkeit wurde ergänzt. Der unveränderte Architekturvalidator wird separat mit seiner gepinnten Python-3.11.13-/Lockfile-Umgebung und dem eigenen WP-035-Manifest ausgeführt.
 
@@ -161,9 +167,9 @@ Kein menschlicher Spiel-/Hörtest, kein Geräte-/Accessibilitynachweis, keine Ma
 | **D-01 · Gemeinsames System** | Zehn Token und IBM-Plex-Sans/Condensed-System aus Abschnitt 4. | Annahme macht die neuen konkreten Typo-/Geometriewerte zur einheitlichen Gestaltungsbasis. Änderungen werden durch alle betroffenen Quellen und Referenzen nachgezogen. |
 | **D-02 · Marke/Icon** | Unterbrochener Gleisknoten, einzeilige Wortmarke und Icon aus Abschnitt 3. | Annahme bestimmt den visuellen Master. Änderung betrifft Pfade, Freiraum oder Satz, nicht Produktname oder nahe Bahnfahrerpositionierung. Eine spätere Rechtsprüfung bleibt getrennt. |
 | **D-03 · Puzzle/UI** | 100er Gleisgeometrie, kantenfreie graue Note, getrennte Auswahl und bestehende Screenlayouts aus Abschnitt 5. | Annahme konkretisiert die Darstellung. Keine Annahme von Gesten, Orientierung, Accessibilitypolitik oder verstecktem Lösungsfeedback. |
-| **D-04 · Kosmetische Welt** | Originalfront, fragmentierte Lackierung, Betriebsobjekte und fünf vorhandene Raumkompositionen aus Abschnitt 6/7. | Annahme macht die exakten Konstruktionen zur Produktionsvorlage. AI-Tafeln bleiben illustrative Materialreferenzen; keine Shop-/Katalog-/Preis-/Freischaltfreigabe. |
+| **D-04 · Kosmetische Welt** | plumpe eigene rote Nahverkehrsfront, helle Türen/Bauchzone und Cartoonkonstruktion, Betriebsobjekte und fünf vorhandene Raumkompositionen aus Abschnitt 6/7. | Annahme macht die exakten Konstruktionen zur Produktionsvorlage. AI-Tafeln bleiben illustrative Cartoon-Stilreferenzen; keine Shop-/Katalog-/Preis-/Freischaltfreigabe. |
 | **D-05 · Motion/Klang** | Phasen-, Pfad-, Cue- und Mixempfehlung aus Abschnitt 8. | Annahme konkretisiert spätere Medienproduktion unter bestehender Abschlussreihenfolge; keine bereits gelieferten Medien, keine Wertungs-/Zeitgrenzen. |
-| **D-06 · Produktionsanschluss** | Vor einem tatsächlichen Import konkrete Presets, Schrift-Hinweisplatzierung und LFS-Schwelle innerhalb der vorhandenen Architektur bestimmen. | Noch offene technische Details bleiben echte Folgeentscheidungen. Sie sind keine Voraussetzung, die diese abgeschlossene Entwurfsausarbeitung rückwirkend verhindert. |
+| **D-06 · Produktionsanschluss** | Vor einem tatsächlichen Import konkrete Presets, Schrift-Hinweisplatzierung und LFS-Schwelle innerhalb der vorhandenen Architektur bestimmen. | Noch offene technische Details bleiben echte Folgeentscheidungen. Sie sind keine Voraussetzung, die diese konkret vorgelegte Entwurfsausarbeitung rückwirkend verhindert. |
 
 **Sinnvoller nächster Schritt:** Die zusammenhängende Empfehlung an diesen Ergebnissen ausdrücklich annehmen oder gezielt ändern. Danach werden freigegebene Quellen innerhalb der bereits vorgesehenen Produktionsblöcke genutzt. Kein Projektneuplanning, keine automatisch gestartete Implementation, keine zusätzliche erfundene Abnahmeserie und keine Übertragung fremder PASS-Aussagen.
 
@@ -174,4 +180,4 @@ Kein menschlicher Spiel-/Hörtest, kein Geräte-/Accessibilitynachweis, keine Ma
 - [Projektstatus](../../CURRENT_STATE.md) und [Arbeitswarteschlange](../../WORK_QUEUE.md): additive branchlokale Asset-Bible-Hinweise; ältere Main-Abschnitte bleiben historische Integrationsaussagen.
 - [Vollständiges Produktionsinventar](evidence/asset-requirements.csv) und [Dateimanifest](evidence/file-manifest.json).
 
-**Branch:** `design/wp-035-finale-asset-bible` auf verifizierter Mainbasis `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`. PR und finaler Head werden mit den tatsächlichen CI-Nachweisen in der persistenten Übergabe ergänzt. Die Branch ist eine Gestaltungslieferung, keine Änderung der integrierten Produktgrundlagen.
+**Branch:** `design/wp-035-finale-asset-bible` auf verifizierter Mainbasis `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`. PR und finaler Head werden mit den tatsächlichen CI-Nachweisen in der persistenten Übergabe ergänzt. [Draft-PR #30](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/30) ist die persistente Veröffentlichung des eigenen Entwurfs; kein Merge. Die Branch ist eine Gestaltungslieferung, keine Änderung der integrierten Produktgrundlagen.

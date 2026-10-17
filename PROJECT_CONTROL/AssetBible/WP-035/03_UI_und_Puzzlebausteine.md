@@ -1,5 +1,8 @@
 # 03 – UI und Puzzlebausteine
 
+**Stilkorrektur 17.10.2026:** [Direkte Ownerfestlegung](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md): Cartoon-/Comic-Spielwelt, plump-staubig-behördenhaft, mit **glasklarer Deutsche-Bahn-Anspielung**. Die klare dienstliche Informationshierarchie bleibt ihr bewusstes Gegenstück, nicht ein generischer Fantasy-/Candy-Look. Konkrete Typo-/Zeichen-/Layoutwerte bleiben Vorschläge; keine Annahme der abgelehnten Realismusbilder.
+
+
 **WP-035 · Teil C · Ausarbeitungsstand: Empfehlung zur ausdrücklichen Owner-/Produktfreigabe.**
 
 > Dieses Kapitel konkretisiert ausschließlich die bereits bestätigte Puzzle- und Screenarchitektur als statische Designreferenz.
@@ -180,7 +183,7 @@ Sie enthält keine Geste, Drag-Variante, Fehlertoleranz, Orientierungs- oder Acc
 | Startscreen / Betriebslage | 57er Kopf, rote Statusfläche, eine rote Primärfläche **STRECKE FREIGEBEN**, danach ruhige Kartenminiatur und sekundäre Kartenaktion. | Keine neue Zielgruppe, Navigation oder Angebotsreihenfolge. |
 | Betriebslage-Karte | `surface`-Karte mit `ink`-Freigabe, rotem aktuellen Knoten, gedämpftem Folgeproblem und `grid-line`-Sperrstrang; Detailblatt vom unteren Rand als statisches Layout. | Keine echte Netzkarte, Reise-, Ticket- oder Echtzeitfunktion. |
 | Ergebnis | Erst brauner Streckenausschnitt mit fiktivem Zug, dann Status **STRECKE FREIGEGEBEN**, Sterne, Zeit, Punkte, Kartenchip und die zwei bestehenden Folgeaktionen. | Keine neue Belohnung, keine Werbung zwischen Lösung und Ergebnis. |
-| Betriebswerk | Helle Werkhalle, fiktiver Zug als große materielle Form, bestehende Reiter **ZUGPARK** und **BETRIEBSVERBESSERUNGEN**. | Keine Kauf-, Preis-, Freischalt- oder Spielvorteilsregel. |
+| Betriebswerk | Helle Werkhalle, plumper roter Cartoon-Zug als große klar konturierte Form, bestehende Reiter **ZUGPARK** und **BETRIEBSVERBESSERUNGEN**. | Keine Kauf-, Preis-, Freischalt- oder Spielvorteilsregel. |
 | Profil | Anthrazitfarbener Kopf, ruhige Rasterkarten für vorhandene Meisterschaftswerte, darunter Listenzeilen. | Keine neue Statistik-, Profil- oder Bewertungsregel. |
 | Betriebslage des Tages | Anthrazite Meldetafel mit rotem Kopfstreifen und weiß lesbarer Fixture-Belohnung; getrennte, ruhige Erklärung. | Keine Tages-/Zeitzonenpolicy, kein Casino-Rad und keine Kaufmechanik. |
 

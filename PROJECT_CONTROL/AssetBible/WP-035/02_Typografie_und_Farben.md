@@ -1,5 +1,8 @@
 # 02 – Typografie und Farben
 
+**Stilkorrektur 17.10.2026:** [Direkte Ownerfestlegung](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md): Cartoon-/Comic-Spielwelt, plump-staubig-behördenhaft, mit **glasklarer Deutsche-Bahn-Anspielung**. Die klare dienstliche Informationshierarchie bleibt ihr bewusstes Gegenstück, nicht ein generischer Fantasy-/Candy-Look. Konkrete Typo-/Zeichen-/Layoutwerte bleiben Vorschläge; keine Annahme der abgelehnten Realismusbilder.
+
+
 **Arbeitsstand:** konkrete Gestaltungsempfehlung für WP-035; **ausdrückliche Owner-, Produkt-, Accessibility- und Rechtsfreigabe steht aus**.
 **Geltung:** statische Asset-Bible-Referenz, kein Runtimeimport und keine Geräte- oder Accessibilitypolitik.
 **Zusammenhang:** Die gemeinsame Ausgangsbasis ist der [Owner-Kontext](evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md). Visuelle Richtung und Puzzle-Semantik folgen der [Visuellen Identität](../../../Stammstrecken_Puzzle_Konzept_00-15/10_Visuelle_Identitaet_und_Stammstrecke.md) und der [UI-Spezifikation](../../../Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md). Die spätere Assetablage bleibt dem [Content-Pipeline-Vertrag](../../../ARCHITECTURE/CONTENT_PIPELINE.md) vorbehalten.
@@ -14,7 +17,7 @@ Die konkrete Zuordnung ist in [`references/design-tokens.json`](references/desig
 
 ## 2. Unveränderte Farbtoken und Rollen
 
-Diese zehn Werte sind **ohne Ergänzung, Abwandlung oder Alternativpalette** aus dem gemeinsamen Brief übernommen. Neue Farben für Erfolg, Fehler oder Belohnung werden nicht vorgeschlagen: Ein freigegebener Kartenstrang bleibt `ink`, nicht Grün; eine Überschreitung kann die bestehende Rotrolle nutzen, ohne die Bedeutung des roten X umzudefinieren.
+Diese zehn **UI-/Puzzlewerte** sind aus dem gemeinsamen Brief übernommen. Sie beschränken nicht sämtliche Schatten-/Boden-/Beschilderungs-/Vegetationsfarben der Cartoonillustration; solche Weltfarben erzeugen keine UI-Zustände. Neue Farben für Erfolg, Fehler oder Belohnung werden nicht vorgeschlagen: Ein freigegebener Kartenstrang bleibt `ink`, nicht Grün; eine Überschreitung kann die bestehende Rotrolle nutzen, ohne die Bedeutung des roten X umzudefinieren.
 
 | Token | Exakter sRGB-Wert | Ausschließliche empfohlene Rolle | Nicht dafür verwenden |
 |---|---|---|---|
@@ -135,7 +138,7 @@ Randzahlen nutzen die bestehende Zustandslogik: offen `ink`, exakt erfüllt `ass
 
 ## 8. Lizenz- und Referenzgrenze
 
-Die Originalquellen für IBM Plex wurden an IBM-Originalstellen überprüft. [`evidence/font-provenance.md`](evidence/font-provenance.md) pinnt Repositorycommit, Original-URLs, Bytegrößen, eingebettete Namen und SHA-256 aller drei TTFs sowie der Lizenz. [`evidence/font-license-original.txt`](evidence/font-license-original.txt) ist der unveränderte Originaltext der SIL Open Font License 1.1.
+Die Originalquellen für IBM Plex wurden an IBM-Originalstellen überprüft. [`evidence/font-provenance.md`](evidence/font-provenance.md) pinnt Repositorycommit, Original-URLs, Bytegrößen, eingebettete Namen und SHA-256 aller drei TTFs sowie der Lizenz. [`evidence/font-license-original.zip`](evidence/font-license-original.zip) enthält den bytegleichen Originaltext der SIL Open Font License 1.1; die TXT-Datei ist die lesbare, zeilenendnormalisierte Kopie.
 
 Die OFL erlaubt nach ihrem Text unter Bedingungen unter anderem Einbettung und Weitergabe; sie ersetzt keine Marken-, Produkt-, Store- oder Rechtsfreigabe. Die TTFs bleiben hier dokumentarische Referenzen. Eine spätere Subsetbildung, Konvertierung, Umbenennung oder tatsächliche Runtimeeinbindung muss den dort dokumentierten Änderungs- und Weitergabegrenzen folgen und separat freigegeben werden.
 

@@ -89,7 +89,7 @@ def main():
         except Exception as exc:
             errors.append(f'Datei nicht lesbar {relative}: {exc}')
     for expected in ['01-brand', '02-type-color', '03-puzzle', '04-screens',
-                     '05-vehicles-props', '05-vehicles-construction', '06-worlds',
+                     '05-vehicles-props-cartoon', '05-vehicles-construction', '06-worlds-cartoon',
                      '06-world-construction', '07-route-map', '08-motion-audio']:
         if not (ROOT / 'references' / (expected + '.png')).is_file():
             errors.append(f'Referenz-PNG fehlt: {expected}')

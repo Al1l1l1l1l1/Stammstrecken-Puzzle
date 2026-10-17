@@ -1,5 +1,8 @@
 # 01 – Marke und App-Icon
 
+**Stilkorrektur 17.10.2026:** [Direkte Ownerfestlegung](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md): Cartoon-/Comic-Spielwelt, plump-staubig-behördenhaft, mit **glasklarer Deutsche-Bahn-Anspielung**. Die klare dienstliche Informationshierarchie bleibt ihr bewusstes Gegenstück, nicht ein generischer Fantasy-/Candy-Look. Konkrete Typo-/Zeichen-/Layoutwerte bleiben Vorschläge; keine Annahme der abgelehnten Realismusbilder.
+
+
 > **Entwurfsstatus / Empfehlung zur ausdrücklichen Freigabe:** Dieses Kapitel konkretisiert nur eine dokumentarische Gestaltungsrichtung.
 > Es begründet keine Produktregel, keine Rechtefreigabe, keinen Produktionsimport und keine Aussage über Store-Zulassung.
 

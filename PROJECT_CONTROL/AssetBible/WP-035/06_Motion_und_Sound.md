@@ -18,7 +18,9 @@ Die Inszenierung lässt das Rätsel bis zum gültigen Abschluss eine ruhige tech
 
 ## 2. Gemeinsame visuelle Parameter
 
-Für alle nachstehenden Referenzen gelten ausschließlich die gemeinsamen Tokens aus dem [Owner-Brief](evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md): `brand-red #C83D45`, `surface #F4F2EE`, `paper #FFFFFF`, `ink #20272C`, `track-brown #805535`, `assumption-gray #727B82`, `empty-red #B42E39`, `selection-yellow #F1C84B`, `selection-edge #6C5717` und `grid-line #CCD0D1`.
+Die [Owner-Stilkorrektur](evidence/OWNER_STYLE_CORRECTION_2026-10-17.md) legt die Cartoon-/Comic-Spielwelt und die glasklare Deutsche-Bahn-Anspielung fest. Fahrzeuge und Weltobjekte bleiben zeichnerisch konturiert und stämmig; keine fotorealistische Kamerafahrt oder PBR-Materialinszenierung. Die sachliche Bedienoberfläche ist der bewusste Kontrast zur Cartoonwelt. Klang bleibt selbst erzeugter, grafisch prägnanter Bahn-/Amtsmaterial-Charakter, keine realistische Fahrzeug-/Ansagensimulation.
+
+Für alle semantischen UI-/Puzzleanteile gelten die gemeinsamen Tokens aus dem [Owner-Brief](evidence/OWNER_CONTEXT_AND_DESIGN_BRIEF.md): `brand-red #C83D45`, `surface #F4F2EE`, `paper #FFFFFF`, `ink #20272C`, `track-brown #805535`, `assumption-gray #727B82`, `empty-red #B42E39`, `selection-yellow #F1C84B`, `selection-edge #6C5717` und `grid-line #CCD0D1`.
 
 - **Schrift:** IBM Plex Sans für Zeiten, Werte und Bedienelemente; IBM Plex Sans Condensed nur für straffe Statuszeilen. Diese Verwendung folgt der gemeinsamen Empfehlung; Lizenz, Embedding und Weitergabe bleiben separat zu bestätigen.
 - **Referenzraum:** Eine Rasterzelle hat die variable Kantenlänge `c`. Alle Maße darunter skalieren mit `c`; sie sind keine Geräte-, Touch-, Accessibility- oder Performancevorgabe.
@@ -73,7 +75,7 @@ Die Anzeige folgt damit exakt: **Hilfen zurücknehmen → tatsächlichen Pfad he
 |---|---:|---|
 | Fahrzeugkörperlänge | `0.78 c` | Eigenständiges, kompakt lesbares Miniaturfahrzeug innerhalb enger Bögen. |
 | Drehgestellabstand `d` | `0.34 c` | Vorder- und Hinterkontakt bleiben bei `0.50 c`-Kurven sichtbar auf derselben Strecke. |
-| Fahrzeugbreite quer zur Fahrt | `0.24 c` | Identisch zur Puzzlefahrt-Reduktion in Teil D; Pfadports bleiben unverändert auf Halbkantenzentren. |
+| Fahrzeugbreite quer zur Fahrt | `0.27 c` | Identisch zur Puzzlefahrt-Reduktion in Teil D; Pfadports bleiben unverändert auf Halbkantenzentren. |
 | Schienenkörperhöhe in P3–P5 | `0.035 c` | Verleiht Materie, ohne ein neues Spielbrett zu bauen. |
 | Anfahrzeit | 280 ms | Zug löst sich ohne Spielzeug-Sprung von A. |
 | Fahrtzeit | `T_fahrt = 0.28 s + L × 0.22 s + 0.36 s` | `L` ist die Bogenlänge in Zellkanten; längere gültige Wege erhalten proportional mehr Fahrzeit. |
@@ -113,8 +115,8 @@ Der gewählte Zug und seine Lackierung bestimmen nur Fahrzeugmesh, Material, ggf
 | Ort | Freigabevorschlag | Kameraregel / Material |
 |---|---|---|
 | Abschlussfahrt | Gewählte Garnitur fährt P4 als einheitliches Modell; optionale Lackstreifen bleiben flache, eigene Farbbänder auf der bestehenden Fahrzeugform. | Die Kameraregeln aus Abschnitt 5 gelten identisch für jede Kosmetik. |
-| Betriebswerk | Der Zug steht auf einem geraden 1.8-`c`-Sockel vor matter Werkhallenfläche; eine langsame Vorführung dreht das Modell maximal 12° nach links und zurück. | 1.6 s je Richtung, `cubic-bezier(.33,0,.2,1)`; keine Lootbox-, Zufalls- oder Kaufanimation. |
-| Betriebsobjekt | Signal, Bahnsteig, Wegweiser oder Tunnelportal erscheint als stilles Miniaturmodell mit 80 ms Schatteneinblendung. | Keine Vorführung darf eine Rasterzelle, Spielregel oder Kartenfreigabe vortäuschen. |
+| Betriebswerk | Der Zug steht auf einem geraden 1.8-`c`-Sockel vor flach gezeichneter Werkhallenfläche; eine langsame Vorführung dreht das Modell maximal 12° nach links und zurück. | 1.6 s je Richtung, `cubic-bezier(.33,0,.2,1)`; keine Lootbox-, Zufalls- oder Kaufanimation. |
+| Betriebsobjekt | Signal, Bahnsteig, Wegweiser oder Tunnelportal erscheint als stilles Cartoonobjekt mit 80 ms Schatteneinblendung. | Keine Vorführung darf eine Rasterzelle, Spielregel oder Kartenfreigabe vortäuschen. |
 
 ## 7. Semantische Audio-Cues und Mixvorschlag
 

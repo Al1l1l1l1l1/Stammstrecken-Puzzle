@@ -67,6 +67,8 @@ Eine neue Instanz beginnt erneut mit `AGENTS.md`; der aktuelle Repository-Stand 
 
 ## WP-035 – branchlokale Asset-Bible-Ausarbeitung, 17.10.2026
 
+**Historischer Erstlieferstand, vor Owner-Stilkorrektur; die nachfolgende Korrektur ist maßgeblich. Alte Stilbewertung ausdrücklich zurückgewiesen.**
+
 Dieser additive Abschnitt beschreibt ausschließlich die eigene Branch `design/wp-035-finale-asset-bible`; die obigen Main-Abschnitte sind Integrationshistorie. Der frisch gelesene PR-21-Stand für WP-026/WP-034 ist `dc1652befd7545b4c2a2dd0580f35a4e8e05d72d`, nicht eine neue Freigabe durch WP-035. Fremde Arbeitszweige und Quellen wurden weder übernommen noch integriert.
 
 **WP-035: fachliche Ausarbeitung geliefert, offenes Dokumentationspaket.** [Die vollständige Asset-Bible](AssetBible/WP-035/README.md) verbindet sieben Fachkapitel und zehn tatsächlich erzeugte PNG-Referenzen, exakte SVG-/HTML-Quellen, drei originale IBM-Plex-TTFs mit Lizenz-/Hashbelegen sowie 40 nachvollziehbare Assetanforderungen. Die konkreten neuen Details bleiben Vorschläge zur ausdrücklichen Freigabe. Keine neue Spielplanung, kein Runtimeimport, keine eigene Pipeline, keine Änderung von Architektur/Produktregeln, keine Katalog-/Preis-/Textbibliothek-/Zeitkalibrierungsarbeit.
@@ -76,3 +78,7 @@ Dieser additive Abschnitt beschreibt ausschließlich die eigene Branch `design/w
 **Anker:** WP-035 und eigenes unveränderliches Manifest wurden gemeinsam in `ec7ed3aa35c40363b0ccb0842bdb14c3fee28039` auf der direkten Mainbasis `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16` eingeführt. Der bestehende Architekturvalidator hat in Python 3.11.13 mit gelockten Abhängigkeiten, eigenem Dokumentationsmanifest und --self-test RESULT PASS erreicht. Reguläre Draft-PR-CI folgt am tatsächlichen Head; der bestehende Workflowselektor WP-027 wird nicht außerhalb des Auftrags geändert. Ein daraus entstehender FAIL ist ein fehlender WP-035-Abschlussnachweis, kein neu erfundener globaler Produkt- oder Startblocker.
 
 **Letzter Schritt:** Vollständige Gestaltung konsolidiert, konkrete Referenzen erzeugt und gesichtet, Lieferprüfung bestanden. **Nächster Schritt:** Eigenes Draft-PR mit tatsächlicher Architektur-/CI-Evidenz persistieren; anschließend konkrete Annahme oder Änderung der sechs im Hauptreport benannten Design-/Produktionsanschlussvorschläge. Keine automatische Implementation, unabhängige Zusatzserie oder Integration; kein Merge freigegeben.
+
+## WP-035 – direkte Owner-Stilkorrektur, 17.10.2026
+
+Der Owner hat die pseudo-realistische Modellbahnrichtung ausdrücklich verworfen und **Cartoon-/Comic-Grafik, plump-staubig-behördenhaft, mit glasklarer Deutsche-Bahn-Anspielung als Kern** festgelegt. Die eigene Bible und ihre Quellen/Referenzen sind entsprechend korrigiert; zwei neue Cartoon-Tafeln statt der abgelehnten Bilder. Kein weiterer Produktionsauftrag, keine neuen WPs, kein geändertes Manifest, kein Merge. Draft-PR #30 bleibt offen; konkrete neue Ausführung noch nicht angenommen. Alte technische PASS-Belege sind keine Stilfreigabe und gelten nicht für den Korrekturstand. [Eine korrigierte Asset-Bible](AssetBible/WP-035/README.md), [direkte Ownerquelle und eigener Fehler](AssetBible/WP-035/evidence/OWNER_STYLE_CORRECTION_2026-10-17.md). Bestehende integrierte Projektstände oben bleiben historisch; kein fremder Paket-/PR-Abschluss wird daraus abgeleitet.
