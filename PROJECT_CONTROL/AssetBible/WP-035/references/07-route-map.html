@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stammstrecken-Puzzle – Season 1 Routenübersicht</title>
+  <style>
+@font-face{font-family:"IBM Plex Sans";src:url("Fonts/IBMPlexSans-Regular.ttf");font-weight:400}
+@font-face{font-family:"IBM Plex Sans";src:url("Fonts/IBMPlexSans-SemiBold.ttf");font-weight:600}
+@font-face{font-family:"IBM Plex Sans Condensed";src:url("Fonts/IBMPlexSansCondensed-SemiBold.ttf");font-weight:600}
+
+    :root {
+      --brand-red: #C83D45;
+      --surface: #F4F2EE;
+      --paper: #FFFFFF;
+      --ink: #20272C;
+      --track-brown: #805535;
+      --assumption-gray: #727B82;
+      --empty-red: #B42E39;
+      --selection-yellow: #F1C84B;
+      --selection-edge: #6C5717;
+      --grid-line: #CCD0D1;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--surface); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; }
+    main { width: min(1440px, calc(100% - 48px)); margin: 24px auto 48px; }
+    header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding: 24px 28px; background: var(--paper); border-top: 8px solid var(--brand-red); }
+    h1, h2, .route-id { font-family: "IBM Plex Sans Condensed", sans-serif; letter-spacing: .03em; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.75rem); line-height: .94; text-transform: uppercase; }
+    header p { max-width: 800px; margin: 12px 0 0; font-size: 1rem; line-height: 1.45; }
+    .stamp { padding: 10px 12px; border: 1px solid var(--ink); font-size: .75rem; line-height: 1.35; text-transform: uppercase; text-align: right; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 16px 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--grid-line); font-size: .84rem; }
+    .swatch { display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; border: 1px solid var(--ink); }
+    .network { width: 100%; padding: 16px; background: var(--paper); border: 1px solid var(--grid-line); }
+    .network svg { display: block; width: 100%; height: auto; }
+    .network .line { fill: none; stroke: var(--ink); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .network .pending { stroke: var(--grid-line); stroke-dasharray: 11 10; }
+    .network .ring { fill: none; stroke: var(--ink); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .network .node { fill: var(--brand-red); stroke: var(--paper); stroke-width: 4; }
+    .network text { fill: var(--ink); font-family: "IBM Plex Sans", sans-serif; font-size: 16px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+    .network .section-label { fill: var(--ink); font-family: "IBM Plex Sans Condensed", sans-serif; font-size: 15px; letter-spacing: 1.4px; text-anchor: start; }
+    .route-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+    section { border: 1px solid var(--grid-line); background: var(--paper); }
+    section > h2 { margin: 0; padding: 12px 16px; background: var(--ink); color: var(--paper); font-size: 1.05rem; text-transform: uppercase; }
+    section > h2 { background: var(--ink); }
+    section > h2 { background: var(--ink); }
+    section > h2 { background: var(--ink); }
+    section > h2 { background: var(--ink); }
+    ol { list-style: none; margin: 0; padding: 0; }
+    li { display: grid; grid-template-columns: 48px 1fr; gap: 12px; min-height: 78px; padding: 13px 16px; border-top: 1px solid var(--grid-line); }
+    .route-id { display: grid; place-items: center; align-self: start; width: 40px; height: 32px; background: var(--surface); border: 1px solid var(--ink); font-size: .92rem; }
+    .route-name { display: block; margin-bottom: 4px; font-weight: 600; }
+    .goal { margin: 0; color: var(--ink); line-height: 1.35; }
+    footer { margin-top: 18px; padding: 14px 16px; border-left: 6px solid var(--brand-red); background: var(--paper); font-size: .9rem; line-height: 1.45; }
+    @media (max-width: 760px) { main { width: min(100% - 24px, 1440px); } header { grid-template-columns: 1fr; } .stamp { text-align: left; } .route-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Season 1 · Betriebslage</h1>
+        <p>Statische dokumentarische Übersicht der fünf vorhandenen Netzabschnitte und 20 vorhandenen Routenziele. Diese Datei ist keine App, keine echte Netzkarte und enthält weder Interaktion noch Live-Daten.</p>
+      </div>
+      <div class="stamp">WP-035 · Referenz 07<br>Entwurf · Freigabe ausstehend</div>
+    </header>
+
+    <div class="legend" aria-label="Kartenlegende">
+      <span><i class="swatch" style="background:#C83D45"></i>Störungsknoten</span>
+      <span><i class="swatch" style="background:#20272C"></i>freigegebener Kartenteil</span>
+      <span><i class="swatch" style="background:#CCD0D1"></i>noch nicht erreichbar</span>
+      <span><i class="swatch" style="background:#805535"></i>materielle Gleisreferenz</span>
+    </div>
+
+    <div class="network" aria-label="Abstrahierte Reihenfolge der 20 Routen">
+      <svg viewBox="0 0 1320 560" role="img" aria-label="Fünf Netzabschnitte mit je vier Routen in Season-1-Reihenfolge">
+        <text class="section-label" x="24" y="44">01 STAMMSTRECKE</text>
+        <path class="line" d="M150 72 H1060" />
+        <circle class="node" cx="150" cy="72" r="19"/><text x="150" y="72">01</text>
+        <circle class="node" cx="450" cy="72" r="19"/><text x="450" y="72">02</text>
+        <circle class="node" cx="750" cy="72" r="19"/><text x="750" y="72">03</text>
+        <circle class="node" cx="1060" cy="72" r="19"/><text x="1060" y="72">04</text>
+
+        <text class="section-label" x="24" y="146">02 BAUABSCHNITT MITTE</text>
+        <path class="line" d="M150 174 H1060" />
+        <circle class="node" cx="150" cy="174" r="19"/><text x="150" y="174">05</text>
+        <circle class="node" cx="450" cy="174" r="19"/><text x="450" y="174">06</text>
+        <circle class="node" cx="750" cy="174" r="19"/><text x="750" y="174">07</text>
+        <circle class="node" cx="1060" cy="174" r="19"/><text x="1060" y="174">08</text>
+
+        <text class="section-label" x="24" y="248">03 AUSSENAST OHNE HALT</text>
+        <path class="line" d="M150 276 H1060" />
+        <circle class="node" cx="150" cy="276" r="19"/><text x="150" y="276">09</text>
+        <circle class="node" cx="450" cy="276" r="19"/><text x="450" y="276">10</text>
+        <circle class="node" cx="750" cy="276" r="19"/><text x="750" y="276">11</text>
+        <circle class="node" cx="1060" cy="276" r="19"/><text x="1060" y="276">12</text>
+
+        <text class="section-label" x="24" y="350">04 UMLEITUNG ÜBER IRGENDWO</text>
+        <path class="ring" d="M150 403 C250 346 440 346 540 403 C640 460 830 460 930 403 C830 346 640 346 540 403 C440 460 250 460 150 403" />
+        <circle class="node" cx="150" cy="403" r="19"/><text x="150" y="403">13</text>
+        <circle class="node" cx="430" cy="364" r="19"/><text x="430" y="364">14</text>
+        <circle class="node" cx="700" cy="443" r="19"/><text x="700" y="443">15</text>
+        <circle class="node" cx="930" cy="403" r="19"/><text x="930" y="403">16</text>
+
+        <text class="section-label" x="24" y="488">05 SCHIENENERSATZVERKEHR</text>
+        <path class="line" d="M150 516 H450" /><path class="line pending" d="M450 516 H750" /><path class="line" d="M750 516 H1060" />
+        <circle class="node" cx="150" cy="516" r="19"/><text x="150" y="516">17</text>
+        <circle class="node" cx="450" cy="516" r="19"/><text x="450" y="516">18</text>
+        <circle class="node" cx="750" cy="516" r="19"/><text x="750" y="516">19</text>
+        <circle class="node" cx="1060" cy="516" r="19"/><text x="1060" y="516">20</text>
+      </svg>
+    </div>
+
+    <div class="route-grid">
+      <section aria-labelledby="s1"><h2 id="s1">01 · Stammstrecke</h2><ol>
+        <li><span class="route-id">01</span><div><span class="route-name">Planmäßiger Ausnahmebetrieb</span><p class="goal">Der erste Tunnelabschnitt ist wieder offen.</p></div></li>
+        <li><span class="route-id">02</span><div><span class="route-name">Signalstörung im Feierabendverkehr</span><p class="goal">Ein Signalabschnitt leuchtet wieder, was niemand erwartet hat.</p></div></li>
+        <li><span class="route-id">03</span><div><span class="route-name">Anschluss fährt planmäßig ohne Sie</span><p class="goal">Ein Seitenbahnsteig wird wieder verbunden.</p></div></li>
+        <li><span class="route-id">04</span><div><span class="route-name">Fahrplan wird fortlaufend angepasst</span><p class="goal">Der erste Hauptstrang ist vollständig freigegeben.</p></div></li>
+      </ol></section>
+      <section aria-labelledby="s2"><h2 id="s2">02 · Bauabschnitt Mitte</h2><ol>
+        <li><span class="route-id">05</span><div><span class="route-name">Baumaßnahme von überschaubarer Dauer</span><p class="goal">Ein provisorischer Bahnsteig erhält eine funktionierende Verbindung.</p></div></li>
+        <li><span class="route-id">06</span><div><span class="route-name">Eingleisiger Betrieb aus Überzeugung</span><p class="goal">Ein Engpass kann wieder befahren werden.</p></div></li>
+        <li><span class="route-id">07</span><div><span class="route-name">Stellwerk meldet sich später</span><p class="goal">Ein Signal- und Stellwerksabschnitt wird wieder verständlich.</p></div></li>
+        <li><span class="route-id">08</span><div><span class="route-name">Umstieg am Bahnsteig der Unklarheit</span><p class="goal">Der Bauabschnitt Mitte ist als Kartenring stabilisiert.</p></div></li>
+      </ol></section>
+      <section aria-labelledby="s3"><h2 id="s3">03 · Außenast ohne Halt</h2><ol>
+        <li><span class="route-id">09</span><div><span class="route-name">Halt entfällt aus betrieblichen Gründen</span><p class="goal">Der erste Außenbahnsteig wird wieder anfahrbar.</p></div></li>
+        <li><span class="route-id">10</span><div><span class="route-name">Wagenreihung mit Überraschungseffekt</span><p class="goal">Ein abgestellter Zugteil wird wieder sinnvoll eingeordnet.</p></div></li>
+        <li><span class="route-id">11</span><div><span class="route-name">Zugteil fährt heute eigenständig</span><p class="goal">Eine Abzweigung zum Depot wird stabilisiert.</p></div></li>
+        <li><span class="route-id">12</span><div><span class="route-name">Anschluss ist leider weitergereist</span><p class="goal">Der Außenast ohne Halt ist als eigenständiger Kartenstrang offen.</p></div></li>
+      </ol></section>
+      <section aria-labelledby="s4"><h2 id="s4">04 · Umleitung über Irgendwo</h2><ol>
+        <li><span class="route-id">13</span><div><span class="route-name">Kurzfristig über einen Umweg</span><p class="goal">Die erste Umfahrungsbrücke ist freigegeben.</p></div></li>
+        <li><span class="route-id">14</span><div><span class="route-name">Mehr Reisezeit als geplant vorgesehen</span><p class="goal">Ein längerer Weg wird auf der Karte wieder zusammenhängend.</p></div></li>
+        <li><span class="route-id">15</span><div><span class="route-name">Bitte prüfen Sie die Route erneut</span><p class="goal">Eine Kartenverbindung gewinnt wieder Orientierungspfeile.</p></div></li>
+        <li><span class="route-id">16</span><div><span class="route-name">Die Alternative zur Alternative</span><p class="goal">Der Abschnitt Umleitung über Irgendwo ist als Schleife auf der Karte sinnvoll geschlossen.</p></div></li>
+      </ol></section>
+      <section aria-labelledby="s5"><h2 id="s5">05 · Schienenersatzverkehr</h2><ol>
+        <li><span class="route-id">17</span><div><span class="route-name">Ersatzhaltstelle in planbarer Entfernung</span><p class="goal">Eine provisorische Haltestelle erhält erstmals einen echten Gleisanschluss.</p></div></li>
+        <li><span class="route-id">18</span><div><span class="route-name">Bus kommt, sobald er kann</span><p class="goal">Eine gestrichelte Kartenzone wird wieder zu einer festen Strecke.</p></div></li>
+        <li><span class="route-id">19</span><div><span class="route-name">Anschluss an den Ersatzverkehr</span><p class="goal">Der letzte große Umsteigeknoten wird verbunden.</p></div></li>
+        <li><span class="route-id">20</span><div><span class="route-name">Betrieb bis auf Weiteres stabil</span><p class="goal">Die gesamte Season-1-Karte wird befahrbar; Betriebsrevision und Dauerbaustelle erscheinen.</p></div></li>
+      </ol></section>
+    </div>
+
+    <footer>Die geschlossene Schleife im vierten Kartenabschnitt ist ausschließlich Betriebslage-Übersicht. Kein Season-1-Puzzle enthält eine Schleife, Kreuzung, Weiche, Brücke oder zusätzliche Regel. Ein Zug fährt nach einer gültigen Lösung ausschließlich den tatsächlich gebauten A–B-Pfad.</footer>
+  </main>
+</body>
+</html>

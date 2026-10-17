@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stammstrecken-Puzzle — Marke und App-Icon</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Sans Condensed";
+      src: url("Fonts/IBMPlexSansCondensed-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: block;
+    }
+    :root {
+      --brand-red: #C83D45;
+      --surface: #F4F2EE;
+      --paper: #FFFFFF;
+      --ink: #20272C;
+      --grid-line: #CCD0D1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: "IBM Plex Sans Condensed";
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 48px; }
+    .eyebrow, .caption {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .eyebrow { color: var(--brand-red); }
+    h1 { margin: 8px 0 32px; font-size: 32px; line-height: 1; letter-spacing: .015em; }
+    .stage > .panel:first-child {grid-column:1/-1;}
+    .stage {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .panel {
+      min-height: 286px;
+      padding: 32px;
+      border: 1px solid var(--grid-line);
+      background: var(--paper);
+    }
+    .panel.dark { background: var(--ink); color: var(--paper); }
+    .lockup { display: flex; align-items: center; gap: 20px; min-width: 0; }
+    .symbol { display: block; flex: 0 0 auto; width: 64px; height: 64px; }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      font-size: clamp(26px, 4vw, 52px);
+      font-weight: 600;
+      letter-spacing: .026em;
+      line-height: .92;
+      white-space: nowrap;
+    }
+    .interrupt {
+      display: inline-block;
+      flex: 0 0 auto;
+      width: .64em;
+      height: .102em;
+      margin: 0 .17em;
+      background: var(--brand-red);
+      transform: translateY(.045em);
+    }
+    .dark .interrupt { background: var(--brand-red); }
+    .specimen { margin-top: 84px; }
+    .caption { margin-top: 18px; color: var(--assumption-gray); }
+    .dark .caption { color: #CCD0D1; }
+    .appicon { display: block; width: 184px; height: 184px; margin: 6px auto 0; }
+    .mono-mark { display: flex; align-items: center; gap: 16px; margin-top: 66px; }
+    .mono-mark .symbol { width: 48px; height: 48px; filter: brightness(0) invert(1); }
+    .mono-mark .wordmark { color: var(--paper); font-size: 24px; }
+    .dark .mono-mark .interrupt { background: var(--paper); }
+    .rule { height: 1px; margin: 40px 0 0; background: var(--grid-line); }
+    .note { margin: 12px 0 0; font-size: 18px; line-height: 1.25; }
+    @media (max-width: 760px) {
+      main { padding: 24px; }
+      .stage > .panel:first-child {grid-column:1/-1;}
+    .stage { grid-template-columns: 1fr; }
+      .panel { min-height: 240px; padding: 24px; }
+      .wordmark { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Statische Konstruktionsansicht · Empfehlung zur ausdrücklichen Freigabe</p>
+    <h1>Stammstrecken-Puzzle — Marke und App-Icon</h1>
+    <section class="stage" aria-label="Markenreferenzen">
+      <article class="panel">
+        <p class="eyebrow">Primäre Wort-/Bildmarke</p>
+        <div class="lockup specimen" aria-label="Stammstrecken-Puzzle">
+          <img class="symbol" src="brand-symbol.svg" alt="Unterbrochener Gleisknoten">
+          <div class="wordmark"><span>STAMMSTRECKEN</span><span class="interrupt" aria-hidden="true"></span><span>PUZZLE</span></div>
+        </div>
+        <p class="caption">Zeichen 64 × 64 · Zeichen–Wort-Abstand 20 · Wortmarke in IBM Plex Sans Condensed SemiBold</p>
+      </article>
+      <article class="panel">
+        <p class="eyebrow">App-Icon</p>
+        <img class="appicon" src="app-icon.svg" alt="App-Icon mit unterbrochenem Gleisknoten">
+        <p class="caption">1024er Master · rote Außenkante 80 · keine Buchstaben im Icon</p>
+      </article>
+      <article class="panel dark"><p class="eyebrow">Negativvariante</p><div class="mono-mark" style="margin-top:66px"><img class="symbol" src="brand-symbol.svg" alt="Unterbrochener Gleisknoten"><div class="wordmark" style="font-size:24px"><span>STAMMSTRECKEN</span><span class="interrupt" style="background:var(--brand-red)"></span><span>PUZZLE</span></div></div><p class="caption">Papierweiß auf Anthrazit · roter Unterbrechungsbalken</p></article>
+      <article class="panel dark">
+        <p class="eyebrow">Monovariante</p>
+        <div class="mono-mark" aria-label="Stammstrecken-Puzzle, einfarbig hell">
+          <img class="symbol" src="brand-symbol.svg" alt="Unterbrochener Gleisknoten">
+          <div class="wordmark"><span>STAMMSTRECKEN</span><span class="interrupt" aria-hidden="true"></span><span>PUZZLE</span></div>
+        </div>
+        <div class="rule"></div>
+        <p class="note">Monochrom setzt Zeichen und Wort in Papierweiß; der Unterbrechungsbalken folgt derselben Farbe und wird nicht rot.</p>
+      </article>
+      <article class="panel">
+        <p class="eyebrow">Freiraum</p>
+        <div class="lockup" style="margin-top:64px; border:1px dashed #CCD0D1; padding:20px;">
+          <img class="symbol" src="brand-symbol.svg" alt="Unterbrochener Gleisknoten">
+          <div class="wordmark" style="font-size:22px;"><span>STAMMSTRECKEN</span><span class="interrupt" aria-hidden="true"></span><span>PUZZLE</span></div>
+        </div>
+        <p class="caption">Mindestfreiraum außen: 12 Symbol-Einheiten; bei der Wort-/Bildmarke mindestens die sichtbare Breite des roten Unterbrechungsbalkens.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

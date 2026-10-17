@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WP-035 / Teil C – statische Konstruktionsreferenz, kein Runtime-Asset.
+  Koordinatensystem je Form: 100 × 100; Zellzentrum = (50,50).
+  Jeder Endpunkt liegt exakt auf einer halben Zellkante:
+  N=(50,0), E=(100,50), S=(50,100), W=(0,50).
+  Gerade: Mittellinie zwischen gegenüberliegenden Halbkantenzentren.
+  Kurve: Kreisbogensegment r=50, Mittelpunkt in der zugehörigen Ecke;
+  dadurch bleiben Endtangenten rechtwinklig zu den Zellkanten.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 160" role="img" aria-labelledby="title desc">
+  <title id="title">Sechs konkrete Gleisformen</title>
+  <desc id="desc">NS, EW, NE, ES, SW und WN mit exakt definierten Halbkantenzentren.</desc>
+  <defs>
+    <style>
+      .cell { fill: #FFFFFF; stroke: #CCD0D1; stroke-width: 1; }
+      .rail { fill: none; stroke: #805535; stroke-width: 18; stroke-linecap: butt; stroke-linejoin: round; }
+      .guide { fill: none; stroke: #CCD0D1; stroke-width: 1; stroke-dasharray: 3 3; }
+      .label { fill: #20272C; font: 700 14px 'IBM Plex Sans', sans-serif; text-anchor: middle; }
+      .note { fill: #727B82; font: 12px 'IBM Plex Sans', sans-serif; }
+    </style>
+    <g id="NS"><path class="rail" d="M 50 0 L 50 100"/></g>
+    <g id="EW"><path class="rail" d="M 0 50 L 100 50"/></g>
+    <g id="NE"><path class="rail" d="M 50 0 A 50 50 0 0 0 100 50"/></g>
+    <g id="ES"><path class="rail" d="M 100 50 A 50 50 0 0 0 50 100"/></g>
+    <g id="SW"><path class="rail" d="M 50 100 A 50 50 0 0 0 0 50"/></g>
+    <g id="WN"><path class="rail" d="M 0 50 A 50 50 0 0 0 50 0"/></g>
+  </defs>
+
+  <g transform="translate(16,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M50 0V100"/><use href="#NS"/>
+    <text class="label" x="50" y="130">NS</text>
+  </g>
+  <g transform="translate(134,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M0 50H100"/><use href="#EW"/>
+    <text class="label" x="50" y="130">EW</text>
+  </g>
+  <g transform="translate(252,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M50 0A50 50 0 0 0 100 50"/><use href="#NE"/>
+    <text class="label" x="50" y="130">NE</text>
+  </g>
+  <g transform="translate(370,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M100 50A50 50 0 0 0 50 100"/><use href="#ES"/>
+    <text class="label" x="50" y="130">ES</text>
+  </g>
+  <g transform="translate(488,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M50 100A50 50 0 0 0 0 50"/><use href="#SW"/>
+    <text class="label" x="50" y="130">SW</text>
+  </g>
+  <g transform="translate(606,28)">
+    <rect class="cell" width="100" height="100"/><path class="guide" d="M0 50A50 50 0 0 0 50 0"/><use href="#WN"/>
+    <text class="label" x="50" y="130">WN</text>
+  </g>
+</svg>
