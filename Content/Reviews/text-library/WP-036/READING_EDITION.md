@@ -1430,7 +1430,7 @@ Ergebnis: Ihre Strecke verbindet die Bahnsteige. Die Anzeigen dürfen ihre Unter
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0, 2 und 4 haben jeweils Count 8. Sämtliche Felder dieser drei Spalten sind bei Höhe 8 belegt.
 
-Status kurz: Drei Anzeigen, drei Wege. Ihre Strecke verbindet die Bahnsteige.
+Status kurz: Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.
 
 ### S1-04-03-08 · Stand der Prüfung wird nachgeführt
 

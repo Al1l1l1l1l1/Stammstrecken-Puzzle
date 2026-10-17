@@ -1,3 +1,7 @@
+## WP-036 – Letzter unabhängiger Kreativbefund korrigiert, 18.10.2026
+
+HIGH-01 aus COPY_CREATIVE_QC.md (Freeze c7683ea) ist ausschließlich im bereits freigegebenen Kurzstatus `level.s1.04.03.07.status` korrigiert: „Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.“. Alle 119 anderen Copy-Felder bleiben unverändert. Neuer Source-SHA256 `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`. Historische unabhängige Prüfung: kreativ 119/120 angenommen, ein HIGH; technische DRAFT-/Scope-QC PASS. **Jetzt:** neue schmale kreative Nachprüfung dieses Lang-/Kurzstatuskontexts, frische technische Freeze-/Artefaktprüfung und tatsächliche neue reguläre CI ausstehend. Kein Gesamt-PASS, keine Owner-/Produkt-/Import-/Rechts-/Releasefreigabe oder Main-Integration vorweggenommen.
+
 ## WP-036 – Vollständige Copy-Nacharbeit, 18.10.2026
 
 **Aktueller eigener Stand: sämtliche verankerten Copy-Korrekturen tatsächlich umgesetzt; unabhängige Restprüfung und neue reguläre CI noch ausstehend.** Ausdrücklicher Owner-Ausführungsauftrag vom 17.10.2026: „Du korrigierst das nun auch in vollem Umfang. Gib mir dann eine Abschlussmeldung hier im chat für den Koordinator Agent der die Prompts schreibt“. Exakt 110 vorhandene Einträge / 120 Copy-Felder (109 text, 11 shortText) aus WP-036-CREATIVE-01 korrigiert. 1.298 Einträge und sämtliche anderen Quelleigenschaften byte-/werttreu erhalten: alle 240 Titel, 240 INTERNAL-Einstiege, 308 UI-Einträge und 70 BLOCKED_PRODUCT-Entwürfe. Neuer Source-SHA256 `2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb`.

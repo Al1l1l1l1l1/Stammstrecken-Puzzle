@@ -2,7 +2,7 @@
 
 Verankerte Entscheidung: WP-036-CREATIVE-01. Genau 110 Einträge / 120 Copy-Felder; alle anderen Quelleigenschaften bleiben unverändert. Keine neue Produkt-/Import-/Releasefreigabe.
 
-Ausgangscommit: `6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1`. Neuer Source-SHA256: `2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb`.
+Ausgangscommit: `6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1`. Neuer Source-SHA256: `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`.
 
 | Schlüssel / Feld | Vorher | Nachher | Wirkung |
 |---|---|---|---|
@@ -76,7 +76,7 @@ Ausgangscommit: `6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1`. Neuer Source-SHA256:
 | `level.s1.04.03.06.status` · `text` | Die Wegeführung ist auf dem neuesten Stand der vorangegangenen Aktualisierung. | Die Wegeführung wurde aktualisiert. Am Bahnsteig zeigt noch der alte Pfeil zur neuen Richtung. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
 | `level.s1.04.03.06.result` · `text` | Die Verbindung ist dem Stand voraus: Sie funktioniert bereits durchgehend. | Ihre Verbindung führt schon durch. Der Zug ist der Aktualisierung einen Bahnsteig voraus. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
 | `level.s1.04.03.07.status` · `text` | Mehrere aktuelle Angaben liegen vor. Ihre Zusammenführung wird für eine spätere Aktualisierung vorbereitet. | Drei Anzeigen nennen drei Wege. Gemeinsam ist ihnen nur, dass keiner zum gleichen Bahnsteig zeigt. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
-| `level.s1.04.03.07.status` · `shortText` | Mehrere aktuelle Angaben liegen vor. Zusammengeführt werden sie später. | Drei Anzeigen, drei Wege. Ihre Strecke verbindet die Bahnsteige. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
+| `level.s1.04.03.07.status` · `shortText` | Mehrere aktuelle Angaben liegen vor. Zusammengeführt werden sie später. | Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht. | HIGH-01 geschlossen: Kurzstatus verdichtet dieselbe ungelöste Anzeigen-/Bahnsteiglage wie der Langstatus und nimmt keine gebaute Strecke oder Lösung vorweg. |
 | `level.s1.04.03.07.result` · `text` | Die Angaben treffen auf einer Strecke zusammen. Der vorbereitete Nachtrag erübrigt sich. | Ihre Strecke verbindet die Bahnsteige. Die Anzeigen dürfen ihre Unterschiede nun unter sich klären. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
 | `level.s1.04.03.08.status` · `text` | Die Route wird geprüft. Der Stand dieser Prüfung wird gesondert auf dem Laufenden gehalten. | Die Route wird geprüft. Währenddessen verweist der Bahnsteig auf eine Auskunft außerhalb des Bahnsteigs. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |
 | `level.s1.04.03.08.result` · `text` | Die Strecke steht. Prüfung und Prüfstand können sich auf denselben Weg beziehen. | Ihre Strecke führt zum Ziel. Die Prüfung darf sich an den befahrbaren Weg halten. | Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen. |

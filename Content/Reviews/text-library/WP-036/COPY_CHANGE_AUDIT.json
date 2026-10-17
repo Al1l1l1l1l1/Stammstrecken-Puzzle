@@ -4,7 +4,7 @@
   "before_commit": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
   "source_path": "Content/Localization/source/de-DE.json",
   "before_sha256": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
-  "after_sha256": "2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb",
+  "after_sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
   "scope_sha256": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
   "entries_total": 1408,
   "changed_entries": 110,
@@ -726,10 +726,10 @@
       "key": "level.s1.04.03.07.status",
       "field": "shortText",
       "old": "Mehrere aktuelle Angaben liegen vor. Zusammengeführt werden sie später.",
-      "new": "Drei Anzeigen, drei Wege. Ihre Strecke verbindet die Bahnsteige.",
-      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "new": "Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.",
+      "reason": "HIGH-01 geschlossen: Kurzstatus verdichtet dieselbe ungelöste Anzeigen-/Bahnsteiglage wie der Langstatus und nimmt keine gebaute Strecke oder Lösung vorweg.",
       "old_codepoints": 71,
-      "new_codepoints": 64,
+      "new_codepoints": 62,
       "existing_limit": 110
     },
     {

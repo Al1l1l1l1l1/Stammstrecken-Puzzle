@@ -1,0 +1,184 @@
+{
+  "report_id": "WP-036-INDEPENDENT-CREATIVE-QC-01",
+  "language": "de",
+  "review_role": "Unabhängige kreative Restprüfung; keine Autorrolle, keine Beteiligung an den sieben Korrekturvorschlägen, keine Ownerrolle.",
+  "scope": {
+    "reviewed_change_set_only": true,
+    "preserved_accepted_basis_not_reopened": true,
+    "all_actual_before_after_copy_fields_read": 120,
+    "changed_entries_read": 110,
+    "field_counts": {
+      "text": 109,
+      "shortText": 11
+    },
+    "complete_route_contexts_read": [
+      "S1-01-04",
+      "S1-02-02",
+      "S1-02-03",
+      "S1-03-01",
+      "S1-03-03",
+      "S1-04-02",
+      "S1-04-03",
+      "S1-04-04",
+      "S1-05-02",
+      "S1-05-04"
+    ],
+    "additional_context_read": [
+      "S1-01-03 campaign name, intro and complete",
+      "entire variant.ride-ended family",
+      "READING_EDITION.md projection"
+    ],
+    "reviewed_windows": 12,
+    "accepted_unchanged_entries_preserved": 1298
+  },
+  "binding": {
+    "worktree": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-creative",
+    "head": "c7683ea445c65becd78cfd1e34ccb8ba587fd024",
+    "decision_anchor": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
+    "source_path": "Content/Localization/source/de-DE.json",
+    "old_source_sha256": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
+    "source_sha256": "2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb",
+    "creative_decision": "WP-036-CREATIVE-01",
+    "creative_scope_unchanged": true,
+    "structural_scope_check": {
+      "source_keys_old": 1408,
+      "source_keys_new": 1408,
+      "key_order_identical": true,
+      "changed_entries": 110,
+      "changed_copy_fields": 120,
+      "allowed_copy_fields": 120,
+      "changed_field_set_equals_allowed_field_set": true,
+      "extra_changed_fields": [],
+      "missing_changed_fields": []
+    }
+  },
+  "verdict": "FAIL",
+  "verdict_scope": "Bestehender Korrekturbestand; keine Owner-, Produkt-, Import-, Rechts- oder Releaseannahme.",
+  "overall_assessment": "119 von 120 tatsächlich geprüften Copy-Feldern beheben die beauftragte Abstraktionsursache überzeugend. Ein HIGH in einer Kurzform verletzt K05, weil der Kurzstatus die erst nach Lösung verdiente eigene Strecke vorwegnimmt und nicht dieselbe Aussage wie der neue Langstatus trägt.",
+  "window_assessments": [
+    {
+      "window": "S1-01 R03 Kartenkurzname",
+      "fields": 1,
+      "verdict": "PASS",
+      "reason": "Anschluss: planmäßig ohne Sie bewahrt das Paradox lesbar und kompakt."
+    },
+    {
+      "window": "S1-01 R04 Fahrplan-/Aushangserie",
+      "fields": 5,
+      "verdict": "PASS",
+      "reason": "Aushang, Abfahrt, Bahnsteig und Wegweiser ersetzen die Stand-/Planrekursion durch konkrete Fahrgastlage."
+    },
+    {
+      "window": "S1-02 R06 eingleisiger Engpass",
+      "fields": 6,
+      "verdict": "PASS",
+      "reason": "Freies Gleis, Gegenrichtung, Signal und Hinweg machen Ursache und begrenzte Folge erfahrbar."
+    },
+    {
+      "window": "S1-02 R07 Stellwerk-/Signalsituation",
+      "fields": 24,
+      "verdict": "PASS",
+      "reason": "Signal, Durchsage, Bahnsteig, Warteschlange und Durchfahrt ersetzen die Anfrage-/Antwortverwaltung; leichter Rhythmus-Hinweis ohne Nacharbeitszwang."
+    },
+    {
+      "window": "S1-03 R09 Ergebnisnutzen",
+      "fields": 3,
+      "verdict": "PASS",
+      "reason": "Außenbahnsteig, verlegter Halt und Haltebereich werden durch die Strecke praktisch nutzbar."
+    },
+    {
+      "window": "S1-03 R11 Zugteil-/Depotbogen",
+      "fields": 8,
+      "verdict": "PASS",
+      "reason": "Zugteile, Depot-Abzweig und gemeinsamer Weg tragen die Entwicklung statt Bearbeitungsstände."
+    },
+    {
+      "window": "S1-04 R14 Zeit-/Umweg-Mittelstrecke",
+      "fields": 17,
+      "verdict": "PASS",
+      "reason": "Anzeige, Bahnsteig, Umweg und Wegweiser tragen mehr Reisezeit ohne Dauer-, Echtzeit- oder Anschlusszusage."
+    },
+    {
+      "window": "S1-04 R15 Prüfstands-/Auskunftsschleife",
+      "fields": 16,
+      "verdict": "FAIL",
+      "reason": "Alle Langfassungen sind konkret, aber level.s1.04.03.07.status.shortText widerspricht dem ungelösten Langstatus und nimmt das Ergebnis vorweg."
+    },
+    {
+      "window": "S1-04 R16 Alternativenrekursion",
+      "fields": 21,
+      "verdict": "PASS",
+      "reason": "Schild, Ersatzschild, gesperrter Bahnsteig und Zugweg verankern die Rekursion konkret."
+    },
+    {
+      "window": "S1-05 R18 Bus-/Anzeigefenster",
+      "fields": 7,
+      "verdict": "PASS",
+      "reason": "Bus, Ersatzhalt, Anzeige und fehlende Beschilderung schaffen eine konkrete SEV-Lage ohne Echtzeitversprechen."
+    },
+    {
+      "window": "S1-05 R20 Stabilitätsserie",
+      "fields": 11,
+      "verdict": "PASS",
+      "reason": "Behauptete Stabilität kollidiert mit getrennten Bahnsteigen und offenem Gleisweg; die Spielerstrecke liefert den befahrbaren Gegenbeweis."
+    },
+    {
+      "window": "variant.ride-ended.04",
+      "fields": 1,
+      "verdict": "PASS",
+      "reason": "Die selbst gebaute, tatsächlich befahrene Strecke bis B ersetzt die abstrakte Erfahrung."
+    }
+  ],
+  "findings": [
+    {
+      "id": "HIGH-01",
+      "severity": "HIGH",
+      "key": "level.s1.04.03.07.status",
+      "field": "shortText",
+      "actual_text": "Drei Anzeigen, drei Wege. Ihre Strecke verbindet die Bahnsteige.",
+      "related_long_text": "Drei Anzeigen nennen drei Wege. Gemeinsam ist ihnen nur, dass keiner zum gleichen Bahnsteig zeigt.",
+      "requirement": "K05: Kurzfassung muss Sinn und gegebenenfalls Pointe der neuen Langfassung tragen; keine überbestimmte Zusage durch Kürzung.",
+      "impact": "Die Kurzform behauptet bereits die individuelle gelöste Strecke, während der Langstatus eine ungelöste widersprüchliche Wegweisungs- und Bahnsteiglage beschreibt. Sie ist damit nicht semantisch äquivalent und kann die nach der Lösung verdiente Leistung vorwegnehmen.",
+      "required_follow_up": "Nur dieses bereits freigegebene shortText-Feld so nacharbeiten, dass die widersprüchlichen Anzeigen oder der fehlende gemeinsame Bahnsteigbezug komprimiert bleiben; kein Ergebnis und keine eigene Strecke im Status vorwegnehmen."
+    },
+    {
+      "id": "NOTE-01",
+      "severity": "NOTE",
+      "keys": [
+        "level.s1.02.03.05.result",
+        "level.s1.02.03.06.result",
+        "level.s1.02.03.07.result",
+        "level.s1.02.03.08.result",
+        "level.s1.02.03.09.result",
+        "level.s1.02.03.10.result",
+        "level.s1.02.03.11.result",
+        "level.s1.02.03.12.result"
+      ],
+      "field": "text",
+      "observation": "Die Ergebnisfolge verwendet gehäuft Ihre Strecke/Ihr Zugweg/Ihre Verbindung als Satzanfang.",
+      "judgment": "Kein Nacharbeitszwang: Jede Zeile bindet an einen anderen konkreten Gegenstand zurück und die Wiederholung erfüllt die beabsichtigte Leistungswürdigung. Keine Synonymrotation oder Scope-Erweiterung ableiten."
+    }
+  ],
+  "not_found": {
+    "additional_blockers": 0,
+    "additional_high_findings": 0,
+    "new_puzzle_rule": false,
+    "internal_solution_hint_exposed": false,
+    "time_star_bonus_promise": false,
+    "guaranteed_connection_or_real_travel_claim": false,
+    "realtime_claim": false,
+    "new_formula_or_duration_joke_series": false,
+    "season_finale_changed": false
+  },
+  "limits": [
+    "Keine Quellkorrektur durch diese Rolle.",
+    "Keine neue technische Prüfung, kein Solver-, Build- oder CI-Lauf und keine Übertragung historischer PASS-Evidenz auf den neuen Copy-Freeze.",
+    "Keine erneute Vollbewertung der 1.298 bereits angenommenen Einträge.",
+    "Keine Aussage zu Runtime, technischem Scope, Validatoren, Import, Cross-References, Geräteprüfung, Produkt, Recht oder Release.",
+    "Die kreative Restentscheidung bleibt dem Parent/Koordinator vorbehalten."
+  ],
+  "report_artifacts": {
+    "markdown": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md",
+    "json": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.json"
+  }
+}
