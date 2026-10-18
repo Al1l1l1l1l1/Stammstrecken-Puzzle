@@ -38,3 +38,7 @@ Nach Port: finale reguläre Architecture-/WP037-Scope-/Text-/JCS-/Unity-CI mit v
 Anschließend **prüffertige Unterintegrationsübergabe an die zuständige Entscheidung**. Kein automatischer Merge. Nach später ausdrücklich genehmigtem Untermerge neu gebundene SHA-/Tree-/Diff-/CI-Nachweise am tatsächlichen PR31-Integrationshead. Beide Scopeketten getrennt erhalten: Main→ff1836e (WP036), ff1836e→Reparatur-/Integrationshead (WP037). Das alte WP036-Manifest bleibt byteunverändert. Eine spätere Mainentscheidung wird nicht vorweggenommen.
 
 **In dieser Vorbereitung nicht umgesetzt:** C#-Port, Reparatur-CI/-QC, Untermerge, Mainintegration. **Weiter unverändert offen:** Owner-/Produkt-/Runtime-/Import-/Rechts-/Release- und sämtliche Fremdgates; alle Texte DRAFT, WP026 weiterhin offen. Keine neue allgemeine Planung nötig: ausschließlich das vollständige verankerte WP037 ausführen.
+
+## Tatsächliche unabhängige Vorbereitungsprüfung
+
+[Schmale gesonderte Auftrags-/Scope-QC](WP-037_PREPARATION_QC.md) am Freeze 655a8e82d0c7b1d494835fc3cdc0c46aadd1a648: PASS ausschließlich Vorbereitung, keine offenen High-/Blockerbefunde. Gemeinsamer Anker, vollständiger ausführbarer Auftrag, exakte 15 erlaubte Vorbereitungspfade, unveränderte Produktionsbytes und alleiniger Manifestselektorwechsel unabhängig bestätigt; Architecture 17 / eigener Scope 18 sowie Git-Diffcheck tatsächlich bestanden. Die anschließende Sicherung ergänzt nur diesen Bericht und eigene Nachweisnachträge; keine Reparatur-, CI- oder Integrationsannahme.

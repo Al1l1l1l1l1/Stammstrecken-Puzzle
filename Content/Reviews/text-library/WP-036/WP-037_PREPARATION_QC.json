@@ -1,0 +1,177 @@
+{
+  "reportId": "WP-037-PREPARATION-INDEPENDENT-SCOPE-QC-01",
+  "language": "de",
+  "role": "Schmale, gesonderte unabhängige Read-only-Scope-QC nur der Vorbereitung; keine Reparatur-QC und keine dauerhafte Rolle.",
+  "verdict": "PASS_PREPARATION_ONLY",
+  "freeze": "655a8e82d0c7b1d494835fc3cdc0c46aadd1a648",
+  "baseCommit": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+  "commonAnchor": "4bfd4ee98153f64a948d2358c6ce30a49a441673",
+  "worktree": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-integration-path/preparation-independent",
+  "readOnly": true,
+  "notExecuted": [
+    "C#-Port",
+    "Solver- oder Unity-Tests",
+    "Build",
+    "CI-Auslösung, Retry oder Abbruch",
+    "Push",
+    "Commit",
+    "PR-Kommentar, PR-Erstellung oder Merge",
+    "Sourceänderung",
+    "Runtime-, Import-, Unterintegrations-, Main- oder Releasefreigabe"
+  ],
+  "mandatoryReadingCompleted": [
+    "AGENTS.md",
+    "15_Projektuebergabe_und_Gesamtstatus.md",
+    "00_Train_Track_Konzeptindex.md",
+    "09_Train_Track_Master_Spezifikation.md",
+    "CURRENT_STATE.md",
+    "WP-037_HardBudget-Reparaturuebernahme-fuer-WP036.md",
+    "WORK_PACKAGE_RULES.md",
+    "AI_HANDOVER_RULES.md",
+    "DEFINITION_OF_DONE.md",
+    "WORK_QUEUE.md",
+    "ADR-026, ADR-030, ADR-031",
+    "SOLVER_ARCHITECTURE.md, TEST_STRATEGY.md, BUILD_AND_RELEASE.md",
+    "TECHNICAL_INTEGRATION_DECISION.md, TECHNICAL_INTEGRATION_HANDOVER.md, TECHNICAL_INTEGRATION_EVIDENCE.json, TECHNICAL_CI_AUDIT.md, WP034_REUSE_ASSESSMENT.md",
+    "/home/ubuntu/upload/pasted_content_2.txt"
+  ],
+  "validation": {
+    "interpreter": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python",
+    "scopeCommand": "python tools/architecture-validation/validate.py --scope production --scope-manifest tools/architecture-validation/scopes/WP-037.production.scope.json --self-test",
+    "scopeResult": "PASS; 18 lokale Prüfgruppen; Kontext base ff1836e293a2a5cff69773525c347b55deb67dfb, head 655a8e82d0c7b1d494835fc3cdc0c46aadd1a648.",
+    "architectureOnlyCommand": "python tools/architecture-validation/validate.py --self-test",
+    "architectureOnlyResult": "PASS; 17 lokale Prüfgruppen.",
+    "gitDiffCheck": "PASS",
+    "worktreeDirty": false,
+    "validatorBoundaries": [
+      "REQUIRED_LATER/NOT_EXECUTED bleibt für Unity Compile/EditMode/PlayMode, Bootstrap, IL2CPP, Device und Store bestehen.",
+      "BLOCKER-PROD-001 bis BLOCKER-PROD-003 bleiben fail-closed.",
+      "Die Validator-Pässe sind kein Produktionscode-, CI- oder Releasebeleg."
+    ]
+  },
+  "formalWorkPackage": {
+    "path": "WORK_PACKAGES/WP-037_HardBudget-Reparaturuebernahme-fuer-WP036.md",
+    "h1": "# WP-037 – HardBudget-Reparaturübernahme für WP-036",
+    "bodyId": "`WP-037`",
+    "requiredSectionsInExactOrder": [
+      "ID",
+      "Ziel",
+      "Voraussetzungen",
+      "Scope",
+      "Betroffene Dateien/Module",
+      "Ausdrücklich nicht erlaubte Änderungen",
+      "Akzeptanzkriterien",
+      "Tests",
+      "Risikoklasse",
+      "Definition of Done"
+    ],
+    "requiredSectionsPass": true,
+    "acceptanceCriteria": "AK01 bis AK09 vorhanden.",
+    "canonicalLocalManifestLink": "../tools/architecture-validation/scopes/WP-037.production.scope.json",
+    "canonicalLocalManifestLinkPass": true
+  },
+  "trustAnchor": {
+    "anchorParent": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+    "anchorDiff": [
+      "A WORK_PACKAGES/WP-037_HardBudget-Reparaturuebernahme-fuer-WP036.md",
+      "A tools/architecture-validation/scopes/WP-037.production.scope.json"
+    ],
+    "exactlyTwoNewFiles": true,
+    "manifest": {
+      "path": "tools/architecture-validation/scopes/WP-037.production.scope.json",
+      "workPackageId": "WP-037",
+      "baseCommit": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+      "scope": "production",
+      "sha256AtAnchor": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4",
+      "sha256AtFreeze": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4",
+      "byteUnchangedSinceAnchor": true
+    },
+    "historicalIdAddAudit": {
+      "method": "Read-only Git add-event comparison across the locally available history.",
+      "historicalIdsVerifiedAtOrBelow": 36,
+      "priorWP037Found": false,
+      "soleWP037Add": "4bfd4ee98153f64a948d2358c6ce30a49a441673"
+    }
+  },
+  "freezeDiff": {
+    "from": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+    "to": "655a8e82d0c7b1d494835fc3cdc0c46aadd1a648",
+    "pathCount": 15,
+    "paths": [
+      ".github/workflows/validate.yml",
+      "Content/Reviews/text-library/WP-036/COPY_REWORK_HANDOVER.md",
+      "Content/Reviews/text-library/WP-036/README.md",
+      "Content/Reviews/text-library/WP-036/TECHNICAL_CI_AUDIT.json",
+      "Content/Reviews/text-library/WP-036/TECHNICAL_CI_AUDIT.md",
+      "Content/Reviews/text-library/WP-036/TECHNICAL_INTEGRATION_DECISION.md",
+      "Content/Reviews/text-library/WP-036/TECHNICAL_INTEGRATION_EVIDENCE.json",
+      "Content/Reviews/text-library/WP-036/TECHNICAL_INTEGRATION_HANDOVER.md",
+      "Content/Reviews/text-library/WP-036/WP034_REUSE_ASSESSMENT.json",
+      "Content/Reviews/text-library/WP-036/WP034_REUSE_ASSESSMENT.md",
+      "PROJECT_CONTROL/CURRENT_STATE.md",
+      "PROJECT_CONTROL/WORK_QUEUE.md",
+      "WORK_PACKAGES/WP-036_Vollstaendige-Textbibliothek.md",
+      "WORK_PACKAGES/WP-037_HardBudget-Reparaturuebernahme-fuer-WP036.md",
+      "tools/architecture-validation/scopes/WP-037.production.scope.json"
+    ],
+    "allowedByManifestAndFormalScope": true,
+    "noAssetsChanges": true,
+    "noSolverOrUnityWorkflowChanges": true,
+    "workflowChange": "Only STP_SCOPE_MANIFEST changed from WP-036.production.scope.json to WP-037.production.scope.json.",
+    "wp036Change": "Only a status addendum; no WP-036 definition, AK or manifest expansion.",
+    "currentStateChange": "Only current-status prefix/additive entry.",
+    "workQueueChange": "Only the WP-036 row addendum.",
+    "oldWp036ScopeChain": "Main→ff1836e remains historical WP-036; ff1836e→new WP-037 remains separately constrained."
+  },
+  "protectedBindings": {
+    "sourcePath": "Content/Localization/source/de-DE.json",
+    "sourceSha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+    "sourceByteEqualToBase": true,
+    "unchanged": [
+      "Content/Localization/source-v1.schema.json",
+      "tools/text-library/*",
+      "Content/Reviews/text-library/WP-036/READING_EDITION.md",
+      "Content/Reviews/text-library/WP-036/CREATIVE_FINAL_DECISION.md",
+      "Content/Reviews/text-library/WP-036/CREATIVE_SCOPE.json",
+      "tools/architecture-validation/scopes/WP-036.production.scope.json",
+      "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs",
+      ".github/workflows/unity.yml"
+    ]
+  },
+  "wp034ReuseBoundary": {
+    "sourceFreeze": "f34d6f4ca437effb0ce422015b02618b2a31a9c2",
+    "prePortBlobsAtFf": {
+      "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs": "bd719d0395aa6f5f3d6398d9ceec5d3c8fcf3eaa",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs": "9fb1f0482a23eecf888b7ccc6ca9be1c7f945ef1"
+    },
+    "sourceBlobsAtF34": {
+      "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs": "a41a802fd3e3f2f54074bd0d1e0bf540d0ae5a6c",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs": "6be782565505376c960fc3f040dd1de95f3202bc"
+    },
+    "sourceHunks": [
+      "RootDeductionTracer.cs +12/-3",
+      "SolverV2MetricsTests.cs +17/-0"
+    ],
+    "existingHardBudgetCorridor": "The named HardBudget method is byte-equal between pre-WP034 base a2e26a658a2bcdd47002698c150cb5736d9760da and ff1836e; its six cases, two warm-ups, 25 samples, state boundary search, 40% assertion and 180000-ms timeout remain unmodified.",
+    "currentPreparationHasNoForeignCode": true
+  },
+  "ciEvidenceAssessment": {
+    "documentsReviewed": [
+      "TECHNICAL_INTEGRATION_DECISION.md",
+      "TECHNICAL_INTEGRATION_HANDOVER.md",
+      "TECHNICAL_INTEGRATION_EVIDENCE.json",
+      "TECHNICAL_CI_AUDIT.md",
+      "WP034_REUSE_ASSESSMENT.md"
+    ],
+    "clearEvidence": true,
+    "ffUnityPushFailure": "39079576211: 453/454, HardBudget timeout after 186.063155 s at 180000 ms.",
+    "laterUnityPrSuccess": "39079578360: 454/454 EditMode and 27/27 PlayMode; does not erase the prior failure.",
+    "old89c8Cancellation": "Separate historical condition, not the same failure.",
+    "hostCauseClaimed": false,
+    "wp034GuaranteeClaimed": false,
+    "preparationCi": "Not yet published; no automatic CI was asserted as executed or PASS by this QC."
+  },
+  "highOrBlocker": "None found within the mandated preparation-only QC scope.",
+  "requiredNextStep": "On the published current WP-037 branch head, re-check anchor and protected sources, port exactly the two specified WP034 hunks, then obtain fresh targeted tests, actual regular CI and a separate independent final technical QC before a separate competent underintegration decision. No automatic undermerge or main integration."
+}

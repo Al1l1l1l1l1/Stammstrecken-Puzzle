@@ -208,5 +208,14 @@
   },
   "preparationCI": "not yet published; only actual later run states may be asserted",
   "nextStep": "execute anchored WP-037 on latest published own branch head after checking anchor/source and allowing existing regular CI to finish",
-  "integrationBoundary": "draft child PR only to WP036; separate competent underintegration decision required; no automatic or main merge"
+  "integrationBoundary": "draft child PR only to WP036; separate competent underintegration decision required; no automatic or main merge",
+  "preparationOnlyQC": {
+    "verdict": "PASS, PREPARATION ONLY; not repair, CI or integration approval",
+    "freezeCommit": "655a8e82d0c7b1d494835fc3cdc0c46aadd1a648",
+    "report": "Content/Reviews/text-library/WP-036/WP-037_PREPARATION_QC.md",
+    "originalMdSha256": "15fd5e6642820ec4e00cac285e21e46410adcc56003b7293a35d4828c3879044",
+    "persistedMdSha256": "3df028e882a80ceaa32e3893e37bb79e84890ed4bd355b4a5408b9fd058196cb",
+    "jsonSha256": "83fe880e736778564d2a35e959b1fc8aec1bbca59a125d3614ae298124f32d52",
+    "normalization": "MD trailing whitespace only; original verdict and facts preserved"
+  }
 }
