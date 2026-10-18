@@ -44,3 +44,9 @@ Offen und unverändert: ausdrückliche Owner-/Produktannahme, WP-026-Gesamtgates
 ## Aktueller technischer Nachlauf – 18.10.2026
 
 Die Copy bleibt vollständig geliefert und kreativ angenommen. Der nachgelagerte ff1836e-Stand weist inzwischen einen vollständigen Unity-PR-PASS, aber einen echten Unity-Push-FAIL im HardBudget-Test auf; dies ist nicht der zuvor stornierte 89c8-PR-Lauf. [Maßgebliche technische Geschäftsführerentscheidung](TECHNICAL_INTEGRATION_DECISION.md) und [jetzt ausführbare Koordinatorübergabe](TECHNICAL_INTEGRATION_HANDOVER.md): vorhandene WP034-Reparatur isoliert durch das neue, vor Code gemeinsam verankerte WP037 wiederverwenden, keine Textneuproduktion oder WP026-Gesamtintegration. Vorbereitung abgeschlossen; Port/finale Code-CI/QC und Unterintegration nicht begonnen, Main-/Produkt-/Import-/Releasegates unverändert offen.
+
+## WP037-Ausführung zur unabhängigen technischen Abnahme – 18.10.2026
+
+Der isolierte Zwei-Hunk-Port ist vollständig implementiert und am Codefreeze `3638dd8ba39b1f4f6867fdad03ab70afb0de79af` regulär geprüft. Architecture 39155858104 SUCCESS; Unity 39155858157 SUCCESS mit allen zehn Jobs, 455/455 EditMode und 27/27 PlayMode. Originaler HardBudget-Test Passed (72.442419 s), neuer 1639er-Test Passed (0.513261 s). Dies ist Implementierung/Eigenprüfung, kein unabhängiger AK07-PASS. Die vorgeschriebene unabhängige technische Abnahme bleibt nächster Schritt; Unterintegration danach nur mit gesonderter zuständiger Entscheidung.
+
+[Verbindliche neue technische Übergabe](WP-037_IMPLEMENTATION_HANDOVER.md). Keine weitere Copykorrektur; Quell-SHA256 4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c und kreative Annahme WP-036-CREATIVE-02 bleiben unverändert. Historischer ff1836e-FAIL bleibt erhalten. Nachweiscommit-CI separat im PR32; keine Unterintegration/Main-/Produkt-/Runtime-/Import-/Releasefreigabe.
