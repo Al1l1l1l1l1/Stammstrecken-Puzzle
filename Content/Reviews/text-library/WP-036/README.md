@@ -1,3 +1,7 @@
+# Aktueller technischer Folgeauftrag – 18.10.2026
+
+Copy vollständig und kreativ angenommen; **technische Integrationsbereitschaft noch blockiert** durch realen HardBudget-Push-FAIL am ff1836e-Head, trotz inzwischen vollständigem PR-PASS. [Geschäftsführerentscheidung](TECHNICAL_INTEGRATION_DECISION.md), [handlungsfähige Koordinatorübergabe](TECHNICAL_INTEGRATION_HANDOVER.md), [vor Code vollständig verankertes WP037](../../../../WORK_PACKAGES/WP-037_HardBudget-Reparaturuebernahme-fuer-WP036.md). Ausschließlich vorhandene Zwei-Hunk-Reparatur isoliert portieren, keine Textneuproduktion/WP026-Integration/Scopeerweiterung. C#-Port, finale Code-CI/QC und Untermerge noch nicht ausgeführt. Die folgenden Aussagen bleiben an ihren jeweiligen älteren Freeze gebundene Historie.
+
 # Aktueller Abschluss der WP-036-Copy-Nacharbeit – 18.10.2026
 
 **Alle verankerten Copy-Korrekturen sind umgesetzt, unabhängig geprüft und kreativ angenommen.** [Abschlussübergabe für den Koordinator](COPY_REWORK_HANDOVER.md), [kreative Restannahme](CREATIVE_FINAL_DECISION.md), [unabhängiger CI-Evidenzschluss](COPY_CI_QC.md). 110 Keys / 120 Copy-Felder; keine weitere Textproduktion offen. Beide Architecture-Läufe und vollständiger Unity-Push am finalen Freeze SUCCESS; separater Unity-PR cancelled und kein vollständiger PR-PASS. DRAFT-/Produkt-/Import-/Rechts-/Releasegrenzen und Integrationsnachlauf bleiben getrennt offen. Frühere „noch offen“- und FAIL-Formulierungen unten sind ausschließlich standgebundene Historie.

@@ -1,0 +1,89 @@
+{
+  "report_id": "WP-036-READONLY-INTEGRATION-PATH-PARTIAL-AUDIT-01",
+  "language": "de",
+  "role": "Read-only Teilprüfung zur Geschäftsführerentscheidung; keine Freigabeentscheidung und keine neue dauerhafte Prüfrolle.",
+  "retrieval": {
+    "retrieved_at_utc": "2026-10-18T18:01:28Z",
+    "repository": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+    "method": "gh api read-only; Git-Blobvergleich; gezielte Original-Log-/ZIP-/NUnit-XML-Auswertung",
+    "not_performed": ["CI start/retry/cancel", "Unity-Build", "Solver-Neutest", "zweites großes Build- oder Vollmodulreview"]
+  },
+  "binding": {
+    "pr_number": 31,
+    "branch": "codex/wp-036-vollstaendige-textbibliothek",
+    "pr_state": "open",
+    "draft": true,
+    "head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+    "base_sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "mergeable": true,
+    "mergeable_state": "unstable",
+    "creative_freeze_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+    "canonical_source": "Content/Localization/source/de-DE.json",
+    "source_sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c"
+  },
+  "actual_ci_runs": [
+    {"id": 39079576265, "workflow": "Architecture Validation", "event": "push", "status": "completed", "conclusion": "success", "head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb", "run_attempt": 1},
+    {"id": 39079578380, "workflow": "Architecture Validation", "event": "pull_request", "status": "completed", "conclusion": "success", "head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb", "run_attempt": 1},
+    {"id": 39079576211, "workflow": "Unity CI", "event": "push", "status": "completed", "conclusion": "failure", "head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb", "run_attempt": 1},
+    {"id": 39079578360, "workflow": "Unity CI", "event": "pull_request", "status": "completed", "conclusion": "success", "head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb", "run_attempt": 1, "prior_state_from_task": "in_progress"}
+  ],
+  "check_run_aggregate_at_head": {"total": 22, "success": 18, "failure": 1, "skipped": 3},
+  "failed_push_evidence": {
+    "run_id": 39079576211,
+    "job": {"id": 117533648377, "name": "unity-compile-editmode", "status": "completed", "conclusion": "failure", "original_log_sha256": "6288f84e6be6373787a83f454684f2475c8e1a1665cf55b61f37f5f262bc2ae0"},
+    "artifact": {"id": 12118003255, "name": "editmode-results", "github_size_bytes": 421701, "github_digest": "sha256:b4b6647c85ce1f371762949e10c3182907d2735785a5aac8fb84c2b54ec98968", "downloaded_zip_sha256": "b4b6647c85ce1f371762949e10c3182907d2735785a5aac8fb84c2b54ec98968", "digest_matches": true, "expired": false, "workflow_run_head_sha": "ff1836e293a2a5cff69773525c347b55deb67dfb"},
+    "nunit_xml": {
+      "member": "editmode.xml",
+      "sha256": "b7d5487967ac89e78c971603d350fd05fb042576982e130c4ff64bec13957d32",
+      "root_attributes": {"result": "Failed(Child)", "total": "454", "passed": "453", "failed": "1", "inconclusive": "0", "skipped": "0", "duration": "386.5721621"},
+      "test_case_count": 454,
+      "results": {"Passed": 453, "Failed": 1},
+      "failed_test": {
+        "fullname": "STP.Tests.Solver.EditMode.PuzzleSolverTests.HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+        "duration_seconds": "186.063155",
+        "message": "Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.",
+        "stack_trace": ""
+      }
+    },
+    "dependent_jobs": {"playmode": {"id": 117535377359, "conclusion": "skipped"}, "android": {"id": 117535377216, "conclusion": "skipped"}, "ios": {"id": 117535377809, "conclusion": "skipped"}}
+  },
+  "completed_pr_artifact_checks": {
+    "editmode": {"artifact_id": 12118727323, "zip_sha256": "4e442d573f6665076b0e91dd285da2f497a7aef7903dc144f31bc28babc4b8b9", "xml_sha256": "7efd6adbc810a5e9a1f951a79b8b5de5b9af050be96200b0f00022846f718d85", "total": 454, "passed": 454, "failed": 0, "hardbudget_result": "Passed", "hardbudget_duration_seconds": "83.671989"},
+    "playmode": {"artifact_id": 12118881942, "zip_sha256": "83eee91feb28d2a7368e8cca751cfff4fc915ed61af5ad1db685f79e54f54eb7", "xml_sha256": "fdb70a8708c8b0cd107976c38d86e223301f2350f63fb025456bf38cb24fb279", "total": 27, "passed": 27, "failed": 0}
+  },
+  "old_89c8_boundary": {
+    "freeze": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+    "architecture_push_and_pr": "success",
+    "unity_push": "10/10 jobs success",
+    "unity_pr": "completed/cancelled; no complete PR pass",
+    "separation": "Die alte PR-Stornierung am 89c8-Freeze und der neue Unity-Push-Testfehler am ff1836e-Head sind getrennte Tatsachen."
+  },
+  "git_blob_comparison": {
+    "scope": ["Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/**", "Assets/StammstreckenPuzzle/Tests/**", ".github/workflows/unity.yml"],
+    "files_compared": 118,
+    "ff1836e_vs_89c8": {"same_path_set": true, "changed_paths": [], "equal_blob_count": 118},
+    "ff1836e_vs_main": {"same_path_set": true, "changed_paths": [], "equal_blob_count": 118},
+    "89c8_vs_main": {"same_path_set": true, "changed_paths": [], "equal_blob_count": 118},
+    "conclusion": "Solver, Unity-Tests und Unity-Workflow sind ff1836e = 89c8 = main bytegleich."
+  },
+  "wp034_relation": {
+    "wp026_head": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+    "wp034_integration_commit": "085357d59a62dae73189ea76051c73f0ffb78ae3",
+    "documented_fix_scope": "RootDeductionTracer.Record-Aufwandskorrektur; die 180-s-Grenze blieb unverändert.",
+    "root_deduction_tracer_blob_main_89_ff": "bd719d0395aa6f5f3d6398d9ceec5d3c8fcf3eaa",
+    "root_deduction_tracer_blob_wp026_wp034_integration": "a41a802fd3e3f2f54074bd0d1e0bf540d0ae5a6c",
+    "relation": "Der dokumentierte WP-034-Code ist nicht im WP-036- oder Main-Baum enthalten.",
+    "no_unproven_cause_claim": "Die Evidenz belegt keine konkrete Host-, Scheduling- oder GC-Ursache und beweist keine automatische Passung einer WP-034-Übernahme zum WP-036-Head."
+  },
+  "conclusion": {
+    "technical_integration_readiness": "Nicht vollständig belegt: Zwei Architecture-Pässe und ein später kompletter Unity-PR-Pass bestehen, aber ein tatsächlicher Unity-Push-FAIL am gleichen Head bleibt erhalten.",
+    "procedure_boundary": "COPY_REWORK_HANDOVER verlangt die Klärung des tatsächlichen PR-/Integrationsnachlaufs; technische GitHub-Mergefähigkeit allein ist keine Freigabe.",
+    "possible_path_if_management_requires_code": "WP-034 ist nur als geprüfte Wiederverwendungsquelle im offenen WP-026-Zweig belegt. Keine stille WP-036-Übernahme, kein pauschaler WP-026-Merge/Cherry-pick und kein Retry als Ersatz. Vor Ausführung ist ein eigenständiger verankerter Auftrag mit Basis, Ziel, Scope, AK, Tests, Integrationsgrenze und unabhängiger Abschlussprüfung erforderlich.",
+    "no_decision_made_by_this_report": true
+  },
+  "evidence_limits": [
+    "Keine kanonischen Repo-Pfade, Commits, Pushes, PR-Kommentare, WP-IDs oder Scopes geändert.",
+    "Roh-JSON mit CSI-ANSI bleibt als *.raw.json; *.pretty.json ist ausschließlich eine parsebare Ableitung. Originallogs bleiben *.log.raw; *.csi-stripped.txt dient nur der Suche.",
+    "Keine Owner-, Produkt-, Import-, Runtime-, Rechts-, Geräte-, Signing-, Store-, Release- oder Main-Mergefreigabe."
+  ]
+}
