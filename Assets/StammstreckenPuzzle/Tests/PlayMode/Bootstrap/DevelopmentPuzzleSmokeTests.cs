@@ -297,6 +297,98 @@ namespace STP.Tests.Bootstrap.PlayMode
             installer.SetApplicationPaused(false);
         }
 
+        [UnityTest]
+        public IEnumerator GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible()
+        {
+            // The panel-target probes above deliberately test another output boundary.
+            // This probe keeps the normal screen panel unredirected for the entire UI loop.
+            ownedPanel.targetTexture = null;
+            var documentRoot = installer.Document.rootVisualElement;
+            documentRoot.style.width = StyleKeyword.Null;
+            documentRoot.style.height = StyleKeyword.Null;
+            installer.SetApplicationPaused(false);
+            installer.SetApplicationFocus(true);
+            var screenCamera = installer.ScreenCamera;
+            Assert.That(screenCamera.targetTexture, Is.Null);
+            Assert.That(screenCamera.cullingMask, Is.Zero);
+            Assert.That(screenCamera.depth, Is.GreaterThan(0));
+            Assert.That(screenCamera.rect, Is.EqualTo(new Rect(0, 0, 1, 1)));
+            Assert.That(screenCamera.targetDisplay, Is.Zero);
+            Assert.That(screenCamera.enabled, Is.EqualTo(SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null));
+            for (var frame = 0; frame < 4; frame++) yield return null;
+
+            PrepareColoredUi();
+            for (var frame = 0; frame < 2; frame++) yield return null;
+            ScreenFrame? editing = null;
+            yield return CaptureScreen("wp038-screen-editing.png", -1, value => editing = value);
+            if (editing != null)
+            {
+                AssertScreenText(editing, "qa-boundary");
+                AssertScreenText(editing, "qa-title");
+                AssertOnScreen(editing, Find<Button>("qa-tool-ew"));
+                AssertOnScreen(editing, Find<Button>("qa-tool-clear"));
+                AssertOnScreen(editing, Find<Button>("qa-restart"));
+                AssertOnScreen(editing, installer.Presenter.Grid.Board);
+                AssertEditingScreenOrientation(editing);
+            }
+
+            var markedAttempt = installer.Model.AttemptId;
+            Submit("qa-restart");
+            Assert.That(installer.Model.AttemptId, Is.Not.EqualTo(markedAttempt));
+            Assert.That(installer.Model.CellAt(1, 1), Is.EqualTo(DevelopmentTool.Clear));
+            if (installer.Presenter.MultipleSelection) Submit("qa-multiselect");
+            var rideAttempt = installer.Model.AttemptId;
+            SolveUsingActualUi();
+            double rideDeadline = Time.realtimeSinceStartupAsDouble + 8;
+            while ((installer.Ride == null || installer.Ride.VisitedCells.Count < 1) && Time.realtimeSinceStartupAsDouble < rideDeadline) yield return null;
+            var ride = installer.Ride!;
+            Assert.That(ride, Is.Not.Null);
+            Assert.That(installer.Model.Phase, Is.EqualTo(DevelopmentPreviewPhase.TrainRide));
+            Assert.That(installer.Model.IsAwaitingSaveCommit, Is.True);
+            Assert.That(Find<VisualElement>("qa-result").style.display.value, Is.EqualTo(DisplayStyle.None));
+            installer.SetApplicationPaused(true);
+            var pausedPosition = ride.Position;
+            for (var frame = 0; frame < 4; frame++) yield return null;
+            ScreenFrame? riding = null;
+            yield return CaptureScreen("wp038-screen-ride.png", editing?.Frame ?? -1, value => riding = value);
+            Assert.That(ride.Position, Is.EqualTo(pausedPosition));
+            if (riding != null)
+            {
+                Assert.That(Find<Image>("qa-train-overlay").image, Is.SameAs(ride.Texture));
+                AssertScreenText(riding, "qa-boundary");
+                int trainPixels = CountScreenPixels(riding, installer.Presenter.Grid.Board,
+                    color => color.r > 180 && color.g > 90 && color.g < 220 && color.b < 150 && color.r > color.g + 20 && color.g > color.b + 30);
+                Assert.That(trainPixels, Is.GreaterThan(30), "The actual screen's inner board must show the orange technical train; allocation or World/Panel RT pixels alone cannot satisfy this assertion.");
+            }
+            installer.SetApplicationPaused(false);
+            installer.SetApplicationFocus(true);
+            double resultDeadline = Time.realtimeSinceStartupAsDouble + 12;
+            while (installer.Model.Phase == DevelopmentPreviewPhase.TrainRide && Time.realtimeSinceStartupAsDouble < resultDeadline) yield return null;
+            Assert.That(installer.Model.Phase, Is.EqualTo(DevelopmentPreviewPhase.Results));
+            Assert.That(installer.Model.IsAwaitingSaveCommit, Is.True);
+            Assert.That(Find<VisualElement>("qa-result").style.display.value, Is.EqualTo(DisplayStyle.Flex));
+            for (var frame = 0; frame < 2; frame++) yield return null;
+            ScreenFrame? results = null;
+            yield return CaptureScreen("wp038-screen-results.png", riding?.Frame ?? -1, value => results = value);
+            if (results != null)
+            {
+                AssertScreenText(results, "qa-boundary");
+                AssertScreenText(results, "qa-result-title");
+                AssertScreenText(results, "qa-result-boundary");
+                AssertOnScreen(results, Find<Button>("qa-restart"));
+            }
+            Submit("qa-restart");
+            Assert.That(installer.Model.AttemptId, Is.Not.EqualTo(rideAttempt));
+            Assert.That(installer.Model.Phase, Is.EqualTo(DevelopmentPreviewPhase.Editing));
+            Assert.That(installer.Model.TimerStarted, Is.False);
+            Assert.That(installer.Model.BuiltPath, Is.Empty);
+            Assert.That(installer.Model.CompleteTrainRide(rideAttempt), Is.EqualTo(DevelopmentCommandStatus.Rejected));
+            yield return null;
+            Assert.That(installer.Ride, Is.Null);
+            Assert.That(ride.IsDisposed, Is.True);
+            Assert.That(ownedPanel.targetTexture, Is.Null);
+        }
+
         private void PrepareVisiblePanel()
         {
             installer.SetApplicationPaused(false);
@@ -366,6 +458,157 @@ namespace STP.Tests.Bootstrap.PlayMode
                 RenderTexture.active = previous;
                 UnityEngine.Object.Destroy(pixels);
             }
+        }
+
+        private sealed class ScreenFrame
+        {
+            public readonly int Width;
+            public readonly int Height;
+            public readonly int Frame;
+            public readonly Rect PanelBounds;
+            public readonly Color32[] Pixels;
+            public ScreenFrame(int width, int height, int frame, Rect panelBounds, Color32[] pixels)
+            {
+                Width = width; Height = height; Frame = frame; PanelBounds = panelBounds; Pixels = pixels;
+            }
+        }
+
+        private IEnumerator CaptureScreen(string filename, int precedingFrame, Action<ScreenFrame> receive)
+        {
+            Assert.That(installer.Document.panelSettings, Is.SameAs(ownedPanel));
+            Assert.That(ownedPanel.targetTexture, Is.Null, "Normal screen evidence must never redirect the UI panel into a texture.");
+            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
+            {
+                Assert.That(RequireGraphics(), Is.False, "STP_REQUIRE_GRAPHICS=1 cannot report a normal-screen graphics pass with the null renderer.");
+                Debug.Log("WP038 SCREEN GRAPHICS NOT_EXECUTED: null renderer; only real UI-loop semantics ran for " + filename);
+                yield break;
+            }
+            Assert.That(UnityEngine.Application.isBatchMode, Is.False,
+                "The actual normal-screen graphics route requires a non-batch Editor/Player with a rendering Game view. Headless CI still runs the UI semantics without claiming screen pixels.");
+            Assert.That(Screen.width, Is.GreaterThan(0)); Assert.That(Screen.height, Is.GreaterThan(0));
+            var camera = installer.ScreenCamera;
+            Texture2D? pixels = null;
+            Coroutine? screenshotRoutine = null;
+            Exception? captureError = null;
+            int requestedFrame = Time.frameCount;
+            int actualFrame = -1;
+            int renderedScreenFrame = -1;
+            Rect panelBounds = default;
+            bool captured = false;
+            Action<ScriptableRenderContext, List<Camera>> onRendered = (context, cameras) =>
+            {
+                if (cameras.Contains(camera)) renderedScreenFrame = Time.frameCount;
+            };
+            IEnumerator CaptureAtEndOfFrame()
+            {
+                while (!captured && captureError == null)
+                {
+                    // Unity's documented screenshot route runs after the complete frame.
+                    // The separate routine is stoppable if the Game view never renders;
+                    // the test's normal-frame wait below still has an eight-second bound.
+                    yield return new WaitForEndOfFrame();
+                    if (Time.frameCount <= requestedFrame || renderedScreenFrame != Time.frameCount) continue;
+                    try
+                    {
+                        if (ownedPanel.targetTexture != null || camera.targetTexture != null || !camera.enabled)
+                            throw new InvalidOperationException("The actual normal-screen output boundary changed before capture.");
+                        pixels = ScreenCapture.CaptureScreenshotAsTexture(1);
+                        if (pixels == null || pixels.width != Screen.width || pixels.height != Screen.height)
+                            throw new InvalidOperationException("The completed normal-screen screenshot does not match the actual Game view size.");
+                        actualFrame = Time.frameCount;
+                        panelBounds = installer.Document.rootVisualElement.panel.visualTree.worldBound;
+                        captured = true;
+                    }
+                    catch (Exception error) { captureError = error; }
+                }
+            }
+            try
+            {
+                RenderPipelineManager.endContextRendering += onRendered;
+                screenshotRoutine = installer.StartCoroutine(CaptureAtEndOfFrame());
+                double deadline = Time.realtimeSinceStartupAsDouble + 8;
+                while (!captured && captureError == null && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
+                if (captureError != null) throw new InvalidOperationException("Actual screen capture failed.", captureError);
+                Assert.That(captured, Is.True, "No completed Game view frame containing the actual screen camera reached the official end-of-frame screenshot route within 8 seconds.");
+                Assert.That(actualFrame, Is.GreaterThan(requestedFrame));
+                Assert.That(actualFrame, Is.GreaterThan(precedingFrame));
+                Assert.That(ownedPanel.targetTexture, Is.Null);
+                // CaptureScreenshotAsTexture owns the native screen-to-texture orientation.
+                // No intermediate camera/panel target, RT ReadPixels or ad-hoc Y flip exists.
+                var colors = pixels!.GetPixels32();
+                var first = colors[0]; int different = 0;
+                for (var index = 0; index < colors.Length; index++)
+                    if (Math.Abs(colors[index].r - first.r) + Math.Abs(colors[index].g - first.g) + Math.Abs(colors[index].b - first.b) > 30) different++;
+                Assert.That(different, Is.GreaterThan(5000), "The actual ScreenCapture image must show rendered UI, not a flat/null screen.");
+                Assert.That(panelBounds.width, Is.GreaterThan(0)); Assert.That(panelBounds.height, Is.GreaterThan(0));
+                string folder = Environment.GetEnvironmentVariable("STP_GRAPHICS_OUTPUT") ?? "TestResults/DevelopmentGraphics";
+                Directory.CreateDirectory(folder);
+                string output = Path.Combine(folder, filename);
+                File.WriteAllBytes(output, pixels!.EncodeToPNG());
+                Assert.That(new FileInfo(output).Length, Is.GreaterThan(5000));
+                Debug.Log("WP038 actual normal-screen PNG via CaptureScreenshotAsTexture after WaitForEndOfFrame, rendered frame " + actualFrame + ", " + pixels.width + "x" + pixels.height + ": " + Path.GetFullPath(output));
+                receive(new ScreenFrame(pixels.width, pixels.height, actualFrame, panelBounds, colors));
+            }
+            finally
+            {
+                RenderPipelineManager.endContextRendering -= onRendered;
+                if (screenshotRoutine != null && installer != null) installer.StopCoroutine(screenshotRoutine);
+                if (pixels != null) UnityEngine.Object.Destroy(pixels);
+            }
+        }
+
+        private static void AssertOnScreen(ScreenFrame frame, VisualElement element)
+        {
+            var bounds = element.worldBound;
+            Assert.That(bounds.width, Is.GreaterThan(0), element.name); Assert.That(bounds.height, Is.GreaterThan(0), element.name);
+            Assert.That(bounds.xMin, Is.GreaterThanOrEqualTo(frame.PanelBounds.xMin - 1), element.name);
+            Assert.That(bounds.yMin, Is.GreaterThanOrEqualTo(frame.PanelBounds.yMin - 1), element.name);
+            Assert.That(bounds.xMax, Is.LessThanOrEqualTo(frame.PanelBounds.xMax + 1), element.name);
+            Assert.That(bounds.yMax, Is.LessThanOrEqualTo(frame.PanelBounds.yMax + 1), element.name);
+        }
+
+        private void AssertScreenText(ScreenFrame frame, string id)
+        {
+            var label = Find<Label>(id);
+            Assert.That(label.text, Is.Not.Empty);
+            AssertOnScreen(frame, label);
+            int glyphPixels = CountScreenPixels(frame, label, color => color.r < 125 && color.g < 125 && color.b < 125);
+            int lightPixels = CountScreenPixels(frame, label, color => color.r > 150 && color.g > 150 && color.b > 150);
+            Assert.That(glyphPixels, Is.GreaterThan(15), id + " must contain actual visible dark glyph pixels in the screen buffer.");
+            Assert.That(lightPixels, Is.GreaterThan(50), id + " must contain actual visible light background pixels in the screen buffer.");
+        }
+
+        private void AssertEditingScreenOrientation(ScreenFrame frame)
+        {
+            Func<Color32, bool> redNote = color => color.r > 150 && color.g < 130 && color.b < 130 && color.r > color.g + 70 && color.r > color.b + 70;
+            int redAtEmptyNote = CountScreenPixels(frame, Find<Button>("qa-cell-1-1"), redNote);
+            int redAtOccupiedNote = CountScreenPixels(frame, Find<Button>("qa-cell-1-2"), redNote);
+            Assert.That(redAtEmptyNote, Is.GreaterThan(15), "The actual screen must locate the red X inside cell (1,1); an upside-down screenshot must fail.");
+            Assert.That(redAtOccupiedNote, Is.LessThanOrEqualTo(2), "Cell (1,2) holds the gray note, not the vertically reflected red X.");
+            int selectionPixels = CountScreenPixels(frame, Find<Button>("qa-cell-2-2"),
+                color => color.r > 235 && color.g > 190 && color.g < 240 && color.b > 50 && color.b < 150);
+            Assert.That(selectionPixels, Is.GreaterThan(50), "The actual screen must locate yellow selection in cell (2,2).");
+            var boundary = Find<Label>("qa-boundary");
+            Color32 background = boundary.resolvedStyle.backgroundColor;
+            int boundaryPixels = CountScreenPixels(frame, boundary, color =>
+                Math.Abs(color.r - background.r) + Math.Abs(color.g - background.g) + Math.Abs(color.b - background.b) < 10);
+            Assert.That(boundaryPixels, Is.GreaterThan(200), "The QA boundary's distinct background must be at its actual top-of-screen location.");
+        }
+
+        private static int CountScreenPixels(ScreenFrame frame, VisualElement element, Func<Color32, bool> predicate)
+        {
+            AssertOnScreen(frame, element);
+            var bounds = element.worldBound;
+            int xMin = Mathf.Clamp(Mathf.FloorToInt((bounds.xMin - frame.PanelBounds.xMin) / frame.PanelBounds.width * frame.Width), 0, frame.Width);
+            int xMax = Mathf.Clamp(Mathf.CeilToInt((bounds.xMax - frame.PanelBounds.xMin) / frame.PanelBounds.width * frame.Width), 0, frame.Width);
+            // UI Toolkit uses top-left panel coordinates; Texture2D.GetPixels32 stores the bottom row first.
+            int yMin = Mathf.Clamp(Mathf.FloorToInt((frame.PanelBounds.yMax - bounds.yMax) / frame.PanelBounds.height * frame.Height), 0, frame.Height);
+            int yMax = Mathf.Clamp(Mathf.CeilToInt((frame.PanelBounds.yMax - bounds.yMin) / frame.PanelBounds.height * frame.Height), 0, frame.Height);
+            int count = 0;
+            for (var y = yMin; y < yMax; y++)
+                for (var x = xMin; x < xMax; x++)
+                    if (predicate(frame.Pixels[y * frame.Width + x])) count++;
+            return count;
         }
 
         private void CapturePanel(string filename)

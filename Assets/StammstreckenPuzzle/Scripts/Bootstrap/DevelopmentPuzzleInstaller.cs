@@ -24,6 +24,7 @@ namespace STP.Bootstrap
         private DevelopmentPuzzleSession? model;
         private DevelopmentPuzzlePresenter? presenter;
         private DevelopmentTrainRide? ride;
+        private Camera? screenCamera;
         private Guid rideAttempt;
         private bool applicationPaused;
         private bool hasFocus = true;
@@ -38,6 +39,8 @@ namespace STP.Bootstrap
         public UIDocument Document { get; private set; } = null!;
         /// <summary>Current presentation, absent before the real PuzzleSolved path exists.</summary>
         public DevelopmentTrainRide? Ride => ride;
+        /// <summary>Explicit screen output keeps URP overlay UI visible while the separate train camera renders offscreen.</summary>
+        public Camera ScreenCamera => screenCamera ?? throw new InvalidOperationException("QA screen output not initialized.");
         /// <summary>Current monotonic time supplied to the reducer and view.</summary>
         public long NowMilliseconds => clock?.Milliseconds ?? 0;
 
@@ -84,6 +87,21 @@ namespace STP.Bootstrap
             ValidateReferences(uiTree, uiStyles, qaLocale, panelSettings, trainMaterial);
             if (float.IsNaN(rideDurationSeconds) || float.IsInfinity(rideDurationSeconds) || rideDurationSeconds <= 0)
                 throw new InvalidOperationException("QA ride duration must be finite and positive.");
+            var screenOutput = new GameObject("WP038 explicit QA screen output");
+            screenOutput.transform.SetParent(transform, false);
+            screenOutput.transform.localPosition = new Vector3(0, 0, -10f);
+            screenCamera = screenOutput.AddComponent<Camera>();
+            screenCamera.orthographic = true;
+            screenCamera.cullingMask = 0;
+            screenCamera.clearFlags = CameraClearFlags.SolidColor;
+            screenCamera.backgroundColor = new Color(240f / 255f, 241f / 255f, 237f / 255f, 1f);
+            screenCamera.targetTexture = null;
+            screenCamera.depth = 100f;
+            screenCamera.nearClipPlane = .1f;
+            screenCamera.farClipPlane = 30f;
+            screenCamera.allowHDR = false;
+            screenCamera.allowMSAA = false;
+            screenCamera.enabled = SystemInfo.graphicsDeviceType != UnityEngine.Rendering.GraphicsDeviceType.Null;
             clock = new DevelopmentClock();
             model = DevelopmentPuzzleData.CreateSession(largeScenario);
             Document = gameObject.AddComponent<UIDocument>();
@@ -166,8 +184,10 @@ namespace STP.Bootstrap
             disposed = true;
             presenter?.Dispose();
             ride?.Dispose();
+            if (screenCamera != null) UnityEngine.Object.Destroy(screenCamera.gameObject);
             presenter = null;
             ride = null;
+            screenCamera = null;
         }
     }
 }

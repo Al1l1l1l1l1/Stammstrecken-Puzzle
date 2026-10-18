@@ -1,6 +1,8 @@
-# WP038 – zusammenhängender Implementierungsstand vor regulärer CI
+# WP038 – zusammenhängender Ausführungs- und Korrekturstand
 
-19.10.2026. Implementierungs-/Koordinationsnachweis; kein unabhängiger Abschluss-PASS und keine Integrationsfreigabe.
+19.10.2026. Aktuell: erster Freeze e77c5fa regulär vollständig SUCCESS mit474 Edit-/48 Playfällen und tatsächlichen Android-/iOS-/Xcodebelegen, wegen unabhängigem SCREEN-01 dennoch historisch FAIL. [Unveränderte historische CI](CODEFREEZE_CI.md), [getrennte Originalprüfung](INITIAL_CODEFREEZE_CI_QC.md), [konkreter FAIL](SCREEN_OUTPUT_QC.md).
+
+Die eng begrenzte Installer-/Szenentestkorrektur ist tatsächlich nativ geprüft:9/9 Passed, drei normale korrekt orientierte Screens und drei Panelproben selbst betrachtet. [Aktueller Lauf-/Bild-/Sourcebeleg](SCREEN_CORRECTION_RUNTIME.md), [beide verworfenen Captureversuche](SCREEN_CORRECTION_ATTEMPTS.md). Eigene Screenkamera mit null-Target und offizielle AsTexture-Aufnahme nach Frameende, keine Panel-RT-Umleitung. Geschützte automatische Settingsdeltas gesichert und zurückgesetzt. Gezielt unabhängige Korrekturprüfung, neuer Freeze mit eigener vollständiger CI und unabhängiger Gesamtannahme sowie gesonderte Unterintegration folgen intern. **Kein Gesamt-/Integrations-PASS.** Die folgenden Abschnitte enthalten den erhaltenen ersten Implementierungsstand; der aktuelle Abschlussstand steht in diesem Vorspann, CURRENT_STATE und der AK-Matrix.
 
 ## Konkreter Fortschritt
 
@@ -28,5 +30,7 @@ UI, World, Clock und Content werden ausschließlich vom expliziten Bootstrapinst
 Nach fertig geprüfter Spielschleife können eine nichtproduktive Public-Input-Prüffassung für die vorhandenen 240 WP026-Rätsel und Save/Grundfortschritt in einem koordinierten Auftrag mit getrennten technischen WPs/Ankern parallel entstehen. Der QA-Zugriff benötigt vor Code seine eigene technische Boundaryentscheidung; ADR033 erlaubt nur die beiden eigenen QA-Puzzles. Menschliche Tests starten, sobald ihre bedienbare Prüffassung da ist, unabhängig von finalen Assets oder vollständiger Saveproduktion. Der bestehende Manusplan und alle Produkt-/Import-/Rechts-/Geräte-/Releasegates bleiben verbindlich.
 
 ## Getrennte native Nachprüfung
+
+Aktueller zusätzlicher Teilabschluss: [SCREEN_OUTPUT_CORRECTION_QC](SCREEN_OUTPUT_CORRECTION_QC.md) tatsächlich getrennt PASS auf den exakten korrigierten Sourcebytes. Alle41 Bindungen (zwei geändert/39 unverändert),9erOriginal-XML, vier Payloads, sechs PNGs und fünf restaurierte Settings geprüft. Die ursprünglichen SCREEN-01-/Capture-FAILs bleiben erhalten. Neues Source-CI-/Gesamt-/Integrationsgate bleibt offen.
 
 [Historischer konkreter GUID-FAIL](NATIVE_INITIAL_QC.md) und [gezielte unabhängige Korrekturprüfung](NATIVE_CORRECTION_QC.md) sind getrennt persistiert. NATIVE-01 ist nach neuer tatsächlicher Assetneuanlage, Original-XML-/Meta-/Source-/Bildprüfung geschlossen. 41 aktuelle Quellbindungen bestätigt: sechs betroffene Deltas, 35 unveränderte Pfade; kein offener nativer Artefaktbefund. Dieser Teil-PASS ersetzt ausdrücklich keine unabhängige Abschluss-QC auf Codefreeze mit dessen regulärer CI.

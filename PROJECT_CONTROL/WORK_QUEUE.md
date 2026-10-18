@@ -10,7 +10,7 @@ Die Nummerierung ist keine globale Wartekette. Menschliche 240er-Tests beginnen 
 
 | Reihenfolge | Lieferblock | Tatsächlicher Stand / Voraussetzung |
 |---:|---|---|
-| 1 | WP038: interne bedienbare Rätselschleife | Verankert, ADR033 angenommen; tatsächlich umgesetzt und lokal mit echtem Renderer 8/8 Szenen-/Grafikfälle bestanden, konkreter GUID-FAIL korrigiert. Codefreeze-CI/Plattformbuilds, unabhängige Abschluss-QC und Unterintegration noch offen. Eigene QA-Daten, keine Produktpromotion. |
+| 1 | WP038: interne bedienbare Rätselschleife | Tatsächlich umgesetzt. Erster Freeze regulär alle zehn Unityjobs SUCCESS, wegen SCREEN-01 dennoch historisch FAIL. Gezielte eigene Kamera-/Capturekorrektur lokal9/9 und sechs selbst betrachtete korrekte Bilder; ursprüngliche Befunde erhalten. Korrigierter Freeze mit eigener CI, unabhängige Abschlussannahme und Unterintegration noch offen. Eigene QA-Daten, keine Produktpromotion. |
 | 2 | Persistierter lokaler Spielablauf und Grundfortschritt | Zusammengehörige neue Save-/Application-/UI-WPs auf fertiger WP038-Schnittstelle; eigene Anker vor Code. Null-Sternzeiten verhindern Grundfortschritt nicht. |
 | 3 | Angenommene Gestaltung und Kampagnenanschluss | WP035 konkret kreativ/technisch abschließen, 480 Map-/Trainziele und Asset-/Contentpipeline; WP036 wiederverwenden. |
 | 4 | Menschliche Kampagnenprüfung und Zeitkalibrierung | Erst auf bedienbarer Fassung; vorhandene technische Rätselprüfungen wiederverwenden. |
