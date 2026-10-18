@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "documentType": "read-only-technical-integration-decision-aid",
+  "language": "de",
+  "analysisStatus": "completed-read-only-no-implementation-no-test-build-ci-retry",
+  "generatedAt": "2026-10-18T20:06:17+02:00",
+  "scope": {
+    "question": "Kann die WP034-Aufwandskorrektur zur bestehenden HardBudget-Regression isoliert und technisch kontrolliert in einen Kindpfad von PR31/WP036 überführt werden?",
+    "explicitlyNotDone": [
+      "Kein Patch importiert oder angewendet",
+      "Kein Commit, Push, Merge, Pull-Request-Kommentar oder Work-Package-Identifier vergeben",
+      "Kein Test, Build, CI-Lauf oder Retry gestartet",
+      "Keine vollständige Solverprüfung behauptet",
+      "Keine Produkt-, Word-, Runtimeimport-, Release- oder Main-Freigabe erteilt"
+    ]
+  },
+  "decision": {
+    "recommendation": "PROSPECTIVE_MINIMAL_PORT_AFTER_NEW_TRUST_ANCHOR",
+    "directWholePr21OrWp026Import": "reject",
+    "directUseOfHistoricalWp034Authorization": "reject",
+    "technicalCompatibility": "high-on-exact-prepatch-source-context-only",
+    "sourceFreeze": {
+      "commit": "f34d6f4ca437effb0ce422015b02618b2a31a9c2",
+      "tree": "cb4dec722580f3024dfba8a5d6555d3b36ebe960",
+      "role": "proven WP034 correction freeze; evidence source, not target authorization"
+    },
+    "target": {
+      "pr": 31,
+      "headCommit": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+      "tree": "dd08dd7892ce6186ddb29598d4abae04852d658c",
+      "baseCommit": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "requiredBranchShape": "child repair branch from exactly PR31 head",
+      "reason": "No candidate change is present on PR31; it retains exactly the pre-WP034 blobs."
+    },
+    "integratedPr21Evidence": {
+      "pr": 21,
+      "headCommit": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+      "integrationCommit": "085357d59a62dae73189ea76051c73f0ffb78ae3",
+      "integrationTree": "58ee055410afd3c5e6a3acba9c47ff4f42050cf8",
+      "relation": "f34 is an ancestor of both integration commit and PR21 head; all three candidate blobs at PR21 equal f34.",
+      "use": "source/evidence reference only; do not import PR21 or its WP026 corpus, tests, ADR032 materials, sources, proofs, benchmarks or workflow history."
+    }
+  },
+  "historicalEvidence": {
+    "wp034TrustAnchor": {
+      "commit": "f59d28bfb58331d3e9161708d99eb1834c5ae7e2",
+      "parentAndManifestBase": "a2e26a658a2bcdd47002698c150cb5736d9760da",
+      "manifestPath": "tools/architecture-validation/scopes/WP-034.production.scope.json",
+      "manifestSha256": "417c621ddfeea9a60963e8f5591720be8cd56af93515b18a66dc50b9c8deaa11",
+      "interpretation": "valid historical WP034 anchor, but not authorization for a separate future target branch"
+    },
+    "sourceDocumentsAtPr21Head": [
+      {
+        "path": "PROJECT_CONTROL/Investigations/WP-034_INTEGRATION.md",
+        "gitBlob": "c0779b2f65435074ec8465eb4474e58911a7f10d",
+        "gitShowContentSha256": "d1c05c7531b88e15d92bf18be3f4cc8f0f12ad71411bc4557fb0fc41027d9be6"
+      },
+      {
+        "path": "PROJECT_CONTROL/Investigations/WP-034_HANDOVER.md",
+        "gitBlob": "2de9bd6c4eaafde0230dc731366e986fbd876792",
+        "gitShowContentSha256": "15d3abb4c309690c77cfb81c4675068121874375a5a56c4676ad0a2f28949940"
+      },
+      {
+        "path": "PROJECT_CONTROL/Investigations/WP-034_QC.md",
+        "gitBlob": "038bfef6c6b056d6fb608b1f83e3fcb183bfa77d",
+        "gitShowContentSha256": "787ad773ee14f633317422dad998d1617800f327859cff389cddb1d38b997640",
+        "historicalCrlfOriginalSha256": "f17c2cc31bed2b4ee957946100b7368c8ddd8e22c8092f48002a3837fc6e639c"
+      },
+      {
+        "path": "WORK_PACKAGES/WP-034_HardBudget-Zuverlaessigkeit.md",
+        "gitBlob": "2d5bd01bdff3bdc8753dcc45a01d1ba6b12a0fe8",
+        "gitShowContentSha256": "08f1aeaa443df8d058f30afbecb5965e90ff479e093be81d6ed90977386eeb3a"
+      }
+    ],
+    "priorVerificationSummary": {
+      "f34ArchitectureRun": "38725866779 SUCCESS",
+      "f34UnityRun": "38725866769 SUCCESS; documented ten successful jobs, EditMode 456/456 and PlayMode 27/27",
+      "f34HardBudgetDuration": "48.655587 seconds, historical result only",
+      "independentTechnicalQc": "documented PASS without open technical findings at f34 only",
+      "integrationEvidence": "WP034 reports document later successful PR21 integration CI; it does not cover a future PR31 child head"
+    }
+  },
+  "hardBudgetFinding": {
+    "existingTest": {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs",
+      "method": "HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind",
+      "unchangedAt": [
+        "a2e26a658a2bcdd47002698c150cb5736d9760da",
+        "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "ff1836e293a2a5cff69773525c347b55deb67dfb"
+      ],
+      "semantics": {
+        "resultKindsCovered": [
+          "UNSATISFIABLE",
+          "MULTIPLE_OR_MORE",
+          "INDETERMINATE",
+          "UNIQUE"
+        ],
+        "cases": [
+          "tiny unsatisfiable 2x2 baseline",
+          "unsatisfiable serpentine 32x32",
+          "ambiguous corner 32x32",
+          "ambiguous long path 32x32",
+          "interrupted long path 32x32",
+          "unique serpentine 32x32"
+        ],
+        "invariantsToPreserve": [
+          "2 warmups",
+          "25 samples",
+          "same state-limit search for INDETERMINATE",
+          "same fixtures and minimum result-size requirement",
+          "same 600000 ms SolverLimits budget",
+          "same 40 percent tail-versus-result-build assertion"
+        ],
+        "measurementBoundary": "last monotonic time probe until Solve return, minus tiny baseline, compared to in-run Path/Reductions copy cost",
+        "doesNotProve": [
+          "deterministic allocation totals",
+          "universal timeout freedom under arbitrary host load",
+          "a historical host-GC, scheduling or CPU root cause"
+        ]
+      }
+    },
+    "solverBudgetBoundary": {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs",
+      "finding": "The solver builds reduction deduplication, UNIQUE trace/metrics and every SolverResult before the single final CheckBudget; after it, only return of a finished result follows. On exhaustion it returns fail-closed INDETERMINATE.",
+      "portConstraint": "PuzzleSolver.cs, CheckBudget sequence, classification, result construction and time-budget semantics must remain unchanged."
+    },
+    "provedNarrowCorrection": "Record formerly reconstructed an entire premise view for initial derivation, each tentative premise deletion and final fact minimization. The correction constructs one view then reconstructs only the changed cell by AND-ing complements of all still-included candidate removals for that cell and restores exact state if Holds fails.",
+    "unprovedHistoricalCause": "Do not state or assume host GC, scheduling, runner CPU, or any other historical root cause."
+  },
+  "candidatePaths": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs",
+      "classification": "mandatory code port",
+      "prePatchBlobCommonToA2eMainPr31": "bd719d0395aa6f5f3d6398d9ceec5d3c8fcf3eaa",
+      "wp034FixedBlob": "a41a802fd3e3f2f54074bd0d1e0bf540d0ae5a6c",
+      "wp034DeltaAgainstImmediateParent": "+12/-3",
+      "requiredHunk": [
+        "Build View(included) once before first Holds.",
+        "On each newest-first tentative deletion, recompute only entries[j].Cell from currently included candidate entries using remaining=127 and bitwise removal intersection.",
+        "On failed Holds, restore both included[j] and saved view cell.",
+        "Pass the final same view to MinimalFacts."
+      ],
+      "mustNotChange": [
+        "candidate membership/order",
+        "newest-first deletion order",
+        "public facts logic",
+        "premise output order/depth",
+        "Holds/Sufficient predicate semantics",
+        "Faulted handling"
+      ]
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs",
+      "classification": "mandatory regression port",
+      "prePatchBlobCommonToA2eMainPr31": "9fb1f0482a23eecf888b7ccc6ca9be1c7f945ef1",
+      "wp034FixedBlob": "6be782565505376c960fc3f040dd1de95f3202bc",
+      "wp034DeltaAgainstImmediateParent": "+17/-0",
+      "requiredTest": {
+        "name": "LargeRootTrace_PreservesSolverV2PremiseSelectionAndMetrics",
+        "fixture": "Serpentine(32,14), SolverLimits(maxStates:1, monotonicNow:()=>1)",
+        "expectedClassification": "UNIQUE",
+        "expectedMetrics": [0, 1639, 30, 0],
+        "expectedTraceSha256": "6E59FFFAFB16B61C9FDDC301ED9229078FEEA11BEF1E2F44616CE7F9D8460B78",
+        "binding": "conclusion, premise order, public facts and depth in all 1639 trace steps"
+      }
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs",
+      "classification": "required unchanged verification corridor; not a ported diff",
+      "prePatchBlobCommonToA2eMainPr31": "5931f0c165c084d67b344173171ea07abe2767b0",
+      "wp034DiagnosticBlob": "c2484d61e3a96b10ec00754ef646a3895c53eb7c",
+      "wp034DiagnosticDelta": "+12/-0 in predecessor 840b only",
+      "decision": "Keep target file byte/semantic unchanged. Do not adopt WP034 phase/CPU/GC logging merely for this port. Execute and independently evaluate its original HardBudget assertion in regular Unity CI."
+    }
+  ],
+  "minimalPermittedFunctionalPatch": {
+    "paths": [
+      "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs"
+    ],
+    "expectedFunctionalDiffSize": "+29/-3",
+    "reasonNotProductionOnly": "The change is high-risk solver-v2 trace logic; code-only reuse would omit the specifically captured 1639-step equivalence regression.",
+    "excluded": [
+      "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs diagnostic additions",
+      "any WP026 240-corpus files/tests",
+      "ADR032 workflows, sources, proofs or benchmark artifacts",
+      "old WP034/WP036 manifests or historical work packages",
+      "WP034 scripts/evidence/status files",
+      "whole commit cherry-pick, branch merge or PR21 tree import"
+    ]
+  },
+  "compatibilityEvidence": {
+    "mainIsMergeBaseOfF34": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "mainIsAncestorOfPr31Head": true,
+    "candidatePrePatchBlobEquality": true,
+    "readOnlyMergeTree": "RootDeductionTracer hunk was emitted as a clean merge result relative to common main context; unrelated workflow and WP026 corpus additions were visible and are excluded.",
+    "limitation": "This is source-context compatibility, not proof of a completed port or full solver correctness. Recheck at actual implementation head."
+  },
+  "requiredProspectiveMechanism": {
+    "authority": "ADR-030 common historical WP/scope Trust Anchor and existing integration route",
+    "idAssignment": "not assigned here; accountable parent must verify all IDs before creation; observed current maximum is WP-036",
+    "anchorCommitRequirements": [
+      "New work package and new production scope manifest added together in exactly one first add commit.",
+      "Anchor parent is exactly ff1836e293a2a5cff69773525c347b55deb67dfb.",
+      "New manifest baseCommit equals exactly that anchor parent.",
+      "Historical WP filename, H1 and ID agree and it contains a safe local Markdown link to exactly its canonical manifest path.",
+      "New manifest remains byte-identical after anchor.",
+      "Workflow switches only its active manifest reference to the new manifest and is explicitly allowlisted.",
+      "Do not edit WP-036.production.scope.json."
+    ],
+    "manifestAllowlistMinimumConcept": [
+      "new assigned WP markdown",
+      "new canonical production scope manifest",
+      ".github/workflows/validate.yml only for new active manifest reference",
+      "RootDeductionTracer.cs",
+      "SolverV2MetricsTests.cs",
+      "narrow own handover/evidence files if a project rule requires them"
+    ],
+    "manifestMustNotAllow": [
+      "Content/**",
+      "Proofs/**",
+      "broad Assets/**",
+      "old scope manifests",
+      "WP026 corpus or benchmarks",
+      "ADRs or source/proof payloads unrelated to this patch"
+    ],
+    "sequencing": [
+      "Create child repair branch from PR31 head.",
+      "Create and verify new anchor before code change.",
+      "Apply only the two-file minimal functional patch in a separate commit.",
+      "Bind a final source freeze by exact commit and tree.",
+      "Run existing regular validation/CI only then; do not carry forward f34/PR21 CI as new-head completion.",
+      "Obtain independent technical scope/diff review on that same freeze.",
+      "Only then use the established subordinate integration route into PR31 and bind an integrated tree/SHA/new CI."
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AK-ANCHOR",
+      "requirement": "A new prospective common WP/manifest ADR030 anchor exists before code.",
+      "evidence": "single add commit, exact parent ff183, manifest baseCommit, historical link/IDs, byte-stable manifest"
+    },
+    {
+      "id": "AK-SCOPE",
+      "requirement": "Final diff only contains anchor/governance, the active new manifest selection, two functional candidate paths and narrow own evidence permitted by its new manifest.",
+      "evidence": "final name-status and scope validator output; zero WP026 corpus/ADR032/source/proof/old-manifest imports"
+    },
+    {
+      "id": "AK-SOURCE",
+      "requirement": "Immediately before port, all three predecessor blobs equal documented values and the semantic RootTracer hunk matches f34 exactly in behavior.",
+      "evidence": "git ls-tree/blob comparison plus review of Hunk's single-cell reconstruction and exact restoration"
+    },
+    {
+      "id": "AK-BUDGET",
+      "requirement": "Original HardBudget test stays unweakened and passes regular Unity EditMode.",
+      "evidence": "test source diff confirms unchanged case set/2/25/state-search/40-percent/budget; final actual result XML/log evaluated"
+    },
+    {
+      "id": "AK-TRACE",
+      "requirement": "Full large-root trace contract is retained.",
+      "evidence": "new 1639-step test passes with UNIQUE, [0,1639,30,0] and specified SHA-256; existing trace/proof/solver-v2 tests stay passing"
+    },
+    {
+      "id": "AK-CI",
+      "requirement": "Final new source freeze completes normal project CI without modified budgets, retries-as-evidence, quarantine or Golden updates.",
+      "evidence": "Architecture-only, own production scope selftests, Unity EditMode, PlayMode/QA, Android Development IL2CPP and iOS/Xcode bound to actual checkout"
+    },
+    {
+      "id": "AK-INDEPENDENT-QC",
+      "requirement": "A technically independent role audits freeze, source semantics, scope, diff and actual CI.",
+      "evidence": "separate report; no self-approval"
+    },
+    {
+      "id": "AK-INTEGRATION",
+      "requirement": "After authorized subordinate integration into PR31, the integrated commit/tree/diff and regular CI are newly bound.",
+      "evidence": "actual integration SHA/tree/compare plus final CI; historical WP034/PR21 records only supplemental"
+    }
+  ],
+  "testPlan": {
+    "mustRunOnlyInSubsequentAuthorizedWork": true,
+    "sourceAndScopeChecks": [
+      "Compare candidate predecessor blobs against documented prepatch blobs before code.",
+      "Validate new Anchor/manifest via ADR030-capable architecture scope validator with self-tests.",
+      "Review final path-level diff and reject forbidden imports."
+    ],
+    "behaviorChecks": [
+      "Run unmodified HardBudget_NoResultIsBuiltAfterTheLastProbe_ForEveryResultKind.",
+      "Run added LargeRootTrace_PreservesSolverV2PremiseSelectionAndMetrics.",
+      "Run existing solver-v2, trace-sufficiency, trace-irredundancy and proof regression coverage appropriate to the regular project CI."
+    ],
+    "regularCiChecks": [
+      "Architecture Validation architecture-only and new production scope validation",
+      "Unity EditMode with actual result XML and relevant test output evaluation",
+      "Unity PlayMode/QA",
+      "Android Development IL2CPP",
+      "iOS/Xcode export"
+    ],
+    "nonPermittedTestAlterations": [
+      "No timeout/budget/case/warmup/sample/threshold weakening",
+      "No test quarantine/skipping to establish repair success",
+      "No retry as substitute evidence",
+      "No Golden/proof rewrite to make trace differences pass",
+      "No benchmark or complete WP026 corpus import"
+    ]
+  },
+  "currentReadOnlyPrState": {
+    "checkedAt": "2026-10-18T20:03:59+02:00",
+    "pr31": {
+      "state": "open",
+      "draft": true,
+      "head": "ff1836e293a2a5cff69773525c347b55deb67dfb",
+      "base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "mergeable": true,
+      "mergeableState": "unstable",
+      "checks": {"success": 18, "skipped": 3, "failure": 1},
+      "qualification": "The failed Push Unity EditMode run 39079576211 and successful PR Unity run 39079578360 are historical PR31 conditions. Do not retry or assign them to a prospective correction."
+    },
+    "pr21": {
+      "state": "open",
+      "draft": true,
+      "head": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+      "base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "mergeable": true,
+      "mergeableState": "clean",
+      "checks": {"success": 22}
+    }
+  },
+  "explicitDecisionBoundaries": [
+    "This analysis does not declare the repair guaranteed on any host or any later tree.",
+    "This analysis does not determine the future WP ID.",
+    "This analysis does not authorize a main merge or a whole PR21/WP026 import.",
+    "This analysis does not edit an old WP036 manifest or create a new Word/product approval.",
+    "Regular CI and final independent scope integration remain necessary after prospective implementation."
+  ],
+  "companionReport": "WP034_REUSE_FACHANALYSE.md"
+}
