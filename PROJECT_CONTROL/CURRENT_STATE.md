@@ -1,3 +1,9 @@
+## Aktive Produktion – zusammenhängender Spielablaufblock WP038
+
+WP037 ist nach unabhängigem AK07-PASS, gesondertem Entscheid, tatsächlicher Unterintegration b9b5964 und vollständiger integrierter PR-CI abgeschlossen; reine Schlussdokumentation 3772c03 veröffentlicht, eigener automatischer Nachlauf separat. Main bleibt d90e798. [Produktionsbündelungsentscheid](ProductionBlocks/PRODUCTION_BUNDLING_DECISION.md) setzt den bestehenden Manusplan in fünf zusammenhängende Lieferblöcke um; menschliche Rätseltests folgen dem bedienbaren Prüfgegenstand.
+
+[WP038](../WORK_PACKAGES/WP-038_Interne-spielbare-Raetselschleife.md) ist auf 3772c03 prospektiv gemeinsam verankert. ADR033 nach getrennter unabhängiger Boundaryprüfung zuständig angenommen; jetzt tatsächliche Implementierung der eigenen transienten QA-Rätselschleife. Noch kein WP038-Code-/Grafik-/CI-/Abschluss-PASS. Nächste Schritte: App/UI/World/Bootstrap samt reproduzierbarer Szene bauen, echte Bedien-/Grafiktests und reguläre CI, unabhängige Abschlussprüfung, gesonderte zulässige Unterintegration und integrierte Prüfung. Kein neuer Gesellschafterauftrag zwischen diesen internen Schritten.
+
 ## WP-037 – unabhängig abgeschlossen und in WP036 unterintegriert, 18.10.2026
 
 **Aktueller eigener Status: AK01–AK09 erfüllt; unabhängige technische Abschlussprüfung AK07 PASS, gesonderter Unterintegrationsentscheid ausgeführt und tatsächliche integrierte CI bestanden.** PR32 wurde mit Expected-HEAD `8dd68e22b58f126cb499fee408e98c173202a98e` auf Ziel `ff1836e293a2a5cff69773525c347b55deb67dfb` als `b9b59647cf73e2dcfa05a413259ca27c18a5afdf` in PR31 integriert. Geordnete Parentbindung ff1836e/8dd68e2; Mergebaum exakt gleich dem unabhängig geprüften Lieferbaum `25b7907fee4e0741574c3f32867fbef03bfb1e96`. Kein Mainmerge.
@@ -69,6 +75,9 @@ Tatsächlich geliefert: 1.408 de-DE-DRAFT-Einträge in Content/Localization/sour
 Letzter Schritt: vollständige Textproduktion, eigene kritische Nacharbeit (elf frühe Ergebnisse, zwanzig späte konkrete Betriebssituationen), gesonderte unabhängige Gesamtlektüre/Quellenprüfung und vollständiger tatsächlicher PR-Buildnachweis. Die reine Abschlusslieferung ergänzt ausschließlich eigene Status-/Evidenzdateien; Produktionsquellen, Prüftools, Workflow und Manifest bleiben bytegleich zum geprüften af6eb73. Nachgelagerte CI dieses Dokumentationscommits wird separat am tatsächlichen PR-HEAD verfolgt. **Nächster fachlicher Schritt: konkrete kreative Ownerbewertung der vollständigen Texte und Nachweise; keine fehlende Textproduktion aus einem Chat rekonstruieren.** [Draft-PR #31](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/31), vollständige [Übergabe](../Content/Reviews/text-library/WP-036/HANDOVER.md), [Abdeckung](../Content/Reviews/text-library/WP-036/COVERAGE.md). Die 480 Karten-/Zugziele, WP-026-Human-/Zeit-/Gesamtgates, Hint-/Daily-/Endlessblocker, Itemkatalog, UI-Layout/Accessibility, Produkt-/Import-/Rechts-/Release-/Geräte-/Storegates bleiben offen. Textlieferung vollständig, kreative/Produktannahme offen. Kein Main-Merge oder Runtimeimport. Die folgenden Tabellen sind der unveränderte Main-Ausgangsstand, keine neu geprüfte Gesamtfreigabe.
 
 # Aktueller Projektstand
+
+
+
 
 | Feld | Aktueller Stand |
 |---|---|

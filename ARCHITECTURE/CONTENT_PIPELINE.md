@@ -197,3 +197,7 @@ Ein Levelautor verantwortet Logik und Qualitätsnotiz. Ein Solver-/Tooling-Revie
 [5]: ./CONTENT_CATALOGS.md "Content Catalogs v0.3"
 [6]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
 [7]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+
+## Interne transiente Spielschleife – ADR033 / WP038
+
+[ADR-033](../DECISIONS/ADR-033-interne-transiente-spielschleife.md) erlaubt ausschließlich die eigene interne QA-Szene DevelopmentPuzzle mit zwei eigenen öffentlichen QA-Definitionen, realen Domaincommands und klar ungespeicherter Fahrt-/Ergebnispräsentation. Eigene UXML-/USS-/Panel-/Locale-/Materialquellen werden am validierten Installer serialisiert; neutrale QA-Strings werden über eine isolierte Unity-Localization-In-Memory-StringTable aufgelöst. Alle internen Assemblykanten bleiben unverändert; ausschließlich UI erhält den bereits vorgesehenen externen Unity.Localization-Verweis. Kein DRAFT-/FIXTURE_ONLY-Import, keine Katalog-/Proof-/Textpromotion, kein Save-/ProgressCommitted-/Rewardclaim und kein Productionentry. Produktiver Addressables-/Localization-, Save-vor-Fahrt-/Reward- und Releasevertrag bleiben verbindlich. Reguläre Builds enthalten die neue QA-Spielszene zusätzlich zur bestehenden Composition-Smoke-Szene; bestehende Profil-/URP-/Stripping-/CI-Gates bleiben erhalten.
