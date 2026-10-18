@@ -6,9 +6,11 @@ Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Ke
 
 Maßgeblich ist der [angenommene Bündelungsentscheid](ProductionBlocks/PRODUCTION_BUNDLING_DECISION.md), der den bestehenden Manusplan operativ zusammenführt. Ausführung einschließlich Eigenkorrektur, getrennter unabhängiger QC und zulässiger Unterintegration intern.
 
+Die Nummerierung ist keine globale Wartekette. Menschliche 240er-Tests beginnen nach einer bedienbaren Prüffassung und einem gesondert beauftragten nichtproduktiven Public-Input-Zugriff; finale Assets, sämtliche Referenzziele und fertige Save-/Monetarisierungsproduktion sind keine nachgewiesenen Startgates. Nach WP038 bündelt der nächste Auftrag diesen Reviewpfad und Save/Grundfortschritt in getrennten WPs; ausführbare Teile laufen parallel. WP038 selbst bleibt bei seinen zwei eigenen QA-Puzzles.
+
 | Reihenfolge | Lieferblock | Tatsächlicher Stand / Voraussetzung |
 |---:|---|---|
-| 1 | WP038: interne bedienbare Rätselschleife | Verankert, ADR033 angenommen; tatsächliche Implementierung beginnt. Eigene QA-Daten, keine Produktpromotion. |
+| 1 | WP038: interne bedienbare Rätselschleife | Verankert, ADR033 angenommen; tatsächlich umgesetzt und lokal mit echtem Renderer 8/8 Szenen-/Grafikfälle bestanden, konkreter GUID-FAIL korrigiert. Codefreeze-CI/Plattformbuilds, unabhängige Abschluss-QC und Unterintegration noch offen. Eigene QA-Daten, keine Produktpromotion. |
 | 2 | Persistierter lokaler Spielablauf und Grundfortschritt | Zusammengehörige neue Save-/Application-/UI-WPs auf fertiger WP038-Schnittstelle; eigene Anker vor Code. Null-Sternzeiten verhindern Grundfortschritt nicht. |
 | 3 | Angenommene Gestaltung und Kampagnenanschluss | WP035 konkret kreativ/technisch abschließen, 480 Map-/Trainziele und Asset-/Contentpipeline; WP036 wiederverwenden. |
 | 4 | Menschliche Kampagnenprüfung und Zeitkalibrierung | Erst auf bedienbarer Fassung; vorhandene technische Rätselprüfungen wiederverwenden. |
