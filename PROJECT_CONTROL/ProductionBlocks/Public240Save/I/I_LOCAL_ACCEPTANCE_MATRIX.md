@@ -1,3 +1,28 @@
+# I – abgeschlossene Akzeptanzkriterien am tatsächlichen integrierten Stand
+
+Alle I01–I16 sind technisch erfüllt. Source `242712d1b99202fd18273dc28ef2fd12aff71cab`, tatsächlicher Untermerge `1af988cd73a7267796fb3b6fd77204166241a07a`, Tree `8b4f4b2d9460979bd0a532c993933e7b5be4b93a`. Vollständige eigene und beide integrierten regulären CI-Ereignisse sowie getrennte Source-/Integrationsannahme sind erfolgt. Die folgende Tabelle verknüpft die tatsächlichen Nachweisgruppen; alle nachfolgenden ursprünglichen Zwischenstände bleiben historisch erhalten. Keine Human-/Produkt-/Main-/Gerätefreigabe.
+
+| AK | Abschließende tatsächliche Nachweisgruppe |
+|---|---|
+| I01 | PASS – [P_RAW_GIT_UNION_INDEPENDENT_QC.json](P_RAW_GIT_UNION_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I02 | PASS – [I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json](I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I03 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I04 | PASS – [I_F2_CI_EVIDENCE.json](I_F2_CI_EVIDENCE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I05 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I06 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I07 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I08 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I09 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I10 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I11 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I12 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I13 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I14 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I15 | PASS – [I_F2_FINAL_INDEPENDENT_QC.json](I_F2_FINAL_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I16 | PASS – [I_MI_FINAL_TECHNICAL_INDEPENDENT_QC.json](I_MI_FINAL_TECHNICAL_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+
+## Historische lokale Detailmatrix und deren tatsächliche Nachläufe
+
 # I – tatsächliche lokale AK-Nachweise und offene Schlussgates
 
 Stand: Native09 tatsächlich45/45 PASS, OS0; App-V3 gezielt28/28 Mono, frühere FAILs erhalten. Aktuelle native Quellen497exakte Gitblobs aus09_INPUT_SNAPSHOT, vollständige Originale in [Native08-Transport](I_NATIVE_09_PASSED_ORIGINALS.json), [Root-Bildbindung](I_NATIVE_09_ROOT_RESULT_VISUAL.json). Die letzte unabhängige Sourceprüfung ist von Implementierung getrennt; aktueller Native-/Freeze-/CIabschluss folgt separat. Keine fehlende CI als erfüllt ausgeben.
@@ -28,3 +53,7 @@ Historische Native04/05/06/07-FAILs und dazugehörige unveränderte Originalquel
 ## Tatsächlicher erster Freeze und enger Headless-Nachlauf
 
 F1 ist als89ee035…/Treec7243b… exakt eingefroren, unabhängig Raw-Git-geprüft und kanonisch17/18 PASS gewesen. Seine reguläre Unity-CI ist dennoch FAIL: Edit1107PASS, Play116/117; Android/iOS SKIPPED. Der tatsächliche einzelne Headless-Fixturefehler ist durch Native10/11 kausal reproduziert und nach getrennter Planprüfung ausschließlich im neuen Smoke-Test korrigiert. Native12 aktuelle45/45 headless und Native13 normaleGrafik1/1 mit vier tatsächlichen selbst/ unabhängig betrachteten586×543-Bildern PASS/OS0. Native09-Runtimequellen bleiben unverändert; alle alten FAILs erhalten. Neue F2-Freeze-/CI-/Abschlussbindung folgt separat, I04/I15/I16 bleiben insoweit offen. [Originale](I_HEADLESS_001_NATIVE_10_13_ORIGINALS.json), [erstes CI-FAIL-Urteil](I_F1_FAILED_CI_INDEPENDENT_QC.json).
+
+## Tatsächlicher integrierter Abschluss I01–I16
+
+I04 ist durch die vier tatsächlichen Szenen-BuildReports in beiden regulären Source-Plattformjobs und beiden integrierten CI-Ereignissen erfüllt. I15 ist durch den sauberen F2-Freeze, kanonische 17/18 samt Selbst-/Negativtests, vollständige reguläre 1107/117/Coverage/Android/iOS-Nachweise und getrennte Schlussannahme erfüllt. I16 ist durch gesonderten R-Entscheid, frischen Expected-HEAD-Untermerge 1af988cd73a7267796fb3b6fd77204166241a07a, exakten Tree8b4f4b2d9460979bd0a532c993933e7b5be4b93a, beide integrierten vollständigen CI-Ereignisse, unabhängige Integrationskontrolle und diese separate Gesamtabschlussdokumentation erfüllt. Alle übrigen I01–I14-Originale bleiben an ihren tatsächlichen Sources gebunden; kein Human-/Produkt-/Geräte-PASS. Spätere Dokumentations-CI gehört allein ihrem tatsächlichen Dochead, gebunden im PR31-/PR37-Nachtrag.

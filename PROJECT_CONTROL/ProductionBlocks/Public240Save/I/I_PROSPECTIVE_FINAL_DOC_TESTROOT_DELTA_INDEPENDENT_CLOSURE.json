@@ -1,0 +1,17 @@
+{
+  "atUtc": "2026-10-19T16:15:56.672Z",
+  "verdict": "PASS_PROSPECTIVE_DOC_TESTROOT_WORDING_DELTA_ONLY_I16_OPEN",
+  "previousHelperSha256": "1017451629257aa0ca668b9729a560425fb4a2b3aa1cc1a5eda53b8a15e7c057",
+  "currentHelperSha256": "4d654c610a0bd06c113a7892c2e1e4f35312152ad9f1a3ae348ce6b5d386a77e",
+  "currentHelperBytes": 25850,
+  "exactLineDelta": [
+    {
+      "line": 45,
+      "before": "RuntimeRoot ist Application.persistentDataPath. SaveFS bildet darunter **qa-public240-v1/&lt;aggregateCatalogHash&gt;/r/** mit Main, Backup, Pending und erhaltenen Recovery-/Migrationsoriginalen. Reviewprofile und Claims werden nicht in Produktprofile übertragen. Die Testrootgrenze gilt nur unter Editor/Testdefines, ist vor Awake gebunden und physisch vollständig disjunkt vom echten Profilbaum.",
+      "after": "RuntimeRoot ist Application.persistentDataPath. SaveFS bildet darunter **qa-public240-v1/&lt;aggregateCatalogHash&gt;/r/** mit Main, Backup, Pending und erhaltenen Recovery-/Migrationsoriginalen. Reviewprofile und Claims werden nicht in Produktprofile übertragen. Die Testrootgrenze gilt nur unter Editor/Testdefines und ist vor Awake gebunden. Die tatsächliche Windows-NT-Auflösung einschließlich 8.3/SUBST und die Unix-Prüfung aller Kandidaten-/Real-/Temp-/Env-Vorfahren auf Reparse/Nichtverzeichnisse sind getrennt nachgewiesen. Verlinkte Unix-Testumgebungen stoppen fail-closed ohne Ersatzwurzel; weitergehende Unix-Aliasgarantien werden nicht behauptet."
+    }
+  ],
+  "originalFinding": "I-DOC-PROSPECTIVE-001",
+  "closed": true,
+  "boundary": "Helper not executed; syntax parse and exact wording delta only. Actual Source terminalCI, separateRdecision, merge, integratedCI, actualgenerateddocs/linkchecks andDocheadCI remain separate gates; noI16orcompletehandoveracceptance."
+}

@@ -1,5 +1,9 @@
 # WP-043 – Public240 gespeicherte Integration (I)
 
+## Aktueller Abschlussstatus
+
+Technisch ABGESCHLOSSEN und unabhängig angenommen; tatsächlich in WP036 unterintegriert. Maßgeblich sind die untenstehende Abschlussbindung und die Gesamtübergabe. Die folgenden Zwischenstände bleiben historisch erhalten.
+
 ## ID
 `WP-043`
 
@@ -138,3 +142,7 @@ Vor dem Freeze wurde I-ROOT-002 zusätzlich konkret erkannt: Unix verglich einen
 ## Gezielter Nachlauf nach erster regulärer I-CI
 
 F1 `89ee035ca0fa205ca1c0e845ad315047eae94fd8` hat kanonisch17/18 und Architecture39272387677 bestanden; Unity39272387608 ist tatsächlicher FAIL (Edit1107/1107, Play116/117, beide Mobilejobs SKIPPED, zwei reale Freigaben). Originale und unabhängiges FAIL-Urteil bleiben im eigenen I-Pfad erhalten. Native10/11 liefern den echten kausalen Headless-Testviewportbefund. Nach getrennter Planprüfung und dokumentierter R-Korrekturentscheidung ändert der Nachfolger ausschließlich die eigene Smoke-Fixture: tatsächliche positive endliche Panelmaße statt960×840, bounded Layout/Rebind und zusätzliche echte Panelcontainmentprüfungen. Alle ursprünglichen Assertions, Runtime-/A-/S-/Manifest-/Workflowbytes bleiben unverändert. Frischer gezielterCompileExit0; Native12 tatsächlich45/45 headless OS0, Native13 normaleGrafik1/1 OS0 mit vier von Root und Reviewer betrachteten Originalbildern. [Originale10–13](../PROJECT_CONTROL/ProductionBlocks/Public240Save/I/I_HEADLESS_001_NATIVE_10_13_ORIGINALS.json). Korrigierter eigener F2-Freeze, vollständige reguläre F2-CI und finales unabhängiges Urteil sowie I16-Unterintegration bleiben bis tatsächlichem Abschluss offen. Keine Grün-Wiederholung am gleichen fehlerhaften Stand.
+
+## Tatsächlicher Abschluss und Unterintegration des Gesamtblocks
+
+Technisch ABGESCHLOSSEN innerhalb MANUS-2026-10-19-01. Eigene angenommene T/A/S-Lieferungen bleiben exakt an ihren ursprünglichen Freezes/CI gebunden. Der korrigierte I-Source 242712d1b99202fd18273dc28ef2fd12aff71cab ist nach vollständiger eigener regulärer CI und unabhängiger Annahme durch den gesonderten R-Entscheid WP043-SUBINTEGRATION-01 tatsächlich als 1af988cd73a7267796fb3b6fd77204166241a07a ausschließlich in WP036 unterintegriert; geordnete Eltern B/F2, Tree exakt 8b4f4b2d9460979bd0a532c993933e7b5be4b93a, kein Source-Diff. Beide tatsächlich integrierten CI-Ereignisse und die unabhängige Integrationskontrolle sind PASS. [Eine vollständige Übergabe](../PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md) und die dortige AK-/Originalführung erschließen Ergebnis, Start-/Installationsweg und sämtliche Grenzen. Dieser separate Dokumentationsnachlauf erhält seine eigene tatsächliche Head-/CI-Bindung im PR31-/PR37-Nachtrag; noch nicht entstandene Doc-CI wird nicht vorab angenommen. Frühere offene Statusabsätze sind historische Zwischenstände. Keine Main-/Produkt-/Human-/Gerätefreigabe.

@@ -1,5 +1,9 @@
 # WP-042 – Lokaler-Save-Restore-Grundfortschritt (S)
 
+## Aktueller Abschlussstatus
+
+Technisch ABGESCHLOSSEN und unabhängig angenommen; tatsächlich in WP036 unterintegriert. Maßgeblich sind die untenstehende Abschlussbindung und die Gesamtübergabe. Die folgenden Zwischenstände bleiben historisch erhalten.
+
 ## ID
 `WP-042`
 
@@ -247,3 +251,7 @@ Die getrennt vor Code geprüfte und nach tatsächlicher nativer A/B-Probe angeno
 ## Gemeinsamer formaler Abschlussnachtrag durch R im I-Scope
 
 S technisch abgeschlossen und durch R am2026-10-19T13:03:20.055Z als korrigiertes LS3746184ca75eb439de918896e9b88aa238cff893/Treeca88b989c03e7daf10bc05eeb9bb845348717bc9 nach vollständiger regulärer CI und unabhängiger Prüfung angenommen. Architecture39250454892/Unity39250454850 Attempt1,1038/1038 EditMode und49/49 PlayMode, beide Coveragegates/Android/iOS/Xcode/vier tatsächliche Seatfreigaben. Eigene S01–S12-Originale/Korrekturen einschließlich F1FAIL, kausaler Metadatenproben und echter Windows-/Unix-Datei-/Ownerlockprozesse unverändert erhalten; I/LS_FINAL_BINDING.json und I/S_F2_FINAL_INDEPENDENT_QC.json erschließen Annahme und Originale. Die gespeicherte reale Public240-UI-/Entryverdrahtung ist weiterhin eigenes I-Gate. Gemeinsamer formaler Abschluss hier durch R innerhalb I; keine S-Fach-/Test-/Asset-/Manifeständerung. Maßgebliche zusammenhängende Ergebnis-/Restgateführung: [Gesamtübergabe](../PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md).
+
+## Tatsächlicher Abschluss und Unterintegration des Gesamtblocks
+
+Technisch ABGESCHLOSSEN innerhalb MANUS-2026-10-19-01. Eigene angenommene T/A/S-Lieferungen bleiben exakt an ihren ursprünglichen Freezes/CI gebunden. Der korrigierte I-Source 242712d1b99202fd18273dc28ef2fd12aff71cab ist nach vollständiger eigener regulärer CI und unabhängiger Annahme durch den gesonderten R-Entscheid WP043-SUBINTEGRATION-01 tatsächlich als 1af988cd73a7267796fb3b6fd77204166241a07a ausschließlich in WP036 unterintegriert; geordnete Eltern B/F2, Tree exakt 8b4f4b2d9460979bd0a532c993933e7b5be4b93a, kein Source-Diff. Beide tatsächlich integrierten CI-Ereignisse und die unabhängige Integrationskontrolle sind PASS. [Eine vollständige Übergabe](../PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md) und die dortige AK-/Originalführung erschließen Ergebnis, Start-/Installationsweg und sämtliche Grenzen. Dieser separate Dokumentationsnachlauf erhält seine eigene tatsächliche Head-/CI-Bindung im PR31-/PR37-Nachtrag; noch nicht entstandene Doc-CI wird nicht vorab angenommen. Frühere offene Statusabsätze sind historische Zwischenstände. Keine Main-/Produkt-/Human-/Gerätefreigabe.
