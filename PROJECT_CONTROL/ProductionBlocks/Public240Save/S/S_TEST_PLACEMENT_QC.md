@@ -1,0 +1,13 @@
+# S-Testplatzierung – enge unabhängige Prüfung
+
+**PASS_TEST_PLACEMENT_WITHIN_FINAL_S_SCOPE. Kein technischer Blocker durch die vorgeschlagene Gruppierung.** Die vollständige Fixture `CatalogSetIdentityTests` darf innerhalb der bereits erlaubten Datei `Application/LocalProfileStateTests.cs` liegen. Der Produktionswerttyp kann innerhalb der ebenfalls erlaubten `Application/LocalProfileState.cs` liegen. Es wird keine zusätzliche Datei oder Manifeständerung benötigt.
+
+Die T-Planfassung kennzeichnet sich ausdrücklich als noch nicht ausführbarer S-Anker und ihre Dateitabelle als „Abschließende vorgeschlagene Dateiliste für das spätere Manifest“. Sie erlaubt zusätzliche Typen im verantwortlichen Fachfile. Die konkrete endgültige historische S-Allowlist erlaubt LocalProfileStateTests.cs und LocalSaveContractFixtures.cs, aber keine eigenständige CatalogSetIdentityTests.cs. Eine NUnit-Fixture wird durch Typ/Tests in derselben vorhandenen Testassembly ausführbar; die zusätzliche Klasse verlangt keine eigene C#-Datei, Meta oder Assemblykante. Die vorhandene Application-Testassembly referenziert Application und NUnit.
+
+Der konkrete fachliche Prüfauftrag aus der Planzeile CatalogSetIdentityTests.cs und den Abschnitten 11/12/15 bleibt vollständig bestehen: exakte Dreierprojektion, JCS-/Hashbytes, Use-/Status-/Teilhashabweichungen, Aggregatebindung und unabhängige C#/Node-Goldens. Andere LocalProfileState- und S01–S12-Nachweise werden nicht ersetzt oder verringert.
+
+R dokumentiert die endgültige Platzierung **vor der betroffenen Umsetzung** offen im eigenen S-WP-/Evidenzstatus, einschließlich eindeutiger Zuordnung der geplanten Nachweise zu Fixture und Testfällen. Die T-Planfassung bleibt als historischer Dateivorschlag unverändert, ebenso der historische WP-/Manifestanker. Keine neue Datei CatalogSetIdentityTests.cs/.meta, kein Manifestaufweiten, keine neue Assemblykante und keine stillschweigende Teststreichung. Spätere Originaltest-XMLs müssen die zusätzliche eindeutig benannte Fixture und tatsächliche Fälle belegen.
+
+Bindung: S-Anker `8c3481b3602567406ab4ef6f9365249ccb5d3afc`; Manifest-SHA256 `2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace`. T-Plan-Rohblob `6b6bea47eccf3b0a1c0b60e66e0ff09abf81a542`, Roh-SHA256 `41f1d5e2cb8af9b779319eb0299b8b0dec84fc71f75263af0c138ac71f94e37d`; lokaler CRLF-Hash separat im JSON, normalisierte Bytes identisch.
+
+Dies ist eine eng geprüfte Ausführungsplatzierung innerhalb des vorhandenen Scopes. Kein Codec-, Golden-, Testlauf- oder Implementierungs-PASS; die vollständige unabhängige S-Golden-/Reader-/Policyprüfung vor Codeccode bleibt offen. Keine Quellen-/Git-/Unity-/CIaktion. Nur diese ignorierten Reviewdateien geschrieben.

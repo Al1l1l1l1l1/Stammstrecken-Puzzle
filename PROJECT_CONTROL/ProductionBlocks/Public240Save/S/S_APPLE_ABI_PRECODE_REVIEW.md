@@ -1,0 +1,7 @@
+# Unabhängige enge Apple-ABI-Vorcodereview
+
+R-Befund bestätigt; vorgeschlagene O_CLOEXEC-Korrektur innerhalb der bestehenden FS-/OS-Handleentscheidung zulässig und vor Apple-ARM64-Abnahme nötig. Ein fester dritter P/Invoke-Parameter entspricht nicht dem variadischen fcntl-Vertrag auf Apple ARM64. Apple beschreibt die abweichende Stackübergabe ausdrücklich: [Architekturunterschiede](https://developer.apple.com/documentation/apple-silicon/addressing-architectural-differences-in-your-macos-code), [ARM64-ABI](https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms).
+
+Readonly open mit seinen zwei festen Argumenten und O_CLOEXEC benötigt ohne O_CREAT/O_TMPFILE keinen Mode-Vararg. Darwinwert0x01000000 und Linuxwert1<<19 sind in den [Apple-XNU-](https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/sys/fcntl.h) und [Linux-Headern](https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/asm-generic/fcntl.h) belegt. [Bionic](https://android.googlesource.com/platform/bionic/+/main/libc/include/fcntl.h) bindet Linux-fcntl-Header ein. Auswahl explizit iOS beziehungsweise tatsächliches macOS; sonst nur unterstützte Linux-/Android-ABIs, unbekannte OS fail closed.
+
+Windows und flock/close bleiben unverändert; kein fcntl-Fallback. Neue Quell-/Compiler-/Linux-Timeoutbelege erforderlich. Frühere a6bb-Originale bleiben unverändert historisch. Kein Apple/APFS/iOS-Runtime-PASS aus dieser Review.
