@@ -1,3 +1,7 @@
+## Aktueller Gesamtauftrag – Public240 und lokaler Save, 19.10.2026
+
+MANUS-2026-10-19-01 ist auf B3d1ac59 ausdrücklich beauftragt. Technischer Ausführungsagent R/Codex, keine Geschäftsführerrolle. Gültiger T-Anker WP040/0da2b684a079c0caf9306dc21a67e2dc20e8489a mit Parent exakt B; verworfener lokaler WP039-Versuch ohne historische ID-Konformität wird nicht verwendet. ADR034/035 tatsächlich getrennt vor Code PASS und durch R angenommen. T-Implementierung/CI/Abschluss noch offen; keine A/S-Fertigstellung oder Mainintegration. [Eine maßgebliche Gesamtübergabe](ProductionBlocks/Public240Save/HANDOVER.md), [Entscheid/Reviewbindung](ProductionBlocks/Public240Save/T_ADR_DECISION.md). Nächster Schritt: T vollständig implementieren/pruefen, dann A/S exakt auf T. Historische Berichtigungen bleiben erhalten.
+
 ## Aktuelle ausführbare Warteschlange – Manusentscheidung vom 19.10.2026
 
 | Gegenstand | Heute verbindlicher Status |

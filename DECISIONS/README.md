@@ -47,7 +47,10 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-032](./ADR-032-season1-ci-korpus-leistungsnachweis.md) | CI-Referenz-Leistungsnachweis für den Season-1-Korpus | **Angenommen** | Gültig; konkretisiert den bestehenden Budgetnachweis für reale Season-1-Inputs, ohne Solver- oder Contentsemantik zu ändern. |
 | [ADR-033](./ADR-033-interne-transiente-spielschleife.md) | Interne transiente Spielschleife ohne Produktionscontentimport | **Angenommen** | Ergänzt ADR-011 ausschließlich um die benannte nichtproduktive QA-Szene; Productionimport-/Save-/Releaseverträge unverändert. |
 
-Damit existieren **33 ADRs**: 24 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+| [ADR-034](./ADR-034-isolierter-public240-reviewpfad.md) | Isolierter Public240-Reviewpfad | **Angenommen** | Eigener nichtproduktiver QA-Entry mit geschlossener Projektion und isoliertem Profil; Produktionsgates unverändert. |
+| [ADR-035](./ADR-035-lokaler-save-und-checkpoint-vertrag.md) | Lokaler Save-, Checkpoint- und Commitvertrag | **Angenommen** | Typisierte Ports, vorhandenes JCS per Injektion, vollständiger Checkpoint/CAS und Commit-vor-Fahrt; Fachverträge bleiben erhalten. |
+
+Damit existieren **35 ADRs**: 26 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 
