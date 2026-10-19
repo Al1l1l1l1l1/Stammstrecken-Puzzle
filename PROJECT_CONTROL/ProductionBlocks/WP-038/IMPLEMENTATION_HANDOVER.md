@@ -1,3 +1,11 @@
+## Eine aktuelle Koordinatorübergabe – 19.10.2026
+
+[**Maßgebliche heutige Manusentscheidung samt vollständigem Ausführungsmandat**](MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md). WP-037-Untermerge wird beibehalten; ADR-033/WP-038-C2 samt MI werden heute als interne Entwicklungsgrundlage angenommen. Die historische fehlende zuständige Vorcode-/Unterintegrationsautorisierung bleibt dokumentiert, nicht rückdatiert.
+
+Der nächste Lieferblock Public240 + Save/Grundfortschritt ist tatsächlich beauftragt; technische ADR-Annahmen nach getrennter Review, prospektive WP-Verankerungen, Umsetzung/Korrektur/QC und eng erlaubte Nicht-main-Unterintegrationen sind einmalig an die im Auftrag handelnde technische Rolle delegiert. Main, Produktplanänderung und Veröffentlichung bleiben ausgeschlossen. Ein neuer Koordinator benötigt die verlinkte eine Entscheidung, keinen manuellen Dokumentdownloadstapel. Die nachfolgende frühere Übergabe bleibt standgebundene Historie.
+
+---
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Diese Übergabe wird durch die verlinkte korrigierte Übergabe in ihrer aktuellen Rollen-/Freigabeherkunft ersetzt. Ausführender war Codex ohne Manus-/Geschäftsführerbefugnis. Technische PASS und tatsächliche Merges bleiben bestehen; die behaupteten zuständigen Annahmen/Unterintegrationsfreigaben sind nicht belegt. Die unten in Abschnitt 4/5 als ausführungsfreigegeben und intern entscheidbar bezeichnete Public240-/Save-Folgearbeit ist unbestätigt.

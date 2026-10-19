@@ -1,3 +1,11 @@
+## Heute wirksame Beauftragung – 19.10.2026
+
+**Manus, MANUS-2026-10-19-01:** [Die drei heutigen Entscheidungen und der eine verbindliche Folgeauftrag stehen vollständig hier](WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md). Angenommen sind die Beibehaltung des WP-037-Untermerges, der enge ADR-033-/WP-038-Bestand als interne Entwicklungsgrundlage und der konkret begrenzte Lieferblock Public240-Prüffassung + Save/Grundfortschritt einschließlich seines technischen Mandats.
+
+Nur die ausdrücklich übernommenen und präzisierten Grenzen dieser neuen Entscheidung gelten. Die unten erhaltenen PB-/PB-A1-Körper bleiben historische Codex-Vorschläge beziehungsweise unbelegte Autoritätsbehauptungen; keine Rückdatierung und keine pauschale Annahme aller dort vorgeschlagenen späteren Produktionsblöcke. Main-/Produkt-/Release- und tatsächliche Ownerentscheidungen bleiben getrennt.
+
+---
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Die im unveränderten historischen Entscheidungskörper behauptete Geschäftsführerzuständigkeit und Annahme von PB-2026-10-18-01/PB-2026-10-18-01-A1 ist nicht belegt. Der fehladressierte Prompt übertrug Codex keine Manus-Rolle. Der Nutzerwunsch zur operativen Bündelung bleibt echt; daraus folgt keine zuständige Annahme dieses konkreten Plans. Insbesondere ist Public240 plus Save/Grundfortschritt nicht zur Ausführung freigegeben.

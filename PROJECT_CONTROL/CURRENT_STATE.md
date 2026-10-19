@@ -1,3 +1,15 @@
+## Aktuell maßgeblich – zuständige Manusentscheidung vom 19.10.2026
+
+**MANUS-2026-10-19-01: Die drei offenen Dispositionen sind heute entschieden.** WP-037-Untermerge `b9b59647cf73e2dcfa05a413259ca27c18a5afdf` wird beibehalten und intern angenommen. Der unveränderte enge ADR-033-Gegenstand und WP-038-C2 `524b45024438b93c592351d7683a7c62aec2ab8d` samt Untermerge `07ba4d3130414ee82e843823c2f04aeac230f25b` werden ab heute als interne Entwicklungsgrundlage angenommen. Historische fehlende Codex-Befugnisse bleiben berichtigt; insbesondere keine erfundene zuständige Vorcode-Annahme oder rückwirkende AK02-/AK11-/Mergefreigabe.
+
+**Nächster tatsächlich beauftragter großer Lieferblock:** Public240-Prüffassung + lokales Speichern/Wiederherstellen/Grundfortschritt. Eine technische Rolle erhält ausschließlich hierfür die ausdrückliche Befugnis zu notwendigen Fach-ADRs nach getrennter Review, prospektiven eigenen WP-/Manifestankern, Umsetzung/Korrektur, unabhängiger QC und zuständiger Nicht-main-Unterintegration nach exaktem PASS/CI. Technische QA-Profil-/Savegrenzen sind vor Code zu entscheiden; keine DRAFT-/Fixture-/Produktprofilpromotion. Humanreview beginnt am bedienbaren A-Gegenstand, nicht als Voraussetzung für dessen Bau. Kein neuer Fortsetzungsauftrag für jede technische Zwischenetappe.
+
+[Eine maßgebliche Entscheidung und vollständiges Ausführungsmandat](ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md), insbesondere §§4–7: veröffentlichte heutige Basis B → enges T → eigene parallele A/S-Anker → vorher erlaubte isolierte P-Montage → eigenes prospektives I → zulässige Nicht-main-Unterintegration mit realen Nachweisen. Noch keine Folgeimplementierung begonnen. Mainintegration, Veröffentlichung, WP-026-Gesamt-/Produkt-/Importfreigabe, WP-035-/finale Gestaltungsannahme und alle vorbehaltenen Produktgates bleiben ausgeschlossen.
+
+Die folgende Herkunftsberichtigung bleibt als historische Berichtigung richtig. Ihre damaligen offenen Dispositionen und unbestätigten Folgeaufträge sind nur im oben ausdrücklich heute entschiedenen Umfang durch diese neue Entscheidung abgelöst. Alle darunter liegenden technischen/CI-Berichte behalten ausschließlich ihre tatsächlichen alten Standbindungen.
+
+---
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Aktuell gilt: Codex führte aus; die behauptete Manus-/Geschäftsführerrollenübertragung war unzutreffend. Technische PASS und die realen PR32-/PR33-Untermerges bleiben erhalten. Die Befugnis zu WP-037-SUBINTEGRATION-01, PB/PB-A1, ADR033/WP038-TECH-01 und WP038-SUBINTEGRATION-01 ist durch diese Kette nicht belegt. WP038 ist deshalb nicht als vollständig zuständig freigegeben übergeben. Public240 plus Save/Grundfortschritt ist ein unbestätigter Vorschlag, kein bereits ausführungsfreigegebener Auftrag.

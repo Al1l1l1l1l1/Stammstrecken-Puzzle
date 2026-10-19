@@ -1,5 +1,9 @@
 # Architekturentscheidungen – verbindlicher ADR-Index
 
+## Zuständige Statusnachführung – 19.10.2026
+
+Der unveränderte enge Fachkörper von ADR-033 ist **heute tatsächlich durch Manus angenommen**, nicht rückwirkend am 18.10.2026. [Maßgebliche heutige Entscheidung MANUS-2026-10-19-01](../PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md), §3. Seine frühere behauptete zuständige Vorcode-Annahme bleibt historisch unbelegt. ADR-Fachkörper, historische Daten, alle übrigen ADRs, Indexzeilen und Registrybestand bleiben unverändert; keine neue Architekturentscheidung oder vollständige historische AK-Erfüllung wird aus der Statusnachführung abgeleitet.
+
 **Aktueller Architekturstand:** **Architecture v1.0**, freigegeben am 2026-09-13 im Rahmen von [`WP-006`](../WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md) nach unabhängig bestandenem Abschlussreview von Architecture v0.5.
 **Architektureinstieg:** [`ARCHITECTURE/ARCHITECTURE.md`](../ARCHITECTURE/ARCHITECTURE.md)
 

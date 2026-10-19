@@ -1,3 +1,15 @@
+## Aktuelle ausführbare Warteschlange – Manusentscheidung vom 19.10.2026
+
+| Gegenstand | Heute verbindlicher Status |
+|---|---|
+| WP-037 / tatsächlicher Untermerge b9b5964 | Beibehaltung und interne Weiterentwicklung heute zuständig angenommen; keine erneute Reparatur oder Mergewiederholung. |
+| ADR-033 / WP-038-C2 und tatsächlicher MI07ba4d3 | Unveränderter enger QA-Gegenstand heute intern angenommen; die fehlende historische zuständige Vorcode-/Untermergefreigabe bleibt dokumentiert. Keine finale Gestaltung oder Produktkampagne angenommen. |
+| Nächster großer Lieferblock | **Beauftragt:** Public240-Prüffassung und persistierter lokaler Spielablauf/Grundfortschritt. Zuerst T mit eigenen Ankern/technischen ADRs und getrenntem Review, dann A/S, P und I gemäß vollständigem Mandat. Kein Implementierungsbeginn in diesem Entscheidungsschritt. |
+
+[Maßgebliche Entscheidung, Basisbindung, Grenzen und einmalige technische Befugnisse](ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md). Keine Main-/Produkt-/Releasefreigabe oder Änderung fremder vorbestehender Aufträge. Die unten als unbestätigt bezeichnete Folgeplanung war der Zustand vor dieser heutigen tatsächlichen Beauftragung; ihre historische Rollenberichtigung wird nicht aufgehoben. Es wird nicht die gesamte frühere PB-/PB-A1-Planung pauschal angenommen.
+
+---
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Die unten als angenommen/ausführbar bezeichneten PB-/PB-A1-Folgeblöcke sind hinsichtlich ihrer Beauftragung berichtigt: Public240 plus Save/Grundfortschritt ist nicht zuständig zur Ausführung freigegeben. Keine neuen WPs, ADRs, Implementierungen oder Integrationen aus dieser strittigen Kette starten. Echte vorbestehende Einzelaufträge bleiben ihren eigenen Freigaben unterstellt. Codex war Ausführender ohne Manus-/Geschäftsführerbefugnis; technische Ergebnisse und reale Merges bleiben bestehen.

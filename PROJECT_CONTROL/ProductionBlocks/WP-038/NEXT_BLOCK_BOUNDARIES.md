@@ -1,3 +1,11 @@
+## Aktuell verbindlicher Folgeauftrag – Manusentscheidung vom 19.10.2026
+
+**Public240-Prüffassung + persistierter lokaler Spielablauf/Grundfortschritt ist jetzt tatsächlich beauftragt.** Die maßgebliche heutige Annahme, konkreten Scopepräzisierungen, Basisbindung B und einmaligen technischen Entscheidungs-/Ausführungsbefugnisse stehen vollständig in [MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md](MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md), §§4–7.
+
+Der nachstehende frühere Vorschlag wird nur in dem dort ausdrücklich bestätigten Umfang übernommen: T vor Kindcode, eigene parallele A/S-Anker, isolierte vorab erlaubte P-Montage und eigener prospektiver I-Scope mit vollständiger Provenienz. Insbesondere: keine DRAFT-/Fixture-/Produktprofilpromotion; die neue interne QA-Save-/Kataloggrenze vor Code entscheiden; Savecommit vor gespeicherter Fahrt/Rewardanzeige; bestehende Human-/Produkt-/Import-/Releasegates nicht schließen. Kein Codebeginn heute. Frühere behauptete Geschäftsführerfreigaben bleiben falsch; die neue Befugnis stammt ausschließlich aus dem heutigen Manusmandat.
+
+---
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Der folgende Text ist der erhaltene frühere Codex-Vorschlag mit technischen Grenzen. Er ist keine bereits zuständig angenommene Produktionsplanung oder Ausführungsfreigabe. Public240 plus Save/Grundfortschritt darf nicht allein aus PB/PB-A1 oder der falsch angenommenen Geschäftsführerrolle gestartet werden. Dieser Nachtrag plant keinen neuen Lieferweg und genehmigt keine Folgearbeit.

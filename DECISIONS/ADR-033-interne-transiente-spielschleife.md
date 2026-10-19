@@ -1,6 +1,10 @@
 # ADR-033 – Interne transiente Spielschleife ohne Produktionscontentimport
 
 ## Status
+
+**Angenommen – tatsächliche zuständige Manusannahme vom 19.10.2026** für den unveränderten engen internen QA-Gegenstand. [MANUS-2026-10-19-01](../PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md), §3, ist die heutige Annahmequelle. Keine frühere zuständige Vorcode-Annahme oder vollständige historische WP-038-AK02-/AK11-Erfüllung wird dadurch belegt; die damalige Codex-Autoritätsbehauptung bleibt nach der Herkunftsberichtigung unzutreffend. Die neue Annahme gilt ab heute für die interne Weiterentwicklung, nicht für Main, Produktcontent, Save/Rewards oder Release. Fachkörper und damaliges Dokumentationsdatum bleiben unverändert.
+
+### Historischer Statuswortlaut vom 18.10.2026 – Autorisierung durch Herkunftsberichtigung berichtigt
 **Angenommen** – zuständiger technischer Entscheid der ausführenden Koordination im ausdrücklichen Geschäftsführerauftrag vom 18.10.2026, nach tatsächlicher unabhängiger Boundaryprüfung PASS durch /root/wp037_independent_qc. Entwurf und getrennte Prüfchronik sind im eigenen Evidenzpfad erhalten. Annahme erfolgt vor Implementierung; keine Produkt-/Main-/Releasefreigabe.
 
 ## Datum

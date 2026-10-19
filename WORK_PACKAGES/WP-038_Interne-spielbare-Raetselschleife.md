@@ -64,6 +64,12 @@ Projektweite DoD und AK01–AK11 einzeln tatsächlich erfüllt. Bedienbarer inte
 
 ## Bearbeitungsstatus
 
+### Heute zuständig entschiedene Bestandsannahme – 19.10.2026
+
+**MANUS-2026-10-19-01, §3:** Der unveränderte enge ADR-033-Fachkörper und die technisch geprüfte vorhandene WP-038-Lieferung C2 `524b45024438b93c592351d7683a7c62aec2ab8d` samt tatsächlichem Untermerge `07ba4d3130414ee82e843823c2f04aeac230f25b` werden heute als interne Entwicklungsgrundlage angenommen und beibehalten. [Eine maßgebliche Entscheidung und vollständiges Folgemandat](../PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md). Keine erneute Implementierung/Prüfung/Mergewiederholung und keine finale WP-035-Gestaltungsannahme.
+
+Der technische Bestand und seine früheren PASS bleiben standgebunden. Die fehlende historische zuständige Vorcode-Annahme aus AK02 und die damalige Autorisierungskomponente aus AK11 werden nicht rückwirkend als erfüllt behauptet; heutige Annahme ist heutige Disposition. Ziel, Scope, historische Voraussetzungen, AKs, Tests, DoD, Anker und Manifest bleiben unverändert. Der neue Public240-/Save-Auftrag gehört in seine eigenen künftigen WPs, nicht in WP-038. Nachstehende historische Autorisierungs-/Abschlussaussagen behalten ihre Herkunftsberichtigung.
+
 ## Herkunfts- und Statusnachtrag vom 19.10.2026
 
 Technischer Bestand, C2-PASS und tatsächlicher Untermerge bleiben erhalten. Die Zuständigkeit für ADR033-/WP038-Annahme und Unterintegrationsentscheidung ist jedoch nicht belegt: Codex war nicht Manus und erhielt keine Geschäftsführer-/Konzeptbefugnis. Der folgende historische Abschlussstatus ist daher hinsichtlich der Autorisierung, insbesondere AK02/AK11, nicht als vollständig erfüllt zu verwenden. Die Berichtigung genehmigt WP038 und den Merge nicht nachträglich; der Public240-/Save-Folgeauftrag ist unbestätigt.
