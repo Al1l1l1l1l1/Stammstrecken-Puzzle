@@ -173,12 +173,20 @@ namespace STP.Editor.Build
             // Unity also processes scenes for Editor PlayMode without a player report.
             if (report == null) return;
             StpBuildEntrypoints.VerifyScaffoldBuildIdentity();
-            if (scene.path != DevelopmentPuzzleBuild.ScenePath && scene.path != StpBuildEntrypoints.QaScenePath) return;
+            if (scene.path != SavedPublic240ReviewBuild.ScenePath && scene.path != DevelopmentPuzzleBuild.ScenePath && scene.path != StpBuildEntrypoints.QaScenePath) return;
             var count = 0;
             foreach (var root in scene.GetRootGameObjects())
-                count += scene.path == DevelopmentPuzzleBuild.ScenePath
+            {
+                if (scene.path == SavedPublic240ReviewBuild.ScenePath)
+                {
+                    var installers = root.GetComponentsInChildren<SavedPublic240ReviewInstaller>(true);
+                    count += installers.Length;
+                    foreach (var installer in installers) installer.ValidateConfiguredReferences();
+                }
+                else count += scene.path == DevelopmentPuzzleBuild.ScenePath
                     ? root.GetComponentsInChildren<DevelopmentPuzzleInstaller>(true).Length
                     : root.GetComponentsInChildren<BootstrapInstaller>(true).Length;
+            }
             if (count != 1) throw new InvalidOperationException("Built QA scene must contain exactly its explicit installer: " + scene.path);
             Debug.Log($"STP actual BuildReport QA scene processed: {scene.path}; platform={report.summary.platform}; buildGuid={report.summary.guid}; installers={count}.");
         }
