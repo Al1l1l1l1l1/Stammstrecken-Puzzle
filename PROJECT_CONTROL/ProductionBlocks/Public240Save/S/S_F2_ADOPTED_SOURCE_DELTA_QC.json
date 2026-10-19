@@ -1,0 +1,275 @@
+{
+  "at": "2026-10-19T12:08:26.501Z",
+  "verdict": "PASS_EXACT_NARROW_S_ADOPTION_AND_SCOPE; NEW_FREEZE_AND_REGULAR_CI_PENDING",
+  "source": {
+    "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+    "bytes": 1309014,
+    "sha256": "5a061e2ce2c2c772b146d852cf089f181a5e0d9fc8299a1d8fe51ec7d9b0cbf6",
+    "expected": "5a061e2ce2c2c772b146d852cf089f181a5e0d9fc8299a1d8fe51ec7d9b0cbf6",
+    "prefixBytes": 1301427,
+    "prefixSha256": "4a35f6d9ebed6a2473947e33cbfac14571225fc095774e9d56f4724abb46429f",
+    "prefixExactlyUnchanged": true,
+    "nativePrototypeFullSha256": "ee45b51b6c94062dfaadcba1d2e7f724d5b27f837b32d6003f319068e5277210",
+    "nativePrototypeAppendSha256": "7ac198f911697f3a7c27356f91727d040c20574e7ef7da4f3b0d6221dba4d0e1",
+    "exactSingleCommentReplacement": true,
+    "onlyDifference": "One comment Scratch-only causal prototype→Editor-test-only metadata setup; all executable appended code and original prefix byte-identical."
+  },
+  "acceptance": {
+    "path": "S/R_COVERAGE_METADATA_TEST_FIX_ACCEPTANCE.md",
+    "bytes": 3126,
+    "sha256": "a5a952a11ee65b896e6f1d61998f4961ad240405232a5d59bef00bd3cc7589d2",
+    "sourceBinding": {
+      "bytes": 2942,
+      "sha256": "1ee3cdded247d7d987d9dbbbcfc381e40f785bda6c58353b0f16c39d3f7f2cad",
+      "expectedMatches": true
+    }
+  },
+  "publicSafeCopies": [
+    {
+      "name": "S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.json",
+      "bytes": 2400923,
+      "sha256": "a1a18071c376395bc240b80fbf0c76a09b0d0db12379ff20ecd5b8b3da395ebb",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.md",
+      "bytes": 2818,
+      "sha256": "1ae03c67a425be9e5d6893fa09f4ba45454a531a69a85ad29cb83ae142fd6d91",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_COVERAGE_AB_NATIVE_METADATA_QC.json",
+      "bytes": 15953,
+      "sha256": "db99976743bce2fcc46bb95a135b715375374d6d733f339b1d8b89b094789dc3",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_COVERAGE_AB_NATIVE_REVIEWER_COMPILER_PACK.json",
+      "bytes": 4718252,
+      "sha256": "93bd77aeca8b20d393544f935d137329b37bebbb1aa77cc0b6ea24060a7228de",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_CI_FINAL_INDEPENDENT_QC.json",
+      "bytes": 1219532,
+      "sha256": "015b51e4c57a5c59c1fa57c38381b42cb246c97cd5f1df5e1cd49bc4c09749ab",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_CI_FINAL_INDEPENDENT_QC.md",
+      "bytes": 1201,
+      "sha256": "e8ef195aeb7a57b216ac989095ef354b5a71eb6dce7d1024c45bf19a6e0b2cff",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_COVERAGE_DIAGNOSIS_QC.json",
+      "bytes": 147626,
+      "sha256": "d7c6a292e30706341e4f49330a78696d7775741201cf1e34fbc045d2379086b6",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_COVERAGE_DIAGNOSIS_QC.md",
+      "bytes": 1850,
+      "sha256": "5e5bf49dbc52eb22ece4596e01a1c59e4f394dbd599322dc64962c3eeaed99d3",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.json",
+      "bytes": 110628,
+      "sha256": "f1fcb73310443f2147253a7bc1e6319e84a559a02132777e6ac9de479a87008f",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.md",
+      "bytes": 1699,
+      "sha256": "a08e664cbbbce56598d559abfc29a56debf21d51ca8d54235b19441362dea868",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.json",
+      "bytes": 17701,
+      "sha256": "f8849f7adba675cf466de84e92021ea80f21cfc014424ae129c50491b29388bd",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.md",
+      "bytes": 1071,
+      "sha256": "8adedab16c1987d64898e0a3c03c0b8f87a0800ad9f7558a407df210242a34b3",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    },
+    {
+      "name": "S_F1_MONO_PREPAREMETHOD_IL_INSPECTION.json",
+      "bytes": 2023,
+      "sha256": "d58958f15d5639732ba45cf56460ed196fe712f164479c45636988acc2a40ce5",
+      "exactOriginalCopy": true,
+      "declaredHashMatches": true
+    }
+  ],
+  "manifest": {
+    "sha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+    "unchanged": true
+  },
+  "observedPrestagePaths": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "allowed": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_DISCOVERY_FAIL.xml.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_LIMIT_DISCOVERY_FAIL.xml.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_LOCAL_PROFILE_BEFORE_ROLE_FIX.cs.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_MODEL_BEFORE_CLAIM_UNIQUE_FIX.cs.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_CAUSAL_PROBE_ACCEPTANCE.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_METADATA_TEST_FIX_ACCEPTANCE.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_TEST_HELPER_SOURCE_BINDING.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_F1_WHITESPACE_CORRECTION.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_METADATA_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_REVIEWER_COMPILER_PACK.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DIFF_CHECK_ADVISORY.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_MONO_PREPAREMETHOD_IL_INSPECTION.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_EXACT_ORIGINALS.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.json",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.md",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_COMPILE.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_COMPILE.txt",
+      "allowed": true
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILE.txt",
+      "allowed": true
+    },
+    {
+      "path": "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+      "allowed": true
+    }
+  ],
+  "trackedDiffCheck": {
+    "base": "925ca608a961ac26c84385c8da3b949f609df883",
+    "exitCode": 0,
+    "limitation": "This tracked diff observation does not validate untracked additions. Actual complete staging mandatory diff-check/canonical and raw commit audit follow separately."
+  },
+  "sourceDeltaSinceF1": "6\t6\tAssets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs\n88\t0\tAssets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs\n",
+  "scope": "Only6modelblanklines and existing permitted test-helper append plus ownS evidence/readable views and additive WPstatus. No runtime semantics/asmdef/collector/workflow/gate change.",
+  "carriedProof": "Native scratch PDB/Unity proof stays bound to ee45 prototype. Adopted source5a061 has a declared one-comment difference, never misrepresented as byte-equal native PDB input.",
+  "sourceRuntimeBoundary": "Existing test-only file and UNITY_EDITOR && UNITY_INCLUDE_TESTS plus Coverage.enabled, no player/runtime assembly edge or body execution added.",
+  "knownLimits": [
+    "Current proof concerns33closed state machines; one open generic definition unprepared and none of20fixed names absent in actual probe.",
+    "Prototype fails on required App/TestApp absence; other fixed-name absence is recorded rather than universally thrown. No stronger arbitrary-environment failclosed guarantee is asserted.",
+    "Fresh complete regular LinuxCI plus Android/iOS and all actual required releases remain mandatory.",
+    "F1FAILED and old source/PDB/Git originals stay immutable.",
+    "No S/LS/P/I acceptance inferred."
+  ],
+  "reviewerActions": "Read-only source/Git/API/metadata inspection; own ignored report writes only. No Unity, source or Git mutation."
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T11:01:26.017Z",
+  "role": "entry_audit separate narrow pre-code20draft retention review",
+  "verdict": "PERMITTED_WITH_CURRENT_DRAFT_RETAINED_OR_EXPLICIT_STOP_NO_SILENT_SUCCESSFUL_EVICTION",
+  "basis": [
+    "ARCHITECTURE/PERSISTENCE.md section4: at most one active draft per level, youngest20 includingundo",
+    "S_IMPLEMENTATION_PLAN section2:20youngest active drafts, orphan identities preserved as retained records",
+    "Existing closed Savev2 drafts collection <=20, no new archive slot"
+  ],
+  "allowed": "Count all retained orphaned exact identities within20, preserve them without restore/substitution. Fill remaining places with known-current drafts deterministically. Selection changes become durable only in verified successful commit; failedoffer leaves existing durable and dirty/in-memory state intact.",
+  "necessaryDetail": "Always retain the justcaptured current new draft if capacity exists, then choose other known drafts by savedAtUtc instant descending with ordinal exact identitytriplet tie-break. UTC is diagnosis and may regress or future-dated prior records exist; pure UTC sorting must not returnCommitted while discarding the very draft being acknowledged.",
+  "alternative": "IfR insists pureUTCselection, an offered current draft excluded by that order must return explicit named stop before write, never successful currentautosave acknowledgement.",
+  "orphanCapacity": "20orphans with a new nonmatching known draft -> explicit capacitystop. SamePuzzleId orphan/current differenthash cannot both fit existing onePerLevel invariant; retain orphan and stop identitycollision rather than overwrite or add an unapproved bag.",
+  "tests": [
+    "20known +new21st =>currentnew retained and deterministic oldesteligibleknown eviction",
+    "UTCrollback/futuretimestampcurrentdraft must remain or namedstop",
+    "Different UTC spellings of sameinstant use exactidentitytie-break",
+    "19orphans leaves exactlyoneplace forcurrentnew;20orphans stop",
+    "SamePuzzleId changedhash orphan collision stops without source substitution",
+    "Repositoryfailure retains old20durable and currentdirty/inmemory; successfulcommit alone makes retention durable"
+  ],
+  "limits": "Scoped execution-detail review, no new product time policy or application/codec/runtime acceptance. R must persist final chosen detail before ownercode. No reviewer source/Git/Unity/CI action."
+}
