@@ -49,6 +49,10 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-034](./ADR-034-isolierter-public240-reviewpfad.md) | Isolierter Public240-Reviewpfad | **Angenommen** | Eigener nichtproduktiver QA-Entry mit geschlossener Projektion und isoliertem Profil; Produktionsgates unverändert. |
 | [ADR-035](./ADR-035-lokaler-save-und-checkpoint-vertrag.md) | Lokaler Save-, Checkpoint- und Commitvertrag | **Angenommen** | Typisierte Ports, vorhandenes JCS per Injektion, vollständiger Checkpoint/CAS und Commit-vor-Fahrt; Fachverträge bleiben erhalten. |
 
+| [ADR-036](./ADR-036-gespeicherter-public240-qa-entry.md) | Gespeicherter Public240-QA-Entry | **Entwurf** | Enger Saved-Szenen-/Locale-/Entryentwurf; noch nicht wirksam. |
+
+Nummerierter Vorcodeentwurf ADR-036 wurde im verankerten WP-043 ergänzt; die nachstehende bisherige angenommene Registry wird erst nach getrennter Review und R-Annahme exakt nachgeführt.
+
 Damit existieren **35 ADRs**: 26 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
