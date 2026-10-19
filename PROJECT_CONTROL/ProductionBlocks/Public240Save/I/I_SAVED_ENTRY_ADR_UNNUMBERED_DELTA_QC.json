@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-19T12:22:13.345Z",
+  "status": "PASS_EXACT_TWO_PARAGRAPH_UNNUMBERED_DRAFT_DELTA_ONLY",
+  "before": {
+    "bytes": 10446,
+    "sha256": "a849cbe167fc021cf0631150349ac3d09a6646b7e67da57a3e4544be68bba5c2"
+  },
+  "after": {
+    "bytes": 10748,
+    "sha256": "a345e85c916fab4413c3f7f9313247ceb3289f146f742dcd7254d9e652b1ecf0"
+  },
+  "changes": [
+    {
+      "line": 16,
+      "before": "4. Die konkrete Bootstrapcomposition kopiert Unity-TextAssetbytes und Anwendungsdiagnosen auf dem Hauptthread. Katalogprüfung, JCS-/Hasharbeit, Profilaufbau und Dateizugriff laufen auf Workerthreads über bestehende typisierte Ports. Ein instanzgebundener Platformdispatcher veröffentlicht Antworten auf dem logischen Hauptthread; keine neue Assemblykante, kein Service-Locator und kein Dateizugriff im Renderframe. Der Aufbau konsumiert ausschließlich A-Publicbytes und die tatsächlichen S-QA-Kataloge. Erfindung eines leeren Ersatzprofils bei Fehlern ist untersagt.",
+      "after": "4. Die konkrete Runtime-Bootstrapcomposition kopiert Unity-TextAssetbytes und Anwendungsdiagnosen auf dem Hauptthread und konstruiert Clock und Dispatcher ausdrücklich dort vor dem Workeraufbau. Katalogprüfung, JCS-/Hasharbeit, Profilaufbau und Dateizugriff dieses Runtimeaufbaus laufen auf Workerthreads über bestehende typisierte Ports. Ein instanzgebundener Platformdispatcher veröffentlicht Antworten auf dem logischen Hauptthread; keine neue Assemblykante, kein Service-Locator und kein Dateizugriff im Renderframe. Der Aufbau konsumiert ausschließlich A-Publicbytes und die tatsächlichen S-QA-Kataloge. Erfindung eines leeren Ersatzprofils bei Fehlern ist untersagt."
+    },
+    {
+      "line": 18,
+      "before": "6. Ausschließlich unter `UNITY_EDITOR && UNITY_INCLUDE_TESTS` erlaubt die neue Installerklasse einen einzelnen, nicht verschachtelten `UseTestPrivateRoot`-Scope vor Awake. Der absolute Root liegt unter dem echten OS-Temp oder ausdrücklich gesetztem `STP_TEST_TEMP_ROOT`, wird mit tatsächlicher Persistence-Pfad-/Reparseprüfung validiert und pro Instanz erfasst. Nur der Root ändert sich: echte Kataloge, echter Codec, echtes Repository und derselbe QA-Profilraum bleiben bestehen. Tests dürfen dadurch niemals den realen AppData-Profilbaum berühren. Der Scope wird nach vollständigem Instanzteardown entsorgt und ist in Playern nicht vorhanden; keine allgemeine statische Dienstauflösung.",
+      "after": "6. Ausschließlich unter `UNITY_EDITOR && UNITY_INCLUDE_TESTS` erlaubt die neue Installerklasse einen einzelnen, nicht verschachtelten `UseTestPrivateRoot`-Scope vor Awake. Der absolute Root liegt unter dem echten OS-Temp oder ausdrücklich gesetztem `STP_TEST_TEMP_ROOT`, wird mit tatsächlicher Persistence-Pfad-/Reparseprüfung validiert und pro Instanz erfasst. Auch bei gesetztem `STP_TEST_TEMP_ROOT` muss der gewählte Root vom tatsächlichen `Application.persistentDataPath` vollständig getrennt sein: weder identisch noch dessen Vorfahr oder Nachfahr. Nur der Root ändert sich: echte Kataloge, echter Codec, echtes Repository und derselbe QA-Profilraum bleiben bestehen. Tests dürfen dadurch niemals den realen AppData-Profilbaum berühren. Der Scope wird nach vollständigem Instanzteardown entsorgt und ist in Playern nicht vorhanden; keine allgemeine statische Dienstauflösung."
+    }
+  ],
+  "onlyExpectedParagraphs": true,
+  "assessment": "Both requested execution clarifications now explicit: main-thread clock/dispatcher construction before workercomposition; testroot disjoint from actual persistentDataPath even under configured temporary-root environment.",
+  "additionalParentExecutionIntent": "Saved bridge constructed on main after worker builds pure S/catalog objects. Startup Loading/failure before bridge requires own frame status, no fake session; separate readonly planning by UI owner.",
+  "unchangedAuthority": "No ID, ADR acceptance, P/Ianchor or code authorization. Formal named-localization blocker remains until numbered accepted ADR after own I anchor.",
+  "reviewerActions": "Read-only exact line/byte delta comparison; ignored own report only."
+}

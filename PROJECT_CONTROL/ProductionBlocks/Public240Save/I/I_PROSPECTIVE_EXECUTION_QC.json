@@ -1,0 +1,131 @@
+{
+  "at": "2026-10-19T12:19:35.255Z",
+  "role": "Independent readonly prospective I execution review; no numbered I-WP/anchor/code accepted",
+  "status": "ONE_CONFIRMED_PRECODE_ARCHITECTURE_BLOCKER_LOCALIZATION_SCOPE; REST_PLAN_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "plans": [
+    {
+      "path": "I_PROSPECTIVE_PLAN.md",
+      "bytes": 32721,
+      "sha256": "97915aa7be73d4f88ab2f52e92070f9718a96612017e5ee789019e39e0bd6852"
+    },
+    {
+      "path": "I_PROSPECTIVE_PLAN.json",
+      "bytes": 18971,
+      "sha256": "883e5affbaf14adcb20277849e6967907e87fbad429de60d3b6dca9ce4e097f4",
+      "declaredMarkdownHashMatches": true
+    }
+  ],
+  "normativeInputs": [
+    {
+      "path": "DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md",
+      "bytes": 5169,
+      "sha256": "22990b8c02a4b30f4cd5b923dd5b2350d9711589ce021d67bd10a6ad7f1b9ae3"
+    },
+    {
+      "path": "DECISIONS/ADR-033-interne-transiente-spielschleife.md",
+      "bytes": 9377,
+      "sha256": "6fc05a0ae6716ee31d641eea2898923b26a796dd59b0d6db435e64302ba1de73"
+    },
+    {
+      "path": "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+      "bytes": 6521,
+      "sha256": "27c5723aff2feaf1d0a7557f2b5edb06783669abd9092b3e4ee3c122c37e5b8e"
+    },
+    {
+      "path": "DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md",
+      "bytes": 10163,
+      "sha256": "2c35edddc70bb4960eaf6d47bb8209cf5366da09163685cd2b7978f66d2823b7"
+    },
+    {
+      "path": "DECISIONS/README.md",
+      "bytes": 12063,
+      "sha256": "850f8221ada1fe01c3974ac923c0c8c265a255f37bd538f3014f9d74e604db3d"
+    }
+  ],
+  "observedSpecificSources": [
+    {
+      "path": "A/Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "bytes": 12445,
+      "sha256": "4cf45282a77464775f1fd26bda3d95d5030feef5b3f9fb40868fffa58b9625d0"
+    },
+    {
+      "path": "A/Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "bytes": 12953,
+      "sha256": "4e4a7a954ef59b9aaf2c324f1ecf547fef3a2219931a7c1be9e62b89fc822ec7"
+    },
+    {
+      "path": "A/Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+      "bytes": 25609,
+      "sha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a"
+    }
+  ],
+  "blocker": {
+    "id": "I-PRECODE-ADR-LOCALIZATION",
+    "severity": "High before I source adoption",
+    "finding": "ADR034decision3 explicitly restricts Inspector/serialized own QA JSON→isolated Unity Localization in-memory table to named Public240Review. Separate SavedPublic240Review and own Savedlocale reuse same mechanism but add a scene outside this precise exception.",
+    "reason": "ADR011 retains production Addressables/table boundary; ADR033 is a different named transient scene; ADR035 delegates integration wiring but does not add an explicit scene-local localization exception. Adapter/key-prefix reuse is not scene authorization.",
+    "required": "Prospective I scope must include a new narrowly named technical ADR and exact supporting governance paths. Fresh ID only after P and current registry audit; separate draft review; numbered ADR/Racceptance before I code. Preserve old accepted034/035 bodies and production/profile/release rules.",
+    "parentDecision": "Root accepted finding and will prepare only an ignored unnumbered draft now; numbered decision after P+freshID+Ianchor before code. No current file/ID reserved."
+  },
+  "executionAssessment": {
+    "worker": "Plan correctly captures Unity assets/path/build diagnostics on main then copies bytes to worker; canonicalization/catalog validation/FS/ledger/repository work stays worker-side. Explicitly construct dispatcher on captured Unity main BEFORE Task.Run composition and inject it; construction inside worker would capture wrong owner thread.",
+    "publication": "Queue with RunContinuationsAsynchronously, inline main path, main-only drain, controlled disposal; delayed callback must bind captured attempt/version and never publish into disposed/new scene.",
+    "casRide": "One persisted session and one autosave authority; no duplicate Domain state. Navigation/restart flush gates, completion serialized behind prior writes; ProgressCommitted→Ride/Results only exact current validated ACK. Old PuzzleView and ride callbacks reject stale attempt and identity.",
+    "root": "Actual persistentDataPath passed unmodified, Persistence alone adds namespace/catalog/profile r. Explicit root-only provisioning worker permitted; missing profile remains NeedsInitialization until explicit create. Actual native MAX_PATH archive/quarantine/migration-source gate still required before real I entry; short test root not substitute.",
+    "testRoot": "Guard exactly UNITY_EDITOR&&UNITY_INCLUDE_TESTS, QA-only single scoped pre-Awake capture, absolute existing root in OS temp or configured test temp, real reparse/path checks; no runtime escape or general service locator. Actual scene test must establish override before Awake, not late sceneLoaded callback.",
+    "entry": "Exactly Saved, Public240, Development, Bootstrap normal QA scenes in that order. Existing A Public240ReviewSceneBuildCheck already validates only its scene and one installer; leave it unchanged. Extend only existing DevelopmentPuzzleSceneBuildCheck to Saved while preserving old two. No second new Saved guard or A builder edit.",
+    "locale": "Own qa.public240.saved.* keys plus all core qa.public240.* required keys, permanently hide core picker/restart, separate disposed local tables. Technical implementation coherent, but new named exception is required as above.",
+    "assembly": "No new asmdef edges; Bootstrap has no Domain direct access and Editor.Build references Bootstrap only. New app DTO/action boundary must hide Domain types. Reflection stays tests and explicit existing coverage test setup, not runtime service wiring."
+  },
+  "scopePlanning": {
+    "runtimeSources": 6,
+    "newAssets": 4,
+    "newTestSources": 4,
+    "totalNewFilesIncludingMetas": 28,
+    "existingTechnicalFiles": [
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "ProjectSettings/EditorBuildSettings.asset",
+      ".github/workflows/validate.yml"
+    ],
+    "allAandSSourcesPreserved": true,
+    "additionalGovernance": "New ADR, ADRindex, additive followup links/navigation and closed exact registry/negative tests must be assigned in prospective I manifest before anchor per Root decision; not silently added later.",
+    "ownerPlan": {
+      "root": [
+        "Bootstrap/SavedPublic240ReviewInstaller.cs",
+        "Bootstrap/SavedPublic240Composition.cs",
+        "Editor/Build/StpBuildEntrypoints.cs",
+        "Editor/Build/DevelopmentPuzzleBuild.cs (only SceneBuildCheck)",
+        "ProjectSettings/EditorBuildSettings.asset",
+        "Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs"
+      ],
+      "appOwner": [
+        "Application/SavedPublic240ReviewSession.cs",
+        "Platform/LocalSaveRuntime.cs",
+        "Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs"
+      ],
+      "uiOwner": [
+        "Presentation/UI/SavedPublic240ReviewPresenter.cs",
+        "Editor/Build/SavedPublic240ReviewBuild.cs",
+        "UI/SavedPublic240Review.uxml",
+        "UI/SavedPublic240Review.uss",
+        "UI/SavedPublic240ReviewLocale.json",
+        "Scenes/QA/SavedPublic240Review.unity",
+        "Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+        "Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs"
+      ]
+    }
+  },
+  "requiredBeforeAnchorAndCode": [
+    "Actual S F2 fullCI+independent final review/RLS, fresh LA/LS/refbindings and actual P still pending.",
+    "No I-ID/GUID/manifest reserved; final exact API/ownership/governance lists must be frozen in own I anchor.",
+    "Resolve confirmed scene-local ADR blocker through separate draft/numbered-review/Racceptance sequence.",
+    "Rebind actual sources on P, not old planning hashes or historical native/PDB supplements."
+  ],
+  "notClaimed": [
+    "No I source/test/native/CI/entry PASS.",
+    "No actual MAX_PATH or physical-device proof.",
+    "No P/anchor/ADR-ID acceptance.",
+    "No source/Git/Unity/CI mutation by reviewer."
+  ]
+}

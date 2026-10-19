@@ -1,7 +1,7 @@
 # ADR-036 – Gespeicherter Public240-QA-Entry
 
 ## Status
-**Entwurf**. Tatsächlich nummerierter Vorcodeentwurf im prospektiv verankerten WP-043; noch keine Architekturannahme. Freie ID und I-Erstadd sind in `PROJECT_CONTROL/ProductionBlocks/Public240Save/I/I_ANCHOR_BINDING.json` gebunden. Getrennte Review dieses nummerierten Wortlauts und dokumentierte zuständige R-Annahme bleiben vor jeglichem I-Fachcode erforderlich.
+**Angenommen**. Tatsächliche zuständige technische Annahme durch R/Codex am 2026-10-19T13:13:31.376Z nach getrennter Prüfung des nummerierten Vorcodeentwurfs. Befugnis ausschließlich MANUS-2026-10-19-01 §§5/6; keine Manus-/Geschäftsführer-/Produktrolle. Alle14 neuen I-Fachdateien und Metas sind zu diesem Zeitpunkt noch abwesend. Historischer Entwurf und gesonderter R-Entscheid bleiben unter `PROJECT_CONTROL/ProductionBlocks/Public240Save/I/I_R_ADR036_ACCEPTANCE.json` exakt gebunden.
 
 ## Datum
 2026-10-19
@@ -40,3 +40,7 @@ Ergänzt ADR-034 ausschließlich um die oben zusätzlich benannte gespeicherte Q
 ## Tatsächliche Vorcodebindung
 
 WP-043 und sein unveränderliches Manifest wurden gemeinsam im Commit `1c002e14e07a7cf48366e786f2ec598234f9d314` mit einzigem Parent P=`95508482696cc1cc4e355021ce47d64863d9651a` verankert. Manifest-SHA256 `66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992`. Die frisch geprüfte freie ID lautet ADR-036. Der ursprüngliche getrennt geprüfte unnummerierte Wortlaut bleibt als eigenes Original mit SHA256 `a345e85c916fab4413c3f7f9313247ceb3289f146f742dcd7254d9e652b1ecf0` erhalten; hier ändern sich ausschließlich Titel, historischer Entwurfsstatus und konkrete Ankerbindung. Keine I-Fachquelle ist angelegt.
+
+## Zuständige tatsächliche Vorcodeannahme
+
+Der nummerierte Entwurf `f16f99cc269f0b9ece4530d41d1ed948b193ddf4` / SHA256 `9af498cd2c3b2e3885a296fefa730e8713cda72a8588651be1e805284a30183e` wurde getrennt technisch geprüft: `I_ANCHOR_NUMBERED_ADR_INDEPENDENT_QC.json`, SHA256 `d4db9ee0b777ff799e9fa8f12d611e2d1a28d57caa21e8a736d189e84853b5bd`. R nimmt ausschließlich dessen oben beschriebenen technischen Fachkörper am 2026-10-19T13:13:31.376Z an. Der [gesonderte Entscheid](../PROJECT_CONTROL/ProductionBlocks/Public240Save/I/I_R_ADR036_ACCEPTANCE.json) dokumentiert die weiterhin abwesenden I-Quellen und den unveränderlichen prospektiven Scope. Alte ADR-Fachkörper und Produkt-/Releasegates bleiben gültig.
