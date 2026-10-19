@@ -10,8 +10,8 @@ Die Nummerierung ist keine globale Wartekette. Menschliche 240er-Tests beginnen 
 
 | Reihenfolge | Lieferblock | Tatsächlicher Stand / Voraussetzung |
 |---:|---|---|
-| 1 | WP038: interne bedienbare Rätselschleife | Tatsächlich umgesetzt. Erster Freeze regulär alle zehn Unityjobs SUCCESS, wegen SCREEN-01 dennoch historisch FAIL. Gezielte eigene Kamera-/Capturekorrektur lokal9/9 und sechs selbst betrachtete korrekte Bilder; ursprüngliche Befunde erhalten. Korrigierter Freeze mit eigener CI, unabhängige Abschlussannahme und Unterintegration noch offen. Eigene QA-Daten, keine Produktpromotion. |
-| 2 | Persistierter lokaler Spielablauf und Grundfortschritt | Zusammengehörige neue Save-/Application-/UI-WPs auf fertiger WP038-Schnittstelle; eigene Anker vor Code. Null-Sternzeiten verhindern Grundfortschritt nicht. |
+| 1 | WP038: interne bedienbare Rätselschleife | **Abgeschlossen und unterintegriert.** C2524b450, Untermerge 07ba4d3, gleicher Treef1adfa4, leerer Source→Merge-Diff. Quell-CI alle zehn Jobs/474Edit/49Play sowie echter nativer 9er-Grafiklauf bestanden; tatsächliche integrierte Nachweise separat. Keine Produktpromotion. |
+| 2 | **Public240-Prüffassung und persistierter lokaler Spielablauf – ein Auftrag** | Nach fertiger WP038-Endbasis eigene technische Basis T mit Fach-ADRs/Schnittstellen/Patheigentümern; dann Public-QA-Zugriff und Save/Grundfortschritt als eigene A/S-WPs parallel, einschließlich Korrektur/QC und provenienzgebundener Integration P/I intern. Menschen starten bei bedienbarem A, ohne Save-/480Assetswartegate. Null-Sternzeiten blockieren Grundfortschritt nicht. |
 | 3 | Angenommene Gestaltung und Kampagnenanschluss | WP035 konkret kreativ/technisch abschließen, 480 Map-/Trainziele und Asset-/Contentpipeline; WP036 wiederverwenden. |
 | 4 | Menschliche Kampagnenprüfung und Zeitkalibrierung | Erst auf bedienbarer Fassung; vorhandene technische Rätselprüfungen wiederverwenden. |
 | 5 | Kosmetik, Monetarisierung, Geräte-/Rechts-/Store-/Releaseproduktion | Eigene konkrete Katalog-/Preis-/Provider-/Releaseentscheidungen; blockiert keine erste lokale Bedienbarkeit. |

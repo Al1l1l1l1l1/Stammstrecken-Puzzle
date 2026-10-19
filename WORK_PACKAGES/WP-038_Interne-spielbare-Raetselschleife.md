@@ -63,7 +63,20 @@ Hoch: erster bedienbarer Präsentations-/Applicationpfad und ausdrückliche QA-H
 Projektweite DoD und AK01–AK11 einzeln tatsächlich erfüllt. Bedienbarer interner QA-Stand, reproduzierbare Szene/Builds, relevante Tests, reguläre CI und unabhängige Abschlussprüfung vorhanden. Kein ungeprüftes Teilergebnis als fertige Spielversion ausgeben. CURRENT_STATE/QUEUE und eigene Übergabe erlauben Übernahme ohne Chat. Integration nur im autorisierten Nicht-main-Weg mit eigener neuer Standbindung. Kein Save-/Fortschritts-/Produktionscontent-/Produkt-/Rechts-/Release-PASS.
 
 ## Bearbeitungsstatus
-BEAUFTRAGT, prospektive gemeinsame Verankerung auf exakt `3772c0370b39ec95979fb9efdd47f4344c41a539` durch die zuständige Koordination im ausdrücklichen Nutzerauftrag vom 18.10.2026. Unabhängige technische Boundaryprüfung vor Anker: PASS, getrennte Rolle /root/wp037_independent_qc; historischer Prüfverlauf wird im eigenen Evidenzpfad erhalten. ADR033 wird erst im nächsten gesonderten zuständigen Annahmeschritt verbindlich; vor diesem Schritt kein Implementierungscode. Main d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 unverändert; IDs nach frischem Fetch über alle verfügbaren Remotezweige und historische Erstadds unalloziert. Prüfstand und technische Umsetzung werden anschließend hier fortgeschrieben.
+
+**ABGESCHLOSSEN: AK01–AK11 erfüllt, unabhängig angenommen und tatsächlich integriert geprüft.**
+
+19.10.2026. Korrigierter Sourcefreeze `524b45024438b93c592351d7683a7c62aec2ab8d`, Tree `f1adfa4e006169c32bd930cc6c76f1d62b98e780`, nach konkreten intern korrigierten GUID-/SCREEN-01-Befunden tatsächlich getrennt AK01–AK10 angenommen. [Unabhängige Abschluss-QC](../PROJECT_CONTROL/ProductionBlocks/WP-038/INDEPENDENT_CORRECTED_QC.md); Original-JSON SHA256 b487c3be2a1d2e57ddca70841229ad35a849fff87b369a391d69971f56fe88e7. Eigene Architecture 39175992736 und alle zehn Unityjobs 39175992749 SUCCESS: 474 Edit-/49 Playfälle, beide Coverage-Sitzungen und tatsächliche Android-/iOS-/Xcodebelege. Native D3D11-Nichtbatchprobe 9/9, sechs echte korrekte PNGs; ursprüngliche FAILs bleiben erhalten.
+
+Gesonderter zuständiger Entscheid WP038-SUBINTEGRATION-01 vor Mutation, tatsächlicher normaler Expected-HEAD-Untermerge PR33→PR31 `07ba4d3130414ee82e843823c2f04aeac230f25b`. Geordnete Parents H3772c03/C2524b450, Tree exakt C2, Source→Merge-Diff leer. Historische WP036-/WP037- und eigener WP038-Scope werden getrennt gebunden. [Neue integrierte Originale](../PROJECT_CONTROL/ProductionBlocks/WP-038/INTEGRATION_CI.md) und [getrennte Integrations-QC](../PROJECT_CONTROL/ProductionBlocks/WP-038/INTEGRATION_QC.md) tatsächlich bestanden.
+
+Alle acht benannten Produktionsmodule, drei Tests, eigene UI-/Locale-/Scene-/Panel-/Materialartefakte und gezielte Builder-/Assembly-/Preflightanbindung sind umgesetzt; Dateifunktionen und Einzel-AK in [ACCEPTANCE_MAP](../PROJECT_CONTROL/ProductionBlocks/WP-038/ACCEPTANCE_MAP.md), Bedienung in [QA_PLAY_GUIDE](../PROJECT_CONTROL/ProductionBlocks/WP-038/QA_PLAY_GUIDE.md). [Zusammenhängende fünfteilige Übergabe](../PROJECT_CONTROL/ProductionBlocks/WP-038/IMPLEMENTATION_HANDOVER.md). Geschützte Textquelle/alte Manifeste/Domain-/Solver-/Packages-/ProjectSettings unverändert, keine allgemeine neue Solverprüfung. Main d90e798 bleibt unverändert, PR31 Draft. Kein Produktionscontent-/Save-/Fortschritts-/Reward-/Human-/Geräte-/Store-/Release-PASS.
+
+Letzter Schritt: tatsächliche Unterintegration samt neuem integriertem Scope-/Tree-/CI-/unabhängigem Nachweis. Nächster großer Auftrag: Public240-Prüffassung und persistierter lokaler Spielablauf; technische Basis T, parallele eigene A/S-WPs und eigener provenienzgebundener Integrationsscope werden innerhalb eines Auftrags vor Code verankert. [Verbindliche Folgegrenzen](../PROJECT_CONTROL/ProductionBlocks/WP-038/NEXT_BLOCK_BOUNDARIES.md). Keine notwendige neue Gesellschafterentscheidung blockiert diese internen technischen Schritte.
+
+## Historischer Ausführungsverlauf
+
+Die folgenden Zwischenstände sind jeweils damalige, unverändert erhaltene Historie. Maßgeblicher aktueller Abschlussstand ist der vorstehende Bearbeitungsstatus.
 
 ## Tatsächlicher Ausführungsfortschritt
 
