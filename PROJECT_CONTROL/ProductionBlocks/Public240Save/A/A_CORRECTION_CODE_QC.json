@@ -1,0 +1,108 @@
+{
+  "reviewer": "/root/entry_audit",
+  "at": "2026-10-19T10:25:35.318Z",
+  "verdict": "PASS_NARROW_CODE_DELTA_PENDING_NATIVE_AND_CLEAN_REBUILD",
+  "initialReportUnchanged": {
+    "mdSha256": "b6e16ad713552ad08a806e241ca37096e9814b5bb218598cfee418e558448979",
+    "jsonSha256": "55a1ca67492aaa219ca39467a97465def09104c09c8b69dc70727ab78834cc9a"
+  },
+  "changedSourceBindings": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "initialSha256": "3b029bcb856d46852201a4af675b938a7d23fbb53f4561945b5ba7f994c83e94",
+      "currentSha256": "5008fbc9baafd4e65666e786747bb659dd70211407574a21f5a904480096bb6f",
+      "bytes": 12259
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "initialSha256": "1c72a318bf9381e84da9f9fd462318437d423f85d419b772716fb4294a8139dd",
+      "currentSha256": "4cf45282a77464775f1fd26bda3d95d5030feef5b3f9fb40868fffa58b9625d0",
+      "bytes": 12445
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+      "initialSha256": "15791e0c52db5ba3aaefdea551303fb0810ccac8c4edf72d5f43733566e00c45",
+      "currentSha256": "11a77f1a4472f05c2fd38f5a071bf97f8cb4e894a090885ed8197c8633ba8c01",
+      "bytes": 24565
+    }
+  ],
+  "exactDeltaChecks": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "exactSurgicalDelta": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "exactSurgicalDelta": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+      "onlyAddedOneRegression": true
+    }
+  ],
+  "rebuildExpectedChecks": [
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+      "expectedBytes": 1910,
+      "decodedBytes": 1910,
+      "expectedSha": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "actualDecodedSha": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "equalsCurrent": true,
+      "lfHashMatches": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+      "expectedBytes": 186,
+      "decodedBytes": 186,
+      "expectedSha": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "actualDecodedSha": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "equalsCurrent": true,
+      "lfHashMatches": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+      "expectedBytes": 1919,
+      "decodedBytes": 1919,
+      "expectedSha": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "actualDecodedSha": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "equalsCurrent": true,
+      "lfHashMatches": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+      "expectedBytes": 152,
+      "decodedBytes": 152,
+      "expectedSha": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "actualDecodedSha": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "equalsCurrent": true,
+      "lfHashMatches": true
+    }
+  ],
+  "rebuildExpectedDocumentSha256": "d96669dec7067cfe545651889d3057a438c9c12694239079978ae98fe6ccbe1b",
+  "findings": [
+    {
+      "id": "A-QC-01",
+      "sourceCorrection": "Confirmed exact two-line Dispose/null addition within finished branch; old finished ride cannot remain retained after Results",
+      "regression": "One actual UnityTest added; no yield between Results/Restart/all real UI solution commands; checks fresh attempt/fresh ride/disposed old ride/no stale error/second Results",
+      "execution": "Native05 by R pending, no reviewer Unity run"
+    },
+    {
+      "id": "A-QC-02",
+      "sourceCorrection": "Confirmed exact one-string panel.name match with delivered asset; no other builder change",
+      "creationEvidence": "Four immutable expected complete raw artifacts preserved; all decode/hash/current-byte comparisons correct",
+      "execution": "Actual isolated clean Creation and byte reproduction by R pending"
+    }
+  ],
+  "unchangedReview": "All other previously reviewed exact sources/assets/metas remain bound to initial snapshot; no broad repeat needed",
+  "furtherConcreteHighs": [],
+  "actions": {
+    "sourceChanges": false,
+    "git": false,
+    "unity": false,
+    "ci": false
+  },
+  "limits": [
+    "No regular CI or delivery freeze acceptance",
+    "A06 actual Creation can still reveal further serialized-byte differences; this is only source delta acceptance"
+  ]
+}

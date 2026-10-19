@@ -1,0 +1,2196 @@
+{
+  "utc": "2026-10-19T10:17:33.324Z",
+  "role": "R independent closed-property/source-blob audit of current A implementation snapshot; no solver, playability or final freeze PASS",
+  "source": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+  "childAnchor": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+  "asset": {
+    "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+    "bytes": 166484,
+    "rawSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2"
+  },
+  "lock": {
+    "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+    "bytes": 122976,
+    "rawSha256": "c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0"
+  },
+  "projectorSha256": "f54925d02e0bbbfcc58b0855061e7e3df13020bd35bf4ec489e751d6aaaa56b2",
+  "catalogHashSha256": "f64721318b2fffa5179cfc3acef8aa2176115717c02f15c1f3a581dab6b562a4",
+  "count": 240,
+  "sizeDistribution": {
+    "4x4": 12,
+    "4x5": 36,
+    "5x5": 29,
+    "6x5": 19,
+    "6x6": 29,
+    "7x6": 19,
+    "7x7": 29,
+    "8x8": 36,
+    "9x9": 24,
+    "10x10": 7
+  },
+  "findings": [],
+  "closedPlayerDataAndExactGitSourceBinding": "PASS",
+  "method": "Independent Git cat-file --batch binary framing and raw SHA256, separate closed field allowlist, deep field equality against all exact source documents; public semantic hash computation separately checked by canonical Node22 double projection and C# loader tests",
+  "proofs": [
+    {
+      "puzzleId": "S1-01-01-01",
+      "path": "Content/Levels/s1/01/01/S1-01-01-01.level-v2.json",
+      "gitBlob": "ad6da74e404d3b2b3926feb3e1f16fce7ac0681b",
+      "rawSourceBytes": 2233,
+      "rawSourceSha256": "3353439849b7d692ced27458a1e73b6e971adae182c63f7a9c1eeb1840a7b786",
+      "publicPuzzleHashSha256": "5f7aa091e1fe38d06673878eb1b2f58d4731dea895c855fbbf9f080b1222307d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-02",
+      "path": "Content/Levels/s1/01/01/S1-01-01-02.level-v2.json",
+      "gitBlob": "c2a93833e8ab9f45961f45471371d727010bdbfb",
+      "rawSourceBytes": 2056,
+      "rawSourceSha256": "552bdaf4c259911317d42698cd96d9dbe80e88a61640a2749da9ee7e8f04c872",
+      "publicPuzzleHashSha256": "c1413b5d2c1570abde6d4b2a90c8a7663a2e75e807627541fa019f85b5e8483b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-03",
+      "path": "Content/Levels/s1/01/01/S1-01-01-03.level-v2.json",
+      "gitBlob": "f73206c7063287fb69371b367c3009279222e54a",
+      "rawSourceBytes": 2381,
+      "rawSourceSha256": "e191ff09800e7ea189d98d356cad59e16792f62cf02ae084e0f861da816a6bcd",
+      "publicPuzzleHashSha256": "4d50ae852a07407b53c738e322896ed308fe88a9b5979cfa01d5fb69ad8c02e6",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-04",
+      "path": "Content/Levels/s1/01/01/S1-01-01-04.level-v2.json",
+      "gitBlob": "770cb80e68ad03c2a6b677ae63aa1396b6fc2707",
+      "rawSourceBytes": 2139,
+      "rawSourceSha256": "cd2476d58ce92836dc31b3a7381c6f8a0b7a8a135df203655947273221a9b6a9",
+      "publicPuzzleHashSha256": "facaa2f1aa79ebf0b0d58ad602f237a8d06803063260d48ec4dbb5748d0b7090",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-05",
+      "path": "Content/Levels/s1/01/01/S1-01-01-05.level-v2.json",
+      "gitBlob": "67cba37330df2522757d8dd948d4f798737b9c5b",
+      "rawSourceBytes": 2163,
+      "rawSourceSha256": "dc66a81cf4923662f98a23ca2eda4b77a6030032ce9b9e90704ebcfa128f27e4",
+      "publicPuzzleHashSha256": "dfd5e8fd76382ac9bd62896ca604c6c07ecfc9ab4ab410532b774f0444798257",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-06",
+      "path": "Content/Levels/s1/01/01/S1-01-01-06.level-v2.json",
+      "gitBlob": "b1d5c20c95bbbb9409ae9362b8bea33f9f8ab668",
+      "rawSourceBytes": 2456,
+      "rawSourceSha256": "86f8fd6b0178286f2a3cf11b1ccaad9f1d91cd4b53348669737dec0dfaa3af44",
+      "publicPuzzleHashSha256": "0d1b87eaf44d01d5f132baf1e11628b2acb4ed5e3b8a8c703f5f94373631690c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-07",
+      "path": "Content/Levels/s1/01/01/S1-01-01-07.level-v2.json",
+      "gitBlob": "9c72ce646ce68d3918c1cab352bcd85c140260a3",
+      "rawSourceBytes": 2374,
+      "rawSourceSha256": "137469842a95ce525791f57311ce9eb2d1df5126bb1972efda98248facd8905a",
+      "publicPuzzleHashSha256": "c786c5edc0fb666af1b8fe570802b318983bcb791fb16defaac434c10b648eed",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-08",
+      "path": "Content/Levels/s1/01/01/S1-01-01-08.level-v2.json",
+      "gitBlob": "da27de759ae3b24e42c4615b200dab2cc111a4a2",
+      "rawSourceBytes": 2043,
+      "rawSourceSha256": "9dd098304e8ca1f77c94ff203da7afbfc92602155e4e11c29783fde8b79ee302",
+      "publicPuzzleHashSha256": "4644e9d8513dc644e60368c5026a6f889a109e7c638509a44283509c56d475cd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-09",
+      "path": "Content/Levels/s1/01/01/S1-01-01-09.level-v2.json",
+      "gitBlob": "72bbd8978ca5c92bdd045bd007a4442eaf248f89",
+      "rawSourceBytes": 2099,
+      "rawSourceSha256": "bc337bfaa4c67e4db102169d0fe1cd19f9e552ce9e385ebfa7af3bbd127d2190",
+      "publicPuzzleHashSha256": "778ad18c6a810815304e3a994eeacbd72e16330676525e6ef3e99b0fb53d565e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-10",
+      "path": "Content/Levels/s1/01/01/S1-01-01-10.level-v2.json",
+      "gitBlob": "665dae327dbc9907c5033dc11e7dfc4d8958fb33",
+      "rawSourceBytes": 2153,
+      "rawSourceSha256": "b94750f8ad3a2fb17f9945db5911d89189bd534e93396e4f47ddc1e164bda4c2",
+      "publicPuzzleHashSha256": "85f6044fba245aa38a1f2390101477a535ea94bf12e0e4f8320c5b1b8388e4a5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-11",
+      "path": "Content/Levels/s1/01/01/S1-01-01-11.level-v2.json",
+      "gitBlob": "5171dff9a6dcdc03c2b698e5a906eeb715a10f6f",
+      "rawSourceBytes": 2301,
+      "rawSourceSha256": "d803ed7b76999d672c745957d1b73e685c71cbd7e750c940b4308a0770f2b71e",
+      "publicPuzzleHashSha256": "884093c3fbb039f7e09165282b6e6d9424c8f59e7bec2f185e81e0831b921b8c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-01-12",
+      "path": "Content/Levels/s1/01/01/S1-01-01-12.level-v2.json",
+      "gitBlob": "7195d3f17f4e6766281db307a038982e0520e75a",
+      "rawSourceBytes": 2527,
+      "rawSourceSha256": "d6d3861c2bc38fc0169000f0b6dc53e74bc1405e7ae251dc6f7b8057a8345ba3",
+      "publicPuzzleHashSha256": "b5e9f80ab79cf20a52cf9276d7ce0df092110855060fb6c230cd2862687c1154",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-01",
+      "path": "Content/Levels/s1/01/02/S1-01-02-01.level-v2.json",
+      "gitBlob": "f40732d97630575d9d3b53fd08475addae89f570",
+      "rawSourceBytes": 2252,
+      "rawSourceSha256": "cf0a1bdb68cc70ced03b445e0bf94e0a248ba88515c4c23847487004a0410c6b",
+      "publicPuzzleHashSha256": "d7fc8fcefba3b3a88462c3fe59ee2e54d84a32fe56f362b9a2ba36fde4be2ef9",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-02",
+      "path": "Content/Levels/s1/01/02/S1-01-02-02.level-v2.json",
+      "gitBlob": "ada85c866406a30b0f53953bf76ff7bced426fb0",
+      "rawSourceBytes": 2324,
+      "rawSourceSha256": "21fd6dfceb46e8cff815eeedb89b61e9b9a8fbc48aa4190d85808ba62db7e1ee",
+      "publicPuzzleHashSha256": "4549ed9b9a7741827de408fe1244ea4de64942a5cae2e48bacdaa1d78e284e1b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-03",
+      "path": "Content/Levels/s1/01/02/S1-01-02-03.level-v2.json",
+      "gitBlob": "024e333f79d3949883c11b5025bf7d89d6fa70db",
+      "rawSourceBytes": 2538,
+      "rawSourceSha256": "3c05085a84ef2e53eda944b72d2d316eabf7471f50184c8d2eb8f7450926f081",
+      "publicPuzzleHashSha256": "dcfd5449f187f126f9511aee775d507a7e0c01245637841f7254a67713eebc7b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-04",
+      "path": "Content/Levels/s1/01/02/S1-01-02-04.level-v2.json",
+      "gitBlob": "c236679640b5ee185f7df1d805d77e69af63b27a",
+      "rawSourceBytes": 2294,
+      "rawSourceSha256": "80a25c5c9d0f7e8865158ea8ee7d90eed8972cd294512705433532249139b00e",
+      "publicPuzzleHashSha256": "f02e252fd141038657069d1ade25998aa2d0366717eca77452c18e8f3a1292cd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-05",
+      "path": "Content/Levels/s1/01/02/S1-01-02-05.level-v2.json",
+      "gitBlob": "4aedcbabb704eee48b8bfe2c1f4cba4fa146ea47",
+      "rawSourceBytes": 2380,
+      "rawSourceSha256": "e5e4465024bd18a9fe52cbfd6bd16df2dab31586290d7c039c6462a48f638267",
+      "publicPuzzleHashSha256": "084a9084d551c4068b380875b301dda9b9e4366d5be9d5537797cf65889d1ef8",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-06",
+      "path": "Content/Levels/s1/01/02/S1-01-02-06.level-v2.json",
+      "gitBlob": "2f7554fa2602f4b191d29814c8fc90b24ccc0619",
+      "rawSourceBytes": 2478,
+      "rawSourceSha256": "27726dbfbb425414c7c6450bd71e12d7c2dd240fe4441cb8cbdd53d6be052c34",
+      "publicPuzzleHashSha256": "3704baedc60043e5385269de1ce3db020e2438ba128dba53c188e5c8800eaffe",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-07",
+      "path": "Content/Levels/s1/01/02/S1-01-02-07.level-v2.json",
+      "gitBlob": "d0dd3a1d1b83783cef290ffbf833c295085fe7f5",
+      "rawSourceBytes": 2850,
+      "rawSourceSha256": "141b6a84f58520b5ac4727fa45a0516ffd73c35e29faaf709d4fec08a640a79e",
+      "publicPuzzleHashSha256": "7c04c5572d40ea201789cb3e12ee372b6d8924b57e5bf1c3437ef74140b427b8",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-08",
+      "path": "Content/Levels/s1/01/02/S1-01-02-08.level-v2.json",
+      "gitBlob": "ae54f43990b7c3fe638690814d24fd17e7b000bc",
+      "rawSourceBytes": 2490,
+      "rawSourceSha256": "b9bcbee8e8bbf542a19fdc04de670784edcea7fd163949d3f520e33d33293d25",
+      "publicPuzzleHashSha256": "0d2a7cc682e4119b3b00d372b1882882e68463f1ebfe0f76aa80045579b311dd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-09",
+      "path": "Content/Levels/s1/01/02/S1-01-02-09.level-v2.json",
+      "gitBlob": "efa4711f6bb5265332c0dbc1daf877edc91bc91e",
+      "rawSourceBytes": 2171,
+      "rawSourceSha256": "7ea8c9d9d2f43ae185c86a55b4bb25fac4d64b928076571e59118c689434c127",
+      "publicPuzzleHashSha256": "1ff841cef07c75dddf584ab50f20b7aa7e8ac7e54f481d30e857a40d12e58810",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-10",
+      "path": "Content/Levels/s1/01/02/S1-01-02-10.level-v2.json",
+      "gitBlob": "a98cffd09a1304f5df9fe77ee42c9001a233b689",
+      "rawSourceBytes": 2657,
+      "rawSourceSha256": "c3de5c4e49ea6f4ed6a0d22a08f0d23b4e59a10b45381d15582cabcfa05f02ce",
+      "publicPuzzleHashSha256": "c9fecad5a7a918d682ba80ac95a9e637bd0f42420c8943106badb2c8f9a03619",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-11",
+      "path": "Content/Levels/s1/01/02/S1-01-02-11.level-v2.json",
+      "gitBlob": "e04d4bd7f7a3668f986334f55a70bb4faef97d7b",
+      "rawSourceBytes": 2566,
+      "rawSourceSha256": "8a1ba4d14d6be74e2d3c8fa444cebc1fe2fab8af060b7a80055326c1fa0e088d",
+      "publicPuzzleHashSha256": "93d5dd6ebcc91f957f34f6b354763b2d6c7cca8ff3921cd9d8c491fdb2c664df",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-02-12",
+      "path": "Content/Levels/s1/01/02/S1-01-02-12.level-v2.json",
+      "gitBlob": "3bee646c6f6714782c16ad1ccc5c8bcaf0be2963",
+      "rawSourceBytes": 2901,
+      "rawSourceSha256": "6503a147976c7eb9f3bc5e98ad0b874b2ff18b39083f7ff6935f452dc39e38a5",
+      "publicPuzzleHashSha256": "6dfc73ed2c363747818f7193206d1f5d8eb322973760d5e233307b7236a07b38",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-01",
+      "path": "Content/Levels/s1/01/03/S1-01-03-01.level-v2.json",
+      "gitBlob": "761758e1b53239c635bb987b9b3b887cb22e5383",
+      "rawSourceBytes": 2163,
+      "rawSourceSha256": "b7af0cdaf5cdb69c211bdf1ff5ed65cb56049e23715a1727d380fe7f49bf3733",
+      "publicPuzzleHashSha256": "b32b770b83e7b79e93fb37502efb6ee67ecd6ecee26bfdb69a1d595a3bac6f4e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-02",
+      "path": "Content/Levels/s1/01/03/S1-01-03-02.level-v2.json",
+      "gitBlob": "00b1e381f6c8d5ae6c24b92cd7a5bb08453416bf",
+      "rawSourceBytes": 2377,
+      "rawSourceSha256": "62efa72b344a09b28e2ed329ff3d340bc853c31c18199b7bd4beff45baa8b983",
+      "publicPuzzleHashSha256": "78ccedd0536b9ab0389bd2b9f5c462cac260e807bdc354d15386c1bba3e446c9",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-03",
+      "path": "Content/Levels/s1/01/03/S1-01-03-03.level-v2.json",
+      "gitBlob": "e383f39c6ca5fdc1d910927f668bafc558c73460",
+      "rawSourceBytes": 2344,
+      "rawSourceSha256": "25316c66af5143ab886114abbab49223beb0192749d9e4652436509ee5285dcf",
+      "publicPuzzleHashSha256": "6af30c573571e1711ce432c21ac5f9cc5c0a3169b026f1c22aa0472a7e9c9fd4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-04",
+      "path": "Content/Levels/s1/01/03/S1-01-03-04.level-v2.json",
+      "gitBlob": "177512c5503624dd68404dbe6af469958f676385",
+      "rawSourceBytes": 2400,
+      "rawSourceSha256": "04a8a6db5c66121666bff7b69cefbe76d5a5b9d08bf748f2801f5efec8d50d5b",
+      "publicPuzzleHashSha256": "e7cfe018c894abb5b261f45dbe62421fee2c7b40c0785c774510c52354f7acab",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-05",
+      "path": "Content/Levels/s1/01/03/S1-01-03-05.level-v2.json",
+      "gitBlob": "9a88a6895310c48747edfdf3e8a35dbe9d451778",
+      "rawSourceBytes": 2291,
+      "rawSourceSha256": "850f023d1f7b3ef01d55f929043230c2c03aec57bc11479d8b43d6b88bc462bc",
+      "publicPuzzleHashSha256": "0487282e14af2d944ba36c3bf8b9a882de2bc0f755f778e4b8e491bb7587fdca",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-06",
+      "path": "Content/Levels/s1/01/03/S1-01-03-06.level-v2.json",
+      "gitBlob": "a31702e539debc7741b21ca4ca27e8cee936093d",
+      "rawSourceBytes": 2862,
+      "rawSourceSha256": "f7504c86eaf1b73415869b3ad45e49c8944478f47f337703df8ae5cbf0ee8d5d",
+      "publicPuzzleHashSha256": "60f775ef88cced1fe01c1f0533e712b46eadd9fdd0a0d5332279ed3c5524b508",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-07",
+      "path": "Content/Levels/s1/01/03/S1-01-03-07.level-v2.json",
+      "gitBlob": "96ec64ec121010e515966d12aefa68a3f8f08f10",
+      "rawSourceBytes": 2458,
+      "rawSourceSha256": "45c54e57fb17635623fffa3884bf15fb673bc914c1f25ab7fc6da1e32216c04f",
+      "publicPuzzleHashSha256": "2bd7a99034d3d85a52a6838a1055b078cabe713feed69fd271fdb3fec39e28d6",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-08",
+      "path": "Content/Levels/s1/01/03/S1-01-03-08.level-v2.json",
+      "gitBlob": "6895f0251d029f2843417a171417c31050f6e34c",
+      "rawSourceBytes": 2279,
+      "rawSourceSha256": "de57bc358033dae93a5014f5a26041c74e54b807707d3542f326daae06e0f596",
+      "publicPuzzleHashSha256": "1a6a32b0e308308a672cd3149ba1aa72581ecbb5d773e6124c9b11495c40a047",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-09",
+      "path": "Content/Levels/s1/01/03/S1-01-03-09.level-v2.json",
+      "gitBlob": "c5e939749475b0ebfb1608d67a32d39569dc7dab",
+      "rawSourceBytes": 2540,
+      "rawSourceSha256": "029c6eccd150130261109069691817328471d842564ba3ef2008acf8cb056721",
+      "publicPuzzleHashSha256": "f39aa93c425da37eea2409fc9dc9afe678f3c16323a891f2e8589cb1ad110ff4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-10",
+      "path": "Content/Levels/s1/01/03/S1-01-03-10.level-v2.json",
+      "gitBlob": "beb638299ffc69db17d9a59574634097d736b9ec",
+      "rawSourceBytes": 2573,
+      "rawSourceSha256": "7973170a365137b91044aecc6102a37234496b5ea1be72019d06868e4b377afe",
+      "publicPuzzleHashSha256": "37534e6d27541b7c48f4e474444c453d7e4705d053b014d9301e359146a8d69a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-11",
+      "path": "Content/Levels/s1/01/03/S1-01-03-11.level-v2.json",
+      "gitBlob": "9e3ee7bd227fca021d4c0c62bbdeeff5e5cab05f",
+      "rawSourceBytes": 2799,
+      "rawSourceSha256": "8658cc4e4bfe281203d8e47043ee1aaee7400c49e3bac86f38d0db11c2f60d28",
+      "publicPuzzleHashSha256": "9138a7fc71b97f663185cd50354f9a036583d6a887b0762eb52bb64f763de1f2",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-03-12",
+      "path": "Content/Levels/s1/01/03/S1-01-03-12.level-v2.json",
+      "gitBlob": "55c787576eddab8cc8bda36682c5207c40b4f3db",
+      "rawSourceBytes": 2317,
+      "rawSourceSha256": "0346c5c1a0ee0944fd258f30a646b49fe7f0f32b923a53be9f11bb1acd5696da",
+      "publicPuzzleHashSha256": "1c6818bc8d28a0a9d86d82d0e7f5ee2ac7a777b52b9f927998531c49d0b30fdf",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-01",
+      "path": "Content/Levels/s1/01/04/S1-01-04-01.level-v2.json",
+      "gitBlob": "effef0f1388aa571a60c458fde1b9c47e49d1ad5",
+      "rawSourceBytes": 2162,
+      "rawSourceSha256": "f9c92af35563830eec04841a26c4e78da76baea0fa2a235fecb44522bb06a61c",
+      "publicPuzzleHashSha256": "ca71898dc28d1d8663ce11fcba9204afe9e15745b9e6262f74953fb351cebc45",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-02",
+      "path": "Content/Levels/s1/01/04/S1-01-04-02.level-v2.json",
+      "gitBlob": "f6a63993366bbcde1338e875608a3ea5ea8cb5d8",
+      "rawSourceBytes": 2182,
+      "rawSourceSha256": "bd0c6274d0e3566155dd6bc172d0d263c3390f3d88e8d3e8e99a88a935eecdf1",
+      "publicPuzzleHashSha256": "3e7f75e4983b7e4d4644c8b1eed700afd0f3c2dadd967433da019ff798ef97dd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-03",
+      "path": "Content/Levels/s1/01/04/S1-01-04-03.level-v2.json",
+      "gitBlob": "914079a9412dcab2d68a9abd5aa7c860db8b4b64",
+      "rawSourceBytes": 2824,
+      "rawSourceSha256": "d7e4690d9f55570f8c3f7598463a22a66d3995345400faec122a7807acca60b8",
+      "publicPuzzleHashSha256": "cfdba1ca5f6c5303828cf820aa716bc0562c5375d647eb703901780654a213aa",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-04",
+      "path": "Content/Levels/s1/01/04/S1-01-04-04.level-v2.json",
+      "gitBlob": "c8b1fa38389b9a5e24bc791609acbd85346cfffc",
+      "rawSourceBytes": 2130,
+      "rawSourceSha256": "296b1da1e1e5cf04992cffbc2d585eaf883d9c94fc125b8684de8eddda450222",
+      "publicPuzzleHashSha256": "f0c4dc69b3fcd565ba63cdb08d7f59aaa0cdfc68dc0b2cbb7894e81300fb3c90",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-05",
+      "path": "Content/Levels/s1/01/04/S1-01-04-05.level-v2.json",
+      "gitBlob": "f31f662fc5f43ebb383f4f399809ca83a94e3043",
+      "rawSourceBytes": 2692,
+      "rawSourceSha256": "d55bcbcc795b0817b923430c82145621550861e1547d628b5e13f36050af7dcb",
+      "publicPuzzleHashSha256": "68d5f2870d0dc5aa2fcf98411f99cffc56187ee9176250e3d976728dd03a7933",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-06",
+      "path": "Content/Levels/s1/01/04/S1-01-04-06.level-v2.json",
+      "gitBlob": "5ef37ae9ef3584c2b10e095cdd2bb471b3e75708",
+      "rawSourceBytes": 2612,
+      "rawSourceSha256": "259358e8b5156a14ecb16bbb264ed853e27b24eebaa12d2e2a4e72343fa138c9",
+      "publicPuzzleHashSha256": "f5b85c74c0b0118def7642c7133e5e8f2a1bb6cb3d9a2600c9f3356acdb10f3b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-07",
+      "path": "Content/Levels/s1/01/04/S1-01-04-07.level-v2.json",
+      "gitBlob": "e20d93fa389006f55835832877e679c3c3690ad6",
+      "rawSourceBytes": 2576,
+      "rawSourceSha256": "a5f621036d7bd93bae0553643f86979ac4a38bab1213fbccc2be8b0e3947ae05",
+      "publicPuzzleHashSha256": "941d9ab1c3fd9cc35db04010f44b60f4be556f889a5cc843a736fcfb7c0f58b7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-08",
+      "path": "Content/Levels/s1/01/04/S1-01-04-08.level-v2.json",
+      "gitBlob": "1d6507c5202abe33b8494a47cc62b767e6a1d12d",
+      "rawSourceBytes": 2630,
+      "rawSourceSha256": "be262866327a54da20ecf1e851d7b2b41efc66500aea9875dfc67e72a4d868ca",
+      "publicPuzzleHashSha256": "c74843aba79379e85340322520e2871b5f7cf1bc195cee33fa3536dbef470197",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-09",
+      "path": "Content/Levels/s1/01/04/S1-01-04-09.level-v2.json",
+      "gitBlob": "ee6d68b1648d51b91abb60ca558556ecd27e46ed",
+      "rawSourceBytes": 2468,
+      "rawSourceSha256": "637447ed4a9a857906a04f623b8162dc6dda69f2b117e56e5236bf39ff74c75f",
+      "publicPuzzleHashSha256": "003a55302948d98d7f618e8fa3501d301207024480965901995f91cdfaa22603",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-10",
+      "path": "Content/Levels/s1/01/04/S1-01-04-10.level-v2.json",
+      "gitBlob": "1c4bd270bb2a3d553c2844664335aa8763cd2102",
+      "rawSourceBytes": 2418,
+      "rawSourceSha256": "95e3c7f2f0fd24422213f8fca1733475a63b4b66be72a8b4af5d77cbe77f1dfe",
+      "publicPuzzleHashSha256": "1f8e68b19a13f9cfdfaff67d24871a61eec0f665148cb9892582a0c9fe1d6952",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-11",
+      "path": "Content/Levels/s1/01/04/S1-01-04-11.level-v2.json",
+      "gitBlob": "6de30315e4ddb668755e4289fde986b4066ff157",
+      "rawSourceBytes": 2490,
+      "rawSourceSha256": "781f06b95232520afd098d70f69ccec9ba856fb7f39028fa965a9587a345f4e6",
+      "publicPuzzleHashSha256": "60c7e2bbbec13d6075065d849ad43edadfb24d58ba41f4b90c1d5027911c874b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-01-04-12",
+      "path": "Content/Levels/s1/01/04/S1-01-04-12.level-v2.json",
+      "gitBlob": "a6e2f9f0c87af62598b6a5e80c4611176dddda0e",
+      "rawSourceBytes": 2728,
+      "rawSourceSha256": "fde9ea8be9f5ffcde896e2b38eb4f38794258ed1cd6cef8ac467d55614265065",
+      "publicPuzzleHashSha256": "364b60f855f49be457b773dd96323a3991088d707b1b3ac7c93be14cba2f3410",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-01",
+      "path": "Content/Levels/s1/02/01/S1-02-01-01.level-v2.json",
+      "gitBlob": "bde303e41346318b622341d7d55adeae68fe77a6",
+      "rawSourceBytes": 2220,
+      "rawSourceSha256": "5f26562d56eedbe876be75e59bb6c53104b2f6a342e5fc41df7a077e8dccb45a",
+      "publicPuzzleHashSha256": "21b3706029f1e82f8cd857e2b735d48b591cc33180e1d47ab07cbe691ffa8952",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-02",
+      "path": "Content/Levels/s1/02/01/S1-02-01-02.level-v2.json",
+      "gitBlob": "4f4e15d4d3068542c94662e5a8163ea99ec77c48",
+      "rawSourceBytes": 2404,
+      "rawSourceSha256": "06368576199bf3b3a8e62911a1485c612b8d118bcbee56d3f4e1927d9965bd24",
+      "publicPuzzleHashSha256": "ae67ddafe7ad592df40014882e482fd063bb65915770e2b6fd8a9e0ccdae1d3f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-03",
+      "path": "Content/Levels/s1/02/01/S1-02-01-03.level-v2.json",
+      "gitBlob": "7cb56518d168baf9cccba08c86b2899bf7911eff",
+      "rawSourceBytes": 2226,
+      "rawSourceSha256": "e908850d10e4b702affff1a3074f093c4e6c0f3485f3e625abf6f2847b4c6df2",
+      "publicPuzzleHashSha256": "1d071b520b97ec1e472a3d48d3480fea90d89e5e607f4bb23a0e7733e6a6ceb4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-04",
+      "path": "Content/Levels/s1/02/01/S1-02-01-04.level-v2.json",
+      "gitBlob": "f6ddd96779c3e7853b1b76ab87f24b58b17a13c2",
+      "rawSourceBytes": 2549,
+      "rawSourceSha256": "ab31c2b700a26cd7434e052f81f1bf18a241e4d3522539bd9acd760ff07e9cac",
+      "publicPuzzleHashSha256": "7044fc6209643e0ba12fc27e3abc1dfa45b5aa9a2c03d8fe39cf4483c427f5b5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-05",
+      "path": "Content/Levels/s1/02/01/S1-02-01-05.level-v2.json",
+      "gitBlob": "da55e7433cfa1daaa1b9ff6a61a9cb67c96b0ad5",
+      "rawSourceBytes": 2302,
+      "rawSourceSha256": "cb4d8628d9022e055fe0d7b2664c7a7e9c0916e6a4b6a679494b741f8cf03f90",
+      "publicPuzzleHashSha256": "07b33cb39c5a0632679b63cf571c06bc2d56f91e71e22f5a90b422f2180c0755",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-06",
+      "path": "Content/Levels/s1/02/01/S1-02-01-06.level-v2.json",
+      "gitBlob": "742561524862be977f990d36e2479e7d6533ea8c",
+      "rawSourceBytes": 2853,
+      "rawSourceSha256": "4c23dc394bb002d48b88699041b53b0bb91a784591e3a3f786e8350476fc36bf",
+      "publicPuzzleHashSha256": "43cdc7a6d5c20b24553d169342c8eafaebf315e03e6453a7b54823ddf7b1bd4e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-07",
+      "path": "Content/Levels/s1/02/01/S1-02-01-07.level-v2.json",
+      "gitBlob": "c97c00c32ef07d108232c2c9af8a6cb242af05d9",
+      "rawSourceBytes": 2484,
+      "rawSourceSha256": "a79fe269d398af8f448417ff2de72c4aad6056a5566d3b78acf73a1c4abcd47b",
+      "publicPuzzleHashSha256": "199c7131d5a5da35f87a2634fe023bed0c0efc091970a843c26aec2defbe5131",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-08",
+      "path": "Content/Levels/s1/02/01/S1-02-01-08.level-v2.json",
+      "gitBlob": "5afe4e55247d213925bc0f11b273b609056eabea",
+      "rawSourceBytes": 2959,
+      "rawSourceSha256": "a74c3e037da6e115065dc4be69db920dc706dda84c702872a96bc9c8fd0df3d5",
+      "publicPuzzleHashSha256": "fd9fa9c144b0b64c6dc181461accb748c5b44d1531e2cc1a171ac2d0325b4603",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-09",
+      "path": "Content/Levels/s1/02/01/S1-02-01-09.level-v2.json",
+      "gitBlob": "ac92300b2e6c90ced647b71ff44a111011298028",
+      "rawSourceBytes": 2393,
+      "rawSourceSha256": "f415718211b44d09a0d5b38f6f278366ea715dd27a38592bfb8a18f0f52c2ff0",
+      "publicPuzzleHashSha256": "89608b006ac58e5a2469f2608a285dcbb3fb7d3a4a873582a0c6c87fce142a60",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-10",
+      "path": "Content/Levels/s1/02/01/S1-02-01-10.level-v2.json",
+      "gitBlob": "72fd84978b4350fd831f1512d6c5ddf2689b2839",
+      "rawSourceBytes": 2350,
+      "rawSourceSha256": "c0cb5fee05b3c2a6c428bec9ad62608f92f743e13cffae24834da5924b96a34a",
+      "publicPuzzleHashSha256": "294b21dc587ed596c5ddfab5e98ecadb4b23167f822dcbcaf5ef7eaaccc47b15",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-11",
+      "path": "Content/Levels/s1/02/01/S1-02-01-11.level-v2.json",
+      "gitBlob": "d8b284bae93b869a691b3b089979fec7e3cbeaf9",
+      "rawSourceBytes": 2891,
+      "rawSourceSha256": "aa44cfd9479e84927e2384c93805ba19f50be0f101e6e31d1935961f47b70d4b",
+      "publicPuzzleHashSha256": "560e9e746a61a4ad32a5346c6eb18f172cc071b76b9f0b1bab0ee2935ac5fabe",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-01-12",
+      "path": "Content/Levels/s1/02/01/S1-02-01-12.level-v2.json",
+      "gitBlob": "24d37edaef9e68e4581698e342aa0debadef40ce",
+      "rawSourceBytes": 2512,
+      "rawSourceSha256": "a040b400c76eb319d40fc5f129c63b1426f1c6a44f9134cb243dc927654af52c",
+      "publicPuzzleHashSha256": "e8b8c4fcca5ade7f7a4396bc04cd02dd27fb4966054206b9b1dbd414fb8b34e5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-01",
+      "path": "Content/Levels/s1/02/02/S1-02-02-01.level-v2.json",
+      "gitBlob": "b463fcab7f76fcdad0866a8d2132b35055d241f2",
+      "rawSourceBytes": 2707,
+      "rawSourceSha256": "3d0b87fe4e06aa765d1cfd6a004b3e24f450d59b60790275675ebcc351936366",
+      "publicPuzzleHashSha256": "165ae36d1ed1268d3529555498e9592e05d9da0468c14763a3094b5986a981ba",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-02",
+      "path": "Content/Levels/s1/02/02/S1-02-02-02.level-v2.json",
+      "gitBlob": "0be5e22e0885abbf7aa1b9190efd4a64896f5f08",
+      "rawSourceBytes": 2232,
+      "rawSourceSha256": "3d254c91ed219b95a348eec70f165dfcbd74efa8703277b864e336b42985afdd",
+      "publicPuzzleHashSha256": "67d9649004946728a0a8076edf5f843be73c12458f97577eedbc8b69ba39a8c7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-03",
+      "path": "Content/Levels/s1/02/02/S1-02-02-03.level-v2.json",
+      "gitBlob": "c7d3827a687bcf53887a8c313c291befc42ef370",
+      "rawSourceBytes": 2645,
+      "rawSourceSha256": "d497d6a6b47b896661c5178bacad255ac64d7e6a7c410d8cb7692bc58b6bf49c",
+      "publicPuzzleHashSha256": "e69a1dabd1e34389d3a98df0fe2247fc657cccbf4afd768c1edcff97535cd6d7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-04",
+      "path": "Content/Levels/s1/02/02/S1-02-02-04.level-v2.json",
+      "gitBlob": "4078c11d5b0dd74a23569cb8147c8a9596bf9180",
+      "rawSourceBytes": 2615,
+      "rawSourceSha256": "64accb6350a6d64ad7d16dcc1449b7f1cb28ebb82679233e0e7f06e7e9514702",
+      "publicPuzzleHashSha256": "d09184300778173256b72568725a81e261d2200203d9a6182dc7626f713b7d0c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-05",
+      "path": "Content/Levels/s1/02/02/S1-02-02-05.level-v2.json",
+      "gitBlob": "a6fd8dd101250f30f761f205b66fbd9a8b947b30",
+      "rawSourceBytes": 2621,
+      "rawSourceSha256": "d0a2d92211595ab0d0f820853adcf3cbeb61488be6dbdeeadf397bae9686371e",
+      "publicPuzzleHashSha256": "ae2b738c8fd7801c9022c2a346dce411ac565d313d1601f263f221ca183e758c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-06",
+      "path": "Content/Levels/s1/02/02/S1-02-02-06.level-v2.json",
+      "gitBlob": "a956bac5906e2dd81af045689dd692a41b590237",
+      "rawSourceBytes": 2810,
+      "rawSourceSha256": "7b11c405870e0d2d05c9ebc57ce49239d354e80a05e78efe30bcd774396fd992",
+      "publicPuzzleHashSha256": "b66eb669bcc12f9255bb799155ad43b2e911dfd7f41fdd6f922675b99c08f2c3",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-07",
+      "path": "Content/Levels/s1/02/02/S1-02-02-07.level-v2.json",
+      "gitBlob": "9c0e4e890e3a206e2c51cfd2adbfa20b20ac301c",
+      "rawSourceBytes": 2434,
+      "rawSourceSha256": "746456d06e2544ff16f78338aaada3ff39d296dc1d8e3cd5774fa5ba0e08af18",
+      "publicPuzzleHashSha256": "691de917ff142b886ec8a2a30bcf703c222c518529bff12b35b0172435e0f4ad",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-08",
+      "path": "Content/Levels/s1/02/02/S1-02-02-08.level-v2.json",
+      "gitBlob": "c63ef39292d9f394f61c815f6a0d427ef092adbf",
+      "rawSourceBytes": 2939,
+      "rawSourceSha256": "064a1fb6e28b518e4d4fb52703e3c99cc43cdd67188a6aa299faa91e85a50821",
+      "publicPuzzleHashSha256": "124ea71c29b507b3d22aaf7a5e4334543b0c86cfb36213ccfd3f0ff28443d444",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-09",
+      "path": "Content/Levels/s1/02/02/S1-02-02-09.level-v2.json",
+      "gitBlob": "92c3cb52f7c00b54140898740be47fab4724f7bb",
+      "rawSourceBytes": 2314,
+      "rawSourceSha256": "70f6655768fe779284c12fc3b23dac3e8dbf415b7a0229d939e3a8c9785f8081",
+      "publicPuzzleHashSha256": "59f32d66f16a8becaa95880e410f026907f1b42a12e535231b86a044d36a25db",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-10",
+      "path": "Content/Levels/s1/02/02/S1-02-02-10.level-v2.json",
+      "gitBlob": "eff20841510841d86bb55df8a2ece88e4d86dedc",
+      "rawSourceBytes": 2437,
+      "rawSourceSha256": "83ced8578f37c351126f5f7e2cb8bff71158ffeadacf5da67e1936c1192d7a78",
+      "publicPuzzleHashSha256": "ab8d3ff0d20dff240adedb5dd82df50c7a3fdabbbca1c270352134cefaa52543",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-11",
+      "path": "Content/Levels/s1/02/02/S1-02-02-11.level-v2.json",
+      "gitBlob": "24ac8895320a03bee1f6b05f793af8a8bb3ddc88",
+      "rawSourceBytes": 2533,
+      "rawSourceSha256": "1d073cb7e993ec3c18118b8b55c56a89169c091468388c3102a2e80faeb3a78b",
+      "publicPuzzleHashSha256": "b524f6010f20c2615ad3f1fb8424471ecb4cd359f4acf58770bee878450d0c2d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-02-12",
+      "path": "Content/Levels/s1/02/02/S1-02-02-12.level-v2.json",
+      "gitBlob": "e197d5e63fca0da8f78eeaf18b894a4eb32020d0",
+      "rawSourceBytes": 2264,
+      "rawSourceSha256": "a7177c8dac810802a2ab5a35751a1f0b122b137f79bbc8c5c2f5854d3e07f554",
+      "publicPuzzleHashSha256": "cf354b1379504b21bbab3262b68df9fece4f637b4bbe1f720ec2a53c14cd4316",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-01",
+      "path": "Content/Levels/s1/02/03/S1-02-03-01.level-v2.json",
+      "gitBlob": "edd6440d622bd693805e1208017f4f5ee374ad05",
+      "rawSourceBytes": 2678,
+      "rawSourceSha256": "e0da25b1134703a5e1b9de50bef84a34d7da40c631280f4b3353b612100442d0",
+      "publicPuzzleHashSha256": "e83f3eb69ec867ade573f5c818e0cbaed3b989aec4234aa93f16994bccb5c248",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-02",
+      "path": "Content/Levels/s1/02/03/S1-02-03-02.level-v2.json",
+      "gitBlob": "baa1ff2ba7928b42be945799f4e3b04b7134a71e",
+      "rawSourceBytes": 2069,
+      "rawSourceSha256": "0137cb928a5f2d0005539dad6c8c8e1dd04207d065f9ac73480639715346915c",
+      "publicPuzzleHashSha256": "5b9828bd643f5dd27da6a118c91168a97f7f6433f953fa21faa5f99ab7b3ed08",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-03",
+      "path": "Content/Levels/s1/02/03/S1-02-03-03.level-v2.json",
+      "gitBlob": "860214e449ae585b697887adbc59058797919c3c",
+      "rawSourceBytes": 2641,
+      "rawSourceSha256": "69f9d525f7a626ea5b5763af9954cd6b75751381bcc387e532a2fd7a851f9476",
+      "publicPuzzleHashSha256": "b15d47a5caf913d625faaa7ab287baa7f4ef7d27597cfe71c562ccdec83cab18",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-04",
+      "path": "Content/Levels/s1/02/03/S1-02-03-04.level-v2.json",
+      "gitBlob": "ee8f06cd96617b60848f34c83fb4854db9d99323",
+      "rawSourceBytes": 2400,
+      "rawSourceSha256": "a380dcbecb41ca599e3f1233f8e3f38606b5c18642a6e9f8c4b7693d40dd8e4d",
+      "publicPuzzleHashSha256": "f8c429ac331c71102e5d0c30a5f38a98526fb6e620f4565fed705643b7a9d33d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-05",
+      "path": "Content/Levels/s1/02/03/S1-02-03-05.level-v2.json",
+      "gitBlob": "529a3314ce5860f41a11e5ec8ce3ec8f6906fe8c",
+      "rawSourceBytes": 2669,
+      "rawSourceSha256": "9271fc8e550f18d8052512a431bdbbfc23ad2257cf0db7e027196c08d83395b6",
+      "publicPuzzleHashSha256": "b0300a4d7147cd0ff2e61e62f49fc7470ac83641f298718657b11bc5dd1482a7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-06",
+      "path": "Content/Levels/s1/02/03/S1-02-03-06.level-v2.json",
+      "gitBlob": "56ad213afbdc629595eef559812236fb35a148de",
+      "rawSourceBytes": 2900,
+      "rawSourceSha256": "a95b6003a7f94525093693f4010c9888296a673aee6484a72b50b9f7024869ed",
+      "publicPuzzleHashSha256": "c4541055eb9d41472dc84ac33b957dd19953bdc12e7f9b595d2a94ab1726c211",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-07",
+      "path": "Content/Levels/s1/02/03/S1-02-03-07.level-v2.json",
+      "gitBlob": "6960e7f97f7e9ed68b328341855e4c8d1a5c08b9",
+      "rawSourceBytes": 2528,
+      "rawSourceSha256": "66cd52a1aa7a46cc26f4851f71dad46e2e933f09f3473a885e6bb6629e693a9b",
+      "publicPuzzleHashSha256": "202227b773b13d3bd68d6ac73f01e13593f0b0e3e3dfa66f35076aeea0dfeece",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-08",
+      "path": "Content/Levels/s1/02/03/S1-02-03-08.level-v2.json",
+      "gitBlob": "f031b2e043d67c3c50f3ba1294b193c546fb2979",
+      "rawSourceBytes": 2629,
+      "rawSourceSha256": "f3eab1347ee8ae8c3f55cf5d4ba14c33cbe78c8bcddd57d1299763aab1cfb9c8",
+      "publicPuzzleHashSha256": "c206395d6170e91755be95b028be0cca3e6d9a92c0fa4a1522d54534a119c61f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-09",
+      "path": "Content/Levels/s1/02/03/S1-02-03-09.level-v2.json",
+      "gitBlob": "3da91877cfeef9a94438cd80c52932d27db4e73d",
+      "rawSourceBytes": 2694,
+      "rawSourceSha256": "6abdc07f316b1259c87cb0737242a7c45dd53a2873cceb7f5762974d47c3cfcf",
+      "publicPuzzleHashSha256": "3956e9b3782363238768aa6a75e3b0d17421b974e821acc62f47116f854ec165",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-10",
+      "path": "Content/Levels/s1/02/03/S1-02-03-10.level-v2.json",
+      "gitBlob": "6cbc50af1b8a347a615df67cd8d29aaa4636be28",
+      "rawSourceBytes": 2833,
+      "rawSourceSha256": "33b5e67044acf566c4a2eeac0524cc04aa7b3343bfab5c0b079b861374c42794",
+      "publicPuzzleHashSha256": "9fcf07c33c4ce78b7117568261b766c6a4f63d4a294de97eaa464491cdee98c1",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-11",
+      "path": "Content/Levels/s1/02/03/S1-02-03-11.level-v2.json",
+      "gitBlob": "0fc4a0559135ba891efaf867f6be9b2a22f54d53",
+      "rawSourceBytes": 3005,
+      "rawSourceSha256": "f4f87ddcebe2d1f204fe42a1f4c15121c4b991007e8bfd11d23761805fc52d4c",
+      "publicPuzzleHashSha256": "a500ab02228cd107b81c5f52a5f4b11a52da774e6df5ab237c060280928c2438",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-03-12",
+      "path": "Content/Levels/s1/02/03/S1-02-03-12.level-v2.json",
+      "gitBlob": "062cec51447ec2d55fa213a9e97cfc9c246ae355",
+      "rawSourceBytes": 3287,
+      "rawSourceSha256": "ba76ed5b7c9dff91d72d6e0de36952ccda70dbbe02f57c689e9f66b5982ff205",
+      "publicPuzzleHashSha256": "e405fc0cd2e79291f342034a06a1c0492774873a97981bc38d54dadedcdd7275",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-01",
+      "path": "Content/Levels/s1/02/04/S1-02-04-01.level-v2.json",
+      "gitBlob": "ff52f4bd158b928a2e9c0afa3d2f04ac81fb633b",
+      "rawSourceBytes": 2977,
+      "rawSourceSha256": "7eb87ef91b130309f0c515b94e0dd4a930020c3bf8c6b737660c372bb57f5e38",
+      "publicPuzzleHashSha256": "3e47b57e9d6a00211fe49ba2fc133048bae9869a28eb3cbb1d01ed20539540dd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-02",
+      "path": "Content/Levels/s1/02/04/S1-02-04-02.level-v2.json",
+      "gitBlob": "08ba4018634d8dbc1ccc0119145c2e57daac46c8",
+      "rawSourceBytes": 2248,
+      "rawSourceSha256": "35c019df181c3bebb4fc74499187d24d8526bbfb6c38c88d47138e209dc9a0b9",
+      "publicPuzzleHashSha256": "94cf8c6f5b50be9b58a040cb837af1f26c94e697e4afd2e21ebf63acc10227d5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-03",
+      "path": "Content/Levels/s1/02/04/S1-02-04-03.level-v2.json",
+      "gitBlob": "946f383f29500a5fadb9fa580622b55d52271dad",
+      "rawSourceBytes": 2332,
+      "rawSourceSha256": "4e538accfe77e02d8e19fe758e149a35e0afd2c1e9327ed21a9a5dc0c439da5d",
+      "publicPuzzleHashSha256": "6efe22a62e277287e9a7d2e0e041d823baef923791c71d75b320187281496ff5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-04",
+      "path": "Content/Levels/s1/02/04/S1-02-04-04.level-v2.json",
+      "gitBlob": "513d1886740983c9bdb7c6df10b815d424a4e7b5",
+      "rawSourceBytes": 2984,
+      "rawSourceSha256": "8edd4b896ef5751c6309471ed8cc149842885b35679061cf173bfe7a58c569d4",
+      "publicPuzzleHashSha256": "c34bb411130b7178bc9f68fc522353f5730cd729f072f22c84fb9af9674daead",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-05",
+      "path": "Content/Levels/s1/02/04/S1-02-04-05.level-v2.json",
+      "gitBlob": "a640d59b68ea3ad9ada9a36fd9050eb8412b9e01",
+      "rawSourceBytes": 2793,
+      "rawSourceSha256": "29e81c3b305e32c4042c7b957e796887a9879f6a73939a9f7ab0c3a0e3d80620",
+      "publicPuzzleHashSha256": "9dc3beade671a74487db5ebd1f0656b382026a9103ccefa6658efb6f3453814e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-06",
+      "path": "Content/Levels/s1/02/04/S1-02-04-06.level-v2.json",
+      "gitBlob": "2a757776466379015de3b20f02395503cb10fa05",
+      "rawSourceBytes": 2784,
+      "rawSourceSha256": "7840f81662ea56f4b02b3c5a3f69fdca8aa7e1979fada9136cf4c32a43d41a94",
+      "publicPuzzleHashSha256": "c43d253f454120044477fb35eee26d0e8ed92a8eac76ce91ca99fe0753b02bfa",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-07",
+      "path": "Content/Levels/s1/02/04/S1-02-04-07.level-v2.json",
+      "gitBlob": "0f9c94bd330c6736a67d0ae826059b7344d84f5a",
+      "rawSourceBytes": 2894,
+      "rawSourceSha256": "69fd23190565278154799c3583bdc16c529f031c8734720a5c0818c223e5bc10",
+      "publicPuzzleHashSha256": "b5e7d1500307dac5d52f6e4c2229c90e49d8e1565d654352b7f10be9d4af5168",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-08",
+      "path": "Content/Levels/s1/02/04/S1-02-04-08.level-v2.json",
+      "gitBlob": "766a0af59cbf11949e5179e02d4ace95263a19f3",
+      "rawSourceBytes": 2730,
+      "rawSourceSha256": "9e4a42459cf8c1880e881d417a41d559029196653adb6aa787c722e9dfbc639e",
+      "publicPuzzleHashSha256": "cfd547dbf8bf470b607183ced2479b935ee73d4fb8964c4e084367dd52375e07",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-09",
+      "path": "Content/Levels/s1/02/04/S1-02-04-09.level-v2.json",
+      "gitBlob": "9294f34bd30cff4298447aacce5a171521f6eb2f",
+      "rawSourceBytes": 2796,
+      "rawSourceSha256": "ad3f8c9be2691ec92467a0de79fd94a964212cc69e4e550a7a7def3564e605de",
+      "publicPuzzleHashSha256": "a96a5a5ddcf98b52a6796a36168be4b9d7eebcdf401874d1f12101a5f3983039",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-10",
+      "path": "Content/Levels/s1/02/04/S1-02-04-10.level-v2.json",
+      "gitBlob": "d699f0a8a4bf02e555dfcc8f16a7af5ebb0c24ea",
+      "rawSourceBytes": 3170,
+      "rawSourceSha256": "86cef12cc90d6604f13857955f0243bd6f8e249e85de7adca08291a0aceb5f81",
+      "publicPuzzleHashSha256": "1f6d533e93ba253c48324374c3156046401484ad6839d669d89f8c3012ca9f30",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-11",
+      "path": "Content/Levels/s1/02/04/S1-02-04-11.level-v2.json",
+      "gitBlob": "3675244d14668d508fd2f8880e7fdc08e769789d",
+      "rawSourceBytes": 3116,
+      "rawSourceSha256": "036558e04433bc7217bb547e61291aee4c8b4e3a1afa6bc9b8b5f9053aa47fd4",
+      "publicPuzzleHashSha256": "db5b71ba4c325d748c353c8d48a7893af6cf32c9901e228dd17b9b918f76219c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-02-04-12",
+      "path": "Content/Levels/s1/02/04/S1-02-04-12.level-v2.json",
+      "gitBlob": "91ec74dd207505d69b8f4563ab30927102533866",
+      "rawSourceBytes": 3338,
+      "rawSourceSha256": "9c522fe01cbaf896ba221cf7720afa8baede8042d4e714e2def20e57a2fc828a",
+      "publicPuzzleHashSha256": "fc79fc0157c8c7fdab489f287b66a56d5126244d2ef717dd494a9e019e29d730",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-01",
+      "path": "Content/Levels/s1/03/01/S1-03-01-01.level-v2.json",
+      "gitBlob": "00758f4b34391e870048b21ddf22fb237ca8398d",
+      "rawSourceBytes": 2594,
+      "rawSourceSha256": "4b5787039854f06c95c2f0f2a521110f26aee3f42ed1cf10922a9c0142521b72",
+      "publicPuzzleHashSha256": "c6322eefcbc9fe74ef34c1c2d0ea91dabb54007e0628d7cc8105e4da438b84fc",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-02",
+      "path": "Content/Levels/s1/03/01/S1-03-01-02.level-v2.json",
+      "gitBlob": "7aac4217d076b2969ecb4fbab4960de874215a2f",
+      "rawSourceBytes": 2513,
+      "rawSourceSha256": "d6454ddbe020bb9d79414ccf3b0d783360af98f3e65886663d25bac5d25483b9",
+      "publicPuzzleHashSha256": "eec04674b2d7e8ced872a59b0f5a18bf25afa9e9f4ffca75c2cf55fdb2fbc81a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-03",
+      "path": "Content/Levels/s1/03/01/S1-03-01-03.level-v2.json",
+      "gitBlob": "2711fcc22d3c000505870a895db4cc1d7273ef01",
+      "rawSourceBytes": 3043,
+      "rawSourceSha256": "7c50f00593f03e30358ebcbae13ab4d3d8cfdbc3fd3e1b410805c0602ce2642d",
+      "publicPuzzleHashSha256": "2a4a6780069002ef9ca1c16b39f114872a5dd74328408ecddbd48eab7406207a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-04",
+      "path": "Content/Levels/s1/03/01/S1-03-01-04.level-v2.json",
+      "gitBlob": "676a0ea30b5daacf01cc35ec268783fbf99ef4a3",
+      "rawSourceBytes": 2717,
+      "rawSourceSha256": "0b494f6a7c17f23e4051bf7f9c3f74de2b3b50d4063f6bd8fa4431d897db52a6",
+      "publicPuzzleHashSha256": "c49dd7dcf91919fa509d5d388ec1e1e296915adfb5642108bfa68b8b4e43379b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-05",
+      "path": "Content/Levels/s1/03/01/S1-03-01-05.level-v2.json",
+      "gitBlob": "b36416babcad884b175fe0ce7642288bbf52ede1",
+      "rawSourceBytes": 3124,
+      "rawSourceSha256": "595914353ec8682b1739df3b80f6918f4a05d351ef90daa30532c98dd6a04bca",
+      "publicPuzzleHashSha256": "3c1b6839f804617ae12341a9b2398043f8c4ad886f509406fa65bc48b0fee0ad",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-06",
+      "path": "Content/Levels/s1/03/01/S1-03-01-06.level-v2.json",
+      "gitBlob": "4c5b84459f207f772ca88a2ddd7a073f698725a1",
+      "rawSourceBytes": 2902,
+      "rawSourceSha256": "f0013c1eac4d555024e17a8c988b890173ebeadb30cc1ae1f81af94415b342ba",
+      "publicPuzzleHashSha256": "0595b2ad409df97ac923351b1ed005c1d7b832c39deb8952243e9af1ce1b0580",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-07",
+      "path": "Content/Levels/s1/03/01/S1-03-01-07.level-v2.json",
+      "gitBlob": "54e4a8275522b256bf9373918847742450e615cb",
+      "rawSourceBytes": 2756,
+      "rawSourceSha256": "25240a444f7f3a1409b53e9a16b0b68ab2b20f71e49721f7e3037f0c5b08cb55",
+      "publicPuzzleHashSha256": "5ee6d3b3bbf1c3ed4013541465307032bf95f18fd4321326becf3c8de7f69aaf",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-08",
+      "path": "Content/Levels/s1/03/01/S1-03-01-08.level-v2.json",
+      "gitBlob": "13eb8783bde0e602568db5d454213cc14dd231a0",
+      "rawSourceBytes": 3265,
+      "rawSourceSha256": "f6fcc271f80f1824fe1cb13b64b2a35fa33ce1a278f86abd266f438baf1531ce",
+      "publicPuzzleHashSha256": "58c05f4e91d1aca97ba724b7e9162bb6277dd095dc3cf1e33934abf414e293d5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-09",
+      "path": "Content/Levels/s1/03/01/S1-03-01-09.level-v2.json",
+      "gitBlob": "c58025ed149ba9752358fe279389b4e73a291486",
+      "rawSourceBytes": 2565,
+      "rawSourceSha256": "fd5007aa03dff78ec584aaad0fb5e43e69fe5b67ac84d1946c0415d41e25efb2",
+      "publicPuzzleHashSha256": "8f1aa3d5d239f505289cc352286803f5175ef762e4ace38ce3e527f7bf255eff",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-10",
+      "path": "Content/Levels/s1/03/01/S1-03-01-10.level-v2.json",
+      "gitBlob": "108e15ec02313544ac445afe8a5487d7e46746c1",
+      "rawSourceBytes": 2914,
+      "rawSourceSha256": "6a8ab50c8f6c94bdf5a74ab520058f216280433d712741d8fba09883c7135ac2",
+      "publicPuzzleHashSha256": "276a246d2b3b2ef2ef59563bd7634adb2018e0c204da1159f9aea8659eba25ce",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-11",
+      "path": "Content/Levels/s1/03/01/S1-03-01-11.level-v2.json",
+      "gitBlob": "574f8f021d0ac3fe164c1d48b218cc4731f1abe2",
+      "rawSourceBytes": 2778,
+      "rawSourceSha256": "c930c3e756041d1c100493f53283a536f88e181eaef6068fa95f0d6568d11134",
+      "publicPuzzleHashSha256": "0baef23be7d66adb551917cfe2b5d1ef6d86bb2fe5b113587c0819b136317f5b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-01-12",
+      "path": "Content/Levels/s1/03/01/S1-03-01-12.level-v2.json",
+      "gitBlob": "69a14d4b75cbc10427d8f1d3bf83a97035210678",
+      "rawSourceBytes": 2569,
+      "rawSourceSha256": "b30bbebaa1fca08994dd866e68093f3de4d21c542560f778830972a49440ddd4",
+      "publicPuzzleHashSha256": "95c45a914683bc01518f2644cb40e241b92d3beff4d55d4e9853b99ba5a60946",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-01",
+      "path": "Content/Levels/s1/03/02/S1-03-02-01.level-v2.json",
+      "gitBlob": "86466490427c3b18465bc46bc2fda74724ca7415",
+      "rawSourceBytes": 3038,
+      "rawSourceSha256": "3771c763318649beedefc1fb8f645255485ec3df0d51054cdddba6bf9e0d97ca",
+      "publicPuzzleHashSha256": "34f72712d497d3a52b485ae58a568a3cafc7fdbe53debca4b8b83c757bfc2ddc",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-02",
+      "path": "Content/Levels/s1/03/02/S1-03-02-02.level-v2.json",
+      "gitBlob": "cc20b9f497340247fdf676ae9e26af5aece3f37f",
+      "rawSourceBytes": 2876,
+      "rawSourceSha256": "d971ec385aa7f8937f5d4842d38752a53d45f8b76f0c640a99e075e9a79c8138",
+      "publicPuzzleHashSha256": "79ebe42a0169649298bb30084c49bcb093c4c55becc43f1ff17d8e050e6b1b7e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-03",
+      "path": "Content/Levels/s1/03/02/S1-03-02-03.level-v2.json",
+      "gitBlob": "43acfe2df98849c20ab7d1bb406a9bc033a88bb3",
+      "rawSourceBytes": 3041,
+      "rawSourceSha256": "3f24e0c355bad1f1cee352a0832380cfa96c9202a578fd274c814761a56749e7",
+      "publicPuzzleHashSha256": "42bfacea29c670034c2ca37253aaf5d89fd9fd42d8412ccfedda66cd5cf08a75",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-04",
+      "path": "Content/Levels/s1/03/02/S1-03-02-04.level-v2.json",
+      "gitBlob": "3107fa7b3753cf1c6bb2cbeaac3d77c9f975525d",
+      "rawSourceBytes": 2592,
+      "rawSourceSha256": "211e443e2193fdcba0dbd6434d98a1722fd0438e0492e0cc8bf0b449e42f6e5f",
+      "publicPuzzleHashSha256": "62b1ce7b043a21de7b208bfbaebc44fb7399944a72fb345b0c13f49149934620",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-05",
+      "path": "Content/Levels/s1/03/02/S1-03-02-05.level-v2.json",
+      "gitBlob": "5223f1328fe38f0033646b50a2aa3bca3dda874d",
+      "rawSourceBytes": 2888,
+      "rawSourceSha256": "9aec2f371096751ce6281e43a16d13117fd02c735a619854f80d408e1b73aa32",
+      "publicPuzzleHashSha256": "30a3a85959ac12977bc6627a601a42e5454903fdd410d0230f9a12dc69cf9eab",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-06",
+      "path": "Content/Levels/s1/03/02/S1-03-02-06.level-v2.json",
+      "gitBlob": "2587171d7710f1c491544b1c1222600e7be8e1cd",
+      "rawSourceBytes": 2548,
+      "rawSourceSha256": "eee64ae668540c2857d68533de0e5506ff88d84f7b0db49cebb44fd00fa5d61f",
+      "publicPuzzleHashSha256": "87c520e2d89a0a515a9c92cfade4f23be154b97f3b57bdf3fe969f5be0e76284",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-07",
+      "path": "Content/Levels/s1/03/02/S1-03-02-07.level-v2.json",
+      "gitBlob": "20ce032762bb5728eb2e9aee97a8875c579f887c",
+      "rawSourceBytes": 3123,
+      "rawSourceSha256": "54594307405ef7d9a2f5c61ce016240cc4e261c8a19dd6f96cef92549e54aceb",
+      "publicPuzzleHashSha256": "41b3453f40a30acf5f631c34e43ccbd2a16cf4be19d57e4f01ee7fa81c45d670",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-08",
+      "path": "Content/Levels/s1/03/02/S1-03-02-08.level-v2.json",
+      "gitBlob": "b55257abe29c74ec2d9e21f4059f1637d3baa5e5",
+      "rawSourceBytes": 2675,
+      "rawSourceSha256": "c7cd09157c1cc46ae978d2071e6218d817140c815c0f77cd92f877884c238684",
+      "publicPuzzleHashSha256": "9f8abf80c708ca575deb465cf0955ca9270fe63283e84eb39df8ce931e8bd77c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-09",
+      "path": "Content/Levels/s1/03/02/S1-03-02-09.level-v2.json",
+      "gitBlob": "958b50ba45f18b584ba6eff2c649f1fedcce680b",
+      "rawSourceBytes": 3254,
+      "rawSourceSha256": "4f71ecb5452dfebc61d3caec42d9c2b3897eb3e29287fcc7f82edeea9f8123f6",
+      "publicPuzzleHashSha256": "257dc9462e74ad565efef9ef0b174af77337ef07a7977e56d6668b7519603ab1",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-10",
+      "path": "Content/Levels/s1/03/02/S1-03-02-10.level-v2.json",
+      "gitBlob": "42a6a4b54ea6f4cb77fbec8597a4600486064ccb",
+      "rawSourceBytes": 2678,
+      "rawSourceSha256": "165b5e80bccf7b19ccc5e0043b0221b0254950192f9cb3429b41617dc8e7ee48",
+      "publicPuzzleHashSha256": "b728cff907c22b067182e1d8bd4918b2f3b1015b52db5dc940336eea1879aa6e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-11",
+      "path": "Content/Levels/s1/03/02/S1-03-02-11.level-v2.json",
+      "gitBlob": "f9184168e4980783bcd4f6cf0cf737a837740066",
+      "rawSourceBytes": 2814,
+      "rawSourceSha256": "6c9c0066db5e25ec400a0a35a5225fd3830cf7fca4c667ce5ed6a3dfa0b06c42",
+      "publicPuzzleHashSha256": "6f05ce9a1fd001196d6a78b51810f91452271f86c76b856f061844890cf0a0a0",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-02-12",
+      "path": "Content/Levels/s1/03/02/S1-03-02-12.level-v2.json",
+      "gitBlob": "54ed41bd544c2309726dfee761accc51477c4204",
+      "rawSourceBytes": 3196,
+      "rawSourceSha256": "b1310857e0f9e0dde008dc3375934a0edb51ef39635f2c86f052c44bf008341a",
+      "publicPuzzleHashSha256": "4fda465ce8a4dd0c781179eac7e043b5eccab2eca0aa934c969544f23575c99f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-01",
+      "path": "Content/Levels/s1/03/03/S1-03-03-01.level-v2.json",
+      "gitBlob": "79c49426a2357a4b499e9fbf8a7091dc022e5295",
+      "rawSourceBytes": 2912,
+      "rawSourceSha256": "3d251f372f6c746cc47652569c80dd8762335bc6d09e9b7e1acedcdcd4d5ff7d",
+      "publicPuzzleHashSha256": "2be576ed43be56c29fc5c82447d7ee40679db4784c53c94df8efb478d7441163",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-02",
+      "path": "Content/Levels/s1/03/03/S1-03-03-02.level-v2.json",
+      "gitBlob": "b533f4d7067f7e33a014a40a03636193aea8417e",
+      "rawSourceBytes": 2302,
+      "rawSourceSha256": "4981ef213823d1a7a5c79838fc62f32e5b8c3479e776412af6f3ff5978cebb55",
+      "publicPuzzleHashSha256": "c260a849ed8c30393c4ba86551ea8328e6359fa0f6635537dc7582a96b34c466",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-03",
+      "path": "Content/Levels/s1/03/03/S1-03-03-03.level-v2.json",
+      "gitBlob": "d696a381c774361d41f35e87cd03500953321410",
+      "rawSourceBytes": 3100,
+      "rawSourceSha256": "ea62e5026bba2c31631df2d0ffa8f1caef985cc0340645b33db7fe687c36e0bc",
+      "publicPuzzleHashSha256": "5491739aa0196cf856300eef82b7fd73c445880e5de8a03b0fbd4d470decaae5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-04",
+      "path": "Content/Levels/s1/03/03/S1-03-03-04.level-v2.json",
+      "gitBlob": "271a1a3bb324dbc34146a2f800367b5644b8ffeb",
+      "rawSourceBytes": 3197,
+      "rawSourceSha256": "01de9f0c33dc837937c9aff8d84715f8b4b1e3a316823816c2f9f05dc577de92",
+      "publicPuzzleHashSha256": "1b8b3865c26802555b64403a3c2cadbd49e22e5bf88940f18809b5dfbba3dbb5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-05",
+      "path": "Content/Levels/s1/03/03/S1-03-03-05.level-v2.json",
+      "gitBlob": "eb57f348d32ed429bfab1e0ffb2fdd26c117d175",
+      "rawSourceBytes": 2683,
+      "rawSourceSha256": "cc590288570b80d18e3438caa5987785bd1c981ee57f063bd7e231b20b374d64",
+      "publicPuzzleHashSha256": "1e8fa8e146e94a6fa3bf0dc312e341e6b7594bf48bb67971309ec25b8c46db9a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-06",
+      "path": "Content/Levels/s1/03/03/S1-03-03-06.level-v2.json",
+      "gitBlob": "cbcd131142a97a4d5556b1e7563bfc7f3701a472",
+      "rawSourceBytes": 3361,
+      "rawSourceSha256": "41f6989be6234a6a66438aef59a3b5df897dfa61ea7ddee39e275ca23f4fb9e0",
+      "publicPuzzleHashSha256": "3e27d0c4feab95ad7d5e05d9182e5f438805f88cfdb3edbc8fb384d1caa2cd0f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-07",
+      "path": "Content/Levels/s1/03/03/S1-03-03-07.level-v2.json",
+      "gitBlob": "b5b8a2fb04db85bf3aa5ea65e9c75c5829171b33",
+      "rawSourceBytes": 3054,
+      "rawSourceSha256": "bb8b55c23a4fc454f19a9359eb066f69f5dc403929dcfbac84c37cab3356f11d",
+      "publicPuzzleHashSha256": "757d99d09bad36082e23bb9157883dde7b8a789dec2f4d6bd4c3657897c649ca",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-08",
+      "path": "Content/Levels/s1/03/03/S1-03-03-08.level-v2.json",
+      "gitBlob": "674c538460ca33afd4e9ceea2006813c37735ce7",
+      "rawSourceBytes": 3079,
+      "rawSourceSha256": "a0c4f8f23c203f8a6a49ab1b1baa427e35daecd999c88cc06b6131a005b2759c",
+      "publicPuzzleHashSha256": "9a7163006522f5de587fbee86d8a81daf2cb5f1b9207242337787ee2b7b2c3b2",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-09",
+      "path": "Content/Levels/s1/03/03/S1-03-03-09.level-v2.json",
+      "gitBlob": "3c093f39d6a83e57b2bfc41e887e1ad65b29434b",
+      "rawSourceBytes": 2699,
+      "rawSourceSha256": "c6e6b958b541bc21243930e202f979cf9a424c8dd619767a7ac37871fee7d7bf",
+      "publicPuzzleHashSha256": "fca4a74ced552cc16dbd6414ddc242df01285ed92157a006bdea381bb85f0896",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-10",
+      "path": "Content/Levels/s1/03/03/S1-03-03-10.level-v2.json",
+      "gitBlob": "11267125f41f8c38dedf164e148ec1ae8fd851ad",
+      "rawSourceBytes": 2742,
+      "rawSourceSha256": "69d75894906fe59c7008090594e14ddc9ea76e97cb598c1ba1ecff124d47fb41",
+      "publicPuzzleHashSha256": "d589b8d8224d60ff051bbd984c8126117525fcb1005385c626bd085b030cb119",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-11",
+      "path": "Content/Levels/s1/03/03/S1-03-03-11.level-v2.json",
+      "gitBlob": "ea3e8150a045d4894f616f0d247010058855f510",
+      "rawSourceBytes": 2628,
+      "rawSourceSha256": "42a25bc7883948e1e725b99cb7b95144634992f0197bbe8552933b113b6ad6aa",
+      "publicPuzzleHashSha256": "a7b64d0138c5f5cce7840bee379226f89064474983706282cd9c5bad03e07abc",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-03-12",
+      "path": "Content/Levels/s1/03/03/S1-03-03-12.level-v2.json",
+      "gitBlob": "6feed438914a2c212bfd0f7685eda58ed3322136",
+      "rawSourceBytes": 3798,
+      "rawSourceSha256": "83c9624241a062cca94c018970405267c572f5d87e21eb6ee7e704fc4b158895",
+      "publicPuzzleHashSha256": "76be41bc0a764943f31ab8fbdbfaad129c2fd082dcfdd83d6538f8836fb54ad4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-01",
+      "path": "Content/Levels/s1/03/04/S1-03-04-01.level-v2.json",
+      "gitBlob": "5332e14969d5f9b752fdc33dbbddd70f5c5ef66c",
+      "rawSourceBytes": 3141,
+      "rawSourceSha256": "ddc0bbc23f5c9ae3c7ea438c7eb577984e27bee881df3ac8a2b68e2197d5244d",
+      "publicPuzzleHashSha256": "db0727f0b3b27ee4456f7d3657ee118ff53eb514c5bdd9af5f6a36fb92e06abe",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-02",
+      "path": "Content/Levels/s1/03/04/S1-03-04-02.level-v2.json",
+      "gitBlob": "76376f751fb32f16088ef395d106e611b90b9b84",
+      "rawSourceBytes": 2352,
+      "rawSourceSha256": "15340eba65292a4ff971312f6eacac59a0e5e0ae050abc34662f684a9b7dca4e",
+      "publicPuzzleHashSha256": "b537eea8ca2968fad2d58f94af6b37af76973c372ee2cfb04e8d6455d5cf7b57",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-03",
+      "path": "Content/Levels/s1/03/04/S1-03-04-03.level-v2.json",
+      "gitBlob": "c43efa9f4922a4e38e3b58671d0feb08260d4388",
+      "rawSourceBytes": 3138,
+      "rawSourceSha256": "f082e9eedddb3eca2409c103ed93a993ae8c08fbb6c3e4db1f298e627b4f7a3c",
+      "publicPuzzleHashSha256": "a6ec4d1994baf8c29b63bbbd3ef568e63c2c310b6b7b5a4bac4e5dde90965133",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-04",
+      "path": "Content/Levels/s1/03/04/S1-03-04-04.level-v2.json",
+      "gitBlob": "6839b4a509b9dbb33a0f79bc7f3616e49f7be092",
+      "rawSourceBytes": 2694,
+      "rawSourceSha256": "ff8475d3c2cb1ef345d7e163c1ce4593a306b28af8b6bf36b570e1d9af51f206",
+      "publicPuzzleHashSha256": "fa92f3959f41f6d0c20041aca0a8534aecb4cee1b3c4556c6ef3c7fbf1533f71",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-05",
+      "path": "Content/Levels/s1/03/04/S1-03-04-05.level-v2.json",
+      "gitBlob": "424364fbaad042e692789c090d4697d1bdd713ae",
+      "rawSourceBytes": 3215,
+      "rawSourceSha256": "736e561c685d752f76d31021e63d8aa0bdcbce59de7c4add1f6b237f518a79c6",
+      "publicPuzzleHashSha256": "dee705be3d852fe46524ce0d67753f59a355a12437fbba44f890edc4822a1878",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-06",
+      "path": "Content/Levels/s1/03/04/S1-03-04-06.level-v2.json",
+      "gitBlob": "b6fd80ed97f260b08e2004baa496aaf14346ae3d",
+      "rawSourceBytes": 2612,
+      "rawSourceSha256": "6b24c7793ccc07426cc707d0187acb8cb35628e997f8000b162569e851acbce0",
+      "publicPuzzleHashSha256": "8afac10dc984a41b98011ffe6a51977a9b27e0aa11ea61a4fa4cfcafad8bfb8c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-07",
+      "path": "Content/Levels/s1/03/04/S1-03-04-07.level-v2.json",
+      "gitBlob": "4fdf1bab7c80748ae85a203635c62d049ab1c275",
+      "rawSourceBytes": 2874,
+      "rawSourceSha256": "c3676d71a40afa4261e089f1715d41efbf14764f165be8a23f1f4cd335431d34",
+      "publicPuzzleHashSha256": "419952dd48056958f0f957fd849de341eafdc957b812db21950ae9c7f1cfba37",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-08",
+      "path": "Content/Levels/s1/03/04/S1-03-04-08.level-v2.json",
+      "gitBlob": "50a2ca4a324504add5fc2146fd2bcf0102c0c633",
+      "rawSourceBytes": 3398,
+      "rawSourceSha256": "2b54b825303e9cb34aa7fada51f2e958eb31b8599ca4b2c9824b091818654482",
+      "publicPuzzleHashSha256": "bf4fc2fdfae5954f2ae12769a5a3f27fa832fcfe94d59ced1ff8bdc3d25c962f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-09",
+      "path": "Content/Levels/s1/03/04/S1-03-04-09.level-v2.json",
+      "gitBlob": "da016ad04571d38a4ab48f01e655c902210e2668",
+      "rawSourceBytes": 3105,
+      "rawSourceSha256": "01657037907a721d0b56fdb90d53ead24bea77d0722d00e6fcf63e6686128e11",
+      "publicPuzzleHashSha256": "5d9f168c0123c04cbc5749752ed2eb4077be0a9e9dcc4ad122a0d81db6cec3cb",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-10",
+      "path": "Content/Levels/s1/03/04/S1-03-04-10.level-v2.json",
+      "gitBlob": "eef7d01fa5490eb808cb88cc3dd18d975c8272ea",
+      "rawSourceBytes": 2602,
+      "rawSourceSha256": "68fdf32afffdaf01e4c4347971e80d4aafe05f33a044ef0c46cb08d74753c961",
+      "publicPuzzleHashSha256": "9ffee85d001f3b944176258baa01df0f1b9a911ac803f8605bae05110312a1de",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-11",
+      "path": "Content/Levels/s1/03/04/S1-03-04-11.level-v2.json",
+      "gitBlob": "53e0bf329c244f88b925da7272c4c31ddd536b63",
+      "rawSourceBytes": 3161,
+      "rawSourceSha256": "165820f9ef6cb32c8b2c9101bd3cc85c7bae2826fdf4ded42afc3ed589f425e2",
+      "publicPuzzleHashSha256": "fc25f506c8e139583b08f2e1e30edf07debe888c2b86246eab7639ccd4b2d6e0",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-03-04-12",
+      "path": "Content/Levels/s1/03/04/S1-03-04-12.level-v2.json",
+      "gitBlob": "1e0f9e0265f1b3623672d5d4b83223adfc1e59ea",
+      "rawSourceBytes": 2858,
+      "rawSourceSha256": "58ea11b40bc7adbaa478eb34e401390bb27c28343a809ea4e5d4694226bd9214",
+      "publicPuzzleHashSha256": "530780a0b110e9300f7535453e123886b1b477c2c587b4f1a2c2cae44b3015ba",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-01",
+      "path": "Content/Levels/s1/04/01/S1-04-01-01.level-v2.json",
+      "gitBlob": "3c1a852f3d3d75b7bc53d9246f56f740bfdd30b0",
+      "rawSourceBytes": 3110,
+      "rawSourceSha256": "dcd031e39231f576e654bf4bca512cf0aadf46bd4cc6785d2a2a6cf2ebef9174",
+      "publicPuzzleHashSha256": "c4f645fac89c728598b1e967c87b61201df447a0dc076db6b038e7ed34c293f7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-02",
+      "path": "Content/Levels/s1/04/01/S1-04-01-02.level-v2.json",
+      "gitBlob": "fc39e9c757983b5c5211271b0ba2d05d4fb34857",
+      "rawSourceBytes": 2438,
+      "rawSourceSha256": "d64f42bf16ba955c894ce68fbeee4ac8f2a1f069fa567fb3cf4f1bdcb29c2ee4",
+      "publicPuzzleHashSha256": "e9c5471ab2462575a33064faaba0affcd729bb06f8e8594cd4ac36235548b437",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-03",
+      "path": "Content/Levels/s1/04/01/S1-04-01-03.level-v2.json",
+      "gitBlob": "0650900df7711f959985810d664d7a16f2cb03d5",
+      "rawSourceBytes": 3397,
+      "rawSourceSha256": "7ee264945f54e1970348909286b12540f9c47c6513744d38af86addaaf40b500",
+      "publicPuzzleHashSha256": "62cdb1738b56916657ced66a72199b8017fa068403ec5c3f209ff994036ca2e4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-04",
+      "path": "Content/Levels/s1/04/01/S1-04-01-04.level-v2.json",
+      "gitBlob": "6dc7e84a55781fb4e797aea71077fb2d1328a1e7",
+      "rawSourceBytes": 2947,
+      "rawSourceSha256": "294debe4a279cf5c5fdea267d6809c6a27b91d02a538a0394e7f98794e704c86",
+      "publicPuzzleHashSha256": "0d0b33f7aca2e539a4544f93f1b0f23e1e2a3bdf8048c03d2a6d03885f5f2b77",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-05",
+      "path": "Content/Levels/s1/04/01/S1-04-01-05.level-v2.json",
+      "gitBlob": "09c2ff66174c680fbc0f814159377e22e619886c",
+      "rawSourceBytes": 3257,
+      "rawSourceSha256": "b00f3b21c5c35eaa56c929d5eb866ea85c68803debd0751f752ccd9626db1d6e",
+      "publicPuzzleHashSha256": "f3341bd205ee992e494abdc4b0d9e159cbe2b697ed52af3cc0f40673ec84109c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-06",
+      "path": "Content/Levels/s1/04/01/S1-04-01-06.level-v2.json",
+      "gitBlob": "f062c3c335cf78b910735af7c9f8646f32cc7140",
+      "rawSourceBytes": 3059,
+      "rawSourceSha256": "cfcc598b63b75362036d6e23bcdecc35e6127654efd597fe27df84c7598cb86d",
+      "publicPuzzleHashSha256": "dbc049e8fb831a136158bf4e13f2975bc8f8afac4a225d87a7bdc88c383f3afd",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-07",
+      "path": "Content/Levels/s1/04/01/S1-04-01-07.level-v2.json",
+      "gitBlob": "8d9f0f789aa2912b43d995a485e3c205b53d81f7",
+      "rawSourceBytes": 3079,
+      "rawSourceSha256": "8aea8bfd4cddeaa4ee5453da7d8b5dc00dd2f1864918b625b312398f9c7b7860",
+      "publicPuzzleHashSha256": "f279099169ba49a77c043f214b318a57c336a93cb6b2e55a38d0240c716395be",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-08",
+      "path": "Content/Levels/s1/04/01/S1-04-01-08.level-v2.json",
+      "gitBlob": "2ea6859ca643fe4f2c21781e20fd3a6bcfa094de",
+      "rawSourceBytes": 3547,
+      "rawSourceSha256": "f2c8fce6d5cefd051034757882ec4bca41c1292aade7af8fbeab919cf45b3043",
+      "publicPuzzleHashSha256": "c912f5e5eb029ef70b32914ac84e2a7789ecd4191329627d2342d2a191e3fb2d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-09",
+      "path": "Content/Levels/s1/04/01/S1-04-01-09.level-v2.json",
+      "gitBlob": "21677e885f1db03edf6aeb2f432b60aa53742983",
+      "rawSourceBytes": 3821,
+      "rawSourceSha256": "aa4230b242943366368144470f5d1c6c38666c2c6d59789d750632fb40a60649",
+      "publicPuzzleHashSha256": "80e8d5c9b862cf3fd758f29bd3ff4257de79c4fbc9edd09bb55e69c3ad3f7471",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-10",
+      "path": "Content/Levels/s1/04/01/S1-04-01-10.level-v2.json",
+      "gitBlob": "5b53225e8c5c98166f217a8044fcceb6013fffce",
+      "rawSourceBytes": 3529,
+      "rawSourceSha256": "2d35de711c42955ff44abd0321452eb96e4eb8d8bb28dc5dcce4b1ed59038516",
+      "publicPuzzleHashSha256": "5d6d3be6fb9d008d28ba5060bfe8e4c4f8b1d8331e0dc775bc26379f48aef1e1",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-11",
+      "path": "Content/Levels/s1/04/01/S1-04-01-11.level-v2.json",
+      "gitBlob": "ee9fae916ade8b8d5458096d11f67d0df79379f1",
+      "rawSourceBytes": 2685,
+      "rawSourceSha256": "e27723e14a6c87db3254ddb68f670d9e86bafebe708d93e2651fadf9c9b54004",
+      "publicPuzzleHashSha256": "e4ac05416960865999cd543753ee6075c876057607454e791c38a2b2bb8b7b19",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-01-12",
+      "path": "Content/Levels/s1/04/01/S1-04-01-12.level-v2.json",
+      "gitBlob": "f9d733bdd60e64ef84cc6838148745cb3ef26e2a",
+      "rawSourceBytes": 3156,
+      "rawSourceSha256": "1a12dd227633bd4de1e96d8cb94d6354cf216031c7dbfe49f0ff25b07270d356",
+      "publicPuzzleHashSha256": "48950e2edcd749b6ca93d86a6160fd73e7d837dd1d4528b36cbfbf8146d86164",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-01",
+      "path": "Content/Levels/s1/04/02/S1-04-02-01.level-v2.json",
+      "gitBlob": "439ff1b7ce146fafd8f3193051394b5188e19c48",
+      "rawSourceBytes": 2413,
+      "rawSourceSha256": "b058ad3fcc9a4f0b9609ffe3aff2c75b6a848ef1821886b4330aa824fd0a6a74",
+      "publicPuzzleHashSha256": "1a41b8029b82ec145629478c98e93c14fa02f189f6a0977b7516d2f967171fb7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-02",
+      "path": "Content/Levels/s1/04/02/S1-04-02-02.level-v2.json",
+      "gitBlob": "98d650df28f6adfdfedf4fc0fe5e9fd03f711984",
+      "rawSourceBytes": 3942,
+      "rawSourceSha256": "a0ab664a6c1f52c534f3044101b6885ae4d46b9046b6705e792c6b94b46d76ba",
+      "publicPuzzleHashSha256": "44966ee83aa19c80bbeec5110b3b0d110089adcd80348d358270a4b65d581ec9",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-03",
+      "path": "Content/Levels/s1/04/02/S1-04-02-03.level-v2.json",
+      "gitBlob": "b67f64956cd0b5046787b3e724e82a69854e3209",
+      "rawSourceBytes": 3454,
+      "rawSourceSha256": "6e5d478d020c9ec8c737113b08f2243cfeb124a5389c6429103c49105ea1d54a",
+      "publicPuzzleHashSha256": "2c60f24e5de6bf2f4c063ea9cdcbb09ff6dfa8299458a04e0d0fa71ac6e20254",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-04",
+      "path": "Content/Levels/s1/04/02/S1-04-02-04.level-v2.json",
+      "gitBlob": "30eea69e51fea43fd9610034b56d5b5e3a74e0bd",
+      "rawSourceBytes": 3233,
+      "rawSourceSha256": "dd3ae391986926d1ba8fe6dede3e2b015fcfe7b5f4ad05a63be273c3c798e3ac",
+      "publicPuzzleHashSha256": "577167b1063c48f688c8d32ad5c21e3e70d25eaad7ebf18b75f77665adfaa7fc",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-05",
+      "path": "Content/Levels/s1/04/02/S1-04-02-05.level-v2.json",
+      "gitBlob": "144c61efd8800b822d95e6b3a776cdb0167f9f12",
+      "rawSourceBytes": 2781,
+      "rawSourceSha256": "ed52f87c552827e5423fe75fbd38218d5da449fc12600652c2e2c9c00574a199",
+      "publicPuzzleHashSha256": "35ddc448a78d1b8fa785b4a5ae165da1a8b12860e8423816901aecb396f7c67a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-06",
+      "path": "Content/Levels/s1/04/02/S1-04-02-06.level-v2.json",
+      "gitBlob": "f097a93cc3a65c240b585cda03afb7296100a92f",
+      "rawSourceBytes": 3218,
+      "rawSourceSha256": "a6150dcaceba7cb3a10da07e336c399fa83d2c6a8ed39eb09a7cc2343e3f8421",
+      "publicPuzzleHashSha256": "f115e3887c39f164cef0ce028360c2cb6a76d8c7e6bac5751fcd8295efde3ea3",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-07",
+      "path": "Content/Levels/s1/04/02/S1-04-02-07.level-v2.json",
+      "gitBlob": "8d4e28ff179a6fb4e07d898ad3a0941727d0bf96",
+      "rawSourceBytes": 3059,
+      "rawSourceSha256": "6b55ac809c6a2672a29a68d8cba61cf5daf99c28d178f386701e2b73aba3fca3",
+      "publicPuzzleHashSha256": "e25e3edecc1df9bea53f949f408b3944e9121cf05c92f61ecc8436568983cfc6",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-08",
+      "path": "Content/Levels/s1/04/02/S1-04-02-08.level-v2.json",
+      "gitBlob": "e3a528999de748c522d55e878373a817bc5a01e0",
+      "rawSourceBytes": 3314,
+      "rawSourceSha256": "ad865ddf91c041d425d94f7d5bb8ca8bc6bc7dd235037c2bc78da4c0fa97803f",
+      "publicPuzzleHashSha256": "240343adc7e1f566f11940367b5921e1066964d5043b9f47ddaa1f304daee76a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-09",
+      "path": "Content/Levels/s1/04/02/S1-04-02-09.level-v2.json",
+      "gitBlob": "eb7cdeeec50699c03be848322247ad749303afce",
+      "rawSourceBytes": 2753,
+      "rawSourceSha256": "7afc7dca8ceba37bfd002c631bac596b32a89e8dbbf4857a0d8ee5d6e410aed6",
+      "publicPuzzleHashSha256": "453e0d6f3abc021cc7532a9129780abde25971dacab257f6edd3a5d59c6bda48",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-10",
+      "path": "Content/Levels/s1/04/02/S1-04-02-10.level-v2.json",
+      "gitBlob": "64e766835c8fdbb89d25aff544239684ce0702fa",
+      "rawSourceBytes": 2632,
+      "rawSourceSha256": "5ef70bfbeb3ae2ee77c19114eccce4a3701cbecb5a865ab3f881dc19625b1062",
+      "publicPuzzleHashSha256": "778703512fd6d9cd1847adf6ca6bf633a4c45a654a9149a0e50cd90713cb5733",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-11",
+      "path": "Content/Levels/s1/04/02/S1-04-02-11.level-v2.json",
+      "gitBlob": "703259eb1cff376dbcfc8b65cb86dda29a5beb75",
+      "rawSourceBytes": 3990,
+      "rawSourceSha256": "75c9b02573650535828867cdb800aae8b67d6ada9c815397393b3fbdc05f87ff",
+      "publicPuzzleHashSha256": "421f98ba674b2c6918e4aee1600c5aed6d57d3a669a53cbc3287231765d8a339",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-02-12",
+      "path": "Content/Levels/s1/04/02/S1-04-02-12.level-v2.json",
+      "gitBlob": "80ee37fbac7c97b5f41b6efe54bb46170a9513f5",
+      "rawSourceBytes": 2763,
+      "rawSourceSha256": "2a6fa3e374f0d2ec7c12de589e07f16dcfa3e087417103651ff72ba33ead3d76",
+      "publicPuzzleHashSha256": "7f65c88e97756f979f58c7508944a1d62cb13c62b87ac2a4eb0e2bf288884c5e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-01",
+      "path": "Content/Levels/s1/04/03/S1-04-03-01.level-v2.json",
+      "gitBlob": "bbecc8c632fc137d9db33c1008dd4be8281ae7ab",
+      "rawSourceBytes": 2449,
+      "rawSourceSha256": "5890c16746e7eba719911b59d681d7f6c793717b573cc8ea0978e3e93af23b10",
+      "publicPuzzleHashSha256": "5b6532bb3e31ff0f7af9837923f32cb2156fec671ff1cba3d4d5c5d7b6ac228d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-02",
+      "path": "Content/Levels/s1/04/03/S1-04-03-02.level-v2.json",
+      "gitBlob": "343c7ab36a4eb592ad2c91ef818cea139662b742",
+      "rawSourceBytes": 3720,
+      "rawSourceSha256": "f9b004df9a42bb6c678506936fd82a4c0ee087b8424af64e3a0ef48c250530e2",
+      "publicPuzzleHashSha256": "7b42ab2de21ca0114f21ef6717163fa9b894f034053566eb45df89a85ce2ecef",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-03",
+      "path": "Content/Levels/s1/04/03/S1-04-03-03.level-v2.json",
+      "gitBlob": "edbc61e499ef62b88675ae0c08d74ef997994c52",
+      "rawSourceBytes": 3073,
+      "rawSourceSha256": "3c70b8f7ec895c9fdf1a8c2248f140681ba9f53a652edfe5c78734ffb1ea37b0",
+      "publicPuzzleHashSha256": "59313613ee672dead788eae88fadc4545c4cb745cefc4ede2cd1ecc5c7f11766",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-04",
+      "path": "Content/Levels/s1/04/03/S1-04-03-04.level-v2.json",
+      "gitBlob": "0bcec6551918ae4069c07c8b77930de68422cfea",
+      "rawSourceBytes": 3747,
+      "rawSourceSha256": "ddbffa19426c3529296dc506f816a60c1886120c00bc20a46b4a2632ddbc414f",
+      "publicPuzzleHashSha256": "3561214c2e206eb3755176fe5d8a77d0dd82b7314f6b6614a8b99d24bec95062",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-05",
+      "path": "Content/Levels/s1/04/03/S1-04-03-05.level-v2.json",
+      "gitBlob": "f29890057e93fda6ae6e95ff290b0bb2dcb5594c",
+      "rawSourceBytes": 3046,
+      "rawSourceSha256": "19fe195fd1dc3b80065415d1aa5f6aadb7b175355b220d19b4b0181bb77e0dcc",
+      "publicPuzzleHashSha256": "e75cd6a9e97a8bdc1b7b6a8320ce3f0962a6d3ea334609e70eab9f99c14db170",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-06",
+      "path": "Content/Levels/s1/04/03/S1-04-03-06.level-v2.json",
+      "gitBlob": "ead4153aa0383522df0929759bcede5cfae91fdb",
+      "rawSourceBytes": 3136,
+      "rawSourceSha256": "b258b6404a8d613eb057ecedce3a2132e46df14131a436f62da009d6865937b7",
+      "publicPuzzleHashSha256": "293b1145ac0508cca1caac730095fdae0342a17e53cbf44e88d0d7892e20d207",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-07",
+      "path": "Content/Levels/s1/04/03/S1-04-03-07.level-v2.json",
+      "gitBlob": "3574907c7591a591ff572b240967e7f77a8033a9",
+      "rawSourceBytes": 4350,
+      "rawSourceSha256": "794bbb88cb8ca9293fa27475948fbe520e922b3b35ebba8ca5775ff63a5353f4",
+      "publicPuzzleHashSha256": "a8a52c8cd073b5d6da1c5485c794dac0a10eae829e08d74756f8bc9eee604c4c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-08",
+      "path": "Content/Levels/s1/04/03/S1-04-03-08.level-v2.json",
+      "gitBlob": "9cb032f9254da8693581c68875ca853f1d0cda87",
+      "rawSourceBytes": 3787,
+      "rawSourceSha256": "e147cb235fbeab4e382b1d5405ebe25d3bada03e8de383a615cfc709c8c5686a",
+      "publicPuzzleHashSha256": "81c265693fdbd89b78bd2068038c85dd1aead60d1f10ac960a4290c7da5d687d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-09",
+      "path": "Content/Levels/s1/04/03/S1-04-03-09.level-v2.json",
+      "gitBlob": "c000d936914be1c9e7571688f6912ae7c7c93754",
+      "rawSourceBytes": 3163,
+      "rawSourceSha256": "c1620f218800d94c064030572fc4f3eacc78a9f429d745cdee13d6fd4d67be8d",
+      "publicPuzzleHashSha256": "578626c0fc00cddf6076dab742af990e63c0e6ad987221a226772493613a8124",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-10",
+      "path": "Content/Levels/s1/04/03/S1-04-03-10.level-v2.json",
+      "gitBlob": "b9ea99d50d121971346a6c04f019ada47da6a589",
+      "rawSourceBytes": 3250,
+      "rawSourceSha256": "c48657a3712107f1afea9eb61525a363248e9d87ab65610281ca944537723f80",
+      "publicPuzzleHashSha256": "818874fb0d763a1b93e7932aa4bca6d494974dab2946796dc08f9c4e5cf1d1c0",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-11",
+      "path": "Content/Levels/s1/04/03/S1-04-03-11.level-v2.json",
+      "gitBlob": "69971947a832b539f41cd3816789e335649b7a1b",
+      "rawSourceBytes": 3094,
+      "rawSourceSha256": "73534e8d31353c9b908af1bf7d62bc6e78916674beb2847b4bb3e7379a9d314b",
+      "publicPuzzleHashSha256": "d28e46bf2e385a99409c39049039e857d06bd96f8dd8de7a0a1243d9e09fdad4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-03-12",
+      "path": "Content/Levels/s1/04/03/S1-04-03-12.level-v2.json",
+      "gitBlob": "9c78ed60a4219b789606299ab4d3ec8ffc570c31",
+      "rawSourceBytes": 2926,
+      "rawSourceSha256": "0792c8f9a3c74498b2af4b64da4ee66c7d9f3e9ebbbc48fa964e6c20c2ecc913",
+      "publicPuzzleHashSha256": "2114c6be7b4ebb46fd61a115ccb51ea1f99273971ea49ca2ccdbfb877dc58d92",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-01",
+      "path": "Content/Levels/s1/04/04/S1-04-04-01.level-v2.json",
+      "gitBlob": "b4fc69f4c6a15b4c3d8c8fe07d3622b40e0a6f61",
+      "rawSourceBytes": 2694,
+      "rawSourceSha256": "3365f006c63e4d0f444d91b1cbc3e3126362cdbb2306b7318b79275468eea548",
+      "publicPuzzleHashSha256": "ba5b7f8c068d5f3fb62383c0c1f6fd9f318089f9fe631582486f19df3af4e533",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-02",
+      "path": "Content/Levels/s1/04/04/S1-04-04-02.level-v2.json",
+      "gitBlob": "1266ae33e3564baf20be918fe904a248dd9b478e",
+      "rawSourceBytes": 3326,
+      "rawSourceSha256": "cc2d62bff5f3b937ff9185886e49110877d7dfd66c7a71258457803bf9086d11",
+      "publicPuzzleHashSha256": "45fff7765f09ec2e87de68865ef890f51f5897fae46dd1c7ff15e547e7c573f6",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-03",
+      "path": "Content/Levels/s1/04/04/S1-04-04-03.level-v2.json",
+      "gitBlob": "1d94f2271cc033ee984db56140574a10f84b4c99",
+      "rawSourceBytes": 4075,
+      "rawSourceSha256": "b88bf057ba372b76d76bee5d4cdd59aed103ed27eaf1e811cebac9688396c12f",
+      "publicPuzzleHashSha256": "925d9c52b890f17dbfc65901c9324b8cdc09e045ed0bb218f098cfc346eccb6d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-04",
+      "path": "Content/Levels/s1/04/04/S1-04-04-04.level-v2.json",
+      "gitBlob": "33765da52e49f2f759cc8c4c5fe737c9c8054502",
+      "rawSourceBytes": 3054,
+      "rawSourceSha256": "21318bf47d3009e6b715521c13a1c7939fe1fc70d2de2a2ca781978bc4b58354",
+      "publicPuzzleHashSha256": "034b99d3e80a7500dc1c32f376b69449ca5fa9cfee6bd02969a88825d24bd947",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-05",
+      "path": "Content/Levels/s1/04/04/S1-04-04-05.level-v2.json",
+      "gitBlob": "69681020f2c7f4de09ba53f4489afa11807c5455",
+      "rawSourceBytes": 3060,
+      "rawSourceSha256": "7bf5c199a292ace14f63e3bd060c7888405f819df99a0ed79fbffa772ffdf42a",
+      "publicPuzzleHashSha256": "189ce48524ab21919ba51429b7d88558a4f4362e889a87926901a338f0c7f05c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-06",
+      "path": "Content/Levels/s1/04/04/S1-04-04-06.level-v2.json",
+      "gitBlob": "a9ccc1a30504634e86184e2fe9285b8888b799ca",
+      "rawSourceBytes": 3540,
+      "rawSourceSha256": "4081694780c3fe166319983406247daea3fb2a6d98ca041f83b0de002c21836d",
+      "publicPuzzleHashSha256": "96509234f0c65fe499b49cfc8e228a526087012d47afe4bd7ac20e32e4ab42ef",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-07",
+      "path": "Content/Levels/s1/04/04/S1-04-04-07.level-v2.json",
+      "gitBlob": "996128b5f6dbea72f943fd7330a67204b30db75a",
+      "rawSourceBytes": 3296,
+      "rawSourceSha256": "944ff0ff2343af8fc887db939b832191b9f89ee8a0517a90ac931524e11fa2e2",
+      "publicPuzzleHashSha256": "3abc34e2826261af31deee7cfd1ceaa2896c3d67069eed618967b821b93a5c3c",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-08",
+      "path": "Content/Levels/s1/04/04/S1-04-04-08.level-v2.json",
+      "gitBlob": "b72b5cbbf66f3d57a75ab4df4b3c729733d3a6e6",
+      "rawSourceBytes": 3551,
+      "rawSourceSha256": "fcc54b2aff9d1873afe69d5a2cfcd580695fa89f0568a7c8fb539ee30c5427ac",
+      "publicPuzzleHashSha256": "87935affaec0eeef6767e247b4a9ea04fd065721e754e22ff27cbb997cd03e58",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-09",
+      "path": "Content/Levels/s1/04/04/S1-04-04-09.level-v2.json",
+      "gitBlob": "edfbc7edb8253c53040c6adbd039a0c2e195a6e7",
+      "rawSourceBytes": 3552,
+      "rawSourceSha256": "7a2c996707b6aadd937b75569c9b3059303522c66f30a21982ce80a4af810448",
+      "publicPuzzleHashSha256": "bcbbbda09a827f2587d4717beff2db520e580a47740a0016735e00d120599332",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-10",
+      "path": "Content/Levels/s1/04/04/S1-04-04-10.level-v2.json",
+      "gitBlob": "b0effc056d205fb097bd377cb52c64ba93581b1b",
+      "rawSourceBytes": 3077,
+      "rawSourceSha256": "fc71431b137e47bab7db5632968913ce58fab7249c08f580f23c956328506a3d",
+      "publicPuzzleHashSha256": "be349a411ff4939ebfb04e4cc2774882d2c10dac9d1bcc5da4387c8d36f49f82",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-11",
+      "path": "Content/Levels/s1/04/04/S1-04-04-11.level-v2.json",
+      "gitBlob": "468ad4e6ce64cc499933de596e8276661e038c06",
+      "rawSourceBytes": 2940,
+      "rawSourceSha256": "fce11ad5f0c75eb8f817ab40547a35dfb832531bc6dddeb102f3403d392fb14d",
+      "publicPuzzleHashSha256": "831014489d007207e6f2cc98c51a8b26c6ecb53148e90a09c02105e1b93dce49",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-04-04-12",
+      "path": "Content/Levels/s1/04/04/S1-04-04-12.level-v2.json",
+      "gitBlob": "62262c7a52ca69dbf49619ec15e9113908e79c84",
+      "rawSourceBytes": 4093,
+      "rawSourceSha256": "210d072f396a989e1122cba1e34277ff1a84f501fd3122343e11f3cd2d555ade",
+      "publicPuzzleHashSha256": "ffe05f3eed7e2401f0809d89afa72d5f10d7ab2f04434ea111888808f69d8155",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-01",
+      "path": "Content/Levels/s1/05/01/S1-05-01-01.level-v2.json",
+      "gitBlob": "9a31fe5c0072c384467acb9adba323081cf0f4da",
+      "rawSourceBytes": 2494,
+      "rawSourceSha256": "90fa20e97925034114343e11231928aea5e606c43848d6bf3090ecf1f13dfa9b",
+      "publicPuzzleHashSha256": "feca1ca27fd30475098834baa61a0d4173879fa82e6fdd4342be9960ff19b8d5",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-02",
+      "path": "Content/Levels/s1/05/01/S1-05-01-02.level-v2.json",
+      "gitBlob": "e00fa2037b7b5c460f8846df981a61ae9817fdcc",
+      "rawSourceBytes": 4188,
+      "rawSourceSha256": "9483600f4e948fea20ec4f26b84e63e80b30d036333a772eb3ced26fc8ccbadf",
+      "publicPuzzleHashSha256": "39ead202c9b1b9d2ea5b0b9bc91abf5a7598d2dbead36913e9e0586827b75e22",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-03",
+      "path": "Content/Levels/s1/05/01/S1-05-01-03.level-v2.json",
+      "gitBlob": "6a10f6249242799acf81732001575e1c6374b301",
+      "rawSourceBytes": 3961,
+      "rawSourceSha256": "6dffba50bb0adced65e76a0e7c509d26f342003526d08993050b1f7e6409e0b3",
+      "publicPuzzleHashSha256": "01c1ffa87dcf6a4d2495d0c290dd3eacd4dd395b8558c9acf9e6c66555948032",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-04",
+      "path": "Content/Levels/s1/05/01/S1-05-01-04.level-v2.json",
+      "gitBlob": "b9a6cf5b53fcbe030a8e4ee754efca7ea987dc6b",
+      "rawSourceBytes": 2907,
+      "rawSourceSha256": "79de7eb68c2e0e8a125966efeebf1e29d60374c7a6c4363f02cad9c0d59df78a",
+      "publicPuzzleHashSha256": "ae384faaa4d9130715adc3c934489e43f866f74f98afc9d9868ac735f73e8929",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-05",
+      "path": "Content/Levels/s1/05/01/S1-05-01-05.level-v2.json",
+      "gitBlob": "76e4ecd0499f2a35a41bb502f419178596b00185",
+      "rawSourceBytes": 3035,
+      "rawSourceSha256": "b3a5382cbc56d56391467c9d84673b2e79830672654089b1eed2e5f16985a561",
+      "publicPuzzleHashSha256": "47f00d0a40bd9291ccb6f48d5be5cc4a222ec627551821087d2d7efe73e8be05",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-06",
+      "path": "Content/Levels/s1/05/01/S1-05-01-06.level-v2.json",
+      "gitBlob": "2e1332f604f3786c309ca2feaade0b79a8b53ac8",
+      "rawSourceBytes": 3375,
+      "rawSourceSha256": "f59999680159c3cde8626a76c516e3c7493d16f5963106cdc6e4ef4013741c5f",
+      "publicPuzzleHashSha256": "e362d51e91fb8705bf3fcb8e0a3a4be27122920f9d0138b9f1f321cd06f87054",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-07",
+      "path": "Content/Levels/s1/05/01/S1-05-01-07.level-v2.json",
+      "gitBlob": "0773bab74a4ba8837b3f76b7fab7863da3205be7",
+      "rawSourceBytes": 2917,
+      "rawSourceSha256": "01752357864fb5b65d3e2901e40df396a6b8fe843fe6f83fc47a16416dd2e6db",
+      "publicPuzzleHashSha256": "465fdf72348a120a30824f7ddcf56c2668b4d4b746af3e7f3c0ae9ea7e26d1f7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-08",
+      "path": "Content/Levels/s1/05/01/S1-05-01-08.level-v2.json",
+      "gitBlob": "3809ea4c8550b1cabcfe8523427e155afc923d11",
+      "rawSourceBytes": 3481,
+      "rawSourceSha256": "59be56c006b57572cc92d2ee40c6fc5f9cbb963290d02e38686a33a9240aa019",
+      "publicPuzzleHashSha256": "4886f3d7f567a169dce9748c7fe869df35404b14197a62127718971487c1ba2f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-09",
+      "path": "Content/Levels/s1/05/01/S1-05-01-09.level-v2.json",
+      "gitBlob": "dcec47249b2de8a8db8b83db669bbbb1d3c587f2",
+      "rawSourceBytes": 3114,
+      "rawSourceSha256": "3e0e85096da150102aa7b3506fe763e02e2e79349ac93780b755e6019add2388",
+      "publicPuzzleHashSha256": "b19080c6590f915757a3af719b34a2bc7d2dd4f532f730a2e2673aa245f683db",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-10",
+      "path": "Content/Levels/s1/05/01/S1-05-01-10.level-v2.json",
+      "gitBlob": "c9cb534ac2578c49d6fec251bf850c0baad3c51a",
+      "rawSourceBytes": 3180,
+      "rawSourceSha256": "9463e1ce51321aeeba0a387ab082fdce6db1b435ea2f0a06c8886fb58a8940d6",
+      "publicPuzzleHashSha256": "3398d8c1814971f4ee0ee55f1ed8ea995deb56cfdddc5886803857db8b12c9bf",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-11",
+      "path": "Content/Levels/s1/05/01/S1-05-01-11.level-v2.json",
+      "gitBlob": "478cf5723ddb6ba75c97f371b5525fb140d1b155",
+      "rawSourceBytes": 2945,
+      "rawSourceSha256": "3caa9d9a67ffe41c47f20e856186ca9cb2b1b957384cbd3db39238ea91967ea3",
+      "publicPuzzleHashSha256": "b49d64b3dc9dcaf0863d97ff4f644945204442238d43e7cfd14202a4d9a38b27",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-01-12",
+      "path": "Content/Levels/s1/05/01/S1-05-01-12.level-v2.json",
+      "gitBlob": "635b2871e0d5d92548b21bff4235c00fac0fccce",
+      "rawSourceBytes": 3098,
+      "rawSourceSha256": "1b850a4118524be1254ae17727734b2cee0887445237004a15b4a17958bbaec0",
+      "publicPuzzleHashSha256": "2a24c564b617101c2d2d8cc05e443106b61ecd65dd4c090ecc67b72d51373727",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-01",
+      "path": "Content/Levels/s1/05/02/S1-05-02-01.level-v2.json",
+      "gitBlob": "6b09ed57c80f00ad5801ee2a8c1afb2d3c471a03",
+      "rawSourceBytes": 3113,
+      "rawSourceSha256": "5e190e702c5a7252053abfeda7c258421d85b1a741a890e47383122ac80409a5",
+      "publicPuzzleHashSha256": "479a4103438ccb2843d183e90706bb1098974dba6cab660d513d96becfcbd47d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-02",
+      "path": "Content/Levels/s1/05/02/S1-05-02-02.level-v2.json",
+      "gitBlob": "a7a96420cc6e2ad87009c9e35d751409dda7f3e5",
+      "rawSourceBytes": 3330,
+      "rawSourceSha256": "2ac1c377d1fcf76252a50c4a359ad7dd1672baea54313a9a64e26b7aee21c9e3",
+      "publicPuzzleHashSha256": "88fbcb0bbcb46e04bd512ae100f0b959985b8526c078b0921629aca6867a585f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-03",
+      "path": "Content/Levels/s1/05/02/S1-05-02-03.level-v2.json",
+      "gitBlob": "2cef104d438613206b550c7e432064f64ab1e0a7",
+      "rawSourceBytes": 3391,
+      "rawSourceSha256": "335e90a9c4ca5e383fc9ad43f60bc4cbb31197c7b358f613c88f93a1f8cb31b0",
+      "publicPuzzleHashSha256": "17e0bada3ea6cfb15a6b78bed5baf6fb2d8c939299d99caf124a0f667dfd475a",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-04",
+      "path": "Content/Levels/s1/05/02/S1-05-02-04.level-v2.json",
+      "gitBlob": "cf57df9861057aa7c7c645545543af02a9596d9b",
+      "rawSourceBytes": 3385,
+      "rawSourceSha256": "89b42a1cb7fd2617baa1e81b5e9e63f60b972dd0dc44e628da469bab3e50eb87",
+      "publicPuzzleHashSha256": "567d005c1a2fd1d27a296396ad905dfffd1b0d14913d352083fd58c0d9ab8050",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-05",
+      "path": "Content/Levels/s1/05/02/S1-05-02-05.level-v2.json",
+      "gitBlob": "b08dd6c942812f405bd2523cb0f5cc4677cf76aa",
+      "rawSourceBytes": 3720,
+      "rawSourceSha256": "ae078f1c5e1b80ecba91a1154ad2979093e72c8dc5477800b398cb333a11a6d0",
+      "publicPuzzleHashSha256": "cfda4b672279cdbd095e117ccaa17b4feaa4da1db906f01ee8c34f0c282f698b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-06",
+      "path": "Content/Levels/s1/05/02/S1-05-02-06.level-v2.json",
+      "gitBlob": "8f1306b6b1ac5e43e43d5d2100e0e7f8d3bbce2e",
+      "rawSourceBytes": 4263,
+      "rawSourceSha256": "1a00968ec527092f8cc0ae4651161fe54d31eedc6c94b169dee6540239768ac5",
+      "publicPuzzleHashSha256": "c96c9262ad28dc7421b8e941466f88176c10c149344b9a8254d4548d90ecccef",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-07",
+      "path": "Content/Levels/s1/05/02/S1-05-02-07.level-v2.json",
+      "gitBlob": "11a8fc38f84c946682ffe6a767aeedcbd570a981",
+      "rawSourceBytes": 4813,
+      "rawSourceSha256": "dc156c95885c1dabac262a0b825152e4f9c4abf8b4ba3b0a8e18cd5648144f24",
+      "publicPuzzleHashSha256": "7a198d715061acccc861d5f0e9d4df9b1235a5a3f204999027f52ab6074d2958",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-08",
+      "path": "Content/Levels/s1/05/02/S1-05-02-08.level-v2.json",
+      "gitBlob": "e2eb74aaa27b3acdb2937b6d88139e82eee43a6a",
+      "rawSourceBytes": 3505,
+      "rawSourceSha256": "7ad1437eb040931c73c81d11b17387e8f549a0ba3ef7f8b4f0c814c491cf0daf",
+      "publicPuzzleHashSha256": "860feafef4fad89dfe2786422b4dbb46847090d8cde24a1981c361499909a2f3",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-09",
+      "path": "Content/Levels/s1/05/02/S1-05-02-09.level-v2.json",
+      "gitBlob": "90de7ab92bdf30ade23a5e82add5e90b9aaa8a59",
+      "rawSourceBytes": 5001,
+      "rawSourceSha256": "4cef3f527aaba308a9a5363ed9529af02b64e950c56acb178a3b504abfda8a1a",
+      "publicPuzzleHashSha256": "73f880f5876696ce539385950ac2491389f8a75930729f0fa13889ced48c5222",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-10",
+      "path": "Content/Levels/s1/05/02/S1-05-02-10.level-v2.json",
+      "gitBlob": "5fce8a4b1707b4cfd4f28ea152c66d0fc1ce9e71",
+      "rawSourceBytes": 4826,
+      "rawSourceSha256": "f91ebc8d79b9df359ea6d3ed04b2092e4f6b3f29cf0761dfa05c758ab0976867",
+      "publicPuzzleHashSha256": "25cd4e7192c1551a638860d826fdaae0bb2fcda9e092c0cfddebd0310b439cd4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-11",
+      "path": "Content/Levels/s1/05/02/S1-05-02-11.level-v2.json",
+      "gitBlob": "bba82ce236e6ab37665b35319116c2bba674337c",
+      "rawSourceBytes": 3261,
+      "rawSourceSha256": "93efc3cde90e59e656484ba5db3379985bbc2d8faf2236dc05a0ba80e0f4866b",
+      "publicPuzzleHashSha256": "d0c27417443b2e02e52e07c89fb3746274f24236d7f898ec530cbadbbbcad0cb",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-02-12",
+      "path": "Content/Levels/s1/05/02/S1-05-02-12.level-v2.json",
+      "gitBlob": "80321daece47792b6a044bb352a0ca982086262e",
+      "rawSourceBytes": 3359,
+      "rawSourceSha256": "3c044df1459670c6110354e477449424873b6836564873fde5d6003133a157a9",
+      "publicPuzzleHashSha256": "58e23f4824aa7e3797aca525805d7a31f94d67a4b1da2a335459aa14a3873bc9",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-01",
+      "path": "Content/Levels/s1/05/03/S1-05-03-01.level-v2.json",
+      "gitBlob": "2e9b29136da9a9a875ef3994a4c010522c31a263",
+      "rawSourceBytes": 3543,
+      "rawSourceSha256": "442de0382c6dceb2e8d72dcd26b333b9a7b4c44a659b23c8f35e1fe8749e45e3",
+      "publicPuzzleHashSha256": "c6a964b6cb541dd5bca1d27dd052ffe1b83308db7e17628ff49bcdfc6f3f246b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-02",
+      "path": "Content/Levels/s1/05/03/S1-05-03-02.level-v2.json",
+      "gitBlob": "40419d3bcc0e58c4ad903a90112981d1ee1810f4",
+      "rawSourceBytes": 4910,
+      "rawSourceSha256": "3e06095355265111b5de86fc5ea99b0ad78b3cd3f5f7bed30bbef7eb242c3faf",
+      "publicPuzzleHashSha256": "383271b72e77317810bc18aefa501e913ec02b161f7d3ef23c65ea78d0df46a1",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-03",
+      "path": "Content/Levels/s1/05/03/S1-05-03-03.level-v2.json",
+      "gitBlob": "886d06235c76c849d00fc11ffb591c473a67a4bf",
+      "rawSourceBytes": 4619,
+      "rawSourceSha256": "ac12699314bdb3c8bf1dc508e99c0a0980303fbd0c064914527d8bed4c209a8e",
+      "publicPuzzleHashSha256": "ebd3abeb588196cc8c376e13f8aae960d7cf653e5db678ffd15e06baef789ec7",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-04",
+      "path": "Content/Levels/s1/05/03/S1-05-03-04.level-v2.json",
+      "gitBlob": "dccaed7ee9f73389fc0015452af8393b18872b69",
+      "rawSourceBytes": 3338,
+      "rawSourceSha256": "d85acc78179cbd157b875c64805972a04134100bf893e9dd90f0d4542e052e60",
+      "publicPuzzleHashSha256": "8b0dc5aa8a4229b0889fe5fd4b2aac69a1863b223ad76354c36618b90703c6b6",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-05",
+      "path": "Content/Levels/s1/05/03/S1-05-03-05.level-v2.json",
+      "gitBlob": "7358b37981324d77f839f6ba8c07626029f7d142",
+      "rawSourceBytes": 3828,
+      "rawSourceSha256": "2a943734139ec9967cfe8a4239ab8398d20f14df40c30fa528d511360718271f",
+      "publicPuzzleHashSha256": "54faca768b7a930bb27aed916e9fd83487816d9a1f6578ddee23429c0361b054",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-06",
+      "path": "Content/Levels/s1/05/03/S1-05-03-06.level-v2.json",
+      "gitBlob": "d0f0f0ea4c424d3889c30ddce511d7a7a72b356b",
+      "rawSourceBytes": 4078,
+      "rawSourceSha256": "9e4e60c0a2ea0a2c5341cd857c35f5e8ff98e5b6b1cc801c428b55354057c673",
+      "publicPuzzleHashSha256": "76a01b1a48fe9d0b60bac242fef8f982a3f4eff9a73ed0950066b81e93d7e71d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-07",
+      "path": "Content/Levels/s1/05/03/S1-05-03-07.level-v2.json",
+      "gitBlob": "6567950f033ba9cb64454a8e09e6437617ef6b7b",
+      "rawSourceBytes": 4494,
+      "rawSourceSha256": "2f0588e60ae1717e7c79ebc80091c71a8b319cf8a1cc3f84c9d8c024de3350d4",
+      "publicPuzzleHashSha256": "64c6fb86da02974987e4d22bf080ea71145a40f6f1b2395a472c27c9dbeb8575",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-08",
+      "path": "Content/Levels/s1/05/03/S1-05-03-08.level-v2.json",
+      "gitBlob": "d96f798c75907346fccb1612c159c58947b444e8",
+      "rawSourceBytes": 4455,
+      "rawSourceSha256": "74e85cd2cb8351eb850ee3ff30cc04b975f53690cc1e4c3c56a7ea0a3c06f123",
+      "publicPuzzleHashSha256": "b761c30f248dc092c69954bd978848b37fc75f66cbfd7c040801a6d533f3e99d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-09",
+      "path": "Content/Levels/s1/05/03/S1-05-03-09.level-v2.json",
+      "gitBlob": "f46ff6770c613be62ac82e69c1e088a4d39dfeb5",
+      "rawSourceBytes": 3583,
+      "rawSourceSha256": "221d74f9378aac6877fcfc5596dfe9cddd9b341d5739eb072a136b4dae7f5f2d",
+      "publicPuzzleHashSha256": "0af5fb6f88ef0357e5ff154d7fe8137085c19617066727cd89529ea86c66c827",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-10",
+      "path": "Content/Levels/s1/05/03/S1-05-03-10.level-v2.json",
+      "gitBlob": "b5a77b22ffd65e08c3058f08a694a19f6e863cef",
+      "rawSourceBytes": 3533,
+      "rawSourceSha256": "3a5f2421bceb13e4de786dd36472b2f925af3daab3bf8e707487c40a067da4e4",
+      "publicPuzzleHashSha256": "1933b6138586b0544b033d2b4ff16893c5bd7e4a042355303fd4011a65956940",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-11",
+      "path": "Content/Levels/s1/05/03/S1-05-03-11.level-v2.json",
+      "gitBlob": "1d938f1a6a118dfc896e00a10ca0f7819a565151",
+      "rawSourceBytes": 3330,
+      "rawSourceSha256": "f45b9c132f4e16a29f489b7a8b74628152fee3f84843fef9908c7ac203aa779a",
+      "publicPuzzleHashSha256": "1297bb71064262c9aec5aa696f0b19de74f7a391d61fda067623d9afc76e394b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-03-12",
+      "path": "Content/Levels/s1/05/03/S1-05-03-12.level-v2.json",
+      "gitBlob": "0f2238c32ea929e416ab9b16de67e9ea40f2b3e7",
+      "rawSourceBytes": 3368,
+      "rawSourceSha256": "1a78db2d9ef169e17a7c39f85619e5016d8469d1b5aa1a2ca82ff204a1ae7154",
+      "publicPuzzleHashSha256": "b1f3636965900900296565d1e2fa47d08b5803a2bd5ae456dc8e3b282586b309",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-01",
+      "path": "Content/Levels/s1/05/04/S1-05-04-01.level-v2.json",
+      "gitBlob": "62552c123084c2a3c61e6ab80ad175291229996f",
+      "rawSourceBytes": 2569,
+      "rawSourceSha256": "a6bf8c6eb7d166fb64ca63436e807b5261d0da60c5d4668d76298aa30748ecc9",
+      "publicPuzzleHashSha256": "e61fbb81d3b43fa823452c57f68825bd6346fed5dd3797a16e2c344819045de3",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-02",
+      "path": "Content/Levels/s1/05/04/S1-05-04-02.level-v2.json",
+      "gitBlob": "c67e11a687379ab4cb06b8f4e20bd5b09f947faf",
+      "rawSourceBytes": 3574,
+      "rawSourceSha256": "a4630355a9c35a8c1e459781e82ece2b5d27cc4c908bb93eb1e00688d7358194",
+      "publicPuzzleHashSha256": "88f2843a764cb472b3cdfd07b88731541ae141c61d549437fe2bd9ae354f5f85",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-03",
+      "path": "Content/Levels/s1/05/04/S1-05-04-03.level-v2.json",
+      "gitBlob": "634789d8d2488a398a79e0271b76af599841e4ab",
+      "rawSourceBytes": 4784,
+      "rawSourceSha256": "656ed5ffd3830436e4dbfb4bdcb394dbb77fa0e51043d33aa95934ee67340a7b",
+      "publicPuzzleHashSha256": "25dc8fda04979eef050b35b33ab7a3163f45b6b1cd4ee7b321b1a1b5e981373f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-04",
+      "path": "Content/Levels/s1/05/04/S1-05-04-04.level-v2.json",
+      "gitBlob": "2207083f8d2cee1b6bfb2210a60262f14f090bbd",
+      "rawSourceBytes": 3557,
+      "rawSourceSha256": "642a407b7c8dca1e7253b81ef6323fbf6585a0deb76bb6f6b248b1bbbd69fb13",
+      "publicPuzzleHashSha256": "50e04b1025cab160eeaae3b20c16217cab67f307e873fc3e5ab3833ba8aff82f",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-05",
+      "path": "Content/Levels/s1/05/04/S1-05-04-05.level-v2.json",
+      "gitBlob": "79c7c79691196183a808a1543719d22574f971d3",
+      "rawSourceBytes": 3497,
+      "rawSourceSha256": "78ddb992db5b198d2faedcf273cb193d1b04fb13cbe1f15498c660f300b2c638",
+      "publicPuzzleHashSha256": "18d71e1499a80cc107c80d3e9ececef9b6edaff8b4561620cb12459a9218d534",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-06",
+      "path": "Content/Levels/s1/05/04/S1-05-04-06.level-v2.json",
+      "gitBlob": "711643dab48cefdcc94288d7a57334b22f04eec8",
+      "rawSourceBytes": 4585,
+      "rawSourceSha256": "c9a25887120a3e9b838875cd38429f8a336a891f7a764c25647a50c981f228c3",
+      "publicPuzzleHashSha256": "ce947298c57b8bc172a0fb9c4a8be5c33d115e48314bf8fb8a89a16995d691b4",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-07",
+      "path": "Content/Levels/s1/05/04/S1-05-04-07.level-v2.json",
+      "gitBlob": "df471d88e561154a17b2851e0448e77af8fa54e2",
+      "rawSourceBytes": 4278,
+      "rawSourceSha256": "8d66fac41e644ed78a8f4b7777a878877000f2dd0e4dfe4e01edb40b0b5c6777",
+      "publicPuzzleHashSha256": "d972974ea25946868a9f116dbbfed0ac654a4363cb190da67bf283a2cfcae75d",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-08",
+      "path": "Content/Levels/s1/05/04/S1-05-04-08.level-v2.json",
+      "gitBlob": "fcecb65341bc26175552547fb72e37925e689915",
+      "rawSourceBytes": 3837,
+      "rawSourceSha256": "7fee49a5f3883f0c13965b1932c3f86bfa6769434c64afe612d9aa82b3d0dc73",
+      "publicPuzzleHashSha256": "1790a6e6f6b10170bdc95f170ba7d7042c5e71d6534f8ad34d47c1ec299be508",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-09",
+      "path": "Content/Levels/s1/05/04/S1-05-04-09.level-v2.json",
+      "gitBlob": "feada4e0b662d186cfa1b74e1efd972849160827",
+      "rawSourceBytes": 3741,
+      "rawSourceSha256": "6cb818362c06a4b903152b0c4def1d980ab5cb012ef07e9a6c1c89f9a4de46cc",
+      "publicPuzzleHashSha256": "b9e35b69aaffb58e82e4749227164ec6aa25296f0479eda356173269b22ee34b",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-10",
+      "path": "Content/Levels/s1/05/04/S1-05-04-10.level-v2.json",
+      "gitBlob": "22ed444897ae42306c8b682ca2ddf0cef6b803cd",
+      "rawSourceBytes": 3862,
+      "rawSourceSha256": "de5dbb472522fc2281eececfe9b353c0e2354a858f213b7ed9b4093b27d539d1",
+      "publicPuzzleHashSha256": "87be747eb3bc2b2bcea868208d74895fe566cbe3c17959d9f4d8b017a6ffce74",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-11",
+      "path": "Content/Levels/s1/05/04/S1-05-04-11.level-v2.json",
+      "gitBlob": "d61d5bb4faf9a8fbc4a2ac10b184065d1c3213b0",
+      "rawSourceBytes": 3431,
+      "rawSourceSha256": "2e7559bfdbe853084b8429e05232e83507df81f5ffba87dbac3786d101aaa767",
+      "publicPuzzleHashSha256": "c72d1de5dd40cd021619a47269f2010a6a5cf0fa01738b0f5844bb71331a9b0e",
+      "closedPublicPropertiesMatchSource": true
+    },
+    {
+      "puzzleId": "S1-05-04-12",
+      "path": "Content/Levels/s1/05/04/S1-05-04-12.level-v2.json",
+      "gitBlob": "b4a655d98e0ac4497c4f633d84e6255329b61c55",
+      "rawSourceBytes": 3559,
+      "rawSourceSha256": "8cae8869fd6b06032a7c04577fef5e62ca07f88da66a617e86fcbb6d6a65c169",
+      "publicPuzzleHashSha256": "12223036d6bf04572e5898d997ef6f95d9b3674cfa4e0fef2dc1396cdb1834f0",
+      "closedPublicPropertiesMatchSource": true
+    }
+  ]
+}
