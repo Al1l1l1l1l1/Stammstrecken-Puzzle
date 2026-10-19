@@ -172,15 +172,29 @@
   "result": "PASS for own documentation preservation and path/link checks only; authority gaps remain open",
   "automaticCi": "Published correction HEAD only: actual run/event/status association in dated PR31 addendum; no manual build/rerun and no advance PASS",
   "publicationStatus": {
-    "utc": "2026-10-19T04:40:00Z",
-    "localCorrectionCommit": "4a4df983988b2fcd2429a6e0753ab9217dd72bca",
-    "remoteBranch": "codex/wp-036-vollstaendige-textbibliothek",
-    "remoteHead": "7caa55ecda0ae9e473cdc5220fa4ffb2ce215517",
-    "result": "Normal push rejected by automatic approval review; explicit export consent pending",
-    "reason": "Publishing status/authorization documentation and a complete copy of the user request to GitHub requires explicit export authorization",
-    "noBypass": true,
-    "pullRequestBodyUnchanged": true,
-    "newAutomaticCiCreated": false,
-    "doesNotRatifyDisputedDecisions": true
-  }
+    "utc": "2026-10-19T05:47:00Z",
+    "result": "EXPLICIT_EXPORT_APPROVAL_RECEIVED",
+    "source": "Direct user answer to the pending publication question in this conversation",
+    "answer": "Ja, Dokumentationscommit veröffentlichen",
+    "repository": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+    "targetBranch": "codex/wp-036-vollstaendige-textbibliothek",
+    "approvedScope": "Publish the twelve documentation paths including the complete copied correction request and correct PR31 metadata",
+    "doesNotRatifyDisputedDecisions": true,
+    "doesNotAuthorizeProductionOrMerge": true,
+    "actualPublicationAndAutomaticCi": "Bound to actual published HEAD in the current PR31 addendum; not claimed in advance"
+  },
+  "publicationHistory": [
+    {
+      "utc": "2026-10-19T04:40:00Z",
+      "localCorrectionCommit": "4a4df983988b2fcd2429a6e0753ab9217dd72bca",
+      "remoteBranch": "codex/wp-036-vollstaendige-textbibliothek",
+      "remoteHead": "7caa55ecda0ae9e473cdc5220fa4ffb2ce215517",
+      "result": "Normal push rejected by automatic approval review; explicit export consent pending",
+      "reason": "Publishing status/authorization documentation and a complete copy of the user request to GitHub requires explicit export authorization",
+      "noBypass": true,
+      "pullRequestBodyUnchanged": true,
+      "newAutomaticCiCreated": false,
+      "doesNotRatifyDisputedDecisions": true
+    }
+  ]
 }
