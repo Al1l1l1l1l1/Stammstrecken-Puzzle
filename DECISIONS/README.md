@@ -46,7 +46,6 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-031](./ADR-031-solver-v2-metriken-und-proof-regeneration.md) | Solver-v2-Metriken und Proofregeneration | **Angenommen** | Gültig; ergänzt ADR-007 und ADR-021 für Metriksemantik, solver-v2 und regenerierbare Proofcaches. |
 | [ADR-032](./ADR-032-season1-ci-korpus-leistungsnachweis.md) | CI-Referenz-Leistungsnachweis für den Season-1-Korpus | **Angenommen** | Gültig; konkretisiert den bestehenden Budgetnachweis für reale Season-1-Inputs, ohne Solver- oder Contentsemantik zu ändern. |
 | [ADR-033](./ADR-033-interne-transiente-spielschleife.md) | Interne transiente Spielschleife ohne Produktionscontentimport | **Angenommen** | Ergänzt ADR-011 ausschließlich um die benannte nichtproduktive QA-Szene; Productionimport-/Save-/Releaseverträge unverändert. |
-
 | [ADR-034](./ADR-034-isolierter-public240-reviewpfad.md) | Isolierter Public240-Reviewpfad | **Angenommen** | Eigener nichtproduktiver QA-Entry mit geschlossener Projektion und isoliertem Profil; Produktionsgates unverändert. |
 | [ADR-035](./ADR-035-lokaler-save-und-checkpoint-vertrag.md) | Lokaler Save-, Checkpoint- und Commitvertrag | **Angenommen** | Typisierte Ports, vorhandenes JCS per Injektion, vollständiger Checkpoint/CAS und Commit-vor-Fahrt; Fachverträge bleiben erhalten. |
 

@@ -1,0 +1,15 @@
+# R – zuständige Annahme des T-Codegegenstands und Schlussdokumentationsdeltas
+
+19.10.2026, ausdrücklich nach dem tatsächlichen unabhängigen Urteil. Technische Rolle R/Codex ausschließlich gemäß MANUS-2026-10-19-01 §5. [Getrennte T06/T07-Schlussprüfung](T_CLOSEOUT_QC.md) mit Urteil PASS_CODE_AND_DOCUMENTATION_DELTA und ohne offene Highs; frühere Source-/Contract-/Planreviews gezielt wiederverwendet. R nimmt den unveränderten Codefreeze54d2496ac2c74b681d24fe7a69d7f044392c46dd/Tree85d1cdb sowie den eng geprüften Dokumentationsnachlauf zuständig als T-Code-/Dokumentliefergegenstand an.
+
+Belegt sind originale kanonische Architecture-only17/Production-Scope18Prüfgruppen jeweils mit Selftests,22/22 gezielte lizenzfreie Contracts, reguläre EditMode496/496 und PlayMode49/49, Androidbuild sowie vollständiger iOS-Export/Xcodeabschluss. Architecture39217159710SUCCESS; Unity39217159752Attempt1neunSUCCESS/iOSDNSFAIL unverändert erhalten; genau ein begründeter gezielter iOS-Attempt2/Job117958208352SUCCESS. Keine neun neuen Jobausführungen und kein neuer Editordownload im erfolgreichen Cachepfad behauptet. Vier tatsächliche Lizenzfreigaben sind originalgebunden. Native Grafik ist für diesen reinen Contract-/JCS-Schritt begründet nicht anwendbar, bleibt A/I verpflichtend.
+
+Der tatsächlich korrigierte Tabellenkleinbefund ist als Nachlauf statt rückwirkendem54d-Erfolg dokumentiert. Aktueller Status, WP, Queue, Handover, konkrete Eigentümer und vorab abgeleitete AK-/Testmatrix sind nachgeführt; keine Produkt-, Manus-/Geschäftsführer-, Main- oder Releaseannahme. Frühere verworfene lokale Anker, rote Regressionen und der echte erste CI-FAIL bleiben erhalten.
+
+## Noch keine gemeinsame Kindbasisfreigabe
+
+Dieser reine Dokumentationscommit D entsteht erst nach dieser Annahme und den kanonischen Dokument-/Scopeprüfungen. Er muss anschließend mit seinen tatsächlichen rohen Gitblobs gegen die dokumentierten nativen/LF-Bindungen geprüft werden und seine **eigene reguläre CI terminal erfolgreich** abschließen. Dieser Entscheid nimmt einen solchen späteren Erfolg nicht vorweg.
+
+Erst danach gibt R genau D als gemeinsame unveränderte A/S-Basis frei. Beide prospektiven Kind-WPs/Manifeste werden erst nach frischer Prüfung freier IDs gemeinsam mit einzigem Parent/Base exaktD verankert. Ihre eigenen Statusquellen persistieren dieselbe tatsächliche D-Run-/Checkout-/Tree-/Original-/R-Freigabebindung. Ein erneuter T-Commit nur zum Eintragen seiner eigenen späteren CI ist nicht erforderlich und würde den Freeze unnötig verschieben. Bis zu diesen tatsächlichen Gates bleibt T als gemeinsame Basis ausdrücklich gesperrt.
+
+Gesamtauftrag bleibt aktiv: parallele A/S-Lieferungen, unabhängige Annahmen LA/LS, isolierte P-Montage, eigenes prospektivesI, gespeicherte Verdrahtung/Tests/CI/Prüfung, gesonderte R-Unterintegrationsentscheidung und tatsächliche Nicht-main-Unterintegration samt integrierten Originalnachweisen. Kein Abschluss nach T und keine Produktentscheidung aus technischer Ausführung abgeleitet.
