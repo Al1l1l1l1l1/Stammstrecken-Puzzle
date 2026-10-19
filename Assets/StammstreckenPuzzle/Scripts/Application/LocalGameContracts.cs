@@ -234,7 +234,7 @@ namespace STP.Application
             {
                 ContractGuard.PositiveSafeInteger(twoStarMilliseconds.Value, nameof(twoStarMilliseconds));
                 ContractGuard.PositiveSafeInteger(threeStarMilliseconds!.Value, nameof(threeStarMilliseconds));
-                if (threeStarMilliseconds.Value > twoStarMilliseconds.Value) throw new ArgumentException("INVALID_STAR_THRESHOLD_ORDER");
+                if (threeStarMilliseconds.Value >= twoStarMilliseconds.Value) throw new ArgumentException("INVALID_STAR_THRESHOLD_ORDER");
             }
             FirstClear = firstClear;
             SecondStar = secondStar;
@@ -567,11 +567,25 @@ namespace STP.Application
         public string? ErrorCode { get; }
         /// <summary>Non-authoritative conservative main candidate only on a fully observed SplitBrain; it never denotes successful recovery.</summary>
         public SaveSnapshot<T>? ConservativeSnapshot { get; }
-        /// <summary>Complete candidate provenance for a conservative SplitBrain selection, otherwise null.</summary>
+        /// <summary>Complete observed candidate provenance when supplied, including recoverable failures and explicit read-only selections.</summary>
         public SaveRepositoryObservation? Observation { get; }
         /// <summary>Creates a successful result without an error code.</summary>
         public static SaveLoadResult<T> Success(SaveSnapshot<T> snapshot) => new SaveLoadResult<T>(SaveLoadStatus.Loaded,
             snapshot ?? throw new ArgumentNullException(nameof(snapshot)), null);
+        /// <summary>Reports an observed validated read, preserving the full writer-generation/candidate context after an explicit selection.</summary>
+        public static SaveLoadResult<T> Success(SaveSnapshot<T> snapshot, SaveRepositoryObservation observation)
+        {
+            if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
+            if (observation == null) throw new ArgumentNullException(nameof(observation));
+            if (!snapshot.Profile.Equals(observation.Profile) || !snapshot.Catalog.Equals(observation.Catalog))
+                throw new ArgumentException("SAVE_PROFILE_CATALOG_MISMATCH");
+            bool matched = false;
+            foreach (var candidate in observation.Candidates)
+                if (candidate.Status == SaveCandidateStatus.Valid && candidate.Generation == snapshot.Generation) matched = true;
+            if (!matched) throw new ArgumentException("SAVE_READ_NOT_OBSERVED");
+            // The codec binds the selected payload hash. This read never resets the separately observed writer generation.
+            return new SaveLoadResult<T>(SaveLoadStatus.Loaded, snapshot, null, observation: observation);
+        }
         /// <summary>Reports a completely fileless profile without silently constructing a new save.</summary>
         public static SaveLoadResult<T> NeedsInitialization() => new SaveLoadResult<T>(SaveLoadStatus.NeedsInitialization, null, null);
         /// <summary>
@@ -603,6 +617,13 @@ namespace STP.Application
             if (!Enum.IsDefined(typeof(SaveLoadStatus), status) || status == SaveLoadStatus.Loaded || status == SaveLoadStatus.NeedsInitialization)
                 throw new ArgumentOutOfRangeException(nameof(status), "INVALID_LOAD_RESULT_STATE");
             return new SaveLoadResult<T>(status, null, ContractGuard.Error(errorCode));
+        }
+        /// <summary>Reports a failed or uncertain load while preserving complete read-only candidate provenance for explicit recovery.</summary>
+        public static SaveLoadResult<T> Failure(SaveLoadStatus status, string errorCode, SaveRepositoryObservation observation)
+        {
+            if (observation == null) throw new ArgumentNullException(nameof(observation));
+            var failure = Failure(status, errorCode);
+            return new SaveLoadResult<T>(failure.Status, null, failure.ErrorCode, observation: observation);
         }
     }
 

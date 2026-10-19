@@ -134,6 +134,7 @@ namespace STP.Tests.Content.EditMode
             Assert.That(Property(values,"ThreeStarMs"),Is.Null);
             Assert.Throws<TargetInvocationException>(()=>New("CompletionValues",catalog,identity,99,5,10,60,150,null!,null!));
             Assert.Throws<TargetInvocationException>(()=>New("CompletionValues",catalog,identity,15,5,10,60,150,(long)100,(long)200));
+            Assert.Throws<TargetInvocationException>(()=>New("CompletionValues",catalog,identity,15,5,10,60,150,(long)100,(long)100));
         }
 
         [Test]
@@ -162,19 +163,19 @@ namespace STP.Tests.Content.EditMode
             foreach(var resultName in new[]{"SaveLoadResult\u00601","SaveCommitResult\u00601"})
             {
                 var resultType=AppType(resultName).MakeGenericType(marker);
-                var success=resultType.GetMethod("Success")!.Invoke(null,new[]{snapshot})!;
+                var success=resultType.GetMethods().Single(m=>m.Name=="Success" && m.GetParameters().Length==1).Invoke(null,new[]{snapshot})!;
                 Assert.That(Property(success,"Succeeded"),Is.True);
                 Assert.That(Property(success,"Snapshot"),Is.SameAs(snapshot));
                 Assert.That(Property(success,"ErrorCode"),Is.Null);
-                var statusType=resultType.GetMethod("Failure")!.GetParameters()[0].ParameterType;
+                var statusType=resultType.GetMethods().Single(m=>m.Name=="Failure" && m.GetParameters().Length==2).GetParameters()[0].ParameterType;
                 foreach(var status in Enum.GetValues(statusType))
                 {
                     var name=status!.ToString();
                     if(name=="Loaded"||name=="Committed"||name=="NeedsInitialization")
-                        Assert.Throws<TargetInvocationException>(()=>resultType.GetMethod("Failure")!.Invoke(null,new[]{status,(object)"SAVE_TEST"}));
+                        Assert.Throws<TargetInvocationException>(()=>resultType.GetMethods().Single(m=>m.Name=="Failure" && m.GetParameters().Length==2).Invoke(null,new[]{status,(object)"SAVE_TEST"}));
                     else
                     {
-                        var failure=resultType.GetMethod("Failure")!.Invoke(null,new[]{status,(object)"SAVE_TEST"})!;
+                        var failure=resultType.GetMethods().Single(m=>m.Name=="Failure" && m.GetParameters().Length==2).Invoke(null,new[]{status,(object)"SAVE_TEST"})!;
                         Assert.That(Property(failure,"Succeeded"),Is.False);
                         Assert.That(Property(failure,"Snapshot"),Is.Null);
                         Assert.That(Property(failure,"ErrorCode"),Is.EqualTo("SAVE_TEST"));
@@ -238,6 +239,20 @@ namespace STP.Tests.Content.EditMode
             Assert.That(Property(split,"ConservativeSnapshot"),Is.SameAs(snapshot));
             Assert.That(Property(split,"Observation"),Is.SameAs(observed));
             Assert.That(Property(split,"Status")!.ToString(),Is.EqualTo("SplitBrain"));
+            var noMain=Candidate("Main","Missing",null,null,null);
+            var pending=Candidate("Pending","Valid",2,new string('a',64),new string('e',64));
+            var withoutMain=Observe(noMain,backup,pending);
+            var failureObserved=resultType.GetMethods().Single(m=>m.Name=="Failure" && m.GetParameters().Length==3);
+            var fail=failureObserved.Invoke(null,new[]{EnumValue("SaveLoadStatus","SplitBrain"),(object)"SAVE_SPLIT_BRAIN",withoutMain})!;
+            Assert.That(Property(fail,"Snapshot"),Is.Null);Assert.That(Property(fail,"ConservativeSnapshot"),Is.Null);
+            Assert.That(Property(fail,"Succeeded"),Is.False);Assert.That(Property(fail,"Observation"),Is.SameAs(withoutMain));
+            var selection=New("SaveRecoveryRequest",Property(fail,"Observation")!,EnumValue("SaveCandidateKind","Backup"));
+            Assert.That(matches.Invoke(selection,new[]{withoutMain}),Is.True);
+            var changedPending=Candidate("Pending","Valid",3,new string('a',64),new string('f',64));
+            Assert.That(matches.Invoke(selection,new[]{Observe(noMain,backup,changedPending)}),Is.False);
+            var loaded=resultType.GetMethods().Single(m=>m.Name=="Success" && m.GetParameters().Length==2).Invoke(null,new[]{snapshot,withoutMain})!;
+            Assert.That(Property(loaded,"Observation"),Is.SameAs(withoutMain));
+            Assert.That(Property(loaded,"Succeeded"),Is.True);
             var port=AppType("ISaveRepository\u00601").MakeGenericType(marker);
             var method=port.GetMethod("RecoverAsync")!;
             Assert.That(method.GetParameters().Length,Is.EqualTo(2));
