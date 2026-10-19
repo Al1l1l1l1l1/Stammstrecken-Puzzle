@@ -355,7 +355,7 @@ namespace STP.Application
         {
             Catalog=catalog??throw new ArgumentNullException(nameof(catalog));
             AcquiredAtUtc=acquiredAtUtc==null?null:LocalModel.Utc(acquiredAtUtc);
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static DefaultOwnership Create(string itemId, string itemType, CatalogIdentity catalog, string? acquiredAtUtc)=>new DefaultOwnership(itemId,itemType,catalog,acquiredAtUtc);
@@ -425,7 +425,7 @@ namespace STP.Application
             LegacyPurchaseTransactionId=legacyPurchaseTransactionId==null?null:LocalModel.Text(legacyPurchaseTransactionId);
             LegacyAcquiredAtUtc=legacyAcquiredAtUtc==null?null:LocalModel.Utc(legacyAcquiredAtUtc);
             LegacyGrantCode=legacyGrantCode==null?null:LocalModel.Text(legacyGrantCode);
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static LegacyOwnership Create(string itemId, string itemType, string? legacyPurchaseTransactionId, string? legacyAcquiredAtUtc, string? legacyGrantCode)=>new LegacyOwnership(itemId,itemType,legacyPurchaseTransactionId,legacyAcquiredAtUtc,legacyGrantCode);
@@ -661,7 +661,7 @@ namespace STP.Application
             ContractRevision=LocalModel.Text(contractRevision);
             ReducedMotion=reducedMotion;
             TrainRideSkip=trainRideSkip;
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static LocalAccessibilityPreference Create(string contractRevision, bool? reducedMotion, bool? trainRideSkip)=>new LocalAccessibilityPreference(contractRevision,reducedMotion,trainRideSkip);
@@ -744,7 +744,7 @@ namespace STP.Application
         {
             PrivacyDecision=privacyDecision;
             LastReconciledAtUtc=lastReconciledAtUtc==null?null:LocalModel.Utc(lastReconciledAtUtc);
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static LocalDataLifecycle Create(LocalPrivacyDecision? privacyDecision, string? lastReconciledAtUtc)=>new LocalDataLifecycle(privacyDecision,lastReconciledAtUtc);
@@ -850,7 +850,7 @@ namespace STP.Application
         {
             Profile=LocalModel.Text(profile);
             Sha256=LocalModel.Hash(sha256);
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static LocalHashReference Create(string profile, string sha256)=>new LocalHashReference(profile,sha256);
@@ -865,7 +865,7 @@ namespace STP.Application
     {
         private ReservedEndless(string generationOrdinal, string id, LocalEndlessDescriptor descriptor) : base(generationOrdinal,id,descriptor)
         {
-            
+
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static ReservedEndless Create(string generationOrdinal, string id, LocalEndlessDescriptor descriptor)=>new ReservedEndless(generationOrdinal,id,descriptor);

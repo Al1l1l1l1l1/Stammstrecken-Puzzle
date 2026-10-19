@@ -222,3 +222,91 @@ namespace STP.Tests.Application.EditMode
         }
     }
 }
+
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+namespace STP.Tests.Application.EditMode
+{
+    // Editor-test-only metadata setup. No method body is invoked by this diagnostic.
+    internal static class CoverageAsyncMetadataWarmup
+    {
+        private static readonly string[] Assemblies = {
+            "STP.Application", "STP.Bootstrap", "STP.Editor.Build", "STP.Editor.Content",
+            "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.MobileServices.Google",
+            "STP.MobileServices.Store", "STP.Platform", "STP.Presentation.UI", "STP.Presentation.World",
+            "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Tests.Application.EditMode",
+            "STP.Tests.Bootstrap.PlayMode", "STP.Tests.Content.EditMode", "STP.Tests.Domain.EditMode",
+            "STP.Tests.Persistence.EditMode", "STP.Tests.Presentation.PlayMode", "STP.Tests.Solver.EditMode"
+        };
+        private static readonly System.Collections.Generic.List<System.Reflection.MethodInfo> Methods = new System.Collections.Generic.List<System.Reflection.MethodInfo>();
+        private static bool registered;
+        [System.Serializable] private sealed class Point { public long offset; public long line; public long column; public long hits; }
+        [System.Serializable] private sealed class Row { public string assembly = ""; public string type = ""; public int token; public Point[] before = System.Array.Empty<Point>(); public Point[] after = System.Array.Empty<Point>(); public bool nonzeroPointer; }
+        [System.Serializable] private sealed class Trace { public string utc = ""; public string phase = ""; public Row[] methods = System.Array.Empty<Row>(); public string[] skippedOpenGeneric = System.Array.Empty<string>(); public string[] absentFixedAssemblies = System.Array.Empty<string>(); }
+
+        [UnityEditor.InitializeOnLoadMethod]
+        private static void Register()
+        {
+            if (registered || !UnityEngine.TestTools.Coverage.enabled) return;
+            var assembly = System.AppDomain.CurrentDomain.GetAssemblies().Single(a => a.GetName().Name == "Unity.TestTools.CodeCoverage.Editor");
+            var events = assembly.GetType("UnityEditor.TestTools.CodeCoverage.Events", true)!;
+            foreach (var name in new[] { "onCoverageSessionStarted", "onCoverageSessionFinished" })
+            {
+                var eventInfo = events.GetEvent(name, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)!;
+                var handlerType = eventInfo.EventHandlerType!;
+                var callback = typeof(CoverageAsyncMetadataWarmup).GetMethod(name == "onCoverageSessionStarted" ? nameof(Started) : nameof(Finished), System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!.MakeGenericMethod(handlerType.GetGenericArguments()[0]);
+                eventInfo.AddEventHandler(null, System.Delegate.CreateDelegate(handlerType, callback));
+            }
+            registered = true;
+            UnityEngine.Debug.Log("STP coverage causal pointer hook registered before session; no method invocation.");
+        }
+        private static Point[] Points(System.Reflection.MethodInfo method)
+        {
+            return UnityEngine.TestTools.Coverage.GetSequencePointsFor(method).Select(p => new Point { offset = p.ilOffset, line = p.line, column = p.column, hits = p.hitCount }).OrderBy(p => p.offset).ThenBy(p => p.line).ThenBy(p => p.column).ToArray();
+        }
+        private static Row RowFor(System.Reflection.MethodInfo method)
+        { return new Row { assembly = method.DeclaringType!.Assembly.GetName().Name!, type = method.DeclaringType.FullName!, token = method.MetadataToken }; }
+        private static void Save(Trace trace, string suffix)
+        {
+            var path = System.Environment.GetEnvironmentVariable("STP_COVERAGE_PREFLIGHT_TRACE");
+            if (!string.IsNullOrEmpty(path))
+            {
+                path += "." + suffix + ".json";
+                if (System.IO.File.Exists(path)) throw new System.InvalidOperationException("Never overwrite actual coverage trace");
+                System.IO.File.WriteAllText(path, UnityEngine.JsonUtility.ToJson(trace, true), new System.Text.UTF8Encoding(false));
+            }
+        }
+        private static void Started<T>(T info)
+        {
+            Methods.Clear(); var skipped = new System.Collections.Generic.List<string>(); var absent = new System.Collections.Generic.List<string>(); var rows = new System.Collections.Generic.List<Row>();
+            var loaded = System.AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var name in Assemblies)
+            {
+                var assembly = loaded.SingleOrDefault(a => a.GetName().Name == name);
+                if (assembly == null) { absent.Add(name); continue; }
+                foreach (var type in assembly.GetTypes().OrderBy(t => t.FullName, System.StringComparer.Ordinal))
+                {
+                    if (!typeof(System.Runtime.CompilerServices.IAsyncStateMachine).IsAssignableFrom(type) || !type.IsDefined(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), false)) continue;
+                    if (type.ContainsGenericParameters) { skipped.Add(type.FullName!); continue; }
+                    var method = type.GetMethod("MoveNext", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly) ?? throw new System.InvalidOperationException("Async MoveNext missing");
+                    if (method.IsStatic || method.IsGenericMethod || method.ContainsGenericParameters) throw new System.InvalidOperationException("Unsupported async method shape");
+                    var row = RowFor(method); row.before = Points(method);
+                    if (row.before.Any(p => p.hits != 0)) throw new System.InvalidOperationException("Async target already executed before preparation: " + row.type);
+                    // Getting the native entry point compiles this method; the pointer is never called or retained.
+                    row.nonzeroPointer = method.MethodHandle.GetFunctionPointer() != System.IntPtr.Zero;
+                    if (!row.nonzeroPointer) throw new System.InvalidOperationException("No compiled async entry point");
+                    row.after = Points(method);
+                    if (row.after.Any(p => p.hits != 0)) throw new System.InvalidOperationException("Preparation executed async target: " + row.type);
+                    Methods.Add(method); rows.Add(row);
+                }
+            }
+            if (rows.Count == 0 || absent.Contains("STP.Application") || absent.Contains("STP.Tests.Application.EditMode")) throw new System.InvalidOperationException("Required async metadata set unavailable");
+            Save(new Trace { utc = System.DateTime.UtcNow.ToString("O"), phase = "session-start-before-FullEmpty-after-reset", methods = rows.ToArray(), skippedOpenGeneric = skipped.ToArray(), absentFixedAssemblies = absent.ToArray() }, "started");
+            UnityEngine.Debug.Log("STP coverage causal async metadata prepared before FullEmpty: " + rows.Count + "; zero target body hits; no execution/filter/reset/statistics mutation.");
+        }
+        private static void Finished<T>(T info)
+        {
+            Save(new Trace { utc = System.DateTime.UtcNow.ToString("O"), phase = "session-finished-after-original-visited-export", methods = Methods.Select(m => { var r = RowFor(m); r.after = Points(m); return r; }).ToArray() }, "finished");
+        }
+    }
+}
+#endif
