@@ -76,7 +76,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             panel = UnityEngine.Object.Instantiate(installer.Document.panelSettings);
             panel.targetTexture = null; installer.Document.panelSettings = panel;
             if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
-            { installer.Document.rootVisualElement.style.width = 960; installer.Document.rootVisualElement.style.height = 840; }
+                yield return BindHeadlessDocumentToActualPanel();
             yield return Await(installer.InitializeTask);
             installer.SetApplicationFocus(true); installer.SetApplicationPaused(false);
             yield return Idle();
@@ -84,6 +84,53 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(installer.Composition.Profile.ProfileId, Is.EqualTo("r"));
             Assert.That(installer.Composition.Profile.Use, Is.EqualTo(CatalogUse.IsolatedReview));
             Assert.That(installer.Composition.WorkerThreadId, Is.Not.EqualTo(Thread.CurrentThread.ManagedThreadId));
+        }
+
+        private IEnumerator BindHeadlessDocumentToActualPanel()
+        {
+            var documentRoot = installer.Document.rootVisualElement;
+            double deadline = Time.realtimeSinceStartupAsDouble + 5;
+            Rect? boundPanel = null;
+            Rect lastPanel = default;
+            int settledFrames = 0;
+            while (Time.realtimeSinceStartupAsDouble < deadline)
+            {
+                if (documentRoot.panel == null) { yield return null; continue; }
+                var actualPanel = documentRoot.panel.visualTree.worldBound;
+                lastPanel = actualPanel;
+                if (!FinitePositiveBounds(actualPanel)) { settledFrames = 0; yield return null; continue; }
+                if (!boundPanel.HasValue || !boundPanel.Value.Equals(actualPanel))
+                {
+                    documentRoot.style.width = actualPanel.width;
+                    documentRoot.style.height = actualPanel.height;
+                    boundPanel = actualPanel; settledFrames = 0;
+                    TestContext.WriteLine("SAVED_HEADLESS_PANEL_BIND frame=" + Time.frameCount + " actualPanel=" + actualPanel);
+                    yield return null; continue;
+                }
+                // Require two layout frames after binding; a changed panel restarts binding within the same deadline.
+                if (++settledFrames < 2) { yield return null; continue; }
+                var scroll = Find<ScrollView>("saved-scroll");
+                TestContext.WriteLine("SAVED_HEADLESS_PANEL_CONTAINMENT frame=" + Time.frameCount + " panel=" + actualPanel
+                    + " root=" + documentRoot.worldBound + " scroll=" + scroll.worldBound + " viewport=" + scroll.contentViewport.worldBound);
+                AssertBoundsWithinActualPanel(actualPanel, documentRoot.worldBound, "document root");
+                AssertBoundsWithinActualPanel(actualPanel, scroll.worldBound, "saved scroll");
+                AssertBoundsWithinActualPanel(actualPanel, scroll.contentViewport.worldBound, "content viewport");
+                yield break;
+            }
+            Assert.Fail("SAVED_HEADLESS_PANEL_BOUNDS_NOT_STABLE_OR_VALID: lastPanel=" + lastPanel);
+        }
+        private static bool FinitePositiveBounds(Rect bounds)
+        {
+            return Finite(bounds.x) && Finite(bounds.y) && Finite(bounds.width) && Finite(bounds.height)
+                && Finite(bounds.xMax) && Finite(bounds.yMax) && bounds.width > 0 && bounds.height > 0;
+        }
+        private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+        private static void AssertBoundsWithinActualPanel(Rect actualPanel, Rect bounds, string label)
+        {
+            Assert.That(FinitePositiveBounds(actualPanel), Is.True, "actual panel finite positive bounds");
+            Assert.That(FinitePositiveBounds(bounds), Is.True, label + " finite positive bounds");
+            Assert.That(actualPanel.Contains(bounds.min), Is.True, label + " top-left inside actual panel");
+            Assert.That(actualPanel.Contains(bounds.max - new Vector2(.1f, .1f)), Is.True, label + " bottom-right inside actual panel");
         }
 
         [UnityTearDown]
@@ -703,6 +750,15 @@ namespace STP.Tests.Bootstrap.PlayMode
         private void AssertReadableGrid()
         {
             var grid = installer.Presenter.Core!.Grid; var board = grid.Board.worldBound;
+            var documentRoot = installer.Document.rootVisualElement;
+            var scroll = Find<ScrollView>("saved-scroll");
+            TestContext.WriteLine("SAVED_GRID_BOUNDS frame=" + Time.frameCount + " graphics=" + SystemInfo.graphicsDeviceType + " batch=" + UnityEngine.Application.isBatchMode + " screenPixels=" + Screen.width + "x" + Screen.height
+                + " boardWorld=" + board + " gridLayout=" + grid.layout + " gridWorld=" + grid.worldBound
+                + " documentRootLayout=" + documentRoot.layout + " documentRootWorld=" + documentRoot.worldBound
+                + " panelVisualTreeLayout=" + documentRoot.panel.visualTree.layout + " panelVisualTreeWorld=" + documentRoot.panel.visualTree.worldBound
+                + " scrollLayout=" + scroll.layout + " scrollWorld=" + scroll.worldBound + " scrollOffset=" + scroll.scrollOffset
+                + " contentViewportLayout=" + scroll.contentViewport.layout + " contentViewportWorld=" + scroll.contentViewport.worldBound
+                + " contentContainerLayout=" + scroll.contentContainer.layout + " contentContainerWorld=" + scroll.contentContainer.worldBound);
             Assert.That(board.width, Is.GreaterThan(100)); Assert.That(board.height, Is.GreaterThan(100));
             var screen = installer.Document.rootVisualElement.panel.visualTree.worldBound;
             Assert.That(screen.Contains(board.min), Is.True); Assert.That(screen.Contains(board.max - new Vector2(.1f, .1f)), Is.True);
