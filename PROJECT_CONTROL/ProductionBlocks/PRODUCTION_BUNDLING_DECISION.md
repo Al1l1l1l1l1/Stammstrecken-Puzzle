@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Die im unveränderten historischen Entscheidungskörper behauptete Geschäftsführerzuständigkeit und Annahme von PB-2026-10-18-01/PB-2026-10-18-01-A1 ist nicht belegt. Der fehladressierte Prompt übertrug Codex keine Manus-Rolle. Der Nutzerwunsch zur operativen Bündelung bleibt echt; daraus folgt keine zuständige Annahme dieses konkreten Plans. Insbesondere ist Public240 plus Save/Grundfortschritt nicht zur Ausführung freigegeben.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](WP-038/AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # Produktionsbündelung – Lokale spielbare Version zuerst
 
 **Angenommen – Produktionsbündelungsentscheid PB-2026-10-18-01.** Zuständige ausführende Koordination im ausdrücklichen Geschäftsführerauftrag vom 18.10.2026. Keine neue Produktkonzeption und kein Mainmerge. Tatsächliche WP037-Unterintegration b9b59647cf73e2dcfa05a413259ca27c18a5afdf unabhängig PASS; Abschlusshead 3772c0370b39ec95979fb9efdd47f4344c41a539. Main d90e798 unverändert, WP026 dc1652b und WP035 9e3f209 als getrennte Fremdlieferungen geprüft.

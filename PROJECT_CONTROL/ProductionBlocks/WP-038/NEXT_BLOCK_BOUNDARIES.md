@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Der folgende Text ist der erhaltene frühere Codex-Vorschlag mit technischen Grenzen. Er ist keine bereits zuständig angenommene Produktionsplanung oder Ausführungsfreigabe. Public240 plus Save/Grundfortschritt darf nicht allein aus PB/PB-A1 oder der falsch angenommenen Geschäftsführerrolle gestartet werden. Dieser Nachtrag plant keinen neuen Lieferweg und genehmigt keine Folgearbeit.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # Nächster großer Ausführungsauftrag – Prüffassung und lokaler Fortschritt
 
 Gezielte getrennte Bestandsprüfung der bestehenden Verträge durch die Application-Implementierungsrolle. Kein Code, keine Produktentscheidung und kein nachträglich erfundener Folgeanker. Der erste tatsächliche Spielblock WP038 wird dadurch nicht erweitert. Nach dessen abgeschlossener Schnittstelle und bestätigter Basis kann ein Auftrag zwei getrennt verankerte WPs parallel koordinieren, jeweils einschließlich Eigenkorrektur, unabhängiger QC und zulässiger Integration.

@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Die unten als angenommen/ausführbar bezeichneten PB-/PB-A1-Folgeblöcke sind hinsichtlich ihrer Beauftragung berichtigt: Public240 plus Save/Grundfortschritt ist nicht zuständig zur Ausführung freigegeben. Keine neuen WPs, ADRs, Implementierungen oder Integrationen aus dieser strittigen Kette starten. Echte vorbestehende Einzelaufträge bleiben ihren eigenen Freigaben unterstellt. Codex war Ausführender ohne Manus-/Geschäftsführerbefugnis; technische Ergebnisse und reale Merges bleiben bestehen.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](ProductionBlocks/WP-038/AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # Produktionswarteschlange
 
 Diese Warteschlange enthält nur verbindliche, persistierte Projektaufträge. Kein Produktionscoding beginnt ohne passendes Work Package, einen gemeinsamen Trust-Anchor-Commit, ein eigenes unveränderliches Scope-Manifest und die dort verlangte CI- und QC-Evidenz.

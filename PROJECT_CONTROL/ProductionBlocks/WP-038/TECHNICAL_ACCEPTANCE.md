@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Der unveränderte historische Entscheid WP038-TECH-01 stammt von Codex unter falscher Geschäftsführerrollenannahme. Die technische Boundaryprüfung bleibt PASS, belegt aber keine Befugnis zur ADR033-Annahme oder WP038-Implementierungsfreigabe. Zuständige Annahme beziehungsweise andere Behandlung bleibt offen; dieser Nachtrag erteilt sie nicht. Der formal eingecheckte ADR-Status bleibt als historischer Bestand erhalten.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # WP-038 – zuständige technische Annahme vor Code
 
 **Entscheid WP038-TECH-01: ADR033 angenommen; Implementierung des verankerten WP038 freigegeben.**

@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Diese Übergabe wird durch die verlinkte korrigierte Übergabe in ihrer aktuellen Rollen-/Freigabeherkunft ersetzt. Ausführender war Codex ohne Manus-/Geschäftsführerbefugnis. Technische PASS und tatsächliche Merges bleiben bestehen; die behaupteten zuständigen Annahmen/Unterintegrationsfreigaben sind nicht belegt. Die unten in Abschnitt 4/5 als ausführungsfreigegeben und intern entscheidbar bezeichnete Public240-/Save-Folgearbeit ist unbestätigt.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # Zusammenhängende Koordinatorübergabe – WP037 und WP038
 
 **Abschlussübergabe vom 19.10.2026.** WP037 und WP038 sind technisch abgeschlossen, unabhängig angenommen und tatsächlich im WP036-Developmentzweig unterintegriert. Neue reguläre integrierte CI und getrennte Integrationsprüfung sind bestanden. Main bleibt unverändert; PR31 bleibt Draft. Der nachfolgende reine Dokumentationscloseout erhält eine schmale Delta-/Byteprüfung und seine eigene automatische CI-Zuordnung.

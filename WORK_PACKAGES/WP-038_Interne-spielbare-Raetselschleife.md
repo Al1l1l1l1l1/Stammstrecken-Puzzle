@@ -64,6 +64,14 @@ Projektweite DoD und AK01–AK11 einzeln tatsächlich erfüllt. Bedienbarer inte
 
 ## Bearbeitungsstatus
 
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Technischer Bestand, C2-PASS und tatsächlicher Untermerge bleiben erhalten. Die Zuständigkeit für ADR033-/WP038-Annahme und Unterintegrationsentscheidung ist jedoch nicht belegt: Codex war nicht Manus und erhielt keine Geschäftsführer-/Konzeptbefugnis. Der folgende historische Abschlussstatus ist daher hinsichtlich der Autorisierung, insbesondere AK02/AK11, nicht als vollständig erfüllt zu verwenden. Die Berichtigung genehmigt WP038 und den Merge nicht nachträglich; der Public240-/Save-Folgeauftrag ist unbestätigt.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](../PROJECT_CONTROL/ProductionBlocks/WP-038/AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 **ABGESCHLOSSEN: AK01–AK11 erfüllt, unabhängig angenommen und tatsächlich integriert geprüft.**
 
 19.10.2026. Korrigierter Sourcefreeze `524b45024438b93c592351d7683a7c62aec2ab8d`, Tree `f1adfa4e006169c32bd930cc6c76f1d62b98e780`, nach konkreten intern korrigierten GUID-/SCREEN-01-Befunden tatsächlich getrennt AK01–AK10 angenommen. [Unabhängige Abschluss-QC](../PROJECT_CONTROL/ProductionBlocks/WP-038/INDEPENDENT_CORRECTED_QC.md); Original-JSON SHA256 b487c3be2a1d2e57ddca70841229ad35a849fff87b369a391d69971f56fe88e7. Eigene Architecture 39175992736 und alle zehn Unityjobs 39175992749 SUCCESS: 474 Edit-/49 Playfälle, beide Coverage-Sitzungen und tatsächliche Android-/iOS-/Xcodebelege. Native D3D11-Nichtbatchprobe 9/9, sechs echte korrekte PNGs; ursprüngliche FAILs bleiben erhalten.

@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Die technischen Prüf-PASS auf C2 und MI bleiben ihren ursprünglichen Gegenständen zugeordnet. Die pauschale Vollerfüllung von AK02/AK11 ist hinsichtlich der zuständigen ADR-/WP-Annahme und Unterintegrationsbefugnis nicht belegt. Ein QC-PASS oder eine formale Registry belegt keine Geschäftsführerzuständigkeit. Codex war nicht Manus; dieser Nachtrag ist keine nachträgliche Annahme und kein technischer FAIL.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # WP038 – aktuelle AK01–AK11-Nachweismatrix
 
 **Stand: 19.10.2026. AK01–AK10 am korrigierten Sourcefreeze C2 unabhängig PASS; AK11 einschließlich tatsächlicher Unterintegration und neuer regulärer integrierter CI erfüllt.** Diese Nachführung ordnet bereits ausgeführte Prüfungen zu. Sie führt keine neue Source-, Unity-, Solver-, Text- oder Integrationsprüfung aus.

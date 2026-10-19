@@ -1,3 +1,11 @@
+## Herkunfts- und Statusnachtrag vom 19.10.2026
+
+Die im unveränderten historischen Entscheid WP038-SUBINTEGRATION-01 behauptete Geschäftsführer-/Integrationsbefugnis ist nicht belegt. Codex erhielt durch den fehladressierten Auftrag und PB keine Manus-Rolle. Der ausgeführte PR33-Untermerge und technische C2-/MI-PASS bleiben Tatsachen; ihre zuständige Bestätigung beziehungsweise andere Behandlung bleibt offen. Keine nachträgliche Genehmigung durch diesen Nachtrag.
+
+[Maßgebliche korrigierte Übergabe mit echten Freigaben, Bestand und genau offenen Zuständigkeiten](AUTHORIZATION_PROVENANCE_CORRECTION_2026-10-19.md). Die nachstehenden bisherigen Inhalte bleiben als historischer Stand 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517 bytegetreu erhalten; ihre abweichenden Autorisierungsaussagen sind durch diesen Nachtrag berichtigt.
+
+---
+
 # WP038-SUBINTEGRATION-01 – gesonderter zuständiger Unterintegrationsentscheid
 
 **Angenommen**, 2026-10-19T00:05:46.234Z, ausführende Geschäftsführer-/Produktionskoordination im ausdrücklich übertragenen Auftrag vom18.10.2026 und PB-2026-10-18-01. Dies ist der gesonderte Integrationsentscheid nach unabhängiger technischer Annahme, keine unabhängige Selbstfreigabe der Implementierung und keine Main-/Produkt-/Releaseentscheidung.
