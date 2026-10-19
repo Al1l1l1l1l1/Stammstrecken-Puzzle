@@ -36,4 +36,3 @@ Getrennte technische Vorcodereview. T immutable Port-/JCS-Negativ-/Bytegoldentes
 
 ## Ersetzt / ersetzt durch
 Konkretisiert [ADR-019](./ADR-019-endless-watermark-und-save-v2.md), ADR013/016/018/021 für den normalen lokalen Save; keine Änderung der dortigen Fachregeln, Hashprofile, Migrationserfordernisse oder Modulreferenzen. Ergänzt [ADR-034](./ADR-034-isolierter-public240-reviewpfad.md) hinsichtlich technischer Persistenzisolation. Angenommen am 19.10.2026; kein Nachfolger.
-

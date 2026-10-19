@@ -34,4 +34,3 @@ Vor Annahme getrennte technische Review dieses Entwurfs. T: providerfreie immuta
 
 ## Ersetzt / ersetzt durch
 Ergänzt [ADR-033](./ADR-033-interne-transiente-spielschleife.md) ausschließlich um einen getrennten neuen Reviewentry. Dessen Fachkörper und transiente Grenze bleiben erhalten. Ergänzt die Produktionsverträge aus ADR011/016/021 ohne deren Gates zu ersetzen. Angenommen am 19.10.2026; kein Nachfolger.
-

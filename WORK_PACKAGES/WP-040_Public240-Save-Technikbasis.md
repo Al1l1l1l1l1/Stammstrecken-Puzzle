@@ -46,3 +46,6 @@ Projekt-DoD und T01–T07 tatsächlich erfüllt. Neue Dokumentationsnachläufe e
 
 ## Bearbeitungsstatus
 Vor Facharbeit verankert; Gesamtauftrag läuft. Akzeptanznachweise noch offen.
+
+### Implementierter T-Kandidat
+ADR034/035 vor Code getrennt PASS und in e521398 durch R angenommen. Neue LocalGameContracts/CanonicalJsonAdapter plus gezielte Content-Contracttests implementiert; reine Serialisierungs-/Modulgrenze ohne neue Assemblykante. Lizenzfreies Roslyn-Supplement kompiliert die betroffenen Assemblies;22/22 gezielte NUnitfälle bestanden einschließlich tatsächlichem Interfacepfad, immutabler Public-/Catalog-/Save-/Recoverytypen, vollständiger Beobachtungsbindung und Node-JCS-Byte-/Hashgolden. Erste konkrete QA-Promotionslücke gezielt erkannt, korrigiert und historische rote XML erhalten. [Lokale Source-/Testbindung](../PROJECT_CONTROL/ProductionBlocks/Public240Save/T_LOCAL_EVIDENCE.json). Dies ist noch kein Unity-/CI-/unabhängiger T-Abschluss. Kanonische Vorbereitung17/18 mit Selftests PASS; neuer sauberer Freezecheck folgt. Gesamtauftrag wird nach T über A/S/P/I weitergeführt.
