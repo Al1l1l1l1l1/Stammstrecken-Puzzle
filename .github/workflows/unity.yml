@@ -172,8 +172,12 @@ jobs:
           for name, (path, data) in sorted(found.items()):
               refs = set(data.get("references", []))
               if name in expected:
-                  if refs != expected[name]:
-                      errors.append(f"references:{name}: erwartet={sorted(expected[name])} tatsaechlich={sorted(refs)}")
+                  # ADR033: only this pre-existing external package edge is added;
+                  # the declared internal graph and every other exact edge stay closed.
+                  external = {"Unity.Localization"} if name == "STP.Presentation.UI" else set()
+                  expected_refs = expected[name] | external
+                  if refs != expected_refs:
+                      errors.append(f"references:{name}: erwartet={sorted(expected_refs)} tatsaechlich={sorted(refs)}")
               elif name in test_expected:
                   internal = refs - test_runner_refs
                   if internal != test_expected[name]:

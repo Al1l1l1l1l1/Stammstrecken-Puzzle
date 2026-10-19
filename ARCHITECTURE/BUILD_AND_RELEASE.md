@@ -216,3 +216,7 @@ Ein Kandidat ist promotable, wenn:
 [11]: https://developer.apple.com/documentation/analytics-reports/app-crashes "Apple App Crashes report"
 [12]: https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/ "Apple phased release schedule"
 [13]: ../DECISIONS/ADR-029-rollout-reducer-semantik.md "ADR-029 – Vollständige Rollout-Reducer-Semantik"
+
+## Interne transiente Spielschleife – ADR033 / WP038
+
+[ADR-033](../DECISIONS/ADR-033-interne-transiente-spielschleife.md) erlaubt ausschließlich die eigene interne QA-Szene DevelopmentPuzzle mit zwei eigenen öffentlichen QA-Definitionen, realen Domaincommands und klar ungespeicherter Fahrt-/Ergebnispräsentation. Eigene UXML-/USS-/Panel-/Locale-/Materialquellen werden am validierten Installer serialisiert; neutrale QA-Strings werden über eine isolierte Unity-Localization-In-Memory-StringTable aufgelöst. Alle internen Assemblykanten bleiben unverändert; ausschließlich UI erhält den bereits vorgesehenen externen Unity.Localization-Verweis. Kein DRAFT-/FIXTURE_ONLY-Import, keine Katalog-/Proof-/Textpromotion, kein Save-/ProgressCommitted-/Rewardclaim und kein Productionentry. Produktiver Addressables-/Localization-, Save-vor-Fahrt-/Reward- und Releasevertrag bleiben verbindlich. Reguläre Builds enthalten die neue QA-Spielszene zusätzlich zur bestehenden Composition-Smoke-Szene; bestehende Profil-/URP-/Stripping-/CI-Gates bleiben erhalten.

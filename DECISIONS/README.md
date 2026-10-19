@@ -19,7 +19,7 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-008](./ADR-008-mobile-service-ports-und-provider.md) | Mobile-Service-Ports mit Google- und Unity-Adaptern | **Ersetzt** | Historisch; durch ADR-015 und danach ADR-020 ersetzt. |
 | [ADR-009](./ADR-009-automatisierte-teststrategie.md) | Automatisierte Tests als Architekturgrenze | **Ersetzt** | Historisch; durch ADR-017 und danach ADR-022 ersetzt. |
 | [ADR-010](./ADR-010-build-release-und-observability.md) | Build, Release und Observability | **Angenommen** | Build-/Releasegrundsätze gültig; Production-Crashlytics durch ADR-020 ersetzt, ADR-023 ergänzt Kandidatenidentität und ADR-029 präzisiert den Rolloutreducer. |
-| [ADR-011](./ADR-011-ui-assets-lokalisierung-und-audio.md) | UI, Assets, Lokalisierung und Audio | **Angenommen** | Gültig. |
+| [ADR-011](./ADR-011-ui-assets-lokalisierung-und-audio.md) | UI, Assets, Lokalisierung und Audio | **Angenommen** | Produktiver Addressables-/Localizationvertrag gültig; ADR-033 ergänzt ausschließlich Inspector-/In-Memory-Locale für die benannte interne QA-Szene. |
 | [ADR-012](./ADR-012-mobile-plattformbaselines.md) | Mobile Plattformbaselines | **Angenommen** | Gültig. |
 | [ADR-013](./ADR-013-zyklusfreie-ports-und-modulgrenzen.md) | Zyklusfreie Ports und Modulgrenzen | **Angenommen** | Gültig; ADR-018 ergänzt die minimale Bootstrapkante. |
 | [ADR-014](./ADR-014-save-kanonisierung-und-ledgerkompaktierung.md) | Save-Kanonisierung und Ledgerkompaktierung | **Ersetzt** | Historisch; durch ADR-019 ersetzt. |
@@ -41,8 +41,9 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-030](./ADR-030-wp-scope-trust-anchor.md) | Gemeinsamer historischer WP-/Scope-Trust-Anchor | **Angenommen** | Gültig; ersetzt die historische WP-/Manifestbindung aus ADR-026. |
 | [ADR-031](./ADR-031-solver-v2-metriken-und-proof-regeneration.md) | Solver-v2-Metriken und Proofregeneration | **Angenommen** | Gültig; ergänzt ADR-007 und ADR-021 für Metriksemantik, solver-v2 und regenerierbare Proofcaches. |
 | [ADR-032](./ADR-032-season1-ci-korpus-leistungsnachweis.md) | CI-Referenz-Leistungsnachweis für den Season-1-Korpus | **Angenommen** | Gültig; konkretisiert den bestehenden Budgetnachweis für reale Season-1-Inputs, ohne Solver- oder Contentsemantik zu ändern. |
+| [ADR-033](./ADR-033-interne-transiente-spielschleife.md) | Interne transiente Spielschleife ohne Produktionscontentimport | **Angenommen** | Ergänzt ADR-011 ausschließlich um die benannte nichtproduktive QA-Szene; Productionimport-/Save-/Releaseverträge unverändert. |
 
-Damit existieren **32 ADRs**: 23 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **33 ADRs**: 24 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 

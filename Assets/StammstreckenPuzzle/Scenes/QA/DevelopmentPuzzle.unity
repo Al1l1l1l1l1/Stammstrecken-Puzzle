@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+  m_Name: DevelopmentPuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1283af524b303603f3a1556ce1f40eaf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: STP.Bootstrap::STP.Bootstrap.DevelopmentPuzzleInstaller
+  uiTree: {fileID: 9197481963319205126, guid: 456aa236d88858a15b8f06545a16b1f3, type: 3}
+  uiStyles: {fileID: 7433441132597879392, guid: 4be4b97eef271392c0b02e44d7d6d013, type: 3}
+  qaLocale: {fileID: 4900000, guid: d8122600e796ceb4106fa6af493d9a17, type: 3}
+  panelSettings: {fileID: 11400000, guid: b281a1bc613c4544b3dc4c9e6a038001, type: 2}
+  trainMaterial: {fileID: 2100000, guid: b281a1bc613c4544b3dc4c9e6a038002, type: 2}
+  largeScenario: 0
+  rideDurationSeconds: 3
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1001}
