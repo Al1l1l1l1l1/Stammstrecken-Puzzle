@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:51:18.226Z",
+  "role": "entry_audit independent concrete recovery continuation review",
+  "id": "S-APP-04",
+  "severity": "High",
+  "status": "REPORTED_RUNTIME_REPRO_REQUESTED",
+  "sourceSha256": "e5f99270381ca2f31d2afc8bf3fc048b99e2a290eaef8ba859614bc304272baf",
+  "sourcePack": "S_INITIAL_CORRECTIONS_QC.json",
+  "scenario": [
+    "FIRST_RUN attemptX onA solved, then completion commit conflicts.",
+    "Fresh winning snapshot already has sameA firstclear from differentattemptY.",
+    "Explicit Recover plus exact selectedpayload promotion commits correctly.",
+    "CommitUnderLock(completed:false) leaves oldX SolvedPendingCommit and completionCommitted=false while unblocking.",
+    "Start/Restore both reject old unconfirmedsolved session; RetryCompleteX fails SAVE_COMPLETION_MODE_INVALID because winnerMode is now PRACTICE/REVISION. OrdinaryLoad keeps oldsession too."
+  ],
+  "impact": "Confirmed durable recovery winner cannot proceed through existing Start/Restore/Retry entrypoints; old unacknowledged session blocks future use despite successful explicit recovery.",
+  "request": "Controlled conflict/differentattemptwinner/recover/promotion/newStart regression; deliberately replace or release old unconfirmed session after selected recovery is confirmed, without markingX committed or inventing reward success.",
+  "limits": "Static concrete controlflow; original actual reproduction and exact chosen correction pending owner. No own runtime/source/Unity/CI action."
+}

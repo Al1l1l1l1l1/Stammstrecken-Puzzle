@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "role": "/root/entry_audit",
+  "reviewedAtUtc": "2026-10-19T09:42:56Z",
+  "verdict": "PASS_TEST_PLACEMENT_WITHIN_FINAL_S_SCOPE",
+  "question": "May CatalogSetIdentityTests be an additional NUnit fixture inside allowed LocalProfileStateTests.cs instead of a new non-allowlisted file?",
+  "bindings": {
+    "t": "925ca608a961ac26c84385c8da3b949f609df883",
+    "sAnchor": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+    "historicalWpBlob": "b524bf1589dccb3684dc7a6173a891424e44d466",
+    "manifestSha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+    "planRawGitBlob": "6b6bea47eccf3b0a1c0b60e66e0ff09abf81a542",
+    "planRawGitSha256": "41f1d5e2cb8af9b779319eb0299b8b0dec84fc71f75263af0c138ac71f94e37d",
+    "nativePlanSha256": "4697feef5f0563ef17e23bbce3870af176144dcc5a25bccc08f47ae14a05e90f",
+    "nativePlanOnlyCrlfDifference": true
+  },
+  "grounds": [
+    {
+      "file": "S_IMPLEMENTATION_PLAN.md",
+      "lines": [
+        5,
+        11,
+        13
+      ],
+      "observation": "T plan expressly is not the S execution anchor, calls the list a proposed list for the later manifest and allows additional types within the assigned responsibility file."
+    },
+    {
+      "file": "S_IMPLEMENTATION_PLAN.md",
+      "lines": [
+        45,
+        47,
+        223,
+        250,
+        251,
+        379
+      ],
+      "observation": "CatalogSet exact projection/hash/use/status/part-catalog/Node requirements are substantive and remain fully required; file grouping has no semantic authority."
+    },
+    {
+      "file": "WP-042/immutable manifest",
+      "observation": "Final historical scope authorizes LocalProfileState.cs, LocalProfileStateTests.cs and Application/LocalSaveContractFixtures.cs with metas; does not authorize standalone CatalogSetIdentityTests.cs."
+    },
+    {
+      "file": "STP.Tests.Application.EditMode.asmdef",
+      "observation": "Allowed host file is in the existing editor test assembly referencing Application and NUnit; no assembly change is necessary for another uniquely named fixture in the same file."
+    }
+  ],
+  "requiredExecution": {
+    "productionType": "CatalogSetIdentity in allowed Application/LocalProfileState.cs",
+    "testFixture": "CatalogSetIdentityTests as a separately discoverable uniquely named fixture inside allowed Application/LocalProfileStateTests.cs",
+    "testHelpers": "Application/LocalSaveContractFixtures.cs only for appropriate test-only shared constants/helpers",
+    "unchangedRequiredCoverage": [
+      "Exact three-catalog aggregation projection and canonical JCS bytes/hash",
+      "CatalogUse compatibility and status/use pairs",
+      "Distinct public/campaign/completion catalog identities and part-hash mismatches",
+      "Aggregate identity/revision/status and hash bindings",
+      "Independent fixed C#/Node golden bytes and hashes",
+      "Existing S01-S12 complete breadth and all other LocalProfileState tests"
+    ],
+    "constraints": [
+      "Do not add CatalogSetIdentityTests.cs or meta, new source file, asmdef/rsp or assembly edge.",
+      "Do not move the substantive test requirement to optional prose or eliminate a fixture/test.",
+      "R records the explicit final placement and plan-to-fixture/test mapping before affected implementation in own S WP/evidence status, keeping historical plan and manifest bytes unchanged.",
+      "Later actual compile/NUnit original XML must show the uniquely named fixture and required cases executed; this document is not their PASS.",
+      "T plan remains unchanged as historical proposed file arrangement; accepted technical semantics remain unchanged.",
+      "This is a routine placement within the already anchored final scope, not a product/ADR/manifest expansion."
+    ]
+  },
+  "blocker": false,
+  "boundaries": [
+    "No codec/Golden/implementation acceptance.",
+    "Full independent S golden/reader/policy review before codec still required.",
+    "No source/Git/Unity/CI mutation by this role; only ignored review files written."
+  ]
+}
