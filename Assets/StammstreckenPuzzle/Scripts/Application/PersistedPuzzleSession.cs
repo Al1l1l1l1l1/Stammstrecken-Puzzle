@@ -1,0 +1,153 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using STP.Puzzle.Domain;
+
+namespace STP.Application
+{
+    /// <summary>Explicit initialization extension; ordinary CommitAsync never manufactures a missing profile.</summary>
+    public interface ILocalProfileRepository : ISaveRepository<LocalProfileState>
+    {
+        /// <summary>Creates generation one only after this explicit request and a fresh exclusive all-missing observation.</summary>
+        Task<SaveCommitResult<LocalProfileState>> CreateProfileAsync(LocalProfileState state,CancellationToken cancellationToken);
+        /// <summary>Explicit confirmed corrupt-profile reset bound to a fresh complete observation; unknown or failed candidates remain protected.</summary>
+        Task<SaveCommitResult<LocalProfileState>> ConfirmedResetCorruptProfileAsync(SaveRepositoryObservation observation,LocalProfileState state,CancellationToken cancellationToken);
+    }
+    /// <summary>Injected process clock. The UTC string is diagnosis; only the monotonic value measures active time.</summary>
+    public interface ILocalSessionClock
+    {
+        /// <summary>Current nonnegative process-local monotonic milliseconds.</summary>
+        long MonotonicMilliseconds {get;}
+        /// <summary>Current strict RFC3339 UTC diagnostic string.</summary>
+        string UtcNow {get;}
+    }
+    /// <summary>Application-loop result dispatch, with no dependency on Unity or a specific synchronization framework.</summary>
+    public interface ILocalSaveDispatcher
+    {
+        /// <summary>Runs one state publication on the designated application loop.</summary>
+        Task InvokeAsync(Action publication);
+    }
+    /// <summary>Logical application state, separate from the immutable puzzle domain phase.</summary>
+    public enum PersistedSessionStatus { Unloaded,NeedsInitialization,Ready,RecoveryRequired,Writing,CompletionPending,ProgressCommitted }
+
+    /// <summary>Serializes local saves and exposes committed progress only after verified repository acknowledgement.</summary>
+    public sealed class PersistedPuzzleSession
+    {
+        private readonly ILocalProfileRepository repository;private readonly IPublicPuzzleCatalog puzzles;private readonly LocalProgressPolicy policy;private readonly SaveProfileIdentity profile;private readonly CatalogSetIdentity catalogs;private readonly ILocalSessionClock clock;private readonly ILocalSaveDispatcher dispatcher;private readonly SemaphoreSlim writer=new SemaphoreSlim(1,1);
+        private SaveSnapshot<LocalProfileState>? durable;private PuzzleSessionState? session;private SaveRepositoryObservation? recoveryObservation;private bool blocked=true;private bool requiresExplicitRecovery;private bool needsPromotion;private bool completionCommitted;private Guid? committedAttempt;private PublicPuzzleIdentity? committedPuzzle;private PuzzleSessionCheckpoint? restoredCheckpoint;
+        /// <summary>Binds one isolated profile and immutable catalog set for the lifetime of the use case.</summary>
+        public PersistedPuzzleSession(ILocalProfileRepository repository,IPublicPuzzleCatalog puzzles,LocalProgressPolicy policy,SaveProfileIdentity profile,CatalogSetIdentity catalogs,ILocalSessionClock clock,ILocalSaveDispatcher dispatcher)
+        {this.repository=repository??throw new ArgumentNullException(nameof(repository));this.puzzles=puzzles??throw new ArgumentNullException(nameof(puzzles));this.policy=policy??throw new ArgumentNullException(nameof(policy));this.profile=profile??throw new ArgumentNullException(nameof(profile));this.catalogs=catalogs??throw new ArgumentNullException(nameof(catalogs));this.clock=clock??throw new ArgumentNullException(nameof(clock));this.dispatcher=dispatcher??throw new ArgumentNullException(nameof(dispatcher));LocalModel.Require(profile.Use==catalogs.AggregateCatalog.Use&&puzzles.Identity.Equals(catalogs.PublicCatalog),"SAVE_PROFILE_BINDING_MISMATCH");Status=PersistedSessionStatus.Unloaded;}
+        /// <summary>Last confirmed immutable profile snapshot; never replaced by an uncertain proposed snapshot.</summary>
+        public SaveSnapshot<LocalProfileState>? Snapshot=>durable;
+        /// <summary>Current immutable domain state, including a solved state retained while persistence is uncertain.</summary>
+        public PuzzleSessionState? Session=>session;
+        /// <summary>Current logical persistence status.</summary>
+        public PersistedSessionStatus Status {get;private set;}
+        /// <summary>Most recent complete fresh load-time observation, never represented as the earlier commit-lock observation.</summary>
+        public SaveRepositoryObservation? RecoveryObservation=>recoveryObservation;
+        /// <summary>True only after this attempt's exact completion snapshot was acknowledged committed.</summary>
+        public bool CanPresentResults=>completionCommitted&&!blocked&&session!=null&&session.Phase==SessionPhase.SolvedPendingCommit&&committedAttempt==session.AttemptId&&committedPuzzle!=null&&committedPuzzle.PuzzleId==session.PuzzleId&&committedPuzzle.HashProfile==session.PublicPuzzleHashProfile&&committedPuzzle.HashSha256==session.PublicPuzzleHashSha256;
+        /// <summary>Whether user domain commands may execute now.</summary>
+        public bool CanMutate=>!blocked&&!needsPromotion&&!completionCommitted&&session!=null&&(session.Phase==SessionPhase.Ready||session.Phase==SessionPhase.Active||session.Phase==SessionPhase.Suspended);
+        private bool Bound(SaveSnapshot<LocalProfileState> s)=>s.Profile.Equals(profile)&&s.Catalog.Equals(catalogs.AggregateCatalog)&&s.Payload.Profile.Identity.Equals(profile)&&s.Payload.Profile.CatalogSet.Equals(catalogs);
+        private async Task<T> Capture<T>(Func<T> capture)
+        {T value=default!;await dispatcher.InvokeAsync(()=>value=capture()).ConfigureAwait(false);return value;}
+        private Task<bool> ValidateLoaded(SaveLoadResult<LocalProfileState> result,CancellationToken ct)
+        {var snapshot=result.Snapshot;return Task.Run(()=>{if(!result.Succeeded||snapshot==null||!Bound(snapshot))return false;try{policy.Validate(snapshot.Payload);return true;}catch(ArgumentException){return false;}},ct);}
+        /// <summary>Performs a fresh load and publishes the immutable result on the injected application loop.</summary>
+        public async Task<SaveLoadResult<LocalProfileState>> LoadAsync(CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try{var result=await repository.LoadAsync(cancellationToken).ConfigureAwait(false);bool validated=await ValidateLoaded(result,cancellationToken).ConfigureAwait(false);await dispatcher.InvokeAsync(()=>ApplyLoad(result,false,validated)).ConfigureAwait(false);return result;}finally{writer.Release();}
+        }
+        private void ApplyLoad(SaveLoadResult<LocalProfileState> r,bool conflictReload,bool validated=false)
+        {
+            completionCommitted=false;needsPromotion=false;recoveryObservation=null;blocked=true;Status=PersistedSessionStatus.RecoveryRequired;
+            if(r.Observation!=null&&r.Observation.Profile.Equals(profile)&&r.Observation.Catalog.Equals(catalogs.AggregateCatalog))recoveryObservation=r.Observation;
+            if(conflictReload||requiresExplicitRecovery){if(r.Status==SaveLoadStatus.NeedsInitialization){durable=null;Status=PersistedSessionStatus.NeedsInitialization;}return;} // An explicit fresh selection or new-profile choice remains mandatory.
+            if(validated&&r.Snapshot!=null&&recoveryObservation!=null){durable=r.Snapshot;session=null;restoredCheckpoint=null;committedAttempt=null;committedPuzzle=null;blocked=false;Status=PersistedSessionStatus.Ready;}
+            else if(r.Status==SaveLoadStatus.NeedsInitialization){durable=null;Status=PersistedSessionStatus.NeedsInitialization;}
+        }
+        /// <summary>Explicitly creates a new profile; existing or uncertain files cannot enter this path through ordinary error handling.</summary>
+        public async Task<SaveCommitResult<LocalProfileState>> CreateProfileAsync(CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try{var utc=await Capture(()=>{LocalModel.Require(Status==PersistedSessionStatus.NeedsInitialization,"SAVE_INITIALIZATION_NOT_REQUESTED");return clock.UtcNow;}).ConfigureAwait(false);var payload=await Task.Run(()=>policy.NewProfile(profile,catalogs,utc),cancellationToken).ConfigureAwait(false);var result=await repository.CreateProfileAsync(payload,cancellationToken).ConfigureAwait(false);await dispatcher.InvokeAsync(()=>{if(result.Succeeded&&result.Snapshot!=null&&Bound(result.Snapshot)&&ReferenceEquals(result.Snapshot.Payload,payload)&&result.Snapshot.Generation==1){durable=result.Snapshot;requiresExplicitRecovery=false;session=null;restoredCheckpoint=null;committedAttempt=null;committedPuzzle=null;completionCommitted=false;blocked=false;Status=PersistedSessionStatus.Ready;}else{blocked=true;Status=PersistedSessionStatus.RecoveryRequired;}}).ConfigureAwait(false);if(result.Status==SaveCommitStatus.Conflict)await ReloadAfterConflict(cancellationToken).ConfigureAwait(false);return result;}finally{writer.Release();}
+        }
+        /// <summary>Executes the separately confirmed reset command using the exact fresh load observation; no error branch invokes this automatically.</summary>
+        public async Task<SaveCommitResult<LocalProfileState>> ConfirmedResetCorruptProfileAsync(CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try
+            {
+                var input=await Capture(()=>(Allowed:blocked&&recoveryObservation!=null,Observation:recoveryObservation,Utc:clock.UtcNow)).ConfigureAwait(false);
+                if(!input.Allowed)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_RESET_OBSERVATION_REQUIRED");
+                var offered=await Task.Run(()=>policy.NewProfile(profile,catalogs,input.Utc),cancellationToken).ConfigureAwait(false);var result=await repository.ConfirmedResetCorruptProfileAsync(input.Observation!,offered,cancellationToken).ConfigureAwait(false);
+                await dispatcher.InvokeAsync(()=>{if(result.Succeeded&&result.Snapshot!=null&&Bound(result.Snapshot)&&ReferenceEquals(result.Snapshot.Payload,offered)){durable=result.Snapshot;requiresExplicitRecovery=false;session=null;restoredCheckpoint=null;blocked=false;needsPromotion=false;completionCommitted=false;recoveryObservation=null;Status=PersistedSessionStatus.Ready;}else{blocked=true;needsPromotion=false;completionCommitted=false;Status=PersistedSessionStatus.RecoveryRequired;}}).ConfigureAwait(false);
+                if(result.Status==SaveCommitStatus.Conflict)await ReloadAfterConflict(cancellationToken).ConfigureAwait(false);return result;
+            }finally{writer.Release();}
+        }
+        /// <summary>Starts a catalog-bound attempt in the only currently eligible mode.</summary>
+        public PuzzleSessionState Start(PublicPuzzleIdentity identity,Guid attemptId)
+        {
+            LocalModel.Require(!blocked&&!needsPromotion&&durable!=null&&(session==null||session.Phase!=SessionPhase.SolvedPendingCommit||completionCommitted),"SAVE_USE_CASE_BLOCKED");LocalModel.Require(puzzles.TryGet(identity,out var input)&&input!=null,"SAVE_LEVEL_IDENTITY_UNRESOLVED");var mode=policy.ModeFor(durable!.Payload,identity);session=PuzzleSessionState.Create(input!.ToDomainDefinition(),identity.PuzzleId,identity.HashProfile,identity.HashSha256,attemptId,mode,0,DateTimeOffset.Parse(clock.UtcNow,System.Globalization.CultureInfo.InvariantCulture),null).Value??throw new ArgumentException("SAVE_SESSION_INVALID");restoredCheckpoint=null;completionCommitted=false;Status=PersistedSessionStatus.Ready;return session;
+        }
+        /// <summary>Restores only an exact public identity. Orphaned drafts remain retained in the profile.</summary>
+        public PuzzleSessionState RestoreDraft(PublicPuzzleIdentity identity)
+        {
+            LocalModel.Require(!blocked&&!needsPromotion&&durable!=null&&(session==null||session.Phase!=SessionPhase.SolvedPendingCommit||completionCommitted),"SAVE_USE_CASE_BLOCKED");LocalModel.Require(puzzles.TryGet(identity,out var input)&&input!=null,"SAVE_LEVEL_IDENTITY_UNRESOLVED");var d=durable!.Payload.Drafts.SingleOrDefault(x=>x.Identity.Equals(identity))??throw new ArgumentException("SAVE_DRAFT_MISSING");var result=d.Checkpoint.Restore(input!.ToDomainDefinition(),identity.PuzzleId,identity.HashProfile,identity.HashSha256);session=result.Value??throw new ArgumentException("SAVE_DRAFT_INVALID");restoredCheckpoint=d.Checkpoint;completionCommitted=false;Status=session.Phase==SessionPhase.SolvedPendingCommit?PersistedSessionStatus.CompletionPending:PersistedSessionStatus.Ready;return session;
+        }
+        /// <summary>Applies a real domain command without file I/O. Solved/uncertain attempts remain locked.</summary>
+        public CommandResult Handle(PuzzleCommand command,long monotonicMilliseconds)
+        {
+            LocalModel.Require(CanMutate,"SAVE_USE_CASE_BLOCKED");var result=PuzzleCommandHandler.Handle(session,command,monotonicMilliseconds);if(result.Error==DomainError.NONE){session=result.State;if(session!.Phase==SessionPhase.SolvedPendingCommit)Status=PersistedSessionStatus.CompletionPending;}return result;
+        }
+        /// <summary>Serially captures the latest complete draft at the current monotonic instant and saves its immutable copy.</summary>
+        public async Task<SaveCommitResult<LocalProfileState>> SaveDraftAsync(CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try
+            {
+                var input=await Capture(()=>(Allowed:!blocked&&!needsPromotion&&durable!=null&&session!=null,Snapshot:durable,Session:session,Restored:restoredCheckpoint,Monotonic:clock.MonotonicMilliseconds,Utc:clock.UtcNow)).ConfigureAwait(false);
+                if(!input.Allowed)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_USE_CASE_BLOCKED");
+                if(input.Session!.Phase==SessionPhase.SolvedPendingCommit)return await CompleteUnderLock(cancellationToken).ConfigureAwait(false);
+                var payload=await Task.Run(()=>{var cp=PuzzleSessionCheckpoint.Export(input.Session,input.Monotonic);if(input.Restored!=null&&cp.StartedAtUtc==input.Restored.StartedAtUtc&&cp.LastSavedAtUtc==input.Restored.LastSavedAtUtc)cp=cp.WithDiagnosticText(input.Restored.StartedAtUtcText,input.Restored.LastSavedAtUtcText);var identity=new PublicPuzzleIdentity(cp.PuzzleId,cp.PublicPuzzleHashProfile,cp.PublicPuzzleHashSha256);var draft=LocalDraft.Create(identity,input.Utc,cp);var p=input.Snapshot!.Payload;return policy.WithDraft(p,draft);},cancellationToken).ConfigureAwait(false);return await CommitUnderLock(payload,false,cancellationToken).ConfigureAwait(false);
+            }finally{writer.Release();}
+        }
+        /// <summary>Commits completion after all earlier draft saves; no presentation or reward success precedes the acknowledgement.</summary>
+        public async Task<SaveCommitResult<LocalProfileState>> CommitCompletionAsync(CancellationToken cancellationToken)
+        {await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try{return await CompleteUnderLock(cancellationToken).ConfigureAwait(false);}finally{writer.Release();}}
+        private async Task<SaveCommitResult<LocalProfileState>> CompleteUnderLock(CancellationToken ct)
+        {
+            var input=await Capture(()=>(Allowed:!blocked&&!needsPromotion&&durable!=null&&session!=null&&session.Phase==SessionPhase.SolvedPendingCommit,Snapshot:durable,Session:session,Utc:clock.UtcNow)).ConfigureAwait(false);
+            if(!input.Allowed)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_USE_CASE_BLOCKED");
+            var replayed=input.Session!;var replaySnapshot=input.Snapshot!;var projection=await Task.Run(()=>policy.Complete(replaySnapshot.Payload,replayed,checked(replaySnapshot.Generation+1),input.Utc),ct).ConfigureAwait(false);
+            if(projection.AlreadyCommitted){await dispatcher.InvokeAsync(()=>{if(!ReferenceEquals(session,replayed)||blocked)return;completionCommitted=true;committedAttempt=replayed.AttemptId;committedPuzzle=new PublicPuzzleIdentity(replayed.PuzzleId,replayed.PublicPuzzleHashProfile,replayed.PublicPuzzleHashSha256);Status=PersistedSessionStatus.ProgressCommitted;}).ConfigureAwait(false);return SaveCommitResult<LocalProfileState>.Success(replaySnapshot);}
+            return await CommitUnderLock(projection.State,true,ct,null,replayed).ConfigureAwait(false);
+        }
+        private async Task<SaveCommitResult<LocalProfileState>> CommitUnderLock(LocalProfileState payload,bool completed,CancellationToken ct,long? expectedOverride=null,PuzzleSessionState? completing=null)
+        {
+            var context=await Capture(()=>(Generation:durable!.Generation,Promotion:needsPromotion)).ConfigureAwait(false);long expected=expectedOverride??context.Generation;LocalModel.Require(expected<LocalModel.MaxSafe,"SAVE_GENERATION_EXHAUSTED");var unprepared=payload;if(!context.Promotion)payload=await Task.Run(()=>policy.PrepareForSave(unprepared,expected+1),ct).ConfigureAwait(false);var offer=new SaveSnapshot<LocalProfileState>(profile,catalogs.AggregateCatalog,expected+1,payload);await dispatcher.InvokeAsync(()=>Status=completed?PersistedSessionStatus.CompletionPending:PersistedSessionStatus.Writing).ConfigureAwait(false);
+            SaveCommitResult<LocalProfileState> result;try{result=await repository.CommitAsync(offer,expected,ct).ConfigureAwait(false);}catch(OperationCanceledException){result=SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_COMMIT_OUTCOME_UNKNOWN");}catch(Exception){result=SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_COMMIT_OUTCOME_UNKNOWN");}
+            await dispatcher.InvokeAsync(()=>{if(result.Succeeded&&result.Snapshot!=null&&Bound(result.Snapshot)&&result.Snapshot.Generation==offer.Generation&&ReferenceEquals(result.Snapshot.Payload,offer.Payload)&&(!completed||ReferenceEquals(session,completing))){durable=result.Snapshot;requiresExplicitRecovery=false;needsPromotion=false;blocked=false;completionCommitted=completed;if(context.Promotion){session=null;restoredCheckpoint=null;committedAttempt=null;committedPuzzle=null;}if(completed&&completing!=null){committedAttempt=completing.AttemptId;committedPuzzle=new PublicPuzzleIdentity(completing.PuzzleId,completing.PublicPuzzleHashProfile,completing.PublicPuzzleHashSha256);}Status=completed?PersistedSessionStatus.ProgressCommitted:session?.Phase==SessionPhase.SolvedPendingCommit?PersistedSessionStatus.CompletionPending:PersistedSessionStatus.Ready;}else{completionCommitted=false;if(result.Status==SaveCommitStatus.Conflict||result.Status==SaveCommitStatus.RecoveryRequired||result.Status==SaveCommitStatus.SplitBrain||result.Status==SaveCommitStatus.Unsupported||result.Status==SaveCommitStatus.Corrupt||result.Succeeded){blocked=true;needsPromotion=false;recoveryObservation=null;Status=PersistedSessionStatus.RecoveryRequired;}else Status=session?.Phase==SessionPhase.SolvedPendingCommit?PersistedSessionStatus.CompletionPending:PersistedSessionStatus.Ready;}}).ConfigureAwait(false);
+            if(result.Status==SaveCommitStatus.Conflict)await ReloadAfterConflict(ct).ConfigureAwait(false);return result;
+        }
+        private async Task ReloadAfterConflict(CancellationToken ct)
+        {
+            await dispatcher.InvokeAsync(()=>{blocked=true;requiresExplicitRecovery=true;needsPromotion=false;completionCommitted=false;recoveryObservation=null;Status=PersistedSessionStatus.RecoveryRequired;}).ConfigureAwait(false);
+            try{var fresh=await repository.LoadAsync(ct).ConfigureAwait(false);await dispatcher.InvokeAsync(()=>ApplyLoad(fresh,true)).ConfigureAwait(false);}catch(Exception){/* Unknown or cancelled observation keeps every effect blocked. */}
+        }
+        /// <summary>Uses a new explicit selection bound to the complete latest load observation. Recovery itself remains read-only.</summary>
+        public async Task<SaveLoadResult<LocalProfileState>> RecoverAsync(SaveRecoveryRequest request,CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try
+            {
+                if(!blocked||recoveryObservation==null||!request.Matches(recoveryObservation))return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.Conflict,"SAVE_RECOVERY_OBSERVATION_REQUIRED");
+                var result=await repository.RecoverAsync(request,cancellationToken).ConfigureAwait(false);bool validated=await ValidateLoaded(result,cancellationToken).ConfigureAwait(false);await dispatcher.InvokeAsync(()=>{blocked=true;completionCommitted=false;needsPromotion=false;if(validated&&result.Snapshot!=null&&result.Observation!=null&&request.Matches(result.Observation)){durable=result.Snapshot;recoveryObservation=result.Observation;needsPromotion=true;}else recoveryObservation=result.Observation;Status=PersistedSessionStatus.RecoveryRequired;}).ConfigureAwait(false);return result;
+            }finally{writer.Release();}
+        }
+        /// <summary>Promotes exactly the selected recovered payload before permitting new gameplay or reward mutations.</summary>
+        public async Task<SaveCommitResult<LocalProfileState>> PromoteRecoveryAsync(CancellationToken cancellationToken)
+        {
+            await writer.WaitAsync(cancellationToken).ConfigureAwait(false);try{if(!needsPromotion||durable==null||recoveryObservation==null)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_RECOVERY_SELECTION_REQUIRED");long generation=recoveryObservation.Candidates.Where(c=>c.Status==SaveCandidateStatus.Valid).Max(c=>c.Generation!.Value);return await CommitUnderLock(durable.Payload,false,cancellationToken,generation).ConfigureAwait(false);}finally{writer.Release();}
+        }
+    }
+}

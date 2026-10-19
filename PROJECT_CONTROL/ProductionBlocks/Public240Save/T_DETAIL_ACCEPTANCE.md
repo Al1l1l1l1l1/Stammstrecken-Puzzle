@@ -1,0 +1,19 @@
+# R – Annahme der technischen Anschlussdetails
+
+19.10.2026, technische Rolle R/Codex gemäß MANUS-2026-10-19-01 §5. Die getrennte Rolle `/root/t_boundary_review` hat die konkrete A/S-Detailplanung einschließlich der gezielt korrigierten Recoveryleasebindung geprüft. [Originaler getrennter Bericht](T_INDEPENDENT_CORRECTED_QC.md), maschinenlesbare Bindung in dessen JSON. Keine offenen Highs der Detailplanung; kein neuer ADR-Wechsel erforderlich.
+
+R nimmt `T_TECHNICAL_DETAILS.md` mit SHA256 `cc2f51119db4b76d5387d40f5f8b2508435ce505a138571110ca3f7a4922e6bb` als technische Ausgestaltung unter ADR034/035 vor A/S-Fachcode an. Insbesondere sind Ledgerbytes, Diagnosefenster, geschlossene inaktive Payloadvarianten, Katalogaggregation, QA-Katalogpfade, Ressourcenfehler ohne Zustandsverlust und die an exakten Zielpayload plus vollständige Kandidatenbeobachtung gebundene einmalige Recoverypromotion verbindlich.
+
+Die A-/S-Pläne erhalten dadurch keine eigene Ausführungsbasis: Es bleiben der vollständige T-Abschluss und anschließend je eigener gemeinsamer WP-/Manifest-Erstadd mit einzigem Parent exakt T erforderlich. Konkrete V1-DTO-Unterfelder und ihre vollständigen Goldens werden im späteren S-Scope vor Codeccode geschlossen dokumentiert. Kein Save-/Recovery-/CI-/A-/S-/I-/Produktabschluss wird aus dieser Planungsannahme abgeleitet.
+
+A/S dokumentieren ihre fachlichen Lieferfreezeannahmen im eigenen WP und Evidenzpfad. Der formale WP-Abschluss einschließlich der von AGENTS/DoD verlangten gemeinsamen CURRENT_STATE-Nachführung erfolgt durch R im dafür prospektiv vorgesehenen I-Scope; LA/LS behaupten davor keinen vollständig dokumentierten Gesamtabschluss. Die gemeinsame aktuelle Steuerung verweist auf diese einzelnen Statusquellen.
+
+## Annahme der anschließend geschlossenen S-Recordplanung
+
+Die getrennte Rolle hat die konkretisierten S-Planabschnitte12–15 und den bestehenden JCS-Port nachgeordneten CanonicalDtoCursor gezielt geprüft. Der High zum fehlenden vollständigen Endlessparametersatz wurde korrigiert; unbekannte Generator-/Parametergrammatik bleibt Unsupported bei Originalerhalt. Anschließend wurde nur der zusätzliche Writerplan zur höchsten Pending-Wahrheit gezielt nachgeprüft. Finaler tatsächlich geprüfter Splan-SHA256: `41f1d5e2cb8af9b779319eb0299b8b0dec84fc71f75263af0c138ac71f94e37d`, PASS ohne offene Planungs-Highs. Historische Zwischenhashes und gezielte Reviewanteile sind im unabhängigen QC-JSON erhalten.
+
+R nimmt diese abschließende technische S-Planpräzisierung samt [Writer-Sicherungsinvariante](T_WRITE_SAFETY_ACCEPTANCE.md) vor S-Code an. Die endgültigen unabhängigen festen Goldenbytes und tatsächlichen Reader-/Konfigurationsbindungen werden nach eigenem S-Anker vor Codeccode im S-Scope dokumentiert. Passive Contracttest-Lesedeskriptoren sind keine Produktpolicy; reale fehlende historische Bindungen erzeugen weiterhin den benannten Stop. Keine neue Bibliotheks-/Assemblykante und kein operativer Provider-/Generatorpfad werden hiermit erlaubt. Der Ausführungs-/CI-/Crashnachweis bleibt vollständig offen bis S.
+
+## Native Reviewbytes und persistente Gitbytes
+
+Die oben angenommenen technischen Revieworiginale sind verlustfrei in [T_DOCUMENT_SOURCE_BINDINGS.json](T_DOCUMENT_SOURCE_BINDINGS.json) erhalten. T_TECHNICAL_DETAILS besitzt lokal drei CRLF-Zeilenenden; Git normalisiert ausschließlich diese zu LF. Sein erwarteter roher Gitblob-SHA256 lautet daher `5b42ebca2e1240b90b50bf2f5dad47c6fb3af3638c94e4f5d8acc6f57ebbd1b2`, statt des unverändert oben gebundenen nativen Reviewhashs cc2f511. Splan ist bereits vollständig LF und bleibt SHA25641f1d5. Aplan besitzt ebenfalls ein gesondert gebundenes finales CRLF. Die jeweilige Normalisierung ist ausdrücklich keine behauptete Bytegleichheit und keine Fachänderung. Vor T-Freigabe werden tatsächliche rohe Schlusscommitblobs gegen diese Bindungen geprüft.

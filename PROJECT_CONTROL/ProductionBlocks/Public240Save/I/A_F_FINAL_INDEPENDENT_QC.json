@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-19T11:23:30.946Z",
+  "reviewer": "entry_audit independent final A freeze/regular-CI binding",
+  "verdict": "PASS_EXACT_A_FREEZE_AND_REGULAR_ATTEMPT1_CI_WITH_INTEGRATION_BOUNDARIES",
+  "source": {
+    "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+    "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+    "parent": "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+  },
+  "pr": {
+    "number": 35,
+    "draft": true,
+    "head": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+    "base": "925ca608a961ac26c84385c8da3b949f609df883"
+  },
+  "inputs": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/A_F_CI_EVIDENCE.json",
+      "bytes": 66244,
+      "sha256": "a76b030e07277f55fa437475276943e535f08fc2ed49ea9210c9838112bab0c9"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/A_F_DURABLE_CI_PACK.json",
+      "bytes": 2190459,
+      "sha256": "4ab4a9040f1e1c68b471279cb9ead3415b1625c06c8bfe4f57409ed50967af8c"
+    }
+  ],
+  "earlierIndependentBindings": [
+    "A_INITIAL_CODE_QC.json",
+    "A_CORRECTION_CODE_QC.json",
+    "A_CORRECTION_CLOSURE_QC.json",
+    "A_FREEZE_GIT_OBJECT_QC.json"
+  ],
+  "freshDirectApi": {
+    "runs": [
+      {
+        "id": 39238539786,
+        "name": "Architecture Validation",
+        "event": "push",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "terminalUtc": "2026-10-19T10:36:04Z",
+        "url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39238539786"
+      },
+      {
+        "id": 39238539800,
+        "name": "Unity CI",
+        "event": "push",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "terminalUtc": "2026-10-19T11:17:39Z",
+        "url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39238539800"
+      }
+    ],
+    "unityJobs": [
+      {
+        "id": 118013445455,
+        "name": "unity-environment-android",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:40:05Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118013445701,
+        "name": "project-preflight",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:35:45Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118013445873,
+        "name": "unity-config",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:35:33Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118013446029,
+        "name": "unity-environment-ios",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:37:08Z",
+        "runner_labels": [
+          "macos-15"
+        ]
+      },
+      {
+        "id": 118013446173,
+        "name": "unity-environment-linux",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:36:52Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118013562520,
+        "name": "unity-evidence-guard",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:35:51Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118013562531,
+        "name": "unity-compile-editmode",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:44:27Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118016917202,
+        "name": "unity-playmode-bootstrap-smoke",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T10:48:32Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118018533452,
+        "name": "unity-android-development-il2cpp",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T11:02:21Z",
+        "runner_labels": [
+          "ubuntu-24.04"
+        ]
+      },
+      {
+        "id": 118023893275,
+        "name": "unity-ios-export",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "completed_at": "2026-10-19T11:17:38Z",
+        "runner_labels": [
+          "macos-15"
+        ]
+      }
+    ],
+    "commit": {
+      "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+      "parents": [
+        "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+      ]
+    },
+    "artifacts": [
+      {
+        "id": 12182026200,
+        "name": "android-development-il2cpp",
+        "bytes": 45653537,
+        "digest": "sha256:5856f02708972f5fe8fb76a5205ad698b01fcbdbb9423ad2d16f04c34fbadfe1",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      },
+      {
+        "id": 12181640156,
+        "name": "playmode-results",
+        "bytes": 538231,
+        "digest": "sha256:84804c212542c03547e666022f2c00f086caf93eb3deac7733be9be1e94576da",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      },
+      {
+        "id": 12180537644,
+        "name": "editmode-results",
+        "bytes": 599653,
+        "digest": "sha256:dca8c3910df3e1871c2de4bb90149484acf495c382702a9ba2af6df52df8c567",
+        "head_sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      }
+    ]
+  },
+  "actualNunit": [
+    {
+      "id": 12180537644,
+      "zipBytes": 599653,
+      "zipSha256": "dca8c3910df3e1871c2de4bb90149484acf495c382702a9ba2af6df52df8c567",
+      "apiDigestExact": true,
+      "entries": [
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0000.xml",
+          "bytes": 4312401,
+          "sha256": "7550a49195061c325f82cb0794225aa75d5521d5a6534748c9979d3727f2e91a"
+        },
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0001.xml",
+          "bytes": 4372619,
+          "sha256": "f0b1514ebfe1d5e6e6f4d7e7af35fb55df78194ad195c6523a70897dc54e96f9"
+        },
+        {
+          "name": "editmode.xml",
+          "bytes": 465492,
+          "sha256": "88fd072400086f7082f767bb1d63bbecbda2afc06b91bf3b530dc0871eeb09df"
+        }
+      ],
+      "nunitRoot": "<test-run id=\"2\" testcasecount=\"537\" result=\"Passed\" total=\"537\" passed=\"537\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"0\" engine-version=\"3.5.0.0\" clr-version=\"4.0.30319.42000\" start-time=\"2026-10-19 10:40:21Z\" end-time=\"2026-10-19 10:44:14Z\" duration=\"233.1209905\">",
+      "actualCaseCount": 537,
+      "allPassed": true
+    },
+    {
+      "id": 12181640156,
+      "zipBytes": 538231,
+      "zipSha256": "84804c212542c03547e666022f2c00f086caf93eb3deac7733be9be1e94576da",
+      "apiDigestExact": true,
+      "entries": [
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0000.xml",
+          "bytes": 4312463,
+          "sha256": "5f5909ecf7241335bfce3065f40b629bcbdc837261d5e7128bf82b92df50821e"
+        },
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0001.xml",
+          "bytes": 4342015,
+          "sha256": "7da9422f7ef6a0060bf108dd49ec8fb95fd77da2989ae55b9ab25c081202fd1b"
+        },
+        {
+          "name": "playmode.xml",
+          "bytes": 82212,
+          "sha256": "85b14e56bbc6ff91b5733b3641ce25201f76c259d0a4aca002b00c700d3878dc"
+        }
+      ],
+      "nunitRoot": "<test-run id=\"2\" testcasecount=\"72\" result=\"Passed\" total=\"72\" passed=\"72\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"0\" engine-version=\"3.5.0.0\" clr-version=\"4.0.30319.42000\" start-time=\"2026-10-19 10:47:41Z\" end-time=\"2026-10-19 10:48:19Z\" duration=\"37.6073663\">",
+      "actualCaseCount": 72,
+      "allPassed": true
+    }
+  ],
+  "actualLogChecks": [
+    {
+      "jobId": 118013445208,
+      "bytes": 50415,
+      "sha256": "7cec80df4b421a504754152f6de49e998ac932bdf463e539899727d1d6c7d431",
+      "redactedLines": 4,
+      "fullLinePreservation": true
+    },
+    {
+      "jobId": 118013562531,
+      "bytes": 376686,
+      "sha256": "7d124723b454f7553f29ff64e2c362e0edde9219d12e5642c86f1dd15db45f4d",
+      "redactedLines": 90,
+      "fullLinePreservation": true
+    },
+    {
+      "jobId": 118016917202,
+      "bytes": 1029868,
+      "sha256": "e710e3027706b5d1d7ab8f9a32cd02d896bfbbbaac71adffbe7e5ff58e2050e4",
+      "redactedLines": 135,
+      "fullLinePreservation": true
+    },
+    {
+      "jobId": 118018533452,
+      "bytes": 1080364,
+      "sha256": "ae3a036c1686878c0a6ddf2f77f59ed96a5883b010befa67b46350222dbfd9a1",
+      "redactedLines": 404,
+      "fullLinePreservation": true
+    },
+    {
+      "jobId": 118023893275,
+      "bytes": 2760934,
+      "sha256": "3ad6deb2e4d223d341514bcd8558825dfeaf3904ac3993bbb869f5e9a9ec03fe",
+      "redactedLines": 701,
+      "fullLinePreservation": true
+    }
+  ],
+  "checkoutAndBuildFacts": [
+    {
+      "jobId": 118013445208,
+      "sha256": "6177dff2c747a281974fabe34e725e796dc9d2209f43c7c84715f6167da0f2c4",
+      "bytes": 50496,
+      "checkoutLines": [
+        "2026-10-19T10:35:33.6972710Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T10:35:33.8651847Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T10:36:01.4275664Z SCOPE_CONTEXT  workPackage=WP-041 base=925ca608a961ac26c84385c8da3b949f609df883 head=7d2e99837cd3910d11ed5f01ea67e8d06acba2c4 worktreeDirty=false"
+      ],
+      "buildLines": []
+    },
+    {
+      "jobId": 118013562531,
+      "sha256": "50beefe393a68a0c3d53471a41469ee99fe772cbd62fbb448902101088523580",
+      "bytes": 371694,
+      "checkoutLines": [
+        "2026-10-19T10:38:34.0040065Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d2e99837cd3910d11ed5f01ea67e8d06acba2c4:refs/remotes/origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:38:34.8468872Z  * [new ref]         7d2e99837cd3910d11ed5f01ea67e8d06acba2c4 -> origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:38:34.8570253Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T10:38:35.0399627Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      ],
+      "buildLines": []
+    },
+    {
+      "jobId": 118016917202,
+      "sha256": "ac71d9334eb4a2789ba130727d8e50749d396a7f91194d155cdd86ef67c6411c",
+      "bytes": 1024241,
+      "checkoutLines": [
+        "2026-10-19T10:45:46.7669498Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d2e99837cd3910d11ed5f01ea67e8d06acba2c4:refs/remotes/origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:45:48.4590966Z  * [new ref]         7d2e99837cd3910d11ed5f01ea67e8d06acba2c4 -> origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:45:48.4687569Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T10:45:48.6500016Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      ],
+      "buildLines": []
+    },
+    {
+      "jobId": 118018533452,
+      "sha256": "d030e3884ca2354858d492942066d70415b482e52f92cc8ecbc3ab2074cbeca7",
+      "bytes": 1018129,
+      "checkoutLines": [
+        "2026-10-19T10:48:37.4991038Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d2e99837cd3910d11ed5f01ea67e8d06acba2c4:refs/remotes/origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:48:38.8227181Z  * [new ref]         7d2e99837cd3910d11ed5f01ea67e8d06acba2c4 -> origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T10:48:38.8293805Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T10:48:38.9629939Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      ],
+      "buildLines": [
+        "2026-10-19T10:54:55.6682612Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T10:54:55.9830456Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T11:02:04.3293635Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (856808400 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+      ]
+    },
+    {
+      "jobId": 118023893275,
+      "sha256": "857170fb42fe807808984fbd8c7f04af077cd58a9ad9cb847605d3141edb172a",
+      "bytes": 2536162,
+      "checkoutLines": [
+        "2026-10-19T11:02:33.5862300Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +7d2e99837cd3910d11ed5f01ea67e8d06acba2c4:refs/remotes/origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T11:02:34.7924010Z  * [new ref]         7d2e99837cd3910d11ed5f01ea67e8d06acba2c4 -> origin/codex/wp-041-public240-interne-prueffassung",
+        "2026-10-19T11:02:34.8145760Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "2026-10-19T11:02:35.1043590Z 7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+      ],
+      "buildLines": [
+        "2026-10-19T11:06:52.1669390Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T11:06:52.9933750Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T11:08:32.0291420Z STP Build PASS: iOS -> Builds/iOS/Xcode (1045632480 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.",
+        "2026-10-19T11:17:28.0944200Z ** BUILD SUCCEEDED **"
+      ]
+    }
+  ],
+  "actualFourDeactivationReceipts": [
+    {
+      "jobId": 118013562531,
+      "utc": "2026-10-19T10:44:23.5913769Z",
+      "lineSha256": "09e618f42bce7bd507fd7403f48f1318172e8b3e4d3a7b08bac7e2beaa590443",
+      "deactivationKeyword": true,
+      "successKeyword": true
+    },
+    {
+      "jobId": 118016917202,
+      "utc": "2026-10-19T10:48:26.7280542Z",
+      "lineSha256": "21745fbbf0313d896da4fa58ef4b0d7c31a5d29641ef2dd021353851495313b7",
+      "deactivationKeyword": true,
+      "successKeyword": true
+    },
+    {
+      "jobId": 118018533452,
+      "utc": "2026-10-19T11:02:11.9972400Z",
+      "lineSha256": "83f60530f0c51b8721ad4a51fe1cd707e02b2644711c778b07b1dfb1d352b601",
+      "deactivationKeyword": true,
+      "successKeyword": true
+    },
+    {
+      "jobId": 118023893275,
+      "utc": "2026-10-19T11:17:30.5534510Z",
+      "lineSha256": "5adb21e65475614b30ff13382a16db6bb186a7a4721779555cf8e1cac9ba390a",
+      "deactivationKeyword": true,
+      "successKeyword": true
+    }
+  ],
+  "androidOriginal": {
+    "artifactId": 12182026200,
+    "zipBytes": 45653537,
+    "zipSha256": "5856f02708972f5fe8fb76a5205ad698b01fcbdbb9423ad2d16f04c34fbadfe1",
+    "apiDigestExact": true,
+    "members": [
+      {
+        "name": "StammstreckenPuzzle_BurstDebugInformation_DoNotShip/tempburstlibs/arm64-v8a/lib_burst_generated.txt",
+        "bytes": 89078,
+        "sha256": "01802ee4f4b31829d45df26b58f7b8031db43a8241eb9a5c85c2551abbd6d20d"
+      },
+      {
+        "name": "stp-qa-development.apk",
+        "bytes": 46913377,
+        "sha256": "ba30a8f0605e8e37644467cf50cc744def19294d9cd64559d7e24bc72aeb461c"
+      }
+    ]
+  },
+  "originalTransport": {
+    "fiveFullDecodedProfiles": true,
+    "allProfileGzipLengthHashRoundtrips": true,
+    "eachRawDecodedLogByteHashMatchesOriginalIgnored": true,
+    "redactionEveryMatchingWholeLineOnly": true,
+    "allNonSensitiveOriginalLinesPreservedExact": true,
+    "twoXmlCoverageOriginalZipsFullyUnpacked": true,
+    "threeOriginalZipDigestsEqualFreshApi": true,
+    "apkBinaryOnlyIgnoredLocal": true,
+    "rawHashMeaning": "Decoded UTF8 tool output, not HTTP raw archive hash"
+  },
+  "openSourceHighs": [],
+  "boundaries": [
+    "Actual Android/iOS BuildReport still lists the two historical QA entries DevelopmentPuzzle and BootstrapComposition. Public240Review player-entry inclusion remains explicit I integration work; neither platform run is relabelled as its execution.",
+    "Native05 23/23 nonbatchD3D11 and Native06 clean-rebuild originals previously independently accepted and raw source32/commit objects bound; no images generated or modified.",
+    "No P/I integration, S release, production/public release, store/device approval or physical iOS/APFS claim.",
+    "No additional A commit is required to rewrite frozen original reports; R accepts and later carries review evidence separately."
+  ]
+}

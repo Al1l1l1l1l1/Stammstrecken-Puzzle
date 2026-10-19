@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "role": "/root/entry_audit",
+  "scope": "Separate read-only evidence of the single root-authorized iOS infrastructure retry; original attempt 1 records unchanged.",
+  "observedAtUtc": "2026-10-19T08:29:44Z",
+  "status": "IOS_RETRY_PASS_WITH_NINE_ORIGINAL_JOB_RESULTS_REUSED",
+  "source": {
+    "sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "tree": "85d1cdb94beaa440cca600e16a1bf6ac06cf128e",
+    "workflowPath": ".github/workflows/unity.yml",
+    "workflowBlob": "027abe195289bd4b30baaae404bef81c12df7c83",
+    "currentWorkflowBlobSame": true,
+    "pr": 34
+  },
+  "dispatch": {
+    "performedBy": "root only",
+    "dispatchRecord": "T_IOS_RETRY_DISPATCH.json",
+    "recordedToolResponseTimeUtc": "2026-10-19T08:17:24Z",
+    "originalJobId": 117953319870,
+    "newIosJobId": 117958208352,
+    "totalAuthorizedRetryDispatches": 1
+  },
+  "run": {
+    "id": 39217159752,
+    "event": "push",
+    "head_sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-10-19T08:29:30Z",
+    "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39217159752"
+  },
+  "newIosJob": {
+    "id": 117958208352,
+    "run_id": 39217159752,
+    "workflow_name": "Unity CI",
+    "head_branch": "codex/wp-040-public240-save-technikbasis",
+    "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39217159752",
+    "run_attempt": 2,
+    "node_id": "CR_kwDOURiA7s8AAAAbdttrYA",
+    "head_sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117958208352",
+    "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39217159752/job/117958208352",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-19T08:17:10Z",
+    "started_at": "2026-10-19T08:17:19Z",
+    "completed_at": "2026-10-19T08:29:29Z",
+    "name": "unity-ios-export",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-19T08:17:19Z",
+        "completed_at": "2026-10-19T08:17:21Z"
+      },
+      {
+        "name": "Repository auschecken",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-19T08:17:21Z",
+        "completed_at": "2026-10-19T08:17:23Z"
+      },
+      {
+        "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-19T08:17:23Z",
+        "completed_at": "2026-10-19T08:19:27Z"
+      },
+      {
+        "name": "Unity Hub installieren",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 4,
+        "started_at": "2026-10-19T08:19:27Z",
+        "completed_at": "2026-10-19T08:19:27Z"
+      },
+      {
+        "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 5,
+        "started_at": "2026-10-19T08:19:27Z",
+        "completed_at": "2026-10-19T08:19:27Z"
+      },
+      {
+        "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-19T08:19:27Z",
+        "completed_at": "2026-10-19T08:19:28Z"
+      },
+      {
+        "name": "Unity-Library aus Cache wiederherstellen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-19T08:19:28Z",
+        "completed_at": "2026-10-19T08:19:50Z"
+      },
+      {
+        "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-19T08:19:50Z",
+        "completed_at": "2026-10-19T08:19:55Z"
+      },
+      {
+        "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-19T08:19:55Z",
+        "completed_at": "2026-10-19T08:19:58Z"
+      },
+      {
+        "name": "iOS-Xcodeprojekt exportieren und kompilieren",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-10-19T08:19:58Z",
+        "completed_at": "2026-10-19T08:29:21Z"
+      },
+      {
+        "name": "Unity-Personal-Seat freigeben (best effort)",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-19T08:29:21Z",
+        "completed_at": "2026-10-19T08:29:23Z"
+      },
+      {
+        "name": "Post Unity-Library aus Cache wiederherstellen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-10-19T08:29:23Z",
+        "completed_at": "2026-10-19T08:29:24Z"
+      },
+      {
+        "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-10-19T08:29:24Z",
+        "completed_at": "2026-10-19T08:29:24Z"
+      },
+      {
+        "name": "Post Repository auschecken",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-10-19T08:29:24Z",
+        "completed_at": "2026-10-19T08:29:25Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-10-19T08:29:25Z",
+        "completed_at": "2026-10-19T08:29:27Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117958208352",
+    "labels": [
+      "macos-15"
+    ],
+    "runner_id": 1000002151,
+    "runner_name": "GitHub Actions 1000002151",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "reusedOriginalJobs": [
+    {
+      "name": "unity-environment-android",
+      "attempt1JobId": 117943594630,
+      "attempt2StatusJobId": 117958198772,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:16Z",
+      "completed_at": "2026-10-19T07:41:36Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "project-preflight",
+      "attempt1JobId": 117943594619,
+      "attempt2StatusJobId": 117958199304,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:16Z",
+      "completed_at": "2026-10-19T07:37:35Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-config",
+      "attempt1JobId": 117943594433,
+      "attempt2StatusJobId": 117958199703,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:16Z",
+      "completed_at": "2026-10-19T07:37:19Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-evidence-guard",
+      "attempt1JobId": 117943718447,
+      "attempt2StatusJobId": 117958200286,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:37Z",
+      "completed_at": "2026-10-19T07:37:40Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-compile-editmode",
+      "attempt1JobId": 117943718790,
+      "attempt2StatusJobId": 117958200629,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:37Z",
+      "completed_at": "2026-10-19T07:44:42Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-playmode-bootstrap-smoke",
+      "attempt1JobId": 117946186468,
+      "attempt2StatusJobId": 117958205368,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:44:44Z",
+      "completed_at": "2026-10-19T07:48:14Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-android-development-il2cpp",
+      "attempt1JobId": 117947450077,
+      "attempt2StatusJobId": 117958207156,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:48:16Z",
+      "completed_at": "2026-10-19T08:04:16Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-environment-linux",
+      "attempt1JobId": 117943594212,
+      "attempt2StatusJobId": 117958235241,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:17Z",
+      "completed_at": "2026-10-19T07:39:12Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    },
+    {
+      "name": "unity-environment-ios",
+      "attempt1JobId": 117943594627,
+      "attempt2StatusJobId": 117958239939,
+      "sameOriginalStartedAt": true,
+      "sameOriginalCompletedAt": true,
+      "sameOriginalRunnerId": true,
+      "started_at": "2026-10-19T07:37:20Z",
+      "completed_at": "2026-10-19T07:39:48Z",
+      "conclusion": "success",
+      "interpretation": "API carries forward earlier successful job status; not newly executed by this one-job retry."
+    }
+  ],
+  "originalLog": {
+    "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117958208352/logs",
+    "sha256DecodedUtf8": "1f96c61c161b393f40740dd7a0063ee59f1343707e4a186c748dcd4c25a7fa7f",
+    "decodedUtf8Bytes": 2748294,
+    "excerpts": [
+      {
+        "line": 106,
+        "text": "2026-10-19T08:17:22.1856560Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +54d2496ac2c74b681d24fe7a69d7f044392c46dd:refs/remotes/origin/codex/wp-040-public240-save-technikbasis"
+      },
+      {
+        "line": 108,
+        "text": "2026-10-19T08:17:23.1564000Z  * [new ref]         54d2496ac2c74b681d24fe7a69d7f044392c46dd -> origin/codex/wp-040-public240-save-technikbasis"
+      },
+      {
+        "line": 112,
+        "text": "2026-10-19T08:17:23.1755410Z 54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      },
+      {
+        "line": 124,
+        "text": "2026-10-19T08:17:23.5614340Z 54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      },
+      {
+        "line": 143,
+        "text": "2026-10-19T08:17:23.9433450Z Cache hit for: unity-editor-macos15-6000.3.23f1-ios-v1"
+      },
+      {
+        "line": 226,
+        "text": "2026-10-19T08:19:27.0961230Z Cache restored from key: unity-editor-macos15-6000.3.23f1-ios-v1"
+      },
+      {
+        "line": 288,
+        "text": "2026-10-19T08:19:55.1191650Z Xcode 26.3"
+      },
+      {
+        "line": 304,
+        "text": "2026-10-19T08:19:56.4720580Z Trying to activate all seats ..."
+      },
+      {
+        "line": 305,
+        "text": "2026-10-19T08:19:57.9848390Z Activation processed successfully."
+      },
+      {
+        "line": 307,
+        "text": "2026-10-19T08:19:57.9849580Z Seat ID: 2476057761288-UnityPersonal"
+      },
+      {
+        "line": 389,
+        "text": "2026-10-19T08:19:59.1762970Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+      },
+      {
+        "line": 2106,
+        "text": "2026-10-19T08:20:53.2504580Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+      },
+      {
+        "line": 2161,
+        "text": "2026-10-19T08:20:53.5537980Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+      },
+      {
+        "line": 11702,
+        "text": "2026-10-19T08:22:24.1384010Z STP Build PASS: iOS -> Builds/iOS/Xcode (1044287259 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+      },
+      {
+        "line": 15002,
+        "text": "2026-10-19T08:29:21.1487500Z ** BUILD SUCCEEDED **"
+      },
+      {
+        "line": 15016,
+        "text": "2026-10-19T08:29:22.1326880Z Trying to deactivate all seats ..."
+      },
+      {
+        "line": 15017,
+        "text": "2026-10-19T08:29:23.4628170Z Deactivation processed successfully."
+      },
+      {
+        "line": 15019,
+        "text": "2026-10-19T08:29:23.4628840Z Seat ID: 2476057761288-UnityPersonal"
+      }
+    ]
+  },
+  "actualRuntimeBindings": {
+    "editor": "6000.3.23f1 (09d2ecc7fb28)",
+    "xcode": "26.3",
+    "editorCacheKey": "unity-editor-macos15-6000.3.23f1-ios-v1",
+    "editorCacheHit": true,
+    "checkout": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "buildProcessedScenes": [
+      "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity"
+    ],
+    "exportBuildPassAtUtc": "2026-10-19T08:22:24.1384010Z",
+    "xcodeBuildSucceededAtUtc": "2026-10-19T08:29:21.1487500Z",
+    "activationAtUtc": "2026-10-19T08:19:57.9848390Z",
+    "deactivationAtUtc": "2026-10-19T08:29:23.4628170Z",
+    "seatId": "2476057761288-UnityPersonal"
+  },
+  "artifactsAfterRetry": [
+    {
+      "id": 12171995495,
+      "name": "android-development-il2cpp",
+      "size_in_bytes": 45585287,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12171995495",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12171995495/zip",
+      "expired": false,
+      "created_at": "2026-10-19T08:04:14Z",
+      "expires_at": "2027-01-17T07:37:13Z",
+      "updated_at": "2026-10-19T08:04:14Z",
+      "digest": "sha256:746fede902f194f4b01d864f372cfdffcd317509699e3053ad5fd02a558056ec",
+      "workflow_run": {
+        "id": 39217159752,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      }
+    },
+    {
+      "id": 12170930865,
+      "name": "playmode-results",
+      "size_in_bytes": 458833,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12170930865",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12170930865/zip",
+      "expired": false,
+      "created_at": "2026-10-19T07:48:11Z",
+      "expires_at": "2027-01-17T07:37:13Z",
+      "updated_at": "2026-10-19T07:48:11Z",
+      "digest": "sha256:e6ac998cb1352278cf4ea8214f95a8416f965cc4afacaf686f65463d8665cfd4",
+      "workflow_run": {
+        "id": 39217159752,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      }
+    },
+    {
+      "id": 12170022607,
+      "name": "editmode-results",
+      "size_in_bytes": 527736,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12170022607",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12170022607/zip",
+      "expired": false,
+      "created_at": "2026-10-19T07:44:39Z",
+      "expires_at": "2027-01-17T07:37:13Z",
+      "updated_at": "2026-10-19T07:44:39Z",
+      "digest": "sha256:5bbc1e0bd1ff964a173fc88741424068c18648d4b374bd3ddbab8bb9394132d3",
+      "workflow_run": {
+        "id": 39217159752,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      }
+    }
+  ],
+  "artifactBoundary": "No separate downloadable iOS export artifact is uploaded by the unchanged workflow. Original decoded job log is the export/Xcode/receipt evidence. The three existing ZIP artifacts remain the original EditMode/PlayMode/Android artifacts from attempt 1; no new tests or APK asserted.",
+  "originalAttempt1Files": {
+    "untouched": true,
+    "files": [
+      {
+        "path": "T_CI.md",
+        "sha256": "45ef4f19646f99a9ad1b1608068256c5c591a017fe6ed150ef20fd555b2932d0"
+      },
+      {
+        "path": "T_CI_EVIDENCE.json",
+        "sha256": "820760dac3d29ccb5c53808dcae0690e4a2abc105c222756bb526400a8de3a06"
+      }
+    ],
+    "originalFailureRetained": true
+  },
+  "combinedInterpretation": {
+    "architectureAttempt1": "SUCCESS",
+    "unityAttempt1": "FAILURE (iOS editor download DNS ENOTFOUND)",
+    "originalNineUnityJobs": "SUCCESS, reused with original times/runners",
+    "iosAttempt2": "SUCCESS, new execution",
+    "actualLicenseReleasesAcrossSuccessfulExecutions": 4,
+    "editmode": "496/496 Passed from original attempt-1 XML",
+    "playmode": "49/49 Passed from original attempt-1 XML"
+  },
+  "boundaries": [
+    "One authorized infrastructure retry only; no test failure rerun or repeated retry series.",
+    "No original failure deletion, no claim that all ten jobs newly executed in attempt 2.",
+    "No A/S/I implementation or integration PASS.",
+    "No local Unity execution, workflow/source mutation, commit, push, dispatch, retry or cancellation by this reviewer.",
+    "No commercial/device/graphics/human-review/release approval."
+  ]
+}

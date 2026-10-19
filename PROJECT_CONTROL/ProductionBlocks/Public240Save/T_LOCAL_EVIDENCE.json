@@ -1,0 +1,88 @@
+{
+  "category": "license-free Roslyn compile and targeted Mono/NUnit supplement, not Unity/IL2CPP/Device execution",
+  "compileAssemblies": [
+    "STP.Puzzle.Domain",
+    "STP.Application",
+    "STP.Infrastructure.Content",
+    "STP.Editor.Content",
+    "STP.Tests.Content.EditMode"
+  ],
+  "editorToolchain": "6000.3.23f1 bundled Roslyn/Mono; no Editor instance or seat acquired",
+  "tests": {
+    "duration": "0.060513",
+    "total": "22",
+    "passed": "22",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "xmlSha256": "634b7685a0f1d07d3f51d9adce70570ec5ac47d8a39446ce99d490c2f5103fdf",
+    "filter": "STP.Tests.Content.EditMode.CanonicalJsonAdapterTests"
+  },
+  "nodeReference": {
+    "version": "22.20.0",
+    "tool": "tools/architecture-validation/jcs_crosscheck.mjs",
+    "canonicalBase64": "eyJhIjpbdHJ1ZSxudWxsLCLDllxuXHQiXSwieiI6LTkwMDcxOTkyNTQ3NDA5OTEsIvCfmIAiOjEsIu6AgCI6Mn0=",
+    "sha256": "722aa2cf748c46258055152d850ac11064c75eb28739b3c57db5cc43e0786423",
+    "csharpAssertions": "actual adapter output compared by full bytes/base64 and SHA256"
+  },
+  "initialFailure": {
+    "passed": 15,
+    "failed": 1,
+    "cause": "QA catalog namespace had not yet been blocked for Production; concrete guard completed and targeted rerun passed",
+    "preserved": "T_INITIAL_CONTRACT_FAIL.txt"
+  },
+  "preparationChecks": {
+    "architecture": 17,
+    "scope": 18,
+    "dirtyWorkingSnapshot": true,
+    "finalCleanFreezeCheck": "4929 candidate clean17/18 passed, preserved; corrected candidate cleancheck still required"
+  },
+  "runtimeFilesNotImplementedYet": [
+    "atomic filesystem writer",
+    "Save-v2 codec/migration",
+    "persisted session/checkpoint",
+    "Public240 player UI",
+    "integration"
+  ],
+  "firstWorkingSnapshotSources": {
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs": "181f88c67ee9674e90dd1a30e34f6da83b808a2027b204605a1927f017122e21",
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta": "cd41f5d829834e17fd83c78a0f9d6a77f2e8a36bf08b98e0a450f9dbeba8b7f9",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs": "7d11b68529527557290604631761e3ddd6fa4f4bc5d2a8f298d9e9bd6e64f32d",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta": "e5cf96c683b0ca31c1e9fcaf084dc555efd27179726e884daffc3bbd5fa4c1fe",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs": "292fef5c1703fa73e72681e38b5fa5cfafe56c34b755178df4484baff0c51cb1",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta": "1cb54867cb8c8a5e5fd8a67fed1461eca64e860a84611075e2fa99c3a7998fa5"
+  },
+  "nativeCompiledSources": {
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs": "55647842ed0d8eec0ee68cf0a29135317d294be71f56681508d49d10e8a00e52",
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta": "cd41f5d829834e17fd83c78a0f9d6a77f2e8a36bf08b98e0a450f9dbeba8b7f9",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs": "7d11b68529527557290604631761e3ddd6fa4f4bc5d2a8f298d9e9bd6e64f32d",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta": "e5cf96c683b0ca31c1e9fcaf084dc555efd27179726e884daffc3bbd5fa4c1fe",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs": "2b4e0c647e8517b45d9d6edd5581435fcbf73d0d6f712021018ce3620e53f6e6",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta": "1cb54867cb8c8a5e5fd8a67fed1461eca64e860a84611075e2fa99c3a7998fa5"
+  },
+  "gitNormalizedSources": {
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs": "55647842ed0d8eec0ee68cf0a29135317d294be71f56681508d49d10e8a00e52",
+    "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta": "cd41f5d829834e17fd83c78a0f9d6a77f2e8a36bf08b98e0a450f9dbeba8b7f9",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs": "198952c6ae7c7c5aecaf7b5095069743c89c6cf891e31348369a29f4461f9f0a",
+    "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta": "e5cf96c683b0ca31c1e9fcaf084dc555efd27179726e884daffc3bbd5fa4c1fe",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs": "2b4e0c647e8517b45d9d6edd5581435fcbf73d0d6f712021018ce3620e53f6e6",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta": "1cb54867cb8c8a5e5fd8a67fed1461eca64e860a84611075e2fa99c3a7998fa5"
+  },
+  "byteNote": "Native compiled adapter ends with CRLF; Git normalizes its final line ending only. Native and Git source bindings are explicitly distinct; all five other source/meta bindings are byte equal.",
+  "independentReview4929": {
+    "role": "/root/t_boundary_review",
+    "result": "two T03 HIGHs, not accepted; remaining source/boundary checks positive; CI still required",
+    "defects": [
+      "equal star times accepted contrary to strict order",
+      "missing observation transport for splitbrain without valid highest main"
+    ],
+    "targetedRegression": {
+      "baseSourceCommit": "4929ad8be779c2def5d7b2b504add9346ee5a389",
+      "currentTests": true,
+      "passed": 20,
+      "failed": 2,
+      "preserved": "T_REVIEW_REGRESSION_RED.json"
+    },
+    "correction": "strict >= rejection plus equality assertion; observed Failure/Success overloads plus conflict without main and changed Pending regression; final22/22 supplemental Passed"
+  }
+}

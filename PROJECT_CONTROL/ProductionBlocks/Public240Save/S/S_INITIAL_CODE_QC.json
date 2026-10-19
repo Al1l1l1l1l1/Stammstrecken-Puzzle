@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:32:58.389Z",
+  "role": "entry_audit independent initial static S checkpoint/model/policy/application/content review; implementation under construction, no Unity/Git/CI action",
+  "verdict": "OPEN_CONCRETE_FINDINGS_NO_OVERALL_S_PASS",
+  "sourceBinding": "S_EARLY_CODE_SOURCE_BINDING.json",
+  "sourceBindingSha256": "ee06ca642cadbfaa40eed98dfa27fbcef7f98c8d5ec16643d617c8c1b57fe70d",
+  "reviewedPaths": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+      "bytes": 16637,
+      "sha256": "5f0b2e36215c7f57e42cba3a3cab9407a9d30cdd1d6e924480c8bd7867156035"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "bytes": 76082,
+      "sha256": "80348d74346c2c81c134cf61d01fa42439c64e6e6e6338d4cef498d76d782514"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+      "bytes": 16467,
+      "sha256": "e21884d6f97425ef44b98e7e607cc9238c8789345ee6201aa9059a791b84eacb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "bytes": 20194,
+      "sha256": "0b0acca619607883e9a066eccc455d9b9848a9cc513bd81fe8dc04fd973114af"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+      "bytes": 4963,
+      "sha256": "11f6d688fb6c100cf4ed332640520b8ba61fe76e954788f0aaa2051b5e24765e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+      "bytes": 9940,
+      "sha256": "5184b3c38c18ead0b990a02cc85229870fc59d0105ac7d27e20c35fd76183b53"
+    }
+  ],
+  "findings": [
+    {
+      "id": "S-APP-01",
+      "severity": "High",
+      "status": "OWNER_FIRST_CORRECTION_STATIC_REVIEWED_REGRESSION_PENDING",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "finding": "Original Start/Restore allowed replacing solved A during repository completion ACK; callback could publish progress for new B.",
+      "correctionAtBoundSource": "0b0acca619607883e9a066eccc455d9b9848a9cc513bd81fe8dc04fd973114af blocks unconfirmed SolvedPendingCommit replacement, normal repository ACK captures completing session and requires ReferenceEquals; CanPresentResults checks phase+attempt+full identity.",
+      "limits": "Original faulty full text was read before immediate owner correction but no pre-correction raw source copy was captured; do not claim original rawhash or executed regression."
+    },
+    {
+      "id": "S-MODEL-01",
+      "severity": "High",
+      "status": "OPEN_REPORTED",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "sourceSha256": "80348d74346c2c81c134cf61d01fa42439c64e6e6e6338d4cef498d76d782514",
+      "lines": [
+        47,
+        53
+      ],
+      "finding": "CatalogSetIdentity.Create accepts equal public/campaign/completion identities when commonUse and recomputed hash match; accepted plan section11 expressly requires three different CatalogIdentity.",
+      "required": "Pairwise equality rejection with otherwise correctly recomputed aggregate negative test; no heuristic product catalog ID rule."
+    },
+    {
+      "id": "S-APP-02",
+      "severity": "High",
+      "status": "OPEN_REPORTED",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "sourceSha256": "0b0acca619607883e9a066eccc455d9b9848a9cc513bd81fe8dc04fd973114af",
+      "finding": "AlreadyCommitted branch delayed dispatcher closure reads mutable session, unlike normal repository ACK branch.",
+      "reproduction": "A already committed; repeat CommitCompletionAsync(A) reaches AlreadyCommitted and delay publication. StartB is allowed because completionCommitted=true; solveB with genuine commands before callback. Old callback captures current B attempt/puzzle and sets completionCommitted=true, permitting B results without CommitB.",
+      "required": "Capture exact immutable completing session before async dispatch and refuse stale callback identity; controlled delayed-dispatch test."
+    }
+  ],
+  "notes": [
+    "Full immutable model/checkpoint/policy/application/content files in binding read; no further concrete High found yet.",
+    "Codec/migration/test files still in progress; absent not-yet-delivered tests are not reported as defects.",
+    "Model cross-area semantic validation must still be assessed together with actual codec/policy and later real fixedgolden execution."
+  ]
+}

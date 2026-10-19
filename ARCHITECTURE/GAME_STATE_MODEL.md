@@ -176,3 +176,7 @@ Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zel
 [10]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
 [11]: ../DECISIONS/ADR-027-endless-no-reward-terminalpfad.md "ADR-027 – Providerfreier Endless-No-Reward-Terminalpfad"
 [12]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"
+
+## Gemeinsame Technikbasis Public240 und lokaler Save
+
+[ADR-034](../DECISIONS/ADR-034-isolierter-public240-reviewpfad.md) ergänzt ausschließlich den isolierten nichtproduktiven Public240Review-Entry. [ADR-035](../DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md) konkretisiert typisierte Zusatzports, die Wiederverwendung des bestehenden strikten JCS über Injektion ohne neue Assemblykante, validierte vollständige Checkpoints und CAS/Commit-vor-Fahrt. Produktionsgates, Hashprojektionen, Save-v2-/Migrations-/Ledgerverträge und offene Produktblocker bleiben unverändert. Eigene QA-Profile und Claims werden niemals zu Produktprofilen übertragen. Fachimplementierung und tatsächliche Nachweise folgen getrennt verankerten WPs auf abgeschlossenem T.

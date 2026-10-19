@@ -56,6 +56,8 @@ namespace STP.Editor.Build
 
             VerifyRenderingAndStripping();
             DevelopmentPuzzleBuild.VerifyArtifacts();
+            Public240ReviewBuild.VerifyArtifacts();
+            SavedPublic240ReviewBuild.VerifyArtifacts();
             Debug.Log($"STP Preflight PASS: Unity {Application.unityVersion}, ProjectVersion.txt konsistent, QA-Szene vorhanden.");
         }
 
@@ -124,7 +126,7 @@ namespace STP.Editor.Build
                 throw new InvalidOperationException($"QA-Szene fehlt: {QaScenePath}");
             }
 
-            var scenes = new[] { DevelopmentPuzzleBuild.ScenePath, QaScenePath };
+            var scenes = GetQaScenePaths();
             Debug.Log($"STP QA build scene inputs: {string.Join(", ", scenes)}.");
             var report = BuildPipeline.BuildPlayer(scenes, locationPathName, target, options);
             if (report.summary.result != BuildResult.Succeeded)
@@ -135,6 +137,13 @@ namespace STP.Editor.Build
 
             Debug.Log($"STP Build PASS: {target} -> {locationPathName} ({report.summary.totalSize} Bytes), QA scenes: {string.Join(", ", scenes)}.");
         }
+
+        /// <summary>Fresh ordered normal QA scene inputs, shared by both platform builds; no production entry is inferred.</summary>
+        public static string[] GetQaScenePaths() => new[]
+        {
+            SavedPublic240ReviewBuild.ScenePath, Public240ReviewBuild.ScenePath,
+            DevelopmentPuzzleBuild.ScenePath, QaScenePath
+        };
 
         private static void VerifyRenderingAndStripping()
         {

@@ -1,0 +1,202 @@
+'use strict';
+// Independent reviewer. Read-only: no production code imports and no generator execution.
+const fs = require('fs'), crypto = require('crypto');
+const source = process.argv[2];
+const raw = fs.readFileSync(source), data = JSON.parse(raw);
+const checks = [], failures = [];
+const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+function check(condition, path, expectation) {
+  checks.push({path, pass:!!condition, expectation});
+  if (!condition) failures.push({path, expectation});
+}
+function canonical(value) {
+  if (value === null) return 'null';
+  if (typeof value === 'string') {
+    for (let i=0;i<value.length;i++) {
+      const n=value.charCodeAt(i);
+      if(n>=0xD800&&n<=0xDBFF) { const low=value.charCodeAt(++i); if(!(low>=0xDC00&&low<=0xDFFF))throw Error('Unpaired high surrogate'); }
+      else if(n>=0xDC00&&n<=0xDFFF)throw Error('Unpaired low surrogate');
+    }
+    return JSON.stringify(value);
+  }
+  if (typeof value === 'number') { if(!Number.isSafeInteger(value))throw Error('Not a safe integer');return String(value); }
+  if (typeof value === 'boolean') return value?'true':'false';
+  if (Array.isArray(value)) return '['+value.map(canonical).join(',')+']';
+  const keys=Object.keys(value).sort();
+  return '{'+keys.map(k=>canonical(k)+':'+canonical(value[k])).join(',')+'}';
+}
+const hash = obj => sha(Buffer.from(canonical(obj),'utf8'));
+const eq = (a,b) => canonical(a)===canonical(b);
+const exact = (obj, keys, path) => check(obj && eq(Object.keys(obj).sort(),keys.split(',').sort()),path,'exact fields: '+keys);
+const rootKeys='profile,levels,endless,ledgerCheckpoint,economyJournal,inventory,cosmeticClaimReservations,seasonProgressCache,drafts,rewardClaims,dailyStatus,entitlements,pendingOperations,settings,dataLifecycle,hintEntitlement';
+const envelopeKeys='saveSchemaVersion,payloadHashProfile,generation,createdAtUtc,appVersion,buildId,contentCatalogHash,payload,payloadSha256';
+const identityKeys='puzzleId,profile,sha256';
+const refKeys='catalogId,revision,hashSha256,use,approvalStatus';
+const checkpointKeys='recordVersion,identity,rulesetVersion,attemptId,mode,phase,cells,previouslySet,revision,timerStarted,activeElapsedMs,usedEmptyMarker,usedOccupiedMarker,hintCount,correctionCount,appliedCommandIds,undo,solvedEventId,startedAtUtc,lastSavedAtUtc';
+const terminalKeys='transactionId,reasonCode,subjectId,catalog,claimId,amount,committedGeneration,createdAtUtc';
+const entryKeys='sequence,transactionId,reasonCode,amount,subjectId,catalogId,catalogRevision,catalogHashSha256,claimId,createdAtUtc';
+const hex=/^[0-9a-f]{64}$/, guid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const nonnegative=n=>Number.isSafeInteger(n)&&n>=0;
+const uint=s=>typeof s==='string'&&/^(0|[1-9][0-9]*)$/.test(s)&&BigInt(s)<=18446744073709551615n;
+const utc=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(s)&&Number.isFinite(Date.parse(s));
+function scalarWalk(v,p) {
+  if(typeof v==='number')check(Number.isSafeInteger(v),p,'safe integer');
+  else if(typeof v==='string')canonical(v);
+  else if(v&&typeof v==='object')for(const [k,x]of Object.entries(v)){if(k==='recordVersion')check(x===1,p+'.'+k,'known positive record version1');scalarWalk(x,p+'.'+k);}
+}
+function identity(i,p){exact(i,identityKeys,p);check(i.profile==='STP-PUZZLE-SEMANTIC-JCS-1'&&hex.test(i.sha256)&&i.puzzleId.length>0,p,'public identity');}
+function catalog(c,p){exact(c,refKeys,p);check(c.revision>0&&c.revision<=2147483647&&Number.isSafeInteger(c.revision)&&hex.test(c.hashSha256),p,'hash and T int revision');check(({ContractTest:'FixtureOnly',IsolatedReview:'Draft',Production:'ProductApproved'})[c.use]===c.approvalStatus,p,'exact use/status');}
+function terminal(t,p){exact(t,terminalKeys,p);catalog(t.catalog,p+'.catalog');check(nonnegative(t.committedGeneration)&&Number.isSafeInteger(t.amount)&&utc(t.createdAtUtc),p,'terminal integer/time');}
+function checkpoint(cp,p,puzzle) {
+  exact(cp,checkpointKeys,p);identity(cp.identity,p+'.identity');
+  check(guid.test(cp.attemptId)&&cp.attemptId!=='00000000-0000-0000-0000-000000000000',p+'.attemptId','nonempty Guid D');
+  check(['FIRST_RUN','PRACTICE','REVISION','ENDLESS'].includes(cp.mode)&&['Ready','Active','Suspended','SolvedPendingCommit'].includes(cp.phase),p,'closed session enums');
+  check(nonnegative(cp.revision)&&nonnegative(cp.activeElapsedMs)&&nonnegative(cp.correctionCount)&&nonnegative(cp.hintCount),p,'safe nonnegative counters');
+  check(cp.appliedCommandIds.every(x=>guid.test(x)&&x!=='00000000-0000-0000-0000-000000000000')&&new Set(cp.appliedCommandIds).size===cp.appliedCommandIds.length,p+'.appliedCommandIds','unique nonempty Guid D');
+  check(cp.revision===cp.appliedCommandIds.length,p,'revision equals successful commands');
+  check(cp.undo.length<=256&&cp.undo.length<=cp.revision,p+'.undo','bounded history');
+  if(!puzzle)return;
+  const w=puzzle.grid.width,h=puzzle.grid.height;
+  check(cp.cells.length===w*h&&cp.previouslySet.length===w*h,p,'grid-sized cells/history');
+  const validCell=/^(UNSET|MARK_EMPTY|MARK_OCCUPIED|TRACK_NS|TRACK_EW|TRACK_NE|TRACK_ES|TRACK_SW|TRACK_WN)$/;
+  check(cp.cells.every(x=>validCell.test(x))&&cp.previouslySet.every(x=>typeof x==='boolean'),p,'typed cells/history');
+  check(cp.rulesetVersion===puzzle.rulesetVersion&&cp.identity.puzzleId===puzzle.puzzleId&&cp.identity.sha256===hash(puzzle),p,'checkpoint puzzle binding');
+  let cells=cp.cells.slice();
+  for(let j=cp.undo.length-1;j>=0;j--) {
+    const diff=cp.undo[j];exact(diff,'changes',p+'.undo['+j+']');let last=-1;
+    check(diff.changes.length>0,p+'.undo['+j+']','nonempty diff');
+    for(const c of diff.changes){exact(c,'x,y,before,after',p+'.change');const idx=c.y*w+c.x;check(nonnegative(c.x)&&nonnegative(c.y)&&c.x<w&&c.y<h&&idx>last,p+'.change','inbounds sorted unique');check(c.before!==c.after&&validCell.test(c.before)&&validCell.test(c.after),p+'.change','valid nonempty cell transition');check(cells[idx]===c.after,p+'.undo['+j+']','reverse replay current==after');cells[idx]=c.before;last=idx;}
+  }
+  check(cp.cells.every((c,i)=>c==='UNSET'||cp.previouslySet[i]),p,'sticky previouslySet covers cells');
+  check(cp.cells.every(c=>c!=='MARK_EMPTY')||cp.usedEmptyMarker,p,'sticky empty marker');
+  check(cp.cells.every(c=>c!=='MARK_OCCUPIED')||cp.usedOccupiedMarker,p,'sticky occupied marker');
+  check(eq(cp.appliedCommandIds,[...cp.appliedCommandIds].sort()),p,'stored Guid comparison order');
+  check(cp.phase==='SolvedPendingCommit'?cp.solvedEventId==='puzzle-solved:'+cp.attemptId:cp.solvedEventId===null,p,'phase/solved ID');
+  check(cp.startedAtUtc===null||utc(cp.startedAtUtc),p+'.startedAtUtc','UTC or explicit null');check(cp.lastSavedAtUtc===null||utc(cp.lastSavedAtUtc),p+'.lastSavedAtUtc','UTC or explicit null');
+}
+function ledger(payload,p){
+  const cp=payload.ledgerCheckpoint;
+  exact(cp,'ledgerContractVersion,throughSequence,balancePatience,entryChainHashSha256,sourceSaveGeneration,journalDiagnosticTail',p+'.checkpoint');
+  check(cp.ledgerContractVersion===1&&nonnegative(cp.throughSequence)&&nonnegative(cp.balancePatience)&&nonnegative(cp.sourceSaveGeneration)&&hex.test(cp.entryChainHashSha256),p,'Contract1 checkpoint');
+  let seq=cp.throughSequence,chain=cp.entryChainHashSha256,balance=cp.balancePatience;
+  for(const e of payload.economyJournal){exact(e,entryKeys+',entryChainHashSha256',p+'.entry');const projection=Object.fromEntries(entryKeys.split(',').map(k=>[k,e[k]]));check(e.sequence===++seq,p,'contiguous suffix');chain=sha(Buffer.concat([Buffer.from(chain,'hex'),Buffer.from(canonical(projection))]));check(chain===e.entryChainHashSha256,p,'raw32 previous + Ei bytes');balance+=e.amount;check(nonnegative(balance),p,'nonnegative safe balance');const fields=[e.catalogId,e.catalogRevision,e.catalogHashSha256];check(fields.every(v=>v===null)||fields.every(v=>v!==null),p,'catalog all null or all populated');}
+  check(cp.journalDiagnosticTail.length<=64&&cp.journalDiagnosticTail.every(e=>e.sequence<=cp.throughSequence),p,'diagnostic tail bounds');
+  return {sequence:seq,balance,chain};
+}
+const unionCoverage={ownership:new Set(),reward:new Set(),iap:new Set(),rewardPending:new Set(),endless:new Set(),openClaim:new Set(),privacy:new Set()};
+function recordSemantics(c) {
+  const x=c.expectedPayload,p=c.name+'.relations',bindings=c.passiveBindings||[];
+  exact(x.profile.identity,'namespace,profileId,use',p+'.profileIdentity');
+  check(x.profile.localProfileId===x.profile.identity.profileId&&utc(x.profile.firstUseUtc),p,'profile local ID/time');
+  exact(x.settings,'recordVersion,locale,audioGroups,hapticsEnabled,accessibility',p+'.settings');
+  check(x.settings.recordVersion===1&&(x.settings.locale===null||typeof x.settings.locale==='string')&&(x.settings.hapticsEnabled===null||typeof x.settings.hapticsEnabled==='boolean'),p,'settings scalars');
+  for(const a of x.settings.audioGroups){exact(a,'groupId,numerator,denominator',p+'.audio');check(nonnegative(a.numerator)&&Number.isSafeInteger(a.denominator)&&a.denominator>0&&a.numerator<=a.denominator,p,'valid rational audio scale');}
+  if(x.settings.accessibility){const a=x.settings.accessibility;exact(a,'recordVersion,contractRevision,reducedMotion,trainRideSkip',p+'.accessibility');check(bindings.some(b=>b.recordKind==='ACCESSIBILITY'&&b.contractRevision===a.contractRevision),p,'known accessibility retention descriptor');}
+  exact(x.dataLifecycle,'recordVersion,privacyDecision,lastReconciledAtUtc',p+'.dataLifecycle');
+  if(x.dataLifecycle.privacyDecision){const a=x.dataLifecycle.privacyDecision;exact(a,'recordVersion,policyRevision,sdkContractRevision,decisionRevision,capturedAtUtc,ads,analytics,crash,validity,source,nativeSyncState',p+'.privacy');check(['VALID','INVALID'].includes(a.validity)&&['UNKNOWN','DENIED_CONFIRMED','ENABLE_PENDING','ENABLED_CONFIRMED','REVOKE_PENDING','REVOKED_CONFIRMED'].includes(a.nativeSyncState)&&Number.isSafeInteger(a.decisionRevision)&&a.decisionRevision>0&&utc(a.capturedAtUtc)&&[a.ads,a.analytics,a.crash].every(v=>typeof v==='boolean'),p,'privacy closed scalars');check(bindings.some(b=>b.recordKind==='PRIVACY'&&b.policyRevision===a.policyRevision&&b.sdkContractRevision===a.sdkContractRevision&&b.source===a.source),p,'known privacy retention descriptor');}
+  if(x.hintEntitlement){const a=x.hintEntitlement;exact(a,'recordVersion,policyVersion,puzzleIdentity,mode,availableCredits,claimIds',p+'.hint');check(nonnegative(a.availableCredits)&&new Set(a.claimIds).size===a.claimIds.length&&bindings.some(b=>b.recordKind==='HINT'&&b.policyVersion===a.policyVersion),p,'hint retention binding and credits');}
+  if(x.dailyStatus){const a=x.dailyStatus;exact(a,'recordVersion,policyVersion,confirmedClaimIds',p+'.daily');check(new Set(a.confirmedClaimIds).size===a.confirmedClaimIds.length&&bindings.some(b=>b.recordKind==='DAILY'&&b.policyVersion===a.policyVersion),p,'daily retention binding');}
+  exact(x.entitlements,'recordVersion,records',p+'.entitlements');
+  for(const e of x.entitlements.records){exact(e,'recordVersion,productKey,store,transactionReference,owned,reconciliationRequired,revocationConfirmed,lastConfirmedAtUtc,grantOperationId,finalizationOperationId',p+'.entitlement');check(!(e.owned&&e.revocationConfirmed),p,'revoked contradicts owned');for(const f of ['grantOperationId','finalizationOperationId'])if(e[f]!==null)check(x.pendingOperations.some(o=>o.kind==='IAP'&&o.operationId===e[f]&&o.logicalProductKey===e.productKey&&o.store===e.store&&o.transactionReference===e.transactionReference),p,'entitlement operation exact binding');}
+  const graph=data.catalogs.campaignReadProjection;
+  if(graph){const fc=x.levels.filter(l=>l.firstClear).map(l=>l.identity).sort((a,b)=>a.puzzleId.localeCompare(b.puzzleId));
+    const cp={campaignCatalog:Object.fromEntries(['catalogId','revision','hashSha256'].map(k=>[k,x.profile.catalogSet.campaignCatalog[k]])),firstClearIdentities:fc};
+    check(hash(cp)===x.seasonProgressCache.sourceProjectionHashSha256,p,'cache projection hash derived from true firstclears');
+    for(const s of x.seasonProgressCache.subjects){exact(s,'subjectId,kind,firstClearPuzzleIds,firstClearCount,memberCount,completed',p+'.cacheSubject');const f={SEASON:'seasonId',SECTION:'sectionId',ROUTE:'routeId'}[s.kind],members=graph.filter(e=>e[f]===s.subjectId).map(e=>e.identity.puzzleId).sort();const cleared=members.filter(id=>fc.some(i=>i.puzzleId===id));check(eq(cleared,s.firstClearPuzzleIds)&&members.length===s.memberCount&&cleared.length===s.firstClearCount&&s.completed===(members.length>0&&cleared.length===members.length),p,'cache exact complete membership');}
+  }
+  for(const o of x.inventory.ownership){
+    if(o.grantKind==='PATIENCE_PURCHASE'){
+      const b=bindings.find(b=>b.recordKind==='COSMETICS'&&eq(b.catalog,o.catalog)),item=b?.document.items.find(i=>i.id===o.itemId),entry=x.economyJournal.find(e=>e.transactionId===o.transactionId);
+      check(!!item&&item.pricePatience===o.pricePatience&&item.type===o.itemType,p,'purchase price/type from exact historical catalog');
+      check(o.transactionId==='cosmetic-purchase:'+o.itemId&&!!entry&&entry.amount===-o.pricePatience&&entry.catalogHashSha256===o.catalog.hashSha256&&entry.subjectId===o.itemId,p,'purchase atomic ledger+ownership provenance');
+    }
+    if(o.grantKind==='MILESTONE_CLAIM')check(o.claimState==='COMMITTED'&&o.claimId==='cosmetic-milestone-claim:v1:'+o.catalog.catalogId+':'+o.itemId,p,'milestone terminal claim identity');
+  }
+  for(const reservation of [...x.cosmeticClaimReservations,...x.inventory.ownership.filter(o=>o.grantKind==='MILESTONE_CLAIM')]){
+    const binding=bindings.find(b=>b.recordKind==='COSMETICS'&&eq(b.catalog,reservation.catalog)),eb=bindings.find(b=>b.recordKind==='ELIGIBILITY_PROJECTION');
+    check(!!binding&&hash(binding.document)===reservation.catalog.hashSha256,p,'cosmetic full source hash');
+    const item=binding?.document.items.find(i=>i.id===reservation.itemId);
+    if(item&&graph){const ids=new Set();for(const sid of item.milestoneEligibility.requiredCampaignSubjectIds){const entries=graph.filter(e=>[e.seasonId,e.sectionId,e.routeId].includes(sid));check(entries.length>0,p,'milestone subject resolves');entries.forEach(e=>ids.add(e.identity.puzzleId));}
+      const required=[...ids].sort(),fc=required.filter(id=>x.levels.some(l=>l.identity.puzzleId===id&&l.firstClear));const projection={catalogId:reservation.catalog.catalogId,catalogRevision:reservation.catalog.revision,catalogHashSha256:reservation.catalog.hashSha256,itemId:reservation.itemId,acquisition:'MILESTONE_GRANT',eligibilityContractVersion:1,kind:'ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS',requiredCampaignSubjectIds:[...item.milestoneEligibility.requiredCampaignSubjectIds].sort(),requiredPuzzleIds:required,validatedFirstClearPuzzleIds:fc};
+      check(eq(required,fc)&&hash(projection)===reservation.eligibilityProjectionHashSha256&&!!eb&&eq(eb.projection,projection),p,'source-derived exact eligibility projection and firstclear truth');}
+  }
+  for(const pending of x.pendingOperations.filter(o=>o.kind==='REWARD')){const claim=x.rewardClaims.find(r=>r.kind==='POST_CLEAR_PATIENCE'&&r.claimId===pending.claimId)||x.endless.openEndless.find(o=>o.state==='COMPLETION_CLAIM_OPEN'&&o.claim.claimId===pending.claimId)?.claim;
+    check(!!claim&&claim.localOperationId===pending.operationId&&claim.providerOperationId===pending.providerOperationId,p,'pending exact claim/local/provider IDs');}
+  if(c.sourceSchemaVersion===1){const source=c.sourceEnvelope.payload;
+    const preserved=['inventory','cosmeticClaimReservations','rewardClaims','dailyStatus','entitlements','pendingOperations','settings','dataLifecycle','hintEntitlement','economyJournal'];
+    preserved.forEach(k=>check(eq(source[k],x[k]),p+'.'+k,'migration retains complete passive source truth'));
+    for(const [id,l]of Object.entries(source.levels)){const t=x.levels.find(t=>t.identity.puzzleId===id);exact(l,'puzzleHashProfile,puzzleHashSha256,completed,starsHighWater,bestElapsedMilliseconds,revisionBestElapsedMilliseconds,firstClearElapsedMilliseconds,firstCompletedAtUtc,firstClearAttemptId,firstClearSolvedEventId,directSolved,firstClearTerminal,secondStarPaid,thirdStarPaid,terminalClaimIds',p+'.legacyLevel');check(!!t&&l.completed===(t.firstClear!==null)&&l.starsHighWater===t.starsHighWater&&l.bestElapsedMilliseconds===t.firstRunBestElapsedMs&&l.revisionBestElapsedMilliseconds===t.revisionBestElapsedMs&&l.directSolved===t.directSolved&&eq(l.secondStarPaid,t.secondStarPaid)&&eq(l.thirdStarPaid,t.thirdStarPaid),p,'legacy progress complete semantics');if(l.completed)check(eq(l.firstClearTerminal,t.firstClear.terminal)&&l.firstClearAttemptId===t.firstClear.attemptId&&l.firstClearElapsedMilliseconds===t.firstClear.activeElapsedMs&&l.firstCompletedAtUtc===t.firstClear.completedAtUtc,p,'legacy firstclear terminal/time provenance');
+      for(const cid of l.terminalClaimIds)check([l.firstClearTerminal,l.secondStarPaid,l.thirdStarPaid].some(t=>t&&t.claimId===cid)||source.rewardClaims.some(t=>t.claimId===cid),p,'terminalclaim source resolves');}
+  }
+}
+for(const c of data.cases){
+  const p=c.name;scalarWalk(c,p);
+  for(const [obj,bytes,path]of [[c.sourceEnvelope,c.sourceEnvelopeUtf8,'sourceEnvelope'],[c.sourceEnvelope.payload,c.sourcePayloadUtf8,'sourcePayload'],[c.expectedPayload,c.expectedPayloadUtf8,'expectedPayload'],[c.expectedEnvelope,c.expectedEnvelopeUtf8,'expectedEnvelope']])check(canonical(obj)===bytes,p+'.'+path,'exact full UTF8 canonical bytes');
+  check(sha(c.sourcePayloadUtf8)===c.sourcePayloadSha256&&c.sourcePayloadSha256===c.sourceEnvelope.payloadSha256,p,'source payload hash');check(sha(c.expectedPayloadUtf8)===c.expectedPayloadSha256&&c.expectedPayloadSha256===c.expectedEnvelope.payloadSha256,p,'expected payload hash');
+  for(const [e,k]of [[c.sourceEnvelope,'source'],[c.expectedEnvelope,'target']]){exact(e,envelopeKeys,p+'.'+k);check(e.payloadHashProfile==='STP-SAVE-JCS-1'&&nonnegative(e.generation)&&utc(e.createdAtUtc),p+'.'+k,'envelope metadata');exact(e.payload,rootKeys,p+'.'+k+'.root');}
+  check(eq(c.expectedEnvelope.payload,c.expectedPayload),p,'target payload object equals envelope');
+  const target=c.expectedPayload;
+  exact(target.profile,'recordVersion,localProfileId,firstUseUtc,identity,catalogSet',p+'.profile');
+  const cs=target.profile.catalogSet;
+  exact(cs,'recordVersion,publicCatalog,campaignCatalog,completionCatalog,aggregateCatalog',p+'.catalogSet');
+  for(const key of ['publicCatalog','campaignCatalog','completionCatalog','aggregateCatalog'])catalog(cs[key],p+'.'+key);
+  const agg=Object.fromEntries(['publicCatalog','campaignCatalog','completionCatalog'].map(k=>[k,Object.fromEntries(['catalogId','revision','hashSha256'].map(f=>[f,cs[k][f]]))]));
+  check(hash(agg)===cs.aggregateCatalog.hashSha256&&c.expectedEnvelope.contentCatalogHash===cs.aggregateCatalog.hashSha256,p,'aggregate projection/envelope binding');
+  for(const key of ['publicCatalog','campaignCatalog','completionCatalog'])check(hash(data.catalogs[key])===cs[key].hashSha256,p+'.'+key,'full catalog hash');
+  for(const l of target.levels){exact(l,'recordVersion,identity,firstClear,starsHighWater,firstRunBestElapsedMs,revisionBestElapsedMs,directSolved,secondStarPaid,thirdStarPaid',p+'.level');identity(l.identity,p+'.level.identity');check(l.starsHighWater>=0&&l.starsHighWater<=3&&Number.isInteger(l.starsHighWater),p,'stars0..3');if(l.firstClear){exact(l.firstClear,'attemptId,solvedEventId,completedAtUtc,activeElapsedMs,terminal',p+'.firstClear');check(guid.test(l.firstClear.attemptId)&&l.firstClear.solvedEventId==='puzzle-solved:'+l.firstClear.attemptId&&utc(l.firstClear.completedAtUtc)&&nonnegative(l.firstClear.activeElapsedMs),p,'firstclear time/Guid/solved');terminal(l.firstClear.terminal,p+'.firstClear.terminal');}else check(l.starsHighWater===0&&l.firstRunBestElapsedMs===null&&l.secondStarPaid===null&&l.thirdStarPaid===null,p,'uncleared no official facts');}
+  ledger(target,p+'.ledger');
+  exact(target.inventory,'recordVersion,ownership,selectedItemIds',p+'.inventory');check(new Set(target.inventory.selectedItemIds).size===target.inventory.selectedItemIds.length&&target.inventory.selectedItemIds.every(id=>target.inventory.ownership.some(x=>x.itemId===id)),p,'selection existing unique ownership');
+  const ownExtras={DEFAULT:'catalog,acquiredAtUtc',PATIENCE_PURCHASE:'catalog,transactionId,pricePatience,acquiredAtUtc',MILESTONE_CLAIM:'catalog,claimId,operationId,claimGeneration,acquisition,eligibilityContractVersion,eligibilityProjectionHashSha256,claimState,acquiredAtUtc',LEGACY:'sourceSaveSchemaVersion,legacyPurchaseTransactionId,legacyAcquiredAtUtc,legacyGrantCode'};
+  for(const o of target.inventory.ownership){unionCoverage.ownership.add(o.grantKind);exact(o,'recordVersion,itemId,itemType,grantKind,'+ownExtras[o.grantKind],p+'.ownership');if(o.catalog)catalog(o.catalog,p+'.ownership.catalog');}
+  exact(target.endless,'recordVersion,highestReservedOrdinal,openEndless',p+'.endless');check(uint(target.endless.highestReservedOrdinal)&&target.endless.openEndless.length<=20,p,'watermark/count');let ord=0n;
+  for(const o of target.endless.openEndless){unionCoverage.endless.add(o.state);check(uint(o.generationOrdinal)&&BigInt(o.generationOrdinal)>ord&&BigInt(o.generationOrdinal)<=BigInt(target.endless.highestReservedOrdinal),p,'ordered positive ordinals');ord=BigInt(o.generationOrdinal);const d=o.descriptor;exact(d,'endlessContractVersion,rulesetVersion,generatorVersion,seed,generationOrdinal,parameters,parameterHashSha256',p+'.descriptor');check(uint(d.seed)&&d.generationOrdinal===o.generationOrdinal&&d.endlessContractVersion===1,p,'descriptor scalar/ordinal');exact(d.parameters,'gridWidth,gridHeight',p+'.parameters');check([d.parameters.gridWidth,d.parameters.gridHeight].every(n=>Number.isInteger(n)&&n>=2&&n<=32),p,'parameter testgrammar range');check(hash(d.parameters)===d.parameterHashSha256,p,'parameters JCS hash');const e1=Object.fromEntries(['endlessContractVersion','rulesetVersion','generatorVersion','seed','generationOrdinal','parameterHashSha256'].map(k=>[k,d[k]]));check(o.id==='E1-'+hash(e1),p,'exact E1 six-field hash');if(o.state==='ACTIVE_DRAFT'){exact(o,'recordVersion,state,generationOrdinal,id,descriptor,publicPuzzleInput,publicPuzzleHash,solutionHash,proofHash,checkpoint',p+'.active');check(hash(o.publicPuzzleInput)===o.publicPuzzleHash.sha256&&o.publicPuzzleInput.puzzleId===o.id,p,'public hash/id');checkpoint(o.checkpoint,p+'.active.checkpoint',o.publicPuzzleInput);}else if(o.state==='COMPLETION_CLAIM_OPEN'){unionCoverage.openClaim.add(o.claim.claimStatus);exact(o,'recordVersion,state,generationOrdinal,id,descriptor,puzzleId,completionCommitId,claim',p+'.openClaim');exact(o.claim,'claimId,localOperationId,reasonCode,claimStatus,providerOperationId',p+'.claim');check(o.puzzleId===o.id&&o.claim.claimId==='reward-claim:POST_CLEAR_PATIENCE:'+o.id,p,'openclaim ID formula');}else exact(o,'recordVersion,state,generationOrdinal,id,descriptor',p+'.reserved');}
+  for(const d of target.drafts){exact(d,'recordVersion,identity,savedAtUtc,checkpoint',p+'.draft');const puzzle=data.catalogs.publicCatalog.puzzles.find(x=>x.puzzleId===d.identity.puzzleId);checkpoint(d.checkpoint,p+'.draft.checkpoint',puzzle);}
+  for(const r of target.rewardClaims){if(r.kind==='POST_CLEAR_PATIENCE'){unionCoverage.reward.add(r.claimStatus);exact(r,'recordVersion,kind,puzzleIdentity,claimId,localOperationId,providerOperationId,claimStatus,completionCatalog,terminal',p+'.reward');check(r.claimId==='reward-claim:POST_CLEAR_PATIENCE:'+r.puzzleIdentity.puzzleId,p,'reward claim formula');check((r.claimStatus==='COMMITTED')===(r.terminal!==null),p,'committed terminal iff');if(r.terminal)terminal(r.terminal,p+'.reward.terminal');}else exact(r,'recordVersion,kind,subjectKind,subjectId,terminal',p+'.campaignTerminal');}
+  for(const o of target.pendingOperations){if(o.kind==='IAP'){unionCoverage.iap.add(o.state);exact(o,'recordVersion,kind,operationId,logicalProductKey,store,transactionReference,state',p+'.iap');}else {unionCoverage.rewardPending.add(o.state);exact(o,'recordVersion,kind,operationId,claimId,puzzleIdentity,providerOperationId,state',p+'.rewardPending');}}
+  if(target.dataLifecycle.privacyDecision)unionCoverage.privacy.add(target.dataLifecycle.privacyDecision.nativeSyncState);
+  for(const k of ['sourceDocument','targetDocument','releaseLock']){const b=c.bindings[k];check(hash(b.document)===b.jcsSha256,p+'.'+k,'embedded bound document JCS hash');}
+  if(c.sourceSchemaVersion===1){check(c.sourceEnvelope.generation===7&&c.expectedEnvelope.generation===8,p,'migration generation7->8');check(c.bindings.sourceContentCatalogHash===c.sourceEnvelope.contentCatalogHash&&c.bindings.sourceLocalProfileId===c.sourceEnvelope.payload.profile.localProfileId,p,'historical source binding');check(eq(c.bindings.destinationCatalogSet,cs)&&eq(c.bindings.destinationProfileIdentity,target.profile.identity),p,'historical destination binding');const lp=c.bindings.releaseLock.document.puzzles[0],src=c.bindings.sourceDocument.document,tgt=c.bindings.targetDocument.document;check(lp.documentSha256===hash(tgt)&&lp.publicPuzzleHash.sha256===target.levels[0].identity.sha256&&lp.legacyBindings.some(x=>x.sha256===src.validation.puzzleHashSha256),p,'matching source/target/legacy lock');}
+  recordSemantics(c);
+  for(const binding of c.bindings.additionalLevelBindings||[]){
+    const src=binding.sourceDocument.document,tgt=binding.targetDocument.document,proof=binding.proof.document;
+    const legacyProjection=Object.fromEntries(['schemaVersion','rulesetVersion','id','grid','endpoints','rowCounts','columnCounts'].map(k=>[k,src[k]]));
+    check(hash(legacyProjection)===src.validation.puzzleHashSha256,p,'second legacy puzzle hash uses exact old projection');
+    check(hash({id:src.id,path:src.solution.path})===src.validation.solutionHashSha256,p,'second legacy solution hash');
+    const metrics=src.validation.proof,oldProof={solverVersion:src.validation.solverVersion,solutionCount:src.validation.solutionCount,searchNodes:metrics.searchNodes,deductionSteps:metrics.deductionSteps,maxDeductionDepth:metrics.maxDeductionDepth,requiredGuessDepth:metrics.requiredGuessDepth};
+    check(hash(oldProof)===metrics.proofHashSha256,p,'second original legacy proof hash');
+    const publicProjection=Object.fromEntries(['puzzleId','rulesetVersion','grid','endpoints','rowCounts','columnCounts'].map(k=>[k,tgt[k]]));
+    check(hash(publicProjection)===binding.publicIdentity.sha256&&binding.publicIdentity.puzzleId===src.id&&src.id===tgt.puzzleId,p,'second neutral source/target public identity');
+    for(const k of ['rulesetVersion','grid','endpoints','rowCounts','columnCounts','content','production','completion','solution'])check(eq(src[k],tgt[k]),p+'.second.'+k,'neutral metadata/public/solution migration');
+    const solution={puzzleId:tgt.puzzleId,publicPuzzleHash:proof.publicPuzzleHash,path:tgt.solution.path},projection=Object.fromEntries(Object.entries(proof).filter(([k])=>k!=='proofHash'));
+    check(hash(solution)===proof.solutionHash.sha256&&hash(projection)===proof.proofHash.sha256&&eq(tgt.proofRef.proofHash,proof.proofHash),p,'second solution/proof/target hash binding');
+    const entries=c.bindings.releaseLock.document.puzzles.filter(e=>e.puzzleId===tgt.puzzleId);
+    check(entries.length===1&&entries[0].documentSha256===hash(tgt)&&eq(entries[0].proofHash,proof.proofHash)&&entries[0].legacyBindings.length===1&&entries[0].legacyBindings[0].sha256===src.validation.puzzleHashSha256,p,'second unique lock/source-target/proof/legacy binding');
+  }
+}
+const vectors=data.ledgerCompleteVectors;
+if(vectors){
+  const p='LEDGER_COMPLETE_VECTORS',c=data.cases.find(c=>c.name==='LEDGER_CONTRACT1_AND_CATALOGSET'),v=vectors;
+  check(v.genesisUtf8===''&&sha(v.genesisUtf8)===v.genesisSha256,p,'fixed empty genesis');
+  for(const name of ['nullEntryProjection','removedEntryProjection','suffixEntryProjection']){exact(v[name],entryKeys,p+'.'+name);check(canonical(v[name])===v[name+'Utf8'],p+'.'+name,'fixed exact Ei bytes');}
+  check(['catalogId','catalogRevision','catalogHashSha256','claimId'].every(k=>v.nullEntryProjection[k]===null),p,'explicit null catalog/claim Ei fields');
+  const chain=(prev,bytes)=>sha(Buffer.concat([Buffer.from(prev,'hex'),Buffer.from(bytes)]));
+  check(chain(v.genesisSha256,v.nullEntryProjectionUtf8)===v.nullEntryChainHashSha256,p,'independent null Ei raw32 chain');
+  check(chain(v.genesisSha256,v.removedEntryProjectionUtf8)===v.removedEntryChainHashSha256,p,'fixed removed entry chain');
+  check(chain(v.removedEntryChainHashSha256,v.suffixEntryProjectionUtf8)===v.suffixEntryChainHashSha256,p,'fixed suffix raw32 chain');
+  const cp=c.expectedPayload.ledgerCheckpoint;
+  check(canonical(cp)===v.checkpointUtf8&&hash(cp)===v.checkpointSha256,p,'fixed checkpoint bytes/hash');
+  check(canonical(cp.journalDiagnosticTail)===v.diagnosticTailUtf8&&hash(cp.journalDiagnosticTail)===v.diagnosticTailSha256,p,'fixed non-authoritative diagnostic tail');
+  check(canonical(c.expectedPayload.economyJournal)===v.authoritativeSuffixUtf8&&hash(c.expectedPayload.economyJournal)===v.authoritativeSuffixSha256,p,'fixed authoritative suffix');
+  check(cp.balancePatience+c.expectedPayload.economyJournal.reduce((s,e)=>s+e.amount,0)===v.expectedBalancePatience,p,'tail never re-added to balance');
+  for(const kind of ['publicCatalog','campaignCatalog','completionCatalog'])check(canonical(data.catalogs[kind])===v[kind+'Utf8'],p+'.'+kind,'fixed full component bytes');
+  check(canonical(data.catalogs.aggregateProjection)===v.catalogSetProjectionUtf8&&sha(v.catalogSetProjectionUtf8)===v.aggregateCatalogHashSha256,p,'fixed aggregate projection');
+}
+const endlessReference=data.cases.find(c=>c.name==='V1_FULL_ENDLESS');
+if(endlessReference?.boundSolution&&endlessReference?.boundProof){
+  for(const c of data.cases)for(const active of c.expectedPayload.endless.openEndless.filter(o=>o.state==='ACTIVE_DRAFT')){
+    check(hash(endlessReference.boundSolution)===active.solutionHash.sha256&&hash(endlessReference.boundProof)===active.proofHash.sha256,c.name,'source-bound active solution/proof hashes');
+    check(eq(endlessReference.boundSolution.publicPuzzleHash,active.publicPuzzleHash)&&eq(endlessReference.boundProof.publicPuzzleHash,active.publicPuzzleHash)&&eq(endlessReference.boundProof.solutionHash,active.solutionHash),c.name,'proof/solution/public references exact');
+  }
+}
+console.log(JSON.stringify({reviewerVersion:2,runtime:process.version,source,sourceByteLength:raw.length,sourceSha256:sha(raw),checkCount:checks.length,failures,coverage:Object.fromEntries(Object.entries(unionCoverage).map(([k,s])=>[k,[...s]])),note:'Only implemented structural/hash checks; full semantic acceptance requires documented human-agent source review.'},null,2));
+if(failures.length)process.exitCode=1;

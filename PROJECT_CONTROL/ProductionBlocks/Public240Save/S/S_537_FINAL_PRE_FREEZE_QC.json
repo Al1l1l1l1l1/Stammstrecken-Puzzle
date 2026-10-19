@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-19T11:26:47.314Z",
+  "role": "entry_audit independent additive coherent S pre-freeze closure; no source/Unity/Git/CI action",
+  "verdict": "PASS_CURRENT_S_CODE_AND_ACTUAL_COHERENT_SUPPLEMENT_READY_FOR_EXACT_FREEZE_REVIEW_REGULAR_CI_PENDING",
+  "priorIndependentCodeReport": {
+    "path": "S_CODE_PRE_CI_QC.json",
+    "sha256": "9d1afa2e5018f34328e87aab6624f750e3c967675b5c789c98e34247f5d06442"
+  },
+  "source": {
+    "filesystemSha256": "537dd73cac4968f1fbe5fb72711a4bf16e3e1497ac20b691d4cbf5dc527ffed0",
+    "repositorySha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba",
+    "manifestSha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+    "actualCurrentSnapshotFiles": 118,
+    "actualCurrentDrift": [],
+    "ownerV3Own44Unchanged": true
+  },
+  "inputs": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_COHERENT_SUPPLEMENT.json",
+      "bytes": 9952131,
+      "sha256": "a3b3469c7bc9bfec4013ef3d0154b5d727e528af1ff857dedacadbc53144c3f7"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_LINUX_EVIDENCE.json",
+      "bytes": 2188040,
+      "sha256": "41d44b4075a51eafd59b7a3d42cc5e653a6f68714d04703e92eb8be3516673ca"
+    }
+  ],
+  "transport": {
+    "totalVerifiedGzipPayloadsIncludingDuplicateSnapshotExpansion": 406,
+    "linuxOriginalPayloads": 64,
+    "allByteAndShaRoundtrips": true
+  },
+  "compiler": {
+    "actualCoherentCompilesExit0": 10,
+    "persistenceDllSha256": "e507138a578df34dbeda317bc3865f3db7ba41fc3845868a19ec47a9588c1997",
+    "persistencePdbSha256": "408e442bdc21983a2ed9ab9975221ee43eb1792b983bfb9a1f3f191c1550bb11",
+    "actualPeCodeViewGuid": "7a3fb217-8b3d-4141-a62f-ce54dfafa34a",
+    "filesystemPdbDocumentSha256": "537dd73cac4968f1fbe5fb72711a4bf16e3e1497ac20b691d4cbf5dc527ffed0",
+    "repositoryPdbDocumentSha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba",
+    "metadataReportSha256": "be7f10a6724e6d1572a51a85f9a89fb0efb1716f05e1ff343e619ac7ac9e9c5b",
+    "actualDllPdbPairs": 12,
+    "projectDocumentsExact": 92,
+    "automaticUnityGeneratorBodiesUnavailable": 10,
+    "platformMetadataReportSha256": "7d022400eed3d95b0eade4277e16c13329935fa13fc2c7ebadea7f7d5b7f89b4",
+    "target": "Actual IOS/ANDROID emitted imports are open/flock/close only, __Internal/libc respectively; emitted flags IL constant exactly0x01000000/0x00080000. No fcntl, no UNITY_EDITOR define; not a device execution."
+  },
+  "actualOriginalSuites": [
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-atomic-full-results.xml",
+      "sha256": "d0dd775627f5e620a104c8434c24cf7625aec34a9b38efcc778a10f674728726",
+      "bytes": 203074,
+      "cases": 301
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-autosave-results.xml",
+      "sha256": "dd50c7fc5bcd47cf02a9ef1fa38bb3a313f6e19670b6d3cff86fe3c7ae4fce59",
+      "bytes": 5916,
+      "cases": 7
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-catalogset-results.xml",
+      "sha256": "b06af95e30d5e59f754b60d50c0c97f47dd62b23d4d6018d6aec0d637e8599f5",
+      "bytes": 3740,
+      "cases": 3
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-codec-results.xml",
+      "sha256": "a9bc355f2d71ba561cfd5809f40c307b959ea5ebf62c36b10941407997e5f19a",
+      "bytes": 48982,
+      "cases": 72
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-domain-results.xml",
+      "sha256": "cb45bf0266f64c8a887f3e5ccc01450c009ad47dc3870df83fc3afa3708b2fe6",
+      "bytes": 7403,
+      "cases": 9
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-ledger-results.xml",
+      "sha256": "ffeb34ac489f522ee7f72455358539de46e35e70764b599a92d9278d615baf15",
+      "bytes": 11561,
+      "cases": 14
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-migration-results.xml",
+      "sha256": "9ecb575b57964716a01cff6c3464f1e4f789674792e29d2904937a47cb449c8d",
+      "bytes": 60626,
+      "cases": 91
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-model-results.xml",
+      "sha256": "e951da2fee1a26dfcca851e9e592330aac37706edf6faa2d10eb96eb3541ed6e",
+      "bytes": 3226,
+      "cases": 2
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-policy-results.xml",
+      "sha256": "0641c4d380cf535c43e6875e3e24cbb266df28d33757604e4bb07baadd907194",
+      "bytes": 10475,
+      "cases": 13
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-review-results.xml",
+      "sha256": "e2238d3a05764a43ff901ae2822872eef52784a5f2c0c763b7a47ed2d9fc1afa",
+      "bytes": 13737,
+      "cases": 16
+    },
+    {
+      "name": ".utmp/s-abi537-coherent/s-abi537-session-results.xml",
+      "sha256": "c3b3f74f38f81dfe18d87197df3fdedbfd707ac2f2dc0a48f4b90644055d13e8",
+      "bytes": 12062,
+      "cases": 14
+    }
+  ],
+  "actualTotal": 542,
+  "actualPassed": 542,
+  "actualFailed": 0,
+  "actualSkipped": 0,
+  "actualSuiteDefinition": "241 owner S cases plus301Atomic, eleven exact fixtures; not general whole-repository or UnityEditor claim",
+  "actualLinux": {
+    "runtimeDllSameAsCoherent": true,
+    "image": "mono@sha256:749851d74745492754d1ebb3c50fc335d4b84a7bb34e17a4e7c3909c5ec1212b",
+    "lockOriginalSha256": "bf491d48aefc89f057f1439a133070f5b8a8b228b5528146e0f8ceed96b31a78",
+    "lockChecks": 15,
+    "lockProcesses": 12,
+    "realSigkillExit137": true,
+    "emptyRootLockOnly": true,
+    "exactlyOneCasWinner": true,
+    "freshReaderGeneration": 2,
+    "timeoutOriginalSha256": "cdb210c342aeb09b92d631a54fb9f9cec49307f8a0576a317b2923f37a0a0473",
+    "timeoutActualMs": 30013,
+    "timeoutProcesses": 3,
+    "timeoutChecks": 7,
+    "timeoutCode": "SAVE_WRITER_BUSY",
+    "ownerHeldUntilExplicitLaterRelease": true,
+    "timeoutPrivateRootEmpty": true,
+    "harnessUnchangedCsSha256": "22ef83bd7ef3388f3e213d8494b009e42d41d58f7c2150d3f51d9fb306b08516",
+    "preservedHarnessAbort": {
+      "sha256": "d665fcdde6643aafc9bde3fa3b425c5e062f7f453de20e7e95789f4f4539d23e",
+      "productAcquiredLock": true,
+      "actualError": "DirectoryNotFoundException /proof/control/owner.ready",
+      "cause": "Harness omitted own control-directory preparation",
+      "notProductFailureOrPass": true,
+      "correction": "New separate prepared control output before any process, identical product DLL and timeout."
+    }
+  },
+  "canonicalOriginals": [
+    {
+      "name": "architecture.txt",
+      "bytes": 1931,
+      "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9",
+      "gzipBase64": "H4sIAAAAAAAACo1US27kNhDd9ym4TADT/RkEAWaQhUZSbI3Vn0hqO5lNgy1WtwhRpEAWNdYFcoCcwceYnW+SkwSUemzPBLB7R1F8r6pevaogC6+TIg6LbRaT2yBNoqBI1ivSzS9nxJa6hd+YKSuBUKIzQLWS/SRdh0G6i9bhdhmvil1eZNuRYBPkOSERQxB0GkQZTVQHCpl5C3KnTU03rKzZEWgSWeIUJzkaV6N7EzwG4nB/QXJk6E5o14KxwIU6vkWQgWQoOiBLZmquvygpVG1PqOCFQrs8XgarIgnzE/JTvl6RvKygYSQy7IBkMVvM6HxxDjiFDiTt5jSFIyv7IevT3YJON0brw14o7p4KeJUtZE3LxFHRaaibVgIKPZxtAyhK6zlzaJhCUZ9D97mvpbMHAwIMgXtWIxgSWAvNXvZHw9rqHJZYcQnW0juGYBpm6rE1rAPazf/9+5/uLKG+GUGAQSBJsKG/i/vBjp+dRaa4bZgtK6HgHLbA2cPj18rsmQFDNkZ0rOy9PKk4QNmX8iyWLBxa1OhB56GsDCQwCzTVZU0TDgoFPj7geRVqAzQ0zFaGIYx0WkrtEBTasgJxrg9ufcOClzPbzS5/odfJ1TW9BYPm8eF4VoVDlz75zx4rraYrzX2K2vp0yvrNqfwuhfnljL4YTm5AkI3R3NW4l7qswZyT0tIh83pbmoPcW0Sw+J50vuLnIm+0MeDtAuqC3M7e0QyOBqwVWoEaol85ZrhhQlryBQwHRcDUTCmcLIPV9scksvg2ie8IWWnTjGvCOzDStWtAoQFRgTpoeRy7hnCPDqQEkvcWodlDxVyLTh1BfSA1CEWYQ+2ZvI5mqGwSrldFFoTFbr1K/xrXCp1+20bPbbsgJ+OPKj7J0WjuQ574t0pgT0/q+t+l5jDJ4j+2SRZHuzQo4my6Whe7+M843BZxREjrH5eDlf1j2jEp+MD9fqQjfqkICdOYC1xqDtONZL0/XJCPWqNFw1r/RlvhYXmj61GQJF2Em83r4Tl0ovw+alv1dlDoaUKvwDw+IJSsfVYgj25ozhTf6/vXI9hhwF4GGEbOtVIzPlA9DfPkY7oObzxoPGR0k60jOpvNL368Wfzv5h3ZSxB7UOTAhKSl1Bb4JIvzbVqMJv5p/iuRumbSV/b49XA0rm1B/Tz5Dw9P55WLBwAA"
+    },
+    {
+      "name": "scope.txt",
+      "bytes": 2131,
+      "sha256": "5c20d2098b2e824c5a789f755d7ead715f2c0eec0a3a9f880b6432cf5ecc2a61",
+      "gzipBase64": "H4sIAAAAAAAACo1VS3LjNhDd6xRYJlWGRX2sSJPygkMytsb6haTsyWxUINCUUAQBFgDS1gVygJzBx5idb5KTpEDJn5lU2dqBIN/r7tfdj34cXE/TKEjXcYRu/dk09NPpcoGa3rmHDFUVXFZasZparmRntgz82SZcBut5tEg3SRqvD8iVnyQIhcQCx10/jPFUNiAt0R9B7pQu8IrQgmwBT0ODaslQYnVd2PpD8CEQg4czlFhi6yO6rkAbYFxuPyKIQRDLG0Bzogum7qXgsjBHlP9Gmk0Szf1FOg2SI/JLslyghO6gJCjUJLeo7/U93OufAp5BAwI3PTyDLaH7NuvjXR93V1qpPOOS1S8FvMsWkLIifCtxN1BlJcB1yp1NCZZT4zgTKIm0vDiF7tu+ELXJNXDQCB5IYUEj3xgoM7HfalLtTmGJJBNgDL4jFnRJdHFoDWkAN71///6nOUmo50HgoC2gqb/Cf/AHW2vA32pjiWSmJIbuuIRT2Pza5E/fdzojGjRaad4QunfyzHgOdE/FSSxx0LaoVK3ObVkxCCAG8EzRAk8ZSMvt06M9rUKlAQeamJ0mFg50SghVW5DW0B3wU+fg1jXM13THLdBWpMY7v8DX06trfAva6qfH7UkVtl364h73dqdkd6GYS1EZlw4tPtzKH1LonXv4zXIyDRytnKMUNhOKFvC85UmwXD1TXHGLQ57naAtbkKgBbbiS7RQYlDhXwnMieQ7mJJHntSWuWwYnIDJjLRj7CTVOr1eJbpTW4IYN5Bm69QY4hq0G4wKDbHO/qolmmnBh0D1oBhKBLoiUttPmvgmWizT6miJ0r3Rx9LTLuxX2hn2UEQOXk/4FJSNvTCajHqH9ER0PB+MLOmZkkE2Gk3zkTVg+Hg/QDgi7HNPBcNzLBiOvfzH6beiNSDaEfJRPBqOL/nBCaXbBBiSnbTirAUKu7f7S6ho6c3+x/lmVOLqdRncILZQuD67nFipURV2CtBr4DmSuxPYwhBYebA1CAEr2xkKZwY7Ula3lFuTvqAAuEamtckxuLHQrdcdJEPtBulkuZn8dXBJ3n831dQrP0HGPD0Px0p9SMRfyyL+W3O7xcVjca6oYdOLoz/U0jsLNzE+juLtYppvoaxSs0yhE6PVfhd3HuCGCs5b704EOOY/kAroR43auGHRXguzd4Qx9Vsoaq0nlvlGGO1hSquIgyHTWD1ar98MzaDj9MWq125tWoRfDuQL99GiBkupVgSS8wQmRLFMP70cwrV+8DdA6SF0JRVhL9eJNnc+zZXDjQIdDjFfxMsSe1zv7+ab/v5sBygTwDCTKCReYCmWAdeIoWc/Sw1b90hsjoQoiXGVP3/OtrqsK5K+d/wCYZQ+KUwgAAA=="
+    }
+  ],
+  "canonicalObserved": "Actual current logs architecture17/productionScope18+selftestsPASS, WP042 baseD/anchor8c and dirtyWIP truthful. R must rerun after report copies/final commit as appropriate.",
+  "allSourceHighsClosed": true,
+  "remaining": [
+    "R exact committed S freeze object/diff/source/manifest/parent bindings, no further source drift.",
+    "Actual own regular terminal CI at that published freeze, original artifacts/XML/logs/checkout/tree/license and platform evidence, then independent final CI/freeze decision."
+  ],
+  "boundaries": [
+    "No local Unity run/compile/test launched by reviewer; inspected originals and metadata only.",
+    "Linux Mono6.12 pinned Docker/WSL is supplemental, not Unity6000baseline or physical Android/iOS/APFS runtime.",
+    "No A/S merge, P/I graphics/lifecycle/provider activation, production/store/device or final delivery approval.",
+    "Earlier a6bb andV1/V2/V3 compiler/run originals and rejectedGolden/red evidence remain separate unchanged historical bindings."
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "status": "PROSPECTIVE_READ_ONLY_DESIGN_NO_I_ID_NO_ANCHOR_NO_IMPLEMENTATION",
+  "utc": "2026-10-19T11:33:04.417Z",
+  "planFile": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/I_PROSPECTIVE_PLAN.md",
+  "planSha256": "97915aa7be73d4f88ab2f52e92070f9718a96612017e5ee789019e39e0bd6852",
+  "rootDecisions": {
+    "newSavedScene": true,
+    "preserveAllA": true,
+    "profileNamespace": "qa-public240-v1",
+    "profileId": "r",
+    "editorBuildId": "editor-public240-review",
+    "actualPrivateRoot": "Application.persistentDataPath",
+    "archiveMaxPathNativeStartGateRequired": true,
+    "noNewAssemblyEdge": true,
+    "noCodeBeforePAndJointIAnchor": true
+  },
+  "newRuntimeSources": [
+    "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs"
+  ],
+  "newAssets": [
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+    "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity"
+  ],
+  "newTestSources": [
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs"
+  ],
+  "newFiles": [
+    "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+    "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs.meta",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs.meta",
+    "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs.meta",
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs.meta",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml.meta",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss.meta",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+    "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json.meta",
+    "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+    "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity.meta",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs.meta",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs.meta",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs.meta"
+  ],
+  "changedTechnicalFiles": [
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+    "ProjectSettings/EditorBuildSettings.asset",
+    ".github/workflows/validate.yml"
+  ],
+  "unreservedGovernance": [
+    "PROJECT_CONTROL/CURRENT_STATE.md",
+    "PROJECT_CONTROL/WORK_QUEUE.md",
+    "PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md",
+    "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+    "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md"
+  ],
+  "unassigned": "R must select free I ID and exact new WP/manifest/evidence paths before anchor; no IDs reserved here",
+  "api": {
+    "class": "STP.Application.SavedPublic240ReviewSession",
+    "constructor": [
+      "PersistedPuzzleSession",
+      "AutosaveCoordinator",
+      "IPublicPuzzleCatalog",
+      "ILocalSessionClock",
+      "ILocalSaveDispatcher"
+    ],
+    "properties": [
+      "IReviewPuzzleSession? PuzzleView",
+      "IReadOnlyList<PublicPuzzleInput> Puzzles",
+      "SavedReviewState State"
+    ],
+    "status": [
+      "Loading",
+      "NeedsInitialization",
+      "Ready",
+      "Saving",
+      "CompletionPending",
+      "ProgressCommitted",
+      "TrainRide",
+      "Results",
+      "RecoveryRequired",
+      "Unsupported",
+      "Failed",
+      "Disposed"
+    ],
+    "taskMethods": [
+      "InitializeAsync(ct)",
+      "CreateProfileAsync(ct)",
+      "SelectPuzzleAsync(int index,bool restoreExistingDraft,ct)",
+      "RestartAsync(ct)",
+      "RetrySaveAsync(ct)",
+      "RetryCompletionAsync(ct)",
+      "ReloadAsync(ct)",
+      "RecoverAndPromoteAsync(SaveCandidateKind selectedKind,ct)",
+      "ConfirmedResetAsync(ct)",
+      "TickAutosaveAsync(ct)",
+      "SetSuspendedAsync(bool paused,ct)"
+    ],
+    "rideStart": "DevelopmentCommandStatus BeginTrainRide(Guid expectedAttempt)",
+    "rideFinish": "PuzzleView.CompleteTrainRide(Guid expectedAttempt)",
+    "progressAuthority": "Only exact validated confirmed SaveSnapshot profile/catalog/generation; never precommit projection; null in blocked unclear recovery",
+    "viewBinding": "Each nonnull PuzzleView captures one immutable AttemptId+PublicIdentity; retired views never capture current attempt commands and reject STALE_ATTEMPT; no mutable240-session bag."
+  },
+  "observedSources": [
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 18399,
+      "rawSha256": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 25609,
+      "rawSha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 17164,
+      "rawSha256": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 12259,
+      "rawSha256": "5008fbc9baafd4e65666e786747bb659dd70211407574a21f5a904480096bb6f"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 12445,
+      "rawSha256": "4cf45282a77464775f1fd26bda3d95d5030feef5b3f9fb40868fffa58b9625d0"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 12953,
+      "rawSha256": "4e4a7a954ef59b9aaf2c324f1ecf547fef3a2219931a7c1be9e62b89fc822ec7"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 9566,
+      "rawSha256": "e82dc43f6051dfdce913ac40fc13bff3fecd011917f9a1405b0db69a0582564a"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 510,
+      "rawSha256": "d6199fa9cff967e85efaee76b85064e8cba64d57e7a80d89c532daffbd2fde0d"
+    },
+    {
+      "tree": "A",
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 331,
+      "rawSha256": "0a868b81b5fd5e3dc4eabe09203339c36a499673916b469bf30a529ecf413b57"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/STP.Bootstrap.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 678,
+      "rawSha256": "20626b90200515cae4b923bcc4a5b297762917bab44fac0ef6511ff994190a66"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/STP.Application.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 442,
+      "rawSha256": "efea3cf5c52584ce19e5de044ad0a34f959d4bbe3a9d2f1390c11eff69cdaa36"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 480,
+      "rawSha256": "7428e505fb43c3c34098eef482b9bd42964395f7531879083f9314254e657536"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/STP.Platform.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 405,
+      "rawSha256": "af3c145a3a64a7e4b18c530935710102094dce28997e5ba4e9a416f45c4f999c"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/STP.Editor.Build.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 435,
+      "rawSha256": "b2601e605474d22824a577d80f91f3d5d8fda83e7f0934e11255ec9ba28f9cc9"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/STP.Tests.Application.EditMode.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 609,
+      "rawSha256": "f54ec4ac5cb521002ef85f2de09a398f1e2d662e7548c8f463629cb6c4a4e0fa"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/STP.Tests.Presentation.PlayMode.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 626,
+      "rawSha256": "60ed56ca81debad49583c28e8021786155f5c92c621f99697351175fad4ae410"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/STP.Tests.Bootstrap.PlayMode.asmdef",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 878,
+      "rawSha256": "605715aa062a1c1bdbfa38bb86dda5615a1b557ba106150df4a8b75dc75a7d08"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 22247,
+      "rawSha256": "5c3b0463e41f44ebe84ac7d80c4d48057ddb215135a4953198830f7b51c8ed20"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 4963,
+      "rawSha256": "11f6d688fb6c100cf4ed332640520b8ba61fe76e954788f0aaa2051b5e24765e"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 77025,
+      "rawSha256": "5dfe5219ce92d1de674cdd778bb5fe2da1e4e5f06d190c5341d0be4296fafffd"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 18189,
+      "rawSha256": "c993039cb9efe746018c31edc12dbd85b1cca5f185fd554566ab2e1d6387aa8e"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 60404,
+      "rawSha256": "d0cc0ab940ccad45badad3c1e0be9a0b0630a58139154ab045d3223167a8a4bc"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 18559,
+      "rawSha256": "537dd73cac4968f1fbe5fb72711a4bf16e3e1497ac20b691d4cbf5dc527ffed0"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 22637,
+      "rawSha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+    },
+    {
+      "tree": "S",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "rawBytes": 9940,
+      "rawSha256": "5184b3c38c18ead0b990a02cc85229870fc59d0105ac7d27e20c35fd76183b53"
+    },
+    {
+      "tree": "T-contract",
+      "path": "PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "rawBytes": 26717,
+      "rawSha256": "5ac857d8336cc595cfc99160d22ed07a2d274a8bfc1372ca76c66a113cfb582c"
+    },
+    {
+      "tree": "T-contract",
+      "path": "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "rawBytes": 6521,
+      "rawSha256": "27c5723aff2feaf1d0a7557f2b5edb06783669abd9092b3e4ee3c122c37e5b8e"
+    },
+    {
+      "tree": "T-contract",
+      "path": "DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "rawBytes": 10163,
+      "rawSha256": "2c35edddc70bb4960eaf6d47bb8209cf5366da09163685cd2b7978f66d2823b7"
+    },
+    {
+      "tree": "T-contract",
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/DELIVERY_CONTRACT.md",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "rawBytes": 7131,
+      "rawSha256": "42507fa1af2da810d2c8c71d863f5b93fb9672de5f8bfa2f2449b00ed921bcdc"
+    },
+    {
+      "tree": "T-contract",
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/T_TECHNICAL_DETAILS.md",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "rawBytes": 16258,
+      "rawSha256": "cc2f51119db4b76d5387d40f5f8b2508435ce505a138571110ca3f7a4922e6bb"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 7848,
+      "rawSha256": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 166484,
+      "rawSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 18639,
+      "rawSha256": "0d390631ab90c741f29a68a28c28fc051f2a0b22a1b49502a7df89b6db8324ce"
+    },
+    {
+      "tree": "A",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "worktree": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "rawBytes": 8995,
+      "rawSha256": "326c5d43a00e32162662bd2c3d9310f695f21db23c748f2088f6e6b97054a369"
+    }
+  ],
+  "ownership": {
+    "root": [
+      "Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "Bootstrap/SavedPublic240Composition.cs",
+      "Editor/Build/StpBuildEntrypoints.cs",
+      "Editor/Build/DevelopmentPuzzleBuild.cs (only SceneBuildCheck)",
+      "ProjectSettings/EditorBuildSettings.asset",
+      "Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs"
+    ],
+    "appOwner": [
+      "Application/SavedPublic240ReviewSession.cs",
+      "Platform/LocalSaveRuntime.cs",
+      "Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs"
+    ],
+    "uiOwner": [
+      "Presentation/UI/SavedPublic240ReviewPresenter.cs",
+      "Editor/Build/SavedPublic240ReviewBuild.cs",
+      "UI/SavedPublic240Review.uxml",
+      "UI/SavedPublic240Review.uss",
+      "UI/SavedPublic240ReviewLocale.json",
+      "Scenes/QA/SavedPublic240Review.unity",
+      "Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+      "Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs"
+    ]
+  },
+  "savedUiContract": {
+    "className": "SavedPublic240ReviewPresenter",
+    "localePrefix": "qa.public240.saved.",
+    "coreLocaleKeys": "All existing required qa.public240 keys preserved in own saved locale with saved-compatible text",
+    "corePickerAndRestart": "Permanently hidden; use own observed asynchronous controls",
+    "gameHost": "Parent disabled during blocked/pending states, unaffected by core Refresh",
+    "coldLoad": "PuzzleView null; own picker/status visible; no fake model",
+    "sceneBuildCheck": "Only Root-owned existing DevelopmentPuzzleSceneBuildCheck extended; no duplicate builder guard"
+  },
+  "testPrivateRoot": {
+    "guard": "UNITY_EDITOR && UNITY_INCLUDE_TESTS",
+    "scope": "QA-only single scope",
+    "root": "absolute existing no-reparse under OS-temp or STP_TEST_TEMP_ROOT, real FS validation",
+    "capture": "before Awake in inactive instance setup",
+    "dispose": "after instance teardown",
+    "runtimeDefault": "Application.persistentDataPath; profile r"
+  }
+}

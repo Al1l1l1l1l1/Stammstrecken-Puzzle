@@ -45,10 +45,10 @@ CURRENT_ADR_STATUS = {
     21: "Angenommen", 22: "Ersetzt", 23: "Angenommen", 24: "Angenommen",
     25: "Angenommen", 26: "Angenommen",
     27: "Angenommen", 28: "Angenommen", 29: "Angenommen", 30: "Angenommen",
-    31: "Angenommen", 32: "Angenommen", 33: "Angenommen",
+    31: "Angenommen", 32: "Angenommen", 33: "Angenommen", 34: "Angenommen", 35: "Angenommen", 36: "Angenommen",
 }
 SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
-FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (26, 30)}
+FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (26, 30), (34, 36)}
 ADR016_HISTORY_COMMIT = "6152eead04494386404241967da0d8a62e741718"
 ARCH_DOCS = [
     "ARCHITECTURE/ARCHITECTURE.md", "ARCHITECTURE/TECH_STACK.md",
@@ -180,7 +180,7 @@ def inventory_check() -> None:
             fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
     adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
     numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 34)):
+    if numbers != list(range(1, 37)):
         fail(f"inventory:adr-sequence:{numbers}")
 
 
@@ -224,7 +224,7 @@ def section_body(text: str, heading: str, next_heading: str) -> str:
 
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 34):
+    for number in range(1, 37):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -235,7 +235,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v1.0" not in index_text or "24 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
+    if "Architecture v1.0" not in index_text or "27 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
@@ -1726,6 +1726,11 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("REG-ADR-033-MISSING", "adr-index:missing:033" in adr_index_errors(index_text.replace("ADR-033", "ADR-X33")))
     wrong_033 = "\n".join(line.replace("**Angenommen**", "**Entwurf**") if line.startswith("| [ADR-033]") else line for line in index_text.splitlines())
     expect("REG-ADR-033-STATUS", "adr-index:status:033" in adr_index_errors(wrong_033))
+    for number in (34, 35, 36):
+        token = f"ADR-{number:03d}"
+        expect(f"REG-{token}-MISSING", f"adr-index:missing:{number:03d}" in adr_index_errors(index_text.replace(token, f"ADR-X{number}")))
+        wrong_status = "\n".join(line.replace("**Angenommen**", "**Entwurf**") if line.startswith(f"| [{token}]") else line for line in index_text.splitlines())
+        expect(f"REG-{token}-STATUS", f"adr-index:status:{number:03d}" in adr_index_errors(wrong_status))
     inconsistent_level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     inconsistent_level["content"]["season"] = 2
     expect("REG-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, proof))

@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "role": "/root/entry_audit",
+  "scope": "Independent prospective A/S anchor and scope-owner audit only; no implementation/codec/CI approval",
+  "base": "925ca608a961ac26c84385c8da3b949f609df883",
+  "baseTree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+  "bindingSha256": "25bfd7224f88b4f0256611ae0b91b8d25edea5bd01077a3a51132552ee87c1ad",
+  "bindingExpectedSha256": "25bfd7224f88b4f0256611ae0b91b8d25edea5bd01077a3a51132552ee87c1ad",
+  "binding": {
+    "schemaVersion": 1,
+    "t": "925ca608a961ac26c84385c8da3b949f609df883",
+    "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+    "parent": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "readyForChildAnchors": true,
+    "releasedAtUtc": "2026-10-19T09:36:03.910Z",
+    "authority": "R/Codex exclusively under MANUS-2026-10-19-01 section5; separate technical execution acceptance after actual independent PASS and required regular CI, no product/main/release approval",
+    "independentReviews": [
+      "T_CLOSEOUT_QC.md/.json PASS_CODE_AND_DOCUMENTATION_DELTA at D",
+      "T_D_INDEPENDENT_RAW_QC.md/.json PASS_RAW_GIT_BLOB_AND_AUTHORITY_DELTA_ONLY",
+      "entry_audit T_D_CI.md/.json D_REGULAR_CI_PASS; independent from T code"
+    ],
+    "workflowRuns": [
+      {
+        "id": 39224770669,
+        "name": "Architecture Validation",
+        "event": "push",
+        "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+        "path": ".github/workflows/validate.yml",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-19T08:43:13Z",
+        "updated_at": "2026-10-19T08:43:44Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770669"
+      },
+      {
+        "id": 39224770689,
+        "name": "Unity CI",
+        "event": "push",
+        "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+        "path": ".github/workflows/unity.yml",
+        "run_attempt": 1,
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-19T08:43:13Z",
+        "updated_at": "2026-10-19T09:24:27Z",
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689"
+      }
+    ],
+    "licensedJobReleaseUtc": {
+      "117968400200": "2026-10-19T08:49:27.9731482Z",
+      "117970765569": "2026-10-19T08:52:56.2101562Z",
+      "117972117245": "2026-10-19T09:09:25.3839517Z",
+      "117978722428": "2026-10-19T09:24:19.9148500Z"
+    },
+    "reports": [
+      {
+        "name": "T_D_CI.md",
+        "bytes": 6620,
+        "sha256": "0efc52fc4f4c386b49545e041323c507b09b8382cea2b42d7cd06379169d1205"
+      },
+      {
+        "name": "T_D_CI_EVIDENCE.json",
+        "bytes": 64960,
+        "sha256": "a48558ac84ca0ffb1412cab9fc58d5ad4c5c90f9fedfb48a860514418e047f5e"
+      },
+      {
+        "name": "T_D_RAW_BLOB_BINDINGS.json",
+        "bytes": 10314,
+        "sha256": "95c22d3ac0a80ac36c38ef0c2f5f06b842af0c3b2c3ceb7788f391a7029ec855"
+      },
+      {
+        "name": "T_D_INDEPENDENT_RAW_QC.md",
+        "bytes": 2736,
+        "sha256": "1441ed9eb3643b781dc4d7a0f0afa20cfdf773b338263c8950fbdf3220bd74bc"
+      },
+      {
+        "name": "T_D_INDEPENDENT_RAW_QC.json",
+        "bytes": 16780,
+        "sha256": "28f2b4b048f70088d86453a907293c1c8bf67077536cb923fc85178381cc578c"
+      },
+      {
+        "name": "T_D_ROOT_TERMINAL_RUN_CHECK.json",
+        "bytes": 987,
+        "sha256": "848ad801b6bcf2c97343e139d9cc100b56b80febed5f52fb58d86926ec534a00"
+      },
+      {
+        "name": "T_D_DURABLE_PACK.json",
+        "bytes": 1969628,
+        "sha256": "1113f76cd319a22d6789beda56f75ac3419221ed090ce3d60289ca0024985e23"
+      }
+    ],
+    "remoteRefsAfterFreshFetch": {
+      "main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "development": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "t": "925ca608a961ac26c84385c8da3b949f609df883"
+    },
+    "procedure": "Both child WP+immutable manifest first additions have sole parent/base exactly this completed T. Identical full binding embedded in both WPs. Original reports copied byte-identically into each own child evidence scope after anchors. No T single merge; LA/LS then isolated P then own prospective I then separate expected-HEAD non-main integration.",
+    "formalCompletion": "T is technically fully completed and released as common base now. Formal shared CURRENT_STATE/WP/queue completion updates are owned by later prospective I, as previously accepted. Full user mandate remains active."
+  },
+  "children": [
+    {
+      "label": "A",
+      "id": "WP-041",
+      "directory": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-a",
+      "anchor": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+      "parents": [
+        "925ca608a961ac26c84385c8da3b949f609df883"
+      ],
+      "tree": "1a3f1fc04af92a201b2972eca0a355be76935eae",
+      "committerDate": "2026-10-19T11:36:49+02:00",
+      "currentHead": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+      "branch": "codex/wp-041-public240-interne-prueffassung",
+      "anchorDiff": [
+        "A\tWORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+        "A\ttools/architecture-validation/scopes/WP-041.production.scope.json"
+      ],
+      "wpPath": "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+      "manifestPath": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+      "wpFirstAdds": [
+        "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+      ],
+      "manifestFirstAdds": [
+        "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+      ],
+      "wpAbsentInBase": true,
+      "manifestAbsentInBase": true,
+      "historicalH1Correct": true,
+      "historicalBacktickIdCorrect": true,
+      "localLink": "../tools/architecture-validation/scopes/WP-041.production.scope.json",
+      "manifestBase": "925ca608a961ac26c84385c8da3b949f609df883",
+      "manifestBlob": "5da5ccec42d9480bec7101fecbce33d34468307f",
+      "manifestSha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+      "manifestWorkingBytesSame": true,
+      "manifestCurrentHeadBlobSame": true,
+      "manifestLastModifyCommit": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+      "allowedPathPatterns": [
+        "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+        "tools/architecture-validation/scopes/WP-041.production.scope.json",
+        ".github/workflows/validate.yml",
+        "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+        "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+        "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+        "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+        "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+        "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+        "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+        "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+        "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+        "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+        "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+        "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+        "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+        "tools/public240/project.cjs",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.md",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.json",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.txt",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.png"
+      ],
+      "wpPathsEqualManifest": true,
+      "allowedPathsAlreadyAtBase": [
+        ".github/workflows/validate.yml"
+      ],
+      "bindingSemanticallyMatchesRoot": true,
+      "bindingTextMatchesRootTrimmed": true,
+      "extraSConflictJson": null,
+      "sConflictMatchesIndependentAcceptedRecord": null,
+      "statusOnlyPostAnchorEvidence": [
+        "?? PROJECT_CONTROL/ProductionBlocks/Public240Save/A/"
+      ],
+      "bindingEmbeddedBodySha256": "b8b8e148d375d939f36d5a79ec2dd2deef2eb0dec372e05f29d469db1bc547a7",
+      "bindingWithFinalNewlineSha256": "25bfd7224f88b4f0256611ae0b91b8d25edea5bd01077a3a51132552ee87c1ad",
+      "releaseBeforeAnchor": true
+    },
+    {
+      "label": "S",
+      "id": "WP-042",
+      "directory": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s",
+      "anchor": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+      "parents": [
+        "925ca608a961ac26c84385c8da3b949f609df883"
+      ],
+      "tree": "e2977b0fcd9f225fc626aa739127471a081683e0",
+      "committerDate": "2026-10-19T11:36:51+02:00",
+      "currentHead": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+      "branch": "codex/wp-042-lokaler-save-restore-grundfortschritt",
+      "anchorDiff": [
+        "A\tWORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+        "A\ttools/architecture-validation/scopes/WP-042.production.scope.json"
+      ],
+      "wpPath": "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+      "manifestPath": "tools/architecture-validation/scopes/WP-042.production.scope.json",
+      "wpFirstAdds": [
+        "8c3481b3602567406ab4ef6f9365249ccb5d3afc"
+      ],
+      "manifestFirstAdds": [
+        "8c3481b3602567406ab4ef6f9365249ccb5d3afc"
+      ],
+      "wpAbsentInBase": true,
+      "manifestAbsentInBase": true,
+      "historicalH1Correct": true,
+      "historicalBacktickIdCorrect": true,
+      "localLink": "../tools/architecture-validation/scopes/WP-042.production.scope.json",
+      "manifestBase": "925ca608a961ac26c84385c8da3b949f609df883",
+      "manifestBlob": "ac937054867e9ca18a02009ee595833c103cbfad",
+      "manifestSha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+      "manifestWorkingBytesSame": true,
+      "manifestCurrentHeadBlobSame": true,
+      "manifestLastModifyCommit": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+      "allowedPathPatterns": [
+        "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+        "tools/architecture-validation/scopes/WP-042.production.scope.json",
+        ".github/workflows/validate.yml",
+        "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+        "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+        "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+        "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+        "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+        "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+        "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.md",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.json",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.txt",
+        "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.png"
+      ],
+      "wpPathsEqualManifest": true,
+      "allowedPathsAlreadyAtBase": [
+        ".github/workflows/validate.yml"
+      ],
+      "bindingSemanticallyMatchesRoot": true,
+      "bindingTextMatchesRootTrimmed": true,
+      "extraSConflictJson": {
+        "role": "R technical execution acceptance within MANUS-2026-10-19-01 section 5; no product or T-source change",
+        "date": "2026-10-19",
+        "independentReviewer": "/root/t_boundary_review",
+        "implementationOwner": "/root/t_contracts_implementation",
+        "verdict": "ACCEPTED_TWO_STEP_EXISTING_PORT_EXECUTION_BEFORE_S_CODE",
+        "review": "CommitResult does not carry Observation. Conflict invalidates the in-memory recovery lease and leaves the Application use case blocked. The use case must perform a fresh LoadAsync and obtain its full three-candidate Observation before exposing a new recovery basis. This observation is bound to Load time, never represented as atomically returned under the previous Commit lock. Subsequent effects independently recheck CAS and all candidate source bytes.",
+        "mandatoryTests": [
+          "Candidate changed between Commit Conflict and Load appears in the fresh Load observation",
+          "Failed or cancelled Load, or absent complete observation, preserves the mutation, autosave, completion, ride and success block",
+          "No old lease, cached observation or blind recommit is accepted; a fresh explicit recovery choice is required"
+        ],
+        "scope": "Persist in S own WP/test/evidence scope after its prospective anchor. Existing T API, accepted source plans and manifest bytes remain unchanged. This is not implementation PASS."
+      },
+      "sConflictMatchesIndependentAcceptedRecord": true,
+      "statusOnlyPostAnchorEvidence": [
+        "?? PROJECT_CONTROL/ProductionBlocks/Public240Save/S/"
+      ],
+      "bindingEmbeddedBodySha256": "b8b8e148d375d939f36d5a79ec2dd2deef2eb0dec372e05f29d469db1bc547a7",
+      "bindingWithFinalNewlineSha256": "25bfd7224f88b4f0256611ae0b91b8d25edea5bd01077a3a51132552ee87c1ad",
+      "releaseBeforeAnchor": true
+    }
+  ],
+  "overlap": [
+    ".github/workflows/validate.yml"
+  ],
+  "bindingChildrenSameText": true,
+  "ownerChecks": {
+    "sharedFachPaths": [],
+    "sharedSelectorOnly": true,
+    "sharedSelectorConstraint": "Each WP permits only its own pre-anchored manifest selector; T_TECHNICAL_DETAILS explicitly binds P conflict to LA blob and later own I selector. Not shared product or source implementation ownership.",
+    "globalStatusAndRegistryNotInChildScopes": true,
+    "wpPathListsExactlyEqualManifest": true,
+    "onlyPreviouslyExistingAllowedPath": true
+  },
+  "passed": true,
+  "verdict": "PASS_PROSPECTIVE_ANCHORS_AND_SCOPE_OWNERS_ONLY",
+  "reviewedAtUtc": "2026-10-19T09:41:06.804Z",
+  "boundaries": [
+    "Independent historical anchor/identity/local-link/manifest/owner and identical T-binding audit only.",
+    "Root-reported canonical 17/18 selftests not rerun and not relabeled as reviewer execution.",
+    "No source modification, Git mutation, Unity or CI action. Only ignored root AS_ANCHOR_QC.md/.json written.",
+    "No A/S implementation or codec/golden PASS. Full independent S-golden review remains required before codec implementation."
+  ]
+}
