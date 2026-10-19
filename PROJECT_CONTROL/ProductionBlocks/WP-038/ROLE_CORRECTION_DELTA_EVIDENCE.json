@@ -167,8 +167,20 @@
   "workPackageContractBeforeBearbeitungsstatusUnchanged": true,
   "newRelativeLinkCount": 32,
   "newRelativeLinksResolve": true,
-  "whitespaceCheck": "git diff --check: exit 0; staged/committed check follows before publication",
+  "whitespaceCheck": "git diff --check, staged check and actual committed delta check: exit 0",
   "retainedEvidence": "Original technical PASS/FAIL reports reused for identical unmodified technical objects; not rerun or recertified",
   "result": "PASS for own documentation preservation and path/link checks only; authority gaps remain open",
-  "automaticCi": "Published correction HEAD only: actual run/event/status association in dated PR31 addendum; no manual build/rerun and no advance PASS"
+  "automaticCi": "Published correction HEAD only: actual run/event/status association in dated PR31 addendum; no manual build/rerun and no advance PASS",
+  "publicationStatus": {
+    "utc": "2026-10-19T04:40:00Z",
+    "localCorrectionCommit": "4a4df983988b2fcd2429a6e0753ab9217dd72bca",
+    "remoteBranch": "codex/wp-036-vollstaendige-textbibliothek",
+    "remoteHead": "7caa55ecda0ae9e473cdc5220fa4ffb2ce215517",
+    "result": "Normal push rejected by automatic approval review; explicit export consent pending",
+    "reason": "Publishing status/authorization documentation and a complete copy of the user request to GitHub requires explicit export authorization",
+    "noBypass": true,
+    "pullRequestBodyUnchanged": true,
+    "newAutomaticCiCreated": false,
+    "doesNotRatifyDisputedDecisions": true
+  }
 }
