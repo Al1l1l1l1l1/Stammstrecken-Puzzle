@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Visuelle Identität und Stammstrecke
 
+## Maßgeblicher Gestaltungs- und Produktionsnachtrag vom 20.10.2026
+
+**MANUS-2026-10-20-01:** Die konkrete korrigierte Asset-Bible WP-035 ist kreativ angenommen mit den dort präzise entschiedenen minimalen Korrekturen. Die spätere direkte Ownerfestlegung präzisiert ältere Miniatur-/Materialbeschreibungen verbindlich als **Cartoon-/Comic-Spielgrafik, plump-staubig-behördenhaft, mit glasklarer deutscher Bahn-Alltagssatire** – kein Foto-/Pseudo-/PBR-Look. Dienstliche ruhige UI, eigener unterbrochener Gleisknoten, IBM-Plex-Sans/Condensed-System, zehn exakte Farbtoken, sechs braune Gleisformen, getrennte X/Grau/Gelb-Semantik, eigene rote Nahverkehrsfront und fünf bestehende Welt-/20 Routenkontexte sind gemäß der neuen Entscheidung konkretisiert. Keine offizielle Kennzeichnung oder Herkunftstäuschung; Recht-/Runtimeannahme wird nicht aus kreativer Annahme abgeleitet.
+
+Der Public240-/Save-Block ist bereits technisch abgeschlossen. **Jetzt beauftragt** ist der zusammenhängende Gestaltungsschluss und reale Asset-/Content-/Kampagnenanschluss einschließlich der 480 bestehenden Karten-/Zugreferenzziele, mit Ziel einer lokal spielbaren gestalteten internen Season-1-Integration. Menschliche Spieltests parallel; technische WP-035-Abnahme, konkrete Folgeproduktion und spätere Produkt-/Human-/Rechts-/Main-/Releasegates sind getrennt und nicht als erledigt behauptet.
+
+[Eine maßgebliche Gestaltungsentscheidung und vollständiges Ausführungsmandat](../PROJECT_CONTROL/ProductionBlocks/AssetCampaign/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-20.md). Die nachstehenden bisherigen Konzeptabschnitte bleiben erhalten; alte offene Produktions-/Nächster-Schritt-Angaben gelten nur zusammen mit diesem neueren Nachtrag und dem aktuellen CURRENT_STATE. Es werden keine Puzzle-, Preis-, Sternezeit- oder Monetarisierungsregeln verändert.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung nach dem Bahn-Alltags-Pivot  
 **Einordnung:** Konzeptbaustein 10  
 **Zweck:** Dieses Dokument definiert die visuelle Kernidentität des Spiels. Es verbindet die Premium-Miniaturbahnwelt mit einer sofort erkennbaren deutschen Bahn-Alltags-Satire.
