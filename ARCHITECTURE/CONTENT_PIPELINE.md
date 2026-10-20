@@ -1,5 +1,11 @@
 # Content Pipeline v0.3
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Production statt Review:** vorhandene Prüfinstanzen/Proofs verwenden und nur tatsächlich betroffene späte Level korrigieren; typisierter vollständiger produktiver Import/Lock/Runtimeassets folgt. Eine Public240-Projektion belegt keine Humanqualität und darf nicht umetikettiert werden. Interne QAprofile bleiben isoliert. Die unten dokumentierten WP038/Public240-QApfade sind historische bzw. getrennte Werkzeuge, keine Produktstartoberfläche.
+
 ## 1. Ziel
 
 Content ist versionierter Quellcode. Level, Lokalisierungsschlüssel, Assets und Abschlussreferenzen müssen in Pull Requests diffbar, maschinell prüfbar und deterministisch in Unity-Laufzeitdaten überführbar sein. Unity-Szenen oder generierte ScriptableObjects sind nie die einzige Wissensquelle.
@@ -178,7 +184,7 @@ Kosmetikpreise und Milestone-Eligibility stammen ausschließlich aus dem gelockt
 
 ## 11. CI-Gates
 
-Content-Pull-Requests müssen Schema, Semantik, Solver, Hashes, Cross-References, Pseudolocale, deterministischen Doppelimport, Addressables Build, Lizenzscan und Größenbudgets bestehen. Release führt den vollständigen Katalog erneut aus; kein gecachter Proof ersetzt die aktuelle Solverprüfung.
+Content-Produktkandidaten müssen die tatsächlich betroffenen Schema-/Semantik-/Solver-/Hash-/Referenz-/Import-/Lizenz-/Größenrisiken bestehen. Neue Instanzen erhalten ihre vollständigen neuen Nachweise; reine UI-/Status-/Dokuänderungen regenerieren nicht den gesamten unveränderten Altkorpus. Release prüft einmal den vollständigen aktuellen Katalog; kein gecachter Proof ersetzt die dafür erforderliche aktuelle Solverprüfung.
 
 Generierte Dauerbaustellenkandidaten benötigen zusätzlich ein kanonisches `GeneratorQualityProfile` nach `SOLVER_ARCHITECTURE.md`. CI prüft Status `PRODUCT_APPROVED`, Profilhash, Solver-/Ruleset-Kompatibilität, Referenzkorpus, Metrikintervalle, Noveltyalgorithmus/-schwelle, Laufzeitbudget und Human-Review-Nachweis. Fehlt ein Wert oder stimmt ein Hash nicht, bleibt der Kandidat `DRAFT` und der Productionimport bricht ab. Wegen `BLOCKER-PROD-003` darf bis zur fachlichen Kalibrierung kein Generatoroutput veröffentlicht werden.
 

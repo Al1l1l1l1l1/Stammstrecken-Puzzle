@@ -1,6 +1,6 @@
 # Stammstrecken-Puzzle – UI- und Bedienungsspezifikation
 
-**Status:** Aktuelle, beschlossene Arbeitsfassung  
+**Status:** Aktuelle beschlossene Produktfassung, 20.10.2026, MANUS-2026-10-20-02.
 **Einordnung:** Konzeptbaustein 12  
 **Zweck:** Diese Spezifikation definiert die Informationshierarchie, zentralen Screens, Bedienlogik und Nicht-Unterbrechungsregeln. Sie ist für spätere UI-Entwürfe und die Umsetzung verbindlich, soweit keine spätere ausdrücklich bestätigte Detailentscheidung sie ersetzt.
 
@@ -111,21 +111,32 @@ Die Werkzeugleiste ist dauerhaft am unteren Rand sichtbar. Alle sechs konkreten 
 | Graues Standardgleis | Setzt eine optionale Belegungsannahme; konkrete Form bleibt offen. |
 | Sechs braune Gleisformen | Setzt eine konkrete senkrechte, waagerechte oder gekrümmte Schiene. |
 | Leeren | Entfernt den bestehenden Feldinhalt vollständig. |
-| Mehrfachauswahl | Markiert mehrere beliebige Felder für eine gemeinsame Anwendung des gewählten Werkzeugs. |
 
 Die gewählte Option erhält eine gelbe Hervorhebung. **Gelb bedeutet ausschließlich: Dieses Werkzeug ist aktuell aktiv.** Es sagt nichts über die Richtigkeit oder den Inhalt eines Feldes aus.
 
-### 4.4 Eingaben und Mehrfachauswahl
+### 4.4 Direkte Eingaben ohne Sammelauswahl
 
 | Handlung | Verhalten |
 |---|---|
-| Einzelfeld antippen | Setzt das aktive Werkzeug auf genau dieses Feld. |
-| Gleiches Werkzeug erneut anwenden | Löst keine unerwünschte zyklische Änderung aus. |
+| Werkzeug wählen | Aktiviert es dauerhaft bis zum nächsten Werkzeugwechsel; keine Feldaktion und kein Timerstart. |
+| Einzelfeld mit anderem Inhalt antippen | Ersetzt den Inhalt sofort durch das aktive Werkzeug. |
+| Feld mit genau demselben Werkzeuginhalt antippen | Leert das Feld vollständig; das Werkzeug bleibt aktiv. Gilt für alle sechs Formen, X und Grau. |
 | Leeren anwenden | Entfernt X, graue Markierung oder konkrete Gleisform und stellt ein neutrales Feld her. |
-| Mehrfachauswahl aktivieren | Spieler markiert zuerst mehrere Felder; danach wählt er Inhalt und bestätigt die Anwendung auf alle ausgewählten Felder. |
-| Rückgängig | Hebt die letzte Handlung wieder auf; keine Strafe. |
+| Rückgängig | Hebt die letzte tatsächliche Feldänderung auf, auch Tap-zum-Leeren; keine Strafe. |
+
+Mehrfachauswahl, Auswahl-anwenden-Button und Bestätigungsablauf entfallen vollständig. Es gibt keine vorgemerkten Feldgruppen. Jeder Tap wirkt auf genau die unmittelbar dargestellte Zelle; keine Rotation, keine zyklische Formfolge. Leeren auf leerem Feld bleibt ein No-op ohne Undo-/Saveverschmutzung.
 
 Der Timer startet erst mit der **ersten Eingabe**, nicht beim Lesen der Störungsmeldung. Er bleibt klein und untergeordnet.
+
+### 4.5 Tatsächliche mobile Qualitätsgrenze
+
+Die aktuelle Public240-/Save-Verwaltungsoberfläche ist vom Owner ausdrücklich abgelehnt. Diagnose-/Generation-/QA-/vorgemerkte-Rätsel-/Neuladen-/Anwendenblöcke sind kein Produktionslayout und dürfen im normalen Spieleinstieg nicht erscheinen. Die angenommenen Cartoon-/Comic-Referenzen werden in tatsächlich benutzbaren Szenen umgesetzt; ein neues Mockup allein schließt die Ablehnung nicht.
+
+Werkzeuge sind gut erkennbare eigene Gleis-/Notizsymbole statt einer mehrzeiligen Wand technischer Textbuttons; alle sechs Formen bleiben direkt erreichbar. Mobile Layoutentscheidungen einschließlich Symbolabständen, responsiver Werkzeuganordnung, Textgrößen und neutralem Touchfeedback werden innerhalb dieser Leitplanken an den UI-Lead delegiert. Plattformübliche bedienbare Targets, Kontrast, Safe Area und Größenadaptation werden an echten repräsentativen Geräten geprüft. Für 10×10 muss jede Zelle verlässlich treffbar und jede Randzahl lesbar bleiben; falls kleine Displays Detailbedienung erfordern, darf eine einfache optionale Vergrößerung das gesamte Feld nicht bei jedem Tap verschieben.
+
+Raster und Werkzeugleiste ändern bei Eingabe, Toolwahl, Undo, Autosave und normalen Statuswechseln ihre Position nicht. Routine-Save ist unsichtbar oder in einer festen, nicht layoutwirksamen Statusfläche; echte Persistenzfehler sind deutlich, aber verursachen keine Eingabeverlagerung. Die tatsächliche Tap-/Savefolge wird mit Positionsinvarianz und Handbedienung geprüft, nicht nur ScrollTo-Erreichbarkeit in einem kopflosen kleinen QAfenster.
+
+Der früheste neue Produktmeilenstein ist ein vollständiger real bedienbarer Slice aus Start/Karte → Puzzle → gespeicherter Abschluss → echter Zugfahrt → Ergebnis → nächstes Puzzle. Das frühe Slice zeigt bereits die echte neue Stilqualität; Assetbibliothek, Importbelege und technische Diagramme ersetzen dieses Ergebnis nicht. Ownerfeedback fließt dann in die weiterlaufende vollständige Produktion ein; kein neuer Anschluss-Erlaubnisprozess nach jeder Testfassung.
 
 ## 5. Abschlussbildschirm
 
@@ -195,7 +206,7 @@ Beispielhafte eigene Meldungen sind: „Signal wieder funktionsfähig: +15 Gedul
 
 | Thema | Spätere Entscheidung |
 |---|---|
-| Konkrete Touch-Gesten | Exakte Auslösung und visuelle Form der Mehrfachauswahl, Drag-Optionen und Fehlertoleranzen. |
+| Responsive Bedienungsdetails | Lead entscheidet Symbolgrößen/Abstände/Viewport/Fehlertoleranzen innerhalb der Direkt-Tap-Regeln; keine erneute Mehrfachauswahl. |
 | Hinweissystem | Arten von Hinweisen, Darstellung und reguläre Bezugswege. |
 | Barrierefreiheit | Schriftgrößen, Kontrast, Haptikoptionen, Tonsteuerung und Einhandbedienung. |
 | Motion Design | Exakte Dauer und Kameraführung der Zugfahrt und Statusanimationen. |

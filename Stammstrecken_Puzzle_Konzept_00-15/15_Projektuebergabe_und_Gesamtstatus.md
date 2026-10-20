@@ -1,5 +1,11 @@
 # Stammstrecken-Puzzle – Projektübergabe und Gesamtstatus
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
 ## Maßgeblicher Gestaltungs- und Produktionsnachtrag vom 20.10.2026
 
 **MANUS-2026-10-20-01:** Die konkrete korrigierte Asset-Bible WP-035 ist kreativ angenommen mit den dort präzise entschiedenen minimalen Korrekturen. Die spätere direkte Ownerfestlegung präzisiert ältere Miniatur-/Materialbeschreibungen verbindlich als **Cartoon-/Comic-Spielgrafik, plump-staubig-behördenhaft, mit glasklarer deutscher Bahn-Alltagssatire** – kein Foto-/Pseudo-/PBR-Look. Dienstliche ruhige UI, eigener unterbrochener Gleisknoten, IBM-Plex-Sans/Condensed-System, zehn exakte Farbtoken, sechs braune Gleisformen, getrennte X/Grau/Gelb-Semantik, eigene rote Nahverkehrsfront und fünf bestehende Welt-/20 Routenkontexte sind gemäß der neuen Entscheidung konkretisiert. Keine offizielle Kennzeichnung oder Herkunftstäuschung; Recht-/Runtimeannahme wird nicht aus kreativer Annahme abgeleitet.
@@ -11,7 +17,7 @@ Der Public240-/Save-Block ist bereits technisch abgeschlossen. **Jetzt beauftrag
 **Status:** Versandfähige Übergabe an koordinierende Agenten und weitere KI-Systeme  
 **Zweck:** Dieses Dokument beschreibt den verbindlichen Projektstand. Es listet alle bislang erledigten Konzeptbausteine, deren Inhalte, die verfügbaren Shared Files, nicht verhandelbare Regeln und die verbleibenden Arbeitspakete auf.
 
-> **Lesereihenfolge für neue Agenten:** Zuerst dieses Dokument lesen, danach `00_Train_Track_Konzeptindex.md`, dann `09_Train_Track_Master_Spezifikation.md`. Für Detailarbeit nur die jeweils relevanten Fachdateien lesen.
+> **Aktueller Einstieg:** AGENTS, kurzer CURRENT_STATE und das große aktuelle Release-Gesamtmandat lesen; danach nur tatsächlich betroffene Fachdateien. Die alte vollständige Konzeptlesekette wird nicht bei jedem Routinefix wiederholt.
 
 ---
 
@@ -32,7 +38,7 @@ Die Kernfantasie lautet:
 | Zielgruppen- und Motivationsgrundlage | Erledigt | Forschung zu Puzzle-Motivation, Kompetenz, Fortschritt, Sammlung, Werbung und fairer Langzeitmotivation liegt vor. |
 | Referenzspiel verstanden | Erledigt | Bedienung und zwei Phasen des Vorbildrätsels wurden anhand von Screenshots und Nutzererklärung präzise erfasst. |
 | Rätselkern | Erledigt | A/B-Verbindung, Randzahlen, sechs Gleisformen, keine Kreuzungen, keine Schleifen, passende Anschlüsse. |
-| Feld- und Werkzeugsemantik | Erledigt | Leeres Feld, rotes X, graue Belegungsannahme, braune konkrete Schienenform, gelbe reine Auswahlmarkierung; Entfernen, Mehrfachauswahl, Undo und Hinweis. |
+| Feld- und Werkzeugsemantik | Erledigt | Leeres Feld, rotes X, graue Belegungsannahme, braune konkrete Schienenform, gelbe reine Auswahlmarkierung; direkte Werkzeug-Taps, Toggle-Leeren, Undo und Hinweis; keine Mehrfachauswahl. |
 | Spielstile | Erledigt | Planend mit Hilfsmarkierungen, gemischt oder direkt/schnell. Hilfsmarkierungen sind optional und vollwertig. |
 | Season-1-Regelumfang | Erledigt | Keine Sonderfelder und keine Zusatzregeln. Insbesondere keine Weichen, Brücken, Kreuzungen oder T-Knoten. |
 | Schwierigkeit | Erledigt | Schwierigkeit wächst über Feldgröße, A/B-Lage, Dichte, Zahlenverteilung, Ausschlussstruktur, Schlusskettentiefe und Geometrie – nicht allein über Rastergröße. |
@@ -78,7 +84,7 @@ Der Spieler baut genau eine zusammenhängende Strecke von A nach B.
 
 Die sechs konkreten braunen Gleisformen sind: eine senkrechte Gerade, eine waagerechte Gerade und vier 90°-Kurven.
 
-Die Werkzeuge umfassen: alle sechs Gleisformen, rotes X, graues Standardgleis, vollständiges Leeren, Mehrfachauswahl, Undo und Hinweise.
+Die Werkzeuge umfassen sechs Formen, X, Grau, Leeren, Undo und Hinweise. Direkter Tap setzt/ersetzt, gleicher Inhalt mit aktivem Werkzeug leert; Werkzeug bleibt aktiv. Keine Mehrfachauswahl/Anwenden.
 
 ### 3.3 Gleichwertige Spielstile
 
@@ -217,9 +223,9 @@ Ein Knoten öffnet eine Störungsmeldungskarte mit Meldungsnummer, Kurzursache, 
 | Kopfzeile | Zurück, Netzabschnitt/Meldung, kurzer Status, Undo und Hinweis. |
 | Zentrum | Raster maximal groß; keine Währung, Werbung oder Navigation im Rätsel. |
 | Randzahlen | Dunkel, wenn offen; zurückhaltend grau, wenn exakt erfüllt; kurz rot, wenn objektiv überschritten. |
-| Werkzeugleiste | Alle sechs Formen, X, graue Belegungsmarkierung, Leeren und Mehrfachauswahl direkt sichtbar. |
+| Werkzeugleiste | Sechs Formen, X, Grau und Leeren als klare Symboltools; Undo/Hint direkt erreichbar. |
 | Timer | Beginnt erst mit der ersten Eingabe und bleibt klein. |
-| Mehrfachauswahl | Mehrere Felder wählen, Werkzeug wählen, dann gemeinsam anwenden. |
+| Direkter Tap | Aktives Werkzeug setzt sofort; identischer Inhalt wird geleert, Werkzeug bleibt aktiv. |
 
 ### 6.5 Abschluss, Betriebswerk und Tagesbonus
 
@@ -286,7 +292,7 @@ Das Spiel hat zwei relevante Nutzergruppen: Meme-/Gag-Besucher, die es kurz ausp
 | Freiwilliges Video nach erster Lösung | Einmalig +10 Geduldspunkte. |
 | Freiwilliges Hinweisvideo | Nur nach aktivem Hinweiswunsch; genau ein zusätzlicher Logikhinweis. |
 | Tagesbonus | Ein kostenloser und maximal ein weiterer Durchlauf nach Video. |
-| Werbefrei-Option | Dauerhafte Entfernung unterbrechender Anzeigen; finaler Preis noch offen. |
+| Werbefrei-Option | Dauerhaftes Non-Consumable remove_ads, deutscher Basispreis 3,99 €; reale Storekonfiguration/Kauf-/Restoreprüfung noch offen. |
 
 **Absolut ausgeschlossen:** Werbung während des Rätsels, zwischen Eingabe und Wirkung, bei der Lösungserkennung, vor/während Zugfahrt, direkt vor dem ersten Level, nach Fehlern oder nach Abbruch.
 
@@ -364,6 +370,6 @@ Diese Punkte fehlen noch. Sie sind keine offene Produktidee, sondern die nächst
 
 ## 13. Empfohlener nächster Schritt
 
-Der nächste große Block ist die **technische Produktionsspezifikation**. Sie beginnt mit dem Puzzle-Fundament: Leveldatenformat, Zell- und Werkzeugzustandsmodell, Solver, Eindeutigkeitsprüfung, Generatorvalidierung, Leveleditor und Teststrategie.
+Der nächste große Auftrag ist die **vollständige Releaseausführung unter R** mit drei parallelen Lieferbahnen. Vorhandene Architektur, Rätselkern, Solver-/Proof-/Savegrundlage und Prüfinstanzen werden verwendet; keine erneute technische Anfangsspezifikation.
 
-Erst wenn dieses Fundament festgelegt ist, sollten 240 konkrete Rätselfelder produziert, Zeitgrenzen kalibriert oder die Dauerbaustelle implementiert werden.
+Aktuell fehlen echte gute UI/Runtimeassets, Productionkampagne/Metagame, gezielte späte Difficulty-/Zeitkalibrierung, Generator-/Provider-/Signierungs-/Human-/Geräte-/Rechts-/Storeabschluss. Die historischen Tabellen offener Konzeptarbeit oben sind keine neu auszuführende Mikrowarteschlange.

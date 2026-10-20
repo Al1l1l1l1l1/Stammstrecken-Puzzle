@@ -1,115 +1,63 @@
-# Train Track Spiel – Rätselkern und Interaktionsmodell
+# Stammstrecken-Puzzle – Rätselkern und Interaktionsmodell
 
-**Status:** Aktuelle, bestätigte Baseline des Rätselspiels  
-**Einordnung:** Konzeptbaustein 03  
-**Zweck:** Diese Datei beschreibt den tatsächlichen Ingame-Lösungsprozess des Referenzspiels, einschließlich aller Werkzeuge, Feldinhalte und der davon getrennten Auswahlhervorhebung. Sie ersetzt frühere, unzutreffende Annahmen über Pflichtschritte, eine konkrete graue Gleisform oder eine Bestätigungslogik für Platzierungen.
+**Status:** Aktuelle beschlossene Produktfassung, 20.10.2026, MANUS-2026-10-20-02. Die direkten Ownerentscheidungen O1/O2 aus Issue38 ersetzen ausdrücklich den bisherigen Mehrfachauswahl-/Anwendenablauf und die bisherige gleiches-Werkzeug-No-op-Regel. Historische Vorbildbeobachtungen bleiben in Konzept02 und Git nachvollziehbar; dies ist das aktuelle Modell unseres Spiels.
 
-## 1. Kern des Rätsels
+## 1. Rätselkern
 
-Ein Level besteht aus einem rechteckigen Raster mit A und B als äußeren Anschlusspunkten. Die Zahlen oberhalb jeder Spalte und neben jeder Zeile geben an, wie viele Rasterfelder dieser Spalte beziehungsweise Zeile Schienen enthalten müssen.
+Ein Level besteht aus einem Rechteckraster, äußeren A/B-Anschlüssen und einer Zahl für jede Zeile und Spalte. Diese Zahlen geben an, wie viele Rasterfelder der jeweiligen Linie Schienen enthalten. Die Lösung ist genau eine zusammenhängende einfache A–B-Strecke; keine Kreuzung, Schleife, Verzweigung, zusätzlichen losen Gleise oder falschen Außenanschlüsse. Einzig die belegten Felder der gültigen Strecke erfüllen die Randzahlen.
 
-Ziel ist eine einzige, durchgehende Schienenstrecke zwischen A und B. Schienen dürfen sich nicht kreuzen und keine Schleife bilden. Die Lösung wird aus zwei logisch zusammenhängenden Fragen aufgebaut:
+Der Spieler entscheidet, welche Felder belegt sind und welche der sechs Formen in ihnen liegt. Beide Denkebenen können ineinandergreifen. Es gibt keine Pflicht, zuerst Notizen zu setzen. Season1 enthält keinerlei Sonderfelder oder Zusatzregeln.
 
-| Denkebene | Frage |
-|---|---|
-| Belegung | Welche Felder sind leer und welche enthalten irgendeine Schiene? |
-| Geometrie | Welche konkrete der sechs Schienenformen liegt in jedem belegten Feld? |
+## 2. Feldinhalte und semantische Trennung
 
-Diese Ebenen können ineinandergreifen, werden von erfahrenen Spielern aber nicht zwingend nacheinander bearbeitet.
-
-## 2. Feldinhalte
-
-Ein Rasterfeld kann die folgenden Inhalte haben. Die Darstellung eines Feldinhalts ist von der gelben Auswahlhervorhebung zu unterscheiden.
-
-| Feldinhalt | Darstellung | Bedeutung |
+| Inhalt | Darstellung | Bedeutung |
 |---|---|---|
-| Unberührt / leer | Leeres Rasterfeld | Es wurde noch keine Notiz und keine Schiene gesetzt. |
-| Leer-Markierung | Rotes X | Der Spieler hält dieses Feld für leer beziehungsweise schließt es nach seiner aktuellen Logik aus. |
-| Belegungsmarkierung | Kleines ausgegrautes Standardgleis | Der Spieler hält es für wahrscheinlich oder sicher, dass dieses Feld eine Schiene enthalten muss. Die konkrete Richtung und Form ist offen. |
-| Konkrete Schiene | Braune Gleisform | Der Spieler hat eine konkrete Schienenform in diesem Feld gesetzt. |
+| Leer/unberührt | Neutrales Rasterfeld | Keine Notiz oder konkrete Schiene. |
+| Leerannahme | Rotes X | Der Spieler vermutet oder folgert, dass hier keine Schiene liegt. |
+| Belegungsannahme | Kleines graues Standardgleis | Hier wird eine Schiene vermutet; ihre konkrete Form ist noch offen. |
+| Konkrete Schiene | Braune Gleisform | Ein konkreter Abschnitt der Strecke wurde gesetzt. |
 
-Die roten X und grauen Belegungsmarkierungen sind **optionale Hilfsmarkierungen des Spielers**. Sie sind keine festen Vorgaben des Levels und keine Pflichtphase. Ein Spieler kann sie umfangreich zur Planung einsetzen, punktuell verwenden oder vollständig überspringen.
+X und Grau sind vollständig optionale eigene Hilfsnotizen, keine Levelvorgaben oder automatischen Richtigkeitsurteile. Sie dürfen umfangreich, punktuell oder gar nicht verwendet werden und verhindern niemals drei Sterne. Braun bezeichnet Gleisinhalt. Gelb bezeichnet ausschließlich das aktuell aktive Werkzeug beziehungsweise kurzes neutrales Eingabefeedback; es ist kein Feldinhalt, keine Gleisfarbe und kein Richtigkeitsstatus.
 
-## 3. Die sechs konkreten Gleisformen
+## 3. Genau sechs Gleisformen
 
-Braune Gleise bilden die tatsächliche Strecke. Es gibt genau sechs Formen:
-
-| Gleisform | Verbindungen |
+| Form | Anschlüsse |
 |---|---|
-| Senkrechte Gerade | Oben ↔ unten |
-| Waagerechte Gerade | Links ↔ rechts |
+| Senkrecht | Oben ↔ unten |
+| Waagerecht | Links ↔ rechts |
 | Kurve oben–rechts | Oben ↔ rechts |
 | Kurve rechts–unten | Rechts ↔ unten |
 | Kurve unten–links | Unten ↔ links |
 | Kurve links–oben | Links ↔ oben |
 
-Die Farbe Braun kennzeichnet den Gleisinhalt. Sie ist nicht an einen Auswahl- oder Bestätigungsstatus gekoppelt.
+## 4. Aktuelle direkte Bedienung
 
-## 4. Werkzeuge des Spielers
+Der Ablauf ist immer **Werkzeug wählen → Felder einzeln direkt antippen**. Das Werkzeug bleibt aktiv, bis ein anderes gewählt wird. Jeder Tap bearbeitet genau das getroffene Feld sofort, ohne Vormerken, Sammelauswahl oder zusätzliche Anwendung/Bestätigung.
 
-| Werkzeug | Wirkung |
-|---|---|
-| Rotes X | Setzt eine Leer-Markierung auf das ausgewählte Feld oder die ausgewählten Felder. |
-| Graues Standardgleis | Setzt eine Belegungsmarkierung: Hier soll irgendeine Schiene liegen, die Form bleibt offen. |
-| Sechs braune Gleisformen | Setzt die gewählte konkrete Gerade oder Kurve auf das ausgewählte Feld oder die ausgewählten Felder. |
-| Leeres Feld / Entfernen | Entfernt eine vorhandene X-Markierung, graue Belegungsmarkierung oder braune Schiene vollständig; das Feld wird wieder unberührt. |
-| Mehrfachauswahl | Erlaubt, mehrere Felder zu wählen und dieselbe gewählte Markierung oder Gleisform effizient auf sie anzuwenden. |
-| Rückgängig | Macht die letzte Spielerhandlung rückgängig. |
-| Hinweis | Unterstützt den Spieler bei Bedarf; die genaue Wirkung wird erst im Fortschritts- und Hinweissystem festgelegt. |
+Für jede der sechs Gleisformen sowie X und Grau gilt dieselbe Operation:
 
-## 5. Gelb ist kein Feldinhalt
+- Ist der Feldinhalt anders als das aktive Werkzeug, wird der Inhalt durch dieses Werkzeug ersetzt.
+- Entspricht der Feldinhalt genau dem aktiven Werkzeug, wird das Feld vollständig geleert.
+- Das aktive Werkzeug bleibt in beiden Fällen unverändert.
 
-Gelb ist eine reine **Auswahlhervorhebung der Benutzeroberfläche**. Es zeigt, welches Werkzeug oder welche Felder der Spieler aktuell angewählt hat. Die gelbe Markierung ist unabhängig davon, ob ein Feld leer, mit X markiert, grau als belegt notiert oder mit einer braunen Schiene gefüllt ist.
+Beispiel: Senkrecht wählen, leeres Feld antippen → senkrechte Schiene. Dasselbe Feld wieder mit Senkrecht antippen → leer. Enthält es stattdessen eine Kurve oder X, setzt der Tap Senkrecht. Das gilt identisch für jede Kurve und beide Notiztypen; es gibt keine automatische Rotations-/Wechselreihenfolge.
 
-> **Braun beschreibt eine konkrete Schiene. Grau beschreibt eine offene Belegungsannahme. Rot beschreibt eine Leerannahme. Gelb beschreibt ausschließlich die aktuelle Auswahl.**
+**Mehrfachauswahl, Auswahl-anwenden-Button und zugehöriger Bestätigungsablauf entfallen vollständig aus der Bedienung.** Ihre alte Verwendung im Prototyp ist kein Bestandteil des Launchprodukts. Zurück bleibt ein verständliches direktes Zeichenwerkzeug, keine Auswahlverwaltung. Eine künftige Drag-/Mal-/Batchgeste ist nicht automatisch beauftragt; sie darf Direkt-Tap nicht beeinträchtigen und braucht eine ausdrückliche UXentscheidung.
 
-Diese Trennung ist für jede spätere Gestaltung verbindlich. Eine neue Oberfläche darf die Farben und Formen hochwertiger ausführen, darf ihre unterschiedlichen Bedeutungen aber nicht vermischen.
+## 5. Weitere Werkzeuge und Undo
 
-## 6. Der praktische Lösungsweg
+`Leeren` bleibt ein direkt erreichbares Werkzeug, das einen vorhandenen Inhalt unabhängig von dessen Typ entfernt; ein bereits leeres Feld bleibt leer. `Rückgängig` stellt die letzte tatsächliche Feldänderung wieder her, einschließlich des zuletzt per gleichem Werkzeug ausgelösten Leerens. Ein No-op auf leerem Feld erzeugt keinen neuen Undo-/Save-/Zählschritt. Ein neu geschriebenes Feld ist eine atomare Spielerhandlung.
 
-Der Spieler kann das Puzzle auf unterschiedliche Weise lösen. Ein typischer systematischer Ablauf nutzt die Hilfen in der folgenden Reihenfolge:
+Hinweise werden nur aktiv angefordert und geben einen objektiv sicheren logischen nächsten Schluss, keine Gesamtlösung und keine heimliche Bewertung plausibler eigener Annahmen. Bezugs-/Speichersemantik steht in Konzept06 und dem aktuellen Gesamtmandat. Fehler, Undo, Notizen und Hinweise verursachen keine Lebens-/Fortschritts-/Sternstrafe; allein das zusätzliche Merkmal „direkt gelöst“ setzt eine Lösung ohne Notizen und Hinweise voraus.
 
-| Schritt | Logischer Schluss | Mögliche Aktion |
-|---:|---|---|
-| 1 | Eine Zeile oder Spalte mit `0` enthält keine Schiene. | Alle Felder dieser Linie mit X markieren. |
-| 2 | Eine Zahl entspricht genau der Menge aller verfügbaren Felder einer Zeile oder Spalte. | Alle diese Felder mit grauen Belegungsmarkierungen versehen. |
-| 3 | A und B sind Ein- und Ausgänge. | Die angrenzenden Rasterfelder müssen belegt sein und können grau markiert oder direkt mit einer konkreten Schiene versehen werden. |
-| 4 | Eine Zeile oder Spalte hat ihre erforderliche Zahl an belegten Feldern erreicht. | Alle übrigen Felder dieser Linie mit X markieren. |
-| 5 | Neue X und graue Belegungsmarkierungen verändern die verfügbaren Felder kreuzender Linien. | Schritte 2 und 4 wiederholen, bis weitere sichere Schlüsse entstehen. |
-| 6 | Ein belegtes Eckfeld ohne A oder B kann nicht nach außen weiterführen. | Die konkrete Form ist dort zwangsläufig eine passende Kurve. |
-| 7 | Nachbarn, Randlage und die Verbindung zu A/B begrenzen die Form der belegten Felder. | Graue Belegungsmarkierungen durch passende braune Geraden oder Kurven ersetzen. |
+## 6. Typischer, nicht vorgeschriebener Lösungsweg
 
-Dieser Ablauf ist ein hilfreiches Verfahren, aber keine Nutzervorgabe. Geübte Spieler können sichere konkrete Gleise direkt setzen, mehrere Schlussketten parallel erkennen und X- oder graue Markierungen ganz oder teilweise weglassen.
+Nullzeilen/-spalten können mit X ausgeschlossen werden. Volle Linien und A/B-Anschlussfelder können grau als belegt vorgemerkt oder direkt konkret gesetzt werden. Sind genügend belegte Felder einer Linie bekannt, lassen sich verbleibende Felder ausschließen. Diese Aussagen wirken auf kreuzende Linien zurück. Rand-/Nachbar-/Konnektivitätslogik bestimmt schließlich die konkreten Formen; ein belegtes Eckfeld ohne passenden Außenanschluss benötigt die entsprechende Kurve.
 
-## 7. Gleichwertige Spielstile
+Das ist eine mögliche externe Denkstütze, kein Tutorialzwang oder Mindestworkflow. Systematische, gemischte und direkte schnelle Lösungen sind gleichwertig. Es gibt keine „Spielzüge“ im Schach-Sinn; Züge sind ausschließlich kosmetische Fahrzeuge für die Abschlussfahrt.
 
-Es gibt keine getrennten Modi für Anfänger und Fortgeschrittene. Jedes Level erlaubt dieselbe vollständige Werkzeugpalette und dieselbe Ziellösung.
+## 7. Ausführungs- und Stabilitätsregeln
 
-| Spielstil | Verhalten |
-|---|---|
-| Strukturiert | Nutzt X und graue Belegungsmarkierungen als externe Notizen, um die Belegung vor der Geometrie einzugrenzen. |
-| Gemischt | Setzt offensichtliche braune Gleise direkt und nutzt Hilfsmarkierungen nur bei unsicheren Bereichen. |
-| Direkt / schnell | Erkennt Belegung und Geometrie so schnell, dass konkrete braune Gleise ohne Hilfsmarkierungen gesetzt werden können. |
+Ein Tap wirkt unmittelbar auf das dargestellte Ziel; Rendering oder Autosave dürfen keine Zelle unter dem Finger verschieben. Raster, Randzahlen und Werkzeuge bleiben bei normaler Eingabe, Werkzeugwechsel, Undo und Savezustandswechsel ortsfest. Routinemäßiges Speichern geschieht im Hintergrund ohne wechselnde mehrzeilige Status-/Verwaltungstexte über dem Feld. Echte Savefehler bleiben erkennbar und werden zuverlässig behandelt, ohne durch Layoutspringen weitere Eingaben zu verfälschen.
 
-Der direkte Spielstil ist keine Regelverletzung, sondern ein sichtbares Zeichen wachsender Meisterschaft. Künftige Leistungs- und Belohnungssysteme dürfen dies würdigen, dürfen aber die Nutzung von Hilfsmarkierungen niemals als minderwertiges Spielen bestrafen.
-
-## 8. Zielzustand
-
-Ein Level ist gelöst, wenn A und B durch eine zusammenhängende, kreuzungsfreie Strecke verbunden sind, jede Randzahl erfüllt ist und keine Schleife vorliegt. Ob der Spieler dabei viele Hilfsmarkierungen genutzt oder direkt Gleise gesetzt hat, verändert die Gültigkeit der Lösung nicht.
-
-## 9. Noch nicht entschiedene Produktfragen
-
-Die folgenden Punkte werden bewusst erst in späteren Konzeptbausteinen festgelegt:
-
-| Offen | Grund |
-|---|---|
-| Exakte visuelle Gestaltung von Raster, X, grauen Markierungen und Schienen | Gehört zum Erlebnis- und Markenbild. |
-| Konkrete Touch-Gesten und Werkzeuganordnung | Gehört zur UI- und Bedienausarbeitung. |
-| Art und Menge der Hinweise | Hängt von Fortschritt, Währung und fairer Monetarisierung ab. |
-| Sterne, Zeitwertung und Anerkennung direkter Lösungen | Gehört zum Fortschritts- und Belohnungssystem. |
-| Zugfahrt, Weltreaktion und Abschlussinszenierung | Gehört zum visuellen Erlebnisdesign. |
-| Zusätzliche Sonderfelder oder neue Rätselregeln | Werden nur eingeführt, wenn sie den etablierten Kern nachweisbar verbessern. |
-
-## 10. Nächster Konzeptschritt
-
-Als Nächstes wird festgelegt, welche Elemente des Referenzspiels unverändert bleiben und welche **gezielten Qualitätsverbesserungen** unser Spiel erhält, ohne die optionale, frei wählbare Denkweise des Spielers zu stören.
+Der Timer startet erst mit der ersten tatsächlichen Feldeingabe, nicht beim Lesen oder der bloßen Werkzeugwahl. Unterbrechung/Lifecycle und verifizierter Abschluss richten sich nach dem bestehenden Zustands-/Savevertrag. Eine gültige Strecke wird erkannt, zuverlässig gespeichert und danach durch die echte Fahrt von A nach B gewürdigt. UX-/Laufzeitakzeptanz steht in Konzept12 und der risikogerechten Definition of Done.

@@ -4,6 +4,12 @@
 
 Dieses Verzeichnis enthält den **einzigen autoritativen, eingecheckten und repositoryrelativen Validator** für Architecture v1.0. Das Werkzeug prüft Dokumentstruktur, Datenverträge, ausführbare Architekturmodelle und den Git-Scope. Es ist Governance-/Contract-Tooling und kein Spielproduktionscode.
 
+## Aktuelle Kurskorrektur – WP-045
+
+[MANUS-2026-10-20-02](../../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) autorisiert ausdrücklich neue Produktpolicies und reine CI-Ausführungssteuerung. Das einmal verankerte Governance-Manifest WP045 darf OPEN_BLOCKERS um die **entschiedene Policy bei weiterhin offenem Implementierungsstatus** fortschreiben und unity.yml nur bei erhaltenen Jobrezepten ändern. Die gezielten neuen Positiv-/Negativtests prüfen Entscheidung/Abschnittsbindung, alle drei weiterhin offenen echten Gates, verbotene falsche Schließung, andere WP-/Scope-/Allowlistfälle und die erhaltenen Unityrezepte. Historische Manifest-/WP-Trustbytes, Fixture-/Schema-/C#-/Hash-/Save-/Privacyguards bleiben unverändert. Ein endgültiger tatsächlicher Gateabschluss benötigt im späteren großen Produktionsauftrag seine echte Implementation-/Evidenz-/Regelkonkretisierung, keinen erneuten Produktfrageprompt.
+
+Beide CI-Workflows nehmen jetzt PR-Kandidaten gegen alle Branchziele an. Günstiger Vorcheck/Scope bleibt; bekannte Arbeitsbranch-Produktpushes melden `DEFERRED_TO_PR_CANDIDATE`, der Unityvollpfad läuft auf dem echten Produkt-PR. Docs-only meldet `NOT_REQUIRED_SOURCE_UNCHANGED`; unbekannte Basis/Pfade, manuelle Vollaufträge und echte Rezeptänderungen bleiben `REQUIRED`. Nie ein übersprungener Unityjob als Unity-PASS. Unveränderte Originalrezepturen werden mit `tools/ci/test_change_scope.py` gegen den Gitbasisblob geprüft. Keine bytecodeerzeugenden Tests außerhalb der erlaubten Dateiliste.
+
 ## Voraussetzungen
 
 | Voraussetzung | Vertrag |

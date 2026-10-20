@@ -1318,12 +1318,40 @@ def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requeste
             forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
             forbidden_suffixes = {".cs", ".asmdef", ".unity", ".prefab", ".uxml", ".uss", ".shader"}
             if rel.startswith(forbidden_roots) or Path(rel).suffix.lower() in forbidden_suffixes: errors.append(f"scope:governance-production-artifact:{rel}")
-            if rel.startswith(".github/") and rel != ".github/workflows/validate.yml": errors.append(f"scope:governance-workflow-artifact:{rel}")
+            permitted_workflows = {".github/workflows/validate.yml"}
+            if manifest.get("workPackageId") == "WP-045":
+                permitted_workflows.add(".github/workflows/unity.yml")
+            if rel.startswith(".github/") and rel not in permitted_workflows: errors.append(f"scope:governance-workflow-artifact:{rel}")
     return errors
 
 
 def normalized_blocker_text(text: str) -> str:
     return re.sub(r"2026-09-(?:08|12|13)|Architecture v0\.[2345]|Architecture-v0\.[2345]", "<VERSION-METADATA>", text)
+
+
+def recovery_policy_errors(text: str) -> list[str]:
+    """Validate the explicitly decided policy without faking implementation closure."""
+    errors: list[str] = []
+    if "MANUS-2026-10-20-02" not in text or "PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md" not in text:
+        errors.append("blocker:recovery-decision-binding")
+    if text.count("| Status | **Offen** |") != 3:
+        errors.append("blocker:recovery-implementation-not-open")
+    if text.count("| Produktentscheidung | **Beschlossen**") != 3:
+        errors.append("blocker:recovery-policy-count")
+    for number, policy in ((1, "P03"), (2, "P04"), (3, "P05")):
+        match = re.search(rf"^## BLOCKER-PROD-00{number}[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+        if match is None or policy not in match.group(1) or "Fail-closed" not in match.group(1):
+            errors.append(f"blocker:recovery-policy-section:{number}")
+    return errors
+
+
+def blocker_update_errors(manifest: dict[str, Any], before: str, after: str) -> list[str]:
+    """The specific owner-authorized WP045 may decide policies, never fake gates."""
+    if normalized_blocker_text(before) == normalized_blocker_text(after):
+        return []
+    if manifest.get("workPackageId") != "WP-045" or manifest.get("scope") != "governance" or "ARCHITECTURE/OPEN_BLOCKERS.md" not in manifest.get("allowedPathPatterns", []):
+        return ["scope:blocker-content-changed"]
+    return recovery_policy_errors(after)
 
 
 def scope_manifest_trust_errors(manifest: dict[str, Any], manifest_rel: str, tracked: bool, anchors: list[str], anchor_parent: str, anchor_bytes: bytes, current_bytes: bytes) -> list[str]:
@@ -1448,7 +1476,13 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
     if blocker_rel in changed:
         base_text = subprocess.run(["git", "-C", str(ROOT), "show", f"{base}:{blocker_rel}"], text=True, capture_output=True, check=True).stdout
         current_text = (ROOT / blocker_rel).read_text(encoding="utf-8")
-        if normalized_blocker_text(base_text) != normalized_blocker_text(current_text): fail("scope:blocker-content-changed")
+        for error in blocker_update_errors(manifest, base_text, current_text): fail(error)
+    if scope == "governance" and ".github/workflows/unity.yml" in changed:
+        if manifest.get("workPackageId") != "WP-045":
+            fail("scope:governance-unity-not-authorized")
+        else:
+            recipe_check = subprocess.run([sys.executable, str(ROOT / "tools/ci/test_change_scope.py")], cwd=ROOT, text=True, capture_output=True, check=False)
+            if recipe_check.returncode != 0: fail("scope:governance-unity-recipes-or-routing-invalid")
     diff_check = subprocess.run(["git", "-C", str(ROOT), "diff", "--check", base, "--"], text=True, capture_output=True, check=False)
     if diff_check.returncode != 0: fail("scope:diff-check")
     secret_pattern = re.compile(r"-----BEGIN (?:RSA |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}")
@@ -1487,6 +1521,8 @@ def version_and_blocker_check() -> None:
     for number in (1, 2, 3):
         if f"BLOCKER-PROD-00{number}" not in blockers: fail(f"blocker:missing:{number}")
     if blockers.count("| Status | **Offen** |") != 3 or blockers.count("Fail-closed") < 3: fail("blocker:status")
+    if "MANUS-2026-10-20-02" in blockers:
+        for error in recovery_policy_errors(blockers): fail(error)
 
 
 def evidence_summary_lines() -> list[str]:
@@ -1496,7 +1532,7 @@ def evidence_summary_lines() -> list[str]:
         "REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP",
         "REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox",
         "REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion",
-        "BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed",
+        "BLOCKED  BLOCKER-PROD-001/002/003: Produktpolicy jetzt entschieden; reale Umsetzung/Kalibrierung/Validierung weiterhin fail-closed",
     ]
 
 
@@ -1649,7 +1685,11 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("V03-005-GOVERNANCE-NO-PRODUCTION", "scope:governance-production-artifact:Assets/StammstreckenPuzzle/Scripts/Foo.cs" in scope_manifest_errors(governance_scope, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "governance"))
     governance_workflow = copy.deepcopy(governance_scope); governance_workflow["allowedPathPatterns"] = [".github/workflows/validate.yml"]
     expect("V03-005-GOVERNANCE-VALIDATE-WORKFLOW", not scope_manifest_errors(governance_workflow, [".github/workflows/validate.yml"], "governance"))
-    expect("V03-005-GOVERNANCE-NO-OTHER-WORKFLOW", "scope:governance-workflow-artifact:.github/workflows/unity.yml" in scope_manifest_errors(governance_workflow, [".github/workflows/unity.yml"], "governance"))
+    expect("V03-005-GOVERNANCE-NO-OTHER-WORKFLOW", "scope:governance-workflow-artifact:.github/workflows/release-candidate.yml" in scope_manifest_errors(governance_workflow, [".github/workflows/release-candidate.yml"], "governance"))
+    restricted_unity = {**governance_workflow, "workPackageId": "WP-044", "allowedPathPatterns": [".github/workflows/unity.yml"]}
+    expect("GOVERNANCE-UNITY-NOT-OTHER-WP", "scope:governance-workflow-artifact:.github/workflows/unity.yml" in scope_manifest_errors(restricted_unity, [".github/workflows/unity.yml"], "governance"))
+    authorized_unity = {**restricted_unity, "workPackageId": "WP-045"}
+    expect("GOVERNANCE-UNITY-WP045-POSITIVE", not scope_manifest_errors(authorized_unity, [".github/workflows/unity.yml"], "governance"))
     wp_rel = f"WORK_PACKAGES/{manifest['workPackageId']}_Test.md"
     wp_link = f"../{manifest_rel}"
     historical_wp = f"# {manifest['workPackageId']} – Test\n\n## ID\n\n`{manifest['workPackageId']}`\n\n[Scope]({wp_link})\n"
@@ -1712,6 +1752,15 @@ def self_test(scope: str, manifest_path: Path) -> None:
     # Retained governance, puzzle and blocker regressions.
     blocker_text = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
     expect("REG-BLOCKERS", normalized_blocker_text(blocker_text) != normalized_blocker_text(blocker_text.replace("**Offen**", "**Geschlossen**", 1)))
+    if "MANUS-2026-10-20-02" in blocker_text:
+        recovery_manifest = {"workPackageId": "WP-045", "scope": "governance", "allowedPathPatterns": ["ARCHITECTURE/OPEN_BLOCKERS.md"]}
+        expect("RECOVERY-POLICY-POSITIVE", not blocker_update_errors(recovery_manifest, "historical-open-policy", blocker_text))
+        expect("RECOVERY-POLICY-NO-FAKE-CLOSE", bool(blocker_update_errors(recovery_manifest, "historical-open-policy", blocker_text.replace("**Offen**", "**Geschlossen**", 1))))
+        expect("RECOVERY-POLICY-BINDING", bool(recovery_policy_errors(blocker_text.replace("MANUS-2026-10-20-02", "unbound"))))
+        expect("RECOVERY-POLICY-NOT-OTHER-WP", bool(blocker_update_errors({**recovery_manifest, "workPackageId": "WP-044"}, "historical-open-policy", blocker_text)))
+        expect("RECOVERY-POLICY-NOT-PRODUCTION", bool(blocker_update_errors({**recovery_manifest, "scope": "production"}, "historical-open-policy", blocker_text)))
+        expect("RECOVERY-POLICY-NOT-WITHOUT-ALLOWLIST", bool(blocker_update_errors({**recovery_manifest, "allowedPathPatterns": []}, "historical-open-policy", blocker_text)))
+        expect("RECOVERY-POLICY-MISSING-SECTION", bool(recovery_policy_errors(blocker_text.replace("BLOCKER-PROD-002", "removed"))))
     status_args = [
         (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
         (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),

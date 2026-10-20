@@ -1,5 +1,9 @@
 # Stammstrecken-Puzzle – Gestaltungsentscheidung und Produktionsmandat
 
+## Spätere ausdrückliche Kurskorrektur – MANUS-2026-10-20-02
+
+[Neues vollständiges Release-Gesamtmandat](../../PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) löst hier die Mehrfachauswahl-/Anwendenanforderung, Ende nach interner Integrationsfassung und engeren Folgeproduktionsvorbehalte prospektiv ab. Die konkrete korrigierte Cartoon-/Comic-Stilannahme und ihre minimalen technischen/redaktionellen Korrekturen bleiben fortgeltend und werden in A ausgeführt. Originalherkunft/Datum und damalige Gatebefunde werden nicht rückwirkend als mehr autorisiert oder erfüllt ausgegeben.
+
 **Entscheidung:** MANUS-2026-10-20-01
 
 **Datum / Zuständigkeit:** 20.10.2026; tatsächliche Manusentscheidung im ausdrücklich übertragenen Produkt-/Gestaltungsauftrag dieses Chats. Die Koordination und der technische Ausführungsagent erhalten ausschließlich die nachstehend begrenzten Befugnisse, keine allgemeine Geschäftsführerrolle.

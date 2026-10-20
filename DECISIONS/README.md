@@ -1,5 +1,9 @@
 # Architekturentscheidungen – verbindlicher ADR-Index
 
+## Aktuelle Ausführungs-/Entscheidungsführung – 20.10.2026
+
+[MANUS-2026-10-20-02](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) überträgt R normale technische Ausführungsentscheidungen im vollständigen Releaseauftrag. Echte neue dauerhafte Hash-/Save-/Security-/Privacy-/Provider-/Modul-/Buildgrenzen erhalten weiterhin einen kurzen vorab nummerierten ADR und gezielte getrennte Review; dessen technische Annahme/Integration darf R innerhalb des Mandats selbst abschließen. Kein ADR pro View/DTO/Routinefix und kein neuer Geschäftsführerprompt pro internem Fortschritt. Historische ADR-Fachkörper/Registry/Statusdaten bleiben erhalten; kein neuer fachlicher ADR wird allein für diese Arbeitsweisenfortschreibung registriert.
+
 ## Zuständige Statusnachführung – 19.10.2026
 
 Der unveränderte enge Fachkörper von ADR-033 ist **heute tatsächlich durch Manus angenommen**, nicht rückwirkend am 18.10.2026. [Maßgebliche heutige Entscheidung MANUS-2026-10-19-01](../PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md), §3. Seine frühere behauptete zuständige Vorcode-Annahme bleibt historisch unbelegt. ADR-Fachkörper, historische Daten, alle übrigen ADRs, Indexzeilen und Registrybestand bleiben unverändert; keine neue Architekturentscheidung oder vollständige historische AK-Erfüllung wird aus der Statusnachführung abgeleitet.

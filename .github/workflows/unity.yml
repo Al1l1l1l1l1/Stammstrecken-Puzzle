@@ -4,16 +4,20 @@
 # ARCHITECTURE/BUILD_AND_RELEASE.md Abschnitt 5 und 6 sowie
 # ARCHITECTURE/TEST_STRATEGY.md Abschnitt 11.
 #
-# - project-preflight läuft immer: autoritative Unity-Versionspin-Prüfung,
-#   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normativen
-#   Tabellen aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion)
-#   und Abschnitt 4 (Tests) sowie Skelett-Konventionsprüfungen. Das ist ein
-#   echter, ausgeführter Check.
-# - unity-environment-linux/-android/-ios laufen immer und ohne Secrets: Sie
-#   weisen die Runnerbereitschaft ausgeführt nach (Editor-Headless-Start bis
-#   zur erwarteten Lizenzprüfung, Android-Toolchain-Pfade, Xcode-26+-Auswahl
-#   mit iOS-SDK, Lizenz-Client-Aufrufbarkeit). Sie behaupten keinen Compile-,
-#   Test- oder Buildnachweis.
+# - changes-preflight läuft immer, ist stdlib-only und fail-closed: Es prüft die
+#   Klassifikator-Negativproben, beide Seiten von Rename/Delete, die Gitbasis
+#   und bei PRs Source- und synthetischen Merge-Diff als Union. Ein vollständig
+#   bekannter Produktpush erhält nur diesen günstigen Preflight mit dem ehrlichen
+#   Status DEFERRED_TO_PR_CANDIDATE; der unveränderte Vollpfad läuft am PR-
+#   Kandidaten. Reine Governance-/Markdown-/Status-/Konzept-/Review-/Scope- und
+#   steuernde Workflowänderungen erhalten NOT_REQUIRED_SOURCE_UNCHANGED; sie
+#   behaupten keinen Unity-PASS. Fehlende Basis, unbekannte Diffs oder echte
+#   Unity-Rezeptänderungen verlangen voll.
+# - Erst dann laufen project-preflight und unity-environment-linux/-android/-ios:
+#   Sie prüfen Versionspin, Modulgraph beziehungsweise Runnerbereitschaft wie
+#   bisher ausgeführt. Reine Dokumentation startet weder Editor/Lizenz noch
+#   Android/iOS; sie schwächt nicht den immer laufenden Architecture-/Scope- und
+#   Toolingcheck in validate.yml.
 # - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode inkl. Coverage,
 #   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
 #   laufen erst, wenn die Unity-Personal-Aktivierung und reproduzierbare Runner
@@ -45,7 +49,7 @@ name: Unity CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: ["**"]
   push:
     branches: ["**"]
   workflow_dispatch:
@@ -62,8 +66,67 @@ env:
   STP_UNITY_CHANGESET: 09d2ecc7fb28
 
 jobs:
+  changes-preflight:
+    name: changes-preflight
+    runs-on: ubuntu-24.04
+    outputs:
+      requires_unity: ${{ steps.classify.outputs.requires_unity }}
+      run_text: ${{ steps.classify.outputs.run_text }}
+      run_jcs: ${{ steps.classify.outputs.run_jcs }}
+      unity_status: ${{ steps.classify.outputs.unity_status }}
+      reason: ${{ steps.classify.outputs.reason }}
+    steps:
+      - name: Repository mit vollständiger Historie auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: CPython 3.11.13 einrichten
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11.13"
+
+      - name: Änderungsklassifikation und ihre deterministischen Negativproben prüfen
+        id: classify
+        env:
+          EVENT_BASE: ${{ github.event.before || github.event.pull_request.base.sha }}
+          EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_MERGE: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
+          args=(--event "${GITHUB_EVENT_NAME}" --base "${EVENT_BASE}" --head "${EVENT_HEAD}" --merge "${EVENT_MERGE}" --github-output "${GITHUB_OUTPUT}")
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            args+=(--force-full)
+          fi
+          python3 tools/ci/change_scope.py "${args[@]}"
+
+      - name: Unity-Ausführungsbedarf wahrheitsgemäß ausweisen
+        env:
+          UNITY_STATUS: ${{ steps.classify.outputs.unity_status }}
+          UNITY_REASON: ${{ steps.classify.outputs.reason }}
+        run: |
+          set -euo pipefail
+          case "${UNITY_STATUS}" in
+            REQUIRED)
+              echo "Unity source checks REQUIRED: ${UNITY_REASON}"
+              ;;
+            DEFERRED_TO_PR_CANDIDATE)
+              echo "DEFERRED_TO_PR_CANDIDATE: vollständiger unveränderter Unitypfad läuft am Produkt-PR-Kandidaten; ${UNITY_REASON}"
+              ;;
+            NOT_REQUIRED_SOURCE_UNCHANGED)
+              echo "NOT_REQUIRED_SOURCE_UNCHANGED: ${UNITY_REASON}"
+              ;;
+            *)
+              echo "Ungültiger Unity-Status aus fail-closed classifier: ${UNITY_STATUS}" >&2
+              exit 1
+              ;;
+          esac
+
   project-preflight:
     name: project-preflight
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
 
     steps:
@@ -253,6 +316,8 @@ jobs:
 
   unity-config:
     name: unity-config
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     outputs:
       ready: ${{ steps.check.outputs.ready }}
@@ -273,7 +338,8 @@ jobs:
 
   unity-evidence-guard:
     name: unity-evidence-guard
-    needs: [project-preflight, unity-config]
+    needs: [changes-preflight, project-preflight, unity-config]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     steps:
       - name: Wahrheitsgemäßer Unity-Nachweisstatus
@@ -292,6 +358,8 @@ jobs:
 
   unity-environment-linux:
     name: unity-environment-linux
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
@@ -334,6 +402,8 @@ jobs:
 
   unity-environment-android:
     name: unity-environment-android
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -381,6 +451,8 @@ jobs:
 
   unity-environment-ios:
     name: unity-environment-ios
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: macos-15
     timeout-minutes: 90
     env:
@@ -455,8 +527,8 @@ jobs:
 
   unity-compile-editmode:
     name: unity-compile-editmode
-    needs: [project-preflight, unity-config]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -671,8 +743,8 @@ jobs:
 
   unity-playmode-bootstrap-smoke:
     name: unity-playmode-bootstrap-smoke
-    needs: [project-preflight, unity-config, unity-compile-editmode]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-compile-editmode]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -886,8 +958,8 @@ jobs:
 
   unity-android-development-il2cpp:
     name: unity-android-development-il2cpp
-    needs: [project-preflight, unity-config, unity-playmode-bootstrap-smoke]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-playmode-bootstrap-smoke]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -947,8 +1019,8 @@ jobs:
 
   unity-ios-export:
     name: unity-ios-export
-    needs: [project-preflight, unity-config, unity-android-development-il2cpp]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-android-development-il2cpp]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false

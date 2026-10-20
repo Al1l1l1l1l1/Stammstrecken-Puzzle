@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Master-Spezifikation
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Zusatzdefaults:** P03 drei regulär kostenlose Hintcredits plus höchstens ein freiwilliger Videozusatz je Puzzleidentität; P04 lokales Tagesdatum/atomare 60/30/10-Meldetafel; P05 vier deduktive Endlosprofile mit echter Kalibrierung; P06 vierzehn konkrete Kosmetikitems/3,99-€-Werbefrei; P07 vorhandene datensparsame AdMob/UMP-/Unity-IAP-Linie ohne Analytics/Crashlytics/zweite Mediation.
+
 ## Maßgeblicher Gestaltungs- und Produktionsnachtrag vom 20.10.2026
 
 **MANUS-2026-10-20-01:** Die konkrete korrigierte Asset-Bible WP-035 ist kreativ angenommen mit den dort präzise entschiedenen minimalen Korrekturen. Die spätere direkte Ownerfestlegung präzisiert ältere Miniatur-/Materialbeschreibungen verbindlich als **Cartoon-/Comic-Spielgrafik, plump-staubig-behördenhaft, mit glasklarer deutscher Bahn-Alltagssatire** – kein Foto-/Pseudo-/PBR-Look. Dienstliche ruhige UI, eigener unterbrochener Gleisknoten, IBM-Plex-Sans/Condensed-System, zehn exakte Farbtoken, sechs braune Gleisformen, getrennte X/Grau/Gelb-Semantik, eigene rote Nahverkehrsfront und fünf bestehende Welt-/20 Routenkontexte sind gemäß der neuen Entscheidung konkretisiert. Keine offizielle Kennzeichnung oder Herkunftstäuschung; Recht-/Runtimeannahme wird nicht aus kreativer Annahme abgeleitet.
@@ -33,7 +41,7 @@ Die Satire soll für regelmäßige Bahnfahrende auf den ersten Blick verständli
 | Prinzip | Konsequenz |
 |---|---|
 | Rätselkern vor Metagame | Jede Welt, Belohnung, Werbung und Sammlung verstärkt das Lösen, ersetzt es aber nie. |
-| Faire Logik | Keine Rätselvorteile durch Kauf, Zufall oder Werbung. |
+| Faire Logik | Keine kaufbare Kompetenz, Lösung, exklusive Hilfe oder Sterne; das bereits bestätigte aktive freiwillige Hintvideo ist ein begrenzter Zusatzweg zur regulär kostenlosen gleichen Hilfe. |
 | Freier Spielstil | Hilfsmarkierungen sind verfügbar, aber niemals vorgeschrieben. |
 | Konzentration schützen | Während eines Rätsels keine Werbung und kein visueller Ballast. |
 | Leistung sichtbar machen | Jede gelöste Strecke führt zu einer sichtbaren Zugfahrt und freigegebenen Verbindung. |
@@ -77,7 +85,7 @@ Die Semantik ist verbindlich: **Braun = konkrete Schiene; Grau = offene Belegung
 
 ### 3.4 Werkzeuge
 
-Die Werkzeugleiste umfasst die sechs Gleisformen, rotes X, graues Standardgleis, vollständiges Entfernen, Mehrfachauswahl, Undo und Hinweise. Mehrfachauswahl erlaubt die effiziente Anwendung derselben gewählten Markierung oder Form auf mehrere Felder.
+Die Werkzeuge sind sechs Formen, X, Grau und Leeren; Undo und aktiv angeforderte Hinweise sind direkt erreichbar. Werkzeug wählen, Zelle antippen: Inhalt wird sofort gesetzt/ersetzt, gleicher Inhalt mit demselben aktiven Werkzeug geleert. Das Werkzeug bleibt aktiv; kein Mehrfachauswahl-/Anwendenmodus.
 
 ## 4. Unterschiedliche, gleichwertige Spielstile
 
@@ -145,7 +153,7 @@ Die Kampagne erscheint als **Betriebslage-Karte**, nicht als Nummernliste. Der S
 | Shop / Sammlung | Betriebswerk. |
 | Endlosmodus | Dauerbaustelle. |
 
-Verbindliche Netzabschnitte als thematischer Rahmen sind **Stammstrecke**, **Bauabschnitt Mitte**, **Außenast ohne Halt**, **Umleitung über Irgendwo**, **Schienenersatzverkehr** und **Dauerbaustelle**. Sie geben Kulisse, Textton und Kartenfortschritt, verändern aber nicht wahllos die Rasterregeln.
+Die fünf Kampagnenabschnitte sind **Stammstrecke**, **Bauabschnitt Mitte**, **Außenast ohne Halt**, **Umleitung über Irgendwo** und **Schienenersatzverkehr**. **Dauerbaustelle** ist das Postgame, kein sechster Kampagnenabschnitt. Sie geben Kulisse, Textton und Kartenfortschritt, verändern aber nicht wahllos die Rasterregeln.
 
 Züge sind rein kosmetische Betriebsmittel. Sie beeinflussen keine Hinweise, Sterne, Zeitziele oder Rätselschwierigkeit. Sie fahren nach der Lösung über die selbst gebaute Strecke.
 
@@ -175,7 +183,7 @@ Die frühere Glücksrad-Idee heißt **Betriebslage des Tages**. Sie ist ein klei
 |---|---|
 | Kostenlose Teilnahme | Einmal pro Kalendertag. |
 | Zusätzliche Teilnahme | Höchstens einmal zusätzlich nach freiwilligem Video. |
-| Belohnung | Geduldspunkte oder kosmetischer Fortschritt. |
+| Belohnung | +10/+15/+25 kosmetische Geduldspunkte, 60/30/10 Prozent; atomar gespeichertes Ergebnis. |
 | Ton | Trockene Meldung statt Casino-Inszenierung. |
 | Grenzen | Keine kaufbaren Teilnahmen, keine Rätselvorteile und kein Verlust beim Auslassen. |
 
@@ -235,11 +243,11 @@ Die detaillierte Recherche und alle Quellen liegen in `11_Bahnfahrer_Lore_und_Sa
 | Thema | Noch zu entscheiden |
 |---|---|
 | Finale Wort-/Bildmarke | Genaues App-Icon, Schriftlizenz, Farben und Logo-System nach professioneller Rechtsprüfung. |
-| UI-Restdetails | Exakte Touch-Gesten für Mehrfachauswahl, Hinweisdarstellung, Zugänglichkeit und Motion-Dauer. Der verbindliche Screenaufbau steht in Konzeptbaustein 12. |
-| Season-1-Detailcontent | Routen- und Lernarchitektur ist in Content-Bible 14 festgelegt. Als Nächstes folgen 240 konkrete Rätselinstanzen mit Solver-Nachweis, Leveldaten und finalen Zeitwerten. |
-| Ökonomie | Punktwerte und Objektpreisrahmen sind beschlossen; finale Werbefrei-Preisgestaltung wird erst nach Plattform- und Marktprüfung festgelegt. |
+| UI-Restdetails | Direkte Toggle-Taps sind entschieden; responsive Touchdetails, Hinweisdarstellung, Zugänglichkeit und Motion werden im ausführbaren UIauftrag fertig geliefert. Der verbindliche Screenaufbau steht in Konzeptbaustein 12. |
+| Season-1-Detailcontent | Routen/Lernarchitektur und 240 Prüfinstanzen liegen vor. Jetzt gezielte späte Qualitätskorrektur, vollständiger Productionimport und echte Zeitklassen nach neuer stabiler UI. |
+| Ökonomie | Punktwerte, vierzehn kosmetische Launchitems und 3,99 € deutscher Werbefrei-Basispreis sind entschieden; tatsächliche plattformkonforme Storepreiswahl und Kaufprüfung folgen. |
 | Zeitbalancing | Tatsächliche Zeitziele je Level beziehungsweise Schwierigkeitsklasse. |
-| Zugkatalog | Finale Zugfamilien, Lackierungen, Sounds und Freischaltreihenfolge. |
+| Zugkatalog | Vierzehn konkrete Launchitems/Freischaltungen sind entschieden; ihre echten Runtimeassets, Sounds und Katalogzuordnung werden geliefert. |
 | Sonderfelder | Für Season 1 ausdrücklich ausgeschlossen. Erst für spätere Seasons prüfen, wenn sie nachweislich neue Logiktiefe liefern und den klaren Kern nicht verwässern. |
 | Produktionsplanung | Levelsolver, Generatorvalidierung, Asset-Pipeline, Audio, Analytics, QA und Veröffentlichung. |
 
