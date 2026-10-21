@@ -23,6 +23,9 @@ except ImportError as exc:
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOL = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "tools/ci"))
+from adr047_metadata_authority import MetadataAuthorityError, authorized_metadata_path
+
 ERRORS: list[str] = []
 PASSES: list[tuple[str, str]] = []
 
@@ -46,10 +49,10 @@ CURRENT_ADR_STATUS = {
     25: "Angenommen", 26: "Angenommen",
     27: "Angenommen", 28: "Angenommen", 29: "Angenommen", 30: "Angenommen",
     31: "Angenommen", 32: "Angenommen", 33: "Angenommen", 34: "Angenommen", 35: "Angenommen", 36: "Angenommen",
-    37: "Angenommen", 38: "Angenommen", 39: "Angenommen", 40: "Angenommen", 41: "Angenommen", 42: "Angenommen", 43: "Angenommen", 44: "Angenommen", 45: "Angenommen", 46: "Angenommen",
+    37: "Angenommen", 38: "Angenommen", 39: "Angenommen", 40: "Angenommen", 41: "Angenommen", 42: "Angenommen", 43: "Angenommen", 44: "Angenommen", 45: "Angenommen", 46: "Angenommen", 47: "Angenommen",
 }
 SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
-FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (26, 30), (34, 36)}
+FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (23, 47), (26, 30), (34, 36)}
 ADR016_HISTORY_COMMIT = "6152eead04494386404241967da0d8a62e741718"
 ARCH_DOCS = [
     "ARCHITECTURE/ARCHITECTURE.md", "ARCHITECTURE/TECH_STACK.md",
@@ -181,7 +184,7 @@ def inventory_check() -> None:
             fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
     adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
     numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 47)):
+    if numbers != list(range(1, 48)):
         fail(f"inventory:adr-sequence:{numbers}")
 
 
@@ -225,7 +228,7 @@ def section_body(text: str, heading: str, next_heading: str) -> str:
 
 def adr_index_errors(index_text: str) -> list[str]:
     errors: list[str] = []
-    for number in range(1, 47):
+    for number in range(1, 48):
         token = f"ADR-{number:03d}"
         if token not in index_text:
             errors.append(f"adr-index:missing:{number:03d}")
@@ -236,7 +239,7 @@ def adr_index_errors(index_text: str) -> list[str]:
         expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
         if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
             errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v1.0" not in index_text or "37 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
+    if "Architecture v1.0" not in index_text or "38 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
         errors.append("adr-index:summary")
     return errors
 
@@ -1472,7 +1475,18 @@ def git_scope_check(scope: str, manifest_path: Path) -> None:
         if candidate.exists():
             try: candidate.resolve().relative_to(ROOT.resolve())
             except ValueError: fail(f"scope:symlink-escape:{rel}")
-    for error in scope_manifest_errors(manifest, changed, scope, manifest_rel): fail(error)
+    scoped_changed = changed
+    try:
+        metadata_path = authorized_metadata_path(
+            ROOT, changed, manifest_path=manifest_rel,
+            work_package_id=manifest["workPackageId"], requested_scope=scope)
+    except MetadataAuthorityError as error:
+        fail(str(error))
+    else:
+        if metadata_path is not None:
+            scoped_changed = [path for path in changed if path != metadata_path]
+            PASSES.append(("LOCAL_SCOPE", "Zusätzlich autorisierter Metadatenabschluss ADR-023 → ADR-047; ursprüngliches Manifest unverändert"))
+    for error in scope_manifest_errors(manifest, scoped_changed, scope, manifest_rel): fail(error)
     blocker_rel = "ARCHITECTURE/OPEN_BLOCKERS.md"
     if blocker_rel in changed:
         base_text = subprocess.run(["git", "-C", str(ROOT), "show", f"{base}:{blocker_rel}"], text=True, capture_output=True, check=True).stdout

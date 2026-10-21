@@ -6,6 +6,8 @@
 
 **Releasezuständigkeit:** R darf nach unabhängig geprüfter integrierter RCfassung und wirklicher Owner-Spielannahme den geprüften Stand über normalen geschützten PRweg nach Main integrieren. Öffentliche Store-/Vertrag-/Payment-/Rechtsfreigaben bleiben konkrete Ownerhandlungen. Signing, physische Geräte, echte SDK-/Privacy-/Kauf-/Restorebelege und Stores sind nicht durch dieses Dokument erfüllt.
 
+**Technischer Nachfolger ab22.10.2026:** [ADR-047](../DECISIONS/ADR-047-produktionspaketierung-und-release-manifest-v2.md) ist nach gezielter getrennter Review angenommen. Neue reale Storekandidaten erhalten einen streng nachweisgebundenen `release-manifest-v2`-Pfad; seine konkrete Umsetzung ist noch in Arbeit. `release-manifest-v1`, Beispiele und historische Reducer bleiben unverändert. Vor tatsächlichem Storebezug entsteht ausschließlich ein Packagingreceipt. Bei Storeauslieferung werden ursprüngliches AAB/IPA und dessen Signer über echte Storebuild-/Version-/Signaturzuordnung mit der geprüften Auslieferung verbunden; Play-Uploadkey und App-Signing-Signer werden nicht verwechselt. Ein späterer reiner Evidenznachfolger darf nur `evidenceGates`, `blockerState` und berechnetes `promotionAllowed` verändern und bindet den erhaltenen Vorgänger raw/JCS. Alle übrigen Kandidatenfelder bleiben exakt gleich. Fehlende echte Owner-/Human-/Geräte-/Provider-/Rechts-/Storeannahme bleibt offen; diese technische Entscheidung führt keine externe Handlung aus.
+
 ## 1. Ziel
 
 Jeder Storekandidat ist aus Commit, Tag, Toolchain, Contenthash und Konfiguration reproduzierbar. Kein Release hängt von einer lokalen Entwickleroberfläche oder Chatwissen ab. Öffentliche Promotion bleibt eine bewusste, separat bestätigte Handlung.

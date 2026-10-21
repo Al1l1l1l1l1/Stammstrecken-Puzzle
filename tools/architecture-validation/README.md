@@ -77,6 +77,8 @@ Ein späteres Production-Manifest ist zulässig, wenn es mit seinem eigenen Work
 
 ## Tatsächlicher Prüfumfang
 
+Der einmalige Metadatenabschluss ADR-023 → ADR-047 besitzt eine gesonderte prospektive R-Integrationsentscheidung unter dem aktuellen Releasegesamtmandat. Er erweitert das historische WP046-Manifest nicht. Der read-only Gitadapter in `tools/ci/adr047_metadata_authority.py` verlangt dessen unveränderte Originalbytes, den exakten angenommenen ADR047, einen einmaligen erreichbaren Autorisierungscommit mit genau Parent `ab5c3e1`, unveränderte historische ADR023-Bytes und ausschließlich das feste UTF-8-EOFappend. Der Autorisierungscommit muss vor jeder Zieländerung liegen; ein untracked, gleichzeitiger, späterer oder zwischenzeitlich veränderter Record scheitert. Nur nach vollständigem Nachweis wird dieser eine Pfad getrennt als zusätzlich autorisiert ausgewiesen. Alle übrigen Pfade sowie die bisherigen Manifest-/WP-/Trust-/Scopeprüfungen bleiben unverändert. Die 24 kontrollierten Tests ersetzen nicht den tatsächlichen Gitnachweis. Die Entscheidung liegt unter `PROJECT_CONTROL/ProductionBlocks/ReleaseCandidate/ADR023_047_METADATA_AUTHORIZATION.json`.
+
 | Gruppe | Tatsächlicher Nachweis |
 |---|---|
 | Inventar/Governance | v1.0-Dokumente, Schemata, Fixtures, 30 ADRs, sieben Work Packages und Tooldateien. |
