@@ -61,16 +61,16 @@ namespace STP.Application
 
         public static Task<PuzzleCandidateResult> GenerateAsync(ulong seed, PuzzleCandidateParameters parameters,
             IReadOnlyList<PuzzleDefinition> campaign, IReadOnlyList<PuzzleDefinition> recent, CancellationToken cancellation,
-            Func<long>? monotonicNow = null)
+            Func<long>? monotonicNow = null, EndlessQualityBounds? quality = null)
         {
             if (parameters == null || campaign == null || recent == null) throw new ArgumentNullException();
             var reference = campaign.ToArray(); var history = recent.Skip(Math.Max(0, recent.Count - 50)).ToArray();
             if (reference.Any(p => p == null) || history.Any(p => p == null)) throw new ArgumentException("GEN_NULL_REFERENCE");
-            return Task.Run(() => Search(seed, parameters, reference, history, cancellation, monotonicNow), cancellation);
+            return Task.Run(() => Search(seed, parameters, reference, history, cancellation, monotonicNow, quality), cancellation);
         }
 
         private static PuzzleCandidateResult Search(ulong seed, PuzzleCandidateParameters p, PuzzleDefinition[] campaign,
-            PuzzleDefinition[] recent, CancellationToken cancellation, Func<long>? monotonicNow)
+            PuzzleDefinition[] recent, CancellationToken cancellation, Func<long>? monotonicNow, EndlessQualityBounds? quality)
         {
             var time = Stopwatch.StartNew();
             Func<long> now=monotonicNow??(()=>time.ElapsedMilliseconds);
@@ -145,6 +145,12 @@ namespace STP.Application
                 if (verified.Classification != SolverClassification.UNIQUE || verified.Metrics == null ||
                     verified.Metrics.RequiredGuessDepth != 0 || verified.Metrics.DeductionSteps < p.MinDeductionSteps ||
                     verified.Metrics.MaxDeductionDepth < p.MinDeductionDepth) continue;
+                if (quality != null)
+                {
+                    int occupied = puzzle.RowCounts.Sum();
+                    if (occupied * 100 < grid.CellCount * p.MinDensityPercent || occupied * 100 > grid.CellCount * p.MaxDensityPercent ||
+                        !quality.Accepts(verified.Metrics, trivial)) continue;
+                }
                 return new PuzzleCandidateResult(puzzle, verified, attempts, "DRAFT_CANDIDATE_VERIFIED");
             }
             cancellation.ThrowIfCancellationRequested();

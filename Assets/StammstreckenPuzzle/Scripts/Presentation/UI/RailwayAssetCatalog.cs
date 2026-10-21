@@ -12,13 +12,17 @@ namespace STP.Presentation.UI
         private readonly Dictionary<string,RailwayMoment> moments=new Dictionary<string,RailwayMoment>(StringComparer.Ordinal);
         private readonly Dictionary<string,RailwayCosmeticAsset> cosmetics=new Dictionary<string,RailwayCosmeticAsset>(StringComparer.Ordinal);
         /// <summary>Validates the complete local manifest. Draft is accepted only for an explicitly internal preview.</summary>
-        public RailwayAssetCatalog(TextAsset source,bool allowInternalDraft=false)
+        public RailwayAssetCatalog(TextAsset source,bool allowInternalDraft=false):this(source,allowInternalDraft?SourceUse.InternalDraft:SourceUse.Production){}
+        /// <summary>Isolated technical fixture reader, never a product approval path.</summary>
+        public static RailwayAssetCatalog ForContractTest(TextAsset source)=>new RailwayAssetCatalog(source,SourceUse.ContractTest);
+        private enum SourceUse{Production,InternalDraft,ContractTest}
+        private RailwayAssetCatalog(TextAsset source,SourceUse use)
         {
             if(source==null)throw new ArgumentNullException(nameof(source));
             var document=JsonUtility.FromJson<Manifest>(source.text);
             if(document==null||document.schemaVersion!=1||document.rendererVersion!="railway-cartoon-1"||document.routes==null||document.routes.Length!=20||document.worlds==null||document.worlds.Length!=5||document.cosmetics==null||document.cosmetics.Length!=14||document.moments==null||document.moments.Length!=480)
                 throw new ArgumentException("RAILWAY_MANIFEST_STRUCTURE");
-            if(document.approvalStatus!="PRODUCT_APPROVED"&&!(allowInternalDraft&&document.approvalStatus=="DRAFT"))throw new ArgumentException("RAILWAY_MANIFEST_NOT_APPROVED");
+            if(!(use==SourceUse.ContractTest?document.approvalStatus=="FIXTURE_ONLY":document.approvalStatus=="PRODUCT_APPROVED"||use==SourceUse.InternalDraft&&document.approvalStatus=="DRAFT"))throw new ArgumentException("RAILWAY_MANIFEST_NOT_APPROVED");
             var worlds=new HashSet<string>(StringComparer.Ordinal);
             foreach(var world in document.worlds)if(world==null||world.section<1||world.section>5||world.rendererWorld!=world.section-1||!worlds.Add(world.id))throw new ArgumentException("RAILWAY_WORLD_INVALID");
             foreach(var route in document.routes)

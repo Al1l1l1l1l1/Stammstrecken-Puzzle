@@ -923,15 +923,20 @@ namespace STP.Application
     /// <summary>Immutable typed OpenEndlessCompletion; construction validates the closed record's local invariants.</summary>
     public sealed class OpenEndlessCompletion: LocalOpenEndless
     {
-        private OpenEndlessCompletion(string generationOrdinal, string id, LocalEndlessDescriptor descriptor, string puzzleId, string completionCommitId, LocalEndlessClaim claim) : base(generationOrdinal,id,descriptor)
+        private OpenEndlessCompletion(string generationOrdinal, string id, LocalEndlessDescriptor descriptor, string puzzleId, string completionCommitId, LocalEndlessClaim claim,LocalEndlessResult? result=null) : base(generationOrdinal,id,descriptor)
         {
             PuzzleId=LocalModel.Text(puzzleId);
             CompletionCommitId=LocalModel.Text(completionCommitId);
             Claim=claim??throw new ArgumentNullException(nameof(claim));
             LocalModel.Require(PuzzleId==Id&&Claim.ClaimId=="reward-claim:POST_CLEAR_PATIENCE:"+Id,"SAVE_ENDLESS_CLAIM_INVALID");
+            Result=result;
+            if(result!=null){LocalModel.Require(result.Identity.PuzzleId==id&&completionCommitId=="puzzle-solved:"+result.AttemptId.ToString("D")&&descriptor.Parameters is SearchGeneratorParameters parameters&&parameters.StarCalibration!=null,"ENDLESS_RESULT_BINDING_INVALID");var times=((SearchGeneratorParameters)descriptor.Parameters).StarCalibration!;LocalModel.Require(result.Stars==times.Stars(result.ActiveElapsedMs)&&result.FirstClearTerminal.Catalog.Equals(times.CompletionCatalog),"ENDLESS_RESULT_BINDING_INVALID");}
         }
         /// <summary>Copies all collection inputs and rejects inconsistent retained facts.</summary>
         public static OpenEndlessCompletion Create(string generationOrdinal, string id, LocalEndlessDescriptor descriptor, string puzzleId, string completionCommitId, LocalEndlessClaim claim)=>new OpenEndlessCompletion(generationOrdinal,id,descriptor,puzzleId,completionCommitId,claim);
+        public static OpenEndlessCompletion CreateCalibrated(string generationOrdinal,string id,LocalEndlessDescriptor descriptor,string puzzleId,string completionCommitId,LocalEndlessClaim claim,LocalEndlessResult result)=>new OpenEndlessCompletion(generationOrdinal,id,descriptor,puzzleId,completionCommitId,claim,result??throw new ArgumentNullException(nameof(result)));
+        public LocalEndlessResult? Result{get;}
+        public int RecordVersion=>Result==null?1:2;
         /// <summary>Validated immutable PuzzleId.</summary>
         public string PuzzleId { get; }
         /// <summary>Validated immutable CompletionCommitId.</summary>

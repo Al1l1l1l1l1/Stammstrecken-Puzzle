@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &744424562
+--- !u!1 &535936906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 744424564}
-  - component: {fileID: 744424563}
+  - component: {fileID: 535936908}
+  - component: {fileID: 535936907}
   m_Layer: 0
   m_Name: Assigned Human calibration
   m_TagString: Untagged
@@ -136,13 +136,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &744424563
+--- !u!114 &535936907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744424562}
+  m_GameObject: {fileID: 535936906}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c277b6724eb043d29269527f2d8c6930, type: 3}
@@ -154,18 +154,35 @@ MonoBehaviour:
   panel: {fileID: 11400000, guid: e22dc11059d9bda4380b738142bb550a, type: 2}
   publicData: {fileID: 4900000, guid: 2b5cba13588b45842aebd32d4c09388f, type: 3}
   publicCatalogHashSha256: 886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0
-  assignmentData: {fileID: 4900000, guid: 02e5015f4ab44a9d88f3748e07d98cbd, type: 3}
-  assignmentBytesSha256: 05e4339fc0b731c491f6c77c51e71ee651d16702dd65236491ddc06654079215
+  assignmentPacks:
+  - {fileID: 4900000, guid: 59df5b2207504129946681998fbddb47, type: 3}
+  - {fileID: 4900000, guid: b5553dbb4c5341cd818adec3ffc5a566, type: 3}
+  - {fileID: 4900000, guid: b0ba7a60780c4747a77aaa8031e13e67, type: 3}
+  - {fileID: 4900000, guid: fa3715003a1c4fab8ce60f8fde11770a, type: 3}
+  - {fileID: 4900000, guid: 4348add248a0436b8cd80a8c695a0fc5, type: 3}
+  - {fileID: 4900000, guid: 4ef8c62c644a4f20adcfa1fb7a3c1fac, type: 3}
+  - {fileID: 4900000, guid: 1b9fe557c4b04e5c952dbccc7bb4b34f, type: 3}
+  - {fileID: 4900000, guid: c658bbb3350e4981a739be18e29e4025, type: 3}
+  - {fileID: 4900000, guid: 02e5015f4ab44a9d88f3748e07d98cbd, type: 3}
+  - {fileID: 4900000, guid: 6ee86dccd4a14ab1bfc717f0f8cf917e, type: 3}
+  - {fileID: 4900000, guid: 0f807423cc7c41cdb2b0778b7a9dc9dd, type: 3}
+  - {fileID: 4900000, guid: 512c3430bbd94692bfc3f8c74496a8f6, type: 3}
+  - {fileID: 4900000, guid: fffc8f2916084eb992d22be77adad715, type: 3}
+  - {fileID: 4900000, guid: 4f35bde023ee4599b9d349a0a658b6c2, type: 3}
+  - {fileID: 4900000, guid: 8bc6231ecc334d0ca859db4fb4cb3338, type: 3}
+  - {fileID: 4900000, guid: 8854b313cc52485f926aac5d6b9af9f6, type: 3}
+  - {fileID: 4900000, guid: 3b1e04447d89420c9cd92adbc0a285af, type: 3}
+  rawAssignmentLock: {fileID: 4900000, guid: d2f0f5b9dca04cb28078af436e76943e, type: 3}
   uiSourceLock: {fileID: 4900000, guid: 676232bd0fcd4a3c888dc73bbef7d0bb, type: 3}
   railwayAssets: {fileID: 4900000, guid: 2be7181be3bb4e128257df988bc58ddc, type: 3}
   campaignText: {fileID: 4900000, guid: 0d6a360795b1aaf4db9dabb44f2dce54, type: 3}
---- !u!4 &744424564
+--- !u!4 &535936908
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744424562}
+  m_GameObject: {fileID: 535936906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -178,4 +195,4 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 744424564}
+  - {fileID: 535936908}

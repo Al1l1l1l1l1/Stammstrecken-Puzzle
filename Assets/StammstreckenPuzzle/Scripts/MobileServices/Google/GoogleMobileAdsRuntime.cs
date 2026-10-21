@@ -21,8 +21,10 @@ namespace STP.MobileServices.Google
             if (!interstitialId.StartsWith("ca-app-pub-", StringComparison.Ordinal) || !rewardedId.StartsWith("ca-app-pub-", StringComparison.Ordinal)) throw new ArgumentException("ADS_CONFIGURATION_INVALID");
             if (interstitialId.StartsWith(TestPublisher, StringComparison.Ordinal) == production || rewardedId.StartsWith(TestPublisher, StringComparison.Ordinal) == production) throw new ArgumentException("ADS_PROFILE_ID_MISMATCH");
             MobileApplicationProfile.Validate(applicationId, production);
-            ApplicationId = applicationId; InterstitialId = interstitialId; RewardedId = rewardedId;
+            ApplicationId = applicationId; InterstitialId = interstitialId; RewardedId = rewardedId; Production = production;
         }
+        /// <summary>Immutable production/test identity; reading it starts no SDK.</summary>
+        public bool Production { get; }
         /// <summary>Expected package/bundle identity.</summary>
         public string ApplicationId { get; }
         /// <summary>Explicit interstitial unit.</summary>

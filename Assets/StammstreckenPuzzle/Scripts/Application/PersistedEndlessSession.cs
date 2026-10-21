@@ -13,9 +13,11 @@ namespace STP.Application
         internal LocalEndlessPolicy? ConfiguredEndlessPolicy=>endlessPolicy;
         /// <summary>Binds the actual locked internal endless policy once during composition, before loading a profile.</summary>
         public void ConfigureEndless(LocalEndlessPolicy value)
-        {LocalModel.Require(profile.Use==CatalogUse.InternalPreview&&Status==PersistedSessionStatus.Unloaded&&endlessPolicy==null,"ENDLESS_COMPOSITION_NOT_ALLOWED");endlessPolicy=value??throw new ArgumentNullException(nameof(value));}
+        {LocalModel.Require(value!=null&&profile.Use==value.Use&&(profile.Use==CatalogUse.InternalPreview||profile.Use==CatalogUse.Production||profile.Use==CatalogUse.ContractTest)&&Status==PersistedSessionStatus.Unloaded&&endlessPolicy==null,"ENDLESS_COMPOSITION_NOT_ALLOWED");endlessPolicy=value;}
         /// <summary>Actual acknowledged result stars; current DRAFT profiles have no invented time thresholds.</summary>
-        public int? CurrentEndlessStars=>CanPresentResults&&session?.Mode==SessionMode.ENDLESS?committedEndlessStars:null;
+        public int? CurrentEndlessStars=>CanPresentResults&&session?.Mode==SessionMode.ENDLESS?GetConfirmedEndlessResult(session.PuzzleId)?.Stars??committedEndlessStars:null;
+        /// <summary>Exact confirmed open result after reload, without inventing an active puzzle or a new ride.</summary>
+        public LocalEndlessResult? GetConfirmedEndlessResult(string id)=>!blocked&&!needsPromotion?durable?.Payload.Endless.OpenEndless.OfType<OpenEndlessCompletion>().SingleOrDefault(c=>c.Id==id)?.Result:null;
         public Task<SaveCommitResult<LocalProfileState>> ReserveEndlessAsync(LocalEndlessPolicy endless,EndlessSearchProfile target,string seed,CancellationToken ct)
             =>ProfileMutationAsync((s,g,utc)=>endless.Reserve(s,target,seed),ct);
         public async Task<SaveCommitResult<LocalProfileState>> GenerateEndlessAsync(LocalEndlessPolicy endless,string id,CancellationToken ct)
@@ -56,7 +58,7 @@ namespace STP.Application
             if(source.Endless.OpenEndless.OfType<OpenEndlessCompletion>().Any(c=>c.Id==solved.PuzzleId&&c.CompletionCommitId==solved.SolvedEventId)&&CanPresentResults)return SaveCommitResult<LocalProfileState>.Success(durable!);
             var payload=await Task.Run(()=>endlessPolicy!.Complete(source,solved,checked(durable!.Generation+1),utc),ct).ConfigureAwait(false);
             var result=await CommitUnderLock(payload,true,ct,null,solved).ConfigureAwait(false);
-            if(result.Succeeded)await dispatcher.InvokeAsync(()=>committedEndlessStars=1).ConfigureAwait(false);
+            if(result.Succeeded)await dispatcher.InvokeAsync(()=>committedEndlessStars=result.Snapshot!.Payload.Endless.OpenEndless.OfType<OpenEndlessCompletion>().Single(c=>c.Id==solved.PuzzleId).Result?.Stars??1).ConfigureAwait(false);
             return result;
         }
     }

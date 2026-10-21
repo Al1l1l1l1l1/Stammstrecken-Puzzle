@@ -174,6 +174,32 @@ namespace STP.Tests.Presentation.PlayMode
             presenter.Refresh();presenter.Refresh();Assert.That(test.StartRunCalls,Is.EqualTo(2),"Refresh and opening the next instruction never manufacture another token.");
         }
 
+        [UnityTest]
+        public IEnumerator NextParticipant_OperatorHookOnlyOpensAfterConfirmedComplete_AndCreatesNoRun()
+        {
+            using var test=new HumanFixture();using var phone=new Phone();var frame=Frame();phone.Root.Add(frame);var opened=0;
+            using var presenter=new ProductionGamePresenter(frame,Locale(),()=>test.Now);
+            Assert.Throws<InvalidOperationException>(()=>presenter.BindAssignedOperator(()=>opened++));
+            test.Bind(presenter);presenter.BindAssignedOperator(()=>opened++);Assert.Throws<InvalidOperationException>(()=>presenter.BindAssignedOperator(()=>opened++));
+            yield return StartReady(test,presenter,frame);var token=test.SessionToken;
+            Submit(frame.Q<Button>("human-next-participant"));presenter.Refresh();Assert.That(opened,Is.Zero);
+            for(var assignment=0;assignment<2;assignment++)
+            {
+                if(assignment>0)
+                {
+                    Submit(frame.Q<Button>("human-show"));yield return Finish(presenter);yield return Until(()=>test.TrialExposure=="EXPOSURE_CONFIRMED"&&presenter.PendingRequest==null,presenter,"The next assigned input was not acknowledged.");
+                    Submit(frame.Q<Button>("human-never"));Submit(frame.Q<Button>("human-contact-confirm"));yield return Finish(presenter);
+                }
+                Submit(frame.Q<Button>("puzzle-back"));Submit(frame.Q<Button>("human-abort"));Submit(frame.Q<Button>("human-abort-confirm"));yield return Finish(presenter);
+                Submit(frame.Q<Button>("human-advance"));yield return Finish(presenter);
+            }
+            Assert.That(test.BoolState("IsFinished"),Is.True);var original=test.ConfirmedSnapshot;presenter.Refresh();Assert.That(opened,Is.Zero);
+            presenter.SetAccessibilitySuspended(true);Submit(frame.Q<Button>("human-next-participant"));Assert.That(opened,Is.Zero);
+            presenter.SetAccessibilitySuspended(false);Submit(frame.Q<Button>("human-next-participant"));Assert.That(opened,Is.EqualTo(1));
+            Assert.That(test.StartRunCalls,Is.EqualTo(1));Assert.That(test.SessionToken,Is.EqualTo(token));Assert.That(test.ConfirmedSnapshot,Is.SameAs(original));
+            Assert.That(frame.Q("human-participant-overlay").style.display.value,Is.EqualTo(DisplayStyle.None),"The routed hook opens no old single-pack confirmation and performs no token rotation.");
+        }
+
         private static IEnumerator StartReady(HumanFixture test,ProductionGamePresenter presenter,VisualElement frame)
         {
             yield return test.Action("InitializeAsync");presenter.Refresh();Submit(frame.Q<Button>("human-begin"));yield return Finish(presenter);

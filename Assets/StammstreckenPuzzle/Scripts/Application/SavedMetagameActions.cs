@@ -11,7 +11,7 @@ namespace STP.Application
         { get {RequireOwner();return !disposed&&authority&&!requestFault?persisted.Snapshot:null;} }
         /// <summary>Allows a deliberate internal profile action while a product modal pauses the puzzle; uncertain writes, active writers and unfinished result presentation still block it.</summary>
         public bool CanRunProfileAction
-        {get{RequireOwner();return expectedProfile.Use==CatalogUse.InternalPreview&&!disposed&&!busy&&authority&&!requestFault&&!writeFailure&&status!=SavedReviewStatus.TrainRide&&(!Solved||status==SavedReviewStatus.Results);}}
+        {get{RequireOwner();return SupportsMetagame&&!disposed&&!busy&&authority&&!requestFault&&!writeFailure&&status!=SavedReviewStatus.TrainRide&&(!Solved||status==SavedReviewStatus.Results);}}
 
         /// <summary>Serializes one composed metagame action with puzzle flushes, command gates and the displayed snapshot.</summary>
         public async Task<SaveCommitResult<LocalProfileState>> RunProfileActionAsync(Func<PersistedPuzzleSession,CancellationToken,Task<SaveCommitResult<LocalProfileState>>> action,CancellationToken ct)
@@ -25,7 +25,7 @@ namespace STP.Application
                     Task? pending=null;
                     await OnOwner(()=>
                     {
-                        if(expectedProfile.Use!=CatalogUse.InternalPreview||!authority||requestFault)throw new ArgumentException("METAGAME_CANDIDATE_NOT_READY");
+                        if(!SupportsMetagame||!authority||requestFault)throw new ArgumentException("METAGAME_CANDIDATE_NOT_READY");
                         if(busy){pending=requestIdle!.Task;return;}
                         busy=true;exclusive=true;error="NONE";idle=new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);requestIdle=idle;
                         if(view!=null&&persisted.CanMutate&&!view.IsPaused)view.Lifecycle(true,clock.MonotonicMilliseconds);

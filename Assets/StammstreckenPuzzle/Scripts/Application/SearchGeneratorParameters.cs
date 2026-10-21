@@ -31,10 +31,13 @@ namespace STP.Application
     {
         /// <summary>Copies references; unknown algorithms/corpora or unbound recent inputs fail closed.</summary>
         public SearchGeneratorParameters(string profileId,string profileHashSha256,string noveltyVersion,CatalogIdentity campaignCatalog,IReadOnlyList<PublicPuzzleInput> recentPublicInputs,PuzzleCandidateParameters search)
+            :this(profileId,profileHashSha256,noveltyVersion,campaignCatalog,recentPublicInputs,search,null){}
+        public SearchGeneratorParameters(string profileId,string profileHashSha256,string noveltyVersion,CatalogIdentity campaignCatalog,IReadOnlyList<PublicPuzzleInput> recentPublicInputs,PuzzleCandidateParameters search,EndlessStarCalibration? starCalibration)
         {
             LocalModel.Require(noveltyVersion==PuzzleCandidateSearch.NoveltyVersion,"GEN_NOVELTY_UNSUPPORTED");
-            LocalModel.Require(campaignCatalog!=null&&campaignCatalog.Use==CatalogUse.InternalPreview&&campaignCatalog.ApprovalStatus==CatalogApprovalStatus.Draft,"GEN_CANDIDATE_REQUIRED");
+            LocalModel.Require(campaignCatalog!=null&&(starCalibration==null?campaignCatalog.Use==CatalogUse.InternalPreview&&campaignCatalog.ApprovalStatus==CatalogApprovalStatus.Draft:campaignCatalog.Use==starCalibration.CompletionCatalog.Use&&campaignCatalog.Use!=CatalogUse.IsolatedReview),"GEN_CANDIDATE_REQUIRED");
             var profile=new EndlessSearchProfile(profileId,profileHashSha256,campaignCatalog!.HashSha256,search);
+            StarCalibration=starCalibration;
             ProfileId=profile.Id;ProfileHashSha256=profile.HashSha256;NoveltyVersion=noveltyVersion;CampaignCatalog=campaignCatalog;Search=search;
             RecentPublicInputs=LocalModel.Copy(recentPublicInputs);LocalModel.Require(RecentPublicInputs.Count<=50,"GEN_RECENT_CAPACITY");LocalModel.Unique(RecentPublicInputs.Select(p=>p.Identity.PuzzleId));
             LocalModel.Require(RecentPublicInputs.All(p=>p.Identity.PuzzleId.StartsWith("E1-",StringComparison.Ordinal)),"GEN_RECENT_ID_INVALID");
@@ -45,8 +48,10 @@ namespace STP.Application
         public CatalogIdentity CampaignCatalog{get;}
         public IReadOnlyList<PublicPuzzleInput> RecentPublicInputs{get;}
         public PuzzleCandidateParameters Search{get;}
+        public EndlessStarCalibration? StarCalibration{get;}
+        public int ContractVersion=>StarCalibration==null?1:2;
         /// <summary>Exact existing JCS parameters projection; no alternate hash profile.</summary>
-        public string Projection()=>"{\"contractVersion\":1,\"profileId\":"+LocalSaveHash.Quote(ProfileId)+",\"profileHashSha256\":"+LocalSaveHash.Quote(ProfileHashSha256)+",\"noveltyVersion\":"+LocalSaveHash.Quote(NoveltyVersion)+",\"campaignCatalog\":"+LocalSaveHash.CatalogProjection(CampaignCatalog)+",\"recentPublicInputs\":["+string.Join(",",RecentPublicInputs.Select(p=>EndlessProjection.PublicInput(p,true)))+"],"+EndlessProjection.SearchFields(Search)+"}";
+        public string Projection()=>"{\"contractVersion\":"+ContractVersion.ToString(CultureInfo.InvariantCulture)+",\"profileId\":"+LocalSaveHash.Quote(ProfileId)+",\"profileHashSha256\":"+LocalSaveHash.Quote(ProfileHashSha256)+",\"noveltyVersion\":"+LocalSaveHash.Quote(NoveltyVersion)+",\"campaignCatalog\":"+LocalSaveHash.CatalogProjection(CampaignCatalog)+",\"recentPublicInputs\":["+string.Join(",",RecentPublicInputs.Select(p=>EndlessProjection.PublicInput(p,true)))+"],"+EndlessProjection.SearchFields(Search)+(StarCalibration==null?"":",\"starCalibration\":"+StarCalibration.Projection())+"}";
     }
 
     /// <summary>Existing semantic/descriptor projections used by Application without importing content or JSON parsers.</summary>

@@ -202,10 +202,13 @@ namespace STP.Presentation.UI
         public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible){CheckThread();Grid?.SetTrainPose(x,y,clockwiseDegrees,visible);}
 
         /// <summary>Binds the complete presentation manifest. Draft acceptance must be explicitly internal.</summary>
-        public void BindAssetCatalog(TextAsset source,bool allowInternalDraft=false)
+        public void BindAssetCatalog(TextAsset source,bool allowInternalDraft=false)=>BindAssetCatalogCore(()=>new RailwayAssetCatalog(source,allowInternalDraft));
+        /// <summary>Binds only an explicit FIXTURE_ONLY technical catalog to the same existing render path.</summary>
+        public void BindContractTestAssetCatalog(TextAsset source)=>BindAssetCatalogCore(()=>RailwayAssetCatalog.ForContractTest(source));
+        private void BindAssetCatalogCore(Func<RailwayAssetCatalog> read)
         {
             CheckThread();if(disposed||assetCatalog!=null)throw new InvalidOperationException("PRODUCT_ASSETS_ALREADY_BOUND");
-            assetCatalog=new RailwayAssetCatalog(source,allowInternalDraft);postgamePanels.BindScene(assetCatalog);
+            assetCatalog=read();postgamePanels.BindScene(assetCatalog);
             var host=Require<VisualElement>("depot-catalog");
             foreach(var item in assetCatalog.CosmeticAssets)
             {
@@ -273,8 +276,11 @@ namespace STP.Presentation.UI
         /// <summary>Binds actual native privacy/Store readiness and explicitly requested actions.</summary>
         public void BindServices(Func<ProductionServiceState> read,Func<ProductionServiceAction,Task> action){CheckThread();CheckProductBinding();productPanels.BindServices(read,action);}
         /// <summary>Binds the exact 720 player texts; draft use requires an explicit internal opt-in.</summary>
-        public void BindCampaignText(TextAsset source,bool allowInternalDraft=false)
-        {CheckThread();if(campaignText!=null)throw new InvalidOperationException("CAMPAIGN_TEXT_ALREADY_BOUND");campaignText=new ProductionCampaignText(source,allowInternalDraft);renderedRecordGeneration=-1;Refresh();}
+        public void BindCampaignText(TextAsset source,bool allowInternalDraft=false)=>BindCampaignTextCore(()=>new ProductionCampaignText(source,allowInternalDraft));
+        /// <summary>Binds only the dedicated technical FIXTURE_ONLY text source.</summary>
+        public void BindContractTestCampaignText(TextAsset source)=>BindCampaignTextCore(()=>ProductionCampaignText.ForContractTest(source));
+        private void BindCampaignTextCore(Func<ProductionCampaignText> read)
+        {CheckThread();if(campaignText!=null)throw new InvalidOperationException("CAMPAIGN_TEXT_ALREADY_BOUND");campaignText=read();renderedRecordGeneration=-1;Refresh();}
         /// <summary>Binds actual identity-based clear and unlock policy, rather than inferring identities from a total.</summary>
         public void BindCampaignProgress(Func<int,bool> cleared,Func<int,bool> canOpen,Func<int> recommendedIndex)
         {CheckThread();CheckProductBinding();clearedPuzzle=cleared??throw new ArgumentNullException(nameof(cleared));canOpenPuzzle=canOpen??throw new ArgumentNullException(nameof(canOpen));recommendedPuzzle=recommendedIndex??throw new ArgumentNullException(nameof(recommendedIndex));mapClears=-1;Refresh();}

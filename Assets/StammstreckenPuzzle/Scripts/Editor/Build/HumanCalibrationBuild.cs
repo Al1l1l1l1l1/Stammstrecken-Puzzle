@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -19,7 +20,7 @@ namespace STP.Editor.Build
         public const string ScenePath="Assets/StammstreckenPuzzle/Scenes/QA/HumanCalibration.unity";
         private const string Root="Assets/StammstreckenPuzzle/";
         private const string AssignmentRoot=Root+"UI/HumanAssignments/";
-        private static string DefaultManifest=>AssignmentRoot+ReadRawLock().defaultManifest;
+        private const string RawLockPath=AssignmentRoot+"raw-sha256-lock.json";
         private const string UiLockPath=AssignmentRoot+"ui-source-lock.json";
         private const string PanelPath=Root+"Settings/MobilePreviewPanelSettings.asset";
         private static string[]? buildingScenes;
@@ -35,7 +36,8 @@ namespace STP.Editor.Build
             string publicHash=JsonUtility.FromJson<PublicBinding>(Required<TextAsset>(Root+"UI/MobileCandidate.bindings.json").text).publicCatalogHashSha256;
             installer.Configure(Required<VisualTreeAsset>(Root+"UI/ProductionGame.uxml"),Required<StyleSheet>(Root+"UI/ProductionGame.uss"),
                 Required<TextAsset>(Root+"UI/ProductionGameLocale.json"),Required<PanelSettings>(PanelPath),
-                Required<TextAsset>(Root+"UI/MobileCandidate.public.json"),publicHash,Required<TextAsset>(DefaultManifest),Sha(DefaultManifest),
+                Required<TextAsset>(Root+"UI/MobileCandidate.public.json"),publicHash,
+                HumanManifestRegistry.ExpectedPackPaths().Select(p=>Required<TextAsset>(AssignmentRoot+p)).ToArray(),Required<TextAsset>(RawLockPath),
                 Required<TextAsset>(UiLockPath),Required<TextAsset>(Root+"UI/RailwayAssets.json"),Required<TextAsset>(Root+"UI/ProductionCampaignText.json"));
             if(!EditorSceneManager.SaveScene(scene,ScenePath))throw new BuildFailedException("HUMAN_SCENE_SAVE_FAILED");
             AssetDatabase.SaveAssets(); VerifyArtifacts();
@@ -45,17 +47,41 @@ namespace STP.Editor.Build
         {
             VerifySourceLock();
             if(AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath)==null)throw new BuildFailedException("HUMAN_SCENE_MISSING");
-            string[] fields={"tree","styles","locale","panel","publicData","assignmentData","uiSourceLock","railwayAssets","campaignText"};
+            string[] fields={"tree","styles","locale","panel","publicData","rawAssignmentLock","uiSourceLock","railwayAssets","campaignText"};
             string[] paths={Root+"UI/ProductionGame.uxml",Root+"UI/ProductionGame.uss",Root+"UI/ProductionGameLocale.json",PanelPath,
-                Root+"UI/MobileCandidate.public.json",DefaultManifest,UiLockPath,Root+"UI/RailwayAssets.json",Root+"UI/ProductionCampaignText.json"};
+                Root+"UI/MobileCandidate.public.json",RawLockPath,UiLockPath,Root+"UI/RailwayAssets.json",Root+"UI/ProductionCampaignText.json"};
             var guids=new string[paths.Length];var ids=new long[paths.Length];
             for(int i=0;i<paths.Length;i++)
                 if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Required<UnityEngine.Object>(paths[i]),out guids[i],out ids[i]))
                     throw new BuildFailedException("HUMAN_SCENE_ASSET_ID_MISSING");
             string scene=File.ReadAllText(ScenePath);
             MobilePreviewBuild.ValidateTypedSceneReferences(scene,AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/HumanCalibrationInstaller.cs"),fields,guids,ids,new[]{3,3,3,2,3,3,3,3,3});
-            if(!Regex.IsMatch(scene,@"(?m)^  assignmentBytesSha256: "+Sha(DefaultManifest)+@"\r?$"))
-                throw new BuildFailedException("HUMAN_SCENE_ASSIGNMENT_HASH_STALE");
+            var packPaths=HumanManifestRegistry.ExpectedPackPaths().Select(p=>AssignmentRoot+p).ToArray();
+            var packGuids=new string[packPaths.Length];var packIds=new long[packPaths.Length];
+            for(int i=0;i<packPaths.Length;i++)
+                if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Required<TextAsset>(packPaths[i]),out packGuids[i],out packIds[i]))
+                    throw new BuildFailedException("HUMAN_SCENE_PACK_ASSET_ID_MISSING");
+            ValidatePackSceneReferences(scene,AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/HumanCalibrationInstaller.cs"),packGuids,packIds);
+        }
+        // Exact saved component/array bindings, independent of incidental dependency or GUID text elsewhere in the scene.
+        internal static void ValidatePackSceneReferences(string text,string installerGuid,string[] guids,long[] ids)
+        {
+            if(!text.StartsWith("%YAML 1.1",StringComparison.Ordinal)||!Regex.IsMatch(installerGuid,"^[a-f0-9]{32}$")||
+                guids.Length!=17||ids.Length!=17||guids.Any(g=>!Regex.IsMatch(g,"^[a-f0-9]{32}$"))||
+                guids.Distinct(StringComparer.Ordinal).Count()!=17||ids.Any(id=>id!=4900000))throw new InvalidOperationException("HUMAN_SCENE_PACK_ARGUMENTS");
+            var blocks=Regex.Split(text,@"(?m)^--- !u!").Where(block=>Regex.IsMatch(block,@"\A114 &-?\d+\r?\nMonoBehaviour:\r?\n")&&
+                Regex.IsMatch(block,@"(?m)^  m_Script: \{fileID: 11500000, guid: "+installerGuid+@", type: 3\}\r?$")).ToArray();
+            if(blocks.Length!=1||Regex.Matches(blocks[0],@"(?m)^  m_Script:").Count!=1||
+                Regex.Matches(blocks[0],@"(?m)^  assignmentPacks:").Count!=1||
+                Regex.IsMatch(blocks[0],@"(?m)^  (assignmentData|assignmentBytesSha256):"))
+                throw new InvalidOperationException("HUMAN_SCENE_PACK_COMPONENT");
+            var array=Regex.Match(blocks[0],@"(?m)^  assignmentPacks:\r?\n(?<items>(?:  - [^\r\n]*\r?\n)*)(?=  [A-Za-z_][A-Za-z0-9_]*:|\z)");
+            if(!array.Success)throw new InvalidOperationException("HUMAN_SCENE_PACK_ARRAY");
+            var lines=array.Groups["items"].Value.Replace("\r\n","\n").Split(new[]{'\n'},StringSplitOptions.RemoveEmptyEntries);
+            if(lines.Length!=17)throw new InvalidOperationException("HUMAN_SCENE_PACK_COUNT");
+            for(int i=0;i<17;i++)
+                if(lines[i]!="  - {fileID: "+ids[i].ToString(CultureInfo.InvariantCulture)+", guid: "+guids[i]+", type: 3}")
+                    throw new InvalidOperationException("HUMAN_SCENE_PACK_REFERENCE:"+i.ToString(CultureInfo.InvariantCulture));
         }
         private static string[] ExpectedUiSources()=>Directory.GetFiles(Root+"Scripts/Presentation","*.cs",SearchOption.AllDirectories)
             .Concat(Directory.GetFiles(Root+"Art","*",SearchOption.AllDirectories).Where(p=>new[]{".png",".svg",".ttf",".otf"}.Contains(Path.GetExtension(p).ToLowerInvariant())))
@@ -78,12 +104,15 @@ namespace STP.Editor.Build
                 if(!Regex.IsMatch(entry.path,@"^(campaign-pack-0[1-9]|endless-pack-0[1-8])\.json$")||
                     entry.assignmentCount!=6||Sha(AssignmentRoot+entry.path)!=entry.sha256)
                     throw new BuildFailedException("HUMAN_MANIFEST_RAW_LOCK_MISMATCH");
+            string publicHash=JsonUtility.FromJson<PublicBinding>(Required<TextAsset>(Root+"UI/MobileCandidate.bindings.json").text).publicCatalogHashSha256;
+            HumanCalibrationInstaller.ValidateRoutingAssets(HumanManifestRegistry.ExpectedPackPaths().Select(p=>Required<TextAsset>(AssignmentRoot+p)).ToArray(),
+                Required<TextAsset>(RawLockPath),source,Required<TextAsset>(Root+"UI/MobileCandidate.public.json"),publicHash);
         }
         private static RawLock ReadRawLock()
         {
-            var value=JsonUtility.FromJson<RawLock>(Required<TextAsset>(AssignmentRoot+"raw-sha256-lock.json").text);
+            var value=JsonUtility.FromJson<RawLock>(Required<TextAsset>(RawLockPath).text);
             if(value==null||value.schemaVersion!=1||value.kind!="HUMAN_ASSIGNMENT_RAW_LOCK"||value.manifests==null||
-                value.manifests.Length<9||value.manifests.Length>17||!Regex.IsMatch(value.defaultManifest,@"^campaign-pack-0[1-9]\.json$")||
+                value.manifests.Length!=17||!Regex.IsMatch(value.defaultManifest,@"^campaign-pack-0[1-9]\.json$")||
                 value.manifests.Count(m=>m.path==value.defaultManifest)!=1||value.manifests.Select(m=>m.path).Distinct().Count()!=value.manifests.Length)
                 throw new BuildFailedException("HUMAN_RAW_LOCK_INVALID");
             return value;

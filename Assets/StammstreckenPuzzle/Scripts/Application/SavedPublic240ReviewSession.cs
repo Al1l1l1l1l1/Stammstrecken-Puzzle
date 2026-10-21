@@ -157,6 +157,9 @@ namespace STP.Application
             : this(persisted,autosave,catalog,clock,dispatcher,new SaveProfileIdentity(SaveProfileIdentity.Public240ReviewNamespace,"r",CatalogUse.IsolatedReview)) { }
         private SavedPublic240ReviewSession(PersistedPuzzleSession persisted, AutosaveCoordinator autosave, IPublicPuzzleCatalog catalog,
             ILocalSessionClock clock, ILocalSaveDispatcher dispatcher,SaveProfileIdentity expectedProfile)
+            : this(persisted,autosave,catalog,clock,dispatcher,expectedProfile,CatalogApprovalStatus.Draft) { }
+        private SavedPublic240ReviewSession(PersistedPuzzleSession persisted, AutosaveCoordinator autosave, IPublicPuzzleCatalog catalog,
+            ILocalSessionClock clock, ILocalSaveDispatcher dispatcher,SaveProfileIdentity expectedProfile,CatalogApprovalStatus expectedApproval)
         {
             this.expectedProfile=expectedProfile;
             this.persisted = persisted ?? throw new ArgumentNullException(nameof(persisted));
@@ -164,7 +167,7 @@ namespace STP.Application
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
             this.dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
             if (catalog == null) throw new ArgumentNullException(nameof(catalog));
-            if (catalog.Identity.Use != expectedProfile.Use || catalog.Identity.ApprovalStatus != CatalogApprovalStatus.Draft)
+            if (catalog.Identity.Use != expectedProfile.Use || catalog.Identity.ApprovalStatus != expectedApproval)
                 throw new ArgumentException("SAVE_REVIEW_CATALOG_REQUIRED", nameof(catalog));
             puzzles = Array.AsReadOnly(catalog.Puzzles.ToArray());
             publicCatalogIdentity = catalog.Identity;
@@ -189,14 +192,14 @@ namespace STP.Application
         /// <summary>Pauses and flushes before deriving one safe clue; opening help never starts the timer or spends a credit.</summary>
         public async Task<SafePuzzleHint?> PrepareHintAsync(LocalMetagamePolicy hints,CancellationToken cancellationToken)
         {
-            RequireOwner();if(expectedProfile.Use!=CatalogUse.InternalPreview||view==null||busy||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
+            RequireOwner();if(!SupportsMetagame||view==null||busy||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
             await SetSuspendedAsync(true,cancellationToken).ConfigureAwait(false);
             return await persisted.PrepareHintAsync(hints,cancellationToken).ConfigureAwait(false);
         }
         /// <summary>Commits and refreshes the cached command view before a later Resume captures its next revision.</summary>
         public Task<SaveCommitResult<LocalProfileState>> CommitHintDisplayAsync(LocalMetagamePolicy hints,SafeHintDisplayReceipt receipt,CancellationToken cancellationToken)
         {
-            RequireOwner();if(expectedProfile.Use!=CatalogUse.InternalPreview||!suspended||view==null||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
+            RequireOwner();if(!SupportsMetagame||!suspended||view==null||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
             return RunProfileActionAsync((use,token)=>use.CommitHintDisplayAsync(hints,receipt,token),cancellationToken);
         }
         /// <summary>Read-only exact identity lookup from the confirmed validated snapshot; never creates a draft.</summary>

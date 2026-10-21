@@ -1,11 +1,14 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using STP.Application;
 using STP.Audio;
 using STP.Platform;
 using STP.MobileServices.Store;
+using STP.MobileServices.Google;
 using STP.Presentation.UI;
 using STP.Presentation.World;
 using UnityEngine;
@@ -32,12 +35,26 @@ namespace STP.Bootstrap
         [SerializeField] private TextAsset? endlessProfilesData;
         [SerializeField] private TextAsset? endlessCompletionData;
         [SerializeField] private TextAsset? endlessBindingsData;
+        [SerializeField] private TextAsset? runtimeBindingsData;
+        [SerializeField] private string[] runtimePayloadPaths=Array.Empty<string>();
+        [SerializeField] private TextAsset[] runtimePayloads=Array.Empty<TextAsset>();
+        [SerializeField] private string runtimeBindingRawSha256=string.Empty;
+        [SerializeField] private string runtimeReleaseRawSha256=string.Empty;
+        [SerializeField] private string runtimeReleaseJcsSha256=string.Empty;
+        [SerializeField] private string runtimeApprovalRawSha256=string.Empty;
+        [SerializeField] private string runtimeUiRawSha256=string.Empty;
+        [SerializeField] private ProductionMobileServiceProfile? productionServiceProfile;
         [SerializeField] private AudioMixer? audioMixer;
         [SerializeField] private AudioClip[] audioClips=Array.Empty<AudioClip>();
         private ProductionGameAudio? gameAudio;
         private LocalSettings? appliedAudioSettings;
         private NativeHapticsAdapter? haptics;
         private MobileCandidateComposition? candidate;
+        private ProductionGameComposition? runtime;
+        private FullGameRuntimeContext? fullGame;
+        private GoogleAdConfiguration? productionAds;
+        private ProductionStoreConfiguration? productionStore;
+        private IapPrivacyReadiness? productionReadiness;
         private MobileCandidateExperience? experience;
         private StoreConfiguration? storeConfiguration;
         private IapPrivacyReadiness? storeReadiness;
@@ -58,11 +75,13 @@ namespace STP.Bootstrap
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
         private string? testRoot;
         private Func<string>? testEndlessSeed;
+        private bool testContractRuntime;
         public string StartupDiagnostic {get;private set;}="NONE";
 #endif
         /// <summary>Actual durable bridge; null while loading.</summary>
         public SavedPublic240ReviewSession? Model => model;
         public MobileCandidateComposition? Candidate => candidate;
+        public ProductionGameComposition? RuntimeComposition => runtime;
         /// <summary>Actual scene presenter.</summary>
         public ProductionGamePresenter Presenter => presenter ?? throw new InvalidOperationException("PREVIEW_NOT_READY");
         /// <summary>Actual overlay document.</summary>
@@ -78,7 +97,7 @@ namespace STP.Bootstrap
         public void Configure(VisualTreeAsset view, StyleSheet stylesheet, TextAsset translations,
             PanelSettings settings, TextAsset puzzles, TextAsset campaign, TextAsset completion, TextAsset assets)
         {
-            if (started || disposed) throw new InvalidOperationException("PREVIEW_ALREADY_STARTED");
+            if (started || disposed || runtimeBindingsData!=null) throw new InvalidOperationException("PREVIEW_ALREADY_STARTED");
             tree = view; styles = stylesheet; locale = translations; panel = settings;
             publicData = puzzles; campaignData = campaign; completionData = completion;
             railwayAssets = assets;
@@ -89,7 +108,7 @@ namespace STP.Bootstrap
             PanelSettings settings, TextAsset puzzles, TextAsset campaign, TextAsset completion, TextAsset assets,
             TextAsset cosmetics, TextAsset bindings, TextAsset? playerTexts=null)
         {
-            if(started||disposed)throw new InvalidOperationException("PREVIEW_ALREADY_STARTED");
+            if(started||disposed||runtimeBindingsData!=null)throw new InvalidOperationException("PREVIEW_ALREADY_STARTED");
             cosmeticsData=cosmetics; candidateBindings=bindings;campaignText=playerTexts;
             Configure(view,stylesheet,translations,settings,puzzles,campaign,completion,assets);
         }
@@ -107,6 +126,71 @@ namespace STP.Bootstrap
             endlessBindingsData=bindings??throw new ArgumentNullException(nameof(bindings));
         }
 
+        /// <summary>Scene consumes the exact source-approved producer output. Runtime hash checks do not grant that approval.</summary>
+        public void ConfigureProductionRuntime(VisualTreeAsset view,StyleSheet stylesheet,TextAsset translations,PanelSettings settings,
+            IReadOnlyDictionary<string,TextAsset> files,TextAsset bindings,string bindingRawSha256,string releaseRawSha256,
+            string releaseJcsSha256,string approvalRawSha256,string uiRawSha256)
+        {
+            if(started||disposed||candidateBindings!=null)throw new InvalidOperationException("RUNTIME_CONFIGURATION_WINDOW_CLOSED");
+            SetRuntimeInputs(view,stylesheet,translations,settings,files,bindings,bindingRawSha256,releaseRawSha256,releaseJcsSha256,approvalRawSha256,uiRawSha256);
+            ValidateReferences();
+        }
+        private void SetRuntimeInputs(VisualTreeAsset view,StyleSheet stylesheet,TextAsset translations,PanelSettings settings,
+            IReadOnlyDictionary<string,TextAsset> files,TextAsset bindings,string bindingHash,string releaseRaw,string releaseJcs,string approval,string ui)
+        {
+            if(files==null||files.Any(p=>p.Value==null))throw new ArgumentException("RUNTIME_SOURCE_ASSETS_MISSING");
+            runtimePayloadPaths=files.Keys.OrderBy(p=>p,StringComparer.Ordinal).ToArray();runtimePayloads=runtimePayloadPaths.Select(p=>files[p]).ToArray();
+            tree=view;styles=stylesheet;locale=translations;panel=settings;runtimeBindingsData=bindings;
+            runtimeBindingRawSha256=bindingHash;runtimeReleaseRawSha256=releaseRaw;runtimeReleaseJcsSha256=releaseJcs;
+            runtimeApprovalRawSha256=approval;runtimeUiRawSha256=ui;
+            publicData=files["Public.json"];campaignData=files["Campaign.json"];completionData=files["CampaignCompletion.json"];
+            railwayAssets=files["RailwayAssets.json"];cosmeticsData=files["Cosmetics.json"];campaignText=files["CampaignText.json"];
+        }
+        private RuntimeGameSources ReadRuntimeInputs()
+        {
+            if(runtimeBindingsData==null||runtimePayloadPaths.Length!=12||runtimePayloads.Length!=12||runtimePayloads.Any(p=>p==null)||
+                runtimePayloadPaths.Distinct(StringComparer.Ordinal).Count()!=12||!runtimePayloadPaths.SequenceEqual(runtimePayloadPaths.OrderBy(p=>p,StringComparer.Ordinal)))
+                throw new ArgumentException("RUNTIME_SOURCE_ASSETS_MISSING");
+            var files=Enumerable.Range(0,12).ToDictionary(i=>runtimePayloadPaths[i],i=>runtimePayloads[i].bytes,StringComparer.Ordinal);
+            void SameAsset(string path,TextAsset? actual)
+            {
+                int index=Array.IndexOf(runtimePayloadPaths,path);
+                if(index<0||actual==null||runtimePayloads[index]!=actual)throw new ArgumentException("RUNTIME_SCENE_SOURCE_ALIAS:"+path);
+            }
+            SameAsset("Public.json",publicData);SameAsset("Campaign.json",campaignData);SameAsset("CampaignCompletion.json",completionData);
+            SameAsset("Cosmetics.json",cosmeticsData);SameAsset("RailwayAssets.json",railwayAssets);SameAsset("CampaignText.json",campaignText);
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+            if(testContractRuntime)
+            {
+                if(testRoot==null)throw new ArgumentException("RUNTIME_FIXTURE_PRIVATE_ROOT_REQUIRED");
+                return RuntimeGameSources.ReadContractTest(files,runtimeBindingsData.bytes,runtimeBindingRawSha256,
+                    runtimeReleaseRawSha256,runtimeReleaseJcsSha256,runtimeUiRawSha256);
+            }
+#endif
+            return RuntimeGameSources.ReadProduction(files,runtimeBindingsData.bytes,runtimeBindingRawSha256,
+                runtimeReleaseRawSha256,runtimeReleaseJcsSha256,runtimeApprovalRawSha256,runtimeUiRawSha256);
+        }
+        /// <summary>Optional actual metadata supplied before startup; no default IDs, review, SDK initialization or traffic.</summary>
+        public void ConfigureProductionServices(GoogleAdConfiguration? ads,ProductionStoreConfiguration? store,IapPrivacyReadiness? reviewedReadiness)
+        {
+            if(started||disposed||runtimeBindingsData==null||productionAds!=null||productionStore!=null||productionServiceProfile!=null)
+                throw new InvalidOperationException("PRODUCTION_SERVICES_INPUT_WINDOW_CLOSED");
+            if(ReadRuntimeInputs().Use!=CatalogUse.Production)throw new ArgumentException("PRODUCTION_SERVICES_PROFILE_REQUIRED");
+            if((store==null)!=(reviewedReadiness==null))throw new ArgumentException("PRODUCTION_STORE_REVIEW_INPUTS_INCOMPLETE");
+            productionAds=ads;productionStore=store;productionReadiness=reviewedReadiness;
+        }
+
+        /// <summary>Serialized preset survives scene reload; the protected build separately checks actual asset/review originals.</summary>
+        public void ConfigureProductionServiceProfile(ProductionMobileServiceProfile profile)
+        {
+            if(started||disposed||runtimeBindingsData==null||productionAds!=null||productionStore!=null||productionServiceProfile!=null)
+                throw new InvalidOperationException("PRODUCTION_SERVICES_INPUT_WINDOW_CLOSED");
+            if(profile==null||ReadRuntimeInputs().Use!=CatalogUse.Production)throw new ArgumentException("PRODUCTION_SERVICES_PROFILE_REQUIRED");
+            var issues=profile.ConfigurationIssues(profile.ApplicationId,profile.IsIos,profile.ReviewedEvidenceRawSha256);
+            if(issues.Count!=0)throw new ArgumentException(issues[0]);
+            productionServiceProfile=profile;
+        }
+
         /// <summary>Read-only reference and public-catalog preflight.</summary>
         public void ValidateReferences()
         {
@@ -117,7 +201,13 @@ namespace STP.Bootstrap
                     (locale == null ? "locale," : "") + (panel == null ? "panel," : "") +
                     (publicData == null ? "public," : "") + (campaignData == null ? "campaign," : "") +
                     (completionData == null ? "completion," : "") + (railwayAssets == null ? "assets" : ""));
-            if(candidateBindings!=null)
+            if(runtimeBindingsData!=null)
+            {
+                if(candidateBindings!=null||endlessProfilesData!=null||endlessCompletionData!=null||endlessBindingsData!=null)
+                    throw new ArgumentException("RUNTIME_CANDIDATE_SOURCE_MIX_FORBIDDEN");
+                _=ReadRuntimeInputs();
+            }
+            else if(candidateBindings!=null)
             {
                 if(cosmeticsData==null)throw new InvalidOperationException("CANDIDATE_COSMETICS_MISSING");
                 MobileCandidateComposition.ValidateCatalogBytes(publicData.bytes,campaignData.bytes,completionData.bytes,cosmeticsData.bytes,candidateBindings.bytes);
@@ -125,6 +215,16 @@ namespace STP.Bootstrap
             else SavedPublic240ReviewInstaller.ValidateCatalogData(publicData, campaignData, completionData);
         }
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+        /// <summary>Explicit Editor-only fixture mounting; this path and its selector do not exist in a Player.</summary>
+        public void ConfigureContractTestRuntime(VisualTreeAsset view,StyleSheet stylesheet,TextAsset translations,PanelSettings settings,
+            IReadOnlyDictionary<string,TextAsset> files,TextAsset bindings,string bindingRawSha256,string releaseRawSha256,
+            string releaseJcsSha256,string uiRawSha256)
+        {
+            if(started||disposed||testRoot==null||candidateBindings!=null)throw new InvalidOperationException("RUNTIME_FIXTURE_CONFIGURATION_CLOSED");
+            testContractRuntime=true;
+            SetRuntimeInputs(view,stylesheet,translations,settings,files,bindings,bindingRawSha256,releaseRawSha256,releaseJcsSha256,string.Empty,uiRawSha256);
+            ValidateReferences();
+        }
         /// <summary>Editor tests use the same existing physical-path boundary, never the real player save.</summary>
         public void ConfigureTestRoot(string root)
         {
@@ -163,7 +263,11 @@ namespace STP.Bootstrap
             tree!.CloneTree(Document.rootVisualElement);
             Document.rootVisualElement.styleSheets.Add(styles!);
             presenter = new ProductionGamePresenter(Document.rootVisualElement, locale!, () => clock.MonotonicMilliseconds, RunRequestAsync);
-            presenter.BindAssetCatalog(railwayAssets!, true);
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+            if(testContractRuntime)presenter.BindContractTestAssetCatalog(railwayAssets!);
+            else
+#endif
+            presenter.BindAssetCatalog(railwayAssets!,runtimeBindingsData==null);
             var screen = new GameObject("Stammstrecken Puzzle screen");
             screen.transform.SetParent(transform, false);
             output = screen.AddComponent<Camera>();
@@ -196,17 +300,30 @@ namespace STP.Bootstrap
             presenter!.ShowStartupLoading();
             try
             {
-                var configuration = new BootstrapConfiguration();
-                SavedPublic240ReviewInstaller.ValidateQaProfile(configuration.Profile,
-                    UnityEngine.Application.isEditor ? configuration.ApplicationIdentifier : UnityEngine.Application.identifier);
+                if(runtimeBindingsData==null)
+                {
+                    var configuration = new BootstrapConfiguration();
+                    SavedPublic240ReviewInstaller.ValidateQaProfile(configuration.Profile,
+                        UnityEngine.Application.isEditor ? configuration.ApplicationIdentifier : UnityEngine.Application.identifier);
+                }
+                else if(!UnityEngine.Application.isEditor)MobileApplicationProfile.Validate(UnityEngine.Application.identifier,true);
                 byte[] p = publicData!.bytes, c = campaignData!.bytes, v = completionData!.bytes;
                 string build = UnityEngine.Application.isEditor ? "editor-mobile-preview" : UnityEngine.Application.buildGUID;
-                if(candidateBindings!=null)
+                if(runtimeBindingsData!=null)
+                {
+                    var sources=ReadRuntimeInputs();
+                    runtime=await ProductionGameComposition.CreateAsync(sources,root,clock!,dispatcher!,UnityEngine.Application.version,build,lifetime.Token);
+                    if(disposed||epoch!=startupEpoch)return;
+                    fullGame=new FullGameRuntimeContext(runtime);
+                    model=SavedPublic240ReviewSession.ForLockedRuntime(runtime.Persisted,runtime.Autosave,runtime.Catalog,clock!,dispatcher!,runtime.Profile);
+                }
+                else if(candidateBindings!=null)
                 {
                     candidate=await MobileCandidateComposition.CreateAsync(p,c,v,cosmeticsData!.bytes,candidateBindings.bytes,root,
                         clock!,dispatcher!,UnityEngine.Application.version,build,lifetime.Token,
                         endlessProfilesData?.bytes,endlessCompletionData?.bytes,endlessBindingsData?.bytes);
                     if(disposed||epoch!=startupEpoch)return;
+                    fullGame=new FullGameRuntimeContext(candidate);
                     model=SavedPublic240ReviewSession.ForMobileCandidate(candidate.Persisted,candidate.Autosave,candidate.Catalog,clock!,dispatcher!,candidate.Profile);
                 }
                 else
@@ -217,21 +334,39 @@ namespace STP.Bootstrap
                     model = new SavedPublic240ReviewSession(composition.Persisted, composition.Autosave, composition.Catalog, clock!, dispatcher!);
                 }
                 presenter.BindModel(model);
-                if(campaignText!=null)presenter.BindCampaignText(campaignText,true);
-                if(candidate!=null)
+                if(campaignText!=null)
+                {
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+                    if(testContractRuntime)presenter.BindContractTestCampaignText(campaignText);
+                    else
+#endif
+                    presenter.BindCampaignText(campaignText,runtimeBindingsData==null);
+                }
+                if(fullGame!=null)
                 {
                     Func<string>? seedSource=null;
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
                     seedSource=testEndlessSeed;
 #endif
-                    experience=new MobileCandidateExperience(candidate,model,presenter,dispatcher!,clock!,lifetime.Token,seedSource);
-                    if(storeConfiguration!=null)experience.ConfigureStore(storeConfiguration,storeReadiness);
-                    presenter.BindHints(()=>model.PrepareHintAsync(candidate.Metagame,lifetime.Token),async receipt=>
+                    if(runtime!=null)
                     {
-                        var result=await model.CommitHintDisplayAsync(candidate.Metagame,receipt,lifetime.Token);
+                        if(productionServiceProfile!=null&&!productionServiceProfile.TryRead(UnityEngine.Application.identifier,UnityEngine.Application.platform,
+                            out productionAds,out productionStore,out productionReadiness))
+                            Debug.LogWarning("PRODUCTION_SERVICES_PROFILE_UNAVAILABLE");
+                        experience=new MobileCandidateExperience(runtime,model,presenter,dispatcher!,clock!,lifetime.Token,productionAds,seedSource);
+                        if(productionStore!=null)experience.ConfigureProductionStore(productionStore,productionReadiness!);
+                    }
+                    else
+                    {
+                        experience=new MobileCandidateExperience(candidate!,model,presenter,dispatcher!,clock!,lifetime.Token,seedSource);
+                        if(storeConfiguration!=null)experience.ConfigureStore(storeConfiguration,storeReadiness);
+                    }
+                    presenter.BindHints(()=>model.PrepareHintAsync(fullGame.Metagame,lifetime.Token),async receipt=>
+                    {
+                        var result=await model.CommitHintDisplayAsync(fullGame.Metagame,receipt,lifetime.Token);
                         if(!result.Succeeded)throw new IOException("HINT_DISPLAY_NOT_COMMITTED");
-                    },()=>candidate.Persisted.Snapshot==null||model.State.CurrentIdentity==null||model.PuzzleView?.Phase!=DevelopmentPreviewPhase.Editing?0:
-                        candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,model.State.CurrentIdentity));
+                    },()=>fullGame.Persisted.Snapshot==null||model.State.CurrentIdentity==null||model.PuzzleView?.Phase!=DevelopmentPreviewPhase.Editing?0:
+                        fullGame.Metagame.HintCredits(fullGame.Persisted.Snapshot.Payload,model.State.CurrentIdentity));
                 }
                 await model.InitializeAsync(lifetime.Token);
                 if (disposed || epoch != startupEpoch) return;
@@ -377,7 +512,7 @@ namespace STP.Bootstrap
         private void OnApplicationPause(bool value) => SetPaused(value);
         private void OnApplicationFocus(bool value) => SetFocused(value);
         private void OnApplicationQuit() => SetPaused(true);
-        private string StorageRoot=>candidateBindings!=null?UnityEngine.Application.persistentDataPath:
+        private string StorageRoot=>candidateBindings!=null||runtimeBindingsData!=null?UnityEngine.Application.persistentDataPath:
             Path.Combine(UnityEngine.Application.persistentDataPath,"mobile-preview");
         private void ApplySuspension()
         {

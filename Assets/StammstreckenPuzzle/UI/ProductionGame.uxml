@@ -1,6 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="ProductionGame.uss" />
     <ui:VisualElement name="production-root" class="production-root">
+        <ui:VisualElement name="human-operator-overlay" class="overlay human-operator-overlay hidden">
+            <ui:VisualElement class="human-operator-card">
+                <ui:Label view-data-key="human.operator.internal" class="eyebrow" /><ui:Label view-data-key="human.operator.title" class="page-title" />
+                <ui:Label view-data-key="human.operator.body" class="body-copy" /><ui:Label name="human-operator-status" class="body-copy human-operator-status" />
+                <ui:Label name="human-operator-active" class="small-copy wrapping" />
+                <ui:ScrollView name="human-operator-packs" class="human-operator-packs" />
+                <ui:Label name="human-operator-selection" class="small-copy wrapping human-operator-selection" /><ui:Label name="human-operator-notice" class="small-copy wrapping" />
+                <ui:Button name="human-operator-choose" class="primary-button wrapping" /><ui:Button name="human-operator-reset" class="text-button" />
+                <ui:Button name="human-operator-resume" class="primary-button wrapping" /><ui:Button name="human-operator-retry" class="secondary-button wrapping" /><ui:Button name="human-operator-export" class="secondary-button wrapping" />
+            </ui:VisualElement>
+            <ui:VisualElement name="human-operator-confirm" class="overlay hidden">
+                <ui:VisualElement class="overlay-card"><ui:Label view-data-key="human.operator.confirm-title" class="page-title" /><ui:Label name="human-operator-confirm-body" class="body-copy" />
+                    <ui:Button name="human-operator-confirm-start" class="primary-button wrapping" /><ui:Button name="human-operator-confirm-cancel" class="secondary-button wrapping" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="human-screen" class="screen human-screen hidden">
             <ui:ScrollView class="human-intro-scroll"><ui:Label view-data-key="human.internal" class="eyebrow" /><ui:Label view-data-key="human.title" class="hero-title" />
                 <ui:Label view-data-key="human.instructions" class="body-copy" /><ui:Label view-data-key="human.privacy" class="small-copy wrapping" />

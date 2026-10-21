@@ -1,0 +1,10 @@
+{
+  "name": "STP.Tests.RuntimeComposition.EditMode",
+  "rootNamespace": "STP.Tests.RuntimeComposition.EditMode",
+  "references": ["STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Bootstrap", "STP.Tests.Calibration.EditMode", "UnityEditor.TestRunner", "UnityEngine.TestRunner"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

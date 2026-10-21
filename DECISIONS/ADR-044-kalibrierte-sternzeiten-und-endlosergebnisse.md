@@ -160,3 +160,91 @@ RuntimeProgressCatalog(IPublicPuzzleCatalog corpus, byte[] campaign,
 Für Rootsuche optional am Ende der bisherigen Signatur eine zusätzliche unveränderliche `EndlessQualityBounds? quality = null`. Deren `Accepts(SolverMetrics, trivialLines)` prüft alle fünf geschlossenen Bereiche; Root prüft sie deterministisch vor Kandidatenannahme. Bestehende Aufrufe ohne quality bleiben unverändert. Productionpolicy muss dieses exakte Boundobjekt aus dem gepinnten Profil verwenden und vor Promote erneut prüfen; kein frei konfigurierbarer UI-Predicate und kein Zeitbudget-bedingtes Überspringen. B liefert den DTO, R besitzt Änderung an PuzzleCandidateSearch.
 
 Persistence erhält eine neue geschlossene `RetainedCalibratedEndlessBinding.FromDocuments(...)` über tatsächliche gelockte Wrapper-/Profilbytes und den gebundenen Publickorpus; keine Registrierung allein durch frei konstruierte Policy-DTOnamen. Ihr Factorypfad ergänzt bestehende Retainedbindings, ersetzt keine historischen Quellen. Die konkreten DTO-/Methodennamen sind Implementierungsdetails; die obigen Daten-/Hash-/Consumerformen bleiben verbindlich.
+
+## Geschlossene interne Importnachweise
+
+Nach getrennter C-Fachreview der geschlossenen Fassung SHA256 `d08f37ba4efd87ce630c373e6178ff8e94bab4f87541e0974a22c5b5c8a9f582` von R am21.10.2026 vor abhängiger Freigabeimplementierung angenommen. Präzisiert denselben ADR044-Sourceapproval-/Herkunftsvertrag, ohne neue Runtime-/Save-/Hashform oder tatsächliche Quellenfreigabe. Die folgenden technischen Regeln sind verbindlich; die Formannahme erzeugt keine Human-/Produktannahme.
+
+### ADR044 interner Importnachweis – prospektiver geschlossener Vorschlag
+
+Nach getrennter C-Fachreview prospektiv von R angenommen; keine tatsächliche Kalibrierung oder Freigabe. Bestehende Player-/Hash-/Saveformen ändern sich nicht.
+
+Alle folgenden internen JSON-Dateien sind streng geschlossene integer-JCS-Dokumente mit eindeutigen Keys. Dateiverweise haben exakt `{path,rawSha256}` (repositoryrelativ, Forwardslash, keine Links/Traversal). Die äußere geschützte Releasekonfiguration injiziert ApprovalLock-Pfad und erwarteten **Raw**-SHA separat vom Importrequest. Ein Request kann sich keine vertrauenswürdige Approvalquelle geben.
+
+`Calibration.provenance.evidenceSha256` und `GQP.humanReview.evidenceSha256` binden ausdrücklich SHA256 der **vollständigen bestehenden JCS-Kanonisierung** des passenden Evidence-v1-Objekts. ApprovalLock-Dateiverweise prüfen zusätzlich die unveränderten Originalbytes mit `rawSha256`. Beide werden unabhängig geprüft; Prettybytes dürfen verschieden sein, Raw und JCS werden niemals implizit gleichgesetzt. Dasselbe gilt für die bereits bestehenden JCS-Level-/Profil-/Kataloghashes gegenüber Import-Rawquellbindungen.
+
+#### Evidence v1
+
+Exakt `{evidenceVersion:1,kind:"STAR_CALIBRATION_EVIDENCE",use,calibrationVersion,uiSourceSha256,method,observations,exclusions,logicClasses,campaignTransfers,profileTransfers,acceptance}`.
+
+- `use` nur `Production` oder `ContractTest`; Fixtures sind zusätzlich durch synthetische Quellen/Annahme gekennzeichnet und niemals Production.
+- `method` genau `{source,version}`; source ist ein Dateiverweis auf den erhaltenen tatsächlichen Methoden-/Auswertungsnachweis.
+- `observations` Liste `{id,sourceRoot,packs,publicCatalog,publicBindings,sourceBindings,exports,includedExposureIds}`. sourceRoot ist der repositoryrelative erhaltene alte Quellsnapshot; packs/publicCatalog/publicBindings/sourceBindings sind relative Pfade darin. exports ist eine Liste gehashter Dateiverweise relativ zum Importroot. Der bestehende `HumanReadback.SourceBundle` und ADR042-Assignment-/Observationcodec validieren die Originale gegen diesen tatsächlichen Snapshot einschließlich UI-Dateiset/Raw-SHAs, alter Level-/Profil-/Parameter-/Manifestbindung. Alle so gelesenen Originale werden zusätzlich in die Import-Rawquellliste aufgenommen. includedExposureIds benennt tatsächliche Exposure-IDs, nicht Personen. Production inkludiert nur vorhandene `PARTICIPANT_UI`-Originale ohne Ausschlussgrund des bestehenden Readbacks. Readback ist keine fachliche Annahme.
+- `exclusions` Liste `{observationId,exposureId,reason}`. Jede vorhandene Trial wird genau einmal inkludiert oder mit konkretem Grund ausgeschlossen. Keine stillen Auslassungen; doppelte Exportoriginale/Exposure-IDs dürfen keine Stichprobe aufblasen.
+- `logicClasses` Liste `{id,criteria,transferMethod}`; criteria und transferMethod sind gehashte Dateiverweise. Inhalt trägt tatsächliche Logikklasse und nachvollziehbare Übertragungsmethode, nicht bloße Raster-/Labelklassen.
+- `campaignTransfers` genau240 Zeilen `{puzzleId,sourceDocument,targetDocumentSha256,publicPuzzleHash,logicClassId,observationIds}`. sourceDocument bindet das **alte gemessene/übertragene** volle Leveldokument, targetDocumentSha256 das neue Ziel-Level-JCS. Beide typisierten Quellen müssen exakt dieselbe öffentliche Puzzleprojektion besitzen. Die öffentliche Identity wird vollständig gebunden. Die Zielschwellen entsprechen exakt dem Kalibrierkatalog. Tatsächlich gemessene Quellen und ungemessene Übertragungsziele bleiben unterscheidbar.
+- `profileTransfers` genau4 Zeilen `{profileId,sourceProfiles,sourcePublicCatalog,sourcePublicBindings,targetConditionsSha256,logicClassId,observationIds}`. Die drei Sourcefelder sind gehashte Dateiverweise auf die tatsächlichen alten DRAFT-Profil-/Public-/Bindingsoriginale. Der bestehende LockedEndlessProfiles-Reader prüft den ursprünglichen Selfhash/Korpus; alle zwölf daraus gelesenen Suchparameter müssen exakt den zwölf abgeleiteten Ziel-GQP-Suchparametern entsprechen, ebenso Generator-/Solver-/Noveltyversion. Alter und Zielpublickorpus müssen alle240 identischen semantischen Identitäten enthalten. targetConditionsSha256 bindet ausschließlich die geschlossene Projektion aus `rulesetVersion,difficultyBand,generatorVersion,solverVersion,gridRanges,metricRanges,runtimeBudgets,novelty`; weder Humanreview/Approval noch Kalibrierkataloghash. Die neuen vollständigen Min-/Max-Grenzen werden außerdem auf jedem einbezogenen tatsächlichen öffentlichen Fall durch einen frischen Solverlauf geprüft; sie werden nicht als ursprünglich vorhanden ausgegeben. Die gehashte fachliche Transfermethode nimmt diese ausdrückliche Erweiterung an. Mindestens12 unterschiedliche tatsächlich inkludierte Profilfälle je Profil und exakte ursprüngliche Profilhashbindung pro Originalfall; volle ursprüngliche und neue Zielprofilhashes werden nie gleichgesetzt.
+- `acceptance` genau `{source,acceptedBy,decisionRef}`. Gehashte tatsächliche unabhängige fachliche Annahme des gesamten Methoden-/Quellen-/Transfernachweises, Rolle und Referenz stimmen mit geschütztem ApprovalLock überein. Keine Agenten-/Readback-/Selbstberichtableitung.
+
+#### ApprovalLock v1
+
+Exakt `{approvalLockVersion:1,kind:"PRODUCTION_SOURCE_APPROVAL_LOCK",use,releaseLock,evidence,sources,acceptedBy,decisionRef,acceptance}`.
+
+`releaseLock` und `acceptance` sind Dateiverweise; `evidence` ist Liste der exakten Evidence-Dateiverweise. `sources` ist die ordinal nach Pfad sortierte exakte Liste aller geprüften Importquellen `{path,rawSha256}` einschließlich Level-/Proof-/Katalog-/RailwayAssets-/Lokalisation-/UIlock-/Toolchainoriginalen, ohne ApprovalLock selbst und ohne generierte Ausgaben. Keine Zusatz-/fehlende Quelle. `acceptance` ist das erhaltene unabhängige Annahmeoriginal; `acceptedBy/decisionRef` müssen dessen tatsächlichem Freigabekontext entsprechen. Der separat injizierte erwartete Rawhash bindet diese Originalquelle an die geschützte Releasekonfiguration; er ist allein keine menschliche Attestation.
+
+Abhängigkeiten sind azyklisch: alte Originale/Methoden/Kriterien → Evidence (Ziel-Levelhash und Targetconditions, **kein** voller Zielprofil-/Kalibrier-/Wrapperhash) → GQP.humanReview → Kalibrierkatalog → Completionwrapper → ReleaseLock → ApprovalLock. Evidence/Methoden/Annahme enthalten keine daraus resultierenden Kalibrier-/Wrapper-/ApprovalLockhashes. Assetfloatdaten werden ausschließlich über exakte Rawbytes gebunden, niemals durch Änderung des integer-JCS-Profils.
+
+Alle Listen sind eindeutig; observationIds referenziert exakt `{observationId,exposureId}`. Pro Logicclass ist mindestens eine tatsächlich inkludierte Referenz nötig; Campaignübertragung auf ungemessene Fälle bleibt ausdrücklich als Methoden-/Annahmeentscheidung nachweisbar. Production benötigt identische tatsächlich gemessene UIquelle; keine automatische neue-UI-Übertragung. Der aktuelle UIlock ist bereits eigenständiger gehashter Importinput. Die interne Form ist technisch angenommen. Ohne die tatsächlichen darin verlangten Quellen, Humanbeobachtungen und unabhängig erhaltenen Annahmeoriginale bleibt Production geschlossen; FixtureOnly bleibt isoliert.
+
+Zusätzliche zwingende Validierungsregeln: Aus dem tatsächlich erhaltenen gehashten ursprünglichen `Content/Quality/s1/difficulty-and-human-sample.json` und vollständigen neun ursprünglichen Campaignmanifesten wird die bindende Menge `humanSampleRequired` rekonstruiert (aktuell54 unterschiedliche tatsächliche Fälle). **Jeder** erforderliche semantisch exakte Fall muss durch mindestens eine tatsächlich inkludierte passende CAMPAIGN_TIME-Beobachtung mit exakter ursprünglicher Dokument-/Manifest-/Public-/UIbindung gedeckt sein. Reine Endlosbeobachtungen oder Klassenübertragungen erfüllen diese Pflicht niemals. Root-`calibrationVersion` und `uiSourceSha256` stimmen ausdrücklich mit jeder aus diesem Nachweis verwendeten Ziel-Kalibrierzeile, Ziel-Levelschwelle und GQP-humanReview-Version/UI überein. Ob ein Kampagnenziel direkt gemessen oder übertragen ist, ergibt sich aus tatsächlicher inkludierter Observation-Identity **und** Originalquelle, nicht aus einer frei gesetzten Kennzeichnung.
+
+## Geschlossene Runtimeimportbindungen
+
+Nach getrennter C-Fachreview der Fassung SHA256 `c08e6b2c1c201dcda6a267f7e1c9b825629503013f30c3f65fb315edc770d5f5` von R am21.10.2026 vor abhängiger Runtime-/Buildimplementierung angenommen. Die bestehenden Sourceapproval-, Proof-, Human-, Provider- und Releasegates bleiben erforderlich; diese technische Formannahme gewährt keine davon.
+
+### ProductionImport Runtimeausgabe v1 – angenommene genaue Montageform
+
+Bestehende ADR044-Quellen/Hashes bleiben unverändert. Alle zwölf Payloaddateien sind vor Ausgabe vollständig gegatet. `Runtime.bindings.json` ist das dreizehnte Playerartefakt; kein zusätzliches Selfhashfeld/-profil. Rootbuild prüft seine exakten Bytes und injiziert den tatsächlichen Raw-SHA in die Scenecomposition.
+
+Dateiset exakt: `Public.json`, `Campaign.json`, `CampaignCompletion.json`, `EndlessCompletion.json`, `Calibration.json`, `Cosmetics.json`, `Profiles/dienstbeginn.json`, `Profiles/regelbetrieb.json`, `Profiles/stoerungslage.json`, `Profiles/grosslage.json`, `RailwayAssets.json`, `CampaignText.json`.
+
+`Runtime.bindings.json` exakt diese18 Felder:
+
+```
+{runtimeImportVersion:1,use,status,
+ releaseLockRawSha256,releaseLockJcsSha256,approvalLockRawSha256,
+ publicCatalog,campaignCatalog,campaignCompletionCatalog,endlessCompletionCatalog,
+ calibrationCatalog,cosmeticsCatalog,qualityProfiles,catalogSet,
+ railwayAssetsRawSha256,campaignTextRawSha256,uiSourceLockRawSha256,playerFiles}
+```
+
+- use nur `Production` oder `ContractTest`; status exakt `PRODUCT_APPROVED` beziehungsweise `FIXTURE_ONLY`. Keine QA-/Draftconsumption.
+- Sechs Catalogfelder und `catalogSet` sind jeweils exakt bestehende `{catalogId,revision,hashSha256}`. catalogSet ist Bs tatsächlich gelesene bestehende3ref-Aggregatprojektion/Identität (Production `production-s1-catalog-set` revision1, ContractTest separat), kein neuer Hashweg.
+- publicCatalog.hash ist die bestehende JCS-Projektion des Publicpayloads ohne allein catalogHashSha256. Campaign/Cosmetics/Calibration/vierGQP sind volle bestehende JCS-Hashes; beide Completionhashes sind jeweils vollständiger Wrapper-JCS. Der ReleaseLock-v1 enthält exakt diese zehn Katalog-/Profilhashes und240 vollständige Puzzle-/Dokument-/Lösungs-/Proofbindungen.
+- qualityProfiles genau vier Zeilen `{profileId,hashSha256}` in ordinaler Profil-ID-Reihenfolge, geschlossenes Namedset. Keine Selfhashfelder in GQP.
+- releaseLockRawSha256 ist SHA256 der unveränderten tatsächlichen ReleaseLockdatei; releaseLockJcsSha256 deren voller bestehender integer-JCS-Hash. approvalLockRawSha256 Production ist die separat geschützte erwartete und tatsächlich geprüfte Originalquelle, in ContractTest genau null. Keines davon ist allein Humanattestation.
+- railwayAssetsRawSha256 und campaignTextRawSha256 sind SHA256 der jeweiligen exakten Playerdateibytes. RailwayAssets enthält Floats und wird **bytegleich** aus der tatsächlichen Raw-gebundenen Quelle kopiert, niemals durch integer-JCS geleitet. CampaignText ist JCS der unten vorhandenen Projektionsform.
+- uiSourceLockRawSha256 bindet den tatsächlichen vollständigen UI75-Lockinput; vollständiges exaktes Quellfileset und jede Rawdateibindung werden im Import/Build geprüft. Das bestehende UIlocale ist darin enthalten, kein zweiter UIstringrenderer entsteht.
+- playerFiles genau zwölf Zeilen `{path,rawSha256}` ordinal nach obigem Dateipfad, eindeutige exakte feste Pfade, keine absoluten/Traversal-/Backslashpfade. Keine Bindings-Selbstzeile, Extrazeile oder fehlende Datei. Jeder Rawhash trifft die tatsächliche ausgegebene Datei. Die semantischen Kataloghashes werden zusätzlich durch die bestehenden Reader geprüft; Rawlisten ersetzen diese nicht.
+
+CampaignText ist die **vorhandene** Projektion `{schemaVersion:1,locale:"de-DE",approvalStatus,sourceSha256,entries:[240×{puzzleId,title,status,result}]}` in Publicreihenfolge. sourceSha256 bindet die tatsächliche einzelne Authoringlokalisierungsdatei, aus der genau alle720 referenzierten Texte gelesen wurden; mehrere uneindeutige Quellursprünge scheitern. Productionstatus PRODUCT_APPROVED, technische Fixture ausdrücklich FIXTURE_ONLY. Keine internen Entrydeductiontexte, Lösungen, Humanoriginale, Methoden oder Proxies im Player. Alle weiteren Text-/Asset-/Graphreferenzen werden trotzdem intern gegen die tatsächlichen Quellen geprüft.
+
+Authoringausgaben separat außerhalb Player: `authoring/source-bindings.json` (alle gelesenen Original-Raw-SHAs, alte gemessene vs neue Targetlevelhashes getrennt), `authoring/player-raw-lock.json`. Kein Runtimefallback auf diese internen Dateien. Kein technischer PASS öffnet reale Human-/Geräte-/Storegates.
+
+## Enger Metadatenabgleich gemessener UIquellen
+
+Nach getrennter C-Fachreview der Klarstellung SHA256 `fb983a252d6344fdd6b820b82318515f83347b618336906beefa6bd8361f7fda` von R am21.10.2026 vor abhängiger Importprüfung angenommen. Keine Änderung an Evidence-/Runtime-/Save-/Hashformen; ausschließlich der konkret geschlossene, tatsächlich nachgewiesene Freigabemetadatenwechsel.
+
+### ADR044 – enge gemessene/Target-UI-Klarstellung, prospektiv
+
+Kein neues Evidence-/Runtimefeld oder Hashprofil. `Evidence.uiSourceSha256`, `Calibration.provenance.uiSourceSha256` und `GQP.humanReview.uiSourceSha256` bleiben **immer** der volle Raw-SHA des tatsächlich gemessenen alten UI-Quelllocks. Die Runtimebindung `uiSourceLockRawSha256` bindet getrennt den tatsächlichen Target-UIlock. Kein Targethash wird als gemessene Quelle ausgegeben.
+
+Gleicher Lockhash benötigt keinen Transfer. Bei anderem Lockhash wird unter der bestehenden tatsächlichen unabhängigen Sourceannahme des Evidence-/ApprovalLocks nur dieser geschlossene Metadatenfall unterstützt:
+
+1. Alter und Target-UIlock haben exakt dieselbe ordinal sortierte vollständige75er-Quelldateiliste; jede genannte Originaldatei ist vorhanden und trifft ihren jeweiligen Raw-SHA. Kein fehlender/zusätzlicher/umbenannter Pfad.
+2. Alle Quellen außer exakt `Assets/StammstreckenPuzzle/UI/RailwayAssets.json` und `Assets/StammstreckenPuzzle/UI/ProductionCampaignText.json` sind Raw-bytegleich. Damit insbesondere sämtliche CS/UXML/USS, UIlocale, Art, AppIcon und Fonts. Keine Rendering-/Input-/Timing-/Struktur-/Textänderung wird übertragen.
+3. RailwayAssets: beide bounded strikt ohne Duplicatekeys gelesen; genau das Topfeld `approvalStatus` darf von DRAFT nach PRODUCT_APPROVED wechseln. Alle übrigen vollständigen verschachtelten JSONwerte sind exakt gleich. Floatnummern werden ohne Rundung oder integer-JCS-Konvertierung verglichen (exakte ursprüngliche Zahlentokens; abweichende Schreibweise wird konservativ abgewiesen). Der vollständige jeweilige OriginalrawHash bleibt zusätzlich gebunden.
+4. ProductionCampaignText: genau Topfelder `approvalStatus` (DRAFT→PRODUCT_APPROVED) und `sourceSha256` (alter vs tatsächlicher neuer gebundener Authoringtext-OriginalrawHash) dürfen wechseln. `schemaVersion`, locale und sämtliche240 geordneten `{puzzleId,title,status,result}` einschließlich aller720 Texte bleiben exakt gleich. Neuer sourceSha256 wird zusätzlich gegen die wirklich gelesene Targetauthoringquelle geprüft. Der alte Wert bleibt durch den alten Original-UIlock/Readback erhalten.
+5. Die bestehende gehashte unabhängige Sourceannahme benennt diese beiden tatsächlichen Lockbindungen und den ausschließlichen Metadatenwechsel ausdrücklich. Der geschützte ApprovalLock bindet beide Originalfilesets und die Annahmequelle. Das ist kein automatischer neuer-UI-Messclaim und keine generische UItransfererlaubnis.
+
+Jede andere Abweichung ist fail-closed und erfordert echte neue Mess-/Annahmequellen. Bereits durch die identischen Text-/Art-/CS-Originale gemessene Darstellung wird nicht wegen allein des Freigabestatus oder Authoringtext-Rawmetadatums unbrauchbar gemacht. Noch keine tatsächlichen Human-/Productionfreigaben vorhanden.

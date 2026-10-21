@@ -15,12 +15,16 @@ namespace STP.Presentation.UI
         private readonly Locale locale;
         private bool disposed;
         /// <summary>Validates canonical ordering and explicit draft opt-in before constructing its own table.</summary>
-        public ProductionCampaignText(TextAsset source,bool allowInternalDraft=false)
+        public ProductionCampaignText(TextAsset source,bool allowInternalDraft=false):this(source,allowInternalDraft?SourceUse.InternalDraft:SourceUse.Production){}
+        /// <summary>Isolated technical fixture reader. It grants no product or source approval.</summary>
+        public static ProductionCampaignText ForContractTest(TextAsset source)=>new ProductionCampaignText(source,SourceUse.ContractTest);
+        private enum SourceUse{Production,InternalDraft,ContractTest}
+        private ProductionCampaignText(TextAsset source,SourceUse use)
         {
             if(source==null)throw new ArgumentNullException(nameof(source));var data=JsonUtility.FromJson<Document>(source.text);
             if(data==null||data.schemaVersion!=1||data.locale!="de-DE"||data.entries==null||data.entries.Length!=240||
                 !Regex.IsMatch(data.sourceSha256??string.Empty,"^[0-9a-f]{64}$",RegexOptions.CultureInvariant)||
-                !(data.approvalStatus=="PRODUCT_APPROVED"||allowInternalDraft&&data.approvalStatus=="DRAFT"))throw new ArgumentException("CAMPAIGN_TEXT_SOURCE_INVALID");
+                !(use==SourceUse.ContractTest?data.approvalStatus=="FIXTURE_ONLY":data.approvalStatus=="PRODUCT_APPROVED"||use==SourceUse.InternalDraft&&data.approvalStatus=="DRAFT"))throw new ArgumentException("CAMPAIGN_TEXT_SOURCE_INVALID");
             for(var i=0;i<240;i++)
             {
                 var entry=data.entries[i];if(entry==null||entry.puzzleId!=PuzzleId(i)||!Plain(entry.title)||!Plain(entry.status)||!Plain(entry.result))throw new ArgumentException("CAMPAIGN_TEXT_ENTRY_INVALID");

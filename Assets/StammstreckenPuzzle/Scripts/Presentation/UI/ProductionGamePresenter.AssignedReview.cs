@@ -11,6 +11,7 @@ namespace STP.Presentation.UI
         private AssignedHumanSession? assignedReview;
         private Func<HumanAssignment,ProductionPuzzleDisplay>? assignedDisplay;
         private Func<Task>? exportHuman;
+        private Action? showAssignedOperator;
         private ProductionExposureGate? exposureGate;
         private Guid exposureArmed,exposureAcknowledged;
         private HumanExposureReceipt? exposureReceipt;
@@ -24,6 +25,13 @@ namespace STP.Presentation.UI
         public bool HasAssignedReview=>assignedReview!=null;
         /// <summary>Actual instruction/menu attention, independent of external focus and hint pauses.</summary>
         public bool IsAssignedInstructionOpen=>assignedReview!=null&&(!assignedReview.State.ExposureReady||!assignedReview.State.FirstContactRecorded||humanMenuOpen||humanNextParticipantOpen);
+
+        /// <summary>Overrides only the explicit completed-run next-participant intent; opening the operator starts no run.</summary>
+        public void BindAssignedOperator(Action showOperator)
+        {
+            CheckThread();if(disposed||assignedReview==null||showAssignedOperator!=null||pending!=null)throw new InvalidOperationException("HUMAN_OPERATOR_BINDING_NOT_ALLOWED");
+            showAssignedOperator=showOperator??throw new ArgumentNullException(nameof(showOperator));
+        }
 
         /// <summary>Binds one assigned observation run. Display metadata must resolve this exact assignment.</summary>
         public void BindAssignedReview(AssignedHumanSession session,Func<HumanAssignment,ProductionPuzzleDisplay> display,Func<Task>? export=null)
@@ -232,7 +240,7 @@ namespace STP.Presentation.UI
             catch{Require<Label>("human-export-state").text=L("human.export.failed");}Refresh();
         }
         private bool CanBeginNextParticipant=>!disposed&&!HumanBlocked&&pending==null&&humanExportTask==null&&!externalUiSuspended&&assignedReview!.State.CanBeginNextParticipant;
-        private void OpenNextParticipant(){if(!CanBeginNextParticipant)return;humanNextParticipantOpen=true;humanNextParticipantRequested=false;Refresh();}
+        private void OpenNextParticipant(){if(!CanBeginNextParticipant)return;if(showAssignedOperator!=null){showAssignedOperator();return;}humanNextParticipantOpen=true;humanNextParticipantRequested=false;Refresh();}
         private void CancelNextParticipant(){if(!humanNextParticipantOpen||pending!=null||humanNextParticipantRequested)return;humanNextParticipantOpen=false;Refresh();}
         private void ConfirmNextParticipant()
         {

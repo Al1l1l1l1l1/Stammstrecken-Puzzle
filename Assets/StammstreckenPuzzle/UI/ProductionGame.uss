@@ -160,3 +160,12 @@ Button:disabled { opacity: 0.58; }
 .human-prior-version { min-height: 44px; font-size: 11px; margin-top: 5px; flex-shrink: 0; white-space: normal; }
 .human-contact-confirm { min-height: 44px; height: 44px; margin-top: 5px; font-size: 12px; }
 .human-menu-card { max-height: 90%; }
+
+.human-operator-overlay { background-color: #F4F2EE; padding: 0; }
+.human-operator-card { width: 100%; height: 100%; max-width: 560px; padding: 22px 20px 18px 20px; }
+.human-operator-card > Label, .human-operator-card > Button { flex-shrink: 0; }
+.human-operator-status { font-size: 13px; margin-top: 0; margin-bottom: 8px; }
+.human-operator-packs { flex-grow: 1; flex-shrink: 1; min-height: 0; margin-top: 12px; }
+.human-operator-pack { min-height: 50px; flex-shrink: 0; margin-bottom: 8px; font-size: 13px; white-space: normal; }
+.human-operator-selection { margin-top: 10px; margin-bottom: 8px; }
+.human-operator-card .text-button { min-height: 44px; flex-shrink: 0; }

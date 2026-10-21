@@ -15,7 +15,7 @@ namespace STP.Bootstrap
         private string? activeEndlessTextId,activeEndlessProfile;
         private void BindEndless()
         {
-            if(composition.EndlessPolicy==null||composition.EndlessProfiles==null)return;
+            if(composition.EndlessPolicy==null||composition.EndlessProfileIds.Count==0)return;
             presenter.BindEndless(ReadEndless,id=>TrackUserAction(StartEndlessAsync(id)),id=>TrackUserAction(ResumeEndlessAsync(id)),id=>TrackUserAction(AbandonEndlessAsync(id)));
             presenter.BindEndlessReward(CanRequestEndlessVideo,(id,video)=>TrackUserAction(RequestEndlessRewardAsync(id,video)),CanSkipEndlessReward);
             presenter.BindDynamicPuzzleText(ReadEndlessText);
@@ -37,7 +37,7 @@ namespace STP.Bootstrap
                 e is ReservedEndless?EndlessEntryPhase.Reserved:e is ActiveEndlessDraft?EndlessEntryPhase.Active:EndlessEntryPhase.CompletionPending,
                 ready&&(e is ReservedEndless||e is ActiveEndlessDraft),ready&&(e is ReservedEndless||e is ActiveEndlessDraft))).ToArray()
                 ??Array.Empty<EndlessEntryView>();
-            var profiles=ready&&EndlessUnlocked&&records.Length<20?composition.EndlessProfiles!.Profiles.Select(p=>p.Id).ToArray():Array.Empty<string>();
+            var profiles=ready&&EndlessUnlocked&&records.Length<20?composition.EndlessProfileIds.ToArray():Array.Empty<string>();
             string status=generatingEndless?"generating":saved.EndlessGenerationStatus;
             return new EndlessView(EndlessUnlocked,generatingEndless,profiles,records,status);
         }
@@ -48,12 +48,12 @@ namespace STP.Bootstrap
         }
         private async Task StartEndlessAsync(string profileId)
         {
-            if(generatingEndless||externalInputSuspended||!saved.CanRunProfileAction||!EndlessUnlocked||composition.EndlessProfiles==null||composition.EndlessPolicy==null)
+            if(generatingEndless||externalInputSuspended||!saved.CanRunProfileAction||!EndlessUnlocked||composition.EndlessProfileIds.Count==0||composition.EndlessPolicy==null)
                 throw new InvalidOperationException("ENDLESS_UNAVAILABLE");
-            var profile=composition.EndlessProfiles.Get(profileId);generatingEndless=true;
+            generatingEndless=true;
             try
             {
-                var result=await saved.StartEndlessAsync(composition.EndlessPolicy,profile,nextEndlessSeed(),cancellation);
+                var result=await composition.StartEndlessAsync(saved,profileId,nextEndlessSeed(),cancellation);
                 RequireCommit(result);
                 var active=result.Snapshot!.Payload.Endless.OpenEndless.OfType<ActiveEndlessDraft>()
                     .SingleOrDefault(e=>e.GenerationOrdinal==result.Snapshot.Payload.Endless.HighestReservedOrdinal);
@@ -79,7 +79,7 @@ namespace STP.Bootstrap
         }
         private OpenEndlessCompletion? EndlesCompletion(string id)=>State?.Endless.OpenEndless.OfType<OpenEndlessCompletion>().SingleOrDefault(c=>c.Id==id);
         private bool CanRequestEndlessVideo(string id)=>!generatingEndless&&!externalInputSuspended&&saved.CanRunProfileAction&&
-            services.Capabilities.CanRequestAds&&EndlesCompletion(id)?.Claim.ClaimStatus=="LOCAL_DECISION_PENDING";
+            CanRequestAds&&EndlesCompletion(id)?.Claim.ClaimStatus=="LOCAL_DECISION_PENDING";
         private bool CanSkipEndlessReward(string id)=>!generatingEndless&&!externalInputSuspended&&saved.CanRunProfileAction&&EndlesCompletion(id)?.Claim.ClaimStatus=="LOCAL_DECISION_PENDING";
         private CompletionBonusView ReadEndlessBonus(string id)
         {
@@ -99,7 +99,7 @@ namespace STP.Bootstrap
             if(!CanRequestEndlessVideo(id))throw new InvalidOperationException("ENDLESS_VIDEO_UNAVAILABLE");
             var committed=await saved.RunProfileActionAsync((use,ct)=>use.ReserveEndlessRewardAsync(composition.EndlessPolicy,id,ct),cancellation);
             RequireCommit(committed);var reservation=LocalEndlessPolicy.RewardReservation(committed,id);
-            var shown=await services.ShowRewardedAsync(reservation,cancellation);await services.PendingCallbacks;
+            var shown=await Services.ShowRewardedAsync(reservation,cancellation);await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolveEndlessRewardAsync(composition.EndlessPolicy,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
     }

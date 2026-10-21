@@ -11,30 +11,43 @@ namespace STP.Application
     /// <summary>Actual verified generation result, bound to the one already committed reservation.</summary>
     public sealed class LocalEndlessCandidate
     {
-        internal LocalEndlessCandidate(ReservedEndless reservation,PublicPuzzleInput puzzle,LocalHashReference solution,LocalHashReference proof){Reservation=reservation;Puzzle=puzzle;SolutionHash=solution;ProofHash=proof;}
+        internal LocalEndlessCandidate(ReservedEndless reservation,PublicPuzzleInput puzzle,LocalHashReference solution,LocalHashReference proof,SolverMetrics? metrics=null){Reservation=reservation;Puzzle=puzzle;SolutionHash=solution;ProofHash=proof;VerifiedMetrics=metrics;}
         public ReservedEndless Reservation{get;}
         public PublicPuzzleInput Puzzle{get;}
         public LocalHashReference SolutionHash{get;}
         public LocalHashReference ProofHash{get;}
+        internal SolverMetrics? VerifiedMetrics{get;}
     }
     /// <summary>Actual internal endless lifecycle, with bounded novelty and exact existing ledger/descriptor projections.</summary>
     public sealed class LocalEndlessPolicy
     {
         private readonly IPublicPuzzleCatalog corpus;private readonly CatalogIdentity completion;private readonly ICanonicalJson json;private readonly ILocalLedger ledger;
+        private readonly CalibratedEndlessProfile[] calibrated=Array.Empty<CalibratedEndlessProfile>();
+        private readonly EndlessCompletionValues[] rewardSources=Array.Empty<EndlessCompletionValues>();
+        public CatalogUse Use=>corpus.Identity.Use;
         public LocalEndlessPolicy(IPublicPuzzleCatalog corpus,CatalogIdentity completion,ICanonicalJson json,ILocalLedger ledger)
         {this.corpus=corpus??throw new ArgumentNullException(nameof(corpus));this.completion=completion??throw new ArgumentNullException(nameof(completion));this.json=json??throw new ArgumentNullException(nameof(json));this.ledger=ledger??throw new ArgumentNullException(nameof(ledger));LocalModel.Require(corpus.Identity.Use==CatalogUse.InternalPreview&&completion.Use==CatalogUse.InternalPreview&&completion.CatalogId=="completion-qa-mobile-candidate-endless","ENDLESS_CANDIDATE_REQUIRED");}
-        private void Binding(LocalProfileState state){LocalModel.Require(state.Profile.Identity.Use==CatalogUse.InternalPreview&&state.Profile.CatalogSet.PublicCatalog.Equals(corpus.Identity),"ENDLESS_PROFILE_BINDING");ledger.Validate(state);}
+        public LocalEndlessPolicy(IPublicPuzzleCatalog corpus,System.Collections.Generic.IReadOnlyList<EndlessCompletionValues> completions,ICanonicalJson json,ILocalLedger ledger,System.Collections.Generic.IReadOnlyList<CalibratedEndlessProfile> profiles)
+        {
+            this.corpus=corpus??throw new ArgumentNullException(nameof(corpus));this.json=json??throw new ArgumentNullException(nameof(json));this.ledger=ledger??throw new ArgumentNullException(nameof(ledger));rewardSources=LocalModel.Copy(completions).ToArray();calibrated=LocalModel.Copy(profiles).ToArray();LocalModel.Require((corpus.Identity.Use==CatalogUse.Production||corpus.Identity.Use==CatalogUse.ContractTest)&&rewardSources.Length>0&&calibrated.Length>0,"ENDLESS_CALIBRATED_SOURCE_REQUIRED");completion=rewardSources[0].Catalog;LocalModel.Unique(rewardSources.Select(c=>c.Catalog.CatalogId+":"+c.Catalog.HashSha256));LocalModel.Unique(calibrated.Select(p=>p.Id+":"+p.HashSha256));foreach(var p in calibrated)LocalModel.Require(p.Profile.PublicCatalogHashSha256==corpus.Identity.HashSha256&&p.StarCalibration.CompletionCatalog.Use==corpus.Identity.Use&&rewardSources.Any(c=>c.Catalog.Equals(p.StarCalibration.CompletionCatalog)),"ENDLESS_CALIBRATED_SOURCE_MISMATCH");
+        }
+        private void Binding(LocalProfileState state){LocalModel.Require(state.Profile.Identity.Use==corpus.Identity.Use&&state.Profile.CatalogSet.PublicCatalog.Equals(corpus.Identity),"ENDLESS_PROFILE_BINDING");ledger.Validate(state);}
         public bool IsUnlocked(LocalProfileState state){Binding(state);return corpus.Puzzles.Count==240&&corpus.Puzzles.All(p=>state.Levels.Any(l=>l.Identity.Equals(p.Identity)&&l.FirstClear!=null));}
         public static string CompletionSourceHash(LocalEndlessClaim claim)
         {var f=claim.LocalOperationId.Split(':');LocalModel.Require(f.Length==3&&f[0]=="endles-claim-v1"&&System.Text.RegularExpressions.Regex.IsMatch(f[1],"^[a-f0-9]{64}$")&&Guid.TryParseExact(f[2],"D",out _),"ENDLESS_COMPLETION_SOURCE_REQUIRED");return f[1];}
-        private void ClaimBinding(OpenEndlessCompletion done)=>LocalModel.Require(CompletionSourceHash(done.Claim)==completion.HashSha256,"ENDLESS_COMPLETION_SOURCE_CHANGED");
+        private CatalogIdentity Source(LocalEndlessDescriptor descriptor)
+        {var p=descriptor.Parameters as SearchGeneratorParameters??throw new ArgumentException("ENDLESS_GENERATOR_RECOVERY_REQUIRED");if(p.StarCalibration==null){LocalModel.Require(calibrated.Length==0,"ENDLESS_CALIBRATION_REQUIRED");return completion;}ProfileFor(p);return rewardSources.Single(c=>c.Catalog.Equals(p.StarCalibration.CompletionCatalog)).Catalog;}
+        private CalibratedEndlessProfile? ProfileFor(SearchGeneratorParameters parameters)
+        {if(parameters.StarCalibration==null){LocalModel.Require(calibrated.Length==0,"ENDLESS_CALIBRATION_REQUIRED");return null;}var matches=calibrated.Where(p=>p.Id==parameters.ProfileId&&p.HashSha256==parameters.ProfileHashSha256).ToArray();LocalModel.Require(matches.Length==1&&matches[0].StarCalibration.EqualsBinding(parameters.StarCalibration)&&EndlessProjection.SearchFields(matches[0].Search)==EndlessProjection.SearchFields(parameters.Search),"ENDLESS_CALIBRATION_SOURCE_UNSUPPORTED");return matches[0];}
+        private void ClaimBinding(OpenEndlessCompletion done)=>LocalModel.Require(CompletionSourceHash(done.Claim)==Source(done.Descriptor).HashSha256,"ENDLESS_COMPLETION_SOURCE_CHANGED");
         private static LocalProfileState Change(LocalProfileState state,System.Collections.Generic.IReadOnlyList<LocalOpenEndless> open,System.Collections.Generic.IReadOnlyList<PublicPuzzleInput>? recent=null,System.Collections.Generic.IReadOnlyList<EconomyTerminal>? receipts=null,string? highest=null)
             =>LocalEndlessEconomy.WithEndless(state,LocalEndlessState.Runtime(highest??state.Endless.HighestReservedOrdinal,open,recent??state.Endless.RecentPublicInputs,receipts??state.Endless.EconomyReceipts));
         public LocalProfileState Reserve(LocalProfileState state,EndlessSearchProfile profile,string seed)
         {
             Binding(state);LocalModel.Require(IsUnlocked(state),"ENDLESS_SEASON_FIRST_CLEARS_REQUIRED");LocalModel.UInt64(seed);LocalModel.Require(profile.PublicCatalogHashSha256==corpus.Identity.HashSha256,"ENDLESS_PROFILE_CORPUS_CHANGED");LocalModel.Require(state.Endless.OpenEndless.Count<20,"ENDLESS_OPEN_CAPACITY");
             ulong highest=ulong.Parse(state.Endless.HighestReservedOrdinal,CultureInfo.InvariantCulture);LocalModel.Require(highest<ulong.MaxValue,"ENDLESS_ORDINAL_SPACE_EXHAUSTED");string ordinal=(highest+1).ToString(CultureInfo.InvariantCulture);
-            var parameters=new SearchGeneratorParameters(profile.Id,profile.HashSha256,PuzzleCandidateSearch.NoveltyVersion,corpus.Identity,state.Endless.RecentPublicInputs,profile.Search);
+            var calibratedProfile=calibrated.SingleOrDefault(p=>p.Id==profile.Id&&p.HashSha256==profile.HashSha256);LocalModel.Require(calibrated.Length==0||calibratedProfile!=null,"ENDLESS_CALIBRATED_SOURCE_REQUIRED");
+            var parameters=new SearchGeneratorParameters(profile.Id,profile.HashSha256,PuzzleCandidateSearch.NoveltyVersion,corpus.Identity,state.Endless.RecentPublicInputs,profile.Search,calibratedProfile?.StarCalibration);
             string hash=LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,parameters.Projection()));var descriptor=LocalEndlessDescriptor.Create("train-track-v1",PuzzleCandidateSearch.GeneratorVersion,seed,ordinal,parameters,hash);
             var reserved=ReservedEndless.Create(ordinal,EndlessProjection.DescriptorId(descriptor,json),descriptor);
             return Change(state,state.Endless.OpenEndless.Concat(new[]{reserved}).ToArray(),highest:ordinal);
@@ -46,7 +59,8 @@ namespace STP.Application
             var reserved=committed.Payload.Endless.OpenEndless.OfType<ReservedEndless>().SingleOrDefault(r=>r.Id==id)??throw new ArgumentException("ENDLESS_RESERVATION_REQUIRED");
             var p=reserved.Descriptor.Parameters as SearchGeneratorParameters??throw new ArgumentException("ENDLESS_GENERATOR_RECOVERY_REQUIRED");
             LocalModel.Require(reserved.Descriptor.GeneratorVersion==PuzzleCandidateSearch.GeneratorVersion&&p.CampaignCatalog.Equals(corpus.Identity)&&EndlessProjection.DescriptorId(reserved.Descriptor,json)==id,"ENDLESS_GENERATOR_RECOVERY_REQUIRED");
-            var generated=await PuzzleCandidateSearch.GenerateAsync(ulong.Parse(reserved.Descriptor.Seed,CultureInfo.InvariantCulture),p.Search,corpus.Puzzles.Select(x=>x.ToDomainDefinition()).ToArray(),p.RecentPublicInputs.Select(x=>x.ToDomainDefinition()).ToArray(),cancellation).ConfigureAwait(false);
+            var quality=ProfileFor(p)?.Quality;
+            var generated=await PuzzleCandidateSearch.GenerateAsync(ulong.Parse(reserved.Descriptor.Seed,CultureInfo.InvariantCulture),p.Search,corpus.Puzzles.Select(x=>x.ToDomainDefinition()).ToArray(),p.RecentPublicInputs.Select(x=>x.ToDomainDefinition()).ToArray(),cancellation,quality:quality).ConfigureAwait(false);
             if(!generated.Succeeded)return null;var definition=generated.Puzzle!;var result=generated.Verification!;
             LocalModel.Require(result.Classification==SolverClassification.UNIQUE&&result.Metrics!=null&&result.Metrics.RequiredGuessDepth==0,"ENDLESS_VERIFICATION_REQUIRED");
             var temporary=new PublicPuzzleInput(new PublicPuzzleIdentity(id,PublicPuzzleIdentity.SemanticHashProfile,new string('0',64)),definition.RulesetVersion,definition.Grid.Width,definition.Grid.Height,(PublicPuzzleSide)definition.A.Side,definition.A.Index,(PublicPuzzleSide)definition.B.Side,definition.B.Index,definition.RowCounts,definition.ColumnCounts);
@@ -62,12 +76,13 @@ namespace STP.Application
             string solution="{\"puzzleId\":"+LocalSaveHash.Quote(id)+",\"publicPuzzleHash\":"+HashRef(PublicPuzzleIdentity.SemanticHashProfile,publicHash)+",\"path\":["+string.Join(",",Enumerable.Range(0,result.Path.Count).Select(PathCell))+"]}";
             string solutionHash=LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,solution));var m=result.Metrics!;
             string proof="{\"proofFormatVersion\":1,\"puzzleId\":"+LocalSaveHash.Quote(id)+",\"publicPuzzleHash\":"+HashRef(PublicPuzzleIdentity.SemanticHashProfile,publicHash)+",\"solutionHash\":"+HashRef("STP-SOLUTION-JCS-1",solutionHash)+",\"solverVersion\":\"solver-v2\",\"solutionCount\":1,\"metrics\":{\"searchNodes\":"+m.SearchNodes+",\"deductionSteps\":"+m.DeductionSteps+",\"maxDeductionDepth\":"+m.MaxDeductionDepth+",\"requiredGuessDepth\":"+m.RequiredGuessDepth+"}}";
-            return new LocalEndlessCandidate(reserved,puzzle,LocalHashReference.Create("STP-SOLUTION-JCS-1",solutionHash),LocalHashReference.Create("STP-PROOF-JCS-1",LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,proof))));
+            return new LocalEndlessCandidate(reserved,puzzle,LocalHashReference.Create("STP-SOLUTION-JCS-1",solutionHash),LocalHashReference.Create("STP-PROOF-JCS-1",LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,proof))),result.Metrics);
         }
         public LocalProfileState Promote(LocalProfileState state,LocalEndlessCandidate candidate,Guid attempt)
         {
             Binding(state);var prior=state.Endless.OpenEndless.SingleOrDefault(r=>r.Id==candidate.Reservation.Id);LocalModel.Require(prior is ReservedEndless&&prior.Descriptor.ParameterHashSha256==candidate.Reservation.Descriptor.ParameterHashSha256&&prior.GenerationOrdinal==candidate.Reservation.GenerationOrdinal,"ENDLESS_PROMOTION_RESERVATION_CHANGED");
             var parameters=prior!.Descriptor.Parameters as SearchGeneratorParameters??throw new ArgumentException("ENDLESS_GENERATOR_RECOVERY_REQUIRED");var definition=candidate.Puzzle.ToDomainDefinition();string signature=PuzzleCandidateSearch.CanonicalSignature(definition);
+            var profile=ProfileFor(parameters);if(profile!=null){int trivial=definition.RowCounts.Count(n=>n<=1||n==definition.Grid.Width)+definition.ColumnCounts.Count(n=>n<=1||n==definition.Grid.Height);LocalModel.Require(candidate.VerifiedMetrics!=null&&profile.Quality.Accepts(candidate.VerifiedMetrics,trivial)&&definition.Grid.Width>=profile.Search.MinSize&&definition.Grid.Width<=profile.Search.MaxSize&&definition.Grid.Height>=profile.Search.MinSize&&definition.Grid.Height<=profile.Search.MaxSize&&definition.RowCounts.Sum()*100>=definition.Grid.Width*definition.Grid.Height*profile.Search.MinDensityPercent&&definition.RowCounts.Sum()*100<=definition.Grid.Width*definition.Grid.Height*profile.Search.MaxDensityPercent,"ENDLESS_QUALITY_PROFILE_REJECTED");LocalModel.Require(!corpus.Puzzles.Any(p=>PuzzleCandidateSearch.CanonicalSignature(p.ToDomainDefinition())==signature),"ENDLESS_PROMOTION_NOVELTY_CONFLICT");}
             LocalModel.Require(!state.Endless.RecentPublicInputs.Any(p=>PuzzleCandidateSearch.CanonicalSignature(p.ToDomainDefinition())==signature||PuzzleCandidateSearch.SimilarityDistancePercent(definition,p.ToDomainDefinition())<=parameters.Search.RecentSimilarityPercent),"ENDLESS_PROMOTION_NOVELTY_CONFLICT");
             EndlessProjection.ValidatePublic(candidate.Puzzle,json);var s=PuzzleSessionState.Create(candidate.Puzzle.ToDomainDefinition(),candidate.Puzzle.Identity.PuzzleId,candidate.Puzzle.Identity.HashProfile,candidate.Puzzle.Identity.HashSha256,attempt,SessionMode.ENDLESS,0,null,null).Value??throw new ArgumentException("ENDLESS_SESSION_INVALID");
             var active=ActiveEndlessDraft.Create(prior!.GenerationOrdinal,prior.Id,prior.Descriptor,candidate.Puzzle,LocalHashReference.Create(candidate.Puzzle.Identity.HashProfile,candidate.Puzzle.Identity.HashSha256),candidate.SolutionHash,candidate.ProofHash,PuzzleSessionCheckpoint.Export(s,0));
@@ -88,22 +103,23 @@ namespace STP.Application
         }
         public LocalProfileState Complete(LocalProfileState state,PuzzleSessionState session,long generation,string utc)
         {
-            Binding(state);var active=state.Endless.OpenEndless.OfType<ActiveEndlessDraft>().SingleOrDefault(a=>a.Id==session.PuzzleId)??throw new ArgumentException("ENDLESS_DRAFT_REQUIRED");
-            LocalModel.Require(SameDefinition(session.Definition,active.PublicPuzzleInput.ToDomainDefinition())&&session.Mode==SessionMode.ENDLESS&&session.Phase==SessionPhase.SolvedPendingCommit&&session.PublicPuzzleHashSha256==active.PublicPuzzleInput.Identity.HashSha256&&session.SolvedEventId=="puzzle-solved:"+session.AttemptId.ToString("D")&&PuzzleEvaluator.Evaluate(session.Definition,session.Cells).Completed,"ENDLESS_COMPLETION_NOT_SOLVED");
-            state=ledger.Compact(state,generation);var claim=LocalEndlessClaim.Create("reward-claim:POST_CLEAR_PATIENCE:"+active.Id,"endles-claim-v1:"+completion.HashSha256+":"+Guid.NewGuid().ToString("D"),"LOCAL_DECISION_PENDING",null);
-            var done=OpenEndlessCompletion.Create(active.GenerationOrdinal,active.Id,active.Descriptor,active.Id,session.SolvedEventId!,claim);
-            var terminal=EconomyTerminal.Create("level:"+active.Id+":first-clear","LEVEL_FIRST_CLEAR",active.Id,completion,"reward:LEVEL_FIRST_CLEAR:"+active.Id,15,generation,utc);
-            var entry=ledger.Next(state.LedgerCheckpoint,state.EconomyJournal,terminal);
-            var next=Change(state,state.Endless.OpenEndless.Select(r=>r.Id==active.Id?done:r).ToArray(),receipts:state.Endless.EconomyReceipts.Concat(new[]{terminal}).ToArray());
+            Binding(state);var replay=state.Endless.OpenEndless.OfType<OpenEndlessCompletion>().SingleOrDefault(c=>c.Id==session.PuzzleId);if(replay!=null){LocalModel.Require(replay.CompletionCommitId==session.SolvedEventId&&(replay.Result==null||replay.Result.AttemptId==session.AttemptId),"ENDLESS_COMPLETION_ATTEMPT_CHANGED");ClaimBinding(replay);return state;}var active=state.Endless.OpenEndless.OfType<ActiveEndlessDraft>().SingleOrDefault(a=>a.Id==session.PuzzleId)??throw new ArgumentException("ENDLESS_DRAFT_REQUIRED");
+            LocalModel.Require(session.AttemptId==active.Checkpoint.AttemptId&&SameDefinition(session.Definition,active.PublicPuzzleInput.ToDomainDefinition())&&session.Mode==SessionMode.ENDLESS&&session.Phase==SessionPhase.SolvedPendingCommit&&session.PublicPuzzleHashSha256==active.PublicPuzzleInput.Identity.HashSha256&&session.SolvedEventId=="puzzle-solved:"+session.AttemptId.ToString("D")&&PuzzleEvaluator.Evaluate(session.Definition,session.Cells).Completed,"ENDLESS_COMPLETION_NOT_SOLVED");
+            var source=Source(active.Descriptor);var times=(active.Descriptor.Parameters as SearchGeneratorParameters)!.StarCalibration;int stars=times?.Stars(session.ActiveElapsedMs)??1;
+            state=ledger.Compact(state,generation);var claim=LocalEndlessClaim.Create("reward-claim:POST_CLEAR_PATIENCE:"+active.Id,"endles-claim-v1:"+source.HashSha256+":"+Guid.NewGuid().ToString("D"),"LOCAL_DECISION_PENDING",null);
+            var terminals=new System.Collections.Generic.List<EconomyTerminal>();var journal=state.EconomyJournal.ToList();EconomyTerminal Grant(string reason,string suffix,int amount){var t=EconomyTerminal.Create("level:"+active.Id+":"+suffix,reason,active.Id,source,"reward:"+reason+":"+active.Id,amount,generation,utc);journal.Add(ledger.Next(state.LedgerCheckpoint,journal,t));terminals.Add(t);return t;}
+            var amounts=times==null?null:rewardSources.Single(c=>c.Catalog.Equals(source));var first=Grant("LEVEL_FIRST_CLEAR","first-clear",amounts?.FirstClear??15);var second=stars>=2?Grant("LEVEL_SECOND_STAR","second-star",amounts!.SecondStar):null;var third=stars==3?Grant("LEVEL_THIRD_STAR","third-star",amounts!.ThirdStar):null;
+            var done=times==null?OpenEndlessCompletion.Create(active.GenerationOrdinal,active.Id,active.Descriptor,active.Id,session.SolvedEventId!,claim):OpenEndlessCompletion.CreateCalibrated(active.GenerationOrdinal,active.Id,active.Descriptor,active.Id,session.SolvedEventId!,claim,new LocalEndlessResult(active.PublicPuzzleInput.Identity,session.AttemptId,session.ActiveElapsedMs,stars,first,second,third));
+            var next=Change(state,state.Endless.OpenEndless.Select(r=>r.Id==active.Id?done:r).ToArray(),receipts:state.Endless.EconomyReceipts.Concat(terminals).ToArray());
             if(next.Metagame!=null)next=next.WithMetagame(new LocalMetagameState(next.Metagame.Hints.Where(h=>h.Identity.PuzzleId!=active.Id).ToArray(),next.Metagame.Daily));
-            next=next.WithProgress(next.Levels,next.LedgerCheckpoint,next.EconomyJournal.Concat(new[]{entry}).ToArray(),next.SeasonProgressCache,next.Drafts,next.RewardClaims);
+            next=next.WithProgress(next.Levels,next.LedgerCheckpoint,journal,next.SeasonProgressCache,next.Drafts,next.RewardClaims);
             return ledger.Compact(next,generation);
         }
         public LocalProfileState Abandon(LocalProfileState state,string id)
         {Binding(state);var found=state.Endless.OpenEndless.SingleOrDefault(r=>r.Id==id);if(found==null)return state;LocalModel.Require(found is ReservedEndless||found is ActiveEndlessDraft,"ENDLESS_OPEN_CLAIM_CANNOT_ABANDON");return Remove(state,id);}
         public LocalProfileState SkipReward(LocalProfileState state,string id)
         {Binding(state);var found=state.Endless.OpenEndless.SingleOrDefault(r=>r.Id==id);if(found==null)return state;LocalModel.Require(found is OpenEndlessCompletion c&&c.Claim.ClaimStatus=="LOCAL_DECISION_PENDING"&&c.Claim.ProviderOperationId==null,"ENDLESS_SKIP_NOT_ELIGIBLE");ClaimBinding((OpenEndlessCompletion)found);return Remove(state,id);}
-        private static OpenEndlessCompletion WithClaim(OpenEndlessCompletion c,LocalEndlessClaim claim)=>OpenEndlessCompletion.Create(c.GenerationOrdinal,c.Id,c.Descriptor,c.PuzzleId,c.CompletionCommitId,claim);
+        private static OpenEndlessCompletion WithClaim(OpenEndlessCompletion c,LocalEndlessClaim claim)=>c.Result==null?OpenEndlessCompletion.Create(c.GenerationOrdinal,c.Id,c.Descriptor,c.PuzzleId,c.CompletionCommitId,claim):OpenEndlessCompletion.CreateCalibrated(c.GenerationOrdinal,c.Id,c.Descriptor,c.PuzzleId,c.CompletionCommitId,claim,c.Result);
         private static long ProviderGeneration(string operation)
         {var f=operation.Split(':');LocalModel.Require(f.Length==3&&f[0]=="endless-provider-v1"&&long.TryParse(f[1],NumberStyles.None,CultureInfo.InvariantCulture,out _)&&Guid.TryParseExact(f[2],"D",out _),"ENDLESS_PROVIDER_OPERATION_INVALID");return LocalModel.Positive(long.Parse(f[1],CultureInfo.InvariantCulture));}
         public LocalProfileState ReserveReward(LocalProfileState state,string id,long generation)
@@ -123,7 +139,7 @@ namespace STP.Application
         {
             Binding(state);var done=state.Endless.OpenEndless.OfType<OpenEndlessCompletion>().SingleOrDefault(c=>c.Claim.ClaimId==evidence.Reservation.ClaimId);
             if(done==null||done.Claim.ClaimStatus=="LOCAL_DECISION_PENDING"||evidence.ProviderOperationId!=evidence.Reservation.OperationId||!Matches(done,evidence.Reservation))return state;ClaimBinding(done);state=ledger.Compact(state,generation);
-            var terminal=EconomyTerminal.Create(done.Claim.ClaimId,"POST_CLEAR_PATIENCE",done.Id,completion,done.Claim.ClaimId,10,generation,utc);var entry=ledger.Next(state.LedgerCheckpoint,state.EconomyJournal,terminal);
+            var source=Source(done.Descriptor);int amount=(done.Descriptor.Parameters as SearchGeneratorParameters)?.StarCalibration==null?10:rewardSources.Single(c=>c.Catalog.Equals(source)).PostClear;var terminal=EconomyTerminal.Create(done.Claim.ClaimId,"POST_CLEAR_PATIENCE",done.Id,source,done.Claim.ClaimId,amount,generation,utc);var entry=ledger.Next(state.LedgerCheckpoint,state.EconomyJournal,terminal);
             var next=Change(state,state.Endless.OpenEndless.Where(c=>c.Id!=done.Id).ToArray(),receipts:state.Endless.EconomyReceipts.Concat(new[]{terminal}).ToArray());next=next.WithProgress(next.Levels,next.LedgerCheckpoint,next.EconomyJournal.Concat(new[]{entry}).ToArray(),next.SeasonProgressCache,next.Drafts,next.RewardClaims);return ledger.Compact(Remove(next,done.Id),generation);
         }
         public LocalProfileState ResolveReward(LocalProfileState state,AdRewardReservation reservation,bool definitelyNoReward)

@@ -8,6 +8,7 @@ using STP.Application;
 using STP.Infrastructure.Content;
 using STP.Presentation.UI;
 using STP.MobileServices.Store;
+using STP.MobileServices.Google;
 using UnityEngine;
 
 namespace STP.Bootstrap
@@ -15,13 +16,17 @@ namespace STP.Bootstrap
     /// <summary>Product callbacks over one confirmed profile and the same serialized puzzle writer.</summary>
     public sealed partial class MobileCandidateExperience : IDisposable
     {
-        private readonly MobileCandidateComposition composition;
+        private readonly FullGameRuntimeContext composition;
         private readonly SavedPublic240ReviewSession saved;
         private readonly ProductionGamePresenter presenter;
         private readonly ILocalSaveDispatcher dispatcher;
         private readonly CancellationToken cancellation;
         private readonly LocalDailyRandom random=new LocalDailyRandom();
-        private readonly MobileCandidateServices services;
+        private MobileCandidateServices? services;
+        private readonly Func<SaveSnapshot<LocalProfileState>,MobileCandidateServices>? productionServicesFactory;
+        private ProductionStoreConfiguration? productionStore;
+        private IapPrivacyReadiness? productionStoreReadiness;
+        private bool servicesAttempted;
         private Task consent=Task.CompletedTask;
         private Task userAction=Task.CompletedTask;
         private Guid skippedCompletionBonusAttempt;
@@ -31,12 +36,30 @@ namespace STP.Bootstrap
 
         public MobileCandidateExperience(MobileCandidateComposition composition,SavedPublic240ReviewSession saved,
             ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,Func<string>? endlessSeedSource=null)
+            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,null,endlessSeedSource) { }
+
+        /// <summary>Same game callbacks over explicitly locked runtime sources. Actual provider configuration is optional for offline play.</summary>
+        public MobileCandidateExperience(ProductionGameComposition composition,SavedPublic240ReviewSession saved,
+            ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,
+            GoogleAdConfiguration? productionAds=null,Func<string>? endlessSeedSource=null)
+            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,productionAds,endlessSeedSource) { }
+
+        private MobileCandidateExperience(FullGameRuntimeContext composition,SavedPublic240ReviewSession saved,
+            ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,
+            GoogleAdConfiguration? productionAds,Func<string>? endlessSeedSource)
         {
             this.composition=composition;this.saved=saved;this.presenter=presenter;this.dispatcher=dispatcher;this.cancellation=cancellation;
             nextEndlessSeed=endlessSeedSource??FreshEndlessSeed;
-            services=new MobileCandidateServices(composition.Repository,composition.Profile,composition.Progress.CatalogSet,dispatcher,clock,
-                (action,ct)=>OnOwnerAsync(()=>saved.RunProfileActionAsync((use,inner)=>use.RunExternalProfileActionAsync(action,inner),ct)),
-                ApplyRewardAsync);
+            if(composition.Profile.Use==CatalogUse.InternalPreview)
+                services=new MobileCandidateServices(composition.Repository,composition.Profile,composition.Catalogs,dispatcher,clock,
+                    (action,ct)=>OnOwnerAsync(()=>saved.RunProfileActionAsync((use,inner)=>use.RunExternalProfileActionAsync(action,inner),ct)),ApplyRewardAsync);
+            else if(composition.Profile.Use==CatalogUse.Production)
+            {
+                if(productionAds!=null)productionServicesFactory=confirmed=>MobileCandidateServices.CreateProduction(composition.Repository,confirmed,dispatcher,clock,
+                    (action,ct)=>OnOwnerAsync(()=>saved.RunProfileActionAsync((use,inner)=>use.RunExternalProfileActionAsync(action,inner),ct)),ApplyRewardAsync,
+                    productionAds,UnityEngine.Application.platform);
+            }
+            else if(composition.Profile.Use!=CatalogUse.ContractTest)throw new ArgumentException("FULL_GAME_RUNTIME_USE_REQUIRED");
             presenter.BindCampaignProgress(IsCleared,saved.CanEnterPuzzle,RecommendedIndex);
             presenter.BindCosmetics(composition.Cosmetics,Owns,Equipped,CanActCosmetic,id=>TrackUserAction(ActCosmeticAsync(id)));
             presenter.BindDaily(ReadDaily,video=>TrackUserAction(ClaimDailyAsync(video)));
@@ -52,12 +75,22 @@ namespace STP.Bootstrap
         /// <summary>Explicit build-profile input handoff before readiness. This stores metadata only and starts no SDK.</summary>
         public void ConfigureStore(StoreConfiguration configuration,IapPrivacyReadiness? reviewedReadiness)
         {
-            if(disposed||consentStarted)throw new InvalidOperationException("CANDIDATE_STORE_INPUT_WINDOW_CLOSED");
-            services.ConfigureStore(configuration,reviewedReadiness);
+            if(disposed||consentStarted||composition.Profile.Use!=CatalogUse.InternalPreview)throw new InvalidOperationException("CANDIDATE_STORE_INPUT_WINDOW_CLOSED");
+            Services.ConfigureStore(configuration,reviewedReadiness);
         }
-        public Task Pending=>Task.WhenAll(consent,services.PendingCallbacks,userAction);
+        /// <summary>Metadata only before readiness; qualified review stays explicit and is never derived from a product-source import.</summary>
+        public void ConfigureProductionStore(ProductionStoreConfiguration configuration,IapPrivacyReadiness reviewedReadiness)
+        {
+            if(disposed||servicesAttempted||consentStarted||productionStore!=null||composition.Profile.Use!=CatalogUse.Production)
+                throw new InvalidOperationException("PRODUCTION_STORE_INPUT_WINDOW_CLOSED");
+            productionStore=configuration??throw new ArgumentNullException(nameof(configuration));
+            productionStoreReadiness=reviewedReadiness??throw new ArgumentNullException(nameof(reviewedReadiness));
+        }
+        private MobileCandidateServices Services=>services??throw new InvalidOperationException("ACTUAL_MOBILE_SERVICES_UNAVAILABLE");
+        private bool CanRequestAds=>services?.Capabilities.CanRequestAds==true;
+        public Task Pending=>Task.WhenAll(consent,services?.PendingCallbacks??Task.CompletedTask,userAction);
         /// <summary>Actual native provider presentation, excluding background requests and in-game modals.</summary>
-        public bool IsNativeUiBusy=>services.IsNativeUiBusy;
+        public bool IsNativeUiBusy=>services?.IsNativeUiBusy==true;
         /// <summary>Actual OS/focus/provider input boundary, separate from an in-game modal's attention pause.</summary>
         public void SetExternalInputSuspended(bool value){externalInputSuspended=value;}
         private Task TrackUserAction(Task task)
@@ -84,7 +117,7 @@ namespace STP.Bootstrap
             var claim=state.RewardClaims.OfType<PostClearRewardClaim>().SingleOrDefault(c=>c.PuzzleIdentity.Equals(identity));
             bool pending=claim?.ClaimStatus=="RESERVED"||claim?.ClaimStatus=="RECONCILIATION_REQUIRED";
             bool eligible=skippedCompletionBonusAttempt!=view.AttemptId&&composition.PostClear.CanReserve(state,identity);
-            return new CompletionBonusView(eligible&&services.Capabilities.CanRequestAds,eligible,pending,
+            return new CompletionBonusView(eligible&&CanRequestAds,eligible,pending,
                 claim?.ClaimStatus=="COMMITTED"?(int?)claim.Terminal!.Amount:null);
         }
         private async Task RequestCompletionBonusAsync(bool video)
@@ -97,19 +130,19 @@ namespace STP.Bootstrap
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReservePostClearAsync(composition.PostClear,identity,ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalPostClearPolicy.Reservation(reserved,identity);
-            var shown=await services.ShowRewardedAsync(reservation,cancellation);
-            await services.PendingCallbacks;
+            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
+            await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolvePostClearAsync(composition.PostClear,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
         private async Task ContinueResultAsync()
         {
             var view=saved.PuzzleView;
-            if(disposed||view==null||view.Phase!=DevelopmentPreviewPhase.Results||!composition.Persisted.CanPresentResults)return;
+            if(disposed||services==null||view==null||view.Phase!=DevelopmentPreviewPhase.Results||!composition.Persisted.CanPresentResults)return;
             InterstitialResultReceipt receipt;
             try{receipt=resultReceipt?.AttemptId==view.AttemptId&&resultReceipt.Identity.Equals(view.Puzzle.Identity)?resultReceipt:InterstitialResultReceipt.FromCommittedResult(composition.Persisted);}
             catch(ArgumentException){return;}
             Guid attempt=view.AttemptId;
-            await services.TryInterstitialAfterResultAsync(receipt,()=>!disposed&&presenter.IsPuzzleScreenActive&&
+            await Services.TryInterstitialAfterResultAsync(receipt,()=>!disposed&&presenter.IsPuzzleScreenActive&&
                 !presenter.IsHelpOpen&&!presenter.IsProductModalOpen&&composition.Persisted.CanPresentResults&&saved.State.CanNavigate&&State!=null&&
                 !PersistedMobileTransactions.HasRemoveAds(State)&&saved.State.CurrentIdentity?.Equals(receipt.Identity)==true&&saved.PuzzleView?.AttemptId==attempt&&
                 saved.PuzzleView.Phase==DevelopmentPreviewPhase.Results,true,cancellation);
@@ -127,7 +160,7 @@ namespace STP.Bootstrap
             if(Owns(id))return !Equipped(id)||item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT";
             if(item.Acquisition=="PATIENCE_PURCHASE")return saved.State.Progress?.BalancePatience>=item.PricePatience;
             if(item.Acquisition=="DEFAULT")return true;
-            return item.RequiredCampaignSubjectIds.All(subject=>composition.Progress.Campaign.Entries
+            return item.RequiredCampaignSubjectIds.All(subject=>composition.Campaign.Entries
                 .Where(e=>e.SeasonId==subject||e.SectionId==subject||e.RouteId==subject)
                 .All(e=>state.Levels.Any(l=>l.Identity.Equals(e.Puzzle)&&l.FirstClear!=null)));
         }
@@ -152,10 +185,21 @@ namespace STP.Bootstrap
             if(disposed||State==null)return;
             if(composition.Cosmetics.Items.Any(i=>i.Acquisition=="DEFAULT"&&!Owns(i.Id)))
                 await CommitAsync((use,ct)=>use.GrantCosmeticDefaultsAsync(composition.CosmeticPolicy,composition.Cosmetics.Identity.HashSha256,ct));
-            if(!consentStarted){consentStarted=true;consent=RefreshConsentObservedAsync();}
+            if(disposed||cancellation.IsCancellationRequested)return;
+            if(!servicesAttempted&&productionServicesFactory!=null)
+            {
+                servicesAttempted=true;
+                try
+                {
+                    services=productionServicesFactory(saved.ConfirmedSnapshot!);
+                    if(productionStore!=null)services.ConfigureProductionStore(productionStore,productionStoreReadiness!);
+                }
+                catch{services?.Dispose();services=null;}
+            }
+            if(!consentStarted&&services!=null){consentStarted=true;consent=RefreshConsentObservedAsync();}
         }
         private async Task RefreshConsentObservedAsync()
-        {try{await services.RefreshConsentAsync(cancellation);}catch(Exception){/* Service unavailability leaves the offline game usable. */}}
+        {try{await Services.RefreshConsentAsync(cancellation);}catch(Exception){/* Service unavailability leaves the offline game usable. */}}
         private string DailyDate()
         {
             var pending=State?.Metagame?.Daily.Where(d=>d.Terminal==null&&d.Reward?.State!="CLOSED_NO_REWARD")
@@ -169,7 +213,7 @@ namespace STP.Bootstrap
             var terminal=video?.Terminal??free?.Terminal;
             bool pending=records.Any(d=>d.Terminal==null&&d.Reward?.State!="CLOSED_NO_REWARD");
             return new DailyView(date,State!=null&&free?.Terminal==null,
-                State!=null&&free?.Terminal!=null&&video?.Terminal==null&&services.Capabilities.CanRequestAds&&
+                State!=null&&free?.Terminal!=null&&video?.Terminal==null&&CanRequestAds&&
                 (video==null||video.Reward?.State=="CLOSED_NO_REWARD"),terminal==null?(int?)null:(int)terminal.Amount,pending);
         }
         private async Task ClaimDailyAsync(bool video)
@@ -179,14 +223,14 @@ namespace STP.Bootstrap
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReserveDailyRewardAsync(composition.Metagame,random,date,Guid.NewGuid().ToString("D"),ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalMetagameTransactions.RewardReservation(reserved,"daily:v1:"+date+":REWARDED");
-            var shown=await services.ShowRewardedAsync(reservation,cancellation);
+            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
             bool definitelyNoReward=DefinitelyBeforeShow(shown.Code);
             await CommitAsync((use,ct)=>use.ResolveDailyRewardAsync(composition.Metagame,reservation,definitelyNoReward,ct));
         }
         private bool CanRequestHintVideo()
         {
             var identity=saved.State.CurrentIdentity;var state=State;
-            if(identity==null||state==null||!services.Capabilities.CanRequestAds||!presenter.IsHelpOpen)return false;
+            if(identity==null||state==null||!CanRequestAds||!presenter.IsHelpOpen)return false;
             var hint=state.Metagame?.Hints.SingleOrDefault(h=>h.Identity.Equals(identity));
             return composition.Metagame.HintCredits(state,identity)==0&&(hint?.Reward==null||hint.Reward.State=="CLOSED_NO_REWARD");
         }
@@ -197,8 +241,8 @@ namespace STP.Bootstrap
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReserveHintRewardAsync(composition.Metagame,identity,Guid.NewGuid().ToString("D"),ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalMetagameTransactions.RewardReservation(reserved,LocalHintRecord.ClaimId(identity));
-            var shown=await services.ShowRewardedAsync(reservation,cancellation);
-            await services.PendingCallbacks;
+            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
+            await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolveHintRewardAsync(composition.Metagame,identity,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
         private Task<SaveCommitResult<LocalProfileState>> ApplyRewardAsync(AdRewardEvidence evidence,CancellationToken ct)
@@ -217,28 +261,28 @@ namespace STP.Bootstrap
         private ProductionServiceState ReadServices()
         {
             bool owned=State?.Entitlements.Records.Any(e=>e.ProductKey=="remove_ads"&&e.Owned&&!e.RevocationConfirmed)==true;
-            bool ready=State!=null&&!externalInputSuspended&&saved.CanRunProfileAction;
-            return new ProductionServiceState(ready,ready&&services.CanLoadStorePrice,
-                owned,ready&&!owned&&services.CanPurchaseDisplayedProduct,services.Product?.LocalizedPrice,ready&&!owned&&services.CanLoadStorePrice);
+            bool ready=State!=null&&!externalInputSuspended&&saved.CanRunProfileAction&&services!=null;
+            return new ProductionServiceState(ready,ready&&services!.CanLoadStorePrice,
+                owned,ready&&!owned&&services!.CanPurchaseDisplayedProduct,services?.Product?.LocalizedPrice,ready&&!owned&&services!.CanLoadStorePrice);
         }
         private async Task ActServiceAsync(ProductionServiceAction action)
         {
             switch(action)
             {
                 case ProductionServiceAction.ReviewPrivacy:
-                    var privacy=await (services.Capabilities.PrivacyOptionsRequired?services.ShowPrivacyOptionsAsync(cancellation):services.RefreshConsentAsync(cancellation));
-                    if(privacy.Code=="CONSENT_CURRENT_UPDATE_REQUIRED")privacy=await services.RefreshConsentAsync(cancellation);
+                    var privacy=await (Services.Capabilities.PrivacyOptionsRequired?Services.ShowPrivacyOptionsAsync(cancellation):Services.RefreshConsentAsync(cancellation));
+                    if(privacy.Code=="CONSENT_CURRENT_UPDATE_REQUIRED")privacy=await Services.RefreshConsentAsync(cancellation);
                     if(privacy.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(privacy.Code);break;
                 case ProductionServiceAction.RestorePurchases:
-                    var restored=await services.RestoreAsync(cancellation);
+                    var restored=await Services.RestoreAsync(cancellation);
                     if(restored.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(restored.Code);break;
                 case ProductionServiceAction.LoadStorePrice:
-                    var price=await services.LoadStorePriceAsync(cancellation);
+                    var price=await Services.LoadStorePriceAsync(cancellation);
                     if(price.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(price.Code);break;
                 case ProductionServiceAction.PurchaseRemoveAds:
-                    var displayed=services.Product;
+                    var displayed=Services.Product;
                     if(displayed==null||!ReadServices().CanPurchaseRemoveAds)throw new InvalidOperationException("IAP_DISPLAYED_OFFER_REQUIRED");
-                    var purchased=await services.PurchaseRemoveAdsAsync(displayed,cancellation);
+                    var purchased=await Services.PurchaseRemoveAdsAsync(displayed,cancellation);
                     if(purchased.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(purchased.Code);break;
                 default:throw new InvalidOperationException("PUBLISHER_SUPPORT_PRIVACY_CONTACT_REQUIRED");
             }
@@ -255,6 +299,6 @@ namespace STP.Bootstrap
             await dispatcher.InvokeAsync(()=>task=action()).ConfigureAwait(false);
             return await task!.ConfigureAwait(false);
         }
-        public void Dispose(){if(disposed)return;disposed=true;services.Dispose();}
+        public void Dispose(){if(disposed)return;disposed=true;services?.Dispose();}
     }
 }

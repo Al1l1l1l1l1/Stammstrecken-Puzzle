@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/star-calibration-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Star Calibration v1",
+  "description": "ADR044 closed grammar only. Typed import additionally verifies unique identity/version membership, exact full Level-v2 source hashes, actual provenance/approval, public/profile locks and strictly threeStarsSeconds < twoStarsSeconds. Integer seconds map exactly to safe integer milliseconds. Schema validity is no Human approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogId",
+    "catalogRevision",
+    "approvalStatus",
+    "publicCatalog",
+    "provenance",
+    "campaign",
+    "endlessProfiles"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "catalogId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[a-zA-Z0-9_.:-]+$",
+      "not": {
+        "enum": [
+          ".",
+          ".."
+        ]
+      }
+    },
+    "catalogRevision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "approvalStatus": {
+      "enum": [
+        "FIXTURE_ONLY",
+        "DRAFT",
+        "PRODUCT_APPROVED"
+      ]
+    },
+    "publicCatalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalogId",
+        "revision",
+        "hashSha256"
+      ],
+      "properties": {
+        "catalogId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "pattern": "^[a-zA-Z0-9_.:-]+$",
+          "not": {
+            "enum": [
+              ".",
+              ".."
+            ]
+          }
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "hashSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1024,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "calibrationVersion",
+          "evidenceSha256",
+          "uiSourceSha256"
+        ],
+        "properties": {
+          "calibrationVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidenceSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "uiSourceSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "campaign": {
+      "type": "array",
+      "minItems": 240,
+      "maxItems": 240,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "identity",
+          "sourceDocumentSha256",
+          "calibrationVersion",
+          "twoStarsSeconds",
+          "threeStarsSeconds"
+        ],
+        "properties": {
+          "identity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "puzzleId",
+              "profile",
+              "sha256"
+            ],
+            "properties": {
+              "puzzleId": {
+                "type": "string",
+                "pattern": "^S1-0[1-5]-0[1-4]-(?:0[1-9]|1[0-2])$"
+              },
+              "profile": {
+                "const": "STP-PUZZLE-SEMANTIC-JCS-1"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "sourceDocumentSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "calibrationVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "twoStarsSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740
+          },
+          "threeStarsSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740
+          }
+        }
+      }
+    },
+    "endlessProfiles": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "profileHashSha256",
+          "calibrationVersion",
+          "twoStarsSeconds",
+          "threeStarsSeconds"
+        ],
+        "properties": {
+          "profileId": {
+            "enum": [
+              "dienstbeginn",
+              "regelbetrieb",
+              "stoerungslage",
+              "grosslage"
+            ]
+          },
+          "profileHashSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "calibrationVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "twoStarsSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740
+          },
+          "threeStarsSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740
+          }
+        }
+      }
+    }
+  }
+}

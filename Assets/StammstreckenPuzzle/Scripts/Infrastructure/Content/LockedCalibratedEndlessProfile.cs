@@ -1,0 +1,22 @@
+using System;
+using System.Linq;
+using STP.Application;
+
+namespace STP.Infrastructure.Content
+{
+    /// <summary>Closed product/fixture quality source; it never reinterprets the historical DRAFT selfhash profile.</summary>
+    public sealed class LockedCalibratedEndlessProfile
+    {
+        public LockedCalibratedEndlessProfile(byte[] source,IPublicPuzzleCatalog corpus,RuntimeCompletionCatalog completion,string expectedProfileHashSha256)
+        {
+            if(corpus==null||completion==null)throw new ArgumentNullException();var v=StarSource.Parse(source);StarSource.Fields(v,"schemaVersion","profileId","profileVersion","rulesetVersion","approvalStatus","difficultyBand","generatorVersion","solverVersion","gridRanges","metricRanges","runtimeBudgets","novelty","humanReview","approvedBy","approvedDecisionRef");StarSource.Require(StarSource.N(v,"schemaVersion")==1&&StarSource.Hash(v)==expectedProfileHashSha256,"GEN_QUALITY_LOCK_MISMATCH");string id=StarSource.S(v,"profileId");StarSource.Require(StarSource.S(v,"difficultyBand")==id&&StarSource.S(v,"rulesetVersion")=="train-track-v1"&&StarSource.S(v,"generatorVersion")==PuzzleCandidateSearch.GeneratorVersion&&StarSource.S(v,"solverVersion")=="solver-v2","GEN_QUALITY_VERSION_UNSUPPORTED");string status=StarSource.S(v,"approvalStatus");StarSource.Require(completion.Identity.Use==corpus.Identity.Use&&(corpus.Identity.Use==CatalogUse.Production&&status=="PRODUCT_APPROVED"||corpus.Identity.Use==CatalogUse.ContractTest&&status=="FIXTURE_ONLY"),"GEN_QUALITY_CONSUMER_FORBIDDEN");
+            var g=StarSource.Get(v,"gridRanges");StarSource.Fields(g,"minSize","maxSize","minDensityPercent","maxDensityPercent");var m=StarSource.Get(v,"metricRanges");StarSource.Fields(m,"searchNodes","deductionSteps","maxDeductionDepth","requiredGuessDepth","trivialLines");QualityInterval Interval(string key){var r=StarSource.Get(m,key);StarSource.Fields(r,"min","max");return new QualityInterval(StarSource.N(r,"min"),StarSource.N(r,"max"));}var bounds=new EndlessQualityBounds(Interval("searchNodes"),Interval("deductionSteps"),Interval("maxDeductionDepth"),Interval("requiredGuessDepth"),Interval("trivialLines"));
+            var b=StarSource.Get(v,"runtimeBudgets");StarSource.Fields(b,"maxAttempts","pathStateBudget","totalBudgetMs","solverBudgetMs","solverStateBudget","hintBudgetMs","hintStateBudget","timeoutPolicy");StarSource.Require(StarSource.N(b,"solverStateBudget")==1000000&&StarSource.N(b,"hintBudgetMs")==100&&StarSource.N(b,"hintStateBudget")==100000&&StarSource.S(b,"timeoutPolicy")=="ABORT_ATTEMPT_KEEP_RESERVATION","GEN_QUALITY_BUDGET_UNSUPPORTED");
+            var n=StarSource.Get(v,"novelty");StarSource.Fields(n,"algorithmVersion","referenceCorpus","recentWindow","recentSimilarityPercent");StarSource.Require(StarSource.S(n,"algorithmVersion")==PuzzleCandidateSearch.NoveltyVersion&&StarSource.N(n,"recentWindow")==50,"GEN_QUALITY_NOVELTY_UNSUPPORTED");StarSource.Reference(StarSource.Get(n,"referenceCorpus"),corpus.Identity);
+            int Small(long value){StarSource.Require(value<=int.MaxValue,"GEN_QUALITY_PARAMETER_UNSUPPORTED");return(int)value;}var search=new PuzzleCandidateParameters(StarSource.I(g,"minSize"),StarSource.I(g,"maxSize"),StarSource.I(g,"minDensityPercent"),StarSource.I(g,"maxDensityPercent"),Small(bounds.DeductionSteps.Min),Small(bounds.MaxDeductionDepth.Min),StarSource.I(b,"maxAttempts"),StarSource.I(b,"pathStateBudget"),StarSource.I(b,"totalBudgetMs"),StarSource.I(b,"solverBudgetMs"),Small(bounds.TrivialLines.Max),StarSource.I(n,"recentSimilarityPercent"));
+            var times=completion.GetEndlessCalibration(id,expectedProfileHashSha256);var provenance=completion.Calibration.Provenance.Single(p=>p.CalibrationVersion==times.CalibrationVersion);var h=StarSource.Get(v,"humanReview");StarSource.Fields(h,"calibrationVersion","evidenceSha256","uiSourceSha256","sampleCount","criteriaVersion");StarSource.Require(StarSource.S(h,"calibrationVersion")==times.CalibrationVersion&&StarSource.H(h,"evidenceSha256")==provenance.EvidenceSha256&&StarSource.H(h,"uiSourceSha256")==provenance.UiSourceSha256&&StarSource.N(h,"sampleCount")>=12,"GEN_QUALITY_PROVENANCE_MISMATCH");StarSource.S(h,"criteriaVersion");StarSource.S(v,"approvedBy");StarSource.S(v,"approvedDecisionRef");
+            Profile=new CalibratedEndlessProfile(new EndlessSearchProfile(id,expectedProfileHashSha256,corpus.Identity.HashSha256,search),StarSource.I(v,"profileVersion"),bounds,times);
+        }
+        public CalibratedEndlessProfile Profile{get;}
+    }
+}
