@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/cosmetic-localization-source-v1.schema.json",
+  "title": "Existing 14 cosmetic player titles, separate DRAFT authoring module, not a source approval",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "locale",
+    "status",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "locale": {
+      "const": "de-DE"
+    },
+    "status": {
+      "const": "DRAFT"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "$ref": "https://stammstrecken-puzzle.invalid/schemas/localization-authoring-source-v1.schema.json#/$defs/entry"
+      }
+    }
+  }
+}

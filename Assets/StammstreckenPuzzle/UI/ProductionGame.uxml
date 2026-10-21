@@ -48,6 +48,7 @@
         <ui:VisualElement name="puzzle-screen" class="screen puzzle-screen hidden">
             <ui:VisualElement class="puzzle-header">
                 <ui:Button name="puzzle-back" class="icon-button back-button" />
+                <ui:VisualElement name="puzzle-operating-mark" picking-mode="Ignore" class="puzzle-operating-mark" />
                 <ui:VisualElement class="puzzle-heading"><ui:Label name="puzzle-context" class="puzzle-context" /><ui:Label name="puzzle-title" class="puzzle-title" /></ui:VisualElement>
                 <ui:Label name="puzzle-time" class="puzzle-time" />
             </ui:VisualElement>
@@ -60,7 +61,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="human-contact" class="tool-dock human-contact hidden">
                 <ui:Label view-data-key="human.contact.title" class="human-contact-title" /><ui:Label name="human-prior-exposure" class="small-copy wrapping" />
-                <ui:VisualElement class="human-contact-options"><ui:Button name="human-never" class="human-contact-option" /><ui:Button name="human-seen" class="human-contact-option" /><ui:Button name="human-unsure" class="human-contact-option" /></ui:VisualElement>
+                <ui:VisualElement class="human-contact-options"><ui:Button name="human-never" class="human-contact-option" /><ui:Button name="human-seen" class="human-contact-option" /><ui:Button name="human-unsure" class="human-contact-option human-contact-option--last" /></ui:VisualElement>
                 <ui:Button name="human-prior-version" class="human-prior-version" /><ui:Button name="human-contact-confirm" class="primary-button human-contact-confirm" />
             </ui:VisualElement>
             <ui:ScrollView name="result-panel" class="result-panel hidden"><ui:Label view-data-key="result.title" class="result-title" /><ui:VisualElement name="result-art" class="result-art" /><ui:Label name="result-mode" class="eyebrow result-mode" /><ui:Label name="result-copy" class="result-copy" /><ui:Label name="human-result-observation" class="small-copy wrapping hidden" /><ui:Label name="result-stars" class="result-stars" /><ui:Label name="result-time" class="result-time" /><ui:Label name="result-progress" class="small-copy" /><ui:Label name="result-balance" class="result-balance" /><ui:Label name="result-bonus-state" class="small-copy wrapping completion-state" /><ui:Button name="result-video" class="secondary-button hidden" /><ui:Button name="result-skip-bonus" class="text-button hidden" /><ui:Button name="result-next" class="primary-button" /><ui:Button name="result-home" class="secondary-button" /></ui:ScrollView>

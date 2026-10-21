@@ -20,6 +20,8 @@ namespace STP.Presentation.UI
         private readonly Func<string, object[], string> localize;
         private Action<int,int>? activation;
         private bool disposed;
+        private Rect boardFrame;
+        private Rect worksiteBounds;
 
         /// <summary>Creates exactly one semantic focusable target for every public cell.</summary>
         public ProductionPuzzleGrid(IReviewPuzzleSession model, Func<string,object[],string> localize, Action<int,int> activated)
@@ -45,6 +47,7 @@ namespace STP.Presentation.UI
             a=MakeLabel("puzzle-endpoint-a","puzzle-endpoint");a.text=localize("endpoint.a",Array.Empty<object>());Add(a);
             b=MakeLabel("puzzle-endpoint-b","puzzle-endpoint");b.text=localize("endpoint.b",Array.Empty<object>());Add(b);
             train=new TrainOverlay();board.Add(train);
+            generateVisualContent+=DrawWorksite;
             RegisterCallback<GeometryChangedEvent>(OnGeometry);
             Refresh(false);
         }
@@ -54,6 +57,8 @@ namespace STP.Presentation.UI
         public int GridHeight { get; }
         /// <summary>Board content, excluding targets and exterior ports.</summary>
         public VisualElement Board => board;
+        /// <summary>Actual decorative-only bounds below all board ports; empty when the layout has no spare space.</summary>
+        public Rect WorksiteIllustrationBounds => worksiteBounds;
         /// <summary>Stable semantic cell identifier.</summary>
         public static string CellName(int x,int y)=>"puzzle-cell-"+x+"-"+y;
         /// <summary>Returns the same control throughout save, undo and tool changes.</summary>
@@ -82,7 +87,7 @@ namespace STP.Presentation.UI
         public void SetTrainAppearance(System.Collections.Generic.IReadOnlyList<string> ids)=>train.SetAppearance(ids);
         /// <summary>Releases callbacks; repeated disposal is safe.</summary>
         public void Dispose()
-        {if(disposed)return;disposed=true;activation=null;UnregisterCallback<GeometryChangedEvent>(OnGeometry);SetEnabled(false);}
+        {if(disposed)return;disposed=true;activation=null;generateVisualContent-=DrawWorksite;UnregisterCallback<GeometryChangedEvent>(OnGeometry);SetEnabled(false);}
         private static Label MakeLabel(string id,string css)
         {var label=new Label{name=id,pickingMode=PickingMode.Ignore};label.AddToClassList(css);return label;}
         private void SetCount(Label label,int visible,int target)
@@ -98,9 +103,13 @@ namespace STP.Presentation.UI
             const float countLane=24,portLane=18,laneGap=6,portGap=2;
             const float left=countLane+laneGap+portLane+portGap,top=left,right=22,bottom=22;
             var availableW=contentRect.width-left-right;var availableH=contentRect.height-top-bottom;
-            if(availableW<=0||availableH<=0)return;
+            if(availableW<=0||availableH<=0){boardFrame=Rect.zero;worksiteBounds=Rect.zero;MarkDirtyRepaint();return;}
             var size=Mathf.Min(availableW/GridWidth,availableH/GridHeight);
             var ox=left+(availableW-size*GridWidth)*.5f;var oy=top+(availableH-size*GridHeight)*.5f;
+            boardFrame=new Rect(ox,oy,size*GridWidth,size*GridHeight);
+            // South ports end 20px below the board. A further 14px isolates the illustration from every input/count/port.
+            worksiteBounds=ResolveWorksiteBounds(boardFrame,contentRect.size);
+            MarkDirtyRepaint();
             RectFor(board,ox,oy,size*GridWidth,size*GridHeight);
             for(var y=0;y<GridHeight;y++)
             {
@@ -111,6 +120,45 @@ namespace STP.Presentation.UI
             Port(a,model.EndpointA,ox,oy,size);Port(b,model.EndpointB,ox,oy,size);
             EndpointLabel(a,model.EndpointA);EndpointLabel(b,model.EndpointB);
             train.CellSize=size;RectFor(train,0,0,size*GridWidth,size*GridHeight);
+        }
+        internal static Rect ResolveWorksiteBounds(Rect board,Vector2 contentSize)
+        {
+            bool Finite(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
+            if(!Finite(board.x)||!Finite(board.y)||!Finite(board.width)||!Finite(board.height)||!Finite(contentSize.x)||!Finite(contentSize.y)||board.width<=0||board.height<=0)return Rect.zero;
+            float freeTop=board.yMax+34,freeHeight=contentSize.y-freeTop-8;
+            return freeHeight>=48&&contentSize.x>=220
+                ?new Rect(10,freeTop+(freeHeight-Mathf.Min(76,freeHeight))*.5f,contentSize.x-20,Mathf.Min(76,freeHeight))
+                :Rect.zero;
+        }
+        private void DrawWorksite(MeshGenerationContext context)
+        {
+            if(disposed||boardFrame.width<=0||boardFrame.height<=0)return;
+            var p=context.painter2D;
+            // Painted behind the existing children: no new element, hit target, layout input or semantic node.
+            RailwayDrawing.Box(p,boardFrame.x-.8f,boardFrame.y-.8f,boardFrame.width+1.6f,boardFrame.height+1.6f,Color.white,1.5f);
+            if(worksiteBounds.width<=0||worksiteBounds.height<=0)return;
+            var scale=Mathf.Min(worksiteBounds.width/350f,worksiteBounds.height/76f);
+            var origin=new Vector2(worksiteBounds.center.x-175*scale,worksiteBounds.y);
+            Vector2 At(float x,float y)=>origin+new Vector2(x,y)*scale;
+            void Box(float x,float y,float w,float h,string color,float stroke=1.8f)
+                =>RailwayDrawing.Box(p,At(x,y).x,At(x,y).y,w*scale,h*scale,RailwayDrawing.Color(color),stroke*scale);
+            void Shape(string color,params Vector2[] points)
+            {for(int i=0;i<points.Length;i++)points[i]=At(points[i].x,points[i].y);RailwayDrawing.Polygon(p,RailwayDrawing.Color(color),points,1.8f*scale);}
+            // A small squat station, waiting bench and a permanently decorative works barrier. No tracks, route clues or signals.
+            RailwayDrawing.Line(p,At(7,69),At(343,69),RailwayDrawing.Color("CCD0D1"),1.5f*scale);
+            Box(19,23,102,39,"F4F2EE");
+            Shape("727B82",new Vector2(121,23),new Vector2(132,30),new Vector2(132,63),new Vector2(121,62));
+            Shape("C83D45",new Vector2(10,23),new Vector2(24,12),new Vector2(116,12),new Vector2(130,23));
+            Box(18,23,104,5,"20272C",0);
+            Box(28,34,24,18,"727B82");Box(89,34,23,28,"FFFFFF");Box(95,39,11,12,"727B82",1.2f);
+            Box(59,33,24,8,"20272C");Box(64,36,14,2,"FFFFFF",0);
+            Box(147,45,66,8,"805535");Box(147,56,66,6,"805535");Box(154,63,4,6,"20272C",0);Box(202,63,4,6,"20272C",0);
+            Box(236,53,5,15,"727B82");Box(302,53,5,15,"727B82");
+            Box(229,37,85,17,"FFFFFF");
+            Shape("C83D45",new Vector2(232,39),new Vector2(247,39),new Vector2(237,52),new Vector2(232,52));
+            Shape("C83D45",new Vector2(263,39),new Vector2(278,39),new Vector2(268,52),new Vector2(253,52));
+            Shape("C83D45",new Vector2(294,39),new Vector2(309,39),new Vector2(299,52),new Vector2(284,52));
+            Box(229,66,19,3,"20272C",0);Box(296,66,19,3,"20272C",0);
         }
         private void EndpointLabel(Label label,DevelopmentEndpoint port)
         {label.tooltip=localize("accessibility.endpoint",new object[]{label.text,port.X+1,port.Y+1,localize("accessibility.edge."+port.Edge,Array.Empty<object>())});}

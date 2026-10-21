@@ -42,6 +42,7 @@ Button:disabled { opacity: 0.58; }
 .map-legend { margin: 16px 24px; font-size: 11px; white-space: normal; }
 .puzzle-screen { background-color: #F4F2EE; }
 .puzzle-header { height: 78px; flex-shrink: 0; flex-direction: row; align-items: center; padding: 12px 14px; border-bottom-width: 1px; border-bottom-color: #DADBD7; }
+.puzzle-operating-mark { position: absolute; left: 64px; top: 26px; width: 3px; height: 26px; background-color: #C83D45; border-top-width: 2px; border-bottom-width: 2px; border-color: #20272C; }
 .icon-button { width: 44px; height: 44px; flex-shrink: 0; font-size: 19px; }
 .puzzle-heading { flex-grow: 1; flex-shrink: 1; margin-left: 12px; margin-right: 5px; }
 .puzzle-context { font-size: 10px; color: #59636A; white-space: normal; }
@@ -65,12 +66,12 @@ Button:disabled { opacity: 0.58; }
 .puzzle-count--exceeded { color: #B42E39; }
 .puzzle-endpoint { position: absolute; background-color: #C83D45; color: white; border-radius: 9px; font-size: 11px; -unity-text-align: middle-center; }
 .puzzle-grid--ride .puzzle-count { opacity: 0.3; }
-.tool-dock { height: 192px; flex-shrink: 0; padding: 10px 16px 12px 16px; background-color: white; border-top-width: 1px; border-top-color: #CCD0D1; }
+.tool-dock { height: 192px; flex-shrink: 0; padding: 10px 16px 12px 16px; background-color: #F4F2EE; border-top-width: 1px; border-top-color: #20272C; }
 .tool-dock-heading { height: 40px; flex-direction: row; align-items: center; margin-bottom: 7px; }
-.tool-dock-heading .eyebrow { flex-grow: 1; }
+.tool-dock-heading .eyebrow { flex-grow: 1; font-size: 11px; color: #20272C; }
 .tool-dock-heading .small-button { margin-left: 6px; }
 .tool-row { flex-direction: row; height: 54px; margin-bottom: 6px; justify-content: space-between; }
-.tool-button { height: 50px; width: 15.4%; padding: 0; border-radius: 5px; border-color: #CCD0D1; border-width: 1px; flex-shrink: 0; }
+.tool-button { height: 50px; width: 15.4%; padding: 0; border-radius: 5px; border-color: #727B82; border-bottom-color: #20272C; border-width: 1px; flex-shrink: 0; }
 .tool--active { background-color: #F1C84B; border-color: #6C5717; border-width: 2px; }
 .tool--active:hover { background-color: #F1C84B; }
 .note-row { justify-content: flex-start; }
@@ -155,7 +156,7 @@ Button:disabled { opacity: 0.58; }
 .human-contact-title { font-size: 12px; white-space: normal; -unity-font-definition: url("../Art/Fonts/IBMPlexSans-SemiBold.ttf"); }
 .human-contact-options { flex-direction: row; margin-top: 6px; flex-shrink: 0; }
 .human-contact-option { min-height: 46px; flex-grow: 1; flex-basis: 0; font-size: 11px; white-space: normal; margin-right: 4px; }
-.human-contact-option:last-child { margin-right: 0; }
+.human-contact-option--last { margin-right: 0; }
 .human-contact-option--selected { border-color: #C83D45; border-width: 2px; background-color: #F9E8E8; }
 .human-prior-version { min-height: 44px; font-size: 11px; margin-top: 5px; flex-shrink: 0; white-space: normal; }
 .human-contact-confirm { min-height: 44px; height: 44px; margin-top: 5px; font-size: 12px; }
