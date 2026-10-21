@@ -4,7 +4,7 @@
 
 | Priorität | Gesamtauftrag | Status / nächster tatsächlicher Output |
 |---:|---|---|
-| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Vollständige Spielmontage live; R schließt aktuelle Endlos-Speicherintegration, prüft und baut die neue installierbare Fassung. Derselbe Auftrag läuft bis M3. |
+| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Spielmontage samt Endlos-/Storeintegration geprüft und gesichert; Targetguard nach tatsächlichem APK3-Befund korrigiert, aktueller APK4/iOSexport2 folgen. A/B/C setzen parallel den angenommenen getrennten Humanprüfzugang um. Derselbe Auftrag läuft bis M3. |
 | Basis | WP045 Kurskorrektur/Regeln/Produktdefaults/CIsteuerung | Veröffentlicht auf bd05da1; Grundlage von WP046, kein offener Umsetzungsauftrag zur erneuten Planung. |
 | parallel | Externe Konten/Rollen/Signing/Geräte/Tester/Rechte/Datenschutz | Begleitende kurze [Ownerliste mit Bedarfszeitpunkten](../Release/OWNER_INPUTS.md); keine weitere allgemeine Abfrage oder Unterbrechung unabhängig möglicher Apparbeit. |
 | M1/M2 | Wirkliche Owner-Mobile-/Difficultybeurteilung | Neue installierbare Fassung und klar genannte Testfälle, keine Referenzbilder als Ersatz. |

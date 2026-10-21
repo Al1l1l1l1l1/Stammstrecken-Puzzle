@@ -17,13 +17,42 @@ using UnityEditor.iOS.Xcode;
 namespace STP.Editor.Build
 {
     /// <summary>Native measurement delay and final generated manifest guards; never a network/consent approval.</summary>
-    public sealed class MobilePrivacyBuildGuard : IPostprocessBuildWithReport
+    public sealed class MobilePrivacyBuildGuard : IPreprocessBuildWithReport, IPostprocessBuildWithReport
 #if UNITY_ANDROID
         , IPostGenerateGradleAndroidProject
 #endif
     {
         /// <summary>Runs after provider configuration processors.</summary>
         public int callbackOrder => int.MaxValue;
+        /// <summary>Target-specific native hooks must already exist in the loaded editor assembly.</summary>
+        public void OnPreprocessBuild(BuildReport report) => RequireBuildTarget(report.summary.platform);
+
+        /// <summary>Select the mobile target before editor assembly compilation, for example with -buildTarget Android.</summary>
+        public static void RequireBuildTarget(BuildTarget requested) =>
+            ValidateBuildTarget(requested, EditorUserBuildSettings.activeBuildTarget, CompiledMobileTarget);
+
+        private static BuildTarget CompiledMobileTarget
+        {
+            get
+            {
+#if UNITY_ANDROID
+                return BuildTarget.Android;
+#elif UNITY_IOS
+                return BuildTarget.iOS;
+#else
+                return BuildTarget.NoTarget;
+#endif
+            }
+        }
+
+        internal static void ValidateBuildTarget(BuildTarget requested, BuildTarget active, BuildTarget compiled)
+        {
+            if (requested != BuildTarget.Android && requested != BuildTarget.iOS) return;
+            if (requested != active || requested != compiled)
+                throw new BuildFailedException("PRIVACY_BUILD_TARGET_NOT_PRESELECTED: requested=" + requested +
+                    "; active=" + active + "; compiled=" + compiled + "; start Unity with -buildTarget " + requested);
+        }
+
         /// <summary>Delays iOS measurement in the actual exported plist and verifies its final values.</summary>
         public void OnPostprocessBuild(BuildReport report)
         {

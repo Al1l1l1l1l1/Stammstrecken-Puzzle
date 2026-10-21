@@ -59,10 +59,11 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-039](./ADR-039-interner-mobile-candidate-verbraucher.md) | Getrennter interner Mobile-Candidate-Verbraucher | **Angenommen** | Eigener InternalPreview-/qa-mobile-candidate-Verbraucher für echte DRAFTquellen/v3-Funktionen; keine Fixture-/Production-/Legacyprofilpromotion. |
 | [ADR-040](./ADR-040-interner-endless-generator-und-novelty-save.md) | Interner Endlosgenerator und begrenzte Noveltydaten | **Angenommen** | Neue explizite Suchparameter und begrenztes öffentliches50er-Fenster ausschließlich InternalPreview; Hash-/Watermark-/Terminal-/Humanvertragsgrenzen bleiben. |
 | [ADR-041](./ADR-041-begrenzte-endless-ledgerbelege.md) | Begrenzte Endlos-Ledgerbelege | **Angenommen** | Höchstens576 tatsächlich referenzierte Economybelege im neuen Endlosrecord; kein Lifecycle-/Reward-/Terminalarchiv und keine neue Eligibilityautorität. |
+| [ADR-042](./ADR-042-zugewiesene-humanpruefung.md) | Zugewiesene interne Humanprüfung | **Angenommen** | Getrennter Android-Prüfeinstieg mit aktueller Bedienung, quellgebundenen Assignments und lokalen Beobachtungen; keine Produktprofil-/Human-/Providerpromotion. |
 
 ADR-036 ist nach historischem nummeriertem Entwurf, getrennter technischer Review und dokumentierter mandatierter R-Annahme vor I-Fachcode wirksam; nur die geschlossene neue Registrierung wird ergänzt.
 
-Damit existieren **41 ADRs**: 32 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. ADR-037/038/039/040/041 wurden am 21.10.2026 vor abhängiger Implementierung getrennt fachlich geprüft und von R innerhalb WP-046 technisch angenommen; ihre konkrete Umsetzung bleibt separat nachzuweisen. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **42 ADRs**: 33 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. ADR-037/038/039/040/041/042 wurden am 21.10.2026 vor abhängiger Implementierung getrennt fachlich geprüft und von R innerhalb WP-046 technisch angenommen; ihre konkrete Umsetzung bleibt separat nachzuweisen. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 

@@ -107,6 +107,7 @@ namespace STP.Editor.Build
         /// <summary>Installable Android ARM64 IL2CPP preview, development signing only.</summary>
         public static void BuildAndroid()
         {
+            MobilePrivacyBuildGuard.RequireBuildTarget(BuildTarget.Android);
             VerifyArtifacts(); StpBuildEntrypoints.VerifyScaffoldBuildIdentity();
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
@@ -118,6 +119,7 @@ namespace STP.Editor.Build
         /// <summary>Reproducible iOS source export; archive/sign/store checks still require macOS and real roles.</summary>
         public static void ExportIos()
         {
+            MobilePrivacyBuildGuard.RequireBuildTarget(BuildTarget.iOS);
             VerifyArtifacts(); StpBuildEntrypoints.VerifyScaffoldBuildIdentity();
             Build("Builds/MobilePreview/iOS", BuildTarget.iOS);
         }

@@ -57,5 +57,3 @@ namespace STP.Tests.Application.EditMode
         }
     }
 }
-
-

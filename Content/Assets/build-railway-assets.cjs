@@ -55,4 +55,3 @@ if(process.argv.includes("--check")){
  fs.mkdirSync("Content/Assets",{recursive:true});fs.writeFileSync(sourcePath,text);fs.writeFileSync(runtimePath,text);
 }
 console.log(JSON.stringify({worlds:worlds.length,routes:routes.length,cosmetics:cosmetics.length,mapReferences:moments.filter(m=>m.kind==="MAP").length,trainReferences:moments.filter(m=>m.kind==="TRAIN").length,sha256:crypto.createHash("sha256").update(text).digest("hex"),check:process.argv.includes("--check")}));
-

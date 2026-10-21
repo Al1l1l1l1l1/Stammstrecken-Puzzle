@@ -169,4 +169,3 @@ namespace STP.Application
             => Execute(expectedGeneration, (state, generation) => policy.Select(state, itemIds, expectedHash), cancellation);
     }
 }
-

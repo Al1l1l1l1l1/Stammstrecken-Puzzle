@@ -7,4 +7,3 @@ namespace STP.Application
         {get{RequireOwner();var current=persisted.Session;return !disposed&&view!=null&&current!=null&&current.AttemptId==view.AttemptId?current.Mode.ToString():null;}}
     }
 }
-

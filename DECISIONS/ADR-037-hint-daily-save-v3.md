@@ -6,7 +6,7 @@
 
 ## Datum
 
-21.10.2026  
+21.10.2026
 **Auftrag:** WP-046, MANUS-2026-10-20-02 P03/P04; technische Annahme durch R erst nach unabhängiger Fachreview.
 
 ## Kontext

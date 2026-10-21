@@ -63,4 +63,3 @@ namespace STP.Infrastructure.Content
         private static long? OptionalTime(JsonValue v)=>v.Kind==JsonKind.Null?(long?)null:v.Kind==JsonKind.Integer&&v.IntegerValue>0?v.IntegerValue:throw new ArgumentException("CANDIDATE_STAR_TIME_INVALID");
     }
 }
-

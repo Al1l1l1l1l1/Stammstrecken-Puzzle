@@ -49,4 +49,3 @@ Unabhängige fachliche Review vor Abhängigmachen. Expliziter Langsam-/Timeoutfa
 ## Ersetzt / ersetzt durch
 
 Ergänzt ausschließlich neue interne Generatorparameter und begrenzte Noveltydaten zu ADR-019/025/027/037/039. Deren übrige Integritäts-, Hash-, Claim-, Retentions- und Nichtproduktionsgrenzen bleiben bestehen. Wird derzeit durch keinen ADR ersetzt.
-
