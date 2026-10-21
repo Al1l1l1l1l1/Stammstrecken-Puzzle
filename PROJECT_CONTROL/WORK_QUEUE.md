@@ -4,9 +4,9 @@
 
 | Priorität | Gesamtauftrag | Status / nächster tatsächlicher Output |
 |---:|---|---|
-| 1 | WP045 Kurskorrektur/Regeln/Produktdefaults/CIsteuerung | Inhaltlich/lokal/unabhängig abgeschlossen; einmal normal veröffentlichter Developmentstand und eine Koordinatorübergabe, anschließend Rausführung. |
-| 2 | R vollständige Releaseausführung mit drei parallelen Bahnen | Hiermit beauftragt; eigenen großen prospektiven Produktionsanker auf dem tatsächlichen veröffentlichten Head fixieren, dann bis M3 intern durchgehend liefern. |
-| parallel | Externe Konten/Rollen/Signing/Geräte/Tester/Rechte/Datenschutz | Einmal gebündelt früh klären; keine Behauptung bestehender Zugänge. |
+| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Vollständige Spielmontage live; R schließt aktuelle Endlos-Speicherintegration, prüft und baut die neue installierbare Fassung. Derselbe Auftrag läuft bis M3. |
+| Basis | WP045 Kurskorrektur/Regeln/Produktdefaults/CIsteuerung | Veröffentlicht auf bd05da1; Grundlage von WP046, kein offener Umsetzungsauftrag zur erneuten Planung. |
+| parallel | Externe Konten/Rollen/Signing/Geräte/Tester/Rechte/Datenschutz | Begleitende kurze [Ownerliste mit Bedarfszeitpunkten](../Release/OWNER_INPUTS.md); keine weitere allgemeine Abfrage oder Unterbrechung unabhängig möglicher Apparbeit. |
 | M1/M2 | Wirkliche Owner-Mobile-/Difficultybeurteilung | Neue installierbare Fassung und klar genannte Testfälle, keine Referenzbilder als Ersatz. |
 | M3 | Konkrete öffentliche Storeeinreich-/Releaseentscheidung | Vollständige geprüfte RC-/Storevorlage; separate zuständige Ownerfreigabe. |
 

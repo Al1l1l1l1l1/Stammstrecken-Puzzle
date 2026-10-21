@@ -72,7 +72,7 @@ namespace STP.Infrastructure.Persistence
     }
 
     /// <summary>Closed typed save-v2 codec and explicit migration dispatch behind the sole injected strict JCS authority.</summary>
-    public sealed class LocalSaveCodec
+    public sealed partial class LocalSaveCodec
     {
         private readonly ICanonicalJson json;private readonly SaveProfileIdentity profile;private readonly CatalogSetIdentity catalogs;private readonly IPublicPuzzleCatalog puzzles;private readonly LocalProgressPolicy policy;private readonly RetainedContractBindings retained;private readonly SaveMigration migration;private readonly ILockedCompletionCatalog completion;private readonly ILockedCampaignCatalog campaign;
         /// <summary>Binds one profile, exact catalogs and explicitly injected passive/historical reader contracts. No test binding is registered implicitly.</summary>
@@ -85,10 +85,11 @@ namespace STP.Infrastructure.Persistence
             try
             {
                 var canonical=json.Canonicalize(source,LocalSaveHash.Limits);if(!canonical.Succeeded)throw new SaveCodecFailure(canonical.ErrorCode!);var root=CanonicalDtoCursor.FromCanonical(canonical.GetUtf8()!);CanonicalDtoCursor[] f;try{f=root.Fields("saveSchemaVersion","payloadHashProfile","generation","createdAtUtc","appVersion","buildId","contentCatalogHash","payload","payloadSha256");}catch(SaveCodecFailure){throw new SaveCodecFailure("SAVE_ENVELOPE_FIELDS_INVALID");}
-                schema=f[0].Int32();if(schema!=1&&schema!=2)throw new SaveCodecFailure("SAVE_SCHEMA_UNSUPPORTED",true);if(f[1].String()!="STP-SAVE-JCS-1")throw new SaveCodecFailure("SAVE_HASH_PROFILE_UNSUPPORTED",true);generation=f[2].Integer();Require(generation>=0,"SAVE_GENERATION_INVALID");created=Utc(f[3].String());app=Text(f[4].String());build=Text(f[5].String());string contentHash=Hash(f[6].String());payloadHash=Hash(f[8].String());Require(LocalSaveHash.Bytes(f[7].Bytes)==payloadHash,"SAVE_PAYLOAD_HASH_MISMATCH");
+                schema=f[0].Int32();if(schema!=1&&schema!=2&&(schema!=3||WriteSchemaVersion!=3))throw new SaveCodecFailure("SAVE_SCHEMA_UNSUPPORTED",true);if(f[1].String()!="STP-SAVE-JCS-1")throw new SaveCodecFailure("SAVE_HASH_PROFILE_UNSUPPORTED",true);generation=f[2].Integer();Require(generation>=0,"SAVE_GENERATION_INVALID");created=Utc(f[3].String());app=Text(f[4].String());build=Text(f[5].String());string contentHash=Hash(f[6].String());payloadHash=Hash(f[8].String());Require(LocalSaveHash.Bytes(f[7].Bytes)==payloadHash,"SAVE_PAYLOAD_HASH_MISMATCH");
                 LocalProfileState state;
                 if(schema==1)state=migration.ReadAndMigrateV1(f[7],contentHash,generation.Value);
-                else {Require(contentHash==catalogs.AggregateCatalog.HashSha256,"SAVE_CATALOG_BINDING_MISMATCH",true);if(f[7].Find("endless").Has("activeDrafts"))migration.RequireLegacyV2(sourceHash,payloadHash,contentHash);state=ReadState(f[7]);}
+                else {Require(contentHash==catalogs.AggregateCatalog.HashSha256,"SAVE_CATALOG_BINDING_MISMATCH",true);if(f[7].Find("endless").Has("activeDrafts"))migration.RequireLegacyV2(sourceHash,payloadHash,contentHash);state=schema==3?ReadStateV3(f[7]):ReadState(f[7]);}
+                if(WriteSchemaVersion==3)state=NormalizeV3(state);
                 Validate(state,generation.Value);var snapshot=new SaveSnapshot<LocalProfileState>(profile,catalogs.AggregateCatalog,generation.Value,state);return new LocalSaveDecodeResult(LocalSaveDecodeStatus.Valid,null,snapshot,schema,generation,payloadHash,sourceHash,created,app,build);
             }
             catch(SaveCodecFailure e){return new LocalSaveDecodeResult(e.Unsupported?LocalSaveDecodeStatus.Unsupported:LocalSaveDecodeStatus.Corrupt,e.Message,null,schema,generation,payloadHash,sourceHash,created,app,build);}
@@ -99,9 +100,9 @@ namespace STP.Infrastructure.Persistence
         private static string Stable(string value){var first=value.Split(new[]{'\r','\n'},StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()??"SAVE_RECORD_INVALID";return first.All(c=>c>='A'&&c<='Z'||c>='0'&&c<='9'||c=='_'||c=='-')?first:"SAVE_RECORD_INVALID";}
         /// <summary>Validates an immutable offered snapshot and emits a canonical v2 envelope. No file operation or hidden compaction occurs.</summary>
         public byte[] Encode(SaveSnapshot<LocalProfileState> snapshot,string createdAtUtc,string appVersion,string buildId)
-        {if(snapshot==null)throw new ArgumentNullException(nameof(snapshot));Require(snapshot.Profile.Equals(profile)&&snapshot.Catalog.Equals(catalogs.AggregateCatalog),"SAVE_PROFILE_BINDING_MISMATCH");Validate(snapshot.Payload,snapshot.Generation);var payload=PayloadBytes(snapshot.Payload);return LocalSaveHash.Canonical(json,Object(("saveSchemaVersion","2"),("payloadHashProfile",Q("STP-SAVE-JCS-1")),("generation",Write(snapshot.Generation)),("createdAtUtc",Q(Utc(createdAtUtc))),("appVersion",Q(Text(appVersion))),("buildId",Q(Text(buildId))),("contentCatalogHash",Q(catalogs.AggregateCatalog.HashSha256)),("payload",Encoding.UTF8.GetString(payload)),("payloadSha256",Q(LocalSaveHash.Bytes(payload)))));}
+        {if(snapshot==null)throw new ArgumentNullException(nameof(snapshot));Require(snapshot.Profile.Equals(profile)&&snapshot.Catalog.Equals(catalogs.AggregateCatalog),"SAVE_PROFILE_BINDING_MISMATCH");var state=WriteSchemaVersion==3?NormalizeV3(snapshot.Payload):snapshot.Payload;Validate(state,snapshot.Generation);var payload=PayloadBytes(state);return LocalSaveHash.Canonical(json,Object(("saveSchemaVersion",Write(WriteSchemaVersion)),("payloadHashProfile",Q("STP-SAVE-JCS-1")),("generation",Write(snapshot.Generation)),("createdAtUtc",Q(Utc(createdAtUtc))),("appVersion",Q(Text(appVersion))),("buildId",Q(Text(buildId))),("contentCatalogHash",Q(catalogs.AggregateCatalog.HashSha256)),("payload",Encoding.UTF8.GetString(payload)),("payloadSha256",Q(LocalSaveHash.Bytes(payload)))));}
         /// <summary>Canonical payload-only bytes; the envelope, BOM and line ending never enter its hash.</summary>
-        public byte[] PayloadBytes(LocalProfileState state){Validate(state,null);return LocalSaveHash.Canonical(json,Write(state));}
+        public byte[] PayloadBytes(LocalProfileState state){if(WriteSchemaVersion==3)state=NormalizeV3(state);Validate(state,null);return LocalSaveHash.Canonical(json,WriteSchemaVersion==3?WriteStateV3(state):Write(state));}
         /// <summary>Exact bound profile identity.</summary>
         public SaveProfileIdentity Profile=>profile;
         /// <summary>Exact bound aggregate catalog identity.</summary>
@@ -111,6 +112,8 @@ namespace STP.Infrastructure.Persistence
         internal LocalSeasonProgressCache CacheCurrent(IReadOnlyList<LocalLevelProgress> levels)=>policy.Cache(levels);
         internal void Validate(LocalProfileState state,long? generation)
         {
+            Require(profile.Use!=CatalogUse.InternalPreview||WriteSchemaVersion==3,"SAVE_CANDIDATE_V3_REQUIRED",true);
+            Require(WriteSchemaVersion==3||state.Metagame==null,"SAVE_SCHEMA_UNSUPPORTED",true);if(WriteSchemaVersion==3){ValidateMetagameV3(state,generation);ValidateRuntimeEndless(state,generation);}
             Require(state.Profile.Identity.Equals(profile)&&state.Profile.CatalogSet.Equals(catalogs),"SAVE_PROFILE_BINDING_MISMATCH",true);retained.Validate(state,json);ValidateProgressAuthority(state);
             foreach(var d in state.Drafts)if(puzzles.TryGet(d.Identity,out var p)&&p!=null)Require(d.Checkpoint.Restore(p.ToDomainDefinition(),d.Identity.PuzzleId,d.Identity.HashProfile,d.Identity.HashSha256).Succeeded,"CHECKPOINT_UNDO_REPLAY_INVALID");
             if(generation.HasValue){Require(state.LedgerCheckpoint.SourceSaveGeneration<=generation.Value,"SAVE_LEDGER_GENERATION_INVALID");foreach(var l in state.Levels)foreach(var t in new[]{l.FirstClear?.Terminal,l.SecondStarPaid,l.ThirdStarPaid})if(t!=null)Require(t.CommittedGeneration<=generation.Value,"SAVE_TERMINAL_GENERATION_INVALID");foreach(var c in state.RewardClaims){var t=c is CampaignProgressTerminal a?a.Terminal:c is PostClearRewardClaim r?r.Terminal:null;if(t!=null)Require(t.CommittedGeneration<=generation.Value,"SAVE_TERMINAL_GENERATION_INVALID");}}
@@ -181,8 +184,8 @@ namespace STP.Infrastructure.Persistence
         internal string Write(LocalPendingOperation v)=>v is LocalIapOperation i?Write(i):v is LocalRewardOperation r?Write(r):throw new SaveCodecFailure("SAVE_OPERATION_VARIANT_UNSUPPORTED",true);
         internal LocalOpenEndless ReadLocalOpenEndless(CanonicalDtoCursor v){v.Version("recordVersion",1,"SAVE_RECORD_VERSION_UNSUPPORTED");switch(v.Find("state").String()){case"RESERVED_NOT_GENERATED":return ReadReservedEndless(v);case"ACTIVE_DRAFT":return ReadActiveEndlessDraft(v);case"COMPLETION_CLAIM_OPEN":return ReadOpenEndlessCompletion(v);default:throw new SaveCodecFailure("SAVE_ENDLESS_VARIANT_UNSUPPORTED",true);}}
         internal string Write(LocalOpenEndless v)=>v is ReservedEndless r?Write(r):v is ActiveEndlessDraft a?Write(a):v is OpenEndlessCompletion c?Write(c):throw new SaveCodecFailure("SAVE_ENDLESS_VARIANT_UNSUPPORTED",true);
-        internal RetainedGeneratorParameters ReadParameters(CanonicalDtoCursor v){if(v.Missing||!v.Has("gridWidth")||!v.Has("gridHeight"))throw new SaveCodecFailure("SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);return ReadContractGeneratorParameters(v);}
-        internal string Write(RetainedGeneratorParameters v)=>v is ContractGeneratorParameters p?Write(p):throw new SaveCodecFailure("SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);
+        internal RetainedGeneratorParameters ReadParameters(CanonicalDtoCursor v){if(v.Has("contractVersion"))return ReadSearchParameters(v);if(v.Missing||!v.Has("gridWidth")||!v.Has("gridHeight"))throw new SaveCodecFailure("SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);return ReadContractGeneratorParameters(v);}
+        internal string Write(RetainedGeneratorParameters v)=>v is SearchGeneratorParameters s?s.Projection():v is ContractGeneratorParameters p?Write(p):throw new SaveCodecFailure("SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);
         internal LocalEndlessState ReadEndless(CanonicalDtoCursor v){if(!v.Has("activeDrafts"))return ReadLocalEndlessState(v);v.Version("recordVersion",1,"SAVE_RECORD_VERSION_UNSUPPORTED");var f=v.Fields("recordVersion","highestReservedOrdinal","activeDrafts");return LocalEndlessState.Create(f[1].String(),f[2].Array().Select(ReadActiveEndlessDraft).Cast<LocalOpenEndless>().ToArray());}
 
         internal LocalProfileHeader ReadLocalProfileHeader(CanonicalDtoCursor v)
@@ -449,10 +452,11 @@ namespace STP.Infrastructure.Persistence
         internal string Write(OpenEndlessCompletion v)=>Object(("generationOrdinal",Write(v.GenerationOrdinal)),("id",Write(v.Id)),("descriptor",Write(v.Descriptor)),("puzzleId",Write(v.PuzzleId)),("completionCommitId",Write(v.CompletionCommitId)),("claim",Write(v.Claim)),("recordVersion","1"),("state",Q("COMPLETION_CLAIM_OPEN")));
         internal LocalEndlessState ReadLocalEndlessState(CanonicalDtoCursor v)
         {
+            if(v.Find("recordVersion").Integer()==2){Require(WriteSchemaVersion==3,"SAVE_SCHEMA_UNSUPPORTED",true);return ReadRuntimeEndless(v);}
             v.Version("recordVersion",1,"SAVE_RECORD_VERSION_UNSUPPORTED");
             var f=v.Fields("highestReservedOrdinal","openEndless","recordVersion");
             return LocalEndlessState.Create(f[0].String(),f[1].Array().Select(x=>ReadLocalOpenEndless(x)).ToArray());
         }
-        internal string Write(LocalEndlessState v)=>Object(("highestReservedOrdinal",Write(v.HighestReservedOrdinal)),("openEndless","["+string.Join(",",v.OpenEndless.Select(x=>Write(x)))+"]"),("recordVersion","1"));
+        internal string Write(LocalEndlessState v)=>v.RecordVersion==2?WriteRuntimeEndless(v):Object(("highestReservedOrdinal",Write(v.HighestReservedOrdinal)),("openEndless","["+string.Join(",",v.OpenEndless.Select(x=>Write(x)))+"]"),("recordVersion","1"));
     }
 }

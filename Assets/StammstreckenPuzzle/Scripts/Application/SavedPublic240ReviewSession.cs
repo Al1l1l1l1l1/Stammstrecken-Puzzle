@@ -39,14 +39,14 @@ namespace STP.Application
     /// <summary>Display-only projection from one exact, confirmed and validated S snapshot.</summary>
     public sealed class SavedReviewProgress
     {
-        internal SavedReviewProgress(SaveSnapshot<LocalProfileState> snapshot, IReadOnlyList<PublicPuzzleInput> puzzles, PublicPuzzleIdentity? selected)
+        internal SavedReviewProgress(SaveSnapshot<LocalProfileState> snapshot, IReadOnlyList<PublicPuzzleInput> puzzles, PublicPuzzleIdentity? selected,int? committedStars=null)
         {
             Profile = snapshot.Profile; Catalog = snapshot.Catalog; Generation = snapshot.Generation;
             BalancePatience = checked(snapshot.Payload.LedgerCheckpoint.BalancePatience + snapshot.Payload.EconomyJournal.Sum(x => x.Amount));
             MemberCount = puzzles.Count;
             FirstClearCount = puzzles.Count(p => snapshot.Payload.Levels.Any(l => l.Identity.Equals(p.Identity) && l.FirstClear != null));
             SelectedIdentity = selected;
-            SelectedStars = selected == null ? null : snapshot.Payload.Levels.SingleOrDefault(l => l.Identity.Equals(selected))?.StarsHighWater;
+            SelectedStars = committedStars ?? (selected == null ? null : snapshot.Payload.Levels.SingleOrDefault(l => l.Identity.Equals(selected))?.StarsHighWater);
         }
         /// <summary>Confirmed profile binding.</summary>
         public SaveProfileIdentity Profile { get; }
@@ -123,7 +123,7 @@ namespace STP.Application
     }
 
     /// <summary>Owner-thread saved public-QA bridge over the existing S use case; it owns no second domain or ledger truth.</summary>
-    public sealed class SavedPublic240ReviewSession : IDisposable
+    public sealed partial class SavedPublic240ReviewSession : IDisposable
     {
         private enum Request { Load, Create, Select, Restart, RetrySave, Complete, Recover, Reset, Tick, Suspend }
         private readonly PersistedPuzzleSession persisted;
@@ -134,7 +134,10 @@ namespace STP.Application
         private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
         private readonly IReadOnlyList<PublicPuzzleInput> puzzles;
         private readonly CatalogIdentity publicCatalogIdentity;
+        private readonly SaveProfileIdentity expectedProfile;
         private BoundView? view;
+        private bool presentationPaused,presentationReconcilePending;
+        private long? presentationPauseAt;
         private bool disposed, busy, exclusive, suspended, writeFailure, requestFault, completionAttempted;
         private bool authority;
         private TaskCompletionSource<bool>? requestIdle;
@@ -151,13 +154,17 @@ namespace STP.Application
         /// <summary>Captures Unity main as logical owner after worker composition has returned these provider-free objects.</summary>
         public SavedPublic240ReviewSession(PersistedPuzzleSession persisted, AutosaveCoordinator autosave, IPublicPuzzleCatalog catalog,
             ILocalSessionClock clock, ILocalSaveDispatcher dispatcher)
+            : this(persisted,autosave,catalog,clock,dispatcher,new SaveProfileIdentity(SaveProfileIdentity.Public240ReviewNamespace,"r",CatalogUse.IsolatedReview)) { }
+        private SavedPublic240ReviewSession(PersistedPuzzleSession persisted, AutosaveCoordinator autosave, IPublicPuzzleCatalog catalog,
+            ILocalSessionClock clock, ILocalSaveDispatcher dispatcher,SaveProfileIdentity expectedProfile)
         {
+            this.expectedProfile=expectedProfile;
             this.persisted = persisted ?? throw new ArgumentNullException(nameof(persisted));
             this.autosave = autosave ?? throw new ArgumentNullException(nameof(autosave));
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
             this.dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
             if (catalog == null) throw new ArgumentNullException(nameof(catalog));
-            if (catalog.Identity.Use != CatalogUse.IsolatedReview || catalog.Identity.ApprovalStatus != CatalogApprovalStatus.Draft)
+            if (catalog.Identity.Use != expectedProfile.Use || catalog.Identity.ApprovalStatus != CatalogApprovalStatus.Draft)
                 throw new ArgumentException("SAVE_REVIEW_CATALOG_REQUIRED", nameof(catalog));
             puzzles = Array.AsReadOnly(catalog.Puzzles.ToArray());
             publicCatalogIdentity = catalog.Identity;
@@ -165,12 +172,33 @@ namespace STP.Application
                 throw new ArgumentException("SAVE_REVIEW_CATALOG_INVALID", nameof(catalog));
             State = null!; Publish();
         }
+        /// <summary>Explicit ADR039 entry; the historical public constructor remains isolated to Public240 v2.</summary>
+        public static SavedPublic240ReviewSession ForMobileCandidate(PersistedPuzzleSession persisted,AutosaveCoordinator autosave,IPublicPuzzleCatalog catalog,ILocalSessionClock clock,ILocalSaveDispatcher dispatcher,SaveProfileIdentity profile)
+        {
+            if(profile==null||profile.Use!=CatalogUse.InternalPreview||profile.Namespace!=SaveProfileIdentity.MobileCandidateNamespace)throw new ArgumentException("CANDIDATE_PROFILE_REQUIRED");
+            return new SavedPublic240ReviewSession(persisted,autosave,catalog,clock,dispatcher,profile);
+        }
         /// <summary>Attempt-bound read/command view; null until the user explicitly opens or resumes a puzzle.</summary>
         public IReviewPuzzleSession? PuzzleView => view;
         /// <summary>Copied immutable public inputs in catalog order.</summary>
         public IReadOnlyList<PublicPuzzleInput> Puzzles => puzzles;
         /// <summary>Current immutable display snapshot, published on the captured owner.</summary>
         public SavedReviewState State { get; private set; }
+        /// <summary>Current first-clear-based map access, including the separate candidate's linear graph.</summary>
+        public bool CanEnterPuzzle(int index){RequireOwner();return !disposed&&authority&&!requestFault&&index>=0&&index<puzzles.Count&&persisted.CanEnter(puzzles[index].Identity);}
+        /// <summary>Pauses and flushes before deriving one safe clue; opening help never starts the timer or spends a credit.</summary>
+        public async Task<SafePuzzleHint?> PrepareHintAsync(LocalMetagamePolicy hints,CancellationToken cancellationToken)
+        {
+            RequireOwner();if(expectedProfile.Use!=CatalogUse.InternalPreview||view==null||busy||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
+            await SetSuspendedAsync(true,cancellationToken).ConfigureAwait(false);
+            return await persisted.PrepareHintAsync(hints,cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>Commits and refreshes the cached command view before a later Resume captures its next revision.</summary>
+        public Task<SaveCommitResult<LocalProfileState>> CommitHintDisplayAsync(LocalMetagamePolicy hints,SafeHintDisplayReceipt receipt,CancellationToken cancellationToken)
+        {
+            RequireOwner();if(expectedProfile.Use!=CatalogUse.InternalPreview||!suspended||view==null||!authority)throw new ArgumentException("HINT_CANDIDATE_NOT_READY");
+            return RunProfileActionAsync((use,token)=>use.CommitHintDisplayAsync(hints,receipt,token),cancellationToken);
+        }
         /// <summary>Read-only exact identity lookup from the confirmed validated snapshot; never creates a draft.</summary>
         public bool HasDraftForPuzzle(int index)
         {
@@ -185,7 +213,7 @@ namespace STP.Application
         /// <summary>Flushes the prior attempt, then explicitly starts or resumes the captured index; no missing-draft fallback.</summary>
         public Task SelectPuzzleAsync(int index, bool restoreExistingDraft, CancellationToken cancellationToken) => RunAsync(Request.Select, index, restoreExistingDraft, SaveCandidateKind.Main, cancellationToken);
         /// <summary>Creates and immediately saves a fresh Ready attempt of the actual current puzzle.</summary>
-        public Task RestartAsync(CancellationToken cancellationToken) => RunAsync(Request.Restart, selected, false, SaveCandidateKind.Main, cancellationToken);
+        public Task RestartAsync(CancellationToken cancellationToken) => persisted.Session?.Mode==STP.Puzzle.Domain.SessionMode.ENDLESS?RestartCurrentEndlessAsync(cancellationToken):RunAsync(Request.Restart, selected, false, SaveCandidateKind.Main, cancellationToken);
         /// <summary>Retries a known noncommitting draft or completion failure exactly once.</summary>
         public Task RetrySaveAsync(CancellationToken cancellationToken) => RunAsync(Request.RetrySave, -1, false, SaveCandidateKind.Main, cancellationToken);
         /// <summary>Explicitly retries the retained solved attempt; never starts a frame-based retry loop.</summary>
@@ -205,6 +233,21 @@ namespace STP.Application
                 return completionAttempted ? Task.CompletedTask : RunAsync(Request.Complete, -1, false, SaveCandidateKind.Main, cancellationToken);
             return !autosave.IsDirty || Solved ? Task.CompletedTask : RunAsync(Request.Tick, -1, false, SaveCandidateKind.Main, cancellationToken);
         }
+        /// <summary>Pauses the hidden puzzle without disabling campaign/menu navigation. Defaults false for the historical host.</summary>
+        public void SetPresentationPaused(bool paused)
+        {
+            RequireOwner();if(disposed)return;bool changed=presentationPaused!=paused;
+            if(changed){presentationPaused=paused;presentationReconcilePending=true;presentationPauseAt=paused?clock.MonotonicMilliseconds:(long?)null;}
+            ReconcilePresentationPause();if(changed)Publish();
+        }
+        private void ReconcilePresentationPause()
+        {
+            if(!presentationReconcilePending||view==null||!persisted.CanMutate)return;
+            bool pause=suspended||presentationPaused;
+            if(!pause&&(busy||writeFailure||requestFault||!authority))return;
+            if(view.IsPaused!=pause)view.Lifecycle(pause,pause&&presentationPauseAt.HasValue?presentationPauseAt.Value:clock.MonotonicMilliseconds);
+            presentationReconcilePending=false;presentationPauseAt=null;
+        }
         /// <summary>Applies the host's OR-combined suspension, pauses actual time, and immediately requests a flush.</summary>
         public Task SetSuspendedAsync(bool paused, CancellationToken cancellationToken)
         {
@@ -214,7 +257,7 @@ namespace STP.Application
             suspended = paused;
             // Capture active time now, even when a previous draft write has not acknowledged yet.
             if (view != null && persisted.CanMutate)
-                view.Lifecycle(paused, clock.MonotonicMilliseconds);
+                view.Lifecycle(paused || presentationPaused, clock.MonotonicMilliseconds);
             Publish();
             return AwaitLifecycleAsync(paused, cancellationToken);
         }
@@ -250,7 +293,7 @@ namespace STP.Application
             status = SavedReviewStatus.TrainRide; view.Preview = DevelopmentPreviewPhase.TrainRide; Publish(); return view.Applied();
         }
         private bool Solved => view != null && persisted.Session?.Phase == SessionPhase.SolvedPendingCommit;
-        private bool Editable => !disposed && authority && !requestFault && !writeFailure && !exclusive && !suspended && view?.IsPaused == false && persisted.CanMutate;
+        private bool Editable => !disposed && authority && !requestFault && !writeFailure && !exclusive && !suspended && !presentationPaused && view?.IsPaused == false && persisted.CanMutate;
         private bool Navigable => !disposed && !busy && !suspended && authority && !requestFault && !writeFailure &&
             status != SavedReviewStatus.TrainRide && (!Solved || status == SavedReviewStatus.Results);
         private bool ProtectedObservation => persisted.RecoveryObservation == null || persisted.RecoveryObservation.Candidates.Any(c => c.Status == SaveCandidateStatus.Unsupported || c.Status == SaveCandidateStatus.Failed);
@@ -315,10 +358,10 @@ namespace STP.Application
                                 var state = resume ? persisted.RestoreDraft(puzzle.Identity) : persisted.Start(puzzle.Identity, Guid.NewGuid());
                                 selected = index; view = new BoundView(this, puzzle, state, clock.MonotonicMilliseconds);
                                 completionAttempted = false; writeFailure = false; requestFault = false;
-                                if (state.Phase == SessionPhase.Suspended && !suspended) view.Lifecycle(false, clock.MonotonicMilliseconds);
+                                if (state.Phase == SessionPhase.Suspended && !suspended && !presentationPaused) view.Lifecycle(false, clock.MonotonicMilliseconds);
                                 if (!resume)
                                 {
-                                    if (suspended) view.Lifecycle(true, clock.MonotonicMilliseconds);
+                                    if (suspended || presentationPaused) view.Lifecycle(true, clock.MonotonicMilliseconds);
                                     autosave.NotifyMutation(clock.MonotonicMilliseconds);
                                 }
                                 status = state.Phase == SessionPhase.SolvedPendingCommit ? SavedReviewStatus.CompletionPending : SavedReviewStatus.Ready;
@@ -358,7 +401,7 @@ namespace STP.Application
                         var committed = await work.ConfigureAwait(false);
                         if (committed != null) await OnOwner(() => ApplyCommitted(committed)).ConfigureAwait(false);
                         if (request == Request.RetrySave && committed?.Succeeded == true)
-                            await OnOwner(() => { if (!suspended && view?.IsPaused == true && persisted.CanMutate) view.Lifecycle(false, clock.MonotonicMilliseconds); }).ConfigureAwait(false);
+                            await OnOwner(() => { if (!suspended && !presentationPaused && view?.IsPaused == true && persisted.CanMutate) view.Lifecycle(false, clock.MonotonicMilliseconds); }).ConfigureAwait(false);
                     }
                 }
                 catch (OperationCanceledException)
@@ -384,7 +427,7 @@ namespace STP.Application
             if (r == Request.Create) return !requestFault && persisted.Status == PersistedSessionStatus.NeedsInitialization;
             if (r == Request.Recover) return !requestFault && !ProtectedObservation && persisted.Status == PersistedSessionStatus.RecoveryRequired && persisted.RecoveryObservation!.Candidates.Any(x => x.Status == SaveCandidateStatus.Valid);
             if (r == Request.Reset) return !requestFault && !ProtectedObservation && persisted.Status == PersistedSessionStatus.RecoveryRequired && persisted.RecoveryObservation!.Candidates.Any(x => x.Status == SaveCandidateStatus.Corrupt);
-            if (r == Request.Select || r == Request.Restart) return Navigable && index >= 0 && index < puzzles.Count && (!resume || HasDraftForPuzzle(index));
+            if (r == Request.Select || r == Request.Restart) return Navigable && CanEnterPuzzle(index) && (!resume || HasDraftForPuzzle(index));
             if (r == Request.Complete) return authority && !requestFault && Solved && !persisted.CanPresentResults && persisted.Status != PersistedSessionStatus.RecoveryRequired;
             if (r == Request.RetrySave) return State.CanRetrySave;
             if (r == Request.Suspend) return authority && !requestFault;
@@ -417,8 +460,7 @@ namespace STP.Application
             }
             SyncView();
         }
-        private bool BoundSnapshot() => persisted.Snapshot != null && persisted.Snapshot.Profile.Use == CatalogUse.IsolatedReview &&
-            persisted.Snapshot.Profile.Namespace == SaveProfileIdentity.Public240ReviewNamespace && persisted.Snapshot.Profile.ProfileId == "r" &&
+        private bool BoundSnapshot() => persisted.Snapshot != null && persisted.Snapshot.Profile.Equals(expectedProfile) &&
             persisted.Snapshot.Payload.Profile.CatalogSet.PublicCatalog.Equals(publicCatalogIdentity);
         private SavedReviewStatus SettledStatus() => persisted.CanPresentResults ?
             (view?.Preview == DevelopmentPreviewPhase.TrainRide ? SavedReviewStatus.TrainRide : view?.Preview == DevelopmentPreviewPhase.Results ? SavedReviewStatus.Results : SavedReviewStatus.ProgressCommitted) : Solved ? SavedReviewStatus.CompletionPending : SavedReviewStatus.Ready;
@@ -434,6 +476,7 @@ namespace STP.Application
             if (view != null && persisted.Session != null && persisted.Session.AttemptId == view.AttemptId && view.Puzzle.Identity.PuzzleId == persisted.Session.PuzzleId &&
                 view.Puzzle.Identity.HashProfile == persisted.Session.PublicPuzzleHashProfile && view.Puzzle.Identity.HashSha256 == persisted.Session.PublicPuzzleHashSha256)
                 view.Refresh(persisted.Session);
+            ReconcilePresentationPause();
         }
         private void Publish()
         {
@@ -442,16 +485,16 @@ namespace STP.Application
             var snapshot = authority && !requestFault ? persisted.Snapshot : null;
             if (snapshot == null) { progress = null; projectedSnapshot = null; }
             else if (!ReferenceEquals(projectedSnapshot, snapshot) || !Equals(projectedIdentity, identity))
-            { progress = new SavedReviewProgress(snapshot, puzzles, identity); projectedSnapshot = snapshot; projectedIdentity = identity; }
+            { progress = new SavedReviewProgress(snapshot, puzzles, identity,persisted.CurrentEndlessStars); projectedSnapshot = snapshot; projectedIdentity = identity; }
             var observation = persisted.RecoveryObservation;
             var candidates = !authority && observation != null ? observation.Candidates : Array.Empty<SaveCandidateProvenance>();
             bool recover = !disposed && !busy && !authority && !requestFault && persisted.Status == PersistedSessionStatus.RecoveryRequired && !ProtectedObservation && observation!.Candidates.Any(c => c.Status == SaveCandidateStatus.Valid);
             bool reset = !disposed && !busy && !authority && !requestFault && persisted.Status == PersistedSessionStatus.RecoveryRequired && !ProtectedObservation && observation!.Candidates.Any(c => c.Status == SaveCandidateStatus.Corrupt);
             State = new SavedReviewState(++version, disposed ? SavedReviewStatus.Disposed : status, lastLoad, lastCommit, error,
-                Editable, Navigable, Navigable && view != null, !disposed && !busy,
+                Editable, Navigable, Navigable && view != null&&(persisted.Session?.Mode!=STP.Puzzle.Domain.SessionMode.ENDLESS||!persisted.CanPresentResults), !disposed && !busy,
                 !disposed && !busy && authority && writeFailure && !requestFault && (lastCommit == SaveCommitStatus.Failed || lastCommit == SaveCommitStatus.Cancelled),
                 !disposed && !busy && !requestFault && persisted.Status == PersistedSessionStatus.NeedsInitialization, recover, reset,
-                !disposed && !busy && !suspended && authority && !requestFault && status == SavedReviewStatus.ProgressCommitted && persisted.CanPresentResults,
+                !disposed && !busy && !suspended && !presentationPaused && authority && !requestFault && status == SavedReviewStatus.ProgressCommitted && persisted.CanPresentResults,
                 autosave.IsDirty, selected, identity, HasDraftForPuzzle(selected), progress, candidates);
         }
         /// <summary>Stops future publication and commands; an already executing physical write is not claimed rolled back.</summary>
@@ -524,6 +567,7 @@ namespace STP.Application
             public DevelopmentCommandStatus Resume(long time) => Lifecycle(false, time);
             internal DevelopmentCommandStatus Lifecycle(bool pause, long time)
             {
+                if(!pause&&(host.suspended||host.presentationPaused))return Unchanged();
                 var e = Envelope(); if (!Check(e, true)) return LastCommand;
                 if (pause == IsPaused) return Unchanged();
                 return Execute(pause ? (PuzzleCommand)new PauseForLifecycle(e.CommandId, e.ExpectedRevision) : new ResumeFromLifecycle(e.CommandId, e.ExpectedRevision), time);

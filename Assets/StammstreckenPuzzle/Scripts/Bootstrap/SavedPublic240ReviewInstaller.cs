@@ -435,7 +435,7 @@ namespace STP.Bootstrap
             return trimmed.Length < volume.Length ? volume : trimmed;
         }
 
-        private static string ValidateTestRootBoundary(string root, string realRoot, string tempRoot, string? configured)
+        internal static string ValidateTestRootBoundary(string root, string realRoot, string tempRoot, string? configured)
         {
             string full = CheckedTestDirectory(root), real = CheckedTestDirectory(realRoot), temp = CheckedTestDirectory(tempRoot);
             string? environmentRoot = string.IsNullOrWhiteSpace(configured) ? null : CheckedTestDirectory(configured!);

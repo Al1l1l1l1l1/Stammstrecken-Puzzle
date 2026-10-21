@@ -15,7 +15,9 @@ namespace STP.Application
         /// <summary>Isolated contract tests only.</summary>
         ContractTest,
         /// <summary>The separately authorized, nonproductive Public240 review.</summary>
-        IsolatedReview
+        IsolatedReview,
+        /// <summary>Separate nonproduction mobile candidate over real DRAFT inputs, never a release or profile promotion.</summary>
+        InternalPreview
     }
 
     /// <summary>Source approval metadata, never an application decision to promote content.</summary>
@@ -145,11 +147,14 @@ namespace STP.Application
             if (!Enum.IsDefined(typeof(CatalogApprovalStatus), approvalStatus)) throw new ArgumentOutOfRangeException(nameof(approvalStatus));
             if ((use == CatalogUse.Production && approvalStatus != CatalogApprovalStatus.ProductApproved) ||
                 (use == CatalogUse.ContractTest && approvalStatus != CatalogApprovalStatus.FixtureOnly) ||
-                (use == CatalogUse.IsolatedReview && approvalStatus != CatalogApprovalStatus.Draft))
+                (use == CatalogUse.IsolatedReview && approvalStatus != CatalogApprovalStatus.Draft) ||
+                (use == CatalogUse.InternalPreview && approvalStatus != CatalogApprovalStatus.Draft))
                 throw new ArgumentException("CATALOG_USE_STATUS_MISMATCH");
             if (use != CatalogUse.IsolatedReview && (catalogId == SaveProfileIdentity.Public240ReviewNamespace ||
                 catalogId.StartsWith(SaveProfileIdentity.Public240ReviewNamespace + "-", StringComparison.Ordinal)))
                 throw new ArgumentException("REVIEW_CATALOG_PROMOTION_FORBIDDEN");
+            bool candidateLine = IsLine(catalogId, SaveProfileIdentity.MobileCandidateNamespace) || IsLine(catalogId, "campaign-" + SaveProfileIdentity.MobileCandidateNamespace) || IsLine(catalogId, "completion-" + SaveProfileIdentity.MobileCandidateNamespace);
+            if(candidateLine!=(use==CatalogUse.InternalPreview))throw new ArgumentException("CANDIDATE_CATALOG_USE_MISMATCH");
             Revision = revision;
             HashSha256 = ContractGuard.Hash(hashSha256, nameof(hashSha256));
             Use = use;
@@ -173,6 +178,7 @@ namespace STP.Application
         public override bool Equals(object? obj) => obj is CatalogIdentity other && Equals(other);
         /// <summary>Returns a process-local value hash, never a catalog content hash.</summary>
         public override int GetHashCode() => unchecked(ContractGuard.CombineHash(CatalogId, HashSha256, Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)) * 31 + (int)Use * 7 + (int)ApprovalStatus);
+        private static bool IsLine(string value,string prefix)=>value==prefix||value.StartsWith(prefix+"-",StringComparison.Ordinal);
     }
 
     /// <summary>An immutable flattened campaign membership with explicit first-clear requirements.</summary>
@@ -301,6 +307,8 @@ namespace STP.Application
     {
         /// <summary>Exclusively isolated Public240 review namespace under ADR034.</summary>
         public const string Public240ReviewNamespace = "qa-public240-v1";
+        /// <summary>Exclusively nonproduction full-feature candidate namespace under ADR039.</summary>
+        public const string MobileCandidateNamespace = "qa-mobile-candidate";
 
         /// <summary>Creates a profile identity; the Public240 namespace and IsolatedReview use must occur together.</summary>
         public SaveProfileIdentity(string profileNamespace, string profileId, CatalogUse use)
@@ -310,6 +318,7 @@ namespace STP.Application
             ContractGuard.Use(use);
             if ((profileNamespace == Public240ReviewNamespace) != (use == CatalogUse.IsolatedReview))
                 throw new ArgumentException("PROFILE_USE_NAMESPACE_MISMATCH");
+            if((profileNamespace==MobileCandidateNamespace)!=(use==CatalogUse.InternalPreview))throw new ArgumentException("CANDIDATE_PROFILE_USE_MISMATCH");
             Use = use;
         }
 

@@ -1,0 +1,29 @@
+// Offline inspection only. Invoke against the generated launcher project, never as an app build plugin.
+// gradle --offline --init-script <this file> -PstpNativeInventoryOutput=<new JSON path> :launcher:stpInspectResolvedArtifacts
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier
+
+gradle.projectsEvaluated {
+    def launcher = gradle.rootProject.findProject(':launcher')
+    if (launcher == null) throw new GradleException('STP_INSPECTION_LAUNCHER_REQUIRED')
+    launcher.tasks.register('stpInspectResolvedArtifacts') {
+        doLast {
+            def output = launcher.findProperty('stpNativeInventoryOutput')
+            if (!output) throw new GradleException('STP_INSPECTION_OUTPUT_REQUIRED')
+            def destination = new File(output.toString())
+            if (destination.exists()) throw new GradleException('STP_INSPECTION_OUTPUT_ALREADY_EXISTS')
+            def view = launcher.configurations.getByName('debugRuntimeClasspath').incoming.artifactView {
+                componentFilter { identifier -> identifier instanceof ModuleComponentIdentifier }
+            }
+            def artifacts = view.artifacts.artifacts.collect { artifact ->
+                def id = artifact.id.componentIdentifier
+                [group: id.group, name: id.module, version: id.version, extension: artifact.file.name.tokenize('.').last(),
+                 file: artifact.file.canonicalPath, sha256: MessageDigest.getInstance('SHA-256').digest(artifact.file.bytes).encodeHex().toString()]
+            }.sort { a, b -> (a.group + ':' + a.name + ':' + a.version + ':' + a.extension) <=> (b.group + ':' + b.name + ':' + b.version + ':' + b.extension) }
+            destination.parentFile.mkdirs()
+            destination.text = JsonOutput.prettyPrint(JsonOutput.toJson([configuration: 'launcher:debugRuntimeClasspath', offlineDiagnosticOnly: true, artifacts: artifacts])) + '\n'
+            println('STP_RESOLVED_EXTERNAL_NATIVE_ARTIFACTS=' + artifacts.size())
+        }
+    }
+}

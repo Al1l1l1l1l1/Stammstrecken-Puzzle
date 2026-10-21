@@ -10,6 +10,7 @@ namespace STP.Puzzle.Solver
 {
     /// <summary>Complete search classification; limits never imply uniqueness.</summary>
     public enum SolverClassification { UNSATISFIABLE, UNIQUE, MULTIPLE_OR_MORE, INDETERMINATE }
+    public enum RootSolutionScreen { Complete, Rejected, Interrupted }
     /// <summary>Explicit recovery search limits, with an optional injected monotonic millisecond source.</summary>
     public sealed class SolverLimits
     {
@@ -205,6 +206,29 @@ namespace STP.Puzzle.Solver
         // A UNIQUE verdict needs a verified trace: an untraceable root reduction is INDETERMINATE, never a silent UNIQUE.
         private static SolverClassification Classify(bool interrupted, int found, bool traceFaulted)
             => interrupted ? SolverClassification.INDETERMINATE : found == 0 ? SolverClassification.UNSATISFIABLE : found == 1 ? (traceFaulted ? SolverClassification.INDETERMINATE : SolverClassification.UNIQUE) : SolverClassification.MULTIPLE_OR_MORE;
+        /// <summary>Generation prefilter only: runs the same deterministic root propagation without DFS or proof claims.</summary>
+        public static RootSolutionScreen ScreenForRootSolution(PuzzleDefinition definition, SolverLimits limits)
+        {
+            if(definition==null||limits==null)throw new ArgumentNullException();
+            long start=limits.MonotonicNow(),last=start,steps=0;
+            bool WithinBudget()
+            {
+                long current=limits.MonotonicNow();
+                if(limits.Cancellation.IsCancellationRequested||start<0||current<last||current-start>=limits.TimeBudgetMs)return false;
+                last=current;return true;
+            }
+            var domains=Enumerable.Repeat((byte)127,definition.Grid.CellCount).ToArray();
+            var reductions=new List<RecoveryReduction>();var work=new SortedSet<int>(Enumerable.Range(0,6));
+            while(work.Count>0)
+            {
+                if(!WithinBudget()||steps++>=limits.MaxStates)return RootSolutionScreen.Interrupted;
+                int stage=work.Min;work.Remove(stage);int before=reductions.Count;
+                if(!RunStageCore(definition,domains,reductions,stage,null))return WithinBudget()?RootSolutionScreen.Rejected:RootSolutionScreen.Interrupted;
+                if(reductions.Count!=before)foreach(int dirty in Enumerable.Range(0,6))work.Add(dirty);
+            }
+            var result=SelectMrv(domains)<0?RootSolutionScreen.Complete:RootSolutionScreen.Rejected;
+            return WithinBudget()?result:RootSolutionScreen.Interrupted;
+        }
         public static SolverResult Solve(PuzzleDefinition? definition, SolverLimits? limits = null)
         {
             var trace = new List<RecoveryReduction>(); var path = new List<CellCoordinate>(); int found = 0, searchNodes = 0, guessDepth = 0;

@@ -1,0 +1,108 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-03-01",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 2
+    },
+    "b": {
+      "side": "S",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    1,
+    1,
+    1,
+    2,
+    3
+  ],
+  "columnCounts": [
+    0,
+    2,
+    5,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 3,
+    "position": 1,
+    "titleKey": "level.s1.01.03.01.title",
+    "statusKey": "level.s1.01.03.01.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.03.01.entry",
+    "focus": [
+      "OCCUPANCY"
+    ],
+    "chainDepth": 3,
+    "qualityNote": "Drei Einserzeilen oben sind sofort begrenzt; erst die unteren Zweier-/Dreierzeilen müssen um den Südport herum aufgelöst werden. Die große leere Fläche links dient einem ruhigen Rückgriff nach dem dichten vorherigen Abschluss, nicht einer neuen Denkbelastung.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-03-01-map",
+    "trainMomentId": "draft-s1-01-03-01-train",
+    "resultTextKey": "level.s1.01.03.01.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-03-01/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "ee51f0e84ed82cac6b9e4514f446045a41811fccfb225e5bf1305b0ead3040c5"
+    }
+  }
+}

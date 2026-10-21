@@ -71,6 +71,7 @@ namespace STP.Tests.Application.EditMode
             public Task InvokeAsync(Action action){publication.Value=true;try{action();return Task.CompletedTask;}finally{publication.Value=false;}}
             public long Validate(LocalProfileState state){Check();if(Armed)Interlocked.Increment(ref LedgerCalls);return InnerLedger.Validate(state);}
             public LocalStoredEntry Next(LocalLedgerCheckpoint c,System.Collections.Generic.IReadOnlyList<LocalStoredEntry> j,EconomyTerminal t){Check();return InnerLedger.Next(c,j,t);}
+            public LocalStoredEntry NextPurchase(LocalLedgerCheckpoint c,System.Collections.Generic.IReadOnlyList<LocalStoredEntry> j,PurchasedOwnership p){Check();return InnerLedger.NextPurchase(c,j,p);}
             public LocalProfileState Compact(LocalProfileState state,long generation){Check();if(Armed)Interlocked.Increment(ref LedgerCalls);return InnerLedger.Compact(state,generation);}
         }
         [Test]

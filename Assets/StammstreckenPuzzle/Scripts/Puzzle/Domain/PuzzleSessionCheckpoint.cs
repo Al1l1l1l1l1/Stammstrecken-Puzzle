@@ -83,7 +83,11 @@ namespace STP.Puzzle.Domain
             if ((markerEmpty && !usedEmptyMarker) || (markerOccupied && !usedOccupiedMarker) ||
                 correctionCount < undo.Sum(d => (long)d.Changes.Count(c => c.Before != CellContent.UNSET)))
                 throw new ArgumentException("CHECKPOINT_STICKY_HISTORY_INVALID");
-            if ((timerStarted && (revision == 0 || !pp.Any(p => p))) || (!timerStarted && (phase == SessionPhase.Ready ? revision % 2 != 0 : phase == SessionPhase.Suspended ? revision % 2 != 1 : true)) || (!timerStarted && (activeElapsedMs != 0 || cc.Any(c => c != CellContent.UNSET) || pp.Any(p => p) || undo.Length > 0 || usedEmptyMarker || usedOccupiedMarker || correctionCount != 0)) ||
+            // Historical inputs may carry an initial opaque HintCount; new displayed hints are real commands.
+            // Accept the original lifecycle parity or the parity after those hint commands, preserving v2 validity.
+            bool lifecycleParity = phase == SessionPhase.Ready ? revision % 2 == 0 : phase == SessionPhase.Suspended && revision % 2 == 1;
+            bool hintLifecycleParity = hintCount <= revision && (phase == SessionPhase.Ready ? (revision-hintCount)%2==0 : phase == SessionPhase.Suspended && (revision-hintCount)%2==1);
+            if ((timerStarted && (revision == 0 || !pp.Any(p => p))) || (!timerStarted && !lifecycleParity && !hintLifecycleParity) || (!timerStarted && (activeElapsedMs != 0 || cc.Any(c => c != CellContent.UNSET) || pp.Any(p => p) || undo.Length > 0 || usedEmptyMarker || usedOccupiedMarker || correctionCount != 0)) ||
                 (phase == SessionPhase.Ready && timerStarted) || (phase == SessionPhase.Active && !timerStarted))
                 throw new ArgumentException("CHECKPOINT_TIMER_INVALID");
             if ((phase == SessionPhase.SolvedPendingCommit) != (solvedEventId != null) ||

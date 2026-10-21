@@ -86,11 +86,20 @@ namespace STP.Infrastructure.Persistence
     /// <summary>Actual immutable POST_CLEAR_PATIENCE definition from one complete bound completion document; it never executes the reward.</summary>
     public sealed class RetainedCompletionRewardBinding
     {
-        private RetainedCompletionRewardBinding(string policy,CatalogIdentity catalog,string subjectKind,long amount){PolicyVersion=policy;Catalog=catalog;SubjectKind=subjectKind;AmountPatience=amount;}
+        private RetainedCompletionRewardBinding(string policy,CatalogIdentity catalog,string subjectKind,long amount,IReadOnlyDictionary<string,long>? definitions=null){PolicyVersion=policy;Catalog=catalog;SubjectKind=subjectKind;AmountPatience=amount;RewardAmounts=new System.Collections.ObjectModel.ReadOnlyDictionary<string,long>(definitions==null?new Dictionary<string,long>(StringComparer.Ordinal){{"POST_CLEAR_PATIENCE",amount}}:definitions.ToDictionary(p=>p.Key,p=>p.Value,StringComparer.Ordinal));}
+        public IReadOnlyDictionary<string,long> RewardAmounts{get;}
         /// <summary>Parses and hashes the complete closed completion-v1 source and selects exactly one actual POST_CLEAR_PATIENCE definition.</summary>
         public static RetainedCompletionRewardBinding FromDocument(string policyVersion,byte[] source,ICanonicalJson json,CatalogUse use)
         {
-            var v=BindingReaders.Document(source,json);var f=v.Fields("schemaVersion","catalogId","catalogRevision","approvalStatus","rewardDefinitions","completionMoments");f[0].RequireInteger(1);var catalog=BindingReaders.Catalog(v,json,use);var definitions=f[4].Array();foreach(var d in definitions){var a=d.Fields("reasonCode","subjectKind","amountPatience","claimCardinality");LocalSaveCodec.Require(System.Text.RegularExpressions.Regex.IsMatch(a[0].String(),@"^[A-Z][A-Z0-9_]*$")&&new[]{"LEVEL","ROUTE","SECTION","SEASON","ENDLESS_INSTANCE"}.Contains(a[1].String())&&a[2].Integer()>=0&&a[2].Integer()<=1000000&&new[]{"ONCE_PER_SUBJECT","ONCE_PER_ACHIEVEMENT"}.Contains(a[3].String()),"SAVE_COMPLETION_BINDING_INVALID");}var selected=definitions.Where(d=>d.Find("reasonCode").String()=="POST_CLEAR_PATIENCE").ToArray();LocalSaveCodec.Require(selected.Length==1,"SAVE_COMPLETION_BINDING_UNSUPPORTED",true);var reward=selected[0];reward.Find("claimCardinality").RequireString("ONCE_PER_SUBJECT");foreach(var moment in f[5].Array()){var m=moment.Fields("id","resultTextKey","mapSegmentId","trainMomentId");BindingReaders.Stable(m[0].String());BindingReaders.Key(m[1].String());BindingReaders.Stable(m[2].String());BindingReaders.Stable(m[3].String());}LocalSaveCodec.Require(f[5].Array().Count>0,"SAVE_COMPLETION_BINDING_INVALID");return new RetainedCompletionRewardBinding(LocalSaveCodec.Text(policyVersion),catalog,reward.Find("subjectKind").String(),reward.Find("amountPatience").Integer());
+            var v=BindingReaders.Document(source,json);var f=v.Fields("schemaVersion","catalogId","catalogRevision","approvalStatus","rewardDefinitions","completionMoments");f[0].RequireInteger(1);var catalog=BindingReaders.Catalog(v,json,use);var definitions=f[4].Array();foreach(var d in definitions){var a=d.Fields("reasonCode","subjectKind","amountPatience","claimCardinality");LocalSaveCodec.Require(System.Text.RegularExpressions.Regex.IsMatch(a[0].String(),@"^[A-Z][A-Z0-9_]*$")&&new[]{"LEVEL","ROUTE","SECTION","SEASON","ENDLESS_INSTANCE"}.Contains(a[1].String())&&a[2].Integer()>=0&&a[2].Integer()<=1000000&&new[]{"ONCE_PER_SUBJECT","ONCE_PER_ACHIEVEMENT"}.Contains(a[3].String()),"SAVE_COMPLETION_BINDING_INVALID");}var selected=definitions.Where(d=>d.Find("reasonCode").String()=="POST_CLEAR_PATIENCE").ToArray();LocalSaveCodec.Require(selected.Length==1,"SAVE_COMPLETION_BINDING_UNSUPPORTED",true);var reward=selected[0];if(reward.Find("subjectKind").String()=="ENDLESS_INSTANCE"){string[] reasons={"LEVEL_FIRST_CLEAR","LEVEL_SECOND_STAR","LEVEL_THIRD_STAR","POST_CLEAR_PATIENCE"};long[] amounts={15,5,10,10};LocalSaveCodec.Require(use==CatalogUse.InternalPreview&&catalog.CatalogId=="completion-qa-mobile-candidate-endless"&&definitions.Count==4,"SAVE_ENDLESS_COMPLETION_BINDING_UNSUPPORTED",true);for(int index=0;index<4;index++){var exact=definitions.Where(d=>d.Find("reasonCode").String()==reasons[index]).ToArray();LocalSaveCodec.Require(exact.Length==1&&exact[0].Find("subjectKind").String()=="ENDLESS_INSTANCE"&&exact[0].Find("amountPatience").Integer()==amounts[index]&&exact[0].Find("claimCardinality").String()=="ONCE_PER_SUBJECT","SAVE_ENDLESS_COMPLETION_BINDING_UNSUPPORTED",true);}}reward.Find("claimCardinality").RequireString("ONCE_PER_SUBJECT");foreach(var moment in f[5].Array()){var m=moment.Fields("id","resultTextKey","mapSegmentId","trainMomentId");BindingReaders.Stable(m[0].String());BindingReaders.Key(m[1].String());BindingReaders.Stable(m[2].String());BindingReaders.Stable(m[3].String());}LocalSaveCodec.Require(f[5].Array().Count>0,"SAVE_COMPLETION_BINDING_INVALID");return new RetainedCompletionRewardBinding(LocalSaveCodec.Text(policyVersion),catalog,reward.Find("subjectKind").String(),reward.Find("amountPatience").Integer(),definitions.ToDictionary(d=>d.Find("reasonCode").String(),d=>d.Find("amountPatience").Integer(),StringComparer.Ordinal));
+        }
+        /// <summary>Reads the existing full candidate completion wrapper; its complete canonical bytes define the same current catalog identity.</summary>
+        public static RetainedCompletionRewardBinding FromWrapper(string policyVersion,byte[] source,ICanonicalJson json,CatalogIdentity expected)
+        {
+            var wrapper=BindingReaders.Document(source,json,expected.HashSha256);var f=wrapper.Fields("reviewCompletionContractVersion","completionCatalog","starTimes");f[0].RequireInteger(1);
+            var inner=FromDocument(policyVersion,f[1].Bytes,json,expected.Use);LocalSaveCodec.Require(inner.Catalog.CatalogId==expected.CatalogId&&inner.Catalog.Revision==expected.Revision&&inner.Catalog.ApprovalStatus==expected.ApprovalStatus,"SAVE_COMPLETION_BINDING_MISMATCH",true);
+            var ids=new HashSet<string>(StringComparer.Ordinal);foreach(var time in f[2].Array()){var s=time.Fields("puzzleId","twoStarMs","threeStarMs");LocalSaveCodec.Require(ids.Add(s[0].String())&&s[1].IsNull==s[2].IsNull,"SAVE_COMPLETION_BINDING_INVALID");if(!s[1].IsNull)LocalSaveCodec.Require(s[1].Integer()>0&&s[2].Integer()>0&&s[2].Integer()<=s[1].Integer(),"SAVE_COMPLETION_BINDING_INVALID");}
+            return new RetainedCompletionRewardBinding(policyVersion,expected,inner.SubjectKind,inner.AmountPatience,inner.RewardAmounts);
         }
         /// <summary>Known passive reader version.</summary>
         public string PolicyVersion{get;}
@@ -124,6 +133,36 @@ namespace STP.Infrastructure.Persistence
         private static IReadOnlyList<T> Copy<T>(IReadOnlyList<T> list){if(list.Any(x=>x==null))throw new ArgumentException("SAVE_NULL_ITEM");return Array.AsReadOnly(list.ToArray());}
         /// <summary>Creates no registered passive policies for a real runtime entry.</summary>
         public static RetainedContractBindings Empty(CatalogUse use)=>new RetainedContractBindings(use,Array.Empty<string>(),Array.Empty<string>(),Array.Empty<string>(),Array.Empty<RetainedPrivacyBinding>(),Array.Empty<RetainedIapBinding>(),Array.Empty<RetainedLegacyOwnershipReader>(),Array.Empty<RetainedCosmeticsBinding>(),Array.Empty<string>(),Array.Empty<string>(),Array.Empty<string>(),Array.Empty<string>());
+        /// <summary>Registers only complete cosmetics/campaign source bytes matching the exact injected locks; test-reader promotion remains forbidden.</summary>
+        public static RetainedContractBindings ForCosmetics(CatalogIdentity expectedCosmetics,CatalogIdentity expectedCampaign,byte[] cosmeticsSource,byte[] campaignSource,IPublicPuzzleCatalog puzzles,ICanonicalJson json)
+        {
+            if(expectedCosmetics==null||expectedCampaign==null||puzzles==null||json==null)throw new ArgumentNullException();
+            LocalSaveCodec.Require(expectedCosmetics.Use!=CatalogUse.IsolatedReview&&expectedCosmetics.Use==expectedCampaign.Use&&expectedCampaign.Use==puzzles.Identity.Use,"SAVE_CATALOG_USE_MISMATCH",true);
+            var binding=RetainedCosmeticsBinding.FromDocuments(cosmeticsSource,campaignSource,json,expectedCosmetics.Use,puzzles);
+            LocalSaveCodec.Require(binding.Identity.Equals(expectedCosmetics)&&binding.Campaign.Identity.Equals(expectedCampaign),"SAVE_COSMETIC_CATALOG_BINDING_MISMATCH",true);
+            var result=Empty(expectedCosmetics.Use);result.Cosmetics=Array.AsReadOnly(new[]{binding});return result;
+        }
+        /// <summary>Registers the exact current launch privacy/IAP contracts, preserving optional separately verified cosmetic locks.</summary>
+        public static RetainedContractBindings ForRuntime(CatalogUse use,RetainedContractBindings? cosmetics=null)
+        {
+            LocalSaveCodec.Require(use==CatalogUse.Production||use==CatalogUse.ContractTest||use==CatalogUse.InternalPreview,"SAVE_REVIEW_METAGAME_PROMOTION_FORBIDDEN",true);
+            if(cosmetics!=null)LocalSaveCodec.Require(cosmetics.Use==use&&cosmetics.HintPolicies.Count+cosmetics.DailyPolicies.Count+cosmetics.AccessibilityRevisions.Count+cosmetics.Privacy.Count+cosmetics.Iap.Count+cosmetics.Legacy.Count+cosmetics.RewardPolicies.Count+cosmetics.GeneratorGrammars.Count+cosmetics.Locales.Count+cosmetics.AudioGroups.Count+cosmetics.CompletionRewards.Count+cosmetics.HistoricalProgress.Count==0,"SAVE_TEST_READER_PROMOTION_FORBIDDEN",true);
+            if(cosmetics!=null)LocalSaveCodec.Require(cosmetics.Cosmetics.All(c=>c.Identity.Use==use&&c.Campaign.Identity.Use==use),"SAVE_CATALOG_USE_MISMATCH",true);
+            var result=Empty(use);
+            result.Cosmetics=cosmetics?.Cosmetics??Array.Empty<RetainedCosmeticsBinding>();
+            result.Privacy=Array.AsReadOnly(new[]{new RetainedPrivacyBinding(MobilePersistenceContract.PrivacyPolicyRevision,MobilePersistenceContract.SdkContractRevision,MobilePersistenceContract.ConsentSource)});
+            result.Iap=Array.AsReadOnly(new[]{new RetainedIapBinding(MobilePersistenceContract.IapPolicyVersion,"GooglePlay","remove_ads"),new RetainedIapBinding(MobilePersistenceContract.IapPolicyVersion,"AppleAppStore","remove_ads")});
+            result.Locales=Array.AsReadOnly(new[]{"de-DE"});
+            result.AudioGroups=Array.AsReadOnly(new[]{"Master","Music","SFX","Ambience","UI"});
+            result.AccessibilityRevisions=Array.AsReadOnly(new[]{LocalSettingsPolicy.AccessibilityRevision});
+            return result;
+        }
+        /// <summary>Composes only independently verified exact completion reward sources; no generic test-policy promotion.</summary>
+        public static RetainedContractBindings ForRuntimeWithRewards(CatalogUse use,RetainedContractBindings? cosmetics,IReadOnlyList<RetainedCompletionRewardBinding> rewards)
+        {
+            var result=ForRuntime(use,cosmetics);LocalSaveCodec.Require(rewards!=null&&rewards.All(r=>r.Catalog.Use==use&&r.PolicyVersion==LocalPostClearPolicy.PolicyVersion&&r.AmountPatience==10)&&rewards.Select(r=>r.Catalog.CatalogId).Distinct(StringComparer.Ordinal).Count()==rewards.Count,"SAVE_COMPLETION_BINDING_MISMATCH",true);
+            result.CompletionRewards=Copy(rewards!);result.RewardPolicies=Array.AsReadOnly(new[]{LocalPostClearPolicy.PolicyVersion});return result;
+        }
         /// <summary>Exact isolated consumer use.</summary>
         public CatalogUse Use{get;}
         /// <summary>Known passive hint policy IDs.</summary>
@@ -131,28 +170,28 @@ namespace STP.Infrastructure.Persistence
         /// <summary>Known passive daily policy IDs.</summary>
         public IReadOnlyList<string> DailyPolicies{get;}
         /// <summary>Known accessibility source revisions.</summary>
-        public IReadOnlyList<string> AccessibilityRevisions{get;}
+        public IReadOnlyList<string> AccessibilityRevisions{get;private set;}
         /// <summary>Known privacy tuples.</summary>
-        public IReadOnlyList<RetainedPrivacyBinding> Privacy{get;}
+        public IReadOnlyList<RetainedPrivacyBinding> Privacy{get;private set;}
         /// <summary>Known passive store/product tuples.</summary>
-        public IReadOnlyList<RetainedIapBinding> Iap{get;}
+        public IReadOnlyList<RetainedIapBinding> Iap{get;private set;}
         /// <summary>Known explicit legacy provenance readers.</summary>
         public IReadOnlyList<RetainedLegacyOwnershipReader> Legacy{get;}
         /// <summary>Verified immutable cosmetic document bindings.</summary>
-        public IReadOnlyList<RetainedCosmeticsBinding> Cosmetics{get;}
+        public IReadOnlyList<RetainedCosmeticsBinding> Cosmetics{get;private set;}
         /// <summary>Known retained reward reader versions.</summary>
-        public IReadOnlyList<string> RewardPolicies{get;}
+        public IReadOnlyList<string> RewardPolicies{get;private set;}
         /// <summary>Known complete closed generator parameter grammars.</summary>
         public IReadOnlyList<string> GeneratorGrammars{get;}
         /// <summary>Known retained locale identifiers.</summary>
-        public IReadOnlyList<string> Locales{get;}
+        public IReadOnlyList<string> Locales{get;private set;}
         /// <summary>Known rational audio preference group identifiers.</summary>
-        public IReadOnlyList<string> AudioGroups{get;}
+        public IReadOnlyList<string> AudioGroups{get;private set;}
         /// <summary>Exact complete retained POST_CLEAR reward definitions.</summary>
-        public IReadOnlyList<RetainedCompletionRewardBinding> CompletionRewards{get;}
+        public IReadOnlyList<RetainedCompletionRewardBinding> CompletionRewards{get;private set;}
         /// <summary>Explicit exact historical campaign/completion pairs; absence is unsupported rather than an invented reward value.</summary>
         public IReadOnlyList<RetainedProgressCatalogBinding> HistoricalProgress{get;}
-        internal void RequireGenerator(string grammar){LocalSaveCodec.Require(Use==CatalogUse.ContractTest&&grammar=="contract-preservation-parameters-v1"&&GeneratorGrammars.Contains(grammar),"SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);}
+        internal void RequireGenerator(string grammar){LocalSaveCodec.Require(Use==CatalogUse.InternalPreview&&grammar==PuzzleCandidateSearch.GeneratorVersion||Use==CatalogUse.ContractTest&&grammar=="contract-preservation-parameters-v1"&&GeneratorGrammars.Contains(grammar),"SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);}
         internal void Validate(LocalProfileState state,ICanonicalJson json)
         {
             void Known(bool b){LocalSaveCodec.Require(b,"SAVE_UNSUPPORTED_POLICY",true);}
@@ -170,8 +209,23 @@ namespace STP.Infrastructure.Persistence
                 if(ownership is DefaultOwnership)LocalSaveCodec.Require(item.Acquisition=="DEFAULT","SAVE_COSMETIC_ACQUISITION_MISMATCH");else if(ownership is PurchasedOwnership purchase)LocalSaveCodec.Require(item.Acquisition=="PATIENCE_PURCHASE"&&item.PricePatience==purchase.PricePatience,"SAVE_COSMETIC_PRICE_MISMATCH");else if(ownership is MilestoneOwnership milestone)Eligibility(binding,item,milestone.EligibilityProjectionHashSha256,state,json);
             }
             foreach(var reservation in state.CosmeticClaimReservations){var binding=Cosmetics.SingleOrDefault(c=>c.Identity.Equals(reservation.Catalog));Known(binding!=null);var item=binding!.Items.SingleOrDefault(i=>i.ItemId==reservation.ItemId);Known(item!=null);Eligibility(binding,item!,reservation.EligibilityProjectionHashSha256,state,json);}
-            foreach(var e in state.Endless.OpenEndless){RequireGenerator(e.Descriptor.GeneratorVersion);var d=e.Descriptor;LocalSaveCodec.Require(d.Parameters is ContractGeneratorParameters,"SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);var p=(ContractGeneratorParameters)d.Parameters;string parameters=LocalSaveCodec.Object(("gridWidth",LocalSaveCodec.Write(p.GridWidth)),("gridHeight",LocalSaveCodec.Write(p.GridHeight)));LocalSaveCodec.Require(LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,parameters))==d.ParameterHashSha256,"SAVE_PARAMETER_HASH_MISMATCH");string projection=LocalSaveCodec.Object(("endlessContractVersion","1"),("rulesetVersion",LocalSaveCodec.Q(d.RulesetVersion)),("generatorVersion",LocalSaveCodec.Q(d.GeneratorVersion)),("seed",LocalSaveCodec.Q(d.Seed)),("generationOrdinal",LocalSaveCodec.Q(d.GenerationOrdinal)),("parameterHashSha256",LocalSaveCodec.Q(d.ParameterHashSha256)));LocalSaveCodec.Require(e.Id=="E1-"+LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,projection)),"SAVE_ENDLESS_ID_MISMATCH");if(e is OpenEndlessCompletion c&&c.Claim.ClaimStatus!="LOCAL_DECISION_PENDING")Known(RewardPolicies.Count>0);}
+            foreach(var e in state.Endless.OpenEndless){RequireGenerator(e.Descriptor.GeneratorVersion);var d=e.Descriptor;if(d.Parameters is SearchGeneratorParameters search){ValidateSearchDescriptor(state,e,search,json);continue;}LocalSaveCodec.Require(d.Parameters is ContractGeneratorParameters,"SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",true);var p=(ContractGeneratorParameters)d.Parameters;string parameters=LocalSaveCodec.Object(("gridWidth",LocalSaveCodec.Write(p.GridWidth)),("gridHeight",LocalSaveCodec.Write(p.GridHeight)));LocalSaveCodec.Require(LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,parameters))==d.ParameterHashSha256,"SAVE_PARAMETER_HASH_MISMATCH");string projection=LocalSaveCodec.Object(("endlessContractVersion","1"),("rulesetVersion",LocalSaveCodec.Q(d.RulesetVersion)),("generatorVersion",LocalSaveCodec.Q(d.GeneratorVersion)),("seed",LocalSaveCodec.Q(d.Seed)),("generationOrdinal",LocalSaveCodec.Q(d.GenerationOrdinal)),("parameterHashSha256",LocalSaveCodec.Q(d.ParameterHashSha256)));LocalSaveCodec.Require(e.Id=="E1-"+LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,projection)),"SAVE_ENDLESS_ID_MISMATCH");if(e is OpenEndlessCompletion c&&c.Claim.ClaimStatus!="LOCAL_DECISION_PENDING")Known(RewardPolicies.Count>0);}
             foreach(var operation in state.PendingOperations.OfType<LocalRewardOperation>()){var open=state.Endless.OpenEndless.OfType<OpenEndlessCompletion>().SingleOrDefault(c=>c.Claim.LocalOperationId==operation.OperationId);if(open!=null)LocalSaveCodec.Require(operation.State==open.Claim.ClaimStatus||operation.State=="RESERVED"&&open.Claim.ClaimStatus=="PROVIDER_RESERVED","SAVE_REWARD_OPERATION_STATE_MISMATCH");else{var claim=state.RewardClaims.OfType<PostClearRewardClaim>().Single(c=>c.LocalOperationId==operation.OperationId);LocalSaveCodec.Require(claim.ClaimStatus==operation.State,"SAVE_REWARD_OPERATION_STATE_MISMATCH");}}
+        }
+        private void ValidateSearchDescriptor(LocalProfileState state,LocalOpenEndless open,SearchGeneratorParameters search,ICanonicalJson json)
+        {
+            LocalSaveCodec.Require(Use==CatalogUse.InternalPreview&&open.Descriptor.GeneratorVersion==PuzzleCandidateSearch.GeneratorVersion&&search.CampaignCatalog.Equals(state.Profile.CatalogSet.PublicCatalog),"SAVE_GENERATOR_REFERENCE_UNSUPPORTED",true);
+            LocalSaveCodec.Require(LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,search.Projection()))==open.Descriptor.ParameterHashSha256&&EndlessProjection.DescriptorId(open.Descriptor,json)==open.Id,"SAVE_ENDLESS_ID_MISMATCH");
+            foreach(var p in search.RecentPublicInputs)EndlessProjection.ValidatePublic(p,json);
+            if(open is OpenEndlessCompletion done)
+            {
+                string hash;try{hash=LocalEndlessPolicy.CompletionSourceHash(done.Claim);}catch(ArgumentException){throw new SaveCodecFailure("SAVE_ENDLESS_COMPLETION_SOURCE_UNSUPPORTED",true);}
+                var sources=CompletionRewards.Where(r=>r.PolicyVersion==LocalPostClearPolicy.PolicyVersion&&r.SubjectKind=="ENDLESS_INSTANCE"&&r.Catalog.Use==Use&&r.Catalog.CatalogId=="completion-qa-mobile-candidate-endless"&&r.Catalog.HashSha256==hash).ToArray();
+                LocalSaveCodec.Require(sources.Length==1,"SAVE_ENDLESS_COMPLETION_SOURCE_UNSUPPORTED",true);
+                LocalSaveCodec.Require(done.CompletionCommitId.StartsWith("puzzle-solved:",StringComparison.Ordinal)&&Guid.TryParseExact(done.CompletionCommitId.Substring("puzzle-solved:".Length),"D",out _),"SAVE_ENDLESS_COMPLETION_ATTEMPT_INVALID");
+                if(done.Claim.ProviderOperationId!=null)
+                {var f=done.Claim.ProviderOperationId.Split(':');LocalSaveCodec.Require(f.Length==3&&f[0]=="endless-provider-v1"&&long.TryParse(f[1],NumberStyles.None,CultureInfo.InvariantCulture,out long gen)&&gen>0&&Guid.TryParseExact(f[2],"D",out _),"SAVE_ENDLESS_PROVIDER_BINDING_INVALID");}
+            }
         }
         private static void Eligibility(RetainedCosmeticsBinding binding,RetainedCosmeticItem item,string expected,LocalProfileState state,ICanonicalJson json)
         {LocalSaveCodec.Require(item.Acquisition=="MILESTONE_GRANT","SAVE_COSMETIC_ACQUISITION_MISMATCH");var subjects=item.RequiredCampaignSubjectIds.OrderBy(s=>s,StringComparer.Ordinal).ToArray();var required=subjects.SelectMany(s=>BindingReaders.Expand(binding.Campaign,s)).Distinct().OrderBy(p=>p.PuzzleId,StringComparer.Ordinal).ToArray();var valid=required.Where(id=>state.Levels.Any(l=>l.Identity.Equals(id)&&l.FirstClear!=null)).Select(i=>i.PuzzleId).ToArray();LocalSaveCodec.Require(required.Length>0&&required.Length==valid.Length,"SAVE_COSMETIC_ELIGIBILITY_INVALID");string Strings(IEnumerable<string> s)=>"["+string.Join(",",s.Select(LocalSaveCodec.Q))+"]";string projection=LocalSaveCodec.Object(("catalogId",LocalSaveCodec.Q(binding.Identity.CatalogId)),("catalogRevision",LocalSaveCodec.Write(binding.Identity.Revision)),("catalogHashSha256",LocalSaveCodec.Q(binding.Identity.HashSha256)),("itemId",LocalSaveCodec.Q(item.ItemId)),("acquisition",LocalSaveCodec.Q(item.Acquisition)),("eligibilityContractVersion","1"),("kind",LocalSaveCodec.Q("ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS")),("requiredCampaignSubjectIds",Strings(subjects)),("requiredPuzzleIds",Strings(required.Select(i=>i.PuzzleId))),("validatedFirstClearPuzzleIds",Strings(valid)));LocalSaveCodec.Require(LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,projection))==expected,"SAVE_COSMETIC_ELIGIBILITY_HASH_MISMATCH");}

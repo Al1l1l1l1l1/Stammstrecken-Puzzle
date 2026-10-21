@@ -1,0 +1,157 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-03-01",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 0
+    },
+    "b": {
+      "side": "S",
+      "index": 5
+    }
+  },
+  "rowCounts": [
+    6,
+    1,
+    4,
+    1,
+    4,
+    1
+  ],
+  "columnCounts": [
+    1,
+    1,
+    4,
+    3,
+    3,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 3,
+    "position": 1,
+    "titleKey": "level.s1.03.03.01.title",
+    "statusKey": "level.s1.03.03.01.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.03.01.entry",
+    "focus": [
+      "OCCUPANCY",
+      "CHAIN"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Die zwei unteren langen Bänder beginnen erst in Spalte 2, ihre Verbindungsspalten haben deshalb andere Restzahlen als im älteren 6×6-Serpentinenrückgriff. Als einzelner ruhiger Wiedereinstieg behalten; Position 2 bringt anschließend eine andere Form und deutlich geringere Dichte.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-03-01-map",
+    "trainMomentId": "draft-s1-03-03-01-train",
+    "resultTextKey": "level.s1.03.03.01.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-03-01/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "caea7d826dff94c3d07c883ac265ccf3bf3a25b33172819bdfc3e9b54bc71dd0"
+    }
+  }
+}

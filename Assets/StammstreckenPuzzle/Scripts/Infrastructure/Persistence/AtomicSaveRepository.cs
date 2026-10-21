@@ -226,7 +226,7 @@ namespace STP.Infrastructure.Persistence
                     foreach (var candidate in observed.Candidates.Where(x => x.Provenance.Status == SaveCandidateStatus.Valid))
                     {
                         ct.ThrowIfCancellationRequested();
-                        bool migrated = candidate.Decoded!.SourceSchemaVersion != 2 || candidate.Decoded.SourcePayloadSha256 !=
+                        bool migrated = candidate.Decoded!.SourceSchemaVersion != codec.WriteSchemaVersion || candidate.Decoded.SourcePayloadSha256 !=
                             LocalSaveHash.Bytes(codec.PayloadBytes(candidate.Decoded.Snapshot!.Payload));
                         if (migrated) files.PreserveSource("migration-source", candidate.Provenance.Kind, candidate.Bytes!);
                     }

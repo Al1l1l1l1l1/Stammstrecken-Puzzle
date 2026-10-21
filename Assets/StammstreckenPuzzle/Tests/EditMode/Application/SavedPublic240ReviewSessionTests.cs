@@ -13,6 +13,13 @@ namespace STP.Tests.Application.EditMode
 {
     public sealed class SavedPublic240ReviewSessionTests
     {
+        [Test]
+        public void ModalPauseBlocksNavigationButAllowsAuthoritativeProfileActionAndUnknownWriteClosesBoth()
+        {
+            using var f=new Fixture(candidate:true);f.Open();f.Pump(f.Bridge.SetSuspendedAsync(true,CancellationToken.None));Assert.That(f.Bridge.State.CanNavigate,Is.False);Assert.That(f.Bridge.CanRunProfileAction,Is.True);
+            f.Repo.Hold=new TaskCompletionSource<SaveCommitResult<LocalProfileState>>(TaskCreationOptions.RunContinuationsAsynchronously);f.Repo.Offered=null;var action=f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),true,null),ct),CancellationToken.None);f.Until(()=>f.Repo.Offered!=null);Assert.That(f.Bridge.CanRunProfileAction,Is.False);f.Repo.Release();f.Pump(action);Assert.That(f.Bridge.CanRunProfileAction,Is.True);Assert.That(f.Bridge.State.CanNavigate,Is.False);
+            f.Repo.Result=s=>SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"TEST_UNKNOWN_WRITE");f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),false,null),ct),CancellationToken.None));Assert.That(f.Bridge.CanRunProfileAction,Is.False);Assert.That(f.Bridge.State.CanNavigate,Is.False);Assert.That(f.Bridge.ConfirmedSnapshot,Is.Null);
+        }
         private sealed class QueueDispatcher : ILocalSaveDispatcher
         {
             private readonly int owner = Thread.CurrentThread.ManagedThreadId;
@@ -79,15 +86,15 @@ namespace STP.Tests.Application.EditMode
             internal readonly LocalSaveContractFixtures.PublicCatalog Puzzles;
             internal readonly SaveProfileIdentity Profile;
             internal readonly CatalogSetIdentity Catalogs;
-            internal Fixture(bool missing = false)
+            internal Fixture(bool missing = false,bool candidate=false)
             {
                 var json = LocalSaveContractFixtures.Json;
-                CatalogIdentity Id(string id, char hash) => new CatalogIdentity("qa-public240-v1-" + id, 1, new string(hash, 64), CatalogUse.IsolatedReview, CatalogApprovalStatus.Draft);
+                CatalogIdentity Id(string id, char hash) => new CatalogIdentity((candidate?"qa-mobile-candidate-":"qa-public240-v1-") + id, 1, new string(hash, 64), candidate?CatalogUse.InternalPreview:CatalogUse.IsolatedReview, CatalogApprovalStatus.Draft);
                 var publicId = Id("test-public", 'a'); var campaignId = Id("test-campaign", 'b'); var completionId = Id("test-completion", 'c');
                 string projection = "{\"publicCatalog\":" + LocalSaveHash.CatalogProjection(publicId) + ",\"campaignCatalog\":" + LocalSaveHash.CatalogProjection(campaignId) + ",\"completionCatalog\":" + LocalSaveHash.CatalogProjection(completionId) + "}";
-                var aggregate = new CatalogIdentity("qa-public240-v1-test-aggregate", 1, LocalSaveHash.Bytes(LocalSaveHash.Canonical(json, projection)), CatalogUse.IsolatedReview, CatalogApprovalStatus.Draft);
+                var aggregate = new CatalogIdentity(candidate?"qa-mobile-candidate-test-aggregate":"qa-public240-v1-test-aggregate", 1, LocalSaveHash.Bytes(LocalSaveHash.Canonical(json, projection)), candidate?CatalogUse.InternalPreview:CatalogUse.IsolatedReview, CatalogApprovalStatus.Draft);
                 Catalogs = CatalogSetIdentity.Create(publicId, campaignId, completionId, aggregate, json);
-                Profile = new SaveProfileIdentity("qa-public240-v1", "r", CatalogUse.IsolatedReview);
+                Profile = new SaveProfileIdentity(candidate?SaveProfileIdentity.MobileCandidateNamespace:"qa-public240-v1", candidate?"candidate":"r", candidate?CatalogUse.InternalPreview:CatalogUse.IsolatedReview);
                 var inputs = new[] { Input("S1-01-01-01", 2, 2), Input("S1-01-01-02", 3, 2), Input("S1-01-01-03", 10, 10) };
                 Puzzles = new LocalSaveContractFixtures.PublicCatalog(publicId, inputs);
                 var campaign = new LocalSaveContractFixtures.CampaignCatalog(campaignId, inputs.Select((p, i) => new LockedCampaignEntry(campaignId, p.Identity, "S1", "S1-01", "S1-01-01", i + 1, Array.Empty<string>())).ToArray());
@@ -97,7 +104,7 @@ namespace STP.Tests.Application.EditMode
                 Repo = new Repository(Profile, aggregate);
                 if (!missing) Repo.Stored = new SaveSnapshot<LocalProfileState>(Profile, aggregate, 1, policy.NewProfile(Profile, Catalogs, Clock.UtcNow));
                 Use = new PersistedPuzzleSession(Repo, Puzzles, policy, Profile, Catalogs, Clock, Dispatcher);
-                Bridge = new SavedPublic240ReviewSession(Use, new AutosaveCoordinator(Use), Puzzles, Clock, Dispatcher);
+                Bridge = candidate?SavedPublic240ReviewSession.ForMobileCandidate(Use,new AutosaveCoordinator(Use),Puzzles,Clock,Dispatcher,Profile):new SavedPublic240ReviewSession(Use, new AutosaveCoordinator(Use), Puzzles, Clock, Dispatcher);
             }
             private static PublicPuzzleInput Input(string id, int width, int height)
             {
@@ -121,6 +128,131 @@ namespace STP.Tests.Application.EditMode
             public void Dispose() { Bridge.Dispose(); Dispatcher.Drain(); }
         }
 
+        [Test]
+        public void MenuPauseAndUnpauseDuringHeldMetagameAckReconcileAfterWriteWithoutHiddenTime()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var view=f.Bridge.PuzzleView!;view.Apply(0,1,DevelopmentTool.EmptyMarker,100);f.Clock.MonotonicMilliseconds=150;
+            f.Repo.Offered=null;f.Repo.Hold=new TaskCompletionSource<SaveCommitResult<LocalProfileState>>(TaskCreationOptions.RunContinuationsAsynchronously);
+            var work=f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),true,null),ct),CancellationToken.None);
+            f.Until(()=>f.Repo.Offered!=null);f.Bridge.SetPresentationPaused(true);f.Clock.MonotonicMilliseconds=2000;f.Repo.Release();f.Pump(work);
+            Assert.That(view.IsPaused,Is.True);Assert.That(view.ElapsedAt(2000),Is.EqualTo(50));
+            f.Repo.Offered=null;f.Repo.Hold=new TaskCompletionSource<SaveCommitResult<LocalProfileState>>(TaskCreationOptions.RunContinuationsAsynchronously);
+            var next=f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),false,null),ct),CancellationToken.None);
+            f.Until(()=>f.Repo.Offered!=null);f.Bridge.SetPresentationPaused(false);Assert.That(view.IsPaused,Is.True);f.Clock.MonotonicMilliseconds=3000;f.Repo.Release();f.Pump(next);
+            Assert.That(view.IsPaused,Is.False);Assert.That(view.ElapsedAt(3100),Is.EqualTo(150));
+        }
+        [Test]
+        public void HiddenMenuMetagameAndFocusResumeKeepActiveTimeFrozenUntilPuzzlePresentation()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var view=f.Bridge.PuzzleView!;Assert.That(view.Apply(0,1,DevelopmentTool.EmptyMarker,100),Is.EqualTo(DevelopmentCommandStatus.Applied));f.Clock.MonotonicMilliseconds=150;
+            f.Bridge.SetPresentationPaused(true);Assert.That(view.IsPaused,Is.True);long elapsed=view.ElapsedAt(150);f.Clock.MonotonicMilliseconds=1000;
+            Assert.That(f.Bridge.State.CanNavigate,Is.True);Assert.That(view.ElapsedAt(1000),Is.EqualTo(elapsed));
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(Metagame(f),new DailyRandom(),"2026-10-21",ct),CancellationToken.None));Assert.That(view.IsPaused,Is.True);Assert.That(view.ElapsedAt(2000),Is.EqualTo(elapsed));
+            f.Pump(f.Bridge.SetSuspendedAsync(true,CancellationToken.None));f.Clock.MonotonicMilliseconds=3000;f.Pump(f.Bridge.SetSuspendedAsync(false,CancellationToken.None));Assert.That(view.IsPaused,Is.True);Assert.That(view.ElapsedAt(3000),Is.EqualTo(elapsed));Assert.That(f.Bridge.State.CanNavigate,Is.True);
+            view.Resume(4000);Assert.That(view.IsPaused,Is.True);Assert.That(view.ElapsedAt(4000),Is.EqualTo(elapsed));
+            f.Clock.MonotonicMilliseconds=5000;f.Bridge.SetPresentationPaused(false);Assert.That(view.IsPaused,Is.False);Assert.That(view.ElapsedAt(5100),Is.EqualTo(elapsed+100));
+        }
+        [Test]
+        public void ExternalCallbackCannotBypassAnUncommittedSolvedAttempt()
+        {
+            using var f=new Fixture(candidate:true);f.Open();f.Solve();int calls=0;
+            Assert.That(f.Bridge.CanRunProfileAction,Is.False);
+            var work=f.Use.RunExternalProfileActionAsync(ct=>{calls++;return Task.FromResult(SaveCommitResult<LocalProfileState>.Success(f.Repo.Stored!));},CancellationToken.None);
+            Assert.Throws<ArgumentException>(()=>f.Pump(work));Assert.That(calls,Is.Zero);Assert.That(f.Use.CanPresentResults,Is.False);Assert.That(f.Use.Status,Is.EqualTo(PersistedSessionStatus.CompletionPending));
+        }
+        [TestCase(false)][TestCase(true)]
+        public void ExternalUnknownOutcomeStaysBlockedEvenWhenReloadFindsAValidOldOrNewSnapshot(bool actualCommit)
+        {
+            using var f=new Fixture(candidate:true);f.Open();f.Pump(f.Bridge.SetSuspendedAsync(true,CancellationToken.None));
+            var action=f.Bridge.RunProfileActionAsync((use,ct)=>use.RunExternalProfileActionAsync(async token=>
+            {
+                if(actualCommit)
+                {
+                    var s=f.Repo.Stored!;var next=new SaveSnapshot<LocalProfileState>(s.Profile,s.Catalog,s.Generation+1,LocalSettingsPolicy.Apply(s.Payload,LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),true,null)));
+                    await f.Repo.CommitAsync(next,s.Generation,token).ConfigureAwait(false);
+                }
+                return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"TEST_UNKNOWN_MOBILE_OUTCOME");
+            },ct),CancellationToken.None);f.Pump(action);
+            Assert.That(action.Result.Succeeded,Is.False);Assert.That(f.Use.Status,Is.EqualTo(PersistedSessionStatus.RecoveryRequired));Assert.That(f.Use.CanMutate,Is.False);Assert.That(f.Use.CanPresentResults,Is.False);Assert.That(f.Bridge.ConfirmedSnapshot,Is.Null);
+            f.Pump(f.Bridge.ReloadAsync(CancellationToken.None));Assert.That(f.Use.CanMutate,Is.False);Assert.That(f.Bridge.ConfirmedSnapshot,Is.Null);Assert.That(f.Bridge.State.CanRecover,Is.True);
+        }
+        private sealed class TinyCosmetics:ILockedCosmeticsCatalog
+        {
+            public CatalogIdentity Identity{get;}=new CatalogIdentity("qa-mobile-candidate-test-cosmetics",1,new string('9',64),CatalogUse.InternalPreview,CatalogApprovalStatus.Draft);
+            public IReadOnlyList<CosmeticDefinition> Items{get;}=new[]{CosmeticDefinition.Create("train-default","TRAIN_VARIANT","DRAFT","cosmetic.train-default.title","test/default","DEFAULT",null,Array.Empty<string>()),CosmeticDefinition.Create("obj-test","OPERATING_OBJECT","DRAFT","cosmetic.obj-test.title","test/obj","PATIENCE_PURCHASE",10,Array.Empty<string>())};
+            public bool TryGet(string id,out CosmeticDefinition? item){item=Items.SingleOrDefault(i=>i.Id==id);return item!=null;}
+        }
+        [Test]
+        public void CandidateCosmeticPurchaseAndSelectionShareDailyBalanceAndLiveSnapshot()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var catalog=new TinyCosmetics();var ledger=LocalSaveContractFixtures.Construct<ILocalLedger>("STP.Infrastructure.Persistence","STP.Infrastructure.Persistence.SaveLedgerCodec",LocalSaveContractFixtures.Json);
+            var campaign=new LocalSaveContractFixtures.CampaignCatalog(f.Catalogs.CampaignCatalog,f.Puzzles.Puzzles.Select((p,i)=>new LockedCampaignEntry(f.Catalogs.CampaignCatalog,p.Identity,"S1","S1-01","S1-01-01",i+1,Array.Empty<string>())).ToArray());
+            var cosmetics=new LocalCosmeticsPolicy(catalog,campaign,LocalSaveContractFixtures.Json,ledger);var random=new DailyRandom();
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.GrantCosmeticDefaultsAsync(cosmetics,catalog.Identity.HashSha256,ct),CancellationToken.None));
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(Metagame(f),random,"2026-10-21",ct),CancellationToken.None));
+            var buy=f.Bridge.RunProfileActionAsync((use,ct)=>use.PurchaseCosmeticAsync(cosmetics,"obj-test",catalog.Identity.HashSha256,ct),CancellationToken.None);f.Pump(buy);Assert.That(buy.Result.Succeeded,Is.True);
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.SelectCosmeticsAsync(cosmetics,new[]{"obj-test","train-default"},catalog.Identity.HashSha256,ct),CancellationToken.None));
+            Assert.That(f.Bridge.State.Progress!.BalancePatience,Is.EqualTo(15));Assert.That(f.Bridge.ConfirmedSnapshot!.Payload.Inventory.Ownership.Count,Is.EqualTo(2));Assert.That(f.Bridge.ConfirmedSnapshot.Payload.Inventory.SelectedItemIds,Does.Contain("obj-test"));
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.PurchaseCosmeticAsync(cosmetics,"obj-test",catalog.Identity.HashSha256,ct),CancellationToken.None));Assert.That(f.Bridge.State.Progress.BalancePatience,Is.EqualTo(15));
+            Assert.That(f.Bridge.ConfirmedSnapshot.Payload.EconomyJournal.Count(e=>e.ReasonCode=="COSMETIC_PURCHASE"),Is.EqualTo(1));
+        }
+        [Test]
+        public void ExternalProviderCommitReloadsWholeSnapshotWithoutRetiringAttemptOrCachedRevision()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var view=f.Bridge.PuzzleView;var attempt=view!.AttemptId;var previous=f.Use.Snapshot!;
+            var settings=LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),true,null);
+            var save=f.Bridge.RunProfileActionAsync((use,ct)=>use.RunExternalProfileActionAsync(token=>
+            {
+                var source=f.Repo.Stored!;var next=new SaveSnapshot<LocalProfileState>(source.Profile,source.Catalog,source.Generation+1,LocalSettingsPolicy.Apply(source.Payload,settings));
+                return f.Repo.CommitAsync(next,source.Generation,token);
+            },ct),CancellationToken.None);f.Pump(save);
+            Assert.That(save.Result.Succeeded,Is.True);Assert.That(f.Use.Snapshot!.Generation,Is.GreaterThan(previous.Generation));Assert.That(f.Bridge.ConfirmedSnapshot,Is.SameAs(f.Repo.Stored));Assert.That(f.Bridge.PuzzleView,Is.SameAs(view));Assert.That(view.AttemptId,Is.EqualTo(attempt));
+            Assert.That(f.Bridge.ConfirmedSnapshot!.Payload.Settings.HapticsEnabled,Is.True);Assert.That(view.Revision,Is.EqualTo(f.Use.Session!.Revision));Assert.That(view.Apply(0,1,DevelopmentTool.EmptyMarker,100),Is.EqualTo(DevelopmentCommandStatus.Applied));
+        }
+        private sealed class DailyRandom:ILocalDailyRandom {internal int Calls;public int Next100(){Calls++;return 95;}}
+        private static LocalMetagamePolicy Metagame(Fixture f)=>new LocalMetagamePolicy(f.Puzzles,f.Catalogs.CompletionCatalog,LocalSaveContractFixtures.Construct<ILocalLedger>("STP.Infrastructure.Persistence","STP.Infrastructure.Persistence.SaveLedgerCodec",LocalSaveContractFixtures.Json));
+        [Test]
+        public void CandidateHintCommitRefreshesCachedRevisionBeforeModalResumeAndDoesNotStartTimer()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var policy=Metagame(f);var prepare=f.Bridge.PrepareHintAsync(policy,CancellationToken.None);f.Pump(prepare);var hint=prepare.Result;
+            Assert.That(hint,Is.Not.Null);Assert.That(f.Use.Session!.TimerStarted,Is.False);var receipt=hint!.AcknowledgeDisplayed();
+            var commit=f.Bridge.CommitHintDisplayAsync(policy,receipt,CancellationToken.None);f.Pump(commit);Assert.That(commit.Result.Succeeded,Is.True);
+            Assert.That(f.Bridge.PuzzleView!.Revision,Is.EqualTo(f.Use.Session.Revision));Assert.That(f.Use.Session.HintCount,Is.EqualTo(1));Assert.That(f.Use.Session.TimerStarted,Is.False);
+            int commits=f.Repo.Commits;f.Pump(f.Bridge.CommitHintDisplayAsync(policy,receipt,CancellationToken.None));Assert.That(f.Repo.Commits,Is.EqualTo(commits));
+            f.Pump(f.Bridge.SetSuspendedAsync(false,CancellationToken.None));Assert.That(f.Bridge.PuzzleView.IsPaused,Is.False);Assert.That(f.Use.Session.TimerStarted,Is.False);
+            Assert.That(f.Bridge.PuzzleView.Apply(0,1,DevelopmentTool.EmptyMarker,100),Is.EqualTo(DevelopmentCommandStatus.Applied));Assert.That(f.Bridge.PuzzleView.LastErrorCode,Is.Not.EqualTo("STALE_COMMAND"));
+        }
+        [Test]
+        public void CandidateActionsQueueBehindDraftFlushAndShareConfirmedSnapshotWithSettings()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var random=new DailyRandom();var policy=Metagame(f);
+            f.Repo.Hold=new TaskCompletionSource<SaveCommitResult<LocalProfileState>>(TaskCreationOptions.RunContinuationsAsynchronously);
+            var daily=f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(policy,random,"2026-10-21",ct),CancellationToken.None);
+            f.Until(()=>f.Repo.Offered!=null&&f.Bridge.State.Status==SavedReviewStatus.Saving);
+            var settings=LocalSettings.Create("de-DE",new[]{LocalAudioPreference.Create("Music",25,100)},false,LocalAccessibilityPreference.Create(LocalSettingsPolicy.AccessibilityRevision,true,false));
+            var saved=f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(settings,ct),CancellationToken.None);Assert.That(saved.IsCompleted,Is.False);
+            f.Repo.Release();f.Pump(daily);f.Pump(saved);Assert.That(daily.Result.Succeeded&&saved.Result.Succeeded,Is.True);
+            var snapshot=f.Bridge.ConfirmedSnapshot!;Assert.That(snapshot,Is.SameAs(f.Use.Snapshot));Assert.That(snapshot,Is.SameAs(f.Repo.Stored));Assert.That(snapshot.Payload.Settings,Is.SameAs(settings));
+            Assert.That(snapshot.Payload.Metagame!.Daily.Single().Terminal!.Amount,Is.EqualTo(25));Assert.That(f.Bridge.State.Progress!.BalancePatience,Is.EqualTo(25));Assert.That(random.Calls,Is.EqualTo(1));
+            Assert.That(f.Bridge.PuzzleView!.Revision,Is.EqualTo(f.Use.Session!.Revision));Assert.That(f.Bridge.PuzzleView.IsPaused,Is.False);
+        }
+        [Test]
+        public void CandidateDailyGrantFailureRetryReusesDurableRollAndNeverDoubleCredits()
+        {
+            using var f=new Fixture(candidate:true);f.Open();var random=new DailyRandom();var policy=Metagame(f);
+            f.Repo.Result=s=>s.Payload.Metagame?.Daily.SingleOrDefault()?.Terminal!=null?SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.Failed,"TEST_DAILY_GRANT_FAILED"):null;
+            var failed=f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(policy,random,"2026-10-21",ct),CancellationToken.None);f.Pump(failed);Assert.That(failed.Result.Succeeded,Is.False);
+            Assert.That(f.Use.Snapshot!.Payload.Metagame!.Daily.Single().Terminal,Is.Null);Assert.That(f.Bridge.State.Progress!.BalancePatience,Is.Zero);
+            f.Repo.Result=null;var retry=f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(policy,random,"2026-10-21",ct),CancellationToken.None);f.Pump(retry);Assert.That(retry.Result.Succeeded,Is.True);
+            f.Pump(f.Bridge.RunProfileActionAsync((use,ct)=>use.ClaimFreeDailyAsync(policy,random,"2026-10-21",ct),CancellationToken.None));Assert.That(random.Calls,Is.EqualTo(1));Assert.That(f.Bridge.State.Progress!.BalancePatience,Is.EqualTo(25));
+        }
+        [Test]
+        public void CandidatePreferencesAfterCompletionPreserveCommittedRideAuthority()
+        {
+            using var f=new Fixture(candidate:true);f.Open();f.Solve();f.Pump(f.Bridge.TickAutosaveAsync(CancellationToken.None));Assert.That(f.Use.CanPresentResults,Is.True);
+            var settings=LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),false,null);var saved=f.Bridge.RunProfileActionAsync((use,ct)=>use.SaveSettingsAsync(settings,ct),CancellationToken.None);f.Pump(saved);
+            Assert.That(saved.Result.Succeeded,Is.True);Assert.That(f.Use.CanPresentResults,Is.True);Assert.That(f.Bridge.State.CanStartRide,Is.True);Assert.That(f.Bridge.BeginTrainRide(f.Bridge.PuzzleView!.AttemptId),Is.EqualTo(DevelopmentCommandStatus.Applied));
+        }
         [Test]
         public void MissingColdLoadDoesNotCreateProfileOrFakeAttempt()
         {

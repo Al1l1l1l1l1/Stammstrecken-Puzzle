@@ -54,10 +54,15 @@ Der Ordner `DECISIONS/` enthält die dauerhaft nachvollziehbaren Architecture De
 | [ADR-035](./ADR-035-lokaler-save-und-checkpoint-vertrag.md) | Lokaler Save-, Checkpoint- und Commitvertrag | **Angenommen** | Typisierte Ports, vorhandenes JCS per Injektion, vollständiger Checkpoint/CAS und Commit-vor-Fahrt; Fachverträge bleiben erhalten. |
 
 | [ADR-036](./ADR-036-gespeicherter-public240-qa-entry.md) | Gespeicherter Public240-QA-Entry | **Angenommen** | Ergänzt ADR-034 ausschließlich um die benannte gespeicherte QA-Szene, deren eigene Inspector-/Localegrenze und normalen internen Buildentry; ADR-035 unverändert. |
+| [ADR-037](./ADR-037-hint-daily-save-v3.md) | Identitätsgebundene Hinweise und lokale Tagesclaims in Save v3 | **Angenommen** | Ergänzt P03/P04 und ADR-035 um versionierte Hint-/Dailyrecords und konservative Migration; bestehende Hash-/CAS-/Profilgrenzen bleiben. |
+| [ADR-038](./ADR-038-mobile-provider-runtime-contracts.md) | Mobile Provider Runtime Contracts | **Angenommen** | Ergänzt ADR-020/024 um typisierte Ads-/UMP-/IAPruntimeports, Recoveryevents und durable-grant-gebundene Finalisierung. |
+| [ADR-039](./ADR-039-interner-mobile-candidate-verbraucher.md) | Getrennter interner Mobile-Candidate-Verbraucher | **Angenommen** | Eigener InternalPreview-/qa-mobile-candidate-Verbraucher für echte DRAFTquellen/v3-Funktionen; keine Fixture-/Production-/Legacyprofilpromotion. |
+| [ADR-040](./ADR-040-interner-endless-generator-und-novelty-save.md) | Interner Endlosgenerator und begrenzte Noveltydaten | **Angenommen** | Neue explizite Suchparameter und begrenztes öffentliches50er-Fenster ausschließlich InternalPreview; Hash-/Watermark-/Terminal-/Humanvertragsgrenzen bleiben. |
+| [ADR-041](./ADR-041-begrenzte-endless-ledgerbelege.md) | Begrenzte Endlos-Ledgerbelege | **Angenommen** | Höchstens576 tatsächlich referenzierte Economybelege im neuen Endlosrecord; kein Lifecycle-/Reward-/Terminalarchiv und keine neue Eligibilityautorität. |
 
 ADR-036 ist nach historischem nummeriertem Entwurf, getrennter technischer Review und dokumentierter mandatierter R-Annahme vor I-Fachcode wirksam; nur die geschlossene neue Registrierung wird ergänzt.
 
-Damit existieren **36 ADRs**: 27 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
+Damit existieren **41 ADRs**: 32 sind angenommen und aktuell wirksam; 9 bleiben als ersetzte historische Entscheidungen erhalten. ADR-037/038/039/040/041 wurden am 21.10.2026 vor abhängiger Implementierung getrennt fachlich geprüft und von R innerhalb WP-046 technisch angenommen; ihre konkrete Umsetzung bleibt separat nachzuweisen. Bei Widerspruch gilt das jüngere ausdrücklich ersetzende ADR. Teilersetzung oder Ergänzung ist nur zulässig, wenn Umfang und fortgeltender Teil im ADR und in diesem Index ausdrücklich benannt sind.
 
 ## Wann ein ADR erforderlich ist
 

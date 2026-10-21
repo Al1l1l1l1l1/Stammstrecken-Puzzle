@@ -32,7 +32,7 @@ namespace STP.Application
     public enum PersistedSessionStatus { Unloaded,NeedsInitialization,Ready,RecoveryRequired,Writing,CompletionPending,ProgressCommitted }
 
     /// <summary>Serializes local saves and exposes committed progress only after verified repository acknowledgement.</summary>
-    public sealed class PersistedPuzzleSession
+    public sealed partial class PersistedPuzzleSession
     {
         private readonly ILocalProfileRepository repository;private readonly IPublicPuzzleCatalog puzzles;private readonly LocalProgressPolicy policy;private readonly SaveProfileIdentity profile;private readonly CatalogSetIdentity catalogs;private readonly ILocalSessionClock clock;private readonly ILocalSaveDispatcher dispatcher;private readonly SemaphoreSlim writer=new SemaphoreSlim(1,1);
         private SaveSnapshot<LocalProfileState>? durable;private PuzzleSessionState? session;private SaveRepositoryObservation? recoveryObservation;private bool blocked=true;private bool requiresExplicitRecovery;private bool needsPromotion;private bool completionCommitted;private Guid? committedAttempt;private PublicPuzzleIdentity? committedPuzzle;private PuzzleSessionCheckpoint? restoredCheckpoint;
@@ -51,6 +51,8 @@ namespace STP.Application
         public bool CanPresentResults=>completionCommitted&&!blocked&&session!=null&&session.Phase==SessionPhase.SolvedPendingCommit&&committedAttempt==session.AttemptId&&committedPuzzle!=null&&committedPuzzle.PuzzleId==session.PuzzleId&&committedPuzzle.HashProfile==session.PublicPuzzleHashProfile&&committedPuzzle.HashSha256==session.PublicPuzzleHashSha256;
         /// <summary>Whether user domain commands may execute now.</summary>
         public bool CanMutate=>!blocked&&!needsPromotion&&!completionCommitted&&session!=null&&(session.Phase==SessionPhase.Ready||session.Phase==SessionPhase.Active||session.Phase==SessionPhase.Suspended);
+        /// <summary>Current locked-graph access for map selection; no hidden stars or new save truth.</summary>
+        public bool CanEnter(PublicPuzzleIdentity identity)=>!blocked&&!needsPromotion&&durable!=null&&policy.CanEnter(durable.Payload,identity);
         private bool Bound(SaveSnapshot<LocalProfileState> s)=>s.Profile.Equals(profile)&&s.Catalog.Equals(catalogs.AggregateCatalog)&&s.Payload.Profile.Identity.Equals(profile)&&s.Payload.Profile.CatalogSet.Equals(catalogs);
         private async Task<T> Capture<T>(Func<T> capture)
         {T value=default!;await dispatcher.InvokeAsync(()=>value=capture()).ConfigureAwait(false);return value;}
@@ -109,7 +111,7 @@ namespace STP.Application
                 var input=await Capture(()=>(Allowed:!blocked&&!needsPromotion&&durable!=null&&session!=null,Snapshot:durable,Session:session,Restored:restoredCheckpoint,Monotonic:clock.MonotonicMilliseconds,Utc:clock.UtcNow)).ConfigureAwait(false);
                 if(!input.Allowed)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_USE_CASE_BLOCKED");
                 if(input.Session!.Phase==SessionPhase.SolvedPendingCommit)return await CompleteUnderLock(cancellationToken).ConfigureAwait(false);
-                var payload=await Task.Run(()=>{var cp=PuzzleSessionCheckpoint.Export(input.Session,input.Monotonic);if(input.Restored!=null&&cp.StartedAtUtc==input.Restored.StartedAtUtc&&cp.LastSavedAtUtc==input.Restored.LastSavedAtUtc)cp=cp.WithDiagnosticText(input.Restored.StartedAtUtcText,input.Restored.LastSavedAtUtcText);var identity=new PublicPuzzleIdentity(cp.PuzzleId,cp.PublicPuzzleHashProfile,cp.PublicPuzzleHashSha256);var draft=LocalDraft.Create(identity,input.Utc,cp);var p=input.Snapshot!.Payload;return policy.WithDraft(p,draft);},cancellationToken).ConfigureAwait(false);return await CommitUnderLock(payload,false,cancellationToken).ConfigureAwait(false);
+                var payload=await Task.Run(()=>{if(input.Session.Mode==SessionMode.ENDLESS){LocalModel.Require(endlessPolicy!=null,"ENDLESS_COMPOSITION_REQUIRED");return endlessPolicy!.SaveDraft(input.Snapshot!.Payload,input.Session,input.Monotonic);}var cp=PuzzleSessionCheckpoint.Export(input.Session,input.Monotonic);if(input.Restored!=null&&cp.StartedAtUtc==input.Restored.StartedAtUtc&&cp.LastSavedAtUtc==input.Restored.LastSavedAtUtc)cp=cp.WithDiagnosticText(input.Restored.StartedAtUtcText,input.Restored.LastSavedAtUtcText);var identity=new PublicPuzzleIdentity(cp.PuzzleId,cp.PublicPuzzleHashProfile,cp.PublicPuzzleHashSha256);var draft=LocalDraft.Create(identity,input.Utc,cp);var p=input.Snapshot!.Payload;return policy.WithDraft(p,draft);},cancellationToken).ConfigureAwait(false);return await CommitUnderLock(payload,false,cancellationToken).ConfigureAwait(false);
             }finally{writer.Release();}
         }
         /// <summary>Commits completion after all earlier draft saves; no presentation or reward success precedes the acknowledgement.</summary>
@@ -119,6 +121,7 @@ namespace STP.Application
         {
             var input=await Capture(()=>(Allowed:!blocked&&!needsPromotion&&durable!=null&&session!=null&&session.Phase==SessionPhase.SolvedPendingCommit,Snapshot:durable,Session:session,Utc:clock.UtcNow)).ConfigureAwait(false);
             if(!input.Allowed)return SaveCommitResult<LocalProfileState>.Failure(SaveCommitStatus.RecoveryRequired,"SAVE_USE_CASE_BLOCKED");
+            if(input.Session!.Mode==SessionMode.ENDLESS)return await CompleteEndlessUnderLock(input.Snapshot!.Payload,input.Session,input.Utc,ct).ConfigureAwait(false);
             var replayed=input.Session!;var replaySnapshot=input.Snapshot!;var projection=await Task.Run(()=>policy.Complete(replaySnapshot.Payload,replayed,checked(replaySnapshot.Generation+1),input.Utc),ct).ConfigureAwait(false);
             if(projection.AlreadyCommitted){await dispatcher.InvokeAsync(()=>{if(!ReferenceEquals(session,replayed)||blocked)return;completionCommitted=true;committedAttempt=replayed.AttemptId;committedPuzzle=new PublicPuzzleIdentity(replayed.PuzzleId,replayed.PublicPuzzleHashProfile,replayed.PublicPuzzleHashSha256);Status=PersistedSessionStatus.ProgressCommitted;}).ConfigureAwait(false);return SaveCommitResult<LocalProfileState>.Success(replaySnapshot);}
             return await CommitUnderLock(projection.State,true,ct,null,replayed).ConfigureAwait(false);

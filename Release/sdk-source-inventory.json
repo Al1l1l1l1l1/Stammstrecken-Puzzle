@@ -1,0 +1,166 @@
+{
+  "inventoryVersion": 1,
+  "evidenceKind": "IMPORTED_SDK_SOURCE_INVENTORY",
+  "manifestSha256": "31015c6af2c16ef92abdcdbc85cdd74cbfc6bd1fcb56aebe240110259d00bb65",
+  "packageLockSha256": "c0546fcef740d38cf05c19150c4d3101b1aee920dcf61c23d5ea8aebdf1648c9",
+  "problems": [],
+  "packages": [
+    {
+      "name": "com.google.ads.mobile",
+      "version": "11.5.0",
+      "packageJsonSha256": "78899ebb8f4f9e83eb6938ed47c8fa0b7af955e991069206cd2303bd647121f2",
+      "licenses": [
+        {
+          "path": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/LICENSE.md",
+          "sha256": "eb5d0724b2ae76a94ae804c44b3d6cfaaca822b7d42907aefa9256cb93db6fe0"
+        }
+      ],
+      "nativeDeclarations": [
+        {
+          "platform": "android",
+          "specifier": "com.google.android.gms:play-services-ads:25.4.0",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml",
+          "sourceSha256": "b3b62fe64ffc69861f4c58dd3cb5e2c2fd7e667c32fb93cc22e1969415a9d386"
+        },
+        {
+          "platform": "android",
+          "specifier": "androidx.constraintlayout:constraintlayout:2.1.4",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml",
+          "sourceSha256": "b3b62fe64ffc69861f4c58dd3cb5e2c2fd7e667c32fb93cc22e1969415a9d386"
+        },
+        {
+          "platform": "android",
+          "specifier": "androidx.lifecycle:lifecycle-process:2.6.2",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml",
+          "sourceSha256": "b3b62fe64ffc69861f4c58dd3cb5e2c2fd7e667c32fb93cc22e1969415a9d386"
+        },
+        {
+          "platform": "android",
+          "specifier": "androidx.fragment:fragment:1.7.1",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml",
+          "sourceSha256": "b3b62fe64ffc69861f4c58dd3cb5e2c2fd7e667c32fb93cc22e1969415a9d386"
+        },
+        {
+          "platform": "ios",
+          "name": "Google-Mobile-Ads-SDK",
+          "specifier": "~> 13.9",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml",
+          "sourceSha256": "b3b62fe64ffc69861f4c58dd3cb5e2c2fd7e667c32fb93cc22e1969415a9d386"
+        },
+        {
+          "platform": "android",
+          "specifier": "com.google.android.ump:user-messaging-platform:4.0.0",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleUmpDependencies.xml",
+          "sourceSha256": "3738581c56ca3e81da385c5d1cdbad7ff7cb1182781fb7493bf62ce34a6abd0f"
+        },
+        {
+          "platform": "ios",
+          "name": "GoogleUserMessagingPlatform",
+          "specifier": "3.1.0",
+          "source": "Library/PackageCache/com.google.ads.mobile@0e7fbe087950/GoogleMobileAds/Editor/GoogleUmpDependencies.xml",
+          "sourceSha256": "3738581c56ca3e81da385c5d1cdbad7ff7cb1182781fb7493bf62ce34a6abd0f"
+        }
+      ]
+    },
+    {
+      "name": "com.google.external-dependency-manager",
+      "version": "1.2.187",
+      "packageJsonSha256": "5d17688b784d4b389e90817ed492bd3163f2803e4967408c61e7a31cd4aab0fb",
+      "licenses": [
+        {
+          "path": "Library/PackageCache/com.google.external-dependency-manager@f5312a5700af/LICENSE.md",
+          "sha256": "f76f18185c04ec80175330572b38e40772dccda80f4bf0868e042e4e5b0b58a5"
+        }
+      ],
+      "nativeDeclarations": []
+    },
+    {
+      "name": "com.unity.purchasing",
+      "version": "5.4.3",
+      "packageJsonSha256": "bfaa5a07ddde9dc82b95d88a477e71de3d8478462b7686e57f11b5c68e6f7e7e",
+      "licenses": [
+        {
+          "path": "Library/PackageCache/com.unity.purchasing@c771cfd27c96/LICENSE.md",
+          "sha256": "068acd9a9ce7e4ce55c80b9a92fe039d80a2fb9ba206e19edf8f0211ba013da9"
+        },
+        {
+          "path": "Library/PackageCache/com.unity.purchasing@c771cfd27c96/Third Party Notices.md",
+          "sha256": "79c2d7349739a30787888c6e79ae780c3e8b6e364d9bfba4a9ea6fc1ae6bae60"
+        }
+      ],
+      "nativeDeclarations": [
+        {
+          "platform": "android",
+          "source": "Library/PackageCache/com.unity.purchasing@c771cfd27c96/Plugins/UnityPurchasing/Android/IAPResolver/IAPAndroidDependencies.cs",
+          "sourceSha256": "9e3f687fb8040ad126070bae41ee625cdaf9b13b9275df44cbb565608052768f",
+          "inspectionRequired": "Resolve exact declared billing dependencies and archive Gradle lock/native artifact hashes."
+        }
+      ]
+    },
+    {
+      "name": "com.unity.services.core",
+      "version": "1.18.0",
+      "packageJsonSha256": "e3fb33ea64f9f6a2f275a6667b763778bd70b3afacf1da9c392ca9aa46ff414e",
+      "licenses": [
+        {
+          "path": "Library/PackageCache/com.unity.services.core@3464cb68d709/LICENSE.md",
+          "sha256": "4d420941694555cbb3309715dd852d78f18daea5e5a758f39433d7070ffefb62"
+        }
+      ],
+      "nativeDeclarations": []
+    }
+  ],
+  "applicationSourceInputs": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/Resources/BillingMode.json",
+      "sha256": "7b15cfeef90aebae19207b130175fbc1726b66f7d42d105abc0426cee002ba92"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/Resources/BillingMode.json.meta",
+      "sha256": "da3acfbefa5c4f82e64708efb0574f9224ca4a78d9e3be19b565dbd5bb38b83b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/MobileEditorPrivacyDefaults.cs",
+      "sha256": "eed765052f5c1e77ac708cff7e43b4291dc51bb734f7e0251c3cc068c342fc38"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/MobilePrivacyBuildGuard.cs",
+      "sha256": "df66c40b371a2431fe282f9380bb83151a7733cffb6967ce54ae35ff24f2b284"
+    },
+    {
+      "path": "Assets/Plugins/Android/StpPrivacy.androidlib/AndroidManifest.xml",
+      "sha256": "a850863e1fb1861f562b9f7f75c858042c5ecb531db05860c30da2795b493ec6"
+    },
+    {
+      "path": "Assets/Plugins/iOS/StpStoreKitVerifier.swift",
+      "sha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce"
+    },
+    {
+      "path": "Assets/Plugins/iOS/StpHaptics.mm",
+      "sha256": "432a2861e768ad58415250bb4e5144a78733b99c5fdb5e6b73963c26af6892c0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/NativeHapticsAdapter.cs",
+      "sha256": "579e61a1d1f6a9dc22a939e8f597bb9f8c0196f5e7c601ca4308dae1b45a791a"
+    },
+    {
+      "path": "Content/Assets/build-product-audio.cjs",
+      "sha256": "adb52e8006cd4b29ca13d410435a6607e664d58789aa62910e5065f23c39f22c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Audio/Cues/audio-provenance-v1.json",
+      "sha256": "ba06ec2ffaef60ba0c9b61ad1213113f329e31fff937f3e6633f767001d7e72e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Fonts/PROVENANCE.json",
+      "sha256": "7dd256fd21a828a31d766eab7afa26aa8be90e97771d61ed6dc0821ac30321d6"
+    }
+  ],
+  "editorStartupOrderValidated": false,
+  "nativeResolvedLocksValidated": false,
+  "runtimeValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false
+}

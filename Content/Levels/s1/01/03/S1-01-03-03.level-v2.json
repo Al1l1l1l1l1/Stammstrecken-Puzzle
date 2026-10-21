@@ -1,0 +1,118 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-03-03",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 0
+    },
+    "b": {
+      "side": "W",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "columnCounts": [
+    5,
+    5,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 3,
+    "position": 3,
+    "titleKey": "level.s1.01.03.03.title",
+    "statusKey": "level.s1.01.03.03.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.03.03.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Die vollständig belegten linken Spalten lassen jede Formentscheidung durch Ports weiterlaufen. Für die erste explizite Kurvenlektion ist das schmale Feld sinnvoll; die identische Belegungsmaske des späteren S1-01-04-08 ist dort dagegen keine passende Verdichtung und wurde ersetzt.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-03-03-map",
+    "trainMomentId": "draft-s1-01-03-03-train",
+    "resultTextKey": "level.s1.01.03.03.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-03-03/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "337f118d19da00b4b683d2ca65a6fefdf3f4d5383e123f3c516733ce497bc9df"
+    }
+  }
+}

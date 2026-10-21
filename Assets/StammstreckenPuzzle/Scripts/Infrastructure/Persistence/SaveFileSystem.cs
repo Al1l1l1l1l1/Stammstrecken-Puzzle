@@ -25,9 +25,9 @@ namespace STP.Infrastructure.Persistence
             if (profile.Use != catalog.Use) throw new ArgumentException("SAVE_PROFILE_CATALOG_MISMATCH");
             root = Path.GetFullPath(privateRoot).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             if (root.Length == 0) root = Path.GetPathRoot(Path.GetFullPath(privateRoot))!;
-            string use = profile.Use == CatalogUse.IsolatedReview ? SaveProfileIdentity.Public240ReviewNamespace :
-                profile.Use == CatalogUse.Production ? "production-v1" : "contract-test-v1";
-            var parts = profile.Use == CatalogUse.IsolatedReview ? new[] { use, catalog.HashSha256, Segment(profile.ProfileId) } :
+            string use = profile.Use == CatalogUse.IsolatedReview ? SaveProfileIdentity.Public240ReviewNamespace : profile.Use == CatalogUse.InternalPreview ? SaveProfileIdentity.MobileCandidateNamespace :
+                profile.Use == CatalogUse.Production ? "production-v1" : profile.Use == CatalogUse.ContractTest ? "contract-test-v1" : throw new ArgumentException("SAVE_CATALOG_USE_MISMATCH");
+            var parts = profile.Use == CatalogUse.IsolatedReview || profile.Use == CatalogUse.InternalPreview ? new[] { use, catalog.HashSha256, Segment(profile.ProfileId) } :
                 new[] { use, Segment(profile.Namespace), catalog.HashSha256, Segment(profile.ProfileId) };
             Segment(profile.Namespace);
             directory = parts.Aggregate(root, Path.Combine);
