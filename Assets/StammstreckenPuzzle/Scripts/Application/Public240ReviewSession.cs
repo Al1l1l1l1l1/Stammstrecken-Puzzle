@@ -264,6 +264,21 @@ namespace STP.Application
             return Applied();
         }
 
+        // ADR042 observation hooks. Historical public QA construction and commands remain unchanged.
+        internal Public240ReviewSession(PublicPuzzleInput puzzle,PuzzleSessionCheckpoint checkpoint):this(puzzle)
+        {
+            state=checkpoint.Restore(definition,puzzle.Identity.PuzzleId,puzzle.Identity.HashProfile,puzzle.Identity.HashSha256).Value??throw new ArgumentException("HUMAN_CHECKPOINT_INVALID");
+            evaluation=PuzzleEvaluator.Evaluate(definition,state.Cells);
+            Phase=state.Phase==SessionPhase.SolvedPendingCommit?DevelopmentPreviewPhase.TrainRide:DevelopmentPreviewPhase.Editing;
+            if(evaluation.Completed)builtPath=Array.AsReadOnly(evaluation.Path.Select(c=>new DevelopmentCell(c.X,c.Y)).ToArray());
+        }
+        internal PuzzleSessionCheckpoint CaptureHumanCheckpoint(long now)=>PuzzleSessionCheckpoint.Export(state,now);
+        internal DevelopmentCommandStatus RecordHumanHint(SafeHintDisplayReceipt receipt,long now)
+        {
+            if(!receipt.Identity.Equals(Puzzle.Identity))return Reject("STALE_HINT_IDENTITY");
+            return Execute(new RecordHintDisplayed(receipt.DisplayId,receipt.ExpectedRevision,receipt.AttemptId),now,new DevelopmentCommandEnvelope(receipt.AttemptId,receipt.DisplayId,receipt.ExpectedRevision));
+        }
+
         private PuzzleSessionState CreateAttempt()
         {
             return PuzzleSessionState.Create(definition, Puzzle.Identity.PuzzleId, Puzzle.Identity.HashProfile,

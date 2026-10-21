@@ -82,15 +82,18 @@ namespace STP.Editor.Build
 
         // Inspect the saved document, without loading/repairing a scene or relying on unrelated dependencies.
         internal static void ValidateSceneReferences(string text,string installerGuid,string[] fields,string[] guids,long[] ids)
+            =>ValidateTypedSceneReferences(text,installerGuid,fields,guids,ids,Enumerable.Repeat(3,fields.Length).ToArray());
+
+        internal static void ValidateTypedSceneReferences(string text,string installerGuid,string[] fields,string[] guids,long[] ids,int[] types)
         {
             if(!text.StartsWith("%YAML 1.1",StringComparison.Ordinal)||!Regex.IsMatch(installerGuid,"^[a-f0-9]{32}$")||
-                fields.Length!=guids.Length||fields.Length!=ids.Length)throw new InvalidOperationException("PREVIEW_SCENE_TEXT_INVALID");
+                fields.Length!=guids.Length||fields.Length!=ids.Length||fields.Length!=types.Length||types.Any(t=>t!=2&&t!=3))throw new InvalidOperationException("PREVIEW_SCENE_TEXT_INVALID");
             var blocks=Regex.Split(text,@"(?m)^--- !u!").Where(block=>Regex.IsMatch(block,@"\A114 &-?\d+\r?\nMonoBehaviour:\r?\n")&&Regex.IsMatch(block,
                 @"(?m)^  m_Script: \{fileID: 11500000, guid: "+Regex.Escape(installerGuid)+@", type: 3\}\r?$")).ToArray();
             if(blocks.Length!=1||Regex.Matches(blocks[0],@"(?m)^  m_Script:").Count!=1)throw new InvalidOperationException("PREVIEW_INSTALLER_COUNT_INVALID");
             for(int i=0;i<fields.Length;i++)
             {
-                var values=Regex.Matches(blocks[0],@"(?m)^  "+Regex.Escape(fields[i])+@": \{fileID: (-?\d+), guid: ([a-f0-9]{32}), type: 3\}\r?$");
+                var values=Regex.Matches(blocks[0],@"(?m)^  "+Regex.Escape(fields[i])+@": \{fileID: (-?\d+), guid: ([a-f0-9]{32}), type: "+types[i].ToString(CultureInfo.InvariantCulture)+@"\}\r?$");
                 if(Regex.Matches(blocks[0],@"(?m)^  "+Regex.Escape(fields[i])+@":").Count!=1||values.Count!=1||
                     values[0].Groups[1].Value!=ids[i].ToString(CultureInfo.InvariantCulture)||values[0].Groups[2].Value!=guids[i])
                     throw new InvalidOperationException("PREVIEW_ENDLESS_SCENE_REFERENCE_INVALID:"+fields[i]);
@@ -108,6 +111,7 @@ namespace STP.Editor.Build
         public static void BuildAndroid()
         {
             MobilePrivacyBuildGuard.RequireBuildTarget(BuildTarget.Android);
+            MobileIconAssets.VerifyForActiveTarget();
             VerifyArtifacts(); StpBuildEntrypoints.VerifyScaffoldBuildIdentity();
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
             PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
@@ -120,6 +124,7 @@ namespace STP.Editor.Build
         public static void ExportIos()
         {
             MobilePrivacyBuildGuard.RequireBuildTarget(BuildTarget.iOS);
+            MobileIconAssets.VerifyForActiveTarget();
             VerifyArtifacts(); StpBuildEntrypoints.VerifyScaffoldBuildIdentity();
             Build("Builds/MobilePreview/iOS", BuildTarget.iOS);
         }

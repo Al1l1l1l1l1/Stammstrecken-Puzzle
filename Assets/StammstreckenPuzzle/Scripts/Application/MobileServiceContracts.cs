@@ -13,6 +13,7 @@ namespace STP.Application
         public static void Validate(string applicationId, bool production)
         {
             if (string.IsNullOrWhiteSpace(applicationId)) throw new ArgumentException("MOBILE_APPLICATION_ID_REQUIRED");
+            if (applicationId.EndsWith(".human", StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("MOBILE_HUMAN_PROVIDER_FORBIDDEN");
             bool isolated = applicationId.EndsWith(".qa", StringComparison.OrdinalIgnoreCase) || applicationId.EndsWith(".dev", StringComparison.OrdinalIgnoreCase) || applicationId.EndsWith(".staging", StringComparison.OrdinalIgnoreCase);
             if (isolated == production) throw new ArgumentException("MOBILE_APPLICATION_PROFILE_MISMATCH");
         }

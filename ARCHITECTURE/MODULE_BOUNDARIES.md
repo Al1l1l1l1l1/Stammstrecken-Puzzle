@@ -105,6 +105,12 @@ Jede Testassembly besitzt ihre gleichnamige `.asmdef`-Datei direkt in ihrem phys
 
 Tests dürfen Produktionsassemblies referenzieren. Produktionsassemblies dürfen nie Testassemblies oder Fixturepfade referenzieren.
 
+### Aktuelle externe SDKkanten im WP046-Candidate
+
+ADR038 und die tatsächliche Paketmontage ergänzen ausschließlich externe Paketverweise: `STP.MobileServices.Store` referenziert `Unity.Purchasing`, `Unity.Purchasing.Security`, `Unity.Purchasing.SecurityStub` und `Unity.Purchasing.SecurityCore`. `STP.Presentation.UI` behält `Unity.Localization`. Die internen Produktionskanten aus Abschnitt3 bleiben unverändert; keine SDKkante wird in Application oder Domain eingeführt.
+
+Die tatsächlichen engen Testkanten werden im CI-Preflight weiter exakt geprüft. Application- und Bootstraptests verwenden Domain/Solver direkt für tatsächliche Session-/Proof-/Generatorfälle, Mobiletests zusätzlich Application für die Adapterverträge. Dies ist keine neue Produktionskante oder Freigabe beliebiger externer Assemblies.
+
 ## 5. Nicht normative Visualisierung der internen Kanten
 
 Der Graph visualisiert ausschließlich die in Abschnitt 3 erlaubten internen Kanten. Bei Abweichung gilt die Tabelle; der Dokumentkonsistenztest muss jede Abweichung melden.

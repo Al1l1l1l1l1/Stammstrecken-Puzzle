@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -23,8 +24,23 @@ def non_empty(value: str) -> str:
     return value
 
 
+def resolve_android_tools(editor_data: Path, windows: bool | None = None) -> tuple[Path, Path, Path]:
+    """Resolve the pinned Unity-bundled SDK on its actual host; never fall back to unpinned PATH tools."""
+    windows = os.name == "nt" if windows is None else windows
+    android = editor_data / "PlaybackEngines/AndroidPlayer"
+    suffix = ".exe" if windows else ""
+    java = android / ("OpenJDK/bin/java" + suffix)
+    buildtools = android / "SDK/build-tools/36.0.0"
+    cmdline = android / "SDK/cmdline-tools/16.0"
+    for path in (java, buildtools / ("aapt2" + suffix), buildtools / "lib/apksigner.jar", cmdline / "lib/apkanalyzer-classpath.jar"):
+        if not path.is_file():
+            raise FileNotFoundError("PINNED_ANDROID_AUDIT_TOOL_MISSING:" + str(path))
+    return java, buildtools / ("aapt2" + suffix), cmdline
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2], help="Build-input workspace, including its actual Bee artifacts")
     parser.add_argument("--apk", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True, help="New archive directory; never overwritten")
     parser.add_argument("--build-log", type=Path, required=True)
@@ -32,13 +48,13 @@ def main() -> int:
     parser.add_argument("--build-label", type=non_empty, required=True, help="Explicit identity of this actual build; never inferred from GitHEAD")
     parser.add_argument("--source-binding", type=non_empty, required=True, help="Caller-provided exact build-input description, including commit and preserved deltas when available; not independently attested by this tool")
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[2]
+    root = args.project_root.resolve()
+    java, aapt2, cmdline = resolve_android_tools(args.editor_data)
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     apk = out / args.apk.name
     shutil.copy2(args.apk, apk)
     android = args.editor_data / "PlaybackEngines/AndroidPlayer"
-    java = android / "OpenJDK/bin/java.exe"
     buildtools = android / "SDK/build-tools/36.0.0"
     artifacts: list[dict] = []
     problems: list[str] = []
@@ -95,8 +111,8 @@ def main() -> int:
                     archive.write(source, source.relative_to(il2cpp).as_posix())
         record(generated, "BEE_GENERATED_IL2CPP_INPUT_ARCHIVE")
     signature = command("signature-verification.txt", [str(java), "-jar", str(buildtools / "lib/apksigner.jar"), "verify", "--verbose", "--print-certs", str(apk)])
-    command("badging.txt", [str(buildtools / "aapt2.exe"), "dump", "badging", str(apk)])
-    analyzer = [str(java), "-Dcom.android.sdklib.toolsdir=" + str(android / "SDK/cmdline-tools/16.0"), "-classpath", str(android / "SDK/cmdline-tools/16.0/lib/apkanalyzer-classpath.jar"), "com.android.tools.apk.analyzer.ApkAnalyzerCli"]
+    command("badging.txt", [str(aapt2), "dump", "badging", str(apk)])
+    analyzer = [str(java), "-Dcom.android.sdklib.toolsdir=" + str(cmdline), "-classpath", str(cmdline / "lib/apkanalyzer-classpath.jar"), "com.android.tools.apk.analyzer.ApkAnalyzerCli"]
     manifest = command("packaged-AndroidManifest.xml", analyzer + ["manifest", "print", str(apk)])
     android_ns = "{http://schemas.android.com/apk/res/android}"
     manifest_summary: dict = {}

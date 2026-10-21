@@ -9,13 +9,13 @@ using UnityEngine.UIElements;
 namespace STP.Presentation.UI
 {
     /// <summary>Phone-first game navigation, direct cell intents and confirmed-save presentation.</summary>
-    public sealed class ProductionGamePresenter : IDisposable
+    public sealed partial class ProductionGamePresenter : IDisposable
     {
         private enum Screen { Home, Map, Puzzle, Depot, Profile }
         private readonly int ownerThread=Thread.CurrentThread.ManagedThreadId;
         private readonly ProductionGameLocalization locale;
         private readonly Func<long> clock;
-        private readonly Func<SavedReviewUiRequest,Task> runRequest;
+        private readonly Func<SavedReviewUiRequest,Task>? runRequest;
         private readonly Dictionary<string,Button> buttons=new Dictionary<string,Button>(StringComparer.Ordinal);
         private readonly Dictionary<string,Action> actions=new Dictionary<string,Action>(StringComparer.Ordinal);
         private readonly Button[] tools=new Button[9];
@@ -91,10 +91,14 @@ namespace STP.Presentation.UI
         /// <summary>Creates the product view on a cloned UXML tree; no repository or provider is opened.</summary>
         public ProductionGamePresenter(VisualElement root,TextAsset productLocale,Func<long> monotonicMilliseconds,
             Func<SavedReviewUiRequest,Task> runRequest)
+            :this(root,productLocale,monotonicMilliseconds)
+        {this.runRequest=runRequest??throw new ArgumentNullException(nameof(runRequest));}
+
+        /// <summary>Creates the same view without a saved-profile callback, for the exclusive assigned-review composition.</summary>
+        public ProductionGamePresenter(VisualElement root,TextAsset productLocale,Func<long> monotonicMilliseconds)
         {
             Root=root??throw new ArgumentNullException(nameof(root));
             clock=monotonicMilliseconds??throw new ArgumentNullException(nameof(monotonicMilliseconds));
-            this.runRequest=runRequest??throw new ArgumentNullException(nameof(runRequest));
             locale=new ProductionGameLocalization(productLocale);
             try
             {
@@ -114,16 +118,16 @@ namespace STP.Presentation.UI
                 AddButton("home-map","map.open",()=>Navigate(Screen.Map));
                 AddButton("map-back","back",()=>Navigate(Screen.Home));
                 AddButton("map-previous","map.previous",()=>ChangeMapRoute(-1));AddButton("map-next","map.next",()=>ChangeMapRoute(1));
-                AddButton("puzzle-back","back",()=>Navigate(Screen.Home));
+                AddButton("puzzle-back","back",BackFromPuzzle);
                 AddButton("puzzle-undo","undo",Undo);
                 AddButton("puzzle-hint","hint",RequestHint);
                 AddButton("hint-close","notice.close",CloseHint);
                 AddButton("hint-retry","hint.retry",RetryHintCommit);
                 AddButton("hint-video","hint.video",RequestHintVideo);AddButton("hint-request","hint.request",PrepareOpenHint);
-                hintDisplayGate=new HintDisplayGate(Require<VisualElement>("hint-overlay"),Require<Label>("hint-fact"));
+                hintDisplayGate=new HintDisplayGate(Require<VisualElement>("hint-overlay"),Require<Label>("hint-fact"),()=>!externalUiSuspended);
                 AddButton("puzzle-zoom","zoom",ToggleZoom);
                 AddButton("result-next","result.next",ContinueFromResult);
-                AddButton("result-home","result.home",()=>Navigate(Screen.Home));
+                AddButton("result-home","result.home",BackFromResult);
                 AddButton("nav-home","nav.home",()=>Navigate(Screen.Home));
                 AddButton("nav-depot","nav.depot",()=>Navigate(Screen.Depot));
                 AddButton("nav-profile","nav.profile",()=>Navigate(Screen.Profile));
@@ -179,7 +183,7 @@ namespace STP.Presentation.UI
         /// <summary>Binds the actual saved bridge exactly once.</summary>
         public void BindModel(SavedPublic240ReviewSession value)
         {
-            CheckThread();if(disposed||model!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");
+            CheckThread();if(disposed||model!=null||assignedReview!=null||runRequest==null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");
             model=value??throw new ArgumentNullException(nameof(value));StartupPhase=SavedStartupPhase.Bound;requestFault=false;requestCancelled=false;Refresh();
         }
         /// <summary>Shows model-free loading without a fabricated session.</summary>
@@ -216,31 +220,31 @@ namespace STP.Presentation.UI
         public void BindCosmetics(ILockedCosmeticsCatalog catalog,Func<string,bool> owns,Func<string,bool> equipped,
             Func<string,bool> canAct,Func<string,Task> requestAction)
         {
-            CheckThread();cosmeticsCatalog=catalog??throw new ArgumentNullException(nameof(catalog));ownsCosmetic=owns??throw new ArgumentNullException(nameof(owns));
+            CheckThread();CheckProductBinding();cosmeticsCatalog=catalog??throw new ArgumentNullException(nameof(catalog));ownsCosmetic=owns??throw new ArgumentNullException(nameof(owns));
             equippedCosmetic=equipped??throw new ArgumentNullException(nameof(equipped));canActCosmetic=canAct??throw new ArgumentNullException(nameof(canAct));cosmeticAction=requestAction??throw new ArgumentNullException(nameof(requestAction));Refresh();
         }
         /// <summary>Binds root-managed safe hint preparation, durable display acknowledgement and confirmed credits.</summary>
         public void BindHints(Func<Task<SafePuzzleHint?>> prepare,Func<SafeHintDisplayReceipt,Task> acknowledge,Func<int> credits)
         {
-            CheckThread();if(disposed||hintHelpOpen)throw new InvalidOperationException("HINT_BINDING_NOT_AVAILABLE");
+            CheckThread();if(disposed||hintHelpOpen||assignedReview!=null)throw new InvalidOperationException("HINT_BINDING_NOT_AVAILABLE");
             prepareHint=prepare??throw new ArgumentNullException(nameof(prepare));commitHint=acknowledge??throw new ArgumentNullException(nameof(acknowledge));hintCreditCount=credits??throw new ArgumentNullException(nameof(credits));
         }
 
         /// <summary>Binds an explicitly requested optional extra-credit video, only after regular credits are exhausted.</summary>
         public void BindHintVideo(Func<bool> canRequest,Func<Task> request)
-        {CheckThread();canRequestHintVideo=canRequest??throw new ArgumentNullException(nameof(canRequest));requestHintVideo=request??throw new ArgumentNullException(nameof(request));}
+        {CheckThread();CheckProductBinding();canRequestHintVideo=canRequest??throw new ArgumentNullException(nameof(canRequest));requestHintVideo=request??throw new ArgumentNullException(nameof(request));}
         /// <summary>Root suppresses the native semantic hierarchy during actual SDK, focus or lifecycle interruptions.</summary>
-        public void SetAccessibilitySuspended(bool value){CheckThread();if(!disposed)accessibility.SetSuspended(value);}
+        public void SetAccessibilitySuspended(bool value){CheckThread();if(disposed)return;var changed=externalUiSuspended!=value;externalUiSuspended=value;if(changed)assignedReview?.SetSuspension(HumanPauseReason.External,value);accessibility.SetSuspended(value);if(!value)hintDisplayGate.Recheck();}
         /// <summary>Binds optional action feedback.</summary>
         public void BindFeedback(Action<ProductionFeedbackCue> receive){CheckThread();feedback=receive??throw new ArgumentNullException(nameof(receive));}
         private void EmitFeedback(ProductionFeedbackCue cue){try{feedback?.Invoke(cue);}catch{ /* Optional presentation feedback has no gameplay authority. */ }}
         /// <summary>Binds the Root policy invoked only by the explicit Next button of an actual completed ride.</summary>
-        public void BindResultContinuation(Func<Task> beforeContinue){CheckThread();resultContinuation.Bind(beforeContinue);}
+        public void BindResultContinuation(Func<Task> beforeContinue){CheckThread();CheckProductBinding();resultContinuation.Bind(beforeContinue);}
         /// <summary>Binds actual four-profile postgame eligibility and exact saved record operations.</summary>
         public void BindEndless(Func<EndlessView> read,Func<string,Task> startProfile,Func<string,Task> resumeId,Func<string,Task> abandonId)
-        {CheckThread();postgamePanels.BindEndless(read,startProfile,resumeId,abandonId);}
+        {CheckThread();CheckProductBinding();postgamePanels.BindEndless(read,startProfile,resumeId,abandonId);}
         /// <summary>Binds explicit video or provider-free skip on an open generated completion record.</summary>
-        public void BindEndlessReward(Func<string,bool> canRequest,Func<string,bool,Task> request,Func<string,bool>? canSkip=null){CheckThread();postgamePanels.BindEndlessReward(canRequest,request,canSkip);}
+        public void BindEndlessReward(Func<string,bool> canRequest,Func<string,bool,Task> request,Func<string,bool>? canSkip=null){CheckThread();CheckProductBinding();postgamePanels.BindEndlessReward(canRequest,request,canSkip);}
         /// <summary>Resolves an actual generated profile through the product locale, without campaign identities or generator details.</summary>
         public ProductionPuzzleDisplay ResolveEndlessDisplay(string profileId)
         {
@@ -249,13 +253,13 @@ namespace STP.Presentation.UI
             return new ProductionPuzzleDisplay(L("endless.title"),L("endless.profile."+profileId),L("endless.puzzle.title"),L("puzzle.instruction"),L("endless.puzzle.result"));
         }
         /// <summary>Binds the actual optional +10 completion claim; task completion alone never grants it.</summary>
-        public void BindCompletionBonus(Func<CompletionBonusView> read,Func<bool,Task> request){CheckThread();postgamePanels.BindCompletionBonus(read,request);}
+        public void BindCompletionBonus(Func<CompletionBonusView> read,Func<bool,Task> request){CheckThread();CheckProductBinding();postgamePanels.BindCompletionBonus(read,request);}
         /// <summary>Binds actual saved campaign best records for card and profile projection.</summary>
-        public void BindCampaignRecords(Func<int,CampaignPuzzleRecord> read){CheckThread();readCampaignRecord=read??throw new ArgumentNullException(nameof(read));renderedRecordGeneration=-1;renderedMapGeneration=-1;Refresh();}
+        public void BindCampaignRecords(Func<int,CampaignPuzzleRecord> read){CheckThread();CheckProductBinding();readCampaignRecord=read??throw new ArgumentNullException(nameof(read));renderedRecordGeneration=-1;renderedMapGeneration=-1;Refresh();}
         /// <summary>Binds localized metadata for actual generated identities, without inserting them into the campaign.</summary>
         public void BindDynamicPuzzleText(Func<string,ProductionPuzzleDisplay?> read){CheckThread();readDynamicText=read??throw new ArgumentNullException(nameof(read));}
         /// <summary>Binds the actual saved FIRST_RUN/PRACTICE/REVISION/ENDLESS mode name, never inferring it from later progress.</summary>
-        public void BindActivePuzzleMode(Func<string?> read){CheckThread();activePuzzleMode=read??throw new ArgumentNullException(nameof(read));}
+        public void BindActivePuzzleMode(Func<string?> read){CheckThread();CheckProductBinding();activePuzzleMode=read??throw new ArgumentNullException(nameof(read));}
         /// <summary>Root calls this after the actual generic saved session has bound, never after a merely proposed generation.</summary>
         public void ShowCurrentPuzzle()
         {
@@ -263,17 +267,17 @@ namespace STP.Presentation.UI
             postgamePanels.CloseForPuzzle();screen=Screen.Puzzle;Refresh();
         }
         /// <summary>Binds actual persistent Daily eligibility and Root-owned free or optional video flow.</summary>
-        public void BindDaily(Func<DailyView> read,Func<bool,Task> action){CheckThread();productPanels.BindDaily(read,action);}
+        public void BindDaily(Func<DailyView> read,Func<bool,Task> action){CheckThread();CheckProductBinding();productPanels.BindDaily(read,action);}
         /// <summary>Binds immutable settings and an acknowledged atomic save, retaining all untouched fields.</summary>
-        public void BindSettings(Func<LocalSettings> read,Func<LocalSettings,Task> save){CheckThread();productPanels.BindSettings(read,save);}
+        public void BindSettings(Func<LocalSettings> read,Func<LocalSettings,Task> save){CheckThread();CheckProductBinding();productPanels.BindSettings(read,save);}
         /// <summary>Binds actual native privacy/Store readiness and explicitly requested actions.</summary>
-        public void BindServices(Func<ProductionServiceState> read,Func<ProductionServiceAction,Task> action){CheckThread();productPanels.BindServices(read,action);}
+        public void BindServices(Func<ProductionServiceState> read,Func<ProductionServiceAction,Task> action){CheckThread();CheckProductBinding();productPanels.BindServices(read,action);}
         /// <summary>Binds the exact 720 player texts; draft use requires an explicit internal opt-in.</summary>
         public void BindCampaignText(TextAsset source,bool allowInternalDraft=false)
         {CheckThread();if(campaignText!=null)throw new InvalidOperationException("CAMPAIGN_TEXT_ALREADY_BOUND");campaignText=new ProductionCampaignText(source,allowInternalDraft);renderedRecordGeneration=-1;Refresh();}
         /// <summary>Binds actual identity-based clear and unlock policy, rather than inferring identities from a total.</summary>
         public void BindCampaignProgress(Func<int,bool> cleared,Func<int,bool> canOpen,Func<int> recommendedIndex)
-        {CheckThread();clearedPuzzle=cleared??throw new ArgumentNullException(nameof(cleared));canOpenPuzzle=canOpen??throw new ArgumentNullException(nameof(canOpen));recommendedPuzzle=recommendedIndex??throw new ArgumentNullException(nameof(recommendedIndex));mapClears=-1;Refresh();}
+        {CheckThread();CheckProductBinding();clearedPuzzle=cleared??throw new ArgumentNullException(nameof(cleared));canOpenPuzzle=canOpen??throw new ArgumentNullException(nameof(canOpen));recommendedPuzzle=recommendedIndex??throw new ArgumentNullException(nameof(recommendedIndex));mapClears=-1;Refresh();}
         /// <summary>Projects the actual selected canonical cosmetic IDs; this does not grant ownership or affect rules.</summary>
         public void SetActiveCosmetics(IReadOnlyList<string> ids)
         {
@@ -290,7 +294,7 @@ namespace STP.Presentation.UI
         /// <summary>Refreshes confirmed state without rebuilding cells or changing their layout.</summary>
         public void Refresh()
         {
-            CheckThread();if(disposed)return;PollRequest();PollHint();PollHintVideo();productPanels.Refresh();postgamePanels.Refresh();
+            CheckThread();if(disposed)return;PollRequest();PollHint();PollHintVideo();if(assignedReview!=null){RefreshAssignedReview();return;}productPanels.Refresh();postgamePanels.Refresh();
             var currentResult=screen==Screen.Puzzle&&model?.PuzzleView?.Phase==DevelopmentPreviewPhase.Results;
             if(resultContinuation.PollWhenReady(currentResult,CanContinueResult,model?.PuzzleView?.AttemptId??Guid.Empty))OpenNext();
             var startup=Require<VisualElement>("startup-overlay");startup.style.display=model==null?DisplayStyle.Flex:DisplayStyle.None;
@@ -302,12 +306,7 @@ namespace STP.Presentation.UI
                 return;
             }
             var state=model.State;
-            if(!ReferenceEquals(view,model.PuzzleView))
-            {
-                Grid?.Dispose();Grid?.RemoveFromHierarchy();view=model.PuzzleView;renderedRevision=-1;renderedSecond=-1;zoom=false;
-                if(view!=null){Grid=new ProductionPuzzleGrid(view,locale.Resolve,ActivateCell);viewport.Add(Grid);Grid.SetTrainAppearance(selectedCosmetics);LayoutGridViewport();viewport.scrollOffset=Vector2.zero;}
-                else Grid=null;
-            }
+            BindPuzzleView(model.PuzzleView);
             var clear=pending==null&&!requestFault&&!postgamePanels.IsBusy&&!resultContinuation.IsPending;
             var editing=clear&&!IsProductModalOpen&&state.CanMutate&&view!=null&&view.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
             if(view!=null&&view.Phase==DevelopmentPreviewPhase.TrainRide)screen=Screen.Puzzle;
@@ -387,7 +386,7 @@ namespace STP.Presentation.UI
         public void Dispose()
         {
             CheckThread();if(disposed)return;disposed=true;StartupPhase=SavedStartupPhase.Disposed;Unsubscribe();hintDisplayGate.Dispose();accessibility.Dispose();resultSheet.Dispose();productPanels.Dispose();postgamePanels.Dispose();resultContinuation.Dispose();campaignText?.Dispose();
-            ObserveLateFault(pending);ObserveLateFault(hintPreparation);ObserveLateFault(hintCommit);ObserveLateFault(hintVideoTask);
+            ObserveLateFault(pending);ObserveLateFault(hintPreparation);ObserveLateFault(hintCommit);ObserveLateFault(hintVideoTask);DisposeAssignedReview();
             viewport.UnregisterCallback<GeometryChangedEvent>(OnViewportGeometry);Grid?.Dispose();Grid?.RemoveFromHierarchy();Grid=null;feedback=null;locale.Dispose();
         }
         /// <summary>Closed own localization key for each existing field content.</summary>
@@ -423,7 +422,7 @@ namespace STP.Presentation.UI
         private string L(string key,params object[] args)=>locale.Resolve(key,args);
         private T Require<T>(string id)where T:VisualElement=>Root.Q<T>(id)??throw new InvalidOperationException("PRODUCT_UI_ELEMENT_MISSING:"+id);
         private void CheckThread(){if(Thread.CurrentThread.ManagedThreadId!=ownerThread)throw new InvalidOperationException("PRODUCT_UI_WRONG_THREAD");}
-        private void CheckStartup(){CheckThread();if(disposed)throw new ObjectDisposedException(nameof(ProductionGamePresenter));if(model!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");}
+        private void CheckStartup(){CheckThread();if(disposed)throw new ObjectDisposedException(nameof(ProductionGamePresenter));if(model!=null||assignedReview!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");}
         private void AddButton(string id,string key,Action action)
         {var button=Require<Button>(id);button.text=L(key);if(key=="back")button.tooltip=L("accessibility.back");buttons.Add(id,button);actions.Add(id,action);button.clicked+=action;}
         private void Unsubscribe(){foreach(var pair in actions)if(buttons.TryGetValue(pair.Key,out var button))button.clicked-=pair.Value;}
@@ -437,13 +436,14 @@ namespace STP.Presentation.UI
         }
         private void Navigate(Screen next)
         {
+            if(assignedReview!=null)return;
             if(disposed||pending!=null||resultContinuation.IsPending||view?.Phase==DevelopmentPreviewPhase.TrainRide)return;
             if(screen==Screen.Puzzle&&next!=Screen.Puzzle&&view?.Phase==DevelopmentPreviewPhase.Editing)view.Pause(clock());
             screen=next;Refresh();
         }
         private bool CanContinueResult=>!disposed&&screen==Screen.Puzzle&&!hintHelpOpen&&!productPanels.IsModalOpen&&!postgamePanels.IsModalOpen&&pending==null&&!requestFault&&!postgamePanels.IsBusy&&model?.State.Status==SavedReviewStatus.Results&&model.State.CanNavigate&&model.PuzzleView?.Phase==DevelopmentPreviewPhase.Results;
         private void ContinueFromResult()
-        {if(resultContinuation.TryBegin(CanContinueResult,model?.PuzzleView?.AttemptId??Guid.Empty))Refresh();}
+        {if(assignedReview!=null){AdvanceAssignedReview();return;}if(resultContinuation.TryBegin(CanContinueResult,model?.PuzzleView?.AttemptId??Guid.Empty))Refresh();}
         private void OpenNext()
         {
             if(model==null||pending!=null||resultContinuation.IsPending||requestFault)return;
@@ -489,7 +489,7 @@ namespace STP.Presentation.UI
         {
             if(!CanEdit||view==null||hintPreparation!=null)return;
             if(prepareHint==null||commitHint==null||hintCreditCount==null){ShowNotice("hint.title","hint.body");return;}
-            hintView=view;view.Pause(clock());hintAttempt=view.AttemptId;hintRevision=view.Revision;
+            hintView=view;assignedReview?.SetSuspension(HumanPauseReason.Hint,true);view.Pause(clock());hintAttempt=view.AttemptId;hintRevision=view.Revision;
             hintHelpOpen=true;hintOffer=null;hintReceipt=null;hintAcknowledged=false;hintCommitFailed=false;hintVideoFailed=false;hintDisplayGate.Cancel();
             Require<Label>("hint-fact").text=L("hint.preparing");Require<Label>("hint-explanation").text=string.Empty;
             try
@@ -594,13 +594,13 @@ namespace STP.Presentation.UI
         private void CloseHint()
         {
             if(!hintHelpOpen||hintVideoTask!=null||(hintOffer!=null&&!hintAcknowledged))return;
-            hintHelpOpen=false;hintDisplayGate.Cancel();
+            hintHelpOpen=false;hintDisplayGate.Cancel();assignedReview?.SetSuspension(HumanPauseReason.Hint,false);
             if(view!=null&&hintView!=null&&ReferenceEquals(view,hintView)&&view.AttemptId==hintAttempt&&view.IsPaused)view.Resume(clock());
             Refresh();
         }
         private static void ObserveLateFault(Task? task)
         {if(task!=null)_=task.ContinueWith(completed=>{_ = completed.Exception;},CancellationToken.None,TaskContinuationOptions.OnlyOnFaulted,TaskScheduler.Default);}
-        private bool CanEdit=>!disposed&&!IsProductModalOpen&&!postgamePanels.IsBusy&&!hintHelpOpen&&pending==null&&!requestFault&&model?.State.CanMutate==true&&view?.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
+        private bool CanEdit=>!disposed&&!IsProductModalOpen&&!postgamePanels.IsBusy&&!hintHelpOpen&&pending==null&&!requestFault&&(assignedReview!=null?AssignedCanEdit:model?.State.CanMutate==true)&&view?.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
         private void ActivateCell(int x,int y)
         {
             if(!CanEdit||view==null)return;
@@ -656,7 +656,7 @@ namespace STP.Presentation.UI
         private void Send(SavedReviewUiRequest request)
         {
             if(disposed||pending!=null)return;
-            try{pending=runRequest(request)??throw new InvalidOperationException("PRODUCT_REQUEST_NULL");}
+            try{pending=(runRequest??throw new InvalidOperationException("PRODUCT_SAVED_REQUEST_UNBOUND"))(request)??throw new InvalidOperationException("PRODUCT_REQUEST_NULL");}
             catch{requestFault=true;pending=null;}
             Refresh();
         }

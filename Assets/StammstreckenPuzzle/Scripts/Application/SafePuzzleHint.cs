@@ -23,6 +23,9 @@ namespace STP.Application
         public string RuleCode { get; }
         /// <summary>One objectively safe cell fact; displaying it does not fill the board.</summary>
         public CellContent Content { get; }
+        /// <summary>Internal before-display reservation identity, without acknowledging a visible hint.</summary>
+        internal Guid ReservedDisplayId=>displayId;
+        internal long ReservedRevision=>revision;
         /// <summary>Call only after the help view actually displayed this conclusion successfully.</summary>
         public SafeHintDisplayReceipt AcknowledgeDisplayed() => new SafeHintDisplayReceipt(puzzle, attempt, revision, displayId);
     }

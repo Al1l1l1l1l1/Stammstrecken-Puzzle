@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableNETAnalyzers>false</EnableNETAnalyzers><EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <Target Name="RequireExplicitSource" BeforeTargets="BeforeBuild" Condition="'$(StpRepositoryRoot)' == ''"><Error Text="Pass -p:StpRepositoryRoot=the exact source snapshot root." /></Target>
+  <ItemGroup>
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Application/**/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/*.cs" />
+    <Compile Include="*.cs" />
+  </ItemGroup>
+</Project>

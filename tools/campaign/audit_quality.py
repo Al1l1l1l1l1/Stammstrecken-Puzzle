@@ -44,7 +44,7 @@ def main() -> None:
               "initialHumanSampleCount": sum(x["humanSampleRequired"] for x in entries),
               "humanAcceptance": "NOT_EXECUTED", "starTimesReleased": False, "entries": entries}
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"PASS: {len(entries)} bound inputs, {report['targetedLateCount']} targeted late tasks, {report['initialHumanSampleCount']} initial human cases; no human/time approval asserted.")
 
 

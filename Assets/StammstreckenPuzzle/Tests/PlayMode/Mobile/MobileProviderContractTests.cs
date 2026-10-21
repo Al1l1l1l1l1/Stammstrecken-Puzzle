@@ -203,6 +203,18 @@ namespace STP.Tests.Mobile.PlayMode
             else Assert.Throws<ArgumentException>(() => GoogleAdConfiguration.TestAds(app, false));
         }
 
+        [TestCase("com.STP.StammstreckenPuzzle.human", false)]
+        [TestCase("com.STP.StammstreckenPuzzle.human", true)]
+        [TestCase("com.STP.StammstreckenPuzzle.HUMAN", false)]
+        [TestCase("com.STP.StammstreckenPuzzle.HUMAN", true)]
+        public void HumanObservationIdentityIsNeverAnAdvertisingOrStoreProfile(string applicationId, bool production)
+        {
+            var unit = production ? "ca-app-pub-1111111111111111/2222222222" : "ca-app-pub-3940256099942544/1033173712";
+            Assert.That(Assert.Throws<ArgumentException>(() => new GoogleAdConfiguration(applicationId, unit, unit, production))!.Message, Is.EqualTo("MOBILE_HUMAN_PROVIDER_FORBIDDEN"));
+            Assert.That(Assert.Throws<ArgumentException>(() => new StoreConfiguration(applicationId, "controlled-product", "GooglePlay", production, "controlled-policy"))!.Message, Is.EqualTo("MOBILE_HUMAN_PROVIDER_FORBIDDEN"));
+            Assert.That(Assert.Throws<ArgumentException>(() => new MobilePurchaseBinding("GooglePlay", applicationId, "controlled-product", production))!.Message, Is.EqualTo("MOBILE_HUMAN_PROVIDER_FORBIDDEN"));
+        }
+
         [Test]
         public void DuplicateLoadDoesNotDestroyTheAcceptedNativeAd()
         {

@@ -175,15 +175,15 @@ class ChangeScopeTests(unittest.TestCase):
             "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
             "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
             "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
-            "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
-            "iOS-Xcodeprojekt exportieren und kompilieren",
+            "Vollständigen Android-Candidate bauen und tatsächliches APK prüfen",
+            "Vollständigen iOS-Candidate exportieren und Quellen prüfen",
             "Testergebnisse archivieren",
             "Android-Buildartefakt archivieren",
         ):
             self.assertIn(f"- name: {step}", workflow, step)
         self.assertEqual(workflow.count("--activate-all --include-personal"), 6)
         self.assertEqual(workflow.count("--deactivate-all || true"), 4)
-        self.assertEqual(workflow.count("actions/upload-artifact@"), 3)
+        self.assertEqual(workflow.count("actions/upload-artifact@"), 4)
 
     def test_actual_unity_workflow_has_cheap_preflight_and_gates_all_unity_work(self) -> None:
         root = pathlib.Path(__file__).resolve().parents[2]
@@ -214,20 +214,50 @@ class ChangeScopeTests(unittest.TestCase):
             self.assertIn("requires_unity == 'true'", block, job)
         self.assertIn("cancel-in-progress: false", workflow)
 
-    def test_originalrecipe_comparison_keeps_unity_jobs_unchanged_from_wp045_anchor(self) -> None:
+    def test_candidate_recipe_updates_keep_unaffected_jobs_and_seat_controls(self) -> None:
         root = pathlib.Path(__file__).resolve().parents[2]
         anchor = "8d2ff1950fa72777014eda0555b02b6e9fd9a995"
         result = subprocess.run(
             ["git", "show", f"{anchor}:.github/workflows/unity.yml"],
             cwd=root,
             text=True,
+            encoding="utf-8",
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
         current = (root / ".github/workflows/unity.yml").read_text(encoding="utf-8")
-        self.assertEqual(subject.normalize_unity_control(result.stdout), subject.normalize_unity_control(current))
+        def jobs(source: str) -> dict[str, str]:
+            normalized = subject.normalize_unity_control(source)
+            starts = list(re.finditer(r"^  ([a-z][a-z0-9-]+):\n", normalized, re.MULTILINE))
+            return {match.group(1): normalized[match.start():starts[i+1].start() if i+1 < len(starts) else len(normalized)]
+                    for i, match in enumerate(starts)}
+        original_jobs, current_jobs = jobs(result.stdout), jobs(current)
+        self.assertEqual(set(original_jobs), set(current_jobs))
+        changed = {"project-preflight", "unity-android-development-il2cpp", "unity-ios-export"}
+        for name in original_jobs.keys() - changed:
+            self.assertEqual(original_jobs[name], current_jobs[name], name)
+        for name in changed - {"project-preflight"}:
+            old, new = original_jobs[name], current_jobs[name]
+            # WP046 intentionally builds the actual full game and Pods workspace.
+            # Routing, runner readiness and single-seat ownership stay exact.
+            controls = ("needs:", "    if:", "runs-on:", "concurrency:", "group:", "timeout-minutes:",
+                        "--activate-all --include-personal", "--deactivate-all || true")
+            for control in controls:
+                def selected(block: str) -> list[str]:
+                    return [line for line in block.splitlines()
+                            if (line.startswith(control) if control == "    if:" else control in line)]
+                self.assertEqual(selected(old), selected(new), (name, control))
+        self.assertIn("-buildTarget Android", current_jobs["unity-android-development-il2cpp"])
+        self.assertIn("-executeMethod STP.Editor.Build.MobilePreviewBuild.BuildAndroid", current)
+        self.assertIn("tools/release/audit_android_apk.py", current)
+        self.assertIn("-buildTarget iOS", current_jobs["unity-ios-export"])
+        self.assertIn("-executeMethod STP.Editor.Build.MobilePreviewBuild.ExportIos", current)
+        self.assertIn("pod install --project-directory=Builds/MobilePreview/iOS --repo-update", current)
+        self.assertIn("-workspace Builds/MobilePreview/iOS/Unity-iPhone.xcworkspace", current)
+        self.assertIn("CODE_SIGNING_ALLOWED=NO", current)
+        self.assertIn("unsigned-app.zip", current)
 
     def test_actual_validate_workflow_is_deterministically_wired_and_scoped(self) -> None:
         root = pathlib.Path(__file__).resolve().parents[2]
@@ -235,8 +265,8 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertNotIn("\t", workflow)
         self.assertIn("name: Architecture Validation", workflow)
         self.assertIn('pull_request:\n    branches: ["**"]', workflow)
-        self.assertIn("STP_SCOPE: governance", workflow)
-        self.assertIn("STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-045.governance.scope.json", workflow)
+        self.assertIn("STP_SCOPE: production", workflow)
+        self.assertIn("STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-046.production.scope.json", workflow)
         self.assertIn("tools/ci/test_change_scope.py", workflow)
         self.assertIn("tools/ci/change_scope.py", workflow)
         self.assertIn("if: steps.classify.outputs.run_jcs == 'true'", workflow)

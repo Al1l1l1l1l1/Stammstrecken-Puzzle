@@ -202,15 +202,16 @@ jobs:
           test_expected = {
               "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
               "STP.Tests.Solver.EditMode": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
-              "STP.Tests.Application.EditMode": {"STP.Application"},
+              "STP.Tests.Application.EditMode": {"STP.Application", "STP.Puzzle.Domain", "STP.Puzzle.Solver"},
               "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
               "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Editor.Content"},
               "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
-              "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
+              "STP.Tests.Mobile.PlayMode": {"STP.Application", "STP.MobileServices.Google", "STP.MobileServices.Store"},
               "STP.Tests.Bootstrap.PlayMode": {
                   "STP.Bootstrap", "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
                   "STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform",
                   "STP.Audio", "STP.Presentation.UI", "STP.Presentation.World",
+                  "STP.Puzzle.Domain", "STP.Puzzle.Solver",
               },
               "STP.Tests.Device": {"STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform"},
           }
@@ -235,9 +236,11 @@ jobs:
           for name, (path, data) in sorted(found.items()):
               refs = set(data.get("references", []))
               if name in expected:
-                  # ADR033: only this pre-existing external package edge is added;
-                  # the declared internal graph and every other exact edge stay closed.
-                  external = {"Unity.Localization"} if name == "STP.Presentation.UI" else set()
+                  # Exact approved external SDK edges; the internal graph stays closed.
+                  external = {
+                      "STP.Presentation.UI": {"Unity.Localization"},
+                      "STP.MobileServices.Store": {"Unity.Purchasing", "Unity.Purchasing.Security", "Unity.Purchasing.SecurityStub", "Unity.Purchasing.SecurityCore"},
+                  }.get(name, set())
                   expected_refs = expected[name] | external
                   if refs != expected_refs:
                       errors.append(f"references:{name}: erwartet={sorted(expected_refs)} tatsaechlich={sorted(refs)}")
@@ -986,7 +989,7 @@ jobs:
           key: Library-linux-android-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-android-6000.3.23f1-
 
-      - name: Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)
+      - name: Vollständigen Android-Candidate bauen und tatsächliches APK prüfen
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
@@ -996,6 +999,8 @@ jobs:
             -w "${GITHUB_WORKSPACE}" \
             -e UNITY_EMAIL -e UNITY_PASSWORD \
             -e STP_PROJECT_PATH="${GITHUB_WORKSPACE}" \
+            -e STP_BUILD_LABEL="ci-android-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            -e STP_SOURCE_BINDING="CI checkout ${GITHUB_SHA}; run ${GITHUB_RUN_ID}/${GITHUB_RUN_ATTEMPT}; declared MobilePreviewBuild settings, no independent clean-source attestation" \
             "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
             bash -c '
               set -euo pipefail
@@ -1004,10 +1009,17 @@ jobs:
               trap deactivate EXIT
               "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
               "${LIC_CLIENT}" --showEntitlements
+              mkdir -p Builds/CI/Android
               unity-editor -batchmode -nographics -projectPath "${STP_PROJECT_PATH}" \
-                -buildTarget android \
-                -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
-                -quit -logFile -
+                -buildTarget Android \
+                -executeMethod STP.Editor.Build.MobilePreviewBuild.BuildAndroid \
+                -quit -logFile Builds/CI/Android/unity-build.log
+              python3 tools/release/audit_android_apk.py \
+                --apk Builds/MobilePreview/Android/stp-mobile-preview.apk \
+                --output Builds/CI/Android/apk-audit \
+                --build-log Builds/CI/Android/unity-build.log \
+                --editor-data /opt/unity/Editor/Data \
+                --build-label "${STP_BUILD_LABEL}" --source-binding "${STP_SOURCE_BINDING}"
             '
 
       - name: Android-Buildartefakt archivieren
@@ -1015,7 +1027,9 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: android-development-il2cpp
-          path: Builds/Android/
+          path: |
+            Builds/MobilePreview/Android/
+            Builds/CI/Android/
 
   unity-ios-export:
     name: unity-ios-export
@@ -1090,17 +1104,62 @@ jobs:
           "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
           "${LIC_CLIENT}" --showEntitlements
 
-      - name: iOS-Xcodeprojekt exportieren und kompilieren
+      - name: Vollständigen iOS-Candidate exportieren und Quellen prüfen
         run: |
+          set -euo pipefail
+          mkdir -p Builds/CI/iOS
           "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
             -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -buildTarget ios \
-            -executeMethod STP.Editor.Build.StpBuildEntrypoints.ExportIosXcodeProjectIl2Cpp \
-            -quit -logFile -
-          xcodebuild -project Builds/iOS/Xcode/Unity-iPhone.xcodeproj \
+            -buildTarget iOS \
+            -executeMethod STP.Editor.Build.MobilePreviewBuild.ExportIos \
+            -quit -logFile Builds/CI/iOS/unity-export.log
+          python3 tools/release/audit_ios_export.py \
+            --export Builds/MobilePreview/iOS --output Builds/CI/iOS/export-audit \
+            --build-log Builds/CI/iOS/unity-export.log \
+            --editor-report Library/LastBuild.buildreport \
+            --build-label "ci-ios-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            --source-binding "CI checkout ${GITHUB_SHA}; run ${GITHUB_RUN_ID}/${GITHUB_RUN_ATTEMPT}; declared MobilePreviewBuild settings, no independent clean-source attestation"
+
+      - name: Tatsächliche exportierte CocoaPods-Abhängigkeiten auflösen
+        run: |
+          set -euo pipefail
+          if ! command -v pod >/dev/null 2>&1; then brew install cocoapods; fi
+          pod --version | tee Builds/CI/iOS/cocoapods-version.txt
+          pod install --project-directory=Builds/MobilePreview/iOS --repo-update 2>&1 | tee Builds/CI/iOS/pod-install.log
+          test -f Builds/MobilePreview/iOS/Podfile.lock
+          test -d Builds/MobilePreview/iOS/Unity-iPhone.xcworkspace
+          cp Builds/MobilePreview/iOS/Podfile Builds/MobilePreview/iOS/Podfile.lock Builds/CI/iOS/
+          cp Builds/MobilePreview/iOS/Pods/Manifest.lock Builds/CI/iOS/Pods-Manifest.lock
+
+      - name: Native iOS-Workspace mit Xcode 26+ kompilieren (ohne Signing)
+        run: |
+          set -euo pipefail
+          xcodebuild -workspace Builds/MobilePreview/iOS/Unity-iPhone.xcworkspace \
             -scheme Unity-iPhone -configuration Release \
             -destination 'generic/platform=iOS' \
-            CODE_SIGNING_ALLOWED=NO build
+            -derivedDataPath .utmp/ci-ios-derived-data \
+            -resultBundlePath Builds/CI/iOS/native-build.xcresult \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee Builds/CI/iOS/xcodebuild.log
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          products=Path('.utmp/ci-ios-derived-data/Build/Products/Release-iphoneos')
+          apps=list(products.glob('*.app'))
+          if len(apps)!=1: raise SystemExit('NATIVE_IOS_APP_PRODUCT_COUNT_INVALID')
+          files=[{'path':p.relative_to(products).as_posix(),'sizeBytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(apps[0].rglob('*')) if p.is_file()]
+          archive=Path('Builds/CI/iOS/unsigned-app.zip')
+          with zipfile.ZipFile(archive,'x',zipfile.ZIP_DEFLATED,compresslevel=1) as z:
+              for p in sorted(apps[0].rglob('*')):
+                  if p.is_file(): z.write(p,p.relative_to(products).as_posix())
+          Path('Builds/CI/iOS/native-products.json').write_text(json.dumps({'evidenceKind':'ACTUAL_UNSIGNED_XCODE_BUILD_PRODUCTS','files':files,'archiveSha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'productionSigned':False,'deviceValidated':False,'sandboxValidated':False,'promotionAllowed':False},indent=2)+'\n')
+          PY
+
+      - name: iOS-Export- und Nativecompilebelege archivieren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ios-candidate-export-native-compile
+          path: Builds/CI/iOS/
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()

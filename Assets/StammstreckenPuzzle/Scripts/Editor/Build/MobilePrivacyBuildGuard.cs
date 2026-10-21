@@ -25,7 +25,8 @@ namespace STP.Editor.Build
         /// <summary>Runs after provider configuration processors.</summary>
         public int callbackOrder => int.MaxValue;
         /// <summary>Target-specific native hooks must already exist in the loaded editor assembly.</summary>
-        public void OnPreprocessBuild(BuildReport report) => RequireBuildTarget(report.summary.platform);
+        public void OnPreprocessBuild(BuildReport report)
+        {RequireBuildTarget(report.summary.platform);HumanCalibrationBuild.ValidateBuildScope(report.summary.platform);}
 
         /// <summary>Select the mobile target before editor assembly compilation, for example with -buildTarget Android.</summary>
         public static void RequireBuildTarget(BuildTarget requested) =>
@@ -119,6 +120,13 @@ namespace STP.Editor.Build
             var root = Directory.GetParent(path)?.FullName ?? throw new BuildFailedException("PRIVACY_ANDROID_PROJECT_ROOT_MISSING");
             var launcher = Path.Combine(root, "launcher", "build.gradle");
             if (!File.Exists(launcher)) throw new BuildFailedException("PRIVACY_ANDROID_LAUNCHER_MISSING");
+            string applicationId=PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android);
+            if(applicationId.EndsWith(".human",StringComparison.OrdinalIgnoreCase))
+            {
+                HumanAndroidBuildFence.ConfigureGeneratedProject(root,applicationId,HumanCalibrationBuild.RequireAndroidScope());
+                return;
+            }
+            HumanAndroidBuildFence.CleanupGeneratedHumanFiles(root, applicationId);
             ConfigureAndroidLauncherManifest(Path.Combine(root, "launcher", "src", "main", "AndroidManifest.xml"));
             File.WriteAllText(Path.Combine(root, "stp-privacy.gradle"), GradleGate, new UTF8Encoding(false));
             const string apply = "apply from: rootProject.file('stp-privacy.gradle')";

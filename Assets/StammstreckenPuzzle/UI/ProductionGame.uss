@@ -147,3 +147,16 @@ Button:disabled { opacity: 0.58; }
 .unity-scroller__low-button, .unity-scroller__high-button { display: none; }
 .unity-scroller--vertical .unity-base-slider__dragger { width: 4px; min-width: 4px; border-width: 0; border-radius: 2px; background-color: #B7BDBB; }
 .unity-scroller--vertical .unity-base-slider__tracker { border-width: 0; background-color: transparent; }
+
+.human-screen { padding: 28px 22px 24px 22px; }
+.human-intro-scroll { flex-grow: 1; min-height: 0; }
+.human-intro-scroll .primary-button, .human-intro-scroll .secondary-button { margin-top: 12px; }
+.human-contact { height: 228px; padding-top: 8px; padding-bottom: 8px; }
+.human-contact-title { font-size: 12px; white-space: normal; -unity-font-definition: url("../Art/Fonts/IBMPlexSans-SemiBold.ttf"); }
+.human-contact-options { flex-direction: row; margin-top: 6px; flex-shrink: 0; }
+.human-contact-option { min-height: 46px; flex-grow: 1; flex-basis: 0; font-size: 11px; white-space: normal; margin-right: 4px; }
+.human-contact-option:last-child { margin-right: 0; }
+.human-contact-option--selected { border-color: #C83D45; border-width: 2px; background-color: #F9E8E8; }
+.human-prior-version { min-height: 44px; font-size: 11px; margin-top: 5px; flex-shrink: 0; white-space: normal; }
+.human-contact-confirm { min-height: 44px; height: 44px; margin-top: 5px; font-size: 12px; }
+.human-menu-card { max-height: 90%; }
