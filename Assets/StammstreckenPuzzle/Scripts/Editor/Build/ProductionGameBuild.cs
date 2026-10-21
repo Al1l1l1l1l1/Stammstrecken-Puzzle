@@ -26,7 +26,8 @@ namespace STP.Editor.Build
         private static string? preparedPresetJson;
 
         [MenuItem("Stammstrecken-Puzzle/Production/Rebuild source-approved scene")]
-        public static void EnsureArtifacts()
+        public static void EnsureArtifacts()=>EnsureArtifactsCore(null);
+        private static void EnsureArtifactsCore(Action<ProductionImportOutputFacts>? validateReleaseFacts)
         {
             string repository=Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath,".."));
             var inputs=ProductionImportPreflightInputs.FromEnvironment(repository);
@@ -36,6 +37,7 @@ namespace STP.Editor.Build
             var source=ProductionImportPreflight.RunAsync(inputs,CancellationToken.None).GetAwaiter().GetResult();
             source.VerifyStillCurrent();
             VerifySourceOriginals(source,repository);
+            validateReleaseFacts?.Invoke(source.Facts);
             var profile=ReadProtectedPreset(repository);
             var publisher=ReadPublisherContacts();
             string presetJson=EditorJsonUtility.ToJson(profile);
@@ -84,8 +86,9 @@ namespace STP.Editor.Build
             Debug.Log("STP source-approved full-game scene composed and saved-byte bindings verified. Native build, signing, devices, legal and store approval remain separate actual gates.");
         }
 
-        internal static ProductionMobileServiceProfile PrepareForNativeBuild()
-        {preparedSource=null;preparedProfile=null;preparedDestination=null;preparedPresetJson=null;EnsureArtifacts();VerifyForNativeBuild(preparedProfile!);return preparedProfile!;}
+        internal static ProductionMobileServiceProfile PrepareForNativeBuild()=>PrepareForNativeBuildWithFacts(null);
+        internal static ProductionMobileServiceProfile PrepareForNativeBuildWithFacts(Action<ProductionImportOutputFacts>? validateReleaseFacts)
+        {preparedSource=null;preparedProfile=null;preparedDestination=null;preparedPresetJson=null;EnsureArtifactsCore(validateReleaseFacts);VerifyForNativeBuild(preparedProfile!);return preparedProfile!;}
         internal static void VerifyForNativeBuild(ProductionMobileServiceProfile expected)
         {
             if(preparedSource==null||preparedProfile==null||preparedDestination==null||expected!=preparedProfile)throw new InvalidOperationException("PRODUCTION_PREPARED_SCENE_REQUIRED");

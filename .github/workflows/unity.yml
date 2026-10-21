@@ -198,7 +198,7 @@ jobs:
               "STP.Editor.Content": {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Infrastructure.Content"},
               "STP.Editor.Build": {"STP.Bootstrap"},
           }
-          # Interne Referenzen der neun Testassemblies (Abschnitt 4); die
+          # Interne Referenzen der elf Testassemblies; die
           # Unity-Testrunner-Referenzen werden separat geprüft.
           test_expected = {
               "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
@@ -206,6 +206,8 @@ jobs:
               "STP.Tests.Application.EditMode": {"STP.Application", "STP.Puzzle.Domain", "STP.Puzzle.Solver"},
               "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
               "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Editor.Content"},
+              "STP.Tests.Calibration.EditMode": {"STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Bootstrap"},
+              "STP.Tests.RuntimeComposition.EditMode": {"STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Bootstrap"},
               "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
               "STP.Tests.Mobile.PlayMode": {"STP.Application", "STP.MobileServices.Google", "STP.MobileServices.Store"},
               "STP.Tests.Bootstrap.PlayMode": {

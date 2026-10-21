@@ -16,16 +16,19 @@ namespace STP.Editor.Build
     {
         internal const string GmaSettingsPath="Assets/GoogleMobileAds/Resources/GoogleMobileAdsSettings.asset";
         private static Scope? active;
+        internal enum ScopeMode{AndroidDevelopmentApk,IosSourceExport,AndroidReleaseBundle,IosReleaseSourceExport}
         internal sealed class Scope
         {
             internal readonly ProductionMobileServiceProfile Profile;
+            internal readonly ProductionRcBuildContext? Release;
+            internal readonly ScopeMode Mode;
             internal readonly BuildTarget Target;
             internal readonly string ApplicationId,AdMobAppId,Nonce;
             internal readonly string[] Scenes;
             internal string? AndroidRoot;
             internal int ActualSceneCount;
-            internal Scope(ProductionMobileServiceProfile profile,BuildTarget target)
-            {Profile=profile;Target=target;ApplicationId=profile.ApplicationId;AdMobAppId=profile.NativeAdMobAppId;Nonce=Guid.NewGuid().ToString("N");Scenes=new[]{ProductionGameBuild.ScenePath};}
+            internal Scope(ProductionMobileServiceProfile profile,BuildTarget target,ProductionRcBuildContext? release=null)
+            {Profile=profile;Release=release;Mode=release==null?(target==BuildTarget.Android?ScopeMode.AndroidDevelopmentApk:ScopeMode.IosSourceExport):(target==BuildTarget.Android?ScopeMode.AndroidReleaseBundle:ScopeMode.IosReleaseSourceExport);Target=target;ApplicationId=profile.ApplicationId;AdMobAppId=profile.NativeAdMobAppId;Nonce=Guid.NewGuid().ToString("N");Scenes=new[]{ProductionGameBuild.ScenePath};}
         }
 
         [MenuItem("Stammstrecken-Puzzle/Production/Build local Android development APK")]
@@ -33,19 +36,31 @@ namespace STP.Editor.Build
         [MenuItem("Stammstrecken-Puzzle/Production/Export iOS sources")]
         public static void ExportIosSources()=>Build(BuildTarget.iOS);
 
-        private static void Build(BuildTarget target)
+        public static void BuildAndroidReleaseBundle()=>Build(BuildTarget.Android,true);
+        public static void ExportIosReleaseSources()=>Build(BuildTarget.iOS,true);
+
+        private static void Build(BuildTarget target,bool release=false)
         {
             if(active!=null)throw new BuildFailedException("PRODUCTION_NATIVE_BUILD_ALREADY_ACTIVE");
+            // Closed, source-bound CI identity is checked before PrepareForNativeBuild mutates any assets/settings.
+            var rc=release?ProductionRcBuildContext.Read(target):null;
             MobilePrivacyBuildGuard.RequireBuildTarget(target);MobileIconAssets.VerifyForActiveTarget();
             // This must complete before the first application ID, signing or GMA setting mutation.
-            var profile=ProductionGameBuild.PrepareForNativeBuild();
+            var profile=rc==null?ProductionGameBuild.PrepareForNativeBuild():ProductionGameBuild.PrepareForNativeBuildWithFacts(rc.ValidatePreparedFacts);
             if(profile==null||profile.IsIos!=(target==BuildTarget.iOS))throw new BuildFailedException("PRODUCTION_NATIVE_PRESET_TARGET_MISMATCH");
             ProductionGameBuild.VerifyForNativeBuild(profile);
+            if(rc!=null&&rc.Identity.ApplicationIdentifier!=profile.ApplicationId)throw new BuildFailedException("RC_PRESET_APPLICATION_MISMATCH");
             var gma=new GmaSettingsOriginal();
             var named=target==BuildTarget.iOS?NamedBuildTarget.iOS:NamedBuildTarget.Android;
             string priorId=PlayerSettings.GetApplicationIdentifier(named);
             var priorBackend=PlayerSettings.GetScriptingBackend(named);var priorOrientation=PlayerSettings.defaultInterfaceOrientation;
+            string priorVersion=PlayerSettings.bundleVersion,priorIosNumber=PlayerSettings.iOS.buildNumber;int priorAndroidNumber=PlayerSettings.Android.bundleVersionCode;
+            bool priorDevelopment=EditorUserBuildSettings.development,priorDebugging=EditorUserBuildSettings.allowDebugging,priorProfiler=EditorUserBuildSettings.connectProfiler,priorDeep=EditorUserBuildSettings.buildWithDeepProfilingSupport;
+            var priorSymbols=UnityEditor.Android.UserBuildSettings.DebugSymbols.level;var priorSymbolFormat=UnityEditor.Android.UserBuildSettings.DebugSymbols.format;
             var restore=new List<Action>{()=>PlayerSettings.SetApplicationIdentifier(named,priorId),()=>PlayerSettings.SetScriptingBackend(named,priorBackend),()=>PlayerSettings.defaultInterfaceOrientation=priorOrientation,gma.Restore};
+            restore.AddRange(new Action[]{()=>PlayerSettings.bundleVersion=priorVersion,()=>PlayerSettings.iOS.buildNumber=priorIosNumber,()=>PlayerSettings.Android.bundleVersionCode=priorAndroidNumber,
+                ()=>EditorUserBuildSettings.development=priorDevelopment,()=>EditorUserBuildSettings.allowDebugging=priorDebugging,()=>EditorUserBuildSettings.connectProfiler=priorProfiler,
+                ()=>EditorUserBuildSettings.buildWithDeepProfilingSupport=priorDeep,()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.level=priorSymbols,()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.format=priorSymbolFormat});
             if(target==BuildTarget.Android)
             {
                 bool bundle=EditorUserBuildSettings.buildAppBundle,export=EditorUserBuildSettings.exportAsGoogleAndroidProject,custom=PlayerSettings.Android.useCustomKeystore;
@@ -64,10 +79,16 @@ namespace STP.Editor.Build
             {
                 PlayerSettings.SetApplicationIdentifier(named,profile.ApplicationId);PlayerSettings.SetScriptingBackend(named,ScriptingImplementation.IL2CPP);
                 PlayerSettings.defaultInterfaceOrientation=UIOrientation.Portrait;
+                if(rc!=null)
+                {
+                    PlayerSettings.bundleVersion=rc.Identity.ReleaseVersion;PlayerSettings.Android.bundleVersionCode=rc.Identity.BuildNumber;PlayerSettings.iOS.buildNumber=rc.Identity.BuildNumber.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    EditorUserBuildSettings.development=false;EditorUserBuildSettings.allowDebugging=false;EditorUserBuildSettings.connectProfiler=false;EditorUserBuildSettings.buildWithDeepProfilingSupport=false;
+                }
                 if(target==BuildTarget.Android)
                 {
-                    EditorUserBuildSettings.buildAppBundle=false;EditorUserBuildSettings.exportAsGoogleAndroidProject=false;
-                    PlayerSettings.Android.useCustomKeystore=false; // Unity development/debug signing; no key/password is read.
+                    EditorUserBuildSettings.buildAppBundle=release;EditorUserBuildSettings.exportAsGoogleAndroidProject=false;
+                    PlayerSettings.Android.useCustomKeystore=false; // Development uses debug signing. RC additionally clears release signingConfig in its guarded Gradle scope.
+                    if(release){UnityEditor.Android.UserBuildSettings.DebugSymbols.level=Unity.Android.Types.DebugSymbolLevel.Full;UnityEditor.Android.UserBuildSettings.DebugSymbols.format=Unity.Android.Types.DebugSymbolFormat.Zip;}
                     PlayerSettings.Android.targetArchitectures=AndroidArchitecture.ARM64;
                     PlayerSettings.Android.minSdkVersion=(AndroidSdkVersions)26;PlayerSettings.Android.targetSdkVersion=(AndroidSdkVersions)36;
                 }
@@ -77,18 +98,25 @@ namespace STP.Editor.Build
                     PlayerSettings.iOS.appleDeveloperTeamID=string.Empty;PlayerSettings.iOS.iOSManualProvisioningProfileID=string.Empty;
                 }
                 gma.SetForTarget(profile.IsIos,profile.NativeAdMobAppId);
-                active=new Scope(profile,target);RequireScope(target);
+                active=new Scope(profile,target,rc);RequireScope(target);
                 // Every attempt has a fresh output root. Never merge a prior native export or overwrite an APK.
-                string root=Path.Combine("Builds","ProductionDevelopment",target==BuildTarget.Android?"Android":"iOS",DateTime.UtcNow.ToString("yyyyMMddTHHmmssfff",System.Globalization.CultureInfo.InvariantCulture)+"-"+active.Nonce);
+                string root=rc!=null?rc.OutputRoot:Path.Combine("Builds",release?"ReleaseCandidate":"ProductionDevelopment",target==BuildTarget.Android?"Android":"iOS",DateTime.UtcNow.ToString("yyyyMMddTHHmmssfff",System.Globalization.CultureInfo.InvariantCulture)+"-"+active.Nonce);
                 RequireNoLinks(Path.GetFullPath(root));Directory.CreateDirectory(root);
-                string destination=target==BuildTarget.Android?Path.Combine(root,"stp-production-development.apk"):Path.Combine(root,"Xcode");
+                string destination=target==BuildTarget.Android?Path.Combine(root,release?"stp-production-unsigned.aab":"stp-production-development.apk"):Path.Combine(root,"Xcode");
                 var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=(string[])active.Scenes.Clone(),locationPathName=destination,target=target,
-                    options=target==BuildTarget.Android?BuildOptions.Development:BuildOptions.None});
+                    options=target==BuildTarget.Android&&!release?BuildOptions.Development:BuildOptions.None});
                 if(report.summary.result!=BuildResult.Succeeded)throw new BuildFailedException("PRODUCTION_NATIVE_BUILD_FAILED:"+target+":"+report.summary.totalErrors);
                 if(target==BuildTarget.Android&&(!File.Exists(destination)||new FileInfo(destination).Length==0))throw new BuildFailedException("PRODUCTION_NATIVE_APK_MISSING");
+                if(release)ProductionRcBuildContext.ValidateReleaseFlags((report.summary.options&BuildOptions.Development)!=0,(report.summary.options&BuildOptions.AllowDebugging)!=0,(report.summary.options&BuildOptions.ConnectWithProfiler)!=0,(report.summary.options&BuildOptions.EnableDeepProfilingSupport)!=0);
                 RequireScope(target);if(active.ActualSceneCount!=1)throw new BuildFailedException("PRODUCTION_NATIVE_ACTUAL_SCENE_COUNT_INVALID");
                 ProductionNativeBuildGuard.VerifyFinalOutput(report);
-                File.WriteAllText(Path.Combine(root,"stp-production-native-scope.txt"),"scope="+(target==BuildTarget.Android?"LOCAL_DEVELOPMENT_SIGNED_APK":"IOS_EXPORTED_SOURCE_ONLY")+"\nreleaseApproval=false\nstoreSigningOrUpload=false\n",new UTF8Encoding(false));
+                if(rc!=null)
+                {
+                    if(target==BuildTarget.iOS)rc.InjectIosBuildInfo(destination);
+                    if(target==BuildTarget.Android)ProductionRcBuildContext.VerifyUnsignedAab(destination);
+                    rc.WriteNativeReceipt(root,destination,profile.NativeAdMobAppId,active.AndroidRoot,active.Nonce);
+                }
+                File.WriteAllText(Path.Combine(root,"stp-production-native-scope.txt"),"scope="+(release?"RC_UNSIGNED_NATIVE_PACKAGING":target==BuildTarget.Android?"LOCAL_DEVELOPMENT_SIGNED_APK":"IOS_EXPORTED_SOURCE_ONLY")+"\nreleaseApproval=false\nstoreSigningOrUpload=false\n",new UTF8Encoding(false));
                 UnityEngine.Debug.Log("Production local native artifact created; no signed release, device, privacy/legal, Human or store acceptance.");
             }
             finally{active=null;RestoreAll(restore);}
@@ -100,8 +128,11 @@ namespace STP.Editor.Build
             var scope=active??throw new BuildFailedException("PRODUCTION_NATIVE_EXPLICIT_ENTRY_REQUIRED");
             var named=actual==BuildTarget.iOS?NamedBuildTarget.iOS:NamedBuildTarget.Android;
             ValidateScopeFacts(scope.Target,actual,scope.ApplicationId,PlayerSettings.GetApplicationIdentifier(named),scope.Scenes);
+            if((scope.Release!=null)!=(scope.Mode==ScopeMode.AndroidReleaseBundle||scope.Mode==ScopeMode.IosReleaseSourceExport)||
+                (actual==BuildTarget.Android)!=(scope.Mode==ScopeMode.AndroidDevelopmentApk||scope.Mode==ScopeMode.AndroidReleaseBundle))throw new BuildFailedException("RC_SCOPE_MODE_MISMATCH");
             ProductionGameBuild.VerifyForNativeBuild(scope.Profile);
             GmaSettingsOriginal.VerifyCurrent(actual==BuildTarget.iOS,scope.AdMobAppId);
+            scope.Release?.VerifySettings(actual);
             return scope;
         }
         internal static bool HasScope=>active!=null;

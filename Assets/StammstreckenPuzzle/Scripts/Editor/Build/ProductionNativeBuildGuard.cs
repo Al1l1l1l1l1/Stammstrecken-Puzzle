@@ -30,7 +30,7 @@ namespace STP.Editor.Build
         public void OnPreprocessBuild(BuildReport report)
         {
             var target=report.summary.platform;
-            if(ProductionNativeBuild.HasScope){ProductionNativeBuild.RequireScope(target);return;}
+            if(ProductionNativeBuild.HasScope){var scoped=ProductionNativeBuild.RequireScope(target);if(scoped.Release!=null)ProductionRcBuildContext.ValidateReleaseFlags((report.summary.options&UnityEditor.BuildOptions.Development)!=0,(report.summary.options&UnityEditor.BuildOptions.AllowDebugging)!=0,(report.summary.options&UnityEditor.BuildOptions.ConnectWithProfiler)!=0,(report.summary.options&UnityEditor.BuildOptions.EnableDeepProfilingSupport)!=0);return;}
             if(target!=BuildTarget.Android&&target!=BuildTarget.iOS)return;
             var named=target==BuildTarget.iOS?NamedBuildTarget.iOS:NamedBuildTarget.Android;
             // Only the existing explicitly isolated lines are allowed without this private native scope.
@@ -62,8 +62,9 @@ namespace STP.Editor.Build
             string launcher=Path.Combine(root,"launcher","build.gradle");
             if(!File.Exists(launcher))throw new BuildFailedException("PRODUCTION_NATIVE_LAUNCHER_MISSING");
             string source=ReadGeneratedState(root);scope.AndroidRoot=root;
+            if(scope.Release==null)ProductionRcBuildContext.CleanupGeneratedBuildInfo(root);else scope.Release.InjectAndroidBuildInfo(root);
             string gate=Path.Combine(root,"stp-production-native.gradle");ProductionNativeBuild.RequireNoLinks(gate);
-            File.WriteAllText(gate,RenderAndroidGate(scope.ApplicationId,scope.AdMobAppId,scope.Nonce),new UTF8Encoding(false));
+            File.WriteAllText(gate,RenderAndroidGateForMode(scope.ApplicationId,scope.AdMobAppId,scope.Nonce,scope.Release!=null),new UTF8Encoding(false));
             if(!HookMatches(source).Any())
             {string newline=source.Contains("\r\n")?"\r\n":"\n";File.WriteAllText(launcher,source+(source.EndsWith("\n",StringComparison.Ordinal)?"":newline)+NativeApply+newline,new UTF8Encoding(false));}
         }
@@ -74,6 +75,7 @@ namespace STP.Editor.Build
         internal static void CleanupGeneratedNativeFiles(string root,string actualNonProductionId)
         {
             ValidateUnscopedIdentity(actualNonProductionId);string source=ReadGeneratedState(root);
+            ProductionRcBuildContext.CleanupGeneratedBuildInfo(root);
             string launcher=Path.Combine(root,"launcher","build.gradle"),gate=Path.Combine(root,"stp-production-native.gradle");
             var hooks=HookMatches(source);string changed=source;
             foreach(var hook in hooks.OrderByDescending(m=>m.Index))changed=changed.Remove(hook.Index,hook.Length);
@@ -99,7 +101,7 @@ namespace STP.Editor.Build
                 var app=Regex.Match(script,@"if\(xml\.attributes\(\)\['package'\]!='([^']+)'\)");
                 var ad=Regex.Match(script,@"ids\[0\]\.attributes\(\)\['android:value'\]!='([^']+)'");
                 var nonce=Regex.Match(script,@"reports/stp-production-native/([0-9a-f]{32})/");
-                if(!app.Success||!ad.Success||!nonce.Success||script!=RenderAndroidGate(app.Groups[1].Value,ad.Groups[1].Value,nonce.Groups[1].Value))
+                if(!app.Success||!ad.Success||!nonce.Success||script!=RenderAndroidGate(app.Groups[1].Value,ad.Groups[1].Value,nonce.Groups[1].Value)&&script!=RenderAndroidGateForMode(app.Groups[1].Value,ad.Groups[1].Value,nonce.Groups[1].Value,true)&&script!=LegacyAndroidGate.Replace("__STP_APP__",app.Groups[1].Value).Replace("__STP_ADMOB__",ad.Groups[1].Value).Replace("__STP_NONCE__",nonce.Groups[1].Value))
                     throw new BuildFailedException("PRODUCTION_NATIVE_GENERATED_SCRIPT_UNKNOWN");
             }
             return source;
@@ -129,18 +131,85 @@ namespace STP.Editor.Build
             }
         }
 
-        internal static string RenderAndroidGate(string applicationId,string nativeAdMobAppId,string nonce)
+        internal static string RenderAndroidGate(string applicationId,string nativeAdMobAppId,string nonce)=>RenderAndroidGateForMode(applicationId,nativeAdMobAppId,nonce,false);
+        internal static string RenderAndroidGateForMode(string applicationId,string nativeAdMobAppId,string nonce,bool unsignedBundle)
         {
             if(!Regex.IsMatch(applicationId??"",@"\A[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+\z")||
                 !Regex.IsMatch(nativeAdMobAppId??"",@"\Aca-app-pub-[0-9]{16}~[0-9]{10}\z")||!Regex.IsMatch(nonce??"",@"\A[0-9a-f]{32}\z"))throw new BuildFailedException("PRODUCTION_NATIVE_GATE_INPUT_INVALID");
-            return AndroidGate.Replace("__STP_APP__",applicationId).Replace("__STP_ADMOB__",nativeAdMobAppId).Replace("__STP_NONCE__",nonce);
+            return AndroidGate.Replace("__STP_UNSIGNED_RC__",unsignedBundle?UnsignedReleaseSigningGate:"").Replace("__STP_APP__",applicationId).Replace("__STP_ADMOB__",nativeAdMobAppId).Replace("__STP_NONCE__",nonce);
         }
-        private const string AndroidGate=@"
+        // Custom-keystore=false alone is DEBUG signing. This RC-only DSL override runs before variant finalization.
+        private const string UnsignedReleaseSigningGate=@"
+ android.buildTypes.getByName('release').signingConfig = null
+ if(android.buildTypes.getByName('release').minifyEnabled != false) throw new GradleException('RC_R8_REQUIRES_APPROVED_SMOKE_AND_MAPPING')
+ afterEvaluate {
+  if(android.buildTypes.getByName('release').signingConfig != null) throw new GradleException('RC_RELEASE_SIGNING_CONFIG_MUST_BE_NULL')
+  if(android.buildTypes.getByName('release').minifyEnabled != false) throw new GradleException('RC_R8_REQUIRES_APPROVED_SMOKE_AND_MAPPING')
+ }
+ tasks.configureEach { task ->
+  if(task.name=='validateSigningRelease' || task.name=='signReleaseBundle' || task.name=='packageReleaseBundle' || task.name=='bundleRelease') {
+   task.doFirst {
+    if(android.buildTypes.getByName('release').signingConfig != null) throw new GradleException('RC_RELEASE_SIGNING_CONFIG_MUST_BE_NULL')
+    if(android.buildTypes.getByName('release').minifyEnabled != false) throw new GradleException('RC_R8_REQUIRES_APPROVED_SMOKE_AND_MAPPING')
+   }
+  }
+ }
+";
+        // Exact prior production-generated form remains owned and removable during incremental transition.
+        private const string LegacyAndroidGate=@"
 // Generated by STP.ProductionNativeBuildGuard; exact protected scope, actual two AGP merge-output classes.
 plugins.withId('com.android.application') {
  tasks.configureEach { task ->
   if(task.name=='packageDebug' || task.name=='packageRelease') {
    def variant=task.name.substring('package'.length())
+   task.dependsOn('process'+variant+'MainManifest','process'+variant+'ManifestForPackage')
+   task.doFirst {
+    def reports=fileTree(new File(buildDir,'reports/stp-production-native/__STP_NONCE__')).matching { include '*.txt' }.files
+    ['MainManifest','ManifestForPackage'].each { kind ->
+     def selected=reports.findAll { it.name.startsWith('process'+variant+kind+'-') }
+     if(selected.isEmpty()) throw new GradleException('PRODUCTION_NATIVE_BOTH_MERGE_OUTPUTS_REQUIRED')
+     selected.each { report ->
+      def fields=report.readLines().collectEntries { line -> def pair=line.split('=',2); if(pair.length!=2) throw new GradleException('PRODUCTION_NATIVE_MERGE_REPORT_INVALID'); [(pair[0]):pair[1]] }
+      if(fields.scope!='__STP_NONCE__' || fields.applicationId!='__STP_APP__' || fields.adMobAppId!='__STP_ADMOB__') throw new GradleException('PRODUCTION_NATIVE_MERGE_REPORT_INVALID')
+      def actual=new File(fields.manifest)
+      if(!actual.isFile() || java.security.MessageDigest.getInstance('SHA-256').digest(actual.bytes).encodeHex().toString()!=fields.sha256) throw new GradleException('PRODUCTION_NATIVE_MERGE_REPORT_STALE')
+     }
+    }
+   }
+  }
+  if (task.name ==~ /process.*MainManifest/ || task.name ==~ /process.*ManifestForPackage/) {
+   // A fresh private scope must observe actual output even on an incremental/cache-enabled project.
+   task.outputs.upToDateWhen { false }
+   task.outputs.cacheIf { false }
+   task.doLast {
+    def manifests=[] as Set
+    task.outputs.files.files.each { output ->
+     if(output.isDirectory()) manifests.addAll(fileTree(output).matching { include '**/AndroidManifest.xml' }.files)
+     else if(output.name=='AndroidManifest.xml') manifests.add(output)
+    }
+    if(manifests.isEmpty()) throw new GradleException('PRODUCTION_NATIVE_MERGED_MANIFEST_MISSING')
+    manifests.each { manifest ->
+     def xml=new groovy.xml.XmlSlurper(false,false).parse(manifest)
+     if(xml.attributes()['package']!='__STP_APP__') throw new GradleException('PRODUCTION_NATIVE_ANDROID_PACKAGE_MISMATCH')
+     def ids=xml.application.'meta-data'.findAll { it.attributes()['android:name']=='com.google.android.gms.ads.APPLICATION_ID' }
+     if(ids.size()!=1 || ids[0].attributes()['android:value']!='__STP_ADMOB__') throw new GradleException('PRODUCTION_NATIVE_ANDROID_ADMOB_MISMATCH')
+     def hash=java.security.MessageDigest.getInstance('SHA-256').digest(manifest.bytes).encodeHex().toString()
+     def report=new File(buildDir,'reports/stp-production-native/__STP_NONCE__/'+task.name+'-'+hash+'.txt')
+     report.parentFile.mkdirs()
+     report.text='scope=__STP_NONCE__\ntask='+task.name+'\nmanifest='+manifest.canonicalPath+'\nsha256='+hash+'\napplicationId=__STP_APP__\nadMobAppId=__STP_ADMOB__\n'
+    }
+   }
+  }
+ }
+}
+";
+        private const string AndroidGate=@"
+// Generated by STP.ProductionNativeBuildGuard; exact protected scope, actual two AGP merge-output classes.
+plugins.withId('com.android.application') {
+ __STP_UNSIGNED_RC__
+ tasks.configureEach { task ->
+  if(task.name=='packageDebug' || task.name=='packageRelease' || task.name=='packageReleaseBundle' || task.name=='bundleRelease' || task.name=='signReleaseBundle') {
+   def variant=task.name=='packageDebug'?'Debug':'Release'
    task.dependsOn('process'+variant+'MainManifest','process'+variant+'ManifestForPackage')
    task.doFirst {
     def reports=fileTree(new File(buildDir,'reports/stp-production-native/__STP_NONCE__')).matching { include '*.txt' }.files
