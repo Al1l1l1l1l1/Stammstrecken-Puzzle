@@ -43,6 +43,25 @@ namespace STP.Tests.RuntimeComposition.EditMode
             var target=System.AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("STP.Editor.Build."+type)).SingleOrDefault(t=>t!=null)??Assembly.Load("STP.Editor.Build").GetType("STP.Editor.Build."+type)!;
             try{return target.GetMethod(method,BindingFlags.Static|BindingFlags.NonPublic)!.Invoke(null,arguments);}catch(TargetInvocationException error){throw error.InnerException!;}
         }
+        [Test]public void IosSymbolSnapshotNeedsNoAndroidModuleAndChangesNothing()
+        {
+            Assert.That(()=>Call("ProductionNativeBuild","RequireAndroidSymbolModule",UnityEditor.BuildTarget.iOS),Throws.Nothing);
+            var restore=(Action)Call("ProductionNativeBuild","CaptureAndroidSymbolSettings",UnityEditor.BuildTarget.iOS)!;
+            Assert.That(()=>restore(),Throws.Nothing);
+        }
+#if !UNITY_ANDROID
+        [TestCase("ConfigureAndroidReleaseSymbols")][TestCase("RequireAndroidReleaseSymbols")]
+        public void UnavailableAndroidSymbolModuleNeverSuppliesSuccess(string method)
+        {Assert.That(()=>Call("ProductionNativeBuild",method),Throws.Exception.With.Message.EqualTo("RC_ANDROID_SYMBOL_MODULE_REQUIRED"));}
+        [Test]public void UnavailableAndroidModuleStopsRequestedTargetBeforeAnyCapture()
+        {
+            Assert.That(()=>Call("ProductionNativeBuild","RequireAndroidSymbolModule",UnityEditor.BuildTarget.Android),Throws.Exception.With.Message.EqualTo("RC_ANDROID_SYMBOL_MODULE_REQUIRED"));
+            Assert.That(()=>Call("ProductionNativeBuild","CaptureAndroidSymbolSettings",UnityEditor.BuildTarget.Android),Throws.Exception.With.Message.EqualTo("RC_ANDROID_SYMBOL_MODULE_REQUIRED"));
+        }
+#else
+        [Test]public void CompiledAndroidPassesOnlyModuleAvailabilityWithoutStartingBuildOrTouchingSettings()
+        {Assert.That(()=>Call("ProductionNativeBuild","RequireAndroidSymbolModule",UnityEditor.BuildTarget.Android),Throws.Nothing);}
+#endif
         [TestCase(true,false,false,false)][TestCase(false,true,false,false)][TestCase(false,false,true,false)][TestCase(false,false,false,true)]
         public void EveryReleaseDebugFlagFails(bool a,bool b,bool c,bool d)=>Assert.That(()=>Call("ProductionRcBuildContext","ValidateReleaseFlags",a,b,c,d),Throws.Exception);
         [Test]public void RcSigningOverrideIsExplicitAndDevelopmentRendererHasNoOverride()

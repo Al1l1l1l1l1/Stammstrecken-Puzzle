@@ -60,6 +60,8 @@ Der [V2-Manifesterzeuger](../../../tools/release/rc_manifest.README.md) bindet q
 
 ## Git und tatsächliche Remote-CI
 
+**Aktueller Nachlauf:** Beide Folgecommits bis `8215262799a840831a44a6721dfa5b7725c1c00a` normal gepusht, PR31 aktualisiert und weiter Draft. Architecture-PR39692999154/Push39692993669, Modulpreflight und alle drei Environmentjobs PASS. Unity-PR39692999153 ist terminal FAIL: zwölf verschiedene CS0234 wegen unbedingt referenzierter Android-Editor-Modultypen in ProductionNativeBuild/ProductionRcBuildContext; das Base-Linuximage besitzt dieses Modul nicht. Keine Edit-/Play-/Native-/Xcodeausführung in diesem Lauf. Vollständige dekodierte API-Joblogtextkopie `.utmp/wp046-ci-8215262/unity-compile-editmode.log`, SHA `483c6d751e8056ff451255297e92491e90d4919d5a49fd2ed9eea31282803dda`. B reproduzierte exakt den Modulbefund kontrolliert. Unity-Push39692993670 ist ebenfalls terminal FAIL mit denselben Stellen; seine dekodierte API-Logtextkopie `.utmp/wp046-ci-8215262/push-unity-compile-editmode.log`, SHA `72921239d9174d56e5c641f486c4b087911de5ff80b8a814d80bca64094ba8c0`, ist erhalten. Keine lokale Unityinstanz. Frühere akzeptierte APK-/Test-/Releasewerkzeugbelege bleiben unverändert an ihren ursprünglichen Quellen gebunden.
+
 Der Owner bestätigte zunächst vier Commits bis4102f64 und später genau die drei Commits `a046656`, `0e93b54`, `ab5c3e1`. Normaler nicht erzwungener Push bis `ab5c3e172ed2ed6970499739dc6ee452a7d582ff` erfolgreich; PR31 ist als Draft mit konkretem Spielumfang und tatsächlichen CIfehlern aktualisiert. Kein Mainmerge, Tag oder Storeakt. Die nachfolgenden Releaseänderungen liegen lokal.
 
 | Tatsächlicher Lauf an ab5c3e1 | Ergebnis |
@@ -69,6 +71,14 @@ Der Owner bestätigte zunächst vier Commits bis4102f64 und später genau die dr
 | Lokale Korrektur | 14Produktions-/11Testassemblies, exakte Allowlists und azyklischer Graph PASS; RuntimeGameCompositionTests samt Meta bytegleich in Calibration verschoben, keine Testassembly-zu-Testassembly-Kante. Beide Gruppen nullable/WarnAsError kompiliert, danach Unity Edit28 PASS. |
 
 Original-Joblogs liegen unter `.utmp/wp046-ci-ab5c3e1/`; sie sind dekodierte GitHub-API-Logtextkopien, keine Original-ZIP-Downloads. Ältere CI39665718891/39665719215 bleiben mit ihren damaligen PASS-/FAIL-/Skipzuständen erhalten. Lokale Nachweise behaupten keinen neuen Remote-PASS.
+
+## Enger Modulfix nach dem tatsächlichen CI-Befund
+
+C-Paket43b24c864435320b024461207924b39b59e000dcc14b2a9d272da9043f9d00e7 nach unabhängiger B-Annahmecc723efe3a3818e11a42e2521832faaaf1a95d4b1e53dbae1a73d278adf8039a in genau drei bestehende Editor-/Testdateien integriert. Androidsymbole werden nur im Android-Kompilierungszweig gelesen/gesetzt; ein angeforderter Androidbuild ohne Modul wird vor dem Sourceimport geschlossen abgewiesen. iOS berührt keine Androidsymbolsettings. Android verlangt weiterhin tatsächliche Fullsymbole/ZIP, beide Restoreversuche und dieselben Receipt-/Original-/Buildinfomethoden. Kein Format-/Runtime-/Workflow-/Classifierwechsel.
+
+Kontrollierte Matrix:16Compiles ohne Warnung/Fehler; Base ohne sämtliche PlaybackEngines-DLLs, iOS ausschließlich mit Xcode-DLL, Android ausschließlich mit Android-Modul-DLLs. Packagingfälle Base41/41, iOS41/41, Android39/39 und bestehende Nativefälle28/28 bestanden. B wiederholte unabhängig AltBase12CS0234 sowie korrigiertes Base/iOS/Android jeweils Compiler0. Kein tatsächlicher Linux-Unity-/SDK-Settinglauf nach dem Fix daraus behauptet. Private Integrationsbindung `.utmp/wp046-ci-8215262/modulefix-root-integration/integration.json`, SHA `aa0d08df945b74958d3b6f78630a72b03c169d276507d555272282871d3aa859`.
+
+Die tatsächliche iOS-Environmentprüfung belegt Xcode26.3/Build17C529 und iOS26.2-SDK; `.utmp/wp046-ci-8215262/environment-ios.log`, SHA `7ca3cd734915d79a0b16b27ef30581ab40cec29563a808446f4b6e8ffd918bad`. Das belegt die vorhandene Macumgebung, noch keinen Xcodecompile/IPA. Alle bereits gepushten Release-/APK-/Test-JSONbelege bleiben unverändert mit ihren ursprünglichen Quellenbindungen. Die nächste tatsächliche PR-CI prüft den neuen Modulfix. Der unveränderte Classifier delegiert den bekannten Produktpush regulär an die PR; keine Rezept-/Unknown-Fallbacklockerung.
 
 ## Offene Gates und konkrete Fortsetzung
 

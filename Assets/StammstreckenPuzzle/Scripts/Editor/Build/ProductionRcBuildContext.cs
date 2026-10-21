@@ -57,8 +57,12 @@ namespace STP.Editor.Build
             if(PlayerSettings.bundleVersion!=Identity.ReleaseVersion||PlayerSettings.GetApplicationIdentifier(named)!=Identity.ApplicationIdentifier||
                 (target==BuildTarget.Android?PlayerSettings.Android.bundleVersionCode.ToString(System.Globalization.CultureInfo.InvariantCulture):PlayerSettings.iOS.buildNumber)!=Identity.BuildNumber.ToString(System.Globalization.CultureInfo.InvariantCulture))
                 throw new BuildFailedException("RC_NATIVE_VERSION_MISMATCH");
-            if(target==BuildTarget.Android&&(!EditorUserBuildSettings.buildAppBundle||EditorUserBuildSettings.exportAsGoogleAndroidProject||PlayerSettings.Android.useCustomKeystore||UnityEditor.Android.UserBuildSettings.DebugSymbols.level!=Unity.Android.Types.DebugSymbolLevel.Full||UnityEditor.Android.UserBuildSettings.DebugSymbols.format!=Unity.Android.Types.DebugSymbolFormat.Zip))
-                throw new BuildFailedException("RC_ANDROID_UNSIGNED_BUNDLE_SETTINGS_REQUIRED");
+            if(target==BuildTarget.Android)
+            {
+                if(!EditorUserBuildSettings.buildAppBundle||EditorUserBuildSettings.exportAsGoogleAndroidProject||PlayerSettings.Android.useCustomKeystore)
+                    throw new BuildFailedException("RC_ANDROID_UNSIGNED_BUNDLE_SETTINGS_REQUIRED");
+                ProductionNativeBuild.RequireAndroidReleaseSymbols();
+            }
             if(PlayerSettings.GetScriptingDefineSymbols(named).Split(';').Any(d=>d=="STP_TEST_CRASH"||d=="DEVELOPMENT_BUILD"||d=="STP_FAKE_PROVIDERS"))throw new BuildFailedException("RC_DEBUG_DEFINE_FORBIDDEN");
         }
         internal static void ValidateReleaseFlags(bool development,bool debugging,bool profiler,bool deep)

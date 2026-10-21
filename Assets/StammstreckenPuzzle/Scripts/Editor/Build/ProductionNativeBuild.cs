@@ -42,6 +42,7 @@ namespace STP.Editor.Build
         private static void Build(BuildTarget target,bool release=false)
         {
             if(active!=null)throw new BuildFailedException("PRODUCTION_NATIVE_BUILD_ALREADY_ACTIVE");
+            RequireAndroidSymbolModule(target);
             // Closed, source-bound CI identity is checked before PrepareForNativeBuild mutates any assets/settings.
             var rc=release?ProductionRcBuildContext.Read(target):null;
             MobilePrivacyBuildGuard.RequireBuildTarget(target);MobileIconAssets.VerifyForActiveTarget();
@@ -56,11 +57,11 @@ namespace STP.Editor.Build
             var priorBackend=PlayerSettings.GetScriptingBackend(named);var priorOrientation=PlayerSettings.defaultInterfaceOrientation;
             string priorVersion=PlayerSettings.bundleVersion,priorIosNumber=PlayerSettings.iOS.buildNumber;int priorAndroidNumber=PlayerSettings.Android.bundleVersionCode;
             bool priorDevelopment=EditorUserBuildSettings.development,priorDebugging=EditorUserBuildSettings.allowDebugging,priorProfiler=EditorUserBuildSettings.connectProfiler,priorDeep=EditorUserBuildSettings.buildWithDeepProfilingSupport;
-            var priorSymbols=UnityEditor.Android.UserBuildSettings.DebugSymbols.level;var priorSymbolFormat=UnityEditor.Android.UserBuildSettings.DebugSymbols.format;
             var restore=new List<Action>{()=>PlayerSettings.SetApplicationIdentifier(named,priorId),()=>PlayerSettings.SetScriptingBackend(named,priorBackend),()=>PlayerSettings.defaultInterfaceOrientation=priorOrientation,gma.Restore};
             restore.AddRange(new Action[]{()=>PlayerSettings.bundleVersion=priorVersion,()=>PlayerSettings.iOS.buildNumber=priorIosNumber,()=>PlayerSettings.Android.bundleVersionCode=priorAndroidNumber,
                 ()=>EditorUserBuildSettings.development=priorDevelopment,()=>EditorUserBuildSettings.allowDebugging=priorDebugging,()=>EditorUserBuildSettings.connectProfiler=priorProfiler,
-                ()=>EditorUserBuildSettings.buildWithDeepProfilingSupport=priorDeep,()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.level=priorSymbols,()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.format=priorSymbolFormat});
+                ()=>EditorUserBuildSettings.buildWithDeepProfilingSupport=priorDeep});
+            restore.Add(CaptureAndroidSymbolSettings(target));
             if(target==BuildTarget.Android)
             {
                 bool bundle=EditorUserBuildSettings.buildAppBundle,export=EditorUserBuildSettings.exportAsGoogleAndroidProject,custom=PlayerSettings.Android.useCustomKeystore;
@@ -88,7 +89,7 @@ namespace STP.Editor.Build
                 {
                     EditorUserBuildSettings.buildAppBundle=release;EditorUserBuildSettings.exportAsGoogleAndroidProject=false;
                     PlayerSettings.Android.useCustomKeystore=false; // Development uses debug signing. RC additionally clears release signingConfig in its guarded Gradle scope.
-                    if(release){UnityEditor.Android.UserBuildSettings.DebugSymbols.level=Unity.Android.Types.DebugSymbolLevel.Full;UnityEditor.Android.UserBuildSettings.DebugSymbols.format=Unity.Android.Types.DebugSymbolFormat.Zip;}
+                    if(release)ConfigureAndroidReleaseSymbols();
                     PlayerSettings.Android.targetArchitectures=AndroidArchitecture.ARM64;
                     PlayerSettings.Android.minSdkVersion=(AndroidSdkVersions)26;PlayerSettings.Android.targetSdkVersion=(AndroidSdkVersions)36;
                 }
@@ -136,6 +137,41 @@ namespace STP.Editor.Build
             return scope;
         }
         internal static bool HasScope=>active!=null;
+        internal static void RequireAndroidSymbolModule(BuildTarget target)
+        {
+#if !UNITY_ANDROID
+            if(target==BuildTarget.Android)throw new BuildFailedException("RC_ANDROID_SYMBOL_MODULE_REQUIRED");
+#endif
+        }
+        internal static Action CaptureAndroidSymbolSettings(BuildTarget target)
+        {
+            RequireAndroidSymbolModule(target);
+            if(target!=BuildTarget.Android)return ()=>{};
+#if UNITY_ANDROID
+            var level=UnityEditor.Android.UserBuildSettings.DebugSymbols.level;var format=UnityEditor.Android.UserBuildSettings.DebugSymbols.format;
+            return ()=>RestoreAll(new Action[]{()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.level=level,()=>UnityEditor.Android.UserBuildSettings.DebugSymbols.format=format});
+#else
+            throw new BuildFailedException("RC_ANDROID_SYMBOL_MODULE_REQUIRED");
+#endif
+        }
+        internal static void ConfigureAndroidReleaseSymbols()
+        {
+#if UNITY_ANDROID
+            UnityEditor.Android.UserBuildSettings.DebugSymbols.level=Unity.Android.Types.DebugSymbolLevel.Full;
+            UnityEditor.Android.UserBuildSettings.DebugSymbols.format=Unity.Android.Types.DebugSymbolFormat.Zip;
+#else
+            throw new BuildFailedException("RC_ANDROID_SYMBOL_MODULE_REQUIRED");
+#endif
+        }
+        internal static void RequireAndroidReleaseSymbols()
+        {
+#if UNITY_ANDROID
+            if(UnityEditor.Android.UserBuildSettings.DebugSymbols.level!=Unity.Android.Types.DebugSymbolLevel.Full||UnityEditor.Android.UserBuildSettings.DebugSymbols.format!=Unity.Android.Types.DebugSymbolFormat.Zip)
+                throw new BuildFailedException("RC_ANDROID_UNSIGNED_BUNDLE_SETTINGS_REQUIRED");
+#else
+            throw new BuildFailedException("RC_ANDROID_SYMBOL_MODULE_REQUIRED");
+#endif
+        }
         internal static void ValidateScopeFacts(BuildTarget expected,BuildTarget actual,string expectedId,string actualId,string[] scenes)
         {
             if((actual!=BuildTarget.Android&&actual!=BuildTarget.iOS)||actual!=expected||!string.Equals(expectedId,actualId,StringComparison.Ordinal))throw new BuildFailedException("PRODUCTION_NATIVE_SCOPE_PROFILE_MISMATCH");
