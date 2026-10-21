@@ -9,7 +9,7 @@ using STP.Application;
 namespace STP.Infrastructure.Persistence
 {
     /// <summary>One profile-bound worker repository with complete three-source provenance and explicit recovery.</summary>
-    public sealed class AtomicSaveRepository : ILocalProfileRepository
+    public sealed partial class AtomicSaveRepository : ILocalProfileRepository, ILocalProfileDeletionRepository
     {
         private const long MaxSafe = 9007199254740991L;
         private readonly SaveFileSystem files;
@@ -109,7 +109,12 @@ namespace STP.Infrastructure.Persistence
         {
             try
             {
-                using (files.AcquireExclusive(cancellationToken)) { lease = null; return LoadObserved(Observe(cancellationToken)); }
+                using (files.AcquireExclusive(cancellationToken))
+                {
+                    lease=null;string? epochError=CheckWriterEpoch(true,false);
+                    if(epochError!=null)return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.RecoveryRequired,epochError);
+                    return LoadObserved(Observe(cancellationToken));
+                }
             }
             catch (OperationCanceledException) { return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.Cancelled, "SAVE_CANCELLED"); }
             catch (Exception e) when (KnownFailure(e)) { return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.Failed, FileError(e)); }
@@ -124,7 +129,9 @@ namespace STP.Infrastructure.Persistence
                 {
                     using (files.AcquireExclusive(cancellationToken))
                     {
-                        lease = null; var observed = Observe(cancellationToken);
+                        lease = null;string? epochError=CheckWriterEpoch(false,false);
+                        if(epochError!=null)return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.RecoveryRequired,epochError);
+                        var observed = Observe(cancellationToken);
                         if (!request.Matches(observed.Observation)) return SaveLoadResult<LocalProfileState>.Failure(SaveLoadStatus.Conflict, "SAVE_OBSERVATION_CONFLICT", observed.Observation);
                         if (observed.Has(SaveCandidateStatus.Unsupported) || observed.Has(SaveCandidateStatus.Failed)) return LoadObserved(observed);
                         var selected = observed.Candidates[(int)request.SelectedKind];
@@ -170,6 +177,8 @@ namespace STP.Infrastructure.Persistence
                         return Failure(SaveCommitStatus.Failed, "SAVE_PROFILE_BINDING_MISMATCH");
                     if (expectedGeneration < 0 || expectedGeneration >= MaxSafe || snapshot.Generation != expectedGeneration + 1)
                         return Failure(SaveCommitStatus.Failed, expectedGeneration == MaxSafe ? "SAVE_GENERATION_EXHAUSTED" : "SAVE_GENERATION_INVALID");
+                    string? epochError=CheckWriterEpoch(false,kind==WriteKind.Initialize);
+                    if(epochError!=null)return Failure(SaveCommitStatus.RecoveryRequired,epochError);
                     var observed = Observe(ct);
                     if (observed.Has(SaveCandidateStatus.Failed)) { lease = null; return Failure(SaveCommitStatus.RecoveryRequired, "SAVE_CANDIDATE_UNREADABLE"); }
                     if (observed.Has(SaveCandidateStatus.Unsupported)) { lease = null; return Failure(SaveCommitStatus.Unsupported, "SAVE_SOURCE_UNSUPPORTED"); }
@@ -259,6 +268,7 @@ namespace STP.Infrastructure.Persistence
                     VerifyExact(SaveCandidateKind.Main, target, snapshot.Generation, targetHash, ct);
                     Point("step.8.main-verified", ct);
                     Point("step.9.before-ack", ct);
+                    if(kind==WriteKind.Initialize&&boundWriterEpoch==null)boundWriterEpoch=ProfileDeletionObservation.HistoricalEpoch;
                     return SaveCommitResult<LocalProfileState>.Success(snapshot);
                 }
             }

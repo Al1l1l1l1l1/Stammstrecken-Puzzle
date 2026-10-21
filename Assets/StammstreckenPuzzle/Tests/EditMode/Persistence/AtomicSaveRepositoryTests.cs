@@ -22,6 +22,7 @@ namespace STP.Tests.Persistence.EditMode
         private SaveFileSystem files = null!;
         private AtomicSaveRepository repository = null!;
         private readonly List<string> points = new List<string>();
+        private readonly HashSet<AtomicSaveRepository> explicitlyLoaded = new HashSet<AtomicSaveRepository>();
         private static readonly CancellationToken None = CancellationToken.None;
         private static Type App(string name) => typeof(LocalSaveCodec).GetProperty("Profile")!.PropertyType.Assembly.GetType("STP.Application." + name, true)!;
         private static object EnumApp(string name, string value) => Enum.Parse(App(name), value);
@@ -55,13 +56,25 @@ namespace STP.Tests.Persistence.EditMode
             Assert.That(Path.GetFileName(root).Length, Is.EqualTo(6));
             if (Directory.Exists(root)) Directory.Delete(root, true);
             points.Clear();
+            explicitlyLoaded.Clear();
         }
         private string PathFor(string kind) => Path.Combine(files.ProfileDirectory, kind == "Main" ? "save.json" : kind == "Backup" ? "save.backup.json" : "save.pending.json");
         private byte[] Bytes(long generation, bool alternative = false) => LocalSaveContractFixtures.Encode(codec, LocalSaveContractFixtures.Snapshot(generation, alternative));
         private void Seed(string kind, byte[] bytes) { Directory.CreateDirectory(files.ProfileDirectory); File.WriteAllBytes(PathFor(kind), bytes); }
-        private object Load(AtomicSaveRepository? repo = null, CancellationToken? ct = null) => Await(Call(repo ?? repository, "LoadAsync", ct ?? None));
+        private object Load(AtomicSaveRepository? repo = null, CancellationToken? ct = null)
+        {
+            var target=repo??repository;var result=Await(Call(target,"LoadAsync",ct??None));
+            if(P(result,"Observation")!=null||Status(result)=="NeedsInitialization")lock(explicitlyLoaded)explicitlyLoaded.Add(target);
+            return result;
+        }
+        private void LoadBeforeMutation(AtomicSaveRepository target,CancellationToken ct)
+        {
+            // ADR046: file seeding alone never authorizes a cold writer. Preserve any already obtained recovery lease.
+            lock(explicitlyLoaded)if(explicitlyLoaded.Contains(target))return;
+            Load(target,ct);
+        }
         private object Commit(long generation, long expected, bool alternative = false, AtomicSaveRepository? repo = null, CancellationToken? ct = null)
-            => Await(Call(repo ?? repository, "CommitAsync", LocalSaveContractFixtures.Snapshot(generation, alternative), expected, ct ?? None));
+        {var target=repo??repository;LoadBeforeMutation(target,ct??None);return Await(Call(target,"CommitAsync",LocalSaveContractFixtures.Snapshot(generation,alternative),expected,ct??None));}
         private object Request(object load, string selected) => Activator.CreateInstance(App("SaveRecoveryRequest"), P(load, "Observation"), EnumApp("SaveCandidateKind", selected))!;
         private object Recover(object request, AtomicSaveRepository? repo = null, CancellationToken? ct = null) => Await(Call(repo ?? repository, "RecoverAsync", request, ct ?? None));
         private static object[] Candidates(object load) => ((IEnumerable)P(P(load, "Observation")!, "Candidates")!).Cast<object>().ToArray();

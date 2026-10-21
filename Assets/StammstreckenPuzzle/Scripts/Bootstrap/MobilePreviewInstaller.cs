@@ -19,7 +19,7 @@ namespace STP.Bootstrap
 {
     /// <summary>New mobile presentation over the isolated, durable review composition. No production promotion.</summary>
     [DisallowMultipleComponent]
-    public sealed class MobilePreviewInstaller : MonoBehaviour
+    public sealed partial class MobilePreviewInstaller : MonoBehaviour
     {
         [SerializeField] private VisualTreeAsset? tree;
         [SerializeField] private StyleSheet? styles;
@@ -44,6 +44,8 @@ namespace STP.Bootstrap
         [SerializeField] private string runtimeApprovalRawSha256=string.Empty;
         [SerializeField] private string runtimeUiRawSha256=string.Empty;
         [SerializeField] private ProductionMobileServiceProfile? productionServiceProfile;
+        [SerializeField] private string publisherLegalUrl=string.Empty;
+        [SerializeField] private string publisherSupportUrl=string.Empty;
         [SerializeField] private AudioMixer? audioMixer;
         [SerializeField] private AudioClip[] audioClips=Array.Empty<AudioClip>();
         private ProductionGameAudio? gameAudio;
@@ -76,6 +78,7 @@ namespace STP.Bootstrap
         private string? testRoot;
         private Func<string>? testEndlessSeed;
         private bool testContractRuntime;
+        private Task? testLocalDataDrain;
         public string StartupDiagnostic {get;private set;}="NONE";
 #endif
         /// <summary>Actual durable bridge; null while loading.</summary>
@@ -87,11 +90,22 @@ namespace STP.Bootstrap
         /// <summary>Actual overlay document.</summary>
         public UIDocument Document { get; private set; } = null!;
         /// <summary>Observed user, save and lifecycle work.</summary>
-        public Task PendingOperation => Task.WhenAll(operation, lifecycle,experience?.Pending??Task.CompletedTask);
+        public Task PendingOperation => Task.WhenAll(operation,lifecycle,hintWork,experience?.Pending??Task.CompletedTask,localDataOperation);
         /// <summary>Completion of startup composition and initial load.</summary>
         public Task InitializeTask { get; private set; } = Task.CompletedTask;
         /// <summary>Completion of all owned work after destruction.</summary>
         public Task ShutdownTask { get; private set; } = Task.CompletedTask;
+
+        /// <summary>Stores explicit public destinations before Awake. This never opens a page or attests legal approval.</summary>
+        public void ConfigurePublisherContacts(PublisherContactConfiguration contacts)
+        {
+            if(started||disposed)throw new InvalidOperationException("PUBLISHER_CONTACT_CONFIGURATION_CLOSED");
+            if(contacts==null)throw new ArgumentNullException(nameof(contacts));
+            publisherLegalUrl=contacts.LegalUrl;publisherSupportUrl=contacts.SupportUrl;
+        }
+        /// <summary>Read-only verification of the exact destinations serialized by a source-gated production build.</summary>
+        public bool HasPublisherContacts(PublisherContactConfiguration expected)
+            =>expected!=null&&publisherLegalUrl==expected.LegalUrl&&publisherSupportUrl==expected.SupportUrl;
 
         /// <summary>Explicit scene references; configure only while inactive, before Awake.</summary>
         public void Configure(VisualTreeAsset view, StyleSheet stylesheet, TextAsset translations,
@@ -234,6 +248,12 @@ namespace STP.Bootstrap
             string? configured = Environment.GetEnvironmentVariable("STP_TEST_TEMP_ROOT");
             testRoot = Task.Run(() => SavedPublic240ReviewInstaller.ValidateTestRootBoundary(root, real, temp, configured)).GetAwaiter().GetResult();
         }
+        /// <summary>Editor-only owned-drain barrier; no provider or file outcome is fabricated.</summary>
+        public void ConfigureTestLocalDataDrain(Task barrier)
+        {
+            if(started||disposed)throw new InvalidOperationException("PREVIEW_ALREADY_STARTED");
+            testLocalDataDrain=barrier??throw new ArgumentNullException(nameof(barrier));
+        }
         /// <summary>Deterministic test input for the same actual generator; never serialized or compiled into a player.</summary>
         public void ConfigureTestEndlessSeeds(params ulong[] seeds)
         {
@@ -333,7 +353,6 @@ namespace STP.Bootstrap
                     if (disposed || epoch != startupEpoch) return;
                     model = new SavedPublic240ReviewSession(composition.Persisted, composition.Autosave, composition.Catalog, clock!, dispatcher!);
                 }
-                presenter.BindModel(model);
                 if(campaignText!=null)
                 {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
@@ -361,15 +380,21 @@ namespace STP.Bootstrap
                         experience=new MobileCandidateExperience(candidate!,model,presenter,dispatcher!,clock!,lifetime.Token,seedSource);
                         if(storeConfiguration!=null)experience.ConfigureStore(storeConfiguration,storeReadiness);
                     }
-                    presenter.BindHints(()=>model.PrepareHintAsync(fullGame.Metagame,lifetime.Token),async receipt=>
+                    if(!string.IsNullOrEmpty(publisherLegalUrl)||!string.IsNullOrEmpty(publisherSupportUrl))
                     {
-                        var result=await model.CommitHintDisplayAsync(fullGame.Metagame,receipt,lifetime.Token);
-                        if(!result.Succeeded)throw new IOException("HINT_DISPLAY_NOT_COMMITTED");
-                    },()=>fullGame.Persisted.Snapshot==null||model.State.CurrentIdentity==null||model.PuzzleView?.Phase!=DevelopmentPreviewPhase.Editing?0:
+                        try{experience.ConfigurePublisherContacts(new PublisherContactConfiguration(publisherLegalUrl,publisherSupportUrl),UnityEngine.Application.OpenURL);}
+                        catch(ArgumentException){/* Incomplete contact configuration disables only those explicit actions. */}
+                    }
+                    presenter.BindHints(()=>TrackHintWork(model.PrepareHintAsync(fullGame.Metagame,lifetime.Token)),
+                    receipt=>TrackHintWork(CommitRootHintAsync(receipt)),()=>fullGame.Persisted.Snapshot==null||model.State.CurrentIdentity==null||model.PuzzleView?.Phase!=DevelopmentPreviewPhase.Editing?0:
                         fullGame.Metagame.HintCredits(fullGame.Persisted.Snapshot.Payload,model.State.CurrentIdentity));
                 }
+                BindLocalDataDeletion();
+                if(!await InspectLocalDataBeforeLoadAsync())return;
+                presenter.BindModel(model);
                 await model.InitializeAsync(lifetime.Token);
                 if (disposed || epoch != startupEpoch) return;
+                TryStartLocalDiagnostics();
                 if(experience!=null)await experience.EnsureReadyAsync();
                 ApplySuspension(); presenter.Refresh();
             }
@@ -380,7 +405,9 @@ namespace STP.Bootstrap
                 StartupDiagnostic=error.GetType().Name+":"+error.Message;
 #endif
                 if (disposed || epoch != startupEpoch) return;
+                RecordLocalDiagnosticException(error);
                 fault = true;
+                if(presenter.HasBoundModel){ShowFailure(false);return;}
                 presenter.ShowStartupFailure(error is IOException || error is UnauthorizedAccessException
                     ? SavedStartupFailure.LocalStorageUnavailable : error is ArgumentException
                     ? SavedStartupFailure.InvalidAssets : SavedStartupFailure.CompositionFailed);
@@ -391,6 +418,12 @@ namespace STP.Bootstrap
         public Task RunRequestAsync(SavedReviewUiRequest request)
         {
             if (disposed) return Task.FromException(new ObjectDisposedException(nameof(MobilePreviewInstaller)));
+            if((request.Kind==SavedReviewUiRequestKind.RetryStartup||request.Kind==SavedReviewUiRequestKind.Reload)&&localDataStartupBlocked&&!deletionOwnersClosed)
+            {
+                if(!operation.IsCompleted||!localDataOperation.IsCompleted)return Task.FromException(new InvalidOperationException("PREVIEW_BUSY"));
+                InitializeTask=RetryLocalDataStartupAsync();return operation=InitializeTask;
+            }
+            if(localDataInputFence||deletionOwnersClosed)return Task.FromException(new InvalidOperationException("LOCAL_DATA_INPUT_FENCED"));
             if (!operation.IsCompleted || !lifecycle.IsCompleted) return Task.FromException(new InvalidOperationException("PREVIEW_BUSY"));
             if (request.Kind == SavedReviewUiRequestKind.RetryStartup && model == null)
             {
@@ -425,18 +458,21 @@ namespace STP.Bootstrap
                 }
                 if (disposed) return;
                 if (request.Kind == SavedReviewUiRequestKind.Reload) { fault = false; presenter!.ClearRequestFailure(); }
+                TryStartLocalDiagnostics();
                 if(experience!=null)await experience.EnsureReadyAsync();
                 RefreshSaveGate(); presenter!.Refresh();
             }
             catch (OperationCanceledException) { if (!disposed) ShowFailure(true); }
-            catch (Exception) { if (!disposed) ShowFailure(false); }
+            catch (Exception error) { RecordLocalDiagnosticException(error);if (!disposed) ShowFailure(false); }
         }
         private static int RequiredIndex(SavedReviewUiRequest request) => request.PuzzleIndex ?? throw new ArgumentException("PREVIEW_PUZZLE_MISSING");
         private void Update()
         {
             if (disposed) return;
             dispatcher?.Drain(); ApplySafeArea(); presenter?.Refresh();
-            model?.SetPresentationPaused(presenter?.IsPuzzleScreenActive!=true);ApplySuspension();
+            ApplySuspension();
+            if(localDataInputFence||deletionOwnersClosed)return;
+            model?.SetPresentationPaused(presenter?.IsPuzzleScreenActive!=true);
             if (model == null || presenter == null || fault) return;
             if (operation.IsCompleted && lifecycle.IsCompleted && !saveBlocked && !suspended)
             {
@@ -450,9 +486,14 @@ namespace STP.Bootstrap
         {
             try { await action(); if (!disposed) RefreshSaveGate(); }
             catch (OperationCanceledException) { if (!disposed) ShowFailure(true); }
-            catch (Exception) { if (!disposed) ShowFailure(false); }
+            catch (Exception error) { RecordLocalDiagnosticException(error);if (!disposed) ShowFailure(false); }
         }
-        private void RefreshSaveGate() => saveBlocked = model!.State.CommitStatus.HasValue && model.State.CommitStatus != SaveCommitStatus.Committed;
+        private void RefreshSaveGate()
+        {
+            bool wasBlocked=saveBlocked;
+            saveBlocked=model!.State.CommitStatus.HasValue&&model.State.CommitStatus!=SaveCommitStatus.Committed;
+            if(saveBlocked&&!wasBlocked)RecordLocalDiagnosticEvent(STP.Infrastructure.Persistence.LocalDiagnosticEvent.SaveRecoveryRequired);
+        }
         private void ShowFailure(bool cancelled)
         { fault = true; saveBlocked = true; DisposeRide(); presenter?.ShowRequestFailure(cancelled); }
         private void UpdateRide()
@@ -472,7 +513,7 @@ namespace STP.Bootstrap
                         var motion=model.ConfirmedSnapshot?.Payload.Settings.Accessibility;
                         if(motion?.TrainRideSkip==true||motion?.ReducedMotion==true)ride.Tick(1000);
                     }
-                    catch (Exception) { ShowFailure(false); return; }
+                    catch (Exception error) { RecordLocalDiagnosticException(error);ShowFailure(false); return; }
                 }
             }
             if (ride == null) return;
@@ -517,9 +558,11 @@ namespace STP.Bootstrap
         private void ApplySuspension()
         {
             bool externalInput=paused||!focused||experience?.IsNativeUiBusy==true;
-            experience?.SetExternalInputSuspended(externalInput);
+            experience?.SetExternalInputSuspended(externalInput||localDataInputFence||deletionOwnersClosed);
             presenter?.SetAccessibilitySuspended(externalInput);
             bool next = externalInput || presenter?.IsHelpOpen==true || presenter?.IsProductModalOpen==true;
+            if(localDataInputFence||deletionOwnersClosed)
+            {suspended=true;hasSuspension=false;RefreshAudio();return;}
             if (disposed || model == null) { suspended = next; hasSuspension = false; return; }
             if (hasSuspension && next == suspended) return;
             suspended = next; hasSuspension = true;
@@ -529,19 +572,31 @@ namespace STP.Bootstrap
                 Task flush = model.SetSuspendedAsync(next, lifetime.Token);
                 lifecycle = Task.WhenAll(lifecycle, ObserveAsync(() => flush));
             }
-            catch (Exception) { ShowFailure(false); }
+            catch (Exception error) { RecordLocalDiagnosticException(error);ShowFailure(false); }
         }
         private void OnDestroy()
         {
             if (disposed) return;
             disposed = true; startupEpoch++; lifetime.Cancel();
             Task serviceWork=experience?.Pending??Task.CompletedTask;
-            experience?.Dispose();DisposeRide(); presenter?.Dispose(); model?.Dispose(); dispatcher?.Dispose();
+            experience?.Dispose();DisposeRide(); presenter?.Dispose(); model?.Dispose();
+            serviceWork=Task.WhenAll(serviceWork,experience?.Pending??Task.CompletedTask);
             if (output != null) UnityEngine.Object.Destroy(output.gameObject);
             if (Document != null) Document.rootVisualElement?.Clear();
-            ShutdownTask = FinishShutdownAsync(Task.WhenAll(operation, lifecycle, InitializeTask,serviceWork));
+            ShutdownTask = FinishShutdownAsync(Task.WhenAll(operation,lifecycle,hintWork,InitializeTask,DrainClosedExperienceAsync(serviceWork),
+                localDataOperation,deletionDrain??Task.CompletedTask,CloseLocalDiagnosticsAsync()));
         }
         private async Task FinishShutdownAsync(Task pending)
-        { try { await pending.ConfigureAwait(false); } catch (Exception) { } finally { lifetime.Dispose(); } }
+        {
+            // OnDestroy stops Update. Continue publishing only on Unity's captured owner until
+            // every already-started task has settled, then close the queue on that same owner.
+            try
+            {
+                while(!pending.IsCompleted){dispatcher?.Drain();await Task.Yield();}
+                await pending;
+            }
+            catch(Exception){/* All owned failures are observed; no late UI is published. */}
+            finally{dispatcher?.Dispose();lifetime.Dispose();}
+        }
     }
 }

@@ -444,7 +444,8 @@ namespace STP.Infrastructure.Persistence
         internal string Write(LocalEndlessClaim v)=>Object(("claimId",Write(v.ClaimId)),("localOperationId",Write(v.LocalOperationId)),("claimStatus",Write(v.ClaimStatus)),("providerOperationId",Write(v.ProviderOperationId)),("reasonCode",Q("POST_CLEAR_PATIENCE")));
         internal OpenEndlessCompletion ReadOpenEndlessCompletion(CanonicalDtoCursor v)
         {
-            int version=v.Find("recordVersion").Int32();Require(version==1||version==2&&WriteSchemaVersion==3,"SAVE_RECORD_VERSION_UNSUPPORTED",true);
+            int version=WriteSchemaVersion==3&&v.Has("recordVersion")&&v.Find("recordVersion").Integer()==2?2:1;
+            v.Version("recordVersion",version,"SAVE_RECORD_VERSION_UNSUPPORTED");
             string[] fields={"generationOrdinal","id","descriptor","puzzleId","completionCommitId","claim","recordVersion","state"};var f=v.Fields(version==2?fields.Concat(new[]{"result"}).ToArray():fields);
             f[7].RequireString("COMPLETION_CLAIM_OPEN");
             var descriptor=ReadLocalEndlessDescriptor(f[2]);var claim=ReadLocalEndlessClaim(f[5]);if(version==1)return OpenEndlessCompletion.Create(f[0].String(),f[1].String(),descriptor,f[3].String(),f[4].String(),claim);
@@ -453,7 +454,7 @@ namespace STP.Infrastructure.Persistence
         internal string Write(OpenEndlessCompletion v){var fields=new System.Collections.Generic.List<(string,string)>{("generationOrdinal",Write(v.GenerationOrdinal)),("id",Write(v.Id)),("descriptor",Write(v.Descriptor)),("puzzleId",Write(v.PuzzleId)),("completionCommitId",Write(v.CompletionCommitId)),("claim",Write(v.Claim)),("recordVersion",Write(v.RecordVersion)),("state",Q("COMPLETION_CLAIM_OPEN"))};if(v.Result!=null){Require(WriteSchemaVersion==3,"SAVE_SCHEMA_UNSUPPORTED",true);var r=v.Result;fields.Add(("result",Object(("identity",Write(r.Identity)),("attemptId",Write(r.AttemptId)),("activeElapsedMs",Write(r.ActiveElapsedMs)),("stars",Write(r.Stars)),("firstClearTerminal",Write(r.FirstClearTerminal)),("secondStarPaid",r.SecondStarPaid==null?"null":Write(r.SecondStarPaid)),("thirdStarPaid",r.ThirdStarPaid==null?"null":Write(r.ThirdStarPaid)))));}return Object(fields.ToArray());}
         internal LocalEndlessState ReadLocalEndlessState(CanonicalDtoCursor v)
         {
-            if(v.Find("recordVersion").Integer()==2){Require(WriteSchemaVersion==3,"SAVE_SCHEMA_UNSUPPORTED",true);return ReadRuntimeEndless(v);}
+            if(WriteSchemaVersion==3&&v.Has("recordVersion")&&v.Find("recordVersion").Integer()==2)return ReadRuntimeEndless(v);
             v.Version("recordVersion",1,"SAVE_RECORD_VERSION_UNSUPPORTED");
             var f=v.Fields("highestReservedOrdinal","openEndless","recordVersion");
             return LocalEndlessState.Create(f[0].String(),f[1].Array().Select(x=>ReadLocalOpenEndless(x)).ToArray());

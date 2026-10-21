@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using STP.Application;
 using STP.Infrastructure.Content;
+using STP.Infrastructure.Persistence;
 using STP.Presentation.UI;
 using STP.MobileServices.Store;
 using STP.MobileServices.Google;
@@ -21,6 +22,7 @@ namespace STP.Bootstrap
         private readonly ProductionGamePresenter presenter;
         private readonly ILocalSaveDispatcher dispatcher;
         private readonly CancellationToken cancellation;
+        private readonly Func<DateTime> localDateTime;
         private readonly LocalDailyRandom random=new LocalDailyRandom();
         private MobileCandidateServices? services;
         private readonly Func<SaveSnapshot<LocalProfileState>,MobileCandidateServices>? productionServicesFactory;
@@ -35,20 +37,21 @@ namespace STP.Bootstrap
         private bool externalInputSuspended;
 
         public MobileCandidateExperience(MobileCandidateComposition composition,SavedPublic240ReviewSession saved,
-            ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,Func<string>? endlessSeedSource=null)
-            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,null,endlessSeedSource) { }
+            ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,Func<string>? endlessSeedSource=null,Func<DateTime>? localDateTimeSource=null)
+            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,null,endlessSeedSource,localDateTimeSource) { }
 
         /// <summary>Same game callbacks over explicitly locked runtime sources. Actual provider configuration is optional for offline play.</summary>
         public MobileCandidateExperience(ProductionGameComposition composition,SavedPublic240ReviewSession saved,
             ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,
-            GoogleAdConfiguration? productionAds=null,Func<string>? endlessSeedSource=null)
-            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,productionAds,endlessSeedSource) { }
+            GoogleAdConfiguration? productionAds=null,Func<string>? endlessSeedSource=null,Func<DateTime>? localDateTimeSource=null)
+            :this(new FullGameRuntimeContext(composition),saved,presenter,dispatcher,clock,cancellation,productionAds,endlessSeedSource,localDateTimeSource) { }
 
         private MobileCandidateExperience(FullGameRuntimeContext composition,SavedPublic240ReviewSession saved,
             ProductionGamePresenter presenter,ILocalSaveDispatcher dispatcher,ILocalSessionClock clock,CancellationToken cancellation,
-            GoogleAdConfiguration? productionAds,Func<string>? endlessSeedSource)
+            GoogleAdConfiguration? productionAds,Func<string>? endlessSeedSource,Func<DateTime>? localDateTimeSource)
         {
             this.composition=composition;this.saved=saved;this.presenter=presenter;this.dispatcher=dispatcher;this.cancellation=cancellation;
+            localDateTime=localDateTimeSource??(()=>DateTime.Now);
             nextEndlessSeed=endlessSeedSource??FreshEndlessSeed;
             if(composition.Profile.Use==CatalogUse.InternalPreview)
                 services=new MobileCandidateServices(composition.Repository,composition.Profile,composition.Catalogs,dispatcher,clock,
@@ -130,7 +133,7 @@ namespace STP.Bootstrap
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReservePostClearAsync(composition.PostClear,identity,ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalPostClearPolicy.Reservation(reserved,identity);
-            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
+            var shown=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Rewarded,()=>Services.ShowRewardedAsync(reservation,cancellation));
             await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolvePostClearAsync(composition.PostClear,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
@@ -142,10 +145,10 @@ namespace STP.Bootstrap
             try{receipt=resultReceipt?.AttemptId==view.AttemptId&&resultReceipt.Identity.Equals(view.Puzzle.Identity)?resultReceipt:InterstitialResultReceipt.FromCommittedResult(composition.Persisted);}
             catch(ArgumentException){return;}
             Guid attempt=view.AttemptId;
-            await Services.TryInterstitialAfterResultAsync(receipt,()=>!disposed&&presenter.IsPuzzleScreenActive&&
+            await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Interstitial,()=>Services.TryInterstitialAfterResultAsync(receipt,()=>!disposed&&presenter.IsPuzzleScreenActive&&
                 !presenter.IsHelpOpen&&!presenter.IsProductModalOpen&&composition.Persisted.CanPresentResults&&saved.State.CanNavigate&&State!=null&&
                 !PersistedMobileTransactions.HasRemoveAds(State)&&saved.State.CurrentIdentity?.Equals(receipt.Identity)==true&&saved.PuzzleView?.AttemptId==attempt&&
-                saved.PuzzleView.Phase==DevelopmentPreviewPhase.Results,true,cancellation);
+                saved.PuzzleView.Phase==DevelopmentPreviewPhase.Results,true,cancellation));
         }
         /// <summary>Captures the acknowledged attempt before optional completion-claim closure retires its open record.</summary>
         public void CaptureCommittedResult()
@@ -194,36 +197,35 @@ namespace STP.Bootstrap
                     services=productionServicesFactory(saved.ConfirmedSnapshot!);
                     if(productionStore!=null)services.ConfigureProductionStore(productionStore,productionStoreReadiness!);
                 }
-                catch{services?.Dispose();services=null;}
+                catch(Exception exception){RecordLocalDiagnosticException(exception);services?.Dispose();services=null;}
             }
+            WireLocalDiagnosticServices();
             if(!consentStarted&&services!=null){consentStarted=true;consent=RefreshConsentObservedAsync();}
         }
         private async Task RefreshConsentObservedAsync()
-        {try{await Services.RefreshConsentAsync(cancellation);}catch(Exception){/* Service unavailability leaves the offline game usable. */}}
-        private string DailyDate()
+        {try{await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Consent,()=>Services.RefreshConsentAsync(cancellation));}catch(Exception){/* Service unavailability leaves the offline game usable. */}}
+        // Pending provider operations retain their own date; they never select another day's offer.
+        private static string DailyDate(Func<DateTime> source)=>source().ToString("yyyy-MM-dd",CultureInfo.InvariantCulture);
+        private DailyView ReadDaily()=>ReadDaily(State,localDateTime,CanRequestAds);
+        private static DailyView ReadDaily(LocalProfileState? state,Func<DateTime> dateSource,bool canRequestAds)
         {
-            var pending=State?.Metagame?.Daily.Where(d=>d.Terminal==null&&d.Reward?.State!="CLOSED_NO_REWARD")
-                .OrderBy(d=>d.Date,StringComparer.Ordinal).FirstOrDefault();
-            return pending?.Date??DateTime.Now.ToString("yyyy-MM-dd",CultureInfo.InvariantCulture);
-        }
-        private DailyView ReadDaily()
-        {
-            string date=DailyDate();var records=State?.Metagame?.Daily.Where(d=>d.Date==date).ToArray()??Array.Empty<LocalDailyClaim>();
+            string date=DailyDate(dateSource);
+            var records=state?.Metagame?.Daily.Where(d=>d.Date==date).ToArray()??Array.Empty<LocalDailyClaim>();
             var free=records.SingleOrDefault(d=>d.Slot=="FREE");var video=records.SingleOrDefault(d=>d.Slot=="REWARDED");
             var terminal=video?.Terminal??free?.Terminal;
             bool pending=records.Any(d=>d.Terminal==null&&d.Reward?.State!="CLOSED_NO_REWARD");
-            return new DailyView(date,State!=null&&free?.Terminal==null,
-                State!=null&&free?.Terminal!=null&&video?.Terminal==null&&CanRequestAds&&
+            return new DailyView(date,state!=null&&free?.Terminal==null,
+                state!=null&&free?.Terminal!=null&&video?.Terminal==null&&canRequestAds&&
                 (video==null||video.Reward?.State=="CLOSED_NO_REWARD"),terminal==null?(int?)null:(int)terminal.Amount,pending);
         }
         private async Task ClaimDailyAsync(bool video)
         {
-            string date=DailyDate();
+            string date=DailyDate(localDateTime);
             if(!video){await CommitAsync((use,ct)=>use.ClaimFreeDailyAsync(composition.Metagame,random,date,ct));return;}
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReserveDailyRewardAsync(composition.Metagame,random,date,Guid.NewGuid().ToString("D"),ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalMetagameTransactions.RewardReservation(reserved,"daily:v1:"+date+":REWARDED");
-            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
+            var shown=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Rewarded,()=>Services.ShowRewardedAsync(reservation,cancellation));
             bool definitelyNoReward=DefinitelyBeforeShow(shown.Code);
             await CommitAsync((use,ct)=>use.ResolveDailyRewardAsync(composition.Metagame,reservation,definitelyNoReward,ct));
         }
@@ -241,7 +243,7 @@ namespace STP.Bootstrap
             var reserved=await saved.RunProfileActionAsync((use,ct)=>use.ReserveHintRewardAsync(composition.Metagame,identity,Guid.NewGuid().ToString("D"),ct),cancellation);
             RequireCommit(reserved);
             var reservation=LocalMetagameTransactions.RewardReservation(reserved,LocalHintRecord.ClaimId(identity));
-            var shown=await Services.ShowRewardedAsync(reservation,cancellation);
+            var shown=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Rewarded,()=>Services.ShowRewardedAsync(reservation,cancellation));
             await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolveHintRewardAsync(composition.Metagame,identity,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
@@ -263,26 +265,31 @@ namespace STP.Bootstrap
             bool owned=State?.Entitlements.Records.Any(e=>e.ProductKey=="remove_ads"&&e.Owned&&!e.RevocationConfirmed)==true;
             bool ready=State!=null&&!externalInputSuspended&&saved.CanRunProfileAction&&services!=null;
             return new ProductionServiceState(ready,ready&&services!.CanLoadStorePrice,
-                owned,ready&&!owned&&services!.CanPurchaseDisplayedProduct,services?.Product?.LocalizedPrice,ready&&!owned&&services!.CanLoadStorePrice);
+                owned,ready&&!owned&&services!.CanPurchaseDisplayedProduct,services?.Product?.LocalizedPrice,ready&&!owned&&services!.CanLoadStorePrice,
+                CanOpenPublisherContact,CanOpenPublisherContact);
         }
         private async Task ActServiceAsync(ProductionServiceAction action)
         {
             switch(action)
             {
+                case ProductionServiceAction.ShowLegal:await OpenPublisherContactAsync(false);break;
+                case ProductionServiceAction.ContactSupport:await OpenPublisherContactAsync(true);break;
                 case ProductionServiceAction.ReviewPrivacy:
-                    var privacy=await (Services.Capabilities.PrivacyOptionsRequired?Services.ShowPrivacyOptionsAsync(cancellation):Services.RefreshConsentAsync(cancellation));
-                    if(privacy.Code=="CONSENT_CURRENT_UPDATE_REQUIRED")privacy=await Services.RefreshConsentAsync(cancellation);
+                    var privacy=await (Services.Capabilities.PrivacyOptionsRequired?
+                        WithLocalDiagnosticAsync(LocalDiagnosticOperation.PrivacyOptions,()=>Services.ShowPrivacyOptionsAsync(cancellation)):
+                        WithLocalDiagnosticAsync(LocalDiagnosticOperation.Consent,()=>Services.RefreshConsentAsync(cancellation)));
+                    if(privacy.Code=="CONSENT_CURRENT_UPDATE_REQUIRED")privacy=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Consent,()=>Services.RefreshConsentAsync(cancellation));
                     if(privacy.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(privacy.Code);break;
                 case ProductionServiceAction.RestorePurchases:
-                    var restored=await Services.RestoreAsync(cancellation);
+                    var restored=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Restore,()=>Services.RestoreAsync(cancellation));
                     if(restored.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(restored.Code);break;
                 case ProductionServiceAction.LoadStorePrice:
-                    var price=await Services.LoadStorePriceAsync(cancellation);
+                    var price=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.StorePrice,()=>Services.LoadStorePriceAsync(cancellation));
                     if(price.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(price.Code);break;
                 case ProductionServiceAction.PurchaseRemoveAds:
                     var displayed=Services.Product;
                     if(displayed==null||!ReadServices().CanPurchaseRemoveAds)throw new InvalidOperationException("IAP_DISPLAYED_OFFER_REQUIRED");
-                    var purchased=await Services.PurchaseRemoveAdsAsync(displayed,cancellation);
+                    var purchased=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Purchase,()=>Services.PurchaseRemoveAdsAsync(displayed,cancellation));
                     if(purchased.Status!=MobileServiceStatus.Succeeded)throw new InvalidOperationException(purchased.Code);break;
                 default:throw new InvalidOperationException("PUBLISHER_SUPPORT_PRIVACY_CONTACT_REQUIRED");
             }
@@ -299,6 +306,6 @@ namespace STP.Bootstrap
             await dispatcher.InvokeAsync(()=>task=action()).ConfigureAwait(false);
             return await task!.ConfigureAwait(false);
         }
-        public void Dispose(){if(disposed)return;disposed=true;services?.Dispose();}
+        public void Dispose(){if(disposed)return;disposed=true;DetachLocalDiagnosticServices();services?.Dispose();}
     }
 }

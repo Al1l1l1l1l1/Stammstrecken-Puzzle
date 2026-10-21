@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using STP.Application;
+using STP.Infrastructure.Persistence;
 using STP.Presentation.UI;
 
 namespace STP.Bootstrap
@@ -99,7 +100,7 @@ namespace STP.Bootstrap
             if(!CanRequestEndlessVideo(id))throw new InvalidOperationException("ENDLESS_VIDEO_UNAVAILABLE");
             var committed=await saved.RunProfileActionAsync((use,ct)=>use.ReserveEndlessRewardAsync(composition.EndlessPolicy,id,ct),cancellation);
             RequireCommit(committed);var reservation=LocalEndlessPolicy.RewardReservation(committed,id);
-            var shown=await Services.ShowRewardedAsync(reservation,cancellation);await Services.PendingCallbacks;
+            var shown=await WithLocalDiagnosticAsync(LocalDiagnosticOperation.Rewarded,()=>Services.ShowRewardedAsync(reservation,cancellation));await Services.PendingCallbacks;
             await CommitAsync((use,ct)=>use.ResolveEndlessRewardAsync(composition.EndlessPolicy,reservation,DefinitelyBeforeShow(shown.Code),ct));
         }
     }

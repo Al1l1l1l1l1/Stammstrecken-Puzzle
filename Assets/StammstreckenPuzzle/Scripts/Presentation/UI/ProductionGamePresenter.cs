@@ -237,7 +237,7 @@ namespace STP.Presentation.UI
         public void BindHintVideo(Func<bool> canRequest,Func<Task> request)
         {CheckThread();CheckProductBinding();canRequestHintVideo=canRequest??throw new ArgumentNullException(nameof(canRequest));requestHintVideo=request??throw new ArgumentNullException(nameof(request));}
         /// <summary>Root suppresses the native semantic hierarchy during actual SDK, focus or lifecycle interruptions.</summary>
-        public void SetAccessibilitySuspended(bool value){CheckThread();if(disposed)return;var changed=externalUiSuspended!=value;externalUiSuspended=value;if(changed)assignedReview?.SetSuspension(HumanPauseReason.External,value);accessibility.SetSuspended(value);if(!value)hintDisplayGate.Recheck();}
+        public void SetAccessibilitySuspended(bool value){CheckThread();if(disposed)return;var changed=externalUiSuspended!=value;externalUiSuspended=value;if(changed)assignedReview?.SetSuspension(HumanPauseReason.External,value);accessibility.SetSuspended(value);productPanels.SetExternalSuspended(value);if(!value)hintDisplayGate.Recheck();}
         /// <summary>Binds optional action feedback.</summary>
         public void BindFeedback(Action<ProductionFeedbackCue> receive){CheckThread();feedback=receive??throw new ArgumentNullException(nameof(receive));}
         private void EmitFeedback(ProductionFeedbackCue cue){try{feedback?.Invoke(cue);}catch{ /* Optional presentation feedback has no gameplay authority. */ }}
@@ -275,6 +275,9 @@ namespace STP.Presentation.UI
         public void BindSettings(Func<LocalSettings> read,Func<LocalSettings,Task> save){CheckThread();CheckProductBinding();productPanels.BindSettings(read,save);}
         /// <summary>Binds actual native privacy/Store readiness and explicitly requested actions.</summary>
         public void BindServices(Func<ProductionServiceState> read,Func<ProductionServiceAction,Task> action){CheckThread();CheckProductBinding();productPanels.BindServices(read,action);}
+        /// <summary>Binds Root lifecycle actions without reading files or assuming a playable Saved session.</summary>
+        public void BindLocalDataDeletion(Func<ProductionLocalDataView> read,Func<ProductionLocalDataAction,Task> action)
+        {CheckThread();CheckProductBinding();productPanels.BindLocalDataDeletion(read,action);}
         /// <summary>Binds the exact 720 player texts; draft use requires an explicit internal opt-in.</summary>
         public void BindCampaignText(TextAsset source,bool allowInternalDraft=false)=>BindCampaignTextCore(()=>new ProductionCampaignText(source,allowInternalDraft));
         /// <summary>Binds only the dedicated technical FIXTURE_ONLY text source.</summary>
@@ -313,7 +316,7 @@ namespace STP.Presentation.UI
             }
             var state=model.State;
             BindPuzzleView(model.PuzzleView);
-            var clear=pending==null&&!requestFault&&!postgamePanels.IsBusy&&!resultContinuation.IsPending;
+            var clear=pending==null&&!requestFault&&!postgamePanels.IsBusy&&!resultContinuation.IsPending&&!productPanels.IsLocalDataBlocking;
             var editing=clear&&!IsProductModalOpen&&state.CanMutate&&view!=null&&view.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
             if(view!=null&&view.Phase==DevelopmentPreviewPhase.TrainRide)screen=Screen.Puzzle;
             if(view!=null)
@@ -430,7 +433,7 @@ namespace STP.Presentation.UI
         private void CheckThread(){if(Thread.CurrentThread.ManagedThreadId!=ownerThread)throw new InvalidOperationException("PRODUCT_UI_WRONG_THREAD");}
         private void CheckStartup(){CheckThread();if(disposed)throw new ObjectDisposedException(nameof(ProductionGamePresenter));if(model!=null||assignedReview!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");}
         private void AddButton(string id,string key,Action action)
-        {var button=Require<Button>(id);button.text=L(key);if(key=="back")button.tooltip=L("accessibility.back");buttons.Add(id,button);actions.Add(id,action);button.clicked+=action;}
+        {var button=Require<Button>(id);button.text=L(key);if(key=="back")button.tooltip=L("accessibility.back");buttons.Add(id,button);Action guarded=()=>{if(!disposed&&!productPanels.IsLocalDataBlocking)action();};actions.Add(id,guarded);button.clicked+=guarded;}
         private void Unsubscribe(){foreach(var pair in actions)if(buttons.TryGetValue(pair.Key,out var button))button.clicked-=pair.Value;}
         private static void SetVisible(VisualElement target,bool value)=>target.style.display=value?DisplayStyle.Flex:DisplayStyle.None;
         private void RenderScreen()
@@ -443,7 +446,7 @@ namespace STP.Presentation.UI
         private void Navigate(Screen next)
         {
             if(assignedReview!=null)return;
-            if(disposed||pending!=null||resultContinuation.IsPending||view?.Phase==DevelopmentPreviewPhase.TrainRide)return;
+            if(disposed||productPanels.IsLocalDataBlocking||pending!=null||resultContinuation.IsPending||view?.Phase==DevelopmentPreviewPhase.TrainRide)return;
             if(screen==Screen.Puzzle&&next!=Screen.Puzzle&&view?.Phase==DevelopmentPreviewPhase.Editing)view.Pause(clock());
             screen=next;Refresh();
         }
@@ -617,7 +620,7 @@ namespace STP.Presentation.UI
         private void Undo(){if(CanEdit){var status=view!.Undo(clock());Refresh();if(status==DevelopmentCommandStatus.Applied)EmitFeedback(ProductionFeedbackCue.Undo);}}
         private void ToggleZoom()
         {
-            if(Grid==null)return;zoom=!zoom;LayoutGridViewport();
+            if(Grid==null||productPanels.IsLocalDataBlocking||externalUiSuspended)return;zoom=!zoom;LayoutGridViewport();
             buttons["puzzle-zoom"].text=L(zoom?"zoom.close":"zoom");viewport.scrollOffset=Vector2.zero;
         }
         private void OnViewportGeometry(GeometryChangedEvent change)=>LayoutGridViewport();
@@ -661,7 +664,7 @@ namespace STP.Presentation.UI
         private void SendBound(SavedReviewUiRequestKind kind){if(model!=null)Send(SavedReviewUiRequest.Bound(kind,model.State.Version));}
         private void Send(SavedReviewUiRequest request)
         {
-            if(disposed||pending!=null)return;
+            if(disposed||productPanels.IsLocalDataBlocking||pending!=null)return;
             try{pending=(runRequest??throw new InvalidOperationException("PRODUCT_SAVED_REQUEST_UNBOUND"))(request)??throw new InvalidOperationException("PRODUCT_REQUEST_NULL");}
             catch{requestFault=true;pending=null;}
             Refresh();

@@ -37,6 +37,7 @@ namespace STP.Editor.Build
             source.VerifyStillCurrent();
             VerifySourceOriginals(source,repository);
             var profile=ReadProtectedPreset(repository);
+            var publisher=ReadPublisherContacts();
             string presetJson=EditorJsonUtility.ToJson(profile);
             if(EditorUserBuildSettings.activeBuildTarget!=BuildTarget.Android&&EditorUserBuildSettings.activeBuildTarget!=BuildTarget.iOS)
                 throw new InvalidOperationException("PRODUCTION_MOBILE_TARGET_REQUIRED");
@@ -72,6 +73,7 @@ namespace STP.Editor.Build
                 Required<TextAsset>(Root+"UI/ProductionGameLocale.json"),panel,files,Required<TextAsset>(destination+"Runtime.bindings.json"),
                 source.Facts.BindingsRawSha256,source.Facts.ReleaseLockRawSha256,source.Facts.ReleaseLockJcsSha256,source.Facts.ApprovalLockRawSha256!,source.Facts.UiSourceLockRawSha256);
             installer.ConfigureProductionServiceProfile(profile);
+            installer.ConfigurePublisherContacts(publisher);
             installer.ConfigureAudio(ProductionAudioAssets.LoadMixer(),ProductionAudioAssets.LoadClips());holder.SetActive(true);
             PreservePreviousScene(source.AuditDirectory);
             if(!EditorSceneManager.SaveScene(scene,ScenePath))throw new InvalidOperationException("PRODUCTION_SCENE_SAVE_FAILED");
@@ -128,6 +130,7 @@ namespace STP.Editor.Build
             var blocks=Regex.Split(text,@"(?m)^--- !u!").Where(b=>Regex.IsMatch(b,@"\A114 &-?\d+\r?\nMonoBehaviour:\r?\n")&&b.Contains("guid: "+script+", type: 3}")).ToArray();
             if(blocks.Length!=1)throw new InvalidOperationException("PRODUCTION_SCENE_INSTALLER_COUNT");
             string block=blocks[0];
+            ValidatePublisherSceneBlock(block,ReadPublisherContacts());
             string[] names=source.PlayerPaths.Where(p=>p!="Runtime.bindings.json").OrderBy(p=>p,StringComparer.Ordinal).ToArray();
             string expectedPaths="  runtimePayloadPaths:\n"+string.Join("",names.Select(n=>"  - "+n+"\n"));
             string expectedAssets="  runtimePayloads:\n";
@@ -149,6 +152,16 @@ namespace STP.Editor.Build
         }
 
         private static bool SameRoot(string first,string second)=>string.Equals(Path.GetFullPath(first).TrimEnd(Path.DirectorySeparatorChar,Path.AltDirectorySeparatorChar),Path.GetFullPath(second).TrimEnd(Path.DirectorySeparatorChar,Path.AltDirectorySeparatorChar),Path.DirectorySeparatorChar=='\\'?StringComparison.OrdinalIgnoreCase:StringComparison.Ordinal);
+        private static PublisherContactConfiguration ReadPublisherContacts()
+            =>new PublisherContactConfiguration(RequiredEnvironment("STP_PUBLISHER_LEGAL_URL"),RequiredEnvironment("STP_PUBLISHER_SUPPORT_URL"));
+        internal static void ValidatePublisherSceneBlock(string block,PublisherContactConfiguration expected)
+        {
+            block=block.Replace("\r\n","\n");
+            foreach(var pair in new[]{("publisherLegalUrl",expected.LegalUrl),("publisherSupportUrl",expected.SupportUrl)})
+                if(Regex.Matches(block,@"(?m)^  "+pair.Item1+@":").Count!=1||
+                    Regex.Matches(block,@"(?m)^  "+pair.Item1+": "+Regex.Escape(pair.Item2)+@"$").Count!=1)
+                    throw new InvalidOperationException("PRODUCTION_PUBLISHER_CONTACTS_CHANGED");
+        }
         private static void VerifySourceOriginals(ProductionImportPreflightResult source,string repository)
         {
             foreach(var original in source.Facts.OriginalRawHashes)

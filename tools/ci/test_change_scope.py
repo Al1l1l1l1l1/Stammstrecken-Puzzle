@@ -235,7 +235,17 @@ class ChangeScopeTests(unittest.TestCase):
                     for i, match in enumerate(starts)}
         original_jobs, current_jobs = jobs(result.stdout), jobs(current)
         self.assertEqual(set(original_jobs), set(current_jobs))
-        changed = {"project-preflight", "unity-android-development-il2cpp", "unity-ios-export"}
+        changed = {"project-preflight", "unity-android-development-il2cpp", "unity-ios-export",
+                   "unity-compile-editmode", "unity-playmode-bootstrap-smoke"}
+        # The WP046 coverage fix replaces only the duplicated verifier step.
+        # Every other command/action/container in both coverage jobs stays exact.
+        coverage_step = r"      - name: Coverage-Evidenz[^\n]*\n.*?(?=      - name: Unity-Personal-Seat)"
+        for job in ("unity-compile-editmode", "unity-playmode-bootstrap-smoke"):
+            before, n_before = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", original_jobs[job], flags=re.DOTALL)
+            after, n_after = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", current_jobs[job], flags=re.DOTALL)
+            self.assertEqual((1, 1), (n_before, n_after), job)
+            self.assertEqual(before, after, job)
+            self.assertIn("python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json", current_jobs[job])
         for name in original_jobs.keys() - changed:
             self.assertEqual(original_jobs[name], current_jobs[name], name)
         for name in changed - {"project-preflight"}:

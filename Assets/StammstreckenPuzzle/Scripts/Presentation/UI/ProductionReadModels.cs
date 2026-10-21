@@ -12,7 +12,7 @@ namespace STP.Presentation.UI
             if(confirmedAmount.HasValue&&confirmedAmount!=10&&confirmedAmount!=15&&confirmedAmount!=25)throw new ArgumentOutOfRangeException(nameof(confirmedAmount));
             ConfirmedAmount=confirmedAmount;PendingClaim=pendingClaim;
         }
-        /// <summary>Root-formatted local date; an open claim retains its reserved date.</summary>
+        /// <summary>Root-formatted current local date. Older saved claims keep their own reservation date.</summary>
         public string DateLabel{get;}
         /// <summary>Persistent policy permits a free operation or continuation.</summary>
         public bool FreeAvailable{get;}
@@ -25,13 +25,13 @@ namespace STP.Presentation.UI
     }
     /// <summary>Explicit native service intent; Root retains provider and entitlement authority.</summary>
     public enum ProductionServiceAction { ReviewPrivacy, RestorePurchases, PurchaseRemoveAds, ShowLegal, ContactSupport, LoadStorePrice }
-    /// <summary>Actual Store and privacy readiness, including a price supplied by the Store.</summary>
+    /// <summary>Actual Store, privacy and publisher-contact readiness, including a price supplied by the Store.</summary>
     public sealed class ProductionServiceState
     {
         /// <summary>Creates an actual provider projection, never a proposed successful purchase.</summary>
-        public ProductionServiceState(bool canReviewPrivacy,bool canRestore,bool removeAdsOwned,bool canPurchaseRemoveAds,string? localizedRemoveAdsPrice,bool canLoadStorePrice=false)
+        public ProductionServiceState(bool canReviewPrivacy,bool canRestore,bool removeAdsOwned,bool canPurchaseRemoveAds,string? localizedRemoveAdsPrice,bool canLoadStorePrice=false,bool canShowLegal=false,bool canContactSupport=false)
         {
-            CanReviewPrivacy=canReviewPrivacy;CanRestore=canRestore;RemoveAdsOwned=removeAdsOwned;CanPurchaseRemoveAds=canPurchaseRemoveAds;LocalizedRemoveAdsPrice=localizedRemoveAdsPrice;CanLoadStorePrice=canLoadStorePrice;
+            CanReviewPrivacy=canReviewPrivacy;CanRestore=canRestore;RemoveAdsOwned=removeAdsOwned;CanPurchaseRemoveAds=canPurchaseRemoveAds;LocalizedRemoveAdsPrice=localizedRemoveAdsPrice;CanLoadStorePrice=canLoadStorePrice;CanShowLegal=canShowLegal;CanContactSupport=canContactSupport;
             if(canPurchaseRemoveAds&&(removeAdsOwned||string.IsNullOrWhiteSpace(localizedRemoveAdsPrice)))throw new ArgumentException("PRODUCT_STORE_STATE_INVALID");
         }
         /// <summary>Privacy-options service is callable.</summary>
@@ -46,6 +46,23 @@ namespace STP.Presentation.UI
         public string? LocalizedRemoveAdsPrice{get;}
         /// <summary>Root permits an explicit Store price request without authorizing a purchase.</summary>
         public bool CanLoadStorePrice{get;}
+        /// <summary>Root has validated the actual legal URL and permits this explicit open action.</summary>
+        public bool CanShowLegal{get;}
+        /// <summary>Root has validated the actual support URL and permits this explicit open action.</summary>
+        public bool CanContactSupport{get;}
+    }
+    /// <summary>Root-owned local profile deletion projection; no state is inferred from a completed task.</summary>
+    public enum ProductionLocalDataState { Unavailable, Ready, Confirmation, Deleting, RetryRequired, Deleted }
+    /// <summary>Explicit local deletion intent. Retry is the same Root-held operation, never a fresh confirmation.</summary>
+    public enum ProductionLocalDataAction { Open, Cancel, Confirm, Retry, Restart }
+    /// <summary>Immutable status without file paths, epochs, Store state or deletion authority.</summary>
+    public sealed class ProductionLocalDataView
+    {
+        /// <summary>Creates a closed, typed Root read model.</summary>
+        public ProductionLocalDataView(ProductionLocalDataState state)
+        {if(!Enum.IsDefined(typeof(ProductionLocalDataState),state))throw new ArgumentOutOfRangeException(nameof(state));State=state;}
+        /// <summary>Actual Root lifecycle state, distinct from transient UI task completion.</summary>
+        public ProductionLocalDataState State{get;}
     }
     /// <summary>Localized player text for one exact canonical campaign slot.</summary>
     public sealed class ProductionPuzzleDisplay

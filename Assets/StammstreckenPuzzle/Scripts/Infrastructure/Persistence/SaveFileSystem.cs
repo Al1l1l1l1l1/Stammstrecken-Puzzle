@@ -10,7 +10,7 @@ using STP.Application;
 namespace STP.Infrastructure.Persistence
 {
     /// <summary>The only physical path, stream, persistent-flush and replacement boundary for local saves.</summary>
-    public sealed class SaveFileSystem
+    public sealed partial class SaveFileSystem
     {
         private readonly string root;
         private readonly string directory;
