@@ -82,6 +82,14 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertTrue(result.source_product_changed)
         self.assertFalse(result.pr_merge_product_changed)
 
+    def test_coverage_preparer_changes_require_a_measured_pr_candidate(self) -> None:
+        records = self.records("tools/ci/prepare_coverage.py")
+        candidate = subject.classify_records(records, event="pull_request")
+        self.assertTrue(candidate.requires_unity)
+        self.assertTrue(candidate.source_product_changed)
+        pushed = subject.classify_records(records, event="push")
+        self.assertEqual("DEFERRED_TO_PR_CANDIDATE", pushed.outputs()["unity_status"])
+
     def test_docs_pr_remains_unity_free(self) -> None:
         docs = self.records("PROJECT_CONTROL/CURRENT_STATE.md")
         result = subject.classify_records(docs, event="pull_request")
@@ -237,12 +245,17 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertEqual(set(original_jobs), set(current_jobs))
         changed = {"project-preflight", "unity-android-development-il2cpp", "unity-ios-export",
                    "unity-compile-editmode", "unity-playmode-bootstrap-smoke"}
-        # The WP046 coverage fix replaces only the duplicated verifier step.
-        # Every other command/action/container in both coverage jobs stays exact.
+        # Only the verifier and the explicitly pinned collector preparation differ.
+        # Compilation/test commands, measurement flags and licence handling stay exact.
         coverage_step = r"      - name: Coverage-Evidenz[^\n]*\n.*?(?=      - name: Unity-Personal-Seat)"
         for job in ("unity-compile-editmode", "unity-playmode-bootstrap-smoke"):
             before, n_before = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", original_jobs[job], flags=re.DOTALL)
             after, n_after = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", current_jobs[job], flags=re.DOTALL)
+            self.assertEqual((1, 1), (n_before, n_after), job)
+            old_collector = r"          python3 - <<'PYEOF'\n          import hashlib, json, pathlib\n.*?          PYEOF\n"
+            new_collector = r"          python3 tools/ci/prepare_coverage\.py\n"
+            before, n_before = re.subn(old_collector, "PINNED_COLLECTOR_PREPARATION\n", before, flags=re.DOTALL)
+            after, n_after = re.subn(new_collector, "PINNED_COLLECTOR_PREPARATION\n", after)
             self.assertEqual((1, 1), (n_before, n_after), job)
             self.assertEqual(before, after, job)
             self.assertIn("python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json", current_jobs[job])

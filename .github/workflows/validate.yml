@@ -67,6 +67,7 @@ jobs:
         run: |
           set -euo pipefail
           PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_prepare_coverage.py
           args=(--event "${GITHUB_EVENT_NAME}" --base "${EVENT_BASE}" --head "${EVENT_HEAD}" --merge "${EVENT_MERGE}" --github-output "${GITHUB_OUTPUT}")
           if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
             args+=(--force-full)

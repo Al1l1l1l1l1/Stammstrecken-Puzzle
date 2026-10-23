@@ -246,6 +246,10 @@ Documentation-only-Arbeiten wie `WP-001` bis `WP-005` benötigen keinen Spielbui
 
 Line-/Branchcoverage wird berichtet, aber keine willkürliche Zahl ersetzt fachliche Tests. Mit dem ersten Code-Work-Package werden Baselines nach Assembly festgelegt; Domain, Solver, Policies und Migrationen erhalten besonders hohe Branch- und Mutationserwartungen. Ein Coverageabfall benötigt eine begründete Ausnahme.
 
+Der gepinnte Unity-Collector 1.3.0 wird durch [prepare_coverage.py](../tools/ci/prepare_coverage.py) ausschließlich an drei vollständig quellhashgebundenen Exportdateien vorbereitet: vollständiger Full-Export und verlustfreie Übertragung der tatsächlichen `UInt32`-APIbesuchszähler in `Int64`-XMLattribute einschließlich generischer Summen und optionaler Testreferenzen. `FullEmpty`, Mess-API, Reset, Filter und die besuchten Punkte bleiben unverändert. Alle Eingaben und resultierenden Hashes werden vor dem Schreiben geprüft; unbekannte Quellen verhindern den Teststart. Änderungen des Preparers sind gemessene Produkteingaben für die PR-CI.
+
+Maßgeblich sind die unveränderten rohen XMLoriginale und die strikte bestehende Coverageprüfung. Negative Zähler werden weiterhin verworfen; alte fehlgeschlagene Messungen werden weder umgedeutet noch korrigiert. Der tatsächlich installierte Unity-ReportGenerator akzeptiert große positive Werte, begrenzt deren eigene Anzeigemagnitude aber auf `Int32.MaxValue`; eine allgemeine Kompatibilität mit fremden OpenCover-`Int32`-Modellen wird nicht behauptet. Kontrollierte Serializergrenzfälle ersetzen keinen tatsächlichen Unity-Collector-Lauf.
+
 Wichtiger als Gesamtprozent sind:
 
 - jede Domaininvariante besitzt Positiv- und Negativtest;

@@ -187,11 +187,19 @@ namespace STP.Tests.Persistence.EditMode
         [Test]public void ActualReparseDirectoryIsNeverFollowedForWriteOrClear()=>Run(async()=>
         {
             string target=Path.Combine(root,"reparse-target");Directory.CreateDirectory(target);string sentinel=Path.Combine(target,LocalDiagnosticRing.RingFileName);File.WriteAllText(sentinel,"outside ring sentinel");
-            if(Path.DirectorySeparatorChar!='\\'){Assert.Ignore("This physical fixture uses the Windows NTFS junction primitive; native POSIX branches compile separately.");return;}
-            var start=new ProcessStartInfo("cmd.exe","/d /c mklink /J \""+DirectoryPath+"\" \""+target+"\""){UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true,RedirectStandardError=true};
-            using(var process=Process.Start(start)!){string output=process.StandardOutput.ReadToEnd()+process.StandardError.ReadToEnd();process.WaitForExit();if(process.ExitCode!=0){Assert.Ignore("Physical NTFS junction creation denied by this execution environment; no reparse safety PASS claimed. "+output);return;}}
-            try{Assert.That((File.GetAttributes(DirectoryPath)&FileAttributes.ReparsePoint)!=0,Is.True);var ring=Ring();Assert.That(await ring.RecordAsync(LocalDiagnosticEvent.AppStarted),Is.EqualTo(LocalDiagnosticWriteStatus.Unavailable));Assert.That(await ring.ClearAsync(),Is.False);Assert.That(File.ReadAllText(sentinel),Is.EqualTo("outside ring sentinel"));}
-            finally{Assert.That(Path.GetFullPath(DirectoryPath).StartsWith(Path.GetFullPath(root)+Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase),Is.True);if((File.GetAttributes(DirectoryPath)&FileAttributes.ReparsePoint)!=0)Directory.Delete(DirectoryPath,false);}
+            bool windows=Path.DirectorySeparatorChar=='\\';
+            var start=new ProcessStartInfo
+            {
+                FileName=windows?"cmd.exe":"/bin/ln",
+                Arguments=windows?"/d /c mklink /J \""+DirectoryPath+"\" \""+target+"\"":"-s \""+target+"\" \""+DirectoryPath+"\"",
+                UseShellExecute=false,CreateNoWindow=true,WindowStyle=ProcessWindowStyle.Hidden,RedirectStandardOutput=true,RedirectStandardError=true
+            };
+            try
+            {
+                using(var process=Process.Start(start)!){string output=process.StandardOutput.ReadToEnd()+process.StandardError.ReadToEnd();Assert.That(process.WaitForExit(10000),Is.True);Assert.That(process.ExitCode,Is.Zero,output);}
+                Assert.That((File.GetAttributes(DirectoryPath)&FileAttributes.ReparsePoint)!=0,Is.True);var ring=Ring();Assert.That(await ring.RecordAsync(LocalDiagnosticEvent.AppStarted),Is.EqualTo(LocalDiagnosticWriteStatus.Unavailable));Assert.That(await ring.ClearAsync(),Is.False);Assert.That(File.ReadAllText(sentinel),Is.EqualTo("outside ring sentinel"));
+            }
+            finally{Assert.That(Path.GetFullPath(DirectoryPath).StartsWith(Path.GetFullPath(root)+Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase),Is.True);if(Directory.Exists(DirectoryPath)&&(File.GetAttributes(DirectoryPath)&FileAttributes.ReparsePoint)!=0)Directory.Delete(DirectoryPath,false);}
         });
     }
 }

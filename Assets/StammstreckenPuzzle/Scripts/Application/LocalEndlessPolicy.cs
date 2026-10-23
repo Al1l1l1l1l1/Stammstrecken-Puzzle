@@ -32,7 +32,14 @@ namespace STP.Application
             this.corpus=corpus??throw new ArgumentNullException(nameof(corpus));this.json=json??throw new ArgumentNullException(nameof(json));this.ledger=ledger??throw new ArgumentNullException(nameof(ledger));rewardSources=LocalModel.Copy(completions).ToArray();calibrated=LocalModel.Copy(profiles).ToArray();LocalModel.Require((corpus.Identity.Use==CatalogUse.Production||corpus.Identity.Use==CatalogUse.ContractTest)&&rewardSources.Length>0&&calibrated.Length>0,"ENDLESS_CALIBRATED_SOURCE_REQUIRED");completion=rewardSources[0].Catalog;LocalModel.Unique(rewardSources.Select(c=>c.Catalog.CatalogId+":"+c.Catalog.HashSha256));LocalModel.Unique(calibrated.Select(p=>p.Id+":"+p.HashSha256));foreach(var p in calibrated)LocalModel.Require(p.Profile.PublicCatalogHashSha256==corpus.Identity.HashSha256&&p.StarCalibration.CompletionCatalog.Use==corpus.Identity.Use&&rewardSources.Any(c=>c.Catalog.Equals(p.StarCalibration.CompletionCatalog)),"ENDLESS_CALIBRATED_SOURCE_MISMATCH");
         }
         private void Binding(LocalProfileState state){LocalModel.Require(state.Profile.Identity.Use==corpus.Identity.Use&&state.Profile.CatalogSet.PublicCatalog.Equals(corpus.Identity),"ENDLESS_PROFILE_BINDING");ledger.Validate(state);}
-        public bool IsUnlocked(LocalProfileState state){Binding(state);return corpus.Puzzles.Count==240&&corpus.Puzzles.All(p=>state.Levels.Any(l=>l.Identity.Equals(p.Identity)&&l.FirstClear!=null));}
+        public bool IsUnlocked(LocalProfileState state)
+        {
+            Binding(state);
+            if(corpus.Puzzles.Count!=240)return false;
+            // Per-call lookup of the complete ordinal identity triplet, never a saved or cached unlock fact.
+            var cleared=new System.Collections.Generic.HashSet<PublicPuzzleIdentity>(state.Levels.Where(l=>l.FirstClear!=null).Select(l=>l.Identity));
+            return corpus.Puzzles.All(p=>cleared.Contains(p.Identity));
+        }
         public static string CompletionSourceHash(LocalEndlessClaim claim)
         {var f=claim.LocalOperationId.Split(':');LocalModel.Require(f.Length==3&&f[0]=="endles-claim-v1"&&System.Text.RegularExpressions.Regex.IsMatch(f[1],"^[a-f0-9]{64}$")&&Guid.TryParseExact(f[2],"D",out _),"ENDLESS_COMPLETION_SOURCE_REQUIRED");return f[1];}
         private CatalogIdentity Source(LocalEndlessDescriptor descriptor)

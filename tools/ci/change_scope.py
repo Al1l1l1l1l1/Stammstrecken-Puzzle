@@ -207,10 +207,10 @@ def path_kind(path: str) -> str:
         return "governance"
     if path.startswith(TEXT_PREFIXES):
         return "text"
+    if path.startswith(PRODUCT_PREFIXES) or path in {"Toolchain.lock.md", "tools/ci/prepare_coverage.py"}:
+        return "product"
     if path.startswith(TOOL_PREFIXES):
         return "tooling"
-    if path.startswith(PRODUCT_PREFIXES) or path == "Toolchain.lock.md":
-        return "product"
     if path.startswith(DOC_PREFIXES) or path.endswith(".md"):
         return "governance"
     return "unknown"
