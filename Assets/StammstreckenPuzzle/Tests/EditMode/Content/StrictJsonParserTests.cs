@@ -271,5 +271,24 @@ namespace STP.Tests.Content.EditMode
                 Assert.That((result.Value == null) != (result.Error == null), Is.True, builder.ToString());
             }
         }
+        [TestCase("{\"k\":\"abcd\"}", "NONE", "abcd")]
+        [TestCase("{\"k\":\"abc\\n\"}", "NONE", "abc\n")]
+        [TestCase("{\"k\":\"ab\\ncd\"}", LevelDiagnosticCodes.ParseStringLength, null)]
+        [TestCase("{\"k\":\"abcd\\q\"}", LevelDiagnosticCodes.ParseStringLength, null)]
+        [TestCase("{\"k\":\"abcd\n\"}", LevelDiagnosticCodes.ParseStringLength, null)]
+        [TestCase("{\"k\":\"abc\\q\"}", LevelDiagnosticCodes.ParseEscape, null)]
+        [TestCase("{\"k\":\"abcd", LevelDiagnosticCodes.ParseSyntax, null)]
+        [TestCase("{\"k\":\"abc\\ud800\"}", LevelDiagnosticCodes.ParseSurrogate, null)]
+        [TestCase("{\"k\":\"abcd\\ud800\"}", LevelDiagnosticCodes.ParseStringLength, null)]
+        public void PlainStringRuns_PreserveExactLimitAndMalformedSuffixPriority(string text, string expectedCode, string? expectedValue)
+        {
+            var limits = new JsonParserLimits(1024, 16, 4, 1024, 64);
+            var result = StrictJsonParser.ParseText(text, limits);
+            Assert.That(result.Error?.Code ?? "NONE", Is.EqualTo(expectedCode));
+            if (expectedCode == "NONE") Assert.That(result.Value!.Get("k")!.StringValue, Is.EqualTo(expectedValue));
+            else Assert.That(result.Error!.Path, Is.EqualTo("/k"));
+        }
+
+
     }
 }

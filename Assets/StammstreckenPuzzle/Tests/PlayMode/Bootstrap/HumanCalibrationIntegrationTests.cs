@@ -90,7 +90,20 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(session.IsPaused,Is.True,"Focus cannot clear an active OS pause.");
             long frozen=session.ElapsedAt(long.MaxValue);yield return new WaitForSecondsRealtime(.05f);
             Assert.That(session.ElapsedAt(long.MaxValue),Is.EqualTo(frozen));installer.SetPaused(false);yield return Idle();
-            Submit("puzzle-hint");yield return Until(()=>session.State.Trial!.Hints.Any(h=>h.State==HumanHintState.HINT_DISPLAY_CONFIRMED));
+            // Read the presenter's own locale without creating another table or mutating product state.
+            var hintLocale=(ProductionGameLocalization)typeof(ProductionGamePresenter)
+                .GetField("locale",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic)!.GetValue(installer.Presenter)!;
+            var terminalHintTexts=new[]{hintLocale.Resolve("hint.no-safe-conclusion"),hintLocale.Resolve("hint.failed"),hintLocale.Resolve("hint.changed")};
+            Submit("puzzle-hint");yield return Until(()=>
+            {
+                if(session.State.Trial!.Hints.Any(h=>h.State==HumanHintState.HINT_DISPLAY_CONFIRMED))return true;
+                string text=installer.Document.rootVisualElement.Q<Label>("hint-fact").text;
+                if(terminalHintTexts.Any(value=>string.Equals(value,text,StringComparison.Ordinal)))
+                    Assert.Fail("HUMAN_HINT_CONFIRMATION_UNAVAILABLE: phase="+session.Phase+" label="+text
+                        +" error="+session.State.ErrorCode+" attempt="+session.AttemptId+" revision="+session.Revision
+                        +" hints="+session.State.Trial.Hints.Count);
+                return false;
+            });
             yield return null;installer.Presenter.Refresh();Assert.That(session.State.HintCredits,Is.EqualTo(2));
             yield return Until(()=>installer.Document.rootVisualElement.Q<Button>("hint-close").enabledInHierarchy);
             Submit("hint-close");yield return Idle();Submit("puzzle-back");yield return null;Submit("human-restart");yield return Idle();
