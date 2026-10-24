@@ -74,6 +74,12 @@ namespace STP.Bootstrap
         private int lastScreenWidth, lastScreenHeight;
         private int startupEpoch;
         private Camera? output;
+        // Display-only result for one exact confirmed immutable payload/identity and its owning model/policy.
+        private SavedPublic240ReviewSession? hintDisplayModel;
+        private LocalMetagamePolicy? hintDisplayPolicy;
+        private LocalProfileState? hintDisplayPayload;
+        private PublicPuzzleIdentity? hintDisplayIdentity;
+        private int hintDisplayCredits;
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
         private string? testRoot;
         private Func<string>? testEndlessSeed;
@@ -386,8 +392,7 @@ namespace STP.Bootstrap
                         catch(ArgumentException){/* Incomplete contact configuration disables only those explicit actions. */}
                     }
                     presenter.BindHints(()=>TrackHintWork(model.PrepareHintAsync(fullGame.Metagame,lifetime.Token)),
-                    receipt=>TrackHintWork(CommitRootHintAsync(receipt)),()=>fullGame.Persisted.Snapshot==null||model.State.CurrentIdentity==null||model.PuzzleView?.Phase!=DevelopmentPreviewPhase.Editing?0:
-                        fullGame.Metagame.HintCredits(fullGame.Persisted.Snapshot.Payload,model.State.CurrentIdentity));
+                    receipt=>TrackHintWork(CommitRootHintAsync(receipt)),ReadHintDisplayCredits);
                 }
                 BindLocalDataDeletion();
                 if(!await InspectLocalDataBeforeLoadAsync())return;
@@ -465,6 +470,33 @@ namespace STP.Bootstrap
             catch (OperationCanceledException) { if (!disposed) ShowFailure(true); }
             catch (Exception error) { RecordLocalDiagnosticException(error);if (!disposed) ShowFailure(false); }
         }
+        private int ReadHintDisplayCredits()
+        {
+            var currentModel=model;var context=fullGame;
+            if(disposed||fault||localDataInputFence||deletionOwnersClosed||currentModel==null||context==null)
+            {ClearHintDisplayProjection();return 0;}
+            // Re-read the existing owner/authority/disposal guard even on a display-memo hit.
+            var confirmed=currentModel.ConfirmedSnapshot;
+            var identity=currentModel.State.CurrentIdentity;var puzzle=currentModel.PuzzleView;
+            if(confirmed==null||identity==null||puzzle==null||puzzle.Phase!=DevelopmentPreviewPhase.Editing)
+            {ClearHintDisplayProjection();return 0;}
+            // A hint pauses its own editing view. Do not treat that pause as lost display authority.
+            if(!identity.Equals(puzzle.Puzzle.Identity))
+            {ClearHintDisplayProjection();throw new InvalidOperationException("HINT_DISPLAY_IDENTITY_MISMATCH");}
+            var payload=confirmed.Payload;var policy=context.Metagame;
+            if(!ReferenceEquals(hintDisplayModel,currentModel)||!ReferenceEquals(hintDisplayPolicy,policy)||
+                !ReferenceEquals(hintDisplayPayload,payload)||!identity.Equals(hintDisplayIdentity))
+            {
+                ClearHintDisplayProjection();
+                int credits=policy.HintCredits(payload,identity);
+                // Only a successful fresh call may publish this read model; failed input is never retained.
+                hintDisplayModel=currentModel;hintDisplayPolicy=policy;hintDisplayPayload=payload;
+                hintDisplayIdentity=identity;hintDisplayCredits=credits;
+            }
+            return hintDisplayCredits;
+        }
+        private void ClearHintDisplayProjection()
+        {hintDisplayModel=null;hintDisplayPolicy=null;hintDisplayPayload=null;hintDisplayIdentity=null;hintDisplayCredits=0;}
         private static int RequiredIndex(SavedReviewUiRequest request) => request.PuzzleIndex ?? throw new ArgumentException("PREVIEW_PUZZLE_MISSING");
         private void Update()
         {
@@ -477,7 +509,7 @@ namespace STP.Bootstrap
             bool? frameHelp=presenter?.IsHelpOpen,frameModal=presenter?.IsProductModalOpen,framePuzzleScreen=presenter?.IsPuzzleScreenActive;
             bool frameExternal=paused||!focused||experience?.IsNativeUiBusy==true;
             ApplySuspension();
-            if(localDataInputFence||deletionOwnersClosed)return;
+            if(localDataInputFence||deletionOwnersClosed){ClearHintDisplayProjection();return;}
             model?.SetPresentationPaused(presenter?.IsPuzzleScreenActive!=true);
             if (model == null || presenter == null || fault) return;
             if (operation.IsCompleted && lifecycle.IsCompleted && !saveBlocked && !suspended)
@@ -589,7 +621,7 @@ namespace STP.Bootstrap
         private void OnDestroy()
         {
             if (disposed) return;
-            disposed = true; startupEpoch++; lifetime.Cancel();
+            disposed = true; ClearHintDisplayProjection(); startupEpoch++; lifetime.Cancel();
             Task serviceWork=experience?.Pending??Task.CompletedTask;
             experience?.Dispose();DisposeRide(); presenter?.Dispose(); model?.Dispose();
             serviceWork=Task.WhenAll(serviceWork,experience?.Pending??Task.CompletedTask);

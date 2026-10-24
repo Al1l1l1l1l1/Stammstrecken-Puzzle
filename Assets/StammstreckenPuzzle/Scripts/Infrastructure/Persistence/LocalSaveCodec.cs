@@ -128,9 +128,14 @@ namespace STP.Infrastructure.Persistence
         }
         private void ValidateProgressAuthority(LocalProfileState state)
         {
+            // Invocation-local projections only; each original guard still checks this exact immutable input.
+            ILookup<string,PublicPuzzleInput>? publishedById=null;
+            HashSet<PublicPuzzleIdentity>? firstCleared=null;
+            ILookup<string,PublicPuzzleInput> PublishedById()=>publishedById??(publishedById=puzzles.Puzzles.ToLookup(p=>p.Identity.PuzzleId,StringComparer.Ordinal));
+            HashSet<PublicPuzzleIdentity> FirstCleared()=>firstCleared??(firstCleared=new HashSet<PublicPuzzleIdentity>(state.Levels.Where(l=>l.FirstClear!=null).Select(l=>l.Identity)));
             foreach(var level in state.Levels)
             {
-                Require(!puzzles.Puzzles.Any(p=>p.Identity.PuzzleId==level.Identity.PuzzleId&&!p.Identity.Equals(level.Identity)),"LVL-PUBLISHED-PUZZLE-MUTATED");
+                Require(!PublishedById()[level.Identity.PuzzleId].Any(p=>!p.Identity.Equals(level.Identity)),"LVL-PUBLISHED-PUZZLE-MUTATED");
                 void Terminal(EconomyTerminal t,string reason,Func<CompletionValues,int> amount){var v=BoundValues(t.Catalog,level.Identity);Require(t.ReasonCode==reason&&t.SubjectId==level.Identity.PuzzleId&&t.Amount==amount(v),"SAVE_TERMINAL_VALUE_MISMATCH");}
                 if(level.FirstClear!=null)Terminal(level.FirstClear.Terminal,"LEVEL_FIRST_CLEAR",v=>v.FirstClear);if(level.SecondStarPaid!=null)Terminal(level.SecondStarPaid,"LEVEL_SECOND_STAR",v=>v.SecondStar);if(level.ThirdStarPaid!=null)Terminal(level.ThirdStarPaid,"LEVEL_THIRD_STAR",v=>v.ThirdStar);
             }
@@ -140,7 +145,7 @@ namespace STP.Infrastructure.Persistence
                 bool InGraph(ILockedCampaignCatalog c)=>c.Entries.Any(e=>(claim.SubjectKind=="ROUTE"?e.RouteId:e.SectionId)==claim.SubjectId);
                 if(source.Equals(completion.Identity)&&InGraph(campaign))graph=campaign;
                 else {var known=retained.HistoricalProgress.Where(h=>h.Completion.Identity.Equals(source)&&InGraph(h.Campaign)).ToArray();Require(known.Length==1,"SAVE_COMPLETION_BINDING_UNSUPPORTED",true);graph=known[0].Campaign;}
-                var members=graph.Entries.Where(e=>(claim.SubjectKind=="ROUTE"?e.RouteId:e.SectionId)==claim.SubjectId).ToArray();Require(members.Length>0&&members.All(e=>state.Levels.Any(l=>l.Identity.Equals(e.Puzzle)&&l.FirstClear!=null)),"SAVE_SUBJECT_TERMINAL_INVALID");var values=members.Select(e=>BoundValues(source,e.Puzzle)).ToArray();int amount=claim.SubjectKind=="ROUTE"?values[0].RouteClear:values[0].SectionClear;Require(values.All(v=>(claim.SubjectKind=="ROUTE"?v.RouteClear:v.SectionClear)==amount)&&claim.Terminal.Amount==amount&&claim.Terminal.ReasonCode==(claim.SubjectKind=="ROUTE"?"ROUTE_CLEAR":"SECTION_CLEAR"),"SAVE_SUBJECT_TERMINAL_INVALID");
+                var members=graph.Entries.Where(e=>(claim.SubjectKind=="ROUTE"?e.RouteId:e.SectionId)==claim.SubjectId).ToArray();Require(members.Length>0&&members.All(e=>FirstCleared().Contains(e.Puzzle)),"SAVE_SUBJECT_TERMINAL_INVALID");var values=members.Select(e=>BoundValues(source,e.Puzzle)).ToArray();int amount=claim.SubjectKind=="ROUTE"?values[0].RouteClear:values[0].SectionClear;Require(values.All(v=>(claim.SubjectKind=="ROUTE"?v.RouteClear:v.SectionClear)==amount)&&claim.Terminal.Amount==amount&&claim.Terminal.ReasonCode==(claim.SubjectKind=="ROUTE"?"ROUTE_CLEAR":"SECTION_CLEAR"),"SAVE_SUBJECT_TERMINAL_INVALID");
             }
         }
         internal static void Require(bool condition,string code,bool unsupported=false){if(!condition)throw new SaveCodecFailure(code,unsupported);}
