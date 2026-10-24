@@ -134,7 +134,7 @@ namespace STP.Infrastructure.Persistence
             if (!Guid.TryParseExact(token, "N", out var id) || id == Guid.Empty || f[3].Integer() < 1 || f[3].Integer() > 9007199254740991) throw new ArgumentException("HUMAN_INDEX_INVALID");
             Catalog(manifest); return new Index(manifest, token, f[3].Integer(), hash);
         }
-        private Inventory Capture()
+        private Inventory Capture(bool missingAtRead = false)
         {
             var result = new Inventory(); long total = 0;
             void Visit(string directory, int depth)
@@ -155,7 +155,7 @@ namespace STP.Infrastructure.Persistence
                     result.Directories.Add(Path.GetRelativePath(root, child).Replace('\\', '/')); Visit(child, depth + 1);
                 }
             }
-            if (Directory.Exists(root)) Visit(root, 0);
+            if (!missingAtRead && Directory.Exists(root)) Visit(root, 0);
             var fingerprint = "R" + (Path.DirectorySeparatorChar == '\\' ? root.ToUpperInvariant() : root) + string.Join("", manifestHashes.Select(h => "M" + h)) + string.Join("", result.Directories.OrderBy(x => x, StringComparer.Ordinal).Select(p => "D" + p.Length + ":" + p)) +
                 string.Join("", result.Files.Select(p => "F" + p.Key.Length + ":" + p.Key + ":" + p.Value));
             result.Token = LocalSaveHash.Bytes(Encoding.UTF8.GetBytes(fingerprint)); return result;
@@ -269,9 +269,9 @@ namespace STP.Infrastructure.Persistence
             return State(observed, ready ? HumanStoreStatus.Ready : HumanStoreStatus.RecoveryRequired, ready ? "NONE" : "HUMAN_EXPLICIT_RECOVERY_REQUIRED");
         }
         private static Observed State(Observed value, HumanStoreStatus status, string error) { value.Status = status; value.Error = error; return value; }
-        private Observed ObserveBound()
+        private Observed ObserveBound(Observed? observed = null)
         {
-            var observed = Observe();
+            observed ??= Observe();
             if (observed.Catalog != null && observed.Catalog.ManifestBytesSha256 != assignments.ManifestBytesSha256)
                 return new Observed { Status = HumanStoreStatus.Unsupported, Error = "HUMAN_BOUND_MANIFEST_CHANGED", Token = observed.Token };
             if (boundToken != null && (observed.Status == HumanStoreStatus.Missing || observed.Snapshot != null && observed.Snapshot.Run.SessionToken != boundToken))
@@ -279,16 +279,43 @@ namespace STP.Infrastructure.Persistence
             return observed;
         }
 
-        private T Exclusive<T>(CancellationToken ct,Func<T> action)
+        private bool MissingDirectoryForRead(CancellationToken cancellation)
         {
-            CheckPath(root);if(Path.DirectorySeparatorChar=='/')return ExclusiveDirectory(ct,action);
+            cancellation.ThrowIfCancellationRequested(); bool missing = false;
+            for (string? part = root; part != null; part = Path.GetDirectoryName(part))
+            {
+                try
+                {
+                    var attributes = File.GetAttributes(part);
+                    if ((attributes & FileAttributes.ReparsePoint) != 0) throw new IOException("HUMAN_REPARSE_REJECTED");
+                    if ((attributes & FileAttributes.Directory) == 0) throw new IOException("HUMAN_ROOT_NOT_DIRECTORY");
+                }
+                catch (FileNotFoundException) { if (part == root) missing = true; }
+                catch (DirectoryNotFoundException) { if (part == root) missing = true; }
+            }
+            return missing;
+        }
+        private T ReadOnly<T>(CancellationToken cancellation, bool bound, Func<Observed,T> projection)
+        {
+            if (MissingDirectoryForRead(cancellation))
+            {
+                // Linearize at the observed absent directory. Never read later writer output without its lock.
+                var inputs = Capture(true);
+                var absent = State(new Observed { Inputs = inputs, Token = inputs.Token }, HumanStoreStatus.Missing, "HUMAN_RUN_MISSING");
+                return projection(bound ? ObserveBound(absent) : absent);
+            }
+            return Exclusive(cancellation, () => projection(bound ? ObserveBound() : Observe()), false);
+        }
+        private T Exclusive<T>(CancellationToken ct,Func<T> action,bool createDirectory=true)
+        {
+            CheckPath(root);if(Path.DirectorySeparatorChar=='/')return ExclusiveDirectory(ct,action,createDirectory);
             using var mutex=new Mutex(false,"STP.HumanObservation."+LocalSaveHash.Bytes(Encoding.UTF8.GetBytes(root.ToUpperInvariant())));bool entered=false;var elapsed=System.Diagnostics.Stopwatch.StartNew();try{while(!entered){ct.ThrowIfCancellationRequested();if(elapsed.ElapsedMilliseconds>=30000)throw new IOException("HUMAN_WRITER_BUSY");try{entered=mutex.WaitOne(100);}catch(AbandonedMutexException){entered=true;}}return action();}finally{if(entered)mutex.ReleaseMutex();}
         }
-        private T ExclusiveDirectory<T>(CancellationToken ct,Func<T> action)
+        private T ExclusiveDirectory<T>(CancellationToken ct,Func<T> action,bool createDirectory)
         {
             int descriptor=-1;try
             {
-                Directory.CreateDirectory(root);CheckPath(root);descriptor=NativeDirectory.Open(root,NativeDirectory.Flags());if(descriptor<0)throw new IOException("HUMAN_NATIVE_LOCK_OPEN_FAILED");var elapsed=System.Diagnostics.Stopwatch.StartNew();
+                if(createDirectory)Directory.CreateDirectory(root);CheckPath(root);descriptor=NativeDirectory.Open(root,NativeDirectory.Flags());if(descriptor<0)throw new IOException("HUMAN_NATIVE_LOCK_OPEN_FAILED");var elapsed=System.Diagnostics.Stopwatch.StartNew();
                 while(true){ct.ThrowIfCancellationRequested();if(NativeDirectory.Flock(descriptor,2|4)==0)break;int error=Marshal.GetLastWin32Error();if(error!=11&&error!=35&&error!=4)throw new IOException("HUMAN_NATIVE_LOCK_UNSUPPORTED_"+error);if(elapsed.ElapsedMilliseconds>=30000)throw new IOException("HUMAN_WRITER_BUSY");Thread.Sleep(10);}ct.ThrowIfCancellationRequested();return action();
             }
             catch(DllNotFoundException e){throw new IOException("HUMAN_NATIVE_LOCK_UNAVAILABLE",e);}catch(EntryPointNotFoundException e){throw new IOException("HUMAN_NATIVE_LOCK_UNAVAILABLE",e);}finally{if(descriptor>=0)NativeDirectory.Close(descriptor);}
@@ -340,9 +367,9 @@ namespace STP.Infrastructure.Persistence
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException || e is SaveCodecFailure)
             { return new HumanRoutingInspection(HumanStoreStatus.RecoveryRequired, "HUMAN_STORAGE_OBSERVATION_REQUIRED", FailureToken("unknown")); }
         }
-        public Task<HumanStoreResult> LoadAsync(CancellationToken cancellation) => Task.Run(() => Safe(() => Exclusive(cancellation, () => LoadResult(ObserveBound()))), cancellation);
-        public Task<HumanRoutingInspection> InspectAsync(CancellationToken cancellation) => Task.Run(() => SafeRouting(() => Exclusive(cancellation, () =>
-            routingEnabled ? RoutingResult(Observe()) : new HumanRoutingInspection(HumanStoreStatus.Unsupported, "HUMAN_ROUTING_RESOLVER_REQUIRED", FailureToken("resolver")))), cancellation);
+        public Task<HumanStoreResult> LoadAsync(CancellationToken cancellation) => Task.Run(() => Safe(() => ReadOnly(cancellation, true, LoadResult)), cancellation);
+        public Task<HumanRoutingInspection> InspectAsync(CancellationToken cancellation) => Task.Run(() => SafeRouting(() => ReadOnly(cancellation, false, observed =>
+            routingEnabled ? RoutingResult(observed) : new HumanRoutingInspection(HumanStoreStatus.Unsupported, "HUMAN_ROUTING_RESOLVER_REQUIRED", FailureToken("resolver")))), cancellation);
         public IHumanCalibrationRepository OpenConfirmedRepository(HumanRoutingAuthority confirmedAuthority)
         {
             if (!routingEnabled || confirmedAuthority == null || confirmedAuthority.IsMissing) throw new ArgumentException("HUMAN_CONFIRMED_ROUTING_REQUIRED");
@@ -481,9 +508,9 @@ namespace STP.Infrastructure.Persistence
             ArchiveRecoveryRoles(observed, cancellation); var result = Write(observed.Snapshot, cancellation); var fresh = Observe();
             return result.Succeeded ? RoutingResult(fresh) : new HumanRoutingInspection(result.Status, result.ErrorCode, fresh.Token);
         })), cancellation);
-        public Task<byte[]> ExportAsync(CancellationToken cancellation) => Task.Run(() => Exclusive(cancellation, () =>
+        public Task<byte[]> ExportAsync(CancellationToken cancellation) => Task.Run(() => ReadOnly(cancellation, true, observed =>
         {
-            var observed = ObserveBound(); if (observed.Status != HumanStoreStatus.Ready || observed.Snapshot == null) throw new IOException("HUMAN_EXPORT_REQUIRES_CONFIRMED_RECORD");
+            if (observed.Status != HumanStoreStatus.Ready || observed.Snapshot == null) throw new IOException("HUMAN_EXPORT_REQUIRES_CONFIRMED_RECORD");
             return Read(RecordPath(observed.Snapshot.Run.ManifestBytesSha256, observed.Snapshot.Run.SessionToken), 8388608)!;
         }), cancellation);
     }

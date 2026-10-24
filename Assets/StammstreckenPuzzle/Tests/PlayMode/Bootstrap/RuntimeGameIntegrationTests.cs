@@ -38,6 +38,8 @@ namespace STP.Tests.Bootstrap.PlayMode
         private RenderTexture? texture;
         private string ownRoot = string.Empty;
         private bool ownsRoot;
+        private CancellationTokenSource? seasonSetupCancellation;
+        private Task? seasonSetupWork;
         private ProductionGameComposition Runtime => installer.RuntimeComposition ?? throw new InvalidOperationException("RUNTIME_COMPOSITION_NOT_READY");
         private SavedPublic240ReviewSession Model => installer.Model ?? throw new InvalidOperationException("RUNTIME_MODEL_NOT_READY");
 
@@ -80,9 +82,24 @@ namespace STP.Tests.Bootstrap.PlayMode
         [UnityTearDown]
         public IEnumerator TearDown()
         {
+            if (seasonSetupCancellation != null)
+            {
+                seasonSetupCancellation.Cancel();
+                var pending = seasonSetupWork;
+                if (pending != null)
+                {
+                    float cleanupDeadline = Time.realtimeSinceStartup + 60;
+                    while (!pending.IsCompleted && Time.realtimeSinceStartup < cleanupDeadline) yield return null;
+                    Assert.That(pending.IsCompleted, Is.True, "Owned season fixture worker must stop before host/root teardown.");
+                    if (pending.IsFaulted) _ = pending.Exception;
+                }
+                seasonSetupCancellation.Dispose(); seasonSetupCancellation = null; seasonSetupWork = null;
+            }
+            var retainedInstaller = installer;
             if (host != null) UnityEngine.Object.Destroy(host);
             yield return null;
-            if (installer != null) yield return Await(installer.ShutdownTask);
+            // Unity's destroyed-object equality must not skip the still-owned managed shutdown task.
+            if (retainedInstaller is not null) yield return Await(retainedInstaller.ShutdownTask);
             if (texture != null) { texture.Release(); UnityEngine.Object.Destroy(texture); }
             if (panel != null) UnityEngine.Object.Destroy(panel);
             if (ownsRoot && Directory.Exists(ownRoot))
@@ -240,15 +257,30 @@ namespace STP.Tests.Bootstrap.PlayMode
         private IEnumerator CompleteFixtureSeasonThroughActualDomain()
         {
             var original = Model.ConfirmedSnapshot!;
-            var work = Task.Run(() =>
+            var corpus = Runtime.Catalog; var campaign = Runtime.Progress.Campaign; var completion = Runtime.Progress.Completion;
+            var routes = campaign.Entries.GroupBy(e => e.RouteId, StringComparer.Ordinal)
+                .Select(g => new { Id = g.Key, Inputs = g.Select(e => corpus.Puzzles.Single(p => p.Identity.Equals(e.Puzzle))).ToArray() }).ToArray();
+            Assert.That(routes.Length, Is.EqualTo(20)); Assert.That(routes.All(r => r.Inputs.Length == 12), Is.True);
+            CollectionAssert.AreEqual(corpus.Puzzles.Select(p => p.Identity), routes.SelectMany(r => r.Inputs).Select(p => p.Identity), "The actual twenty campaign routes must preserve all 240 source identities and their order.");
+            seasonSetupCancellation = new CancellationTokenSource(); var token = seasonSetupCancellation.Token;
+            var seasonState = original.Payload; int completed = 0;
+            Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.Zero);
+            var policyWork = Task.Run(() =>
             {
                 var json = new STP.Infrastructure.Content.CanonicalJsonAdapter();
-                var ledger = new STP.Infrastructure.Persistence.SaveLedgerCodec(json);
-                var progress = new LocalProgressPolicy(Runtime.Catalog, Runtime.Progress.Campaign, Runtime.Progress.Completion, json, ledger);
-                var state = original.Payload;
-                foreach (var input in Runtime.Catalog.Puzzles)
+                return new LocalProgressPolicy(corpus, campaign, completion, json, new STP.Infrastructure.Persistence.SaveLedgerCodec(json));
+            }, token);
+            seasonSetupWork = policyWork; yield return Await(policyWork); var progress = policyWork.GetAwaiter().GetResult();
+            foreach (var route in routes)
+            {
+                var routeInputs = route.Inputs; var prior = seasonState;
+                var routeWork = Task.Run(() =>
                 {
-                    var solution = PuzzleSolver.Solve(input.ToDomainDefinition(), new SolverLimits(1000000, 10000));
+                    var state = prior;
+                foreach (var input in routeInputs)
+                {
+                    token.ThrowIfCancellationRequested();
+                    var solution = PuzzleSolver.Solve(input.ToDomainDefinition(), new SolverLimits(1000000, 10000, token));
                     Assert.That(solution.Classification, Is.EqualTo(SolverClassification.UNIQUE));
                     var session = PuzzleSessionState.Create(input.ToDomainDefinition(), input.Identity.PuzzleId, input.Identity.HashProfile,
                         input.Identity.HashSha256, Guid.NewGuid(), SessionMode.FIRST_RUN, 0, null, null).Value!;
@@ -262,11 +294,16 @@ namespace STP.Tests.Bootstrap.PlayMode
                     Assert.That(session.Phase, Is.EqualTo(SessionPhase.SolvedPendingCommit));
                     state = progress.Complete(state, session, original.Generation + 1, "2026-10-21T00:00:00Z").State;
                 }
-                return progress.PrepareForSave(state, original.Generation + 1);
-            });
-            yield return Await(work);
+                    return state;
+                }, token);
+                seasonSetupWork = routeWork; yield return Await(routeWork);
+                seasonState = routeWork.GetAwaiter().GetResult(); completed += routeInputs.Length;
+                Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.EqualTo(completed), route.Id);
+            }
+            var work = Task.Run(() => progress.PrepareForSave(seasonState, original.Generation + 1), token);
+            seasonSetupWork = work; yield return Await(work);
             var write = Runtime.Repository.CommitAsync(new SaveSnapshot<LocalProfileState>(original.Profile, original.Catalog, original.Generation + 1, work.Result), original.Generation, CancellationToken.None);
-            yield return Await(write); Assert.That(write.Result.Succeeded, Is.True, write.Result.ErrorCode);
+            seasonSetupWork = write; yield return Await(write); Assert.That(write.Result.Succeeded, Is.True, write.Result.ErrorCode);
             yield return Request(SavedReviewUiRequestKind.Reload);
         }
         private IEnumerator SolveCurrentThroughUi()
@@ -278,8 +315,14 @@ namespace STP.Tests.Bootstrap.PlayMode
             {
                 var cell = solved.Path[i]; int a = i == 0 ? (int)view.EndpointA.Edge : DirectionTo(cell, solved.Path[i - 1]);
                 int b = i == solved.Path.Count - 1 ? (int)view.EndpointB.Edge : DirectionTo(cell, solved.Path[i + 1]);
-                Submit("tool-" + (int)Shape((1 << a) | (1 << b))); Submit(ProductionPuzzleGrid.CellName(cell.X, cell.Y)); yield return Idle();
+                var tool = Shape((1 << a) | (1 << b));
+                Submit("tool-" + (int)tool); long revision = view.Revision;
+                Submit(ProductionPuzzleGrid.CellName(cell.X, cell.Y));
+                Assert.That(view.Revision, Is.EqualTo(revision + 1), "Each real UI tap must synchronously apply exactly one domain command.");
+                Assert.That(view.CellAt(cell.X, cell.Y), Is.EqualTo(tool), "Each real UI tap must accept the intended track shape before the next frame.");
+                yield return null;
             }
+            yield return Idle();
             bool sawCommittedRide = Model.State.Status == SavedReviewStatus.TrainRide;
             float deadline = Time.realtimeSinceStartup + 30;
             while (Model.State.Status != SavedReviewStatus.Results && Time.realtimeSinceStartup < deadline)

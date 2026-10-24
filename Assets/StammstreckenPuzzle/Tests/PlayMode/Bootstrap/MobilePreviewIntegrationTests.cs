@@ -30,6 +30,8 @@ namespace STP.Tests.Bootstrap.PlayMode
         private RenderTexture? texture;
         private string ownRoot = "";
         private bool ownsRoot;
+        private CancellationTokenSource? seasonSetupCancellation;
+        private Task? seasonSetupWork;
         private const string U = "Assets/StammstreckenPuzzle/UI/";
 
         [UnitySetUp]
@@ -73,9 +75,24 @@ namespace STP.Tests.Bootstrap.PlayMode
         [UnityTearDown]
         public IEnumerator TearDown()
         {
+            if (seasonSetupCancellation != null)
+            {
+                seasonSetupCancellation.Cancel();
+                var pending = seasonSetupWork;
+                if (pending != null)
+                {
+                    float cleanupDeadline = Time.realtimeSinceStartup + 25;
+                    while (!pending.IsCompleted && Time.realtimeSinceStartup < cleanupDeadline) yield return null;
+                    Assert.That(pending.IsCompleted, Is.True, "Owned season fixture worker must stop before host/root teardown.");
+                    if (pending.IsFaulted) _ = pending.Exception;
+                }
+                seasonSetupCancellation.Dispose(); seasonSetupCancellation = null; seasonSetupWork = null;
+            }
+            var retainedInstaller = installer;
             if (host != null) UnityEngine.Object.Destroy(host);
             yield return null;
-            if (installer != null) yield return Await(installer.ShutdownTask);
+            // Unity's destroyed-object equality must not skip the still-owned managed shutdown task.
+            if (retainedInstaller is not null) yield return Await(retainedInstaller.ShutdownTask);
             if (texture != null) { texture.Release(); UnityEngine.Object.Destroy(texture); }
             if (panel != null) UnityEngine.Object.Destroy(panel);
             if (ownsRoot && Directory.Exists(ownRoot))
@@ -331,7 +348,7 @@ namespace STP.Tests.Bootstrap.PlayMode
 #endif
         }
 
-        [UnityTest]
+        [UnityTest, Timeout(180000)]
         public IEnumerator Candidate_Endless_ActualGeneratedPuzzleHintRestartResumeCompletionSkipAndNextReservation()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
@@ -344,12 +361,23 @@ namespace STP.Tests.Bootstrap.PlayMode
             var json=(ICanonicalJson)Activator.CreateInstance(Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.CanonicalJsonAdapter",true)!)!;
             var ledger=(ILocalLedger)Activator.CreateInstance(Assembly.Load("STP.Infrastructure.Persistence").GetType("STP.Infrastructure.Persistence.SaveLedgerCodec",true)!,json)!;
             var policy=new LocalProgressPolicy(corpus,campaign,completion,json,ledger);
-            var prepared=Task.Run(()=>
+            var routes = campaign.Entries.GroupBy(e => e.RouteId, StringComparer.Ordinal)
+                .Select(g => new { Id = g.Key, Inputs = g.Select(e => corpus.Puzzles.Single(p => p.Identity.Equals(e.Puzzle))).ToArray() }).ToArray();
+            Assert.That(routes.Length, Is.EqualTo(20)); Assert.That(routes.All(r => r.Inputs.Length == 12), Is.True);
+            CollectionAssert.AreEqual(corpus.Puzzles.Select(p => p.Identity), routes.SelectMany(r => r.Inputs).Select(p => p.Identity), "The actual twenty campaign routes must preserve all 240 source identities and their order.");
+            seasonSetupCancellation = new CancellationTokenSource(); var token = seasonSetupCancellation.Token;
+            var seasonState = original.Payload; int completed = 0;
+            Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.Zero);
+            foreach (var route in routes)
             {
-                var state=original.Payload;
-                foreach(var input in corpus.Puzzles)
+                var routeInputs = route.Inputs; var prior = seasonState;
+                var routeWork = Task.Run(() =>
                 {
-                    var solution=PuzzleSolver.Solve(input.ToDomainDefinition(),new SolverLimits(1000000,10000));
+                    var state = prior;
+                foreach(var input in routeInputs)
+                {
+                    token.ThrowIfCancellationRequested();
+                    var solution=PuzzleSolver.Solve(input.ToDomainDefinition(),new SolverLimits(1000000,10000,token));
                     Assert.That(solution.Classification,Is.EqualTo(SolverClassification.UNIQUE));
                     var session=PuzzleSessionState.Create(input.ToDomainDefinition(),input.Identity.PuzzleId,input.Identity.HashProfile,
                         input.Identity.HashSha256,Guid.NewGuid(),SessionMode.FIRST_RUN,0,null,null).Value!;
@@ -365,12 +393,17 @@ namespace STP.Tests.Bootstrap.PlayMode
                     Assert.That(session.Phase,Is.EqualTo(SessionPhase.SolvedPendingCommit));
                     state=policy.Complete(state,session,original.Generation+1,DateTimeOffset.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'")).State;
                 }
-                return policy.PrepareForSave(state,original.Generation+1);
-            });
-            yield return Await(prepared);
+                    return state;
+                }, token);
+                seasonSetupWork = routeWork; yield return Await(routeWork);
+                seasonState = routeWork.GetAwaiter().GetResult(); completed += routeInputs.Length;
+                Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.EqualTo(completed), route.Id);
+            }
+            var prepared = Task.Run(() => policy.PrepareForSave(seasonState, original.Generation + 1), token);
+            seasonSetupWork = prepared; yield return Await(prepared);
             var repository=Port<ILocalProfileRepository>(candidate,"Repository");
             var write=repository.CommitAsync(new SaveSnapshot<LocalProfileState>(original.Profile,original.Catalog,original.Generation+1,prepared.Result),original.Generation,CancellationToken.None);
-            yield return Await(write);Assert.That(write.Result.Succeeded,Is.True,write.Result.ErrorCode);
+            seasonSetupWork = write; yield return Await(write);Assert.That(write.Result.Succeeded,Is.True,write.Result.ErrorCode);
             yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.Reload,installer.Model.State.Version)));yield return Idle();
             Assert.That(installer.Model.State.Progress!.FirstClearCount,Is.EqualTo(240));
             Submit("home-endless");yield return null;yield return Capture("candidate-endless-menu");

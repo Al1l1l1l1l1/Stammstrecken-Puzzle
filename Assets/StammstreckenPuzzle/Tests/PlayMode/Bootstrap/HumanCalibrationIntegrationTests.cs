@@ -60,7 +60,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         public IEnumerator TearDown()
         {
             if(host!=null)UnityEngine.Object.Destroy(host);yield return null;
-            if(installer!=null)yield return Await(installer.ShutdownTask);
+            if(!ReferenceEquals(installer,null))yield return Await(installer.ShutdownTask);
             if(texture!=null){texture.Release();UnityEngine.Object.Destroy(texture);}if(panel!=null)UnityEngine.Object.Destroy(panel);
             if(ownRoot.Length>0&&Directory.Exists(ownRoot))
             {

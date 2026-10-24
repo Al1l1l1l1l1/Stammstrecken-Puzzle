@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -28,8 +29,14 @@ namespace STP.Bootstrap
             {activeEndlessTextId=id;activeEndlessProfile=parameters.ProfileId;}
             return id==activeEndlessTextId&&activeEndlessProfile!=null?presenter.ResolveEndlessDisplay(activeEndlessProfile):null;
         }
-        private bool EndlessUnlocked=>State!=null&&composition.Catalog.Puzzles.All(p=>
-            State.Levels.Any(l=>l.Identity.Equals(p.Identity)&&l.FirstClear!=null));
+        private bool EndlessUnlocked
+        {
+            get
+            {
+                var cleared=ReadFirstClearIdentities();
+                return cleared!=null&&composition.Catalog.Puzzles.All(p=>cleared.Contains(p.Identity));
+            }
+        }
         private EndlessView ReadEndless()
         {
             var state=State;bool ready=state!=null&&!externalInputSuspended&&saved.CanRunProfileAction&&!generatingEndless;

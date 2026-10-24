@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -98,10 +99,32 @@ namespace STP.Bootstrap
         public void SetExternalInputSuspended(bool value){externalInputSuspended=value;}
         private Task TrackUserAction(Task task)
         {userAction=userAction.IsCompleted?task:Task.WhenAll(userAction,task);return task;}
+        private LocalProfileState? indexedFirstClearState;
+        private HashSet<PublicPuzzleIdentity>? indexedFirstClearIdentities;
         private LocalProfileState? State=>saved.ConfirmedSnapshot?.Payload;
-        private bool IsCleared(int index)=>index>=0&&index<saved.Puzzles.Count&&State?.Levels.Any(l=>l.Identity.Equals(saved.Puzzles[index].Identity)&&l.FirstClear!=null)==true;
+        private HashSet<PublicPuzzleIdentity>? ReadFirstClearIdentities()
+        {
+            var state=State;
+            if(state==null){indexedFirstClearState=null;indexedFirstClearIdentities=null;return null;}
+            if(!ReferenceEquals(state,indexedFirstClearState))
+            {
+                var cleared=new HashSet<PublicPuzzleIdentity>(state.Levels.Where(l=>l.FirstClear!=null).Select(l=>l.Identity));
+                indexedFirstClearIdentities=cleared;indexedFirstClearState=state;
+            }
+            return indexedFirstClearIdentities;
+        }
+        private bool IsCleared(int index)
+        {
+            if(index<0||index>=saved.Puzzles.Count)return false;
+            var cleared=ReadFirstClearIdentities();
+            return cleared!=null&&cleared.Contains(saved.Puzzles[index].Identity);
+        }
         private int RecommendedIndex()
-        {for(int i=0;i<saved.Puzzles.Count;i++)if(!IsCleared(i)&&saved.CanEnterPuzzle(i))return i;return Math.Max(0,saved.State.SelectedIndex);}
+        {
+            var cleared=ReadFirstClearIdentities();
+            for(int i=0;i<saved.Puzzles.Count;i++)if((cleared==null||!cleared.Contains(saved.Puzzles[i].Identity))&&saved.CanEnterPuzzle(i))return i;
+            return Math.Max(0,saved.State.SelectedIndex);
+        }
         private bool Owns(string id)=>State?.Inventory.Ownership.Any(o=>o.ItemId==id)==true;
         private bool Equipped(string id)=>State?.Inventory.SelectedItemIds.Contains(id)==true;
         private CampaignPuzzleRecord ReadCampaignRecord(int index)
@@ -306,6 +329,6 @@ namespace STP.Bootstrap
             await dispatcher.InvokeAsync(()=>task=action()).ConfigureAwait(false);
             return await task!.ConfigureAwait(false);
         }
-        public void Dispose(){if(disposed)return;disposed=true;DetachLocalDiagnosticServices();services?.Dispose();}
+        public void Dispose(){if(disposed)return;disposed=true;indexedFirstClearState=null;indexedFirstClearIdentities=null;DetachLocalDiagnosticServices();services?.Dispose();}
     }
 }

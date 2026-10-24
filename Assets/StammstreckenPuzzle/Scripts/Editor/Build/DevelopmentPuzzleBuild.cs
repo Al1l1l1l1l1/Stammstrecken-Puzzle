@@ -60,7 +60,7 @@ namespace STP.Editor.Build
             ValidateAssets(panel, material, theme);
             var scene = SceneText(panel, material);
             WriteMeta(ScenePath, "b281a1bc613c4544b3dc4c9e6a038003", "DefaultImporter", 0);
-            if (!File.Exists(ScenePath) || !string.Equals(File.ReadAllText(ScenePath), scene, StringComparison.Ordinal))
+            if (!File.Exists(ScenePath) || !SceneTextEquals(File.ReadAllText(ScenePath), scene))
                 File.WriteAllText(ScenePath, scene, new UTF8Encoding(false));
             AssetDatabase.ImportAsset(ScenePath, ImportAssetOptions.ForceSynchronousImport);
             VerifyArtifacts();
@@ -78,7 +78,7 @@ namespace STP.Editor.Build
             var material = Required<Material>(MaterialPath);
             var theme = Required<ThemeStyleSheet>(UiPath + "DevelopmentPuzzleTheme.tss");
             ValidateAssets(panel, material, theme);
-            if (!File.Exists(ScenePath) || !string.Equals(File.ReadAllText(ScenePath), SceneText(panel, material), StringComparison.Ordinal))
+            if (!File.Exists(ScenePath) || !SceneTextEquals(File.ReadAllText(ScenePath), SceneText(panel, material)))
                 throw new InvalidOperationException("QA scene does not match its deterministic source. Run DevelopmentPuzzleBuild.EnsureArtifacts explicitly.");
             Debug.Log("STP WP038 QA scene/panel/material preflight PASS; production profile remains rejected.");
         }
@@ -118,6 +118,10 @@ namespace STP.Editor.Build
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
             VerifyGuid(assetPath, guid);
         }
+
+        // Checkout line endings do not change the deterministic YAML content.
+        private static bool SceneTextEquals(string actual, string expected) =>
+            string.Equals(actual.Replace("\r\n", "\n"), expected.Replace("\r\n", "\n"), StringComparison.Ordinal);
 
         private static string CanonicalOwnYaml(string text) =>
             Regex.Replace(text.Replace("\r\n", "\n"), "[ \\t]+$", "", RegexOptions.Multiline);

@@ -60,9 +60,11 @@ namespace STP.Application
         /// <summary>Computes a fresh cache from exact current membership and validated identity-bound first clears.</summary>
         public LocalSeasonProgressCache Cache(IReadOnlyList<LocalLevelProgress> levels)
         {
-            foreach(var l in levels){var same=campaign.Entries.Where(e=>e.Puzzle.PuzzleId==l.Identity.PuzzleId).ToArray();LocalModel.Require(same.Length==0||same[0].Puzzle.Equals(l.Identity),"LVL-PUBLISHED-PUZZLE-MUTATED");}
-            var first=levels.Where(l=>l.FirstClear!=null&&campaign.Entries.Any(e=>e.Puzzle.Equals(l.Identity))).Select(l=>l.Identity).OrderBy(i=>i.PuzzleId,StringComparer.Ordinal).ToArray();var subjects=new List<LocalSubjectProgress>();
-            foreach(string kind in new[]{"SEASON","SECTION","ROUTE"})foreach(var group in campaign.Entries.GroupBy(e=>kind=="SEASON"?e.SeasonId:kind=="SECTION"?e.SectionId:e.RouteId).OrderBy(g=>g.Key,StringComparer.Ordinal)){var ids=group.Where(e=>first.Contains(e.Puzzle)).Select(e=>e.Puzzle.PuzzleId).OrderBy(id=>id,StringComparer.Ordinal).ToArray();subjects.Add(LocalSubjectProgress.Create(group.Key,kind,ids,ids.Length,group.Count(),ids.Length==group.Count()));}
+            var entriesById=campaign.Entries.ToLookup(e=>e.Puzzle.PuzzleId,StringComparer.Ordinal);
+            foreach(var l in levels){var same=entriesById[l.Identity.PuzzleId].FirstOrDefault();LocalModel.Require(same==null||same.Puzzle.Equals(l.Identity),"LVL-PUBLISHED-PUZZLE-MUTATED");}
+            var catalogIdentities=new HashSet<PublicPuzzleIdentity>(campaign.Entries.Select(e=>e.Puzzle));
+            var first=levels.Where(l=>l.FirstClear!=null&&catalogIdentities.Contains(l.Identity)).Select(l=>l.Identity).OrderBy(i=>i.PuzzleId,StringComparer.Ordinal).ToArray();var firstMembership=new HashSet<PublicPuzzleIdentity>(first);var subjects=new List<LocalSubjectProgress>();
+            foreach(string kind in new[]{"SEASON","SECTION","ROUTE"})foreach(var group in campaign.Entries.GroupBy(e=>kind=="SEASON"?e.SeasonId:kind=="SECTION"?e.SectionId:e.RouteId).OrderBy(g=>g.Key,StringComparer.Ordinal)){var ids=group.Where(e=>firstMembership.Contains(e.Puzzle)).Select(e=>e.Puzzle.PuzzleId).OrderBy(id=>id,StringComparer.Ordinal).ToArray();subjects.Add(LocalSubjectProgress.Create(group.Key,kind,ids,ids.Length,group.Count(),ids.Length==group.Count()));}
             string projection="{\"campaignCatalog\":"+LocalSaveHash.CatalogProjection(campaign.Identity)+",\"firstClearIdentities\":["+string.Join(",",first.Select(i=>"{\"puzzleId\":"+LocalSaveHash.Quote(i.PuzzleId)+",\"profile\":"+LocalSaveHash.Quote(i.HashProfile)+",\"sha256\":"+LocalSaveHash.Quote(i.HashSha256)+"}"))+"]}";
             return LocalSeasonProgressCache.Create(campaign.Identity,LocalSaveHash.Bytes(LocalSaveHash.Canonical(json,projection)),subjects);
         }

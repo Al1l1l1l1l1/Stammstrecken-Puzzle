@@ -73,6 +73,79 @@ namespace STP.Tests.Application.EditMode
             Assert.That(committed.Succeeded, Is.True, committed.ErrorCode); return router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
         }
         [Test]
+        public void MissingReadOnlyDiscoveryLoadAndRejectedExportNeverCreateDirectories()
+        {
+            string root = Root(); var router = Router(root); var legacy = (IHumanCalibrationRepository)router;
+            Assert.That(Directory.Exists(root), Is.False);
+            var first = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            for (int i = 0; i < 3; i++)
+            {
+                var inspected = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+                Assert.That(inspected.Status, Is.EqualTo(HumanStoreStatus.Missing)); Assert.That(inspected.Snapshot, Is.Null);
+                Assert.That(inspected.GlobalObservationToken, Is.EqualTo(first.GlobalObservationToken));
+                Assert.That(legacy.LoadAsync(CancellationToken.None).GetAwaiter().GetResult().Status, Is.EqualTo(HumanStoreStatus.Missing));
+                Assert.Throws<IOException>(() => legacy.ExportAsync(CancellationToken.None).GetAwaiter().GetResult());
+                Assert.That(Directory.Exists(root), Is.False, "Reads and a rejected export cannot create the private root.");
+            }
+            var started = router.StartNextParticipantAsync(first.Authority!, sources.ManifestBytesSha256[0], HumanRunOrigin.AUTOMATED_TEST, Utc, CancellationToken.None).GetAwaiter().GetResult();
+            Assert.That(started.Status, Is.EqualTo(HumanStoreStatus.Committed));
+            Assert.That(Directory.GetFiles(root, "observations.json", SearchOption.AllDirectories).Length, Is.EqualTo(1));
+        }
+        [Test]
+        public void ExistingEmptyNamespaceUsesTheSameMissingObservationWithoutChangingDirectories()
+        {
+            string root = Root(); var router = Router(root); var absent = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            Directory.CreateDirectory(Namespace(root)); var directories = Directory.GetDirectories(root, "*", SearchOption.AllDirectories);
+            var existing = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            Assert.That(existing.Status, Is.EqualTo(HumanStoreStatus.Missing));
+            Assert.That(existing.GlobalObservationToken, Is.EqualTo(absent.GlobalObservationToken), "The existing inventory hash projection is unchanged.");
+            Assert.That(Directory.GetDirectories(root, "*", SearchOption.AllDirectories), Is.EqualTo(directories)); Assert.That(Files(root), Is.Empty);
+        }
+        [Test]
+        public void ExistingNamespaceFileIsUnknownRatherThanAnAuthorizedMissingRepository()
+        {
+            string root = Root(); Directory.CreateDirectory(root); string path = Namespace(root); byte[] original = Encoding.UTF8.GetBytes("existing non-directory authority"); File.WriteAllBytes(path, original);
+            var router = Router(root); var observed = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            Assert.That(observed.Status, Is.EqualTo(HumanStoreStatus.RecoveryRequired)); Assert.That(observed.Authority, Is.Null);
+            Assert.That(((IHumanCalibrationRepository)router).LoadAsync(CancellationToken.None).GetAwaiter().GetResult().Status, Is.EqualTo(HumanStoreStatus.RecoveryRequired));
+            Assert.Throws<IOException>(() => ((IHumanCalibrationRepository)router).ExportAsync(CancellationToken.None).GetAwaiter().GetResult());
+            Assert.That(File.ReadAllBytes(path), Is.EqualTo(original)); Assert.That(Directory.Exists(path), Is.False);
+        }
+        [Test]
+        public void ExistingAncestorFileCannotBecomeMissingRoutingAuthority()
+        {
+            string root = Root(); Directory.CreateDirectory(Path.GetDirectoryName(root)!); byte[] original = Encoding.UTF8.GetBytes("private-root file remains untouched"); File.WriteAllBytes(root, original);
+            var router = Router(root); var observed = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            Assert.That(observed.Status, Is.EqualTo(HumanStoreStatus.RecoveryRequired)); Assert.That(observed.Authority, Is.Null);
+            Assert.That(File.ReadAllBytes(root), Is.EqualTo(original)); Assert.That(Directory.Exists(root), Is.False);
+        }
+        [Test]
+        public void MissingBoundRepositoryStillRejectsTheStaleParticipantWithoutRecreatingItsNamespace()
+        {
+            string root = Root(); var router = Router(root); var started = Begin(router); var bound = router.OpenConfirmedRepository(started.Authority!);
+            string source = Path.GetFullPath(Namespace(root)), preserved = source + "-fixture-preserved";
+            Assert.That(Path.GetDirectoryName(source), Is.EqualTo(Path.GetFullPath(root))); Assert.That(Path.GetDirectoryName(preserved), Is.EqualTo(Path.GetFullPath(root)));
+            Directory.Move(source, preserved); var originals = Files(root);
+            var loaded = bound.LoadAsync(CancellationToken.None).GetAwaiter().GetResult();
+            Assert.That(loaded.Status, Is.EqualTo(HumanStoreStatus.Conflict)); Assert.That(loaded.ErrorCode, Is.EqualTo("HUMAN_BOUND_SESSION_CHANGED"));
+            Assert.Throws<IOException>(() => bound.ExportAsync(CancellationToken.None).GetAwaiter().GetResult());
+            Assert.That(Directory.Exists(source), Is.False); EqualFiles(originals, root);
+        }
+        [Test]
+        public void ExistingNamespaceReadWaitsForTheUnchangedPhysicalWriterLock()
+        {
+            string root = Root(); using var entered = new ManualResetEventSlim(); using var release = new ManualResetEventSlim();
+            var writer = Router(root, point => { if (point == "RECORD_PENDING_FLUSHED") { entered.Set(); if (!release.Wait(15000)) throw new IOException("Held physical write timed out"); } });
+            var reader = Router(root); var missing = writer.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
+            var pending = writer.StartNextParticipantAsync(missing.Authority!, sources.ManifestBytesSha256[0], HumanRunOrigin.AUTOMATED_TEST, Utc, CancellationToken.None);
+            Assert.That(entered.Wait(15000), Is.True); var read = reader.InspectAsync(CancellationToken.None);
+            try { Assert.That(read.Wait(60), Is.False, "An existing namespace is read under the unchanged physical writer lock."); }
+            finally { release.Set(); }
+            var committed = pending.GetAwaiter().GetResult(); Assert.That(committed.Status, Is.EqualTo(HumanStoreStatus.Committed));
+            var observed = read.GetAwaiter().GetResult(); Assert.That(observed.Status, Is.EqualTo(HumanStoreStatus.Ready));
+            Assert.That(observed.Authority!.SessionToken, Is.EqualTo(committed.Authority!.SessionToken));
+        }
+        [Test]
         public void DiscoveryAndAllSeventeenPackTransitionsUseOriginalCatalogsWithoutRevealingOrChangingPriorBytes()
         {
             string root = Root(); var router = Router(root); var before = Files(root); var empty = router.InspectAsync(CancellationToken.None).GetAwaiter().GetResult();
