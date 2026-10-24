@@ -33,6 +33,12 @@ TEXT_PREFIXES = ("Content/Localization/", "tools/text-library/")
 TOOL_PREFIXES = ("tools/ci/", "tools/architecture-validation/")
 SCOPE_PREFIX = "tools/architecture-validation/scopes/"
 PRODUCT_PREFIXES = ("Assets/", "Packages/", "ProjectSettings/")
+# Authoring input to HumanReadback/ProductionImport, not a release status report.
+HUMAN_ASSIGNMENT_BINDINGS = "Content/Quality/human/assignment-source-bindings.json"
+# Descriptive inspections of already-built artifacts; never build/provider inputs.
+NATIVE_INSPECTION_PATH = re.compile(
+    r"Release/(?:ANDROID_BUILD|HUMAN_ANDROID_BUILD|IOS_EXPORT)[1-9][0-9]*_INSPECTION\.json"
+)
 UNITY_WORKFLOW = ".github/workflows/unity.yml"
 JCS_PATHS = {
     "tools/architecture-validation/jcs_crosscheck.mjs",
@@ -207,10 +213,12 @@ def path_kind(path: str) -> str:
         return "governance"
     if path.startswith(TEXT_PREFIXES):
         return "text"
-    if path.startswith(PRODUCT_PREFIXES) or path in {"Toolchain.lock.md", "tools/ci/prepare_coverage.py"}:
+    if path.startswith(PRODUCT_PREFIXES) or path in {"Toolchain.lock.md", "tools/ci/prepare_coverage.py", HUMAN_ASSIGNMENT_BINDINGS}:
         return "product"
     if path.startswith(TOOL_PREFIXES):
         return "tooling"
+    if NATIVE_INSPECTION_PATH.fullmatch(path):
+        return "governance"
     if path.startswith(DOC_PREFIXES) or path.endswith(".md"):
         return "governance"
     return "unknown"

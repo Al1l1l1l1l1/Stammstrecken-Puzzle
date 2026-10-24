@@ -39,6 +39,58 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertTrue(result.run_text)
         self.assertFalse(result.run_jcs)
 
+    def test_native_inspection_reports_are_descriptive_evidence(self) -> None:
+        reports = self.records(
+            "Release/ANDROID_BUILD12_INSPECTION.json",
+            "Release/HUMAN_ANDROID_BUILD7_INSPECTION.json",
+            "Release/IOS_EXPORT4_INSPECTION.json",
+            "Release/ANDROID_BUILD123_INSPECTION.json",
+        )
+        for event in ("push", "pull_request"):
+            with self.subTest(event=event):
+                result = subject.classify_records(reports, event=event)
+                self.assertEqual(("governance",), result.source_change_class)
+                self.assertFalse(result.requires_unity)
+                self.assertEqual("NOT_REQUIRED_SOURCE_UNCHANGED", result.unity_status)
+                self.assertFalse(result.source_product_changed)
+
+    def test_human_assignment_bindings_still_require_product_candidate(self) -> None:
+        records = self.records("Content/Quality/human/assignment-source-bindings.json")
+        pushed = subject.classify_records(records, event="push")
+        self.assertEqual("DEFERRED_TO_PR_CANDIDATE", pushed.unity_status)
+        candidate = subject.classify_records(records, event="pull_request")
+        self.assertTrue(candidate.requires_unity)
+        self.assertTrue(candidate.source_product_changed)
+        self.assertTrue(candidate.run_jcs)
+
+    def test_inspection_names_do_not_hide_inputs_or_unknown_paths(self) -> None:
+        for path in (
+            "Release/provider-inputs.json", "Release/ANDROID_BUILD0_INSPECTION.json",
+            "Release/ANDROID_BUILD01_INSPECTION.json", "Release/ANDROID_BUILD12_INSPECTION.json/inputs",
+            "Release/ANDROID_BUILD12_INSPECTION.json.bak", "Release/sub/ANDROID_BUILD12_INSPECTION.json",
+            "Content/Quality/human/other-bindings.json", "tools/release/ANDROID_BUILD12_INSPECTION.json",
+        ):
+            with self.subTest(path=path):
+                result = subject.classify_records(self.records(path), event="push")
+                self.assertEqual("REQUIRED", result.unity_status)
+                self.assertIn("unknown_diff_fail_closed", result.reasons)
+
+    def test_inspection_metadata_never_overrides_product_union_or_recipe(self) -> None:
+        reports = self.records("Release/ANDROID_BUILD12_INSPECTION.json")
+        for records in (
+            self.records("Assets/StammstreckenPuzzle/Player.cs"),
+            self.records("Content/Quality/human/assignment-source-bindings.json"),
+            [subject.Change("R100", ("Release/ANDROID_BUILD12_INSPECTION.json", "Packages/provider.json"))],
+        ):
+            with self.subTest(records=records):
+                result = subject.classify_records(reports, event="pull_request", merge_records=records)
+                self.assertTrue(result.requires_unity)
+                self.assertTrue(result.pr_merge_product_changed)
+        for event in ("push", "pull_request"):
+            self.assertTrue(subject.classify_records(reports, event=event, source_recipe_changed=True).requires_unity)
+        unknown_move = [subject.Change("R100", ("Release/ANDROID_BUILD12_INSPECTION.json", "Release/provider-inputs.json"))]
+        self.assertTrue(subject.classify_records(unknown_move, event="push").requires_unity)
+
     def test_deferred_push_product_has_honest_status(self) -> None:
         for path in (
             "Assets/StammstreckenPuzzle/Puzzle.cs",
