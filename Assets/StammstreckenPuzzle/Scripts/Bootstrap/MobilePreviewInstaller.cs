@@ -470,6 +470,12 @@ namespace STP.Bootstrap
         {
             if (disposed) return;
             dispatcher?.Drain(); ApplySafeArea(); presenter?.Refresh();
+            // Frame-local comparison only: never suppress either gameplay refresh while a puzzle exists.
+            var frameModel=model;var framePresenter=presenter;var frameState=model?.State;
+            bool frameHadPuzzle=model?.PuzzleView!=null;
+            bool frameSuspended=suspended,frameSaveBlocked=saveBlocked,frameFault=fault;
+            bool? frameHelp=presenter?.IsHelpOpen,frameModal=presenter?.IsProductModalOpen,framePuzzleScreen=presenter?.IsPuzzleScreenActive;
+            bool frameExternal=paused||!focused||experience?.IsNativeUiBusy==true;
             ApplySuspension();
             if(localDataInputFence||deletionOwnersClosed)return;
             model?.SetPresentationPaused(presenter?.IsPuzzleScreenActive!=true);
@@ -480,7 +486,13 @@ namespace STP.Bootstrap
                     (model.State.Status == SavedReviewStatus.Ready && model.State.IsDirty))
                     operation = ObserveAsync(() => model.TickAutosaveAsync(lifetime.Token));
             }
-            UpdateRide();RefreshAudio(); presenter.Refresh();
+            UpdateRide();RefreshAudio();
+            // The unchanged first refresh polls every frame. A background completion is observed there next frame;
+            // Root-owned state/view/modal/lifecycle changes still receive their same-frame second projection.
+            if(frameHadPuzzle||model.PuzzleView!=null||!ReferenceEquals(frameModel,model)||!ReferenceEquals(framePresenter,presenter)||
+                !ReferenceEquals(frameState,model.State)||frameSuspended!=suspended||frameSaveBlocked!=saveBlocked||frameFault!=fault||
+                frameHelp!=presenter.IsHelpOpen||frameModal!=presenter.IsProductModalOpen||framePuzzleScreen!=presenter.IsPuzzleScreenActive||
+                frameExternal!=(paused||!focused||experience?.IsNativeUiBusy==true))presenter.Refresh();
         }
         private async Task ObserveAsync(Func<Task> action)
         {
