@@ -1,6 +1,6 @@
 # Stammstrecken-Puzzle – aktueller Projektstand
 
-Stand:25.10.2026. R führt [WP-046](../WORK_PACKAGES/WP-046_Vollstaendiges-Spiel-und-Release-Candidate.md) unter [MANUS-2026-10-20-02](PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) bis M3 weiter. Architecture v1.0 bleibt Grundlage. Quellen und Originalbelege stehen in der [einen Hauptübergabe](ProductionBlocks/ReleaseCandidate/HANDOVER.md).
+Stand:25.10.2026. R führt [WP-046](../WORK_PACKAGES/WP-046_Vollstaendiges-Spiel-und-Release-Candidate.md) unter [MANUS-2026-10-20-02](PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) bis M3 weiter. **Architecture v1.0** bleibt Grundlage; `WP-001` bis `WP-007` sind abgeschlossen. Quellen und Originalbelege stehen in der [einen Hauptübergabe](ProductionBlocks/ReleaseCandidate/HANDOVER.md).
 
 **Spielumfang integriert:** 240 Rätsel, fünf Welten und20Routen, direkte Werkzeuge mit erneutem Tippen zum Entfernen, ortsfestes Raster und Zugfahrt auf dem gespeicherten Spielerpfad. Fortschritt, Sterne, Sammlung, Hinweise, Tagesbonus, Betriebsrevision, vier Dauerbaustellenprofile, Audio und Accessibility sind angeschlossen. Sieben späte DRAFT-Geometrien verbessert; Kampagne240/240 und P05-Replay96/96 bestanden. Menschliche Schwierigkeit und Sternzeiten bleiben offen.
 
