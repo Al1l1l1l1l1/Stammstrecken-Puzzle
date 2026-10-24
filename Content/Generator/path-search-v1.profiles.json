@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "use": "InternalPreview",
+  "approvalStatus": "DRAFT",
+  "productApproved": false,
+  "humanCasesRequiredPerProfile": 12,
+  "profiles": [
+    {
+      "profileId": "dienstbeginn",
+      "label": "Dienstbeginn",
+      "approvalStatus": "DRAFT",
+      "humanStatus": "NOT_EXECUTED",
+      "generatorVersion": "path-search-v1",
+      "noveltyVersion": "public-d4-l1-v1",
+      "publicCatalogHashSha256": "886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0",
+      "parameters": {
+        "minSize": 4,
+        "maxSize": 5,
+        "minDensityPercent": 25,
+        "maxDensityPercent": 65,
+        "minDeductionSteps": 0,
+        "minDeductionDepth": 0,
+        "maxAttempts": 1024,
+        "pathStateBudget": 5000,
+        "totalBudgetMs": 6000,
+        "solverBudgetMs": 150,
+        "maxTrivialLines": 8,
+        "recentSimilarityPercent": 12
+      },
+      "solverVersion": "solver-v2",
+      "profileHashSha256": "9f210579957fb67aa40f4b00a2cac6a7cd02cf64793d8aacee92d6b71c9dced2"
+    },
+    {
+      "profileId": "regelbetrieb",
+      "label": "Regelbetrieb",
+      "approvalStatus": "DRAFT",
+      "humanStatus": "NOT_EXECUTED",
+      "generatorVersion": "path-search-v1",
+      "noveltyVersion": "public-d4-l1-v1",
+      "publicCatalogHashSha256": "886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0",
+      "parameters": {
+        "minSize": 5,
+        "maxSize": 6,
+        "minDensityPercent": 30,
+        "maxDensityPercent": 65,
+        "minDeductionSteps": 50,
+        "minDeductionDepth": 5,
+        "maxAttempts": 2048,
+        "pathStateBudget": 10000,
+        "totalBudgetMs": 10000,
+        "solverBudgetMs": 250,
+        "maxTrivialLines": 8,
+        "recentSimilarityPercent": 12
+      },
+      "solverVersion": "solver-v2",
+      "profileHashSha256": "229c42750051a46dbb78315e7421a54abd25bf7f47bab036c5e3ce9314be60b9"
+    },
+    {
+      "profileId": "stoerungslage",
+      "label": "Störungslage",
+      "approvalStatus": "DRAFT",
+      "humanStatus": "NOT_EXECUTED",
+      "generatorVersion": "path-search-v1",
+      "noveltyVersion": "public-d4-l1-v1",
+      "publicCatalogHashSha256": "886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0",
+      "parameters": {
+        "minSize": 6,
+        "maxSize": 8,
+        "minDensityPercent": 30,
+        "maxDensityPercent": 65,
+        "minDeductionSteps": 85,
+        "minDeductionDepth": 8,
+        "maxAttempts": 4096,
+        "pathStateBudget": 30000,
+        "totalBudgetMs": 15000,
+        "solverBudgetMs": 500,
+        "maxTrivialLines": 9,
+        "recentSimilarityPercent": 12
+      },
+      "solverVersion": "solver-v2",
+      "profileHashSha256": "3682d719858c796f6661d0e470db3bbdaa642a67466c08424c39b03e3a0719dd"
+    },
+    {
+      "profileId": "grosslage",
+      "label": "Großlage",
+      "approvalStatus": "DRAFT",
+      "humanStatus": "NOT_EXECUTED",
+      "generatorVersion": "path-search-v1",
+      "noveltyVersion": "public-d4-l1-v1",
+      "publicCatalogHashSha256": "886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0",
+      "parameters": {
+        "minSize": 8,
+        "maxSize": 10,
+        "minDensityPercent": 30,
+        "maxDensityPercent": 65,
+        "minDeductionSteps": 130,
+        "minDeductionDepth": 12,
+        "maxAttempts": 4096,
+        "pathStateBudget": 50000,
+        "totalBudgetMs": 20000,
+        "solverBudgetMs": 700,
+        "maxTrivialLines": 10,
+        "recentSimilarityPercent": 12
+      },
+      "solverVersion": "solver-v2",
+      "profileHashSha256": "7e9fccaa6bbb31714d50f29ef8cb7a217d9045956d27b2fd2f4aa986f5bf6fad"
+    }
+  ]
+}

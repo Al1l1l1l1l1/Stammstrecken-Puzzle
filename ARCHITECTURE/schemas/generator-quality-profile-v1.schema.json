@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/generator-quality-profile-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Generator Quality Profile v1",
+  "description": "ADR044 complete closed product-quality source, distinct from historical DRAFT path-search profile container. No selfhash; full JCS document hash is external. Typed import checks all interval orders, actual evidence/approval/version/corpus/calibration references, solverBudgetMs <= totalBudgetMs and every candidate metric before promotion; unsupported options fail closed. sampleCount alone is no Human evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "profileId",
+    "profileVersion",
+    "rulesetVersion",
+    "approvalStatus",
+    "difficultyBand",
+    "generatorVersion",
+    "solverVersion",
+    "gridRanges",
+    "metricRanges",
+    "runtimeBudgets",
+    "novelty",
+    "humanReview",
+    "approvedBy",
+    "approvedDecisionRef"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "profileId": {
+      "enum": [
+        "dienstbeginn",
+        "regelbetrieb",
+        "stoerungslage",
+        "grosslage"
+      ]
+    },
+    "profileVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "rulesetVersion": {
+      "const": "train-track-v1"
+    },
+    "approvalStatus": {
+      "enum": [
+        "FIXTURE_ONLY",
+        "DRAFT",
+        "PRODUCT_APPROVED"
+      ]
+    },
+    "difficultyBand": {
+      "enum": [
+        "dienstbeginn",
+        "regelbetrieb",
+        "stoerungslage",
+        "grosslage"
+      ]
+    },
+    "generatorVersion": {
+      "const": "path-search-v1"
+    },
+    "solverVersion": {
+      "const": "solver-v2"
+    },
+    "gridRanges": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minSize",
+        "maxSize",
+        "minDensityPercent",
+        "maxDensityPercent"
+      ],
+      "properties": {
+        "minSize": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 10
+        },
+        "maxSize": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 10
+        },
+        "minDensityPercent": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 90
+        },
+        "maxDensityPercent": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 90
+        }
+      }
+    },
+    "metricRanges": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "searchNodes",
+        "deductionSteps",
+        "maxDeductionDepth",
+        "requiredGuessDepth",
+        "trivialLines"
+      ],
+      "properties": {
+        "searchNodes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "deductionSteps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "maxDeductionDepth": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "requiredGuessDepth": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "const": 0
+            },
+            "max": {
+              "const": 0
+            }
+          }
+        },
+        "trivialLines": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        }
+      }
+    },
+    "runtimeBudgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maxAttempts",
+        "pathStateBudget",
+        "totalBudgetMs",
+        "solverBudgetMs",
+        "solverStateBudget",
+        "hintBudgetMs",
+        "hintStateBudget",
+        "timeoutPolicy"
+      ],
+      "properties": {
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "pathStateBudget": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "totalBudgetMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "solverBudgetMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "solverStateBudget": {
+          "const": 1000000
+        },
+        "hintBudgetMs": {
+          "const": 100
+        },
+        "hintStateBudget": {
+          "const": 100000
+        },
+        "timeoutPolicy": {
+          "const": "ABORT_ATTEMPT_KEEP_RESERVATION"
+        }
+      }
+    },
+    "novelty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithmVersion",
+        "referenceCorpus",
+        "recentWindow",
+        "recentSimilarityPercent"
+      ],
+      "properties": {
+        "algorithmVersion": {
+          "const": "public-d4-l1-v1"
+        },
+        "referenceCorpus": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "catalogId",
+            "revision",
+            "hashSha256"
+          ],
+          "properties": {
+            "catalogId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "pattern": "^[a-zA-Z0-9_.:-]+$",
+              "not": {
+                "enum": [
+                  ".",
+                  ".."
+                ]
+              }
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            },
+            "hashSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "recentWindow": {
+          "const": 50
+        },
+        "recentSimilarityPercent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "humanReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibrationVersion",
+        "evidenceSha256",
+        "uiSourceSha256",
+        "sampleCount",
+        "criteriaVersion"
+      ],
+      "properties": {
+        "calibrationVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "uiSourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "criteriaVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "approvedBy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approvedDecisionRef": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "profileId": {
+            "const": "dienstbeginn"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "difficultyBand": {
+            "const": "dienstbeginn"
+          },
+          "gridRanges": {
+            "properties": {
+              "minSize": {
+                "const": 4
+              },
+              "maxSize": {
+                "const": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profileId": {
+            "const": "regelbetrieb"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "difficultyBand": {
+            "const": "regelbetrieb"
+          },
+          "gridRanges": {
+            "properties": {
+              "minSize": {
+                "const": 5
+              },
+              "maxSize": {
+                "const": 6
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profileId": {
+            "const": "stoerungslage"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "difficultyBand": {
+            "const": "stoerungslage"
+          },
+          "gridRanges": {
+            "properties": {
+              "minSize": {
+                "const": 6
+              },
+              "maxSize": {
+                "const": 8
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profileId": {
+            "const": "grosslage"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "difficultyBand": {
+            "const": "grosslage"
+          },
+          "gridRanges": {
+            "properties": {
+              "minSize": {
+                "const": 8
+              },
+              "maxSize": {
+                "const": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "approvalStatus": {
+            "const": "PRODUCT_APPROVED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "humanReview": {
+            "properties": {
+              "sampleCount": {
+                "type": "integer",
+                "minimum": 12,
+                "maximum": 9007199254740991
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

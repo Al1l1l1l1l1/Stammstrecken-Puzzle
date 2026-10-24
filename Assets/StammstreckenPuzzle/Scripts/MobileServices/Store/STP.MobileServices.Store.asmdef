@@ -2,7 +2,11 @@
     "name": "STP.MobileServices.Store",
     "rootNamespace": "STP.MobileServices.Store",
     "references": [
-        "STP.Application"
+        "STP.Application",
+        "Unity.Purchasing",
+        "Unity.Purchasing.Security",
+        "Unity.Purchasing.SecurityStub",
+        "Unity.Purchasing.SecurityCore"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,6 +15,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.purchasing",
+            "expression": "[5.4.3,5.4.4)",
+            "define": "STP_UNITY_IAP"
+        }
+    ],
     "noEngineReferences": false
 }

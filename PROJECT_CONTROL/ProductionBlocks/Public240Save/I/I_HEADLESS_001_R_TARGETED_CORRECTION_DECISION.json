@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-19T15:10:26.764Z",
+  "decisionId": "I-HEADLESS-001-TARGETED-TEST-CORRECTION",
+  "role": "Mandatierter technischer Ausführungsagent R gemäß MANUS-2026-10-19-01 §5",
+  "status": "ACCEPTED_BEFORE_TARGETED_FIX",
+  "frozenFailedSource": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+  "actualFailedRegularCi": {
+    "architecture": 39272387677,
+    "unity": 39272387608,
+    "edit": "1107/1107 PASS",
+    "play": "116/117 PASS; exactly one failed NormalScreen case",
+    "mobile": "SKIPPED",
+    "actualReleases": 2
+  },
+  "causalEvidence": {
+    "native10": "Exact 497 F input mode/blobs; OS2, same single test failure",
+    "native11": "Only nine diagnostic lines; OS2; actual panel 1033.85x775.38 versus forced document 959.54x840; board yMax809.30 exceeds panel775.38",
+    "independentReviewer": "/root/entry_audit, actual causal/plan PASS before implementation"
+  },
+  "allowedChange": {
+    "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+    "detail": "Replace only Null-Graphics forced960x840 test setup with actual attached panel finite positive dimensions, bounded layout/binding and explicit current panel containment of root, scroll and content viewport. Keep every original board, count, control and capture assertion; keep ordinary graphics branch untouched."
+  },
+  "requiredValidation": [
+    "Fresh targeted compile with unchanged accepted dependencies",
+    "Actual headless re-probe of exact correction",
+    "Actual normal graphics re-probe and four directly viewed original screenshots",
+    "Independent exact delta/original closure",
+    "New clean corrected source freeze and full regular CI with actual originals"
+  ],
+  "boundary": "Test fixture correction only. No runtime, A/S, workflow, gate, threshold, manifest, product or ADR change. F1 and all failed originals remain bound to their exact historical sources. No integration or complete I acceptance."
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/endless-proof-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Endless Solver Proof v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["proofFormatVersion", "puzzleId", "publicPuzzleHash", "solutionHash", "solverVersion", "solutionCount", "metrics", "proofHash"],
+  "properties": {
+    "proofFormatVersion": {"const": 1},
+    "puzzleId": {"type": "string", "minLength": 67, "maxLength": 67, "pattern": "^E1-[0-9a-f]{64}$"},
+    "publicPuzzleHash": {"$ref": "#/$defs/profiledHash"},
+    "solutionHash": {"$ref": "#/$defs/profiledHash"},
+    "solverVersion": {"type": "string", "pattern": "^solver-v[1-9][0-9]*$"},
+    "solutionCount": {"const": 1},
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["searchNodes", "deductionSteps", "maxDeductionDepth", "requiredGuessDepth"],
+      "properties": {
+        "searchNodes": {"type": "integer", "minimum": 0},
+        "deductionSteps": {"type": "integer", "minimum": 0},
+        "maxDeductionDepth": {"type": "integer", "minimum": 0},
+        "requiredGuessDepth": {"type": "integer", "minimum": 0}
+      }
+    },
+    "proofHash": {"$ref": "#/$defs/profiledHash"}
+  },
+  "$defs": {
+    "profiledHash": {
+      "type": "object", "additionalProperties": false, "required": ["profile", "sha256"],
+      "properties": {"profile": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    }
+  }
+}

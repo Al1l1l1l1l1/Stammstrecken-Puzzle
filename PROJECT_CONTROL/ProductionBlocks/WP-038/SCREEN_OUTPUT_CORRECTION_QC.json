@@ -1,0 +1,928 @@
+{
+  "reviewer": "/root/wp037_independent_qc",
+  "recordedUtc": "2026-10-18T23:16:19.102365+00:00",
+  "result": "PASS_TARGETED_SCREEN_CORRECTION_NATIVE_ONLY",
+  "finding": "SCREEN-01",
+  "findingState": "TARGETED_NATIVE_CORRECTION_CONFIRMED; corrected freeze and required regular CI still pending, no overall acceptance",
+  "historicalFailedFreeze": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+  "runtimeEvidenceSha256": "e0931c54dbc4c6495ede6bed4a1bb1f7096e1e531b1feafd529cca308ac7ebbb",
+  "actualNativeExitCode": 0,
+  "xml": {
+    "bytes": 14644,
+    "sha256": "35d4d30b994c70d41ca343ed1205c821e6dc3844076875101131278605fea14f",
+    "root": {
+      "id": "2",
+      "testcasecount": "9",
+      "result": "Passed",
+      "total": "9",
+      "passed": "9",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-18 23:11:49Z",
+      "end-time": "2026-10-18 23:11:58Z",
+      "duration": "8,9057482"
+    },
+    "cases": [
+      {
+        "id": "1034",
+        "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "methodname": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "374257120",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:49Z",
+        "end-time": "2026-10-18 23:11:49Z",
+        "duration": "0.526687",
+        "asserts": "0"
+      },
+      {
+        "id": "1032",
+        "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "methodname": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "73182705",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:49Z",
+        "end-time": "2026-10-18 23:11:50Z",
+        "duration": "0.295176",
+        "asserts": "0"
+      },
+      {
+        "id": "1033",
+        "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "methodname": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "1603122315",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:50Z",
+        "end-time": "2026-10-18 23:11:53Z",
+        "duration": "3.226081",
+        "asserts": "0"
+      },
+      {
+        "id": "1036",
+        "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "methodname": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "1986597463",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:53Z",
+        "end-time": "2026-10-18 23:11:53Z",
+        "duration": "0.313780",
+        "asserts": "0"
+      },
+      {
+        "id": "1038",
+        "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+        "methodname": "GraphicsProbe_10x10_ActualPanelAndSelection",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "1520299550",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:53Z",
+        "end-time": "2026-10-18 23:11:53Z",
+        "duration": "0.236134",
+        "asserts": "0"
+      },
+      {
+        "id": "1039",
+        "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "methodname": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "277427060",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:53Z",
+        "end-time": "2026-10-18 23:11:54Z",
+        "duration": "0.607153",
+        "asserts": "0"
+      },
+      {
+        "id": "1037",
+        "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+        "methodname": "GraphicsProbe_4x4_ActualPanelAndSelection",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "1586106028",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:54Z",
+        "end-time": "2026-10-18 23:11:54Z",
+        "duration": "0.225646",
+        "asserts": "0"
+      },
+      {
+        "id": "1040",
+        "name": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+        "methodname": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "1091688269",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:54Z",
+        "end-time": "2026-10-18 23:11:57Z",
+        "duration": "3.257324",
+        "asserts": "0"
+      },
+      {
+        "id": "1035",
+        "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "methodname": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+        "runstate": "Runnable",
+        "seed": "906724805",
+        "result": "Passed",
+        "start-time": "2026-10-18 23:11:57Z",
+        "end-time": "2026-10-18 23:11:58Z",
+        "duration": "0.193609",
+        "asserts": "0"
+      }
+    ]
+  },
+  "completeLogProfile": {
+    "originalBytes": 279333,
+    "originalSha256": "cbbe6b57d50f06b8e8d2b00abd208f49651c0e59f8f8e4e53a09ecbb28645b19",
+    "profileSha256": "e5e542071e2ec1f34ead74eaec264741470cf4d323c02e1fe3127a59075a3668",
+    "redactedLinesVerified": 55,
+    "allOtherLinesEquivalentAfterDeclaredLfNormalization": true,
+    "normalScreenReceipts": [
+      "WP038 actual normal-screen PNG via CaptureScreenshotAsTexture after WaitForEndOfFrame, rendered frame 2659, 586x543: C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\wp038\\screen-correction-final\\images\\wp038-screen-editing.png",
+      "WP038 actual normal-screen PNG via CaptureScreenshotAsTexture after WaitForEndOfFrame, rendered frame 2939, 586x543: C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\wp038\\screen-correction-final\\images\\wp038-screen-ride.png",
+      "WP038 actual normal-screen PNG via CaptureScreenshotAsTexture after WaitForEndOfFrame, rendered frame 4949, 586x543: C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\wp038\\screen-correction-final\\images\\wp038-screen-results.png"
+    ],
+    "strictlyIncreasingRenderedFrames": [
+      2659,
+      2939,
+      4949
+    ],
+    "realRenderer": "D3D11 AMD Radeon RX9070XT"
+  },
+  "payloadIntegrity": "All4 payloads decompressed bytes/count/digests verified against native originals and declared log profile",
+  "sources": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+      "rawBytes": 18347,
+      "rawSha256": "b981f916af2fde98874c86aa6db866f41c43976e9aea1f68e6b89c91ddede6c6",
+      "canonicalLfSha256": "b981f916af2fde98874c86aa6db866f41c43976e9aea1f68e6b89c91ddede6c6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "34defdf0eb3ce8547e29ef66473ac41f7034089a5991ecb153e9375a43708c12",
+      "canonicalLfSha256": "34defdf0eb3ce8547e29ef66473ac41f7034089a5991ecb153e9375a43708c12"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs",
+      "rawBytes": 21543,
+      "rawSha256": "78999b4e8582aaeb1feca029c1b26dcffa0e22b262b629d2f32ff29f740c9791",
+      "canonicalLfSha256": "78999b4e8582aaeb1feca029c1b26dcffa0e22b262b629d2f32ff29f740c9791"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "adfeb0970b449370473da71c3bfa4c1615bc8ae11fb5382355cb5c3bce646ea5",
+      "canonicalLfSha256": "adfeb0970b449370473da71c3bfa4c1615bc8ae11fb5382355cb5c3bce646ea5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs",
+      "rawBytes": 17150,
+      "rawSha256": "72e0ee545a36a5fb1724747c9bd9ad6d4fd24d12ab49a2852c1b2cbcb7ae6d1c",
+      "canonicalLfSha256": "72e0ee545a36a5fb1724747c9bd9ad6d4fd24d12ab49a2852c1b2cbcb7ae6d1c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "4c2809accd75fe637714b2852ee19ad816c8bafd2e1b8342d9d757a0cb8bd1ce",
+      "canonicalLfSha256": "4c2809accd75fe637714b2852ee19ad816c8bafd2e1b8342d9d757a0cb8bd1ce"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+      "rawBytes": 480,
+      "rawSha256": "7428e505fb43c3c34098eef482b9bd42964395f7531879083f9314254e657536",
+      "canonicalLfSha256": "acf0464b32ab8baaba35f05e3753890248d114c9183a37fc5cff4680c1c4eeea"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "rawBytes": 8833,
+      "rawSha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2",
+      "canonicalLfSha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "6ec29f277a58561e11249cffc7379035813271d23112f48e86180e350fb6d8e6",
+      "canonicalLfSha256": "6ec29f277a58561e11249cffc7379035813271d23112f48e86180e350fb6d8e6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+      "rawBytes": 9617,
+      "rawSha256": "c2c4bdc1773069ac75d6c5d7caf8fcfe54855211b78ac3966178ae596b2fd5b6",
+      "canonicalLfSha256": "c2c4bdc1773069ac75d6c5d7caf8fcfe54855211b78ac3966178ae596b2fd5b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "15656d2fb36e734ba11fa7d8d778d03b7856f86fac32818ff294f5185588647f",
+      "canonicalLfSha256": "15656d2fb36e734ba11fa7d8d778d03b7856f86fac32818ff294f5185588647f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+      "rawBytes": 496,
+      "rawSha256": "8856e456b9f6bda0ccb859121c7b257ade71ebd4432b543d69591b6f09fdfb82",
+      "canonicalLfSha256": "8856e456b9f6bda0ccb859121c7b257ade71ebd4432b543d69591b6f09fdfb82"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "e7049e87b9cebdde0927a8ab2ee9e979407a1c6a90236e16e3003a6ddfb9ba75",
+      "canonicalLfSha256": "e7049e87b9cebdde0927a8ab2ee9e979407a1c6a90236e16e3003a6ddfb9ba75"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs",
+      "rawBytes": 956,
+      "rawSha256": "80032bc4978eb3e79249296c811798aaa5eaa5eaef25da004fde296aaaf95a0d",
+      "canonicalLfSha256": "80032bc4978eb3e79249296c811798aaa5eaa5eaef25da004fde296aaaf95a0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "b003722aeba83d0a0107678fdebf77b9f26a234ef21efacd9030e0709e0eb3c4",
+      "canonicalLfSha256": "b003722aeba83d0a0107678fdebf77b9f26a234ef21efacd9030e0709e0eb3c4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "rawBytes": 12767,
+      "rawSha256": "9c51a2eacf9cf138b9b15e29c7359916c2ac30f27a1c488c69650d201fcc0cb1",
+      "canonicalLfSha256": "9c51a2eacf9cf138b9b15e29c7359916c2ac30f27a1c488c69650d201fcc0cb1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "620e2f238d5019b76e699b3636f94bb4407d9bef2f4bd1019a4c44f1521a9a36",
+      "canonicalLfSha256": "620e2f238d5019b76e699b3636f94bb4407d9bef2f4bd1019a4c44f1521a9a36"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "rawBytes": 9566,
+      "rawSha256": "e82dc43f6051dfdce913ac40fc13bff3fecd011917f9a1405b0db69a0582564a",
+      "canonicalLfSha256": "55d0eacdccf64ec817dc6957ea4df9dbcbec4cba5b9408b0c9c4c5b930d1b40d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI.meta",
+      "rawBytes": 169,
+      "rawSha256": "0dccbaf3d798de430ea79495ddbb8c94147d9ba25d8be64a863f5f22c1a4be6d",
+      "canonicalLfSha256": "0dccbaf3d798de430ea79495ddbb8c94147d9ba25d8be64a863f5f22c1a4be6d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml",
+      "rawBytes": 1765,
+      "rawSha256": "56bec15f1377d2c7222cd709b9362e5e05b302e495dba3777fa4ba0d7bc1d29e",
+      "canonicalLfSha256": "56bec15f1377d2c7222cd709b9362e5e05b302e495dba3777fa4ba0d7bc1d29e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml.meta",
+      "rawBytes": 279,
+      "rawSha256": "9fd0ca56255a0bc1e76f18f807a3ec505475227d0804db7ed6372a2e448b6426",
+      "canonicalLfSha256": "9fd0ca56255a0bc1e76f18f807a3ec505475227d0804db7ed6372a2e448b6426"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss",
+      "rawBytes": 3068,
+      "rawSha256": "1e69f66cccf3f4bd756fd5f64eb837fbebb6e6d804086145f83f4e2df6078e12",
+      "canonicalLfSha256": "1e69f66cccf3f4bd756fd5f64eb837fbebb6e6d804086145f83f4e2df6078e12"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss.meta",
+      "rawBytes": 333,
+      "rawSha256": "40314fb161149c76739494ca1efbf78ac97eba3ea68268264989380cd1b5b140",
+      "canonicalLfSha256": "40314fb161149c76739494ca1efbf78ac97eba3ea68268264989380cd1b5b140"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss",
+      "rawBytes": 38,
+      "rawSha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda",
+      "canonicalLfSha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss.meta",
+      "rawBytes": 333,
+      "rawSha256": "df200edb19dcc9a8c7e779de2fb2583d0a0aa1178dea49484e835090b8e97aa5",
+      "canonicalLfSha256": "df200edb19dcc9a8c7e779de2fb2583d0a0aa1178dea49484e835090b8e97aa5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json",
+      "rawBytes": 4715,
+      "rawSha256": "348e74021b3e878c9c97529071b1ee40a9fc62358a3e2cb54855e3576567c017",
+      "canonicalLfSha256": "fec8a68f8610d65ccca07d699a16fd40398e070ac679f56d216f19f15a55f199"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json.meta",
+      "rawBytes": 60,
+      "rawSha256": "08a8054fda2cb45c11c455e2abb48cb7f7fa24a7011fd40ee0546f4817978a68",
+      "canonicalLfSha256": "08a8054fda2cb45c11c455e2abb48cb7f7fa24a7011fd40ee0546f4817978a68"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+      "rawBytes": 1912,
+      "rawSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300",
+      "canonicalLfSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+      "rawBytes": 186,
+      "rawSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab",
+      "canonicalLfSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art.meta",
+      "rawBytes": 169,
+      "rawSha256": "847b7536b86dc4adda27f6d04aeed02e292d7b6418e57c515b0eb4097d3ae9f7",
+      "canonicalLfSha256": "847b7536b86dc4adda27f6d04aeed02e292d7b6418e57c515b0eb4097d3ae9f7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development.meta",
+      "rawBytes": 169,
+      "rawSha256": "c219f6a94568a2dbc37356ffcb9736567f4221a854edf83baa5fd9c4a75373ba",
+      "canonicalLfSha256": "c219f6a94568a2dbc37356ffcb9736567f4221a854edf83baa5fd9c4a75373ba"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+      "rawBytes": 1120,
+      "rawSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a",
+      "canonicalLfSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+      "rawBytes": 185,
+      "rawSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a",
+      "canonicalLfSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "rawBytes": 1861,
+      "rawSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e",
+      "canonicalLfSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity.meta",
+      "rawBytes": 152,
+      "rawSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab",
+      "canonicalLfSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs",
+      "rawBytes": 14496,
+      "rawSha256": "3a477c8288e8309f6a65f883fb1c66824668b23976bef9f1e1f869e43d64154b",
+      "canonicalLfSha256": "3a477c8288e8309f6a65f883fb1c66824668b23976bef9f1e1f869e43d64154b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "b31448d6d98750968cb1a9a0f2d8f2b0a641e50db9467d794fc438008b7c65b6",
+      "canonicalLfSha256": "b31448d6d98750968cb1a9a0f2d8f2b0a641e50db9467d794fc438008b7c65b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs",
+      "rawBytes": 4235,
+      "rawSha256": "49bfcda92c0e6bcc70e066c18d488e9493579b589c834b3047e8ed7ecba82a49",
+      "canonicalLfSha256": "49bfcda92c0e6bcc70e066c18d488e9493579b589c834b3047e8ed7ecba82a49"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "5340490e80e6a3bd0c2640bbfb35e0df2f74e3475877211861be25c35a286b0d",
+      "canonicalLfSha256": "5340490e80e6a3bd0c2640bbfb35e0df2f74e3475877211861be25c35a286b0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+      "rawBytes": 41447,
+      "rawSha256": "363cc8627469770b3f3bc8c924b1b7c8f94a2c8678f626f5b86b3f2cb4fea2b6",
+      "canonicalLfSha256": "363cc8627469770b3f3bc8c924b1b7c8f94a2c8678f626f5b86b3f2cb4fea2b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "d042d13504f852fb9bd0484744bdbb14a9622cd0aea874aa97c333bd78b3f7e5",
+      "canonicalLfSha256": "d042d13504f852fb9bd0484744bdbb14a9622cd0aea874aa97c333bd78b3f7e5"
+    }
+  ],
+  "changedSourcePathsVersusFrozenC1": [
+    "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs"
+  ],
+  "unchangedSourceBindings": 39,
+  "images": [
+    {
+      "name": "SCREEN_CORRECTION_wp038-4x4-editing.png",
+      "originalName": "wp038-4x4-editing.png",
+      "bytes": 78574,
+      "sha256": "b73666e0c53a886d8faadd32b8015db6ae68444f69b39944d66e804cfaf139b3",
+      "width": 960,
+      "height": 840,
+      "actualScreen": false,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": false,
+      "ownPreviousViewReusedForIdenticalBytes": true,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    },
+    {
+      "name": "SCREEN_CORRECTION_wp038-10x10-editing.png",
+      "originalName": "wp038-10x10-editing.png",
+      "bytes": 83416,
+      "sha256": "78ece007e81f0e3348eaa982ff06ae0a89abf828096cdf01ce2d5df5e6ae3eff",
+      "width": 960,
+      "height": 840,
+      "actualScreen": false,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": false,
+      "ownPreviousViewReusedForIdenticalBytes": true,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    },
+    {
+      "name": "SCREEN_CORRECTION_wp038-4x4-ride.png",
+      "originalName": "wp038-4x4-ride.png",
+      "bytes": 75865,
+      "sha256": "6a538c949d0d7473faf5dfe5c28d041709cdf5aa9104f0c7b8cbf8d505c06aea",
+      "width": 960,
+      "height": 840,
+      "actualScreen": false,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": true,
+      "ownPreviousViewReusedForIdenticalBytes": false,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    },
+    {
+      "name": "SCREEN_CORRECTION_wp038-screen-editing.png",
+      "originalName": "wp038-screen-editing.png",
+      "bytes": 40068,
+      "sha256": "850143f55fc8a1fd1a8df53e0f9e2c68d3d047ab8c8a229314ebc27533b6d444",
+      "width": 586,
+      "height": 543,
+      "actualScreen": true,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": true,
+      "ownPreviousViewReusedForIdenticalBytes": false,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    },
+    {
+      "name": "SCREEN_CORRECTION_wp038-screen-ride.png",
+      "originalName": "wp038-screen-ride.png",
+      "bytes": 39149,
+      "sha256": "b39ff1dec5f98b2a9b4fa6af64dc24c37df7f97c092971d3861bb401978e8dd1",
+      "width": 586,
+      "height": 543,
+      "actualScreen": true,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": true,
+      "ownPreviousViewReusedForIdenticalBytes": false,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    },
+    {
+      "name": "SCREEN_CORRECTION_wp038-screen-results.png",
+      "originalName": "wp038-screen-results.png",
+      "bytes": 44882,
+      "sha256": "bf4cb72ac19f5d0392715640b2af5ef4ce8acfac74d78e4b05ba1fbdd335a3e5",
+      "width": 586,
+      "height": 543,
+      "actualScreen": true,
+      "viewedByCoordinatorViaViewImage": true,
+      "allPngChunksCrcAndCompleteIdatChecked": true,
+      "personallyViewedCurrentBytes": true,
+      "ownPreviousViewReusedForIdenticalBytes": false,
+      "independentVisualResult": "PASS_CORRECT_ORIENTATION_LAYOUT_AND_PHASE_FOR_THIS_QA_SCOPE"
+    }
+  ],
+  "cameraCompositionAndCaptureCleanupReview": "Explicit scene-local null-target screen camera/culling0/depth100 and owned cleanup; normal ScreenCaptureAsTexture after WFE with same-frame camera receipt; renderhook removal/coroutine stop/texture destruction in finally; no global pipeline override, no manual image transform, no PanelRT/Camera.Render substitution",
+  "fixedAssetGuids": {
+    "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset": "b281a1bc613c4544b3dc4c9e6a038001",
+    "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat": "b281a1bc613c4544b3dc4c9e6a038002",
+    "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity": "b281a1bc613c4544b3dc4c9e6a038003"
+  },
+  "restoredProtectedSettings": [
+    {
+      "path": "ProjectSettings/GraphicsSettings.asset",
+      "canonicalLfSha256": "83f008014cd45a9c4d6ab9a8363ea6495a52142545385bff6388ebff41071973",
+      "matchesFrozenC1GitBlob": true
+    },
+    {
+      "path": "ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json",
+      "canonicalLfSha256": "a40f81b0dcc795e422f5ca0881fe7dad4e26cb8fdb33244a70f110835c1a8d44",
+      "matchesFrozenC1GitBlob": true
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "canonicalLfSha256": "fc075cdda4f5e3500514a913f98b0dc99d1f4162c14fae06b2e12a0f09f244dd",
+      "matchesFrozenC1GitBlob": true
+    },
+    {
+      "path": "ProjectSettings/QualitySettings.asset",
+      "canonicalLfSha256": "6f403035f207746f1251927a7ab8c0077f79b617c496efd238d1d7fbad1a03f2",
+      "matchesFrozenC1GitBlob": true
+    },
+    {
+      "path": "ProjectSettings/ShaderGraphSettings.asset",
+      "canonicalLfSha256": "ced4c296ca9ee31667185c2a98ef8fbec98d958df3edbde5d6f2a50d1f0ebb32",
+      "matchesFrozenC1GitBlob": true
+    }
+  ],
+  "autoSettingsPatchSha256": "667595d34206eabcd36a9b11cd97ab197b8ca8bb77af6d8bfeeb9cf7814de0fd",
+  "newPackageManagerSettingsArchivedAndRemoved": true,
+  "pinnedUrpNormalization": {
+    "path": "Library/PackageCache/com.unity.render-pipelines.universal@7865b6b91f8a/Runtime/UniversalRenderPipeline.cs",
+    "sha256": "f0dfa2e218115ae82f437028935f4c196d4aab1a010c7216cc2d3e978a555619",
+    "interpretation": "URP constructor normalizes QualitySettings AA to its existing msaaSampleCount1; camera descriptors independently remain1 because own cameras disableMSAA. Each frame URP sets the recorded light-linear/color-temperature values. These Editor-persisted runtime normalizations were restored in source and are not delivered setting changes."
+  },
+  "historicalFailedAttemptReview": {
+    "reviewer": "/root/wp037_independent_qc",
+    "recordedUtc": "2026-10-18T23:11:07.753910+00:00",
+    "result": "HISTORICAL_FAILED_SCREEN_ATTEMPTS_VERIFIED_NOT_ACCEPTED",
+    "packetSha256": "8e4fd3266cb7ad4e6d8d4add2a7a2632264e89b49fb923a1e85d67e5b57856e5",
+    "sources": [
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+        "bytes": 9617,
+        "sha256": "c2c4bdc1773069ac75d6c5d7caf8fcfe54855211b78ac3966178ae596b2fd5b6"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+        "bytes": 39536,
+        "sha256": "5db820476f65a684ef19357c442ac9675f56df3fd401ea6b20e2050ebf4770cb"
+      }
+    ],
+    "attempts": [
+      {
+        "directory": "screen-correction",
+        "nativeExit": 2,
+        "xml": {
+          "id": "2",
+          "testcasecount": "9",
+          "result": "Failed(Child)",
+          "total": "9",
+          "passed": "8",
+          "failed": "1",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-18 23:04:38Z",
+          "end-time": "2026-10-18 23:04:51Z",
+          "duration": "13,7818866"
+        },
+        "cases": [
+          {
+            "id": "1034",
+            "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "methodname": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "944686912",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:38Z",
+            "end-time": "2026-10-18 23:04:38Z",
+            "duration": "0.613206",
+            "asserts": "0"
+          },
+          {
+            "id": "1032",
+            "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "methodname": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "2022655279",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:38Z",
+            "end-time": "2026-10-18 23:04:39Z",
+            "duration": "0.181568",
+            "asserts": "0"
+          },
+          {
+            "id": "1033",
+            "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "methodname": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "853409391",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:39Z",
+            "end-time": "2026-10-18 23:04:42Z",
+            "duration": "3.174354",
+            "asserts": "0"
+          },
+          {
+            "id": "1036",
+            "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "methodname": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1523224538",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:42Z",
+            "end-time": "2026-10-18 23:04:42Z",
+            "duration": "0.303296",
+            "asserts": "0"
+          },
+          {
+            "id": "1038",
+            "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "896383001",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:42Z",
+            "end-time": "2026-10-18 23:04:42Z",
+            "duration": "0.230556",
+            "asserts": "0"
+          },
+          {
+            "id": "1039",
+            "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "methodname": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "275279774",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:42Z",
+            "end-time": "2026-10-18 23:04:43Z",
+            "duration": "0.604643",
+            "asserts": "0"
+          },
+          {
+            "id": "1037",
+            "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "129925866",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:43Z",
+            "end-time": "2026-10-18 23:04:43Z",
+            "duration": "0.225449",
+            "asserts": "0"
+          },
+          {
+            "id": "1040",
+            "name": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "methodname": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1513634003",
+            "result": "Failed",
+            "start-time": "2026-10-18 23:04:43Z",
+            "end-time": "2026-10-18 23:04:51Z",
+            "duration": "8.252370",
+            "asserts": "0"
+          },
+          {
+            "id": "1035",
+            "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "methodname": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1304714033",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:04:51Z",
+            "end-time": "2026-10-18 23:04:51Z",
+            "duration": "0.179682",
+            "asserts": "0"
+          }
+        ],
+        "originalLogSha256": "2d12a2c758322520e3fe9fbb902498ac7eca4ea45c572bfd432c5516c8e80db9",
+        "fullDeclaredLogProfileVerified": true
+      },
+      {
+        "directory": "screen-correction-native",
+        "nativeExit": 0,
+        "xml": {
+          "id": "2",
+          "testcasecount": "9",
+          "result": "Passed",
+          "total": "9",
+          "passed": "9",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-18 23:06:17Z",
+          "end-time": "2026-10-18 23:06:26Z",
+          "duration": "8,9390266"
+        },
+        "cases": [
+          {
+            "id": "1034",
+            "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "methodname": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1689967448",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:17Z",
+            "end-time": "2026-10-18 23:06:18Z",
+            "duration": "0.513810",
+            "asserts": "0"
+          },
+          {
+            "id": "1032",
+            "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "methodname": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1581826257",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:18Z",
+            "end-time": "2026-10-18 23:06:18Z",
+            "duration": "0.319151",
+            "asserts": "0"
+          },
+          {
+            "id": "1033",
+            "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "methodname": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "19106527",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:18Z",
+            "end-time": "2026-10-18 23:06:21Z",
+            "duration": "3.241189",
+            "asserts": "0"
+          },
+          {
+            "id": "1036",
+            "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "methodname": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "72951849",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:21Z",
+            "end-time": "2026-10-18 23:06:22Z",
+            "duration": "0.307277",
+            "asserts": "0"
+          },
+          {
+            "id": "1038",
+            "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "594495044",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:22Z",
+            "end-time": "2026-10-18 23:06:22Z",
+            "duration": "0.241831",
+            "asserts": "0"
+          },
+          {
+            "id": "1039",
+            "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "methodname": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1173281883",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:22Z",
+            "end-time": "2026-10-18 23:06:22Z",
+            "duration": "0.613994",
+            "asserts": "0"
+          },
+          {
+            "id": "1037",
+            "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "956825132",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:22Z",
+            "end-time": "2026-10-18 23:06:23Z",
+            "duration": "0.221179",
+            "asserts": "0"
+          },
+          {
+            "id": "1040",
+            "name": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "methodname": "GraphicsProbe_NormalScreen_EditingRideResultsAndRestartRemainVisible",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1903480489",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:23Z",
+            "end-time": "2026-10-18 23:06:26Z",
+            "duration": "3.266650",
+            "asserts": "0"
+          },
+          {
+            "id": "1035",
+            "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "methodname": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1546663388",
+            "result": "Passed",
+            "start-time": "2026-10-18 23:06:26Z",
+            "end-time": "2026-10-18 23:06:26Z",
+            "duration": "0.190982",
+            "asserts": "0"
+          }
+        ],
+        "originalLogSha256": "c112dae9cbe8419fb96457742684df25bc2de3b08489dd608a020b7a94ec82f4",
+        "fullDeclaredLogProfileVerified": true
+      }
+    ],
+    "images": [
+      {
+        "name": "SCREEN_ATTEMPT2_wp038-screen-editing.png",
+        "bytes": 42007,
+        "sha256": "7cdd884e61387ce8c5f2fc459508ec6fb65bd672048ca3530f25fd350c412ecc",
+        "personallyViewed": true,
+        "observation": "Vertically reflected full-screen editing/ride/result image; not accepted graphic proof, no product inversion inferred."
+      },
+      {
+        "name": "SCREEN_ATTEMPT2_wp038-screen-ride.png",
+        "bytes": 40777,
+        "sha256": "8048ea1b79b61532e6daa77b55f0b3ad3243cd6635ab11ab14654aa235640507",
+        "personallyViewed": true,
+        "observation": "Vertically reflected full-screen editing/ride/result image; not accepted graphic proof, no product inversion inferred."
+      },
+      {
+        "name": "SCREEN_ATTEMPT2_wp038-screen-results.png",
+        "bytes": 46998,
+        "sha256": "6fdd3d128b4e50964cc05038ffadf7884c6391a015d6de9f7b2f747885f59b45",
+        "personallyViewed": true,
+        "observation": "Vertically reflected full-screen editing/ride/result image; not accepted graphic proof, no product inversion inferred."
+      }
+    ],
+    "all6PayloadsIntegrityChecked": true
+  },
+  "oldEvidenceBytesRetained": [
+    {
+      "name": "GRAPHICS_EVIDENCE.json",
+      "bytes": 55402,
+      "sha256": "4a162344772afa70e657a408ed8349359a0cbf806b34a4b571efa0db6e5fe386",
+      "unchanged": true
+    },
+    {
+      "name": "SCREEN_OUTPUT_QC.json",
+      "bytes": 10929,
+      "sha256": "296d0c986ce43665dd69f995571cc7562af437d8120e4a6a2696ab401b9bedb5",
+      "unchanged": true
+    },
+    {
+      "name": "INDEPENDENT_FINAL_QC.json",
+      "bytes": 163063,
+      "sha256": "05fdc194812753d73fca028ebf1e05a15c5aab1d59e0a1b3e9c628b0fc81a975",
+      "unchanged": true
+    },
+    {
+      "name": "SCREEN_CORRECTION_ATTEMPTS.json",
+      "bytes": 77557,
+      "sha256": "8e4fd3266cb7ad4e6d8d4add2a7a2632264e89b49fb923a1e85d67e5b57856e5",
+      "unchanged": true
+    }
+  ],
+  "independentAcceptanceGranted": false,
+  "noEditorOrGitOrCiMutationByReviewer": true
+}

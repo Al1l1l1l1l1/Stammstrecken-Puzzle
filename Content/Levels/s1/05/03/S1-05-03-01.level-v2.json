@@ -1,0 +1,193 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-03-01",
+  "contentRevision": 2,
+  "grid": {
+    "width": 9,
+    "height": 9
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 8
+    },
+    "b": {
+      "side": "N",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    9,
+    4,
+    2,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2
+  ],
+  "columnCounts": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    5,
+    9
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 3,
+    "position": 1,
+    "titleKey": "level.s1.05.03.01.title",
+    "statusKey": "level.s1.05.03.01.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.03.01.entry",
+    "focus": [
+      "OCCUPANCY",
+      "COMBINATION"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Gezielt ersetzt: alle neun Zeilen und Spalten sind aktiv, keine öffentliche Nullzahl reduziert das Raster auf einen kleinen Teil. Der Nordport links und Ostport rechts unten liegen an zwei verschiedenen Kurvengebieten; Fünferreste in Spalte 7 und Zweierreihen oben/unten verlangen genaue Formfestlegung trotz sicherer Rahmenbelegung. Der Wiedereinstieg behält echte 9×9-Ausdehnung bei kurzer Rootfolge.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-03-01-map",
+    "trainMomentId": "draft-s1-05-03-01-train",
+    "resultTextKey": "level.s1.05.03.01.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 8,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 8,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 7,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-03-01/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "3e850a0d03c056d254be5075e958c8874d394490540c2a0e87d4776f75f22294"
+    }
+  }
+}

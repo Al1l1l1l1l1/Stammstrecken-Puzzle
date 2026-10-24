@@ -1,0 +1,188 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-03-06",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 0
+    },
+    "b": {
+      "side": "W",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    7,
+    6,
+    2,
+    2,
+    3,
+    3
+  ],
+  "columnCounts": [
+    6,
+    6,
+    4,
+    2,
+    2,
+    2,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 3,
+    "position": 6,
+    "titleKey": "level.s1.03.03.06.title",
+    "statusKey": "level.s1.03.03.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.03.06.entry",
+    "focus": [
+      "COMBINATION",
+      "DENSITY"
+    ],
+    "chainDepth": 7,
+    "qualityNote": "Die beiden vollen linken Spalten tragen die untere Kurvenserie, die Einzerspalte 6 nur den Ostport oben. Hohe Belegung oben und kleine Zweier-/Dreierzeilen unten müssen über Restzahlen geometrisch verzahnt werden; 20 Kurven sind eine konkrete Lesbarkeitslast.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-03-06-map",
+    "trainMomentId": "draft-s1-03-03-06-train",
+    "resultTextKey": "level.s1.03.03.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-03-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "f264f51266f05567c342f3caa015575512fd84c0546c23aaeb9e4dae9b518c12"
+    }
+  }
+}

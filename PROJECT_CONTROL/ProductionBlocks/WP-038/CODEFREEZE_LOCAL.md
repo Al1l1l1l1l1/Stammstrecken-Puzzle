@@ -1,0 +1,7 @@
+# WP038 – tatsächliche kanonische lokale Codefreezeprüfung
+
+Eigene Koordinationsprüfung, keine unabhängige Abschlussfreigabe. Geprüfter und veröffentlichter Codefreeze `e77c5fa168b915979c3c9e39d45fbcfcaefa3aea`, Tree `e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0`; Draft-Unter-PR33 ausschließlich gegen WP036-Ziel 3772c03. Die vollständigen eigenen Runtime-/Befund-/Korrekturberichte sind im Freeze bereits enthalten.
+
+In einer eigenen Git-Prüfkopie mit core.autocrlf=false, kanonischen LF-Bytes und unverändertem echten Commit wurden mit CPython3.11.13/Node22.20.0 beide Gates samt --self-test ausgeführt: Architecture17 und Production-Scope18 PASS. Der tatsächliche Scopekontext bindet WP038, Basis3772c03, den vollständigen Freeze-SHA und worktreeDirty=false. Keine Kontamination durch native Windows-Zeilenenden oder uncommittete Quellen. Manifest SHA256cf9087d50941eb64dea3dc1ea894dd29a3a5a2a7d611668e3228cc6b875b979a und geschützte Textquelle4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c tatsächlich geprüft.
+
+Originalausgaben: [Architecture](CODEFREEZE_ARCHITECTURE.txt), [Scope](CODEFREEZE_SCOPE.txt), [maschinelle Bindung](CODEFREEZE_LOCAL.json). Diese Nachträge sind reine standgebundene Evidenz nach dem Codefreeze; sie ändern keinen Source-/Test-/Asset-/Workflowbyte des geprüften Gegenstands. Reguläre eigene CI (Architecture39171716266, Unity39171716314), echte Plattformbuilds und getrennte Abschluss-QC bleiben bis zu ihren tatsächlichen terminalen Ergebnissen offen.

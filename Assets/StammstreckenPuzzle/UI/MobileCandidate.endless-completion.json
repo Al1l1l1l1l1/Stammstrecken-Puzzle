@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "completion-qa-mobile-candidate-endless",
+  "catalogRevision": 1,
+  "approvalStatus": "DRAFT",
+  "rewardDefinitions": [
+    {
+      "reasonCode": "LEVEL_FIRST_CLEAR",
+      "subjectKind": "ENDLESS_INSTANCE",
+      "amountPatience": 15,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    },
+    {
+      "reasonCode": "LEVEL_SECOND_STAR",
+      "subjectKind": "ENDLESS_INSTANCE",
+      "amountPatience": 5,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    },
+    {
+      "reasonCode": "LEVEL_THIRD_STAR",
+      "subjectKind": "ENDLESS_INSTANCE",
+      "amountPatience": 10,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    },
+    {
+      "reasonCode": "POST_CLEAR_PATIENCE",
+      "subjectKind": "ENDLESS_INSTANCE",
+      "amountPatience": 10,
+      "claimCardinality": "ONCE_PER_SUBJECT"
+    }
+  ],
+  "completionMoments": [
+    {
+      "id": "endless-completion",
+      "resultTextKey": "endless.result",
+      "mapSegmentId": "draft-endless-map-default",
+      "trainMomentId": "draft-endless-train-default"
+    }
+  ]
+}

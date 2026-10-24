@@ -1,0 +1,59 @@
+# I – abgeschlossene Akzeptanzkriterien am tatsächlichen integrierten Stand
+
+Alle I01–I16 sind technisch erfüllt. Source `242712d1b99202fd18273dc28ef2fd12aff71cab`, tatsächlicher Untermerge `1af988cd73a7267796fb3b6fd77204166241a07a`, Tree `8b4f4b2d9460979bd0a532c993933e7b5be4b93a`. Vollständige eigene und beide integrierten regulären CI-Ereignisse sowie getrennte Source-/Integrationsannahme sind erfolgt. Die folgende Tabelle verknüpft die tatsächlichen Nachweisgruppen; alle nachfolgenden ursprünglichen Zwischenstände bleiben historisch erhalten. Keine Human-/Produkt-/Main-/Gerätefreigabe.
+
+| AK | Abschließende tatsächliche Nachweisgruppe |
+|---|---|
+| I01 | PASS – [P_RAW_GIT_UNION_INDEPENDENT_QC.json](P_RAW_GIT_UNION_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I02 | PASS – [I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json](I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I03 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I04 | PASS – [I_F2_CI_EVIDENCE.json](I_F2_CI_EVIDENCE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I05 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I06 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I07 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I08 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I09 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I10 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I11 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I12 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I13 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I14 | PASS – [I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json](I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I15 | PASS – [I_F2_FINAL_INDEPENDENT_QC.json](I_F2_FINAL_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+| I16 | PASS – [I_MI_FINAL_TECHNICAL_INDEPENDENT_QC.json](I_MI_FINAL_TECHNICAL_INDEPENDENT_QC.json); jeweilige ursprüngliche Einzelprobe und Grenze siehe erhaltene Detailmatrix unten. |
+
+## Historische lokale Detailmatrix und deren tatsächliche Nachläufe
+
+# I – tatsächliche lokale AK-Nachweise und offene Schlussgates
+
+Stand: Native09 tatsächlich45/45 PASS, OS0; App-V3 gezielt28/28 Mono, frühere FAILs erhalten. Aktuelle native Quellen497exakte Gitblobs aus09_INPUT_SNAPSHOT, vollständige Originale in [Native08-Transport](I_NATIVE_09_PASSED_ORIGINALS.json), [Root-Bildbindung](I_NATIVE_09_ROOT_RESULT_VISUAL.json). Die letzte unabhängige Sourceprüfung ist von Implementierung getrennt; aktueller Native-/Freeze-/CIabschluss folgt separat. Keine fehlende CI als erfüllt ausgeben.
+
+| AK | Tatsächlicher lokaler Nachweis / verbleibendes Gate |
+|---|---|
+| I01 | [P-Raw-Git-Union](P_RAW_GIT_UNION_INDEPENDENT_QC.json), LA/LS-Bindungen, eigener direkter Anker auf P und unverändertes Manifest; historischer kumulativer Kindscope-FAIL erhalten. |
+| I02 | Nummerierter Entwurf, getrennte Prüfung, R-Annahme vor14Quellen/Metas; [Annahme-/Registry-QC](I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json) und echte Negativmutationen. |
+| I03 | Native Roottests ActualCompositionRunsOnWorker… und CorruptPublicOrReviewSources… PASS; echte QA-Profile/Katalogbytes, physische Rootisolation und [tatsächliche Aliasprobe](I_TEST_ROOT_ALIAS_ACTUAL_PROBE.json); vor Freeze zusätzlich Unix-Realroot-Symlinkweg reproduziert und Testguard fail-closed korrigiert, [Unix20/20+aktuelleWindows18/18](I_ROOT_002_ACTUAL_CORRECTION.json). |
+| I04 | Native NormalBuildAndEditorInputsHaveFourSeparateOrderedEntriesAndStableGuids, SavedBuildPreflightReadsExistingAAndSAssetsWithoutChangingThem, SavedPlayerDependencyGraph… und Builder_ReproducesOwnSceneTwice… PASS. Geordnete echte eigene Reproduktion03 OS0. **Neue vier tatsächliche Android-/iOS-BuildReports stehen bis regulärer I-CI aus.** |
+| I05 | Native ActualWorkerCompositionFailure…, BoundRequestFaultCancelAndSynchronousThrow… PASS; App-V3 Hauptthread-/Dispatcher-/Epoch-/Dispose-/Delayedload-/Instantlifecyclefälle28/28. Keine Fake-Bridge oder bloßer Taskerfolg. |
+| I06 | Native ColdLoad_ThreeMissing_NoProfileWrite_UntilExplicitCreate PASS; echte Dateien erst nach expliziter Aktion. Unsupported/Failed/Corrupt/SplitBrain-Gates nativ vorhanden. |
+| I07 | Native DropdownIsTentative_All240_ExplicitNewAndResumePreserveExactDraft, ActualBatchPointerNoopAndOrSuspension… PASS; alte Capture/Envelopes unverändert streng abgewiesen. |
+| I08 | Native RealMarkerClearUndoPause_ColdRestorePreservesStickyRevisionDedupAndUndo PASS, reale Datei-/Coldload-/Sessionfacts einschließlich Undo/Revision/PreviouslySet/Flags/Dedup geprüft. |
+| I09 | Native ActualBatchPointerNoopAndOrSuspension… und InstallerOnlyDestroyAndDisabledDocument… sowie Root TestRootScopeCannotEndBeforeActualInstallerShutdown PASS; App-V3 Lifecycle während gehaltenemWrite/Load pausiert unmittelbar. Unveränderte S-Debounce-/2s-/Latewrite-/Completionnachweise wiederverwendet. |
+| I10 | Native RealWriterOwnerThread_HoldsAck_MainKeepsPumping_NoRideOrResultsBeforeCommit und NormalScreen… PASS. Echter OSownerlock hält Bestätigung; Root hat alle vier neuen PNGs tatsächlich betrachtet. |
+| I11 | Native PendingDirectoryObstacle_RealWriterFailure_NoFalseResult_ExplicitRetryPaysOnce und BoundRequestFault… PASS. Failed-Beobachtung verlangt Reload, keine direkte unsichere Retryumgehung; nach Reload/Open/Solve genau15QA/1FirstClear. |
+| I12 | Native SplitBrain_VisibleThreeCandidates_NoEffectsUntilConfirm_ExactPromotionPreservesSources, CorruptReset_RequiresSeparateConfirmation_PreservesExactOriginals, RecoveryChoice_BindsNonselectedSourceBytes_StaleConfirmCannotPromote und UnsupportedOrFailedCandidate… tatsächlich PASS. Codecvalides Hapticstoggle statt unbekannter Locale; alle3Corruptvorbedingungen/Originalbytes und echtes Pendinghindernis nachgewiesen. |
+| I13 | Native ResultsRestartAndSolve_UsesNewAttempt_NewRide_AndNeverPaysTwice sowie PendingDirectoryObstacle… PASS. Confirmedsnapshot1Stern/15QA/einErstabschluss, keine Doppelzahlung; nullZeiten bleiben in unveränderten S-Katalogen bestätigt. |
+| I14 | Native12/12 Presenterfälle inklusive exaktem Unicode/geschlossenenKeys; SavedFrame_586x543Viewport_ScrollReachesEveryVisibleControl_LargeCountTextFits PASS. Alle tatsächlichenContentbuttons/Gridzellen vollständig erreichbar, TextMeasure10/10 passt in alle zehn Slots, Nachbarn getrennt. Playerdependency-/A-Publicquellen unverändert; keine interne Lösungsdatenpromotion. |
+| I15 | Lokale Source-/Original-/Korrekturprüfungen und Native09 vorhanden. **Sauberer finaler kanonischer Freeze, vollständige reguläre I-CI und getrenntes exaktes Schlussurteil noch ausstehend.** |
+| I16 | T/A/S formal im eigenen I-Scope nachgeführt; eine [Gesamtübergabe](../HANDOVER.md) erschließt Startweg/Quellen/Originale. **Gesonderter R-Unterintegrationsentscheid, frischer Expected-HEAD-Untermerge und tatsächliche integrierte CI/QC noch ausstehend.** |
+
+Aktuelle getrennte [Root002-/Native09-Abschlussprüfung](I_ROOT_002_NATIVE09_FINAL_INDEPENDENT_QC.json): I-ROOT-002 CLOSED, Unix20/20 und Windows18/18, aktuelle45/45Nativefälle und vier Originalbilder tatsächlich unabhängig geprüft. Keine offenen identifizierten lokalen Highs. I04-Mobileberichte, I15-Freeze/CI und I16 bleiben die ausdrücklich genannten Schlussgates.
+
+Historische Native04/05/06/07-FAILs und dazugehörige unveränderte Originalquellen/-bilder/-XML/-Logs bleiben gesondert gebunden. Nominalviewporttoleranz1logischerPixel erklärt ausschließlich Panel-Pixelrundung; eigentliche Text-/Nachbar-/Controlbounds bleiben streng. Hier steht keine Produkt-/Main-/Release-/Human240-/Zeitkalibrierungs-/Geräteannahme.
+
+## Tatsächlicher erster Freeze und enger Headless-Nachlauf
+
+F1 ist als89ee035…/Treec7243b… exakt eingefroren, unabhängig Raw-Git-geprüft und kanonisch17/18 PASS gewesen. Seine reguläre Unity-CI ist dennoch FAIL: Edit1107PASS, Play116/117; Android/iOS SKIPPED. Der tatsächliche einzelne Headless-Fixturefehler ist durch Native10/11 kausal reproduziert und nach getrennter Planprüfung ausschließlich im neuen Smoke-Test korrigiert. Native12 aktuelle45/45 headless und Native13 normaleGrafik1/1 mit vier tatsächlichen selbst/ unabhängig betrachteten586×543-Bildern PASS/OS0. Native09-Runtimequellen bleiben unverändert; alle alten FAILs erhalten. Neue F2-Freeze-/CI-/Abschlussbindung folgt separat, I04/I15/I16 bleiben insoweit offen. [Originale](I_HEADLESS_001_NATIVE_10_13_ORIGINALS.json), [erstes CI-FAIL-Urteil](I_F1_FAILED_CI_INDEPENDENT_QC.json).
+
+## Tatsächlicher integrierter Abschluss I01–I16
+
+I04 ist durch die vier tatsächlichen Szenen-BuildReports in beiden regulären Source-Plattformjobs und beiden integrierten CI-Ereignissen erfüllt. I15 ist durch den sauberen F2-Freeze, kanonische 17/18 samt Selbst-/Negativtests, vollständige reguläre 1107/117/Coverage/Android/iOS-Nachweise und getrennte Schlussannahme erfüllt. I16 ist durch gesonderten R-Entscheid, frischen Expected-HEAD-Untermerge 1af988cd73a7267796fb3b6fd77204166241a07a, exakten Tree8b4f4b2d9460979bd0a532c993933e7b5be4b93a, beide integrierten vollständigen CI-Ereignisse, unabhängige Integrationskontrolle und diese separate Gesamtabschlussdokumentation erfüllt. Alle übrigen I01–I14-Originale bleiben an ihren tatsächlichen Sources gebunden; kein Human-/Produkt-/Geräte-PASS. Spätere Dokumentations-CI gehört allein ihrem tatsächlichen Dochead, gebunden im PR31-/PR37-Nachtrag.

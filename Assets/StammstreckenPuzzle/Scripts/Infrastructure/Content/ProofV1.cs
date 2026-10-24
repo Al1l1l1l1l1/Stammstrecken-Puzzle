@@ -74,27 +74,40 @@ namespace STP.Infrastructure.Content
     }
 
     /// <summary>Strict parser, closed schema reader, exact profile validation and canonical serializer for proof-v1.</summary>
-    public static class ProofV1Codec
+    internal static class ProofV1Core
     {
+        private enum IdentitySpace { Campaign, Endless }
+        internal static ProofReadResult ReadCampaign(byte[]? bytes)=>Read(bytes,IdentitySpace.Campaign);
+        internal static ProofReadResult ReadCampaign(JsonValue? json)=>Read(json,IdentitySpace.Campaign);
+        internal static ProofReadResult ReadEndless(byte[]? bytes)=>Read(bytes,IdentitySpace.Endless);
+        internal static ProofReadResult ReadEndless(JsonValue? json)=>Read(json,IdentitySpace.Endless);
+        internal static ProofReadResult CreateCampaign(string id,ProfiledHash puzzle,ProfiledHash solution,string solver,long search,long steps,long depth,long guess)=>Create(id,puzzle,solution,solver,search,steps,depth,guess,IdentitySpace.Campaign);
+        internal static ProofReadResult CreateEndless(string id,ProfiledHash puzzle,ProfiledHash solution,string solver,long search,long steps,long depth,long guess)=>Create(id,puzzle,solution,solver,search,steps,depth,guess,IdentitySpace.Endless);
+        private static bool IsEndlessId(string value)
+        {
+            if(value.Length!=67||!value.StartsWith("E1-",StringComparison.Ordinal))return false;
+            for(var i=3;i<value.Length;i++)if(!(value[i]>='0'&&value[i]<='9'||value[i]>='a'&&value[i]<='f'))return false;
+            return true;
+        }
         internal static LevelDiagnostic Error(string code, string path, string message) => new LevelDiagnostic(LevelDiagnosticStage.Proof, code, path, message);
         internal static ProofReadResult Fail(LevelDiagnostic error) => new ProofReadResult(null, null, new[] { error });
         private static LevelDiagnostic Translate(LevelDiagnostic error) => Error(error.Code.Replace("LVL-", "PRF-"), error.Path, error.Message);
 
-        public static ProofReadResult Read(byte[]? bytes)
+        private static ProofReadResult Read(byte[]? bytes,IdentitySpace space)
         {
             if (bytes == null) return Fail(Error(ProofDiagnosticCodes.Missing, string.Empty, "The proof artifact is missing."));
             var parsed = StrictJsonParser.Parse(bytes);
-            return parsed.Value == null ? Fail(Translate(parsed.Error!)) : Read(parsed.Value);
+            return parsed.Value == null ? Fail(Translate(parsed.Error!)) : Read(parsed.Value,space);
         }
 
         /// <summary>Historical solver-v1 is readable; production binding accepts only solver-v2.</summary>
-        public static ProofReadResult Read(JsonValue? json)
+        private static ProofReadResult Read(JsonValue? json,IdentitySpace space)
         {
             var ctx = new SchemaContext();
             if (!ctx.BeginObject(json, string.Empty, "proofFormatVersion", "puzzleId", "publicPuzzleHash", "solutionHash", "solverVersion", "solutionCount", "metrics", "proofHash"))
                 return SchemaFailure(ctx);
             ctx.ConstInt(json!, string.Empty, "proofFormatVersion", 1, ProofDiagnosticCodes.Format);
-            string? id = ctx.Pattern(json!, string.Empty, "puzzleId", LevelPatterns.IsPuzzleId);
+            string? id = ctx.Pattern(json!, string.Empty, "puzzleId", space==IdentitySpace.Campaign?(Func<string,bool>)LevelPatterns.IsPuzzleId:IsEndlessId);
             var puzzle = LevelV2Reader.ReadProfiledHash(ctx, json!, string.Empty, "publicPuzzleHash");
             var solution = LevelV2Reader.ReadProfiledHash(ctx, json!, string.Empty, "solutionHash");
             string? solver = ctx.Pattern(json!, string.Empty, "solverVersion", LevelPatterns.IsSolverVersion);
@@ -130,8 +143,8 @@ namespace STP.Infrastructure.Content
         }
 
         /// <summary>Creates a proof projection from production values, then validates its full serialized artifact before returning it.</summary>
-        public static ProofReadResult Create(string puzzleId, ProfiledHash puzzleHash, ProfiledHash solutionHash, string solverVersion,
-            long searchNodes, long deductionSteps, long maxDeductionDepth, long requiredGuessDepth)
+        private static ProofReadResult Create(string puzzleId, ProfiledHash puzzleHash, ProfiledHash solutionHash, string solverVersion,
+            long searchNodes, long deductionSteps, long maxDeductionDepth, long requiredGuessDepth,IdentitySpace space)
         {
             var doc = new ProofV1Document(puzzleId, puzzleHash, solutionHash, solverVersion,
                 new ProofMetrics(searchNodes, deductionSteps, maxDeductionDepth, requiredGuessDepth), new ProfiledHash(LevelHashProfiles.Proof, new string('0', 64)));
@@ -139,8 +152,20 @@ namespace STP.Infrastructure.Content
             if (!hash.Succeeded) return Fail(Translate(hash.Error!));
             doc = new ProofV1Document(puzzleId, puzzleHash, solutionHash, solverVersion, doc.Metrics, hash.Hash!);
             var canonical = JcsSerializer.Serialize(doc.ToJson());
-            return canonical.Utf8 == null ? Fail(Translate(canonical.Error!)) : Read(canonical.Utf8);
+            return canonical.Utf8 == null ? Fail(Translate(canonical.Error!)) : Read(canonical.Utf8,space);
         }
+
+    }
+
+    /// <summary>Campaign-only proof-v1 entry. E1 identities remain rejected by this reader and its unchanged schema.</summary>
+    public static class ProofV1Codec
+    {
+        private static LevelDiagnostic Error(string code,string path,string message)=>ProofV1Core.Error(code,path,message);
+        public static ProofReadResult Read(byte[]? bytes)=>ProofV1Core.ReadCampaign(bytes);
+        public static ProofReadResult Read(JsonValue? json)=>ProofV1Core.ReadCampaign(json);
+        public static ProofReadResult Create(string puzzleId,ProfiledHash puzzleHash,ProfiledHash solutionHash,string solverVersion,
+            long searchNodes,long deductionSteps,long maxDeductionDepth,long requiredGuessDepth)
+            =>ProofV1Core.CreateCampaign(puzzleId,puzzleHash,solutionHash,solverVersion,searchNodes,deductionSteps,maxDeductionDepth,requiredGuessDepth);
 
         /// <summary>The artifact ID is a logical reference, never a filesystem path to open.</summary>
         public static string ArtifactId(string puzzleId, string solverVersion) => "proofs/" + puzzleId + "/" + solverVersion + ".proof-v1.json";

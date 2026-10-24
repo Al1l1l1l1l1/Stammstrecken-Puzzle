@@ -4,16 +4,20 @@
 # ARCHITECTURE/BUILD_AND_RELEASE.md Abschnitt 5 und 6 sowie
 # ARCHITECTURE/TEST_STRATEGY.md Abschnitt 11.
 #
-# - project-preflight läuft immer: autoritative Unity-Versionspin-Prüfung,
-#   statischer Modulgraph-Check der realen .asmdef-Dateien gegen die normativen
-#   Tabellen aus ARCHITECTURE/MODULE_BOUNDARIES.md Abschnitt 3 (Produktion)
-#   und Abschnitt 4 (Tests) sowie Skelett-Konventionsprüfungen. Das ist ein
-#   echter, ausgeführter Check.
-# - unity-environment-linux/-android/-ios laufen immer und ohne Secrets: Sie
-#   weisen die Runnerbereitschaft ausgeführt nach (Editor-Headless-Start bis
-#   zur erwarteten Lizenzprüfung, Android-Toolchain-Pfade, Xcode-26+-Auswahl
-#   mit iOS-SDK, Lizenz-Client-Aufrufbarkeit). Sie behaupten keinen Compile-,
-#   Test- oder Buildnachweis.
+# - changes-preflight läuft immer, ist stdlib-only und fail-closed: Es prüft die
+#   Klassifikator-Negativproben, beide Seiten von Rename/Delete, die Gitbasis
+#   und bei PRs Source- und synthetischen Merge-Diff als Union. Ein vollständig
+#   bekannter Produktpush erhält nur diesen günstigen Preflight mit dem ehrlichen
+#   Status DEFERRED_TO_PR_CANDIDATE; der unveränderte Vollpfad läuft am PR-
+#   Kandidaten. Reine Governance-/Markdown-/Status-/Konzept-/Review-/Scope- und
+#   steuernde Workflowänderungen erhalten NOT_REQUIRED_SOURCE_UNCHANGED; sie
+#   behaupten keinen Unity-PASS. Fehlende Basis, unbekannte Diffs oder echte
+#   Unity-Rezeptänderungen verlangen voll.
+# - Erst dann laufen project-preflight und unity-environment-linux/-android/-ios:
+#   Sie prüfen Versionspin, Modulgraph beziehungsweise Runnerbereitschaft wie
+#   bisher ausgeführt. Reine Dokumentation startet weder Editor/Lizenz noch
+#   Android/iOS; sie schwächt nicht den immer laufenden Architecture-/Scope- und
+#   Toolingcheck in validate.yml.
 # - Die lizenzpflichtigen Unity-Jobs (Compile, EditMode inkl. Coverage,
 #   Bootstrap-PlayMode-Smoke, Android-Development-IL2CPP, iOS-Export/Compile)
 #   laufen erst, wenn die Unity-Personal-Aktivierung und reproduzierbare Runner
@@ -45,7 +49,7 @@ name: Unity CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: ["**"]
   push:
     branches: ["**"]
   workflow_dispatch:
@@ -62,8 +66,69 @@ env:
   STP_UNITY_CHANGESET: 09d2ecc7fb28
 
 jobs:
+  changes-preflight:
+    name: changes-preflight
+    runs-on: ubuntu-24.04
+    outputs:
+      requires_unity: ${{ steps.classify.outputs.requires_unity }}
+      run_text: ${{ steps.classify.outputs.run_text }}
+      run_jcs: ${{ steps.classify.outputs.run_jcs }}
+      unity_status: ${{ steps.classify.outputs.unity_status }}
+      reason: ${{ steps.classify.outputs.reason }}
+    steps:
+      - name: Repository mit vollständiger Historie auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: CPython 3.11.13 einrichten
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11.13"
+
+      - name: Änderungsklassifikation und ihre deterministischen Negativproben prüfen
+        id: classify
+        env:
+          EVENT_BASE: ${{ github.event.before || github.event.pull_request.base.sha }}
+          EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_MERGE: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_prepare_coverage.py
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_verify_coverage.py
+          args=(--event "${GITHUB_EVENT_NAME}" --base "${EVENT_BASE}" --head "${EVENT_HEAD}" --merge "${EVENT_MERGE}" --github-output "${GITHUB_OUTPUT}")
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            args+=(--force-full)
+          fi
+          python3 tools/ci/change_scope.py "${args[@]}"
+
+      - name: Unity-Ausführungsbedarf wahrheitsgemäß ausweisen
+        env:
+          UNITY_STATUS: ${{ steps.classify.outputs.unity_status }}
+          UNITY_REASON: ${{ steps.classify.outputs.reason }}
+        run: |
+          set -euo pipefail
+          case "${UNITY_STATUS}" in
+            REQUIRED)
+              echo "Unity source checks REQUIRED: ${UNITY_REASON}"
+              ;;
+            DEFERRED_TO_PR_CANDIDATE)
+              echo "DEFERRED_TO_PR_CANDIDATE: vollständiger unveränderter Unitypfad läuft am Produkt-PR-Kandidaten; ${UNITY_REASON}"
+              ;;
+            NOT_REQUIRED_SOURCE_UNCHANGED)
+              echo "NOT_REQUIRED_SOURCE_UNCHANGED: ${UNITY_REASON}"
+              ;;
+            *)
+              echo "Ungültiger Unity-Status aus fail-closed classifier: ${UNITY_STATUS}" >&2
+              exit 1
+              ;;
+          esac
+
   project-preflight:
     name: project-preflight
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
 
     steps:
@@ -134,20 +199,23 @@ jobs:
               "STP.Editor.Content": {"STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Infrastructure.Content"},
               "STP.Editor.Build": {"STP.Bootstrap"},
           }
-          # Interne Referenzen der neun Testassemblies (Abschnitt 4); die
+          # Interne Referenzen der elf Testassemblies; die
           # Unity-Testrunner-Referenzen werden separat geprüft.
           test_expected = {
               "STP.Tests.Domain.EditMode": {"STP.Puzzle.Domain"},
               "STP.Tests.Solver.EditMode": {"STP.Puzzle.Domain", "STP.Puzzle.Solver"},
-              "STP.Tests.Application.EditMode": {"STP.Application"},
+              "STP.Tests.Application.EditMode": {"STP.Application", "STP.Puzzle.Domain", "STP.Puzzle.Solver"},
               "STP.Tests.Persistence.EditMode": {"STP.Infrastructure.Persistence"},
               "STP.Tests.Content.EditMode": {"STP.Infrastructure.Content", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Editor.Content"},
+              "STP.Tests.Calibration.EditMode": {"STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Bootstrap"},
+              "STP.Tests.RuntimeComposition.EditMode": {"STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence", "STP.Puzzle.Domain", "STP.Puzzle.Solver", "STP.Bootstrap"},
               "STP.Tests.Presentation.PlayMode": {"STP.Presentation.UI", "STP.Presentation.World"},
-              "STP.Tests.Mobile.PlayMode": {"STP.MobileServices.Google", "STP.MobileServices.Store"},
+              "STP.Tests.Mobile.PlayMode": {"STP.Application", "STP.MobileServices.Google", "STP.MobileServices.Store"},
               "STP.Tests.Bootstrap.PlayMode": {
                   "STP.Bootstrap", "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
                   "STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform",
                   "STP.Audio", "STP.Presentation.UI", "STP.Presentation.World",
+                  "STP.Puzzle.Domain", "STP.Puzzle.Solver",
               },
               "STP.Tests.Device": {"STP.MobileServices.Google", "STP.MobileServices.Store", "STP.Platform"},
           }
@@ -172,8 +240,14 @@ jobs:
           for name, (path, data) in sorted(found.items()):
               refs = set(data.get("references", []))
               if name in expected:
-                  if refs != expected[name]:
-                      errors.append(f"references:{name}: erwartet={sorted(expected[name])} tatsaechlich={sorted(refs)}")
+                  # Exact approved external SDK edges; the internal graph stays closed.
+                  external = {
+                      "STP.Presentation.UI": {"Unity.Localization"},
+                      "STP.MobileServices.Store": {"Unity.Purchasing", "Unity.Purchasing.Security", "Unity.Purchasing.SecurityStub", "Unity.Purchasing.SecurityCore"},
+                  }.get(name, set())
+                  expected_refs = expected[name] | external
+                  if refs != expected_refs:
+                      errors.append(f"references:{name}: erwartet={sorted(expected_refs)} tatsaechlich={sorted(refs)}")
               elif name in test_expected:
                   internal = refs - test_runner_refs
                   if internal != test_expected[name]:
@@ -249,6 +323,8 @@ jobs:
 
   unity-config:
     name: unity-config
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     outputs:
       ready: ${{ steps.check.outputs.ready }}
@@ -269,7 +345,8 @@ jobs:
 
   unity-evidence-guard:
     name: unity-evidence-guard
-    needs: [project-preflight, unity-config]
+    needs: [changes-preflight, project-preflight, unity-config]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     steps:
       - name: Wahrheitsgemäßer Unity-Nachweisstatus
@@ -288,6 +365,8 @@ jobs:
 
   unity-environment-linux:
     name: unity-environment-linux
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
@@ -330,6 +409,8 @@ jobs:
 
   unity-environment-android:
     name: unity-environment-android
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -377,6 +458,8 @@ jobs:
 
   unity-environment-ios:
     name: unity-environment-ios
+    needs: [changes-preflight]
+    if: needs.changes-preflight.outputs.requires_unity == 'true'
     runs-on: macos-15
     timeout-minutes: 90
     env:
@@ -451,8 +534,8 @@ jobs:
 
   unity-compile-editmode:
     name: unity-compile-editmode
-    needs: [project-preflight, unity-config]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -487,40 +570,8 @@ jobs:
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
             -quit -logFile -
-          # UPM ist jetzt aufgeloest. Der gepinnte 1.3.0-Collector exportiert
-          # standardmaessig CoveredMethodsOnly und entfernt unbesuchte Assemblies.
-          # Nur den Exportmodus in der ignorierten Paketkopie auf Full umstellen:
-          # Full liest dieselben echten hitCount-Werte, auch explizite Nullen.
-          # FullEmpty (_0000), Mess-API, Filter und Evidenzgate bleiben unveraendert.
-          python3 - <<'PYEOF'
-          import hashlib, json, pathlib
-
-          packages = list(pathlib.Path("Library/PackageCache").glob("com.unity.testtools.codecoverage@*"))
-          if len(packages) != 1 or json.loads((packages[0] / "package.json").read_text())["version"] != "1.3.0":
-              raise SystemExit("Coverage collector FAILURE: genau Code Coverage 1.3.0 erforderlich")
-          source = packages[0] / "Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs"
-          original = source.read_text(encoding="utf-8")
-          digest = hashlib.sha256(original.encode()).hexdigest()
-          upstream = "f6e219730c2b59f83b715e062a11785fc60e21d0f6f4e1594c3e970c50d610b2"
-          full = "5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2"
-          if digest not in {upstream, full}:
-              raise SystemExit(f"Coverage collector FAILURE: unbekannter Collector-Quellstand {digest}")
-          if digest == upstream:
-              replacements = {
-                  "GenerateOpenCoverSession(CoverageReportType.CoveredMethodsOnly, testMethodInfo)":
-                      "GenerateOpenCoverSession(CoverageReportType.Full, testMethodInfo)",
-                  "m_Writer.WriteCoverageSession(CoverageReportType.CoveredMethodsOnly)":
-                      "m_Writer.WriteCoverageSession(CoverageReportType.Full)",
-              }
-              for before, after in replacements.items():
-                  if original.count(before) != 1:
-                      raise SystemExit("Coverage collector FAILURE: Exportstelle nicht eindeutig")
-                  original = original.replace(before, after)
-              if hashlib.sha256(original.encode()).hexdigest() != full:
-                  raise SystemExit("Coverage collector FAILURE: Full-Export-Quellstand inkonsistent")
-              source.write_text(original, encoding="utf-8", newline="\n")
-          print(f"Coverage collector PASS: 1.3.0 Full, echte hitCount-Werte, SHA256={full}")
-          PYEOF
+          # Gepinnter Full-Export ohne UInt32->Int32-Verlust.
+          python3 tools/ci/prepare_coverage.py
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform EditMode -testResults TestResults/editmode.xml \
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
@@ -566,88 +617,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          python3 - <<'PYEOF'
-          import pathlib, re, xml.etree.ElementTree as ET
-
-          def fail(message):
-              raise SystemExit(f"Coverage evidence FAILURE: {message}")
-
-          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module
-          # plus die mit WP-023 instrumentierbaren Content-Module (Level-v2-Foundation).
-          required = {
-              "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
-              "STP.MobileServices.Google", "STP.MobileServices.Store",
-              "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
-              "STP.Puzzle.Domain", "STP.Puzzle.Solver",
-              "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
-              "STP.Infrastructure.Content", "STP.Tests.Content.EditMode",
-          }
-          directory = pathlib.Path("TestResults/Coverage")
-          if not directory.is_dir():
-              fail(f"{directory} fehlt")
-          paths = sorted(directory.rglob("TestCoverageResults_*.xml"))
-          if not paths:
-              fail("keine TestCoverageResults_*.xml")
-          totals, visited = {}, {}
-          parents = set()
-          for path in paths:
-              match = re.fullmatch(r"TestCoverageResults_(\d{4})\.xml", path.name)
-              if match is None:
-                  fail(f"nicht unterstuetzter Pflichtdaten-Dateiname: {path}")
-              try:
-                  root = ET.parse(path).getroot()
-              except (OSError, ET.ParseError) as error:
-                  fail(f"{path} nicht lesbar/parsebar: {error}")
-              if root.tag != "CoverageSession" or root.find("Modules") is None:
-                  fail(f"{path}: kein OpenCover CoverageSession/Modules")
-              target = totals if match[1] == "0000" else visited
-              parents.add(path.parent)
-              names = set()
-              for module in root.findall("./Modules/Module"):
-                  name = (module.findtext("ModuleName") or "").strip()
-                  if not name:
-                      fail(f"{path}: ModuleName fehlt")
-                  if name in names:
-                      fail(f"{path}: doppelte Assembly {name}")
-                  names.add(name)
-                  if not name.startswith("STP."):
-                      continue
-                  summary = module.find("Summary")
-                  if summary is None:
-                      fail(f"{path}: {name} ohne Summary")
-                  values = {}
-                  for field in ("numSequencePoints", "visitedSequencePoints", "numMethods", "visitedMethods"):
-                      raw = summary.get(field)
-                      if raw is None or re.fullmatch(r"\d+", raw) is None:
-                          fail(f"{path}: {name} ohne gueltiges {field}")
-                      values[field] = int(raw)
-                  if values["visitedSequencePoints"] > values["numSequencePoints"] or values["visitedMethods"] > values["numMethods"]:
-                      fail(f"{path}: {name} mit widerspruechlichen Zaehlern")
-                  # Keine stille Ueberschreibung oder Vermischung mehrerer Sitzungen.
-                  if name in target:
-                      fail(f"mehrdeutige Assembly-Messung: {name}")
-                  target[name] = values
-          if len(parents) != 1:
-              fail("mehrere Coverage-Sitzungen statt eines aktuellen Testlaufs")
-          missing = required - totals.keys()
-          if missing:
-              fail(f"Gesamtpunktdaten fehlen: {sorted(missing)}")
-          missing = (required | totals.keys()) - visited.keys()
-          if missing:
-              fail(f"explizite Messdaten fehlen (nicht als 0 % gewertet): {sorted(missing)}")
-          if visited.keys() - totals.keys():
-              fail("Messdaten ohne Gesamtpunktdaten")
-          print("Coverage-Baseline (explizite Messwerte; _0000 Gesamtpunkte, Folgedatei besuchte Punkte):")
-          for name in sorted(totals):
-              total, measured = totals[name], visited[name]
-              t_seq, t_m = total["numSequencePoints"], total["numMethods"]
-              v_seq, v_m = measured["visitedSequencePoints"], measured["visitedMethods"]
-              if t_seq == 0 or t_m == 0 or measured["numSequencePoints"] > t_seq or measured["numMethods"] > t_m:
-                  fail(f"{name}: keine verwertbaren oder widerspruechliche Gesamtpunktdaten")
-              pct = 100.0 * v_seq / t_seq
-              print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
-          print(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")
-          PYEOF
+          python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()
@@ -667,8 +637,8 @@ jobs:
 
   unity-playmode-bootstrap-smoke:
     name: unity-playmode-bootstrap-smoke
-    needs: [project-preflight, unity-config, unity-compile-editmode]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-compile-editmode]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -703,36 +673,8 @@ jobs:
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -executeMethod STP.Editor.Build.StpBuildEntrypoints.VerifyProjectVersion \
             -quit -logFile -
-          # Dieselbe fail-closed Full-Export-Anpassung wie im EditMode-Job.
-          python3 - <<'PYEOF'
-          import hashlib, json, pathlib
-
-          packages = list(pathlib.Path("Library/PackageCache").glob("com.unity.testtools.codecoverage@*"))
-          if len(packages) != 1 or json.loads((packages[0] / "package.json").read_text())["version"] != "1.3.0":
-              raise SystemExit("Coverage collector FAILURE: genau Code Coverage 1.3.0 erforderlich")
-          source = packages[0] / "Editor/CoverageFormats/OpenCover/OpenCoverReporter.cs"
-          original = source.read_text(encoding="utf-8")
-          digest = hashlib.sha256(original.encode()).hexdigest()
-          upstream = "f6e219730c2b59f83b715e062a11785fc60e21d0f6f4e1594c3e970c50d610b2"
-          full = "5cc701951d59089b5c988e821af22ab3ef7d828100461582ba1b80dc290fb5b2"
-          if digest not in {upstream, full}:
-              raise SystemExit(f"Coverage collector FAILURE: unbekannter Collector-Quellstand {digest}")
-          if digest == upstream:
-              replacements = {
-                  "GenerateOpenCoverSession(CoverageReportType.CoveredMethodsOnly, testMethodInfo)":
-                      "GenerateOpenCoverSession(CoverageReportType.Full, testMethodInfo)",
-                  "m_Writer.WriteCoverageSession(CoverageReportType.CoveredMethodsOnly)":
-                      "m_Writer.WriteCoverageSession(CoverageReportType.Full)",
-              }
-              for before, after in replacements.items():
-                  if original.count(before) != 1:
-                      raise SystemExit("Coverage collector FAILURE: Exportstelle nicht eindeutig")
-                  original = original.replace(before, after)
-              if hashlib.sha256(original.encode()).hexdigest() != full:
-                  raise SystemExit("Coverage collector FAILURE: Full-Export-Quellstand inkonsistent")
-              source.write_text(original, encoding="utf-8", newline="\n")
-          print(f"Coverage collector PASS: 1.3.0 Full, echte hitCount-Werte, SHA256={full}")
-          PYEOF
+          # Gepinnter Full-Export ohne UInt32->Int32-Verlust.
+          python3 tools/ci/prepare_coverage.py
           unity-editor -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
             -runTests -testPlatform PlayMode -testResults TestResults/playmode.xml \
             -enableCodeCoverage -coverageResultsPath TestResults/Coverage -debugCodeOptimization \
@@ -781,88 +723,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          python3 - <<'PYEOF'
-          import pathlib, re, xml.etree.ElementTree as ET
-
-          def fail(message):
-              raise SystemExit(f"Coverage evidence FAILURE: {message}")
-
-          # Bestehende WP-021-Pflichtmenge plus jetzt instrumentierbare WP-022-Module
-          # plus die mit WP-023 instrumentierbaren Content-Module (Level-v2-Foundation).
-          required = {
-              "STP.Application", "STP.Bootstrap", "STP.Editor.Build",
-              "STP.MobileServices.Google", "STP.MobileServices.Store",
-              "STP.Presentation.UI", "STP.Presentation.World", "STP.Tests.Bootstrap.PlayMode",
-              "STP.Puzzle.Domain", "STP.Puzzle.Solver",
-              "STP.Tests.Domain.EditMode", "STP.Tests.Solver.EditMode",
-              "STP.Infrastructure.Content", "STP.Tests.Content.EditMode",
-          }
-          directory = pathlib.Path("TestResults/Coverage")
-          if not directory.is_dir():
-              fail(f"{directory} fehlt")
-          paths = sorted(directory.rglob("TestCoverageResults_*.xml"))
-          if not paths:
-              fail("keine TestCoverageResults_*.xml")
-          totals, visited = {}, {}
-          parents = set()
-          for path in paths:
-              match = re.fullmatch(r"TestCoverageResults_(\d{4})\.xml", path.name)
-              if match is None:
-                  fail(f"nicht unterstuetzter Pflichtdaten-Dateiname: {path}")
-              try:
-                  root = ET.parse(path).getroot()
-              except (OSError, ET.ParseError) as error:
-                  fail(f"{path} nicht lesbar/parsebar: {error}")
-              if root.tag != "CoverageSession" or root.find("Modules") is None:
-                  fail(f"{path}: kein OpenCover CoverageSession/Modules")
-              target = totals if match[1] == "0000" else visited
-              parents.add(path.parent)
-              names = set()
-              for module in root.findall("./Modules/Module"):
-                  name = (module.findtext("ModuleName") or "").strip()
-                  if not name:
-                      fail(f"{path}: ModuleName fehlt")
-                  if name in names:
-                      fail(f"{path}: doppelte Assembly {name}")
-                  names.add(name)
-                  if not name.startswith("STP."):
-                      continue
-                  summary = module.find("Summary")
-                  if summary is None:
-                      fail(f"{path}: {name} ohne Summary")
-                  values = {}
-                  for field in ("numSequencePoints", "visitedSequencePoints", "numMethods", "visitedMethods"):
-                      raw = summary.get(field)
-                      if raw is None or re.fullmatch(r"\d+", raw) is None:
-                          fail(f"{path}: {name} ohne gueltiges {field}")
-                      values[field] = int(raw)
-                  if values["visitedSequencePoints"] > values["numSequencePoints"] or values["visitedMethods"] > values["numMethods"]:
-                      fail(f"{path}: {name} mit widerspruechlichen Zaehlern")
-                  # Keine stille Ueberschreibung oder Vermischung mehrerer Sitzungen.
-                  if name in target:
-                      fail(f"mehrdeutige Assembly-Messung: {name}")
-                  target[name] = values
-          if len(parents) != 1:
-              fail("mehrere Coverage-Sitzungen statt eines aktuellen Testlaufs")
-          missing = required - totals.keys()
-          if missing:
-              fail(f"Gesamtpunktdaten fehlen: {sorted(missing)}")
-          missing = (required | totals.keys()) - visited.keys()
-          if missing:
-              fail(f"explizite Messdaten fehlen (nicht als 0 % gewertet): {sorted(missing)}")
-          if visited.keys() - totals.keys():
-              fail("Messdaten ohne Gesamtpunktdaten")
-          print("Coverage-Baseline (explizite Messwerte; _0000 Gesamtpunkte, Folgedatei besuchte Punkte):")
-          for name in sorted(totals):
-              total, measured = totals[name], visited[name]
-              t_seq, t_m = total["numSequencePoints"], total["numMethods"]
-              v_seq, v_m = measured["visitedSequencePoints"], measured["visitedMethods"]
-              if t_seq == 0 or t_m == 0 or measured["numSequencePoints"] > t_seq or measured["numMethods"] > t_m:
-                  fail(f"{name}: keine verwertbaren oder widerspruechliche Gesamtpunktdaten")
-              pct = 100.0 * v_seq / t_seq
-              print(f"{name}: {v_seq}/{t_seq} Sequenzpunkte ({pct:.1f}%), Methoden {v_m}/{t_m}")
-          print(f"Coverage evidence PASS: {len(totals)} STP-Assemblies, keine Mindest-Coverage")
-          PYEOF
+          python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()
@@ -882,8 +743,8 @@ jobs:
 
   unity-android-development-il2cpp:
     name: unity-android-development-il2cpp
-    needs: [project-preflight, unity-config, unity-playmode-bootstrap-smoke]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-playmode-bootstrap-smoke]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -910,7 +771,7 @@ jobs:
           key: Library-linux-android-6000.3.23f1-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
           restore-keys: Library-linux-android-6000.3.23f1-
 
-      - name: Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)
+      - name: Vollständigen Android-Candidate bauen und tatsächliches APK prüfen
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
@@ -920,6 +781,8 @@ jobs:
             -w "${GITHUB_WORKSPACE}" \
             -e UNITY_EMAIL -e UNITY_PASSWORD \
             -e STP_PROJECT_PATH="${GITHUB_WORKSPACE}" \
+            -e STP_BUILD_LABEL="ci-android-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            -e STP_SOURCE_BINDING="CI checkout ${GITHUB_SHA}; run ${GITHUB_RUN_ID}/${GITHUB_RUN_ATTEMPT}; declared MobilePreviewBuild settings, no independent clean-source attestation" \
             "unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28" \
             bash -c '
               set -euo pipefail
@@ -928,10 +791,17 @@ jobs:
               trap deactivate EXIT
               "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
               "${LIC_CLIENT}" --showEntitlements
+              mkdir -p Builds/CI/Android
               unity-editor -batchmode -nographics -projectPath "${STP_PROJECT_PATH}" \
-                -buildTarget android \
-                -executeMethod STP.Editor.Build.StpBuildEntrypoints.BuildAndroidDevelopmentIl2Cpp \
-                -quit -logFile -
+                -buildTarget Android \
+                -executeMethod STP.Editor.Build.MobilePreviewBuild.BuildAndroid \
+                -quit -logFile Builds/CI/Android/unity-build.log
+              python3 tools/release/audit_android_apk.py \
+                --apk Builds/MobilePreview/Android/stp-mobile-preview.apk \
+                --output Builds/CI/Android/apk-audit \
+                --build-log Builds/CI/Android/unity-build.log \
+                --editor-data /opt/unity/Editor/Data \
+                --build-label "${STP_BUILD_LABEL}" --source-binding "${STP_SOURCE_BINDING}"
             '
 
       - name: Android-Buildartefakt archivieren
@@ -939,12 +809,14 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: android-development-il2cpp
-          path: Builds/Android/
+          path: |
+            Builds/MobilePreview/Android/
+            Builds/CI/Android/
 
   unity-ios-export:
     name: unity-ios-export
-    needs: [project-preflight, unity-config, unity-android-development-il2cpp]
-    if: needs.unity-config.outputs.ready == 'true'
+    needs: [changes-preflight, project-preflight, unity-config, unity-android-development-il2cpp]
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -1014,17 +886,62 @@ jobs:
           "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --activate-all --include-personal
           "${LIC_CLIENT}" --showEntitlements
 
-      - name: iOS-Xcodeprojekt exportieren und kompilieren
+      - name: Vollständigen iOS-Candidate exportieren und Quellen prüfen
         run: |
+          set -euo pipefail
+          mkdir -p Builds/CI/iOS
           "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/MacOS/Unity" \
             -batchmode -nographics -projectPath "${GITHUB_WORKSPACE}" \
-            -buildTarget ios \
-            -executeMethod STP.Editor.Build.StpBuildEntrypoints.ExportIosXcodeProjectIl2Cpp \
-            -quit -logFile -
-          xcodebuild -project Builds/iOS/Xcode/Unity-iPhone.xcodeproj \
+            -buildTarget iOS \
+            -executeMethod STP.Editor.Build.MobilePreviewBuild.ExportIos \
+            -quit -logFile Builds/CI/iOS/unity-export.log
+          python3 tools/release/audit_ios_export.py \
+            --export Builds/MobilePreview/iOS --output Builds/CI/iOS/export-audit \
+            --build-log Builds/CI/iOS/unity-export.log \
+            --editor-report Library/LastBuild.buildreport \
+            --build-label "ci-ios-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" \
+            --source-binding "CI checkout ${GITHUB_SHA}; run ${GITHUB_RUN_ID}/${GITHUB_RUN_ATTEMPT}; declared MobilePreviewBuild settings, no independent clean-source attestation"
+
+      - name: Tatsächliche exportierte CocoaPods-Abhängigkeiten auflösen
+        run: |
+          set -euo pipefail
+          if ! command -v pod >/dev/null 2>&1; then brew install cocoapods; fi
+          pod --version | tee Builds/CI/iOS/cocoapods-version.txt
+          pod install --project-directory=Builds/MobilePreview/iOS --repo-update 2>&1 | tee Builds/CI/iOS/pod-install.log
+          test -f Builds/MobilePreview/iOS/Podfile.lock
+          test -d Builds/MobilePreview/iOS/Unity-iPhone.xcworkspace
+          cp Builds/MobilePreview/iOS/Podfile Builds/MobilePreview/iOS/Podfile.lock Builds/CI/iOS/
+          cp Builds/MobilePreview/iOS/Pods/Manifest.lock Builds/CI/iOS/Pods-Manifest.lock
+
+      - name: Native iOS-Workspace mit Xcode 26+ kompilieren (ohne Signing)
+        run: |
+          set -euo pipefail
+          xcodebuild -workspace Builds/MobilePreview/iOS/Unity-iPhone.xcworkspace \
             -scheme Unity-iPhone -configuration Release \
             -destination 'generic/platform=iOS' \
-            CODE_SIGNING_ALLOWED=NO build
+            -derivedDataPath .utmp/ci-ios-derived-data \
+            -resultBundlePath Builds/CI/iOS/native-build.xcresult \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee Builds/CI/iOS/xcodebuild.log
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          products=Path('.utmp/ci-ios-derived-data/Build/Products/Release-iphoneos')
+          apps=list(products.glob('*.app'))
+          if len(apps)!=1: raise SystemExit('NATIVE_IOS_APP_PRODUCT_COUNT_INVALID')
+          files=[{'path':p.relative_to(products).as_posix(),'sizeBytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(apps[0].rglob('*')) if p.is_file()]
+          archive=Path('Builds/CI/iOS/unsigned-app.zip')
+          with zipfile.ZipFile(archive,'x',zipfile.ZIP_DEFLATED,compresslevel=1) as z:
+              for p in sorted(apps[0].rglob('*')):
+                  if p.is_file(): z.write(p,p.relative_to(products).as_posix())
+          Path('Builds/CI/iOS/native-products.json').write_text(json.dumps({'evidenceKind':'ACTUAL_UNSIGNED_XCODE_BUILD_PRODUCTS','files':files,'archiveSha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'productionSigned':False,'deviceValidated':False,'sandboxValidated':False,'promotionAllowed':False},indent=2)+'\n')
+          PY
+
+      - name: iOS-Export- und Nativecompilebelege archivieren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ios-candidate-export-native-compile
+          path: Builds/CI/iOS/
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()

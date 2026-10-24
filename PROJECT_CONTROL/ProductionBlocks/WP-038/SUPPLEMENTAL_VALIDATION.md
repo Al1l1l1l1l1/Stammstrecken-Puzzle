@@ -1,0 +1,7 @@
+# WP038 – ergänzende eigene C#-Prüfung
+
+Die implementierte Application und ihre eigene Testassembly wurden mit dem installierten Unity-Roslyncompiler, C#9, nullable und warnaserror erfolgreich kompiliert. Der lizenzfreie öffentliche NUnit-Runner unter dem gebündelten Mono führte anschließend tatsächlich **19/19 Appfälle Passed** aus, ohne Failed/Skipped/Inconclusive. Original-XML und Log samt Source-/Byte-/SHA-Bindung sind in [SUPPLEMENTAL_APP_EVIDENCE.json](SUPPLEMENTAL_APP_EVIDENCE.json) erhalten. Dies ist eine ergänzende eigene reine C#-Prüfung; keine Unity-Editor-, Grafik-, Build-, reguläre-CI- oder unabhängige Abschlussfreigabe.
+
+Content, Clock, World, UI, Bootstrap, EditorBuild und eigene Presentation-/Bootstraptests wurden zusätzlich mit demselben Compiler erfolgreich kompiliert. Die tatsächlichen Tests mit Unity und ihren serialisierten Assets folgen gesondert. Der Helper verwendet aktuelle asmdef-Referenzen statt einer alten App-Skelett-RSP-Referenzmenge; der anfangs dadurch verursachte reine Helper-Compilefehler wurde dort korrigiert, nicht durch eine Architekturänderung. Keine zusätzliche interne Assemblykante.
+
+Der tatsächliche Modulgraph-Pythonblock aus der aktuellen unity.yml wurde unverändert lokal ausgeführt: [Originaloutput](LOCAL_MODULE_PREFLIGHT.txt), PASS für alle 14 Produktions- und 9 Testassemblies. Interne Referenzen bleiben exakt; ausschließlich die ausdrücklich beschlossene externe Unity.Localization-Referenz der UI ist hinzugefügt. Keine Runner-, Coverage-, Budget- oder Timeoutänderung.

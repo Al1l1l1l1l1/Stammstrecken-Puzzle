@@ -1,0 +1,63 @@
+{
+  "reviewerVersion": 2,
+  "runtime": "v22.20.0",
+  "source": "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json",
+  "sourceByteLength": 9988353,
+  "sourceSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+  "checkCount": 23178,
+  "failures": [],
+  "coverage": {
+    "ownership": [
+      "LEGACY",
+      "DEFAULT",
+      "PATIENCE_PURCHASE",
+      "MILESTONE_CLAIM"
+    ],
+    "reward": [
+      "RESERVED",
+      "RECONCILIATION_REQUIRED",
+      "CLOSED_NO_REWARD",
+      "FAILED",
+      "COMMITTED"
+    ],
+    "iap": [
+      "RECONCILIATION_REQUIRED",
+      "STARTED",
+      "EVIDENCE_RECEIVED",
+      "VERIFIED",
+      "GRANTED_NOT_FINALIZED",
+      "FINALIZED",
+      "REJECTED"
+    ],
+    "rewardPending": [
+      "RESERVED",
+      "RECONCILIATION_REQUIRED",
+      "CLOSED_NO_REWARD",
+      "FAILED",
+      "COMMITTED",
+      "REWARD_CONFIRMED",
+      "NO_REWARD_CONFIRMED"
+    ],
+    "endless": [
+      "COMPLETION_CLAIM_OPEN",
+      "ACTIVE_DRAFT",
+      "RESERVED_NOT_GENERATED"
+    ],
+    "openClaim": [
+      "LOCAL_DECISION_PENDING",
+      "PROVIDER_RESERVED",
+      "RECONCILIATION_REQUIRED",
+      "REWARD_CONFIRMED",
+      "NO_REWARD_CONFIRMED"
+    ],
+    "privacy": [
+      "REVOKED_CONFIRMED",
+      "UNKNOWN",
+      "DENIED_CONFIRMED",
+      "ENABLE_PENDING",
+      "ENABLED_CONFIRMED",
+      "REVOKE_PENDING"
+    ]
+  },
+  "note": "Only implemented structural/hash checks; full semantic acceptance requires documented human-agent source review."
+}

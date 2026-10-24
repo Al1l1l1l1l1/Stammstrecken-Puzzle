@@ -30,7 +30,7 @@ name: Architecture Validation
 
 on:
   pull_request:
-    branches: [main]
+    branches: ["**"]
   push:
     branches: ["**"]
   workflow_dispatch:
@@ -39,8 +39,8 @@ permissions:
   contents: read
 
 env:
-  STP_SCOPE: governance
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-027.governance.scope.json
+  STP_SCOPE: production
+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-046.production.scope.json
 
 jobs:
   validate:
@@ -57,6 +57,22 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.11.13"
+
+      - name: Änderungsklassifikation und ihre deterministischen Negativproben prüfen
+        id: classify
+        env:
+          EVENT_BASE: ${{ github.event.before || github.event.pull_request.base.sha }}
+          EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          EVENT_MERGE: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
+          PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_prepare_coverage.py
+          args=(--event "${GITHUB_EVENT_NAME}" --base "${EVENT_BASE}" --head "${EVENT_HEAD}" --merge "${EVENT_MERGE}" --github-output "${GITHUB_OUTPUT}")
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            args+=(--force-full)
+          fi
+          python3 tools/ci/change_scope.py "${args[@]}"
 
       - name: Node.js 22.20.0 einrichten
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -75,6 +91,7 @@ jobs:
             --self-test
 
       - name: JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen
+        if: steps.classify.outputs.run_jcs == 'true'
         run: |
           ../.venv-stp-architecture/bin/python - <<'PY'
           import base64
@@ -186,6 +203,16 @@ jobs:
           print(f"JCS golden cross-check passed: {len(golden['jcsCases'])} canonicalization cases, {rejected} rejected inputs, "
                 f"{len(golden['hashVectors'])} v2 and {len(golden['legacyHashVectors'])} v1 document vectors reproduced by the Node reference.")
           PY
+
+      - name: Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen
+        if: steps.classify.outputs.run_text == 'true'
+        run: git fetch --no-tags origin dc1652befd7545b4c2a2dd0580f35a4e8e05d72d
+
+      - name: Vollständige deutsche Textquelle und Negativproben prüfen
+        if: steps.classify.outputs.run_text == 'true'
+        run: |
+          ../.venv-stp-architecture/bin/python tools/text-library/validate.py --self-test
+          ../.venv-stp-architecture/bin/python tools/text-library/render.py --check
 
       - name: Tatsächlichen PR-Head für Scope-Prüfung auschecken
         if: github.event_name == 'pull_request'

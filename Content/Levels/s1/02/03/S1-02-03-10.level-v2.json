@@ -1,0 +1,146 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-02-03-10",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 0
+    },
+    "b": {
+      "side": "N",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    2,
+    1,
+    1,
+    5,
+    6
+  ],
+  "columnCounts": [
+    1,
+    2,
+    2,
+    2,
+    3,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 2,
+    "route": 3,
+    "position": 10,
+    "titleKey": "level.s1.02.03.10.title",
+    "statusKey": "level.s1.02.03.10.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.02.03.10.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY",
+      "DENSITY"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Der dichte Kurvenzug liegt nun unten, aber der Nordport rechts führt zunächst durch zwei Einserzeilen. Nähe zu Position 9 ist ein tatsächlicher Motivvergleich: ein zusätzlicher Zweierrest oben, fünf statt sechs Belegungen im unteren Nachbarband und andere Endkanten verändern die Schlussfolge. Beide bleiben als räumlicher Dichtevergleich erhalten.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-02-03-10-map",
+    "trainMomentId": "draft-s1-02-03-10-train",
+    "resultTextKey": "level.s1.02.03.10.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-02-03-10/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "359cdb7ca82d5f02a97782a462c44cea85463866e0b31135976c2186749a68a8"
+    }
+  }
+}

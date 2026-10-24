@@ -1,5 +1,11 @@
 # Content Catalogs v0.5
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Aktueller Productscope:** 240 reale Campaignplätze, 480 vollständig typisiert aufgelöste Map-/Trainziele, vierzehn konkrete reine Kosmetikitems/Preise/Meilensteine und P03–P05-Policies sind entschieden. Produktkataloge benötigen nach tatsächlicher Cross-Reference-/Proof-/Asset-/Time-/Qualitätsprüfung PRODUCT_APPROVED; die Befugnis zur begrenzten technischen Katalog-/Generatorannahme mit unabhängiger QC ist R übertragen, kein Owner-Einzelfreigabeworkflow je Item.
+
 ## 1. Ziel und Geltung
 
 Neben Leveldaten sind Kampagnenhierarchie, Completion-/Fortschrittsdefinitionen und Kosmetika eigenständige, versionierte Quellverträge. Kein Screen, Save und keine Application-Policy darf Hierarchie, Preise oder Rewardbeträge als Literal duplizieren.
@@ -133,3 +139,7 @@ Der eingecheckte Architekturvalidator prüft v1-Legacy- und v2-Positivfixtures g
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/13_Oekonomie_und_Monetarisierungs_Balancing.md "Stammstrecken-Puzzle – Ökonomie- und Monetarisierungs-Balancing"
 [5]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
 [6]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"
+
+## Gemeinsame Technikbasis Public240 und lokaler Save
+
+[ADR-034](../DECISIONS/ADR-034-isolierter-public240-reviewpfad.md) ergänzt ausschließlich den isolierten nichtproduktiven Public240Review-Entry. [ADR-035](../DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md) konkretisiert typisierte Zusatzports, die Wiederverwendung des bestehenden strikten JCS über Injektion ohne neue Assemblykante, validierte vollständige Checkpoints und CAS/Commit-vor-Fahrt. Produktionsgates, Hashprojektionen, Save-v2-/Migrations-/Ledgerverträge und offene Produktblocker bleiben unverändert. Eigene QA-Profile und Claims werden niemals zu Produktprofilen übertragen. Fachimplementierung und tatsächliche Nachweise folgen getrennt verankerten WPs auf abgeschlossenem T.

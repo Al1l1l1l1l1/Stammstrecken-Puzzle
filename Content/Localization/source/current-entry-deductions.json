@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-DE",
+  "status": "DRAFT",
+  "audience": "INTERNAL",
+  "sourceBinding": "SHA-256 of exact current level UTF-8 source bytes",
+  "historicalSource": "Content/Localization/source/de-DE.json",
+  "automaticPlayerDisplay": false,
+  "entries": [
+    {
+      "puzzleId": "S1-05-03-04",
+      "levelPath": "Content/Levels/s1/05/03/S1-05-03-04.level-v2.json",
+      "levelSourceSha256": "dc6b7b869fd473528e3f3797ae261da54b70b9f4e38d9e161336dad305ecc2b0",
+      "key": "level.s1.05.03.04.entry",
+      "coordinateBase": 0,
+      "text": "0-basiert: Spalten 0 und 1 haben Count 0; ihre 18 Felder bleiben leer. Zeile 0 fordert sieben Gleisfelder und hat nach diesen Ausschlüssen genau sieben mögliche Felder: (2,0) bis (8,0) sind belegt, einschließlich A an N/2. Die Gleisformen bleiben zu bestimmen."
+    },
+    {
+      "puzzleId": "S1-05-04-02",
+      "levelPath": "Content/Levels/s1/05/04/S1-05-04-02.level-v2.json",
+      "levelSourceSha256": "ef6bbcddd5b2bf67ebf89c8eb621d7fdc1c40b3b4d1a8b43c555fab20e684a70",
+      "key": "level.s1.05.04.02.entry",
+      "coordinateBase": 0,
+      "text": "0-basiert: Zeile 8 hat Count 0 und bleibt leer. Spalte 0 fordert acht Gleisfelder bei den acht übrigen Zeilen; (0,0) bis (0,7) sind daher belegt, darunter B an W/6. A an E/2 belegt zusätzlich (8,2). Die Formen und die mittleren Restzahlen sind damit noch offen."
+    },
+    {
+      "puzzleId": "S1-05-04-09",
+      "levelPath": "Content/Levels/s1/05/04/S1-05-04-09.level-v2.json",
+      "levelSourceSha256": "2fa5683f4813b1a9d52354551aeadbb422a678521b2b3128ae9d85276573507a",
+      "key": "level.s1.05.04.09.entry",
+      "coordinateBase": 0,
+      "text": "0-basiert: Spalten 8 und 9 haben Count 0; ihre zwanzig Felder bleiben leer. A an S/0 belegt (0,9). Zeile 9 fordert genau ein Gleisfeld, also sind (1,9) bis (9,9) leer und die Fortsetzung nach (0,8) ist erzwungen."
+    },
+    {
+      "puzzleId": "S1-05-04-10",
+      "levelPath": "Content/Levels/s1/05/04/S1-05-04-10.level-v2.json",
+      "levelSourceSha256": "52bfd7ef28a1c84c34b35f3b47eb93f505270041173122bdbd049c13b262d373",
+      "key": "level.s1.05.04.10.entry",
+      "coordinateBase": 0,
+      "text": "0-basiert: Spalte 0 hat Count 10 und ist vollständig belegt. Zeilen 0 und 1 haben jeweils Count 1; dort sind nur (0,0) und (0,1) belegt, die anderen Felder bleiben leer. In den Zeilen 2 bis 6 mit Count 2 bleibt dagegen jeweils ein weiteres Gleisfeld außerhalb von Spalte 0 zu bestimmen."
+    },
+    {
+      "puzzleId": "S1-05-04-12",
+      "levelPath": "Content/Levels/s1/05/04/S1-05-04-12.level-v2.json",
+      "levelSourceSha256": "02ea41cac734adfbe467502963f7afb590ab630bb3ea238fde6e4853edd14d9c",
+      "key": "level.s1.05.04.12.entry",
+      "coordinateBase": 0,
+      "text": "0-basiert: A an S/0 belegt (0,9). Zeile 9 hat Count 1 und schließt (1,9) bis (9,9) aus; die Fortsetzung nach (0,8) ist erzwungen. Damit sind beide Gleisfelder der Spalte 0 mit Count 2 bekannt: (0,0) bis (0,7) bleiben leer."
+    }
+  ]
+}

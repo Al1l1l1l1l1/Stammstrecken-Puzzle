@@ -1,0 +1,473 @@
+{
+  "evidenceKind": "ACTUAL_LOCAL_RELEASE_UNION_VALIDATION_WITH_CONTROLLED_TOOL_TESTS",
+  "recordedLocalDate": "2026-10-22",
+  "contract": "DECISIONS/ADR-047-produktionspaketierung-und-release-manifest-v2.md",
+  "localAuthorizationCommit": "213186388648f3478103346c8f604fa7858d4a50",
+  "gitState": "Declared working-tree union after authorization commit; no clean-HEAD assertion",
+  "actualUnityEdit28": {
+    "total": 224,
+    "passed": 224,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "durationSeconds": 373.930411,
+    "originals": [
+      {
+        "path": ".utmp/wp046-runtime/editmode-release-union-attempt28.xml",
+        "rawSha256": "345cac45d7ccec110fe95d71e44b9945eee6316ea8ca4effc779278e98a92823",
+        "sizeBytes": 214428
+      },
+      {
+        "path": ".utmp/wp046-runtime/editmode-release-union-attempt28.log",
+        "rawSha256": "3a926bb8591ff7380ba81091f566a780dd3d796a273ed5b7cf81bdd5a489e8c7",
+        "sizeBytes": 47799
+      },
+      {
+        "path": ".utmp/wp046-runtime/editmode-release-union-attempt28.inputs.json",
+        "rawSha256": "e8f29f8791e584e201892ae8cfee52d641ec6f986b5cd12a0fd454666e3be465",
+        "sizeBytes": 9021
+      }
+    ],
+    "sourceSnapshotFiles": 38,
+    "sourceDrift": false,
+    "packagingCases": 37,
+    "existing10000TransitionStressActuallyPassed": true,
+    "independentReview": {
+      "path": ".utmp/wp046-b-edit28-review/review.json",
+      "rawSha256": "65dff1116573f0c474c0f1823147391fc1231aa8729e69590d96082882b47bb6",
+      "sizeBytes": 6631
+    }
+  },
+  "controlledToolTests": [
+    {
+      "group": "manifest",
+      "passed": 33,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/manifest-integration/tests.stderr.txt",
+        "rawSha256": "8e2cc81f950000cebad37142618c832111715c7bfc6e87f70d408e14a0cd7a6b",
+        "sizeBytes": 5250
+      }
+    },
+    {
+      "group": "inputBridge",
+      "passed": 29,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/rc-inputs-integration/tests.stderr.txt",
+        "rawSha256": "0eee59449541fc09e8552964d50565af1685156b6ec4238da6a3c74089d459ec",
+        "sizeBytes": 5055
+      }
+    },
+    {
+      "group": "nativePackaging",
+      "passed": 48,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/native-rc-integration/controlled-workspace.stderr.txt",
+        "rawSha256": "ece08a3c13405bf8876dd8a291c429e01a72e67d5fdabf9b4695bedeb113f180",
+        "sizeBytes": 6059
+      }
+    },
+    {
+      "group": "ciMetadata",
+      "passed": 7,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/metadata-tests-workflow-binding.log",
+        "rawSha256": "7e3952e4bc978c84314214e69f7cc5c7da5273b8c79b5833c17f74d9e7fe7855",
+        "sizeBytes": 1160
+      }
+    },
+    {
+      "group": "temporaryCredentials",
+      "passed": 13,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/credentials-tests.log",
+        "rawSha256": "6baddbc10012bacb334eb9ec256451a6061075cc58f01b1308ac59678ba40504",
+        "sizeBytes": 1918
+      }
+    },
+    {
+      "group": "separateProspectiveMetadataAuthority",
+      "passed": 24,
+      "failed": 0,
+      "controlledOnly": true,
+      "original": {
+        "path": ".utmp/wp046-r-production/metadata-authority-integration/tests.stderr.txt",
+        "rawSha256": "a70df786e409c2c075f128426f226f7449ec5317e731f259c905c6c319ed1509",
+        "sizeBytes": 3834
+      }
+    }
+  ],
+  "releaseToolTestsPassed": 130,
+  "separateMetadataAuthorityTestsPassed": 24,
+  "firstNativeToolAttempt": {
+    "result": "15 fixture errors under sandbox default temporary-folder ACL",
+    "originals": [
+      {
+        "path": ".utmp/wp046-r-production/native-rc-integration/tests.stdout.txt",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sizeBytes": 0
+      },
+      {
+        "path": ".utmp/wp046-r-production/native-rc-integration/tests.stderr.txt",
+        "rawSha256": "4d626f6349c99815da2936f8232c2208c705821ade8bf930ad4576532ef28d5c",
+        "sizeBytes": 62407
+      }
+    ],
+    "followup": "All48passed with STP_TEST_TEMP_ROOT under workspace, production/test source bytes unchanged"
+  },
+  "independentSourceReviews": [
+    {
+      "path": ".utmp/wp046-a-rc-workflow-review/REVIEW.json",
+      "rawSha256": "c3c92d22a27d0bd652de4b3f4a7aba080fdf0501fe0d08f93182757f24d16586",
+      "sizeBytes": 3539
+    },
+    {
+      "path": ".utmp/wp046-a-rc-workflow-review/source-evidence-delta-review.json",
+      "rawSha256": "1484f05e5936711d3213f5da733685cec78c44d31cbebc08674522f80fee56b1",
+      "sizeBytes": 2119
+    },
+    {
+      "path": ".utmp/wp046-b-rc-packaging-review/transfer-acceptance-3605d665.json",
+      "rawSha256": "8cefd5df21acdf07c62d223958e8b7a65ef2dfc03ca91f6c4127710c99305a74",
+      "sizeBytes": 1408
+    }
+  ],
+  "releaseYaml": {
+    "path": ".utmp/wp046-r-production/release-yaml-check-with-source-evidence.json",
+    "rawSha256": "633ed9b0e892b24d3b5ffe9c21fcbbce13904511f4fb3ad01370a7f9898c4a94",
+    "sizeBytes": 729
+  },
+  "releaseYamlCheckMeaning": "Unique-key YAML parse and closed configuration check; not actual GitHub execution",
+  "shellSyntax": "Both live scripts passed actual bash -n; no script execution/signing inferred",
+  "sourceOriginals": [
+    {
+      "path": ".github/workflows/release.yml",
+      "rawSha256": "00ab2a4178e202300401c16e49df5cf29a045fa2cd9d2688eab07cae45afe118",
+      "sizeBytes": 10327
+    },
+    {
+      "path": ".github/workflows/unity.yml",
+      "rawSha256": "2a8a3290984d4e07967d8a80cf4f21a8a441586b7dbdd55d4bda2eaa6e6f8f58",
+      "sizeBytes": 53297
+    },
+    {
+      "path": "ARCHITECTURE/schemas/release-manifest-v2.schema.json",
+      "rawSha256": "235c5f28e8f7c76f21938b6d3e4c8e6f66a98b7d8bf0670202fcc434817dddf7",
+      "sizeBytes": 8913
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/ReleaseBuildIdentity.cs",
+      "rawSha256": "22e9df085215e90bafaa630bf9dedeb16308cec5e22a19b9f3c13c044e1ac8c0",
+      "sizeBytes": 7770
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/ReleaseBuildIdentity.cs.meta",
+      "rawSha256": "9a7f21d22addec5cd612665e20713ec0bfca9c81c4174b994a60e761238efcdc",
+      "sizeBytes": 60
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/ProductionGameBuild.cs",
+      "rawSha256": "ce360e5eda7cbe3e7a311e9bb38d30e8568c8ab6895eb42822f43811720028cf",
+      "sizeBytes": 18281
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/ProductionNativeBuild.cs",
+      "rawSha256": "fd5e05246453e9b7b2dc6916a7dadf9fd58a7e438f90e65806f852526065fd5b",
+      "sizeBytes": 17503
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/ProductionNativeBuildGuard.cs",
+      "rawSha256": "d8eae76f5232b4e423da7a5d4bd299de412ddc15ae6b7fe8313e98bb0b68ac3d",
+      "sizeBytes": 23287
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/ProductionRcBuildContext.cs",
+      "rawSha256": "a41fad0ac1e59e05177e6c0630236ba280663eefa7bb2231c0cd352e6a84af48",
+      "sizeBytes": 19931
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/ProductionRcBuildContext.cs.meta",
+      "rawSha256": "306e121cc41ab0874a30061a8d2c1a86c2fcfa28ef2211c54a2e23760e525533",
+      "sizeBytes": 60
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Calibration/RuntimeGameCompositionTests.cs",
+      "rawSha256": "be70ca0dbd57282d1ff7ad98931be9b9ceb5796eb89466c7372f77103b8fd31b",
+      "sizeBytes": 19652
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Calibration/RuntimeGameCompositionTests.cs.meta",
+      "rawSha256": "c3011fc47c86401859634e484cbf2c9e48ac16d2312c078c7347004add02cebd",
+      "sizeBytes": 60
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Calibration/STP.Tests.Calibration.EditMode.asmdef",
+      "rawSha256": "fc19e6e84735b6172084dc05f3d090c54074898bc366ffcdd2b517132170ba35",
+      "sizeBytes": 503
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Calibration/csc.rsp",
+      "rawSha256": "0003620b295bc705b8ebbdc46dac818f79435a3f3c859fef0254246bd4e70547",
+      "sizeBytes": 33
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Calibration/csc.rsp.meta",
+      "rawSha256": "9aba749f949c38f2bdd7e74e4d5d15b301f7680f872e0a55466b98dc2f910ff9",
+      "sizeBytes": 152
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/RuntimeComposition/ProductionReleasePackagingTests.cs",
+      "rawSha256": "0b56dbf7d8298b224829e593647ed4d081b3028c2edaed55c61035b0c3ea20c1",
+      "sizeBytes": 11748
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/RuntimeComposition/ProductionReleasePackagingTests.cs.meta",
+      "rawSha256": "3433192c9f81cb12db018bee6ec6c2400453013c0865176937cc526c041a7c93",
+      "sizeBytes": 60
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/RuntimeComposition/STP.Tests.RuntimeComposition.EditMode.asmdef",
+      "rawSha256": "ca2379106faeea10052b59a284bf549bb4bb67e28522aaa0f5f33d5151959a04",
+      "sizeBytes": 517
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/RuntimeComposition/csc.rsp",
+      "rawSha256": "0003620b295bc705b8ebbdc46dac818f79435a3f3c859fef0254246bd4e70547",
+      "sizeBytes": 33
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/RuntimeComposition/csc.rsp.meta",
+      "rawSha256": "b7cb206737730b463e8f53ac7eab4b2d3e5396fced7e83210ff2e5c6adc9df03",
+      "sizeBytes": 152
+    },
+    {
+      "path": "tools/release/RC_CI_INPUTS.md",
+      "rawSha256": "bdc050684865db4ae90015ac01f7ad78496df9d032ed5a66f9463848e4702efb",
+      "sizeBytes": 8053
+    },
+    {
+      "path": "tools/release/RC_PACKAGING.md",
+      "rawSha256": "a95a6a459783e13ce45c1d427178440709e9fd3be574a9d2e7d813219f4087e2",
+      "sizeBytes": 11501
+    },
+    {
+      "path": "tools/release/VerifyBundleSignatures.java",
+      "rawSha256": "5891100478776cac3a954723e6a3fb8619d63a459e9f30b88df2cb05541a2976",
+      "sizeBytes": 3334
+    },
+    {
+      "path": "tools/release/rc_ci_android.sh",
+      "rawSha256": "7483338fea56e1dcd70e5135b685fc13d8d617276d3de0490a50213d22385ca2",
+      "sizeBytes": 3521
+    },
+    {
+      "path": "tools/release/rc_ci_credentials.py",
+      "rawSha256": "cc452589879ca237f3c4e902465cff833ea0202f237780887cd1366403416836",
+      "sizeBytes": 10016
+    },
+    {
+      "path": "tools/release/rc_ci_inputs.py",
+      "rawSha256": "b34c192ffde356b69d5d2f0684ae2b7491cb0b291742e5fcae64c55af04d563c",
+      "sizeBytes": 29501
+    },
+    {
+      "path": "tools/release/rc_ci_ios.sh",
+      "rawSha256": "3cecfc75073d39595c1df764138403f62b18e784dcade9a03727e49130e92b04",
+      "sizeBytes": 2580
+    },
+    {
+      "path": "tools/release/rc_ci_metadata.py",
+      "rawSha256": "84ebddbf7eb509e3728b3fac2d4b481b7c213e4bf9a0c9c8c1072abaa7d758fd",
+      "sizeBytes": 5806
+    },
+    {
+      "path": "tools/release/rc_manifest.README.md",
+      "rawSha256": "6a13a648451b6c71d7d4ee96cf627542bf2b183d7e83f5011947d9b4b1f62202",
+      "sizeBytes": 9106
+    },
+    {
+      "path": "tools/release/rc_manifest.py",
+      "rawSha256": "733b47b33677fba80e2ec3f9ec188d5f438df9dc1e732e3e86a664025bca6f18",
+      "sizeBytes": 28461
+    },
+    {
+      "path": "tools/release/rc_manifest_cli.py",
+      "rawSha256": "49b4f4819012a4553f846026da7024925e671136c87d436d3d6d0fc6b2f8d973",
+      "sizeBytes": 7218
+    },
+    {
+      "path": "tools/release/rc_package.py",
+      "rawSha256": "c0b43e4db1716d8d6069371876e3ec06172602a9a08aa737dc874b41c38b65bc",
+      "sizeBytes": 53927
+    },
+    {
+      "path": "tools/release/test_rc_ci_credentials.py",
+      "rawSha256": "0fecef9d4fbad4fe5003abb5c42f6b6f2c3b19a108b79393aa2fc882327a8cd5",
+      "sizeBytes": 8403
+    },
+    {
+      "path": "tools/release/test_rc_ci_inputs.py",
+      "rawSha256": "82057de86ec2d3f0ffb2b69c9e0b6d979238ff096101e311b37387d1aedcb756",
+      "sizeBytes": 31908
+    },
+    {
+      "path": "tools/release/test_rc_ci_metadata.py",
+      "rawSha256": "c7cfe11843784aa7dbe9b34d43823e9d3067c707d6c0c19ea7ad8494e2c875ba",
+      "sizeBytes": 6524
+    },
+    {
+      "path": "tools/release/test_rc_manifest.py",
+      "rawSha256": "c7fa59c847931dad91e76a4b4b64906ede9cf3d5e94c47a2cbce781a68c4bffb",
+      "sizeBytes": 28599
+    },
+    {
+      "path": "tools/release/test_rc_package.py",
+      "rawSha256": "59e903f4a02dd589e332db1345666cb9b66d7bc8c60d2fcdc94b187fa26e5056",
+      "sizeBytes": 26462
+    }
+  ],
+  "actualRemoteCiAtApprovedAb5": {
+    "headCommit": "ab5c3e172ed2ed6970499739dc6ee452a7d582ff",
+    "syntheticMergeCommit": "301096e9e871c0f4609e4a6dd73ea832a027eca9",
+    "architecture": {
+      "runId": 39687236186,
+      "result": "FAIL",
+      "cause": "4 Markdown links to ignored local APKs",
+      "log": {
+        "path": ".utmp/wp046-ci-ab5c3e1/architecture.log",
+        "rawSha256": "b58c97e545156ee7a78da808c4c29d88033ba86b93d9dd27db59b46c6d7a6f1b",
+        "sizeBytes": 40196
+      }
+    },
+    "unity": {
+      "runId": 39687236366,
+      "result": "FAIL",
+      "cause": "Module preflight missing two test assemblies and their response files",
+      "log": {
+        "path": ".utmp/wp046-ci-ab5c3e1/project-preflight.log",
+        "rawSha256": "33afbb2b656f5f023566398f80027e7bda8f671e9a8cf9a59582ca75faf00a59",
+        "sizeBytes": 42366
+      },
+      "unityEditPlayNativeAndXcode": "SKIPPED"
+    },
+    "logFormat": "Decoded GitHub API log text copies; not raw downloaded ZIPs",
+    "localFix": {
+      "moduleGraph": "PASS,14production/11test, exactallowlists, acyclic, original leaf guard preserved",
+      "originals": [
+        {
+          "path": ".utmp/wp046-ci-ab5c3e1/module-graph-local.stdout.txt",
+          "rawSha256": "65c733e8ca5cf46cbf68585e29d29ea24a663177680d818e998ec90a32b89f4e",
+          "sizeBytes": 142
+        },
+        {
+          "path": ".utmp/wp046-ci-ab5c3e1/test-group-fix.json",
+          "rawSha256": "023c0359f1fa1706217ebc7b7203c90dd331cf2be15c063ec90579b1368c63fa",
+          "sizeBytes": 1348
+        },
+        {
+          "path": ".utmp/wp046-ci-ab5c3e1/test-group-compile/summary.json",
+          "rawSha256": "29e0f8ce70b5b01db8c315e3ea6f76503bf1be541f01d0449855a428141449ac",
+          "sizeBytes": 1651
+        }
+      ],
+      "testFileAndMetaMoveByteIdentical": true,
+      "assertionsChanged": false
+    },
+    "newRemotePassClaimed": false
+  },
+  "manifestTestLiteralOnlyChange": {
+    "reason": "Same fake runtime bytes expressed as concatenated literals to avoid original unmodified source-secret scanner",
+    "independentlyAcceptedBy": "B",
+    "assertionOrRuntimeBehaviorChanged": false
+  },
+  "actualProductionAabBuilt": false,
+  "actualXcodeArchiveOrIpaBuilt": false,
+  "actualGameSigningExecuted": false,
+  "storeDeliveryExecuted": false,
+  "humanOrLegalOrDeviceApprovalCreated": false,
+  "promotionAllowedClaimed": false,
+  "openNextStep": "Checkpoint the reviewed local union, then matching authorized PR CI including Xcode; real external production gates remain open",
+  "actualNativeQaRegression": {
+    "build": "MainAndroid10",
+    "actualUnityExitCode": 0,
+    "inspection": {
+      "path": "Release/ANDROID_BUILD10_INSPECTION.json",
+      "sha256": "a36211651801e15dd006b51922dcbc22e929674f97f38205546d5023f7f010f8",
+      "sizeBytes": 9524
+    },
+    "independentAcceptance": {
+      "path": ".utmp/wp046-c-native-apk10/independent-conclusion.json",
+      "sha256": "5ba2d6c16cc55bf03a53b76280773985503964374afba76d208909979dfe0b0f",
+      "sizeBytes": 5040
+    },
+    "productionOrPhysicalDeviceClaimed": false
+  },
+  "finalLocalContractChecks": {
+    "architectureGroupsPassed": 19,
+    "actualScopeChecked": true,
+    "classifierTestsPassed": 19,
+    "diffWhitespaceExitCode": 0,
+    "originals": [
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/results.json",
+        "rawSha256": "7b2fe533a814d1a71c67194b0900e65d8e2c2986c5d730d6cf9016d0bbd7fe69",
+        "sizeBytes": 186
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/architecture.stdout.txt",
+        "rawSha256": "3cac62714c016f0450c6f88f5b8668505b0c55b7ccc5c1b873d28f50c2ae33d0",
+        "sizeBytes": 2330
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/architecture.stderr.txt",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sizeBytes": 0
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/classifier.stdout.txt",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sizeBytes": 0
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/classifier.stderr.txt",
+        "rawSha256": "676bba88eefec06ebb7fefe79ab9f18e615ff452d5b5c0c9a45816d980220446",
+        "sizeBytes": 2716
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/diff-whitespace.stdout.txt",
+        "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sizeBytes": 0
+      },
+      {
+        "path": ".utmp/wp046-r-production/final-release-union-checks2/diff-whitespace.stderr.txt",
+        "rawSha256": "429ec89df9ce98e2f90021435ed6a6a0ab34ac983acc576cddf8b764bbfeedf8",
+        "sizeBytes": 1773
+      }
+    ],
+    "earlierCloseoutAttempt": {
+      "result": "FAIL: missing existing required Architecture/WP001-007 status marker during handover condensation",
+      "followup": "Original status marker restored; original validator unchanged; actual canonical followup PASS",
+      "originals": [
+        {
+          "path": ".utmp/wp046-r-production/final-release-union-checks/architecture.stdout.txt",
+          "rawSha256": "89c36c62505bb0247d12ab74a683670bf91d6ae8c1bb6d9e19b016ddd19010ab",
+          "sizeBytes": 2264
+        },
+        {
+          "path": ".utmp/wp046-r-production/final-release-union-checks/architecture.stderr.txt",
+          "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,203 @@
+# ADR047: candidate packaging only. No tag creation, Store upload or public promotion.
+name: Production candidate packaging
+on:
+  push:
+    tags: ['v*-rc.*']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+defaults:
+  run:
+    shell: bash
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  PYTHONUTF8: '1'
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 180
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    env:
+      STP_RC_CERTIFICATE_SHA256: ${{ vars.STP_RC_ANDROID_UPLOAD_CERTIFICATE_SHA256 }}
+      STP_RC_ANDROID_KEY_ALIAS: ${{ vars.STP_RC_ANDROID_KEY_ALIAS }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11.13'
+      - name: Geschützten Quellauftrag lesen und ausschließlich Metadaten ableiten
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          STP_EXPECTED_APP: ${{ vars.STP_RC_ANDROID_APPLICATION_ID }}
+          STP_INPUT_RUN: ${{ vars.STP_RC_ANDROID_INPUT_RUN_ID }}
+          STP_INPUT_ARTIFACT: ${{ vars.STP_RC_ANDROID_INPUT_ARTIFACT_ID }}
+          STP_INPUT_SHA256: ${{ vars.STP_RC_ANDROID_INPUT_ZIP_SHA256 }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check -r tools/architecture-validation/requirements.lock.txt
+          python3 -B tools/release/rc_ci_inputs.py --repository "$GITHUB_REPOSITORY" --run-id "$STP_INPUT_RUN" \
+            --ref "$GITHUB_REF" --commit "$GITHUB_SHA" --platform ANDROID --application-id "$STP_EXPECTED_APP" \
+            --artifact-id "$STP_INPUT_ARTIFACT" --zip-sha256 "$STP_INPUT_SHA256" --checkout "$GITHUB_WORKSPACE" \
+            --runner-temp "$RUNNER_TEMP" --github-env "$GITHUB_ENV" --require-production-environment
+      - name: Buildidentität und tatsächliche Source-Lock-Metadaten
+        env:
+          STP_EXPECTED_APP: ${{ vars.STP_RC_ANDROID_APPLICATION_ID }}
+        run: python3 -B tools/release/rc_ci_metadata.py --checkout "$GITHUB_WORKSPACE" --platform ANDROID --expected-app "$STP_EXPECTED_APP"
+      - name: Platz vor der SDKinstallation freigeben
+        run: sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/share/powershell /usr/share/swift /opt/hostedtoolcache/CodeQL
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.401'
+      - run: docker pull 'unityci/editor:ubuntu-6000.3.23f1-android-3.2.2@sha256:4f19f96e06eb8bdd36051c8b9f92d8bf6ba3953e1e7286a1eecabaac21929a28'
+      - name: Tatsächlichen freigegebenen Produktionsinhalt als unsigniertes AAB bauen
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: bash tools/release/rc_ci_android.sh build
+      - name: Autorisierte temporäre Upload-Schlüssel bereitstellen
+        env:
+          STP_RC_ANDROID_KEYSTORE_BASE64: ${{ secrets.STP_RC_ANDROID_KEYSTORE_BASE64 }}
+          STP_RC_KEYSTORE_PASSWORD: ${{ secrets.STP_RC_KEYSTORE_PASSWORD }}
+          STP_RC_KEY_PASSWORD: ${{ secrets.STP_RC_KEY_PASSWORD }}
+        run: python3 -B tools/release/rc_ci_credentials.py prepare --platform ANDROID
+      - name: Signieren und tatsächliches AAB einschließlich nativer Bindungen prüfen
+        env:
+          STP_RC_KEYSTORE_PASSWORD: ${{ secrets.STP_RC_KEYSTORE_PASSWORD }}
+          STP_RC_KEY_PASSWORD: ${{ secrets.STP_RC_KEY_PASSWORD }}
+        run: bash tools/release/rc_ci_android.sh package
+      - name: Temporäre Schlüssel in jedem Fehler- und Erfolgspfad entfernen
+        if: always()
+        run: python3 -B tools/release/rc_ci_credentials.py cleanup
+      - name: Kandidat und konkrete technische Originalbelege erhalten
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: production-candidate-android-${{ github.run_id }}-${{ github.run_attempt }}
+          compression-level: 0
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/stp-rc-metadata/
+            ${{ runner.temp }}/stp-rc-native-android/
+            ${{ runner.temp }}/stp-rc-package-android/
+            ${{ runner.temp }}/stp-rc-evidence/
+      - name: Tatsächliche Importoriginale und Produktionsszene erhalten
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: production-source-evidence-android-${{ github.run_id }}-${{ github.run_attempt }}
+          compression-level: 0
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            .utmp/production-preflight/
+            Assets/StammstreckenPuzzle/Generated/ProductionRuntime/
+            Assets/StammstreckenPuzzle/Scenes/ProductionGame.unity
+            Assets/StammstreckenPuzzle/Scenes/ProductionGame.unity.meta
+  ios:
+    needs: android
+    runs-on: macos-15
+    environment: production
+    timeout-minutes: 240
+    concurrency:
+      group: unity-personal-seat
+      cancel-in-progress: false
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+      STP_RC_CERTIFICATE_SHA256: ${{ vars.STP_RC_IOS_CERTIFICATE_SHA256 }}
+      STP_RC_IOS_TEAM: ${{ vars.STP_RC_IOS_TEAM }}
+      STP_RC_IOS_PROFILE_UUID: ${{ vars.STP_RC_IOS_PROFILE_UUID }}
+      STP_RC_IOS_PODFILE_SHA256: ${{ vars.STP_RC_IOS_PODFILE_SHA256 }}
+      STP_RC_IOS_POD_LOCK_SHA256: ${{ vars.STP_RC_IOS_POD_LOCK_SHA256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11.13'
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: '10.0.401'
+      - name: Geschützten Quellenauftrag lesen
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          STP_EXPECTED_APP: ${{ vars.STP_RC_IOS_APPLICATION_ID }}
+          STP_INPUT_RUN: ${{ vars.STP_RC_IOS_INPUT_RUN_ID }}
+          STP_INPUT_ARTIFACT: ${{ vars.STP_RC_IOS_INPUT_ARTIFACT_ID }}
+          STP_INPUT_SHA256: ${{ vars.STP_RC_IOS_INPUT_ZIP_SHA256 }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check -r tools/architecture-validation/requirements.lock.txt
+          python3 -B tools/release/rc_ci_inputs.py --repository "$GITHUB_REPOSITORY" --run-id "$STP_INPUT_RUN" \
+            --ref "$GITHUB_REF" --commit "$GITHUB_SHA" --platform IOS --application-id "$STP_EXPECTED_APP" \
+            --artifact-id "$STP_INPUT_ARTIFACT" --zip-sha256 "$STP_INPUT_SHA256" --checkout "$GITHUB_WORKSPACE" \
+            --runner-temp "$RUNNER_TEMP" --github-env "$GITHUB_ENV" --require-production-environment
+      - name: Buildidentität und tatsächliche Source-Lock-Metadaten
+        env:
+          STP_EXPECTED_APP: ${{ vars.STP_RC_IOS_APPLICATION_ID }}
+        run: |
+          set -euo pipefail
+          python3 -B tools/release/rc_ci_metadata.py --checkout "$GITHUB_WORKSPACE" --platform IOS --expected-app "$STP_EXPECTED_APP"
+          echo "STP_DOTNET10=$DOTNET_ROOT/dotnet" >> "$GITHUB_ENV"
+          test -d "$DEVELOPER_DIR"
+          test "$(pod --version)" = '1.16.2'
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        id: unity
+        with:
+          path: /Applications/Unity/Hub/Editor/6000.3.23f1
+          key: unity-editor-macos15-6000.3.23f1-ios-v1
+      - if: steps.unity.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          brew install --cask unity-hub
+          '/Applications/Unity Hub.app/Contents/MacOS/Unity Hub' -- --headless install --version 6000.3.23f1 --changeset 09d2ecc7fb28 --module ios --architecture arm64
+      - name: Tatsächliche Produktionsquellen exportieren
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: bash tools/release/rc_ci_ios.sh build
+      - name: Autorisierte temporäre Keychain und Distributionprofile bereitstellen
+        env:
+          STP_RC_IOS_P12_BASE64: ${{ secrets.STP_RC_IOS_P12_BASE64 }}
+          STP_RC_IOS_P12_PASSWORD: ${{ secrets.STP_RC_IOS_P12_PASSWORD }}
+          STP_RC_IOS_CERTIFICATE_BASE64: ${{ secrets.STP_RC_IOS_CERTIFICATE_BASE64 }}
+          STP_RC_IOS_PROFILE_BASE64: ${{ secrets.STP_RC_IOS_PROFILE_BASE64 }}
+        run: python3 -B tools/release/rc_ci_credentials.py prepare --platform IOS
+      - name: Gebundenen Podlock anwenden, Archive und signiertes IPA prüfen
+        run: bash tools/release/rc_ci_ios.sh package
+      - name: Keychain, Searchlist und eigenes Profil in jedem Pfad bereinigen
+        if: always()
+        run: python3 -B tools/release/rc_ci_credentials.py cleanup
+      - name: Kandidat und technische Originalbelege erhalten
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: production-candidate-ios-${{ github.run_id }}-${{ github.run_attempt }}
+          compression-level: 0
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/stp-rc-metadata/
+            ${{ runner.temp }}/stp-rc-native-ios/
+            ${{ runner.temp }}/stp-rc-package-ios/
+            ${{ runner.temp }}/stp-rc-evidence/
+      - name: Tatsächliche Importoriginale und Produktionsszene erhalten
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: production-source-evidence-ios-${{ github.run_id }}-${{ github.run_attempt }}
+          compression-level: 0
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            .utmp/production-preflight/
+            Assets/StammstreckenPuzzle/Generated/ProductionRuntime/
+            Assets/StammstreckenPuzzle/Scenes/ProductionGame.unity
+            Assets/StammstreckenPuzzle/Scenes/ProductionGame.unity.meta

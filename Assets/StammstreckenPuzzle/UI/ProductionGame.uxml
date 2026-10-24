@@ -1,0 +1,116 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="ProductionGame.uss" />
+    <ui:VisualElement name="production-root" class="production-root">
+        <ui:VisualElement name="human-operator-overlay" class="overlay human-operator-overlay hidden">
+            <ui:VisualElement class="human-operator-card">
+                <ui:Label view-data-key="human.operator.internal" class="eyebrow" /><ui:Label view-data-key="human.operator.title" class="page-title" />
+                <ui:Label view-data-key="human.operator.body" class="body-copy" /><ui:Label name="human-operator-status" class="body-copy human-operator-status" />
+                <ui:Label name="human-operator-active" class="small-copy wrapping" />
+                <ui:ScrollView name="human-operator-packs" class="human-operator-packs" />
+                <ui:Label name="human-operator-selection" class="small-copy wrapping human-operator-selection" /><ui:Label name="human-operator-notice" class="small-copy wrapping" />
+                <ui:Button name="human-operator-choose" class="primary-button wrapping" /><ui:Button name="human-operator-reset" class="text-button" />
+                <ui:Button name="human-operator-resume" class="primary-button wrapping" /><ui:Button name="human-operator-retry" class="secondary-button wrapping" /><ui:Button name="human-operator-export" class="secondary-button wrapping" />
+            </ui:VisualElement>
+            <ui:VisualElement name="human-operator-confirm" class="overlay hidden">
+                <ui:VisualElement class="overlay-card"><ui:Label view-data-key="human.operator.confirm-title" class="page-title" /><ui:Label name="human-operator-confirm-body" class="body-copy" />
+                    <ui:Button name="human-operator-confirm-start" class="primary-button wrapping" /><ui:Button name="human-operator-confirm-cancel" class="secondary-button wrapping" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="human-screen" class="screen human-screen hidden">
+            <ui:ScrollView class="human-intro-scroll"><ui:Label view-data-key="human.internal" class="eyebrow" /><ui:Label view-data-key="human.title" class="hero-title" />
+                <ui:Label view-data-key="human.instructions" class="body-copy" /><ui:Label view-data-key="human.privacy" class="small-copy wrapping" />
+                <ui:Label name="human-status" class="body-copy" /><ui:Button name="human-begin" class="primary-button" /><ui:Button name="human-show" class="primary-button" /><ui:Button name="human-advance" class="primary-button" /><ui:Button name="human-retry" class="secondary-button" /><ui:Button name="human-export" class="secondary-button" />
+                <ui:Label name="human-export-state" class="small-copy wrapping" /><ui:Button name="human-next-participant" class="secondary-button wrapping" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="home-screen" class="screen home-screen">
+            <ui:VisualElement class="home-header">
+                <ui:VisualElement class="brand-block"><ui:Label view-data-key="brand" class="wordmark" /><ui:Label view-data-key="independent" class="microcopy" /></ui:VisualElement>
+                <ui:Label name="home-balance" class="balance" />
+            </ui:VisualElement>
+            <ui:VisualElement class="status-strip"><ui:Label view-data-key="status" /></ui:VisualElement>
+            <ui:ScrollView class="home-scroll"><ui:VisualElement name="home-art" class="home-art" />
+            <ui:VisualElement class="home-copy">
+                <ui:Label name="home-section" class="eyebrow" /><ui:Label view-data-key="home.title" class="hero-title" />
+                <ui:Label view-data-key="home.body" class="body-copy" /><ui:Label name="home-route" class="route-caption" />
+                <ui:Button name="home-play" class="primary-button" />
+                <ui:VisualElement class="progress-row"><ui:Label name="home-progress" class="small-copy" /><ui:Label view-data-key="home.offline" class="small-copy" /></ui:VisualElement>
+                <ui:Button name="home-map" class="secondary-button" /><ui:Button name="home-daily" class="daily-open-button" /><ui:Button name="home-endless" class="secondary-button" /><ui:Button name="home-revision" class="daily-open-button" />
+            </ui:VisualElement></ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="map-screen" class="screen hidden">
+            <ui:VisualElement class="page-header"><ui:Button name="map-back" class="small-button" /><ui:Label view-data-key="map.heading" class="page-title" /></ui:VisualElement>
+            <ui:VisualElement name="map-art" class="map-art" /><ui:VisualElement class="map-pager"><ui:Button name="map-previous" class="small-button" /><ui:Label name="map-title" class="map-title" /><ui:Button name="map-next" class="small-button" /></ui:VisualElement>
+            <ui:Label view-data-key="map.body" class="map-body" /><ui:VisualElement name="map-nodes" class="map-nodes" />
+            <ui:Label view-data-key="map.legend" class="map-legend" />
+        </ui:VisualElement>
+        <ui:VisualElement name="puzzle-screen" class="screen puzzle-screen hidden">
+            <ui:VisualElement class="puzzle-header">
+                <ui:Button name="puzzle-back" class="icon-button back-button" />
+                <ui:VisualElement name="puzzle-operating-mark" picking-mode="Ignore" class="puzzle-operating-mark" />
+                <ui:VisualElement class="puzzle-heading"><ui:Label name="puzzle-context" class="puzzle-context" /><ui:Label name="puzzle-title" class="puzzle-title" /></ui:VisualElement>
+                <ui:Label name="puzzle-time" class="puzzle-time" />
+            </ui:VisualElement>
+            <ui:VisualElement class="puzzle-subheader"><ui:Label name="puzzle-phase" class="puzzle-phase" /><ui:Button name="puzzle-zoom" class="text-button" /></ui:VisualElement>
+            <ui:ScrollView name="puzzle-viewport" mode="VerticalAndHorizontal" class="puzzle-viewport" />
+            <ui:VisualElement name="tool-dock" class="tool-dock">
+                <ui:VisualElement class="tool-dock-heading"><ui:Label view-data-key="tools.heading" class="eyebrow" /><ui:Button name="puzzle-undo" class="small-button" /><ui:Button name="puzzle-hint" class="small-button" /></ui:VisualElement>
+                <ui:VisualElement class="tool-row"><ui:Button name="tool-3" class="tool-button" /><ui:Button name="tool-4" class="tool-button" /><ui:Button name="tool-5" class="tool-button" /><ui:Button name="tool-6" class="tool-button" /><ui:Button name="tool-7" class="tool-button" /><ui:Button name="tool-8" class="tool-button" /></ui:VisualElement>
+                <ui:VisualElement class="tool-row note-row"><ui:Button name="tool-1" class="tool-button note-tool" /><ui:Button name="tool-2" class="tool-button note-tool" /><ui:Button name="tool-0" class="tool-button note-tool" /><ui:Label view-data-key="tools.toggle" class="tool-caption" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="human-contact" class="tool-dock human-contact hidden">
+                <ui:Label view-data-key="human.contact.title" class="human-contact-title" /><ui:Label name="human-prior-exposure" class="small-copy wrapping" />
+                <ui:VisualElement class="human-contact-options"><ui:Button name="human-never" class="human-contact-option" /><ui:Button name="human-seen" class="human-contact-option" /><ui:Button name="human-unsure" class="human-contact-option human-contact-option--last" /></ui:VisualElement>
+                <ui:Button name="human-prior-version" class="human-prior-version" /><ui:Button name="human-contact-confirm" class="primary-button human-contact-confirm" />
+            </ui:VisualElement>
+            <ui:ScrollView name="result-panel" class="result-panel hidden"><ui:Label view-data-key="result.title" class="result-title" /><ui:VisualElement name="result-art" class="result-art" /><ui:Label name="result-mode" class="eyebrow result-mode" /><ui:Label name="result-copy" class="result-copy" /><ui:Label name="human-result-observation" class="small-copy wrapping hidden" /><ui:Label name="result-stars" class="result-stars" /><ui:Label name="result-time" class="result-time" /><ui:Label name="result-progress" class="small-copy" /><ui:Label name="result-balance" class="result-balance" /><ui:Label name="result-bonus-state" class="small-copy wrapping completion-state" /><ui:Button name="result-video" class="secondary-button hidden" /><ui:Button name="result-skip-bonus" class="text-button hidden" /><ui:Button name="result-next" class="primary-button" /><ui:Button name="result-home" class="secondary-button" /></ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="depot-screen" class="screen hidden"><ui:Label view-data-key="depot.title" class="standalone-title" /><ui:Label view-data-key="depot.subtitle" class="page-subtitle" /><ui:ScrollView class="depot-scroll"><ui:VisualElement name="depot-art" class="depot-art" /><ui:VisualElement class="home-copy"><ui:Label name="depot-current-name" view-data-key="depot.train" class="hero-title" /><ui:Label name="depot-current-livery" view-data-key="depot.livery.original" class="small-copy" /><ui:Label view-data-key="depot.state" class="eyebrow" /><ui:Label name="depot-current-body" view-data-key="depot.body" class="body-copy" /></ui:VisualElement><ui:VisualElement name="depot-catalog" class="depot-catalog" /></ui:ScrollView></ui:VisualElement>
+        <ui:VisualElement name="profile-screen" class="screen hidden"><ui:Label view-data-key="profile.title" class="standalone-title" /><ui:Label view-data-key="profile.subtitle" class="page-subtitle" /><ui:ScrollView class="profile-scroll"><ui:VisualElement class="profile-card"><ui:Label name="profile-clears" class="profile-stat" /><ui:Label name="profile-balance" class="profile-stat" /><ui:Label view-data-key="profile.saved" class="body-copy" /><ui:Button name="profile-settings" class="secondary-button" /><ui:Label name="profile-direct" class="small-copy wrapping" /></ui:VisualElement><ui:VisualElement name="profile-records" class="profile-records" /></ui:ScrollView></ui:VisualElement>
+        <ui:VisualElement name="main-navigation" class="main-navigation"><ui:Button name="nav-home" class="nav-button nav--active" /><ui:Button name="nav-depot" class="nav-button" /><ui:Button name="nav-profile" class="nav-button" /></ui:VisualElement>
+        <ui:VisualElement name="endless-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card endless-card">
+            <ui:Label view-data-key="endless.title" class="page-title" /><ui:ScrollView class="endless-scroll"><ui:VisualElement name="endless-art" class="endless-art" />
+            <ui:Label name="endless-unlock" class="body-copy" /><ui:Label view-data-key="endless.body" class="small-copy wrapping" />
+            <ui:VisualElement name="endless-profiles" class="endless-profiles" /><ui:Label name="endless-status" class="body-copy" />
+            <ui:Label view-data-key="endless.open.heading" class="settings-heading" /><ui:Label name="endless-no-open" view-data-key="endless.none" class="small-copy wrapping" />
+            <ui:VisualElement name="endless-open-list" /><ui:VisualElement name="endless-abandon-confirmation" class="endless-record hidden">
+                <ui:Label view-data-key="endless.abandon.body" class="body-copy" /><ui:Button name="endless-abandon-confirm" class="secondary-button" /><ui:Button name="endless-abandon-cancel" class="secondary-button" />
+            </ui:VisualElement></ui:ScrollView><ui:Button name="endless-close" class="primary-button" />
+        </ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="daily-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card daily-card">
+            <ui:Label view-data-key="daily.title" class="page-title" /><ui:Label name="daily-date" class="eyebrow" />
+            <ui:Label view-data-key="daily.body" class="body-copy" /><ui:Label view-data-key="daily.odds" class="daily-odds" />
+            <ui:Label name="daily-result" class="daily-result" /><ui:Label name="daily-state" class="body-copy" />
+            <ui:Button name="daily-free" class="primary-button" /><ui:Button name="daily-video" class="secondary-button" />
+            <ui:Label view-data-key="daily.no-streak" class="small-copy wrapping" /><ui:Button name="daily-close" class="secondary-button" />
+        </ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="settings-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card settings-card">
+            <ui:Label view-data-key="settings.title" class="page-title" /><ui:ScrollView class="settings-scroll">
+            <ui:Label view-data-key="settings.audio.title" class="settings-heading" /><ui:VisualElement name="settings-audio" />
+            <ui:Label view-data-key="settings.accessibility.title" class="settings-heading" />
+            <ui:Button name="settings-haptics" class="secondary-button wrapping" /><ui:Button name="settings-motion" class="secondary-button wrapping" /><ui:Button name="settings-skip" class="secondary-button wrapping" />
+            <ui:Label name="settings-save-state" class="small-copy wrapping settings-state" />
+            <ui:Label view-data-key="settings.services.title" class="settings-heading" />
+            <ui:Button name="settings-privacy" class="secondary-button" /><ui:Button name="settings-restore" class="secondary-button" /><ui:Button name="settings-remove-ads" class="secondary-button wrapping" />
+            <ui:Label view-data-key="settings.remove-ads.body" class="small-copy wrapping settings-state" /><ui:Label name="settings-service-state" class="small-copy wrapping settings-state" />
+            <ui:Button name="settings-legal" class="secondary-button" /><ui:Button name="settings-support" class="secondary-button" />
+            <ui:Label name="settings-contact-state" class="small-copy wrapping settings-state" />
+            <ui:Label view-data-key="local-data.heading" class="settings-heading" /><ui:Button name="settings-delete-local" class="secondary-button wrapping" /><ui:Label name="settings-delete-state" class="small-copy wrapping settings-state" />
+            </ui:ScrollView><ui:Button name="settings-close" class="primary-button" />
+        </ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="startup-overlay" class="overlay"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="brand" class="wordmark" /><ui:Label name="startup-message" class="body-copy" /><ui:Button name="startup-retry" class="primary-button hidden" /><ui:Button name="startup-delete-local" class="secondary-button wrapping hidden" /></ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="error-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="error.title" class="page-title" /><ui:Label name="error-message" class="body-copy" /><ui:VisualElement name="recovery-choices" /><ui:Button name="error-retry" class="primary-button" /><ui:Button name="error-reload" class="secondary-button" /><ui:Button name="error-recover" class="primary-button" /><ui:Button name="error-reset" class="secondary-button" /><ui:Button name="error-delete-local" class="secondary-button wrapping hidden" /><ui:VisualElement name="reset-confirmation" class="hidden"><ui:Label view-data-key="reset.body" class="body-copy" /><ui:Button name="reset-confirm" class="primary-button" /><ui:Button name="reset-cancel" class="secondary-button" /></ui:VisualElement></ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="notice-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card"><ui:Label name="notice-title" class="page-title" /><ui:Label name="notice-body" class="body-copy" /><ui:Button name="notice-close" class="primary-button" /></ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="human-menu-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card human-menu-card"><ui:Label view-data-key="human.menu.title" class="page-title" /><ui:Label name="human-menu-body" class="body-copy" />
+            <ui:Button name="human-resume" class="primary-button" /><ui:Button name="human-restart" class="secondary-button" /><ui:Button name="human-abort" class="secondary-button" /><ui:Button name="human-abort-confirm" class="primary-button hidden" /><ui:Button name="human-abort-cancel" class="secondary-button hidden" />
+        </ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="human-participant-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="human.next-participant.title" class="page-title" /><ui:Label name="human-next-participant-body" class="body-copy" /><ui:Button name="human-next-participant-confirm" class="primary-button wrapping" /><ui:Button name="human-next-participant-cancel" class="secondary-button" /></ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="hint-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="hint.title" class="page-title" /><ui:Label name="hint-credit-count" class="hint-credits" /><ui:Label name="hint-fact" class="hint-fact" /><ui:Label name="hint-explanation" class="body-copy" /><ui:Label name="hint-save-state" class="hint-state" /><ui:Button name="hint-retry" class="secondary-button hidden" /><ui:Button name="hint-video" class="secondary-button wrapping hidden" /><ui:Button name="hint-request" class="secondary-button hidden" /><ui:Button name="hint-close" class="primary-button" /></ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="local-data-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card settings-card">
+            <ui:Label name="local-data-title" class="page-title" /><ui:ScrollView name="local-data-scroll" class="settings-scroll">
+                <ui:Label name="local-data-body" class="body-copy wrapping" /><ui:Label name="local-data-scope" class="body-copy wrapping" /><ui:Label name="local-data-state" class="small-copy wrapping settings-state" />
+            </ui:ScrollView><ui:Button name="local-data-confirm" class="primary-button wrapping" /><ui:Button name="local-data-cancel" class="secondary-button wrapping" /><ui:Button name="local-data-retry" class="primary-button wrapping" /><ui:Button name="local-data-restart" class="primary-button wrapping" />
+        </ui:VisualElement></ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

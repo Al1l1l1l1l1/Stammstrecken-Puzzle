@@ -1,0 +1,5 @@
+# Inspection reports keep stable hashes across checkouts; original upstream license bytes stay unchanged.
+*.json text eol=lf
+# Upstream originals retain their exact license bytes, including intentional whitespace.
+NativeAndroidBuild2Sources/**/*.pom -text whitespace=-blank-at-eol,-blank-at-eof
+NativeAndroidBuild2Sources/**/*.txt -text whitespace=-blank-at-eol,-blank-at-eof

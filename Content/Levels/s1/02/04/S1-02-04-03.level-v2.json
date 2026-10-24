@@ -1,0 +1,116 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-02-04-03",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 5
+    },
+    "b": {
+      "side": "W",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    0,
+    0,
+    0,
+    4,
+    5
+  ],
+  "columnCounts": [
+    2,
+    2,
+    1,
+    2,
+    1,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 2,
+    "route": 4,
+    "position": 3,
+    "titleKey": "level.s1.02.04.03.title",
+    "statusKey": "level.s1.02.04.03.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.02.04.03.entry",
+    "focus": [
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Der Westport links und Südport rechts sind über die gesamte Breite getrennt; Counts 1 in Spalten 2/4/5 erlauben nur schmale Übergänge. Trotz zwei aktiver Reihen gibt es einen linken Rückknick und einen rechten Ausgangsarm mit unterschiedlichen Restzahlen; behalten als räumlich entfernte horizontale Gebiete.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-02-04-03-map",
+    "trainMomentId": "draft-s1-02-04-03-train",
+    "resultTextKey": "level.s1.02.04.03.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-02-04-03/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "f036baf30347d78d9a26a3b1cf9d523122b92df37a5a037965e286570bf89adf"
+    }
+  }
+}

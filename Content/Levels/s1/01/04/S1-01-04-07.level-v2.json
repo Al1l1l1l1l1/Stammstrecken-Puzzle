@@ -1,0 +1,134 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-04-07",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 0
+    },
+    "b": {
+      "side": "E",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    0,
+    2,
+    4,
+    4,
+    3
+  ],
+  "columnCounts": [
+    3,
+    2,
+    4,
+    4
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 4,
+    "position": 7,
+    "titleKey": "level.s1.01.04.07.title",
+    "statusKey": "level.s1.01.04.07.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.04.07.entry",
+    "focus": [
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Zwei volle Querzeilen verbinden den Eingang links mit der rechten kurvenreichen Hälfte; der Zweiercount in Zeile 1 bestimmt erst den Ausgangsbogen. Es sind deutlich getrennte linke und rechte Verpflichtungen sichtbar, weshalb das Feld den Verbindungsbrief trägt.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-04-07-map",
+    "trainMomentId": "draft-s1-01-04-07-train",
+    "resultTextKey": "level.s1.01.04.07.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-04-07/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "cd58d6ab73e9b82e08d993d9073986bc03de21e9d048cc07ea499536c5c0ad10"
+    }
+  }
+}

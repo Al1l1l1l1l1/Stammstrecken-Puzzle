@@ -1,0 +1,11 @@
+# Independent exact I freeze Raw-Git/source QC
+
+PASS for89ee035ca0fa205ca1c0e845ad315047eae94fd8, Treec7243bfc259949635e713b0b3d7efee4a74ceb43, soleParent3ca62a9b109f828fbb32965eace4fbf8fe3eae7e. Cleanworkingtree; mandatorydiff--check againstP returns0. All73Treeobjects and127changedblobpayloads(32.2MB) independentlyrehashed.130parentdelta paths;199cumulativeP changes allwithin50immutableIpatterns.
+
+Exactly28newSource/Metafirstadds occur afteracceptedADRparent inthisfreeze.257Metaguids unique,14newassignments matchprecode1fd09b4f. Onlytwo allowedexistingBuildconnections modified; A/Sruntime/tests/assets/metas/asmdefs/oldmanifests unchanged. validate.yml only041→043selector; Unityworkflow/gates unchanged.
+
+All497actualNative09inputpath/mode/blobpairs equalfrozenGit;45/45OS0/Unix20/Windows18/fourimages boundtoexactunchangedSource.130nativeworkingfileprofiles:110rawexact,20soleCRLF→GitLF. Criticaloriginalreports includingb3469011…remainrawbyte-identical inGit; otherrawPDB/logprofile differences declaredandlosslesslypreserved.
+
+Actualcleancommitcanonicalreceipt6b09b001… verified: wrapper/children0,17Architecture/18Production+selfmutationchecksPASS, exactWP043/baseP/head89/dirtyfalse. Committedstatuses have no premature I-CI/mergeacceptance.
+
+This is PREPUSH SOURCE/FREEZEPASS. I04newAndroid/iOSfour-sceneBuildReports,I15fullregularCI/exactfinalCIjudgment,andI16Runderintegration/ExpectedHEADWP036merge/integratedCIremainOPEN. ReviewerwroteonlyignoredRoottools reports; frozenworktreeunchanged.

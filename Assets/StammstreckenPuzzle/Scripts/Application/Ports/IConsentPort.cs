@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace STP.Application.Ports
 {
     /// <summary>
@@ -9,5 +11,15 @@ namespace STP.Application.Ports
     /// </summary>
     public interface IConsentPort
     {
+        /// <summary>Effective capabilities always start false.</summary>
+        MobileCapabilities Capabilities { get; }
+        /// <summary>Runs the current UMP start flow, producing a candidate to persist.</summary>
+        Task<MobileResult<ConsentSnapshot>> RefreshAsync(MobileOperation operation);
+        /// <summary>Immediately gates ads off, then presents required privacy options.</summary>
+        Task<MobileResult<ConsentSnapshot>> ShowPrivacyOptionsAsync(MobileOperation operation);
+        /// <summary>Applies only the current candidate after its durable Application decision commit.</summary>
+        bool ConfirmDecisionPersisted(ConsentSnapshot snapshot, long committedGeneration);
+        /// <summary>Immediately gates off and invalidates pending/loaded ads and stale callbacks.</summary>
+        void Revoke();
     }
 }

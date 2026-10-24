@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/localization-authoring-source-v1.schema.json",
+  "title": "WP-036 German localization authoring source, not a runtime import contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "locale", "status", "entries"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "locale": {"const": "de-DE"},
+    "status": {"const": "DRAFT"},
+    "entries": {
+      "type": "array",
+      "minItems": 960,
+      "items": {"$ref": "#/$defs/entry"}
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "text", "description", "charLimit", "placeholders", "status", "audience", "availability", "blockedBy", "charLimitStatus"],
+      "properties": {
+        "key": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$", "maxLength": 160},
+        "text": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "charLimit": {"type": "integer", "minimum": 1},
+        "placeholders": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z][A-Za-z0-9]*$"},
+          "additionalProperties": {"enum": ["INTEGER", "TEXT", "FORMATTED_DURATION", "FORMATTED_POINTS", "FORMATTED_PRICE"]}
+        },
+        "status": {"const": "DRAFT"},
+        "audience": {"enum": ["PLAYER", "INTERNAL"]},
+        "availability": {"enum": ["DECIDED", "BLOCKED_PRODUCT"]},
+        "blockedBy": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "charLimitStatus": {"const": "EDITORIAL_PROPOSAL"},
+        "shortText": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"availability": {"const": "DECIDED"}}},
+          "then": {"properties": {"blockedBy": {"maxItems": 0}}},
+          "else": {"properties": {"blockedBy": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"key": {"pattern": "\\.entry$"}}},
+          "then": {"properties": {"audience": {"const": "INTERNAL"}}}
+        }
+      ]
+    }
+  }
+}

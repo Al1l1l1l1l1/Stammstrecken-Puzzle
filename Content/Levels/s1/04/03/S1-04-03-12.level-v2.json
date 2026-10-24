@@ -1,0 +1,161 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-03-12",
+  "contentRevision": 2,
+  "grid": {
+    "width": 8,
+    "height": 8
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 0
+    },
+    "b": {
+      "side": "S",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    2,
+    1,
+    2,
+    3,
+    1,
+    2,
+    3,
+    3
+  ],
+  "columnCounts": [
+    2,
+    2,
+    3,
+    3,
+    1,
+    2,
+    3,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 3,
+    "position": 12,
+    "titleKey": "level.s1.04.03.12.title",
+    "statusKey": "level.s1.04.03.12.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.03.12.entry",
+    "focus": [
+      "CHAIN",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 10,
+    "qualityNote": "Die versetzte Treppe führt durch mehrere kleine Restzahlen bis zu einem linken Doppelknick unten. Kein Voll-/Nullanker erleichtert eine ganze Linie; das ist ein anderer dünner Abschlusstyp als der weite Querarm in 11, trotz ähnlicher technischer Tiefe 33/34.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-03-12-map",
+    "trainMomentId": "draft-s1-04-03-12-train",
+    "resultTextKey": "level.s1.04.03.12.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-03-12/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "b5f0aa8bd1ced2117d0aa2a538eb018d12a77c90a98e72e61bd279b580632c3a"
+    }
+  }
+}

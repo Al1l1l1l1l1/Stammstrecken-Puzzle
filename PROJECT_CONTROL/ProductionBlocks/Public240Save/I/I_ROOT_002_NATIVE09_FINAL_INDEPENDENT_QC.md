@@ -1,0 +1,11 @@
+# Independent I-ROOT-002 and Native09 closure
+
+PASS: I-ROOT-002 CLOSED. ExactInstaller a4c0f3ea + permanentRootTest352b16db correction reviewed; Windowsphysicalhelper unchanged, newUnix checks remain entirely editor/test-only. Actualcompiledoldprivateguard reproducesunsafeacceptance withoutprovision; correctedactualsameguard20/20Unix metadata checksPassed, includingdanglingaliases. Windows18/18real8.3/SUBST/finallyunmapPassed. ThreeactualPE/PDBpairs and26projectdocumentchecksums independentlymatch correctoriginal/currentrawsources.
+
+OriginalUnix01 facadefailure remains beforeguard/Exit1; 02 changesonlypinnedLinuxnetstandardFacade, all80Runtime/Probefiles andolddependenciesunchanged. PriorWindows02SUBSTpermissiondenied remainsNOT_EXECUTED, not18PASS. Rootcorrectionpack108payloads/102actualsources/203actualdependencyinventory verifiedagainstoriginals.
+
+Native09actualOS0,45/45Passed,0Fail/Skip/Inconclusive. All497Gitinputpaths/modes/blobs/475uniqueSHA1+SHA256objects and31ownsourceprofileschecked. RootNative09packall56payloadsverified. FourneworiginalPNGs independentlyviewed: counts/path/train/savedresultreadable, nohorizontalclip; threebyteidenticalNative08andnewridehash. All116controlcorners independentlyrecomputedinsideactualviewports; layoutremainsclosed.
+
+Native08andallpriorfailedoriginals/limits unchanged. I01–I14local/source/nativeevidence mapped; I04newmobilefour-sceneBuildReports, I15canonicalfreeze/regularCIandI16underintegration/integratedCI remainOPEN. No finalI/CI/deliveryacceptance.
+
+Fullactualoriginals/source/probeoutputs/criticalDLL-PDBpairs/nativeXML/logprofile/snapshot/fourPNGs are losslesslyretained. ReviewerperformednoUnity/compiler/source/Git/dispatchmutation. EVIDENCEWRITESTOPafterthisreport/MD/PDBreportandfourPNGcopies; separateactualcommitRawGitQCnext.
