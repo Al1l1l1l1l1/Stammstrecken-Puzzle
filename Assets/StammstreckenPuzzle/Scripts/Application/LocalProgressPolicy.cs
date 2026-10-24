@@ -110,7 +110,7 @@ namespace STP.Application
         }
         /// <summary>Performs deterministic terminal-backed compaction before a normal offered snapshot is constructed; recovery promotion bypasses this operation.</summary>
         public LocalProfileState PrepareForSave(LocalProfileState state,long targetGeneration)
-        {Validate(state);var prepared=ledger.Compact(state,targetGeneration);Validate(prepared);return prepared;}
+        {Validate(state);var prepared=ledger.Compact(state,targetGeneration);if(!ReferenceEquals(prepared,state))Validate(prepared);return prepared;}
         /// <summary>Retains the offered exact draft and all orphaned drafts, then fills the remaining20 slots with the newest known drafts by UTC instant and ordinal identity. Capacity and incompatible same-ID records stop without mutation.</summary>
         public LocalProfileState WithDraft(LocalProfileState state,LocalDraft offered)
         {

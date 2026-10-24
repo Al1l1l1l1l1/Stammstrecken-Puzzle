@@ -30,9 +30,11 @@ namespace STP.Infrastructure.Persistence
         private static bool MatchesPurchase(LocalStoredEntry e,PurchasedOwnership p)=>e.TransactionId==p.TransactionId&&e.SubjectId==p.ItemId&&e.Amount==-p.PricePatience&&e.CatalogId==p.Catalog.CatalogId&&e.CatalogRevision==p.Catalog.Revision&&e.CatalogHashSha256==p.Catalog.HashSha256&&e.ClaimId==null&&e.ReasonCode=="COSMETIC_PURCHASE"&&e.CreatedAtUtc==p.AcquiredAtUtc;
         private static bool TerminalBacked(LocalStoredEntry e,LocalProfileState state)=>Terminals(state).Any(t=>Matches(e,t))||state.Inventory.Ownership.OfType<PurchasedOwnership>().Any(p=>MatchesPurchase(e,p));
         /// <summary>Verifies contiguous sequence, exact chain, nonnegative safe balance, checkpoint/tail consistency and all terminal references.</summary>
-        public long Validate(LocalProfileState state)
+        public long Validate(LocalProfileState state)=>ValidateCore(state,out _);
+        private long ValidateCore(LocalProfileState state,out int journalByteLength)
         {
-            if(state==null)throw new ArgumentNullException(nameof(state));var checkpoint=state.LedgerCheckpoint;var journal=state.EconomyJournal;Require(journal.Count<=512&&JournalBytes(journal).Length<=262144,"SAVE_LEDGER_LIMIT");
+            journalByteLength=0;
+            if(state==null)throw new ArgumentNullException(nameof(state));var checkpoint=state.LedgerCheckpoint;var journal=state.EconomyJournal;Require(journal.Count<=512&&(journalByteLength=JournalBytes(journal).Length)<=262144,"SAVE_LEDGER_LIMIT");
             if(checkpoint.ThroughSequence==0)Require(checkpoint.BalancePatience==0&&checkpoint.EntryChainHashSha256==LocalSaveHash.Bytes(Array.Empty<byte>())&&checkpoint.JournalDiagnosticTail.Count==0,"SAVE_LEDGER_GENESIS_INVALID");
             // Only this invocation owns these lookups. Building them does not validate, suppress or reorder a guard.
             EconomyTerminal[]? currentTerminals=null;
@@ -70,7 +72,7 @@ namespace STP.Infrastructure.Persistence
         /// <summary>At either soft threshold, folds the entire verified terminal suffix into one checkpoint and retains only the last64 removed entries as diagnosis.</summary>
         public LocalProfileState Compact(LocalProfileState state,long sourceSaveGeneration)
         {
-            long balance=Validate(state);Require(sourceSaveGeneration>=0&&sourceSaveGeneration<=MaxSafe,"SAVE_GENERATION_INVALID");if(state.EconomyJournal.Count<384&&JournalBytes(state.EconomyJournal).Length<196608)return state;Require(state.EconomyJournal.All(e=>TerminalBacked(e,state)),"ECO-COMPACTION-NONTERMINAL");var last=state.EconomyJournal.Last();var tail=state.LedgerCheckpoint.JournalDiagnosticTail.Concat(state.EconomyJournal).Reverse().Take(64).Reverse().ToArray();var checkpoint=LocalLedgerCheckpoint.Create(last.Sequence,balance,last.EntryChainHashSha256,sourceSaveGeneration,tail);var compacted=state.WithProgress(state.Levels,checkpoint,Array.Empty<LocalStoredEntry>(),state.SeasonProgressCache,state.Drafts,state.RewardClaims);return LocalEndlessEconomy.Prune(compacted);
+            long balance=ValidateCore(state,out int journalByteLength);Require(sourceSaveGeneration>=0&&sourceSaveGeneration<=MaxSafe,"SAVE_GENERATION_INVALID");if(state.EconomyJournal.Count<384&&journalByteLength<196608)return state;Require(state.EconomyJournal.All(e=>TerminalBacked(e,state)),"ECO-COMPACTION-NONTERMINAL");var last=state.EconomyJournal.Last();var tail=state.LedgerCheckpoint.JournalDiagnosticTail.Concat(state.EconomyJournal).Reverse().Take(64).Reverse().ToArray();var checkpoint=LocalLedgerCheckpoint.Create(last.Sequence,balance,last.EntryChainHashSha256,sourceSaveGeneration,tail);var compacted=state.WithProgress(state.Levels,checkpoint,Array.Empty<LocalStoredEntry>(),state.SeasonProgressCache,state.Drafts,state.RewardClaims);return LocalEndlessEconomy.Prune(compacted);
         }
     }
 }
