@@ -68,7 +68,32 @@ namespace STP.Tests.Application.EditMode
         [Test]
         public void ConcurrentHintRequestsCannotComputeOrSpendPastTheSamePendingDisplay()
         {
-            using var f=new HumanCalibrationTestFactory();f.OpenFirst();f.Repository.Hold=new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);f.Repository.Offered=null;var first=f.Session.PrepareHintAsync(CancellationToken.None);var second=f.Session.PrepareHintAsync(CancellationToken.None);f.Until(()=>f.Repository.Offered!=null);Assert.That(first.IsCompleted,Is.False);Assert.That(second.IsCompleted,Is.False);f.Repository.Hold.SetResult(true);Assert.That(f.Pump(first),Is.Not.Null);Assert.Throws<ArgumentException>(()=>f.Pump(second));Assert.That(f.Session.HintCredits,Is.EqualTo(2));Assert.That(f.Repository.Snapshot!.Run.Trials.Single().Hints.Count,Is.EqualTo(1));Assert.That(f.Session.State.IsRecoveryRequired,Is.False);
+            using var f=new HumanCalibrationTestFactory();f.OpenFirst();
+            using var firstCancellation=new CancellationTokenSource();using var secondCancellation=new CancellationTokenSource();using var thirdCancellation=new CancellationTokenSource();
+            f.Repository.Hold=new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);f.Repository.Offered=null;f.Repository.ResetCommitObservation();
+            var first=f.Session.PrepareHintAsync(firstCancellation.Token);var second=f.Session.PrepareHintAsync(secondCancellation.Token);
+            f.Until(()=>f.Repository.ObservedCommit!=null||first.IsCompleted&&second.IsCompleted);
+            var observed=f.Repository.ObservedCommit;
+            Assert.That(observed,Is.Not.Null,"The concurrency boundary requires an actual pending hint commit.");
+            bool firstOffered=observed!.Cancellation==firstCancellation.Token;
+            Assert.That(firstOffered||observed.Cancellation==secondCancellation.Token,Is.True,"The held commit must identify one of these two requests.");
+            var pending=firstOffered?first:second;var competing=second;
+            if(!firstOffered)
+            {
+                Assert.That(f.Pump(first),Is.Null,"A first request that did not offer the held commit must return a legitimate unavailable hint.");
+                competing=f.Session.PrepareHintAsync(thirdCancellation.Token);
+            }
+            var offeredHint=observed.Snapshot.Run.Trials.Single().Hints.Single();
+            Assert.That(offeredHint.State,Is.EqualTo(HumanHintState.HINT_DISPLAY_PENDING));
+            Assert.That(observed.Cancellation.IsCancellationRequested,Is.False);
+            Assert.That(pending.IsCompleted,Is.False);Assert.That(competing.IsCompleted,Is.False);
+            f.Repository.Hold.SetResult(true);
+            var hint=f.Pump(pending);Assert.That(hint,Is.Not.Null);
+            var reservedId=typeof(SafePuzzleHint).GetProperty("ReservedDisplayId",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+            Assert.That(reservedId,Is.Not.Null,"The Editor-only identity check must read the existing internal reservation without acknowledging display.");
+            Assert.That(reservedId!.PropertyType,Is.EqualTo(typeof(Guid)));Assert.That((Guid)reservedId.GetValue(hint)!,Is.EqualTo(offeredHint.DisplayId));
+            Assert.Throws<ArgumentException>(()=>f.Pump(competing));
+            Assert.That(f.Session.HintCredits,Is.EqualTo(2));Assert.That(f.Repository.Snapshot!.Run.Trials.Single().Hints.Count,Is.EqualTo(1));Assert.That(f.Session.State.IsRecoveryRequired,Is.False);
         }
         [Test]
         public void ExposureIsInvisibleUntilPendingCommitAndInputNeedsRealVisibleReceiptAndSelfReport()

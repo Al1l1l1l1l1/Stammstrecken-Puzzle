@@ -21,12 +21,21 @@ namespace STP.Tests.Application.EditMode
         }
         public sealed class MemoryRepository:IHumanCalibrationRepository
         {
+            public sealed class CommitObservation
+            {
+                public CommitObservation(HumanObservationSnapshot snapshot,CancellationToken cancellation){Snapshot=snapshot;Cancellation=cancellation;}
+                public HumanObservationSnapshot Snapshot{get;}
+                public CancellationToken Cancellation{get;}
+            }
+            private CommitObservation? commitObservation;
+            public CommitObservation? ObservedCommit=>Volatile.Read(ref commitObservation);
+            public void ResetCommitObservation()=>Volatile.Write(ref commitObservation,null);
             public HumanObservationSnapshot? Snapshot{get;set;}public HumanObservationSnapshot? Offered{get;set;}public HumanCalibrationRun? StartOffered{get;private set;}public List<HumanObservationSnapshot> Archived{get;}=new List<HumanObservationSnapshot>();public TaskCompletionSource<bool>? Hold{get;set;}public bool UnknownNext{get;set;}public bool Unknown{get;private set;}public int Commits{get;private set;}public Exception? ThrowNext{get;set;}
             public Task<HumanStoreResult> LoadAsync(CancellationToken ct){ct.ThrowIfCancellationRequested();return Task.FromResult(Unknown?new HumanStoreResult(HumanStoreStatus.RecoveryRequired,"CONTROLLED_UNKNOWN",observationToken:"controlled-observation"):Snapshot==null?new HumanStoreResult(HumanStoreStatus.Missing,"HUMAN_RUN_MISSING"):new HumanStoreResult(HumanStoreStatus.Ready,"NONE",Snapshot));}
             public async Task<HumanStoreResult> StartRunAsync(HumanCalibrationRun run,string? expected,CancellationToken ct)
             {StartOffered=run;if(Hold!=null){var hold=Hold;await hold.Task.ConfigureAwait(false);Hold=null;}if(ThrowNext!=null){var error=ThrowNext;ThrowNext=null;throw error;}ct.ThrowIfCancellationRequested();if(expected==null?Snapshot!=null:Snapshot?.Run.SessionToken!=expected||Snapshot.Run.NextAssignmentIndex!=2||run.SessionToken==expected)return new HumanStoreResult(HumanStoreStatus.Conflict,"CONTROLLED_EXISTS");if(Snapshot!=null)Archived.Add(Snapshot);Snapshot=new HumanObservationSnapshot(1,run);if(UnknownNext){UnknownNext=false;Unknown=true;return new HumanStoreResult(HumanStoreStatus.RecoveryRequired,"CONTROLLED_UNKNOWN",observationToken:"controlled-observation");}return new HumanStoreResult(HumanStoreStatus.Committed,"NONE",Snapshot);}
             public async Task<HumanStoreResult> CommitAsync(HumanObservationSnapshot offered,long expected,CancellationToken ct)
-            {Offered=offered;Commits++;if(Hold!=null){var hold=Hold;await hold.Task.ConfigureAwait(false);Hold=null;}if(ThrowNext!=null){var error=ThrowNext;ThrowNext=null;throw error;}ct.ThrowIfCancellationRequested();if(Snapshot?.Generation!=expected)return new HumanStoreResult(HumanStoreStatus.Conflict,"CONTROLLED_CAS");Snapshot=offered;if(UnknownNext){UnknownNext=false;Unknown=true;return new HumanStoreResult(HumanStoreStatus.RecoveryRequired,"CONTROLLED_UNKNOWN",observationToken:"controlled-observation");}return new HumanStoreResult(HumanStoreStatus.Committed,"NONE",offered);}
+            {Volatile.Write(ref commitObservation,new CommitObservation(offered,ct));Offered=offered;Commits++;if(Hold!=null){var hold=Hold;await hold.Task.ConfigureAwait(false);Hold=null;}if(ThrowNext!=null){var error=ThrowNext;ThrowNext=null;throw error;}ct.ThrowIfCancellationRequested();if(Snapshot?.Generation!=expected)return new HumanStoreResult(HumanStoreStatus.Conflict,"CONTROLLED_CAS");Snapshot=offered;if(UnknownNext){UnknownNext=false;Unknown=true;return new HumanStoreResult(HumanStoreStatus.RecoveryRequired,"CONTROLLED_UNKNOWN",observationToken:"controlled-observation");}return new HumanStoreResult(HumanStoreStatus.Committed,"NONE",offered);}
             public Task<HumanStoreResult> RecoverAsync(string token,CancellationToken ct){ct.ThrowIfCancellationRequested();Unknown=false;return Task.FromResult(new HumanStoreResult(HumanStoreStatus.Ready,"NONE",Snapshot!));}
             public Task<byte[]> ExportAsync(CancellationToken ct)=>Task.FromResult(Array.Empty<byte>());
         }
