@@ -180,12 +180,21 @@ namespace STP.Infrastructure.Persistence
 #else
             private const string Library = "libc";
 #endif
+#if UNITY_IOS && !UNITY_EDITOR
+            [DllImport(Library, EntryPoint = "stp_posix_open", SetLastError = true)]
+            internal static extern int Open([MarshalAs(UnmanagedType.LPUTF8Str)] string path, int flags);
+            [DllImport(Library, EntryPoint = "stp_posix_flock", SetLastError = true)]
+            internal static extern int Flock(int descriptor, int operation);
+            [DllImport(Library, EntryPoint = "stp_posix_close", SetLastError = true)]
+            internal static extern int Close(int descriptor);
+#else
             [DllImport(Library, EntryPoint = "open", SetLastError = true)]
             internal static extern int Open([MarshalAs(UnmanagedType.LPUTF8Str)] string path, int flags);
             [DllImport(Library, EntryPoint = "flock", SetLastError = true)]
             internal static extern int Flock(int descriptor, int operation);
             [DllImport(Library, EntryPoint = "close", SetLastError = true)]
             internal static extern int Close(int descriptor);
+#endif
         }
         private sealed class HeldMutex : IDisposable
         {

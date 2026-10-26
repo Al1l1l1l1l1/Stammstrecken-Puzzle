@@ -210,13 +210,23 @@ namespace STP.Infrastructure.Persistence
 #else
             private const string Lib="libc";
 #endif
+#if UNITY_IOS && !UNITY_EDITOR
+            [DllImport(Lib,EntryPoint="stp_posix_rename",SetLastError=true)]private static extern int Rename([MarshalAs(UnmanagedType.LPUTF8Str)]string source,[MarshalAs(UnmanagedType.LPUTF8Str)]string destination);
+#else
             [DllImport(Lib,EntryPoint="rename",SetLastError=true)]private static extern int Rename([MarshalAs(UnmanagedType.LPUTF8Str)]string source,[MarshalAs(UnmanagedType.LPUTF8Str)]string destination);
+#endif
 #if UNITY_EDITOR || !UNITY_ANDROID && !UNITY_IOS
             [DllImport("kernel32.dll",EntryPoint="MoveFileExW",CharSet=CharSet.Unicode,SetLastError=true)][return:MarshalAs(UnmanagedType.Bool)]private static extern bool MoveFile(string source,string destination,int flags);
 #endif
+#if UNITY_IOS && !UNITY_EDITOR
+            [DllImport(Lib,EntryPoint="stp_posix_open",SetLastError=true)]private static extern int Open([MarshalAs(UnmanagedType.LPUTF8Str)]string path,int flags);
+            [DllImport(Lib,EntryPoint="stp_posix_flock",SetLastError=true)]private static extern int Flock(int descriptor,int operation);
+            [DllImport(Lib,EntryPoint="stp_posix_close")]private static extern int Close(int descriptor);
+#else
             [DllImport(Lib,EntryPoint="open",SetLastError=true)]private static extern int Open([MarshalAs(UnmanagedType.LPUTF8Str)]string path,int flags);
             [DllImport(Lib,EntryPoint="flock",SetLastError=true)]private static extern int Flock(int descriptor,int operation);
             [DllImport(Lib,EntryPoint="close")]private static extern int Close(int descriptor);
+#endif
             internal static void Replace(string source,string destination)
             {
 #if UNITY_EDITOR || !UNITY_ANDROID && !UNITY_IOS

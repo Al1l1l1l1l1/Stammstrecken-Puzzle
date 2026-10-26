@@ -75,7 +75,7 @@ def main() -> int:
       configs[config['name']]={k:values.get(k) for k in keys}
      targets[target['name']]={'sources':sources,'frameworks':frameworks,'configs':configs}
     framework=targets['UnityFramework'];main=targets['Unity-iPhone']
-    for filename in ('StpStoreKitVerifier.swift','StpHaptics.mm'):
+    for filename in ('StpStoreKitVerifier.swift','StpHaptics.mm','StpPosixFileBridge.mm'):
      if sum(Path(p).name==filename for p in framework['sources'])!=1:problems.append('FRAMEWORK_SOURCE_OWNER:'+filename)
      if any(Path(p).name==filename for p in main['sources']):problems.append('DUPLICATE_APP_SOURCE_OWNER:'+filename)
     for name,target in (('UnityFramework',framework),('Unity-iPhone',main)):
@@ -90,7 +90,7 @@ def main() -> int:
     if 'NSUserTrackingUsageDescription' in plist:problems.append('UNEXPECTED_ATT_CONFIGURATION')
     if plist.get('GADApplicationIdentifier')!='ca-app-pub-3940256099942544~1458002511':problems.append('QA_GOOGLE_TEST_APP_ID_REQUIRED')
     source_bindings=[]
-    for filename in ('StpStoreKitVerifier.swift','StpHaptics.mm'):
+    for filename in ('StpStoreKitVerifier.swift','StpHaptics.mm','StpPosixFileBridge.mm'):
      source=root/'Assets/Plugins/iOS'/filename;copied=export/'Libraries/Plugins/iOS'/filename
      source_bindings.append({'source':source.relative_to(root).as_posix(),'export':copied.relative_to(export).as_posix(),'sourceSha256':sha(source),'exportSha256':sha(copied)})
      if sha(source)!=sha(copied):problems.append('SOURCE_EXPORT_HASH_MISMATCH:'+filename)
@@ -110,10 +110,10 @@ def main() -> int:
     shutil.copy2(args.build_log.resolve(),out/'unity-ios-export.log')
     if args.editor_report is not None:
      shutil.copy2(args.editor_report.resolve(),out/'LastBuild.buildreport')
-    for relative in ('Info.plist','Podfile','stp-native-privacy-source.txt','Unity-iPhone.xcodeproj/project.pbxproj','Libraries/Plugins/iOS/StpStoreKitVerifier.swift','Libraries/Plugins/iOS/StpHaptics.mm','UnityFramework/PrivacyInfo.xcprivacy','UnityFramework/ApplePrivacyManifestsMerge.txt'):
+    for relative in ('Info.plist','Podfile','stp-native-privacy-source.txt','Unity-iPhone.xcodeproj/project.pbxproj','Libraries/Plugins/iOS/StpStoreKitVerifier.swift','Libraries/Plugins/iOS/StpHaptics.mm','Libraries/Plugins/iOS/StpPosixFileBridge.mm','UnityFramework/PrivacyInfo.xcprivacy','UnityFramework/ApplePrivacyManifestsMerge.txt'):
      dest=out/relative;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(export/relative,dest)
     evidence={'evidenceKind':'ACTUAL_IOS_EXPORTED_PROJECT_SOURCE_INSPECTION_ONLY','buildLabel':args.build_label,'sourceBinding':args.source_binding,'sourceBindingIsCallerDeclaration':True,
-     'targets':{name:{'nativeHooks':[p for p in t['sources'] if Path(p).name in ('StpStoreKitVerifier.swift','StpHaptics.mm')],'storeKitLinks':[p for p in t['frameworks'] if Path(p).name=='StoreKit.framework'],'configs':t['configs']} for name,t in targets.items() if name in ('UnityFramework','Unity-iPhone')},
+     'targets':{name:{'nativeHooks':[p for p in t['sources'] if Path(p).name in ('StpStoreKitVerifier.swift','StpHaptics.mm','StpPosixFileBridge.mm')],'storeKitLinks':[p for p in t['frameworks'] if Path(p).name=='StoreKit.framework'],'configs':t['configs']} for name,t in targets.items() if name in ('UnityFramework','Unity-iPhone')},
      'plist':{k:plist.get(k) for k in ('GADDelayAppMeasurementInit','GADApplicationIdentifier','NSUserTrackingUsageDescription','CFBundleIdentifier','CFBundleVersion')},'podfile':pod,'podfileLockPresent':(export/'Podfile.lock').exists(),'podsDirectoryPresent':(export/'Pods').exists(),
      'sourceBindings':source_bindings,'hookReport':hook_report,'privacyManifestDeclarations':privacy,'problems':problems,'files':files,
      'archive':{'path':archive.relative_to(out).as_posix(),'sha256':sha(archive),'sizeBytes':archive.stat().st_size},
