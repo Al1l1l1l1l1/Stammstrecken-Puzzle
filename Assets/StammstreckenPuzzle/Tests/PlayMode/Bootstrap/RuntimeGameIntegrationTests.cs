@@ -40,12 +40,16 @@ namespace STP.Tests.Bootstrap.PlayMode
         private bool ownsRoot;
         private CancellationTokenSource? seasonSetupCancellation;
         private Task? seasonSetupWork;
+        private System.Diagnostics.Stopwatch? runtimePhaseClock;
+        private long runtimePhasePreviousMs;
+        private int runtimePhaseSequence;
         private ProductionGameComposition Runtime => installer.RuntimeComposition ?? throw new InvalidOperationException("RUNTIME_COMPOSITION_NOT_READY");
         private SavedPublic240ReviewSession Model => installer.Model ?? throw new InvalidOperationException("RUNTIME_MODEL_NOT_READY");
 
         [UnitySetUp]
         public IEnumerator SetUp()
         {
+            runtimePhaseClock = null; runtimePhasePreviousMs = 0; runtimePhaseSequence = 0;
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
             // Short private path also exercises the real Windows archive-length guards.
             ownRoot = Path.Combine(Path.GetTempPath(), "r" + Guid.NewGuid().ToString("N").Substring(0, 6));
@@ -206,32 +210,44 @@ namespace STP.Tests.Bootstrap.PlayMode
         [UnityTest, Timeout(180000)]
         public IEnumerator LockedRuntime_RealSeasonUnlockCosmeticPurchaseAndV2EndlessResultRoundTrip()
         {
-            yield return CreateProfile(); yield return CompleteFixtureSeasonThroughActualDomain();
+            runtimePhaseClock = System.Diagnostics.Stopwatch.StartNew();
+            TraceRuntimePhase("profile.begin");
+            yield return CreateProfile(); TraceRuntimePhase("profile.complete");
+            yield return CompleteFixtureSeasonThroughActualDomain(); TraceRuntimePhase("season.complete");
             Assert.That(Model.State.Progress!.FirstClearCount, Is.EqualTo(240));
+            TraceRuntimePhase("depot.begin");
             Submit("nav-depot"); yield return Idle(); long balance = Model.State.Progress.BalancePatience;
             Submit("cosmetic-action-obj-wartebank-ohne-anschluss"); yield return Idle();
             Assert.That(Model.ConfirmedSnapshot!.Payload.Inventory.Ownership.Any(o => o.ItemId == "obj-wartebank-ohne-anschluss"), Is.True);
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(balance - 120));
+            TraceRuntimePhase("cosmetic.purchase.complete");
             Submit("cosmetic-action-obj-wartebank-ohne-anschluss"); yield return Idle();
             Assert.That(Model.ConfirmedSnapshot.Payload.Inventory.SelectedItemIds, Does.Contain("obj-wartebank-ohne-anschluss"));
             Submit("cosmetic-action-obj-wartebank-ohne-anschluss"); yield return Idle();
             Assert.That(Model.ConfirmedSnapshot.Payload.Inventory.SelectedItemIds, Does.Not.Contain("obj-wartebank-ohne-anschluss"));
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(balance - 120));
+            TraceRuntimePhase("depot.complete");
             Submit("nav-home"); Submit("home-endless"); yield return Idle();
             yield return Until(() => Find<Button>("endless-profile-dienstbeginn").enabledInHierarchy, "settled modal profile action");
+            TraceRuntimePhase("reservation.first.begin");
             Submit("endless-profile-dienstbeginn"); yield return Idle();
+            TraceRuntimePhase("reservation.first.settled");
             Assert.That(Model.CurrentModeName, Is.EqualTo("ENDLESS"), Model.EndlessGenerationStatus);
             var view = Model.PuzzleView!; var identity = view.Puzzle.Identity;
             var active = Model.ConfirmedSnapshot!.Payload.Endless.OpenEndless.OfType<ActiveEndlessDraft>().Single();
             var parameters = (SearchGeneratorParameters)active.Descriptor.Parameters;
             Assert.That(parameters.StarCalibration, Is.Not.Null);
             Assert.That(installer.Presenter.IsPuzzleScreenActive, Is.True);
+            TraceRuntimePhase("hint.begin");
             Submit("puzzle-hint"); yield return Until(() => Runtime.Metagame.HintCredits(Model.ConfirmedSnapshot!.Payload, identity) == 2 && Find<Button>("hint-close").enabledInHierarchy, "endless hint acknowledgement");
             Submit("hint-close"); yield return Idle();
+            TraceRuntimePhase("hint.complete");
             yield return Request(SavedReviewUiRequestKind.Restart);
+            TraceRuntimePhase("restart.complete");
             Assert.That(Runtime.Metagame.HintCredits(Model.ConfirmedSnapshot!.Payload, identity), Is.EqualTo(2));
             long before = Model.State.Progress!.BalancePatience;
             yield return SolveCurrentThroughUi();
+            TraceRuntimePhase("solve.complete");
             var done = Model.ConfirmedSnapshot!.Payload.Endless.OpenEndless.OfType<OpenEndlessCompletion>().Single();
             Assert.That(done.RecordVersion, Is.EqualTo(2));
             Assert.That(done.Result, Is.Not.Null); Assert.That(done.Result!.AttemptId, Is.EqualTo(Model.PuzzleView!.AttemptId));
@@ -239,19 +255,25 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Model.State.Progress!.SelectedStars, Is.EqualTo(done.Result.Stars));
             Assert.That(Model.State.Progress.BalancePatience - before, Is.EqualTo(15 + (done.Result.Stars >= 2 ? 5 : 0) + (done.Result.Stars >= 3 ? 10 : 0)));
             Assert.That(Model.ConfirmedSnapshot.Payload.Levels.Any(l => l.Identity.Equals(identity)), Is.False);
+            TraceRuntimePhase("physical.read.begin");
             var physical = Runtime.Repository.LoadAsync(CancellationToken.None); yield return Await(physical);
+            TraceRuntimePhase("physical.read.returned", physical);
             Assert.That(physical.Result.Succeeded, Is.True, physical.Result.ErrorCode);
             Assert.That(physical.Result.Snapshot!.Payload.Endless.OpenEndless.OfType<OpenEndlessCompletion>().Single().Result!.Stars, Is.EqualTo(done.Result.Stars));
             long resultBalance = Model.State.Progress.BalancePatience;
             Submit("result-skip-bonus"); yield return Idle();
             Assert.That(Model.ConfirmedSnapshot!.Payload.Endless.OpenEndless, Is.Empty);
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(resultBalance));
+            TraceRuntimePhase("bonus.skip.complete");
             Submit("result-next"); yield return Idle();
             yield return Until(() => Find<Button>("endless-profile-dienstbeginn").enabledInHierarchy, "second settled modal action");
+            TraceRuntimePhase("reservation.second.begin");
             Submit("endless-profile-dienstbeginn"); yield return Idle();
+            TraceRuntimePhase("reservation.second.settled");
             Assert.That(Model.ConfirmedSnapshot.Payload.Endless.HighestReservedOrdinal, Is.EqualTo("2"));
             Assert.That(Model.PuzzleView!.Puzzle.Identity, Is.Not.EqualTo(identity));
             Assert.That(Model.State.Progress!.FirstClearCount, Is.EqualTo(240));
+            TraceRuntimePhase("roundtrip.assertions.complete");
         }
 
         private IEnumerator CompleteFixtureSeasonThroughActualDomain()
@@ -265,14 +287,17 @@ namespace STP.Tests.Bootstrap.PlayMode
             seasonSetupCancellation = new CancellationTokenSource(); var token = seasonSetupCancellation.Token;
             var seasonState = original.Payload; int completed = 0;
             Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.Zero);
+            TraceRuntimePhase("season.policy.begin");
             var policyWork = Task.Run(() =>
             {
                 var json = new STP.Infrastructure.Content.CanonicalJsonAdapter();
                 return new LocalProgressPolicy(corpus, campaign, completion, json, new STP.Infrastructure.Persistence.SaveLedgerCodec(json));
             }, token);
             seasonSetupWork = policyWork; yield return Await(policyWork); var progress = policyWork.GetAwaiter().GetResult();
+            TraceRuntimePhase("season.policy.complete", policyWork);
             foreach (var route in routes)
             {
+                TraceRuntimePhase("season.route.begin." + (completed / 12 + 1));
                 var routeInputs = route.Inputs; var prior = seasonState;
                 var routeWork = Task.Run(() =>
                 {
@@ -299,12 +324,18 @@ namespace STP.Tests.Bootstrap.PlayMode
                 seasonSetupWork = routeWork; yield return Await(routeWork);
                 seasonState = routeWork.GetAwaiter().GetResult(); completed += routeInputs.Length;
                 Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.EqualTo(completed), route.Id);
+                TraceRuntimePhase("season.route.complete." + (completed / 12), routeWork);
             }
+            TraceRuntimePhase("season.prepare.begin");
             var work = Task.Run(() => progress.PrepareForSave(seasonState, original.Generation + 1), token);
             seasonSetupWork = work; yield return Await(work);
+            TraceRuntimePhase("season.prepare.complete", work);
             var write = Runtime.Repository.CommitAsync(new SaveSnapshot<LocalProfileState>(original.Profile, original.Catalog, original.Generation + 1, work.Result), original.Generation, CancellationToken.None);
+            TraceRuntimePhase("season.commit.started", write);
             seasonSetupWork = write; yield return Await(write); Assert.That(write.Result.Succeeded, Is.True, write.Result.ErrorCode);
+            TraceRuntimePhase("season.commit.complete", write);
             yield return Request(SavedReviewUiRequestKind.Reload);
+            TraceRuntimePhase("season.reload.complete");
         }
         private IEnumerator SolveCurrentThroughUi()
         {
@@ -345,12 +376,28 @@ namespace STP.Tests.Bootstrap.PlayMode
         { yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(kind, Model.State.Version))); yield return Idle(); }
         private IEnumerator Idle()
         {
+            TraceRuntimePhase("idle.begin", installer.PendingOperation);
             float deadline = Time.realtimeSinceStartup + 25;
             do { yield return null; } while ((!installer.PendingOperation.IsCompleted || installer.Presenter.PendingRequest != null || installer.Presenter.IsResultContinuationPending || installer.Model?.State.IsDirty == true) && Time.realtimeSinceStartup < deadline);
+            TraceRuntimePhase("idle.returned", installer.PendingOperation);
             Assert.That(installer.PendingOperation.IsCompleted, Is.True, "Common installer/user/lifecycle work did not settle.");
             Assert.That(installer.PendingOperation.IsFaulted, Is.False, installer.PendingOperation.Exception?.GetBaseException().ToString());
             Assert.That(installer.Presenter.PendingRequest, Is.Null); Assert.That(installer.Presenter.IsResultContinuationPending, Is.False);
             Assert.That(installer.Presenter.HasRequestFault, Is.False);
+        }
+        // Bounded diagnostics for this synthetic test only; no shipping telemetry or profile data.
+        private void TraceRuntimePhase(string phase, Task? work = null)
+        {
+            if (runtimePhaseClock == null) return;
+            long elapsed = runtimePhaseClock.ElapsedMilliseconds;
+            Debug.Log("[STP_RUNTIME_PHASE] seq=" + (++runtimePhaseSequence) + " phase=" + phase +
+                " elapsedMs=" + elapsed + " deltaMs=" + (elapsed - runtimePhasePreviousMs) +
+                " task=" + (work?.Status.ToString() ?? "none") +
+                " pending=" + installer.PendingOperation.Status +
+                " request=" + (installer.Presenter.PendingRequest != null) +
+                " continuation=" + installer.Presenter.IsResultContinuationPending +
+                " dirty=" + (installer.Model?.State.IsDirty == true));
+            runtimePhasePreviousMs = elapsed;
         }
         private static IEnumerator Await(Task task)
         {
