@@ -35,9 +35,15 @@ SCOPE_PREFIX = "tools/architecture-validation/scopes/"
 PRODUCT_PREFIXES = ("Assets/", "Packages/", "ProjectSettings/")
 # Authoring input to HumanReadback/ProductionImport, not a release status report.
 HUMAN_ASSIGNMENT_BINDINGS = "Content/Quality/human/assignment-source-bindings.json"
+# These auditors execute inside required native candidate jobs. Their changes
+# remain product-relevant; only the established classified-push deferral applies.
+NATIVE_BUILD_AUDITORS = frozenset({
+    "tools/release/audit_android_apk.py",
+    "tools/release/audit_ios_export.py",
+})
 # Descriptive inspections of already-built artifacts; never build/provider inputs.
 NATIVE_INSPECTION_PATH = re.compile(
-    r"Release/(?:ANDROID_BUILD|HUMAN_ANDROID_BUILD|IOS_EXPORT)[1-9][0-9]*_INSPECTION\.json"
+    r"Release/(?:(?:ANDROID_BUILD|HUMAN_ANDROID_BUILD|IOS_EXPORT)[1-9][0-9]*|CI_ANDROID_[1-9][0-9]*)_INSPECTION\.json"
 )
 UNITY_WORKFLOW = ".github/workflows/unity.yml"
 JCS_PATHS = {
@@ -213,7 +219,7 @@ def path_kind(path: str) -> str:
         return "governance"
     if path.startswith(TEXT_PREFIXES):
         return "text"
-    if path.startswith(PRODUCT_PREFIXES) or path in {"Toolchain.lock.md", "tools/ci/prepare_coverage.py", HUMAN_ASSIGNMENT_BINDINGS}:
+    if path.startswith(PRODUCT_PREFIXES) or path in {"Toolchain.lock.md", "tools/ci/prepare_coverage.py", HUMAN_ASSIGNMENT_BINDINGS} or path in NATIVE_BUILD_AUDITORS:
         return "product"
     if path.startswith(TOOL_PREFIXES):
         return "tooling"

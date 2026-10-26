@@ -45,6 +45,7 @@ class ChangeScopeTests(unittest.TestCase):
             "Release/HUMAN_ANDROID_BUILD7_INSPECTION.json",
             "Release/IOS_EXPORT4_INSPECTION.json",
             "Release/ANDROID_BUILD123_INSPECTION.json",
+            "Release/CI_ANDROID_40143424066_INSPECTION.json",
         )
         for event in ("push", "pull_request"):
             with self.subTest(event=event):
@@ -53,6 +54,69 @@ class ChangeScopeTests(unittest.TestCase):
                 self.assertFalse(result.requires_unity)
                 self.assertEqual("NOT_REQUIRED_SOURCE_UNCHANGED", result.unity_status)
                 self.assertFalse(result.source_product_changed)
+
+    def test_native_build_auditors_are_product_not_unknown_or_docs(self) -> None:
+        for path in ("tools/release/audit_android_apk.py", "tools/release/audit_ios_export.py"):
+            with self.subTest(path=path):
+                pushed = subject.classify_records(self.records(path), event="push")
+                self.assertEqual(("product",), pushed.source_change_class)
+                self.assertTrue(pushed.source_product_changed)
+                self.assertTrue(pushed.run_jcs)
+                self.assertFalse(pushed.requires_unity)
+                self.assertEqual("DEFERRED_TO_PR_CANDIDATE", pushed.unity_status)
+                candidate = subject.classify_records(self.records(path), event="pull_request")
+                self.assertTrue(candidate.requires_unity)
+                self.assertTrue(candidate.source_product_changed)
+                self.assertEqual("REQUIRED", candidate.unity_status)
+
+    def test_actual_d9_product_range_defers_only_its_push(self) -> None:
+        records = self.records(
+            "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+            "Assets/Plugins/iOS/StpPosixFileBridge.mm.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/HumanCalibrationStore.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalDiagnosticRing.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+            "tools/release/audit_ios_export.py",
+        )
+        pushed = subject.classify_records(records, event="push")
+        self.assertEqual(("product",), pushed.source_change_class)
+        self.assertEqual(("known_product_push_deferred_to_pr_candidate",), pushed.reasons)
+        self.assertFalse(pushed.requires_unity)
+        candidate = subject.classify_records(records, event="pull_request")
+        self.assertTrue(candidate.requires_unity)
+        self.assertTrue(candidate.source_product_changed)
+        self.assertEqual(("pr_source_product_changed",), candidate.reasons)
+
+    def test_auditor_allowlist_does_not_hide_new_release_inputs(self) -> None:
+        for path in (
+            "tools/release/audit_ios_export.py.bak", "tools/release/sub/audit_ios_export.py",
+            "tools/release/other.py", "tools/release/provider-inputs.json",
+        ):
+            for event in ("push", "pull_request"):
+                with self.subTest(path=path, event=event):
+                    result = subject.classify_records(self.records(path), event=event)
+                    self.assertEqual(("unknown",), result.source_change_class)
+                    self.assertTrue(result.requires_unity)
+                    self.assertIn("unknown_diff_fail_closed", result.reasons)
+
+    def test_ci_inspection_report_cannot_hide_product_union_unknown_or_recipe(self) -> None:
+        reports = self.records("Release/CI_ANDROID_40143424066_INSPECTION.json")
+        for path in (
+            "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+            "tools/release/audit_ios_export.py",
+            "Release/provider-inputs.json",
+        ):
+            with self.subTest(path=path):
+                union = subject.classify_records(reports, event="pull_request", merge_records=self.records(path))
+                self.assertTrue(union.requires_unity)
+                self.assertTrue(union.pr_merge_product_changed)
+                source = subject.classify_records(reports + self.records(path), event="pull_request")
+                self.assertTrue(source.requires_unity)
+        for event in ("push", "pull_request"):
+            self.assertTrue(subject.classify_records(reports, event=event, source_recipe_changed=True).requires_unity)
+            self.assertTrue(subject.classify_records(reports, event=event, force_full=True).requires_unity)
+        self.assertTrue(subject.classify_records([], event="push").requires_unity)
+        self.assertTrue(subject.classify_records(self.records("tools/release/audit_ios_export.py"), event="push", source_recipe_changed=True).requires_unity)
 
     def test_human_assignment_bindings_still_require_product_candidate(self) -> None:
         records = self.records("Content/Quality/human/assignment-source-bindings.json")
@@ -69,6 +133,9 @@ class ChangeScopeTests(unittest.TestCase):
             "Release/ANDROID_BUILD01_INSPECTION.json", "Release/ANDROID_BUILD12_INSPECTION.json/inputs",
             "Release/ANDROID_BUILD12_INSPECTION.json.bak", "Release/sub/ANDROID_BUILD12_INSPECTION.json",
             "Content/Quality/human/other-bindings.json", "tools/release/ANDROID_BUILD12_INSPECTION.json",
+            "Release/CI_ANDROID_0_INSPECTION.json", "Release/CI_ANDROID_01_INSPECTION.json",
+            "Release/CI_ANDROID_123_INSPECTION.json/inputs", "Release/CI_ANDROID_123_INSPECTION.json.bak",
+            "Release/sub/CI_ANDROID_123_INSPECTION.json", "Release/CI_IOS_123_INSPECTION.json",
         ):
             with self.subTest(path=path):
                 result = subject.classify_records(self.records(path), event="push")
