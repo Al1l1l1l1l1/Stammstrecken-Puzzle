@@ -62,6 +62,8 @@ namespace STP.Editor.Build
                 if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Required<TextAsset>(packPaths[i]),out packGuids[i],out packIds[i]))
                     throw new BuildFailedException("HUMAN_SCENE_PACK_ASSET_ID_MISSING");
             ValidatePackSceneReferences(scene,AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/HumanCalibrationInstaller.cs"),packGuids,packIds);
+            string currentPublicHash=JsonUtility.FromJson<PublicBinding>(Required<TextAsset>(Root+"UI/MobileCandidate.bindings.json").text).publicCatalogHashSha256;
+            ValidatePublicCatalogHashValue(scene,AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/HumanCalibrationInstaller.cs"),currentPublicHash);
         }
         // Exact saved component/array bindings, independent of incidental dependency or GUID text elsewhere in the scene.
         internal static void ValidatePackSceneReferences(string text,string installerGuid,string[] guids,long[] ids)
@@ -82,6 +84,21 @@ namespace STP.Editor.Build
             for(int i=0;i<17;i++)
                 if(lines[i]!="  - {fileID: "+ids[i].ToString(CultureInfo.InvariantCulture)+", guid: "+guids[i]+", type: 3}")
                     throw new InvalidOperationException("HUMAN_SCENE_PACK_REFERENCE:"+i.ToString(CultureInfo.InvariantCulture));
+        }
+        // Inspect the actual installer value; an unrelated component cannot satisfy its binding.
+        internal static void ValidatePublicCatalogHashValue(string text,string installerGuid,string expectedHash)
+        {
+            if(text==null||!text.StartsWith("%YAML 1.1",StringComparison.Ordinal)||installerGuid==null||expectedHash==null||
+                !Regex.IsMatch(installerGuid,@"\A[a-f0-9]{32}\z")||!Regex.IsMatch(expectedHash,@"\A[a-f0-9]{64}\z"))
+                throw new InvalidOperationException("HUMAN_SCENE_PUBLIC_HASH_ARGUMENTS");
+            var blocks=Regex.Split(text,@"(?m)^--- !u!").Where(block=>Regex.IsMatch(block,@"\A114 &-?\d+\r?\nMonoBehaviour:\r?\n")&&
+                Regex.IsMatch(block,@"(?m)^  m_Script: \{fileID: 11500000, guid: "+installerGuid+@", type: 3\}\r?$")).ToArray();
+            if(blocks.Length!=1||Regex.Matches(blocks[0],@"(?m)^  m_Script:").Count!=1||
+                Regex.Matches(blocks[0],@"(?m)^  publicCatalogHashSha256:").Count!=1)
+                throw new InvalidOperationException("HUMAN_SCENE_PUBLIC_HASH_COMPONENT");
+            var value=Regex.Match(blocks[0],@"(?m)^  publicCatalogHashSha256: (?<hash>[a-f0-9]{64})\r?$");
+            if(!value.Success||!string.Equals(value.Groups["hash"].Value,expectedHash,StringComparison.Ordinal))
+                throw new InvalidOperationException("HUMAN_SCENE_PUBLIC_HASH_MISMATCH");
         }
         private static string[] ExpectedUiSources()=>Directory.GetFiles(Root+"Scripts/Presentation","*.cs",SearchOption.AllDirectories)
             .Concat(Directory.GetFiles(Root+"Art","*",SearchOption.AllDirectories).Where(p=>new[]{".png",".svg",".ttf",".otf"}.Contains(Path.GetExtension(p).ToLowerInvariant())))
