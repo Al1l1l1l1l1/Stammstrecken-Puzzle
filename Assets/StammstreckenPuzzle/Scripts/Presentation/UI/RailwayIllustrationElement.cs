@@ -27,7 +27,7 @@ namespace STP.Presentation.UI
         {
             if(route==null)throw new System.ArgumentNullException(nameof(route));
             var nextStage=Mathf.Clamp(stage,0,12);
-            if(ReferenceEquals(composition,route)&&clearedStage==nextStage)return;
+            if(ReferenceEquals(composition,route)&&clearedStage==nextStage&&world==route.section-1)return;
             composition=route;world=route.section-1;clearedStage=nextStage;MarkDirtyRepaint();
         }
 

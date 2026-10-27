@@ -302,6 +302,193 @@ namespace STP.Tests.Bootstrap.PlayMode
             yield break;
 #endif
         }
+        [UnityTest, Timeout(180000)]
+        public IEnumerator Candidate_AllTwentyMapRoutes_KeepTheirWorldAndCanvasAcrossHomeAndRefresh()
+        {
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+            yield return ConfigureCandidate(); yield return CreateProfile();
+            Assert.That(installer.Model!.State.Progress!.FirstClearCount, Is.Zero);
+            Submit("home-map"); yield return Idle(); yield return null; yield return null;
+            string output = UiQualityDirectory("world-routes");
+            var records = new System.Collections.Generic.List<string> {
+                "routeIndex\trouteId\texpectedWorld\tbeforeWorld\tafterWorld\tstage\tcanvasEvidence\tbeforePngSha256\tafterPngSha256\tregionWidth\tregionHeight"
+            };
+            for (int routeIndex = 0; routeIndex < 20; routeIndex++)
+            {
+                if (routeIndex > 0) { Submit("map-next"); yield return Idle(); yield return null; yield return null; }
+                var art = Find<VisualElement>("map-art").Q<RailwayIllustrationElement>();
+                Assert.That(art, Is.Not.Null);
+                var route = UiQualityField<RailwayRouteComposition>(art!, "composition");
+                int expectedWorld = routeIndex / 4;
+                Assert.That(route.id, Is.EqualTo(string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    "s1-route-{0:00}-{1:00}", expectedWorld + 1, routeIndex % 4 + 1)));
+                Assert.That(route.section, Is.EqualTo(expectedWorld + 1));
+                int beforeWorld = UiQualityField<int>(art!, "world");
+                Assert.That(beforeWorld, Is.EqualTo(expectedWorld));
+                int stage = UiQualityField<int>(art!, "clearedStage");
+                string[] props = UiQualityProps(route);
+                Rect beforeBounds = art!.worldBound;
+                UiQualityRegion? before = texture == null ? null : UiQualityReadRegion(art);
+                if (before != null) Assert.That(before.Pixels.Distinct().Take(5).Count(), Is.GreaterThanOrEqualTo(4), "A blank Canvas is not a rendered map proof.");
+
+                // These are the actual bound UI navigation actions, not a direct renderer imitation.
+                Submit("map-back"); yield return Idle();
+                Assert.That(Find<VisualElement>("home-screen").resolvedStyle.display, Is.EqualTo(DisplayStyle.Flex));
+                Submit("home-map"); yield return Idle();
+                installer.Presenter.Refresh(); yield return null; yield return null;
+                Assert.That(Find<VisualElement>("map-screen").resolvedStyle.display, Is.EqualTo(DisplayStyle.Flex));
+                var returned = Find<VisualElement>("map-art").Q<RailwayIllustrationElement>();
+                Assert.That(returned, Is.SameAs(art));
+                Assert.That(UiQualityField<RailwayRouteComposition>(returned!, "composition"), Is.SameAs(route));
+                Assert.That(UiQualityField<int>(returned!, "world"), Is.EqualTo(expectedWorld), "Home/Refresh must not replace a browsed route's base world with the progress world.");
+                Assert.That(UiQualityField<int>(returned!, "clearedStage"), Is.EqualTo(stage));
+                CollectionAssert.AreEqual(props, UiQualityProps(route)); AssertRect(returned!.worldBound, beforeBounds);
+                UiQualityRegion? after = texture == null ? null : UiQualityReadRegion(returned);
+                if (before != null && after != null)
+                {
+                    Assert.That(after.Width, Is.EqualTo(before.Width)); Assert.That(after.Height, Is.EqualTo(before.Height));
+                    CollectionAssert.AreEqual(before.Pixels, after.Pixels, "Compare the original decorative Canvas region, excluding changing focus/buttons outside map-art.");
+                    if (routeIndex % 4 == 0)
+                    {
+                        string name = "map-world-" + (expectedWorld + 1).ToString("00", System.Globalization.CultureInfo.InvariantCulture);
+                        File.WriteAllBytes(Path.Combine(output, name + "-before-region.png"), before.Png);
+                        File.WriteAllBytes(Path.Combine(output, name + "-after-region.png"), after.Png);
+                        UiQualityWriteCanvas(Path.Combine(output, name + "-after-navigation.png"));
+                    }
+                }
+                records.Add(string.Join("\t", routeIndex, route.id, expectedWorld, beforeWorld,
+                    UiQualityField<int>(returned!, "world"), stage, texture != null,
+                    before == null ? "NOT_CAPTURED_GRAPHICS_NULL" : UiQualityHash(before.Png),
+                    after == null ? "NOT_CAPTURED_GRAPHICS_NULL" : UiQualityHash(after.Png),
+                    before?.Width ?? 0, before?.Height ?? 0));
+            }
+            Assert.That(installer.Model.State.Progress!.FirstClearCount, Is.Zero, "Browsing all routes must not mint campaign progress or require a synthetic season.");
+            File.WriteAllLines(Path.Combine(output, "map-evidence.tsv"), records);
+#else
+            yield break;
+#endif
+        }
+
+        [UnityTest, Timeout(120000)]
+        public IEnumerator TenByTen_ExplicitRetapCaptionFits_AndAllCellAndToolRectsStayFixed()
+        {
+#if UNITY_EDITOR && UNITY_INCLUDE_TESTS
+            // Existing isolated public-review path: real installer/domain/save/UI, no production unlock bypass.
+            yield return CreateProfile();
+            int index = installer.Model!.Puzzles.ToList().FindIndex(p => p.Width == 10 && p.Height == 10);
+            Assert.That(index, Is.GreaterThanOrEqualTo(0)); yield return Select(index);
+            Submit("home-play"); yield return Idle(); yield return null; yield return null;
+            var caption = installer.Document.rootVisualElement.Q<Label>(className: "tool-caption");
+            Assert.That(caption, Is.Not.Null);
+            const string expected = "Mit gleichem Werkzeug dieselbe Zelle erneut tippen: leeren.";
+            Assert.That(caption!.text, Is.EqualTo(expected));
+            Assert.That(caption.resolvedStyle.whiteSpace, Is.EqualTo(WhiteSpace.Normal));
+            Assert.That(caption.resolvedStyle.fontSize, Is.GreaterThanOrEqualTo(10), "Do not make the clarification fit by shrinking the agreed caption.");
+            Assert.That(caption.contentRect.width, Is.GreaterThan(0));
+            Vector2 measured = caption.MeasureTextSize(expected, caption.contentRect.width,
+                VisualElement.MeasureMode.Exactly, 0, VisualElement.MeasureMode.Undefined);
+            Assert.That(measured.y, Is.LessThanOrEqualTo(caption.contentRect.height + .5f), "All wrapped lines must fit the actual allocated caption box.");
+            Assert.That(caption.isElided, Is.False);
+            Rect row = caption.parent.worldBound, box = caption.worldBound;
+            Assert.That(box.xMin, Is.GreaterThanOrEqualTo(row.xMin - .5f)); Assert.That(box.xMax, Is.LessThanOrEqualTo(row.xMax + .5f));
+            Assert.That(box.yMin, Is.GreaterThanOrEqualTo(row.yMin - .5f)); Assert.That(box.yMax, Is.LessThanOrEqualTo(row.yMax + .5f));
+            var grid = installer.Presenter.Grid!; var cell = grid.CellButton(1, 1);
+            Rect cellBefore = cell.worldBound, dockBefore = Find<VisualElement>("tool-dock").worldBound;
+            Assert.That(cellBefore.width, Is.GreaterThan(28));
+            var rects = UiQualityRects();
+            Submit("tool-1"); Submit(cell.name); yield return StableIdle(cell, cellBefore, dockBefore); UiQualityAssertRects(rects);
+            Assert.That(installer.Model.PuzzleView!.CellAt(1, 1), Is.EqualTo(DevelopmentTool.EmptyMarker));
+            Submit("tool-1"); yield return null; UiQualityAssertRects(rects);
+            Assert.That(installer.Model.PuzzleView.CellAt(1, 1), Is.EqualTo(DevelopmentTool.EmptyMarker), "Repeating the tool button does not clear a cell; the instruction must name the cell tap.");
+            Submit(cell.name); yield return StableIdle(cell, cellBefore, dockBefore); UiQualityAssertRects(rects);
+            Assert.That(installer.Model.PuzzleView.CellAt(1, 1), Is.EqualTo(DevelopmentTool.Clear));
+            Assert.That(installer.Presenter.ActiveTool, Is.EqualTo(DevelopmentTool.EmptyMarker));
+            Submit("puzzle-undo"); yield return StableIdle(cell, cellBefore, dockBefore); UiQualityAssertRects(rects);
+            Assert.That(installer.Model.PuzzleView.CellAt(1, 1), Is.EqualTo(DevelopmentTool.EmptyMarker));
+            Assert.That(installer.Presenter.ActiveTool, Is.EqualTo(DevelopmentTool.EmptyMarker));
+            Assert.That(caption.text, Is.EqualTo(expected)); AssertRect(caption.worldBound, box);
+            string output = UiQualityDirectory("caption-10x10");
+            File.WriteAllLines(Path.Combine(output, "caption-evidence.tsv"), new[] {
+                "canvasEvidence\tcaptionWidth\tcaptionHeight\tmeasuredTextHeight\tfontSize\tcellAndToolRectCount\ttext",
+                string.Join("\t", texture != null, caption.contentRect.width.ToString("F3", System.Globalization.CultureInfo.InvariantCulture),
+                    caption.contentRect.height.ToString("F3", System.Globalization.CultureInfo.InvariantCulture),
+                    measured.y.ToString("F3", System.Globalization.CultureInfo.InvariantCulture), caption.resolvedStyle.fontSize,
+                    rects.Count, expected)
+            });
+            if (texture != null)
+            {
+                yield return null; yield return null;
+                var region = UiQualityReadRegion(caption);
+                Assert.That(region.Pixels.Distinct().Take(3).Count(), Is.GreaterThanOrEqualTo(2), "A blank Canvas cannot demonstrate rendered caption text.");
+                File.WriteAllBytes(Path.Combine(output, "caption-region.png"), region.Png);
+                UiQualityWriteCanvas(Path.Combine(output, "caption-10x10-after-retap-undo.png"));
+            }
+#else
+            yield break;
+#endif
+        }
+
+        private static T UiQualityField<T>(object owner, string name)
+        {
+            var field = owner.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.That(field, Is.Not.Null, name); return (T)field!.GetValue(owner)!;
+        }
+        private static string[] UiQualityProps(RailwayRouteComposition route) => route.modules.Select(m =>
+            m.kind + ":" + m.x.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + ":" +
+            m.y.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + ":" + m.scale.ToString("R", System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+        private System.Collections.Generic.Dictionary<string, Rect> UiQualityRects()
+        {
+            var result = new System.Collections.Generic.Dictionary<string, Rect>(StringComparer.Ordinal);
+            var grid = installer.Presenter.Grid!;
+            for (int y = 0; y < 10; y++) for (int x = 0; x < 10; x++)
+            { var cell = grid.CellButton(x, y); result.Add(cell.name, cell.worldBound); }
+            var counts = grid.Query<Label>(className: "puzzle-count").ToList();
+            var endpoints = grid.Query<Label>(className: "puzzle-endpoint").ToList();
+            Assert.That(counts.Count, Is.EqualTo(20)); Assert.That(endpoints.Count, Is.EqualTo(2));
+            foreach (var label in counts.Concat(endpoints)) result.Add(label.name, label.worldBound);
+            for (int i = 0; i < 9; i++) result.Add("tool-" + i, Find<Button>("tool-" + i).worldBound);
+            foreach (string name in new[] { "tool-dock", "puzzle-viewport", "puzzle-undo", "puzzle-hint", "puzzle-zoom" }) result.Add(name, Find<VisualElement>(name).worldBound);
+            return result;
+        }
+        private void UiQualityAssertRects(System.Collections.Generic.Dictionary<string, Rect> expected)
+        { var actual = UiQualityRects(); foreach (var pair in expected) AssertRect(actual[pair.Key], pair.Value); }
+        private static string UiQualityDirectory(string label)
+        {
+            string output = Path.Combine(Directory.GetCurrentDirectory(), ".utmp", "wp046-runtime", "ui-quality-" + label + "-" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(output); return output;
+        }
+        private static string UiQualityHash(byte[] bytes)
+        { using var hash = System.Security.Cryptography.SHA256.Create(); return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", string.Empty).ToLowerInvariant(); }
+        private sealed class UiQualityRegion
+        {
+            internal UiQualityRegion(Color32[] pixels, byte[] png, int width, int height) { Pixels = pixels; Png = png; Width = width; Height = height; }
+            internal readonly Color32[] Pixels; internal readonly byte[] Png; internal readonly int Width, Height;
+        }
+        private UiQualityRegion UiQualityReadRegion(VisualElement element)
+        {
+            Assert.That(texture, Is.Not.Null); Rect root = installer.Document.rootVisualElement.worldBound, box = element.worldBound;
+            Assert.That(root.width, Is.GreaterThan(0)); Assert.That(root.height, Is.GreaterThan(0));
+            float sx = texture!.width / root.width, sy = texture.height / root.height;
+            int left = Mathf.Clamp(Mathf.FloorToInt((box.xMin - root.xMin) * sx), 0, texture.width - 1);
+            int right = Mathf.Clamp(Mathf.CeilToInt((box.xMax - root.xMin) * sx), left + 1, texture.width);
+            int bottom = Mathf.Clamp(Mathf.FloorToInt(texture.height - (box.yMax - root.yMin) * sy), 0, texture.height - 1);
+            int top = Mathf.Clamp(Mathf.CeilToInt(texture.height - (box.yMin - root.yMin) * sy), bottom + 1, texture.height);
+            var prior = RenderTexture.active; var image = new Texture2D(right - left, top - bottom, TextureFormat.RGBA32, false);
+            try
+            {
+                RenderTexture.active = texture; image.ReadPixels(new Rect(left, bottom, image.width, image.height), 0, 0); image.Apply();
+                return new UiQualityRegion(image.GetPixels32(), image.EncodeToPNG(), image.width, image.height);
+            }
+            finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); }
+        }
+        private void UiQualityWriteCanvas(string path)
+        {
+            Assert.That(texture, Is.Not.Null); var prior = RenderTexture.active;
+            var image = new Texture2D(texture!.width, texture.height, TextureFormat.RGBA32, false);
+            try { RenderTexture.active = texture; image.ReadPixels(new Rect(0, 0, image.width, image.height), 0, 0); image.Apply(); File.WriteAllBytes(path, image.EncodeToPNG()); }
+            finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); }
+        }
+
         private IEnumerator ConfigureCandidate(bool unreviewedStoreMetadata=false)
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
