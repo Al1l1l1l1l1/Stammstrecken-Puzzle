@@ -68,11 +68,20 @@ plugins.withId('com.android.application') {
         registered.add([variant:variant.name,packageName:packageName,lifecycleName:lifecycleName])
         if (variant.name != request.variant) return
         selectedVariantSeen = true
-        // One collection instance is retained before/after. No Module-only filter: local/project inputs stay present.
+        // Retain raw external/local bytes, and select an unambiguous Android runtime classes artifact for project components.
+        // Untyped Android project views are ambiguous (metadata/assets/JNI/classes variants); never drop those projects.
         def runtime = variant.runtimeConfiguration
-        def collection = runtime.incoming.artifactView { lenient = false }.artifacts
+        def rawCollection = runtime.incoming.artifactView {
+            lenient = false
+            componentFilter { id -> !(id instanceof ProjectComponentIdentifier) }
+        }.artifacts
+        def projectCollection = runtime.incoming.artifactView {
+            lenient = false
+            componentFilter { id -> id instanceof ProjectComponentIdentifier }
+            attributes { attribute(org.gradle.api.artifacts.type.ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, 'android-classes-jar') }
+        }.artifacts
         def artifactSnapshot = {
-            collection.artifacts.collect { artifact ->
+            (rawCollection.artifacts + projectCollection.artifacts).collect { artifact ->
                 def id = artifact.id.componentIdentifier
                 def kind = id instanceof ModuleComponentIdentifier ? 'MAVEN_MODULE' : id instanceof ProjectComponentIdentifier ? 'PROJECT' : 'LOCAL_OR_OPAQUE'
                 def row = [kind:kind,component:id.displayName,artifact:artifact.id.displayName]
@@ -98,7 +107,7 @@ plugins.withId('com.android.application') {
         }
         def state = [:]
         def capture = tasks.register('stpCaptureNativeInputs' + cap) {
-            dependsOn(collection.artifactFiles)
+            dependsOn(rawCollection.artifactFiles, projectCollection.artifactFiles)
             outputs.upToDateWhen { false }
             doLast {
                 requestCurrent()
