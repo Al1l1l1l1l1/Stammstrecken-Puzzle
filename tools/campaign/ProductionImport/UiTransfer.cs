@@ -14,7 +14,7 @@ internal static class UiTransfer
     {
         var expected=new[]{"Scripts/Presentation/UI","Scripts/Presentation/World"}.SelectMany(p=>Directory.GetFiles(sources.Inside(Prefix+p),"*.cs",SearchOption.AllDirectories))
             .Concat(Directory.GetFiles(sources.Inside(Prefix+"Art"),"*",SearchOption.AllDirectories).Where(p=>new[]{".png",".svg",".ttf",".otf"}.Contains(Path.GetExtension(p).ToLowerInvariant())))
-            .Select(p=>Path.GetRelativePath(sources.Root,p).Replace('\\','/')).Concat(new[]{"ProductionGame.uxml","ProductionGame.uss","ProductionGameLocale.json","ProductionCampaignText.json","RailwayAssets.json"}.Select(p=>Prefix+"UI/"+p)).OrderBy(p=>p,StringComparer.Ordinal).ToArray();
+            .Select(p=>Path.GetRelativePath(sources.Root,p).Replace('\\','/')).Concat(new[]{"ProductionGame.uxml","ProductionGame.uss","ProductionGameLocale.json","ProductionCampaignText.json","RailwayAssets.json","ThirdPartyNotices.txt"}.Select(p=>Prefix+"UI/"+p)).OrderBy(p=>p,StringComparer.Ordinal).ToArray();
         J.Need(J.A(ui,"files").Select(f=>J.S(f,"path")).SequenceEqual(expected),"IMPORT_TARGET_UI_COMPLETE_FILESET");
     }
     internal static void Validate(Sources sources,string targetLockPath,string measuredLockPath,string measuredPrefix,string expectedMeasuredHash,string targetTextSourceRawHash)
@@ -27,7 +27,7 @@ internal static class UiTransfer
             J.Fields(oldFiles[i],"path","sha256");J.Fields(newFiles[i],"path","sha256");string path=J.S(oldFiles[i],"path");byte[] a=sources.Read(measuredPrefix+"/"+path),b=sources.Read(path);
             J.Need(J.Raw(a)==J.H(oldFiles[i],"sha256")&&J.Raw(b)==J.H(newFiles[i],"sha256"),"IMPORT_UI_TRANSFER_ORIGINAL_BYTES");
             if(a.SequenceEqual(b))continue;
-            J.Need(oldFiles.Count==75,"IMPORT_UI_METADATA_TRANSFER_REQUIRES_COMPLETE_75_SOURCE_SET");
+            J.Need(oldFiles.Count==76,"IMPORT_UI_METADATA_TRANSFER_REQUIRES_COMPLETE_76_SOURCE_SET");
             if(path==Prefix+"UI/RailwayAssets.json")CompareMetadataOnly(a,b,false,null);
             else if(path==Prefix+"UI/ProductionCampaignText.json")CompareMetadataOnly(a,b,true,targetTextSourceRawHash);
             else throw new ArgumentException("IMPORT_MEASURED_UI_RENDER_SOURCE_CHANGED:"+path);

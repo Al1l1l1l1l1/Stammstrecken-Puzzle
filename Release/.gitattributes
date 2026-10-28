@@ -3,3 +3,6 @@
 # Upstream originals retain their exact license bytes, including intentional whitespace.
 NativeAndroidBuild2Sources/**/*.pom -text whitespace=-blank-at-eol,-blank-at-eof
 NativeAndroidBuild2Sources/**/*.txt -text whitespace=-blank-at-eol,-blank-at-eof
+
+# New upstream notice originals retain exact raw bytes across checkouts.
+OfflineNoticeSources/** -text -filter -working-tree-encoding whitespace=-blank-at-eol,-blank-at-eof

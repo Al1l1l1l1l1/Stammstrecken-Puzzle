@@ -17,12 +17,16 @@ def digest(data: bytes) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--resolved-artifacts", type=Path, required=True)
-    parser.add_argument("--apk-audit", type=Path, required=True)
+    parser.add_argument("--apk-audit", "--package-audit", dest="apk_audit", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True, help="New source bundle directory; never overwritten")
     args = parser.parse_args()
     raw = args.resolved_artifacts.read_bytes()
     resolved = json.loads(raw)
     apk_audit = json.loads(args.apk_audit.read_bytes())
+    native_kind = "apk" if "apkSha256" in apk_audit else "aab" if "aabSha256" in apk_audit else None
+    if native_kind is None:
+        raise ValueError("NATIVE_PACKAGE_AUDIT_HASH_REQUIRED")
+    native_hash = apk_audit[native_kind + "Sha256"]
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     modules, problems, seen = [], [], set()
@@ -71,7 +75,7 @@ def main() -> int:
         module["licenseReviewRequired"] = True
         modules.append(module)
     summary = {"evidenceKind": "POSTBUILD_OFFLINE_NATIVE_ARTIFACT_AND_LICENSE_SOURCE_COLLECTION", "configuration": resolved["configuration"],
-        "inspectedApkSha256": apk_audit["apkSha256"], "resolvedArtifactReportSha256": digest(raw),
+        "inspectedApkSha256": native_hash if native_kind == "apk" else None, "inspectedNativePackageSha256": native_hash, "inspectedNativePackageKind": native_kind, "resolvedArtifactReportSha256": digest(raw),
         "scope": "Original cached POM declarations and embedded notices for resolved external AAR/JAR inputs. Does not attest complete final binary notices, transitive license inheritance, legal terms acceptance or exact Git source.",
         "reportedArtifactReferences": len(resolved["artifacts"]), "artifactCount": len(modules), "cachedPomCount": sum(len(m["poms"]) for m in modules), "embeddedNoticeCount": sum(len(m["embeddedNotices"]) for m in modules),
         "modules": modules, "problems": problems, "legalApproved": False, "termsAccepted": False, "completeBinaryNoticeCoverageApproved": False, "promotionAllowed": False}

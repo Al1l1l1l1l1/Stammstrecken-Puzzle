@@ -24,6 +24,7 @@ namespace STP.Bootstrap
         [SerializeField] private VisualTreeAsset? tree;
         [SerializeField] private StyleSheet? styles;
         [SerializeField] private TextAsset? locale;
+        [SerializeField] private TextAsset? offlineNotices;
         [SerializeField] private PanelSettings? panel;
         [SerializeField] private TextAsset? publicData;
         [SerializeField] private TextAsset? campaignData;
@@ -112,6 +113,14 @@ namespace STP.Bootstrap
         /// <summary>Read-only verification of the exact destinations serialized by a source-gated production build.</summary>
         public bool HasPublisherContacts(PublisherContactConfiguration expected)
             =>expected!=null&&publisherLegalUrl==expected.LegalUrl&&publisherSupportUrl==expected.SupportUrl;
+
+        /// <summary>Mounts the packaged literal notices before startup. Reading them performs no external action.</summary>
+        public void ConfigureOfflineNotices(TextAsset text)
+        {
+            if(started||disposed||offlineNotices!=null)throw new InvalidOperationException("OFFLINE_NOTICES_CONFIGURATION_CLOSED");
+            if(text==null||string.IsNullOrWhiteSpace(text.text))throw new ArgumentException("OFFLINE_NOTICES_TEXT_REQUIRED",nameof(text));
+            offlineNotices=text;
+        }
 
         /// <summary>Explicit scene references; configure only while inactive, before Awake.</summary>
         public void Configure(VisualTreeAsset view, StyleSheet stylesheet, TextAsset translations,
@@ -221,6 +230,7 @@ namespace STP.Bootstrap
                     (locale == null ? "locale," : "") + (panel == null ? "panel," : "") +
                     (publicData == null ? "public," : "") + (campaignData == null ? "campaign," : "") +
                     (completionData == null ? "completion," : "") + (railwayAssets == null ? "assets" : ""));
+            if(offlineNotices!=null&&string.IsNullOrWhiteSpace(offlineNotices.text))throw new InvalidOperationException("OFFLINE_NOTICES_TEXT_REQUIRED");
             if(runtimeBindingsData!=null)
             {
                 if(candidateBindings!=null||endlessProfilesData!=null||endlessCompletionData!=null||endlessBindingsData!=null)
@@ -289,6 +299,7 @@ namespace STP.Bootstrap
             tree!.CloneTree(Document.rootVisualElement);
             Document.rootVisualElement.styleSheets.Add(styles!);
             presenter = new ProductionGamePresenter(Document.rootVisualElement, locale!, () => clock.MonotonicMilliseconds, RunRequestAsync);
+            if(offlineNotices!=null)presenter.BindOfflineNotices(offlineNotices.text);
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
             if(testContractRuntime)presenter.BindContractTestAssetCatalog(railwayAssets!);
             else

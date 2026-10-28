@@ -104,8 +104,11 @@ namespace STP.Editor.Build
                 string root=rc!=null?rc.OutputRoot:Path.Combine("Builds",release?"ReleaseCandidate":"ProductionDevelopment",target==BuildTarget.Android?"Android":"iOS",DateTime.UtcNow.ToString("yyyyMMddTHHmmssfff",System.Globalization.CultureInfo.InvariantCulture)+"-"+active.Nonce);
                 RequireNoLinks(Path.GetFullPath(root));Directory.CreateDirectory(root);
                 string destination=target==BuildTarget.Android?Path.Combine(root,release?"stp-production-unsigned.aab":"stp-production-development.apk"):Path.Combine(root,"Xcode");
-                var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=(string[])active.Scenes.Clone(),locationPathName=destination,target=target,
-                    options=target==BuildTarget.Android&&!release?BuildOptions.Development:BuildOptions.None});
+                var build=new BuildPlayerOptions{scenes=(string[])active.Scenes.Clone(),locationPathName=destination,target=target,
+                    options=target==BuildTarget.Android&&!release?BuildOptions.Development:BuildOptions.None};
+                var report=target==BuildTarget.Android
+                    ?NativeInputBuildEvidence.BuildPlayerWithEvidence(build,StpBuildEntrypoints.ReadDeclaredNativeCheckout())
+                    :BuildPipeline.BuildPlayer(build);
                 if(report.summary.result!=BuildResult.Succeeded)throw new BuildFailedException("PRODUCTION_NATIVE_BUILD_FAILED:"+target+":"+report.summary.totalErrors);
                 if(target==BuildTarget.Android&&(!File.Exists(destination)||new FileInfo(destination).Length==0))throw new BuildFailedException("PRODUCTION_NATIVE_APK_MISSING");
                 if(release)ProductionRcBuildContext.ValidateReleaseFlags((report.summary.options&BuildOptions.Development)!=0,(report.summary.options&BuildOptions.AllowDebugging)!=0,(report.summary.options&BuildOptions.ConnectWithProfiler)!=0,(report.summary.options&BuildOptions.EnableDeepProfilingSupport)!=0);

@@ -9,7 +9,7 @@ const crypto=require('node:crypto');
 const HASH=/^[0-9a-f]{64}$/;
 const PROFILES=['dienstbeginn','regelbetrieb','stoerungslage','grosslage'];
 const PUBLIC_PROFILE='STP-PUZZLE-SEMANTIC-JCS-1';
-const UI_FIXED=['ProductionGame.uxml','ProductionGame.uss','ProductionGameLocale.json','ProductionCampaignText.json','RailwayAssets.json'].map(p=>'Assets/StammstreckenPuzzle/UI/'+p);
+const UI_FIXED=['ProductionGame.uxml','ProductionGame.uss','ProductionGameLocale.json','ProductionCampaignText.json','RailwayAssets.json','ThirdPartyNotices.txt'].map(p=>'Assets/StammstreckenPuzzle/UI/'+p);
 const SEARCH_FIELDS=['minSize','maxSize','minDensityPercent','maxDensityPercent','minDeductionSteps','minDeductionDepth','maxAttempts','pathStateBudget','totalBudgetMs','solverBudgetMs','maxTrivialLines','recentSimilarityPercent'];
 const AUDIT_FIELDS=['profileId','profileHashSha256','seed','generationOrdinal','parameterHashSha256','puzzleId','publicPuzzleHashSha256','publicSourceSha256','solutionHashSha256','proofHashSha256','proofSourceSha256','width','height','deductionSteps','maxDeductionDepth','requiredGuessDepth','publicFile'];
 const rawHash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');

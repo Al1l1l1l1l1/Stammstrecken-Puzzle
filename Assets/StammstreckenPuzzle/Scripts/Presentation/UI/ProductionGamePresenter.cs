@@ -273,6 +273,8 @@ namespace STP.Presentation.UI
         public void BindDaily(Func<DailyView> read,Func<bool,Task> action){CheckThread();CheckProductBinding();productPanels.BindDaily(read,action);}
         /// <summary>Binds immutable settings and an acknowledged atomic save, retaining all untouched fields.</summary>
         public void BindSettings(Func<LocalSettings> read,Func<LocalSettings,Task> save){CheckThread();CheckProductBinding();productPanels.BindSettings(read,save);}
+        /// <summary>Binds packaged original notices for local read-only presentation; opens no service or URL.</summary>
+        public void BindOfflineNotices(string text){CheckThread();CheckProductBinding();productPanels.BindOfflineNotices(text);}
         /// <summary>Binds actual native privacy/Store readiness and explicitly requested actions.</summary>
         public void BindServices(Func<ProductionServiceState> read,Func<ProductionServiceAction,Task> action){CheckThread();CheckProductBinding();productPanels.BindServices(read,action);}
         /// <summary>Binds Root lifecycle actions without reading files or assuming a playable Saved session.</summary>
@@ -303,7 +305,7 @@ namespace STP.Presentation.UI
         /// <summary>Refreshes confirmed state without rebuilding cells or changing their layout.</summary>
         public void Refresh()
         {
-            CheckThread();if(disposed)return;PollRequest();PollHint();PollHintVideo();if(assignedReview!=null){RefreshAssignedReview();return;}productPanels.Refresh();postgamePanels.Refresh();
+            CheckThread();if(disposed)return;PollRequest();PollHint();PollHintVideo();if(assignedReview!=null){RefreshAssignedReview();return;}productPanels.SetRecoveryAttention(HasSavedRecoveryAttention);productPanels.Refresh();postgamePanels.Refresh();
             var currentResult=screen==Screen.Puzzle&&model?.PuzzleView?.Phase==DevelopmentPreviewPhase.Results;
             if(resultContinuation.PollWhenReady(currentResult,CanContinueResult,model?.PuzzleView?.AttemptId??Guid.Empty))OpenNext();
             var startup=Require<VisualElement>("startup-overlay");startup.style.display=model==null?DisplayStyle.Flex:DisplayStyle.None;
@@ -433,7 +435,7 @@ namespace STP.Presentation.UI
         private void CheckThread(){if(Thread.CurrentThread.ManagedThreadId!=ownerThread)throw new InvalidOperationException("PRODUCT_UI_WRONG_THREAD");}
         private void CheckStartup(){CheckThread();if(disposed)throw new ObjectDisposedException(nameof(ProductionGamePresenter));if(model!=null||assignedReview!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");}
         private void AddButton(string id,string key,Action action)
-        {var button=Require<Button>(id);button.text=L(key);if(key=="back")button.tooltip=L("accessibility.back");buttons.Add(id,button);Action guarded=()=>{if(!disposed&&!productPanels.IsLocalDataBlocking)action();};actions.Add(id,guarded);button.clicked+=guarded;}
+        {var button=Require<Button>(id);button.text=L(key);if(key=="back")button.tooltip=L("accessibility.back");buttons.Add(id,button);Action guarded=()=>{if(!disposed&&(IsRecoveryControl(id)?HasSavedRecoveryAttention&&productPanels.CanAcceptRecoveryIntent:productPanels.CanAcceptUnderlyingIntent))action();};actions.Add(id,guarded);button.clicked+=guarded;}
         private void Unsubscribe(){foreach(var pair in actions)if(buttons.TryGetValue(pair.Key,out var button))button.clicked-=pair.Value;}
         private static void SetVisible(VisualElement target,bool value)=>target.style.display=value?DisplayStyle.Flex:DisplayStyle.None;
         private void RenderScreen()
@@ -491,7 +493,7 @@ namespace STP.Presentation.UI
         }
         private void RequestCosmetic(string id)
         {
-            if(disposed||pending!=null||cosmeticAction==null||canActCosmetic==null||!canActCosmetic(id))return;
+            if(disposed||!productPanels.CanAcceptUnderlyingIntent||pending!=null||cosmeticAction==null||canActCosmetic==null||!canActCosmetic(id))return;
             try{pending=cosmeticAction(id)??throw new InvalidOperationException("COSMETIC_REQUEST_NULL");}catch{requestFault=true;pending=null;}Refresh();
         }
         private void RequestHint()
@@ -640,7 +642,7 @@ namespace STP.Presentation.UI
         {Require<Label>("notice-title").text=L(title);Require<Label>("notice-body").text=L(body);SetVisible(Require<VisualElement>("notice-overlay"),true);}
         private void RenderErrors(SavedReviewState state,bool clear)
         {
-            var problem=requestFault||state.CanRetrySave||state.Status==SavedReviewStatus.Failed||state.Status==SavedReviewStatus.Unsupported||state.Status==SavedReviewStatus.RecoveryRequired;
+            var problem=HasSavedRecoveryAttention;var focusRecovery=problem&&Require<VisualElement>("error-overlay").style.display.value!=DisplayStyle.Flex;
             // Normal saving is deliberately invisible and never changes the play layout.
             SetVisible(Require<VisualElement>("error-overlay"),problem);
             Require<Label>("error-message").text=L(requestCancelled?"error.cancelled":state.Status==SavedReviewStatus.Unsupported?"error.unsupported":state.CanRecover?"error.recovery":"error.storage");
@@ -652,11 +654,25 @@ namespace STP.Presentation.UI
                 foreach(var candidate in state.RecoveryChoices)
                 {
                     var kind=candidate.Kind;var version=state.Version;
-                    var option=new Button(()=>{if(model==null||model.State.Version!=version||!model.State.CanRecover||candidate.Status!=SaveCandidateStatus.Valid)return;recovery=kind;Refresh();}){text=L("recovery.candidate",L("recovery.kind."+kind))};
+                    var option=new Button(()=>{if(!HasSavedRecoveryAttention||!productPanels.CanAcceptRecoveryIntent||model==null||model.State.Version!=version||!model.State.CanRecover||candidate.Status!=SaveCandidateStatus.Valid)return;recovery=kind;Refresh();}){text=L("recovery.candidate",L("recovery.kind."+kind))};
                     option.SetEnabled(candidate.Status==SaveCandidateStatus.Valid&&state.CanRecover);option.AddToClassList("secondary-button");host.Add(option);
                 }
             }
             buttons["error-recover"].SetEnabled(recovery.HasValue);SetVisible(Require<VisualElement>("reset-confirmation"),resetConfirmation&&state.CanReset);
+            if(focusRecovery)Root.schedule.Execute(()=>
+            {
+                if(disposed||!HasSavedRecoveryAttention||!productPanels.CanAcceptRecoveryIntent)return;
+                foreach(var id in new[]{"error-retry","error-reload","error-recover","error-reset"})
+                {var button=buttons[id];if(button.enabledInHierarchy&&button.resolvedStyle.display==DisplayStyle.Flex){button.Focus();return;}}
+            });
+        }
+        private bool HasSavedRecoveryAttention=>model!=null&&(requestFault||model.State.CanRetrySave||model.State.Status==SavedReviewStatus.Failed||model.State.Status==SavedReviewStatus.Unsupported||model.State.Status==SavedReviewStatus.RecoveryRequired);
+        private static bool IsRecoveryControl(string id)=>id=="error-retry"||id=="error-reload"||id=="error-recover"||id=="error-reset"||id=="reset-confirm"||id=="reset-cancel";
+        private bool CanSendSavedRequest(SavedReviewUiRequest request)
+        {
+            if(request.Kind==SavedReviewUiRequestKind.RetryStartup)return model==null&&productPanels.CanAcceptUnderlyingIntent;
+            var recoveryRequest=request.Kind==SavedReviewUiRequestKind.RetrySave||request.Kind==SavedReviewUiRequestKind.RetryCompletion||request.Kind==SavedReviewUiRequestKind.Reload||request.Kind==SavedReviewUiRequestKind.ConfirmRecovery||request.Kind==SavedReviewUiRequestKind.ConfirmReset;
+            return recoveryRequest?HasSavedRecoveryAttention&&productPanels.CanAcceptRecoveryIntent:productPanels.CanAcceptUnderlyingIntent;
         }
         private void ConfirmRecovery(){if(model!=null&&recovery.HasValue&&recoveryVersion==model.State.Version)Send(SavedReviewUiRequest.Recovery(model.State.Version,recovery.Value));}
         private void ShowResetConfirmation(){resetConfirmation=true;Refresh();}
@@ -664,7 +680,7 @@ namespace STP.Presentation.UI
         private void SendBound(SavedReviewUiRequestKind kind){if(model!=null)Send(SavedReviewUiRequest.Bound(kind,model.State.Version));}
         private void Send(SavedReviewUiRequest request)
         {
-            if(disposed||productPanels.IsLocalDataBlocking||pending!=null)return;
+            if(disposed||!CanSendSavedRequest(request)||pending!=null)return;
             try{pending=(runRequest??throw new InvalidOperationException("PRODUCT_SAVED_REQUEST_UNBOUND"))(request)??throw new InvalidOperationException("PRODUCT_REQUEST_NULL");}
             catch{requestFault=true;pending=null;}
             Refresh();

@@ -35,3 +35,5 @@ Auch `PARTICIPANT_UI` und `NEVER_SEEN` sind nur unbeglaubigte lokale Angaben. Di
 Exitcodes: `0` = technisch ausgewertet, auch wenn alle Beobachtungen ausgeschlossen sind; `2` = mindestens ein Originalexport abgelehnt und im Bericht erhalten; `1` = Quellen-/Argument-/I/Ofehler, keine belastbare Auswertung. Ein technischer Exitcode ist kein Human-PASS.
 
 Die kontrollierten adversarialen Tests laufen mit denselben Quellenargumenten und `--self-test <neuerScratchordner>` anstelle von `--exports`/`--out`. Sie erzeugen ausdrücklich automatisierte/synthetische Fixtures einschließlich eines gefälschten `PARTICIPANT_UI`-Labels zur Prüfung der fehlenden Personenattestierung. Ihre Zeiten stammen aus kontrollierten Domaincommands und sind keine menschlichen Messwerte.
+
+Die aktuelle Schema1-UIquellmenge bindet zusätzlich den vollständigen Literaltext `ThirdPartyNotices.txt` und umfasst76Dateien. Ältere07-/75erStudien verwenden weiterhin ihr erhaltenes originales Quellen-/Readbackpaket; ein neuer76erReader ersetzt dessen Herkunft nicht. Neue08-/Revision8-Assignments müssen nach der abschließenden UI-/Textintegration frisch projiziert werden.

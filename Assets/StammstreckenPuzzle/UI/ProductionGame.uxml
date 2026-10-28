@@ -94,10 +94,19 @@
             <ui:Label view-data-key="settings.services.title" class="settings-heading" />
             <ui:Button name="settings-privacy" class="secondary-button" /><ui:Button name="settings-restore" class="secondary-button" /><ui:Button name="settings-remove-ads" class="secondary-button wrapping" />
             <ui:Label view-data-key="settings.remove-ads.body" class="small-copy wrapping settings-state" /><ui:Label name="settings-service-state" class="small-copy wrapping settings-state" />
+            <ui:Button name="settings-notices" class="secondary-button wrapping" />
             <ui:Button name="settings-legal" class="secondary-button" /><ui:Button name="settings-support" class="secondary-button" />
             <ui:Label name="settings-contact-state" class="small-copy wrapping settings-state" />
             <ui:Label view-data-key="local-data.heading" class="settings-heading" /><ui:Button name="settings-delete-local" class="secondary-button wrapping" /><ui:Label name="settings-delete-state" class="small-copy wrapping settings-state" />
             </ui:ScrollView><ui:Button name="settings-close" class="primary-button" />
+        </ui:VisualElement></ui:VisualElement>
+        <ui:VisualElement name="notices-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card notices-card">
+            <ui:Label name="notices-title" class="page-title wrapping" /><ui:Button name="notices-font" class="secondary-button wrapping notices-font" />
+            <ui:ScrollView name="notices-scroll" class="notices-scroll"><ui:VisualElement name="notices-content" class="notices-content" /></ui:ScrollView>
+            <ui:Label name="notices-page" class="notices-page" /><ui:VisualElement class="notices-page-controls">
+                <ui:Button name="notices-previous" class="secondary-button notices-page-button notices-previous" /><ui:Button name="notices-next" class="secondary-button notices-page-button" />
+            </ui:VisualElement>
+            <ui:Button name="notices-close" class="primary-button wrapping" />
         </ui:VisualElement></ui:VisualElement>
         <ui:VisualElement name="startup-overlay" class="overlay"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="brand" class="wordmark" /><ui:Label name="startup-message" class="body-copy" /><ui:Button name="startup-retry" class="primary-button hidden" /><ui:Button name="startup-delete-local" class="secondary-button wrapping hidden" /></ui:VisualElement></ui:VisualElement>
         <ui:VisualElement name="error-overlay" class="overlay hidden"><ui:VisualElement class="overlay-card"><ui:Label view-data-key="error.title" class="page-title" /><ui:Label name="error-message" class="body-copy" /><ui:VisualElement name="recovery-choices" /><ui:Button name="error-retry" class="primary-button" /><ui:Button name="error-reload" class="secondary-button" /><ui:Button name="error-recover" class="primary-button" /><ui:Button name="error-reset" class="secondary-button" /><ui:Button name="error-delete-local" class="secondary-button wrapping hidden" /><ui:VisualElement name="reset-confirmation" class="hidden"><ui:Label view-data-key="reset.body" class="body-copy" /><ui:Button name="reset-confirm" class="primary-button" /><ui:Button name="reset-cancel" class="secondary-button" /></ui:VisualElement></ui:VisualElement></ui:VisualElement>

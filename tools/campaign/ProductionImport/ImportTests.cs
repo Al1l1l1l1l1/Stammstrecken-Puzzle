@@ -13,6 +13,33 @@ namespace STP.Tools.ProductionImport;
 // No PRODUCT_APPROVED file, participant observation, time sample, approval or production output is manufactured.
 internal static class ImportTests
 {
+    // Bounded source-binding controls only; no solver, evidence, approval or participant records.
+    internal static void RunNoticeSourceCases(string sourceRoot,string scratch,Action<string,Action> Case)
+    {
+        Sources.CheckNoLinks(scratch);J.Need(!Directory.Exists(scratch),"IMPORT_NOTICE_TEST_OUTPUT_EXISTS");Directory.CreateDirectory(scratch);
+        var original=new Sources(sourceRoot);byte[] uiBytes=original.Read("Assets/StammstreckenPuzzle/UI/HumanAssignments/ui-source-lock.json");var ui=J.Parse(uiBytes);J.Need(J.N(ui,"schemaVersion")==1&&J.A(ui,"files").Count==76,"TEST_CURRENT_76_UI_LOCK");
+        string notice="Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt";J.Need(J.A(ui,"files").Count(f=>J.S(f,"path")==notice)==1,"TEST_NOTICE_UI_MEMBERSHIP");
+        foreach(var row in J.A(ui,"files"))
+        {
+            string relative=J.S(row,"path");byte[] bytes=original.Read(relative);J.Need(J.Raw(bytes)==J.H(row,"sha256"),"TEST_EXACT_CURRENT_UI_SOURCE");
+            foreach(string prefix in new[]{"","measured/"}){string target=Path.Combine(scratch,prefix+relative);Directory.CreateDirectory(Path.GetDirectoryName(target)!);File.WriteAllBytes(target,bytes);}
+        }
+        void Lock(string name,JsonValue value)=>File.WriteAllBytes(Path.Combine(scratch,name),J.Bytes(value));
+        Lock("measured-ui.json",ui);Lock("target-ui.json",ui);
+        void Reject(string code,Action action){try{action();}catch(ArgumentException e){J.Need(e.Message.Contains(code,StringComparison.Ordinal),"TEST_NOTICE_WRONG_REJECTION:"+e.Message);return;}throw new InvalidOperationException("TEST_NOTICE_EXPECTED_REJECTION:"+code);}
+        void Validate()=>UiTransfer.Validate(new Sources(scratch),"target-ui.json","measured-ui.json","measured",J.Raw(File.ReadAllBytes(Path.Combine(scratch,"measured-ui.json"))),new string('a',64));
+        Case("Current76 target fileset includes notice and schema1",()=>UiTransfer.CheckTargetFileSet(new Sources(scratch),ui));
+        Case("Current76 identical full originals can transfer with no metadata or observation change",Validate);
+        var without=J.Put(ui,"files",J.Arr(J.A(ui,"files").Where(f=>J.S(f,"path")!=notice)));
+        Case("Omitting the notice cannot satisfy complete target UI fileset",()=>Reject("IMPORT_TARGET_UI_COMPLETE_FILESET",()=>UiTransfer.CheckTargetFileSet(new Sources(scratch),without)));
+        Case("Old75 measured UI cannot become current76 UI through metadata transfer",()=>{Lock("measured-ui.json",without);try{Reject("IMPORT_UI_TRANSFER_FILESET_CHANGED",Validate);}finally{Lock("measured-ui.json",ui);}});
+        Case("Changing literal notice bytes is a render-source change even with a refreshed target rawhash",()=>
+        {
+            string file=Path.Combine(scratch,notice);byte[] before=File.ReadAllBytes(file);byte[] changed=before.Concat(new byte[]{10}).ToArray();File.WriteAllBytes(file,changed);
+            Lock("target-ui.json",J.Put(ui,"files",J.Arr(J.A(ui,"files").Select(f=>J.S(f,"path")==notice?J.Put(f,"sha256",J.Str(J.Raw(changed))):f))));
+            try{Reject("IMPORT_MEASURED_UI_RENDER_SOURCE_CHANGED:"+notice,Validate);}finally{File.WriteAllBytes(file,before);Lock("target-ui.json",ui);}
+        });
+    }
     internal static int Run(string sourceRoot,string scratch)
     {
         scratch=Path.GetFullPath(scratch);Sources.CheckNoLinks(scratch);J.Need(!Directory.Exists(scratch),"IMPORT_TEST_OUTPUT_EXISTS");Directory.CreateDirectory(scratch);
@@ -20,6 +47,7 @@ internal static class ImportTests
         void Case(string name,Action action){action();passed++;results.Add(new{name,status="PASS"});Console.WriteLine("PASS "+name);}
         void Reject(string expected,Action action){try{action();}catch(ArgumentException e){J.Need(e.Message.Contains(expected,StringComparison.Ordinal),"TEST_WRONG_REJECTION:"+expected+":"+e.Message);return;}throw new InvalidOperationException("TEST_EXPECTED_REJECTION:"+expected);}
         ImportResult Validate()=>new ProductionImporter(fixture.Root).Validate("request.json",null,null);
+        RunNoticeSourceCases(sourceRoot,Path.Combine(scratch,"notice-source-cases"),Case);
         Case("Complete synthetic240 source→fresh proofs→ADR044 readers→typed crossrefs→exact ReleaseLock",()=>{var result=Validate();J.Need(result.Use=="ContractTest"&&result.Player.Count==13,"TEST_FIXTURE_OUTPUT");var texts=J.Parse(result.Player["CampaignText.json"]);J.Need(J.A(texts,"entries").Count==240&&J.S(texts,"approvalStatus")=="FIXTURE_ONLY","TEST_CAMPAIGN_TEXT");var bindings=J.Parse(result.Player["Runtime.bindings.json"]);J.Need(J.A(bindings,"playerFiles").Count==12&&J.A(bindings,"playerFiles").All(p=>J.Raw(result.Player[J.S(p,"path")])==J.H(p,"rawSha256")),"TEST_RUNTIME_RAW_BINDINGS");result.Write(Path.Combine(scratch,"projected-fixture"));J.Need(!Directory.GetFiles(Path.Combine(scratch,"projected-fixture","player"),"*",SearchOption.AllDirectories).Any(p=>p.Contains("proof",StringComparison.OrdinalIgnoreCase)||p.Contains("solution",StringComparison.OrdinalIgnoreCase)||p.Contains("evidence",StringComparison.OrdinalIgnoreCase)),"TEST_PLAYER_AUTHORING_LEAK");});
         Case("Repeat projection byte identity and exact original float manifest bytes",()=>{var a=Validate();var b=Validate();J.Need(a.Player.All(x=>b.Player[x.Key].SequenceEqual(x.Value))&&a.Player["RailwayAssets.json"].SequenceEqual(File.ReadAllBytes(Path.Combine(fixture.Root,"railway.json"))),"TEST_NONDETERMINISTIC_OR_FLOAT_CANONICALIZED");});
         void Mutate(string name,string path,Func<JsonValue,JsonValue> change,string code){Case(name,()=>{byte[] old=fixture.Read(path);fixture.Write(path,change(J.Parse(old)));try{Reject(code,()=>Validate());}finally{fixture.WriteBytes(path,old);}});}

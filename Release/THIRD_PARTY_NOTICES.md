@@ -4,6 +4,8 @@ Collected from the exact installed SDK versions listed in sdk-source-inventory.j
 
 Coverage of the text below: the four imported Unity packages and the original IBM Plex font license. Additional original native declarations and notices are preserved in [NativeAndroidBuild2Sources/inventory.json](./NativeAndroidBuild2Sources/inventory.json): 86 distinct hashed resolved AAR/JAR inputs (94 report references including repeats), 85 cached upstream Maven POMs and 40 embedded notice/license files. The actual native Google/AndroidX/Kotlin and Billing transport/encoder graph still needs qualified coverage and terms review. `ANDROID_BUILD2_INSPECTION.json` identifies the inspected debug APK and preserved native graph. These source bundles do not claim complete native binary license coverage or legal approval.
 
+Portable source/range index for the prospective local literal notices view: [OFFLINE_NOTICES_SOURCES.json](./OFFLINE_NOTICES_SOURCES.json), with [ThirdPartyNotices.txt](../Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt). The original texts below remain historical source material; the new index preserves the56-section/410-range source mapping and its explicit proprietary/material coverage limits. No complete binary-notice or legal approval follows.
+
 ## com.google.ads.mobile 11.5.0 — Library/PackageCache/com.google.ads.mobile@0e7fbe087950/LICENSE.md
 
 

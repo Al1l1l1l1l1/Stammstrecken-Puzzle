@@ -1,0 +1,174 @@
+// Private prototype: actual AGP9/Gradle9 build-time inputs, never a retrospective APK attestation.
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import java.nio.file.Files
+import java.nio.file.StandardOpenOption
+import java.security.MessageDigest
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier
+import org.gradle.api.artifacts.component.ProjectComponentIdentifier
+
+plugins.withId('com.android.application') {
+    def fail = { String code -> throw new GradleException('STP_NATIVE_INPUTS_' + code) }
+    def requestFile = rootProject.file('stp-native-build-request.json')
+    if (!requestFile.isFile()) fail('REQUEST_REQUIRED')
+    def requestBytes = requestFile.bytes
+    def request = new JsonSlurper().parse(requestBytes)
+    def keys = ['schemaVersion','nonce','variant','artifactKind','sourceWitness','evidenceRoot'] as Set
+    if (!(request instanceof Map) || request.keySet() != keys || request.schemaVersion != 1) fail('REQUEST_SCHEMA')
+    def nonce = System.getenv('STP_NATIVE_BUILD_NONCE')
+    if (!(nonce ==~ /[0-9a-f]{32}/) || nonce != request.nonce) fail('NONCE_MISMATCH')
+    if (!(request.variant ==~ /[A-Za-z][A-Za-z0-9]*/) || !(request.artifactKind in ['apk','aab'])) fail('VARIANT_OR_KIND')
+    if (!(request.sourceWitness instanceof String) || !(request.sourceWitness ==~ /[A-Za-z0-9_.:\/-]{1,256}/)) fail('SOURCE_WITNESS')
+    def evidenceRoot = new File(request.evidenceRoot.toString())
+    if (!evidenceRoot.isAbsolute()) fail('ABSOLUTE_EVIDENCE_ROOT_REQUIRED')
+    evidenceRoot = evidenceRoot.canonicalFile
+    def output = new File(evidenceRoot, nonce).canonicalFile
+    if (output.parentFile != evidenceRoot || output.name != nonce) fail('OUTPUT_SCOPE')
+    def pluginLoader = plugins.getPlugin('com.android.application').class.classLoader
+    def actualGradle = gradle.gradleVersion
+    def actualAgp = pluginLoader.loadClass('com.android.Version').getField('ANDROID_GRADLE_PLUGIN_VERSION').get(null)
+    if (actualGradle != '9.1.0' || actualAgp != '9.0.0') fail('UNTESTED_TOOLCHAIN_' + actualGradle + '_' + actualAgp)
+    def invocation = UUID.randomUUID().toString()
+    def digestBytes = { byte[] bytes -> MessageDigest.getInstance('SHA-256').digest(bytes).encodeHex().toString() }
+    def digestFile = { File file ->
+        def md = MessageDigest.getInstance('SHA-256')
+        long count = 0
+        file.withInputStream { input ->
+            byte[] buffer = new byte[65536]
+            for (int n = input.read(buffer); n >= 0; n = input.read(buffer)) { if (n > 0) { md.update(buffer,0,n); count += n } }
+        }
+        if (file.length() != count) fail('FILE_CHANGED_DURING_HASH')
+        [sizeBytes: count, sha256: md.digest().encodeHex().toString()]
+    }
+    def fileRecord = { File source ->
+        def file = source.canonicalFile
+        if (!file.isFile()) fail('ACTUAL_INPUT_FILE_REQUIRED_' + file.name)
+        [path: file.path] + digestFile(file)
+    }
+    def writeOriginal = { String name, Object body ->
+        Files.createDirectories(evidenceRoot.toPath())
+        def target = new File(output,name)
+        byte[] bytes = (JsonOutput.prettyPrint(JsonOutput.toJson(body)) + '\n').getBytes('UTF-8')
+        Files.write(target.toPath(),bytes,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE)
+        [file: target.name, sizeBytes: bytes.length, sha256: digestBytes(bytes)]
+    }
+    def requestCurrent = {
+        if (System.getenv('STP_NATIVE_BUILD_NONCE') != nonce || !requestFile.isFile() || !Arrays.equals(requestFile.bytes,requestBytes)) fail('REQUEST_OR_NONCE_CHANGED')
+    }
+    def invocationFacts = [schemaVersion:1,invocationId:invocation,nonce:nonce,variant:request.variant,artifactKind:request.artifactKind,
+        sourceWitness:request.sourceWitness,sourceWitnessIsCallerDeclaration:true,gradleVersion:actualGradle,agpVersion:actualAgp,
+        requestedTasks:gradle.startParameter.taskNames,offline:gradle.startParameter.offline,
+        generatedProjectRoot:rootProject.projectDir.canonicalPath,requestRawSha256:digestBytes(requestBytes)]
+    def registered = []
+    def selectedVariantSeen = false
+    androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+        def cap = variant.name.substring(0,1).toUpperCase(Locale.ROOT) + variant.name.substring(1)
+        def packageName = request.artifactKind == 'apk' ? 'package' + cap : 'package' + cap + 'Bundle'
+        def lifecycleName = (request.artifactKind == 'apk' ? 'assemble' : 'bundle') + cap
+        registered.add([variant:variant.name,packageName:packageName,lifecycleName:lifecycleName])
+        if (variant.name != request.variant) return
+        selectedVariantSeen = true
+        // One collection instance is retained before/after. No Module-only filter: local/project inputs stay present.
+        def runtime = variant.runtimeConfiguration
+        def collection = runtime.incoming.artifactView { lenient = false }.artifacts
+        def artifactSnapshot = {
+            collection.artifacts.collect { artifact ->
+                def id = artifact.id.componentIdentifier
+                def kind = id instanceof ModuleComponentIdentifier ? 'MAVEN_MODULE' : id instanceof ProjectComponentIdentifier ? 'PROJECT' : 'LOCAL_OR_OPAQUE'
+                def row = [kind:kind,component:id.displayName,artifact:artifact.id.displayName]
+                if (id instanceof ModuleComponentIdentifier) row += [group:id.group,module:id.module,version:id.version]
+                def file = artifact.file.canonicalFile
+                if (file.isDirectory()) {
+                    def children = fileTree(file).files.collect { fileRecord(it) }.sort { a,b -> a.path <=> b.path }
+                    if (children.empty) fail('EMPTY_PROJECT_ARTIFACT_DIRECTORY')
+                    row += [path:file.path,directoryFiles:children]
+                } else row += fileRecord(file)
+                row
+            }.sort { a,b -> (a.kind + ':' + a.component + ':' + a.artifact + ':' + a.path) <=> (b.kind + ':' + b.component + ':' + b.artifact + ':' + b.path) }
+        }
+        def generatedSnapshot = {
+            // Retain the generated project's actual script/property/wrapper sources, including applied privacy, GMA, shared and setup scripts.
+            // Values stay private: only canonical paths, byte lengths and digests enter the evidence report.
+            def generatedSources = rootProject.fileTree(rootProject.projectDir) {
+                include '**/*.gradle', '**/*.gradle.kts', '**/*.properties', '**/gradle-wrapper.jar', '**/gradlew', '**/gradlew.bat'
+                exclude '**/build/**', '**/.gradle/**', '**/outputs/**', '**/.git/**'
+            }.files
+            def files = rootProject.allprojects.collect { it.buildFile } + generatedSources + [rootProject.file('stp-native-build-inputs.gradle')]
+            files.findAll { it.isFile() }.unique { it.canonicalPath }.collect { fileRecord(it) }.sort { a,b -> a.path <=> b.path }
+        }
+        def state = [:]
+        def capture = tasks.register('stpCaptureNativeInputs' + cap) {
+            dependsOn(collection.artifactFiles)
+            outputs.upToDateWhen { false }
+            doLast {
+                requestCurrent()
+                if (output.exists()) fail('STALE_NONCE_OUTPUT_ALREADY_EXISTS')
+                Files.createDirectories(evidenceRoot.toPath())
+                Files.createDirectory(output.toPath())
+                def artifacts = artifactSnapshot()
+                if (artifacts.empty) fail('EMPTY_RUNTIME_ARTIFACT_COLLECTION')
+                state.pre = invocationFacts + [phase:'BEFORE_NATIVE_PACKAGING',configuration:runtime.name,
+                    runtimeArtifacts:artifacts,generatedBuildInputs:generatedSnapshot(),capturedAtUtc:java.time.Instant.now().toString()]
+                state.preFile = writeOriginal('inputs-before.json',state.pre)
+            }
+        }
+        // A package task must depend on the capture, not merely be ordered after it.
+        tasks.configureEach { task ->
+            if (task.name != packageName) return
+            task.dependsOn(capture)
+            task.inputs.property('stpCurrentNativeBuildNonce',nonce)
+            task.outputs.upToDateWhen { false }
+            task.outputs.doNotCacheIf('A fresh actual package is required for this invocation') { true }
+            task.doFirst {
+                requestCurrent()
+                if (!state.pre || state.pre.invocationId != invocation || state.pre.nonce != nonce) fail('CURRENT_PREPACKAGING_CAPTURE_REQUIRED')
+                if (artifactSnapshot() != state.pre.runtimeArtifacts || generatedSnapshot() != state.pre.generatedBuildInputs) fail('INPUTS_CHANGED_BEFORE_PACKAGING')
+                // Actual packaging-task inputs supplement the raw runtime collection. Only existing actual files are hashed.
+                def files = task.inputs.files.files.collectMany { f -> f.isDirectory() ? fileTree(f).files as List : f.isFile() ? [f] : [] }
+                state.packageInputs = files.unique { it.canonicalPath }.collect { fileRecord(it) }.sort { a,b -> a.path <=> b.path }
+                state.packageInputsFile = writeOriginal('packaging-task-inputs-before.json',invocationFacts + [task:task.path,files:state.packageInputs])
+            }
+        }
+        def artifactTypeName = 'com.android.build.api.artifact.SingleArtifact$' + (request.artifactKind == 'apk' ? 'APK' : 'BUNDLE')
+        def artifactType = pluginLoader.loadClass(artifactTypeName).getField('INSTANCE').get(null)
+        def artifactProvider = variant.artifacts.get(artifactType)
+        def binder = tasks.register('stpBindNativeOutputs' + cap) {
+            dependsOn(capture)
+            dependsOn(tasks.named(packageName))
+            inputs.files(artifactProvider)
+            outputs.upToDateWhen { false }
+            doLast {
+                requestCurrent()
+                def packaged = tasks.named(packageName).get()
+                if (!packaged.state.executed || packaged.state.failure != null || packaged.state.skipped || !packaged.state.didWork) fail('ACTUAL_CURRENT_PACKAGE_EXECUTION_REQUIRED')
+                if (!state.pre || !state.packageInputs || state.pre.invocationId != invocation || state.pre.nonce != nonce) fail('CURRENT_CAPTURE_REQUIRED')
+                def beforeFile = new File(output,state.preFile.file)
+                if (digestFile(beforeFile).sha256 != state.preFile.sha256) fail('PREPACKAGING_ORIGINAL_CHANGED')
+                if (artifactSnapshot() != state.pre.runtimeArtifacts || generatedSnapshot() != state.pre.generatedBuildInputs) fail('INPUTS_CHANGED_AFTER_PACKAGING')
+                if (state.packageInputs.collect { fileRecord(new File(it.path)) } != state.packageInputs) fail('PACKAGING_TASK_INPUTS_CHANGED')
+                def outputs = []
+                if (request.artifactKind == 'apk') {
+                    def built = variant.artifacts.getBuiltArtifactsLoader().load(artifactProvider.get())
+                    if (built == null || built.variantName != variant.name) fail('ACTUAL_APK_VARIANT_METADATA_REQUIRED')
+                    outputs = built.elements.collect { fileRecord(new File(it.outputFile)) }
+                } else outputs = [fileRecord(artifactProvider.get().asFile)]
+                if (outputs.empty || outputs.any { !it.path.endsWith('.' + request.artifactKind) }) fail('ACTUAL_NATIVE_OUTPUT_REQUIRED')
+                def after = invocationFacts + [phase:'AFTER_NATIVE_PACKAGING',status:'PACKAGING_ATTESTED_TERMINAL_BUILD_SUCCESS_STILL_REQUIRED',
+                    configuration:runtime.name,actualPackageTask:packaged.path,currentPackageExecuted:true,
+                    beforeOriginal:state.preFile,packagingTaskInputsOriginal:state.packageInputsFile,
+                    runtimeArtifactsUnchanged:true,packagingTaskInputsUnchanged:true,nativeOutputs:outputs,
+                    terminalGradleAndUnitySuccessVerified:false,productionSignedOrDeviceOrLegalAcceptance:false,capturedAtUtc:java.time.Instant.now().toString()]
+                def report = writeOriginal('inputs-after.json',after)
+                println('STP_NATIVE_BUILD_INPUTS_AFTER=' + new File(output,report.file).canonicalPath + ';SHA256=' + report.sha256)
+            }
+        }
+        tasks.configureEach { task -> if (task.name == lifecycleName) task.dependsOn(binder) }
+    }
+    gradle.taskGraph.whenReady { graph ->
+        if (!selectedVariantSeen) fail('EXPECTED_VARIANT_NOT_REGISTERED')
+        def actualPackages = registered.findAll { r -> graph.allTasks.any { t -> t.project == project && t.name == r.packageName } }
+        if (actualPackages.size() != 1 || actualPackages[0].variant != request.variant) fail('WRONG_ACTUAL_VARIANT')
+        def expectedLifecycle = registered.find { it.variant == request.variant }.lifecycleName
+        if (!graph.allTasks.any { it.project == project && it.name == expectedLifecycle }) fail('NATIVE_LIFECYCLE_REQUIRED')
+    }
+}

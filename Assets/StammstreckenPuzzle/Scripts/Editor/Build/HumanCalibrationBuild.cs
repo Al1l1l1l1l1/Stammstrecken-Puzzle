@@ -102,7 +102,7 @@ namespace STP.Editor.Build
         }
         private static string[] ExpectedUiSources()=>Directory.GetFiles(Root+"Scripts/Presentation","*.cs",SearchOption.AllDirectories)
             .Concat(Directory.GetFiles(Root+"Art","*",SearchOption.AllDirectories).Where(p=>new[]{".png",".svg",".ttf",".otf"}.Contains(Path.GetExtension(p).ToLowerInvariant())))
-            .Concat(new[]{Root+"UI/ProductionGame.uxml",Root+"UI/ProductionGame.uss",Root+"UI/ProductionGameLocale.json",Root+"UI/ProductionCampaignText.json",Root+"UI/RailwayAssets.json"})
+            .Concat(new[]{Root+"UI/ProductionGame.uxml",Root+"UI/ProductionGame.uss",Root+"UI/ProductionGameLocale.json",Root+"UI/ProductionCampaignText.json",Root+"UI/RailwayAssets.json",Root+"UI/ThirdPartyNotices.txt"})
             .Select(p=>p.Replace('\\','/')).OrderBy(p=>p,StringComparer.Ordinal).ToArray();
         /// <summary>Actual source verification, never a repair or acceptance of a stale UI lock.</summary>
         public static void VerifySourceLock()
@@ -168,7 +168,7 @@ namespace STP.Editor.Build
                 var options=new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName="Builds/HumanCalibration/Android/stp-human-calibration.apk",target=BuildTarget.Android,options=BuildOptions.Development};
                 buildingScenes=(string[])options.scenes.Clone();ValidateBuildScope(options.target);
                 Directory.CreateDirectory(Path.GetDirectoryName(options.locationPathName)!);
-                var report=BuildPipeline.BuildPlayer(options);
+                var report=NativeInputBuildEvidence.BuildPlayerWithEvidence(options,StpBuildEntrypoints.ReadDeclaredNativeCheckout());
                 if(report.summary.result!=BuildResult.Succeeded)throw new BuildFailedException("HUMAN_ANDROID_BUILD_FAILED:"+report.summary.totalErrors);
                 Debug.Log("Assigned Human APK created. Final packaged APK audit is still mandatory before distribution; no device/network/Human approval.");
             }

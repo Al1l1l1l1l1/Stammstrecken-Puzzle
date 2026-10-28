@@ -74,6 +74,7 @@ namespace STP.Editor.Build
             installer.ConfigureProductionRuntime(Required<VisualTreeAsset>(Root+"UI/ProductionGame.uxml"),Required<StyleSheet>(Root+"UI/ProductionGame.uss"),
                 Required<TextAsset>(Root+"UI/ProductionGameLocale.json"),panel,files,Required<TextAsset>(destination+"Runtime.bindings.json"),
                 source.Facts.BindingsRawSha256,source.Facts.ReleaseLockRawSha256,source.Facts.ReleaseLockJcsSha256,source.Facts.ApprovalLockRawSha256!,source.Facts.UiSourceLockRawSha256);
+            installer.ConfigureOfflineNotices(MobilePreviewBuild.VerifyOfflineNoticesAsset());
             installer.ConfigureProductionServiceProfile(profile);
             installer.ConfigurePublisherContacts(publisher);
             installer.ConfigureAudio(ProductionAudioAssets.LoadMixer(),ProductionAudioAssets.LoadClips());holder.SetActive(true);
@@ -124,9 +125,9 @@ namespace STP.Editor.Build
         private static void VerifySavedScene(ProductionImportPreflightResult source,ProductionMobileServiceProfile profile,string destination)
         {
             string text=File.ReadAllText(ScenePath),script=AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/MobilePreviewInstaller.cs");
-            var fields=new[]{"tree","styles","locale","panel","publicData","campaignData","completionData","railwayAssets","cosmeticsData","campaignText","runtimeBindingsData","productionServiceProfile"};
+            var fields=new[]{"tree","styles","locale","panel","publicData","campaignData","completionData","railwayAssets","cosmeticsData","campaignText","runtimeBindingsData","productionServiceProfile","offlineNotices"};
             UnityEngine.Object[] assets={Required<VisualTreeAsset>(Root+"UI/ProductionGame.uxml"),Required<StyleSheet>(Root+"UI/ProductionGame.uss"),Required<TextAsset>(Root+"UI/ProductionGameLocale.json"),Required<PanelSettings>(Root+"Settings/MobilePreviewPanelSettings.asset"),
-                Required<TextAsset>(destination+"Public.json"),Required<TextAsset>(destination+"Campaign.json"),Required<TextAsset>(destination+"CampaignCompletion.json"),Required<TextAsset>(destination+"RailwayAssets.json"),Required<TextAsset>(destination+"Cosmetics.json"),Required<TextAsset>(destination+"CampaignText.json"),Required<TextAsset>(destination+"Runtime.bindings.json"),profile};
+                Required<TextAsset>(destination+"Public.json"),Required<TextAsset>(destination+"Campaign.json"),Required<TextAsset>(destination+"CampaignCompletion.json"),Required<TextAsset>(destination+"RailwayAssets.json"),Required<TextAsset>(destination+"Cosmetics.json"),Required<TextAsset>(destination+"CampaignText.json"),Required<TextAsset>(destination+"Runtime.bindings.json"),profile,MobilePreviewBuild.VerifyOfflineNoticesAsset()};
             var guids=new string[assets.Length];var ids=new long[assets.Length];var types=Enumerable.Repeat(3,assets.Length).ToArray();types[3]=2;types[11]=2;
             for(int i=0;i<assets.Length;i++)if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(assets[i],out guids[i],out ids[i]))throw new InvalidOperationException("PRODUCTION_ASSET_GUID_MISSING");
             MobilePreviewBuild.ValidateTypedSceneReferences(text,script,fields,guids,ids,types);

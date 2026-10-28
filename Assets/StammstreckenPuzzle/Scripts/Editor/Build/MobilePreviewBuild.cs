@@ -53,6 +53,7 @@ namespace STP.Editor.Build
             var root = new GameObject("Stammstrecken-Puzzle Mobile Preview");
             var installer = root.AddComponent<MobilePreviewInstaller>();
             installer.ConfigureCandidate(tree, styles, locale, panel, puzzles, campaign, completion, assets, cosmetics, bindings,texts);
+            installer.ConfigureOfflineNotices(Required<TextAsset>(Root+"UI/ThirdPartyNotices.txt"));
             installer.ConfigureEndless(Required<TextAsset>(Root+"UI/MobileCandidate.endless-profiles.json"),
                 Required<TextAsset>(Root+"UI/MobileCandidate.endless-completion.json"),Required<TextAsset>(Root+"UI/MobileCandidate.endless-bindings.json"));
             installer.ConfigureAudio(ProductionAudioAssets.LoadMixer(),ProductionAudioAssets.LoadClips());
@@ -71,13 +72,23 @@ namespace STP.Editor.Build
             if (scene == null || settings.referenceResolution != new Vector2Int(390, 844) ||
                 settings.scaleMode != PanelScaleMode.ScaleWithScreenSize || settings.match != 0)
                 throw new InvalidOperationException("PREVIEW_PANEL_OR_SCENE_INVALID");
-            string[] fields={"endlessProfilesData","endlessCompletionData","endlessBindingsData"};
-            string[] files={"MobileCandidate.endless-profiles.json","MobileCandidate.endless-completion.json","MobileCandidate.endless-bindings.json"};
+            string[] fields={"endlessProfilesData","endlessCompletionData","endlessBindingsData","offlineNotices"};
+            string[] files={"MobileCandidate.endless-profiles.json","MobileCandidate.endless-completion.json","MobileCandidate.endless-bindings.json","ThirdPartyNotices.txt"};
             var guids=new string[files.Length];var ids=new long[files.Length];
             for(int i=0;i<files.Length;i++)
                 if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Required<TextAsset>(Root+"UI/"+files[i]),out guids[i],out ids[i]))
                     throw new InvalidOperationException("PREVIEW_ENDLESS_ASSET_ID_MISSING");
+            VerifyOfflineNoticesAsset();
             ValidateSceneReferences(File.ReadAllText(ScenePath),AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/MobilePreviewInstaller.cs"),fields,guids,ids);
+        }
+
+        internal static TextAsset VerifyOfflineNoticesAsset()
+        {
+            const string path=Root+"UI/ThirdPartyNotices.txt";
+            var asset=Required<TextAsset>(path);
+            if(string.IsNullOrWhiteSpace(asset.text)||!asset.bytes.SequenceEqual(File.ReadAllBytes(path)))
+                throw new InvalidOperationException("OFFLINE_NOTICES_IMPORTED_BYTES_CHANGED");
+            return asset;
         }
 
         // Inspect the saved document, without loading/repairing a scene or relying on unrelated dependencies.
@@ -135,7 +146,10 @@ namespace STP.Editor.Build
             PlayerSettings.allowedAutorotateToLandscapeRight = false;
             PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
             Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
-            var report = BuildPipeline.BuildPlayer(new[] { ScenePath }, destination, target, BuildOptions.Development);
+            var build = new BuildPlayerOptions { scenes = new[] { ScenePath }, locationPathName = destination, target = target, options = BuildOptions.Development };
+            var report = target == BuildTarget.Android
+                ? NativeInputBuildEvidence.BuildPlayerWithEvidence(build, StpBuildEntrypoints.ReadDeclaredNativeCheckout())
+                : BuildPipeline.BuildPlayer(build);
             if (report.summary.result != BuildResult.Succeeded)
                 throw new InvalidOperationException("PREVIEW_BUILD_FAILED:" + target + ":" + report.summary.totalErrors);
             Debug.Log("STP MobilePreview build PASS: " + target + " -> " + destination + "; not a signed production RC.");

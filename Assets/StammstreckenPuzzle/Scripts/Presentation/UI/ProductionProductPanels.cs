@@ -34,6 +34,14 @@ namespace STP.Presentation.UI
         private ProductionServiceAction? renderedStoreAction;
         private string? renderedStorePrice;
         private bool dailyOpen,settingsOpen,dailyFailed,settingsFailed,serviceFailed,disposed;
+        private readonly Button noticesOpenButton,noticesClose,noticesFont,noticesPrevious,noticesNext;
+        private readonly Label noticesPageLabel;
+        private readonly List<string> noticesChunks=new List<string>();
+        private const int NoticesChunksPerPage=6;
+        private int noticesPage;
+        private readonly ScrollView noticesScroll;
+        private readonly VisualElement noticesOverlay,noticesContent;
+        private bool noticesOpen,noticesBound,noticesLarge,recoveryAttention;
 
         /// <summary>Creates normal product panels. It never reserves, rolls, grants or saves a setting itself.</summary>
         public ProductionProductPanels(VisualElement root,ProductionGameLocalization locale)
@@ -49,6 +57,15 @@ namespace STP.Presentation.UI
             restore=Add("settings-restore","settings.restore",()=>RunService(ProductionServiceAction.RestorePurchases));
             removeAds=Add("settings-remove-ads","settings.remove-ads",RequestStoreAction);
             legal=Add("settings-legal","settings.legal",()=>RequestContactAction(ProductionServiceAction.ShowLegal));support=Add("settings-support","settings.support",()=>RequestContactAction(ProductionServiceAction.ContactSupport));
+            noticesOpenButton=Add("settings-notices","settings.notices",OpenOfflineNotices);
+            noticesClose=Add("notices-close","notice.close",CloseOfflineNotices);
+            noticesFont=Add("notices-font","notices.font.larger",ToggleNoticesFont);
+            noticesPrevious=Add("notices-previous","notices.previous",()=>ChangeNoticesPage(-1));
+            noticesNext=Add("notices-next","notices.next",()=>ChangeNoticesPage(1));noticesPageLabel=Require<Label>("notices-page");
+            noticesOverlay=Require<VisualElement>("notices-overlay");noticesContent=Require<VisualElement>("notices-content");
+            noticesScroll=Require<ScrollView>("notices-scroll");noticesScroll.horizontalScrollerVisibility=ScrollerVisibility.Hidden;
+            noticesScroll.verticalScrollerVisibility=ScrollerVisibility.Auto;noticesScroll.focusable=true;
+            Require<Label>("notices-title").text=L("settings.notices");noticesOverlay.RegisterCallback<KeyDownEvent>(OnNoticesKeyDown,TrickleDown.TrickleDown);
             localDataOpen=Add("settings-delete-local","local-data.open",()=>RequestLocalData(ProductionLocalDataAction.Open));
             localDataStartup=Add("startup-delete-local","local-data.open",()=>RequestLocalData(ProductionLocalDataAction.Open));
             localDataError=Add("error-delete-local","local-data.open",()=>RequestLocalData(ProductionLocalDataAction.Open));
@@ -72,12 +89,45 @@ namespace STP.Presentation.UI
             root.RegisterCallback<AttachToPanelEvent>(OnLocalDataAttached);Refresh();
         }
         /// <summary>Whether a product modal owns the player's attention and must keep gameplay paused.</summary>
-        public bool IsModalOpen=>dailyOpen||settingsOpen||IsLocalDataBlocking;
+        public bool IsModalOpen=>dailyOpen||settingsOpen||noticesOpen||IsLocalDataBlocking;
+        /// <summary>Local read-only sheet; gameplay commands remain fenced while it owns attention.</summary>
+        public bool IsOfflineNoticesOpen=>noticesOpen;
+        /// <summary>Immediate UI intent fence over the existing fresh lifecycle read; unbound historical views remain usable.</summary>
+        public bool CanAcceptUnderlyingIntent=>CanUseOrdinaryPanelActions()&&!IsModalOpen;
+        /// <summary>Higher saved-state recovery keeps its own fresh native/local-data fence, independent of ordinary panels.</summary>
+        public bool CanAcceptRecoveryIntent=>!disposed&&!externalSuspended&&ReadLocalData()&&!IsLocalDataBlocking;
+        /// <summary>A saved-state error relinquishes ordinary reading panels without adding a lifecycle pause/flush operation.</summary>
+        public void SetRecoveryAttention(bool value)
+        {
+            if(disposed||recoveryAttention==value)return;recoveryAttention=value;
+            if(value){dailyOpen=false;settingsOpen=false;noticesOpen=false;noticesContent.Clear();noticesClose.Blur();noticesFont.Blur();noticesScroll.Blur();noticesPrevious.Blur();noticesNext.Blur();}
+            Refresh();
+        }
         /// <summary>A destructive lifecycle operation owns attention until Root confirms its outcome and restarts.</summary>
         public bool IsLocalDataBlocking=>localDataInvoking||localDataTask!=null||localDataIntentStarted||localDataState==ProductionLocalDataState.Confirmation||localDataState==ProductionLocalDataState.Deleting||localDataState==ProductionLocalDataState.RetryRequired||localDataState==ProductionLocalDataState.Deleted;
         /// <summary>Shares Root's existing external/native-focus fence with the same UI handlers.</summary>
         public void SetExternalSuspended(bool value)
-        {if(disposed||externalSuspended==value)return;externalSuspended=value;if(value){localDataConfirm.Blur();localDataCancel.Blur();localDataRetry.Blur();localDataRestart.Blur();}Refresh();if(!value)FocusLocalDataAction();}
+        {if(disposed||externalSuspended==value)return;externalSuspended=value;if(value){noticesClose.Blur();noticesFont.Blur();noticesScroll.Blur();noticesPrevious.Blur();noticesNext.Blur();localDataConfirm.Blur();localDataCancel.Blur();localDataRetry.Blur();localDataRestart.Blur();}Refresh();if(!value)FocusLocalDataAction();}
+        /// <summary>Binds immutable original notice text. Formatting/localization and external actions are never applied to its contents.</summary>
+        public void BindOfflineNotices(string text)
+        {
+            if(disposed)throw new ObjectDisposedException(nameof(ProductionProductPanels));
+            if(noticesBound)throw new InvalidOperationException("OFFLINE_NOTICES_ALREADY_BOUND");
+            if(string.IsNullOrWhiteSpace(text))throw new ArgumentException("OFFLINE_NOTICES_TEXT_REQUIRED",nameof(text));
+            for(int start=0;start<text.Length;)
+            {
+                int length=Math.Min(4096,text.Length-start);
+                if(start+length<text.Length)
+                {
+                    int newline=text.LastIndexOf('\n',start+length-1,length);
+                    if(newline>=start+length/2)length=newline-start+1;
+                    if(char.IsHighSurrogate(text[start+length-1])&&char.IsLowSurrogate(text[start+length]))length--;
+                    if(text[start+length-1]=='\r'&&text[start+length]=='\n')length--;
+                }
+                noticesChunks.Add(text.Substring(start,length));start+=length;
+            }
+            noticesBound=true;noticesPage=0;Refresh();
+        }
         /// <summary>Binds exact Root-held profile lifecycle status; does not create an intent or access storage.</summary>
         public void BindLocalDataDeletion(Func<ProductionLocalDataView> read,Func<ProductionLocalDataAction,Task> action)
         {if(disposed)throw new ObjectDisposedException(nameof(ProductionProductPanels));if(readLocalData!=null)throw new InvalidOperationException("LOCAL_DATA_ALREADY_BOUND");readLocalData=read??throw new ArgumentNullException(nameof(read));localDataAction=action??throw new ArgumentNullException(nameof(action));Refresh();}
@@ -95,8 +145,15 @@ namespace STP.Presentation.UI
         {
             if(disposed)return;Poll(ref dailyTask,ref dailyFailed);Poll(ref settingsTask,ref settingsFailed);Poll(ref serviceTask,ref serviceFailed);
             if(!localDataInvoking)Poll(ref localDataTask,ref localDataFailed);if(localDataTask==null&&!localDataInvoking)localDataPendingAction=null;
-            var previousLocalState=localDataState;ReadLocalData();var ordinary=!externalSuspended&&!IsLocalDataBlocking;
-            Visible("daily-overlay",dailyOpen&&!IsLocalDataBlocking);Visible("settings-overlay",settingsOpen&&!IsLocalDataBlocking);
+            var previousLocalState=localDataState;ReadLocalData();if(IsLocalDataBlocking&&noticesOpen){noticesOpen=false;noticesContent.Clear();}var ordinary=!externalSuspended&&!IsLocalDataBlocking&&!noticesOpen&&!recoveryAttention;
+            Visible("daily-overlay",dailyOpen&&!IsLocalDataBlocking);Visible("settings-overlay",settingsOpen&&!noticesOpen&&!IsLocalDataBlocking);
+            Visible("notices-overlay",noticesOpen&&!IsLocalDataBlocking);
+            var noticesReady=!externalSuspended&&!localDataReadFailed&&!IsLocalDataBlocking;
+            noticesOpenButton.SetEnabled(ordinary&&!localDataReadFailed&&noticesBound&&dailyTask==null&&settingsTask==null&&serviceTask==null);
+            noticesClose.SetEnabled(noticesReady&&noticesOpen);noticesFont.SetEnabled(noticesReady&&noticesOpen);noticesScroll.SetEnabled(noticesReady);
+            noticesPrevious.SetEnabled(noticesReady&&noticesOpen&&noticesPage>0);noticesNext.SetEnabled(noticesReady&&noticesOpen&&noticesPage+1<NoticesPageCount);
+            noticesPageLabel.text=noticesBound?L("notices.page",noticesPage+1,NoticesPageCount):string.Empty;
+            noticesOverlay.EnableInClassList("notices--large",noticesLarge);noticesFont.text=L(noticesLarge?"notices.font.normal":"notices.font.larger");
             dailyClose.SetEnabled(ordinary&&dailyTask==null);settingsClose.SetEnabled(ordinary&&settingsTask==null&&serviceTask==null);
             DailyView? daily=null;try{daily=readDaily?.Invoke();}catch{dailyFailed=true;}
             Require<Label>("daily-date").text=daily?.DateLabel??L("daily.unavailable");
@@ -134,7 +191,7 @@ namespace STP.Presentation.UI
         }
         /// <summary>Releases own callbacks and observes late failures without UI access.</summary>
         public void Dispose()
-        {if(disposed)return;disposed=true;root.UnregisterCallback<AttachToPanelEvent>(OnLocalDataAttached);foreach(var pair in actions)pair.Key.clicked-=pair.Value;Observe(dailyTask);Observe(settingsTask);Observe(serviceTask);Observe(localDataTask);}
+        {if(disposed)return;disposed=true;root.UnregisterCallback<AttachToPanelEvent>(OnLocalDataAttached);noticesOverlay.UnregisterCallback<KeyDownEvent>(OnNoticesKeyDown,TrickleDown.TrickleDown);foreach(var pair in actions)pair.Key.clicked-=pair.Value;Observe(dailyTask);Observe(settingsTask);Observe(serviceTask);Observe(localDataTask);}
         private void ClaimDaily(bool rewarded)
         {
             if(!CanUseOrdinaryPanelActions()||dailyTask!=null||readDaily==null||claimDaily==null)return;dailyFailed=false;
@@ -186,13 +243,13 @@ namespace STP.Presentation.UI
             }
             catch{localDataReadFailed=true;return false;}
         }
-        private bool CanUseOrdinaryPanelActions()=>!disposed&&!externalSuspended&&ReadLocalData()&&!IsLocalDataBlocking;
+        private bool CanUseOrdinaryPanelActions()=>!disposed&&!externalSuspended&&!noticesOpen&&!recoveryAttention&&ReadLocalData()&&!IsLocalDataBlocking;
         private void RequestLocalData(ProductionLocalDataAction action)
         {
             if(disposed||externalSuspended||localDataInvoking||localDataTask!=null||readLocalData==null||localDataAction==null)return;
             if(!ReadLocalData()){Refresh();return;}
             var allowed=AllowsLocalDataAction(localDataState,localDataIntentStarted,action)&&
-                (action!=ProductionLocalDataAction.Open||dailyTask==null&&settingsTask==null&&serviceTask==null);
+                (action!=ProductionLocalDataAction.Open||!noticesOpen&&dailyTask==null&&settingsTask==null&&serviceTask==null);
             if(!allowed){Refresh();return;}
             localDataFailed=false;localDataInvoking=true;localDataPendingAction=action;
             if(action==ProductionLocalDataAction.Confirm||action==ProductionLocalDataAction.Retry)localDataIntentStarted=true;
@@ -220,7 +277,7 @@ namespace STP.Presentation.UI
         {
             var blocking=IsLocalDataBlocking;var busy=localDataInvoking||localDataTask!=null;
             var ready=readLocalData!=null&&localDataAction!=null&&!localDataReadFailed&&!externalSuspended;
-            var canOpen=ready&&!blocking&&localDataState==ProductionLocalDataState.Ready&&dailyTask==null&&settingsTask==null&&serviceTask==null;
+            var canOpen=ready&&!blocking&&!noticesOpen&&localDataState==ProductionLocalDataState.Ready&&dailyTask==null&&settingsTask==null&&serviceTask==null;
             foreach(var button in new[]{localDataOpen,localDataStartup,localDataError})button.SetEnabled(canOpen);
             localDataStartup.style.display=canOpen?DisplayStyle.Flex:DisplayStyle.None;localDataError.style.display=canOpen?DisplayStyle.Flex:DisplayStyle.None;
             Require<Label>("settings-delete-state").text=L(localDataFailed?"local-data.failed":localDataState==ProductionLocalDataState.Ready?"local-data.ready":"local-data.unavailable");
@@ -242,10 +299,55 @@ namespace STP.Presentation.UI
         private void FocusLocalDataAction()
         {
             if(disposed||externalSuspended||localDataReadFailed||localDataInvoking||localDataTask!=null)return;
+            if(noticesOpen){FocusNoticesClose();return;}
             if(localDataState==ProductionLocalDataState.Confirmation&&!localDataIntentStarted)localDataCancel.Focus();
             else if(localDataState==ProductionLocalDataState.RetryRequired)localDataRetry.Focus();
             else if(localDataState==ProductionLocalDataState.Deleted)localDataRestart.Focus();
             else if(localDataState==ProductionLocalDataState.Ready&&settingsOpen)localDataOpen.Focus();
+        }
+        private void OpenOfflineNotices()
+        {
+            if(!CanUseOrdinaryPanelActions()||!settingsOpen||dailyOpen||!noticesBound||dailyTask!=null||settingsTask!=null||serviceTask!=null)return;
+            noticesOpen=true;noticesPage=0;RenderNoticesPage();Refresh();FocusNoticesClose();
+        }
+        private bool CanUseOfflineNotices()=>!disposed&&!externalSuspended&&noticesOpen&&ReadLocalData()&&!IsLocalDataBlocking;
+        private void CloseOfflineNotices()
+        {
+            if(!CanUseOfflineNotices())return;noticesOpen=false;noticesContent.Clear();Refresh();
+            root.schedule.Execute(()=>{if(!disposed&&!externalSuspended&&settingsOpen&&!noticesOpen&&!IsLocalDataBlocking)noticesOpenButton.Focus();});
+        }
+        private int NoticesPageCount=>(noticesChunks.Count+NoticesChunksPerPage-1)/NoticesChunksPerPage;
+        private void RenderNoticesPage()
+        {
+            noticesContent.Clear();int first=noticesPage*NoticesChunksPerPage;
+            for(int i=first;i<Math.Min(first+NoticesChunksPerPage,noticesChunks.Count);i++)
+            {
+                var block=new Label(noticesChunks[i]){name="notices-block-"+i,enableRichText=false};
+                block.AddToClassList("notices-copy");noticesContent.Add(block);
+            }
+            noticesScroll.scrollOffset=UnityEngine.Vector2.zero;
+        }
+        private void ChangeNoticesPage(int step)
+        {
+            if(!CanUseOfflineNotices())return;int next=noticesPage+step;
+            if(next<0||next>=NoticesPageCount)return;noticesPage=next;RenderNoticesPage();Refresh();
+            root.schedule.Execute(()=>{if(!disposed&&!externalSuspended&&noticesOpen&&!localDataReadFailed&&!IsLocalDataBlocking)noticesScroll.Focus();});
+        }
+        private void ToggleNoticesFont(){if(!CanUseOfflineNotices())return;noticesLarge=!noticesLarge;Refresh();}
+        private void FocusNoticesClose()
+        {root.schedule.Execute(()=>{if(!disposed&&!externalSuspended&&noticesOpen&&!localDataReadFailed&&!IsLocalDataBlocking)noticesClose.Focus();});}
+        private void OnNoticesKeyDown(KeyDownEvent change)
+        {
+            if(!CanUseOfflineNotices())return;
+            if(change.keyCode==UnityEngine.KeyCode.Escape){CloseOfflineNotices();change.StopPropagation();}
+            else if(change.keyCode==UnityEngine.KeyCode.Tab)
+            {
+                var controller=root.panel?.focusController;controller?.IgnoreEvent(change);
+                var targets=new VisualElement[]{noticesScroll,noticesPrevious,noticesNext,noticesFont,noticesClose}.Where(target=>target.enabledInHierarchy).ToArray();
+                int current=Array.FindIndex(targets,target=>ReferenceEquals(controller?.focusedElement,target));
+                int next=current<0?(change.shiftKey?targets.Length-1:0):(current+(change.shiftKey?targets.Length-1:1))%targets.Length;
+                targets[next].Focus();change.StopPropagation();
+            }
         }
         private static LocalSettings Copy(LocalSettings source,string? group=null,int volume=100,bool? hapticsEnabled=null,bool? reduced=null,bool? skip=null)
         {
