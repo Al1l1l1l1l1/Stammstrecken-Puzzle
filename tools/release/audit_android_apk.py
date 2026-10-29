@@ -47,6 +47,7 @@ def main() -> int:
     parser.add_argument("--editor-data", type=Path, required=True)
     parser.add_argument("--build-label", type=non_empty, required=True, help="Explicit identity of this actual build; never inferred from GitHEAD")
     parser.add_argument("--source-binding", type=non_empty, required=True, help="Caller-provided exact build-input description, including commit and preserved deltas when available; not independently attested by this tool")
+    parser.add_argument("--legacy-no-native-build-inputs", action="store_true", help="Explicit historical APK replay only: do not claim current build-time inputs; current CI must use the strict default")
     args = parser.parse_args()
     root = args.project_root.resolve()
     java, aapt2, cmdline = resolve_android_tools(args.editor_data)
@@ -153,9 +154,24 @@ def main() -> int:
         "sourceBinding": args.source_binding, "sourceBindingIsCallerDeclaration": True,
         "manifest": manifest_summary, "abis": abis, "nativeLibraries": native_libraries, "packagedSdkVersionProperties": properties,
         "artifacts": artifacts, "problems": problems, "productionSigned": False, "physicalDeviceValidated": False,
-        "sandboxValidated": False, "physicalPrivacyValidated": False, "legalApproved": False, "promotionAllowed": False}
+        "sandboxValidated": False, "physicalPrivacyValidated": False, "legalApproved": False, "promotionAllowed": False,
+        "nativeBuildTimeInputRetentionRequired": not args.legacy_no_native_build_inputs,
+        "nativeBuildTimeInputRetentionBoundary": "EXPLICIT_HISTORICAL_REPLAY_WITHOUT_BUILD_TIME_INPUT_ATTESTATION" if args.legacy_no_native_build_inputs else "REQUIRES_SEPARATE_SUCCESSFUL_NATIVE_BUILD_INPUT_RETENTION_SIDECAR"}
     (out / "audit.json").write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps({"archive": str(out), "buildLabel": args.build_label, "apkSha256": result["apkSha256"], "bytes": result["apkSizeBytes"], "abis": abis, "problems": problems}))
+    retention = None
+    if not problems and not args.legacy_no_native_build_inputs:
+        audit_hash_before_retention = sha(out / "audit.json")
+        try:
+            from archive_native_build_evidence import retain
+            retention = retain(root, apk, out / "audit.json", out / "native-build-inputs", expected_checkout=os.environ.get("STP_NATIVE_CALLER_CHECKOUT"))
+        except Exception as error:
+            failure = {"evidenceKind": "ACTUAL_APK_NATIVE_INPUT_RETENTION_FAILURE", "apkSha256": result["apkSha256"], "actualPackageAuditSha256AtRetentionStart": audit_hash_before_retention, "errorType": type(error).__name__, "message": str(error), "retentionSucceeded": False, "packageAuditOriginalUnchanged": sha(out / "audit.json") == audit_hash_before_retention, "promotionAllowed": False}
+            with (out / "native-build-inputs-failure.json").open("x", encoding="utf-8") as stream:
+                json.dump(failure, stream, indent=2)
+                stream.write("\n")
+            print(json.dumps({"archive": str(out), "buildLabel": args.build_label, "apkSha256": result["apkSha256"], "nativeInputRetention": "FAILED_OR_INCOMPLETE_ORIGINALS_RETAINED", "errorType": type(error).__name__}))
+            return 1
+    print(json.dumps({"archive": str(out), "buildLabel": args.build_label, "apkSha256": result["apkSha256"], "bytes": result["apkSizeBytes"], "abis": abis, "problems": problems, "nativeInputRetention": retention["status"] if retention is not None else "EXPLICIT_LEGACY_REPLAY_NOT_ATTESTED" if args.legacy_no_native_build_inputs else "NOT_RUN_AUDIT_FAILED"}))
     return 1 if problems else 0
 
 
