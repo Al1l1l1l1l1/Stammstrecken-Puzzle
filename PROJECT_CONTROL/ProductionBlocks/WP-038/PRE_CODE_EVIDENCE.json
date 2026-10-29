@@ -1,0 +1,155 @@
+{
+  "result": "PRE_CODE_PASS",
+  "base": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+  "anchor": "ee14a1bf1ad88768fecca6937072cfe4fc14ba67",
+  "acceptance": "4667413ae0baa9971b4b7660a19988ce36248469",
+  "tree": "c4b1a4768934a54072a120f8ec5970859974e60c",
+  "manifestSha256": "cf9087d50941eb64dea3dc1ea894dd29a3a5a2a7d611668e3228cc6b875b979a",
+  "manifestBlob": "c295dda1fc0aa4f187ab01313013d7722667baf2",
+  "allowedPaths": 59,
+  "changedFiles": [
+    ".github/workflows/validate.yml",
+    "ARCHITECTURE/BUILD_AND_RELEASE.md",
+    "ARCHITECTURE/CONTENT_PIPELINE.md",
+    "ARCHITECTURE/MODULE_BOUNDARIES.md",
+    "DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md",
+    "DECISIONS/ADR-033-interne-transiente-spielschleife.md",
+    "DECISIONS/README.md",
+    "PROJECT_CONTROL/CURRENT_STATE.md",
+    "PROJECT_CONTROL/ProductionBlocks/PRODUCTION_BUNDLING_DECISION.md",
+    "PROJECT_CONTROL/ProductionBlocks/WP-038/TECHNICAL_ACCEPTANCE.md",
+    "PROJECT_CONTROL/ProductionBlocks/WP-038/TECHNICAL_BOUNDARY_REVIEW.md",
+    "PROJECT_CONTROL/WORK_QUEUE.md",
+    "WORK_PACKAGES/WP-038_Interne-spielbare-Raetselschleife.md",
+    "tools/architecture-validation/scopes/WP-038.production.scope.json",
+    "tools/architecture-validation/validate.py"
+  ],
+  "protectedManifests": [
+    {
+      "path": "tools/architecture-validation/scopes/WP-003.documentation.scope.json",
+      "sha256": "40a3782cab82c4fa1f8267170b7a944eb3e6ebd2df063042a6ed5681f6d05c40"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-004.documentation.scope.json",
+      "sha256": "7e3376ef28be2bf710fb82dc1f2cccd9a1eda404133cd65ac18f5a0ccebb2ba8"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-005.documentation.scope.json",
+      "sha256": "4e256258ee4681fb0a4660bf5e6a52addf521df9575103fe1afbb65872e13ecc"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-006.documentation.scope.json",
+      "sha256": "a5fde22e0adee91b94ef45de1cfd584fe2bbca5d011b43652441a5ec7b25fc6d"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-007.documentation.scope.json",
+      "sha256": "7825ac2b65e274a2f2cf8cc0893fe8ceaba0a305fb6cd58b579dc3509aadcf7c"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-010.documentation.scope.json",
+      "sha256": "9d2624a79be7e408ff39f76838377612a74cc5d558cba2cbaa09ec24c6addc19"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-011.documentation.scope.json",
+      "sha256": "db17088e0ccdbb2cfc5022a8f941a4cbe7d5d0ad06b49abb3b4e3b2fee92a432"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-014.documentation.scope.json",
+      "sha256": "7c4afa6233192e0a239ff0426d9199a5555a5ccd9686ece4be22021edca537c4"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-018.documentation.scope.json",
+      "sha256": "4cb0728c7a92a8cc170247cf6c2400904e3a297939b4b19a61e4cc5538cecad9"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-021.production.scope.json",
+      "sha256": "a0166dde558cba692c34a4f19a2e20f614f1b02de548559a9977b02661e9be61"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-022.production.scope.json",
+      "sha256": "003f5d47d1177d70fa49359200127a243ca4265f2124a1dc2401ac36ea2988e6"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-023.production.scope.json",
+      "sha256": "a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-024.production.scope.json",
+      "sha256": "2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-025.production.scope.json",
+      "sha256": "1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-027.governance.scope.json",
+      "sha256": "af42b035ba821c870cb8e5b21612644a707474fc20b07258abf55047796457b1"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-036.production.scope.json",
+      "sha256": "f04c0ca2b57319aacb2ea40632b862853fce5284b795114612a85dc181a1ce2e"
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-037.production.scope.json",
+      "sha256": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4"
+    }
+  ],
+  "protectedTextSha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+  "validatorExactAuthorizedDelta": true,
+  "sourceStatusBefore": "",
+  "runs": [
+    {
+      "name": "architecture",
+      "head": "4667413ae0baa9971b4b7660a19988ce36248469",
+      "exitCode": 0,
+      "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9",
+      "bytes": 1931,
+      "argv": [
+        "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+        "tools/architecture-validation/validate.py",
+        "--self-test"
+      ],
+      "persistedPath": "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_ARCHITECTURE.txt"
+    },
+    {
+      "name": "scope",
+      "head": "4667413ae0baa9971b4b7660a19988ce36248469",
+      "exitCode": 0,
+      "sha256": "05fcbade6a71e0e96d91eb1b93795d34ec77fa788d2320565a4072567fcc0f7e",
+      "bytes": 2132,
+      "argv": [
+        "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+        "tools/architecture-validation/validate.py",
+        "--scope",
+        "production",
+        "--scope-manifest",
+        "tools/architecture-validation/scopes/WP-038.production.scope.json",
+        "--self-test"
+      ],
+      "persistedPath": "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_SCOPE.txt"
+    }
+  ],
+  "mainRefCopiedForScope": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+  "toolchain": {
+    "python": "Python 3.11.13",
+    "node": "v22.20.0"
+  },
+  "reviewedPriorDraft": {
+    "pathAtReview": ".utmp/wp038-proposal/ADR-033-interne-transiente-spielschleife.md",
+    "rawBytes": 8334,
+    "rawSha256": "05f17cbeea5fb28b495535b1d2571018c7d951efe75fe0cf5237d54ed92a111e",
+    "canonicalLfSha256": "05f17cbeea5fb28b495535b1d2571018c7d951efe75fe0cf5237d54ed92a111e",
+    "utf8Text": "# ADR-033 – Interne transiente Spielschleife ohne Produktionscontentimport\n\n## Status\n**Entwurf** – keine Implementierungsfreigabe. Zuständige technische Annahme nach unabhängiger Quellen-/Grenzenprüfung erforderlich.\n\n## Datum\n2026-10-18\n\n## Kontext\nDomaincommands, Completion und Solver-/Proofgrundlagen sind implementiert; Application, Persistenz und Darstellung sind bisher überwiegend WP021-Skelette. Der bestätigte Nutzerauftrag verlangt echte Fortschritte zu einer bedienbaren Spielversion und untersagt, menschliche Rätseltests vor deren Existenz zu verlangen. Gleichzeitig verbieten CONTENT_CATALOGS/CONTENT_PIPELINE den Productionimport von DRAFT und FIXTURE_ONLY; WP026 bleibt offen, Textquellen bleiben DRAFT und kein Save-/Rewardpfad ist fertig. Ein interner bedienbarer Test darf diese Grenzen nicht umgehen oder als Produktionskampagne auftreten.\n\n## Entscheidung\nVorgeschlagen wird eine explizit isolierte QA-Spielschleife im bestehenden Unityprojekt unter dem bestehenden nichtöffentlichen QA-Buildprofil. Sie verwendet den echten Domainkern über eine reine Application-Sessionsteuerung, UI Toolkit und eine aus dem tatsächlichen PuzzleSolved-Ereignis abgeleitete neutrale World-Zugdarstellung. Zwei eigene technisch benannte QA-Definitionen enthalten ausschließlich öffentliche Puzzlewerte und gehören keiner Kampagne an. Kein WP026-/WP036-Import, keine gespeicherte Lösung und keine Runtimekatalog-/Release-Lock-Promotion.\n\nDer gesamte Versuch bleibt im Speicher. Domainphase SolvedPendingCommit wird nicht in einen falschen Saveerfolg verwandelt. Eine getrennte QA-Präsentationsphase erlaubt die interne Fahrt-/Resultprobe, sichtbar als ungespeichert und ohne Reward. Production hält weiterhin strikt Savecommit vor Fahrt/Reward ein. Keine Datei-, Ledger-, Stern-, Kampagnen-, Claim-, Hint-, Daily-, Endless-, SDK-/Storewirkung.\n\nDie QA-Szene besitzt genau einen DevelopmentPuzzleInstaller. Ihre UXML-/USS-/Panel-/Locale-/Materialreferenzen werden explizit serialisiert und validiert. Nur für diese isolierte Szene ist direkte Inspectorbindung zulässig; das ist kein neuer Production-Ladepfad. Productionassets bleiben über lokale Addressables und freigegebene Kataloge geladen. Keine Resources-, Reflection-, Szenensuch- oder Service-Locator-Ersatzverdrahtung.\n\nEine eigene neutrale QA-JSON-Quelle liefert stabile technische de-DE-Schlüssel, Werte und Formatverträge. Der UI-Adapter erzeugt daraus ausschließlich im Speicher eine Unity-Localization-Locale/StringTable und löst sämtliche sichtbaren Texte darüber auf. Keine sichtbaren C#/UXML-Literale, kein generischer Missing-Key-Fallback und keine Kopie/Änderung der angenommenen Bibliothek. Unity.Localization wird als bereits durch ADR011 vorgesehene externe Referenz ausschließlich der UI-asmdef hinzugefügt; der CI-Preflight prüft die bisherigen internen Kanten weiter exakt und erlaubt separat nur diesen Paketverweis.\n\nEin reproduzierbarer DevelopmentPuzzleBuild erstellt die eng benannte QA-Szene, Panelsettings und das neutrale technische URP-Trainmaterial. Er referenziert intern weiterhin ausschließlich Bootstrap. Bootstrap konsumiert Application-DTOs und seine bereits erlaubten Adapter-/Presenterreferenzen, keine direkte Domainkante. Bestehende reguläre Buildentrypoints bauen den neuen QA-Stand mit, behalten aber alle Versions-, Profil-, URP-, Stripping- und Composition-Smoke-Gates. Kein Produktions- oder Storebuild wird dadurch freigegeben.\n\n## Begründung\nDie echte Application-/Darstellungsproduktion wird bedienbar und testbar, während jede noch nicht implementierte dauerhafte Wahrheit offen bleibt. Die begrenzte Szene vermeidet erfundene Produktannahmen und eine parallele Puzzleimplementierung. Ein Harness allein ist keine vollständige spielbare Season; er schafft den ausführbaren Anfang des vorgesehenen lokalen Ablaufs und belastbare Anschlussstellen für Save-/Contentproduktion.\n\n## Betrachtete Alternativen\n| Alternative | Bewertung |\n|---|---|\n| WP026-DRAFT still in Runtime importieren | Verletzt ausdrückliche Import-/Freigabeverträge und wird verworfen. |\n| Alle Arbeiten bis Humanreview, finalen Assets und Sternzeiten stoppen | Widerspricht OPEN_BLOCKERS und dem neuen Nutzerauftrag; kein technischer Zwang. |\n| Separates Webspiel, Regelkopie oder neues UI-System | Verdoppelt Autorität und verfehlt die angenommene Unityarchitektur. |\n| Schon jetzt vollständige Save-/Economy-/Katalogproduktion behaupten | Nicht implementiert und nicht geprüft; eigener großer Folgeblock. |\n\n## Konsequenzen\nDer QA-Stand ist intern bedienbar und kann manuell exploriert werden; er ist kein bestandener menschlicher WP026-Spieltest, kein Productionimport, keine Fortschrittspersistenz und kein Release. Der spätere Save-/Kampagnenblock muss diese technische QA-Präsentationsgrenze bewusst durch den echten persistierten Abschluss ersetzen. Die QA-Szene darf nie als Productionentry ausgeliefert werden; negative Build-/Compositiontests prüfen das. Finale Grafik-, Gesten-, Motion-, Accessibility- und Zeitentscheidungen werden nicht vorweggenommen.\n\n## Betroffene Artefakte\nWP038 und eigenes Manifest; DevelopmentPuzzleSession, DevelopmentPuzzleData, DevelopmentClock, DevelopmentPuzzlePresenter/PuzzleGridElement, DevelopmentTrainRide, DevelopmentPuzzleInstaller, DevelopmentPuzzleBuild, eigene QA-UI-/Szenen-/Material-/Localequellen; vorhandene UI-asmdef, unity.yml-Preflight und StpBuildEntrypoints; MODULE_BOUNDARIES/CONTENT_PIPELINE/BUILD_AND_RELEASE ausschließlich erklärend für diese Grenze; ADR-Index und eigene Produktionssteuerung. ADR011 erhält ausschließlich einen additiven rückwärtigen Link-/Geltungsnachtrag auf diese eng begrenzte QA-Ergänzung. Sein angenommener historischer Entscheidungskörper bleibt unverändert; der Index benennt den unveränderten produktiven Addressables-/Localizationvertrag und die Ausnahme nur für die bestimmte interne QA-Szene. tools/architecture-validation/validate.py führt ausschließlich die geschlossene Registry/Inventar-/Indexerwartung für diese tatsächlich neu angenommene ADR033-Grenze auf exakt 33 ADRs/24 angenommen/9 ersetzt nach und ergänzt die gezielten fehlender-ADR033-Indexeintrag-/falscher-ADR033-Indexstatus-Negativregressionen; keine dynamische Annahme unbekannter ADRs und keine andere Gate-/Scope-/Hash-/Fachsemantikänderung.\n\n## Validierung\nUnveränderte interne Assemblykanten und exakter externer Localizationverweis; public-only QA-Daten und keine Content-/Solutionreferenzen; Domaincommands statt eigener Regeln; Timer/Batch/Undo/Counts; echte PuzzleSolved-Pfadbindung, Fahrt vor Result, Neustart und Lifecycle; fehlende Referenzen/Keys scheitern; keine Save-/Provider-/Rewardwirkung; reproduzierbare Szene und reguläre Android-/iOS-CI; getrennte unabhängige Abschlussprüfung. Die grafische Bedienprobe verwendet die tatsächlich verfügbare Route aus WP038 Tests7: vorhandener lokaler Unity6000.3.23f1-Editor mit `-batchmode -force-d3d11` ohne `-nographics` nach tatsächlicher Lizenzprüfung ohne konkurrierende Personalinstanz; alternativ genau ein zusätzlicher gefilterter Grafiklauf im bestehenden serialisierten unity-playmode-bootstrap-smoke-Job nach dem vollständigen unveränderten Headlesspflichtlauf und vor Seatfreigabe, `xvfb-run`/Software-GL/`-force-glcore` ohne `-nographics`. Identische Runner/Toolchain/Limits/Seatserialisierung bleiben erhalten. Tatsächliche UI-Aktionen, Nicht-Nullrenderer, eigene bestandene Grafik-XML-Fälle, PanelSettings.targetTexture/RenderTexture-/ReadPixels-Bilder und selbst betrachtete 4×4-/10×10-Screenshots sind erforderlich. CI-Grafikbilder werden unter TestResults/DevelopmentGraphics vom vorhandenen Upload archiviert, ohne den ursprünglichen Pflichtlauf/Coveragebeleg zu ersetzen. Ein fehlender Legacy-ULF-File ist allein kein Lizenzbeweis; keine Ausführung/Rendererfähigkeit wird vorab PASS genannt. Production-Start/-Build mit QA-Installer muss scheitern. Keine vorhandene Content-/Import-/Save-/Releaseprüfung wird als bestanden umgedeutet.\n\n## Ersetzt / ersetzt durch\nErsetzt keine angenommene Entscheidung. Ergänzt ADR011 ausschließlich um eine ausdrücklich begrenzte nichtproduktive Inspector-/In-Memory-Locale-Harnessbindung. ADR005/013/018 sowie alle Content-/Save-/Releaseverträge bleiben wirksam. Noch durch keinen ADR ersetzt.\n"
+  },
+  "reviewer": "/root/wp037_independent_qc",
+  "createdUtc": "2026-10-18T21:15:02.380085+00:00",
+  "scratchSetupHistory": {
+    "initialScopeExit": 1,
+    "finding": "git:origin-main-unavailable",
+    "cause": "Own LF clone of isolated child clone did not inherit origin/main",
+    "correction": "Copied verified source origin/main d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 only into own scratch ref; no shared source change",
+    "initialOutputSha256": "3315e9f554097af929fb7a752c14aed8956343cbdd0cfc18e9fa8175c81cee2b",
+    "initialOutputUtf8": "ARCHITECTURE VALIDATION v1.0 scope=production\nLOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar\nLOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur\nLOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding\nLOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks\nLOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle\nLOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck\nLOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt\nSCOPE_CONTEXT  workPackage=WP-038 base=3772c0370b39ec95979fb9efdd47f4344c41a539 head=4667413ae0baa9971b4b7660a19988ce36248469 worktreeDirty=false\nMANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS\nCONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode\nREQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP\nREQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox\nREQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion\nBLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed\nFAIL  git:origin-main-unavailable\nRESULT FAIL (1 Fehler)\n",
+    "repeatedOnlyAffectedScope": true
+  }
+}

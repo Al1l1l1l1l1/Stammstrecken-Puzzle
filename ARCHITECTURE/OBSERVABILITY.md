@@ -1,5 +1,11 @@
 # Observability v0.4
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Startumfang P07:** kein externer Analytics-/Crashprovider; lokale redigierte Diagnose/Store-/Adaggregate. D1/D7/Detailfunnel unten sind zukünftige optionale Messverträge, keine behaupteten heute verfügbaren Daten. Fehlende externe Populationsdaten werden nicht als PASS erfunden. Initialrelease und spätere plattformrichtige Updatepromotion getrennt; reale Fatal-/Save-/Entitlement-/Privacyfehler bleiben harte Stoppsignale.
+
 ## 1. Ziel
 
 Observability macht Fehler und Produktflüsse nachvollziehbar, ohne Gameplay-Wahrheit oder unnötige Nutzerdaten in externe Systeme zu verschieben. Lokale strukturierte Logs funktionieren immer. Firebase Analytics bleibt im Productionprofil deaktiviert, bis der prä-SDK-Deny-Fence aus ADR-024 auf beiden Plattformen belegt ist. Firebase Crashlytics ist im Productionprofil ausgeschlossen; diese Productiongrenze ersetzt den entsprechenden älteren Teil von ADR-010.

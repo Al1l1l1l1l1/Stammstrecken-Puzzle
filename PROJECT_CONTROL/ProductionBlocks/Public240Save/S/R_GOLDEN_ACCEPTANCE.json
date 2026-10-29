@@ -1,0 +1,104 @@
+{
+  "at": "2026-10-19T10:14:36.111Z",
+  "authority": "R/Codex exclusively under MANUS-2026-10-19-01 section5, technical execution acceptance after separate actual review",
+  "decision": "ACCEPT_FIXED_V7_GOLDEN_AND_READER_CONTRACT_BEFORE_CODEC_IMPLEMENTATION",
+  "workPackage": "WP-042",
+  "anchor": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+  "basis": "925ca608a961ac26c84385c8da3b949f609df883",
+  "golden": {
+    "path": "GOLDENS_PRECODEC_V7.json",
+    "bytes": 9988353,
+    "sha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+    "positiveCases": 43,
+    "negativeContracts": 91
+  },
+  "independentReportSha256": "9b106673dd49a0f61ffb1b27585f92d994b83bd66b8dc64fe26a55add872bef7",
+  "copies": [
+    {
+      "originalName": "S_GOLDEN_REVIEW.js",
+      "persistedName": "S_GOLDEN_REVIEW.js.txt",
+      "bytes": 30886,
+      "sha256": "1bd1036e007399a1719e4f68da9d4fde0aefe7fc9a524d869871adb48f1f22bf",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_REVIEW_PY.py",
+      "persistedName": "S_GOLDEN_REVIEW_PY.py.txt",
+      "bytes": 5277,
+      "sha256": "49ed90e50cd5af5dd217670d210c604d1668dbbb2a6afbdd109258e868ac873e",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_REPRODUCE.cjs",
+      "persistedName": "S_GOLDEN_REPRODUCE.cjs.txt",
+      "bytes": 1019,
+      "sha256": "422a2317b2b92a4b21327963eeab991078fdc85a06e1e3089166141edcbab8ff",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_V7_NODE22.json",
+      "persistedName": "S_GOLDEN_V7_NODE22.json",
+      "bytes": 1571,
+      "sha256": "377def8a378d50705b79e4521e420f5646e0d082627e51777318b6807e38d75f",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_V7_PYTHON311.json",
+      "persistedName": "S_GOLDEN_V7_PYTHON311.json",
+      "bytes": 1711,
+      "sha256": "0c6c597826011ec161b52bab98a772fc241194b444550a8adeaef3c9c436d1a8",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_V7_PYTHON.json",
+      "persistedName": "S_GOLDEN_V7_PYTHON.json",
+      "bytes": 1707,
+      "sha256": "e9ee0d2f600a305316cca75781ad90bc547de3c71fcadfcf773040c83e1d84e4",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_V7_REPRODUCTION.json",
+      "persistedName": "S_GOLDEN_V7_REPRODUCTION.json",
+      "bytes": 531,
+      "sha256": "654fc00c85e0c10e4e73307e3c221a6e4b808fbfa2474efdad58f086a60c36f5",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_INITIAL_QC.md",
+      "persistedName": "S_GOLDEN_INITIAL_QC.md",
+      "bytes": 4446,
+      "sha256": "0b4995baa6b5e05f80d76d018869b4fa99315177d29c179f447ac01a706e1881",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_INITIAL_QC.json",
+      "persistedName": "S_GOLDEN_INITIAL_QC.json",
+      "bytes": 1993,
+      "sha256": "fc1ff562c189964d643beabcecdea027fb4c0b4ed37934c4094a476163297ada",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_FINAL_QC.md",
+      "persistedName": "S_GOLDEN_FINAL_QC.md",
+      "bytes": 8149,
+      "sha256": "37e3a52f303a8a1ce075dc8cb189fb75b11f3309c967c912ca2158efffbc2a24",
+      "byteIdentical": true
+    },
+    {
+      "originalName": "S_GOLDEN_FINAL_QC.json",
+      "persistedName": "S_GOLDEN_FINAL_QC.json",
+      "bytes": 51538,
+      "sha256": "9b106673dd49a0f61ffb1b27585f92d994b83bd66b8dc64fe26a55add872bef7",
+      "byteIdentical": true
+    }
+  ],
+  "actualChecks": {
+    "node": "22.20.0,23178/0 failures",
+    "python": "CPython3.11.13,1223/0 failures,10 actual source schemas",
+    "reference": "Full Node22 reference sequence reproduced byte-identically",
+    "domain": "Actual complete reducer/checkpoint export matched fixed expected canonical bytes b0f48d733d8f8ce63cdbf4a00423004de74a7acffc6c0107cf0b93baba904f3b"
+  },
+  "codecFileAbsentAtAcceptance": true,
+  "implementationObligations": "Now implement genuine typed immutable closed codec/migrator and execute every required positive/negative contract, plus resource, record-union, migration-source, identity, file preservation and writer/application tests. Expected contracts are not actual codec results. No lookup oracle or opaque JSON bag. Existing JCS port is sole runtime canonical authority.",
+  "boundaries": "Only technical ContractTest passive reader/policy fixtures accepted. No product policy, published historical V1 corpus, provider operation, runtime save/restore/writer/CI or S completion acceptance. Initial rejected77ef and V3-V6 preserved unchanged; old schemas/manifests/T remain unchanged."
+}

@@ -1,0 +1,179 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-02-04",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 7
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 1
+    },
+    "b": {
+      "side": "S",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    3,
+    5,
+    6,
+    3,
+    1,
+    2,
+    1
+  ],
+  "columnCounts": [
+    4,
+    2,
+    6,
+    4,
+    2,
+    1,
+    2
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 2,
+    "position": 4,
+    "titleKey": "level.s1.04.02.04.title",
+    "statusKey": "level.s1.04.02.04.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.02.04.entry",
+    "focus": [
+      "COMBINATION",
+      "EXCLUSION"
+    ],
+    "chainDepth": 8,
+    "qualityNote": "Der Einsercount in Spalte 5 begrenzt den Querarm zum Ostport, während der Sechsercount in Spalte 2 den linken Bogen und unteren Schenkel verbindet. Der große untere Leerbereich kontrastiert den verzahnten Kopf; ohne Voll-/Nullzahl beginnt die Klärung an Ports und Restzahlen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-02-04-map",
+    "trainMomentId": "draft-s1-04-02-04-train",
+    "resultTextKey": "level.s1.04.02.04.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-02-04/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "56628f3653513fd9be1b9323ea23b30ce384173a36c3298aaec69a24ebd04c1c"
+    }
+  }
+}

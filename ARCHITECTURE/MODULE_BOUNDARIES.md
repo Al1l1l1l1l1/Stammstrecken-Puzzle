@@ -105,6 +105,12 @@ Jede Testassembly besitzt ihre gleichnamige `.asmdef`-Datei direkt in ihrem phys
 
 Tests dürfen Produktionsassemblies referenzieren. Produktionsassemblies dürfen nie Testassemblies oder Fixturepfade referenzieren.
 
+### Aktuelle externe SDKkanten im WP046-Candidate
+
+ADR038 und die tatsächliche Paketmontage ergänzen ausschließlich externe Paketverweise: `STP.MobileServices.Store` referenziert `Unity.Purchasing`, `Unity.Purchasing.Security`, `Unity.Purchasing.SecurityStub` und `Unity.Purchasing.SecurityCore`. `STP.Presentation.UI` behält `Unity.Localization`. Die internen Produktionskanten aus Abschnitt3 bleiben unverändert; keine SDKkante wird in Application oder Domain eingeführt.
+
+Die tatsächlichen engen Testkanten werden im CI-Preflight weiter exakt geprüft. Application- und Bootstraptests verwenden Domain/Solver direkt für tatsächliche Session-/Proof-/Generatorfälle, Mobiletests zusätzlich Application für die Adapterverträge. Dies ist keine neue Produktionskante oder Freigabe beliebiger externer Assemblies.
+
 ## 5. Nicht normative Visualisierung der internen Kanten
 
 Der Graph visualisiert ausschließlich die in Abschnitt 3 erlaubten internen Kanten. Bei Abweichung gilt die Tabelle; der Dokumentkonsistenztest muss jede Abweichung melden.
@@ -213,3 +219,15 @@ Ein Agent liest zuerst die zuständigen Architekturverträge und bestehenden Tes
 [3]: ./TEST_STRATEGY.md "Test Strategy v0.3"
 [4]: ../PROJECT_CONTROL/WORK_PACKAGE_RULES.md "Regeln für Work Packages"
 [5]: ../DECISIONS/ADR-018-bootstrap-composition-root.md "ADR-018 – Kompilierbare Bootstrap-Composition-Root"
+
+## Interne transiente Spielschleife – ADR033 / WP038
+
+[ADR-033](../DECISIONS/ADR-033-interne-transiente-spielschleife.md) erlaubt ausschließlich die eigene interne QA-Szene DevelopmentPuzzle mit zwei eigenen öffentlichen QA-Definitionen, realen Domaincommands und klar ungespeicherter Fahrt-/Ergebnispräsentation. Eigene UXML-/USS-/Panel-/Locale-/Materialquellen werden am validierten Installer serialisiert; neutrale QA-Strings werden über eine isolierte Unity-Localization-In-Memory-StringTable aufgelöst. Alle internen Assemblykanten bleiben unverändert; ausschließlich UI erhält den bereits vorgesehenen externen Unity.Localization-Verweis. Kein DRAFT-/FIXTURE_ONLY-Import, keine Katalog-/Proof-/Textpromotion, kein Save-/ProgressCommitted-/Rewardclaim und kein Productionentry. Produktiver Addressables-/Localization-, Save-vor-Fahrt-/Reward- und Releasevertrag bleiben verbindlich. Reguläre Builds enthalten die neue QA-Spielszene zusätzlich zur bestehenden Composition-Smoke-Szene; bestehende Profil-/URP-/Stripping-/CI-Gates bleiben erhalten.
+
+## Gemeinsame Technikbasis Public240 und lokaler Save
+
+[ADR-034](../DECISIONS/ADR-034-isolierter-public240-reviewpfad.md) ergänzt ausschließlich den isolierten nichtproduktiven Public240Review-Entry. [ADR-035](../DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md) konkretisiert typisierte Zusatzports, die Wiederverwendung des bestehenden strikten JCS über Injektion ohne neue Assemblykante, validierte vollständige Checkpoints und CAS/Commit-vor-Fahrt. Produktionsgates, Hashprojektionen, Save-v2-/Migrations-/Ledgerverträge und offene Produktblocker bleiben unverändert. Eigene QA-Profile und Claims werden niemals zu Produktprofilen übertragen. Fachimplementierung und tatsächliche Nachweise folgen getrennt verankerten WPs auf abgeschlossenem T.
+
+## Gespeicherter interner Public240-Entry – ADR036 / WP043
+
+[ADR-036](../DECISIONS/ADR-036-gespeicherter-public240-qa-entry.md) ergänzt ausschließlich SavedPublic240Review als ersten normalen QA-Entry mit eigener expliziter Inspector-/In-Memory-Localegrenze. Public240Review und die beiden bisherigen QA-Szenen bleiben getrennt. Bestehende Assemblykanten, S-Checkpoint-/JCS-/CAS-/Commitautorität und physische QA-Profilisolation bleiben unverändert; Clock/Dispatcher/Bridge entstehen auf Main, reine Katalog-/IOcomposition auf Worker. Erst der verifizierte eigene Commit erlaubt Fahrt/Result. Testroot ausschließlich im ausdrücklich begrenzten Editor-Testscope; kein Zugriff auf echte AppData-Profile durch Tests. Der vorhandene DevelopmentSceneBuildCheck wird nur um Saved ergänzt, der A-Guard bleibt unverändert. Keine Produktions-, Geräte-, Main- oder Releasefreigabe.

@@ -1,0 +1,179 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-01-05",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 7
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 0
+    },
+    "b": {
+      "side": "E",
+      "index": 6
+    }
+  },
+  "rowCounts": [
+    6,
+    6,
+    2,
+    2,
+    1,
+    2,
+    2
+  ],
+  "columnCounts": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    6,
+    7
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 1,
+    "position": 5,
+    "titleKey": "level.s1.04.01.05.title",
+    "statusKey": "level.s1.04.01.05.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.01.05.entry",
+    "focus": [
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 7,
+    "qualityNote": "Der Nordport links verbraucht den Einsercount von Spalte 0; zwei fast volle Kopfzeilen und mehrere niedrige Seitenzeilen teilen unterschiedliche Belegungsinseln. Die obere Doppelkurve und zwei getrennte rechte Rückknicke sind räumlich verteilt, statt ein gleichförmiger Vollstreifen zu sein.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-01-05-map",
+    "trainMomentId": "draft-s1-04-01-05-train",
+    "resultTextKey": "level.s1.04.01.05.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-01-05/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "1f09d6872c52ce14ab10974aae1ae07b455a96d1dc79b460019b11abb5f047b7"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 10
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 2
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 1
+    m_PVRFilteringGaussRadiusAO: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &535936906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 535936908}
+  - component: {fileID: 535936907}
+  m_Layer: 0
+  m_Name: Assigned Human calibration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &535936907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535936906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c277b6724eb043d29269527f2d8c6930, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: STP.Bootstrap::STP.Bootstrap.HumanCalibrationInstaller
+  tree: {fileID: 9197481963319205126, guid: 4c4dc997315af7f07032a812bb7bc4d9, type: 3}
+  styles: {fileID: 7433441132597879392, guid: d531268d5a071af20bdc57d859689954, type: 3}
+  locale: {fileID: 4900000, guid: b00db8a47d4f2d49cd1a9032b3f85826, type: 3}
+  panel: {fileID: 11400000, guid: e22dc11059d9bda4380b738142bb550a, type: 2}
+  publicData: {fileID: 4900000, guid: 2b5cba13588b45842aebd32d4c09388f, type: 3}
+  publicCatalogHashSha256: 0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8
+  assignmentPacks:
+  - {fileID: 4900000, guid: 59df5b2207504129946681998fbddb47, type: 3}
+  - {fileID: 4900000, guid: b5553dbb4c5341cd818adec3ffc5a566, type: 3}
+  - {fileID: 4900000, guid: b0ba7a60780c4747a77aaa8031e13e67, type: 3}
+  - {fileID: 4900000, guid: fa3715003a1c4fab8ce60f8fde11770a, type: 3}
+  - {fileID: 4900000, guid: 4348add248a0436b8cd80a8c695a0fc5, type: 3}
+  - {fileID: 4900000, guid: 4ef8c62c644a4f20adcfa1fb7a3c1fac, type: 3}
+  - {fileID: 4900000, guid: 1b9fe557c4b04e5c952dbccc7bb4b34f, type: 3}
+  - {fileID: 4900000, guid: c658bbb3350e4981a739be18e29e4025, type: 3}
+  - {fileID: 4900000, guid: 02e5015f4ab44a9d88f3748e07d98cbd, type: 3}
+  - {fileID: 4900000, guid: 6ee86dccd4a14ab1bfc717f0f8cf917e, type: 3}
+  - {fileID: 4900000, guid: 0f807423cc7c41cdb2b0778b7a9dc9dd, type: 3}
+  - {fileID: 4900000, guid: 512c3430bbd94692bfc3f8c74496a8f6, type: 3}
+  - {fileID: 4900000, guid: fffc8f2916084eb992d22be77adad715, type: 3}
+  - {fileID: 4900000, guid: 4f35bde023ee4599b9d349a0a658b6c2, type: 3}
+  - {fileID: 4900000, guid: 8bc6231ecc334d0ca859db4fb4cb3338, type: 3}
+  - {fileID: 4900000, guid: 8854b313cc52485f926aac5d6b9af9f6, type: 3}
+  - {fileID: 4900000, guid: 3b1e04447d89420c9cd92adbc0a285af, type: 3}
+  rawAssignmentLock: {fileID: 4900000, guid: d2f0f5b9dca04cb28078af436e76943e, type: 3}
+  uiSourceLock: {fileID: 4900000, guid: 676232bd0fcd4a3c888dc73bbef7d0bb, type: 3}
+  railwayAssets: {fileID: 4900000, guid: 2be7181be3bb4e128257df988bc58ddc, type: 3}
+  campaignText: {fileID: 4900000, guid: 0d6a360795b1aaf4db9dabb44f2dce54, type: 3}
+--- !u!4 &535936908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535936906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 535936908}

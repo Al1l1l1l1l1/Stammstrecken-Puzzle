@@ -1,0 +1,61 @@
+{
+  "role": "Independent pre-codec review; not acceptance",
+  "inputs": {
+    "GOLDENS_PRECODEC.json": {
+      "sha256": "77ef839de5142c55bd2faed0e9a7ebd190523e8e2ac99b0431704081ed2b57bf",
+      "byteLength": 1496817
+    },
+    "GOLDEN_REFERENCE_NODE.txt": {
+      "sha256": "aaeddb96e8f4fca218f702a8c50665dda8c92eb75a4157dd1243d818ec648c5e",
+      "byteLength": 22966
+    },
+    "GOLDENS_PRECODEC_BINDING.json": {
+      "sha256": "b0eefd1d7e926535ec92386ffd5f6d668df47c860adbbeaf3595a3ae4625d5ff",
+      "byteLength": 5557
+    },
+    "GOLDENS_PRECODEC_V3.json": {
+      "sha256": "2c48878580379b318e124dc6d0b900fb4b2302d990d91c416a8fc52ecc27d016",
+      "byteLength": 2158374
+    },
+    "GOLDENS_PRECODEC_V4.json": {
+      "sha256": "0f36dad35df221adbe2c1f0cf4aaee104d7c371ad4f9dedbfea388de9ff14378",
+      "byteLength": 4592710
+    }
+  },
+  "originalVerdict": "BLOCKED_ORIGINAL_INCOMPLETE_AND_INVALID_SOURCES",
+  "originalChecks": {
+    "node22": "v22.20.0",
+    "node24": "v24.14.1",
+    "implementedChecksEach": 6960,
+    "failures": 0,
+    "python": "3.14.4",
+    "pythonChecks": 144,
+    "pythonFailures": 0
+  },
+  "v4Checks": {
+    "basicPlusRelations": 15887,
+    "reportedFailures": [
+      "purchase price0 vs canonical catalog price1 and debit-1 in purchase+ledger cases"
+    ],
+    "pythonChecks": 631,
+    "pythonByteFailures": 0,
+    "sourceSchemaErrors": [
+      {
+        "schema": "release-lock-v1",
+        "path": "releaseId",
+        "value": "contract-save-migration",
+        "reason": "required fixture prefix absent"
+      }
+    ]
+  },
+  "remainingForSuccessor": [
+    "Price/ledger provenance",
+    "schema-valid fixture ReleaseLock",
+    "second saved incomplete puzzle+full source-target-lock bindings",
+    "full fixed negative set from S plan14",
+    "known legacy source/retention reader bindings",
+    "consistent pending confirmed reward relationship",
+    "actual Domain export provenance"
+  ],
+  "reportPath": ".utmp/public240-tools/S_GOLDEN_INITIAL_QC.md"
+}

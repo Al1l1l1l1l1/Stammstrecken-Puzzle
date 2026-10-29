@@ -1,5 +1,13 @@
 # Train Track Spiel – Schwierigkeit, Feldgrößen und Levelgenerierung
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Difficultyauftrag P02/P05:** Einstieg bewahren; Last48, alle 10×10 und späte Abschlüsse konkret überprüfen/gegebenenfalls verbessern. 10×10-Vorscreen ≥210 Deduktionsschritte/≥23 Tiefe/rootguess0 ist nur technische relative Baseline; echte Humanprüfung entscheidet, insbesondere auch beim Ownerfall S1-05-04-12. Vier Endlosprofile Dienstbeginn/Regelbetrieb/Störungslage/Großlage, echte versionierte Metrik-/Noveltykalibrierung; zwölf gezielte menschliche Startkandidaten je Profil mit notwendiger Erweiterung statt pauschaler 120er-Vorstufe. Keine erfundenen Zeiten/Proofs.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung  
 **Einordnung:** Konzeptbaustein 04  
 **Zweck:** Dieses Dokument definiert, wie aus dem bekannten Raster-Schienenpuzzle eine lange, nachvollziehbare Lernkurve entsteht. Es trennt verbindlich die objektive Schwierigkeit eines Rätsels von der persönlichen Meisterschaft, mit der ein Spieler es löst.
@@ -70,7 +78,7 @@ Kein Kapitel schaltet die nächste Komplexität frei, bevor es mehrere gute, nic
 | Modus | Inhalt | Anspruch | Rolle im Produkt |
 |---|---|---|---|
 | Kampagne | Handverlesene, sorgfältig geprüfte Level. | Jede Aufgabe hat einen didaktischen oder dramaturgischen Zweck. | Ersterfahrung, Kompetenzaufbau und sichtbarer Fortschritt. |
-| Endlosmodus | Zufallsgenerierte, automatisiert geprüfte Rätsel. | Jedes Rätsel hat eine eindeutige Lösung und eine passende Schwierigkeitszuordnung. | Langfristige Wiederspielbarkeit nach oder neben der Kampagne. |
+| Endlosmodus | Zufallsgenerierte, automatisiert geprüfte Rätsel. | Jedes Rätsel hat eine eindeutige Lösung und eine passende Schwierigkeitszuordnung. | Langfristige Wiederspielbarkeit nach 240 Season1-Erstabschlüssen. |
 
 Die Kampagne ist immer das Qualitätsversprechen. Der Endlosmodus ist keine Notlösung für zu wenig Content, sondern ein zusätzlicher Raum für Spieler, die den Kern bereits beherrschen und neue Herausforderungen wünschen.
 
@@ -103,7 +111,7 @@ Die Generatorqualität wird später nicht nach der Menge erzeugter Rätsel bewer
 | Benötigte Rückverfolgung | Reicht direkte Deduktion, oder ist kontrolliertes Testen nötig? |
 | Symmetrie und Lesbarkeit | Wirkt das Rätsel natürlich strukturiert statt zufällig chaotisch? |
 
-Für den ersten Endlosmodus ist die Zielvorgabe klar: Die meisten Rätsel müssen ohne blindes Raten lösbar sein. Rätsel, die echte Hypothesentests verlangen, werden später ausdrücklich als Expertenmodus gekennzeichnet statt unerwartet in normale Stufen gemischt.
+Für den ersten Endlosmodus ist die Zielvorgabe klar: Alle vier Launchprofile müssen ohne blindes Raten lösbar sein. Rätsel, die echte Hypothesentests verlangen, werden später ausdrücklich als Expertenmodus gekennzeichnet statt unerwartet in normale Stufen gemischt.
 
 ## 9. Persönliche Meisterschaft als eigene Ebene
 

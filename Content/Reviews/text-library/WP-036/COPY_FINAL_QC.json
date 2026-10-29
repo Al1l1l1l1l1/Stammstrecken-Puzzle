@@ -1,0 +1,278 @@
+{
+  "reportSchemaVersion": 1,
+  "reportId": "WP-036-INDEPENDENT-COMBINED-FINAL-QC-01",
+  "workPackageId": "WP-036",
+  "language": "de-DE",
+  "reviewRole": "Gesonderte unabhängige kombinierte Schlussprüfung; weder Autor noch an einer Korrektur beteiligt; keine Ownerrolle.",
+  "verdict": {
+    "result": "FAIL",
+    "summary": "HIGH-01 ist kreativ geschlossen. Die kombinierte Schlussprüfung ist dennoch FAIL, weil der frische Production-Scopetest mit scope:diff-check und beide geforderten git-diff-check-Läufe mit Trailing-Whitespace-Fehlern fehlschlagen.",
+    "creativeHigh01": "PASS_CLOSED",
+    "technicalLocalDraftAndProjection": "PASS_WITH_SEPARATE_DIFF_SCOPE_FAILURE",
+    "newRegularCi": "OPEN_SEPARATE_AUTOMATICALLY_TRIGGERED",
+    "notAClaim": [
+      "Ownerannahme",
+      "Produktfreigabe",
+      "Runtime- oder Doppelimport",
+      "Rechtsfreigabe",
+      "Releasefreigabe",
+      "Main-Merge",
+      "bestehende oder neue reguläre CI bestanden"
+    ]
+  },
+  "independence": {
+    "immutableQcWorktree": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-final-qc",
+    "canonicalRepository": "/home/ubuntu/Stammstrecken-Puzzle",
+    "canonicalRepositoryMutations": [
+      "Content/Reviews/text-library/WP-036/COPY_FINAL_QC.md",
+      "Content/Reviews/text-library/WP-036/COPY_FINAL_QC.json"
+    ],
+    "temporaryArtifacts": "/home/ubuntu/jobs/job_jKknZIvp",
+    "sourceOrToolOrStatusOrGitMutation": false,
+    "committed": false,
+    "pushed": false
+  },
+  "binding": {
+    "head": "b181fecbf001397292ef0c90be1b4c2d4fb2711e",
+    "correctionAnchor": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
+    "previousIndependentFreeze": "c7683ea445c65becd78cfd1e34ccb8ba587fd024",
+    "manifestBaseMain": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "sourcePath": "Content/Localization/source/de-DE.json",
+    "sourceSha256": {
+      "base6103GitBlob": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
+      "previousFreezeC768GitBlob": "2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb",
+      "headB181GitBlob": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+      "qcWorktree": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c"
+    },
+    "creativeScopeSha256": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+    "python": {
+      "path": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python",
+      "version": "Python 3.11.13"
+    }
+  },
+  "mandatoryReading": {
+    "readInRequiredOrder": [
+      "AGENTS.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/00_Train_Track_Konzeptindex.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md",
+      "PROJECT_CONTROL/CURRENT_STATE.md",
+      "WORK_PACKAGES/WP-036_Vollstaendige-Textbibliothek.md"
+    ],
+    "additionalRead": [
+      "PROJECT_CONTROL/DEFINITION_OF_DONE.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/11_Bahnfahrer_Lore_und_Satire_Leitplanken.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md",
+      "Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md",
+      "Content/Reviews/text-library/WP-036/CREATIVE_DECISION.md",
+      "Content/Reviews/text-library/WP-036/CORRECTION_BRIEF.md",
+      "Content/Reviews/text-library/WP-036/CREATIVE_SCOPE.json",
+      "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md und .json",
+      "Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.md und .json",
+      "Content/Reviews/text-library/WP-036/COPY_CHANGE_AUDIT.json",
+      "Content/Reviews/text-library/WP-036/README.md",
+      "tools/text-library/README.md",
+      "tools/architecture-validation/README.md"
+    ]
+  },
+  "creativeReview": {
+    "historicalScopeBinding": {
+      "historicalReport": "COPY_CREATIVE_QC",
+      "historicalResult": "FAIL with exactly HIGH-01",
+      "actualAll120BeforeAfterFieldsRead": 120,
+      "historicallyAcceptedFields": 119,
+      "historicallyAcceptedEntriesPreserved": 1298,
+      "historicalFullContexts": [
+        "ten complete level routes",
+        "S1-01-03 campaign name, intro and complete",
+        "entire variant.ride-ended family",
+        "READING_EDITION.md"
+      ],
+      "noBlanketPassTransfer": true,
+      "notReopenedInThisDeltaReview": [
+        "119 historical positive copy fields",
+        "1298 accepted entries"
+      ]
+    },
+    "newActualNarrowDeltaReading": {
+      "field": "level.s1.04.03.07.status.shortText",
+      "previousFreezeValue": "Drei Anzeigen, drei Wege. Ihre Strecke verbindet die Bahnsteige.",
+      "headValue": "Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.",
+      "codepoints": 62,
+      "limit": 110,
+      "longStatusUnchanged": "Drei Anzeigen nennen drei Wege. Gemeinsam ist ihnen nur, dass keiner zum gleichen Bahnsteig zeigt.",
+      "readContext": "Vollständig S1-04/R15 Meldungen 01–12 mit Titel, Status, vorhandener Kurzform, internem Einstieg und Ergebnis; zusätzlich erhaltene unmittelbare Nachbarn Meldung 06 und 08.",
+      "criteria": [
+        "K05 aus CORRECTION_BRIEF.md",
+        "trockene konkrete deutsche Bahn-Alltagssatire nach Konzept 11",
+        "Status- und Kartenfunktion nach Konzept 12",
+        "R15-Dramaturgie nach Konzept 14"
+      ],
+      "high01Conclusion": "CLOSED",
+      "reason": "Die Kurzform komprimiert die ungelöste Anzeigen-, Wege- und Bahnsteiglage des unveränderten Langstatus. Sie behauptet keine eigene gebaute Strecke; deren verdiente Leistung bleibt im Ergebnis derselben Meldung. Kein neuer kreativer HIGH- oder Blockerbefund im tatsächlichen schmalen Delta."
+    }
+  },
+  "independentBlobScopeAudit": {
+    "method": "Eigenes read-only Python-Audit direkt gegen git show der drei Gitblobs und gegen die Worktreebytes; kein Eltern-Auditskript.",
+    "exitCode": 0,
+    "result": "PASS",
+    "source": {
+      "entries": 1408,
+      "rootKeyOrderIdentical": true,
+      "rootMetadataIdentical": true,
+      "entryKeyOrderIdentical": true,
+      "entryPropertyOrderAndShapeIdentical": true,
+      "changedExistingEntriesFrom6103": 110,
+      "unchangedWholeEntriesFrom6103": 1298,
+      "changedFieldsFrom6103": {
+        "total": 120,
+        "text": 109,
+        "shortText": 11,
+        "exactlyEqualCreativeScope": true
+      },
+      "onlyChangedFieldFromC768": "level.s1.04.03.07.status.shortText"
+    },
+    "creativeScope": {
+      "records": 110,
+      "allowedFields": 120,
+      "allowedTextFields": 109,
+      "allowedShortTextFields": 11,
+      "byteIdenticalAgainst6103AndC768": true
+    },
+    "copyChangeAudit": {
+      "records": 120,
+      "oldNewCodepointsAndExistingLimitsMatchGitBlobs": true,
+      "beforeAfterScopeBindingsAndCountersMatch": true,
+      "afterSha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+      "scopeResult": "EXACT_MATCH_NO_OTHER_SOURCE_PROPERTIES_CHANGED"
+    },
+    "protectedUnchanged": {
+      "levelTitles": 240,
+      "internalEntries": 240,
+      "uiEntries": 308,
+      "blockedProductEntries": 70,
+      "metadataAndNonAllowedProperties": true
+    },
+    "pathScope": {
+      "c768ToB181ChangedPaths": 15,
+      "base6103ToB181ChangedPaths": 20,
+      "newDiffsOnlyAllowedWp036SourceReviewStatusAndWpDocumentation": true,
+      "rootSchemaToolsWorkflowsManifestArchitectureLevelsProofsAssetsAndForeignFilesUnchangedFromC768": true
+    }
+  },
+  "freshCommands": [
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/text-library/validate.py --self-test --write-reports",
+      "exitCode": 0,
+      "result": "TEXT_LIBRARY PASS: entries=1408; season1=960/960; internal=240; foreign-unresolved=480; mutations=12"
+    },
+    {
+      "command": "Eigener Bytevergleich der vier frisch mit --write-reports erzeugten Reports mit git show HEAD:<path>",
+      "exitCode": 0,
+      "result": "Alle vier byteidentisch zum Headblob.",
+      "reports": {
+        "technical-validation.json": "1623bf3f034a2a7b09b8e5ae1bb2cfa209f4b791c323933f522828f1e748a5cd",
+        "repetition-report.json": "82ceca54a7c0dd42c7dc3c90fd052fecdd02edc86be5afcb3c5c27d0ea9e6799",
+        "pseudolocale.json": "6a263f7b0d091fc25c02877c6a6e932d3a0a6bec2f9f5996e80a13b8aaf1c5a6",
+        "existing-key-inventory.json": "a5b9602755ae5fa13ce272755c4fa232ee6542403e345484f8a5d6aaaacb0100"
+      }
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/text-library/render.py --check",
+      "exitCode": 0,
+      "result": "READING_EDITION PASS: exact canonical text projection"
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/architecture-validation/validate.py --self-test",
+      "exitCode": 0,
+      "result": "RESULT PASS (17 lokale Prüfgruppen)"
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/architecture-validation/validate.py --scope production --scope-manifest tools/architecture-validation/scopes/WP-036.production.scope.json --self-test",
+      "exitCode": 1,
+      "result": "RESULT FAIL (1 Fehler): scope:diff-check"
+    },
+    {
+      "command": "git diff --check d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 --",
+      "exitCode": 2,
+      "result": "Vier trailing-whitespace Diagnosen"
+    },
+    {
+      "command": "git diff --check 6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1 --",
+      "exitCode": 2,
+      "result": "Dieselben vier trailing-whitespace Diagnosen"
+    },
+    {
+      "command": "git diff --quiet -- Content/Localization/source/de-DE.json nach allen Prüfläufen",
+      "exitCode": 0,
+      "result": "Produktionsquelle source-clean"
+    }
+  ],
+  "findings": [
+    {
+      "id": "HIGH-01",
+      "status": "CLOSED",
+      "severityAtPreviousFreeze": "HIGH",
+      "key": "level.s1.04.03.07.status",
+      "field": "shortText",
+      "historicalFailure": "Kurzstatus nahm mit eigener Strecke die nach Lösung verdiente Leistung vorweg und widersprach damit dem ungelösten Langstatus.",
+      "headResolution": "Der neue Kurztext verdichtet nur die widersprüchliche ungelöste Anzeigen-/Bahnsteiglage und erfüllt K05."
+    },
+    {
+      "id": "FINAL-TECH-01",
+      "status": "OPEN",
+      "severity": "HIGH",
+      "title": "Verpflichtende Git-Diff- und Production-Scope-Prüfungen enden mit Trailing-Whitespace-Fehlern.",
+      "affected": [
+        "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md:3",
+        "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md:4",
+        "Content/Reviews/text-library/WP-036/COPY_CREATIVE_QC.md:5",
+        "Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.md:3"
+      ],
+      "diagnostic": "trailing whitespace; git diff --check exits 2 against both required references; Production-Scope exits 1 with scope:diff-check.",
+      "impact": "Kein vollständiger lokaler technischer PASS für den verlangten kombinierten Schlussauftrag, obwohl Quelle, Copy-Scope, Textvalidator, Reportreproduktion, Rendercheck und Architecture-only-Selbsttest bestehen.",
+      "requiredFollowUp": "Zuständige Rolle behebt exakt diese vier Whitespacefehler. Danach neuer gebundener Freeze sowie frische Production-Scope- und beide git-diff-check-Läufe. Historische QC-Berichte wurden von dieser Rolle nicht überschrieben."
+    }
+  ],
+  "independentNegativeProbes": {
+    "temporaryOnly": true,
+    "productionSourceSha256AfterProbes": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+    "productionSourceUnchanged": true,
+    "detected": 3,
+    "total": 3,
+    "probes": [
+      {
+        "name": "overlength_new_shortText",
+        "mutation": "111 Unicode-Codepoints bei Limit 110",
+        "exitCode": 1,
+        "diagnostic": "over-limit:level.s1.04.03.07.status:shortText:111>110"
+      },
+      {
+        "name": "undeclared_placeholder_new_shortText",
+        "mutation": "{probe}",
+        "exitCode": 1,
+        "diagnostic": "placeholder-set:level.s1.04.03.07.status:shortText"
+      },
+      {
+        "name": "stale_reading_projection",
+        "mutation": "abweichende temporäre READING_EDITION.md",
+        "exitCode": 1,
+        "diagnostic": "READING_EDITION FAIL: missing or stale derived edition"
+      }
+    ]
+  },
+  "openBoundaries": [
+    "Reguläre CI am neuen Head b181fecbf001397292ef0c90be1b4c2d4fb2711e ist automatisch angestoßen und separat OPEN; alte c768-CI wird nicht übertragen.",
+    "Keine CI-, Unity-, Solver- oder zusätzlichen Buildläufe durch diese Rolle gestartet.",
+    "Alle Einträge bleiben DRAFT.",
+    "Keine Owner-, Produkt-, Import-, Rechts- oder Releasefreigabe und kein Main-Merge.",
+    "BLOCKER-PROD-001 bis BLOCKER-PROD-003 sowie WP-026-, Katalog-, Cross-Reference-, Asset-, Zeit-, Layout/Accessibility-, Geräte-, SDK-, Datenschutz-, Signing- und Storegates bleiben offen/fail-closed.",
+    "Die delegierte Geschäftsführerrestannahme liegt beim Parent und wird hier nicht vorweggenommen."
+  ],
+  "artifacts": {
+    "markdown": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_FINAL_QC.md",
+    "json": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_FINAL_QC.json",
+    "temporaryAudit": "/home/ubuntu/jobs/job_jKknZIvp/independent-final-audit.json",
+    "temporaryFreshLogs": "/home/ubuntu/jobs/job_jKknZIvp"
+  }
+}

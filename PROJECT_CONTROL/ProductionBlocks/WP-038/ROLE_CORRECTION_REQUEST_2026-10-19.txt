@@ -1,0 +1,152 @@
+STAMMSTRECKEN-PUZZLE
+FALSCHE ROLLEN- UND FREIGABEHERKUNFT BERICHTIGEN
+
+Repository:
+Al1l1l1l1l1/Stammstrecken-Puzzle
+
+Aufgabe:
+Berichtige die durch den falsch adressierten Koordinatorprompt
+entstandenen Rollen- und Autorisierungsaussagen in der aktuellen
+Projektübergabe. Bewahre sämtliche geleistete Entwicklungsarbeit
+und ihre tatsächlichen technischen Nachweise.
+
+Dies ist kein neuer Implementierungs- oder QC-Auftrag.
+
+
+1. VERBINDLICHE KLARSTELLUNG
+
+Der Auftrag „Produktionsblöcke zusammenführen und WP-037 abschließen“
+wurde vom Koordinator fälschlich mit „Manus, übernimm … in deiner
+bestehenden Geschäftsführerrolle“ formuliert.
+
+Tatsächlich wurde er an einen ausführenden Codex-Agenten gegeben.
+Dieser Agent ist nicht Manus und besitzt dessen übergeordnete
+Geschäftsführer- und Konzeptbefugnisse nicht.
+
+Der Nutzer wollte die operative Ausführung bündeln. Daraus folgt
+keine Übertragung der Manus-Rolle.
+
+Diese Klarstellung muss im Repository nachvollziehbar werden.
+Der neue Agent darf keinen früheren Chat dafür benötigen.
+
+Bestehende echte Manusentscheidungen bleiben erhalten, insbesondere
+WP-036-CREATIVE-02 und WP-036-TECHNICAL-01. Die ursprünglich
+autorisierte WP-037-Reparatur wird nicht erneut infrage gestellt.
+
+
+2. EINSTIEG UND BEARBEITUNGSSTAND
+
+Beginne mit AGENTS.md und befolge die dort vorgeschriebene
+Lesereihenfolge vollständig. Lies danach die für diese Berichtigung
+erforderlichen Übergabe-, Scope- und Entscheidungsquellen.
+
+Zuletzt verifizierter Stand:
+Branch codex/wp-036-vollstaendige-textbibliothek
+Draft-PR #31
+HEAD 7caa55ecda0ae9e473cdc5220fa4ffb2ce215517
+
+PR #32 und PR #33 wurden bereits in diesen Zweig unterintegriert.
+Main blieb auf d90e798dd9b26d3f152f3b0c2d1d52cae641eb16.
+
+Prüfe die aktuellen Remote-Refs. Keine fremde zwischenzeitliche
+Arbeit überschreiben und keine historischen Anker verändern.
+
+
+3. KONKRET BETROFFENE AUSSAGEN
+
+Die bereits gefundenen Fundstellen sind:
+
+Content/Reviews/text-library/WP-036/
+WP-037_SUBINTEGRATION_DECISION.md
+
+PROJECT_CONTROL/ProductionBlocks/
+PRODUCTION_BUNDLING_DECISION.md
+
+DECISIONS/ADR-033-interne-transiente-spielschleife.md
+
+PROJECT_CONTROL/ProductionBlocks/WP-038/
+TECHNICAL_ACCEPTANCE.md
+IMPLEMENTATION_HANDOVER.md
+NEXT_BLOCK_BOUNDARIES.md
+
+Außerdem die davon abhängigen aktuellen Aussagen in CURRENT_STATE,
+WORK_QUEUE und den betreffenden Übergaben/Integrationsentscheidungen.
+
+Unterscheide für diese konkrete Entscheidungskette:
+
+A. Bereits zuvor durch tatsächliche Manus- beziehungsweise
+   Ownerentscheidungen gedeckte Arbeit.
+
+B. Tatsächlich ausgeführte Implementierungen, Prüfungen und Merges.
+   Diese Tatsachen bleiben bestehen.
+
+C. Entscheidungen, deren behauptete Zuständigkeit allein aus dem
+   fehladressierten Geschäftsführerprompt abgeleitet wurde.
+
+D. Noch nicht ausgeführte Folgearbeiten, deren Freigabe auf C beruht.
+
+Eine selbst geschriebene Entscheidung, ein erfolgreiches QC-Urteil
+oder ein formal korrekt angelegtes Work Package beweist für sich
+keine Geschäftsführerbefugnis.
+
+Existiert für einen strittigen Entscheid eine davon unabhängige
+echte Autorisierung, benenne deren genaue Fundstelle und Umfang.
+Erfinde keine fehlende Autorisierung.
+
+
+4. BERICHTIGUNG TATSÄCHLICH PERSISTIEREN
+
+Ergänze innerhalb der bestehenden zulässigen Übergabe- und
+Statuspfade einen eindeutig datierten Herkunfts- und Statusnachtrag.
+
+Er muss vor weiteren Arbeiten klar erkennbar machen:
+
+- Ausführender war Codex, nicht Manus.
+- Die behauptete Geschäftsführerrollenübertragung war unzutreffend.
+- Technische Ergebnisse und Freigabeherkunft sind getrennt zu bewerten.
+- Welche konkreten Entscheidungen deshalb noch zuständig zu
+  bestätigen oder anders zu behandeln sind.
+- Welche tatsächlich vorhandenen, davon unabhängigen Freigaben gelten.
+
+Kein bloßes Ersetzen des Namens „Manus“ durch „Codex“:
+Damit würde der unzutreffende Befugnisanspruch erhalten bleiben.
+
+Historische Originalberichte, Anker, Manifestbytes und
+Entscheidungskörper nicht rückwirkend umschreiben. Aktuelle
+Statuszusammenfassungen durch nachvollziehbare Nachträge berichtigen,
+ohne die Geschichte zu löschen oder technische PASS-Ergebnisse
+fälschlich in technische FAILs umzudeuten.
+
+Die Folgeplanung „Public240-Prüffassung plus Save/Grundfortschritt“
+darf nicht allein aufgrund der strittigen Rollenübertragung als
+bereits zur Ausführung freigegeben weitergereicht werden.
+
+Diese Berichtigung ist keine nachträgliche Genehmigung von WP-038,
+ADR-033 oder den bereits ausgeführten Unterintegrationen.
+
+
+5. GRENZEN UND ABSCHLUSS
+
+Kein Zurücksetzen, Revert oder Entfernen der Entwicklungsarbeit.
+Keine neue Code-, Architektur-, Text- oder Produktänderung.
+Keine neuen WPs, keine weiteren Integrationen und kein Main-Merge.
+Keine erneute Solver-, Text-, Grafik- oder Gesamt-QC.
+Keine neuen Prüfrollen oder neue Produktionsplanung.
+
+Führe nur die für den eigenen Dokumentationsdiff vorgeschriebenen
+Prüfungen durch. Automatisch entstehende CI wahrheitsgemäß dem
+betreffenden Stand zuordnen; keine zusätzlichen manuellen Build-
+oder Wiederholungsserien starten.
+
+Liefere eine einzige korrigierte, persistierte Übergabe:
+tatsächlicher technischer Bestand, richtige Entscheidungseigentümer,
+unabhängig belegte Freigaben und die exakt verbleibende
+Autorisierungslücke.
+
+Keine pauschale Bitte um eine neue Gesamtprüfung durch Manus.
+Falls eine echte Geschäftsführerentscheidung erforderlich bleibt,
+reduziere sie auf den konkreten Entscheidungsgegenstand mit
+vorhandenen Ergebnissen, Fundstellen und Auswirkungen.
+
+Der Auftrag endet mit der korrigierten Entscheidungsherkunft,
+nicht mit einer weiteren Planung ihrer Berichtigung.

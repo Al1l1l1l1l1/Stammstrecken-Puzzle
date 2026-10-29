@@ -1,0 +1,552 @@
+{
+  "evidenceKind": "ACTUAL_CURRENT_CI_TEST_AND_ANDROID_ORIGINAL_INSPECTION_IOS_STILL_OPEN",
+  "runId": 40513127084,
+  "runUrl": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40513127084",
+  "headSha": "8b5105948ecc360de85b5593357ac54ded3aeb26",
+  "productSourceCommit": "d1f0d523ff5b143d2849eebed225e5eb60eaa257",
+  "actualCheckout": "8b5105948ecc360de85b5593357ac54ded3aeb26",
+  "actualWholeRootTree": "f6364dbfbeb485a246a7dc38b624458647993492",
+  "independentReviewDate": "2026-10-27",
+  "findings": [],
+  "tests": {
+    "pushEditorPassed": 1720,
+    "pushPlayPassed": 253,
+    "companionPREditorPassed": 1720,
+    "companionPRPlayPassed": 253,
+    "exactOriginalCaseNamesAndTimeoutsPreserved": true,
+    "allRetryRepeatValuesZero": true,
+    "skippedCases": 0,
+    "strictCoverageInventoriesEach": 24,
+    "negativeCoverageRows": 0,
+    "companionPRRunId": 40513138557,
+    "actualPRCheckout": "bcc82e94195f9358a16225298bc2103dd71fd50a",
+    "prMergeParents": [
+      "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "8b5105948ecc360de85b5593357ac54ded3aeb26"
+    ],
+    "prMergeWholeTreeEqualsHead": true,
+    "alreadyAcceptedPushEditor": {
+      "path": ".utmp/wp046-c-ci-d1-review/push/edit-independent-acceptance.json",
+      "sizeBytes": 43986,
+      "sha256": "d594bbee8a4441ab03253c648a05db1207860d80e096fdaf8ce6f0f3f15099fd"
+    },
+    "threeNewTerminalSuiteAcceptance": {
+      "path": ".utmp/wp046-c-ci-d1-review/three-terminal-independent-acceptance.json",
+      "sizeBytes": 130783,
+      "sha256": "48bbfad5a8a62c5b08eb2d15cc94c581b7b2df42d784dd10a7a84a4da5bdf4f7"
+    }
+  },
+  "android": {
+    "status": "PASS_STATIC_CURRENT_PUSH_ANDROID_QA_ARTIFACT",
+    "jobId": 122245789463,
+    "artifactId": 12743632193,
+    "originalArtifactZip": {
+      "path": ".utmp/wp046-c-ci-d1-review/push/android-results.zip",
+      "sizeBytes": 266692188,
+      "sha256": "f6be4d8b2d1dc207d7b1be4988d8a7cba2088c825bbf09e4021465b6ffa13ef0"
+    },
+    "actualApk": {
+      "path": ".utmp/wp046-c-ci-d1-review/push/android-independent-originals/MobilePreview/Android/stp-mobile-preview.apk",
+      "sizeBytes": 58645485,
+      "sha256": "5d923360dc5dc913b913cc9301b6f7da53adf77a0e13fa24685d50709aba72bb"
+    },
+    "all238OriginalMembersCrcAndHashVerified": true,
+    "all234AuditMembersAnd621CompilerMembersRehashed": true,
+    "package": {
+      "applicationId": "com.STP.StammstreckenPuzzle.qa",
+      "debuggable": true,
+      "minSdk": 26,
+      "targetSdk": 36,
+      "abi": "arm64-v8a",
+      "v2SignatureVerified": true,
+      "actualDebugSignerCertificateSha256": "f42dd8348b63c47b42de160245a58ecdf32b9142de5788a32cd510b8393888d5",
+      "oldCI1dfDebugSignerCertificateSha256": "88fe74c85c3cd1c18380da88a1a33804f252d2f68c2a8a75d2347847725af114",
+      "localMain20Human10DebugSignerCertificateSha256": "2fc6af1b7aa6d58ac223dc388575847b98f4a65e93a7a41cbb9031563eca9bfd",
+      "sameSignerAsEitherPrior": false,
+      "twoActualPrivacyMergeGatesAndPackagedManifest": "AD_ID_ABSENT_MEASUREMENT_DELAY_TRUE_FIREBASE_INIT_ABSENT",
+      "actualHumanProviderAbsentAcrossDefinedDex": true,
+      "nativeAdsBillingDexPresent": true,
+      "static16KiB": {
+        "elfLibraries": 7,
+        "loadSegments": 26,
+        "zipEntries": 605,
+        "zipalignP16Exit": 0,
+        "physicalRuntimeValidated": false
+      }
+    },
+    "actualPackagedProperties": {
+      "play-services-ads.properties": {
+        "version": "25.4.0",
+        "sha256": "0d0d266a47ea6f58acfa79eedd7a7c9dc821e98f5189195d68f7de972ef464a1",
+        "sizeBytes": 72
+      },
+      "user-messaging-platform.properties": {
+        "version": "4.0.0",
+        "sha256": "00a56db523c42386524871d9a24ddb9c82fe2d644ad503367ff8aad3e4600a53",
+        "sizeBytes": 82
+      },
+      "billing.properties": {
+        "version": "9.0.0",
+        "sha256": "4b9e176c6b444d02e2e141e077468bf6264ca45ffc13dd5f67f9fefc1e1f120b",
+        "sizeBytes": 50
+      }
+    },
+    "currentPackagedContent": {
+      "typedSceneTextAssets": 11,
+      "publicPuzzles": 240,
+      "publicHash": "0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8",
+      "fourDraftProfiles": [
+        {
+          "profileId": "dienstbeginn",
+          "profileHashSha256": "25aa89a805f5a2cbc92c2a86c630265943257f57b2a43689a95c0d9b97180c09"
+        },
+        {
+          "profileId": "regelbetrieb",
+          "profileHashSha256": "3e1f613140b637673bb04ee809b5e886ef9ec53af4c02bf78810a0b0255b268d"
+        },
+        {
+          "profileId": "stoerungslage",
+          "profileHashSha256": "894719ccd1bfc4e556ef6c1617693a3d7a33596a31a8f5957c01e17720dabe60"
+        },
+        {
+          "profileId": "grosslage",
+          "profileHashSha256": "c1241b6b9d45f21d7f22286d57c18cdcfb36571881a80e675399d5422bcb553d"
+        }
+      ],
+      "twoLatePuzzle06And10PublicGeometryFieldsEqualAcceptedSources": true,
+      "localeCaptionRawSha256": "a841c26f339ef06b40f15f892923115ff924f11831236e281bd0bda2688ee6dc",
+      "allSceneInstallerBytesConsumed": true,
+      "runtimeProductionPayloadFieldsEmpty": true,
+      "audioReferencesConsumed": 15,
+      "all11TypedTextAssetsExactlyEqualActual8bGitRawBytes": [
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/ProductionGameLocale.json",
+          "actual8bGitRawSha256": "a841c26f339ef06b40f15f892923115ff924f11831236e281bd0bda2688ee6dc",
+          "actualPackagedTextAssetRawSha256": "a841c26f339ef06b40f15f892923115ff924f11831236e281bd0bda2688ee6dc",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.public.json",
+          "actual8bGitRawSha256": "2eed2bf015c648140a901673957269d9d135649edaa37d6cd265d07176e7922a",
+          "actualPackagedTextAssetRawSha256": "2eed2bf015c648140a901673957269d9d135649edaa37d6cd265d07176e7922a",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.campaign.json",
+          "actual8bGitRawSha256": "c04124d78bfad2a985f3875ab12b60563e0e802e4165d68f33244f850a69691d",
+          "actualPackagedTextAssetRawSha256": "c04124d78bfad2a985f3875ab12b60563e0e802e4165d68f33244f850a69691d",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.completion.json",
+          "actual8bGitRawSha256": "c8ad15bd206faa9406321845db6b2921cd955b97cebe48c01d93cb5553aea2e2",
+          "actualPackagedTextAssetRawSha256": "c8ad15bd206faa9406321845db6b2921cd955b97cebe48c01d93cb5553aea2e2",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/RailwayAssets.json",
+          "actual8bGitRawSha256": "020b962af448567d6ac193ab66ca3d8baa9c569d8ab6b9568d01e83be9c6b219",
+          "actualPackagedTextAssetRawSha256": "020b962af448567d6ac193ab66ca3d8baa9c569d8ab6b9568d01e83be9c6b219",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.cosmetics.json",
+          "actual8bGitRawSha256": "2afb65d2cf1c5f61daa0472943a1827601382902b4f0820ad7eecfdb8fb61692",
+          "actualPackagedTextAssetRawSha256": "2afb65d2cf1c5f61daa0472943a1827601382902b4f0820ad7eecfdb8fb61692",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.bindings.json",
+          "actual8bGitRawSha256": "118be90d30e46434c9ca6e11262ac108d90843cb0e6d1a2345f6bc7ecaf47f23",
+          "actualPackagedTextAssetRawSha256": "118be90d30e46434c9ca6e11262ac108d90843cb0e6d1a2345f6bc7ecaf47f23",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/ProductionCampaignText.json",
+          "actual8bGitRawSha256": "355fe1bd1b19c2c4214696d6edb21facbfe9c3e3e04194dd9fa44e0abd43daa4",
+          "actualPackagedTextAssetRawSha256": "355fe1bd1b19c2c4214696d6edb21facbfe9c3e3e04194dd9fa44e0abd43daa4",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-profiles.json",
+          "actual8bGitRawSha256": "2504a40422a13988091e3f2722f57d0567ad3e3c0460c9b942bb55b95ab45202",
+          "actualPackagedTextAssetRawSha256": "2504a40422a13988091e3f2722f57d0567ad3e3c0460c9b942bb55b95ab45202",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-completion.json",
+          "actual8bGitRawSha256": "b375c551b9ef7e21f32613ac2ce42c38e2f6b00957e523c8b14244d11c9e7eaf",
+          "actualPackagedTextAssetRawSha256": "b375c551b9ef7e21f32613ac2ce42c38e2f6b00957e523c8b14244d11c9e7eaf",
+          "exactBytesEqualGitObject": true
+        },
+        {
+          "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-bindings.json",
+          "actual8bGitRawSha256": "8b61354a3fec2b58da1f7a4bf0ed52d482b0c2366eae0b702cc05e0dae9e8097",
+          "actualPackagedTextAssetRawSha256": "8b61354a3fec2b58da1f7a4bf0ed52d482b0c2366eae0b702cc05e0dae9e8097",
+          "exactBytesEqualGitObject": true
+        }
+      ]
+    },
+    "actualCompilerSemantics": {
+      "registeredActualMethods": 13,
+      "all13BodiesExactlyEqualAcceptedMain20": true,
+      "currentRendererWorldGuardIncluded": true,
+      "readonlyMemoInstanceFields": 7,
+      "canonicalDefensiveCloneSites": 4,
+      "runtimeReadonlyIdentityLookupAfterStarSourceGuardsAndFullIdentityPredicate": true,
+      "sixRetainedLedgerBodiesExactlyEqualAcceptedMain20": true,
+      "threeInactiveIOSStrippedILTypesExactlyEqualAcceptedMain19": true,
+      "managedStrippedAssemblies": 104,
+      "packagedMetadataExactlyEqualsTwoCompilerAndBeeCopies": true,
+      "testsCollectorsEditorFixtureAndIOSBridgeNamesNotObserved": true
+    },
+    "actualResourceComparisons": {
+      "iconPngs": [
+        {
+          "path": "res/mipmap-hdpi-v4/app_icon.png",
+          "sha256": "5613937aabbce8ccaf63287bb63e0f87989d91b9e12562827266deb83d12660a",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            72,
+            72
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-hdpi-v4/app_icon_round.png",
+          "sha256": "5613937aabbce8ccaf63287bb63e0f87989d91b9e12562827266deb83d12660a",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            72,
+            72
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-hdpi-v4/ic_launcher_background.png",
+          "sha256": "811fe6b0cdde954a80899f1448f1f56ba6f9f42355d7099bc41ee69bfb16b9d9",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            162,
+            162
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-hdpi-v4/ic_launcher_foreground.png",
+          "sha256": "f49cc0b7375f119e27110bc79ac1acde2cb47d14fedd8e1b914c886eb2994984",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            162,
+            162
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-ldpi-v4/app_icon.png",
+          "sha256": "c1c4456d302bcf907d6f5318da5f42178037d68863c3f2f2e8646fad22ccb650",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            36,
+            36
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-ldpi-v4/app_icon_round.png",
+          "sha256": "c1c4456d302bcf907d6f5318da5f42178037d68863c3f2f2e8646fad22ccb650",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            36,
+            36
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-ldpi-v4/ic_launcher_background.png",
+          "sha256": "ec72e0733bb7e4d71977de999e6efa090e373a02ed760df9ea8f1d8c080d8dc5",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            81,
+            81
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-ldpi-v4/ic_launcher_foreground.png",
+          "sha256": "e913156f7e824d5f583ff4c93dcedaf71157250cf347a49a834191c34f9eff4e",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            81,
+            81
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-mdpi-v4/app_icon.png",
+          "sha256": "e0b00fe28a753738cc5c97659787ea09e423a1dc4369313c6527cd24e5afa875",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            48,
+            48
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-mdpi-v4/app_icon_round.png",
+          "sha256": "e0b00fe28a753738cc5c97659787ea09e423a1dc4369313c6527cd24e5afa875",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            48,
+            48
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-mdpi-v4/ic_launcher_background.png",
+          "sha256": "3000b9745dcbe0f94a88c5075cdee7d0c4ac64e77db3d7645af7dc1da6ba8c0a",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            108,
+            108
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-mdpi-v4/ic_launcher_foreground.png",
+          "sha256": "db17e651313ba0f5f84cab031c9879a89d3712eb7cdd4d5ed42dcb5df149d7ed",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            108,
+            108
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xhdpi-v4/app_icon.png",
+          "sha256": "55298105f87c03859da6c995a3ba6bf676a1534c2105041cdaec03cf0c632aca",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            96,
+            96
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xhdpi-v4/app_icon_round.png",
+          "sha256": "55298105f87c03859da6c995a3ba6bf676a1534c2105041cdaec03cf0c632aca",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            96,
+            96
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xhdpi-v4/ic_launcher_background.png",
+          "sha256": "ba12f5220dda5efaf6d3911c202d4122d1a1f006cdc822c01d57176d74653b31",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            216,
+            216
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xhdpi-v4/ic_launcher_foreground.png",
+          "sha256": "77bc047bd9442cc81e1ec09aef2ac33f72889bfd3e3182c640960bf12f446efd",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            216,
+            216
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxhdpi-v4/app_icon.png",
+          "sha256": "3c1609c811301622fe9268d2de9809b3871095e97722a85d8be607abb544ca83",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            144,
+            144
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxhdpi-v4/app_icon_round.png",
+          "sha256": "3c1609c811301622fe9268d2de9809b3871095e97722a85d8be607abb544ca83",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            144,
+            144
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxhdpi-v4/ic_launcher_background.png",
+          "sha256": "2ae58a7f5d12fb81dc975653d16fe1a686cd484c3233f6c1b28ede9b5e1922eb",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            324,
+            324
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxhdpi-v4/ic_launcher_foreground.png",
+          "sha256": "7dbc9e0003b8f30f80a399e9d9fade66f185f991046174ec97e07b833f0f8d37",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            324,
+            324
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxxhdpi-v4/app_icon.png",
+          "sha256": "996614b4679627d4ae609ad10ca519603fa7a1bc5134f5c11bb939f665fbf112",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            192,
+            192
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxxhdpi-v4/app_icon_round.png",
+          "sha256": "996614b4679627d4ae609ad10ca519603fa7a1bc5134f5c11bb939f665fbf112",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            192,
+            192
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxxhdpi-v4/ic_launcher_background.png",
+          "sha256": "177286c8d2378d9d50c9f2f731858f4e588df9e2797b9f12d46fa37a5caf7022",
+          "sameRawBytesAcceptedMain20": true,
+          "size": [
+            432,
+            432
+          ],
+          "maxRGBAChannelDifferenceMain20": 0,
+          "alphaExactlyEqualMain20": true
+        },
+        {
+          "path": "res/mipmap-xxxhdpi-v4/ic_launcher_foreground.png",
+          "sha256": "4823a3882d9f795fb6b973394092e49e1fec528c8d84f0963d637d15d1348fe4",
+          "sameRawBytesAcceptedMain20": false,
+          "size": [
+            432,
+            432
+          ],
+          "maxRGBAChannelDifferenceMain20": 1,
+          "alphaExactlyEqualMain20": true
+        }
+      ],
+      "serializedFontObjectsExactlyEqualAcceptedMain20": [
+        {
+          "name": "IBMPlexSansCondensed-SemiBold",
+          "sizeBytes": 202782,
+          "sha256": "1da4ccb87970cb8b97f0c130191269bf37485f107a5e99601dcfd27f99016932"
+        },
+        {
+          "name": "IBMPlexSans-SemiBold",
+          "sizeBytes": 202770,
+          "sha256": "667367ee1a8b90cbffa8c01913135610ae038519e1ffbb2fe511764d39f900c2"
+        },
+        {
+          "name": "IBMPlexSans-Regular",
+          "sizeBytes": 200638,
+          "sha256": "e1eddc908c675904c86805a9fd964d5873b0b743e7c296a074b4a86ec716acc6"
+        },
+        {
+          "name": "NotInter-Regular",
+          "sizeBytes": 431646,
+          "sha256": "1eb03e7e759ac01242261e3cded8b23e86d5acfe160dd31ab5ae0fc09fb650fa"
+        }
+      ]
+    },
+    "sourceBinding": {
+      "rootCapturedTerminalCheckoutWitness": {
+        "path": ".utmp/wp046-c-ci-d1-review/push/android-terminal-source-binding.json",
+        "sizeBytes": 488,
+        "sha256": "b288c1683afa4f05667f60aafa599e77fce468c0bb245abd76bbc5bee49921d4"
+      },
+      "actualHeadGitApiContext": {
+        "path": ".utmp/wp046-c-ci-d1-review/actual-head-git-object-context.json",
+        "sizeBytes": 282,
+        "sha256": "5b302501b3ec484abc75fc4802f6821bf0344c03fcc57c05f8a67abbc05dca14"
+      },
+      "readOnlyActual205LocalGitBlobBindings": true,
+      "all205Current8bGitBlobsExactlyEqualPreviouslyBoundD1Blobs": true,
+      "rawVsCrLfOnlyComparisons": {
+        "EXACT_RAW_BYTES": 200,
+        "CRLF_TO_LF_ONLY": 5
+      },
+      "capturedReferenceSourceArchive": {
+        "path": ".utmp/wp046-native/human-android-build10-source-inputs/original-source-inputs.zip",
+        "sizeBytes": 6508673,
+        "sha256": "f34c7c683f963ba16b2f7d037a077576f092482d9369fb86bd26846a5d0f2141"
+      },
+      "referenceRawSourcesAreNotAssertedAsActualCapturedCIRawInputs": true,
+      "noCleanOrBitwiseReproductionClaim": true
+    },
+    "independentAcceptance": {
+      "path": ".utmp/wp046-c-ci-d1-review/push/android-semantic-review/independent-conclusion.json",
+      "sizeBytes": 23506,
+      "sha256": "7d90299aa0294cdc8761af10ee8f04349ec1384ef09b570ce2aca448d5c18ca4"
+    }
+  },
+  "ios": {
+    "status": "OPEN_NO_CURRENT_TERMINAL_ORIGINAL_ACCEPTANCE",
+    "jobId": 122267130793
+  },
+  "companionPRNative": {
+    "runId": 40513138557,
+    "androidJobId": 122254633188,
+    "status": "OPEN_NO_CURRENT_TERMINAL_ORIGINAL_ACCEPTANCE"
+  },
+  "sourceBoundary": [
+    "This is the actual completed Push Android QA/debug artifact only. PR Android and each iOS result require their own terminal-original binding. No device/provider/Human/Owner/legal/production/RC/Store acceptance.",
+    "The f42d debug signer differs from prior CI88fe and local Main20/Human10 signer2fc6. No replacement, reinstall, uninstall or profile/data deletion follows from this review.",
+    "Exact compiled-input bodies, codegen registrations and stripped IL/metadata do not establish per-test loaded-image identity, actual device method execution or CPU performance causality.",
+    "Source8b/d1 contains the accepted current map/UI-caption/late-puzzle/4DRAFT-profile union; it excludes the private new offline-notice/UI76/Human08 work. The current package is not relabeled with future content.",
+    "Existing Main20/Human10 and oldCI1df acceptances, earlier failures and Human9 mismatch remain unchanged. Android material postbuild observations are not promoted to a retained buildtime Maven lock."
+  ],
+  "remainingGates": [
+    "Current PR Android and both current iOS terminal-original reviews",
+    "Private offline-notice UI76/Human08 work is excluded from this8b/d1 artifact",
+    "Actual physical Android/iOS and lifecycle/offline/accessibility/performance/privacy",
+    "Actual Owner game quality and qualified Human measurements/calibration/source approval",
+    "Actual provider sandbox/ad/purchase/restore and Store-channel tests",
+    "Exact final signing, buildtime native input binding, qualified legal/privacy/rights review and separate release authority"
+  ],
+  "physicalDeviceValidated": false,
+  "providerSandboxValidated": false,
+  "humanOrOwnerAcceptance": false,
+  "RCMainOrStorePromotionAllowed": false
+}

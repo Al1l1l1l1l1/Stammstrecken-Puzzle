@@ -1,0 +1,132 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-01-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 1
+    },
+    "b": {
+      "side": "S",
+      "index": 2
+    }
+  },
+  "rowCounts": [
+    2,
+    3,
+    2,
+    2,
+    2,
+    1
+  ],
+  "columnCounts": [
+    0,
+    0,
+    4,
+    5,
+    2,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 1,
+    "position": 9,
+    "titleKey": "level.s1.03.01.09.title",
+    "statusKey": "level.s1.03.01.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.01.09.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY",
+      "EXCLUSION"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Die zwei linken Nullspalten begrenzen die Fläche, jedoch gibt es keinen Vollcount. Der Ostport oben und ein kleines Kopfstück führen in die mittige Wechselkurve; als Variation mit weniger Extremwerten zulässig, die schmale aktive Breite wird ausdrücklich erklärt statt durch eine 70%-Regel ausgeschlossen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-01-09-map",
+    "trainMomentId": "draft-s1-03-01-09-train",
+    "resultTextKey": "level.s1.03.01.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-01-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "6824bd44a673289c335f80089721437694de8759da5cb77f1497260e3ca34a25"
+    }
+  }
+}

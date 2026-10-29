@@ -1,5 +1,15 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Google packages via OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": ["com.google.ads.mobile", "com.google.external-dependency-manager"]
+    }
+  ],
   "dependencies": {
+    "com.google.ads.mobile": "11.5.0",
+    "com.google.external-dependency-manager": "1.2.187",
+    "com.unity.purchasing": "5.4.3",
     "com.unity.addressables": "2.10.3",
     "com.unity.inputsystem": "1.20.0",
     "com.unity.localization": "1.5.13",

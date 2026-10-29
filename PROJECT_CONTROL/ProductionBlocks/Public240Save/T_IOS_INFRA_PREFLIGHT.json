@@ -1,0 +1,44 @@
+{
+  "category": "actual local public DNS/HTTPS reachability before one bounded infrastructure retry; not proof of GitHub runner reachability",
+  "officialSource": "https://unity.com/releases/editor/whats-new/6000.3.23f1",
+  "githubSemantics": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+  "dns": {
+    "host": "download.unity3d.com",
+    "command": "Resolve-DnsName download.unity3d.com -Type A -DnsOnly",
+    "result": "SUCCESS after ordinary sandbox denied DNS, approved read-only escalation",
+    "cname": [
+      "download.unity3d.com.edgesuite.net",
+      "a418.dscw27.akamai.net"
+    ],
+    "ipv4": [
+      "92.226.1.50",
+      "92.226.1.24"
+    ]
+  },
+  "httpsHeads": [
+    {
+      "url": "https://download.unity3d.com/download_unity/09d2ecc7fb28/MacEditorInstallerArm64/Unity-6000.3.23f1.pkg",
+      "statusCode": 200,
+      "contentLength": [
+        "5112372157"
+      ],
+      "contentType": [
+        "application/octet-stream"
+      ],
+      "observedAtUtc": "2026-10-19T08:16:09.0808018Z"
+    },
+    {
+      "url": "https://download.unity3d.com/download_unity/09d2ecc7fb28/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-6000.3.23f1.pkg",
+      "statusCode": 200,
+      "contentLength": [
+        "470368984"
+      ],
+      "contentType": [
+        "application/octet-stream"
+      ],
+      "observedAtUtc": "2026-10-19T08:16:10.0785656Z"
+    }
+  ],
+  "originalCommandOutput": "[\r\n  {\r\n    \"url\": \"https://download.unity3d.com/download_unity/09d2ecc7fb28/MacEditorInstallerArm64/Unity-6000.3.23f1.pkg\",\r\n    \"statusCode\": 200,\r\n    \"contentLength\": [\r\n      \"5112372157\"\r\n    ],\r\n    \"contentType\": [\r\n      \"application/octet-stream\"\r\n    ],\r\n    \"observedAtUtc\": \"2026-10-19T08:16:09.0808018Z\"\r\n  },\r\n  {\r\n    \"url\": \"https://download.unity3d.com/download_unity/09d2ecc7fb28/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-6000.3.23f1.pkg\",\r\n    \"statusCode\": 200,\r\n    \"contentLength\": [\r\n      \"470368984\"\r\n    ],\r\n    \"contentType\": [\r\n      \"application/octet-stream\"\r\n    ],\r\n    \"observedAtUtc\": \"2026-10-19T08:16:10.0785656Z\"\r\n  }\r\n]\r\n",
+  "binaryPackagesDownloaded": false
+}

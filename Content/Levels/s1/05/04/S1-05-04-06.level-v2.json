@@ -1,0 +1,210 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-06",
+  "contentRevision": 4,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 0
+    },
+    "b": {
+      "side": "E",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    2,
+    2,
+    4,
+    4,
+    3,
+    2,
+    3,
+    2,
+    3,
+    1
+  ],
+  "columnCounts": [
+    2,
+    1,
+    2,
+    2,
+    1,
+    2,
+    4,
+    2,
+    5,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 6,
+    "titleKey": "level.s1.05.04.06.title",
+    "statusKey": "level.s1.05.04.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.06.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 37,
+    "qualityNote": "DRAFT-Neufassung P02 mit26Gleisfeldern: alle zehn Zeilen und Spalten bleiben aktiv, keine öffentliche Null-/Vollzahl. Der reine Zahlenfixpunkt bestimmt0statt44von100Zellen; mit den ausdrücklich belegten öffentlichen Ports11statt51. Der Südport in der Einer-Bodenzeile gibt nur einen lokalen Einstieg. Die benachbarten Viererzeilen oben und die rechten Fünferspalten müssen getrennte Kurvengebiete und den innenliegenden Ostport gemeinsam festlegen;89Zellen bleiben nach diesem begrenzten Count-Vorspiel unbestimmt. Neuer öffentlicher Solvernachweis231Schritte/Tiefe37/Guess0; keine menschliche Härte- oder Zeitannahme. Vorhandener Authoringpfad S1-05-04-11 war nur Mutationssaat; ausschließlich die neue Geometrie wurde neu gelöst und proven. Alle neuen öffentlichen Fakten und internen Einstiegsnotizen sind separat gebunden.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-06-map",
+    "trainMomentId": "draft-s1-05-04-06-train",
+    "resultTextKey": "level.s1.05.04.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 9,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 9,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 9,
+        "y": 1,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "3e4b1eac592ac1ea441b6aedc79c8acd4ca1b8a6b8b2b8bedfd2dd10c54df981"
+    }
+  }
+}

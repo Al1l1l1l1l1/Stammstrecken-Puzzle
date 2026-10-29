@@ -1,0 +1,556 @@
+{
+  "evidenceKind": "ACTUAL_IOS_EXPORTED_PROJECT_SOURCE_INSPECTION_ONLY",
+  "buildLabel": "wp046-ios-posix-bridge-export5",
+  "sourceBinding": "Git 8f9cd25c3c86a4ff1b4f16d3331bb11c2df3c723; actual prebuild source input inventory SHA256 bd03d91974174c370d83600603052395add4802f26c33b5c77c8cb33a32d551f; exact original source archive SHA256 4c03f8c90ebf380d97600d58f074e5fe3e61cc78204a94ce9ac2568993432acf; four preserved local ProjectSettings overrides declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "targets": {
+    "Unity-iPhone": {
+      "nativeHooks": [],
+      "storeKitLinks": [
+        "System/Library/Frameworks/StoreKit.framework"
+      ],
+      "configs": {
+        "Release": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "ReleaseForProfiling": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "ReleaseForRunning": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "Debug": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        }
+      }
+    },
+    "UnityFramework": {
+      "nativeHooks": [
+        "Libraries/Plugins/iOS/StpHaptics.mm",
+        "Libraries/Plugins/iOS/StpPosixFileBridge.mm",
+        "Libraries/Plugins/iOS/StpStoreKitVerifier.swift"
+      ],
+      "storeKitLinks": [
+        "System/Library/Frameworks/StoreKit.framework"
+      ],
+      "configs": {
+        "Release": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "ReleaseForProfiling": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "ReleaseForRunning": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "Debug": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        }
+      }
+    }
+  },
+  "plist": {
+    "GADDelayAppMeasurementInit": true,
+    "GADApplicationIdentifier": "ca-app-pub-3940256099942544~1458002511",
+    "NSUserTrackingUsageDescription": null,
+    "CFBundleIdentifier": "${PRODUCT_BUNDLE_IDENTIFIER}",
+    "CFBundleVersion": "0"
+  },
+  "podfile": "source 'https://github.com/CocoaPods/Specs'\nsource 'https://cdn.cocoapods.org/'\n\nplatform :ios, '15.0'\n\ntarget 'UnityFramework' do\n  pod 'Google-Mobile-Ads-SDK', '~> 13.9'\n  pod 'GoogleUserMessagingPlatform', '3.1.0'\nend\ntarget 'Unity-iPhone' do\nend\nuse_frameworks! :linkage => :static\n",
+  "podfileLockPresent": false,
+  "podsDirectoryPresent": false,
+  "sourceBindings": [
+    {
+      "source": "Assets/Plugins/iOS/StpStoreKitVerifier.swift",
+      "export": "Libraries/Plugins/iOS/StpStoreKitVerifier.swift",
+      "sourceSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce",
+      "exportSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce"
+    },
+    {
+      "source": "Assets/Plugins/iOS/StpHaptics.mm",
+      "export": "Libraries/Plugins/iOS/StpHaptics.mm",
+      "sourceSha256": "432a2861e768ad58415250bb4e5144a78733b99c5fdb5e6b73963c26af6892c0",
+      "exportSha256": "432a2861e768ad58415250bb4e5144a78733b99c5fdb5e6b73963c26af6892c0"
+    },
+    {
+      "source": "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+      "export": "Libraries/Plugins/iOS/StpPosixFileBridge.mm",
+      "sourceSha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c",
+      "exportSha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c"
+    }
+  ],
+  "hookReport": {
+    "GADDelayAppMeasurementInit": "true",
+    "InfoPlistSha256": "7462a0b824f505189b57c7fbe30957ac6e6bd9204d269acd4c0676d3b212b688",
+    "SwiftSourceSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce",
+    "PBXProjectSha256": "12c7f466a575d30b69c163823e5c70f9c62ca1fd715caa6df913b5fcb19ef01f",
+    "Evidence": "EXPORTED_SOURCE_ONLY;Xcode_compile_link_and_physical_network_capture_required"
+  },
+  "privacyManifestDeclarations": [
+    {
+      "path": "UnityFramework/PrivacyInfo.xcprivacy",
+      "sha256": "1cd73a2fdfd39572784ec165bafae6661374fed735365fd2f9c44d8f13c315e9",
+      "declaration": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "35F9.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "E174.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "0A2A.1",
+              "C617.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          }
+        ],
+        "NSPrivacyTracking": false
+      }
+    }
+  ],
+  "problems": [],
+  "archive": {
+    "path": "ios-exported-project-source.zip",
+    "sha256": "f0488050ee743274641ec85bf63d1d24e144aa98262b1d5eba94189a4900bcc5",
+    "sizeBytes": 364667613
+  },
+  "log": {
+    "path": "unity-ios-export.log",
+    "sha256": "31caf285d509f901b18fb2b3ee20cc80b6fc03a4e079c12814b97effdd6cca34"
+  },
+  "buildReportSha256": "d97511ed67b5832f8b6036d09d2e8d8d11d9d24958eec984f984f1854c567a77",
+  "xcodeCompileValidated": false,
+  "swiftNativeLinkValidated": false,
+  "podResolutionValidated": false,
+  "ipaCreated": false,
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "status": "TECHNICAL_IOS_SOURCE_EXPORT_PASS_XCODE_PENDING",
+  "archiveDirectory": ".utmp/wp046-native/ios-export5-verified",
+  "archiveReference": {
+    "path": ".utmp/wp046-native/ios-export5-verified/ios-exported-project-source.zip",
+    "sha256": "f0488050ee743274641ec85bf63d1d24e144aa98262b1d5eba94189a4900bcc5",
+    "sizeBytes": 364667613
+  },
+  "originalAudit": {
+    "path": ".utmp/wp046-native/ios-export5-verified/audit.json",
+    "sha256": "a8eaec51afd1e58f134083a0f0ca06ea1de3efa66ae76696cfdf7a7972ee23f4",
+    "sizeBytes": 709143
+  },
+  "originalExportFileCount": 3285,
+  "prebuildOriginalSourceInventory": {
+    "path": ".utmp/wp046-native/ios-export5-source-inputs/source-inputs.json",
+    "sha256": "bd03d91974174c370d83600603052395add4802f26c33b5c77c8cb33a32d551f",
+    "sizeBytes": 236213
+  },
+  "prebuildOriginalSourceArchive": {
+    "path": ".utmp/wp046-native/ios-export5-source-inputs/original-source-inputs.zip",
+    "sha256": "4c03f8c90ebf380d97600d58f074e5fe3e61cc78204a94ce9ac2568993432acf",
+    "sizeBytes": 6499693
+  },
+  "prebuildInputFileCount": 1116,
+  "sourceWorkingTreeReconciledToCommit": "d9da0708fd1da9e5b36d46360ca4a7f09b75737f",
+  "sourceCleanHeadAsserted": false,
+  "actualUnityExportExitCode": 0,
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c-ios-posix-export5-review/independent-conclusion.json",
+    "sha256": "36f1140719f40f475e52a08cc80d245e8607be92ea9294169b3c3fc6a6e6f39d",
+    "sizeBytes": 14714
+  },
+  "independentConclusion": {
+    "evidenceKind": "INDEPENDENT_ACTUAL_IOS_EXPORT5_POSIX_BRIDGE_SOURCE_ACCEPTANCE",
+    "status": "PASS_ACTUAL_EXPORT_SOURCE_BRIDGE_AND_CALLER_BINDING_XCODE_PENDING",
+    "findings": [],
+    "audit": {
+      "path": ".utmp/wp046-native/ios-export5-verified/audit.json",
+      "sha256": "a8eaec51afd1e58f134083a0f0ca06ea1de3efa66ae76696cfdf7a7972ee23f4",
+      "sizeBytes": 709143
+    },
+    "exportSourceArchive": {
+      "path": ".utmp/wp046-native/ios-export5-verified/ios-exported-project-source.zip",
+      "sha256": "f0488050ee743274641ec85bf63d1d24e144aa98262b1d5eba94189a4900bcc5",
+      "sizeBytes": 364667613
+    },
+    "preRunInventory": {
+      "path": ".utmp/wp046-native/ios-export5-source-inputs/source-inputs.json",
+      "sha256": "bd03d91974174c370d83600603052395add4802f26c33b5c77c8cb33a32d551f",
+      "sizeBytes": 236213
+    },
+    "preRunOriginalSourceArchive": {
+      "path": ".utmp/wp046-native/ios-export5-source-inputs/original-source-inputs.zip",
+      "sha256": "4c03f8c90ebf380d97600d58f074e5fe3e61cc78204a94ce9ac2568993432acf",
+      "sizeBytes": 6499693
+    },
+    "integration": {
+      "path": ".utmp/wp046-native/ios-posix-integration/integration.json",
+      "sha256": "029cc550e3b4914c3f490f5e9a3b4c1c42af2902e81292e6cb7720ac708ff3ed",
+      "sizeBytes": 3831
+    },
+    "freezeIndependentAcceptance": {
+      "path": ".utmp/wp046-a-ios-posix-review/acceptance.json",
+      "sha256": "5ea9ca3fc1f60cb800db62cc7c94b7685e4202cc71ea781ddb7dfc1dfc4ccec9",
+      "sizeBytes": 19582
+    },
+    "auditorFrozenSourceSha256": "f3c65ea1fd94a5a051813f8fdbfa319a9a97491aa3c6a601c1a8071fc0105cc9",
+    "inputFilesIndependentlyRehashed": 1116,
+    "exportedFilesIndependentlyRehashed": 3285,
+    "sourceBaseMain18": {
+      "path": ".utmp/wp046-native/android-build18-source-inputs/original-source-inputs.zip",
+      "sha256": "9034f8bd3023edabfe8d43fc1f9ef0a1eeb655cab003ba365a5e47ccb7c9c2fb",
+      "sizeBytes": 6498774
+    },
+    "threeChangedCsSources": [
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/HumanCalibrationStore.cs",
+        "oldSha256": "5272108ee8bcc907ea13725b913b07b39c9e3f18d09fbd4b61b518ebc1668b6d",
+        "newSha256": "c08f3c8257f762711435e142073d19cb032140a30ed60e1ebe8c1c57dc17c985"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalDiagnosticRing.cs",
+        "oldSha256": "a85de3ee509f8c5e608abfadf281971ed554e7109f3d54d456e08a1ea2f5f8da",
+        "newSha256": "8006eb0525fd99d9c5d2acbb51d893e39dbc1347b40704b03ecbc1cd1aa7e45f"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+        "oldSha256": "6292981ba324480747808f1f3f8a005b6df03922b6dc420f0dc183dd913e2e72",
+        "newSha256": "4a6e6e4a04b235a1d0b2af31a7cc43d785638627159d838d4f954540aa59f3b8"
+      }
+    ],
+    "twoAddedNativeSources": [
+      {
+        "path": "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+        "sha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c"
+      },
+      {
+        "path": "Assets/Plugins/iOS/StpPosixFileBridge.mm.meta",
+        "sha256": "ec75369f79b136bc6dadd30b8f8426a711dce55144c6251094ee1db5bad39fa7"
+      }
+    ],
+    "otherOriginalSourcesByteUnchanged": true,
+    "allFiveProtectedOriginalsIndependentlyRehashed": true,
+    "sourceGitHead": "8f9cd25c3c86a4ff1b4f16d3331bb11c2df3c723",
+    "sourceCleanHeadAsserted": false,
+    "pluginPath": "Libraries/Plugins/iOS/StpPosixFileBridge.mm",
+    "pluginSha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c",
+    "pluginExactBytesEqualFrozenPreRunSource": true,
+    "pbxProjectMember": "Unity-iPhone.xcodeproj/project.pbxproj",
+    "pbxProjectSha256": "12c7f466a575d30b69c163823e5c70f9c62ca1fd715caa6df913b5fcb19ef01f",
+    "actualUniquePluginFileReference": "81D5B6B4D596E4150F5335E9",
+    "actualUniquePluginBuildFile": [
+      "3E0C88637ED683418891C574"
+    ],
+    "actualTargetSourceMembership": {
+      "Unity-iPhone": {
+        "nativeTargetGuid": "1D6058900D05DD3D006BFB54",
+        "posixBridgeCompileCount": 0,
+        "buildFileGuids": []
+      },
+      "Unity-iPhone Tests": {
+        "nativeTargetGuid": "5623C57217FDCB0800090B9E",
+        "posixBridgeCompileCount": 0,
+        "buildFileGuids": []
+      },
+      "GameAssembly": {
+        "nativeTargetGuid": "7F4E059F2717216D00A2CBE4",
+        "posixBridgeCompileCount": 0,
+        "buildFileGuids": []
+      },
+      "UnityFramework": {
+        "nativeTargetGuid": "9D25AB9C213FB47800354C27",
+        "posixBridgeCompileCount": 1,
+        "buildFileGuids": [
+          "3E0C88637ED683418891C574"
+        ]
+      }
+    },
+    "posixDefinitions": {
+      "stp_posix_rename": {
+        "arguments": "char* source, char* destination",
+        "body": "return rename(source, destination);"
+      },
+      "stp_posix_open": {
+        "arguments": "char* path, int32_t flags",
+        "body": "return open(path, flags);"
+      },
+      "stp_posix_flock": {
+        "arguments": "int32_t descriptor, int32_t operation",
+        "body": "return flock(descriptor, operation);"
+      },
+      "stp_posix_close": {
+        "arguments": "int32_t descriptor",
+        "body": "return close(descriptor);"
+      }
+    },
+    "generatedGlobalPrototypes": [
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "function": "stp_posix_open",
+        "arguments": "char*, int32_t"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "function": "stp_posix_flock",
+        "arguments": "int32_t, int32_t"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "function": "stp_posix_close",
+        "arguments": "int32_t"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "function": "stp_posix_rename",
+        "arguments": "char*, char*"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "function": "stp_posix_open",
+        "arguments": "char*, int32_t"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "function": "stp_posix_flock",
+        "arguments": "int32_t, int32_t"
+      },
+      {
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "function": "stp_posix_close",
+        "arguments": "int32_t"
+      }
+    ],
+    "actualTenGeneratedCallers": [
+      {
+        "method": "NativeDirectory_Open_m282E07A86C33E5314F8AE16F19C54534ECE20438",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "memberSha256": "34d72575e1e4e3610a01ce8350394cfe7f7d82afba553a23ba41c16411bd8aa9",
+        "function": "stp_posix_open",
+        "argumentTypes": "char*, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "c2a08be40db1de0ee0878a26ad54fbcd5e64b217b8379db58a779de4d7e3424f",
+        "excerpt": "NativeDirectory_Open_m282E07A86C33E5314F8AE16F19C54534ECE20438.generated.cpp"
+      },
+      {
+        "method": "NativeDirectory_Flock_mEF3E9E1C781357A1A689062284E3672F1FE3D9EB",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "memberSha256": "34d72575e1e4e3610a01ce8350394cfe7f7d82afba553a23ba41c16411bd8aa9",
+        "function": "stp_posix_flock",
+        "argumentTypes": "int32_t, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "3b7cdec1c8d72ec1770f349e9482c7690bd830631314518790c9f7cc5c4a40f1",
+        "excerpt": "NativeDirectory_Flock_mEF3E9E1C781357A1A689062284E3672F1FE3D9EB.generated.cpp"
+      },
+      {
+        "method": "NativeDirectory_Close_mCCF2832A99C70435B1F55508D1C22434F743D5B2",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence.cpp",
+        "memberSha256": "34d72575e1e4e3610a01ce8350394cfe7f7d82afba553a23ba41c16411bd8aa9",
+        "function": "stp_posix_close",
+        "argumentTypes": "int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "e2d72e21a75e86d222642487de929c84d89fea208817e56114a224d077d77472",
+        "excerpt": "NativeDirectory_Close_mCCF2832A99C70435B1F55508D1C22434F743D5B2.generated.cpp"
+      },
+      {
+        "method": "Native_Rename_mD02CDE5AADA381818A2DDCE65DB8D11E581D9CE7",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_rename",
+        "argumentTypes": "char*, char*",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "e3a2da384f4233c42f3aff80620269b94a0e02fdac9558f9cd67214049be8b70",
+        "excerpt": "Native_Rename_mD02CDE5AADA381818A2DDCE65DB8D11E581D9CE7.generated.cpp"
+      },
+      {
+        "method": "Native_Open_m5449ABF43F430BC0E47DA1C22B3134FFD527F7DF",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_open",
+        "argumentTypes": "char*, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "030418ea7b2841b39aa5d203e34446d2875ca812269ecfcbfacaa66650287de8",
+        "excerpt": "Native_Open_m5449ABF43F430BC0E47DA1C22B3134FFD527F7DF.generated.cpp"
+      },
+      {
+        "method": "Native_Flock_m1734AC9E77D78A0935BA6BC3A2994970103BDD78",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_flock",
+        "argumentTypes": "int32_t, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "2104f0aad815e9266bcc2048d99b4393c2ec935bc8d0f5201b62f084671651c6",
+        "excerpt": "Native_Flock_m1734AC9E77D78A0935BA6BC3A2994970103BDD78.generated.cpp"
+      },
+      {
+        "method": "Native_Close_m2FF68D4F3C41F8BEEB153974AADA199652803D53",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_close",
+        "argumentTypes": "int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": false,
+        "bodySha256": "bd77d3cb398fcbcb1909b4aa6d27cbc22ef97427508d4647c9a63392fce99305",
+        "excerpt": "Native_Close_m2FF68D4F3C41F8BEEB153974AADA199652803D53.generated.cpp"
+      },
+      {
+        "method": "NativeDirectory_Open_m5EE84A315C8D181775677A710D12FAB536F1F15A",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_open",
+        "argumentTypes": "char*, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "4c97c8819d9cf4c076f7c4dc0b3fcecc0a4b5ba3fe618571c6d47b500cd8041c",
+        "excerpt": "NativeDirectory_Open_m5EE84A315C8D181775677A710D12FAB536F1F15A.generated.cpp"
+      },
+      {
+        "method": "NativeDirectory_Flock_mA5429809A48524C89AFFDC0CBC8F00010963914C",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_flock",
+        "argumentTypes": "int32_t, int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "7e088723f850a42074a635b1d38a6c399859a2f4dfdb1d6202555b186aa5639c",
+        "excerpt": "NativeDirectory_Flock_mA5429809A48524C89AFFDC0CBC8F00010963914C.generated.cpp"
+      },
+      {
+        "method": "NativeDirectory_Close_m395D19E747B57C738A31ED4A20E00768D9AA6064",
+        "member": "Il2CppOutputProject/Source/il2cppOutput/STP.Infrastructure.Persistence__2.cpp",
+        "memberSha256": "ac498c6129bb90a97ff154ac136beef4fda3ccf697d9975fe0ea8c3094425a51",
+        "function": "stp_posix_close",
+        "argumentTypes": "int32_t",
+        "returnsInt32SyscallResult": true,
+        "storesLastError": true,
+        "bodySha256": "1bbebe9b7aea71aa61fa812616c9ebe22509e1904b000338aaabf0b0b64683dc",
+        "excerpt": "NativeDirectory_Close_m395D19E747B57C738A31ED4A20E00768D9AA6064.generated.cpp"
+      }
+    ],
+    "stpCppModulesChecked": 27,
+    "oldDirectStdlibPInvokeDeclarations": [],
+    "errnoSemantics": "Native wrappers return the exact POSIX syscall result directly; nine original SetLastError stubs capture after call, diagnostic Close retains its original no-SetLastError behavior. No other native wrapper operation before return.",
+    "actualUnityLog": {
+      "path": ".utmp/wp046-native/ios-export5-verified/unity-ios-export.log",
+      "sha256": "31caf285d509f901b18fb2b3ee20cc80b6fc03a4e079c12814b97effdd6cca34",
+      "sizeBytes": 640911
+    },
+    "actualLastBuildReport": {
+      "path": ".utmp/wp046-native/ios-export5-verified/LastBuild.buildreport",
+      "sha256": "d97511ed67b5832f8b6036d09d2e8d8d11d9d24958eec984f984f1854c567a77",
+      "sizeBytes": 1228452
+    },
+    "unityExportExit0LogObserved": true,
+    "xcodeCompileValidated": false,
+    "nativeLinkValidated": false,
+    "podsResolved": false,
+    "ipaCreated": false,
+    "productionSigned": false,
+    "physicalDeviceValidated": false,
+    "humanAcceptance": false,
+    "promotionAllowed": false,
+    "ownUnityCiGitMutations": false,
+    "liveExportOrLibraryFilesRead": false,
+    "limits": [
+      "Actual archived Windows Unity iOS source export and generated caller/plugin-source proof only. No Apple Clang/Xcode compile, native link, signed IPA, installed device, provider sandbox, Human, legal or Store acceptance.",
+      "Source baseline is the actual Main18 prebuild archive; exactly three C# sources changed and two native files were added. Auditor is separately bound outside Assets/Packages/ProjectSettings.",
+      "Four preserved local settings and separately rehashed Golden remain explicit local inputs; no clean/binary-reproducible claim.",
+      "Ten actual PInvoke methods are counted separately from seven global declarations of four unique private symbols.",
+      "This closes exported-source integration for the specific rename prototype collision; only actual subsequent Apple compilation can close the original Xcode failure."
+    ]
+  },
+  "nativePlugin": {
+    "source": "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+    "export": "Libraries/Plugins/iOS/StpPosixFileBridge.mm",
+    "sha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c",
+    "frameworkSourceOwnerCount": 1,
+    "appSourceOwnerCount": 0
+  },
+  "actualNewXcodeCompileAndLinkValidated": false,
+  "priorActualCiNativeFailureRetained": true,
+  "human8Unchanged": true,
+  "localAndroidMain18Unchanged": true
+}

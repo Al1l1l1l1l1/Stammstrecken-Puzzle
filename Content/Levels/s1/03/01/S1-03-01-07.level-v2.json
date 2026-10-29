@@ -1,0 +1,147 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-01-07",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 2
+    },
+    "b": {
+      "side": "N",
+      "index": 3
+    }
+  },
+  "rowCounts": [
+    3,
+    1,
+    1,
+    6,
+    2,
+    2
+  ],
+  "columnCounts": [
+    2,
+    3,
+    2,
+    2,
+    2,
+    4
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 1,
+    "position": 7,
+    "titleKey": "level.s1.03.01.07.title",
+    "statusKey": "level.s1.03.01.07.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.01.07.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "Zwei obere Einserzeilen lassen den Nordbogen nur rechts fortlaufen; die unteren Zweierreihen müssen dennoch links zum Südport zurückkehren. Der lokale rechte Schenkel erzwingt deshalb einen rasterweiten Querzug, statt dass die nahe Nord-/Südspalte direkt verbunden werden kann.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-01-07-map",
+    "trainMomentId": "draft-s1-03-01-07-train",
+    "resultTextKey": "level.s1.03.01.07.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-01-07/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "0b8dff321494c389fbcd72a9dd29afb0e8c232159c056b7e779ab525fa7f32a4"
+    }
+  }
+}

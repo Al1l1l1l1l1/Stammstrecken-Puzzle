@@ -1,0 +1,364 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/release-manifest-v2.schema.json",
+  "title": "Stammstrecken-Puzzle Release Manifest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifestVersion",
+    "releaseVersion",
+    "candidateTag",
+    "candidateOrdinal",
+    "gitCommit",
+    "workflow",
+    "platform",
+    "buildNumber",
+    "buildProfile",
+    "applicationIdentifier",
+    "signingFingerprintSha256",
+    "toolchainLockSha256",
+    "packageLockSha256",
+    "contentLockSha256",
+    "productionConfigSha256",
+    "artifactSha256",
+    "storeBuildReference",
+    "promotionAllowed",
+    "debugFlags",
+    "blockerState",
+    "evidenceGates"
+  ],
+  "properties": {
+    "manifestVersion": {
+      "const": 2
+    },
+    "releaseVersion": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$(?![\\s\\S])"
+    },
+    "candidateTag": {
+      "type": "string",
+      "pattern": "^v(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)-rc\\.[1-9][0-9]*$(?![\\s\\S])"
+    },
+    "candidateOrdinal": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "gitCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$(?![\\s\\S])"
+    },
+    "workflow": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_-]+\\.ya?ml@[0-9a-f]{40}$(?![\\s\\S])"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "ANDROID",
+        "IOS"
+      ]
+    },
+    "buildNumber": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$(?![\\s\\S])",
+      "maxLength": 16
+    },
+    "buildProfile": {
+      "const": "production"
+    },
+    "applicationIdentifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]*(?:\\.[A-Za-z][A-Za-z0-9]*)+$(?![\\s\\S])"
+    },
+    "signingFingerprintSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "toolchainLockSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "packageLockSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "contentLockSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "productionConfigSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifactSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "storeBuildReference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "promotionAllowed": {
+      "type": "boolean"
+    },
+    "debugFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "developmentBuild",
+        "profiler",
+        "testCrash",
+        "sandboxProviders"
+      ],
+      "properties": {
+        "developmentBuild": {
+          "const": false
+        },
+        "profiler": {
+          "const": false
+        },
+        "testCrash": {
+          "const": false
+        },
+        "sandboxProviders": {
+          "const": false
+        }
+      }
+    },
+    "blockerState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "BLOCKER-PROD-001",
+        "BLOCKER-PROD-002",
+        "BLOCKER-PROD-003"
+      ],
+      "properties": {
+        "BLOCKER-PROD-001": {
+          "enum": [
+            "OPEN_FAIL_CLOSED",
+            "CLOSED_WITH_EVIDENCE"
+          ]
+        },
+        "BLOCKER-PROD-002": {
+          "enum": [
+            "OPEN_FAIL_CLOSED",
+            "CLOSED_WITH_EVIDENCE"
+          ]
+        },
+        "BLOCKER-PROD-003": {
+          "enum": [
+            "OPEN_FAIL_CLOSED",
+            "CLOSED_WITH_EVIDENCE"
+          ]
+        }
+      }
+    },
+    "evidenceGates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "SOURCE_CALIBRATION",
+        "OWNER_GAME_ACCEPTANCE",
+        "SIGNING_PACKAGE",
+        "DEVICE_REGRESSION",
+        "PROVIDER_PRIVACY",
+        "RIGHTS_LEGAL",
+        "STORE_CHANNEL",
+        "INDEPENDENT_RC"
+      ],
+      "properties": {
+        "SOURCE_CALIBRATION": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "OWNER_GAME_ACCEPTANCE": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "SIGNING_PACKAGE": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "DEVICE_REGRESSION": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "PROVIDER_PRIVACY": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "RIGHTS_LEGAL": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "STORE_CHANNEL": {
+          "$ref": "#/$defs/evidenceGate"
+        },
+        "INDEPENDENT_RC": {
+          "$ref": "#/$defs/evidenceGate"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$(?![\\s\\S])"
+    },
+    "evidenceGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "originalRawSha256"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "OPEN_FAIL_CLOSED",
+            "VERIFIED"
+          ]
+        },
+        "originalRawSha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "state": {
+              "const": "OPEN_FAIL_CLOSED"
+            },
+            "originalRawSha256": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "state": {
+              "const": "VERIFIED"
+            },
+            "originalRawSha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "promotionAllowed": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "debugFlags": {
+            "properties": {
+              "developmentBuild": {
+                "const": false
+              },
+              "profiler": {
+                "const": false
+              },
+              "testCrash": {
+                "const": false
+              },
+              "sandboxProviders": {
+                "const": false
+              }
+            }
+          },
+          "blockerState": {
+            "properties": {
+              "BLOCKER-PROD-001": {
+                "const": "CLOSED_WITH_EVIDENCE"
+              },
+              "BLOCKER-PROD-002": {
+                "const": "CLOSED_WITH_EVIDENCE"
+              },
+              "BLOCKER-PROD-003": {
+                "const": "CLOSED_WITH_EVIDENCE"
+              }
+            }
+          },
+          "evidenceGates": {
+            "properties": {
+              "SOURCE_CALIBRATION": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "OWNER_GAME_ACCEPTANCE": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "SIGNING_PACKAGE": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "DEVICE_REGRESSION": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "PROVIDER_PRIVACY": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "RIGHTS_LEGAL": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "STORE_CHANNEL": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              },
+              "INDEPENDENT_RC": {
+                "properties": {
+                  "state": {
+                    "const": "VERIFIED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "platform": {
+            "const": "ANDROID"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "buildNumber": {
+            "pattern": "^(?:[1-9][0-9]{0,8}|1[0-9]{9}|20[0-9]{8}|2100000000)$(?![\\s\\S])"
+          }
+        }
+      }
+    }
+  ]
+}

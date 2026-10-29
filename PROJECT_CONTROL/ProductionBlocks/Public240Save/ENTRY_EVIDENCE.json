@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "role": "/root/entry_audit",
+  "auditDateEuropeBerlin": "2026-10-19",
+  "scope": "Independent read-only entry audit for MANUS-2026-10-19-01; persistence of report authorized in WP-040 scope, anchor 0da2b684a079c0caf9306dc21a67e2dc20e8489a.",
+  "mandatoryReadingCompleted": [
+    "AGENTS.md",
+    "Konzept 15",
+    "Konzept 00",
+    "Konzept 09",
+    "PROJECT_CONTROL/CURRENT_STATE.md",
+    "WP-038",
+    "MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md",
+    "WP-040",
+    "WP-040.production.scope.json",
+    "WORK_PACKAGE_RULES",
+    "AI_HANDOVER_RULES",
+    "DEFINITION_OF_DONE"
+  ],
+  "basis": {
+    "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+    "parent": "fb99477da53008f4ec46492c4b243fdffa89c8ea",
+    "tree": "51a14d09bfa19c80608133b333105d56ae850374",
+    "firstAddPath": "PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md",
+    "firstAddUniqueInLocalAllRefs": true,
+    "firstAddCommand": "git log --all --diff-filter=A --format='%H %P %s' -- <firstAddPath>",
+    "changedFiles": 9,
+    "allChangesAdditiveMarkdown": true,
+    "prComment": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/31#issuecomment-6261078217"
+  },
+  "ancestors": [
+    {
+      "sha": "b9b59647cf73e2dcfa05a413259ca27c18a5afdf",
+      "method": "git merge-base --is-ancestor <sha> B",
+      "exit": 0
+    },
+    {
+      "sha": "07ba4d3130414ee82e843823c2f04aeac230f25b",
+      "method": "git merge-base --is-ancestor <sha> B",
+      "exit": 0
+    },
+    {
+      "sha": "524b45024438b93c592351d7683a7c62aec2ab8d",
+      "method": "git merge-base --is-ancestor <sha> B",
+      "exit": 0
+    },
+    {
+      "sha": "fb99477da53008f4ec46492c4b243fdffa89c8ea",
+      "method": "git merge-base --is-ancestor <sha> B",
+      "exit": 0
+    }
+  ],
+  "merges": [
+    {
+      "sha": "b9b59647cf73e2dcfa05a413259ca27c18a5afdf",
+      "parents": [
+        "ff1836e293a2a5cff69773525c347b55deb67dfb",
+        "8dd68e22b58f126cb499fee408e98c173202a98e"
+      ],
+      "tree": "25b7907fee4e0741574c3f32867fbef03bfb1e96",
+      "deliveryDiffEmpty": true
+    },
+    {
+      "sha": "07ba4d3130414ee82e843823c2f04aeac230f25b",
+      "parents": [
+        "3772c0370b39ec95979fb9efdd47f4344c41a539",
+        "524b45024438b93c592351d7683a7c62aec2ab8d"
+      ],
+      "tree": "f1adfa4e006169c32bd930cc6c76f1d62b98e780",
+      "deliveryDiffEmpty": true
+    }
+  ],
+  "remoteRefs": {
+    "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches?per_page=100",
+    "total": 37,
+    "branches": [
+      {
+        "name": "arch/architecture-v0.1",
+        "sha": "df213c9e5a3b7155dc06e81c76ffb30038fbdd38"
+      },
+      {
+        "name": "chore/ci-readiness-unity",
+        "sha": "f96c2f3a50822d4a426dd510f70063a823d18e3b"
+      },
+      {
+        "name": "chore/ci-setup",
+        "sha": "0234dea993bcb56d20bc9e21566df6ad52c05a92"
+      },
+      {
+        "name": "chore/wp-011-pr-scope-checkout",
+        "sha": "5bd82c0820cbeb6567f18f7f266d1e60aa6d9179"
+      },
+      {
+        "name": "chore/wp-023-closeout",
+        "sha": "6e69d420dbf4a47e8242d846b318b76bb9e2af06"
+      },
+      {
+        "name": "chore/wp-024-closeout",
+        "sha": "bff879b56757fa9f6ede2b7c1593f437799021b9"
+      },
+      {
+        "name": "chore/wp-025-closeout",
+        "sha": "c6dbc64849d6ac161f9a828b9a81d3f38d4abbfe"
+      },
+      {
+        "name": "codex/wp-021-closeout",
+        "sha": "7575f45d2f8e771e85a9b6ae483ff1ade409aaa2"
+      },
+      {
+        "name": "codex/wp-022-puzzle-kern-recovery",
+        "sha": "b257efd98bd14e7f66ffc40916a0b584c3f51fb7"
+      },
+      {
+        "name": "codex/wp-023-level-v2-foundation",
+        "sha": "f56eab34dca0346d0e339a1c5cde650e15955f68"
+      },
+      {
+        "name": "codex/wp-025-proof-v1-strict-preparation",
+        "sha": "92842bc653bf364bd7ade5bbff7c37f71bf9fd1f"
+      },
+      {
+        "name": "codex/wp-026-season1-logical-content",
+        "sha": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d"
+      },
+      {
+        "name": "codex/wp-028-season1-ci-performance",
+        "sha": "b449ab761dca98ab6d7af387efba81886118428b"
+      },
+      {
+        "name": "codex/wp-031-integration-preview",
+        "sha": "060c1c4b01458a80835094d5bd004be8c36eec54"
+      },
+      {
+        "name": "codex/wp-032-integration-acceptance",
+        "sha": "b83c69ccecdaf4455aa4d5b0882519e4530291d0"
+      },
+      {
+        "name": "codex/wp-033-followup-closeout",
+        "sha": "a2e26a658a2bcdd47002698c150cb5736d9760da"
+      },
+      {
+        "name": "codex/wp-034-hardbudget-reliability",
+        "sha": "7eed2483e5bdc9289e0c94f577a68148a7b8f46a"
+      },
+      {
+        "name": "codex/wp-036-vollstaendige-textbibliothek",
+        "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3"
+      },
+      {
+        "name": "codex/wp-037-hardbudget-wp036",
+        "sha": "8dd68e22b58f126cb499fee408e98c173202a98e"
+      },
+      {
+        "name": "codex/wp-038-interne-spielschleife",
+        "sha": "524b45024438b93c592351d7683a7c62aec2ab8d"
+      },
+      {
+        "name": "design/wp-035-finale-asset-bible",
+        "sha": "9e3f209cd92d491ab3a1ab51cce63677d3b5d53e"
+      },
+      {
+        "name": "docs/wp-010-tests-standort",
+        "sha": "dfde541c5cf50b2ad1f4840f1f29f647685c7ea3"
+      },
+      {
+        "name": "docs/wp-022-closeout",
+        "sha": "6b3240f160255cb5bfa2e0ea12e4e1e10cd1f32f"
+      },
+      {
+        "name": "docs/wp-027-governance-closeout",
+        "sha": "e825116c655f14d3d313a55e792f1ffdf3074843"
+      },
+      {
+        "name": "docs/wp-027-season1-entscheidungen-ci-performance",
+        "sha": "09259190ff13ad05c13656316be1264f72f57012"
+      },
+      {
+        "name": "docs/wp-027-season1-entscheidungen-ci-performance-r1",
+        "sha": "91daceaf3fa89aac4ec70fc16479b145a63f8084"
+      },
+      {
+        "name": "feat/wp-008-unity-scaffold",
+        "sha": "edb713efc1580bcf0f8074dc7667c0f179a723ab"
+      },
+      {
+        "name": "feat/wp-009-puzzle-kern",
+        "sha": "767c01efb3720b3dae080280f58c568fbb36686f"
+      },
+      {
+        "name": "feat/wp-013-level-v2-pipeline",
+        "sha": "21fb4dbaafbdb1c7946408085f92a4f131f97f22"
+      },
+      {
+        "name": "feat/wp-021-unity-scaffold-recovery",
+        "sha": "c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b"
+      },
+      {
+        "name": "feat/wp-024-solver-v2-metriken-und-deduktionsspur",
+        "sha": "64d8801ee28d68dc0c8ec9800898b7862977c32c"
+      },
+      {
+        "name": "governance/trust-anchor-correction-closeout",
+        "sha": "42619c824df394452420033e231026c72b5610fd"
+      },
+      {
+        "name": "governance/wp021-readiness-hold",
+        "sha": "3849efe6710645a15d7fdd55ecb644145847dcb7"
+      },
+      {
+        "name": "governance/wp-013-recovery-architecture",
+        "sha": "7b65c0cf70ba9e9ead65df8a749f9324ae6ebc30"
+      },
+      {
+        "name": "governance/wp-018-closeout",
+        "sha": "2669a94eac3002d1e8505a02b7a2db972448a156"
+      },
+      {
+        "name": "governance/wp-019-020-anchor-correction",
+        "sha": "0b1e3c492a87835aed09c051d37b37fd664e907a"
+      },
+      {
+        "name": "main",
+        "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    ],
+    "observation": "Initial entry, before root created T; no T/A/S child branch or following WP/manifest present in this initial inventory."
+  },
+  "pullRequest": {
+    "number": 31,
+    "state": "open",
+    "draft": true,
+    "head": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+    "base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "bodyStillHistorical": true,
+    "laterMandateCommentVerified": true
+  },
+  "prCheckout": {
+    "sha": "009b1227bb60fd53f9cf56833d9fa465140abe22",
+    "parents": [
+      "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3"
+    ],
+    "tree": "51a14d09bfa19c80608133b333105d56ae850374",
+    "sameTreeAsBasis": true,
+    "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/009b1227bb60fd53f9cf56833d9fa465140abe22"
+  },
+  "initialRuns": [
+    {
+      "id": 39209670452,
+      "name": "Architecture Validation",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "updated_at": "2026-10-19T06:24:28Z",
+      "attempt": 1
+    },
+    {
+      "id": 39209670469,
+      "name": "Unity CI",
+      "event": "pull_request",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "updated_at": "2026-10-19T07:05:40Z",
+      "attempt": 1
+    },
+    {
+      "id": 39209664878,
+      "name": "Architecture Validation",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "updated_at": "2026-10-19T06:24:22Z",
+      "attempt": 1
+    },
+    {
+      "id": 39209664901,
+      "name": "Unity CI",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "updated_at": "2026-10-19T06:30:24Z",
+      "attempt": 1
+    }
+  ],
+  "architectureLogs": [
+    {
+      "jobId": 117920018874,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117920018874/logs",
+      "sha256DecodedUtf8": "a97b3136bb1cfb29df71b698318e3ce309cc7b4a5c56335209b64bf4c2cb6515",
+      "decodedUtf8Bytes": 32371,
+      "excerpts": [
+        {
+          "line": 303,
+          "text": "2026-10-19T06:24:19.5589294Z FAIL  adr:status:ADR-033-interne-transiente-spielschleife.md"
+        },
+        {
+          "line": 304,
+          "text": "2026-10-19T06:24:19.5589679Z RESULT FAIL (1 Fehler)"
+        }
+      ]
+    },
+    {
+      "jobId": 117920036608,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117920036608/logs",
+      "sha256DecodedUtf8": "adddbf8c0a8301f9628ed9c06786acddb2815cdb0dbb1b38f55189b8f0989e40",
+      "decodedUtf8Bytes": 33366,
+      "excerpts": [
+        {
+          "line": 169,
+          "text": "2026-10-19T06:24:02.0227649Z HEAD is now at 009b122 Merge 3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 into d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+        },
+        {
+          "line": 316,
+          "text": "2026-10-19T06:24:25.1736003Z FAIL  adr:status:ADR-033-interne-transiente-spielschleife.md"
+        },
+        {
+          "line": 317,
+          "text": "2026-10-19T06:24:25.1736431Z RESULT FAIL (1 Fehler)"
+        }
+      ]
+    }
+  ],
+  "adr033": {
+    "sourcePattern": "## Status\\s+\\*\\*(Angenommen|Ersetzt|Entwurf|Verworfen)\\*\\*",
+    "implementation": "tools/architecture-validation/validate.py:252",
+    "basisMatch": false,
+    "parentMatch": true,
+    "validatorDiffParentToBasisEmpty": true,
+    "cause": "Bold status on B includes explanatory text before closing **, violating exact closed status token.",
+    "boundedFix": "Close ** immediately after Angenommen; retain explanatory text/provenance/date/decision body outside bold. No validator relaxation."
+  },
+  "initialWorkingTreeClean": true,
+  "tools": {
+    "ghAvailable": false,
+    "gitRemoteRead": "git ls-remote failed with getaddrinfo() thread failed to start; no Git mutation attempted.",
+    "remoteFallback": "GitHub connector GET API"
+  },
+  "limits": [
+    "No source/solver/text/general quality rerun.",
+    "No Unity execution, dispatch, cancellation or retry.",
+    "Historical PASS/FAIL retain original stand bindings.",
+    "Initial precise local observation timestamp was not recorded; API updated_at retained without inventing an observation time.",
+    "Later B Unity terminal evidence is in B_CI_EVIDENCE.json; not a PASS of T or its implementation."
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "evidenceKind": "ACTUAL_ANDROID_APK_ARTIFACT_INSPECTION",
+  "buildLabel": "wp046-main-android-11",
+  "apkSha256": "b8da79928deb21d56ad06b5f14fff345dbbb6b91db360ab5914e1a740b5a048d",
+  "apkSizeBytes": 81904315,
+  "sourceBinding": "Git 953ca4463cc8e96329faa3b04628cf79a57d9ae8; actual prebuild source input inventory SHA256 4bf9d44d9d42431d30c5bb83893791f396c0d30dde3d23f95914741428970505; exact original source archive SHA256 c42328a9bcf85e5755a845c65be901fba3944e5c56dfb68e5a2ec3c389be1c21; four preserved local ProjectSettings overrides declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "manifest": {
+    "package": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": "26",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_ADSERVICES_TOPICS",
+      "com.android.vending.BILLING",
+      "android.permission.WAKE_LOCK",
+      "android.permission.FOREGROUND_SERVICE",
+      "com.STP.StammstreckenPuzzle.qa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "providers": [
+      "com.google.android.gms.ads.MobileAdsInitProvider",
+      "androidx.startup.InitializationProvider"
+    ],
+    "measurementDelayValues": [
+      "true"
+    ],
+    "debuggable": "true"
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "nativeLibraries": [
+    {
+      "path": "lib/arm64-v8a/lib_burst_generated.so",
+      "sizeBytes": 422840,
+      "sha256": "84c365e70ebd2d5f08dc5d151cfba93156f3f142424c8339de7b67b80364f70f",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sizeBytes": 1292904,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libgame.so",
+      "sizeBytes": 252008,
+      "sha256": "5e1f799e725960bd7b9017d7f3129e4fe28dc93fea8029102d85bf9fc4bdc64d",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libmain.so",
+      "sizeBytes": 8720,
+      "sha256": "56e3c619bf938450f5a95eec2a460cf620adb3ce73cea8577160d58542b0f632",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libswappywrapper.so",
+      "sizeBytes": 227040,
+      "sha256": "bad9938ead2f8196a0fdd25cd04f51a74ea7958eb681a13517c507bf08ab9798",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libunity.so",
+      "sizeBytes": 36232048,
+      "sha256": "6e5dbb360a1b1fcd34d0a2cfd0bce50a21431a3b52d0e9b2b2771671eb2490b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libil2cpp.so",
+      "sizeBytes": 80490408,
+      "sha256": "dff31ea8a4166de51040799c510c011949427c17c974e2526123c81f351448fa",
+      "elfMachine": 183
+    }
+  ],
+  "packagedSdkVersionProperties": {
+    "billing.properties": "version=9.0.0\nclient=billing\nbilling_client=9.0.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-measurement-base.properties": "version=20.1.2\nclient=play-services-measurement-base\nplay-services-measurement-base_client=20.1.2\n",
+    "play-services-measurement-sdk-api.properties": "version=20.1.2\nclient=play-services-measurement-sdk-api\nplay-services-measurement-sdk-api_client=20.1.2\n",
+    "user-messaging-platform.properties": "version=4.0.0\nclient=user-messaging-platform\nuser-messaging-platform_client=4.0.0\n"
+  },
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "status": "PASS_STATIC_QA_DEBUG_ARTIFACT",
+  "apk": {
+    "path": ".utmp/wp046-native/android-build11-verified/stp-mobile-preview.apk",
+    "sha256": "b8da79928deb21d56ad06b5f14fff345dbbb6b91db360ab5914e1a740b5a048d",
+    "sizeBytes": 81904315
+  },
+  "originalAudit": {
+    "path": ".utmp/wp046-native/android-build11-inspected/audit.json",
+    "sha256": "aa6f39c877a98a4cf0074fa0bd742e838f650d10d8de0334900d4d7961b9211c",
+    "sizeBytes": 67927
+  },
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c2-native-apk11/independent-conclusion.json",
+    "sha256": "e84ae63471740ef910f40b23b885931c6b431dca9f9d86778bbe65959a088603",
+    "sizeBytes": 12370
+  },
+  "sourceCleanHeadAsserted": false,
+  "prebuildInventory": {
+    "path": ".utmp/wp046-native/android-build11-source-inputs/source-inputs.json",
+    "sha256": "4bf9d44d9d42431d30c5bb83893791f396c0d30dde3d23f95914741428970505",
+    "sizeBytes": 236136
+  },
+  "prebuildOriginalSourceArchive": {
+    "path": ".utmp/wp046-native/android-build11-source-inputs/original-source-inputs.zip",
+    "sha256": "c42328a9bcf85e5755a845c65be901fba3944e5c56dfb68e5a2ec3c389be1c21",
+    "sizeBytes": 6491096
+  },
+  "preservedPrebuildSourceFiles": 1114,
+  "actualUnityBuildExitCode": 0,
+  "nativeInputCapture": {
+    "path": ".utmp/wp046-native/android-build11-inspected/native-originals/capture.json",
+    "sha256": "5baa574c62343ed1df40f56841a9c39ca500c1df422916a36e0fe9429abf1565",
+    "sizeBytes": 639613
+  },
+  "nativeInputArchive": {
+    "path": ".utmp/wp046-native/android-build11-inspected/native-originals/native-originals.zip",
+    "sha256": "1a32ff8c76e720da254c3ca7541c12a3b4a9dbd40cc5795a9a7e718f718237f5",
+    "sizeBytes": 19358486
+  },
+  "managedIl2cppInputArchive": {
+    "path": ".utmp/wp046-native/android-build11-inspected/native-originals/managed-il2cpp-originals.zip",
+    "sha256": "5f7fb9c868bfd660017d91cfa098d3e55f88fcacd6c4d210e9dd16716261f833",
+    "sizeBytes": 152238720
+  },
+  "preservedNativeFiles": 2190,
+  "preservedManagedIl2cppFiles": 814,
+  "originalAuditArtifactCount": 236,
+  "independentReports": [
+    {
+      "path": ".utmp/wp046-c2-native-apk11/archive-readback.json",
+      "sha256": "33b69a570e8a4e56c77e03b3bd2a428e5f6429825d6b7ab8aba2d8b0872a23f2",
+      "sizeBytes": 1740
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/independent-readback.json",
+      "sha256": "56747fd3a5bc628d30dfd763aa1aafce7fa1713dfe2f142672044ba098796dd5",
+      "sizeBytes": 20654
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/dex-source-and-size-readback.json",
+      "sha256": "03b415022fef8fc2c720262ea6a6939393aaeb34513a954c01e057b863d04c65",
+      "sizeBytes": 5334
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/player-code-readback.json",
+      "sha256": "61eb98c058c3be08c1ae3fa0e612b219debbf12a45d2fd5861105cfd915b9070",
+      "sizeBytes": 9537
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/readback.json",
+      "sha256": "04b21e42f97aae769d2c82a34953d917fb6d2f8e76f8f1be8a92e2594f84b3db",
+      "sizeBytes": 18907
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/main11/zip-entry-alignment.json",
+      "sha256": "f57df1ac685dbeeddf88d75998953ad1eebed719113644b66bf32b1db29f6b27",
+      "sizeBytes": 154744
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/size-readback.json",
+      "sha256": "59f7b318ed82e7a6575a24b6351a6a1032d2fc2d2395301732b5f0540653bf52",
+      "sizeBytes": 5932
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/zip-gaps.json",
+      "sha256": "2937da3d54615f935e30ee752b194df3e2b7e98233f344773542200bf77a3a62",
+      "sizeBytes": 408249
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/build-flags-and-hotpath.json",
+      "sha256": "0bddd75cc2f8ed584376f86c1558357c06d37c53386e140c094e8ad672675b2e",
+      "sizeBytes": 58301
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/actual-apk-icon-layers.png",
+      "sha256": "f0b5c9b2ec151a9497315ccc4a6821a61b119879732ca4497dbd16e77cdf0a9c",
+      "sizeBytes": 13438
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/actual-signature.txt",
+      "sha256": "31bdf41dd2f5702e9538a03cb0e2281674ab392729137c28ce656f403838ac87",
+      "sizeBytes": 955
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/main11/zipalign-final.stdout.txt",
+      "sha256": "50569c29db8777c78770148061236a9e3830762f02f2ef78c155874b8c1f3231",
+      "sizeBytes": 44140
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/LocalEndlessPolicy_IsUnlocked.generated.cpp",
+      "sha256": "30915fe59ab303bf996b11a08d8c9d7c8516069ef98d98722c91e179e87e5067",
+      "sizeBytes": 11402
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/IsUnlocked.generated-lambda.cpp",
+      "sha256": "46d998bd6e8bcf4c06a4839bdf795fb0404fa47c0933a841f1696f511c80169c",
+      "sizeBytes": 1361
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/SaveLedgerCodec_Validate.generated.cpp",
+      "sha256": "db997f51ffe5342fa859049f134050e06793c191f9c8e91586a907022ae5d717",
+      "sizeBytes": 49472
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/hotpath-initial-predicate.log",
+      "sha256": "7a499f98e3e9ae1da62ba820b3dcc97ba307d70106a4e18c514dfb67eece53b8",
+      "sizeBytes": 340
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/build-flags-and-hotpath-initial.json",
+      "sha256": "091fdba682f7eb2ebb814c1e945902eeee60b2e317fdc2fd1cd1e72fe4f08721",
+      "sizeBytes": 58065
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/zip-gaps-initial.json",
+      "sha256": "c9440019e82b2c4de798a841895abf467205ef7d725851c7eb820ed070921167",
+      "sizeBytes": 321549
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/size_readback.py",
+      "sha256": "61d5b200fd247589fb1e9f883c1b8ab3ff915fef820d87afca81e6bbb305ed88",
+      "sizeBytes": 2347
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/zip_gaps.py",
+      "sha256": "bbf10a11d6e72b7f846ad8d31eba0998305bb7b9e42f296276e2144553514ce9",
+      "sizeBytes": 4009
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/check_archives.py",
+      "sha256": "cfd7366821f730506155b930691581576ff3bed34ab69ed3fc0fa55cb31d4287",
+      "sizeBytes": 3815
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/verify_apk.py",
+      "sha256": "31369e163a4507d4f59e214c06d770b0fe1962db33a26a22949637df1e8ca2ec",
+      "sizeBytes": 10363
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/extra.py",
+      "sha256": "cfd94a4f86aab8c7bf51eb7c60dd18768b33913a9fb8d8caa273b8d113e9039e",
+      "sizeBytes": 5045
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/verify_player_inputs.py",
+      "sha256": "faa55c84e8663b4da45664dc6c004940c9525effba62c94267b30bb5f933678e",
+      "sizeBytes": 5110
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/page_size.py",
+      "sha256": "d90fa89413d926c4e8b91af63cc6add8044777537e6a033e523e1a0c71818e71",
+      "sizeBytes": 10896
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/build_flags_and_hotpath.py",
+      "sha256": "0d07d5ec0bb08184a7c6529fb34d0fd4fca1f33ce327d362369c0d54467634eb",
+      "sizeBytes": 6333
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/prepare_checks.py",
+      "sha256": "40d0164bae2811fc613a364093bc9136664f3b02e8838db107195a132aa956b4",
+      "sizeBytes": 1927
+    },
+    {
+      "path": ".utmp/wp046-c2-native-apk11/finalize.py",
+      "sha256": "780377795df833bc79c6cdd44153b432d4469d6f12568b4780fe762289d9d206",
+      "sizeBytes": 6438
+    }
+  ],
+  "static16KiBElfAndZipValidated": true,
+  "physical16KiBRuntimeValidated": false,
+  "humanAcceptance": false,
+  "publicStoreReleaseAllowed": false,
+  "playerInputs": {
+    "cppAndHeadersScanned": 495,
+    "requiredExistingPlayerSymbols": 12,
+    "editorTestHooksAbsent": true,
+    "newIsUnlockedHashSetConstructionAndContainsLambdaConfirmed": true,
+    "newValidateLocalLookupsAndTryGetValueConfirmed": true,
+    "newRuntimeSourcesByteEqualAcceptedFreeze": true
+  },
+  "static16KiB": {
+    "elfLibraries": 7,
+    "loadSegments": 26,
+    "apkCentralDirectoryEntriesCrcChecked": 605,
+    "loadAlignmentAndRelro": "PASS",
+    "actualZipalignP16Exit": 0,
+    "allCompressedNativeLibraries": true,
+    "extractNativeLibs": true
+  },
+  "differenceFromApk10": {
+    "actualApkFileDeltaBytes": 23275710,
+    "compressedEntryPayloadDeltaBytes": 2083,
+    "additionalContainerPaddingBytes": 23273627,
+    "paddingRegions": [
+      {
+        "start": 12553668,
+        "end": 32385895,
+        "bytes": 19832227,
+        "beforeEntry": "lib/arm64-v8a/libmain.so",
+        "emptyLocalHeaderCount": 303,
+        "emptyLocalHeaderBytes": 9090,
+        "zeroExtraBytes": 19823137
+      },
+      {
+        "start": 46914865,
+        "end": 46916132,
+        "bytes": 1267,
+        "beforeEntry": "assets/bin/Data/09c8d0b446719034a80b46914775b38d",
+        "emptyLocalHeaderCount": 1,
+        "emptyLocalHeaderBytes": 30,
+        "zeroExtraBytes": 1237
+      },
+      {
+        "start": 47067210,
+        "end": 50413021,
+        "bytes": 3345811,
+        "beforeEntry": "assets/bin/Data/Managed/Resources/System.Data.dll-resources.dat",
+        "emptyLocalHeaderCount": 52,
+        "emptyLocalHeaderBytes": 1560,
+        "zeroExtraBytes": 3344251
+      },
+      {
+        "start": 51896767,
+        "end": 51897056,
+        "bytes": 289,
+        "beforeEntry": "assets/bin/Data/c3f9a2f04563497bbe47c2de06acaa93",
+        "emptyLocalHeaderCount": 1,
+        "emptyLocalHeaderBytes": 30,
+        "zeroExtraBytes": 259
+      },
+      {
+        "start": 51947689,
+        "end": 51947892,
+        "bytes": 203,
+        "beforeEntry": "assets/bin/Data/globalgamemanagers.assets.split0",
+        "emptyLocalHeaderCount": 1,
+        "emptyLocalHeaderBytes": 30,
+        "zeroExtraBytes": 173
+      },
+      {
+        "start": 54953517,
+        "end": 55047249,
+        "bytes": 93732,
+        "beforeEntry": "assets/bin/Data/level0",
+        "emptyLocalHeaderCount": 2,
+        "emptyLocalHeaderBytes": 60,
+        "zeroExtraBytes": 93672
+      },
+      {
+        "start": 57644248,
+        "end": 57644346,
+        "bytes": 98,
+        "beforeEntry": "AndroidManifest.xml",
+        "emptyLocalHeaderCount": 1,
+        "emptyLocalHeaderBytes": 30,
+        "zeroExtraBytes": 68
+      }
+    ],
+    "paddingTotals": {
+      "emptyLocalHeaders": 361,
+      "emptyHeaderBytes": 10830,
+      "allZeroExtraFieldBytes": 23262797
+    },
+    "bothSignatureBlocksBytes": 4096,
+    "dexBytesUnchanged": true,
+    "sixNativeLibrariesByteIdentical": true,
+    "libil2cppUncompressedDeltaBytes": 11232,
+    "globalMetadataUncompressedDeltaBytes": 816,
+    "sdkVersionPropertiesUnchanged": true,
+    "explanation": "The size increase is physically accounted for by empty local ZIP headers and zero-filled extra fields, plus 2083 bytes of changed compressed payload. No prior compressed IL2CPP payload or other data occurs in the padding. Producer-internal cause of these empty ranges is not asserted."
+  },
+  "coverageAndDebugBoundary": {
+    "sameDevelopmentBuildSource": true,
+    "sameRetainedAndroidPlayerDefineAndCompilerFlags": true,
+    "bothBuildsCompilerOptions": [
+      "/optimize-",
+      "/debug:portable"
+    ],
+    "unityIncludeTestsInRetainedAndroidPlayerResponses": false,
+    "coverageTestFlagsAbsentFromActualBuildCommand": true,
+    "testOrCollectorAssembliesAbsentFromManagedStrippedInputs": true,
+    "noAdditionalTestInstrumentationEvidenceFound": true,
+    "limitation": "This compares actual retained build command, compiler inputs, generated code and packaged payload; it is not a physical runtime instrumentation probe."
+  },
+  "limitations": [
+    "Actual QA/debug-signed APK; no production signing, installed-player, physical device, Human or Store acceptance.",
+    "Static ELF/ZIP compatibility and actual zipalign-P16 success do not establish physical 16KiB runtime execution.",
+    "Source binding includes declared preserved local settings; no clean-HEAD or reproducible-build attestation.",
+    "Additional empty local ZIP headers and zero-filled extra fields increase package size; no producer-internal cause or payload-equivalence claim."
+  ]
+}

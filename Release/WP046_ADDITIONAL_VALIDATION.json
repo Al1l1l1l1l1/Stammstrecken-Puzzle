@@ -1,0 +1,102 @@
+{
+  "evidenceKind": "ACTUAL_ADDITIONAL_GAMEPLAY_MEDIA_AND_ANDROID_STATIC_VALIDATION",
+  "recordedLocalDate": "2026-10-22",
+  "gameplayVideo": {
+    "file": {
+      "path": ".utmp/wp046-a-gameplay-video/takes/20261021T215428-fc1dde2bebac4ac4899832b217188fba/actual-gameplay-editor-preview.mp4",
+      "sha256": "82c6e6945363962f56cdf1246202e90064723bb0a0e1466459ca0a55c2c3083a",
+      "sizeBytes": 190860
+    },
+    "captureManifest": {
+      "path": ".utmp/wp046-a-gameplay-video/takes/20261021T215428-fc1dde2bebac4ac4899832b217188fba/timestamps.json",
+      "sha256": "b1370183a5a91287a48620bb29b771f29060191864b91ab1fc80ef84fcf5e15e",
+      "sizeBytes": 151963
+    },
+    "encodingReport": {
+      "path": ".utmp/wp046-a-gameplay-video/takes/20261021T215428-fc1dde2bebac4ac4899832b217188fba/video-encoding.json",
+      "sha256": "dd38563c81f66084b0855395edf3dc77203e9310983cab7cf68a4b33e9c0db64",
+      "sizeBytes": 85176
+    },
+    "actualUnityResult": {
+      "path": ".utmp/wp046-video-tools/actual-capture-attempt1.xml",
+      "sha256": "454c1445104e2ae5b6f9d1fde8105e8303becdc8ea9173915845a6936861e99a",
+      "sizeBytes": 4509
+    },
+    "unityPassed": 1,
+    "unityFailed": 0,
+    "width": 390,
+    "height": 844,
+    "graphicsDevice": "Direct3D12",
+    "originalCapturedFrames": 478,
+    "decodedVideoFrames": 479,
+    "explicitDuplicateEndHoldSeconds": 0.25,
+    "actualCaptureSpanSeconds": 17.293893899999997,
+    "maximumTimestampQuantizationSeconds": 0.03333333333333333,
+    "rideFrames": 59,
+    "distinctRidePixelFrames": 34,
+    "distinctRidePositions": 32,
+    "confirmedCommitBeforeEveryRideReadback": true,
+    "actualFlow": "Fresh Candidate first 4x4, normal note/toggle and track buttons, durable first clear, actual Root train ride, result and explicit bonus skip",
+    "rootViewedDecodedFramesSeconds": [
+      3,
+      9,
+      11,
+      12.3,
+      12.9,
+      13.5,
+      16
+    ],
+    "editorCapture": true,
+    "automatedInput": true,
+    "hasAudio": false,
+    "physicalDeviceCapture": false,
+    "apkExecutionCapture": false,
+    "humanTimeOrDifficultyEvidence": false,
+    "storeApproved": false,
+    "temporaryDriverAndGeneratedMetaPreservedAndRemoved": {
+      "path": ".utmp/wp046-video-tools/actual-temporary-test/cleanup.json",
+      "sha256": "28eab9625bae48ea35f9caa302fe561a760783b5070f599a8fe2ced72bff561a",
+      "sizeBytes": 1166
+    },
+    "rejectedEncodingAttemptOriginalsRetained": [
+      "encoding-attempt1",
+      "encoding-attempt2"
+    ]
+  },
+  "android16KiB": {
+    "result": "PASS_STATIC_ELF_AND_APK_ZIP",
+    "readback": {
+      "path": ".utmp/wp046-c-page-size/readback.json",
+      "sha256": "513fd1fcc3d58f3de2f7fd97419aea84702b6516b599de71b3aaf0ce006bb459",
+      "sizeBytes": 36263
+    },
+    "originalEvidenceIndex": {
+      "path": ".utmp/wp046-c-page-size/evidence-index.json",
+      "sha256": "827fa386841ab94cb55f36508ad9ef1412c2f969325273fb5836bcd4799db137",
+      "sizeBytes": 10241
+    },
+    "independentElfRanges": {
+      "path": ".utmp/wp046-b-page-size-review/elf-ranges.json",
+      "sha256": "1d188204c200f509686751ee2c4d89f63faa98163770098485e904c37cd4b560",
+      "sizeBytes": 25239
+    },
+    "actualApks": [
+      {
+        "path": ".utmp/wp046-native/android-build9-verified/stp-mobile-preview.apk",
+        "sha256": "8a6e9d0884803c8f8feaf5530225ff7a9c24184aae365775a34da99731ace467"
+      },
+      {
+        "path": ".utmp/wp046-native/human-android-build6-verified/stp-human-calibration.apk",
+        "sha256": "07321ad6989cbdbad44b12c5ad59e33b388af7968c4efc9dcfecf6ea8b987265"
+      }
+    ],
+    "actualArm64ElfFiles": 14,
+    "actualLoadSegments": 52,
+    "actualZipalignCommandsPassed": 2,
+    "compressedNativeLibrariesRequireZipPageOffsets": false,
+    "physical16KiBRuntimeValidated": false,
+    "aabOrPlayDeliveredSplitsValidated": false
+  },
+  "M1M2M3Accepted": false,
+  "publicReleaseAuthorized": false
+}

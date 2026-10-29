@@ -1,0 +1,116 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using STP.Application;
+
+namespace STP.Tests.Application.EditMode
+{
+    internal sealed class ContractJson
+    {
+        private readonly object value;private ContractJson(object value){this.value=value;}
+        internal static ContractJson Parse(string text){var type=Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.StrictJsonParser",true)!;var result=type.GetMethod("ParseText")!.Invoke(null,new object?[]{text,Activator.CreateInstance(type.Assembly.GetType("STP.Infrastructure.Content.JsonParserLimits",true)!,67108864,64,65536,1048576,256)})!;var v=result.GetType().GetProperty("Value")!.GetValue(result)??throw new ArgumentException("Fixture JSON rejected");return new ContractJson(v);}
+        internal ContractJson Get(string name)=>new ContractJson(value.GetType().GetMethod("Get")!.Invoke(value,new object[]{name})??throw new ArgumentException(name));
+        internal string Text=>(string)value.GetType().GetProperty("StringValue")!.GetValue(value)!;
+        internal long Integer=>(long)value.GetType().GetProperty("IntegerValue")!.GetValue(value)!;
+        internal IReadOnlyList<ContractJson> Items=>((IEnumerable)value.GetType().GetProperty("Items")!.GetValue(value)!).Cast<object>().Select(x=>new ContractJson(x)).ToArray();
+    }
+    /// <summary>Test-only primitive/reflection bridge across unchanged asmdef boundaries; never included in a player assembly.</summary>
+    public static class LocalSaveContractFixtures
+    {
+        internal static ICanonicalJson Json=>(ICanonicalJson)Activator.CreateInstance(Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.CanonicalJsonAdapter",true)!)!;
+        internal static string EvidencePath(string name)=>Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("STP_SOURCE_ROOT")??Directory.GetCurrentDirectory(),"PROJECT_CONTROL","ProductionBlocks","Public240Save","S",name));
+        private static readonly Lazy<ContractJson> fixedGoldens=new Lazy<ContractJson>(()=>ContractJson.Parse(File.ReadAllText(EvidencePath("GOLDENS_PRECODEC_V7.json"))));
+        internal static ContractJson Goldens=>fixedGoldens.Value;
+        internal static object? Get(object instance,string property)=>instance.GetType().GetProperty(property)!.GetValue(instance);
+        internal static object? Call(object instance,string method,params object?[] args)=>instance.GetType().GetMethod(method)!.Invoke(instance,args);
+        internal static T Construct<T>(string assembly,string name,params object[] args)=>(T)Activator.CreateInstance(Assembly.Load(assembly).GetType(name,true)!,args)!;
+        internal static object DomainEnum(string type,string value)=>Enum.Parse(Assembly.Load("STP.Puzzle.Domain").GetType("STP.Puzzle.Domain."+type,true)!,value);
+        internal static CatalogIdentity Catalog(ContractJson value)=>new CatalogIdentity(value.Get("catalogId").Text,(int)value.Get("revision").Integer,value.Get("hashSha256").Text,(CatalogUse)Enum.Parse(typeof(CatalogUse),value.Get("use").Text),(CatalogApprovalStatus)Enum.Parse(typeof(CatalogApprovalStatus),value.Get("approvalStatus").Text));
+        internal sealed class PublicCatalog : IPublicPuzzleCatalog
+        {
+            internal PublicCatalog(CatalogIdentity identity,PublicPuzzleInput[] puzzles){Identity=identity;Puzzles=Array.AsReadOnly(puzzles);}
+            public CatalogIdentity Identity{get;}
+            public IReadOnlyList<PublicPuzzleInput> Puzzles{get;}
+            public bool TryGet(PublicPuzzleIdentity identity,out PublicPuzzleInput? puzzle){puzzle=Puzzles.SingleOrDefault(p=>p.Identity.Equals(identity));return puzzle!=null;}
+        }
+        internal sealed class CampaignCatalog : ILockedCampaignCatalog
+        {
+            internal CampaignCatalog(CatalogIdentity identity,LockedCampaignEntry[] entries){Identity=identity;Entries=Array.AsReadOnly(entries);}
+            public CatalogIdentity Identity{get;}
+            public IReadOnlyList<LockedCampaignEntry> Entries{get;}
+            public bool TryGet(PublicPuzzleIdentity identity,out LockedCampaignEntry? entry){entry=Entries.SingleOrDefault(p=>p.Puzzle.Equals(identity));return entry!=null;}
+        }
+        internal sealed class CompletionCatalog : ILockedCompletionCatalog
+        {
+            private readonly CompletionValues[] values;
+            internal CompletionCatalog(CatalogIdentity identity,CompletionValues[] values){Identity=identity;this.values=values;}
+            public CatalogIdentity Identity{get;}
+            public bool TryGet(PublicPuzzleIdentity identity,out CompletionValues? entry){entry=values.SingleOrDefault(p=>p.Puzzle.Equals(identity));return entry!=null;}
+        }
+        internal sealed class Setup
+        {
+            internal Setup(long? two=null,long? three=null)
+            {
+                var set=Goldens.Get("catalogs").Get("catalogSet");PublicId=Catalog(set.Get("publicCatalog"));CampaignId=Catalog(set.Get("campaignCatalog"));CompletionId=Catalog(set.Get("completionCatalog"));Aggregate=Catalog(set.Get("aggregateCatalog"));Catalogs=CatalogSetIdentity.Create(PublicId,CampaignId,CompletionId,Aggregate,Json);Profile=new SaveProfileIdentity("contract-save-v1","contract-profile-1",CatalogUse.ContractTest);
+                var inputs=Goldens.Get("catalogs").Get("publicIdentities").Items.Select(x=>new PublicPuzzleInput(new PublicPuzzleIdentity(x.Get("puzzleId").Text,x.Get("profile").Text,x.Get("sha256").Text),"train-track-v1",4,4,PublicPuzzleSide.N,0,PublicPuzzleSide.S,3,new[]{1,3,4,1},new[]{3,1,2,3})).ToArray();Puzzles=new PublicCatalog(PublicId,inputs);Campaign=new CampaignCatalog(CampaignId,inputs.Select((p,i)=>new LockedCampaignEntry(CampaignId,p.Identity,"S1","S1-01","S1-01-01",i+1,i==0?Array.Empty<string>():new[]{inputs[0].Identity.PuzzleId})).ToArray());Completion=new CompletionCatalog(CompletionId,inputs.Select(p=>new CompletionValues(CompletionId,p.Identity,15,5,10,60,150,two,three)).ToArray());
+            }
+            internal CatalogIdentity PublicId{get;}internal CatalogIdentity CampaignId{get;}internal CatalogIdentity CompletionId{get;}internal CatalogIdentity Aggregate{get;}internal CatalogSetIdentity Catalogs{get;}internal SaveProfileIdentity Profile{get;}internal PublicCatalog Puzzles{get;}internal CampaignCatalog Campaign{get;}internal CompletionCatalog Completion{get;}
+            internal ILocalLedger Ledger=>Construct<ILocalLedger>("STP.Infrastructure.Persistence","STP.Infrastructure.Persistence.SaveLedgerCodec",Json);
+            internal LocalProgressPolicy Policy=>new LocalProgressPolicy(Puzzles,Campaign,Completion,Json,Ledger);
+            internal LocalProfileState Empty=>Policy.NewProfile(Profile,Catalogs,"2026-10-19T00:00:00Z");
+            internal object Solved(int index,string mode="FIRST_RUN",int attempt=1,int stepMilliseconds=10)
+            {
+                var p=Puzzles.Puzzles[index];var definition=Call(p,"ToDomainDefinition")!;var assembly=Assembly.Load("STP.Puzzle.Domain");var type=assembly.GetType("STP.Puzzle.Domain.PuzzleSessionState",true)!;var result=type.GetMethod("Create")!.Invoke(null,new object?[]{definition,p.Identity.PuzzleId,p.Identity.HashProfile,p.Identity.HashSha256,new Guid(attempt,0,0,new byte[8]),DomainEnum("SessionMode",mode),0,null,null})!;var state=Get(result,"Value")!;var grid=Get(definition,"Grid")!;var coordinate=assembly.GetType("STP.Puzzle.Domain.CellCoordinate",true)!;var command=assembly.GetType("STP.Puzzle.Domain.ApplyCellContent",true)!;var handler=assembly.GetType("STP.Puzzle.Domain.PuzzleCommandHandler",true)!;int i=0;
+                foreach(var cell in Goldens.Get("cases").Items[0].Get("bindings").Get("targetDocument").Get("document").Get("solution").Get("path").Items){var c=coordinate.GetMethod("Create")!.Invoke(null,new[]{grid,(object)(int)cell.Get("x").Integer,(int)cell.Get("y").Integer})!;var cmd=Activator.CreateInstance(command,new Guid(++i,0,0,new byte[8]),(long)Get(state,"Revision")!,Get(c,"Value"),DomainEnum("CellContent",cell.Get("track").Text))!;result=handler.GetMethod("Handle")!.Invoke(null,new[]{state,cmd,(object)(long)(i*stepMilliseconds)})!;state=Get(result,"State")!;}return state;
+            }
+            internal LocalCompletionProjection Complete(LocalProfileState state,object session,long generation)=> (LocalCompletionProjection)Call(Policy,"Complete",state,session,generation,"2026-10-19T00:00:00Z")!;
+            internal SaveRepositoryObservation Observe(long generation=1,string source="c")=>new SaveRepositoryObservation(Profile,Aggregate,new[]{new SaveCandidateProvenance(SaveCandidateKind.Main,SaveCandidateStatus.Valid,generation,new string('a',64),new string(source[0],64)),new SaveCandidateProvenance(SaveCandidateKind.Backup,SaveCandidateStatus.Missing,null,null,null),new SaveCandidateProvenance(SaveCandidateKind.Pending,SaveCandidateStatus.Missing,null,null,null)});
+        }
+        /// <summary>Returns real immutable T ports for persistence tests without adding an asmdef reference edge.</summary>
+        public static object[] CreateContractPorts(){var s=new Setup();return new object[]{Json,s.Profile,s.Catalogs,s.Puzzles,s.Campaign,s.Completion};}
+        /// <summary>Creates a genuine empty or preference-only alternative profile for real repository tests.</summary>
+        public static object CreateEmptyContractState(bool alternative=false)
+        {var s=new Setup();var p=s.Empty;return alternative?LocalProfileState.Create(p.Profile,p.Levels,p.Endless,p.LedgerCheckpoint,p.EconomyJournal,p.Inventory,p.CosmeticClaimReservations,p.SeasonProgressCache,p.Drafts,p.RewardClaims,p.DailyStatus,p.Entitlements,p.PendingOperations,LocalSettings.Create("de-DE",Array.Empty<LocalAudioPreference>(),null,null),p.DataLifecycle,p.HintEntitlement):p;}
+        /// <summary>Creates a bound immutable snapshot for a supplied explicit generation.</summary>
+        public static object CreateContractSnapshot(long generation,bool alternative=false){var s=new Setup();return new SaveSnapshot<LocalProfileState>(s.Profile,s.Aggregate,generation,(LocalProfileState)CreateEmptyContractState(alternative));}
+        /// <summary>Wraps a supplied real payload in an exact generation snapshot without altering its reference.</summary>
+        public static object SnapshotFromState(object state,long generation){var p=(LocalProfileState)state;return new SaveSnapshot<LocalProfileState>(p.Profile.Identity,p.Profile.CatalogSet.AggregateCatalog,generation,p);}
+        /// <summary>Creates an explicit mutable test clock behind the runtime clock port.</summary>
+        public static object CreateClock(long monotonicMilliseconds=0)=>new Clock{MonotonicMilliseconds=monotonicMilliseconds};
+        /// <summary>Produces only test data behind the real T public port; used by Content tests through reflection.</summary>
+        public static object CreateReviewPublicCatalog(string use="IsolatedReview")
+        {
+            var catalogUse=(CatalogUse)Enum.Parse(typeof(CatalogUse),use);var status=catalogUse==CatalogUse.IsolatedReview?CatalogApprovalStatus.Draft:catalogUse==CatalogUse.ContractTest?CatalogApprovalStatus.FixtureOnly:CatalogApprovalStatus.ProductApproved;var list=new List<PublicPuzzleInput>();for(int s=1;s<=5;s++)for(int r=1;r<=4;r++)for(int l=1;l<=12;l++){string id="S1-"+s.ToString("D2")+"-"+r.ToString("D2")+"-"+l.ToString("D2");string source="{\"puzzleId\":"+LocalSaveHash.Quote(id)+",\"rulesetVersion\":\"train-track-v1\",\"grid\":{\"width\":2,\"height\":2},\"endpoints\":{\"a\":{\"side\":\"W\",\"index\":0},\"b\":{\"side\":\"E\",\"index\":0}},\"rowCounts\":[2,0],\"columnCounts\":[1,1]}";var identity=new PublicPuzzleIdentity(id,"STP-PUZZLE-SEMANTIC-JCS-1",LocalSaveHash.Bytes(LocalSaveHash.Canonical(Json,source)));list.Add(new PublicPuzzleInput(identity,"train-track-v1",2,2,PublicPuzzleSide.W,0,PublicPuzzleSide.E,0,new[]{2,0},new[]{1,1}));}return new PublicCatalog(new CatalogIdentity(catalogUse==CatalogUse.IsolatedReview?"qa-public240-v1-test-public":"test-public",1,new string('a',64),catalogUse,status),list.ToArray());
+        }
+        internal static void SolveCurrent(PersistedPuzzleSession useCase,Clock clock)
+        {
+            var assembly=Assembly.Load("STP.Puzzle.Domain");var state=Get(useCase,"Session")!;var definition=Get(state,"Definition")!;var grid=Get(definition,"Grid")!;var coordinate=assembly.GetType("STP.Puzzle.Domain.CellCoordinate",true)!;var command=assembly.GetType("STP.Puzzle.Domain.ApplyCellContent",true)!;int i=0;long anchor=clock.MonotonicMilliseconds;
+            foreach(var cell in Goldens.Get("cases").Items[0].Get("bindings").Get("targetDocument").Get("document").Get("solution").Get("path").Items){state=Get(useCase,"Session")!;var c=coordinate.GetMethod("Create")!.Invoke(null,new[]{grid,(object)(int)cell.Get("x").Integer,(int)cell.Get("y").Integer})!;var cmd=Activator.CreateInstance(command,new Guid(++i,0,0,new byte[8]),(long)Get(state,"Revision")!,Get(c,"Value"),DomainEnum("CellContent",cell.Get("track").Text))!;clock.MonotonicMilliseconds=anchor+i*10;Call(useCase,"Handle",cmd,clock.MonotonicMilliseconds);}
+        }
+        internal static void Mark(PersistedPuzzleSession useCase,Clock clock,int id,string content,long time)
+        {
+            var state=Get(useCase,"Session")!;var definition=Get(state,"Definition")!;var assembly=Assembly.Load("STP.Puzzle.Domain");var coordinate=assembly.GetType("STP.Puzzle.Domain.CellCoordinate",true)!.GetMethod("Create")!.Invoke(null,new[]{Get(definition,"Grid"),(object)0,0})!;var command=Activator.CreateInstance(assembly.GetType("STP.Puzzle.Domain.ApplyCellContent",true)!,new Guid(id,1,0,new byte[8]),Get(state,"Revision"),Get(coordinate,"Value"),DomainEnum("CellContent",content))!;clock.MonotonicMilliseconds=time;var result=Call(useCase,"Handle",command,time)!;if(Get(result,"Error")!.ToString()!="NONE")throw new InvalidOperationException("Test command failed:"+Get(result,"Error"));
+        }
+        internal static void Lifecycle(PersistedPuzzleSession useCase,Clock clock,int id,bool pause,long time)
+        {
+            var state=Get(useCase,"Session")!;var command=Activator.CreateInstance(Assembly.Load("STP.Puzzle.Domain").GetType("STP.Puzzle.Domain."+(pause?"PauseForLifecycle":"ResumeFromLifecycle"),true)!,new Guid(id,1,0,new byte[8]),Get(state,"Revision"))!;clock.MonotonicMilliseconds=time;var result=Call(useCase,"Handle",command,time)!;if(Get(result,"Error")!.ToString()!="NONE")throw new InvalidOperationException("Test lifecycle command failed:"+Get(result,"Error"));
+        }
+        internal sealed class Clock : ILocalSessionClock {public long MonotonicMilliseconds{get;set;}public string UtcNow{get;set;}="2026-10-19T00:00:00Z";}
+        internal sealed class Dispatcher : ILocalSaveDispatcher {internal int Publications;public Task InvokeAsync(Action action){Publications++;action();return Task.CompletedTask;}}
+        internal sealed class Repository : ILocalProfileRepository
+        {
+            internal SaveLoadResult<LocalProfileState> Loaded=SaveLoadResult<LocalProfileState>.NeedsInitialization();internal Func<SaveSnapshot<LocalProfileState>,long,CancellationToken,Task<SaveCommitResult<LocalProfileState>>>? OnCommit;internal Func<CancellationToken,Task<SaveLoadResult<LocalProfileState>>>? OnLoad;internal int Loads;internal int Commits;internal int Recovers;internal SaveSnapshot<LocalProfileState>? LastOffered;
+            public Task<SaveLoadResult<LocalProfileState>> LoadAsync(CancellationToken ct){Loads++;return OnLoad?.Invoke(ct)??Task.FromResult(Loaded);}
+            public Task<SaveLoadResult<LocalProfileState>> RecoverAsync(SaveRecoveryRequest request,CancellationToken ct){Recovers++;return Task.FromResult(Loaded);}
+            public Task<SaveCommitResult<LocalProfileState>> CommitAsync(SaveSnapshot<LocalProfileState> s,long generation,CancellationToken ct){Commits++;LastOffered=s;return OnCommit?.Invoke(s,generation,ct)??Task.FromResult(SaveCommitResult<LocalProfileState>.Success(s));}
+            public Task<SaveCommitResult<LocalProfileState>> ConfirmedResetCorruptProfileAsync(SaveRepositoryObservation observation,LocalProfileState state,CancellationToken ct)=>CreateProfileAsync(state,ct);
+            public Task<SaveCommitResult<LocalProfileState>> CreateProfileAsync(LocalProfileState state,CancellationToken ct){var s=new SaveSnapshot<LocalProfileState>(state.Profile.Identity,state.Profile.CatalogSet.AggregateCatalog,1,state);return CommitAsync(s,0,ct);}
+        }
+    }
+}

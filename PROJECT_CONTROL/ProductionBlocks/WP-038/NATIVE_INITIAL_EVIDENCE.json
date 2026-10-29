@@ -1,0 +1,227 @@
+{
+  "type": "WP038_NATIVE_INITIAL_PARTIAL_REVIEW",
+  "reviewer": "/root/wp037_independent_qc",
+  "recordedUtc": "2026-10-18T22:13:02.215899+00:00",
+  "result": "FAIL_FIXED_GUID_CONTRACT",
+  "finding": "NATIVE-01",
+  "originalPackageSha256": "f624c5781ef6bb5d8af0ffd9b290d3c5b790c32eb1c3711cd02b73b9fb517c2c",
+  "xml": {
+    "rawBytes": 12871,
+    "sha256": "1f9ec453b5f6ff90bb8902c8b991b18c9f4abf039972f647a5890a47b57b14fc",
+    "summary": {
+      "id": "2",
+      "testcasecount": "8",
+      "result": "Passed",
+      "total": "8",
+      "passed": "8",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-18 22:06:16Z",
+      "end-time": "2026-10-18 22:06:23Z",
+      "duration": "6,8248068"
+    },
+    "cases": [
+      {
+        "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:16Z",
+        "end-time": "2026-10-18 22:06:18Z",
+        "duration": "2.009345"
+      },
+      {
+        "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:18Z",
+        "end-time": "2026-10-18 22:06:18Z",
+        "duration": "0.185270"
+      },
+      {
+        "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:18Z",
+        "end-time": "2026-10-18 22:06:21Z",
+        "duration": "3.175638"
+      },
+      {
+        "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:21Z",
+        "end-time": "2026-10-18 22:06:22Z",
+        "duration": "0.280819"
+      },
+      {
+        "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:22Z",
+        "end-time": "2026-10-18 22:06:22Z",
+        "duration": "0.212843"
+      },
+      {
+        "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:22Z",
+        "end-time": "2026-10-18 22:06:23Z",
+        "duration": "0.578126"
+      },
+      {
+        "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:23Z",
+        "end-time": "2026-10-18 22:06:23Z",
+        "duration": "0.194194"
+      },
+      {
+        "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:06:23Z",
+        "end-time": "2026-10-18 22:06:23Z",
+        "duration": "0.171814"
+      }
+    ]
+  },
+  "payloadIntegrity": "3/3 gzip/raw bytecounts and SHA256 verified against native originals and exact declared redacted profile",
+  "logs": [
+    {
+      "name": "generate.log",
+      "originalBytes": 921200,
+      "originalSha256": "4c746c72bd0ade01e36952e620905f193e1484e93a15bff6c5ac15b69b9bd515",
+      "profileSha256": "aa2bd1fe54a4c561d1827207d24f6bbb43cb5b7403375f5a0bb6c3e33b559fa0",
+      "redactedLinesVerified": 422,
+      "allOtherLinesByteEquivalentAfterDeclaredLfNormalization": true,
+      "safeRuntimeLines": [
+        "Built from '6000.3/staging' branch; Version is '6000.3.23f1 (09d2ecc7fb28) revision 643820'; Using compiler version '194234433'; Build Type 'Release'",
+        "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Unity.exe",
+        "-force-d3d11",
+        "  Version:                 1.18.3+d7ffd15",
+        "[Physics::Module] SDK Version: 4.1.2",
+        "[Physics::Module] Integration Version: 1.0.0",
+        "Initialize engine version: 6000.3.23f1 (09d2ecc7fb28)",
+        "[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/Resources/UnitySubsystems",
+        "Direct3D:",
+        "    Version:  Direct3D 11.0 [level 11.1]",
+        "    Renderer: AMD Radeon RX 9070 XT (ID=0x7550)",
+        "Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/Managed'",
+        "Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'",
+        "Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/etc'",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll",
+        "Starting: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Data\\Tools\\BuildPipeline\\bee_backend.exe --ipc --defer-dag-verification --dagfile=\"Library/Bee/1900b0aE.dag\" --continue-on-failure --profile=\"Library/Bee/backend1.traceevents\" ScriptAssemblies",
+        "Starting: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Data\\netcorerun\\netcorerun.exe \"C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Data\\Tools\\BuildPipeline\\ScriptCompilationBuildProgram.exe\" \"Library/Bee/1900b0aE.dag.json\" \"Library/Bee/1900b0aE-inputdata.json\" \"Library\\Bee\\buildprogram0.traceevents\"",
+        "Starting: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Data\\Tools\\BuildPipeline\\bee_backend.exe --ipc --defer-dag-verification --dagfile=\"Library/Bee/1900b0aE.dag\" --continue-on-failure --dagfilejson=\"Library\\Bee\\1900b0aE.dag.json\" --profile=\"Library/Bee/backend2.traceevents\" ScriptAssemblies",
+        "STP WP038 QA artifacts reproduced and verified.",
+        "Exiting batchmode successfully now!"
+      ]
+    },
+    {
+      "name": "graphics.log",
+      "originalBytes": 261403,
+      "originalSha256": "80aa1caeec21ad29fc66ae47cf6f58a2ac2481df0352a797dea25cf2588e4e48",
+      "profileSha256": "9f9df8f4603b174ab9a71784b26cf2bdab8c247382d82e66730a174f72738e91",
+      "redactedLinesVerified": 29,
+      "allOtherLinesByteEquivalentAfterDeclaredLfNormalization": true,
+      "safeRuntimeLines": [
+        "Built from '6000.3/staging' branch; Version is '6000.3.23f1 (09d2ecc7fb28) revision 643820'; Using compiler version '194234433'; Build Type 'Release'",
+        "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Unity.exe",
+        "-force-d3d11",
+        "  Version:                 1.18.3+d7ffd15",
+        "[Physics::Module] SDK Version: 4.1.2",
+        "[Physics::Module] Integration Version: 1.0.0",
+        "Initialize engine version: 6000.3.23f1 (09d2ecc7fb28)",
+        "[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/Resources/UnitySubsystems",
+        "Direct3D:",
+        "    Version:  Direct3D 11.0 [level 11.1]",
+        "    Renderer: AMD Radeon RX 9070 XT (ID=0x7550)",
+        "Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/Managed'",
+        "Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'",
+        "Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/etc'",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll",
+        "Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll",
+        "Starting: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.23f1\\Editor\\Data\\Tools\\BuildPipeline\\bee_backend.exe --ipc --defer-dag-verification --dagfile=\"Library/Bee/1900b0aE.dag\" --continue-on-failure --profile=\"Library/Bee/backend1.traceevents\" ScriptAssemblies",
+        "##utp:{\"type\":\"EditorInfo\",\"version\":2,\"phase\":\"Immediate\",\"time\":1792361170888,\"processId\":32412,\"editorVersion\":\"6000.3.23f1 (09d2ecc7fb28)\",\"branch\":\"6000.3/staging\",\"buildType\":\"Release\",\"platform\":\"Windows\"}",
+        "STP WP038 QA artifacts reproduced and verified.",
+        "STP WP038 QA artifacts reproduced and verified."
+      ]
+    }
+  ],
+  "images": [
+    {
+      "originalName": "wp038-4x4-editing.png",
+      "historicalPersistedName": "NATIVE_INITIAL_wp038-4x4-editing.png",
+      "bytes": 78574,
+      "sha256": "b73666e0c53a886d8faadd32b8015db6ae68444f69b39944d66e804cfaf139b3",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "independentlyViewedViaViewImage": true
+    },
+    {
+      "originalName": "wp038-10x10-editing.png",
+      "historicalPersistedName": "NATIVE_INITIAL_wp038-10x10-editing.png",
+      "bytes": 83416,
+      "sha256": "78ece007e81f0e3348eaa982ff06ae0a89abf828096cdf01ce2d5df5e6ae3eff",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "independentlyViewedViaViewImage": true
+    },
+    {
+      "originalName": "wp038-4x4-ride.png",
+      "historicalPersistedName": "NATIVE_INITIAL_wp038-4x4-ride.png",
+      "bytes": 75839,
+      "sha256": "6b31dd73a5a633fd4059e550870ea044d6336e22b7ba1a1a38eb123923fa40df",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "independentlyViewedViaViewImage": true
+    }
+  ],
+  "initialGuidMismatch": {
+    "DevelopmentPuzzlePanelSettings.asset": {
+      "expectedByOriginalBuilder": "b281a1bc613c4544b3dc4c9e6a038001",
+      "actualInitialUnityMeta": "1c770fd0a7c6816418bd086575289c19",
+      "metaSha256": "53b426b71a66f9c334ffc954a2d61d01f80e1ba4756648d19d03e8cc9ed7a66e",
+      "rawAssetSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300"
+    },
+    "DevelopmentTrain.mat": {
+      "expectedByOriginalBuilder": "b281a1bc613c4544b3dc4c9e6a038002",
+      "actualInitialUnityMeta": "efea9527556a4684dbdc75a90184d5bd",
+      "metaSha256": "b014b79bb5ced7b43453efd117146295b3574da3e18b91b7a920333b277969d0",
+      "rawAssetSha256": "cf6dfb00a05d6a96a8df4b57e0a438157489ca5650c29e2fd374e52d11987723"
+    }
+  },
+  "initialSettings": {
+    "capturedPatchSha256": "50d7a225750c620fc018a3d1337a0ec85a8377bddce788d6a50da11ca2a8fd67",
+    "contentDiffHeaders": [
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/ShaderGraphSettings.asset"
+    ],
+    "coordinatorRecordedPaths": [
+      "ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json",
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/ShaderGraphSettings.asset"
+    ],
+    "independentPostInitialRestoreGitDiffProjectSettings": "empty at inspection before correction run; no claim about temporary files during later editor runs"
+  },
+  "noEditorOrRerunByReviewer": true,
+  "notFinalAcceptance": true
+}

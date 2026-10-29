@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:45:34.693Z",
+  "role": "entry_audit independent full static early codec/ledger/migration/model/policy follow-up; owner runtime reproduction requested, implementation under construction",
+  "verdict": "FOUR_ADDITIONAL_CONCRETE_FINDINGS_REPORTED_NO_S_ACCEPTANCE",
+  "bindings": [
+    "S_EARLY_CODE_SOURCE_BINDING.json",
+    "S_INITIAL_CORRECTIONS_QC.json",
+    "S_CODEC_EARLY_REVIEW_SOURCE_BINDING.json"
+  ],
+  "reviewedFull": {
+    "codec": "3eaca54117e514610aaabf0bf06a35cff04219b1d3073b797e89cd6cf5441925",
+    "ledger": "27d6e5f8f9d42052153e326ceb3214536295a0628e75dd52df5aebe1cc5e1d9a",
+    "migration": "2560487e590a32fab31716e5e8895d1aa6065d2af41f524337c705992be54107",
+    "policy": "e21884d6f97425ef44b98e7e607cc9238c8789345ee6201aa9059a791b84eacb",
+    "model": "f6c023e741f856c28036e7107f7a2a20f02395f552ad38e6b37991880753aace"
+  },
+  "findings": [
+    {
+      "id": "S-POLICY-01",
+      "severity": "High",
+      "status": "REPORTED_RUNTIME_REPRO_REQUESTED",
+      "finding": "Complete adds new grants before compaction; constructing result enforces512Count, then ledger.Validate enforces256KiB, before Compact is reachable.",
+      "concreteCase": "Legal loaded fully terminal-backed511/512suffix -> genuine direct solve before autosave ->1–3new firstclear/route/section entries crosses hardlimit and fails although oldsuffix can safelycompact. Same at byteboundary above soft192KiB.",
+      "request": "Actual boundary completion tests, compact existing valid terminal suffix before grant while retaining correct generation/dedup provenance."
+    },
+    {
+      "id": "S-MODEL-02",
+      "severity": "High",
+      "status": "REPORTED_RUNTIME_REPRO_REQUESTED",
+      "finding": "No uniquePostClearClaimId validation in complete model. Noncommitted duplicate same-puzzle claimID with differentlocalOperationIDs and matchingpendingrecords bypasses peroperation Single and terminal-onlyledger checks; closed-noreward duplicate with no pending also passes.",
+      "request": "Complete closed envelope mutation with valid policy+recomputed hash; unique reward claim key and orphanedcampaign Kind/Subject checks."
+    },
+    {
+      "id": "S-POLICY-02",
+      "severity": "High",
+      "status": "REPORTED_RUNTIME_REPRO_REQUESTED",
+      "finding": "Level/star/campaign terminal validation skips actual amount/provenance if its Catalog differs from currentcompletion.Identity. Passive retainedbindings only cover PostClear rewards, no known historical base-completion descriptor.",
+      "concreteCase": "Full valid firstclear envelope -> unknown but well-formedsameUse terminalCatalog and amount999 -> matchingjournal fields/chain/payload hash recomputed. No known historicalcompletionbinding exists, but currentPolicy skips amount and ledger sees internalconsistency.",
+      "basis": "Accepted S plan EconomyTerminal historical amount contract and §273 missing historical catalog/claimsemantics must stop.",
+      "request": "Actual full unknown historicalcatalog test; require exact supported historical contract binding or Unsupported, never invent default."
+    },
+    {
+      "id": "S-CODEC-01",
+      "severity": "High",
+      "status": "REPORTED_RUNTIME_REPRO_REQUESTED",
+      "finding": "Milestoneownership/reservation eligibilityContractVersion and legacyownership sourceSaveSchemaVersion use RequireInteger1; unknown greater version yields Corrupt SAVE_VALUE_INVALID rather than Unsupported.",
+      "risk": "Repository confirmedCorruptReset can allow explicit overwrite of a source whose newer contract is unsupported; existing record/endless Version guards correctly use Unsupported.",
+      "request": "Full envelope unknown sub-contract version2 and missingversion tests with otherwise complete bindings; named Unsupported stop without modifying original fixedgoldens silently."
+    }
+  ],
+  "limits": "Static source findings, no claim of reviewer runtime executions. Owner requested additive before-fix source/actual red XML and narrow fixes. Existing accepted pre-codeV7 fixedbytes remain immutable. Original codec/ledger/migration snapshots preserve moving-source distinction."
+}

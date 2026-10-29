@@ -1,0 +1,732 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T16:40:43.192Z",
+  "reviewer": "entry_audit — implementation-free independent review",
+  "verdict": "PASS_EXACT_LOCAL_UNDERMERGE_MI_SOURCE_TREE_AUTHORITY_PREPUSH_INTEGRATED_CI_OPEN",
+  "scope": "Only actual local non-main merge; no repeat A/S/solver/text/source production review; no publication or integrated CI judgement.",
+  "merge": {
+    "sha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "parents": [
+      "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "242712d1b99202fd18273dc28ef2fd12aff71cab"
+    ],
+    "rawCommitRehashed": true,
+    "rawCommitBytes": 352,
+    "rawCommitSha256": "f9513a4fa5d97dea77d614d2855c22f95522ff86f5f115ff4c6aadcbc227afff",
+    "rawTreeBytes": 629,
+    "rawTreeSha256": "874fa03dd832376ba477caa54bffd73964782e1eb36559cbf1bad22d2971ddc0",
+    "acceptedSource": {
+      "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+      "parent": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+      "branch": "codex/wp-043-public240-gespeicherte-integration"
+    },
+    "recursiveModeBlobInventoryEqual": true,
+    "fileEntries": 1368,
+    "recursiveInventorySha256": "ad755d9153b9b288050248ad3acd26174bccd6223bdcb8f810b10627ebd59c37",
+    "rawSourceDiff": "EMPTY",
+    "nameStatusSourceDiff": "",
+    "targetDeltaPaths": 676
+  },
+  "authority": {
+    "mandatePath": "PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md",
+    "mandateSha256": "a63f648914f305a8204dc13e2377dbe928b09480ff9617cfcc0156bd9a0b533e",
+    "sections": [
+      5,
+      6,
+      7
+    ],
+    "finding": "Mandate explicitly delegates distinct technical R non-main decision after independent exact-source PASS and regular CI. Separate R decision is within that scope; this reviewer does not decide integration.",
+    "decisionFile": "I_R_SUBINTEGRATION_DECISION.json",
+    "decisionBytes": 3763,
+    "decisionSha256": "c4ff7f76a4460a4a9553c638345f116aad46fcb355847a86abba8ad3cd4de719",
+    "decisionId": "WP043-SUBINTEGRATION-01",
+    "basisChecks": [
+      {
+        "file": "I_F2_CI_EVIDENCE.json",
+        "bytes": 128211,
+        "sha256": "7978316cf5e877fa6b0e4745a121f018eb952a114f6a5e8cb8a26c651a236f5a",
+        "matches": true
+      },
+      {
+        "file": "I_F2_FINAL_INDEPENDENT_QC.json",
+        "bytes": 111751,
+        "sha256": "e71e7c636605836140c3e114e80a8f2466b12adf58067efc1d3daf36347e7567",
+        "matches": true
+      },
+      {
+        "file": "I_F2_CLEAN_CANONICAL.json",
+        "bytes": 6524,
+        "sha256": "b4628d52e481b7edeb7e6420a0b1ae80898c03bc7e5c7a9ba49309fc46182bf7",
+        "matches": true
+      },
+      {
+        "file": "I_F2_RAW_GIT_FREEZE_INDEPENDENT_QC.json",
+        "bytes": 196100,
+        "sha256": "9870f4ec4f7c0f3932d5b22864dfec2f725e0ee0fa06ba373638e108b9a387a2",
+        "matches": true
+      }
+    ],
+    "prPersistence": {
+      "file": "I_R_SUBINTEGRATION_PR_PERSISTENCE_RECEIPT.json",
+      "bytes": 13792,
+      "sha256": "7f2c6772876fcdf6b3f1cf46bc7f54e9711d44b77e5f6d69afa164c5200f7e10",
+      "number": 37,
+      "base": "codex/wp-036-vollstaendige-textbibliothek",
+      "baseSha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "merged": false,
+      "storedBodyEmbeddedDecisionEqual": true,
+      "freshReadEmbeddedDecisionEqual": true,
+      "freshReadBodySha256": "d0ad9f6c65a78ffd3c6111b204a85082bce85a861767d345ba3771028a83d4e7",
+      "decisionHashPresent": true,
+      "bodyOriginal": {
+        "name": "PR37 exact persisted body read independently after local merge",
+        "bytes": 12042,
+        "sha256": "d0ad9f6c65a78ffd3c6111b204a85082bce85a861767d345ba3771028a83d4e7",
+        "encoding": "gzip-base64 original bytes",
+        "gzipBase64": "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"
+      }
+    },
+    "sequence": {
+      "decisionAt": "2026-10-19T16:37:46.407Z",
+      "persistedPRUpdatedAt": "2026-10-19T16:38:16Z",
+      "actualPreMutationRemoteAuditAt": "2026-10-19T16:38:20.600Z",
+      "commitTimeUtc": "2026-10-19T16:38:20.000Z",
+      "mergeReceiptAt": "2026-10-19T16:38:24.396Z",
+      "ordered": true,
+      "preAuditToReceiptSeconds": 3.796,
+      "note": "Git committer timestamp has one-second resolution (same16:38:20 second as pre-audit), so it is not subsecond operation ordering proof. Actual receipt before/after observations bind pre-audit16:38:20.600 to completed mutation16:38:24.396, with persisted PR response updated16:38:16 preceding both."
+    }
+  },
+  "receipt": {
+    "file": "I_ACTUAL_LOCAL_UNDERMERGE_RECEIPT.json",
+    "bytes": 113207,
+    "sha256": "7ca7c6342f9113a3245cec1d3020dfde43cbb85f2a768e13ba13f50120acc4c5",
+    "at": "2026-10-19T16:38:24.396Z",
+    "actualExit": 0,
+    "stderr": "",
+    "before": {
+      "at": "2026-10-19T16:38:20.600Z",
+      "raw": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3\trefs/heads/codex/wp-036-vollstaendige-textbibliothek\n242712d1b99202fd18273dc28ef2fd12aff71cab\trefs/heads/codex/wp-043-public240-gespeicherte-integration\nd90e798dd9b26d3f152f3b0c2d1d52cae641eb16\trefs/heads/main",
+      "map": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    },
+    "after": {
+      "at": "2026-10-19T16:38:24.396Z",
+      "raw": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3\trefs/heads/codex/wp-036-vollstaendige-textbibliothek\n242712d1b99202fd18273dc28ef2fd12aff71cab\trefs/heads/codex/wp-043-public240-gespeicherte-integration\nd90e798dd9b26d3f152f3b0c2d1d52cae641eb16\trefs/heads/main",
+      "map": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    },
+    "status": "ACTUAL_LOCAL_NON_MAIN_MERGE_CREATED_NOT_YET_PUSHED"
+  },
+  "freshRemoteRefs": [
+    {
+      "at": "2026-10-19T16:39:11.998Z",
+      "ref": "codex/wp-036-vollstaendige-textbibliothek",
+      "raw": "{\"ref\":\"refs/heads/codex/wp-036-vollstaendige-textbibliothek\",\"node_id\":\"REF_kwDOURiA7toANHJlZnMvaGVhZHMvY29kZXgvd3AtMDM2LXZvbGxzdGFlbmRpZ2UtdGV4dGJpYmxpb3RoZWs\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/codex/wp-036-vollstaendige-textbibliothek\",\"object\":{\"sha\":\"3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3\"}}",
+      "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "rawSha256": "20ad9425be9b209000778f6480d881e8a22897c903b58fed33aec6e5a93d6cd4"
+    },
+    {
+      "at": "2026-10-19T16:39:11.999Z",
+      "ref": "codex/wp-040-public240-save-technikbasis",
+      "raw": "{\"ref\":\"refs/heads/codex/wp-040-public240-save-technikbasis\",\"node_id\":\"REF_kwDOURiA7toAM3JlZnMvaGVhZHMvY29kZXgvd3AtMDQwLXB1YmxpYzI0MC1zYXZlLXRlY2huaWtiYXNpcw\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/codex/wp-040-public240-save-technikbasis\",\"object\":{\"sha\":\"925ca608a961ac26c84385c8da3b949f609df883\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/925ca608a961ac26c84385c8da3b949f609df883\"}}",
+      "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "rawSha256": "01741c007c53927d0485f7be08beecd34a64632e523a74dac6ba9d9b6f978ddf"
+    },
+    {
+      "at": "2026-10-19T16:39:11.999Z",
+      "ref": "codex/wp-041-public240-interne-prueffassung",
+      "raw": "{\"ref\":\"refs/heads/codex/wp-041-public240-interne-prueffassung\",\"node_id\":\"REF_kwDOURiA7toANnJlZnMvaGVhZHMvY29kZXgvd3AtMDQxLXB1YmxpYzI0MC1pbnRlcm5lLXBydWVmZmFzc3VuZw\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/codex/wp-041-public240-interne-prueffassung\",\"object\":{\"sha\":\"7d2e99837cd3910d11ed5f01ea67e8d06acba2c4\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/7d2e99837cd3910d11ed5f01ea67e8d06acba2c4\"}}",
+      "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "rawSha256": "28107be7749c099d4907a5a8085488ad9805db953774055cf73bbee19cd4689a"
+    },
+    {
+      "at": "2026-10-19T16:39:11.999Z",
+      "ref": "codex/wp-042-lokaler-save-restore-grundfortschritt",
+      "raw": "{\"ref\":\"refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt\",\"node_id\":\"REF_kwDOURiA7toAPXJlZnMvaGVhZHMvY29kZXgvd3AtMDQyLWxva2FsZXItc2F2ZS1yZXN0b3JlLWdydW5kZm9ydHNjaHJpdHQ\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt\",\"object\":{\"sha\":\"3746184ca75eb439de918896e9b88aa238cff893\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/3746184ca75eb439de918896e9b88aa238cff893\"}}",
+      "sha": "3746184ca75eb439de918896e9b88aa238cff893",
+      "rawSha256": "0d67ec8bd19df6fc9e63af4574d60cb8b360bdc8f1000672f4dc763a8e7df575"
+    },
+    {
+      "at": "2026-10-19T16:39:11.999Z",
+      "ref": "codex/wp-043-public240-gespeicherte-integration",
+      "raw": "{\"ref\":\"refs/heads/codex/wp-043-public240-gespeicherte-integration\",\"node_id\":\"REF_kwDOURiA7toAOnJlZnMvaGVhZHMvY29kZXgvd3AtMDQzLXB1YmxpYzI0MC1nZXNwZWljaGVydGUtaW50ZWdyYXRpb24\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/codex/wp-043-public240-gespeicherte-integration\",\"object\":{\"sha\":\"242712d1b99202fd18273dc28ef2fd12aff71cab\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/242712d1b99202fd18273dc28ef2fd12aff71cab\"}}",
+      "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "rawSha256": "78a02c189767c0c65cd4d96ec5556a8cf4eb647dd75064794206672d93e13d81"
+    },
+    {
+      "at": "2026-10-19T16:39:11.999Z",
+      "ref": "main",
+      "raw": "{\"ref\":\"refs/heads/main\",\"node_id\":\"REF_kwDOURiA7q9yZWZzL2hlYWRzL21haW4\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs/heads/main\",\"object\":{\"sha\":\"d90e798dd9b26d3f152f3b0c2d1d52cae641eb16\",\"type\":\"commit\",\"url\":\"https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/d90e798dd9b26d3f152f3b0c2d1d52cae641eb16\"}}",
+      "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "rawSha256": "266604f5bde91f2a32452ff00d0a88cea1e219049c832fedc7fd9ce3c180f736"
+    }
+  ],
+  "readOnlyNetworkFailure": {
+    "operation": "git ls-remote --heads origin exact six refs",
+    "message": "fatal: unable to access repository URL: getaddrinfo() thread failed to start",
+    "interpretation": "No remote-state claim from failed local transport. Replaced with successful independent GitHub GET reference observations."
+  },
+  "cleanRoots": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "expected": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "actual": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "expected": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "actual": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "expected": "3746184ca75eb439de918896e9b88aa238cff893",
+      "actual": "3746184ca75eb439de918896e9b88aa238cff893",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i",
+      "expected": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "actual": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "status": ""
+    }
+  ],
+  "historicalScopeChain": [
+    {
+      "wp": "040",
+      "path": "tools/architecture-validation/scopes/WP-040.production.scope.json",
+      "bytes": 1573,
+      "sha256": "cbf761b5edbd2d80b76bb37855b51da44d110201a609da692b19a0a6ec9591dc",
+      "manifest": {
+        "manifestVersion": 1,
+        "workPackageId": "WP-040",
+        "baseCommit": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "scope": "production",
+        "allowedPathPatterns": [
+          "WORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+          "tools/architecture-validation/scopes/WP-040.production.scope.json",
+          "DECISIONS/ADR-033-interne-transiente-spielschleife.md",
+          "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+          "DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md",
+          "DECISIONS/README.md",
+          "tools/architecture-validation/validate.py",
+          ".github/workflows/validate.yml",
+          "ARCHITECTURE/CONTENT_PIPELINE.md",
+          "ARCHITECTURE/CONTENT_CATALOGS.md",
+          "ARCHITECTURE/PERSISTENCE.md",
+          "ARCHITECTURE/GAME_STATE_MODEL.md",
+          "ARCHITECTURE/MODULE_BOUNDARIES.md",
+          "PROJECT_CONTROL/CURRENT_STATE.md",
+          "PROJECT_CONTROL/WORK_QUEUE.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.json",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.txt",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta"
+        ]
+      },
+      "firstAdds": [
+        "0da2b684a079c0caf9306dc21a67e2dc20e8489a"
+      ],
+      "anchor": {
+        "sha": "0da2b684a079c0caf9306dc21a67e2dc20e8489a",
+        "parents": [
+          "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3"
+        ],
+        "tree": "3dfa2f4a5d6d476bb0bc177f7281022f0e3475f8"
+      },
+      "anchorBlobEqual": true,
+      "firstAddPaths": [
+        "A\tWORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+        "A\ttools/architecture-validation/scopes/WP-040.production.scope.json"
+      ],
+      "soleParentIsBase": true,
+      "exactTwoFirstAdds": true
+    },
+    {
+      "wp": "041",
+      "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+      "bytes": 3241,
+      "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+      "manifest": {
+        "manifestVersion": 1,
+        "workPackageId": "WP-041",
+        "baseCommit": "925ca608a961ac26c84385c8da3b949f609df883",
+        "scope": "production",
+        "allowedPathPatterns": [
+          "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+          "tools/architecture-validation/scopes/WP-041.production.scope.json",
+          ".github/workflows/validate.yml",
+          "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+          "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+          "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+          "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+          "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+          "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+          "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+          "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+          "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+          "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+          "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+          "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+          "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+          "tools/public240/project.cjs",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.json",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.txt",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.png"
+        ]
+      },
+      "firstAdds": [
+        "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+      ],
+      "anchor": {
+        "sha": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+        "parents": [
+          "925ca608a961ac26c84385c8da3b949f609df883"
+        ],
+        "tree": "1a3f1fc04af92a201b2972eca0a355be76935eae"
+      },
+      "anchorBlobEqual": true,
+      "firstAddPaths": [
+        "A\tWORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+        "A\ttools/architecture-validation/scopes/WP-041.production.scope.json"
+      ],
+      "soleParentIsBase": true,
+      "exactTwoFirstAdds": true
+    },
+    {
+      "wp": "042",
+      "path": "tools/architecture-validation/scopes/WP-042.production.scope.json",
+      "bytes": 4943,
+      "sha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+      "manifest": {
+        "manifestVersion": 1,
+        "workPackageId": "WP-042",
+        "baseCommit": "925ca608a961ac26c84385c8da3b949f609df883",
+        "scope": "production",
+        "allowedPathPatterns": [
+          "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+          "tools/architecture-validation/scopes/WP-042.production.scope.json",
+          ".github/workflows/validate.yml",
+          "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+          "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+          "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+          "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+          "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.json",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.txt",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.png"
+        ]
+      },
+      "firstAdds": [
+        "8c3481b3602567406ab4ef6f9365249ccb5d3afc"
+      ],
+      "anchor": {
+        "sha": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+        "parents": [
+          "925ca608a961ac26c84385c8da3b949f609df883"
+        ],
+        "tree": "e2977b0fcd9f225fc626aa739127471a081683e0"
+      },
+      "anchorBlobEqual": true,
+      "firstAddPaths": [
+        "A\tWORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+        "A\ttools/architecture-validation/scopes/WP-042.production.scope.json"
+      ],
+      "soleParentIsBase": true,
+      "exactTwoFirstAdds": true
+    },
+    {
+      "wp": "043",
+      "path": "tools/architecture-validation/scopes/WP-043.production.scope.json",
+      "bytes": 3775,
+      "sha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+      "manifest": {
+        "manifestVersion": 1,
+        "workPackageId": "WP-043",
+        "baseCommit": "95508482696cc1cc4e355021ce47d64863d9651a",
+        "scope": "production",
+        "allowedPathPatterns": [
+          "WORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md",
+          "tools/architecture-validation/scopes/WP-043.production.scope.json",
+          "DECISIONS/ADR-036-gespeicherter-public240-qa-entry.md",
+          "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs.meta",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs.meta",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml.meta",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss.meta",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+          "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json.meta",
+          "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+          "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity.meta",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs.meta",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+          "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs.meta",
+          ".github/workflows/validate.yml",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+          "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+          "ProjectSettings/EditorBuildSettings.asset",
+          "DECISIONS/README.md",
+          "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+          "tools/architecture-validation/validate.py",
+          "ARCHITECTURE/MODULE_BOUNDARIES.md",
+          "ARCHITECTURE/BUILD_AND_RELEASE.md",
+          "PROJECT_CONTROL/CURRENT_STATE.md",
+          "PROJECT_CONTROL/WORK_QUEUE.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md",
+          "WORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+          "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+          "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.md",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.json",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.txt",
+          "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.png"
+        ]
+      },
+      "firstAdds": [
+        "1c002e14e07a7cf48366e786f2ec598234f9d314"
+      ],
+      "anchor": {
+        "sha": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+        "parents": [
+          "95508482696cc1cc4e355021ce47d64863d9651a"
+        ],
+        "tree": "76069b81b2a95511d3e5356f00a0859c360fb749"
+      },
+      "anchorBlobEqual": true,
+      "firstAddPaths": [
+        "A\tWORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md",
+        "A\ttools/architecture-validation/scopes/WP-043.production.scope.json"
+      ],
+      "soleParentIsBase": true,
+      "exactTwoFirstAdds": true
+    }
+  ],
+  "allScopeManifestBindings": [
+    {
+      "path": "tools/architecture-validation/scopes/WP-003.documentation.scope.json",
+      "blob": "d3eeddfa76cce9dd2343fad8cc069190eb58bbd1",
+      "sha256": "40a3782cab82c4fa1f8267170b7a944eb3e6ebd2df063042a6ed5681f6d05c40",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-004.documentation.scope.json",
+      "blob": "ac7fe783569b981b2e4c3037d16780c01470f89d",
+      "sha256": "7e3376ef28be2bf710fb82dc1f2cccd9a1eda404133cd65ac18f5a0ccebb2ba8",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-005.documentation.scope.json",
+      "blob": "518e59645c24e75af597d722d7a18afca510e600",
+      "sha256": "4e256258ee4681fb0a4660bf5e6a52addf521df9575103fe1afbb65872e13ecc",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-006.documentation.scope.json",
+      "blob": "d5f6c1006541682ad53ae40b79030d92c5c68a3b",
+      "sha256": "a5fde22e0adee91b94ef45de1cfd584fe2bbca5d011b43652441a5ec7b25fc6d",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-007.documentation.scope.json",
+      "blob": "caac3f246901a2cda08b05d308a272f0096bf175",
+      "sha256": "7825ac2b65e274a2f2cf8cc0893fe8ceaba0a305fb6cd58b579dc3509aadcf7c",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-010.documentation.scope.json",
+      "blob": "7626058823b249fdf658e64b034daa64a1f5e8ba",
+      "sha256": "9d2624a79be7e408ff39f76838377612a74cc5d558cba2cbaa09ec24c6addc19",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-011.documentation.scope.json",
+      "blob": "c10c240129b860b229b536af35e40a1db2f8f18a",
+      "sha256": "db17088e0ccdbb2cfc5022a8f941a4cbe7d5d0ad06b49abb3b4e3b2fee92a432",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-014.documentation.scope.json",
+      "blob": "b6fb9041279873b643b509de616650300d745f86",
+      "sha256": "7c4afa6233192e0a239ff0426d9199a5555a5ccd9686ece4be22021edca537c4",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-018.documentation.scope.json",
+      "blob": "13f9baaaf3324d28cec3efc28a68dc9d8e68423b",
+      "sha256": "4cb0728c7a92a8cc170247cf6c2400904e3a297939b4b19a61e4cc5538cecad9",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-021.production.scope.json",
+      "blob": "734e7f676a7c80f49e2524a565055a96ab5ff33f",
+      "sha256": "a0166dde558cba692c34a4f19a2e20f614f1b02de548559a9977b02661e9be61",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-022.production.scope.json",
+      "blob": "1cd2def6f6f79da01e1e93173832df380e4d9ac1",
+      "sha256": "003f5d47d1177d70fa49359200127a243ca4265f2124a1dc2401ac36ea2988e6",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-023.production.scope.json",
+      "blob": "1632c4b9ebc49590777bead4757124263340a823",
+      "sha256": "a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-024.production.scope.json",
+      "blob": "6f80de1cec57c781757b3e6fe717a8fe17ed2496",
+      "sha256": "2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-025.production.scope.json",
+      "blob": "30fc54f3fb55c136c05d5434a5c1aa3de2c4006c",
+      "sha256": "1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-027.governance.scope.json",
+      "blob": "ec0f74a2912f8054b2bae344c8bfcdaf4d3c275b",
+      "sha256": "af42b035ba821c870cb8e5b21612644a707474fc20b07258abf55047796457b1",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-036.production.scope.json",
+      "blob": "905a2f6a33a88d6706d4d4b3883f8f06b2534345",
+      "sha256": "f04c0ca2b57319aacb2ea40632b862853fce5284b795114612a85dc181a1ce2e",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-037.production.scope.json",
+      "blob": "60f3835b17b4005b7dfbfde40e900a8870716df3",
+      "sha256": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-038.production.scope.json",
+      "blob": "c295dda1fc0aa4f187ab01313013d7722667baf2",
+      "sha256": "cf9087d50941eb64dea3dc1ea894dd29a3a5a2a7d611668e3228cc6b875b979a",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-040.production.scope.json",
+      "blob": "7ddee650954c557c0c71ccbc8ba253b7b3f4f498",
+      "sha256": "cbf761b5edbd2d80b76bb37855b51da44d110201a609da692b19a0a6ec9591dc",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+      "blob": "5da5ccec42d9480bec7101fecbce33d34468307f",
+      "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-042.production.scope.json",
+      "blob": "ac937054867e9ca18a02009ee595833c103cbfad",
+      "sha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+      "sameAsAcceptedSource": true
+    },
+    {
+      "path": "tools/architecture-validation/scopes/WP-043.production.scope.json",
+      "blob": "0a12f6e222aee256a8f8a8ce5e75282ac6caec8f",
+      "sha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+      "sameAsAcceptedSource": true
+    }
+  ],
+  "rawGraph": [
+    {
+      "sha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "rawRehash": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+      "parents": [
+        "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "242712d1b99202fd18273dc28ef2fd12aff71cab"
+      ]
+    },
+    {
+      "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "rawRehash": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+      "parents": [
+        "89ee035ca0fa205ca1c0e845ad315047eae94fd8"
+      ]
+    },
+    {
+      "sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+      "rawRehash": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+      "tree": "c7243bfc259949635e713b0b3d7efee4a74ceb43",
+      "parents": [
+        "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e"
+      ]
+    },
+    {
+      "sha": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+      "rawRehash": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+      "tree": "b076a72d594f7a5af4e609fa5e9dbb492b9f3936",
+      "parents": [
+        "f16f99cc269f0b9ece4530d41d1ed948b193ddf4"
+      ]
+    },
+    {
+      "sha": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+      "rawRehash": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+      "tree": "1731fbe88002a29c0d1638d50dfdbaa2be804efa",
+      "parents": [
+        "1c002e14e07a7cf48366e786f2ec598234f9d314"
+      ]
+    },
+    {
+      "sha": "95508482696cc1cc4e355021ce47d64863d9651a",
+      "rawRehash": "95508482696cc1cc4e355021ce47d64863d9651a",
+      "tree": "f0d7306e8b907dfa60661bb8703ce970b3049200",
+      "parents": [
+        "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "3746184ca75eb439de918896e9b88aa238cff893"
+      ]
+    },
+    {
+      "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "rawRehash": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+      "parents": [
+        "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+      ]
+    },
+    {
+      "sha": "3746184ca75eb439de918896e9b88aa238cff893",
+      "rawRehash": "3746184ca75eb439de918896e9b88aa238cff893",
+      "tree": "ca88b989c03e7daf10bc05eeb9bb845348717bc9",
+      "parents": [
+        "ba4abccebeb0e073986f37b92b7479f61dabc063"
+      ]
+    },
+    {
+      "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "rawRehash": "925ca608a961ac26c84385c8da3b949f609df883",
+      "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+      "parents": [
+        "54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+      ]
+    }
+  ],
+  "reusedExactSourceAcceptance": {
+    "file": "I_F2_FINAL_INDEPENDENT_QC.json",
+    "sha256": "e71e7c636605836140c3e114e80a8f2466b12adf58067efc1d3daf36347e7567",
+    "verdict": "PASS_EXACT_I_F2_SOURCE_FREEZE_CI_AK_I01_I15_I16_OPEN",
+    "reason": "Merge tree and every recursive entry/mode/blob equal the independently accepted source. Existing Native12/13,497 input,Runtime,A/S,GUID,protected source,codec and CI evidence are reused only as exact-source evidence; they are not relabelled integrated CI."
+  },
+  "findings": [],
+  "open": [
+    "Actual normal expected-HEAD-bound Development publication",
+    "Actual integrated regular CI for published MI including push and PR31, with own checkout/tree, required jobs and real seat releases",
+    "Independent integrated acceptance and I16 completion",
+    "Separate documentation-only follow-up and its own actual CI"
+  ],
+  "excluded": "Main integration, public game distribution/release, product/WP026/WP035/final art/480 assets, changed star thresholds/prices, excluded providers, human tests/calibration, physical-device/store/signing acceptance",
+  "reviewerActions": "Read-only Git/API/filesystem checks; only this ignored report pair written. No source/Git mutation, merge/push/dispatch/retry/cancel/compiler/Unity/seat action.",
+  "assertions": {
+    "count": 14,
+    "allPass": true
+  }
+}

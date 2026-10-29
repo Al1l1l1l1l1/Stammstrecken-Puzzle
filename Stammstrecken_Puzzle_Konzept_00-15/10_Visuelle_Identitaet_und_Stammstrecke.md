@@ -1,5 +1,21 @@
 # Stammstrecken-Puzzle – Visuelle Identität und Stammstrecke
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Produktmaßstab:** keine Status-/Generations-/QAformulare im Produktionsstart. Eine installierte gute Cartoonfassung mit Symboltools, ruhigem Raster und echter Zugfahrt wird schon an M1 gezeigt. Akzeptierte Referenzen allein erfüllen weder F1/F2 noch Runtimeannahme.
+
+## Maßgeblicher Gestaltungs- und Produktionsnachtrag vom 20.10.2026
+
+**MANUS-2026-10-20-01:** Die konkrete korrigierte Asset-Bible WP-035 ist kreativ angenommen mit den dort präzise entschiedenen minimalen Korrekturen. Die spätere direkte Ownerfestlegung präzisiert ältere Miniatur-/Materialbeschreibungen verbindlich als **Cartoon-/Comic-Spielgrafik, plump-staubig-behördenhaft, mit glasklarer deutscher Bahn-Alltagssatire** – kein Foto-/Pseudo-/PBR-Look. Dienstliche ruhige UI, eigener unterbrochener Gleisknoten, IBM-Plex-Sans/Condensed-System, zehn exakte Farbtoken, sechs braune Gleisformen, getrennte X/Grau/Gelb-Semantik, eigene rote Nahverkehrsfront und fünf bestehende Welt-/20 Routenkontexte sind gemäß der neuen Entscheidung konkretisiert. Keine offizielle Kennzeichnung oder Herkunftstäuschung; Recht-/Runtimeannahme wird nicht aus kreativer Annahme abgeleitet.
+
+Der Public240-/Save-Block ist bereits technisch abgeschlossen. **Jetzt beauftragt** ist der zusammenhängende Gestaltungsschluss und reale Asset-/Content-/Kampagnenanschluss einschließlich der 480 bestehenden Karten-/Zugreferenzziele, mit Ziel einer lokal spielbaren gestalteten internen Season-1-Integration. Menschliche Spieltests parallel; technische WP-035-Abnahme, konkrete Folgeproduktion und spätere Produkt-/Human-/Rechts-/Main-/Releasegates sind getrennt und nicht als erledigt behauptet.
+
+[Eine maßgebliche Gestaltungsentscheidung und vollständiges Ausführungsmandat](../PROJECT_CONTROL/ProductionBlocks/AssetCampaign/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-20.md). Die nachstehenden bisherigen Konzeptabschnitte bleiben erhalten; alte offene Produktions-/Nächster-Schritt-Angaben gelten nur zusammen mit diesem neueren Nachtrag und dem aktuellen CURRENT_STATE. Es werden keine Puzzle-, Preis-, Sternezeit- oder Monetarisierungsregeln verändert.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung nach dem Bahn-Alltags-Pivot  
 **Einordnung:** Konzeptbaustein 10  
 **Zweck:** Dieses Dokument definiert die visuelle Kernidentität des Spiels. Es verbindet die Premium-Miniaturbahnwelt mit einer sofort erkennbaren deutschen Bahn-Alltags-Satire.

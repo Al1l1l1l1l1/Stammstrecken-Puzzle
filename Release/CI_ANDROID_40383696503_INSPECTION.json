@@ -1,0 +1,127 @@
+{
+  "evidenceKind": "INDEPENDENT_ACCEPTED_CI_ANDROID_QA_AND_UNSIGNED_IOS_NATIVE_MILESTONE",
+  "runId": 40383696503,
+  "runUrl": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40383696503",
+  "headSha": "a66e3ac7a66584410319904469207e9b28aadb94",
+  "productSourceCommit": "1df755e25385be4eb041df0d8366c75dc5d34533",
+  "actualCheckout": "1a6f26ee50a1b9d5cb78b64b57c6d9f430962999",
+  "actualWholeRootTree": "60f2df875ae704df7f9b6fa87adbd7d7a30aeed0",
+  "independentReviewDate": "2026-10-27",
+  "findings": [],
+  "android": {
+    "status": "PASS_STATIC_CI_QA_DEBUG_ARTIFACT",
+    "jobId": 121800477773,
+    "artifactId": 12682795017,
+    "artifactZip": {
+      "sha256": "6eb53e37131d35fc63451c9664c1d1c3f400bb63a420be26faa3d3718aad4fe5",
+      "sizeBytes": 266118593
+    },
+    "apk": {
+      "sha256": "7255842e3421a1c46e1ff0061e70f60c21fa57b3cf16c7e53af0a408291b389b",
+      "sizeBytes": 58645133,
+      "applicationId": "com.STP.StammstreckenPuzzle.qa",
+      "debuggable": true,
+      "minSdk": 26,
+      "targetSdk": 36,
+      "abi": "arm64-v8a"
+    },
+    "signerCertificateSha256": "88fe74c85c3cd1c18380da88a1a33804f252d2f68c2a8a75d2347847725af114",
+    "localMain19SignerCertificateSha256": "2fc6af1b7aa6d58ac223dc388575847b98f4a65e93a7a41cbb9031563eca9bfd",
+    "sameSignerAsLocalMain19": false,
+    "independentlyRehashed": {
+      "originalMembers": 237,
+      "auditMembers": 233,
+      "compilerMembers": 621,
+      "productCsGitBlobReferences": 205,
+      "managedStrippedAssemblies": 104
+    },
+    "currentCompilerEvidence": {
+      "canonicalMemoFiveLimitsFullPrivateBytesAndClones": true,
+      "runtimeCompletionReadonlyIndexAndOriginalIdentityPredicate": true,
+      "retainedLedgerBodiesExactlyEqualMain19": 6,
+      "registeredCurrentMethods": 12
+    },
+    "actualPrivacyMergeGates": "AD_ID_ABSENT_MEASUREMENT_DELAY_TRUE_FIREBASE_INIT_ABSENT",
+    "static16KiB": {
+      "elfLibraries": 7,
+      "loadSegments": 26,
+      "zipEntries": 605,
+      "zipalignP16Exit": 0,
+      "physicalRuntimeValidated": false
+    },
+    "independentAcceptance": {
+      "path": ".utmp/wp046-c-ci-1df755-review/android-independent-review/independent-conclusion.json",
+      "sha256": "ae0bd3dd8d6d4e621eab6ef27feb847ec6cbe5a4a361bf74334386d760e22fca"
+    },
+    "installationBoundary": "Separates CI-QA-Artefakt mit anderem Debugzertifikat als Main19. Kein automatisches Ersetzen, Deinstallieren, Profilreset oder Datenlöschen."
+  },
+  "ios": {
+    "status": "PASS_UNSIGNED_XCODE_COMPILE_LINK_AND_ORIGINAL_APP_INSPECTION",
+    "jobId": 121806362442,
+    "artifactId": 12686966627,
+    "artifactZip": {
+      "sha256": "7b4d19639f45f5d4cac0fa00aa5fdb4437cf49f8c054779b1498aba0b445d611",
+      "sizeBytes": 432785005
+    },
+    "unsignedAppZip": {
+      "sha256": "4792251bfd364995baf836ea394ae5860586084cb4ce27d80025c6700899dbb6",
+      "sizeBytes": 59403037
+    },
+    "independentlyRehashed": {
+      "originalMembers": 29,
+      "exportMembers": 3610,
+      "appMembers": 44
+    },
+    "xcodeVersion": "26.3",
+    "sdkVersion": "26.2",
+    "configuration": "Release",
+    "destination": "generic/platform=iOS",
+    "codeSigningAllowed": false,
+    "actualApp": {
+      "applicationId": "com.STP.StammstreckenPuzzle.qa",
+      "architecture": "arm64",
+      "minimumOS": "15.0",
+      "appAndUnityFrameworkLinked": true,
+      "appOrFrameworkLCCodeSignaturePresent": false,
+      "embeddedProvisioningProfilePresent": false
+    },
+    "posixFix": {
+      "actualBridgeCompileTarget": "UnityFramework",
+      "generatedCallers": 10,
+      "nativeBridgeSymbolsDefinedInActualUnityFramework": 4,
+      "nativeSourceBindingsByteEqual": 3,
+      "priorRenameCompileConflictClosedOnThisActualBuild": true
+    },
+    "resolvedPods": {
+      "GoogleMobileAds": "13.11.0",
+      "GoogleMobileAdsConstraint": "~> 13.9",
+      "GoogleUserMessagingPlatform": "3.1.0",
+      "CocoaPods": "1.17.0",
+      "podfileLockEqualsPodsManifest": true
+    },
+    "actualPrivacyConfiguration": {
+      "googleTestApplicationId": true,
+      "measurementDelayed": true,
+      "ATTUsageStringPresent": false,
+      "packagedPrivacyManifests": 3,
+      "physicalConsentOrTrackingTrafficValidated": false
+    },
+    "independentAcceptance": {
+      "path": ".utmp/wp046-c-ci-1df755-review/ios-independent-review/independent-conclusion.json",
+      "sha256": "d9985a7d8b2ff15a2743e4e478e2ae586049e4d6546771b13a7c85a2b0ff90a4"
+    },
+    "productionSigned": false,
+    "ipaCreated": false
+  },
+  "sourceBoundary": "Beide tatsächlichen CI-Artefakte gehören zu a66/Spielquelle1df und demselben Mergebaum. Spätere UI-, P02-, P05- und Human-Qualitätsintegration ist darin nicht enthalten. Terminalcheckout, native Source-/Compiler-/Paketbelege sind gebunden; keine unabhängige saubere CSharp-Rohquellaufnahme, per-Test-LoadedImage- oder Binärreproduktionsbehauptung.",
+  "remainingGates": [
+    "Aktuelle gemeinsame Qualitätsquelle braucht eigene angemessene Integrations- und Paketnachweise.",
+    "Owner-Spielannahme und echte Human-Difficulty-/Sternzeit-/Profilfreigaben.",
+    "Physische Android-/iOS-, Offline-, Lifecycle-, Accessibility-, Performance- und Privacyprüfungen.",
+    "Reale Werbung, Käufe, Restore und Storekanäle; Signing, qualifizierte Rechtsprüfung und tatsächliche Veröffentlichung."
+  ],
+  "physicalDeviceValidated": false,
+  "providerSandboxValidated": false,
+  "humanOrOwnerAcceptance": false,
+  "RCMainOrStorePromotionAllowed": false
+}

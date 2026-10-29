@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-19T13:05:57.261Z",
+  "actualHelperExit": 1,
+  "actualError": "Immutable A manifest",
+  "sourceUnchanged": true,
+  "noAnchorCreated": true,
+  "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+  "git": {
+    "bytes": 3241,
+    "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d"
+  },
+  "native": {
+    "bytes": 3290,
+    "sha256": "77cdddad028142d564c06fda50c260a55299104470a74809431ebddf6a34ea6a",
+    "crlfCount": 49
+  },
+  "onlyExactGitLfToCrlf": true,
+  "correction": "Bind immutable manifest to raw Git blob and additionally require native bytes exact Git or exact Git LF→CRLF; preserve both profiles, never alter manifest"
+}

@@ -256,16 +256,30 @@ namespace STP.Infrastructure.Content
             private string ParseString(string path)
             {
                 _pos++; // opening quote
-                var builder = new StringBuilder();
+                StringBuilder? builder = null;
                 while (true)
                 {
+                    int runStart = _pos;
+                    int remaining = _limits.MaxStringLength - (builder?.Length ?? 0);
+                    // Bound the scan without overflow; the existing quote/end/error precedence follows below.
+                    int runEnd = _text.Length - _pos <= remaining ? _text.Length : _pos + remaining;
+                    while (_pos < runEnd)
+                    {
+                        char plain = _text[_pos];
+                        if (plain < 0x20 || plain == '"' || plain == '\\' || char.IsSurrogate(plain)) break;
+                        _pos++;
+                    }
                     if (AtEnd) throw Failure(LevelDiagnosticCodes.ParseSyntax, path, "Unterminated string");
                     char c = _text[_pos];
                     if (c == '"')
                     {
                         _pos++;
+                        if (builder == null) return _text.Substring(runStart, _pos - runStart - 1);
+                        builder.Append(_text, runStart, _pos - runStart - 1);
                         return builder.ToString();
                     }
+                    builder ??= new StringBuilder();
+                    builder.Append(_text, runStart, _pos - runStart);
                     if (builder.Length >= _limits.MaxStringLength) throw StringLengthFailure(path);
                     if (c < 0x20) throw Failure(LevelDiagnosticCodes.ParseControlCharacter, path, "Unescaped control character");
                     if (c == '\\')

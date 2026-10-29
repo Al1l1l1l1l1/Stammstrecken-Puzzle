@@ -1,0 +1,133 @@
+{
+  "evidenceKind": "ACTUAL_HUMAN_ANDROID_BUILD10_STATIC_NATIVE_AND_SERIALIZED_DATASET_INSPECTION",
+  "buildLabel": "wp046-human-android-10",
+  "status": "PASS_STATIC_ASSIGNED_HUMAN10_QA_DEBUG_ARTIFACT_CURRENT_SCENE_AND_DATASET",
+  "apkSha256": "6b802f63e4ed61077198b0d693c23c52b2ce2260896b6461497e861c9a17df34",
+  "apkSizeBytes": 56824723,
+  "apkBuildAttempt": 10,
+  "semanticDatasetBuildId": "wp046-human-android-07",
+  "semanticDatasetRevision": 7,
+  "counterAndDatasetAreDifferentIdentities": true,
+  "actualSourceCommit": "d1f0d523ff5b143d2849eebed225e5eb60eaa257",
+  "actualHeadTreeContext": "08c4ca072831a0549e4b63375cac2865ae0cd1da",
+  "sourceInventorySha256": "3d7bce85a4516712f3a208afce0d63f8e49f311deaa6931768ffeb4d1f02a02e",
+  "sourceArchiveSha256": "f34c7c683f963ba16b2f7d037a077576f092482d9369fb86bd26846a5d0f2141",
+  "all1116SourceInputsRehashed": true,
+  "all205CapturedCsMatchActualGitBlobsWithExplicitCrLfBoundary": true,
+  "all185ShippingRuntimeCsUi75Human07InputsUnchangedVersusMain20": true,
+  "actualThreeSourceFixLeaves": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/HumanCalibration.unity",
+      "oldSha256": "ed0a2a2e476677897527c3c810f3433600765264182ce863515de33d0bbe4324",
+      "newSha256": "0f23d5ce0b5954b592424969302b02c874a68e3f2f181fbfd364a14deac684f1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/HumanCalibrationBuild.cs",
+      "oldSha256": "8a59eed4c7a43e7a85355eed4a512d18b5d733ac43a6432e20dc33d0640709a8",
+      "newSha256": "dac53ac4538813b211fa4b12cc72d0eaba62d1192622f4ce2bc6ac41a0dd5565"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/HumanPackSceneBindingTests.cs",
+      "oldSha256": "3fe6249b819d4560962caaf5866d9ff468087ec8e9126adef4f3fec281b50a3e",
+      "newSha256": "c7cce2629d5a98132a19e9a419ca0923c5176a450f623571249bcc8fc9290fb7"
+    }
+  ],
+  "package": {
+    "applicationId": "com.STP.StammstreckenPuzzle.human",
+    "debuggable": true,
+    "minSdk": 26,
+    "targetSdk": 36,
+    "abi": "arm64-v8a",
+    "debugV2SignatureVerified": true,
+    "signerSha256": "2fc6af1b7aa6d58ac223dc388575847b98f4a65e93a7a41cbb9031563eca9bfd",
+    "sameSignerAsMain20Main19Human8": true,
+    "actualPermissions": [
+      "com.STP.StammstreckenPuzzle.human.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "closedManifestAndExportPathsFenceValidated": true,
+    "ownProviderJavaSubclassCompiledAndDexVerified": true,
+    "twoActualMergeGatesHashBound": true
+  },
+  "static16KiB": {
+    "elfLibraries": 7,
+    "loadSegments": 26,
+    "zipEntries": 606,
+    "zipalignP16Exit": 0,
+    "physicalRuntimeValidated": false
+  },
+  "actualSceneAndContent": {
+    "installer": "STP.Bootstrap.HumanCalibrationInstaller",
+    "allSerializedMonoBytesConsumed": true,
+    "actualSerializedPublicHash": "0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8",
+    "sameHashAsActualReferencedPublicTextAssetBindingsAnd17Manifests": true,
+    "typedTextAssets": 23,
+    "manifestPPtrs": 17,
+    "assignments": 102,
+    "campaignAssignments": 54,
+    "endlessAssignments": 48,
+    "publicCatalogPuzzles": 240,
+    "uiSourceFileCount": 75,
+    "uiSourceHash": "e8c3f47e93ff35ae9cff77cf0d53284cbf96d0c69114f7e108e73c069bc0e5a6",
+    "rawManifestLockHash": "cbff39650a87c51dbcfade8b29fa721f08b4aa28f60d81a501d5aa7f2209fc52",
+    "solutionProofMetricsSeedOrObservationLeakFound": false,
+    "sourceSceneSha256": "0f23d5ce0b5954b592424969302b02c874a68e3f2f181fbfd364a14deac684f1"
+  },
+  "actualActiveCompilerMetadata": {
+    "activeRegisteredMethods": 5,
+    "all5CanonicalMemoAndRendererBodiesExactlyEqualAcceptedMain20": true,
+    "memoReadonlyFields": 7,
+    "memoFullFiveLimitsAndByteSequenceEqual": true,
+    "canonicalSnapshotAndReturnCloneSites": 4,
+    "activeHumanStoreReadOnlyExclusiveInspectLoadRetained": true,
+    "rendererWorldGuardExactlyEqualMain20": true,
+    "managedStrippedAssemblies": 104,
+    "fourSerializedFontObjectsExactlyEqualMain20": true,
+    "twoActualMetadataInputsExactlyEqualPackagedMetadata": true,
+    "unusedMainRuntimeCatalogTypePresent": true,
+    "unusedMainMethodsNotRequiredOrAssumedExecuted": true,
+    "testCoverageEditorPreviewAndIOSBridgeNamesNotObserved": true
+  },
+  "actualIcons": {
+    "count": 24,
+    "rawByteEqualMain19": 24,
+    "maximumChannelDifference": 0,
+    "alphaBytesExactlyEqual": true
+  },
+  "closedFailedHuman9Defect": {
+    "failedArtifactOriginalSha256": "995112c8cf2652f6d4fdfabb260bdb0681a24c1f152f16dc9cce0a77f745ef6d",
+    "oldSceneExpectedPublicHash": "886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0",
+    "originalFinding": {
+      "path": ".utmp/wp046-c-native-pair20-9/human9/negative-source-binding.json",
+      "sizeBytes": 2243,
+      "sha256": "f15ba580bc249d039c0a0a1cc9b064c696dd5223504a7f1de2e5fbd3a4093099"
+    },
+    "fixAndActual26EditorSceneProbeAcceptance": {
+      "path": ".utmp/wp046-c-human-scene-hash-review/actual26-acceptance.json",
+      "sizeBytes": 8788,
+      "sha256": "c6cae3e1f38f5d7a97b2b607caf6c448669fdf489b81b7b51da27e391f136444"
+    },
+    "freshHuman10ScenePublicDataHashMatches": true,
+    "human9AcceptedOrRelabeled": false
+  },
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c-native-human10/human10/independent-conclusion.json",
+    "sha256": "f6bed224f42ce97015e78090a642a42ae452059f78acd729d48ef8cd02777ec1"
+  },
+  "retainedOlderHuman8": {
+    "dataset": "wp046-human-android-06/revision6",
+    "uiSourceHash": "43d3ffc9bed08afef6c672bbfdcedb0c02dcf10e93334a052d52d6f59ea3eb2a",
+    "noOriginalObservationsRelabeledOrMigrated": true,
+    "originalPackageRetained": true
+  },
+  "sourceBoundary": "Actuald1HEAD/205Gitblobcomparisonsand1116rawinputsbound; exact3Scene/Editor/TestfixdeltafromMain20,185runtimeCS/UI75/07datasetunchanged. Fourpreservedlocalsettingsdeclared; no independentcleanwholeGitTree/pertestLoadedImage/bitwisereproducibilityclaim.",
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "physicalChooserValidated": false,
+  "physicalPrivacyValidated": false,
+  "providerSandboxValidated": false,
+  "humanObservationOrOwnerAcceptance": false,
+  "RCMainStorePromotionAllowed": false,
+  "operatorBootOrActualParticipantSessionValidated": false,
+  "noOlderObservationsRelabeledOrMigrated": true
+}

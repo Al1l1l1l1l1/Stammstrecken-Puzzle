@@ -1,0 +1,2643 @@
+{
+  "schemaVersion": 1,
+  "sourceRef": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+  "authorReviewPath": "Content/Reviews/season-1/author-review.json",
+  "authorReviewSha256": "ca9c7a3a30419f1378322d49b7e0a178fa08f14a6fd01bb4b86a9b6d2f222266",
+  "authorEntryQuoteAgreements": 240,
+  "sourceCount": 1408,
+  "levels": 240,
+  "textReferencesExpected": 960,
+  "textReferencesCovered": 960,
+  "levelPlayerEntries": 720,
+  "levelInternalEntries": 240,
+  "foreignReferencesUnresolved": 480,
+  "availabilityCounts": {
+    "BLOCKED_PRODUCT": 70,
+    "DECIDED": 1338
+  },
+  "audienceCounts": {
+    "INTERNAL": 240,
+    "PLAYER": 1168
+  },
+  "status": "DRAFT",
+  "fullCrossReferenceGate": "NOT_PASSED_BY_THIS_CHECK",
+  "runtimeImport": "NOT_IMPLEMENTED_OR_APPROVED_BY_THIS_CHECK",
+  "creativeProductLegalReleaseApproval": "NOT_GRANTED",
+  "deductionCheckBoundary": "Exact pinned author-review/route-review agreement and level/text-byte provenance plus one independently checked elementary public-input anchor per level. This does not prove every paraphrased sentence, re-run solver validation, or replace editorial review.",
+  "lengthBoundary": "Unicode code points of source strings, including literal placeholder tokens; proposed limits are not rendered-width or substituted-value/layout/accessibility approval.",
+  "checkedEntryAnchors": [
+    {
+      "puzzleId": "S1-01-01-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 0,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 0 gibt vier Belegungen; am Nordanschluss bleibt der Außenport fest."
+    },
+    {
+      "puzzleId": "S1-01-01-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 2,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Zeile 2 ist voll, obwohl die direkte Gerade nicht alle Spaltenwerte erfüllen kann."
+    },
+    {
+      "puzzleId": "S1-01-01-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 0,
+        "conclusion": "EMPTY"
+      },
+      "sourceQuote": "Spalte 3 ist vollständig leer und begrenzt die nutzbare Fläche."
+    },
+    {
+      "puzzleId": "S1-01-01-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 0,
+        "conclusion": "EMPTY"
+      },
+      "sourceQuote": "Die leeren Spalten 0 und 1 schließen die linke Hälfte aus."
+    },
+    {
+      "puzzleId": "S1-01-01-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die obere Nullzeile sperrt die Nordrichtung aller Zellen in Zeile 1."
+    },
+    {
+      "puzzleId": "S1-01-01-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Zeile mit Count 4 muss vollständig belegt sein."
+    },
+    {
+      "puzzleId": "S1-01-01-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 verknüpft die voneinander entfernten Randbereiche."
+    },
+    {
+      "puzzleId": "S1-01-01-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 0 ist voll; der Westanschluss unten und Count 1 der unteren Zeilen begrenzen die Fortsetzung."
+    },
+    {
+      "puzzleId": "S1-01-01-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die einzige Zelle der oberen Zeile; alle anderen oberen Zellen sind leer."
+    },
+    {
+      "puzzleId": "S1-01-01-10",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 0,
+        "conclusion": "EMPTY"
+      },
+      "sourceQuote": "Spalte 0 ist leer; die beiden Anschlüsse in Spalte 1 müssen trotzdem über die volle rechte Spalte verbunden werden."
+    },
+    {
+      "puzzleId": "S1-01-01-11",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 0,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die untere Nullzeile begrenzt den Raum; Zeile 0 ist voll und enthält A an N/3."
+    },
+    {
+      "puzzleId": "S1-01-01-12",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 0,
+        "conclusion": "EMPTY"
+      },
+      "sourceQuote": "Spalte 3 ist leer; Spalte 1 ist vollständig belegt und enthält den Nordanschluss."
+    },
+    {
+      "puzzleId": "S1-01-02-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 2,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 2 gibt einen quer über das neue 4×5-Feld reichenden Belegungsanker."
+    },
+    {
+      "puzzleId": "S1-01-02-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 1 ist über alle fünf Zeilen belegt."
+    },
+    {
+      "puzzleId": "S1-01-02-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalten 2 und 3 sind beide voll; A an N/2 fixiert den nördlichen Außenport."
+    },
+    {
+      "puzzleId": "S1-01-02-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 3,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die oberen beiden Zeilen sind voll, die untere Zeile ist leer."
+    },
+    {
+      "puzzleId": "S1-01-02-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die untere volle Zeile verknüpft vier sichere Belegungen."
+    },
+    {
+      "puzzleId": "S1-01-02-06",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 1 bildet eine Achse durch das gesamte Feld."
+    },
+    {
+      "puzzleId": "S1-01-02-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen beiden vollen Zeilen machen Belegung sicher, nicht die jeweilige Form."
+    },
+    {
+      "puzzleId": "S1-01-02-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile schließt den Raum über den beiden Endpunktgebieten."
+    },
+    {
+      "puzzleId": "S1-01-02-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die drei oberen Nullzeilen begrenzen die Aufgabe auf die unteren beiden Zeilen."
+    },
+    {
+      "puzzleId": "S1-01-02-10",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Zeile 1 ist voll und enthält den Ausgang E/1."
+    },
+    {
+      "puzzleId": "S1-01-02-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte sperrt alle östlichen Fortsetzungen des Dreispaltengebiets."
+    },
+    {
+      "puzzleId": "S1-01-02-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die mittleren drei vollen Zeilen geben eine zusammenhängend belegte Fläche."
+    },
+    {
+      "puzzleId": "S1-01-03-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 2 und der Nordanschluss geben einen bekannten vertikalen Anker."
+    },
+    {
+      "puzzleId": "S1-01-03-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die zwei oberen Vollzeilen geben sichere Belegung, die beiden unteren Nullzeilen begrenzen die Fläche."
+    },
+    {
+      "puzzleId": "S1-01-03-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden rechten Nullspalten begrenzen das Feld; N/0 und W/3 öffnen den verbleibenden Korridor an verschiedenen Kanten."
+    },
+    {
+      "puzzleId": "S1-01-03-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 1,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/1 verbraucht den Einsercount dieser Zeile, wodurch ihr übriger Teil leer ist."
+    },
+    {
+      "puzzleId": "S1-01-03-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 trifft den Westanschluss; ihre vier Belegungen sind sofort sicher."
+    },
+    {
+      "puzzleId": "S1-01-03-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere volle Zeile liefert einen breiten sicheren Start."
+    },
+    {
+      "puzzleId": "S1-01-03-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Der Südanschluss in Spalte 2 belegt die einzige Zelle von Zeile 4."
+    },
+    {
+      "puzzleId": "S1-01-03-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 1 ist vollständig belegt, Spalte 0 leer."
+    },
+    {
+      "puzzleId": "S1-01-03-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden unteren vollen Zeilen sichern ein dichtes unteres Gebiet."
+    },
+    {
+      "puzzleId": "S1-01-03-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/2 belegt allein die unterste Zeile."
+    },
+    {
+      "puzzleId": "S1-01-03-11",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 liefert vier sichere Belegungen."
+    },
+    {
+      "puzzleId": "S1-01-03-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "b"
+      },
+      "sourceQuote": "B an N/1 und Count 1 in Spalte 3 bzw. Count 1 in Zeile 1 begrenzen die beiden Endgebiete."
+    },
+    {
+      "puzzleId": "S1-01-04-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 2,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die zwei oberen Nullzeilen begrenzen den Einstieg auf drei untere Reihen."
+    },
+    {
+      "puzzleId": "S1-01-04-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 0,
+        "conclusion": "EMPTY"
+      },
+      "sourceQuote": "Spalte 0 und die beiden unteren Reihen sind leer; der Nordanschluss liegt in der verbleibenden Ecke."
+    },
+    {
+      "puzzleId": "S1-01-04-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 0,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 0 und der Nordport an Spalte 0 geben sichere Belegung."
+    },
+    {
+      "puzzleId": "S1-01-04-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 1 ist voll und die zwei rechten Spalten sind leer."
+    },
+    {
+      "puzzleId": "S1-01-04-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen drei Vollzeilen geben sichere Belegung über die ganze Breite."
+    },
+    {
+      "puzzleId": "S1-01-04-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte sperrt eine ganze Seite des Rasters."
+    },
+    {
+      "puzzleId": "S1-01-04-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile und der Südanschluss links begrenzen zwei Randgebiete."
+    },
+    {
+      "puzzleId": "S1-01-04-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 2,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 2 verknüpft den einzelnen Nordanschluss mit dem unteren linken Bereich."
+    },
+    {
+      "puzzleId": "S1-01-04-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die zwei oberen Vollzeilen bilden sichere Belegung vor der unteren Nullzeile."
+    },
+    {
+      "puzzleId": "S1-01-04-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 verbraucht den einzigen Count der oberen Zeile."
+    },
+    {
+      "puzzleId": "S1-01-04-11",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 0 bindet den Westanschluss unten an den oberen Bereich."
+    },
+    {
+      "puzzleId": "S1-01-04-12",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 4,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Zeilen 1 und 2 sichern das Zentrum."
+    },
+    {
+      "puzzleId": "S1-02-01-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 0 ist voll und die drei unteren Einserzeilen lassen daneben nichts zu."
+    },
+    {
+      "puzzleId": "S1-02-01-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 1,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle untere Zeile gibt einen breiten Anker."
+    },
+    {
+      "puzzleId": "S1-02-01-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die beiden linken Nullspalten sperren die westliche Hälfte; Spalte 3 ist voll."
+    },
+    {
+      "puzzleId": "S1-02-01-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die untere Nullzeile und die volle Zeile 1 begrenzen den durchgehenden Belegungsbereich."
+    },
+    {
+      "puzzleId": "S1-02-01-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Zeile 3 ist voll, die beiden oberen Zeilen sind leer."
+    },
+    {
+      "puzzleId": "S1-02-01-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle mittlere Zeile kreuzt die beiden vollen rechten Spalten."
+    },
+    {
+      "puzzleId": "S1-02-01-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/1 belegt allein die obere Zeile."
+    },
+    {
+      "puzzleId": "S1-02-01-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 0 ist voll; die volle Zeile 1 liefert eine quer dazu liegende Sicherheit."
+    },
+    {
+      "puzzleId": "S1-02-01-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 1 verbindet den Nordbogen mit der unteren Rückkehr."
+    },
+    {
+      "puzzleId": "S1-02-01-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an W/0 belegt die Einserzeile oben vollständig."
+    },
+    {
+      "puzzleId": "S1-02-01-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle obere Zeile und A an N/0 geben eine gut lesbare Querachse."
+    },
+    {
+      "puzzleId": "S1-02-01-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/3 belegt die Einserzeile 0; Zeile 1 darf ebenfalls nur eine Zelle tragen."
+    },
+    {
+      "puzzleId": "S1-02-02-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere volle Zeile gibt einen bekannten Belegungsanker."
+    },
+    {
+      "puzzleId": "S1-02-02-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 und die untere Nullzeile sind unabhängig sicher."
+    },
+    {
+      "puzzleId": "S1-02-02-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile begrenzt die nutzbare Fläche auf die unteren vier Zeilen."
+    },
+    {
+      "puzzleId": "S1-02-02-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 2 ist voll und kreuzt den Einserengpass in Zeile 2."
+    },
+    {
+      "puzzleId": "S1-02-02-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden rechten Spalten sind voll, der Nordanschluss fixiert die erste Form."
+    },
+    {
+      "puzzleId": "S1-02-02-06",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 3 kreuzt die volle obere Zeile."
+    },
+    {
+      "puzzleId": "S1-02-02-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 1 ist voll, die beiden rechten Spalten sind leer."
+    },
+    {
+      "puzzleId": "S1-02-02-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen beiden Vollzeilen sichern eine breite Belegungsfläche."
+    },
+    {
+      "puzzleId": "S1-02-02-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere und untere Nullzeile begrenzen den Raum auf drei mittlere Zeilen."
+    },
+    {
+      "puzzleId": "S1-02-02-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere Vollzeile fixiert die Belegung am Westanschluss."
+    },
+    {
+      "puzzleId": "S1-02-02-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/4 belegt die Einserzeile unten vollständig."
+    },
+    {
+      "puzzleId": "S1-02-02-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte verbietet Fortsetzungen neben dem Nordanschluss."
+    },
+    {
+      "puzzleId": "S1-02-03-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Nullzeile begrenzt drei lange senkrechte Bereiche."
+    },
+    {
+      "puzzleId": "S1-02-03-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle untere Zeile ist ein vertrauter sicherer Einstieg."
+    },
+    {
+      "puzzleId": "S1-02-03-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle rechte Spalte ist der einzige Extremanker; die übrigen Zeilenwerte müssen kombiniert werden."
+    },
+    {
+      "puzzleId": "S1-02-03-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte schließt eine Randseite aus."
+    },
+    {
+      "puzzleId": "S1-02-03-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/1 belegt die Einserzeile oben allein."
+    },
+    {
+      "puzzleId": "S1-02-03-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere Nullzeile begrenzt das neue 6×5-Feld."
+    },
+    {
+      "puzzleId": "S1-02-03-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-02-03-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/4 belegt die einzige Zelle der oberen Zeile."
+    },
+    {
+      "puzzleId": "S1-02-03-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die oberen beiden Zeilen sind voll und die rechte Spalte ist voll."
+    },
+    {
+      "puzzleId": "S1-02-03-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die untere Vollzeile gibt einen sicheren Bodenanker."
+    },
+    {
+      "puzzleId": "S1-02-03-11",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Spalten 1 und 2 verbinden mehrere Belegungsbereiche."
+    },
+    {
+      "puzzleId": "S1-02-03-12",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 0 ist voll und grenzt an den Westanschluss unten."
+    },
+    {
+      "puzzleId": "S1-02-04-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Vollzeile liefert im 6×5-Raster bekannte sichere Belegung."
+    },
+    {
+      "puzzleId": "S1-02-04-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle rechte Spalte und die drei unteren Einserzeilen sichern einen Randstrang."
+    },
+    {
+      "puzzleId": "S1-02-04-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die oberen drei Nullzeilen begrenzen die beiden unteren Randgebiete."
+    },
+    {
+      "puzzleId": "S1-02-04-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 3 verknüpft sichere Belegung über die gesamte Breite."
+    },
+    {
+      "puzzleId": "S1-02-04-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden unteren Vollzeilen sichern einen breiten Belegungsbereich."
+    },
+    {
+      "puzzleId": "S1-02-04-06",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 4,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die obere Vollzeile und Spalte 4 mit Count 5 geben sich kreuzende Anker."
+    },
+    {
+      "puzzleId": "S1-02-04-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 2 reicht vom oberen kleinen Bogen bis zum unteren Querarm."
+    },
+    {
+      "puzzleId": "S1-02-04-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden äußeren Nullspalten begrenzen den Raum; zwei volle innere Spalten bleiben sicher."
+    },
+    {
+      "puzzleId": "S1-02-04-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 4,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/2 belegt die Einserzeile unten allein."
+    },
+    {
+      "puzzleId": "S1-02-04-10",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 5,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Spalten 0 und 1 liefern sichere Belegung, die rechte Nullspalte begrenzt die Fläche."
+    },
+    {
+      "puzzleId": "S1-02-04-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle mittlere Zeile gibt einen klaren Queranker."
+    },
+    {
+      "puzzleId": "S1-02-04-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die unteren beiden Vollzeilen sichern eine breite Abschlussfläche."
+    },
+    {
+      "puzzleId": "S1-03-01-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 1,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere und untere Nullzeile begrenzen vier aktive Reihen."
+    },
+    {
+      "puzzleId": "S1-03-01-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 2,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle obere Zeile sichert die Kopfbelegung."
+    },
+    {
+      "puzzleId": "S1-03-01-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle linke Spalte ist ein sicherer Anker trotz des Nordports rechts."
+    },
+    {
+      "puzzleId": "S1-03-01-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die untere Vollzeile schafft einen sicheren Queranker fern vom Nordport."
+    },
+    {
+      "puzzleId": "S1-03-01-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle Unterzeile verbindet die beiden unteren Belegungsgebiete."
+    },
+    {
+      "puzzleId": "S1-03-01-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/3 belegt allein die unterste Zeile."
+    },
+    {
+      "puzzleId": "S1-03-01-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 3 verknüpft das linke und rechte Gebiet."
+    },
+    {
+      "puzzleId": "S1-03-01-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/5 belegt die einzige Zelle der unteren Zeile."
+    },
+    {
+      "puzzleId": "S1-03-01-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/2 verbraucht den Einsercount der unteren Zeile."
+    },
+    {
+      "puzzleId": "S1-03-01-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die einzige Nullspalte links schließt die äußere Kante aus."
+    },
+    {
+      "puzzleId": "S1-03-01-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an E/4 verbraucht Count 1 in Spalte 5."
+    },
+    {
+      "puzzleId": "S1-03-01-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 belegt zugleich den Einsercount von Spalte 5."
+    },
+    {
+      "puzzleId": "S1-03-02-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile begrenzt drei lange Belegungsarme."
+    },
+    {
+      "puzzleId": "S1-03-02-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 5 und volle Unterzeile geben zwei quer zueinander liegende Anfangsanker."
+    },
+    {
+      "puzzleId": "S1-03-02-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 kreuzt zwei volle linke Spalten."
+    },
+    {
+      "puzzleId": "S1-03-02-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/0 und die Einserzeile unten schließen deren übrige Zellen aus."
+    },
+    {
+      "puzzleId": "S1-03-02-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 3 liefert einen vertikalen Anker zwischen unterschiedlich dichten Gebieten."
+    },
+    {
+      "puzzleId": "S1-03-02-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/1 belegt die einzige Zelle der oberen Zeile."
+    },
+    {
+      "puzzleId": "S1-03-02-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 5 ist vollständig belegt und verbindet obere und untere Hinweise."
+    },
+    {
+      "puzzleId": "S1-03-02-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile begrenzt die Fläche, der Westport darunter belegt eine Einserzeile."
+    },
+    {
+      "puzzleId": "S1-03-02-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen zwei Vollzeilen und die beiden unteren Nullzeilen sind sichere Flächenanker."
+    },
+    {
+      "puzzleId": "S1-03-02-10",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 2 koppelt den kompakten Kopf an den unteren Bogen."
+    },
+    {
+      "puzzleId": "S1-03-02-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Nullzeile begrenzt die beiden langen vertikalen Arme."
+    },
+    {
+      "puzzleId": "S1-03-02-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle obere Zeile gibt einen vertrauten sicheren Anfang."
+    },
+    {
+      "puzzleId": "S1-03-03-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere Vollzeile gibt einen vertrauten Queranker."
+    },
+    {
+      "puzzleId": "S1-03-03-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/1 belegt die Einserzeile oben allein."
+    },
+    {
+      "puzzleId": "S1-03-03-03",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 3 ist voll und kreuzt den Nordanschluss."
+    },
+    {
+      "puzzleId": "S1-03-03-04",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 0 sichert den linken Arm."
+    },
+    {
+      "puzzleId": "S1-03-03-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die Einserzeile oben."
+    },
+    {
+      "puzzleId": "S1-03-03-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle obere Zeile gibt beim Wechsel auf 7×6 einen sicheren breiten Anker."
+    },
+    {
+      "puzzleId": "S1-03-03-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die linke Nullspalte begrenzt den unteren Queranker."
+    },
+    {
+      "puzzleId": "S1-03-03-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die einzige Zelle der oberen Zeile."
+    },
+    {
+      "puzzleId": "S1-03-03-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die drei oberen Nullzeilen begrenzen einen unteren Kurvenbereich."
+    },
+    {
+      "puzzleId": "S1-03-03-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-03-03-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/0 belegt allein die unterste Zeile."
+    },
+    {
+      "puzzleId": "S1-03-03-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle obere Zeile gibt einen klaren ersten Belegungsanker."
+    },
+    {
+      "puzzleId": "S1-03-04-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle obere Zeile steht klar den Einserzeilen 1/3/5 gegenüber."
+    },
+    {
+      "puzzleId": "S1-03-04-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die fünf rechten Nullspalten begrenzen den Wiedereinstieg auf zwei Spalten."
+    },
+    {
+      "puzzleId": "S1-03-04-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle Unterzeile verknüpft die links und rechts liegenden Randgebiete."
+    },
+    {
+      "puzzleId": "S1-03-04-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 5,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die linke Nullspalte macht die Sechserzeile 1 innerhalb der aktiven Breite voll."
+    },
+    {
+      "puzzleId": "S1-03-04-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/3 belegt allein die obere Zeile."
+    },
+    {
+      "puzzleId": "S1-03-04-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/0 verbraucht den Einsercount in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-03-04-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 2 ist der einzige Vollanker und verbindet Kopf und Boden."
+    },
+    {
+      "puzzleId": "S1-03-04-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 0 sichert den linken Arm am Westanschluss."
+    },
+    {
+      "puzzleId": "S1-03-04-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen beiden Vollzeilen legen Belegung fest, die unteren zwei Nullzeilen begrenzen den Raum."
+    },
+    {
+      "puzzleId": "S1-03-04-10",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 7,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 3 erreicht beide Seiteneintrittsgebiete."
+    },
+    {
+      "puzzleId": "S1-03-04-11",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 4,
+        "count": 6,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 4 und der Nordport darin liefern sichere Belegung."
+    },
+    {
+      "puzzleId": "S1-03-04-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-04-01-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an E/0 belegt allein die obere Zeile."
+    },
+    {
+      "puzzleId": "S1-04-01-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Fünf obere Nullzeilen begrenzen einen dünnen Bodenbereich."
+    },
+    {
+      "puzzleId": "S1-04-01-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden äußeren Nullspalten machen die vier Fünferzeilen innerhalb der aktiven Fläche voll."
+    },
+    {
+      "puzzleId": "S1-04-01-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden linken Spalten sind voll, die beiden rechten leer."
+    },
+    {
+      "puzzleId": "S1-04-01-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle rechte Spalte bindet den unteren Ostanschluss an das obere Gebiet."
+    },
+    {
+      "puzzleId": "S1-04-01-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an W/3 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-04-01-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 2,
+        "count": 7,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 2 ist voll und trägt den Nordanschluss."
+    },
+    {
+      "puzzleId": "S1-04-01-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle Unterzeile verknüpft beide Randarme und die mittleren Restgebiete."
+    },
+    {
+      "puzzleId": "S1-04-01-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 7,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Spalten 0/2/4 geben drei sichere lange Belegungsarme."
+    },
+    {
+      "puzzleId": "S1-04-01-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile begrenzt eine dicht belegte Fläche darunter."
+    },
+    {
+      "puzzleId": "S1-04-01-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/6 verbraucht den Einsercount von Spalte 6."
+    },
+    {
+      "puzzleId": "S1-04-01-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 belegt allein Count 1 der rechten Randspalte."
+    },
+    {
+      "puzzleId": "S1-04-02-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 3,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die drei rechten Nullspalten und zwei unteren Nullzeilen begrenzen die Anfangsfläche."
+    },
+    {
+      "puzzleId": "S1-04-02-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 7,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Spalten 0 und 2 liefern zwei deutliche Anfangsanker."
+    },
+    {
+      "puzzleId": "S1-04-02-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-04-02-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/3 belegt allein die unterste Zeile."
+    },
+    {
+      "puzzleId": "S1-04-02-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-04-02-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/3 verbraucht Count 1 in Spalte 6."
+    },
+    {
+      "puzzleId": "S1-04-02-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/0 belegt die Einserzeile unten."
+    },
+    {
+      "puzzleId": "S1-04-02-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an N/4 belegt allein die obere Zeile."
+    },
+    {
+      "puzzleId": "S1-04-02-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 5,
+        "count": 7,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 5 begrenzt mit den vier oberen Nullzeilen einen unteren Kurvenbereich."
+    },
+    {
+      "puzzleId": "S1-04-02-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/2 belegt die Einserzeile oben."
+    },
+    {
+      "puzzleId": "S1-04-02-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/0 belegt die oberen Einserzeilen zunächst am linken Rand."
+    },
+    {
+      "puzzleId": "S1-04-02-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die obere Einserzeile allein."
+    },
+    {
+      "puzzleId": "S1-04-03-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle rechte Spalte und die fünf linken Nullspalten begrenzen den ruhigen Einstieg."
+    },
+    {
+      "puzzleId": "S1-04-03-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Zwei volle linke Spalten liefern bekannte Belegung."
+    },
+    {
+      "puzzleId": "S1-04-03-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 6,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/1 belegt die Einserzeile unten."
+    },
+    {
+      "puzzleId": "S1-04-03-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die linke Nullspalte begrenzt vier Sechserbänder auf volle aktive Reihen."
+    },
+    {
+      "puzzleId": "S1-04-03-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen beiden Nullzeilen begrenzen den Raum."
+    },
+    {
+      "puzzleId": "S1-04-03-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Nullzeile begrenzt beim Wechsel auf 8×8 die rechte Verbindung."
+    },
+    {
+      "puzzleId": "S1-04-03-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Drei volle Spalten 0/2/4 geben voneinander entfernte sichere Arme."
+    },
+    {
+      "puzzleId": "S1-04-03-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 6 und die Einserzeilen 4/5 sichern den rechten Schenkel."
+    },
+    {
+      "puzzleId": "S1-04-03-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 3 macht ihre Belegung sicher, die drei oberen Nullzeilen schließen den Kopf aus."
+    },
+    {
+      "puzzleId": "S1-04-03-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 1,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/1 belegt allein diese Einserzeile."
+    },
+    {
+      "puzzleId": "S1-04-03-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/0 belegt die Einserzeile unten allein."
+    },
+    {
+      "puzzleId": "S1-04-03-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 verbraucht Count 1 in Spalte 7."
+    },
+    {
+      "puzzleId": "S1-04-04-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle obere Zeile und die sechs unteren Nullzeilen ergeben einen sehr klaren Start."
+    },
+    {
+      "puzzleId": "S1-04-04-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 6,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle obere Zeile kreuzt die volle Spalte 6."
+    },
+    {
+      "puzzleId": "S1-04-04-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die linke Nullspalte macht die Siebenerreihen innerhalb der aktiven Breite voll."
+    },
+    {
+      "puzzleId": "S1-04-04-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 2,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle Unterzeile und die zwei oberen Nullzeilen begrenzen den Verbindungskorridor."
+    },
+    {
+      "puzzleId": "S1-04-04-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Spalte 1 ist über alle acht Zeilen belegt."
+    },
+    {
+      "puzzleId": "S1-04-04-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/5 verbraucht Count 1 in Spalte 7."
+    },
+    {
+      "puzzleId": "S1-04-04-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die zwei linken Nullspalten begrenzen die mittlere Kurvenfläche."
+    },
+    {
+      "puzzleId": "S1-04-04-08",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 0 liefert einen langen linken Anker."
+    },
+    {
+      "puzzleId": "S1-04-04-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an W/3 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-04-04-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die obere Nullzeile entfernt den Kopf; drei untere Einserzeilen legen einen rechten Schenkel fest."
+    },
+    {
+      "puzzleId": "S1-04-04-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/7 belegt die Einserzeile unten allein."
+    },
+    {
+      "puzzleId": "S1-04-04-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle linke Spalte verbindet mehrere sichere Teilgebiete."
+    },
+    {
+      "puzzleId": "S1-05-01-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Sechs obere Nullzeilen begrenzen einen sehr klaren Bodenbereich."
+    },
+    {
+      "puzzleId": "S1-05-01-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die vollen Spalten 0 und 2 geben sichere lange Anfangsarme."
+    },
+    {
+      "puzzleId": "S1-05-01-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Vollzeile verbindet den Nordport mit einem entfernten rechten Arm."
+    },
+    {
+      "puzzleId": "S1-05-01-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 belegt die obere Einserzeile allein."
+    },
+    {
+      "puzzleId": "S1-05-01-05",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 liefert sichere Belegung quer über das Raster."
+    },
+    {
+      "puzzleId": "S1-05-01-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/1 belegt allein die obere Zeile."
+    },
+    {
+      "puzzleId": "S1-05-01-07",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 3,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 3 und zwei obere Nullzeilen geben eine sichere Querfläche."
+    },
+    {
+      "puzzleId": "S1-05-01-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden rechten Nullspalten begrenzen die lange linke Kurvenfolge."
+    },
+    {
+      "puzzleId": "S1-05-01-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/1 belegt die Einserzeile unten."
+    },
+    {
+      "puzzleId": "S1-05-01-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden unteren Nullzeilen grenzen ein Kopf- und Mittelgebiet ein."
+    },
+    {
+      "puzzleId": "S1-05-01-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/7 belegt die unterste Einserzeile allein."
+    },
+    {
+      "puzzleId": "S1-05-01-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 belegt die Einserzeile oben und begrenzt den rechten Kopf."
+    },
+    {
+      "puzzleId": "S1-05-02-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 4,
+        "count": 8,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 4 und drei äußere Nullzeilen geben klare Belegung."
+    },
+    {
+      "puzzleId": "S1-05-02-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die obere Nullzeile und zwei mittlere Einserzeilen begrenzen einen klaren linken Schenkel."
+    },
+    {
+      "puzzleId": "S1-05-02-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/7 belegt die Einserzeile unten allein; die Spaltenreste bestimmen danach den unteren Strang."
+    },
+    {
+      "puzzleId": "S1-05-02-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/7 verbraucht Count 1 in Spalte 7 und schließt deren übrige Zellen aus."
+    },
+    {
+      "puzzleId": "S1-05-02-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-05-02-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die Einserzeile oben allein."
+    },
+    {
+      "puzzleId": "S1-05-02-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle obere Zeile trägt den Nordport und den ersten breiten Querarm."
+    },
+    {
+      "puzzleId": "S1-05-02-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 8,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/8 belegt die Einserzeile unten allein."
+    },
+    {
+      "puzzleId": "S1-05-02-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 9,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Drei volle Spalten 0/2/4 liefern sichere Belegung im 9×9-Feld."
+    },
+    {
+      "puzzleId": "S1-05-02-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte begrenzt drei volle aktive Achterbänder."
+    },
+    {
+      "puzzleId": "S1-05-02-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an N/3 belegt die Einserzeile oben."
+    },
+    {
+      "puzzleId": "S1-05-02-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 8,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/8 verbraucht Count 1 in Spalte 8."
+    },
+    {
+      "puzzleId": "S1-05-03-01",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 8,
+        "count": 9,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle obere Zeile und volle Spalte 8 bieten bekannte, getrennte Anfangsanker."
+    },
+    {
+      "puzzleId": "S1-05-03-02",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die linke Nullspalte macht die oberen und unteren Achterbänder innerhalb der aktiven Breite voll."
+    },
+    {
+      "puzzleId": "S1-05-03-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an W/0 belegt die Einserzeile oben."
+    },
+    {
+      "puzzleId": "S1-05-03-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle Unterzeile verbindet die beiden entfernten Randgebiete."
+    },
+    {
+      "puzzleId": "S1-05-03-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 1,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die linke Nullspalte begrenzt die Querarme."
+    },
+    {
+      "puzzleId": "S1-05-03-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 7,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an E/7 belegt die Einserzeile 7."
+    },
+    {
+      "puzzleId": "S1-05-03-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die volle Unterzeile gibt einen einzigen direkten Belegungsanker."
+    },
+    {
+      "puzzleId": "S1-05-03-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die rechte Nullspalte begrenzt zwei volle aktive Achterbänder."
+    },
+    {
+      "puzzleId": "S1-05-03-09",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "ROW",
+        "index": 1,
+        "count": 9,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Zeile 1 trägt den dichten oberen Formenbereich."
+    },
+    {
+      "puzzleId": "S1-05-03-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die oberen drei Nullzeilen und rechten drei Nullspalten grenzen ein kurvenreiches unteres Gebiet ein."
+    },
+    {
+      "puzzleId": "S1-05-03-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "COLUMN",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an W/1 verbraucht Count 1 in Spalte 0."
+    },
+    {
+      "puzzleId": "S1-05-03-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "COLUMN",
+        "index": 8,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/8 verbraucht Count 1 in Spalte 8."
+    },
+    {
+      "puzzleId": "S1-05-04-01",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 3,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die oberen drei Nullzeilen und fünf rechten Nullspalten liefern einen klaren letzten Wiedereinstieg."
+    },
+    {
+      "puzzleId": "S1-05-04-02",
+      "mathematicalFact": {
+        "kind": "LINE_COUNT",
+        "axis": "COLUMN",
+        "index": 5,
+        "count": 9,
+        "conclusion": "FULL"
+      },
+      "sourceQuote": "Die volle Spalte 5 und drei mittlere Einserzeilen sichern einen bekannten senkrechten Anker."
+    },
+    {
+      "puzzleId": "S1-05-04-03",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die untere Nullzeile begrenzt fünf vertikale Arme mit unterschiedlichen Kopf- und Bodenhöhen."
+    },
+    {
+      "puzzleId": "S1-05-04-04",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "A an E/2 verbraucht einen der zwei Counts der rechten Spalte."
+    },
+    {
+      "puzzleId": "S1-05-04-05",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 8,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/5 belegt allein die unterste Zeile."
+    },
+    {
+      "puzzleId": "S1-05-04-06",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "b",
+        "axis": "ROW",
+        "index": 9,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "B an S/6 belegt allein die unterste Zeile des neuen 10×10-Feldes."
+    },
+    {
+      "puzzleId": "S1-05-04-07",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die beiden unteren Nullzeilen begrenzen fünf vertikale Teilräume."
+    },
+    {
+      "puzzleId": "S1-05-04-08",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 9,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die beiden rechten Nullspalten begrenzen eine kurvenreiche Kopfbelegung."
+    },
+    {
+      "puzzleId": "S1-05-04-09",
+      "mathematicalFact": {
+        "kind": "ENDPOINT",
+        "endpoint": "a"
+      },
+      "sourceQuote": "Die drei oberen Nullzeilen erlauben ruhige Orientierung im unteren Gebiet."
+    },
+    {
+      "puzzleId": "S1-05-04-10",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "Die volle linke Spalte und sechs obere Einserzeilen sichern einen langen geraden Einstieg."
+    },
+    {
+      "puzzleId": "S1-05-04-11",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 9,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an S/0 belegt allein die Einserzeile unten."
+    },
+    {
+      "puzzleId": "S1-05-04-12",
+      "mathematicalFact": {
+        "kind": "ENDPOINT_LINE",
+        "endpoint": "a",
+        "axis": "ROW",
+        "index": 0,
+        "count": 1,
+        "conclusion": "REST_EMPTY"
+      },
+      "sourceQuote": "A an E/0 belegt die Einserzeile oben."
+    }
+  ],
+  "errors": [],
+  "result": "PASS",
+  "sourceSha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+  "sourceBindingsSha256": "2fc3d3d9a2336941261456f88f9d5d98460d9cd0092efbbefadfc7e411ea75ed",
+  "schemaSha256": "3553f1e5cadf1aef134886b4f766c440bf95b9b46d7a8de73fc08d23ad811514",
+  "selfTestExecuted": true,
+  "mutations": [
+    {
+      "mutation": "missing-key",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "missing-level-key:S1-01-01-01:level.s1.01.01.01.entry"
+    },
+    {
+      "mutation": "duplicate-key",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "duplicate-key:level.s1.01.01.01.title"
+    },
+    {
+      "mutation": "illegal-placeholder",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "placeholder-set:level.s1.01.01.01.title:text"
+    },
+    {
+      "mutation": "over-limit",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "over-limit:level.s1.01.01.01.title:text:15>1"
+    },
+    {
+      "mutation": "wrong-binding",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "binding:S1-01-01-01:level-byte-binding"
+    },
+    {
+      "mutation": "player-entry",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "schema:entries/2/audience:'INTERNAL' was expected"
+    },
+    {
+      "mutation": "false-mathematical-anchor",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "binding:S1-01-01-01:line-fact-count"
+    },
+    {
+      "mutation": "wrong-quote",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "binding:S1-01-01-01:entry-source-quote"
+    },
+    {
+      "mutation": "wrong-typed-placeholder",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "schema:entries/0/placeholders/points:'FLOAT' is not one of ['INTEGER', 'TEXT', 'FORMATTED_DURATION', 'FORMATTED_POINTS', 'FORMATTED_PRICE']"
+    },
+    {
+      "mutation": "non-nfc",
+      "detected": true,
+      "expectedDiagnostic": null,
+      "firstDiagnostic": "not-nfc:level.s1.01.01.01.title:text"
+    },
+    {
+      "mutation": "author-hash",
+      "detected": true,
+      "expectedDiagnostic": "bindings:author-review-byte-binding",
+      "firstDiagnostic": "bindings:author-review-byte-binding"
+    },
+    {
+      "mutation": "author-quote",
+      "detected": true,
+      "expectedDiagnostic": "author-review:S1-01-01-01:entry-quote-mismatch",
+      "firstDiagnostic": "author-review:S1-01-01-01:entry-quote-mismatch"
+    }
+  ]
+}
