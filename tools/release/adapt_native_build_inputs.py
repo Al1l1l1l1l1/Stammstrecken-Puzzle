@@ -38,6 +38,17 @@ def token(value: str) -> str:
     return value
 
 
+def classify_module_coordinates(row: dict) -> tuple[str, str, str, str]:
+    """Gradle flatDir components can have a module ID with both group/version empty."""
+    group, name, version = (row.get(key) for key in ("group", "module", "version"))
+    need(all(isinstance(value, str) for value in (group, name, version)), "MODULE_COORDINATE_TYPES")
+    name = token(name)
+    if group == "" and version == "":
+        return "LOCAL_FLATDIR_MODULE", "", name, ""
+    need(bool(group) and bool(version), "PARTIAL_MODULE_COORDINATES")
+    return "MAVEN_MODULE", token(group), name, token(version)
+
+
 def adapt(evidence: Path, native_output: Path, package_audit: Path, output: Path) -> dict:
     evidence = evidence.resolve()
     need(evidence.is_dir() and not output.exists(), "FRESH_OUTPUT_AND_EVIDENCE_REQUIRED")
@@ -101,8 +112,11 @@ def adapt(evidence: Path, native_output: Path, package_audit: Path, output: Path
             continue
         raw = file_bytes(row)
         source = Path(row["path"])
-        if row["kind"] == "MAVEN_MODULE":
-            group, name, version = (token(row[key]) for key in ("group", "module", "version"))
+        actual_kind = row["kind"]
+        reported_coordinates = {key: row[key] for key in ("group", "module", "version") if key in row}
+        if actual_kind == "MAVEN_MODULE":
+            actual_kind, group, name, version = classify_module_coordinates(row)
+        if actual_kind == "MAVEN_MODULE":
             key = (group, name, version, source.suffix.lower())
             need(key not in coordinate_hashes or coordinate_hashes[key] == row["sha256"], "LEGACY_COORDINATE_COLLISION")
             coordinate_hashes[key] = row["sha256"]
@@ -114,10 +128,11 @@ def adapt(evidence: Path, native_output: Path, package_audit: Path, output: Path
                     plans.append((relative.parent.parent / "poms" / (str(number) + "-" + pom.name), pom.read_bytes()))
         else:
             group, version = "", ""
-            name = row["kind"].lower() + "-" + digest((str(row.get("component")) + ":" + str(row.get("artifact"))).encode())[:16]
-            relative = Path("retained-artifacts") / row["kind"].lower() / name / row["sha256"] / source.name
+            identity = digest((str(row.get("component")) + ":" + str(row.get("artifact"))).encode())[:16]
+            name = ("flatdir-" + name if actual_kind == "LOCAL_FLATDIR_MODULE" else actual_kind.lower()) + "-" + identity
+            relative = Path("retained-artifacts") / actual_kind.lower() / name / row["sha256"] / source.name
         plans.append((relative, raw))
-        compatibility.append({"group": group, "name": name, "version": version, "extension": source.suffix.lstrip(".").lower(), "file": str((output / relative).resolve()), "sha256": row["sha256"], "kind": row["kind"], "component": row.get("component"), "artifact": row.get("artifact"), "originalConsumedPath": str(source), "sizeBytes": len(raw)})
+        compatibility.append({"group": group, "name": name, "version": version, "extension": source.suffix.lstrip(".").lower(), "file": str((output / relative).resolve()), "sha256": row["sha256"], "kind": actual_kind, "reportedKind": row["kind"], "reportedCoordinates": reported_coordinates, "component": row.get("component"), "artifact": row.get("artifact"), "originalConsumedPath": str(source), "sizeBytes": len(raw)})
     need(bool(compatibility or directories), "NO_RUNTIME_ARTIFACTS")
     # Every identity and actual input is checked before creating an output bundle.
     output.mkdir(parents=True, exist_ok=False)
@@ -139,7 +154,7 @@ def adapt(evidence: Path, native_output: Path, package_audit: Path, output: Path
         with path.open("xb") as stream:
             stream.write(raw)
         retained_originals.append({"path": path.relative_to(output).as_posix(), "sha256": digest(raw), "sizeBytes": len(raw)})
-    report = {"evidenceKind": "VALIDATED_RETAINED_NATIVE_BUILD_TIME_RECEIPTS_FOR_LEGACY_LICENSE_COLLECTOR", "configuration": "launcher:" + after["configuration"], "offlineDiagnosticOnly": False, "artifacts": compatibility, "retainedDirectoryInputs": directories, "binding": {"nonce": nonce, "invocationId": after["invocationId"], "variant": after["variant"], "artifactKind": kind, "sourceWitness": after["sourceWitness"], "sourceWitnessIsCallerDeclaration": True, "actualOutputSha256": native_hash, "actualOutputBytes": len(raw_native), "auditedNativeOutputPath": str(native_output.resolve()), "terminalDeclaredUnityOutputPath": terminal.get("actualUnityOutput"), "terminalReceiptSha256": digest(terminal_raw), "afterOriginalSha256": digest(after_raw), "packageAuditSha256": digest(audit_raw), "packageAuditEvidenceKind": package.get("evidenceKind"), "independentTerminalProcessWitnessProvidedByAdapter": False}, "retainedOriginalReceipts": retained_originals, "retainedFileHashes": seen, "limits": ["No Gradle resolution or new build occurred. Terminal receipt structure and original/output hashes are bound; the caller must retain the actual Unity process exit/build witness separately.", "The checkout/source witness remains caller-declared, not a clean-source proof.", "Project/local artifacts and directory inputs are retained with their actual kinds, not reclassified as Maven modules or granted an inherited license.", "POMs are post-build copies from an existing coordinate-bound cache, not proof that Gradle consumed their declarations. Directory artifacts are retained but need separate review; the legacy collector scans archives only.", "No complete binary notice coverage, qualified rights review, signing, device/provider/Human/Owner or Store approval is granted."], "legalApproved": False, "termsAccepted": False, "completeBinaryNoticeCoverageApproved": False, "promotionAllowed": False}
+    report = {"evidenceKind": "VALIDATED_RETAINED_NATIVE_BUILD_TIME_RECEIPTS_FOR_LEGACY_LICENSE_COLLECTOR", "configuration": "launcher:" + after["configuration"], "offlineDiagnosticOnly": False, "artifacts": compatibility, "retainedDirectoryInputs": directories, "binding": {"nonce": nonce, "invocationId": after["invocationId"], "variant": after["variant"], "artifactKind": kind, "sourceWitness": after["sourceWitness"], "sourceWitnessIsCallerDeclaration": True, "actualOutputSha256": native_hash, "actualOutputBytes": len(raw_native), "auditedNativeOutputPath": str(native_output.resolve()), "terminalDeclaredUnityOutputPath": terminal.get("actualUnityOutput"), "terminalReceiptSha256": digest(terminal_raw), "afterOriginalSha256": digest(after_raw), "packageAuditSha256": digest(audit_raw), "packageAuditEvidenceKind": package.get("evidenceKind"), "independentTerminalProcessWitnessProvidedByAdapter": False}, "retainedOriginalReceipts": retained_originals, "retainedFileHashes": seen, "limits": ["No Gradle resolution or new build occurred. Terminal receipt structure and original/output hashes are bound; the caller must retain the actual Unity process exit/build witness separately.", "The checkout/source witness remains caller-declared, not a clean-source proof.", "Project/local artifacts and directory inputs retain their actual reported identities. Gradle module IDs with both group/version empty are explicitly LOCAL_FLATDIR_MODULE and retain reportedKind/coordinates; they receive no Maven POM or inherited license. Partial or unsafe module coordinates are rejected.", "POMs are post-build copies from an existing coordinate-bound cache, not proof that Gradle consumed their declarations. Directory artifacts are retained but need separate review; the legacy collector scans archives only.", "No complete binary notice coverage, qualified rights review, signing, device/provider/Human/Owner or Store approval is granted."], "legalApproved": False, "termsAccepted": False, "completeBinaryNoticeCoverageApproved": False, "promotionAllowed": False}
     with (output / "resolved-artifacts.json").open("x", encoding="utf-8") as stream:
         stream.write(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     return report
