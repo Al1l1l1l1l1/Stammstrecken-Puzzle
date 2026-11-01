@@ -4,7 +4,7 @@
 
 | Priorität | Gesamtauftrag | Status / nächster tatsächlicher Output |
 |---:|---|---|
-| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Spiel-/Humanmontage und Icons integriert; Haupt-APK7/Human-APK3 unabhängig native-/iconbezogen PASS, iOSexport3 geprüft. Jetzt Developmentpush/PR31 und echte macOS-Pods-/Xcode-CI; parallel geschlossene Production-/Zeitsterntechnik imStaging und sichere Operatorpackverteilung. Portable17Quellpacks/102Aufgaben/96-mal frisch gelöste Endlosstichprobe und Exportreadback erhalten. Derselbe Auftrag läuft bis M3. |
+| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Spielumfang und aktuelle vollständige PR-CI40916706836 unabhängig angenommen:1722Editor/258Play, Android mit tatsächlichen Buildinputs, Xcode-Compile/Link ohneSigning. Main22/Human11 sind bereit. Jetzt echter Owner-Handtest und qualifizierte Human11-Erstkontakte; danach reale Geräte-/Provider-/Signing-/Rechts-/Storegates. Derselbe Auftrag läuft bis M3. |
 | Basis | WP045 Kurskorrektur/Regeln/Produktdefaults/CIsteuerung | Veröffentlicht auf bd05da1; Grundlage von WP046, kein offener Umsetzungsauftrag zur erneuten Planung. |
 | parallel | Externe Konten/Rollen/Signing/Geräte/Tester/Rechte/Datenschutz | Begleitende kurze [Ownerliste mit Bedarfszeitpunkten](../Release/OWNER_INPUTS.md); keine weitere allgemeine Abfrage oder Unterbrechung unabhängig möglicher Apparbeit. |
 | M1/M2 | Wirkliche Owner-Mobile-/Difficultybeurteilung | Neue installierbare Fassung und klar genannte Testfälle, keine Referenzbilder als Ersatz. |
