@@ -1,0 +1,17 @@
+{
+  "role": "R independently executed canonical Node double projection check of actual A snapshot; no final freeze or playability PASS",
+  "source": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+  "toolchain": "WSL node-v22.20.0-linux-x64/bin/node; existing unchanged strict jcs_crosscheck.mjs through process.execPath; explicit child GIT_DIR/GIT_WORK_TREE and optional-locks0",
+  "command": "node tools/public240/project.cjs --check --double",
+  "exitCode": 0,
+  "output": {
+    "count": 240,
+    "source": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+    "assetBytes": 166484,
+    "assetSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+    "lockSha256": "b6e1d493bab806f3f0bd469a7171dbe788b0261397e92ad3d44bd61122d50f5d",
+    "double": true,
+    "check": true
+  },
+  "sourceAudit": "A_PROJECTION_SOURCE_AUDIT.json independently checks raw Git blobs/byte SHA and closed property equality; no general solver QC"
+}

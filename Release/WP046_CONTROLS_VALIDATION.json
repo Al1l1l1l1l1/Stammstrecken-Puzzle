@@ -1,0 +1,96 @@
+{
+  "kind": "ACTUAL_LOCAL_UNITY_CONTROLS_UNION_EVIDENCE",
+  "unityVersion": "6000.3.23f1",
+  "buildTarget": "Android",
+  "fullEditModeOriginal": {
+    "path": ".utmp/wp046-runtime/editmode-controls-union-attempt26.xml",
+    "rawSha256": "68ac5ef8a0a31c3281277e9a7ced271d9df830c68c34a14156040de5010b3153",
+    "result": "Failed(Child)",
+    "total": 1639,
+    "passed": 1622,
+    "failed": 17,
+    "skipped": 0,
+    "startUtc": "2026-10-21 20:56:26Z",
+    "endUtc": "2026-10-21 21:05:39Z"
+  },
+  "exactAffectedFixtureRerun": {
+    "path": ".utmp/wp046-runtime/editmode-fixture-fixes-attempt27.xml",
+    "rawSha256": "aaaf03008c42f3113a38d87b33839872616326575c7cffa5388a467b091dbeee",
+    "result": "Passed",
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0,
+    "startUtc": "2026-10-21 21:13:12Z",
+    "endUtc": "2026-10-21 21:13:18Z"
+  },
+  "playModeUnion": {
+    "path": ".utmp/wp046-runtime/playmode-controls-union-attempt27.xml",
+    "rawSha256": "dd80baa05e3e4cc1e2de361cb0db4139a3b901f872d53192ae09e4809ab66c80",
+    "result": "Passed",
+    "total": 50,
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0,
+    "startUtc": "2026-10-21 21:06:40Z",
+    "endUtc": "2026-10-21 21:10:49Z"
+  },
+  "singleFullEditModeGreenRunClaim": false,
+  "allFullRunFailuresCoveredByPassingExactRerun": true,
+  "fixtureChangesOnly": [
+    "One explicit null for already optional generator quality parameter",
+    "Restore exact unchanged Git golden bytes after CRLF-only checkout conversion; preserve old checkout"
+  ],
+  "productSourceChangedBetweenFullRunAndFixtureRerun": false,
+  "rootDeletePathsActuallyPassed": 6,
+  "diagnosticRingEditModeActuallyPassed": 35,
+  "profileDeletionEditModeActuallyPassed": 54,
+  "retainedAtomicSaveEditModeActuallyPassed": 301,
+  "migrationEditModeActuallyPassed": 91,
+  "publisherConfigurationEditModeActuallyPassed": 18,
+  "dailyDateEditModeActuallyPassed": 7,
+  "dialogVisualReview": {
+    "path": ".utmp/wp046-runtime/play27-original-captures/profile-delete-confirmation.png",
+    "rawSha256": "f6f8c094a40ccf2fab3a5ee2c1d5fa14ffa2767c8a8cfd191e01515f76be6476",
+    "width": 390,
+    "height": 844,
+    "actualEditorRenderTexture": true,
+    "rootViewedPixels": true,
+    "titleBodyScopeConfirmCancelFullyVisible": true,
+    "physicalDeviceOrOwnerAcceptance": false
+  },
+  "currentUiLockSha256": "43d3ffc9bed08afef6c672bbfdcedb0c02dcf10e93334a052d52d6f59ea3eb2a",
+  "nativeBuildsForThisSourceStillPending": false,
+  "productionOrHumanOrDeviceOrStoreAcceptance": false,
+  "nativeInspectionRecords": [
+    {
+      "path": "Release/ANDROID_BUILD9_INSPECTION.json",
+      "sha256": "c234b09f60faf83e0f9fdafd33f24436e3546f6ddf8dfbef92047aa16133b52a",
+      "sizeBytes": 7529
+    },
+    {
+      "path": "Release/HUMAN_ANDROID_BUILD6_INSPECTION.json",
+      "sha256": "9a7a00598cf699ef195d26fd357d429b9f60167eff66665aa26b282191f19e98",
+      "sizeBytes": 5845
+    },
+    {
+      "path": "Release/IOS_EXPORT4_INSPECTION.json",
+      "sha256": "712e957d248c1b10d326be8ec70325c114c0c5c8128396216640bbb3f382f06a",
+      "sizeBytes": 10098
+    }
+  ],
+  "postRunTestCleanupOnlyChange": {
+    "package": {
+      "path": ".utmp/wp046-a-cleanup-claim/package.json",
+      "sha256": "e2f1ff57a99f953b66468def6db1dd362a854b4866a31e3c51338a5ab59fd4ea",
+      "sizeBytes": 3859
+    },
+    "target": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/LocalProfileDeletionIntegrationTests.cs",
+    "sha256": "6a336f299999e960e45a965a8b2f6a925d1c1e6311fcdc041fa721a05935cf9d",
+    "allSixGameTestsAndHelpersByteUnchanged": true,
+    "warningsAsErrorsCompilePassed": true,
+    "exactCleanupSliceSentinelChecks": 7,
+    "newUnityRunClaimed": false,
+    "playerInputsChanged": false
+  }
+}

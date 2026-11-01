@@ -1,64 +1,59 @@
-# Offene Blocker nach Architecture v0.5
+# Offene Liefer- und Releasegates nach Architecture v1.0
 
-**Stand:** 2026-09-13
+**Stand:** 20.10.2026 · **Maßgebliche Entscheidung:** [MANUS-2026-10-20-02 – vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md).
 
-Architecture v0.5 ist als technische Grundlage vollständig. Die folgenden fehlenden Produktentscheidungen werden nicht durch Architekturannahmen ersetzt. Jeder betroffene Teilbereich bleibt **fail-closed**, bis die dokumentierte Unblock-Bedingung erfüllt ist. Lokaler Kampagnen-Rätselkern, Grundfortschritt, Save, UI-Scaffold und nicht betroffene Architekturmodule können unabhängig davon umgesetzt werden.
+Die drei früheren fehlenden Produktentscheidungen sind jetzt ausdrücklich entschieden. Sie bleiben unter ihren bekannten IDs nachvollziehbar, ihr **Implementierungs-/Validierungsstatus ist weiterhin offen**. Policyentscheidung ist kein Code-/Geräte-/Human-/Release-PASS. R liefert die Umsetzung und passende Nachweise im großen Gesamtauftrag; keine erneut zu stellenden identischen Produktfragen und keine stille Launchdeaktivierung als angeblich fertiges Produkt.
 
 ## BLOCKER-PROD-001 – Persistenter Hinweisanspruch
 
 | Feld | Inhalt |
 |---|---|
 | Status | **Offen** |
-| Blockierter Bereich | Finale `IHintPolicy`, Hint-Entitlement im Save, reguläres Hilfekontingent und freiwilliges Hinweisvideo. |
-| Fehlende Entscheidung | „Auf jedem neuen Level einmal kostenlos“ ist bestätigt, aber „neu“ ist über Abbruch, mehrere Versuche, Übungsfahrt, Betriebsrevision und Dauerbaustelle nicht präzisiert. Quelle, Größe und Erneuerung des „regulär verfügbaren Hilfekontingents“ sind ebenfalls nicht festgelegt. |
-| Sichere Zwischenregel | Solverhints werden ausschließlich aus dem öffentlichen Puzzle ohne Spielerannahmen bewiesen. Die Auswahl darf keine nicht objektiv fehlerhafte X-, Grau- oder konkrete Annahme als falsch enttarnen. Ist kein sicherer Hinweis auf einer unberührten Zelle verfügbar, wird kein widerspruchsauflösender Hint ausgegeben. |
-| Fail-closed | Keine finale Hint-Economy und kein Rewarded-Hint-Placement veröffentlichen. Ein technischer Fake darf nur Testcredits verwenden. |
-| Benötigte Freigabe | Product Owner entscheidet Lebensdauer/Modusbezug des kostenlosen Anspruchs, reguläre Creditquelle/-menge, Verbrauchszeitpunkt und Verhalten bei technisch nicht lieferbarem Hint. |
-| Abschlussnachweis | Produktdatei fortgeschrieben; `IHintPolicy` per neuem/ersetzendem ADR präzisiert; Save-Migration und Policy-/Rewardtests grün. |
+| Statusbedeutung | Implementierung/gezielte Prüfung fehlt; nicht fehlende Produktentscheidung. |
+| Produktentscheidung | **Beschlossen** – MANUS-2026-10-20-02, P03. |
+| Beschlossene Policy | Drei kostenlose sichere Hintcredits je unveränderlicher Puzzleidentität: Startanspruch plus zwei reguläre Credits; ein freiwilliger persistenter Zusatzcredit je Identität durch aktiv erbetenes Hintvideo. Neustart/Übung/Revision füllen nicht erneut auf. Neue Endlosidentität erhält eigenen gleichen Grundvorrat. |
+| Sicherheitsgrenze | Öffentliche objektiv sichere nicht enttarnende Folgerung; Verbrauch erst nach tatsächlicher Darstellung. Keine Geld-/Punktkäufe, Sterne/Fortschritt unberührt, kein automatischer Werbedruck. Ohne Ads bleiben reguläre Credits. |
+| Fail-closed | Finale Hint-/Rewarded-Hintoperation erst mit realer Identity-/Save-/Credit-/Callbackimplementierung und passenden Tests aktivieren. |
+| Zuständigkeit | R/B/C schließen technische Policykonkretisierung, Saveerweiterung und gezielte Credit-/Replay-/Callback-/Recoverytests innerhalb des Gesamtmandats. |
+| Abschlussnachweis | Tatsächliche Implementierung, neue technische Vertragsänderung falls erforderlich, gebundener integrierter Prüfbericht; keine fingierten Credits oder bloßer Dokumentenabschluss. |
 
-## BLOCKER-PROD-002 – Kalendertag der Betriebslage des Tages
-
-| Feld | Inhalt |
-|---|---|
-| Status | **Offen** |
-| Blockierter Bereich | Anspruchsberechnung und Veröffentlichung der täglichen kostenlosen sowie werbebasierten Teilnahme. |
-| Fehlende Entscheidung | „Einmal pro Kalendertag“ ist bestätigt, aber maßgebliche Zeitzone und Verhalten bei Offlinebetrieb, Reise, Zeitzonenwechsel und manueller Uhränderung fehlen. |
-| Sichere Zwischenregel | Save reserviert einen versionierten `DailyEntitlementRecord`, führt aber keine lokale-/UTC-Anti-Rollback-Policy als Wahrheit ein. |
-| Fail-closed | Betriebslage des Tages bleibt bis zur Freigabe deaktiviert; normale Rätsel und Fortschritt bleiben verfügbar. |
-| Benötigte Freigabe | Product Owner bestätigt Tagesgrenze, Kulanz-/Missbrauchshaltung und Nutzerkommunikation. |
-| Abschlussnachweis | Produktdatei fortgeschrieben; eigenes/ersetzendes ADR; Zustandsautomat sowie Zeitzonen-/Offline-/Uhrtests grün. |
-
-## BLOCKER-PROD-003 – Generator-Qualitätsprofil der Dauerbaustelle
+## BLOCKER-PROD-002 – Betriebslage des Tages
 
 | Feld | Inhalt |
 |---|---|
 | Status | **Offen** |
-| Blockierter Bereich | Veröffentlichung generierter Dauerbaustellenlevel und finale automatische Schwierigkeitszuordnung. |
-| Fehlende Entscheidung | Es existieren bestätigte Qualitätsdimensionen, aber keine kalibrierten Metrikintervalle, Novelty-Metrik/-Schwelle, Referenzfenster oder Freigaberegel je Schwierigkeitsklasse. |
-| Sichere Zwischenregel | Generator und Solver dürfen als internes Tool implementiert und technisch getestet werden. Jeder Kandidat bleibt `DRAFT` und unveröffentlichbar. |
-| Fail-closed | Kein generiertes Level darf in Production erscheinen, solange kein `GeneratorQualityProfile` mit Status `PRODUCT_APPROVED` im Release-Lock steht. |
-| Benötigte Freigabe | Product Owner/Leveldesign kalibrieren Profile aus menschlich geprüften Rätseln; Solver-/Contentverantwortliche versionieren Metrik- und Noveltyvertrag. |
-| Abschlussnachweis | Profil und Referenzkorpus versioniert; Product-Approval dokumentiert; Qualitäts-, Regression- und Human-Review-Gates grün. |
+| Statusbedeutung | Implementierung/gezielte Prüfung fehlt; nicht fehlende Produktentscheidung. |
+| Produktentscheidung | **Beschlossen** – MANUS-2026-10-20-02, P04. |
+| Beschlossene Policy | Lokales Gerätedatum beim Claim; ein kostenloser plus maximal ein freiwilliger Video-Claim. Meldetafel +10/+15/+25 Punkte mit 60/30/10 Prozent; gespeichertes Ergebnis, kein Neustart-Reroll. |
+| Sicherheitsgrenze | Atomare Claim-/Ledger-/Callback-Deduplikation; Offlineuhr nur best-effort, keine Reise-/Zukunftssperre, kein Fortschrittsverlust oder Echtgeld-/Rätselvorteil. |
+| Fail-closed | Finaler Daily-/Video-Claim erst nach realer versionierter Implementierung und Zeitzonen-/Offline-/Uhr-/Replay-/Save-/Callbacktests. |
+| Zuständigkeit | R/B/C dürfen den vollständigen Tag-/Claim-/Privacy-/Videoablauf innerhalb des großen Gesamtauftrags liefern. |
+| Abschlussnachweis | Reale Policy/Save-/UI-/Providerfunktion samt integrierten Grenzfalltests. |
 
-## Bekannte offene Produktpunkte ohne aktuellen Architekturblock
+## BLOCKER-PROD-003 – Dauerbaustelle/Generatorqualität
 
-| Punkt | Warum kein Architecture-v0.5-Blocker |
+| Feld | Inhalt |
 |---|---|
-| Finaler Werbefrei-Preis | Produkt-ID und Adapter sind vorbereitet; Preis blockiert erst Storekonfiguration/öffentlichen Release. |
-| Finale Zwei-/Drei-Sterne-Zeiten | Levelschema erlaubt ausdrücklich `null`; korrekte Lösung und Grundfortschritt funktionieren mit einem Stern. |
-| Finale Touchgesten | Alle Gesten mappen auf dieselben Commands; Domain und Ports bleiben stabil. |
-| Finale Accessibility-/Motionwerte | Architektur enthält semantische UI- und Testgrenzen; konkrete UX-Abnahme folgt separat. |
-| Finale Orientierung | Layout ist konfigurierbar; die Entscheidung verändert keine Domain. |
-| Finale Marke, Assets und Zugkatalog | Asset- und Katalogverträge sind vorbereitet; öffentliche Freigabe bleibt ein späteres Produkt-/Rechtsgate. |
-| Store-, AdMob-, Firebase- und Signingzugänge | Externe Voraussetzungen des Implementierungs-/Release-Work-Packages, nicht der Dokumentarchitektur. |
+| Status | **Offen** |
+| Statusbedeutung | Generator/Kalibrierung/Human-/Qualitätsnachweise fehlen; Produktumfang/Qualitätsdimensionen sind entschieden. |
+| Produktentscheidung | **Beschlossen** – MANUS-2026-10-20-02, P05 und P02. |
+| Beschlossene Policy | Vier Profile nach 240 First Clears, gleiche Regeln, UNIQUE/ohne blindes Raten, versionierte Metrik-/Noveltyfilter und echte menschliche Stichprobe; genaue numerische Bänder aus realen Referenzen/Kandidaten kalibrieren. |
+| Sicherheitsgrenze | Vollständige Identity-/Hash-/Proof-/Savebindung; kampagnen-/recent50-Duplicate-Gate; budgetierter Hintergrundgenerator, keine Währung/Strafe bei Abbruch. |
+| Fail-closed | Keine Production-Endlosaufgabe ohne tatsächliches `PRODUCT_APPROVED`-Qualitätsprofil/Release-Lock, Solvernachweise und die wirkliche menschliche Profilannahme. |
+| Zuständigkeit | R/Puzzlelead besitzen die begrenzte Befugnis zur einmaligen versionierten Profilkonkretisierung und Qualitätsannahme nach echten Referenzen und unabhängiger Nachsicht. |
+| Abschlussnachweis | Reale Engine/Profil/Kandidatenreferenzen, gezielte technische Regression, Humanstichprobe, gebundener integrierter QC-/Lockstand. |
+
+## Weitere reale Liefer- und Releasegates
+
+| Gate | Jetzt entschieden / weiterhin tatsächlich zu liefern |
+|---|---|
+| Mobile UI | Direkt-Tap/Toggle ohne Mehrfachauswahl; stabile Ziele und echte Cartoonoberfläche – aktuelle QAapp bleibt abgelehnt, wirkliche neue Handprüfung erforderlich. |
+| Späte Difficulty/Sternzeiten | Gezielte Last48/10×10-/Abschlussprüfung; bestehende Proxies sind keine Humanzeiten. Alle Launchlevel brauchen valide echte oder nachvollziehbar kalibrierte Zeitklassen. |
+| Kosmetik/Werbefrei | Vierzehn konkrete reine Kosmetikitems, `remove_ads` Non-Consumable, deutscher Basispreis 3,99 € – echte Assets/Katalog/Käufe/Restore/Storepreiswahl noch offen. |
+| Privacy/SDKs | Datensparsame bestehende Google-UMP/AdMob-/Unity-IAP-Linie ohne Analytics/Crashlytics/zweite Mediation – tatsächliche SDK-/Datenfluss-/Consent-/Geräteprüfungen fehlen. |
+| Accounts/Signing/Stores | Tatsächlich autorisierte Apple-/Google-/AdMobrollen, finale IDs/Signing und physische Android-/iOSgeräte früh gebündelt klären. |
+| Recht/Produkt/Store | Reale Logo-/Asset-/Text-/Lizenz-/Datenschutzhinweise qualifiziert prüfen, installierte Produktannahme und konkrete öffentliche Handlung separat freigeben. |
 
 ## Änderungsregel
 
-Ein Blocker wird nicht allein in dieser Datei geschlossen. Zuerst wird die fehlende Produktentscheidung ausdrücklich bestätigt und in der zuständigen Produktquelle persistiert. Danach dokumentiert ein neues oder ersetzendes ADR die technische Folge. Erst ein Work Package mit Tests darf den Status auf **Geschlossen** setzen.
-
-## Referenzen
-
-[1]: ../AGENTS.md "Verbindliche Agentenleitlinie"
-[2]: ../Stammstrecken_Puzzle_Konzept_00-15/06_Fortschritt_Belohnungen_und_Meisterschaft.md "Stammstrecken-Puzzle – Fortschritt, Belohnungen und Meisterschaft"
-[3]: ../Stammstrecken_Puzzle_Konzept_00-15/08_Faire_Monetarisierung_und_Werbeangebote.md "Stammstrecken-Puzzle – Faire Monetarisierung und Werbeangebote"
-[4]: ../Stammstrecken_Puzzle_Konzept_00-15/04_Schwierigkeit_Feldgroessen_und_Levelgenerierung.md "Train Track Spiel – Schwierigkeit, Feldgrößen und Levelgenerierung"
+Offen→Geschlossen bezeichnet einen **echten Liefergateabschluss**, nicht allein eine neue Empfehlung. Im bestehenden großen Scope darf R reale Implementation-/Test-/QCbelege fortschreiben und die passende technische Folgeentscheidung integrieren. Ein Gateway-PASS wird am tatsächlichen Kandidaten gebunden. Neue Produktumfang-/Rechts-/öffentliche Storeentscheidungen bleiben vorbehalten. Keine tägliche Neuerteilung dieses längst vorhandenen Gesamtmandats.

@@ -1,0 +1,124 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-02-05",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 4
+    },
+    "b": {
+      "side": "N",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    2,
+    1,
+    2,
+    2,
+    4
+  ],
+  "columnCounts": [
+    5,
+    4,
+    1,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 2,
+    "position": 5,
+    "titleKey": "level.s1.01.02.05.title",
+    "statusKey": "level.s1.01.02.05.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.02.05.entry",
+    "focus": [
+      "OCCUPANCY",
+      "COMBINATION"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Die volle linke Spalte kreuzt den unteren Anker, aber der Nordport sitzt daneben. Counts 1 in den rechten Spalten erlauben frühe Restzahlabschlüsse; die zwei linken Rückknicke zeigen erneut, warum grau noch keine Gleisform ist.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-02-05-map",
+    "trainMomentId": "draft-s1-01-02-05-train",
+    "resultTextKey": "level.s1.01.02.05.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-02-05/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "5de81478e02fc48f7032a55885ca2f308bd30bd8a28fee0e9cc7c71ff3aedf17"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "target": "IOS",
+    "dllSha256": "cf9c80a4267a01f3201941e6da69e113630fd17317ea2e7310b2d7c63b56c2dd",
+    "actualImports": [
+      {
+        "method": "Open",
+        "entryPoint": "open",
+        "module": "__Internal"
+      },
+      {
+        "method": "Flock",
+        "entryPoint": "flock",
+        "module": "__Internal"
+      },
+      {
+        "method": "Close",
+        "entryPoint": "close",
+        "module": "__Internal"
+      }
+    ],
+    "ReadOnlyCloseOnExecFlagsIL": "20000000012A",
+    "expectedNativeConstantPresent": true
+  },
+  {
+    "target": "ANDROID",
+    "dllSha256": "5fac7a8fae9bee5498326b9389ca166fae2f2661e29b63bc52d58bac6f73c526",
+    "actualImports": [
+      {
+        "method": "Open",
+        "entryPoint": "open",
+        "module": "libc"
+      },
+      {
+        "method": "Flock",
+        "entryPoint": "flock",
+        "module": "libc"
+      },
+      {
+        "method": "Close",
+        "entryPoint": "close",
+        "module": "libc"
+      }
+    ],
+    "ReadOnlyCloseOnExecFlagsIL": "20000008002A",
+    "expectedNativeConstantPresent": true
+  }
+]

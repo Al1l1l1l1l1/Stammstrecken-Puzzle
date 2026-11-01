@@ -1,0 +1,9 @@
+# Review progress source contract (S execution detail, before adapter code)
+
+This is an isolated technical reader contract accepted by R on 2026-10-19. It activates no product catalog or excluded capability.
+
+`ReviewCampaign.catalog.json` is a closed, schema-valid `campaign-v2` DRAFT document. It contains exactly S1, five sections S1-01..05, four routes in each section, and twelve ordered public puzzle IDs per route. Every unlock is explicitly `{kind:"ALWAYS",requiredSubjectIds:[]}`. Unknown fields, duplicates, version changes and non-DRAFT status are rejected. Membership is resolved only against the injected `IPublicPuzzleCatalog`, whose use must be IsolatedReview and approval Draft, with exactly those 240 unique public identities.
+
+`ReviewCompletion.catalog.json` has exactly `reviewCompletionContractVersion:1`, `completionCatalog`, `starTimes`. The inner `completionCatalog` is closed schema-valid completion-v1 DRAFT with exactly five reward records: LEVEL_FIRST_CLEAR/LEVEL/15, LEVEL_SECOND_STAR/LEVEL/5, LEVEL_THIRD_STAR/LEVEL/10, ROUTE_CLEAR/ROUTE/60, SECTION_CLEAR/SECTION/150; every cardinality is ONCE_PER_SUBJECT. It contains explicit schema-valid completionMoments metadata. `starTimes` is exactly 240 unique ordered records with exactly `{puzzleId:string,twoStarMs:null,threeStarMs:null}`. Missing times, omitted rows, zero or numeric thresholds are errors, never defaults. Unknown properties or versions are rejected.
+
+Catalog IDs are `qa-public240-v1-campaign` and `qa-public240-v1-completion`. Each CatalogIdentity uses SHA256 of its complete JCS source. The completion hash covers the entire wrapper including all null time rows and membership, rather than only the inner document. CompletionValues binds each row to the exact injected public identity and this exact wrapper catalog identity. The aggregate binds all three catalog identities through the shared T canonical port. No A assembly or fixture runtime dependency is introduced.

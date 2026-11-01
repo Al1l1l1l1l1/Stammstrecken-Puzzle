@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Season-1-Content-Bible
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Konkrete Produktion:** 240 DRAFT/Reviewinstanzen sind vorhanden, kein Neuaufbau allein aus dieser Content-Bible. Ihr vollständiger Productionimport und gezielte späte Qualitätskorrektur laufen in A/B. Vorhandene zwanzig Routen-/240 Titelbögen bleiben; 480 Map-/Trainreferenzen werden mit wiederverwendbaren echten Welt-/Objekt-/Fahrtbausteinen vollständig aufgelöst, nicht als 480 Unikatbilder beauftragt. Finale Sternewerte benötigen echte Zeitklassentests.
+
 **Status:** Maßgebliche Content-Architektur für Season 1  
 **Einordnung:** Konzeptbaustein 14  
 **Zweck:** Dieses Dokument übersetzt den bestätigten Rätselkern in einen vollständigen, produzierbaren Kampagnenrahmen. Es definiert die 240 Störungsmeldungen als 20 Routen mit jeweils zwölf Rätseln. Ein späterer Chat, Leveldesigner oder Entwickler kann daraus konkrete Leveldaten erzeugen, prüfen und einordnen.

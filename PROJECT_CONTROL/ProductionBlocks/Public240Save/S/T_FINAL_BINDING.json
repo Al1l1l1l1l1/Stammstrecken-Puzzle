@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "t": "925ca608a961ac26c84385c8da3b949f609df883",
+  "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+  "parent": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+  "readyForChildAnchors": true,
+  "releasedAtUtc": "2026-10-19T09:36:03.910Z",
+  "authority": "R/Codex exclusively under MANUS-2026-10-19-01 section5; separate technical execution acceptance after actual independent PASS and required regular CI, no product/main/release approval",
+  "independentReviews": [
+    "T_CLOSEOUT_QC.md/.json PASS_CODE_AND_DOCUMENTATION_DELTA at D",
+    "T_D_INDEPENDENT_RAW_QC.md/.json PASS_RAW_GIT_BLOB_AND_AUTHORITY_DELTA_ONLY",
+    "entry_audit T_D_CI.md/.json D_REGULAR_CI_PASS; independent from T code"
+  ],
+  "workflowRuns": [
+    {
+      "id": 39224770669,
+      "name": "Architecture Validation",
+      "event": "push",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "path": ".github/workflows/validate.yml",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "updated_at": "2026-10-19T08:43:44Z",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770669"
+    },
+    {
+      "id": 39224770689,
+      "name": "Unity CI",
+      "event": "push",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "path": ".github/workflows/unity.yml",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "updated_at": "2026-10-19T09:24:27Z",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689"
+    }
+  ],
+  "licensedJobReleaseUtc": {
+    "117968400200": "2026-10-19T08:49:27.9731482Z",
+    "117970765569": "2026-10-19T08:52:56.2101562Z",
+    "117972117245": "2026-10-19T09:09:25.3839517Z",
+    "117978722428": "2026-10-19T09:24:19.9148500Z"
+  },
+  "reports": [
+    {
+      "name": "T_D_CI.md",
+      "bytes": 6620,
+      "sha256": "0efc52fc4f4c386b49545e041323c507b09b8382cea2b42d7cd06379169d1205"
+    },
+    {
+      "name": "T_D_CI_EVIDENCE.json",
+      "bytes": 64960,
+      "sha256": "a48558ac84ca0ffb1412cab9fc58d5ad4c5c90f9fedfb48a860514418e047f5e"
+    },
+    {
+      "name": "T_D_RAW_BLOB_BINDINGS.json",
+      "bytes": 10314,
+      "sha256": "95c22d3ac0a80ac36c38ef0c2f5f06b842af0c3b2c3ceb7788f391a7029ec855"
+    },
+    {
+      "name": "T_D_INDEPENDENT_RAW_QC.md",
+      "bytes": 2736,
+      "sha256": "1441ed9eb3643b781dc4d7a0f0afa20cfdf773b338263c8950fbdf3220bd74bc"
+    },
+    {
+      "name": "T_D_INDEPENDENT_RAW_QC.json",
+      "bytes": 16780,
+      "sha256": "28f2b4b048f70088d86453a907293c1c8bf67077536cb923fc85178381cc578c"
+    },
+    {
+      "name": "T_D_ROOT_TERMINAL_RUN_CHECK.json",
+      "bytes": 987,
+      "sha256": "848ad801b6bcf2c97343e139d9cc100b56b80febed5f52fb58d86926ec534a00"
+    },
+    {
+      "name": "T_D_DURABLE_PACK.json",
+      "bytes": 1969628,
+      "sha256": "1113f76cd319a22d6789beda56f75ac3419221ed090ce3d60289ca0024985e23"
+    }
+  ],
+  "remoteRefsAfterFreshFetch": {
+    "main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "development": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+    "t": "925ca608a961ac26c84385c8da3b949f609df883"
+  },
+  "procedure": "Both child WP+immutable manifest first additions have sole parent/base exactly this completed T. Identical full binding embedded in both WPs. Original reports copied byte-identically into each own child evidence scope after anchors. No T single merge; LA/LS then isolated P then own prospective I then separate expected-HEAD non-main integration.",
+  "formalCompletion": "T is technically fully completed and released as common base now. Formal shared CURRENT_STATE/WP/queue completion updates are owned by later prospective I, as previously accepted. Full user mandate remains active."
+}

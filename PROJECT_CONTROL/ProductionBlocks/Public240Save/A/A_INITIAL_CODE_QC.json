@@ -1,0 +1,731 @@
+{
+  "reviewer": "/root/entry_audit",
+  "atUtc": "2026-10-19T10:22:06.092Z",
+  "verdict": "BLOCKED_TWO_CONCRETE_HIGHS",
+  "sourceSnapshot": {
+    "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-native/04-before/SNAPSHOT.json",
+    "utc": "2026-10-19T10:12:15.597Z",
+    "sha256": "4c89e5cb9bf0241c77041da70966fc0dd903d5ad71d31e66326ece4a2b03f3a9",
+    "head": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+    "manifest": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d"
+  },
+  "mandatorySources": [
+    {
+      "path": "AGENTS.md",
+      "sha": "3108fb90f25d584462f7c32bccef25d77b11d487ee0768ed2e46dc9123a53a80",
+      "equalsPreviouslyFullyReadS": true
+    },
+    {
+      "path": "Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md",
+      "sha": "eacd955f2067f752e73ab79f48bbef30e24a7d440894be8e963e2c362d6bfe73",
+      "equalsPreviouslyFullyReadS": true
+    },
+    {
+      "path": "Stammstrecken_Puzzle_Konzept_00-15/00_Train_Track_Konzeptindex.md",
+      "sha": "7f5069febd285e795c75e58c447418b7e09d4b950fe57ca556f6b28d8c8a121a",
+      "equalsPreviouslyFullyReadS": true
+    },
+    {
+      "path": "Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md",
+      "sha": "573eb087b772a72d04d61bac64ffd79889d2f43633ea95f92113577b69d35edf",
+      "equalsPreviouslyFullyReadS": true
+    },
+    {
+      "path": "PROJECT_CONTROL/CURRENT_STATE.md",
+      "sha": "cafccbf704b6b827fc93af9094bcff675dfb502efc0f4707b868578e2f491bfe",
+      "equalsPreviouslyFullyReadS": true
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+      "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+      "bytes": 3241,
+      "snapshotSha": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+      "matchesSnapshot": true
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "218e9207c60415049705f2eca41598b59b9802908ffdf549c43e3ed170bc2df0",
+      "bytes": 10513,
+      "snapshotSha": "218e9207c60415049705f2eca41598b59b9802908ffdf549c43e3ed170bc2df0",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+      "sha256": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d",
+      "bytes": 18399,
+      "snapshotSha": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+      "sha256": "93ea9d2826e55b8ca37dc504d4d835faf365538ebe4d2c6648ace4ef55c101ca",
+      "bytes": 240,
+      "snapshotSha": "93ea9d2826e55b8ca37dc504d4d835faf365538ebe4d2c6648ace4ef55c101ca",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+      "sha256": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31",
+      "bytes": 7848,
+      "snapshotSha": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+      "sha256": "8cae5fbe26f00b5b684cbe0376c06a7a44988bea324813b98587e3cc62bb74bf",
+      "bytes": 240,
+      "snapshotSha": "8cae5fbe26f00b5b684cbe0376c06a7a44988bea324813b98587e3cc62bb74bf",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+      "sha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a",
+      "bytes": 25609,
+      "snapshotSha": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+      "sha256": "42f870f734e5d62d9e220b827e78a67283fb0719836913946188787a0368ce54",
+      "bytes": 240,
+      "snapshotSha": "42f870f734e5d62d9e220b827e78a67283fb0719836913946188787a0368ce54",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+      "sha256": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98",
+      "bytes": 17164,
+      "snapshotSha": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+      "sha256": "639015aa3fc576e55ff87d4069748207f8c50eb917b6cb34194722c39c5d71f0",
+      "bytes": 240,
+      "snapshotSha": "639015aa3fc576e55ff87d4069748207f8c50eb917b6cb34194722c39c5d71f0",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "sha256": "3b029bcb856d46852201a4af675b938a7d23fbb53f4561945b5ba7f994c83e94",
+      "bytes": 12190,
+      "snapshotSha": "3b029bcb856d46852201a4af675b938a7d23fbb53f4561945b5ba7f994c83e94",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+      "sha256": "4a4bbf4efa84838a8beaf673c8492b1270766affcaf4b44ecd7b1c142fed7716",
+      "bytes": 240,
+      "snapshotSha": "4a4bbf4efa84838a8beaf673c8492b1270766affcaf4b44ecd7b1c142fed7716",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "sha256": "1c72a318bf9381e84da9f9fd462318437d423f85d419b772716fb4294a8139dd",
+      "bytes": 12448,
+      "snapshotSha": "1c72a318bf9381e84da9f9fd462318437d423f85d419b772716fb4294a8139dd",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+      "sha256": "02fac5a52e0d2c532329d1f62c1c44bf706c1f9c0ace78c4f1b09b3e6ac95e6d",
+      "bytes": 240,
+      "snapshotSha": "02fac5a52e0d2c532329d1f62c1c44bf706c1f9c0ace78c4f1b09b3e6ac95e6d",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+      "sha256": "a1576b17c284857c37a3f2c34d0cfa3a994a150038239c37e5e4308f75bde136",
+      "bytes": 2122,
+      "snapshotSha": "a1576b17c284857c37a3f2c34d0cfa3a994a150038239c37e5e4308f75bde136",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+      "sha256": "a2f64cd19873fe3502522604f51cd7237bf19142ae5fd7b727416bccc20b2fd7",
+      "bytes": 279,
+      "snapshotSha": "a2f64cd19873fe3502522604f51cd7237bf19142ae5fd7b727416bccc20b2fd7",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+      "sha256": "65fc147d3b5a520929ce9a3dc676a993d9f5b2ed1eed892569e2578074abc5ae",
+      "bytes": 3247,
+      "snapshotSha": "65fc147d3b5a520929ce9a3dc676a993d9f5b2ed1eed892569e2578074abc5ae",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+      "sha256": "e2a02ac416ebe67b8bcad1e46b7ae1b3ad376999ac68a9f1bf5e4a5f1747f3da",
+      "bytes": 333,
+      "snapshotSha": "e2a02ac416ebe67b8bcad1e46b7ae1b3ad376999ac68a9f1bf5e4a5f1747f3da",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+      "sha256": "21de6049e3351629324a342f1c6f3b00636fc404a58beb929db5651647ba95bf",
+      "bytes": 5266,
+      "snapshotSha": "21de6049e3351629324a342f1c6f3b00636fc404a58beb929db5651647ba95bf",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+      "sha256": "23403ae2901dbd8d5eeb27bd48132eea6adfb6307f2c7d26691c10d3f06b0a8b",
+      "bytes": 155,
+      "snapshotSha": "23403ae2901dbd8d5eeb27bd48132eea6adfb6307f2c7d26691c10d3f06b0a8b",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+      "sha256": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "bytes": 1910,
+      "snapshotSha": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+      "sha256": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "bytes": 186,
+      "snapshotSha": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+      "sha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+      "bytes": 166484,
+      "snapshotSha": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+      "sha256": "b698ee2dace1a4906e6dce0a597ae41e6463005627498b735f7a2d1555deca6d",
+      "bytes": 155,
+      "snapshotSha": "b698ee2dace1a4906e6dce0a597ae41e6463005627498b735f7a2d1555deca6d",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+      "sha256": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "bytes": 1919,
+      "snapshotSha": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+      "sha256": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "bytes": 152,
+      "snapshotSha": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+      "sha256": "df9603721ec5e9876a886c2d378a0a3f35a246f18d7dd1bb972bc46ef6fce9b3",
+      "bytes": 15716,
+      "snapshotSha": "df9603721ec5e9876a886c2d378a0a3f35a246f18d7dd1bb972bc46ef6fce9b3",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+      "sha256": "7fde8aab61ef52afc397e703bffc23a8c63eeae2994aea3512d2dd00083e17bf",
+      "bytes": 240,
+      "snapshotSha": "7fde8aab61ef52afc397e703bffc23a8c63eeae2994aea3512d2dd00083e17bf",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+      "sha256": "38eb3478e63d47538a41a712c788917bfdafe533dad747b46c1bd5d154c5930e",
+      "bytes": 7843,
+      "snapshotSha": "38eb3478e63d47538a41a712c788917bfdafe533dad747b46c1bd5d154c5930e",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+      "sha256": "9a271b0155f38b6d56a6f98eaf4086eea54d7a0fbf71ab3fccd589a0190b5325",
+      "bytes": 240,
+      "snapshotSha": "9a271b0155f38b6d56a6f98eaf4086eea54d7a0fbf71ab3fccd589a0190b5325",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+      "sha256": "d5a8383bad4c5757512b2ae0f32da47784380e47fcb0867e14dd17a508a5cc08",
+      "bytes": 4282,
+      "snapshotSha": "d5a8383bad4c5757512b2ae0f32da47784380e47fcb0867e14dd17a508a5cc08",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+      "sha256": "932b0298f12f266cb7b31ef608c2c6251ec4dc6f262ea4e455714c7ca576a3b1",
+      "bytes": 240,
+      "snapshotSha": "932b0298f12f266cb7b31ef608c2c6251ec4dc6f262ea4e455714c7ca576a3b1",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+      "sha256": "15791e0c52db5ba3aaefdea551303fb0810ccac8c4edf72d5f43733566e00c45",
+      "bytes": 22698,
+      "snapshotSha": "15791e0c52db5ba3aaefdea551303fb0810ccac8c4edf72d5f43733566e00c45",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+      "sha256": "1e7a74e1590bd0f5b1d9a053a75f205a6cf222a497ba312b06879cb8ba635d2f",
+      "bytes": 240,
+      "snapshotSha": "1e7a74e1590bd0f5b1d9a053a75f205a6cf222a497ba312b06879cb8ba635d2f",
+      "matchesSnapshot": true
+    },
+    {
+      "path": "tools/public240/project.cjs",
+      "sha256": "f54925d02e0bbbfcc58b0855061e7e3df13020bd35bf4ec489e751d6aaaa56b2",
+      "bytes": 4801,
+      "snapshotSha": null,
+      "matchesSnapshot": false
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+      "sha256": "c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0",
+      "bytes": 122976,
+      "snapshotSha": null,
+      "matchesSnapshot": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "A-QC-01",
+      "priority": "High",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "line": 168,
+      "summary": "Completed old ride retained across Results->Restart->Solve before next Update blocks new TrainRide by stale old attempt",
+      "ownerConfirmed": true,
+      "executedByReviewer": false,
+      "required": "Finished-branch own ride disposal/null and true no-yield consecutive-solve regression"
+    },
+    {
+      "id": "A-QC-02",
+      "priority": "High",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "line": 37,
+      "summary": "Missing-panel Creation name Public240 Public240Review Panel differs from delivered Public240ReviewPanelSettings; current test only no-op/reimport",
+      "executedCreationByReviewer": false,
+      "required": "Exact Creation/checked-in artifact contract and isolated clean generation byte evidence"
+    }
+  ],
+  "otherConcreteHighs": [],
+  "dataChecks": {
+    "count": 964,
+    "failures": [],
+    "currentAssetSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+    "currentCatalogSha256": "f64721318b2fffa5179cfc3acef8aa2176115717c02f15c1f3a581dab6b562a4",
+    "currentLockSha256": "c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0",
+    "historicalGitAudit": {
+      "source": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+      "at": "2026-10-19T09:48:16.383Z",
+      "method": "Independent Git cat-file --batch binary framing and raw SHA256, separate closed field allowlist, deep field equality against all exact source documents; public semantic hash computation separately checked by canonical Node22 double projection and C# loader tests",
+      "reusedOnIdenticalAssetAndAll240CurrentLockRows": true,
+      "rerunByReviewer": false
+    },
+    "finalProjectorDoubleCheckPending": true
+  },
+  "metaChecks": {
+    "snapshotMetas": 219,
+    "ownMetas": 16,
+    "findings": []
+  },
+  "native04": {
+    "receiptSha256": "13a95bba52ab71640bdfe4c925da24ed9b281284f16b6d756496ce821448257b",
+    "xml": {
+      "id": "2",
+      "testcasecount": "22",
+      "result": "Passed",
+      "total": "22",
+      "passed": "22",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-19 10:12:51Z",
+      "end-time": "2026-10-19 10:13:01Z",
+      "duration": "9,9792181"
+    },
+    "command": {
+      "flags": [
+        "-force-d3d11",
+        "-screen-width",
+        "960",
+        "-screen-height",
+        "840",
+        "-runTests",
+        "-testPlatform",
+        "PlayMode",
+        "-testFilter",
+        "STP.Tests.Bootstrap.PlayMode.Public240ReviewSmokeTests;STP.Tests.Presentation.PlayMode.Public240ReviewPresenterTests"
+      ],
+      "mode": "Nonbatch actual normal Game view, hidden process window; no nographics or manual image transform",
+      "actualExitCode": 0,
+      "env": {
+        "STP_REQUIRE_GRAPHICS": "1",
+        "STP_GRAPHICS_OUTPUT": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-native/04-screen/images"
+      }
+    },
+    "editor": {
+      "productVersion": "6000.3.23f1_09d2ecc7fb28",
+      "fileVersion": "6000.3.23.643820",
+      "renderer": "Actual D3D11/AMD Radeon RX9070XT"
+    },
+    "all43EmbeddedPayloads": [
+      {
+        "name": "graphics.xml",
+        "bytes": 31167,
+        "sha256": "07a5c227c001f52fba1e380d08714b03c3b1c2a9be8c7a277e54440fdceb8860",
+        "matches": true,
+        "profile": "Original unmodified NUnit XML bytes"
+      },
+      {
+        "name": "graphics.log",
+        "bytes": 265746,
+        "sha256": "90f2ae39526a22928090b5b45ad66bb155c31d0b03d23cf22503ef2b0a161cd7",
+        "matches": true,
+        "profile": "Complete decoded UTF8 log, LF normalized, sensitive account/license lines explicitly replaced; raw hash separately bound"
+      },
+      {
+        "name": "SNAPSHOT.json",
+        "bytes": 163769,
+        "sha256": "4c89e5cb9bf0241c77041da70966fc0dd903d5ad71d31e66326ece4a2b03f3a9",
+        "matches": true,
+        "profile": "Original complete source/backup inventory before actual native candidate run, not accepted delivery freeze"
+      },
+      {
+        "name": "DELTA.json",
+        "bytes": 2660,
+        "sha256": "395b036421c00bf6242221cd54352ecba8c0c4a1a0078cd85183b05385f34870",
+        "matches": true,
+        "profile": "Original inspected automatic-settings/restore record"
+      },
+      {
+        "name": "editor-auto-settings.patch",
+        "bytes": 15910,
+        "sha256": "667595d34206eabcd36a9b11cd97ab197b8ca8bb77af6d8bfeeb9cf7814de0fd",
+        "matches": true,
+        "profile": "Original inspected automatic settings diff; not delivered product settings"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+        "bytes": 18399,
+        "sha256": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+        "bytes": 240,
+        "sha256": "93ea9d2826e55b8ca37dc504d4d835faf365538ebe4d2c6648ace4ef55c101ca",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+        "bytes": 7848,
+        "sha256": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+        "bytes": 240,
+        "sha256": "8cae5fbe26f00b5b684cbe0376c06a7a44988bea324813b98587e3cc62bb74bf",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+        "bytes": 25609,
+        "sha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+        "bytes": 240,
+        "sha256": "42f870f734e5d62d9e220b827e78a67283fb0719836913946188787a0368ce54",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+        "bytes": 17164,
+        "sha256": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+        "bytes": 240,
+        "sha256": "639015aa3fc576e55ff87d4069748207f8c50eb917b6cb34194722c39c5d71f0",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+        "bytes": 12190,
+        "sha256": "3b029bcb856d46852201a4af675b938a7d23fbb53f4561945b5ba7f994c83e94",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+        "bytes": 240,
+        "sha256": "4a4bbf4efa84838a8beaf673c8492b1270766affcaf4b44ecd7b1c142fed7716",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+        "bytes": 12448,
+        "sha256": "1c72a318bf9381e84da9f9fd462318437d423f85d419b772716fb4294a8139dd",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+        "bytes": 240,
+        "sha256": "02fac5a52e0d2c532329d1f62c1c44bf706c1f9c0ace78c4f1b09b3e6ac95e6d",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+        "bytes": 2122,
+        "sha256": "a1576b17c284857c37a3f2c34d0cfa3a994a150038239c37e5e4308f75bde136",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+        "bytes": 279,
+        "sha256": "a2f64cd19873fe3502522604f51cd7237bf19142ae5fd7b727416bccc20b2fd7",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+        "bytes": 3247,
+        "sha256": "65fc147d3b5a520929ce9a3dc676a993d9f5b2ed1eed892569e2578074abc5ae",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+        "bytes": 333,
+        "sha256": "e2a02ac416ebe67b8bcad1e46b7ae1b3ad376999ac68a9f1bf5e4a5f1747f3da",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+        "bytes": 5266,
+        "sha256": "21de6049e3351629324a342f1c6f3b00636fc404a58beb929db5651647ba95bf",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+        "bytes": 155,
+        "sha256": "23403ae2901dbd8d5eeb27bd48132eea6adfb6307f2c7d26691c10d3f06b0a8b",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+        "bytes": 1910,
+        "sha256": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+        "bytes": 186,
+        "sha256": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+        "bytes": 166484,
+        "sha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+        "bytes": 155,
+        "sha256": "b698ee2dace1a4906e6dce0a597ae41e6463005627498b735f7a2d1555deca6d",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+        "bytes": 1919,
+        "sha256": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+        "bytes": 152,
+        "sha256": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+        "bytes": 15716,
+        "sha256": "df9603721ec5e9876a886c2d378a0a3f35a246f18d7dd1bb972bc46ef6fce9b3",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+        "bytes": 240,
+        "sha256": "7fde8aab61ef52afc397e703bffc23a8c63eeae2994aea3512d2dd00083e17bf",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+        "bytes": 7843,
+        "sha256": "38eb3478e63d47538a41a712c788917bfdafe533dad747b46c1bd5d154c5930e",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+        "bytes": 240,
+        "sha256": "9a271b0155f38b6d56a6f98eaf4086eea54d7a0fbf71ab3fccd589a0190b5325",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+        "bytes": 4282,
+        "sha256": "d5a8383bad4c5757512b2ae0f32da47784380e47fcb0867e14dd17a508a5cc08",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+        "bytes": 240,
+        "sha256": "932b0298f12f266cb7b31ef608c2c6251ec4dc6f262ea4e455714c7ca576a3b1",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+        "bytes": 22698,
+        "sha256": "15791e0c52db5ba3aaefdea551303fb0810ccac8c4edf72d5f43733566e00c45",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+        "bytes": 240,
+        "sha256": "1e7a74e1590bd0f5b1d9a053a75f205a6cf222a497ba312b06879cb8ba635d2f",
+        "matches": true,
+        "profile": "Exact own native candidate source/asset/meta/test bytes; historical evidence outside player assets"
+      },
+      {
+        "name": "automatic-after/ProjectSettings/GraphicsSettings.asset",
+        "bytes": 2615,
+        "sha256": "27d267ac0ca95aab34055c1b3e74ebc17780e358d6556a8f0cd7bb52697dd9f3",
+        "matches": true,
+        "profile": "Original auto-output archived then restored to exact previous bytes"
+      },
+      {
+        "name": "automatic-after/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json",
+        "bytes": 64,
+        "sha256": "a40f81b0dcc795e422f5ca0881fe7dad4e26cb8fdb33244a70f110835c1a8d44",
+        "matches": true,
+        "profile": "Original auto-output archived then restored to exact previous bytes"
+      },
+      {
+        "name": "automatic-after/ProjectSettings/ProjectSettings.asset",
+        "bytes": 24376,
+        "sha256": "9e95c453012f3411d8b8ad6f00b0e7bfd4903a3d392a5da1b13334943cfe702a",
+        "matches": true,
+        "profile": "Original auto-output archived then restored to exact previous bytes"
+      },
+      {
+        "name": "automatic-after/ProjectSettings/QualitySettings.asset",
+        "bytes": 10138,
+        "sha256": "fb5340fbeff6c883c9cf24b76a3b7a160bf511e785a4d6740b32cebd236967a3",
+        "matches": true,
+        "profile": "Original auto-output archived then restored to exact previous bytes"
+      },
+      {
+        "name": "automatic-after/ProjectSettings/ShaderGraphSettings.asset",
+        "bytes": 633,
+        "sha256": "6fead5a816c4eed70f224d5472340ecf1ea0b4de4f87d5926bb17fa10ffb3dc9",
+        "matches": true,
+        "profile": "Original auto-output archived then restored to exact previous bytes"
+      },
+      {
+        "name": "EditorGeneratedPackageManagerSettings.asset",
+        "bytes": 1132,
+        "sha256": "d5368f5e862d6964716ec46cedfb30ee9b2ee274cd5aef5436f6c74dcf1c4797",
+        "matches": true,
+        "profile": "Original own untracked generated settings bytes, archived then removed"
+      }
+    ],
+    "images": [
+      {
+        "name": "A_NATIVE_04_public240-4x4.png",
+        "sha256": "99a37433fd2abb33227e374dbf4673a55a21503d2141edad7d99c940ca6ec555",
+        "matches": true
+      },
+      {
+        "name": "A_NATIVE_04_public240-10x10.png",
+        "sha256": "de139801f34a0045dac27d957ee01c9b74a4bae5dba616b1aaa15c28558e5659",
+        "matches": true
+      },
+      {
+        "name": "A_NATIVE_04_public240-picker.png",
+        "sha256": "de139801f34a0045dac27d957ee01c9b74a4bae5dba616b1aaa15c28558e5659",
+        "matches": true
+      },
+      {
+        "name": "A_NATIVE_04_public240-ride.png",
+        "sha256": "2de8f1cdbe59f55e282267efc24afb4b5d87d948c04577f21aef8e40b7886f62",
+        "matches": true
+      },
+      {
+        "name": "A_NATIVE_04_public240-results.png",
+        "sha256": "14d48c64b1f255d2e57173606cb5df3e926849cdf3e48f7b20b635dc01fd0789",
+        "matches": true
+      }
+    ],
+    "reviewerPersonallyViewed": [
+      "A_NATIVE_04_public240-4x4.png",
+      "A_NATIVE_04_public240-10x10.png",
+      "A_NATIVE_04_public240-ride.png",
+      "A_NATIVE_04_public240-results.png"
+    ],
+    "pickerEvidence": "Exact duplicate10x10; closed picker only"
+  },
+  "scopeAssessment": "Read against immutable manifest, snapshot-reported paths and unchanged shared selector bytes; canonical final scope/CI owned by R",
+  "boundaries": {
+    "gitActions": false,
+    "unityActions": false,
+    "ciActions": false,
+    "sourceChanges": false,
+    "writes": "Only ignored root .utmp/public240-tools review reports",
+    "notAccepted": [
+      "A delivery freeze",
+      "regular A CI",
+      "human240 pass",
+      "product/main/release",
+      "persisted S/I behavior"
+    ]
+  }
+}

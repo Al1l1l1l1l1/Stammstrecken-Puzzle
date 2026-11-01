@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-19T11:06:35.205Z",
+  "reviewer": "entry_audit independent read-only",
+  "verdict": "PASS_NARROW_FS_WRITER_SOURCE_AND_SUPPLEMENTAL_ORIGINAL_GAPS_CLOSED",
+  "sources": [
+    {
+      "p": "SaveFileSystem.cs",
+      "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736",
+      "packEqual": true
+    },
+    {
+      "p": "AtomicSaveRepository.cs",
+      "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba",
+      "packEqual": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_FINAL_GAPS.json",
+      "bytes": 2295922,
+      "sha256": "31293ad4e278288d2bb2f8039cde38e798fd5168028f79e3948e8493aee853f5"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_OS_HANDLE_EVIDENCE.json",
+      "bytes": 583770,
+      "sha256": "e75b7503658aba2e6cd0ef3d8c856228a85f3647a93819ec2d0ecb1d7d972da1"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_TIMEOUT_EVIDENCE.json",
+      "bytes": 138188,
+      "sha256": "30d0540a53024e64f90d82dbffb5aa5ecaa26f879d7dc95b71f49d846d87d880"
+    }
+  ],
+  "verifiedPayloads": [
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\WINDOWS_TIMEOUT_BOUND_EVIDENCE.json",
+      "bytes": 526192,
+      "sha256": "fa27350082efee64b79058d1bcd098a80986b57891e84b69dd1daf4e068ad177"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/sourceAndCommands/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\TimeoutProcess.cs",
+      "bytes": 3817,
+      "sha256": "22ef83bd7ef3388f3e213d8494b009e42d41d58f7c2150d3f51d9fb306b08516"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/sourceAndCommands/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\TimeoutProcess.rsp",
+      "bytes": 24011,
+      "sha256": "af42364b1a7af6f335461354bfe99065fab462a2479c2acd32b059deaf1dd953"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/sourceAndCommands/2",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\compile.txt",
+      "bytes": 131,
+      "sha256": "376effd16100e28690a5f05be5258a4dcf4ecaa0363803d95c506d42473a9160"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/sourceAndCommands/3",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run.cjs",
+      "bytes": 4184,
+      "sha256": "4f9554351a8c92029d296d4754fed04a7fa498d9b1d98c19c2d716146c28746d"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\nunit.framework.dll",
+      "bytes": 291840,
+      "sha256": "25466626abfea654a068abc579be018d8ef164fbb5415856230de2b8fc4795d5"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Application.dll",
+      "bytes": 131072,
+      "sha256": "09bc2bf8c840c17555a582ad0a352ea1800b0305f7b3658d89684d42c3c76f99"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/2",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Infrastructure.Content.dll",
+      "bytes": 109568,
+      "sha256": "1177b9d49896e52dc95d4e272be64540ff68cbeb4853b7564782ce61c30f7bc3"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/3",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Infrastructure.Persistence.dll",
+      "bytes": 146944,
+      "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/4",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Infrastructure.Persistence.pdb",
+      "bytes": 51896,
+      "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/5",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Puzzle.Domain.dll",
+      "bytes": 36352,
+      "sha256": "d9a95e268d1142e03fdf7b516e3e9331dd91da438c774be8293cefcb1f7b145a"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/6",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Tests.Application.EditMode.dll",
+      "bytes": 45568,
+      "sha256": "cf16e85e7dae0303b13485ecc88c1b40da568cae26992836cbd5ca2f7882175e"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/7",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\STP.Tests.Persistence.EditMode.dll",
+      "bytes": 65024,
+      "sha256": "8366049f41458d79f03ec2c8d82a05dc8c2fee857d6d2c3fd6d732f13cde1766"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/actualAssemblies/8",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\TimeoutProcess.exe",
+      "bytes": 8192,
+      "sha256": "9de5159fef725e06666205319e33e3a172a5b515b553dc06a056844f426074f1"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/pausedRuntimeSources/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Scripts\\Infrastructure\\Persistence\\SaveFileSystem.cs",
+      "bytes": 18373,
+      "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/report/decodedJson/pausedRuntimeSources/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Scripts\\Infrastructure\\Persistence\\AtomicSaveRepository.cs",
+      "bytes": 22637,
+      "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\holder.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\holder.stdout.txt",
+      "bytes": 248,
+      "sha256": "c90b5b4e54d084e5cac69c4246aa2f1dda1301fd73bebcbacad3b159edd8995c"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/2",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\provision.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/3",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\provision.stdout.txt",
+      "bytes": 108,
+      "sha256": "de72e41719ef4583805fb1d504719065b4d1e1669cb935310265ec80011fb3ea"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/4",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/windowsTimeout/originalOutputFiles/5",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\windows-timeout\\run-2026-10-19T10-56-50.025Z\\waiter.stdout.txt",
+      "bytes": 181,
+      "sha256": "12353eb4f40fc859f464092020ec1046d235a0aa521becefeb109f1c1eea2e2b"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/afterArchiveMoveRetry/originals/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\atomic-finalized-move-retry-current-results.xml",
+      "bytes": 4268,
+      "sha256": "19add1e2bf932ffb7b4d2123a6f79f48ba7375282e6eee6ab0e44e1c526b0973"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/afterArchiveMoveRetry/originals/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\atomic-finalized-move-retry-current-run.txt",
+      "bytes": 4276,
+      "sha256": "4d949a34acd9f415dde5e0f33c78ea8a4f1e9b3c48cf8169affc9fbf06a7f57d"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/sourceBindings/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Tests\\EditMode\\Persistence\\AtomicSaveRepositoryTests.cs",
+      "bytes": 46151,
+      "sha256": "0544e72188e49c651279969784f32cc0749ccdbf8f5016df48c26c868c0a49de"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/sourceBindings/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Tests\\EditMode\\Persistence\\AtomicSaveRepositoryTests.cs.meta",
+      "bytes": 60,
+      "sha256": "ad626d4519c4266c94717031d5e8b60780491d7849ebbe2d914176f0fda0f733"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/sourceBindings/2",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Scripts\\Infrastructure\\Persistence\\SaveFileSystem.cs",
+      "bytes": 18373,
+      "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/sourceBindings/3",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\Assets\\StammstreckenPuzzle\\Scripts\\Infrastructure\\Persistence\\AtomicSaveRepository.cs",
+      "bytes": 22637,
+      "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/runtimeAndTestAssemblies/0",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Infrastructure.Persistence.dll",
+      "bytes": 146944,
+      "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/runtimeAndTestAssemblies/1",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Infrastructure.Persistence.pdb",
+      "bytes": 51896,
+      "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/runtimeAndTestAssemblies/2",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Tests.Persistence.EditMode.dll",
+      "bytes": 2627072,
+      "sha256": "a8ac5afd8f2d4a7f9151b7721a0ca75dc656e1b10542f3b1aa9347f64ec45cf3"
+    },
+    {
+      "path": "ATOMIC_FINAL_GAPS.json/runtimeAndTestAssemblies/3",
+      "name": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Tests.Persistence.EditMode.pdb",
+      "bytes": 37104,
+      "sha256": "e4110895579460bab352c55cf3ee63f9dff572517cf486f678631a2fa2cce946"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/0",
+      "name": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "bytes": 18373,
+      "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/1",
+      "name": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "bytes": 22637,
+      "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/2",
+      "name": "run-2026-10-19T10-49-58.253Z/LINUX_INTERPROCESS.json",
+      "bytes": 26038,
+      "sha256": "1cbc986a084fb4939dcfb38aa3855870f73bb576bd2ad216626362e6e50669e8"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/3",
+      "name": "run-2026-10-19T10-49-58.253Z/cancel-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/4",
+      "name": "run-2026-10-19T10-49-58.253Z/cancel-owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "d749c8a2ad679d89a8b248225b0cfae517f9d9eace46b77735ef9243b9888b12"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/5",
+      "name": "run-2026-10-19T10-49-58.253Z/cancel-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/6",
+      "name": "run-2026-10-19T10-49-58.253Z/cancel-waiter.stdout.txt",
+      "bytes": 138,
+      "sha256": "edfa00a91de48f19663f4b86da2b9b1c94c9902d62a8534a05f8dc4b90b37470"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/7",
+      "name": "run-2026-10-19T10-49-58.253Z/killed-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/8",
+      "name": "run-2026-10-19T10-49-58.253Z/killed-owner.stdout.txt",
+      "bytes": 482,
+      "sha256": "ed69a039f472245bb6a205e50c8d6a8da76dc97a6f18cfa54131702d01286959"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/9",
+      "name": "run-2026-10-19T10-49-58.253Z/killed-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/10",
+      "name": "run-2026-10-19T10-49-58.253Z/killed-waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "a342703f7fe171115f100b4356e0e16ffed020731dd0a7dfd540c192b2e8786f"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/11",
+      "name": "run-2026-10-19T10-49-58.253Z/mono-version.txt",
+      "bytes": 419,
+      "sha256": "4968b0d94b44e13b6a50d822c234aee8b2760b75e7c257cf74a1874eab38570d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/12",
+      "name": "run-2026-10-19T10-49-58.253Z/owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/13",
+      "name": "run-2026-10-19T10-49-58.253Z/owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "0964f98ab2c56e8cf27fc9d376e6d1265584a735083b324a0a65d7beab6481ea"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/14",
+      "name": "run-2026-10-19T10-49-58.253Z/provision.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/15",
+      "name": "run-2026-10-19T10-49-58.253Z/provision.stdout.txt",
+      "bytes": 100,
+      "sha256": "65d55cf5eadd0ecb75b8944f224bf9cb9ce31dadb32652b5c8d33342a3953898"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/16",
+      "name": "run-2026-10-19T10-49-58.253Z/waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/17",
+      "name": "run-2026-10-19T10-49-58.253Z/waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "88b0a87865484570b31f74899ccf9422e21d0581e57fd9500d0f3075e6c6992d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/18",
+      "name": "run-2026-10-19T10-51-16.894Z/LINUX_INTERPROCESS.json",
+      "bytes": 26038,
+      "sha256": "94733bfe2b76a770449adf110d764988f7fdb686f03b88cdee377ad0e820fd52"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/19",
+      "name": "run-2026-10-19T10-51-16.894Z/cancel-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/20",
+      "name": "run-2026-10-19T10-51-16.894Z/cancel-owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "fef6ec4b9be1f1eb4e90cc37810c52e101f26c8e8346089cd8388931fdae68ad"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/21",
+      "name": "run-2026-10-19T10-51-16.894Z/cancel-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/22",
+      "name": "run-2026-10-19T10-51-16.894Z/cancel-waiter.stdout.txt",
+      "bytes": 138,
+      "sha256": "5fdfffaeb6ba961ee15bf149839633bbdbe4115f7981ec5f76862c36d7c3d80d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/23",
+      "name": "run-2026-10-19T10-51-16.894Z/killed-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/24",
+      "name": "run-2026-10-19T10-51-16.894Z/killed-owner.stdout.txt",
+      "bytes": 482,
+      "sha256": "7d2b742e11fc31b8caf25d17b29ac20c22bfd96acc88286a5cecf6bd7973784e"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/25",
+      "name": "run-2026-10-19T10-51-16.894Z/killed-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/26",
+      "name": "run-2026-10-19T10-51-16.894Z/killed-waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "89fa829266a774c85604c85036758e9354c403eab058dcd96a0061f8f65f172c"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/27",
+      "name": "run-2026-10-19T10-51-16.894Z/mono-version.txt",
+      "bytes": 419,
+      "sha256": "4968b0d94b44e13b6a50d822c234aee8b2760b75e7c257cf74a1874eab38570d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/28",
+      "name": "run-2026-10-19T10-51-16.894Z/owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/29",
+      "name": "run-2026-10-19T10-51-16.894Z/owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "0e274822728db849876dd0066d721dbdbec41094b1b2c07714400ceef9cfc1e4"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/30",
+      "name": "run-2026-10-19T10-51-16.894Z/provision.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/31",
+      "name": "run-2026-10-19T10-51-16.894Z/provision.stdout.txt",
+      "bytes": 100,
+      "sha256": "792c2c36cf34717aa62b7d94858611a185e59e94432d9e5d7876abac41337a18"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/32",
+      "name": "run-2026-10-19T10-51-16.894Z/waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/33",
+      "name": "run-2026-10-19T10-51-16.894Z/waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "8ec6836787b203797fbc57d6bf5a3ae6bc67f80e82bdbe5752840e1530fee209"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/34",
+      "name": "run-2026-10-19T10-52-00.099Z/LINUX_INTERPROCESS.json",
+      "bytes": 31294,
+      "sha256": "4be93a402347ee57d25e5a26d9130603a6972bb0b922f3c753246f295f0fd250"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/35",
+      "name": "run-2026-10-19T10-52-00.099Z/cancel-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/36",
+      "name": "run-2026-10-19T10-52-00.099Z/cancel-owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "dae7231cd2c4bee85333d4d4e339e67b3d91dd483b5221e7d2469e19077695f2"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/37",
+      "name": "run-2026-10-19T10-52-00.099Z/cancel-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/38",
+      "name": "run-2026-10-19T10-52-00.099Z/cancel-waiter.stdout.txt",
+      "bytes": 138,
+      "sha256": "cb9764c6fcad210de6decf3d32de837992670af64ac62544e452ea08d1189b46"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/39",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-a.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/40",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-a.stdout.txt",
+      "bytes": 140,
+      "sha256": "d3cb6b6a11a34ac6d95b2983640aab3dc4709a23e8625d01fd6cc91aee6d5f6c"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/41",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-b.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/42",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-b.stdout.txt",
+      "bytes": 163,
+      "sha256": "78b624ecbe2985c6534b2ff046d89f508871a781281414f53319a3119e4c3cfc"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/43",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/44",
+      "name": "run-2026-10-19T10-52-00.099Z/cas-owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "4085c53aae6af77075523c47009cc9bd9e85b50b87ac8e24e4bd0ad751572bd4"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/45",
+      "name": "run-2026-10-19T10-52-00.099Z/fresh-load.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/46",
+      "name": "run-2026-10-19T10-52-00.099Z/fresh-load.stdout.txt",
+      "bytes": 107,
+      "sha256": "1c62f25f8a78aeef654d70a3fdb541c9cb1873b9e35df97e99403293ef5ed1d8"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/47",
+      "name": "run-2026-10-19T10-52-00.099Z/killed-owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/48",
+      "name": "run-2026-10-19T10-52-00.099Z/killed-owner.stdout.txt",
+      "bytes": 135,
+      "sha256": "6868b73f9fa1b7bd8aa5d763e78eb73851eee93e89d82540114999dfb5289326"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/49",
+      "name": "run-2026-10-19T10-52-00.099Z/killed-waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/50",
+      "name": "run-2026-10-19T10-52-00.099Z/killed-waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "817c758e9088adceb6b43d9d5d489420e137cf64e9f6fbbfea350954d36a2e1b"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/51",
+      "name": "run-2026-10-19T10-52-00.099Z/mono-version.txt",
+      "bytes": 419,
+      "sha256": "4968b0d94b44e13b6a50d822c234aee8b2760b75e7c257cf74a1874eab38570d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/52",
+      "name": "run-2026-10-19T10-52-00.099Z/owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/53",
+      "name": "run-2026-10-19T10-52-00.099Z/owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "dae87ab82f62e4a44130f9fb929bff96d56e851d1c5ec5ec25835bf522d23aa5"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/54",
+      "name": "run-2026-10-19T10-52-00.099Z/provision.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/55",
+      "name": "run-2026-10-19T10-52-00.099Z/provision.stdout.txt",
+      "bytes": 100,
+      "sha256": "b90c9b7341164046d3990c9f044abfd611b631b4c2a89fe31d799bbd19a841c7"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/56",
+      "name": "run-2026-10-19T10-52-00.099Z/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/57",
+      "name": "run-2026-10-19T10-52-00.099Z/seed.stdout.txt",
+      "bytes": 95,
+      "sha256": "d8d25231209ee587b61367976f6b62170f897fb312730ee37b8498dab8d418c1"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/58",
+      "name": "run-2026-10-19T10-52-00.099Z/waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/59",
+      "name": "run-2026-10-19T10-52-00.099Z/waiter.stdout.txt",
+      "bytes": 177,
+      "sha256": "4fe6f8f87b71cd339b9724d07377cde0e51b7c2b49a48542530fb35247eca0e0"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/60",
+      "name": "harness/LockProcess.cs",
+      "bytes": 3251,
+      "sha256": "1ce971c765c739fbf59d0de5ba41011515600d31a2458761b21204d0481f53f2"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/61",
+      "name": "harness/run-linux.cjs",
+      "bytes": 7476,
+      "sha256": "9f6159db7e1dd7aec929f3fbf4985d4984e93e380ef78392d78b58cfd3bfb78f"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/62",
+      "name": "harness/run-linux-initial-missing-kill.cjs",
+      "bytes": 7458,
+      "sha256": "21f46c392534eda2ac1ca6736575080b2e5e6e73d1e12d95f92097f164c82b97"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/63",
+      "name": "harness/fix-kill.cjs",
+      "bytes": 572,
+      "sha256": "93a4c081a40054b55c335d5152aa0b1d74243b4d2ce5e78dd4e0888a3022091c"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/64",
+      "name": "actual-binary/LockProcess.exe",
+      "bytes": 7680,
+      "sha256": "467f9b6768969f21131d6eec0c113dec25d043a55d13f34126b841261cd75953"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/65",
+      "name": "actual-binary/STP.Infrastructure.Persistence.dll",
+      "bytes": 146944,
+      "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/66",
+      "name": "actual-binary/STP.Infrastructure.Persistence.pdb",
+      "bytes": 51896,
+      "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/67",
+      "name": "actual-binary/STP.Application.dll",
+      "bytes": 131072,
+      "sha256": "09bc2bf8c840c17555a582ad0a352ea1800b0305f7b3658d89684d42c3c76f99"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/68",
+      "name": "actual-binary/STP.Puzzle.Domain.dll",
+      "bytes": 36352,
+      "sha256": "d9a95e268d1142e03fdf7b516e3e9331dd91da438c774be8293cefcb1f7b145a"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/69",
+      "name": "actual-binary/STP.Infrastructure.Content.dll",
+      "bytes": 109568,
+      "sha256": "1177b9d49896e52dc95d4e272be64540ff68cbeb4853b7564782ce61c30f7bc3"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/70",
+      "name": "actual-binary/STP.Tests.Persistence.EditMode.dll",
+      "bytes": 65024,
+      "sha256": "8366049f41458d79f03ec2c8d82a05dc8c2fee857d6d2c3fd6d732f13cde1766"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/71",
+      "name": "actual-binary/STP.Tests.Application.EditMode.dll",
+      "bytes": 45568,
+      "sha256": "cf16e85e7dae0303b13485ecc88c1b40da568cae26992836cbd5ca2f7882175e"
+    },
+    {
+      "path": "S_LINUX_OS_HANDLE_EVIDENCE.json/packs/72",
+      "name": "actual-binary/nunit.framework.dll",
+      "bytes": 291840,
+      "sha256": "25466626abfea654a068abc579be018d8ef164fbb5415856230de2b8fc4795d5"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/0",
+      "name": "LINUX_TIMEOUT.json",
+      "bytes": 5883,
+      "sha256": "7a728b2313f661b157ba338357f401b3b3212621f09b3402e782efc3e7f816bb"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/1",
+      "name": "TimeoutProcess.cs",
+      "bytes": 3817,
+      "sha256": "22ef83bd7ef3388f3e213d8494b009e42d41d58f7c2150d3f51d9fb306b08516"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/2",
+      "name": "TimeoutProcess.rsp",
+      "bytes": 24011,
+      "sha256": "af42364b1a7af6f335461354bfe99065fab462a2479c2acd32b059deaf1dd953"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/3",
+      "name": "run-linux-timeout.cjs",
+      "bytes": 5035,
+      "sha256": "2f7459100a66f3f778506fb51fcd772795cd124a2621fc5c30ea8f33ed3261cc"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/4",
+      "name": "owner.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/5",
+      "name": "owner.stdout.txt",
+      "bytes": 228,
+      "sha256": "d13719f5de30b342d90ac17f7686eb416f635186b7c485347db8532a3a8460f9"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/6",
+      "name": "provision.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/7",
+      "name": "provision.stdout.txt",
+      "bytes": 98,
+      "sha256": "d9635ec6277b4f18b2b46ea2587814da7ed14979c0b124fa83f9ec5914595d1a"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/8",
+      "name": "waiter.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/9",
+      "name": "waiter.stdout.txt",
+      "bytes": 169,
+      "sha256": "eb0566b24f9c9c18463ab59f041eddc2990176df595247d6ea57f514b7249996"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/10",
+      "name": "actual-binary/TimeoutProcess.exe",
+      "bytes": 8192,
+      "sha256": "9de5159fef725e06666205319e33e3a172a5b515b553dc06a056844f426074f1"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/11",
+      "name": "actual-binary/STP.Infrastructure.Persistence.dll",
+      "bytes": 146944,
+      "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+    },
+    {
+      "path": "S_LINUX_TIMEOUT_EVIDENCE.json/payloads/12",
+      "name": "actual-binary/STP.Infrastructure.Persistence.pdb",
+      "bytes": 51896,
+      "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+    }
+  ],
+  "checks": {
+    "all118GzipPayloadByteHashRoundtrips": true,
+    "originalLinux12Process15CheckReportByteIdenticalToPreviouslyRead": true,
+    "windowsTimeout": {
+      "milliseconds": 30007,
+      "processes": 3,
+      "checks": 6,
+      "holderHeldUntilExplicitRelease": true
+    },
+    "linuxTimeout": {
+      "milliseconds": 30013,
+      "processes": 3,
+      "checks": 7,
+      "holderHeldUntilExplicitRelease": true,
+      "rootFileCountAfter": 0
+    },
+    "sameWindowsAndLinuxTimeoutHarness": {
+      "sourceSha256": "22ef83bd7ef3388f3e213d8494b009e42d41d58f7c2150d3f51d9fb306b08516",
+      "exeSha256": "9de5159fef725e06666205319e33e3a172a5b515b553dc06a056844f426074f1",
+      "holderBarrierMs": 60000,
+      "productTimeoutMs": 30000
+    },
+    "afterFinalMoveOriginalXml": {
+      "sha256": "19add1e2bf932ffb7b4d2123a6f79f48ba7375282e6eee6ab0e44e1c526b0973",
+      "actualPassed": 2,
+      "total": 2,
+      "failed": 0,
+      "skip": 0,
+      "originalsUnchangedBeforeRetry": true,
+      "freshRepositoryAndRecoveryOrMigrationRetry": true,
+      "finalArchiveBytesExactBeforeAndAfterRetry": true
+    },
+    "priorRuntimeCompilerBinding": "S_FS_COMPILER_METADATA_QC.json PortablePDB documents and PE CodeView exact verified; current identical ba58c171 runtime"
+  },
+  "findingsClosed": [
+    "S-FS-01 partial final archive retry",
+    "S-REPO-01 OS HResult lowdisk"
+  ],
+  "openSourceHighs": [],
+  "boundaries": [
+    "Previous299/299 plus actual additive2/2, no single301 run claim.",
+    "Windows Unity-installed Mono standalone and Linux Mono6.12.0.182 pinned Docker/WSL supplement, no UnityEditor or player/device execution by reviewer.",
+    "No physical power-loss, Android or iOS/APFS runtime claim; required regular S CI and whole S independent review remain open.",
+    "Two diagnosed missing-/bin/kill harness abort originals preserved separately and not counted as product passes."
+  ]
+}

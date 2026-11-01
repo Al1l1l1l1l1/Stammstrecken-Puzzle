@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T17:31:06.190Z",
+  "decisionId": "WP043-CI-RECOVERY-01",
+  "actor": "R / technical execution coordinator under MANUS-2026-10-19-01 section5",
+  "decision": "APPROVED_ONE_TARGETED_JOB_RECOVERY",
+  "source": {
+    "sha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "acceptedSourceF2": "242712d1b99202fd18273dc28ef2fd12aff71cab"
+  },
+  "target": {
+    "workflowRunId": 39287505617,
+    "originalAttempt": 1,
+    "jobId": 118179021831,
+    "jobName": "unity-compile-editmode",
+    "operation": "rerun_workflow_job; this job and its three skipped dependent jobs only",
+    "maximumRerunCalls": 1
+  },
+  "actualCause": "Canceling since a higher priority waiting request for unity-personal-seat exists",
+  "basis": {
+    "cancelOriginalsSha256": "4c80cec8c4c9fad50552ed714850f245f3f638c2a26b7837cf4053e4bb40874e",
+    "independentCausePlanSha256": "924bbf99ab92c7fcd2cf963179d7fa38b495cb1fc480564751b1a0d9bf8ff6cd",
+    "actualPrCiFile": "I_INTEGRATED_PR_CI_EVIDENCE.json",
+    "actualPrCiSha256": "e0aa666b79467dcca5e392c1d5dc374bafd201a2f83d5cb713ee7b0b4c0f6a27",
+    "independentPrAcceptance": {
+      "file": "I_MI_PR31_COMPLETE_CI_INDEPENDENT_QC.json",
+      "sha256": "188668941d3dc80fe77e80d16192980e13beec7bdaf836929806a653f5094579",
+      "ciEvidenceSha256": "e0aa666b79467dcca5e392c1d5dc374bafd201a2f83d5cb713ee7b0b4c0f6a27"
+    },
+    "activityAuditSha256": "594487ff2d433c0eee48eb0838edd44adf7bba5b5a61a746c7e1550edb6434b2",
+    "freshRemoteRefs": {
+      "raw": "1af988cd73a7267796fb3b6fd77204166241a07a\trefs/heads/codex/wp-036-vollstaendige-textbibliothek\n925ca608a961ac26c84385c8da3b949f609df883\trefs/heads/codex/wp-040-public240-save-technikbasis\n7d2e99837cd3910d11ed5f01ea67e8d06acba2c4\trefs/heads/codex/wp-041-public240-interne-prueffassung\n3746184ca75eb439de918896e9b88aa238cff893\trefs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt\n242712d1b99202fd18273dc28ef2fd12aff71cab\trefs/heads/codex/wp-043-public240-gespeicherte-integration\nd90e798dd9b26d3f152f3b0c2d1d52cae641eb16\trefs/heads/main",
+      "actual": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "1af988cd73a7267796fb3b6fd77204166241a07a",
+        "refs/heads/codex/wp-040-public240-save-technikbasis": "925ca608a961ac26c84385c8da3b949f609df883",
+        "refs/heads/codex/wp-041-public240-interne-prueffassung": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt": "3746184ca75eb439de918896e9b88aa238cff893",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    }
+  },
+  "conditionsSatisfied": {
+    "prRunCompletedSuccess": true,
+    "prActualOriginalSeatReleases": 4,
+    "noOtherInProgressUnityRun": true,
+    "noLocalUnity": true,
+    "frozenSourceAndTargetClean": true,
+    "refsExactlyExpected": true
+  },
+  "preservation": "Original push attempt1 remains CANCELLED; original six successful preparation jobs remain historical and will not be presented as re-executed. New actual attempt/job IDs, checkout, XML/coverage/builds and all four releases must be independently verified.",
+  "boundary": "One causally justified recovery after removing simultaneous own-chain contention; no workflow, source, scope, license, gate or timeout modification; no full rerun of successful preparations, no random green retry, no final integrated/I16 PASS by this decision."
+}

@@ -1,0 +1,1227 @@
+{
+  "decision_id": "WP-036-CREATIVE-01",
+  "execution_authorization": "Ownerauftrag 17.10.2026 23:51:05 CEST: vollständige Korrektur und Koordinator-Abschlussmeldung.",
+  "before_commit": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
+  "source_path": "Content/Localization/source/de-DE.json",
+  "before_sha256": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
+  "after_sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+  "scope_sha256": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+  "entries_total": 1408,
+  "changed_entries": 110,
+  "unchanged_entries": 1298,
+  "changed_copy_fields": 120,
+  "field_counts": {
+    "text": 109,
+    "shortText": 11
+  },
+  "protected_unchanged": {
+    "level_titles": 240,
+    "internal_entries": 240,
+    "ui_entries": 308,
+    "blocked_product_entries": 70
+  },
+  "scope_result": "EXACT_MATCH_NO_OTHER_SOURCE_PROPERTIES_CHANGED",
+  "changes": [
+    {
+      "key": "level.s1.01.04.02.status",
+      "field": "text",
+      "old": "Der aktuelle Stand wird derzeit durch einen aktuelleren ersetzt.",
+      "new": "Der Aushang ändert die Abfahrt. Der Bahnsteig wartet noch auf die passende Zeile.",
+      "reason": "Bindet den Änderungswitz an Aushang und wartenden Bahnsteig statt an einen abstrakten Bearbeitungsstand.",
+      "old_codepoints": 64,
+      "new_codepoints": 81,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.01.04.03.result",
+      "field": "text",
+      "old": "Die Strecke ist gültig. Bei der Uhrzeit bleibt redaktioneller Spielraum.",
+      "new": "Die selbst gebaute Strecke führt von A nach B. Die Anzeigetafel sucht weiter nach einer Uhrzeit.",
+      "reason": "Würdigt die konkrete eigene A–B-Verbindung in der Spielwelt und belässt die Uhrzeit als trockene Anzeigeunsicherheit.",
+      "old_codepoints": 72,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.01.04.04.status",
+      "field": "text",
+      "old": "Für die neue Uhrzeit fehlt nur noch die Zustimmung des Betriebsverlaufs.",
+      "new": "Die neue Abfahrtszeit wird abgestimmt. Die Wartenden am Bahnsteig erfahren sie danach.",
+      "reason": "Macht aus der Abstimmung eine unmittelbar erfahrbare Abfahrts- und Wartesituation.",
+      "old_codepoints": 72,
+      "new_codepoints": 86,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.01.04.06.status",
+      "field": "text",
+      "old": "Die Änderung des Plans wird in den Plan der Änderungen aufgenommen.",
+      "new": "Die Umplanung führt über einen anderen Bahnsteig. Die Wegweisung wird noch angepasst.",
+      "reason": "Entwickelt den Planänderungszirkel als konkrete Folge für Weg und Bahnsteig weiter.",
+      "old_codepoints": 67,
+      "new_codepoints": 85,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.01.04.08.status",
+      "field": "text",
+      "old": "Die Teilpläne werden verbunden, sobald ihre Unterschiede vollständig erfasst sind.",
+      "new": "Die Wegweiser zeigen zum selben Bahnsteig, sobald sie sich über die Richtung geeinigt haben.",
+      "reason": "Überführt den Teilplanwitz in widersprüchliche Wegweisung mit klarer Fahrgastfolge.",
+      "old_codepoints": 82,
+      "new_codepoints": 92,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.02.06.status",
+      "field": "text",
+      "old": "Die Gegenrichtung wird bei einer späteren Betrachtung der Gesamtlage mitgedacht.",
+      "new": "Auf dem freien Gleis fährt heute nur eine Richtung. Die Gegenrichtung wartet dienstlich am Signal.",
+      "reason": "Macht den eingleisigen Richtungsengpass und die wartende Gegenrichtung konkret sichtbar.",
+      "old_codepoints": 80,
+      "new_codepoints": 98,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.02.06.result",
+      "field": "text",
+      "old": "Der Engpass lässt wieder eine Verbindung zu. Die Gegenrichtung bleibt eine gesonderte Betrachtung.",
+      "new": "Ihre Strecke führt durch den Engpass. Die Gegenrichtung darf sich weiter gedulden.",
+      "reason": "Würdigt die eigene befahrbare Verbindung, ohne eine Gegenfahrt zu versprechen.",
+      "old_codepoints": 98,
+      "new_codepoints": 82,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.02.07.status",
+      "field": "text",
+      "old": "Die Planung kennt weiterhin beide Richtungen. Der Betrieb arbeitet schrittweise daran.",
+      "new": "Die Fahrtrichtung wird am freien Gleis entschieden. Der Bahnsteig darf so lange mitdenken.",
+      "reason": "Verlegt die Abstraktion an das freie Gleis und zeigt die Fahrgastfolge am Bahnsteig.",
+      "old_codepoints": 86,
+      "new_codepoints": 90,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.02.07.result",
+      "field": "text",
+      "old": "Ein durchgehender Weg ist frei. Die Planung bekommt wieder einen tatsächlichen Bezug.",
+      "new": "Der Zug hat jetzt einen durchgehenden Weg. Für diese Richtung reicht das eine Gleis.",
+      "reason": "Macht die freigespielte Durchfahrt als nutzbaren Weg durch den Engpass sichtbar.",
+      "old_codepoints": 85,
+      "new_codepoints": 84,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.02.08.status",
+      "field": "text",
+      "old": "Zur Rückfahrt wird auf die laufende Gesamtbetrachtung des Hinwegs verwiesen.",
+      "new": "Für die Rückfahrt bleibt das Signal rot. Der Hinweg darf sich nicht davon stören lassen.",
+      "reason": "Ersetzt die Selbstverwaltung durch eine konkrete Signal- und Fahrtrichtungslage.",
+      "old_codepoints": 76,
+      "new_codepoints": 88,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.02.08.result",
+      "field": "text",
+      "old": "Die Gesamtbetrachtung hat eine Verbindung hervorgebracht. Ein erfreulich praktisches Ergebnis.",
+      "new": "Ihre Strecke macht den Hinweg befahrbar. Für die Rückfahrt bleibt die Gesamtschau zuständig.",
+      "reason": "Der gelöste Hinweg wird praktisch gewürdigt; der Rückweg bleibt satirisch offen.",
+      "old_codepoints": 94,
+      "new_codepoints": 92,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.01.status",
+      "field": "text",
+      "old": "Die Anfrage ist eingegangen. Zum Eingang der Antwort liegen noch keine Angaben vor.",
+      "new": "Das Stellwerk schweigt. Vor dem Signal wartet bereits die erste Fahrt.",
+      "reason": "Setzt das Schweigen des Stellwerks in eine konkrete Signal- und Wartesituation.",
+      "old_codepoints": 83,
+      "new_codepoints": 70,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.01.result",
+      "field": "text",
+      "old": "Die erste Strecke steht. Eine brauchbare Antwort in Gleisform.",
+      "new": "Die erste Strecke ist gebaut. Das Signal darf die Nachricht später nachreichen.",
+      "reason": "Stellt die gebaute Strecke der verspäteten Signalkommunikation als praktische Antwort gegenüber.",
+      "old_codepoints": 62,
+      "new_codepoints": 79,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.02.status",
+      "field": "text",
+      "old": "Die Rückfrage zur ausstehenden Antwort wurde erfolgreich der ursprünglichen Anfrage zugeordnet.",
+      "new": "Am Signal wartet die Fahrt. Am Bahnsteig wartet man auf die Rückfrage zur Freigabe.",
+      "reason": "Verbindet die Rückfragenpointe mit wartender Fahrt und Bahnsteigfolge.",
+      "old_codepoints": 95,
+      "new_codepoints": 83,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.02.result",
+      "field": "text",
+      "old": "Die Verbindung ist geklärt. Die Zuordnung der Rückfragen verliert an Bedeutung.",
+      "new": "Die Verbindung führt weiter. Die Rückfrage darf am Bahnsteig auf ihren Einsatz warten.",
+      "reason": "Die selbst gebaute Verbindung überholt die verwaltungstechnische Rückfrage praktisch.",
+      "old_codepoints": 79,
+      "new_codepoints": 86,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.03.status",
+      "field": "text",
+      "old": "Das Stellwerk prüft, ob bereits eine Aussage zum Stand der Rückmeldung möglich ist.",
+      "new": "Das Stellwerk prüft noch. Vor dem roten Signal füllt sich der Bahnsteig.",
+      "reason": "Bindet die verzögerte Rückmeldung an Signal und sichtbar wartenden Bahnsteig.",
+      "old_codepoints": 83,
+      "new_codepoints": 72,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.03.result",
+      "field": "text",
+      "old": "Die Strecke beantwortet die wichtigste Frage: Eine Verbindung ist möglich.",
+      "new": "Die Durchfahrt ist gebaut. Die Rückmeldung kann ihr hinterherfahren.",
+      "reason": "Die Verbindung wird als Durchfahrt erlebbar; die Rückmeldung bleibt der Satire nachgeordnet.",
+      "old_codepoints": 74,
+      "new_codepoints": 68,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.04.status",
+      "field": "text",
+      "old": "Eine Antwort wird vorbereitet, sobald der Antwortbedarf abschließend bestätigt ist.",
+      "new": "Das Signal bleibt rot. Die wartende Fahrt hat davon bereits Kenntnis.",
+      "reason": "Ersetzt den Antwortkreislauf durch eine konkrete Signal- und Fahrtfolge.",
+      "old_codepoints": 83,
+      "new_codepoints": 69,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.04.result",
+      "field": "text",
+      "old": "Der Antwortbedarf ist gesunken. Die Verbindung steht bereits fest.",
+      "new": "Der Zugweg ist frei. Das Stellwerk darf die Freigabe nun in Ruhe formulieren.",
+      "reason": "Würdigt den freien, selbst gebauten Zugweg vor der nachträglichen Stellwerksformulierung.",
+      "old_codepoints": 66,
+      "new_codepoints": 77,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.05.status",
+      "field": "text",
+      "old": "Die nächste Information wird voraussichtlich weitere Informationen ankündigen.",
+      "new": "Die Durchsage kündigt eine neue Meldung an. Der Zug wartet auf den praktischen Teil.",
+      "reason": "Bricht die Informationsrekursion an einem konkreten Signal und wartenden Zug.",
+      "old_codepoints": 78,
+      "new_codepoints": 84,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.05.result",
+      "field": "text",
+      "old": "Die Strecke liefert mehr als eine Ankündigung. Sie führt bis B.",
+      "new": "Ihre Strecke liefert den praktischen Teil: Der Zug fährt von A nach B.",
+      "reason": "Setzt den zentralen Leistungsbeweis – die eigene A–B-Fahrt – an die Stelle der Ankündigung.",
+      "old_codepoints": 63,
+      "new_codepoints": 70,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.06.status",
+      "field": "text",
+      "old": "Die Hintergrundarbeit wird durch das unveränderte Vordergrundergebnis bestätigt.",
+      "new": "Im Stellwerk wird gearbeitet. Vor dem Signal bleibt der Alltag vorsichtshalber stehen.",
+      "reason": "Macht aus der Hintergrundarbeit eine konkrete Stellwerks- und Signalstörung.",
+      "old_codepoints": 80,
+      "new_codepoints": 86,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.06.result",
+      "field": "text",
+      "old": "Das Ergebnis ist jetzt sichtbar: Die Strecke verbindet A und B.",
+      "new": "Ihr Zugweg verbindet A und B. Die Arbeit im Hintergrund hat jetzt etwas vorzuzeigen.",
+      "reason": "Die A–B-Strecke ist der sichtbare, verdiente Gegenbeweis zur unsichtbaren Arbeit.",
+      "old_codepoints": 63,
+      "new_codepoints": 84,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.07.status",
+      "field": "text",
+      "old": "Der laufende Vorgang wurde erfolgreich als weiterhin laufend erfasst.",
+      "new": "Das Signal hält sich bedeckt. Am Bahnsteig wird der Aufenthalt zur Maßnahme.",
+      "reason": "Übersetzt den fortlaufenden Vorgang in eine konkrete, satirische Wartezeit am Bahnsteig.",
+      "old_codepoints": 69,
+      "new_codepoints": 76,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.07.result",
+      "field": "text",
+      "old": "Der Vorgang hat ein Ende gefunden. Die Strecke hat zwei miteinander verbundene.",
+      "new": "Ihre Strecke beendet den Aufenthalt. Der Zug kann den Stellwerksabschnitt durchfahren.",
+      "reason": "Der Abschluss löst die zuvor konkrete Wartefolge durch eine befahrbare eigene Strecke ein.",
+      "old_codepoints": 79,
+      "new_codepoints": 86,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.08.status",
+      "field": "text",
+      "old": "Die ausstehende Antwort berücksichtigt bereits die nächste ausstehende Rückfrage.",
+      "new": "Das Stellwerk bearbeitet weiter. Vor dem Signal wächst inzwischen eine zweite Warteschlange.",
+      "reason": "Macht die Folge der ausstehenden Antworten als konkrete Warteschlange sichtbar.",
+      "old_codepoints": 81,
+      "new_codepoints": 92,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.08.result",
+      "field": "text",
+      "old": "Für die ausstehenden Rückfragen liegt nun eine befahrbare Verbindung vor.",
+      "new": "Ihre Strecke führt durch den Abschnitt. Die wartenden Fragen dürfen am Bahnsteig bleiben.",
+      "reason": "Die Route wird befahrbar, während die Bürokratie als Bahnsteigpointe zurückbleibt.",
+      "old_codepoints": 73,
+      "new_codepoints": 89,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.09.status",
+      "field": "text",
+      "old": "Am Status wird festgehalten, bis sein Inhalt hinreichend bekannt ist.",
+      "new": "Das Signal bleibt unentschlossen. Der Bahnsteig füllt die Zeit mit Warten.",
+      "reason": "Ersetzt den Status-Selbstbezug durch eine erkennbare Signal- und Fahrgastlage.",
+      "old_codepoints": 69,
+      "new_codepoints": 74,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.09.result",
+      "field": "text",
+      "old": "Die Strecke ist eindeutig. Der Status darf sich dieser Klarheit anschließen.",
+      "new": "Ihre Strecke ist klar befahrbar. Das Signal darf sich diesem seltenen Zustand anschließen.",
+      "reason": "Die eigene klare Strecke wird der weiterhin zögerlichen Signallage gegenübergestellt.",
+      "old_codepoints": 76,
+      "new_codepoints": 90,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.10.status",
+      "field": "text",
+      "old": "Die bisherige Meldung wird verlängert, damit keine Informationslücke entsteht.",
+      "new": "Die Durchsage läuft weiter, weil am Signal weiterhin niemand weiterläuft.",
+      "reason": "Verankert die fortgeschriebene Meldung in Durchsage, Signal und ausbleibender Fahrt.",
+      "old_codepoints": 78,
+      "new_codepoints": 73,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.10.result",
+      "field": "text",
+      "old": "Die Verbindung schließt die wichtigste Lücke. Die Meldung kann kürzer werden.",
+      "new": "Ihre Verbindung schließt die Lücke im Fahrweg. Die Durchsage kann nun kürzer werden.",
+      "reason": "Der gebaute Fahrweg ist die konkrete Leistung; die Durchsage folgt erst danach.",
+      "old_codepoints": 77,
+      "new_codepoints": 84,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.11.status",
+      "field": "text",
+      "old": "Die Rückmeldung liegt vor. Ihr Bezug zur ursprünglichen Anfrage wird hergestellt.",
+      "new": "Das Stellwerk hat sich gemeldet. Am Bahnsteig wird geprüft, ob die Fahrt gemeint ist.",
+      "reason": "Ersetzt die Anfragezuordnung durch eine konkrete, fahrgastnahe Ungewissheit.",
+      "old_codepoints": 81,
+      "new_codepoints": 85,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.11.result",
+      "field": "text",
+      "old": "Antwort und Strecke passen zusammen. Das Stellwerk ist wieder nachvollziehbar.",
+      "new": "Ihre Strecke passt zur Meldung: Der Zug kommt durch den Stellwerksabschnitt.",
+      "reason": "Bindet die Rückmeldung an die tatsächlich nutzbare Fahrt durch den Stellwerksabschnitt.",
+      "old_codepoints": 78,
+      "new_codepoints": 76,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.02.03.12.status",
+      "field": "text",
+      "old": "Für den Stellwerksabschnitt liegt eine vorläufig vollständige Verständlichkeit vor.",
+      "new": "Die Signale zeigen wieder genug Eindeutigkeit für eine Fahrt. Mehr Klarheit wäre Sonderausstattung.",
+      "reason": "Schließt den Stellwerksbogen mit einer konkreten, trocken begrenzten Fahrtmöglichkeit.",
+      "old_codepoints": 83,
+      "new_codepoints": 99,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.02.03.12.result",
+      "field": "text",
+      "old": "Der Stellwerksabschnitt ist wieder verständlich. Die Rückmeldung darf für sich sprechen.",
+      "new": "Ihre Strecke macht den Stellwerksabschnitt befahrbar. Das genügt für heute als Rückmeldung.",
+      "reason": "Der Routenabschluss würdigt die befahrbare Spielerstrecke statt bloßer Verständlichkeit.",
+      "old_codepoints": 88,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.01.01.result",
+      "field": "text",
+      "old": "Der erste Abschnitt ist befahrbar. Der Halt rückt von der Absicht in Richtung Möglichkeit.",
+      "new": "Der Zug erreicht den ersten Außenbahnsteig. Der Halt ist jetzt mehr als ein Hinweis.",
+      "reason": "Macht aus der abstrakten Möglichkeit eine sichtbare, nach der Spielerleistung nutzbare Bahnsteig-Szene.",
+      "old_codepoints": 90,
+      "new_codepoints": 84,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.01.03.result",
+      "field": "text",
+      "old": "Der verlegte Halt ist angebunden. Sein Standort lässt sich jetzt ohne zusätzliche Auskunft erklären.",
+      "new": "Der verlegte Halt ist über die Strecke erreichbar. Der Zug findet wieder zum Bahnsteig.",
+      "reason": "Erdet die Verlegung am tatsächlich erreichten Bahnsteig statt an einer Auskunft über seinen Standort.",
+      "old_codepoints": 100,
+      "new_codepoints": 87,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.01.05.result",
+      "field": "text",
+      "old": "Die Strecke ist verbunden. Der Ortsbezug lässt sich wieder auf einen Weg zurückführen.",
+      "new": "Die Strecke führt zum neuen Haltebereich. Der Wegweiser hat wieder ein Ziel.",
+      "reason": "Bewahrt den Wegweisungswitz und gibt ihm mit dem erreichbaren Haltebereich eine konkrete Fahrgastfolge.",
+      "old_codepoints": 86,
+      "new_codepoints": 76,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.03.03.status",
+      "field": "text",
+      "old": "Die Reihenfolge ist geklärt. Über den Zusammenhang wird weiterhin getrennt informiert.",
+      "new": "Der vordere Zugteil fährt weiter. Der hintere wartet noch am Abzweig zum Depot.",
+      "reason": "Zeigt die getrennten Zugteile und den Depot-Abzweig als konkrete Betriebslage statt als Mitteilung über Mitteilungen.",
+      "old_codepoints": 86,
+      "new_codepoints": 79,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.03.03.03.result",
+      "field": "text",
+      "old": "Der Zusammenhang ist hergestellt. Das Wort später benötigt hier keine eigene Verbindung mehr.",
+      "new": "Die Strecke verbindet beide Zugteile. Der hintere bleibt nicht mehr am Abzweig zurück.",
+      "reason": "Würdigt die gebaute Verbindung als praktische Auflösung der vorherigen Trennung.",
+      "old_codepoints": 93,
+      "new_codepoints": 86,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.03.05.status",
+      "field": "text",
+      "old": "Beide Zugteile sollen ankommen. Für diese Absicht bestehen zwei Bearbeitungsstände.",
+      "new": "Beide Zugteile haben dasselbe Ziel. Am Depot trennt sie noch eine unpraktische Abzweigung.",
+      "reason": "Ersetzt Bearbeitungsstände durch den konkreten, für Fahrgäste nachvollziehbaren Depot-Engpass.",
+      "old_codepoints": 83,
+      "new_codepoints": 90,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.03.03.05.result",
+      "field": "text",
+      "old": "Die Bearbeitungsstände treffen sich auf einer funktionierenden Strecke.",
+      "new": "Die Strecke gibt beiden Zugteilen wieder einen gemeinsamen Weg.",
+      "reason": "Macht die verdiente gemeinsame Strecke zum Gegenbild der getrennten Zugteile.",
+      "old_codepoints": 71,
+      "new_codepoints": 63,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.03.06.status",
+      "field": "text",
+      "old": "Die Trennung wurde berücksichtigt. Die spätere Zusammenführung ist in der Formulierung enthalten.",
+      "new": "Der vordere Zugteil fährt weiter, der hintere zum Depot. Der Rückweg bleibt offen.",
+      "reason": "Konkretisiert die vorgesehene Trennung als Fahrt- und Depotlage, ohne eine zusätzliche Regel oder Zusage einzuführen.",
+      "old_codepoints": 97,
+      "new_codepoints": 82,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.03.03.08.status",
+      "field": "text",
+      "old": "Für den vollständigen Zug fehlt derzeit nur eine zusammenhängende Aussage.",
+      "new": "Die Zugteile stehen bereit. Zwischen Depot und Strecke fehlt nur noch ein durchgehender Weg.",
+      "reason": "Verlegt den fehlenden Zusammenhang vom Text in die sichtbare Strecke zwischen Depot und Zugteilen.",
+      "old_codepoints": 74,
+      "new_codepoints": 92,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.03.03.08.result",
+      "field": "text",
+      "old": "Die Aussage ist zusammenhängend. Der Zug kann ihr auf Schienen folgen.",
+      "new": "Die selbst gebaute Strecke führt beide Zugteile zusammen. Der vollständige Zug hat wieder einen Weg.",
+      "reason": "Benennt den zentralen Leistungsbeweis: Die eigene Strecke macht den vollständigen Zug wieder praktisch beweglich.",
+      "old_codepoints": 70,
+      "new_codepoints": 100,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.03.03.11.status",
+      "field": "text",
+      "old": "Für die Zusammenführung sind alle Voraussetzungen aufgeführt. Nun fehlt noch ihr Zusammenhang.",
+      "new": "Die Zugteile sind am Depot bereitgestellt. Für die gemeinsame Fahrt fehlt noch die durchgehende Strecke.",
+      "reason": "Ersetzt die abstrakte Aufzählung durch eine konkrete Depotlage unmittelbar vor der Zusammenführung.",
+      "old_codepoints": 94,
+      "new_codepoints": 104,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.02.status",
+      "field": "text",
+      "old": "Die Abfahrt ist eingetragen. Das Ende der Fahrtdauer wird im weiteren Verlauf präzisiert.",
+      "new": "Die Anzeige kennt die Abfahrt. Wann der Zug nach dem Umweg ankommt, bleibt ihr Geheimnis.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 89,
+      "new_codepoints": 89,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.02.result",
+      "field": "text",
+      "old": "Das Ende ist erreicht. Die Fahrtdauer hat wieder einen vollständigen Gegenstand.",
+      "new": "Der Zug erreicht das Ende über Ihre Strecke. Die Anzeige hat jetzt wenigstens eine glaubhafte Richtung.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 80,
+      "new_codepoints": 103,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.03.status",
+      "field": "text",
+      "old": "Die Reise dauert länger. Die Begründung wurde zugunsten dieser eindeutigen Aussage gekürzt.",
+      "new": "Mehr Reisezeit ist vorgesehen. Der Umweg steht am Bahnsteig, die Erklärung blieb offenbar zurück.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 91,
+      "new_codepoints": 97,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.03.result",
+      "field": "text",
+      "old": "Die Strecke liefert die fehlende Erklärung: Sie führt bis zum Ziel.",
+      "new": "Ihre Strecke macht den Umweg befahrbar. Der Zug kommt am Ziel an, auch ohne die lange Erklärung.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 67,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.04.status",
+      "field": "text",
+      "old": "Die Ankunft ist vorgesehen. Die nähere Bestimmung bezieht sich vorerst auf ihre Formulierung.",
+      "new": "Ankunft vorgesehen. Die Anzeige nennt das Ziel, nicht aber den Weg dorthin.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 93,
+      "new_codepoints": 75,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.04.result",
+      "field": "text",
+      "old": "Ankunft möglich. Die Bestimmung hat einen erreichbaren Endpunkt.",
+      "new": "Ihre Strecke endet am vorgesehenen Ziel. Mehr Bestimmung brauchte diese Fahrt nicht.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 64,
+      "new_codepoints": 84,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.05.status",
+      "field": "text",
+      "old": "Die Prüfung des Zeitbedarfs dauert an. Dieser Zeitbedarf ist darin bereits berücksichtigt.",
+      "new": "Der Zeitbedarf wird weiter geprüft. Der Zug wartet derweil am Umleitungsbahnsteig.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 90,
+      "new_codepoints": 82,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.05.result",
+      "field": "text",
+      "old": "Die Prüfung kann enden. Der Weg funktioniert ohne weitere Zeitbedarfsangabe.",
+      "new": "Ihre Strecke bringt den Zug weiter. Für diese Fahrt genügt ein Weg statt einer Zeitprüfung.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 76,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.06.status",
+      "field": "text",
+      "old": "Die Fahrzeit bleibt gültig. Ihre Bedeutung richtet sich nach dem weiteren Reiseverlauf.",
+      "new": "Die Fahrzeit gilt ab Bahnsteig. Welcher Umweg danach folgt, erfährt der Fahrgast unterwegs.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 87,
+      "new_codepoints": 91,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.06.result",
+      "field": "text",
+      "old": "Die Bedeutung ist geklärt. Die Fahrzeit gehört zu einer durchgehenden Verbindung.",
+      "new": "Ihre Verbindung führt durch den Umweg. Der Zug hat damit eine Fahrzeit, die zu einem Weg gehört.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 81,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.07.status",
+      "field": "text",
+      "old": "Die Prognose wird genauer, sobald mehr Reisezeit zur Auswertung vorliegt.",
+      "new": "Die Prognose wird nachgeschärft, sobald der Zug genug Umweg für neue Verspätung gesammelt hat.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 73,
+      "new_codepoints": 94,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.07.result",
+      "field": "text",
+      "old": "Die Verbindung liefert eine ausreichende Grundlage. Weitere Prognosen sind für diese Fahrt entbehrlich.",
+      "new": "Ihre Strecke führt bis zum Ziel. Für diese Zugfahrt reicht ein gebauter Weg besser als eine Prognose.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 103,
+      "new_codepoints": 101,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.07.result",
+      "field": "shortText",
+      "old": "Die Verbindung trägt. Für diese Fahrt ist keine weitere Prognose nötig.",
+      "new": "Ihre Strecke führt bis zum Ziel. Ein gebauter Weg hilft mehr als die Prognose.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 71,
+      "new_codepoints": 78,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.08.status",
+      "field": "text",
+      "old": "Die zusätzliche Reisezeit ist bestätigt. Ihre genaue Verteilung ergibt sich unterwegs.",
+      "new": "Zusätzliche Reisezeit ist eingeplant. Die Wegweiser verteilen sie großzügig über mehrere Bahnsteige.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 86,
+      "new_codepoints": 100,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.08.result",
+      "field": "text",
+      "old": "Der Weg ist vollständig verteilt. Die Verbindung kann ohne laufende Auslegung befahren werden.",
+      "new": "Ihre Verbindung führt durch die Umwege. Der Zug fährt den längeren Weg, statt ihn nur anzukündigen.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 94,
+      "new_codepoints": 99,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.02.09.status",
+      "field": "text",
+      "old": "Die längere Reise entspricht der Erwartung. Die Erwartung wurde währenddessen fortgeschrieben.",
+      "new": "Die längere Reise ist erwartet. Die Anzeige wächst mit jedem Umweg ein Stück weiter.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 94,
+      "new_codepoints": 84,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.02.09.result",
+      "field": "text",
+      "old": "Der Weg endet am Ziel. Die Erwartung muss dafür nicht weiterwachsen.",
+      "new": "Ihre Strecke endet am Ziel. Der Umweg muss nicht länger auf der Anzeige weiterwachsen.",
+      "reason": "Zeit-/Umwegmotiv an Anzeige, Wegweisung, Bahnsteig, Umstieg oder Fahrt binden und die gebaute Verbindung als Auflösung zeigen.",
+      "old_codepoints": 68,
+      "new_codepoints": 86,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.03.status",
+      "field": "text",
+      "old": "Die neue Route berücksichtigt den letzten Stand. Der letzte Stand wird seit eben erneut bewertet.",
+      "new": "Der Wegweiser zeigt die neue Route. Der Pfeil zum Bahnsteig wird gerade schon wieder überklebt.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 97,
+      "new_codepoints": 95,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.03.result",
+      "field": "text",
+      "old": "Die Bewertung hat eine Strecke ergeben. Sie kann ohne weiteren Zwischenstand befahren werden.",
+      "new": "Ihre Strecke hält, was der Wegweiser andeutet: Der Zug fährt ohne weiteren Zwischenpfeil durch.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 93,
+      "new_codepoints": 95,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.04.status",
+      "field": "text",
+      "old": "Der aktuelle Stand ist vollständig. Sein Folgestand ergänzt die davon abweichende Wegeführung.",
+      "new": "Die Anzeige meldet einen vollständigen Weg. Der ergänzende Pfeil zeigt trotzdem zum anderen Bahnsteig.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 94,
+      "new_codepoints": 102,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.04.result",
+      "field": "text",
+      "old": "Die Wegeführung ist geklärt. Ein Folgestand ist für diese Verbindung nicht erforderlich.",
+      "new": "Ihre Strecke verbindet die Bahnsteige. Der ergänzende Pfeil darf fürs Erste hängen bleiben.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 88,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.06.status",
+      "field": "text",
+      "old": "Die Wegeführung ist auf dem neuesten Stand der vorangegangenen Aktualisierung.",
+      "new": "Die Wegeführung wurde aktualisiert. Am Bahnsteig zeigt noch der alte Pfeil zur neuen Richtung.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 78,
+      "new_codepoints": 94,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.06.result",
+      "field": "text",
+      "old": "Die Verbindung ist dem Stand voraus: Sie funktioniert bereits durchgehend.",
+      "new": "Ihre Verbindung führt schon durch. Der Zug ist der Aktualisierung einen Bahnsteig voraus.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 74,
+      "new_codepoints": 89,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.07.status",
+      "field": "text",
+      "old": "Mehrere aktuelle Angaben liegen vor. Ihre Zusammenführung wird für eine spätere Aktualisierung vorbereitet.",
+      "new": "Drei Anzeigen nennen drei Wege. Gemeinsam ist ihnen nur, dass keiner zum gleichen Bahnsteig zeigt.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 107,
+      "new_codepoints": 98,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.07.status",
+      "field": "shortText",
+      "old": "Mehrere aktuelle Angaben liegen vor. Zusammengeführt werden sie später.",
+      "new": "Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.",
+      "reason": "HIGH-01 geschlossen: Kurzstatus verdichtet dieselbe ungelöste Anzeigen-/Bahnsteiglage wie der Langstatus und nimmt keine gebaute Strecke oder Lösung vorweg.",
+      "old_codepoints": 71,
+      "new_codepoints": 62,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.07.result",
+      "field": "text",
+      "old": "Die Angaben treffen auf einer Strecke zusammen. Der vorbereitete Nachtrag erübrigt sich.",
+      "new": "Ihre Strecke verbindet die Bahnsteige. Die Anzeigen dürfen ihre Unterschiede nun unter sich klären.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 88,
+      "new_codepoints": 99,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.08.status",
+      "field": "text",
+      "old": "Die Route wird geprüft. Der Stand dieser Prüfung wird gesondert auf dem Laufenden gehalten.",
+      "new": "Die Route wird geprüft. Währenddessen verweist der Bahnsteig auf eine Auskunft außerhalb des Bahnsteigs.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 91,
+      "new_codepoints": 104,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.08.result",
+      "field": "text",
+      "old": "Die Strecke steht. Prüfung und Prüfstand können sich auf denselben Weg beziehen.",
+      "new": "Ihre Strecke führt zum Ziel. Die Prüfung darf sich an den befahrbaren Weg halten.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 80,
+      "new_codepoints": 81,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.10.status",
+      "field": "text",
+      "old": "Die Route wird vollständig erklärt, sobald alle dafür nötigen Teilangaben vollständig erklärt sind.",
+      "new": "Die Route wird vollständig erklärt, sobald alle Wegweiser dieselbe Richtung erklären können.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 99,
+      "new_codepoints": 92,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.10.result",
+      "field": "text",
+      "old": "Die Teilangaben ergeben einen vollständigen Weg. Die Erklärung darf jetzt kürzer ausfallen.",
+      "new": "Ihre Strecke führt durch. Der Zug benötigt für die Fahrt weniger Erklärung als die Wegweiser.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 91,
+      "new_codepoints": 93,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.03.11.status",
+      "field": "text",
+      "old": "Die erneute Prüfung hat die bestehende Prüflage bestätigt. Die Strecke wartet auf das praktische Ergebnis.",
+      "new": "Die erneute Prüfung bestätigt: Der Zug soll fahren, sobald der Bahnsteig dafür einen Weg hat.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 106,
+      "new_codepoints": 93,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.11.status",
+      "field": "shortText",
+      "old": "Die erneute Prüfung bestätigt die Prüflage. Die Strecke wartet weiter.",
+      "new": "Der Zug soll fahren. Der Bahnsteig wartet noch auf seinen Weg.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 70,
+      "new_codepoints": 62,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.03.11.result",
+      "field": "text",
+      "old": "Das praktische Ergebnis fährt durch. Die Route hält ihrer erneuten Prüfung stand.",
+      "new": "Der Zug fährt über Ihre Strecke durch. Die erneute Prüfung kommt am Ende wenigstens hinterher.",
+      "reason": "Selbstreferenzielle Auskunft an Anzeige, Wegweisung, Bahnsteig oder Umstieg binden; Zug/Strecke als Gegenkraft zeigen.",
+      "old_codepoints": 81,
+      "new_codepoints": 94,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.01.status",
+      "field": "text",
+      "old": "Für die bisherige Alternative liegt eine weitere vor. Bezugspunkt bleibt die ursprüngliche Verbindung.",
+      "new": "Am ersten Bahnsteig verweist die Alternative auf eine weitere Alternative am anderen Ende.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 102,
+      "new_codepoints": 90,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.01.status",
+      "field": "shortText",
+      "old": "Eine weitere Alternative liegt vor. Bezugspunkt bleibt die alte Verbindung.",
+      "new": "Die Alternative verweist am Bahnsteig auf eine weitere.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 75,
+      "new_codepoints": 55,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.01.result",
+      "field": "text",
+      "old": "Die erste Alternative funktioniert. Ihr Bezugspunkt ist wieder erreichbar.",
+      "new": "Ihre Strecke verbindet beide Bahnsteige. Die erste Alternative hat damit endlich einen Zugweg.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 74,
+      "new_codepoints": 94,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.02.status",
+      "field": "text",
+      "old": "Die Ausweichmöglichkeit wird umgeleitet. Sie ist dadurch weiterhin als Möglichkeit verfügbar.",
+      "new": "Die ausgeschilderte Ausweichroute wird umgeleitet. Das Schild zum Ersatzschild steht bereits bereit.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 93,
+      "new_codepoints": 100,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.02.result",
+      "field": "text",
+      "old": "Die Ausweichverbindung steht. Ihre Bezeichnung darf vorerst unverändert bleiben.",
+      "new": "Ihre Strecke macht die Ausweichroute befahrbar. Der Zug findet den Weg auch ohne zweites Schild.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 80,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.03.status",
+      "field": "text",
+      "old": "Die Umleitung bleibt ausgeschildert. Ihr weiterer Verlauf führt über die Umleitung zur Umleitung.",
+      "new": "Die Umleitung ist ausgeschildert. Hinter dem ersten Pfeil beginnt die Umleitung für die Umleitung.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 97,
+      "new_codepoints": 98,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.03.result",
+      "field": "text",
+      "old": "Der weitere Verlauf führt durch. Die zusätzliche Umleitung hat einen Zusammenhang erhalten.",
+      "new": "Ihre Strecke führt durch beide Umwege. Der Zug kommt weiter als die Beschilderung.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 91,
+      "new_codepoints": 82,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.04.status",
+      "field": "text",
+      "old": "Der Ausweichweg ist von der Maßnahme umfasst. Eine Ausweichmöglichkeit bleibt Bestandteil der Erläuterung.",
+      "new": "Der Ausweichweg ist gesperrt. Der Hinweis zum Ausweichen hängt am gesperrten Bahnsteig.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 106,
+      "new_codepoints": 87,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.04.status",
+      "field": "shortText",
+      "old": "Der Ausweichweg ist mitbetroffen. Ausweichen bleibt Teil der Erläuterung.",
+      "new": "Ausweichweg gesperrt. Der Hinweis zum Ausweichen hängt dort.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 73,
+      "new_codepoints": 60,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.04.result",
+      "field": "text",
+      "old": "Die Erläuterung hat einen nutzbaren Weg erhalten. Weiteres Ausweichen ist hier erledigt.",
+      "new": "Ihre Strecke schafft einen nutzbaren Umweg. Der Zug braucht den gesperrten Hinweis nicht.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 88,
+      "new_codepoints": 89,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.05.status",
+      "field": "text",
+      "old": "Für die Alternative ist eine eigene Zufahrt vorgesehen. Die Zufahrt nutzt eine weitere Alternative.",
+      "new": "Die Alternative hat eine eigene Zufahrt. Deren Wegweiser schickt zum Bahnsteig der nächsten Alternative.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 99,
+      "new_codepoints": 104,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.05.result",
+      "field": "text",
+      "old": "Die Zufahrt ist verbunden. Die Alternative ist damit auch erreichbar.",
+      "new": "Ihre Strecke verbindet die Zufahrt. Der Zug erreicht den Umweg, der tatsächlich gebraucht wird.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 69,
+      "new_codepoints": 95,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.06.status",
+      "field": "text",
+      "old": "Die Ersatzroute wird regulär benötigt. Für ihre bisherige Ersatzfunktion wird eine Ersatzroute benannt.",
+      "new": "Die Ersatzroute ist jetzt der Regelweg. Für ihren Ersatz zeigt ein Schild zum ehemaligen Regelweg.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 103,
+      "new_codepoints": 98,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.06.status",
+      "field": "shortText",
+      "old": "Die Ersatzroute wird regulär. Ihre Ersatzfunktion erhält eine Ersatzroute.",
+      "new": "Die Ersatzroute ist Regelweg. Ihr Ersatzschild zeigt zurück.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 74,
+      "new_codepoints": 60,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.06.result",
+      "field": "text",
+      "old": "Die benötigte Strecke funktioniert. Ihre frühere Bezeichnung muss sie nicht mehr vertreten.",
+      "new": "Ihre Strecke macht den benötigten Weg befahrbar. Der Zug fährt, unabhängig davon, wie das Schild ihn nennt.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 91,
+      "new_codepoints": 107,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.07.status",
+      "field": "text",
+      "old": "Die Ausweichführung berücksichtigt eine weitere Umfahrung. Der Gesamtweg bleibt unter derselben Überschrift.",
+      "new": "Die Ausweichführung umfährt eine weitere Umfahrung. Der Pfeil dazu bleibt unter derselben Überschrift.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 108,
+      "new_codepoints": 102,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.07.status",
+      "field": "shortText",
+      "old": "Die Umfahrung wird mit umfahren. Die Überschrift bleibt dieselbe.",
+      "new": "Die Ausweichführung umfährt noch eine Umfahrung.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 65,
+      "new_codepoints": 48,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.07.result",
+      "field": "text",
+      "old": "Der Gesamtweg ist verbunden. Die Überschrift reicht für die gesamte Fahrt aus.",
+      "new": "Ihre Strecke verbindet den ganzen Umweg. Der Zug braucht nur Gleise, keine neue Überschrift.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 78,
+      "new_codepoints": 92,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.04.04.08.status",
+      "field": "text",
+      "old": "Die Alternative wird als Regelweg geführt. Der bisherige Regelweg dient zur Erklärung der Alternative.",
+      "new": "Die Alternative heißt nun Regelweg. Der frühere Regelweg erklärt am Bahnsteig weiterhin die Alternative.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 102,
+      "new_codepoints": 104,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.08.status",
+      "field": "shortText",
+      "old": "Die Alternative wird Regelweg. Der alte Regelweg erklärt die Alternative.",
+      "new": "Die Alternative heißt Regelweg. Der alte Weg erklärt sie weiter.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 73,
+      "new_codepoints": 64,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.04.04.08.result",
+      "field": "text",
+      "old": "Die Zuordnung ist brauchbar geworden. Der Zug fährt auf einem durchgehenden Weg.",
+      "new": "Ihre Strecke führt auf dem neuen Regelweg durch. Der Zug klärt die Zuordnung praktischer als die Anzeige.",
+      "reason": "Alternative-zur-Alternative an Bahnsteig, Beschilderung, Umstieg oder tatsächlichen Zugweg rückbinden.",
+      "old_codepoints": 80,
+      "new_codepoints": 105,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.04.01.status",
+      "field": "text",
+      "old": "Der Gesamtbetrieb gilt als geordnet. Die letzten offenen Verbindungen sind in dieser Ordnung berücksichtigt.",
+      "new": "Der Gesamtbetrieb gilt als geordnet. Beide Bahnsteige warten noch auf die Verbindung dazwischen.",
+      "reason": "Der behauptete Ordnungszustand wird an zwei konkret getrennten Bahnsteigen gebrochen, statt an einer Verwaltungsordnung zu kreisen.",
+      "old_codepoints": 108,
+      "new_codepoints": 96,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.01.result",
+      "field": "text",
+      "old": "Der erste offene Zusammenhang ist geschlossen. Die geordnete Meldung hat an Inhalt gewonnen.",
+      "new": "Die erste Lücke ist geschlossen. Über Ihre Gleise fährt der Zug, nicht die Betriebsmeldung.",
+      "reason": "Die Spielerstrecke liefert den sichtbaren Gegenbeweis zur bloßen Betriebsmeldung.",
+      "old_codepoints": 92,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.04.02.status",
+      "field": "text",
+      "old": "Die Stabilisierung ist weit fortgeschritten. Die übrigen Verbindungen werden unter diesem Stand weitergeführt.",
+      "new": "Die Stabilisierung ist weit fortgeschritten. Zwischen den letzten Bahnsteigen fehlt noch ein Gleisweg.",
+      "reason": "Der Stabilitätsanspruch erhält mit den noch getrennten Bahnsteigen eine konkrete Fahrgastfolge.",
+      "old_codepoints": 110,
+      "new_codepoints": 102,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.02.status",
+      "field": "shortText",
+      "old": "Die Stabilisierung ist weit. Die übrigen Verbindungen laufen darunter weiter.",
+      "new": "Stabilisierung weit fortgeschritten. Zwischen den Bahnsteigen fehlt noch der Gleisweg.",
+      "reason": "Die Kurzfassung bewahrt die behauptete Stabilisierung und benennt die fehlende Verbindung ohne referenzloses Pronomen.",
+      "old_codepoints": 77,
+      "new_codepoints": 86,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.02.result",
+      "field": "text",
+      "old": "Eine weitere Verbindung trägt. Der fortgeschrittene Stand lässt sich auf Schienen überprüfen.",
+      "new": "Ihre Strecke schließt die nächste Lücke. Die Stabilisierung erhält einen befahrbaren Beleg.",
+      "reason": "Die gebaute Strecke macht den Fortschritt unmittelbar befahrbar, ohne einen allgemeinen Betriebszustand zu versprechen.",
+      "old_codepoints": 93,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.04.03.status",
+      "field": "text",
+      "old": "Die Bewertung der Stabilität ist stabil. Die Verbindung bleibt Gegenstand ihrer laufenden Fortschreibung.",
+      "new": "Die Stabilität wird weiter bewertet. Am Bahnsteig bleibt davon vorerst nur ein offener Gleisweg sichtbar.",
+      "reason": "Die fortlaufende Bewertung bleibt als Behördenwitz erhalten, wird aber am sichtbar unbrauchbaren Bahnsteig geerdet.",
+      "old_codepoints": 105,
+      "new_codepoints": 105,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.03.result",
+      "field": "text",
+      "old": "Die Strecke trägt ihre eigene Bewertung. Der Zug kommt auf dem gebauten Weg durch.",
+      "new": "Die Bewertung darf weiterlaufen. Ihr Zug fährt bereits auf dem selbst gebauten Weg von A nach B.",
+      "reason": "Der Zug auf der selbst gebauten A–B-Strecke beantwortet die abstrakte Bewertung durch nachweisbare Funktion.",
+      "old_codepoints": 82,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.04.04.status",
+      "field": "text",
+      "old": "Die Verbindung ist in einem stabilen Bearbeitungsstand. Der Stand der Verbindung wird noch bearbeitet.",
+      "new": "Die Verbindung gilt als stabil in Bearbeitung. Am Bahnsteig endet sie weiterhin vor dem Ziel.",
+      "reason": "Die absurde Formel bleibt dienstlich, endet aber in der konkreten Erfahrung einer nicht durchgehenden Strecke.",
+      "old_codepoints": 102,
+      "new_codepoints": 93,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.04.result",
+      "field": "text",
+      "old": "Der Bearbeitungsstand hat sein Ziel erreicht. Die Verbindung ist befahrbar.",
+      "new": "Der Zug erreicht das andere Ende auf Ihrer Strecke. Die Bearbeitung sucht sich besser einen neuen Gegenstand.",
+      "reason": "Der eigene Fahrtbeweis beendet die Bearbeitungsabstraktion mit einer trockenen behördlichen Pointe.",
+      "old_codepoints": 75,
+      "new_codepoints": 109,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.04.05.status",
+      "field": "text",
+      "old": "Keine Abweichung von der bisherigen Bewertung festgestellt. Die Verbindung bleibt darin vorgesehen.",
+      "new": "Die Bewertung meldet keine Abweichung. Am Gleis fehlt trotzdem noch die durchgehende Verbindung.",
+      "reason": "Der formale Positivbefund kollidiert konkret mit der am Gleis weiterhin fehlenden Verbindung.",
+      "old_codepoints": 99,
+      "new_codepoints": 96,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.04.05.result",
+      "field": "text",
+      "old": "Die Verbindung ist hergestellt. Ihre Funktion benötigt keinen weiteren Verweis auf die Bewertung.",
+      "new": "Die Verbindung steht. Der Zug fährt sie ab; die Bewertung darf danach gern hinterherkommen.",
+      "reason": "Die funktionierende Spielerstrecke bekommt Vorrang; die Bewertung bleibt als selbstironische Nachhut bestehen.",
+      "old_codepoints": 97,
+      "new_codepoints": 91,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.02.07.status",
+      "field": "text",
+      "old": "Der Bus ist unterwegs. Eine Annäherung lässt sich derzeit nur für den weiteren Reiseverlauf bestätigen.",
+      "new": "Am Ersatzhalt wartet die Anzeige auf den Bus. Sie meldet weiterhin nur: unterwegs.",
+      "reason": "Bus, Ersatzhalt und unergiebige Anzeige ergeben eine konkrete, eigenständig formulierte SEV-Lage ohne Zeitversprechen.",
+      "old_codepoints": 103,
+      "new_codepoints": 82,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.02.07.status",
+      "field": "shortText",
+      "old": "Der Bus ist unterwegs. Bestätigt ist die Annäherung an den Reiseverlauf.",
+      "new": "Am Ersatzhalt: Bus laut Anzeige unterwegs.",
+      "reason": "Die Kurzform erhält Bus-, Anzeige- und Ersatzhaltlage in derselben trockenen Aussage.",
+      "old_codepoints": 72,
+      "new_codepoints": 42,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.02.07.result",
+      "field": "text",
+      "old": "Die Verbindung erreicht beide Enden. Der Zug kann die Annäherung abschließen.",
+      "new": "Ihre Strecke führt bis zum Ersatzhalt. Der Zug erreicht ihn auf Schienen, nicht nach Busanzeige.",
+      "reason": "Der gelöste Gleisweg ersetzt die vage Busauskunft durch den sichtbaren Zug auf der eigenen Strecke.",
+      "old_codepoints": 77,
+      "new_codepoints": 96,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.02.09.status",
+      "field": "text",
+      "old": "Die Meldung unterwegs liegt vor. Der zugrunde liegende Standort wird noch der Meldung zugeordnet.",
+      "new": "Die Anzeige meldet einen Bus unterwegs. Welcher Ersatzhalt gemeint ist, bleibt unbeschildert.",
+      "reason": "Die ortslose Busmeldung wird als konkrete Beschilderungs- und Ersatzhaltfriktion erfahrbar.",
+      "old_codepoints": 97,
+      "new_codepoints": 93,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.02.09.result",
+      "field": "text",
+      "old": "Der Weg ist jetzt nachvollziehbar. Auf der Schiene sind Ausgang und Ziel miteinander verbunden.",
+      "new": "Ihre Schienen verbinden beide Enden. Der Zug folgt einem Weg, der auf keiner Busanzeige gesucht werden muss.",
+      "reason": "Die eigene Strecke schafft einen nutzbaren, nachvollziehbaren Weg statt einer bloßen Standortzuordnung.",
+      "old_codepoints": 95,
+      "new_codepoints": 108,
+      "existing_limit": 130
+    },
+    {
+      "key": "level.s1.05.02.10.status",
+      "field": "text",
+      "old": "Der Bus fährt gemäß Auskunft. Die Auskunft wartet auf eine räumliche Präzisierung.",
+      "new": "Der Bus gilt als unterwegs. Die Anzeige nennt keinen Halt, an dem man ihn erwarten dürfte.",
+      "reason": "Die Auskunftsrekursion wird in eine konkrete, fahrgastnahe Unsicherheit am Ersatzhalt übersetzt.",
+      "old_codepoints": 82,
+      "new_codepoints": 90,
+      "existing_limit": 110
+    },
+    {
+      "key": "level.s1.05.02.10.result",
+      "field": "text",
+      "old": "Die räumliche Präzisierung fährt auf Schienen. Die Verbindung ist durchgehend.",
+      "new": "Die gebaute Strecke führt durch. Der Zug erreicht das Ziel ohne Standortsuche am Ersatzhalt.",
+      "reason": "Die durchgehende eigene Gleisverbindung beendet die Standortsuche praktisch und ohne Echtzeit- oder Anschlusszusage.",
+      "old_codepoints": 78,
+      "new_codepoints": 92,
+      "existing_limit": 130
+    },
+    {
+      "key": "campaign.s1.route.01.03.name",
+      "field": "shortText",
+      "old": "Anschluss ohne Sie",
+      "new": "Anschluss: planmäßig ohne Sie",
+      "reason": "Bewahrt Anschluss und das Paradox, dass er planmäßig ohne den Fahrgast fährt, in einer lesbaren kurzen Kartenfassung.",
+      "old_codepoints": 18,
+      "new_codepoints": 29,
+      "existing_limit": 180
+    },
+    {
+      "key": "variant.ride-ended.04",
+      "field": "text",
+      "old": "Die Fahrt ist abgeschlossen. Zwischen A und B liegt jetzt Erfahrung.",
+      "new": "Fahrt abgeschlossen. Ihre selbst gebaute Strecke hat den Zug bis B gebracht.",
+      "reason": "Die Abschlusszeile würdigt konkret die vom Spieler gebaute und tatsächlich befahrene A–B-Verbindung statt einer abstrakten Erfahrung; sie verspricht weder Zeit, Sterne, Anschluss noch Belohnung.",
+      "old_codepoints": 68,
+      "new_codepoints": 76,
+      "existing_limit": 150
+    }
+  ],
+  "runtime_product_approval": "NOT_GRANTED"
+}

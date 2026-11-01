@@ -1,0 +1,51 @@
+{
+  "profile": "read-only-cecil-il-inspection-no-target-execution",
+  "binaryPath": "C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/lib/mono/4.5/mscorlib.dll",
+  "binarySha256": "3819222cb141fc13ffaf38bb7e395f1c10a205d2721e116e5485f34a55e878c4",
+  "binaryBytes": 4613120,
+  "assembly": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+  "methods": [
+    {
+      "method": "System.Void System.Runtime.CompilerServices.RuntimeHelpers::PrepareDelegate(System.Delegate)",
+      "metadataToken": 100681448,
+      "implAttributes": "IL",
+      "instructions": [
+        "IL_0000: ret"
+      ]
+    },
+    {
+      "method": "System.Void System.Runtime.CompilerServices.RuntimeHelpers::PrepareMethod(System.RuntimeMethodHandle)",
+      "metadataToken": 100681450,
+      "implAttributes": "IL",
+      "instructions": [
+        "IL_0000: ret"
+      ]
+    },
+    {
+      "method": "System.Void System.Runtime.CompilerServices.RuntimeHelpers::PrepareMethod(System.RuntimeMethodHandle,System.RuntimeTypeHandle[])",
+      "metadataToken": 100681451,
+      "implAttributes": "IL",
+      "instructions": [
+        "IL_0000: ret"
+      ]
+    },
+    {
+      "method": "System.IntPtr System.RuntimeMethodHandle::GetFunctionPointer(System.IntPtr)",
+      "metadataToken": 100670261,
+      "implAttributes": "InternalCall",
+      "instructions": []
+    },
+    {
+      "method": "System.IntPtr System.RuntimeMethodHandle::GetFunctionPointer()",
+      "metadataToken": 100670262,
+      "implAttributes": "IL",
+      "instructions": [
+        "IL_0000: ldarg.0",
+        "IL_0001: ldfld System.IntPtr System.RuntimeMethodHandle::value",
+        "IL_0006: call System.IntPtr System.RuntimeMethodHandle::GetFunctionPointer(System.IntPtr)",
+        "IL_000b: ret"
+      ]
+    }
+  ],
+  "limitation": "Installed Windows Unity 6000.3.23f1 corelib inspected; no claim about exact Linux CI native binary or actual coverage prewarm effectiveness."
+}

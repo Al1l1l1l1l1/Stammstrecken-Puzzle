@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:47:57.545Z",
+  "role": "entry_audit independent concrete Application thread-boundary finding",
+  "id": "S-APP-03",
+  "severity": "High",
+  "status": "REPORTED_TO_OWNER_AND_ROOT_NO_IMPLEMENTATION_PASS",
+  "source": {
+    "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+    "rawSha256": "e5f99270381ca2f31d2afc8bf3fc048b99e2a290eaef8ba859614bc304272baf",
+    "fullBytesRetainedIn": "S_INITIAL_CORRECTIONS_QC.json"
+  },
+  "basis": "T_TECHNICAL_DETAILS section35 requires file-I/O including canonical codec/hash work on worker, immutable inputs; S11 thread/render-I/O evidence.",
+  "paths": [
+    "ApplyLoad policy.Validate executes inside dispatcher.InvokeAsync publication; policy.Cache invokes JCS+SHA and ledger.Validate invokes journal JCS/chains.",
+    "CompleteUnderLock policy.Complete and CommitUnderLock PrepareForSave are inline if writer.WaitAsync is already completed; ConfigureAwait(false) does not schedule a worker.",
+    "NewProfile similarly computes canonical cache hash before repository worker dispatch."
+  ],
+  "requested": "Actually schedule pure canonical/hash validation/projection on worker over captured immutable session/profile inputs. Keep application-loop publication bounded; preserve exact stale-ack attempt/snapshot guards and normal draft-vs-newer-session behavior. Test canonical/ledger thread IDs with controlled dispatcher to prove execution context, not just Task return type.",
+  "limits": "Static exact call-path finding; no reviewer runtime/Unity execution. Owner implementation and actual controlled thread evidence pending."
+}

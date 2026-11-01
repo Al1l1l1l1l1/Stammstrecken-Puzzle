@@ -1,0 +1,418 @@
+{
+  "baseRef": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+  "method": "Tracked base JSON fields ending Key plus quoted key candidates in C#/UXML. Fixture/test references are inventoried separately and do not require fictional production translations.",
+  "references": [
+    {
+      "key": "campaign.s1.section-01.route-01.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/campaign-v1.example.json",
+          "pointer": "/seasons/0/sections/0/routes/0/titleKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/campaign-v2.example.json",
+          "pointer": "/seasons/0/sections/0/routes/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "campaign.s1.section-01.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/campaign-v1.example.json",
+          "pointer": "/seasons/0/sections/0/titleKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/campaign-v2.example.json",
+          "pointer": "/seasons/0/sections/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "campaign.s1.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/campaign-v1.example.json",
+          "pointer": "/seasons/0/titleKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/campaign-v2.example.json",
+          "pointer": "/seasons/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "cosmetic.draft-purchase-object.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/cosmetics-v2.draft.example.json",
+          "pointer": "/items/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "cosmetic.draft-route-milestone-object.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/cosmetics-v2.draft.example.json",
+          "pointer": "/items/1/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "cosmetic.fixture-operating-object.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/cosmetics-v1.example.json",
+          "pointer": "/items/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "cosmetic.fixture-purchase-object.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/cosmetics-v2.example.json",
+          "pointer": "/items/0/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "cosmetic.fixture-route-milestone-object.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/cosmetics-v2.example.json",
+          "pointer": "/items/1/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "fixture-apple-1",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/1/events/0/transactionKey"
+        },
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/1/events/3/transactionKey"
+        },
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/1/events/4/transactionKey"
+        }
+      ]
+    },
+    {
+      "key": "fixture-google-1",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/0/events/0/transactionKey"
+        },
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/0/events/3/transactionKey"
+        },
+        {
+          "path": "tools/architecture-validation/fixtures/iap-state-machine-v1.json",
+          "pointer": "/traces/0/events/4/transactionKey"
+        }
+      ]
+    },
+    {
+      "key": "level.fixture.single-cell.entry",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.single-cell.example.json",
+          "pointer": "/production/entryDeductionKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.single-cell.example.json",
+          "pointer": "/production/entryDeductionKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json",
+          "pointer": "/production/entryDeductionKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json",
+          "pointer": "/production/entryDeductionKey"
+        }
+      ]
+    },
+    {
+      "key": "level.fixture.single-cell.status",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.single-cell.example.json",
+          "pointer": "/content/statusKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.single-cell.example.json",
+          "pointer": "/content/statusKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json",
+          "pointer": "/content/statusKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json",
+          "pointer": "/content/statusKey"
+        }
+      ]
+    },
+    {
+      "key": "level.fixture.single-cell.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.single-cell.example.json",
+          "pointer": "/content/titleKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.single-cell.example.json",
+          "pointer": "/content/titleKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2ReaderTests.cs",
+          "pointer": "quoted-key-candidate"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json",
+          "pointer": "/content/titleKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json",
+          "pointer": "/content/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "level.other.entry",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelHashingTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "level.other.status",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelHashingTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "level.other.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelHashingTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.01.01.01.entry",
+      "covered": true,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.example.json",
+          "pointer": "/production/entryDeductionKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.example.json",
+          "pointer": "/production/entryDeductionKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json",
+          "pointer": "/production/entryDeductionKey"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.01.01.01.other-title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelMigrationTests.cs",
+          "pointer": "quoted-key-candidate"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelMigrationTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.01.01.01.status",
+      "covered": true,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.example.json",
+          "pointer": "/content/statusKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.example.json",
+          "pointer": "/content/statusKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json",
+          "pointer": "/content/statusKey"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.01.01.01.title",
+      "covered": true,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/level-v1.example.json",
+          "pointer": "/content/titleKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.example.json",
+          "pointer": "/content/titleKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json",
+          "pointer": "/content/titleKey"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.01.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2ReaderTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "level.s1.title",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/SchemaParityTests.cs",
+          "pointer": "quoted-key-candidate"
+        }
+      ]
+    },
+    {
+      "key": "result.fixture.single-cell",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/completion-v1.example.json",
+          "pointer": "/completionMoments/1/resultTextKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v1.single-cell.example.json",
+          "pointer": "/completion/resultTextKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.single-cell.example.json",
+          "pointer": "/completion/resultTextKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json",
+          "pointer": "/completion/resultTextKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json",
+          "pointer": "/completion/resultTextKey"
+        }
+      ]
+    },
+    {
+      "key": "result.route-open.standard",
+      "covered": false,
+      "classification": "FIXTURE_OR_TEST_ONLY",
+      "locations": [
+        {
+          "path": "ARCHITECTURE/examples/completion-v1.example.json",
+          "pointer": "/completionMoments/0/resultTextKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v1.example.json",
+          "pointer": "/completion/resultTextKey"
+        },
+        {
+          "path": "ARCHITECTURE/examples/level-v2.example.json",
+          "pointer": "/completion/resultTextKey"
+        },
+        {
+          "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json",
+          "pointer": "/completion/resultTextKey"
+        }
+      ]
+    }
+  ],
+  "missingFixtureKeys": [
+    "campaign.s1.section-01.route-01.title",
+    "campaign.s1.section-01.title",
+    "campaign.s1.title",
+    "cosmetic.draft-purchase-object.title",
+    "cosmetic.draft-route-milestone-object.title",
+    "cosmetic.fixture-operating-object.title",
+    "cosmetic.fixture-purchase-object.title",
+    "cosmetic.fixture-route-milestone-object.title",
+    "fixture-apple-1",
+    "fixture-google-1",
+    "level.fixture.single-cell.entry",
+    "level.fixture.single-cell.status",
+    "level.fixture.single-cell.title",
+    "level.other.entry",
+    "level.other.status",
+    "level.other.title",
+    "level.s1.01.01.01.other-title",
+    "level.s1.01.title",
+    "level.s1.title",
+    "result.fixture.single-cell",
+    "result.route-open.standard"
+  ],
+  "missingProductionKeys": []
+}

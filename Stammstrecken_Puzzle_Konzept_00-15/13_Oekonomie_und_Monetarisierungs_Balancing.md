@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Ökonomie- und Monetarisierungs-Balancing
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**P06:** vierzehn konkrete rein kosmetische Launchitems und 3,99 € deutscher Werbefrei-Basispreis sind entschieden; vollständige Liste im Gesamtmandat. **P03/P04/P05:** begrenzte identitätsgebundene Hinweise, lokale atomare Tagesmeldetafel und neue Endlosreward-/Qualitätsprofile sind dort konkret beschlossen. Kein Echtgeldpunkt-/Hintkauf, keine Zufallskosmetik/Bezahldrehung.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung  
 **Zweck:** Dieses Dokument hält Launch-Umfang, Geduldspunkte-Ökonomie, Season-Revision, Zeit-/Hinweisregeln, Werbetaktung und deren Quellenbasis fest. Es dient späteren Chats, Produktentscheidungen und dem technischen Balancing.
 
@@ -28,7 +36,7 @@ Die ersten drei bis fünf Meldungen erklären die Mechanik durch Handlung. Es gi
 | Route mit 12 Meldungen komplett | +60 |
 | Netzabschnitt mit 48 Meldungen komplett | +150 |
 | Freiwilliges Video nach erster Lösung | +10, einmal je Meldung |
-| Betriebslage des Tages | +10, +15 oder +25 beziehungsweise kosmetischer Fortschritt |
+| Betriebslage des Tages | +10/+15/+25 Punkte mit 60/30/10 Prozent, lokalem Kalenderdatum und atomarem Claim |
 
 Eine vollständige Season-1-Kampagne mit drei Sternen je Meldung liefert 9.150 Geduldspunkte aus Rätseln, Routen und Netzabschnitten.
 
@@ -78,7 +86,7 @@ Die Anzeige erscheint ausschließlich nach Zugfahrt und Ergebnis. Eine eigene tr
 | Angebot | Gegenwert | Grenze |
 |---|---:|---|
 | Video nach erster Meldungslösung | +10 Geduldspunkte | Einmal je Meldung, nach der Abschlussinszenierung. |
-| Video auf aktive Hinweisanforderung | Ein zusätzlicher Logikhinweis | Hinweis auch regulär erhältlich; keine automatische Aufforderung. |
+| Video auf aktive Hinweisanforderung | Ein persistenter Zusatzcredit | Maximal einmal je Puzzleidentität, neben drei kostenlosen Credits; keine automatische Aufforderung. |
 | Zusätzliche Betriebslage des Tages | Eine weitere Meldetafel-Teilnahme | Höchstens einmal je Kalendertag. |
 | Werbefrei-Option | Entfernt unterbrechende Anzeigen | Freiwillige Videos bleiben freiwillig. |
 

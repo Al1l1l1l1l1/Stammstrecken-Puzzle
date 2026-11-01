@@ -1,5 +1,11 @@
 # Mobile Services v0.4
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Launch P07:** AdMob/UMP allein; Unity-IAP Apple/Google, ein remove_ads-Non-Consumable/3,99-€-Basis; Firebase Analytics/Crashlytics und weitere Mediation nicht im Productionpaket. Nichttrackende/nichtpersonalisierte Absicht ersetzt keine tatsächliche SDK-/Rechtsprüfung. Reale Datenflüsse, UMPfreigabe, IAPreadiness/Grant-vor-Finalize/Restore und physische Gerätebelege sind weiterhin Pflicht. Für tatsächlich nicht gelinkte Provider gilt Abwesenheits-/Netzbeleg statt fingierter vollständiger Aktivierungs-/Widerrufsmatrix. Die unten erhaltenen Legacy-/Firebasefälle werden nur für tatsächlich unterstützte entsprechende Upgrade-/Providerpfade konkret ausgeführt; relevante Guards/Fixtures bleiben als technische Regressionen erhalten.
+
 ## 1. Grundregel
 
 Mobile-Dienste sind Adapter, keine Spiellogik. Jeder Dienst kann deaktiviert, nicht initialisiert, offline, langsam oder fehlerhaft sein. Lokale Rätsel, Fortschritt, Zugfahrt, Karte, bereits freigeschaltete Kosmetik und Einstellungen bleiben nutzbar.
@@ -27,7 +33,7 @@ Timeout ist nie Erfolg. Späte und doppelte Callbacks werden über Operation-ID 
 | Application-Port | Implementierung | Sicherer Fallback |
 |---|---|---|
 | `IConsentPort` | `STP.MobileServices.Google`: UMP plus lokale Privacypräferenzen | keine Ads/Analytics/Crashreports; lokale App funktioniert. |
-| `IAdsPort` | `STP.MobileServices.Google`: Google Mobile Ads 11.5.0 mit AdMob Mediation | Angebot ausblenden beziehungsweise ohne Anzeige fortfahren. |
+| `IAdsPort` | `STP.MobileServices.Google`: Google Mobile Ads 11.5.0/UMP, zunächst AdMob allein ohne zweiten SDK-/Mediationspartner | Angebot ausblenden beziehungsweise ohne Anzeige fortfahren. |
 | `IPurchasePort` | `STP.MobileServices.Store`: Unity IAP 5.4.3 | Kauf nicht verfügbar; bestätigter lokaler Werbefrei-Cache bleibt. |
 | `IAnalyticsPort` | Production: No-op-Sink; Firebase Analytics 13.16.0 bleibt Integrationsreferenz bis zum prä-SDK-Fence-Nachweis. | No-op-Sink. |
 | `ICrashReportingPort` | Production: lokaler redigierter Diagnosesink; Firebase Crashlytics 13.16.0 ist ausgeschlossen. | begrenztes lokales Diagnosejournal. |
@@ -105,14 +111,14 @@ Der Adapterzustand lautet `REQUESTED -> LOADING -> SHOWING -> REWARDED | CLOSED_
 | Placement | Fachlicher Claim | Gegenwert |
 |---|---|---|
 | `POST_CLEAR_PATIENCE` | `reward-claim:POST_CLEAR_PATIENCE:<puzzleId>` | +10 Geduldspunkte exakt einmal je Meldung. |
-| `EXTRA_HINT` | erst nach bestätigter `IHintPolicy` | ein persistenter Hintcredit; wegen `BLOCKER-PROD-001` Production-aus. |
-| `DAILY_EXTRA` | erst nach bestätigter Tagespolicy | eine zusätzliche Teilnahme; wegen `BLOCKER-PROD-002` Production-aus. |
+| `EXTRA_HINT` | erst nach bestätigter `IHintPolicy` | ein persistenter Zusatzcredit je Identity gemäß entschiedenem P03; bis tatsächlicher Implementierungsprüfung Production-aus. |
+| `DAILY_EXTRA` | erst nach bestätigter Tagespolicy | ein zusätzlicher lokaler Dailyclaim gemäß entschiedenem P04; bis tatsächlicher Implementierungsprüfung Production-aus. |
 
 Vor Adload führt Application Eligibilityprüfung und persistente `RESERVED`-Reservation in einem atomaren Savecommit aus. Nur eine Operation kann eine Claim-ID reservieren. Provider-/Operation-ID ist kein fachlicher Deduplikationsschlüssel.
 
 Nur `REWARDED` derselben Reservation darf in **einem** Savecommit Claim `COMMITTED` setzen und den Ledger-Eintrag erzeugen. Parallelität wird über Savegeneration abgewiesen. Terminal ohne Reward gibt die Reservation atomar frei. Crash, Timeout oder unbekannter Showausgang führt zu `RECONCILIATION_REQUIRED`; bis zu einer eindeutigen Adapterantwort bleibt der Claim gesperrt und eine zweite Anzeige verboten. Ein später identischer Callback ist No-op nach Commit. Ein Callback einer bereits freigegebenen älteren Operation wird quarantänisiert und niemals automatisch als zweiter Reward verbucht.
 
-Beim Hint bleibt ein bestätigter Credit bestehen, wenn kein nicht enttarnender sicherer Hinweis lieferbar ist. Die offene Lebensdauer-/Modussemantik bleibt in `OPEN_BLOCKERS.md` unverändert.
+Beim Hint bleibt ein bestätigter Credit bestehen, wenn kein nicht enttarnender sicherer Hinweis lieferbar ist. Lebensdauer/Modus/Creditmenge sind mit P03 entschieden; OPEN_BLOCKERS bezeichnet noch tatsächliche Implementation-/Validierungsgates, keine erneute Produktfrage.
 
 ## 8. Clientseitiger IAP-Trustvertrag
 

@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(StpRepositoryRoot)/.utmp/wp046-production-import/obj/</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>$(StpRepositoryRoot)/.utmp/wp046-production-import/obj/</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableNETAnalyzers>false</EnableNETAnalyzers><EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <OutputPath>$(StpRepositoryRoot)/.utmp/wp046-production-import/bin/</OutputPath>
+  </PropertyGroup>
+  <Target Name="RequireExplicitSource" BeforeTargets="BeforeBuild" Condition="'$(StpRepositoryRoot)' == ''"><Error Text="Pass StpRepositoryRoot for the exact source snapshot." /></Target>
+  <ItemGroup>
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Application/**/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/*.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Editor/Content/LevelValidationPipeline.cs" />
+    <Compile Include="$(StpRepositoryRoot)/Assets/StammstreckenPuzzle/Scripts/Editor/Content/ProofGenerator.cs" />
+    <Compile Include="$(StpRepositoryRoot)/tools/campaign/HumanReadback/SourceBundle.cs" />
+    <Compile Include="$(StpRepositoryRoot)/tools/campaign/HumanReadback/Readback.cs" />
+    <Compile Include="*.cs" />
+  </ItemGroup>
+  <Import Project="$(StpOverlayProps)" Condition="'$(StpOverlayProps)' != ''" />
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

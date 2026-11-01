@@ -1,0 +1,119 @@
+{
+  "at": "2026-10-19T13:03:04.032Z",
+  "verdict": "PASS_TARGETED_ROOT_F2_PACK_ORIGINAL_API_CROSSCHECK",
+  "scope": "Only two supplied exact Root reports versus already completed independent F2 evidence; no renewed source/inventory/QC execution.",
+  "rootInputs": [
+    {
+      "name": "S_F2_DURABLE_CI_PACK.json",
+      "bytes": 2717233,
+      "sha256": "ab26d67d114caf8815efca459ec8e95852a93cf8f38bc1a7cbb1c208b60021be"
+    },
+    {
+      "name": "S_F2_CI_EVIDENCE.json",
+      "bytes": 126474,
+      "sha256": "1d846578bf571b0b54a0863a0541f448bdb423945ecc694de6c9ef57dbc5f724"
+    }
+  ],
+  "independentFinalReport": {
+    "name": "S_F2_FINAL_INDEPENDENT_QC.json",
+    "sha256": "b36987ff800c545b7e7d26baa50d0a9b807ae2ae09417ad056b65c23726d5eee"
+  },
+  "sourceSha": "3746184ca75eb439de918896e9b88aa238cff893",
+  "sourceTree": "ca88b989c03e7daf10bc05eeb9bb845348717bc9",
+  "sevenFullOriginalTransportChecks": [
+    {
+      "jobId": 118052677948,
+      "rawDecodedUtf8EqualIndependentOriginal": true,
+      "profileRoundtrip": true,
+      "everyNonmatchingLineAndTimestampUnchanged": true,
+      "matchingLinesOnlyMarkerWithOriginalTimestampAndIndent": true,
+      "redactedLines": 4,
+      "profileSha256": "32f71b2ea9c30e43782c30fda1c256f7c2951dc59331373743a10fac7f8c937d",
+      "profileDifferenceFromReviewer": "Only preserved original post-timestamp indentation on redacted lines; own reviewer profile uses a single space. Each profile has its own declared hash."
+    },
+    {
+      "jobId": 118052829961,
+      "rawDecodedUtf8EqualIndependentOriginal": true,
+      "profileRoundtrip": true,
+      "everyNonmatchingLineAndTimestampUnchanged": true,
+      "matchingLinesOnlyMarkerWithOriginalTimestampAndIndent": true,
+      "redactedLines": 90,
+      "profileSha256": "f85cb26a398ba1c2a3e48591196d521d5e8e9a6b9e69986ef2724c6f20a4b758",
+      "profileDifferenceFromReviewer": "Only preserved original post-timestamp indentation on redacted lines; own reviewer profile uses a single space. Each profile has its own declared hash."
+    },
+    {
+      "jobId": 118056619724,
+      "rawDecodedUtf8EqualIndependentOriginal": true,
+      "profileRoundtrip": true,
+      "everyNonmatchingLineAndTimestampUnchanged": true,
+      "matchingLinesOnlyMarkerWithOriginalTimestampAndIndent": true,
+      "redactedLines": 114,
+      "profileSha256": "82a4eb89adcb17ac24b00ab5f59e2f395c34580cda47b0831bd1f514ad7804d0",
+      "profileDifferenceFromReviewer": "Only preserved original post-timestamp indentation on redacted lines; own reviewer profile uses a single space. Each profile has its own declared hash."
+    },
+    {
+      "jobId": 118058189284,
+      "rawDecodedUtf8EqualIndependentOriginal": true,
+      "profileRoundtrip": true,
+      "everyNonmatchingLineAndTimestampUnchanged": true,
+      "matchingLinesOnlyMarkerWithOriginalTimestampAndIndent": true,
+      "redactedLines": 406,
+      "profileSha256": "57fa45a657a8a37f79aa147bc3d818091d927aa083c534d65b41258dabe2d6eb",
+      "profileDifferenceFromReviewer": "Only preserved original post-timestamp indentation on redacted lines; own reviewer profile uses a single space. Each profile has its own declared hash."
+    },
+    {
+      "jobId": 118065369984,
+      "rawDecodedUtf8EqualIndependentOriginal": true,
+      "profileRoundtrip": true,
+      "everyNonmatchingLineAndTimestampUnchanged": true,
+      "matchingLinesOnlyMarkerWithOriginalTimestampAndIndent": true,
+      "redactedLines": 701,
+      "profileSha256": "83866610a34a778e4145dc415f69e2b2ec72a989aa49dd3276dd155c994d6f02",
+      "profileDifferenceFromReviewer": "Only preserved original post-timestamp indentation on redacted lines; own reviewer profile uses a single space. Each profile has its own declared hash."
+    },
+    {
+      "artifactId": 12186216337,
+      "originalZipExactIndependentDownload": true,
+      "bytes": 838020,
+      "sha256": "cdab5d30960e21c1ba6e9c2aad3200fcf9fc52afa473bfad12857ecf1fa8ea6f"
+    },
+    {
+      "artifactId": 12185643145,
+      "originalZipExactIndependentDownload": true,
+      "bytes": 707872,
+      "sha256": "a2775649307aad66550b75e5077d9914e02735ff371d0f2c0babf4537684816a"
+    }
+  ],
+  "typedApiXmlAndFactChecks": [
+    {
+      "kind": "architecture",
+      "id": 39250454892,
+      "actualTerminalRunFieldsExact": true
+    },
+    {
+      "kind": "unity",
+      "id": 39250454850,
+      "actualTerminalRunFieldsExact": true
+    },
+    {
+      "kind": "architectureJobs",
+      "count": 1,
+      "everyJobAndStepTerminalFieldExact": true
+    },
+    {
+      "kind": "unityJobs",
+      "count": 10,
+      "everyJobAndStepTerminalFieldExact": true
+    },
+    {
+      "artifacts": 3,
+      "allDigestsAndHeadBindingsExact": true,
+      "originalXmlMembers": 6,
+      "allMemberHashesNunitCountsAnd80ModuleSummariesExact": true,
+      "apkMemberBytesAndHashExact": true,
+      "fiveLogFactsAndFourReleaseInstantsExact": true,
+      "androidBuildBinaryExcluded": true
+    }
+  ],
+  "limits": "No new LS acceptance/P/I anchor/numbered ADR acceptance. Root alone performs those later. Raw logs and Android binary remain ignored locally. Profile differences on matching redacted lines are declared and independently reconstructed; no claim that separately formatted safe profiles share one hash."
+}

@@ -1,0 +1,1713 @@
+{
+  "evidenceKind": "ACTUAL_ANDROID_APK_ARTIFACT_INSPECTION",
+  "buildLabel": "wp046-main-android-19",
+  "apkSha256": "758289cb01e7c3e40851bc0b5511302459c3b6cf8d5607bad54826cb42f60da3",
+  "apkSizeBytes": 58643265,
+  "sourceBinding": "Git b82b2d0b8898652df8ece479117beb2a9516475b; actual prebuild source input inventory SHA256 c95cbfdd7a853d3e5e87c2cb8580f100f826ce0f92dabf6fe789d7953f36106d; exact original source archive SHA256 6fce2766fe0e9213868e39cd76a6aa56033a9b366e355192bedc95a3089d3c27; four preserved local ProjectSettings overrides declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "manifest": {
+    "package": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": "26",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_ADSERVICES_TOPICS",
+      "com.android.vending.BILLING",
+      "android.permission.WAKE_LOCK",
+      "android.permission.FOREGROUND_SERVICE",
+      "com.STP.StammstreckenPuzzle.qa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "providers": [
+      "com.google.android.gms.ads.MobileAdsInitProvider",
+      "androidx.startup.InitializationProvider"
+    ],
+    "measurementDelayValues": [
+      "true"
+    ],
+    "debuggable": "true"
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "nativeLibraries": [
+    {
+      "path": "lib/arm64-v8a/lib_burst_generated.so",
+      "sizeBytes": 422840,
+      "sha256": "84c365e70ebd2d5f08dc5d151cfba93156f3f142424c8339de7b67b80364f70f",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sizeBytes": 1292904,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libgame.so",
+      "sizeBytes": 252008,
+      "sha256": "5e1f799e725960bd7b9017d7f3129e4fe28dc93fea8029102d85bf9fc4bdc64d",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libil2cpp.so",
+      "sizeBytes": 80521280,
+      "sha256": "520a7e5e6f3d3d8b714ab3a29bb3d00e304dccd476ff3f4e2895b8a7d3c4481a",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libmain.so",
+      "sizeBytes": 8720,
+      "sha256": "56e3c619bf938450f5a95eec2a460cf620adb3ce73cea8577160d58542b0f632",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libswappywrapper.so",
+      "sizeBytes": 227040,
+      "sha256": "be765b6824060e42c01ba7fe1c67dd3dbb3a493be03a4de649df43f3e42de363",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libunity.so",
+      "sizeBytes": 36232048,
+      "sha256": "6e5dbb360a1b1fcd34d0a2cfd0bce50a21431a3b52d0e9b2b2771671eb2490b4",
+      "elfMachine": 183
+    }
+  ],
+  "packagedSdkVersionProperties": {
+    "billing.properties": "version=9.0.0\nclient=billing\nbilling_client=9.0.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-measurement-base.properties": "version=20.1.2\nclient=play-services-measurement-base\nplay-services-measurement-base_client=20.1.2\n",
+    "play-services-measurement-sdk-api.properties": "version=20.1.2\nclient=play-services-measurement-sdk-api\nplay-services-measurement-sdk-api_client=20.1.2\n",
+    "user-messaging-platform.properties": "version=4.0.0\nclient=user-messaging-platform\nuser-messaging-platform_client=4.0.0\n"
+  },
+  "artifacts": [
+    {
+      "path": "stp-mobile-preview.apk",
+      "kind": "ACTUAL_APK",
+      "sizeBytes": 58643265,
+      "sha256": "758289cb01e7c3e40851bc0b5511302459c3b6cf8d5607bad54826cb42f60da3"
+    },
+    {
+      "path": "unity-build.log",
+      "kind": "ORIGINAL_BUILD_LOG",
+      "sizeBytes": 616088,
+      "sha256": "3960a56caffb940570f7d1de39f4faada0347c7211a74d8481c69fcf18de9af9"
+    },
+    {
+      "path": "LastBuild.buildreport",
+      "kind": "ORIGINAL_UNITY_BUILD_REPORT_BINARY",
+      "sizeBytes": 861664,
+      "sha256": "6f7bdeec9f3b95fec48b2f1b9d8e56d8a16149f40f9e0616355931dbd7fc0834"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/intermediates/manifest_merge_blame_file/debug/processDebugMainManifest/manifest-merger-blame-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 91207,
+      "sha256": "39d354d1e3f9b6b0398c6ed5f16e643638e01d65210bb676e3db4a800978462b"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/outputs/logs/manifest-merger-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 159455,
+      "sha256": "980f8208f292fa653571a71cc161cc3285790563552de98d1a54d44ab0e6b224"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 14328,
+      "sha256": "8fa16480434e55f5669b673234fad500eff62c86de778d0ed3eeec229687fabb"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/build/outputs/logs/manifest-merger-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 14577,
+      "sha256": "0d9e45abc48ab2b18264b483ed8b9cd3be26fb26b0fc26a4ce619fca6d0087c5"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 2853,
+      "sha256": "c8e84de085d4c559ac3545a42bfca80e0ee918dfcc72d9d8a7f47db6be223cfc"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/build/outputs/logs/manifest-merger-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 4049,
+      "sha256": "29ec8a1776ec72c203a5cb83bb8eddf90a30d092b4190f7879579efbae842836"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/build/intermediates/manifest_merge_blame_file/debug/processDebugManifest/manifest-merger-blame-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 1551,
+      "sha256": "e2df049245f6e8964494ba2d4cd4760cd24c7cf9ca810686d3c45775f064535d"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/build/outputs/logs/manifest-merger-debug-report.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 2987,
+      "sha256": "5616a392ffa320ab48f90c85a3caa7164b7b99731e230d6cd3e74ef878666753"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/reports/stp-privacy/processDebugMainManifest-4e482b3c5f70f043c2925ae3c33d31bee86a5dcfca347a1226163f46d6470537.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 195,
+      "sha256": "7a75e77c33f32d12b29145582a920eee5b1d04db20c737bea2bf7243ce286b2d"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/reports/stp-privacy/processDebugMainManifest-fc768d1804614e6c6de0f5e61ece62636a66302c65b73a15d5cb2ad183598b4d.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 195,
+      "sha256": "6ab4c096dd485038570ff71e5ccbf3b08a6234dbc567c82d905d1b55f13b589a"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/reports/stp-privacy/processDebugManifestForPackage-4e482b3c5f70f043c2925ae3c33d31bee86a5dcfca347a1226163f46d6470537.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 195,
+      "sha256": "7a75e77c33f32d12b29145582a920eee5b1d04db20c737bea2bf7243ce286b2d"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/reports/stp-privacy/processDebugManifestForPackage-fc768d1804614e6c6de0f5e61ece62636a66302c65b73a15d5cb2ad183598b4d.txt",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 195,
+      "sha256": "6ab4c096dd485038570ff71e5ccbf3b08a6234dbc567c82d905d1b55f13b589a"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 17700,
+      "sha256": "fc768d1804614e6c6de0f5e61ece62636a66302c65b73a15d5cb2ad183598b4d"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/intermediates/merged_manifests/debug/processDebugManifest/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 17700,
+      "sha256": "fc768d1804614e6c6de0f5e61ece62636a66302c65b73a15d5cb2ad183598b4d"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build/intermediates/packaged_manifests/debug/processDebugManifestForPackage/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 17700,
+      "sha256": "fc768d1804614e6c6de0f5e61ece62636a66302c65b73a15d5cb2ad183598b4d"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/src/main/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 757,
+      "sha256": "fdc84e6095df78f6a79760d09d4324a1a76a8b04311e1442eea8936aa4740529"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 620,
+      "sha256": "520ad9f181396525612b728a33335c0628b177f2345f664785d4661c677d2929"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 438,
+      "sha256": "a850863e1fb1861f562b9f7f75c858042c5ecb531db05860c30da2795b493ec6"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 3759,
+      "sha256": "2f8b18c8d39d613050483f22a0e19c395bbad35091767f0e93b1ffb0e6b5787d"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 3759,
+      "sha256": "2f8b18c8d39d613050483f22a0e19c395bbad35091767f0e93b1ffb0e6b5787d"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 730,
+      "sha256": "3e237f59850c6feb181f510f1efcf7b5ac125f099f0566d0434b6fd41e9d3ed2"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 730,
+      "sha256": "3e237f59850c6feb181f510f1efcf7b5ac125f099f0566d0434b6fd41e9d3ed2"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/src/main/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 2875,
+      "sha256": "540ff8d2df4328f7bcb2871443f66897ed83f7afb8de5e4717fc4584f5996759"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 560,
+      "sha256": "03ae227d7f4637baf572a5af1ea7c3dc1db8c5feade4856b2392ed2ca374ee46"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 560,
+      "sha256": "03ae227d7f4637baf572a5af1ea7c3dc1db8c5feade4856b2392ed2ca374ee46"
+    },
+    {
+      "path": "generated-gradle-inputs/build.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 815,
+      "sha256": "5b498c4eae4aef2e447d52edea1c3de38eae6aed29216559e19eda5c5ed8d022"
+    },
+    {
+      "path": "generated-gradle-inputs/launcher/build.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 2070,
+      "sha256": "5762a014c359a2c31b3eafaec7f77d56d22b1a2bee0088d85a104009d6e7ea15"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/build.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 3841,
+      "sha256": "4f14a0bbd5fdf9d64e5c7bd4ae8b0ffed703614fce9d5a25003005ecc2e0b9dd"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/GoogleMobileAdsPlugin.androidlib/build.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 641,
+      "sha256": "c0179db744fcfb6e8ca9729164fd95fa36a44bfcc3dff9e9c2bba9f57c8fda20"
+    },
+    {
+      "path": "generated-gradle-inputs/unityLibrary/StpPrivacy.androidlib/build.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 635,
+      "sha256": "a3169edc64420a379b0755b724b9b1e1465ff1e8eff3043a8a5e65a6a69d5d99"
+    },
+    {
+      "path": "generated-gradle-inputs/stp-privacy.gradle",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 2195,
+      "sha256": "d6cb1602d3db5ed64aa0a7ab200fb406b0b2e78e9d3fe1114fa945b5cfb35edd"
+    },
+    {
+      "path": "generated-gradle-inputs/gradle.properties",
+      "kind": "GENERATED_GRADLE_INPUT_OR_MERGE_OUTPUT",
+      "sizeBytes": 1510,
+      "sha256": "34e97273c42d15fee9f5fb30dd83414cbd180aabeebe4f79a3a2a0b3ace6ef22"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/analytics.json",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 2761,
+      "sha256": "c7673d9d99a5178872c4dd47500a32f0e8b0d8a071e33f2de5267215070b8614"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.Android.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 119296,
+      "sha256": "6f2b97fa368967e0e8e52c191e6964820815891c67a488168774f9a0072b7bd6"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.Common.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 28160,
+      "sha256": "e58aa94bbac85e31a08426b4e58c0fa75028187a6e37a4e39af27261a73131d7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.Core.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 11776,
+      "sha256": "df14c2b04fd2231668a713049e59a53592a558228e9bcbe08c7bc96d56be2de0"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13824,
+      "sha256": "c1ed215b1ecf7de4d373f77a7b4f3f2c73018a6a381e0c34c566aacb2f3ceb22"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.Ump.Android.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14848,
+      "sha256": "0dd22d0f9f3a62f9ab28101bf52574a0c10c3643a1528dee07e46ff68db1cb3c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/GoogleMobileAds.Ump.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 8192,
+      "sha256": "541306a2378bd6c0da088bad3f9c9f242a3ef73056a0d9f8b0db29d36ac59654"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Mono.Security.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 116224,
+      "sha256": "885f1490751dfe6ea163304ae097578b4c6914ac0200164e9b4485ac268f31db"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/mscorlib.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 2182144,
+      "sha256": "60b0bc47495cc0fc635c6f16352cef02cf30cc1dc11eb1f8209cf21910cc4552"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Newtonsoft.Json.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 389632,
+      "sha256": "2072dd231880cd0017e9c0267c61232567ce41cc013f4472147072c692d814a8"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Newtonsoft.Json.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 158472,
+      "sha256": "3828e1d7cf1ae179522e231df52fa7ded33530bbef4d6e0566a15c689fe6baaf"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Application.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 409600,
+      "sha256": "fcf89e2e2a6cfb32b74cfb852a3dc66a8d1e845a1eb6be068f602013f15e8245"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Application.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 127992,
+      "sha256": "de3a405f307cf99dbcaf27fa54efb5bce888173ea71efeb4452d3353c0f42c73"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Audio.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10752,
+      "sha256": "75343c888a932098b741b40427f9487004bed4c023fbfe8249a1200458d87a3b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Audio.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 18552,
+      "sha256": "1449e3545e0b28f6c0ef11263e54dfb89453bd806d5bb69052be77b0f79ebf2f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Bootstrap.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 222720,
+      "sha256": "17661f302cefe78113f2080360afaf0bdd253d52757c0d8d5a36794e88408d4e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Bootstrap.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 72656,
+      "sha256": "a14c6c1767dcaeba582cb2b58e51a1462d960f1b13506dc8322fbc6f5ef63afb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Infrastructure.Content.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 94208,
+      "sha256": "67a502b80e63954d2c16826f46b19619712a95b5b2b0cec79c460caf0c398677"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Infrastructure.Content.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 45636,
+      "sha256": "90ab174f8c04f710aae921178400fc0b682e5c2143a7e9dfe56e046d7b793ba1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Infrastructure.Persistence.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 257024,
+      "sha256": "bc609723b229db0ef68c67ba744e13e181f5a4db410012c4fcaf8f3c3a70bd5c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Infrastructure.Persistence.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 85808,
+      "sha256": "3f5bc841b87bedbc5dc4f1ffff67b7f69e4cec041093f1a31094e44feef14983"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.MobileServices.Google.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 26624,
+      "sha256": "43aabb041e9ea3e6b4d88ad978570e57a0b101d04f17748c9c7a0098f4246d5e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.MobileServices.Google.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 22604,
+      "sha256": "7c80ffcdf1d4ff8d810242a23d2e015d9213bc94005260c2360f541548abf942"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.MobileServices.Store.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 36352,
+      "sha256": "47cc10167f434f64f44484cc408f643a08ff2243f86fae15241ea270c5f02477"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.MobileServices.Store.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 25068,
+      "sha256": "746d20320babe1373c66858a7a2bf68f3b5f3efea15f2327c1a0b526fa4437e6"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Platform.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14336,
+      "sha256": "8daa2a1e074748d1326ef9ec66ed65eb521ec768cdb6401c78280558a3cccd7d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Platform.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19920,
+      "sha256": "fb85433ac74d98a1d0081e7886b2ef63655b822d647983765384be4e35467f71"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Presentation.UI.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 218112,
+      "sha256": "e86d0456318cf01a3a48bfe5c0fe9807fa3056fe319b0b301ee29ed2967d76de"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Presentation.UI.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 85988,
+      "sha256": "ee0a117cb4651377ac9640316419eb9a23dc263a8592da5729a99a6088f5e327"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Presentation.World.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15360,
+      "sha256": "883817de89dcca1134deb64c2e3a5ab955b35f1239a7f49d2217305a3f427f1f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Presentation.World.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19924,
+      "sha256": "90313185ca66b69bdf9f0f4cb16af3b2736d44b1bdd0fbeea50eac5a991d3779"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Puzzle.Domain.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 36352,
+      "sha256": "bdc4d617d6322c3b0255dcc631a7d9799e0c75a89e29a01b8b7b0efa344abc89"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Puzzle.Domain.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 23000,
+      "sha256": "358fb816db1f05567e938daecc90bda47d612076dcba963d4df2779bf3acddc9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Puzzle.Solver.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 37376,
+      "sha256": "3e5371973130214f18c3d4112a5aaee880222c2edca1767187253f9530453e06"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/STP.Puzzle.Solver.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 25452,
+      "sha256": "e13c84dd81c8e6fcb7f3aa9439a6874509f003a347d409942bd273b379e84ba4"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Core.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 429568,
+      "sha256": "917f29b3cf178886d4be87bc7dc772b31bff2534fb45ab7a2b7e0868eb057944"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Data.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 626688,
+      "sha256": "25c51f3384815f765464245496106a9d9e2e5024ab1c40cf344f2cd942d01e5c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 790016,
+      "sha256": "d0207e372a5520833be7bffc5dc54ae2958cfc1654de9b1bdff77e4ad1fbe072"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Drawing.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 47616,
+      "sha256": "36f1fffd4a03cae0e9ab7120f70a2c43018882ee21ca8bed13b069d3bf7eaa7f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Numerics.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 38400,
+      "sha256": "589f356b5f649d371fecbb21206a5086183a56a95dc2a703cdeb09309c362d2e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Runtime.Serialization.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 6144,
+      "sha256": "71e87b19ea38f70e77554f3608436669644d065166bb64e7d76580aca44bbb6c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Xml.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 1054720,
+      "sha256": "49045094e9f3b4a14b0161a5b3c2eded78f42ebcf4b890451ae7392a1845bffb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/System.Xml.Linq.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 37376,
+      "sha256": "7135d486b9b6538895e9ebfe56a9d222ed55168f7561d2b2807a5254958ee428"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Addressables.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 61440,
+      "sha256": "dc0e687c8cdc1d0da2593581ceeafe67d3ddba78994c5a3e337c76f3fe6a1b26"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Addressables.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 41012,
+      "sha256": "9969b257f4880924f1d5e1380b27ffac0e2b88f42e12496962f61b166a8a6a7d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Burst.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 33280,
+      "sha256": "2a9ddbe5972210ccb304a6663dc320b2d0c8243bf4c5b7fd130bd5888f920368"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Burst.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 34316,
+      "sha256": "bfdd541ff11a6630a12b0502efc429b301f23cd9fbc8e54250d1c2085e13ae48"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Burst.Unsafe.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 3072,
+      "sha256": "3fe5f2054f0233c9008c0434077838e9a7f86822954fb5340c57ba56eb3c6bf1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Collections.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 103424,
+      "sha256": "77d86083109d4c1cac0202aca192c6d37f81c9640d3c2a17af9173f0d285485f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Collections.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 70328,
+      "sha256": "daefa4217416ea7d8587ce67a811bfda30d64f30ee53501d18eb3d34048995d5"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.InputSystem.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 985600,
+      "sha256": "80559816ca1cd1eb7ea51530cf77db69ef3a845b8e28cb220ff6315809f8bbd3"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.InputSystem.ForUI.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15360,
+      "sha256": "f649468a657fd8ae41492639a64d1da21e40f4fb9c21868665311832daeddb15"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.InputSystem.ForUI.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 20536,
+      "sha256": "3fd0eb03ba22f20defa4df6983eaa1149075bee368cc25d2f08401521ce1f8fc"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.InputSystem.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 425972,
+      "sha256": "cb81048ae249872f3a9408c222f87dfb4816169a8bc837b65f00a73f402dc037"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Localization.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 177664,
+      "sha256": "e9ba92bb91c183ca502f95959277db69b571f6b6b5305537ad24c314b6f9fd85"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Localization.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 99856,
+      "sha256": "694928944eef56e558177861236752a81330714293f661f820dc92ad6828cfb4"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Mathematics.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 34816,
+      "sha256": "3accc85a147f46cd59efdd906872aa5c7addcf255f55946592c3262f8053a1f5"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Mathematics.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 32820,
+      "sha256": "6d4af341a1766a1c663b70a09e9ea77e8818592b8bd3e966154d78b530978eaa"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Profiling.Core.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 5120,
+      "sha256": "9d7957ea18a03f80907edadd5f8c32078e4e992c660109890c8604b89a795299"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Profiling.Core.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16836,
+      "sha256": "0d95251f3ce0f423e384e2a0e096ce604698ab2a364ecd58b5d101e45e652a0e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.AppleMacosStub.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4608,
+      "sha256": "7526eaefe2e4033f209bc87a9fbee7cbc8a79aee6e71a0b25e3c300d98ee817e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.AppleMacosStub.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16820,
+      "sha256": "396851dde80b9197f5c26867e25316f86ca120e3b44480c0a8f51274b1e3017b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.AppleStub.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4608,
+      "sha256": "ac8b07769573be5f82cde087b1dd3cefe1568fcd550925ee5f4cf53d248661f8"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.AppleStub.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16912,
+      "sha256": "489b340a15ae19d83ea085e1f9ff61f0029cc61c65b232af6980195b61bc0058"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 186368,
+      "sha256": "478f30c8ae9a9c2add20a99579e49b67dfd2e248eadf6f390f7121c2b8dc455a"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.LiveContentAdapterService.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 43520,
+      "sha256": "5ad48ffc9014ab91d381b709b4ed372c102f780cd7b2f4543eaf01bb8fea0277"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.LiveContentAdapterService.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 32436,
+      "sha256": "9cae4ee43ac5f8d392e4304c7066a061aea5d50083c2420123d8c4636c23e6e0"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.PaymentProviderService.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 88576,
+      "sha256": "64aa4512b15d636b7f8e1f84986b0f2737b975444fb758054561d3af749081d1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.PaymentProviderService.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 44768,
+      "sha256": "c8372d819a802d9a79a5e1cf5e0130f82bf17d2ec1e23d8e79806c053dc10648"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 93672,
+      "sha256": "bb15b2ca2dd1b2706671feb5c200488503b754a54ebfe58204fc505a6d677857"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Security.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 38400,
+      "sha256": "467b70c1442e35ee72c5bf98a2d38535c9091a32d68e28ad0e35b5dd86649c77"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Security.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 35224,
+      "sha256": "446d02659ed95cfb5af69cd34372a2c889b59da77c748295ca416a7daf24d704"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.SecurityCore.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 7680,
+      "sha256": "b751d48c9fee13cbaa01dcccdf945d76d9f19fba6bfd3992838aa1bdc190090d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.SecurityCore.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 17532,
+      "sha256": "931c08a06092ca07490fcdc353c5388c2816ea87ddae95ceaf768389fd0e131a"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Stores.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 279040,
+      "sha256": "41729f483bb3082ac8e793d02413d80ce037d4255693922cc20c6b48b5bb2419"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Stores.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 111476,
+      "sha256": "d19b12718f252957c44efec51afcffdfe9cdb8598ce601ffb301815e10f2432f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Utilities.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 20992,
+      "sha256": "b3e117f972251d6ee1165d2eddc11ac37f8408f1572085113d62c5f6bbd2b1e5"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.Utilities.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 23224,
+      "sha256": "d6cf1e71ce8edb58243e627acd40e2d26cfdf64080420a11123e06c3ae47ed59"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.WebshopService.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 43008,
+      "sha256": "0c68f93939e7ca5bd9bfa508eda76979b829f8d0784741f97b1a4e83f1cb8714"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Purchasing.WebshopService.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 31720,
+      "sha256": "c9d5d376beb1c10a2dfd5a353f97344c2ce0318ff891109b762549a27e587c54"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 7168,
+      "sha256": "7bf1dc51403a2aee759607eec0109e82cd17700778e80c9993eb2c0e5d60d63f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipeline.Universal.ShaderLibrary.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16012,
+      "sha256": "471b66bfd97f915d2b00f695abee4ebb9e181a01ce8eed26bf7bbc4689d93923"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Core.Runtime.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 684032,
+      "sha256": "99db782ca7be6bacff9bc8a38453343d9086cf2b08e88056a1669845ca448df7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Core.Runtime.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 329096,
+      "sha256": "0afd7e3517dbe5d35644bc8daac0db5bcf56b48907bb72a4df2d36877909a2f1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4096,
+      "sha256": "c700ae9df9a500b5f959ea3185ec83c048a87d47ac575f7a103c148bf36a29dc"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Core.Runtime.Shared.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16320,
+      "sha256": "47ca2bf7a49d24751f61bce5c7f4ea6997887152ec7fb85e9ef0846e38288c15"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 224768,
+      "sha256": "206bc6f3c4152ad3956f6ac962877f78d2cd46731c5efc958c24cded71b46a15"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.GPUDriven.Runtime.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 114576,
+      "sha256": "c9e05e83cf1c61d1b2159f8d5e21ad0e42720568a348580196607c22088aea99"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 200192,
+      "sha256": "8bb6e1e838b6a1bb397600f3b1058f9cabdf3e954dffe19cb4bf6807b7dfe225"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Universal.2D.Runtime.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 123756,
+      "sha256": "0cd37a25044a5954c708aa445a5a5df81be992ccf52f65456828a81c0aafdeb0"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Universal.Runtime.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 569344,
+      "sha256": "3f8e8d0f639132ce72094e4191a4310779943956e2f77abcf279dcef96448c9b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.RenderPipelines.Universal.Runtime.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 243960,
+      "sha256": "542c3982dcab2f27b4f244d25e00a3163876d8cf6cc5affc59617752af33c33c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.ResourceManager.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 105472,
+      "sha256": "04d92051e93334c676ceca1c624729f6645d8535f4ce0e92d22b2212027653a1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.ResourceManager.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 64100,
+      "sha256": "b9a0e85990a59e9b0b2e27a782257e0fee8bf2f81ba7ce1cf66a899937d63dfb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Configuration.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10240,
+      "sha256": "8a28b56851cc1749fa57b225e492d7e45ed03e0890cb4e5b0e88d23bd0726454"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Configuration.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19096,
+      "sha256": "7c9508de3b61a95f8e221e641e09f14f9ae2d9002fc41db9484ed8ce80306978"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Device.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 7168,
+      "sha256": "416a4bfb65d0e7f5a90336b5d4a495d392e27d10d2ea289dd2abf74e4cf75a8e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Device.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 18308,
+      "sha256": "0ce08e11a404a85c60e5b6e5d6a063d087103113bd5fbbe3c91f7f02684441a4"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9728,
+      "sha256": "99a889e429ccc1a94ce4e430546a00355645a96c1b4e7ae92b4da7d9bfe3bbae"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Environments.Internal.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 3584,
+      "sha256": "bdf4f65691d599d881a597a9ce8210d0dced8a3758ac2ffd1fce0903d82c9de9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Environments.Internal.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16328,
+      "sha256": "eb91bd3b1f285bf15f017672ee845b51d2138aa95d10066f2c4113112f2b3c5e"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Internal.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 37376,
+      "sha256": "1e92bd252b3e3317e9b039778e2abb401aafea22b2d4e6af8b2e8a504d2295fe"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Internal.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 29820,
+      "sha256": "80fff04ffd0b972c284df0477fc98db2221f8b7935f6d732c10c1a32bfa990f3"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 18668,
+      "sha256": "551e986981793cb2b23f41e60562b51f952f7cbe0e151d49274a770b3be74f45"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Registration.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15872,
+      "sha256": "861839f7e2db9493f21969960a82dc2cec0d8b83a8372e60b8890dc923c98b58"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Registration.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 20072,
+      "sha256": "f57c4533596e0421db16ce65224bb101961359833d87b0a864328f7220fef7c0"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Scheduler.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9728,
+      "sha256": "46c55293fff8cc31083a21666138cdf13033c3240e596f6904551b3becc59f09"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Scheduler.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19224,
+      "sha256": "61f1566ec1885544bc110725c0e0f8a52e1b686789cd71d29ddb69b5522112f6"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Telemetry.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 5120,
+      "sha256": "55bec66f0724f8fbd5fe111dbdfb3f147630a21f9000d8371885694edfa825d9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Telemetry.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16960,
+      "sha256": "5b79348b6cc5304016bd290bfddba014cc4704619d5be4e83829273d9e484996"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Threading.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 3584,
+      "sha256": "fba28f024b6f3c3ca9f92176bb6ba8eb63121d0bfa78651b116b33324970135d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.Services.Core.Threading.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16064,
+      "sha256": "4fc11c9e43a6e2c9018e78af69af1ba82604fc5f5bbfca8f8e5fd070a6f82edb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.UnifiedRayTracing.Runtime.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 8704,
+      "sha256": "9e389c737655081edcb5a29dd0e627dc9d5855003cf1560bb1adf97905b43da3"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/Unity.UnifiedRayTracing.Runtime.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 17148,
+      "sha256": "5c32e05b12096c62c592f57f88f5c209cd8285def3cfaa5b59903d3e0cab5924"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AccessibilityModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 30720,
+      "sha256": "10a7cbe9b468f41240aee84d42a9fda68311598524a9aa169806be2bbeb384b7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AccessibilityModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 20572,
+      "sha256": "99f1f130dd04717d743ae7a4938fbdc1ce97f8b119a48fab30dc0aab66a7563c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AdaptivePerformanceModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15872,
+      "sha256": "cce34199b296ca7ca0aaf920414a97aeaecc1f1f33e9dfa0a0138cfbf58864e8"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AdaptivePerformanceModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10436,
+      "sha256": "098a4cda10b782cac725c74507e1798261a3a52a52fc1397a03549ee2bde80d3"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AIModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14336,
+      "sha256": "4759fb1465778104e0bb2c56263299d289e3b391d5908a20c4d6b3cf0b5489f9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AIModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10028,
+      "sha256": "015f7823fa507a0fd5b20c25133053138e8e9b825d1681becbc495d16289bd08"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AndroidJNIModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 95232,
+      "sha256": "905ae35688503d23db630d3e382bb6e1ef953268168ab3f3def6c75a44e40ef7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AndroidJNIModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 44364,
+      "sha256": "b69a06b6515b50b42ddc1730a81637bf941b898af622c120e5d56165fdba7d9f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AnimationModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 27648,
+      "sha256": "82d4f330017849b30881a4ff0ae90af63a124a0105b9a3cc6d706c82ed4c8504"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AnimationModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14088,
+      "sha256": "6f61bf0c053488dde0d65b03da4d66cbe620a831fd82751f6363e7eb1c659ed6"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AssetBundleModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 17920,
+      "sha256": "390c0dd32de993c21ded89d0e9a947cc10f71c49eea2460b9a57f711760d921d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AssetBundleModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 11100,
+      "sha256": "41cdaae8d6e4339dc5ca7162a07527b4f0fe5116982efee63370ddd4e8dc58c9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AudioModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 29696,
+      "sha256": "addc1d50be64d6941bca527225b35480cdffbe9efa4743e8dbcf007ec2b5090d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.AudioModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14272,
+      "sha256": "78740654e40738ac4e07e5840bb559b89e656311e6688e2e2558f4e1bfcbadde"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.CoreModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 707584,
+      "sha256": "7efc96d79923fc8366222b577fa362037da3d5d1b5e5bf201e7e50e929af83ed"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.CoreModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 223056,
+      "sha256": "e8ad9b7b362b43fb448ff64aba096aedd0936561633ff2e6021a30cf2c147b6d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 91648,
+      "sha256": "33ba0a131e81f55003f76d343390a7ed1b3e983995d65ad67ebaef25e6495a54"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.GridModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13824,
+      "sha256": "783ff60ed5efb6b8eacbdee886a1fa93ddb18ad33ac24cce151c2af189ffa3d6"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.GridModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9936,
+      "sha256": "971c9cb5573aec3982dcb6d30790dedc09ec8049085d68a81bcb52d56abe6f33"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.HierarchyCoreModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 38912,
+      "sha256": "3c4977d7663a37b1094bb68bfa3a3a1d71ff30de3e4b055de924f1a624e85dfb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.HierarchyCoreModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 21852,
+      "sha256": "76142231bf712360ca66bbc16dd92d01915c7ed1c96e6918ef84e7f250e0d6cc"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.IdentifiersModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4096,
+      "sha256": "9a2cc442adbe32f2f281434b01d20d078ce9ed3c1da2929a0363438d075f99ad"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.IdentifiersModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9956,
+      "sha256": "f3d4fbefaabc16755044aa12775c71dae6658f0089c8f627f58eba6ca1161c35"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.IMGUIModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 120832,
+      "sha256": "9f26033dd644756ec9b13893c2553c174789df870d9aafbdd6d840eb3d6b10a1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.IMGUIModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 54388,
+      "sha256": "704a2ddd806e61f07c160f311c24b48fe5484bdd2dfa356b1b5ec37098620390"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputForUIModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 39936,
+      "sha256": "af3b23f67efbce039e33e6f1023b2bd728b586721a4c431ed4aea219a58ad219"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputForUIModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 24196,
+      "sha256": "96c6c48ccd90adba476d7860cdce0e4a076931db28284f128ec23180fdc1d41a"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputLegacyModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 24064,
+      "sha256": "c753612f27c792ad8b4aa4d5da554f443aa3208b45377c9b7085cdc9d072e7bd"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputLegacyModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13000,
+      "sha256": "795028afa6deedd5699d265ac785399551839820ab14fc50746b9d46f980b510"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16384,
+      "sha256": "629b775ba8cd8f05e63f702b0e4126836cacbae95f73a33eab428594be55bebe"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.InputModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10568,
+      "sha256": "a73c8d5e8b8380cdcbb8c8fa8e7573ff31e33009165e77ca2a3125e2f7d809dc"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.JSONSerializeModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15872,
+      "sha256": "592e46b41c243a75a1e79f4c000a90384141363d469ba516da347484f01f9724"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.JSONSerializeModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10220,
+      "sha256": "710488442a96f2802e4fcd372e3f12e97ca61b4d32643c6bffc0444b6f7370b9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.MultiplayerModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4608,
+      "sha256": "ef9256849c97c1dc7837eb87d86aff8ed989aef410d69822d9a03d03ed188158"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.MultiplayerModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10072,
+      "sha256": "d3a86e42a9d61f6b9b2c7517bee4b8ef9ec4ef300bd5ae7f59fcdb0351988d93"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 11828,
+      "sha256": "8b399944cb969dcd31244503d2d72e49fed8ab6e6853d1cae10bf38de8e8018b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.Physics2DModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 77824,
+      "sha256": "69f1f8d411326e1d298a5027c50bbdd651b6b244f7daf7cb99d772dfadab71d5"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.Physics2DModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 29324,
+      "sha256": "49f49396b40e0530b26151139ac763a29c3fde9cb3f5c406e0792f4a6444a51c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.PhysicsModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 30720,
+      "sha256": "fdc5b74ed2a3648e47998c92e1c5536399cec1436816f57c2b683b67f9b27dcb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.PhysicsModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 15248,
+      "sha256": "c4b4a0c647a68ec1cbbb95c35ba3bf374d6e42280976cf49af89aaf9f720cb93"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.PropertiesModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 94720,
+      "sha256": "a9dc20d7e3d5afd02c1b86593e27875533476de557312a16dd063a3d62a5ed6b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.PropertiesModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 52908,
+      "sha256": "15294681438254c4e8232719e1904fd433ca0c84d79330200cccf59a47b12bca"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.RenderAs2DModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13824,
+      "sha256": "868bf6efa5b74be5f5fb264763c85f68725c6766dc0e0c6cb749ab1f85f025ae"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.RenderAs2DModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9676,
+      "sha256": "5fe79d46e6da92e8646cb387482a84e89f6f2c700d1d712148f60f777b5dcde0"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SharedInternalsModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 20480,
+      "sha256": "cbdd8b145590ea1259d3f7511188a13376c3c05867348598dbb8bbe22d80a512"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SharedInternalsModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 12144,
+      "sha256": "009499684457ab9ce47857d056efaf27e607640276dc940dca62f820379a6294"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SpriteMaskModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13824,
+      "sha256": "461416fc6ff9c5911d979ad3613048c2e6ec12994edafc3dd624f330a0d3adc7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SpriteMaskModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9804,
+      "sha256": "5e1839b7a8c5e4843d2d3b35133bbd830e70f397c577b648b54b7030ed859acb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SpriteShapeModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13824,
+      "sha256": "7f656101c9b650bdb5f349fa4baf1fde8d6eefe4da772f3ab476ceda9e0475f7"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SpriteShapeModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 9668,
+      "sha256": "0b0dc885b5ec9b457cce6907989ad297b4cabab6cb54e1485b9c688106af21a9"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SubsystemsModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19968,
+      "sha256": "df49f9d0bc1b546e5619b019063c416615b316bf5e5acc5a40782acb0ddbb38b"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.SubsystemsModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 12384,
+      "sha256": "96ebe46abcec08714ca0ae996a4709ed8beaecb47dc6976f5c9cf051b6ddb698"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TerrainModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 23552,
+      "sha256": "b0ad7449fcfbfa2bc2b9deb4bf4e114bf243017e53fa704e21932eb593be1185"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TerrainModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13268,
+      "sha256": "5b1b03194ca1426d82b44cf445155da4c8815de9d0d38ed6d4a63f965f9b266d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextCoreFontEngineModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 31744,
+      "sha256": "627d5c4e0f0a2361503e8e294af9101f7519385fe72a7cdc2dc6cf7285139ff8"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextCoreFontEngineModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 18576,
+      "sha256": "5b7dbf36554f1910139ddbd9af169436ca0abdff62a3254b40ff25b590bf8c29"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextCoreTextEngineModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 300544,
+      "sha256": "853646b522f463703a971465e4ef23c93a041abc79068864cd69b22734e7fcae"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextCoreTextEngineModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 142976,
+      "sha256": "57dc5f0275ec45a1bfa66875edca036afe3ea9655c511709b8135617753881e5"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextRenderingModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14848,
+      "sha256": "54c1fa9745d52c3a2a9bf81b88b531c9d71fd86169ca079b4353ff0829beb0dd"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TextRenderingModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 12252,
+      "sha256": "99078dcbb3efe0e6c78db380894cd80df7f5dcad30797da49d63c8e8b7158f8d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TilemapModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 23552,
+      "sha256": "aa0d4540f6bf8a73c50e68eb60f250ab704acd2d1f1bb97f9064cf7df53afe15"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.TilemapModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13968,
+      "sha256": "e13bb094838c6d0cda1d1396894001b3da56059cce5691b8395976140bb7a261"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UI.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 280576,
+      "sha256": "6c9b66c6a9b2e41cb1002ea31e35412c9f44316954702c593c71e16b152540f1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UI.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 172764,
+      "sha256": "3f7fbe0f4857bc9c3f729d8a0a5a2bad1ef186e43e588e609556baefecf9ebae"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UIElementsModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 1892352,
+      "sha256": "a9f72fa7c63f528cb21e974f4313e0f58726ebf009f827584ff763dbdbddbdb3"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UIElementsModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 874896,
+      "sha256": "194db7eb086558755d6c732860a1895a53123f3866b4af1023dbc2e5d6a83525"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UIModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 29696,
+      "sha256": "4de78e54c93d09d13a88a3755cf7ded1ad4f8bc62825917b4849e970a11f4af1"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UIModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 12724,
+      "sha256": "f9be3957c3e857ccb2612d0c9413f02bb39f5cb0563e27ea1d90292c4e77ee34"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 22016,
+      "sha256": "83e337131e6de38a4a6d0be2c957cef83e144b1bf158f29575f6bb3316e97789"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityAnalyticsCommonModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 13632,
+      "sha256": "6753412f72a7cbcbcf8f8be868c03324a8ad69a251920f4019e548fdabcb102a"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityConsentModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 4608,
+      "sha256": "b01180f231dcedca072b0bee3119b9aac26c1231af5ac14f59b7889bf968ee27"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityConsentModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10296,
+      "sha256": "0464b9fc25c11bb23b74ac74f383ce54762d89701e66238504b2fe58446d5dcd"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 16896,
+      "sha256": "58cb6babf0a2dd9c9911e7b8459b4a29db991ecc834b4686f63f8a47cb37581d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityWebRequestAssetBundleModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10832,
+      "sha256": "42e80a7ca8379d61d2aa922d00d5280a3b490f856278d94a2a81a7a543249ed2"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityWebRequestModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 37376,
+      "sha256": "1b14e59572c935e537489078fc684eeac68fa1afffbfb3be1336284b4cbf0613"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.UnityWebRequestModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 19000,
+      "sha256": "f732c9782ee396c5a868874eb4c24399586af08f5aa84ef7fc2b90a091e4c508"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.XRModule.dll",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 31232,
+      "sha256": "941540ad02dea4adb332ffcb16b96e063fe87db4d48e1ac07dadffc745d5d27d"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityEngine.XRModule.pdb",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 14380,
+      "sha256": "5145bcd728159c1a0331645c69f9b82896b98bc45d596f2f9eb76995ab930e7c"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/ManagedStripped/UnityLinkerToEditorData.json",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 42376,
+      "sha256": "fc8f7998f995bc9f76282e04c1a860faa0a4a341bf8a5b9767822f0748c1ccbb"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/il2cppOutput/data/Metadata/global-metadata.dat",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 10001336,
+      "sha256": "0fd545f4fea6b32b31e3fcaef9f9ab6c0224732f7c3df49c60a329817feb7016"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/il2cppOutput/data/Resources/mscorlib.dll-resources.dat",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 337563,
+      "sha256": "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/il2cppOutput/data/Resources/System.Data.dll-resources.dat",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 93718,
+      "sha256": "98a7950ec6de3242c2e190dfa630188dfa32511a125542b94baa952d1c757d49"
+    },
+    {
+      "path": "bee-inputs/artifacts/Android/il2cppOutput/data/Resources/System.Drawing.dll-resources.dat",
+      "kind": "BEE_MANAGED_OR_IL2CPP_INPUT",
+      "sizeBytes": 25453,
+      "sha256": "7c33aa707bc3fdc83991b81a97d6fc622b140762a767300f08f616c2c0a91255"
+    },
+    {
+      "path": "il2cpp-generated-inputs.zip",
+      "kind": "BEE_GENERATED_IL2CPP_INPUT_ARCHIVE",
+      "sizeBytes": 143099560,
+      "sha256": "13397a8c3fc42acc76b0d25636427f2600a40936a19bd694fbc3c122be4ebf38"
+    },
+    {
+      "path": "signature-verification.txt",
+      "kind": "CLI_OUTPUT",
+      "sizeBytes": 972,
+      "sha256": "7eb4494b998cc7a393ed8f96b444b93bd519efc316a4f77d1e33239a1bbca3e2"
+    },
+    {
+      "path": "badging.txt",
+      "kind": "CLI_OUTPUT",
+      "sizeBytes": 6655,
+      "sha256": "9e61a8b5873f0f02b79a69680523c970bf58493e261536bb12db07f2a5180b74"
+    },
+    {
+      "path": "packaged-AndroidManifest.xml",
+      "kind": "CLI_OUTPUT",
+      "sizeBytes": 17415,
+      "sha256": "c8c893cc26c0e54bad6ead7a4e4ccf3a04926fb74ee22c26cd15c60337f1a07b"
+    }
+  ],
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "independentStaticQaAcceptance": {
+    "status": "PASS_STATIC_QA_DEBUG_ARTIFACT",
+    "findings": [],
+    "localOriginalReport": ".utmp\\wp046-c-final-native19\\independent-conclusion.json",
+    "reportSha256": "33f5523dc69cd84356c368f416ac199c09fe005fef9f1f275b7bc9af53e66e21",
+    "sourceHeadDeclared": "b82b2d0b8898652df8ece479117beb2a9516475b",
+    "productSourceCommit": "9812c956b7bbb5c36025643488ecb88a8610ea0e",
+    "actualArchivedCanonicalJsonAdapterSha256": "198952c6ae7c7c5aecaf7b5095069743c89c6cf891e31348369a29f4461f9f0a",
+    "actualArchivedSaveLedgerCodecSha256": "5a0de5ee3e0d2bc8af207dbda136d9dc1abd9c48db57ee9e1049e13bf5c8beef",
+    "sourceFilesRehashed": 1116,
+    "nativeFilesRehashed": 2196,
+    "managedFilesRehashed": 814,
+    "auditArtifactsRehashed": 236,
+    "sourceArchiveIsOldV1Not93022": true,
+    "debugV2SignatureVerified": true,
+    "signerCertificateSha256": "2fc6af1b7aa6d58ac223dc388575847b98f4a65e93a7a41cbb9031563eca9bfd",
+    "signerExactlyEqualsMain18": true,
+    "static16KiB": {
+      "libraries": 7,
+      "loadSegments": 26,
+      "zipEntries": 605,
+      "zipalignP16Exit": 0,
+      "result": "PASS_STATIC_ELF_AND_APK_ZIP",
+      "deviceExecution": false
+    },
+    "visualUnchangedInputBasis": {
+      "packagedPngBytesExactlyEqualMain18": 24,
+      "fontObjectsByNameExactlyEqualMain18": 4,
+      "uiArtResourceArchivedInputsExactlyEqualMain18": 254,
+      "ui75HistoricalSightingReusedOnlyForThoseUnchangedInputs": true,
+      "newHumanOrPhysicalSighting": false
+    },
+    "nativeDexComparison": {
+      "nativeSameMain18": 6,
+      "nativeChanged": [
+        "lib/arm64-v8a/libil2cpp.so"
+      ],
+      "dexExactlyEqualMain18": 5,
+      "priorDexDefinedClassSafetyReusedAfterExactEquality": true,
+      "humanJavaExportPathsAndOfflineProductionGatesAbsentFromCurrentNativeCapture": true
+    },
+    "aotBinding": {
+      "actualOldBodiesExactlyEqualMain18": 14,
+      "actualChangedOldBodies": [
+        "SaveLedgerCodec_ValidateCore",
+        "SaveLedgerCodec_Compact"
+      ],
+      "actualNewRelevantBodiesBound": 8,
+      "privateCacheTypesRetainedInStrippedIL": [
+        "JournalProjection",
+        "StoredEntryEquality"
+      ],
+      "exactElevenFieldsInComparerEqualsAndHash": [
+        "Sequence",
+        "TransactionId",
+        "ReasonCode",
+        "Amount",
+        "SubjectId",
+        "CatalogId",
+        "CatalogRevision",
+        "CatalogHashSha256",
+        "ClaimId",
+        "CreatedAtUtc",
+        "EntryChainHashSha256"
+      ],
+      "newCacheCompiledSemantics": "ActualEntryCPP: locked lookup/recheck, canonical projection outside lock, byte cap262144/count576, FIFO eviction and cachebyteaccounting. ActualJournalCPP: captured ordered array, comparer equality perindex, locked lookup/recheck, cap512entries/262144bytes, queue<=2. ValidateCore still performs journalcount/byte checks then chain/balance/terminal guards; Compact invokes Core first and preserves generation/softlimits/checkpoint path.",
+      "sameJournalComparerABI": "ActualCPP uses IEqualityComparer slot0; actual strippedIL resolves same call to Equals(LocalStoredEntry,LocalStoredEntry).",
+      "iosOnlyChangesAndroidActiveILTypesEqualMain18": 3,
+      "oldCanonicalAdapterILMetadataExactlyEqualMain18": true,
+      "publicEntryBytesAndJournalBytesStrippedInActualPlayer": true,
+      "metadataAndCodeRegistration": {
+        "packagedGlobalMetadataSha256": "0fd545f4fea6b32b31e3fcaef9f9ab6c0224732f7c3df49c60a329817feb7016",
+        "compilerMetadataExactCopies": [
+          {
+            "compilerArchiveMember": "Library/Bee/artifacts/Android/il2cppOutput/build/arm64-v8a/Data/Metadata/global-metadata.dat",
+            "actualPackagedMetadataExact": true,
+            "sha256": "0fd545f4fea6b32b31e3fcaef9f9ab6c0224732f7c3df49c60a329817feb7016",
+            "sizeBytes": 10001336
+          },
+          {
+            "compilerArchiveMember": "Library/Bee/artifacts/Android/il2cppOutput/data/Metadata/global-metadata.dat",
+            "actualPackagedMetadataExact": true,
+            "sha256": "0fd545f4fea6b32b31e3fcaef9f9ab6c0224732f7c3df49c60a329817feb7016",
+            "sizeBytes": 10001336
+          }
+        ],
+        "actualCodegenModuleSha256": "ec2a131f96013f9e3c20e9670f3c9625f8df50eb975adae767a78e813c002697",
+        "registeredCacheValidationMethods": [
+          {
+            "method": "SaveLedgerCodec_CanonicalEntryBytes",
+            "actualSymbol": "SaveLedgerCodec_CanonicalEntryBytes_m3B8DCB73C31506F157C15E6DCADDBB6D7C38B083",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "SaveLedgerCodec_CanonicalJournalBytes",
+            "actualSymbol": "SaveLedgerCodec_CanonicalJournalBytes_m5E31102225D6C6847F58A4B0C18460AABCEBFB61",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "SaveLedgerCodec_SameJournal",
+            "actualSymbol": "SaveLedgerCodec_SameJournal_m0088E8AC82697500268168796DB069F82CF3CFDD",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "StoredEntryEquality_Equals",
+            "actualSymbol": "StoredEntryEquality_Equals_mBD412462E312D6630E154A6A9B294DB03BAEDF77",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "StoredEntryEquality_GetHashCode",
+            "actualSymbol": "StoredEntryEquality_GetHashCode_m0E8C818FB1F84D7AA5FD65E764A2B7BF8924AF14",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "SaveLedgerCodec_ValidateCore",
+            "actualSymbol": "SaveLedgerCodec_ValidateCore_m5DDEA81B52DEAB12A0494233C4751335967A6521",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "SaveLedgerCodec_Compact",
+            "actualSymbol": "SaveLedgerCodec_Compact_mAC10B71B414AB41AA5A0E9CE1CE7D33ED087029A",
+            "registeredInActualCodegenPointerArray": true
+          },
+          {
+            "method": "SaveLedgerCodec__ctor",
+            "actualSymbol": "SaveLedgerCodec__ctor_mEDA9061586089B3D63FB844E566BE34DC1818136",
+            "registeredInActualCodegenPointerArray": true
+          }
+        ]
+      },
+      "nunitTestCollectorsEditorHooksAbsent": true
+    },
+    "rawSourceToGitBoundary": [
+      {
+        "path": "Assets/Plugins/iOS/StpPosixFileBridge.mm",
+        "actualRawSha256": "429e7d166cce5f5fe2f731f514083d4b46418645ba08668404efddf2c946855c",
+        "rawSizeBytes": 841,
+        "gitBlobSha": "7dea9c545a575b4327012dc56ca3537b16426d5e",
+        "gitBlobSizeBytes": 841,
+        "comparison": "EXACT_RAW_BYTES"
+      },
+      {
+        "path": "Assets/Plugins/iOS/StpPosixFileBridge.mm.meta",
+        "actualRawSha256": "ec75369f79b136bc6dadd30b8f8426a711dce55144c6251094ee1db5bad39fa7",
+        "rawSizeBytes": 60,
+        "gitBlobSha": "aa6500a557c1645f89e0afee4d44fdcdd45b7b8b",
+        "gitBlobSizeBytes": 60,
+        "comparison": "EXACT_RAW_BYTES"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+        "actualRawSha256": "8fc40df4a792e9f0e22de46293025f8e200f31db57ae1529189457ec37b2a1f0",
+        "rawSizeBytes": 23492,
+        "gitBlobSha": "94b3ec07a9f9953327aac5b2a741da414aba6f50",
+        "gitBlobSizeBytes": 23492,
+        "comparison": "EXACT_RAW_BYTES"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+        "actualRawSha256": "4a6e6e4a04b235a1d0b2af31a7cc43d785638627159d838d4f954540aa59f3b8",
+        "rawSizeBytes": 19349,
+        "gitBlobSha": "e719de304868dd12e94fe16fd13f360bcf240c75",
+        "gitBlobSizeBytes": 19349,
+        "comparison": "EXACT_RAW_BYTES"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+        "actualRawSha256": "5a0de5ee3e0d2bc8af207dbda136d9dc1abd9c48db57ee9e1049e13bf5c8beef",
+        "rawSizeBytes": 16948,
+        "gitBlobSha": "ca483ea0a7cfbd88e79f37c14f75b528ee7c2e83",
+        "gitBlobSizeBytes": 16795,
+        "comparison": "CRLF_TO_LF_NORMALIZED_BYTES"
+      }
+    ]
+  },
+  "nativeOriginalArchives": {
+    "localDirectory": ".utmp/wp046-native/android-build19-inspected/native-originals",
+    "nativeFiles": 2196,
+    "managedFiles": 814,
+    "nativeZipSha256": "e62eea7ed2809ff06b443833803e0872034eb9eea560e8bdd7fc5f7549295283",
+    "managedZipSha256": "27ae8f7232e5ad18c49feace704ccb1ed418c8e75519e5d974b2ea6ff0d227d9"
+  },
+  "sourceArtifactBoundary": {
+    "canonicalV2NotIncluded": true,
+    "physicalSourceControlsAndOriginalSnapshotsRetained": true,
+    "main18Retained": true,
+    "human8UnchangedNotRelabeled": true,
+    "knownFullLinuxPlayOn9812": {
+      "runId": 40356798004,
+      "passed": 249,
+      "failed": 2,
+      "acceptance": false
+    },
+    "noCleanHeadOrPerTestLoadedImageOrBinaryReproductionClaim": true
+  },
+  "freshRegularPackaging": {
+    "cacheOriginalPreservedSha256": "2faf37fdb3accbbc7c395595b6197c257a23e6a578f33edc51c0d9ccf3cf934e",
+    "localRecord": ".utmp/wp046-native/android19-container-originals/record.json",
+    "manualRepackingOrSigning": false
+  }
+}

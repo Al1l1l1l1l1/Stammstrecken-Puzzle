@@ -1,0 +1,137 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-02-06",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 1
+    },
+    "b": {
+      "side": "E",
+      "index": 2
+    }
+  },
+  "rowCounts": [
+    1,
+    2,
+    3,
+    3,
+    4,
+    0
+  ],
+  "columnCounts": [
+    0,
+    2,
+    4,
+    1,
+    3,
+    3
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 2,
+    "position": 6,
+    "titleKey": "level.s1.03.02.06.title",
+    "statusKey": "level.s1.03.02.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.02.06.entry",
+    "focus": [
+      "COMBINATION",
+      "CHAIN"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "Linke und untere Nullachse begrenzen fünf aktive Zeilen/Spalten. Der Einsercount von Spalte 3 koppelt den linken Nordarm mit dem rechten Ostgebiet nur im unteren Querweg; genau dieser Übergang führt zwei Teilräume zusammen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-02-06-map",
+    "trainMomentId": "draft-s1-03-02-06-train",
+    "resultTextKey": "level.s1.03.02.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-02-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "647fd88c208cc1ef3307893778dccb61cab5b1d88c354890edd192a1c45f4fe9"
+    }
+  }
+}

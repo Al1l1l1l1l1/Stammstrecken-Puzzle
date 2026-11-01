@@ -1,0 +1,483 @@
+{
+  "at": "2026-10-19T10:34:31.3123355Z",
+  "commit": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+  "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+  "parents": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+  "cleanStatus": [],
+  "deltaCount": 95,
+  "delta": [
+    "M\t.github/workflows/validate.yml",
+    "A\tAssets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+    "A\tAssets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+    "A\tAssets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+    "A\tAssets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+    "A\tAssets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+    "A\tAssets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+    "A\tAssets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240.public.json",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240Review.uss",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240Review.uxml",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+    "A\tAssets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/ANCHOR_ARCHITECTURE.txt",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/ANCHOR_PROVENANCE.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/ANCHOR_SCOPE.txt",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/ARTIFACT_REBUILD_INSTRUCTIONS.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/AS_ANCHOR_QC.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/AS_ANCHOR_QC.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_BYTE_PROFILE_REPLICA.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_CATALOG_BINDING_RED.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_CORRECTION_CLOSURE_QC.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_CORRECTION_CLOSURE_QC.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_CORRECTION_CODE_QC.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_CORRECTION_CODE_QC.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_INITIAL_CODE_QC.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_INITIAL_CODE_QC.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_LOCAL_SUPPLEMENT.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_LOCAL_SUPPLEMENT_PRE_CATALOG_BINDING.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_02_public240-10x10.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_02_public240-4x4.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_02_public240-picker.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_02_public240-results.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_02_public240-ride.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_03_NOT_EXECUTED.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_04_public240-10x10.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_04_public240-4x4.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_04_public240-picker.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_04_public240-results.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_04_public240-ride.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_05_public240-10x10.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_05_public240-4x4.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_05_public240-picker.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_05_public240-results.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_05_public240-ride.png",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_BUILDER_01.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_REBUILD_06.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_SCREEN_02.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_SCREEN_04.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_NATIVE_SCREEN_05.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PRECI_CANONICAL_architecture.txt",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PRECI_CANONICAL_scope.txt",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PRECI_R_RECEIPT.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PROJECTION_NODE22.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PROJECTION_SOURCE_AUDIT.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PROJECTION_SOURCE_AUDIT_PRE_FREEZE.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_REBUILD_EXPECTED.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/CHILD_ID_AUDIT.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/CONTRACTS.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/DEVELOPMENT_HISTORY.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/HANDOVER.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/README.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/STATUS.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_CI.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_CI_EVIDENCE.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_DURABLE_PACK.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_INDEPENDENT_RAW_QC.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_INDEPENDENT_RAW_QC.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_RAW_BLOB_BINDINGS.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_D_ROOT_TERMINAL_RUN_CHECK.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_FINAL_BINDING.json",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A/T_SHARED_BASIS_RELEASE.md",
+    "A\tPROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+    "M\tWORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+    "A\ttools/public240/project.cjs"
+  ],
+  "outsideManifest": [],
+  "manifestSha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+  "manifestAnchorSha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+  "manifestRawByteUnchanged": true,
+  "workflowDiff": [
+    "diff --git a/.github/workflows/validate.yml b/.github/workflows/validate.yml",
+    "index a7ce132..74988a5 100644",
+    "--- a/.github/workflows/validate.yml",
+    "+++ b/.github/workflows/validate.yml",
+    "@@ -40,7 +40,7 @@ permissions:",
+    " ",
+    " env:",
+    "   STP_SCOPE: production",
+    "-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-040.production.scope.json",
+    "+  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-041.production.scope.json",
+    " ",
+    " jobs:",
+    "   validate:"
+  ],
+  "native05SourceBindings": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+      "nativeRawBytes": 18399,
+      "nativeRawSha256": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d",
+      "commitBlobBytes": 18399,
+      "commitBlobSha256": "f1498d4273686ddedb914fd621f060a68b62e7b34b8c4fe5e48ea57d6decac1d",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "93ea9d2826e55b8ca37dc504d4d835faf365538ebe4d2c6648ace4ef55c101ca",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "93ea9d2826e55b8ca37dc504d4d835faf365538ebe4d2c6648ace4ef55c101ca",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+      "nativeRawBytes": 7848,
+      "nativeRawSha256": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31",
+      "commitBlobBytes": 7848,
+      "commitBlobSha256": "b8ab3b06a2e935ddc0c6a639c0e7447406fb413d61076d6bd04809389a518e31",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "8cae5fbe26f00b5b684cbe0376c06a7a44988bea324813b98587e3cc62bb74bf",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "8cae5fbe26f00b5b684cbe0376c06a7a44988bea324813b98587e3cc62bb74bf",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+      "nativeRawBytes": 25609,
+      "nativeRawSha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a",
+      "commitBlobBytes": 25609,
+      "commitBlobSha256": "944a63f484c3ea283271b48ccc2aadb48a489623482ca3474a0fa3059ea38b5a",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "42f870f734e5d62d9e220b827e78a67283fb0719836913946188787a0368ce54",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "42f870f734e5d62d9e220b827e78a67283fb0719836913946188787a0368ce54",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+      "nativeRawBytes": 17164,
+      "nativeRawSha256": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98",
+      "commitBlobBytes": 17164,
+      "commitBlobSha256": "a57e57e7956979bf83cb3e3411118fceb3694906bd5de7cd651285b01b90ec98",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "639015aa3fc576e55ff87d4069748207f8c50eb917b6cb34194722c39c5d71f0",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "639015aa3fc576e55ff87d4069748207f8c50eb917b6cb34194722c39c5d71f0",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "nativeRawBytes": 12259,
+      "nativeRawSha256": "5008fbc9baafd4e65666e786747bb659dd70211407574a21f5a904480096bb6f",
+      "commitBlobBytes": 12259,
+      "commitBlobSha256": "5008fbc9baafd4e65666e786747bb659dd70211407574a21f5a904480096bb6f",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "4a4bbf4efa84838a8beaf673c8492b1270766affcaf4b44ecd7b1c142fed7716",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "4a4bbf4efa84838a8beaf673c8492b1270766affcaf4b44ecd7b1c142fed7716",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "nativeRawBytes": 12445,
+      "nativeRawSha256": "4cf45282a77464775f1fd26bda3d95d5030feef5b3f9fb40868fffa58b9625d0",
+      "commitBlobBytes": 12445,
+      "commitBlobSha256": "4cf45282a77464775f1fd26bda3d95d5030feef5b3f9fb40868fffa58b9625d0",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "02fac5a52e0d2c532329d1f62c1c44bf706c1f9c0ace78c4f1b09b3e6ac95e6d",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "02fac5a52e0d2c532329d1f62c1c44bf706c1f9c0ace78c4f1b09b3e6ac95e6d",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+      "nativeRawBytes": 2122,
+      "nativeRawSha256": "a1576b17c284857c37a3f2c34d0cfa3a994a150038239c37e5e4308f75bde136",
+      "commitBlobBytes": 2122,
+      "commitBlobSha256": "a1576b17c284857c37a3f2c34d0cfa3a994a150038239c37e5e4308f75bde136",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+      "nativeRawBytes": 279,
+      "nativeRawSha256": "a2f64cd19873fe3502522604f51cd7237bf19142ae5fd7b727416bccc20b2fd7",
+      "commitBlobBytes": 279,
+      "commitBlobSha256": "a2f64cd19873fe3502522604f51cd7237bf19142ae5fd7b727416bccc20b2fd7",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+      "nativeRawBytes": 3247,
+      "nativeRawSha256": "65fc147d3b5a520929ce9a3dc676a993d9f5b2ed1eed892569e2578074abc5ae",
+      "commitBlobBytes": 3247,
+      "commitBlobSha256": "65fc147d3b5a520929ce9a3dc676a993d9f5b2ed1eed892569e2578074abc5ae",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+      "nativeRawBytes": 333,
+      "nativeRawSha256": "e2a02ac416ebe67b8bcad1e46b7ae1b3ad376999ac68a9f1bf5e4a5f1747f3da",
+      "commitBlobBytes": 333,
+      "commitBlobSha256": "e2a02ac416ebe67b8bcad1e46b7ae1b3ad376999ac68a9f1bf5e4a5f1747f3da",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+      "nativeRawBytes": 5266,
+      "nativeRawSha256": "21de6049e3351629324a342f1c6f3b00636fc404a58beb929db5651647ba95bf",
+      "commitBlobBytes": 5266,
+      "commitBlobSha256": "21de6049e3351629324a342f1c6f3b00636fc404a58beb929db5651647ba95bf",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+      "nativeRawBytes": 155,
+      "nativeRawSha256": "23403ae2901dbd8d5eeb27bd48132eea6adfb6307f2c7d26691c10d3f06b0a8b",
+      "commitBlobBytes": 155,
+      "commitBlobSha256": "23403ae2901dbd8d5eeb27bd48132eea6adfb6307f2c7d26691c10d3f06b0a8b",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+      "nativeRawBytes": 1910,
+      "nativeRawSha256": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "commitBlobBytes": 1910,
+      "commitBlobSha256": "fb30ffb86263bdf77a31c23249c91c49f02b1808683ddb970a3d99e14e90ff72",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+      "nativeRawBytes": 186,
+      "nativeRawSha256": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "commitBlobBytes": 186,
+      "commitBlobSha256": "4fca8441d9b348e3b00fef4c920a33da4b533486fe2e39387a731eb0565037d1",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+      "nativeRawBytes": 166484,
+      "nativeRawSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+      "commitBlobBytes": 166484,
+      "commitBlobSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+      "nativeRawBytes": 155,
+      "nativeRawSha256": "b698ee2dace1a4906e6dce0a597ae41e6463005627498b735f7a2d1555deca6d",
+      "commitBlobBytes": 155,
+      "commitBlobSha256": "b698ee2dace1a4906e6dce0a597ae41e6463005627498b735f7a2d1555deca6d",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+      "nativeRawBytes": 1919,
+      "nativeRawSha256": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "commitBlobBytes": 1919,
+      "commitBlobSha256": "2faa703dba326ec90d8cedf725a99ab4f3be2cfc8d3702a0aa0adc16316a9c41",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+      "nativeRawBytes": 152,
+      "nativeRawSha256": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "commitBlobBytes": 152,
+      "commitBlobSha256": "b92bb5a35586acb1ca5a8fe7d5841325e0675c21cba8954e5676fb6d67f67b4e",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+      "nativeRawBytes": 15716,
+      "nativeRawSha256": "df9603721ec5e9876a886c2d378a0a3f35a246f18d7dd1bb972bc46ef6fce9b3",
+      "commitBlobBytes": 15716,
+      "commitBlobSha256": "df9603721ec5e9876a886c2d378a0a3f35a246f18d7dd1bb972bc46ef6fce9b3",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "7fde8aab61ef52afc397e703bffc23a8c63eeae2994aea3512d2dd00083e17bf",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "7fde8aab61ef52afc397e703bffc23a8c63eeae2994aea3512d2dd00083e17bf",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+      "nativeRawBytes": 7843,
+      "nativeRawSha256": "38eb3478e63d47538a41a712c788917bfdafe533dad747b46c1bd5d154c5930e",
+      "commitBlobBytes": 7843,
+      "commitBlobSha256": "38eb3478e63d47538a41a712c788917bfdafe533dad747b46c1bd5d154c5930e",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "9a271b0155f38b6d56a6f98eaf4086eea54d7a0fbf71ab3fccd589a0190b5325",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "9a271b0155f38b6d56a6f98eaf4086eea54d7a0fbf71ab3fccd589a0190b5325",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+      "nativeRawBytes": 4282,
+      "nativeRawSha256": "d5a8383bad4c5757512b2ae0f32da47784380e47fcb0867e14dd17a508a5cc08",
+      "commitBlobBytes": 4282,
+      "commitBlobSha256": "d5a8383bad4c5757512b2ae0f32da47784380e47fcb0867e14dd17a508a5cc08",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "932b0298f12f266cb7b31ef608c2c6251ec4dc6f262ea4e455714c7ca576a3b1",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "932b0298f12f266cb7b31ef608c2c6251ec4dc6f262ea4e455714c7ca576a3b1",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+      "nativeRawBytes": 24565,
+      "nativeRawSha256": "11a77f1a4472f05c2fd38f5a071bf97f8cb4e894a090885ed8197c8633ba8c01",
+      "commitBlobBytes": 24565,
+      "commitBlobSha256": "11a77f1a4472f05c2fd38f5a071bf97f8cb4e894a090885ed8197c8633ba8c01",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+      "nativeRawBytes": 240,
+      "nativeRawSha256": "1e7a74e1590bd0f5b1d9a053a75f205a6cf222a497ba312b06879cb8ba635d2f",
+      "commitBlobBytes": 240,
+      "commitBlobSha256": "1e7a74e1590bd0f5b1d9a053a75f205a6cf222a497ba312b06879cb8ba635d2f",
+      "rawByteIdentical": true,
+      "onlyCRLFToLF": false
+    }
+  ],
+  "copiedReviewerReports": [
+    {
+      "name": "A_INITIAL_CODE_QC.md",
+      "originalSha256": "b6e16ad713552ad08a806e241ca37096e9814b5bb218598cfee418e558448979",
+      "commitSha256": "b6e16ad713552ad08a806e241ca37096e9814b5bb218598cfee418e558448979",
+      "byteIdentical": true
+    },
+    {
+      "name": "A_INITIAL_CODE_QC.json",
+      "originalSha256": "55a1ca67492aaa219ca39467a97465def09104c09c8b69dc70727ab78834cc9a",
+      "commitSha256": "55a1ca67492aaa219ca39467a97465def09104c09c8b69dc70727ab78834cc9a",
+      "byteIdentical": true
+    },
+    {
+      "name": "A_CORRECTION_CODE_QC.md",
+      "originalSha256": "b2e62d2cfde075b656400736de6e6bfb5906b59396f72b11c79a1517917fa6c6",
+      "commitSha256": "b2e62d2cfde075b656400736de6e6bfb5906b59396f72b11c79a1517917fa6c6",
+      "byteIdentical": true
+    },
+    {
+      "name": "A_CORRECTION_CODE_QC.json",
+      "originalSha256": "cac1aaf3480e2ec98615fdbf8459ba711c37889e0c352036b6955975193bd702",
+      "commitSha256": "cac1aaf3480e2ec98615fdbf8459ba711c37889e0c352036b6955975193bd702",
+      "byteIdentical": true
+    },
+    {
+      "name": "A_CORRECTION_CLOSURE_QC.md",
+      "originalSha256": "2ebea4232daf509506871a41cd43fa338c7fa7035d9b8e6ccf244bd44987db2f",
+      "commitSha256": "2ebea4232daf509506871a41cd43fa338c7fa7035d9b8e6ccf244bd44987db2f",
+      "byteIdentical": true
+    },
+    {
+      "name": "A_CORRECTION_CLOSURE_QC.json",
+      "originalSha256": "ea485dfd6a469f455d64c7ce341f48da1dbf28e8d4cf0fd9de010165d5b912a7",
+      "commitSha256": "ea485dfd6a469f455d64c7ce341f48da1dbf28e8d4cf0fd9de010165d5b912a7",
+      "byteIdentical": true
+    }
+  ],
+  "projectionFreezeBindings": [
+    {
+      "path": "tools/public240/project.cjs",
+      "commitBlob": "6b8bd3ed29b7a47cbfe927ff70f533a353449fe2",
+      "currentRawBlob": "6b8bd3ed29b7a47cbfe927ff70f533a353449fe2",
+      "byteIdentical": true,
+      "sha256": "f54925d02e0bbbfcc58b0855061e7e3df13020bd35bf4ec489e751d6aaaa56b2"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+      "commitBlob": "d13ea9b49a54aabc32597bfa6da442010a5686fe",
+      "currentRawBlob": "d13ea9b49a54aabc32597bfa6da442010a5686fe",
+      "byteIdentical": true,
+      "sha256": "c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PROJECTION_NODE22.json",
+      "commitBlob": "fc45d95c0925f29b2c3ffbdf01708eefdf72b0dd",
+      "currentRawBlob": "fc45d95c0925f29b2c3ffbdf01708eefdf72b0dd",
+      "byteIdentical": true,
+      "sha256": "b598348cbdc603e32ab97e4e9f80c21fc82383c78b4b13b5ce2b56fb25152919"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/A_PROJECTION_SOURCE_AUDIT_PRE_FREEZE.json",
+      "commitBlob": "a66021c1914af72eccc9af8de0fa5bf306a49939",
+      "currentRawBlob": "a66021c1914af72eccc9af8de0fa5bf306a49939",
+      "byteIdentical": true,
+      "sha256": "fe2603bac94892fc207c23a64f15225799472710482a83d344f57c52651d31d0"
+    }
+  ],
+  "verdict": "PASS_EXACT_FREEZE_OBJECT_SCOPE_NATIVE_SOURCE_PROVENANCE_REGULAR_CI_PENDING"
+}

@@ -1,0 +1,275 @@
+{
+  "report_id": "WP-036-INDEPENDENT-CI-EVIDENCE-01",
+  "language": "de",
+  "role": "Gesonderte unabhängige CI-Evidenzprüfung; weder Autor-, Quellenreview- noch Ownerrolle.",
+  "scope": "Nur tatsächliche GitHub-Actions-Evidenz am eingefrorenen Commit; keine vollständige Text-QC, keine Produktions- oder Releasefreigabe.",
+  "binding": {
+    "repository": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+    "freeze_commit": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+    "commit_tree": "49dd2380effea732e8e1911013127633cc1d753c",
+    "commit_parent": "b181fecbf001397292ef0c90be1b4c2d4fb2711e",
+    "commit_message": "fix(review): remove trailing whitespace without altering QC verdicts",
+    "main_at_binding": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "canonical_source": "Content/Localization/source/de-DE.json",
+    "source_sha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c"
+  },
+  "acquisition": {
+    "method": "Read-only GitHub API via gh api: einzelne Run- und Jobmetadaten, Joblogs und Artefakt-ZIPs; keine Browserarbeit, kein CI start/rerun/cancel.",
+    "binary_zip_handling": "ZIP-HTTP-Antworten wurden direkt als Binärdateien gespeichert, ohne stdout- oder ANSI-Verarbeitung.",
+    "ansi_handling": "CSI-ANSI-Sequenzen wurden ausschließlich zum Parsen von GitHub-JSON beziehungsweise zur Logtextsuche entfernt; Originalbytes wurden separat gehasht.",
+    "local_evidence_directory": ".utmp/wp036-ci-final",
+    "no_signed_urls_persisted": true
+  },
+  "actual_runs": [
+    {
+      "id": 39076203467,
+      "workflow": "Architecture Validation",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+      "run_attempt": 1,
+      "jobs": [
+        {
+          "id": 117523759999,
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 39076206173,
+      "workflow": "Architecture Validation",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+      "run_attempt": 1,
+      "jobs": [
+        {
+          "id": 117523768694,
+          "name": "validate",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 39076203485,
+      "workflow": "Unity CI",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+      "run_attempt": 1,
+      "job_count": 10,
+      "successful_job_count": 10,
+      "jobs": [
+        {"id": 117523760299, "name": "unity-environment-android", "conclusion": "success"},
+        {"id": 117523760368, "name": "unity-environment-linux", "conclusion": "success"},
+        {"id": 117523760413, "name": "unity-config", "conclusion": "success"},
+        {"id": 117523760436, "name": "unity-environment-ios", "conclusion": "success"},
+        {"id": 117523760444, "name": "project-preflight", "conclusion": "success"},
+        {"id": 117523833924, "name": "unity-evidence-guard", "conclusion": "success"},
+        {"id": 117523834281, "name": "unity-compile-editmode", "conclusion": "success"},
+        {"id": 117526009699, "name": "unity-playmode-bootstrap-smoke", "conclusion": "success"},
+        {"id": 117527281259, "name": "unity-android-development-il2cpp", "conclusion": "success"},
+        {"id": 117530049555, "name": "unity-ios-export", "conclusion": "success"}
+      ]
+    },
+    {
+      "id": 39076206176,
+      "workflow": "Unity CI",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "head_sha": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+      "run_attempt": 1,
+      "job_count": 10,
+      "successful_precheck_count": 6,
+      "cancelled_job": {"id": 117523819618, "name": "unity-compile-editmode", "conclusion": "cancelled"},
+      "skipped_jobs": [
+        {"id": 117523836835, "name": "unity-playmode-bootstrap-smoke"},
+        {"id": 117523837081, "name": "unity-ios-export"},
+        {"id": 117523837176, "name": "unity-android-development-il2cpp"}
+      ],
+      "complete_pr_pass": false,
+      "cancellation_cause": "Nicht belegt. Ein späterer Abruf des spezifischen cancellten Joblog-Endpunkts lieferte HTTP 404; daraus wird keine Ursache abgeleitet."
+    }
+  ],
+  "architecture_log_evidence": [
+    {
+      "job_id": 117523759999,
+      "event": "push",
+      "original_log_bytes": 49863,
+      "original_log_sha256": "6ef355e2e0f0149c02ab02cad1ffffd052fa0664fe7427109ef64782602f17f2",
+      "findings": {
+        "architecture_local_groups": 17,
+        "scope_local_groups": 18,
+        "jcs": {"canonicalization_cases": 12, "rejected_inputs": 32, "v2_vectors": 2, "v1_vectors": 2},
+        "text_entries": 1408,
+        "season1_references": "960/960",
+        "internal_entries": 240,
+        "negative_mutations": 12,
+        "reading_edition_exact": true,
+        "scope_pass": true
+      }
+    },
+    {
+      "job_id": 117523768694,
+      "event": "pull_request",
+      "original_log_bytes": 62583,
+      "original_log_sha256": "e791b1bfb0b68dad0851d67208f66ba36c36cb4c4a5302933ce5c746b1499c66",
+      "findings": {
+        "architecture_local_groups": 17,
+        "scope_local_groups": 18,
+        "jcs": {"canonicalization_cases": 12, "rejected_inputs": 32, "v2_vectors": 2, "v1_vectors": 2},
+        "text_entries": 1408,
+        "season1_references": "960/960",
+        "internal_entries": 240,
+        "negative_mutations": 12,
+        "reading_edition_exact": true,
+        "scope_pass": true,
+        "scope_context_head": "89c8d2b90e08ad7b1ba01d5b122763d2ae1fdd8b",
+        "scope_context_base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "scope_context_worktree_dirty": false
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12117352191,
+      "name": "editmode-results",
+      "workflow_run_id": 39076203485,
+      "github_size_bytes": 421489,
+      "observed_zip_size_bytes": 421489,
+      "github_digest": "sha256:d4f423d369ffcbdfeb56b54867e9432123538928e305ed20a4e46e39c63870db",
+      "observed_zip_sha256": "d4f423d369ffcbdfeb56b54867e9432123538928e305ed20a4e46e39c63870db",
+      "github_digest_matches": true,
+      "nunit_xml": {
+        "path_in_zip": "editmode.xml",
+        "sha256": "cc848105df4491b8ab6566de1c4c7695039f32720e18a09f7c2f4326e2e14df9",
+        "root_result": "Passed",
+        "total": 454,
+        "passed": 454,
+        "failed": 0,
+        "inconclusive": 0,
+        "skipped": 0,
+        "test_case_count": 454,
+        "test_case_results": {"Passed": 454}
+      },
+      "coverage": {
+        "total_xml_sha256": "c4f69aac0ea40fdc792d3424b0c7cbe3ff3ff03a54b4befef535efa23bfdd15c",
+        "measured_xml_sha256": "662b985d4cf652d59a0e149c2f864dd7405980409b10a579cc8569b38bf131dd",
+        "module_count": 15,
+        "total_sequence_points": 10410,
+        "measured_visited_sequence_points": 9781,
+        "total_methods": 1491,
+        "measured_visited_methods": 1388,
+        "minimum_coverage_introduced_by_this_review": false
+      }
+    },
+    {
+      "id": 12117431560,
+      "name": "playmode-results",
+      "workflow_run_id": 39076203485,
+      "github_size_bytes": 346909,
+      "observed_zip_size_bytes": 346909,
+      "github_digest": "sha256:83e45c8d7929e1721bca3a3f403fa0116d387fddab246be3054a6d65852c572e",
+      "observed_zip_sha256": "83e45c8d7929e1721bca3a3f403fa0116d387fddab246be3054a6d65852c572e",
+      "github_digest_matches": true,
+      "nunit_xml": {
+        "path_in_zip": "playmode.xml",
+        "sha256": "cd4bee9d6231768baf51b5bfdba6cb79152dcc877f22cfe947ff9aea6675b778",
+        "root_result": "Passed",
+        "total": 27,
+        "passed": 27,
+        "failed": 0,
+        "inconclusive": 0,
+        "skipped": 0,
+        "test_case_count": 27,
+        "test_case_results": {"Passed": 27}
+      }
+    },
+    {
+      "id": 12118250758,
+      "name": "android-development-il2cpp",
+      "workflow_run_id": 39076203485,
+      "github_size_bytes": 38948984,
+      "observed_zip_size_bytes": 38948984,
+      "github_digest": "sha256:88d0b4ec9d550763d0e8acb545b57e465c6aaa513f590cb89d7c4f495517e8f7",
+      "observed_zip_sha256": "88d0b4ec9d550763d0e8acb545b57e465c6aaa513f590cb89d7c4f495517e8f7",
+      "github_digest_matches": true,
+      "zip_entries": [
+        {
+          "name": "stp-qa-development.apk",
+          "uncompressed_size_bytes": 40066242,
+          "sha256": "fe7239d67188aae201331a771253ff0a471cf07dbb4e1024bfc01752bd69d2e1"
+        }
+      ]
+    }
+  ],
+  "platform_log_evidence": {
+    "android": {
+      "job_id": 117527281259,
+      "original_log_bytes": 874526,
+      "original_log_sha256": "e5c5a2763dac93141e427e4eff53c29bc3618aba18ad4f2e46a222dd5646b46a",
+      "build_finished_result_success": true,
+      "stp_build_pass_path": "Builds/Android/stp-qa-development.apk",
+      "apk_installed_or_device_tested": false,
+      "log_size_value_not_reinterpreted_as_apk_filesize": true
+    },
+    "ios": {
+      "job_id": 117530049555,
+      "original_log_bytes": 2529204,
+      "original_log_sha256": "e6d8a9dfa07c9d4029a92197c1091ba825bfb41d466cb3acef3ed019a33d6f3f",
+      "unity_export_build_finished_result_success": true,
+      "stp_build_pass_path": "Builds/iOS/Xcode",
+      "xcode_version": "26.3",
+      "xcodebuild_project": "Builds/iOS/Xcode/Unity-iPhone.xcodeproj",
+      "code_signing_allowed": false,
+      "xcode_log_terminal": "** BUILD SUCCEEDED **",
+      "xcode_build_succeeded_at_utc": "2026-10-17T23:25:52.2931150Z",
+      "ios_zip_artifact_claimed": false,
+      "ipa_claimed": false,
+      "signing_or_store_readiness_claimed": false
+    }
+  },
+  "ci_result": {
+    "verdict": "PASS_NUR_VOLLSTAENDIGER_PUSH_UND_BEIDE_ARCHITECTURE_CHECKS",
+    "complete_unity_push_pass": true,
+    "architecture_push_pass": true,
+    "architecture_pr_pass": true,
+    "complete_unity_pr_pass": false,
+    "unity_pr_status": "completed/cancelled",
+    "integration_followup": "offen; separat als tatsächlichen vollständigen Lauf belegen",
+    "not_claimed": [
+      "22 Checks PASS",
+      "vollständiger Unity-PR-PASS",
+      "WP-036 insgesamt freigegeben",
+      "Owner-, Produkt-, Runtime-/Import-, Cross-Reference-, Rechts-, Asset-, Geräte-, SDK-, Datenschutz-, Signing-, Store- oder Releasefreigabe",
+      "Main-Integration"
+    ]
+  },
+  "limits": [
+    "Alle 1408 Texte bleiben DRAFT.",
+    "Die kreative Geschäftsführerrestannahme ist keine ausdrückliche Ownerannahme.",
+    "Keine erneute vollständige Text-/Quellen-QC, kein neuer Unity-/Solver-Build und keine lokale Runtime-/Importprüfung wurden durchgeführt.",
+    "Offene Hint-/Daily-/Endless-, Item-/Store-/Layout-/Zeit-, WP-026- und sonstige Fremdgates bleiben fail-closed außerhalb dieses CI-Berichts.",
+    "Main wurde nicht verändert."
+  ],
+  "repository_changes_by_this_role": {
+    "changed_source": false,
+    "changed_review_history": false,
+    "changed_tools": false,
+    "changed_workflows": false,
+    "changed_manifest": false,
+    "changed_status": false,
+    "changed_git": false,
+    "only_deliverables": [
+      "Content/Reviews/text-library/WP-036/COPY_CI_QC.md",
+      "Content/Reviews/text-library/WP-036/COPY_CI_QC.json"
+    ]
+  }
+}

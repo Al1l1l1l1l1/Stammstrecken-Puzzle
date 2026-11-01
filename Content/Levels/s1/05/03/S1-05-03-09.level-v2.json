@@ -1,0 +1,203 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-03-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 9,
+    "height": 9
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 5
+    },
+    "b": {
+      "side": "N",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    8,
+    9,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    0
+  ],
+  "columnCounts": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    6,
+    6
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 3,
+    "position": 9,
+    "titleKey": "level.s1.05.03.09.title",
+    "statusKey": "level.s1.05.03.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.03.09.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY",
+      "DENSITY"
+    ],
+    "chainDepth": 7,
+    "qualityNote": "Der innenliegende Nordport und der Ostport rechts unten verlangen eine lange Wechselkurve mit 21 Kurven. Drei untere Nullzeilen erleichtern Orientierung, aber die oberen Zweiercounts begrenzen mehrere kleine Rückknicke; eine konzentrierte Endpunktvariation statt volle 9×9-Flächenlast.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-03-09-map",
+    "trainMomentId": "draft-s1-05-03-09-train",
+    "resultTextKey": "level.s1.05.03.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 8,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-03-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "3d391c9e8b126996aad9be9125469661bf68c98d3e26de14d58da2c119060ef9"
+    }
+  }
+}

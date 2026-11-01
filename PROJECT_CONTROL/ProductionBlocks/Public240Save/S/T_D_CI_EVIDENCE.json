@@ -1,0 +1,1758 @@
+{
+  "schemaVersion": 1,
+  "role": "/root/entry_audit",
+  "scope": "Independent read-only regular CI evidence for T closeout D; this is no R approval or A/S anchor authorization.",
+  "status": "D_REGULAR_CI_PASS",
+  "firstObservationUtc": "2026-10-19T08:44:18Z",
+  "terminalObservationUtc": "2026-10-19T09:25:24Z",
+  "source": {
+    "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+    "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+    "parent": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "workflowBlob": "027abe195289bd4b30baaae404bef81c12df7c83",
+    "actualCheckoutIsSourceSha": true,
+    "sourceApi": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits/925ca608a961ac26c84385c8da3b949f609df883",
+    "rootRawBlobProof": {
+      "path": ".utmp/public240-tools/T_D_RAW_BLOB_BINDINGS.json",
+      "sha256": "95c22d3ac0a80ac36c38ef0c2f5f06b842af0c3b2c3ceb7788f391a7029ec855",
+      "nature": "Root postcommit raw Git blob proof read as provenance; no repeated broad source QC."
+    }
+  },
+  "workflowRuns": [
+    {
+      "id": 39224770669,
+      "name": "Architecture Validation",
+      "event": "push",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "path": ".github/workflows/validate.yml",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "updated_at": "2026-10-19T08:43:44Z",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770669"
+    },
+    {
+      "id": 39224770689,
+      "name": "Unity CI",
+      "event": "push",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "path": ".github/workflows/unity.yml",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "updated_at": "2026-10-19T09:24:27Z",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689"
+    }
+  ],
+  "architectureJobs": [
+    {
+      "id": 117968269537,
+      "run_id": 39224770669,
+      "workflow_name": "Architecture Validation",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770669",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3Tw4Q",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968269537",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770669/job/117968269537",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:15Z",
+      "completed_at": "2026-10-19T08:43:43Z",
+      "name": "validate",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:16Z"
+        },
+        {
+          "name": "Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:18Z"
+        },
+        {
+          "name": "CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:43:18Z",
+          "completed_at": "2026-10-19T08:43:26Z"
+        },
+        {
+          "name": "Node.js 22.20.0 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:43:26Z",
+          "completed_at": "2026-10-19T08:43:30Z"
+        },
+        {
+          "name": "Gepinnte Validator-Abhängigkeiten installieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:43:30Z",
+          "completed_at": "2026-10-19T08:43:34Z"
+        },
+        {
+          "name": "Architecture-only-Lauf mit Self-/Negativtests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:43:34Z",
+          "completed_at": "2026-10-19T08:43:35Z"
+        },
+        {
+          "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T08:43:35Z",
+          "completed_at": "2026-10-19T08:43:37Z"
+        },
+        {
+          "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T08:43:37Z",
+          "completed_at": "2026-10-19T08:43:37Z"
+        },
+        {
+          "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-19T08:43:37Z",
+          "completed_at": "2026-10-19T08:43:39Z"
+        },
+        {
+          "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-19T08:43:39Z",
+          "completed_at": "2026-10-19T08:43:39Z"
+        },
+        {
+          "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-19T08:43:39Z",
+          "completed_at": "2026-10-19T08:43:40Z"
+        },
+        {
+          "name": "Post Node.js 22.20.0 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-19T08:43:40Z",
+          "completed_at": "2026-10-19T08:43:40Z"
+        },
+        {
+          "name": "Post CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-19T08:43:40Z",
+          "completed_at": "2026-10-19T08:43:41Z"
+        },
+        {
+          "name": "Post Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-19T08:43:41Z",
+          "completed_at": "2026-10-19T08:43:41Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-19T08:43:41Z",
+          "completed_at": "2026-10-19T08:43:41Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968269537",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002152,
+      "runner_name": "GitHub Actions 1000002152",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "unityJobs": [
+    {
+      "id": 117968269697,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3TxgQ",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968269697",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968269697",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:15Z",
+      "completed_at": "2026-10-19T08:50:14Z",
+      "name": "unity-environment-android",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:16Z"
+        },
+        {
+          "name": "Speicherplatz für das Unity-Android-Image freigeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:45:15Z"
+        },
+        {
+          "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:45:15Z",
+          "completed_at": "2026-10-19T08:50:10Z"
+        },
+        {
+          "name": "Editor-Start und Android-Toolchain im Container prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:50:10Z",
+          "completed_at": "2026-10-19T08:50:12Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:50:12Z",
+          "completed_at": "2026-10-19T08:50:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968269697",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002153,
+      "runner_name": "GitHub Actions 1000002153",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968269996,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3TyrA",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968269996",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968269996",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:15Z",
+      "completed_at": "2026-10-19T08:44:37Z",
+      "name": "unity-environment-linux",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:16Z"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:44:30Z"
+        },
+        {
+          "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:44:30Z",
+          "completed_at": "2026-10-19T08:44:31Z"
+        },
+        {
+          "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:44:31Z",
+          "completed_at": "2026-10-19T08:44:35Z"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T08:44:35Z",
+          "completed_at": "2026-10-19T08:44:35Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-19T08:44:35Z",
+          "completed_at": "2026-10-19T08:44:35Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968269996",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002154,
+      "runner_name": "GitHub Actions 1000002154",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968270045,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3Ty3Q",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968270045",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968270045",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:20Z",
+      "completed_at": "2026-10-19T08:46:09Z",
+      "name": "unity-environment-ios",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:20Z",
+          "completed_at": "2026-10-19T08:43:21Z"
+        },
+        {
+          "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:21Z",
+          "completed_at": "2026-10-19T08:45:55Z"
+        },
+        {
+          "name": "Unity Hub installieren",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3,
+          "started_at": "2026-10-19T08:45:55Z",
+          "completed_at": "2026-10-19T08:45:55Z"
+        },
+        {
+          "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-19T08:45:55Z",
+          "completed_at": "2026-10-19T08:45:55Z"
+        },
+        {
+          "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:45:55Z",
+          "completed_at": "2026-10-19T08:45:56Z"
+        },
+        {
+          "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:45:56Z",
+          "completed_at": "2026-10-19T08:45:58Z"
+        },
+        {
+          "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T08:45:58Z",
+          "completed_at": "2026-10-19T08:46:04Z"
+        },
+        {
+          "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T08:46:04Z",
+          "completed_at": "2026-10-19T08:46:05Z"
+        },
+        {
+          "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-19T08:46:05Z",
+          "completed_at": "2026-10-19T08:46:05Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-19T08:46:05Z",
+          "completed_at": "2026-10-19T08:46:06Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968270045",
+      "labels": [
+        "macos-15"
+      ],
+      "runner_id": 1000002157,
+      "runner_name": "GitHub Actions 1000002157",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968270078,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3Ty_g",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968270078",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968270078",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:16Z",
+      "completed_at": "2026-10-19T08:43:19Z",
+      "name": "unity-config",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:17Z"
+        },
+        {
+          "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:17Z",
+          "completed_at": "2026-10-19T08:43:17Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:43:17Z",
+          "completed_at": "2026-10-19T08:43:17Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968270078",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002156,
+      "runner_name": "GitHub Actions 1000002156",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968270079,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3Ty_w",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968270079",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968270079",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:13Z",
+      "started_at": "2026-10-19T08:43:15Z",
+      "completed_at": "2026-10-19T08:43:33Z",
+      "name": "project-preflight",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:16Z",
+          "completed_at": "2026-10-19T08:43:17Z"
+        },
+        {
+          "name": "Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:17Z",
+          "completed_at": "2026-10-19T08:43:19Z"
+        },
+        {
+          "name": "CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:43:19Z",
+          "completed_at": "2026-10-19T08:43:28Z"
+        },
+        {
+          "name": "Unity-Versionspin und Projektartefakte prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:43:28Z",
+          "completed_at": "2026-10-19T08:43:28Z"
+        },
+        {
+          "name": "Explizite QA-Identitaeten vor Unity pruefen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:43:28Z",
+          "completed_at": "2026-10-19T08:43:28Z"
+        },
+        {
+          "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:43:28Z",
+          "completed_at": "2026-10-19T08:43:28Z"
+        },
+        {
+          "name": "Post CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-19T08:43:28Z",
+          "completed_at": "2026-10-19T08:43:29Z"
+        },
+        {
+          "name": "Post Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-19T08:43:29Z",
+          "completed_at": "2026-10-19T08:43:29Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-19T08:43:29Z",
+          "completed_at": "2026-10-19T08:43:29Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968270079",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002155,
+      "runner_name": "GitHub Actions 1000002155",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968400200,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3bvSA",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968400200",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968400200",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:33Z",
+      "started_at": "2026-10-19T08:43:35Z",
+      "completed_at": "2026-10-19T08:49:33Z",
+      "name": "unity-compile-editmode",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:36Z",
+          "completed_at": "2026-10-19T08:43:37Z"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:37Z",
+          "completed_at": "2026-10-19T08:45:15Z"
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:45:15Z",
+          "completed_at": "2026-10-19T08:45:17Z"
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:45:17Z",
+          "completed_at": "2026-10-19T08:45:34Z"
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:45:34Z",
+          "completed_at": "2026-10-19T08:45:36Z"
+        },
+        {
+          "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:45:36Z",
+          "completed_at": "2026-10-19T08:49:25Z"
+        },
+        {
+          "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T08:49:25Z",
+          "completed_at": "2026-10-19T08:49:25Z"
+        },
+        {
+          "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T08:49:25Z",
+          "completed_at": "2026-10-19T08:49:25Z"
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-19T08:49:25Z",
+          "completed_at": "2026-10-19T08:49:28Z"
+        },
+        {
+          "name": "Testergebnisse archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-19T08:49:28Z",
+          "completed_at": "2026-10-19T08:49:29Z"
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-19T08:49:29Z",
+          "completed_at": "2026-10-19T08:49:29Z"
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-19T08:49:29Z",
+          "completed_at": "2026-10-19T08:49:30Z"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-19T08:49:30Z",
+          "completed_at": "2026-10-19T08:49:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-19T08:49:31Z",
+          "completed_at": "2026-10-19T08:49:31Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968400200",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002158,
+      "runner_name": "GitHub Actions 1000002158",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117968400226,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd3bvYg",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968400226",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117968400226",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:43:33Z",
+      "started_at": "2026-10-19T08:43:35Z",
+      "completed_at": "2026-10-19T08:43:38Z",
+      "name": "unity-evidence-guard",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:43:36Z",
+          "completed_at": "2026-10-19T08:43:36Z"
+        },
+        {
+          "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 2,
+          "started_at": "2026-10-19T08:43:36Z",
+          "completed_at": "2026-10-19T08:43:36Z"
+        },
+        {
+          "name": "Unity-Nachweiskonfiguration vorhanden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:43:36Z",
+          "completed_at": "2026-10-19T08:43:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:43:36Z",
+          "completed_at": "2026-10-19T08:43:36Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117968400226",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002159,
+      "runner_name": "GitHub Actions 1000002159",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117970765569,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd5sHAQ",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117970765569",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117970765569",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:49:33Z",
+      "started_at": "2026-10-19T08:49:35Z",
+      "completed_at": "2026-10-19T08:53:00Z",
+      "name": "unity-playmode-bootstrap-smoke",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:49:36Z",
+          "completed_at": "2026-10-19T08:49:37Z"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:49:37Z",
+          "completed_at": "2026-10-19T08:50:48Z"
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:50:48Z",
+          "completed_at": "2026-10-19T08:50:49Z"
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:50:49Z",
+          "completed_at": "2026-10-19T08:51:06Z"
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:51:06Z",
+          "completed_at": "2026-10-19T08:51:09Z"
+        },
+        {
+          "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:51:09Z",
+          "completed_at": "2026-10-19T08:52:54Z"
+        },
+        {
+          "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T08:52:54Z",
+          "completed_at": "2026-10-19T08:52:54Z"
+        },
+        {
+          "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T08:52:54Z",
+          "completed_at": "2026-10-19T08:52:54Z"
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-19T08:52:54Z",
+          "completed_at": "2026-10-19T08:52:56Z"
+        },
+        {
+          "name": "Testergebnisse archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-19T08:52:56Z",
+          "completed_at": "2026-10-19T08:52:57Z"
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-19T08:52:57Z",
+          "completed_at": "2026-10-19T08:52:57Z"
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-19T08:52:57Z",
+          "completed_at": "2026-10-19T08:52:58Z"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-19T08:52:58Z",
+          "completed_at": "2026-10-19T08:52:58Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-19T08:52:58Z",
+          "completed_at": "2026-10-19T08:52:58Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117970765569",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002160,
+      "runner_name": "GitHub Actions 1000002160",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117972117245,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbd6-m_Q",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117972117245",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117972117245",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T08:53:00Z",
+      "started_at": "2026-10-19T08:53:02Z",
+      "completed_at": "2026-10-19T09:09:32Z",
+      "name": "unity-android-development-il2cpp",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T08:53:03Z",
+          "completed_at": "2026-10-19T08:53:03Z"
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T08:53:03Z",
+          "completed_at": "2026-10-19T08:53:05Z"
+        },
+        {
+          "name": "Speicherplatz für das Unity-Android-Image freigeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T08:53:05Z",
+          "completed_at": "2026-10-19T08:54:34Z"
+        },
+        {
+          "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-19T08:54:34Z",
+          "completed_at": "2026-10-19T08:57:08Z"
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-19T08:57:08Z",
+          "completed_at": "2026-10-19T08:57:31Z"
+        },
+        {
+          "name": "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T08:57:31Z",
+          "completed_at": "2026-10-19T09:09:28Z"
+        },
+        {
+          "name": "Android-Buildartefakt archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T09:09:28Z",
+          "completed_at": "2026-10-19T09:09:30Z"
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-19T09:09:30Z",
+          "completed_at": "2026-10-19T09:09:30Z"
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-19T09:09:30Z",
+          "completed_at": "2026-10-19T09:09:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-19T09:09:31Z",
+          "completed_at": "2026-10-19T09:09:31Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117972117245",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000002161,
+      "runner_name": "GitHub Actions 1000002161",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 117978722428,
+      "run_id": 39224770689,
+      "workflow_name": "Unity CI",
+      "head_branch": "codex/wp-040-public240-save-technikbasis",
+      "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOURiA7s8AAAAbeBRwfA",
+      "head_sha": "925ca608a961ac26c84385c8da3b949f609df883",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117978722428",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39224770689/job/117978722428",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-19T09:09:33Z",
+      "started_at": "2026-10-19T09:09:41Z",
+      "completed_at": "2026-10-19T09:24:26Z",
+      "name": "unity-ios-export",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-19T09:09:42Z",
+          "completed_at": "2026-10-19T09:09:43Z"
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-19T09:09:43Z",
+          "completed_at": "2026-10-19T09:09:46Z"
+        },
+        {
+          "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-19T09:09:46Z",
+          "completed_at": "2026-10-19T09:12:11Z"
+        },
+        {
+          "name": "Unity Hub installieren",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-19T09:12:11Z",
+          "completed_at": "2026-10-19T09:12:11Z"
+        },
+        {
+          "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-19T09:12:11Z",
+          "completed_at": "2026-10-19T09:12:11Z"
+        },
+        {
+          "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-19T09:12:11Z",
+          "completed_at": "2026-10-19T09:12:12Z"
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-19T09:12:12Z",
+          "completed_at": "2026-10-19T09:12:38Z"
+        },
+        {
+          "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-19T09:12:38Z",
+          "completed_at": "2026-10-19T09:12:42Z"
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-19T09:12:42Z",
+          "completed_at": "2026-10-19T09:12:45Z"
+        },
+        {
+          "name": "iOS-Xcodeprojekt exportieren und kompilieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-19T09:12:45Z",
+          "completed_at": "2026-10-19T09:24:17Z"
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-19T09:24:17Z",
+          "completed_at": "2026-10-19T09:24:20Z"
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-19T09:24:20Z",
+          "completed_at": "2026-10-19T09:24:21Z"
+        },
+        {
+          "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-19T09:24:21Z",
+          "completed_at": "2026-10-19T09:24:21Z"
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-19T09:24:21Z",
+          "completed_at": "2026-10-19T09:24:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-19T09:24:22Z",
+          "completed_at": "2026-10-19T09:24:24Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117978722428",
+      "labels": [
+        "macos-15"
+      ],
+      "runner_id": 1000002162,
+      "runner_name": "GitHub Actions 1000002162",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "unityJobSummary": {
+    "total": 10,
+    "success": 10,
+    "failure": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "originalLogs": [
+    {
+      "jobId": 117968269537,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968269537/logs",
+      "sha256DecodedUtf8": "aa5096079dabe8abee95a996c885431521522a736e188ca8ccb5f9cfc1f3d9b6",
+      "decodedUtf8Bytes": 50245,
+      "checkout": [
+        {
+          "line": 148,
+          "text": "2026-10-19T08:43:18.7521702Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 159,
+          "text": "2026-10-19T08:43:18.8653852Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 160,
+          "text": "2026-10-19T08:43:18.8681718Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 496,
+          "text": "2026-10-19T08:43:40.8368767Z SCOPE_CONTEXT  workPackage=WP-040 base=3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 head=925ca608a961ac26c84385c8da3b949f609df883 worktreeDirty=false"
+        }
+      ],
+      "results": [
+        {
+          "line": 305,
+          "text": "2026-10-19T08:43:35.5822926Z RESULT PASS (17 lokale Prüfgruppen)"
+        },
+        {
+          "line": 503,
+          "text": "2026-10-19T08:43:40.8372682Z RESULT PASS (18 lokale Prüfgruppen)"
+        }
+      ],
+      "runtimePins": [],
+      "licenseReceipts": [],
+      "actualActivationSuccessCount": 0,
+      "actualDeactivationSuccessCount": 0
+    },
+    {
+      "jobId": 117968400200,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117968400200/logs",
+      "sha256DecodedUtf8": "de1a6feba0f3b0a3c4f555456ae79c44ee74ff2c44ba076640cd58054b8adee2",
+      "decodedUtf8Bytes": 374060,
+      "checkout": [
+        {
+          "line": 194,
+          "text": "2026-10-19T08:45:15.3637701Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +925ca608a961ac26c84385c8da3b949f609df883:refs/remotes/origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 196,
+          "text": "2026-10-19T08:45:17.2035074Z  * [new ref]         925ca608a961ac26c84385c8da3b949f609df883 -> origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 200,
+          "text": "2026-10-19T08:45:17.2113699Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 211,
+          "text": "2026-10-19T08:45:17.3421581Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 212,
+          "text": "2026-10-19T08:45:17.3448830Z 925ca608a961ac26c84385c8da3b949f609df883"
+        }
+      ],
+      "results": [
+        {
+          "line": 3111,
+          "text": "2026-10-19T08:49:25.4762963Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 19 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3112,
+          "text": "2026-10-19T08:49:25.4763715Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 56 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3113,
+          "text": "2026-10-19T08:49:25.4764190Z EditMode evidence PASS: STP.Tests.Content.EditMode, 401 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3222,
+          "text": "2026-10-19T08:49:25.7070587Z Coverage evidence PASS: 18 STP-Assemblies, keine Mindest-Coverage"
+        }
+      ],
+      "runtimePins": [
+        {
+          "line": 367,
+          "text": "2026-10-19T08:45:37.0016062Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        },
+        {
+          "line": 1612,
+          "text": "2026-10-19T08:46:17.1574450Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        }
+      ],
+      "licenseReceipts": [
+        {
+          "line": 251,
+          "text": "2026-10-19T08:45:34.5225382Z Trying to activate all seats ..."
+        },
+        {
+          "line": 252,
+          "text": "2026-10-19T08:45:35.8147438Z Activation processed successfully."
+        },
+        {
+          "line": 254,
+          "text": "2026-10-19T08:45:35.8148205Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 3233,
+          "text": "2026-10-19T08:49:25.9623882Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 3234,
+          "text": "2026-10-19T08:49:27.9731482Z Deactivation processed successfully."
+        },
+        {
+          "line": 3236,
+          "text": "2026-10-19T08:49:27.9731933Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ],
+      "actualActivationSuccessCount": 1,
+      "actualDeactivationSuccessCount": 1
+    },
+    {
+      "jobId": 117970765569,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117970765569/logs",
+      "sha256DecodedUtf8": "f6ffc42fc70c9c057bee506b8f852042847f19ca02dfba7931eb6ec07910d7be",
+      "decodedUtf8Bytes": 769769,
+      "checkout": [
+        {
+          "line": 198,
+          "text": "2026-10-19T08:50:48.8818209Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +925ca608a961ac26c84385c8da3b949f609df883:refs/remotes/origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 200,
+          "text": "2026-10-19T08:50:49.7194290Z  * [new ref]         925ca608a961ac26c84385c8da3b949f609df883 -> origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 204,
+          "text": "2026-10-19T08:50:49.7304285Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 215,
+          "text": "2026-10-19T08:50:49.8844288Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 216,
+          "text": "2026-10-19T08:50:49.8874212Z 925ca608a961ac26c84385c8da3b949f609df883"
+        }
+      ],
+      "results": [
+        {
+          "line": 5262,
+          "text": "2026-10-19T08:52:54.4666849Z PlayMode evidence PASS: 49 ausgefuehrte Tests, 27 Smoke-Faelle, QA-Szene Passed"
+        },
+        {
+          "line": 5371,
+          "text": "2026-10-19T08:52:54.7319492Z Coverage evidence PASS: 18 STP-Assemblies, keine Mindest-Coverage"
+        }
+      ],
+      "runtimePins": [
+        {
+          "line": 365,
+          "text": "2026-10-19T08:51:09.3720971Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        },
+        {
+          "line": 1621,
+          "text": "2026-10-19T08:52:01.1797473Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        }
+      ],
+      "licenseReceipts": [
+        {
+          "line": 253,
+          "text": "2026-10-19T08:51:06.7694918Z Trying to activate all seats ..."
+        },
+        {
+          "line": 254,
+          "text": "2026-10-19T08:51:08.1265592Z Activation processed successfully."
+        },
+        {
+          "line": 256,
+          "text": "2026-10-19T08:51:08.1266382Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 5382,
+          "text": "2026-10-19T08:52:55.0528661Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 5383,
+          "text": "2026-10-19T08:52:56.2101562Z Deactivation processed successfully."
+        },
+        {
+          "line": 5385,
+          "text": "2026-10-19T08:52:56.2102216Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ],
+      "actualActivationSuccessCount": 1,
+      "actualDeactivationSuccessCount": 1
+    },
+    {
+      "jobId": 117972117245,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117972117245/logs",
+      "sha256DecodedUtf8": "967bfc3af99a0993d62870395892b88565b81c2024657c479f6baf45ee492463",
+      "decodedUtf8Bytes": 1070948,
+      "checkout": [
+        {
+          "line": 105,
+          "text": "2026-10-19T08:53:04.2481545Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +925ca608a961ac26c84385c8da3b949f609df883:refs/remotes/origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 107,
+          "text": "2026-10-19T08:53:05.0298867Z  * [new ref]         925ca608a961ac26c84385c8da3b949f609df883 -> origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 111,
+          "text": "2026-10-19T08:53:05.0389198Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 122,
+          "text": "2026-10-19T08:53:05.1952227Z [command]/usr/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 123,
+          "text": "2026-10-19T08:53:05.1983645Z 925ca608a961ac26c84385c8da3b949f609df883"
+        }
+      ],
+      "results": [
+        {
+          "line": 2082,
+          "text": "2026-10-19T08:58:38.6730127Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 2137,
+          "text": "2026-10-19T08:58:39.0929523Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 9316,
+          "text": "2026-10-19T09:09:18.8874177Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (855128371 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+        }
+      ],
+      "runtimePins": [
+        {
+          "line": 335,
+          "text": "2026-10-19T08:57:39.5517142Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        }
+      ],
+      "licenseReceipts": [
+        {
+          "line": 267,
+          "text": "2026-10-19T08:57:36.4791444Z Trying to activate all seats ..."
+        },
+        {
+          "line": 268,
+          "text": "2026-10-19T08:57:37.9368973Z Activation processed successfully."
+        },
+        {
+          "line": 270,
+          "text": "2026-10-19T08:57:37.9369558Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 9358,
+          "text": "2026-10-19T09:09:24.1353651Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 9359,
+          "text": "2026-10-19T09:09:25.3839517Z Deactivation processed successfully."
+        },
+        {
+          "line": 9361,
+          "text": "2026-10-19T09:09:25.3840260Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ],
+      "actualActivationSuccessCount": 1,
+      "actualDeactivationSuccessCount": 1
+    },
+    {
+      "jobId": 117978722428,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117978722428/logs",
+      "sha256DecodedUtf8": "afa61c2b3a0532af4a0b76eecac58d049305d4b5bab4771fac0c11848fce0b2c",
+      "decodedUtf8Bytes": 2750766,
+      "checkout": [
+        {
+          "line": 106,
+          "text": "2026-10-19T09:09:44.6122140Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +925ca608a961ac26c84385c8da3b949f609df883:refs/remotes/origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 108,
+          "text": "2026-10-19T09:09:45.7384970Z  * [new ref]         925ca608a961ac26c84385c8da3b949f609df883 -> origin/codex/wp-040-public240-save-technikbasis"
+        },
+        {
+          "line": 112,
+          "text": "2026-10-19T09:09:45.7529700Z 925ca608a961ac26c84385c8da3b949f609df883"
+        },
+        {
+          "line": 123,
+          "text": "2026-10-19T09:09:46.0528460Z [command]/opt/homebrew/bin/git log -1 --format=%H"
+        },
+        {
+          "line": 124,
+          "text": "2026-10-19T09:09:46.0631480Z 925ca608a961ac26c84385c8da3b949f609df883"
+        }
+      ],
+      "results": [
+        {
+          "line": 2139,
+          "text": "2026-10-19T09:13:41.9096720Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 2194,
+          "text": "2026-10-19T09:13:42.3132630Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 11722,
+          "text": "2026-10-19T09:15:12.6518140Z STP Build PASS: iOS -> Builds/iOS/Xcode (1044287259 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+        },
+        {
+          "line": 15034,
+          "text": "2026-10-19T09:24:16.9979460Z ** BUILD SUCCEEDED **"
+        }
+      ],
+      "runtimePins": [
+        {
+          "line": 143,
+          "text": "2026-10-19T09:09:46.5270530Z Cache hit for: unity-editor-macos15-6000.3.23f1-ios-v1"
+        },
+        {
+          "line": 255,
+          "text": "2026-10-19T09:12:11.4500570Z Cache restored from key: unity-editor-macos15-6000.3.23f1-ios-v1"
+        },
+        {
+          "line": 321,
+          "text": "2026-10-19T09:12:42.5536560Z Xcode 26.3"
+        },
+        {
+          "line": 422,
+          "text": "2026-10-19T09:12:45.7967840Z Unity Editor version:    6000.3.23f1 (09d2ecc7fb28)"
+        }
+      ],
+      "licenseReceipts": [
+        {
+          "line": 337,
+          "text": "2026-10-19T09:12:43.1934430Z Trying to activate all seats ..."
+        },
+        {
+          "line": 338,
+          "text": "2026-10-19T09:12:44.6188320Z Activation processed successfully."
+        },
+        {
+          "line": 340,
+          "text": "2026-10-19T09:12:44.6188880Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 15048,
+          "text": "2026-10-19T09:24:18.4117380Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 15049,
+          "text": "2026-10-19T09:24:19.9148500Z Deactivation processed successfully."
+        },
+        {
+          "line": 15051,
+          "text": "2026-10-19T09:24:19.9210000Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ],
+      "actualActivationSuccessCount": 1,
+      "actualDeactivationSuccessCount": 1
+    }
+  ],
+  "artifactApi": [
+    {
+      "id": 12174542073,
+      "name": "android-development-il2cpp",
+      "size_in_bytes": 45585316,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12174542073",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12174542073/zip",
+      "expired": false,
+      "created_at": "2026-10-19T09:09:30Z",
+      "expires_at": "2027-01-17T08:43:13Z",
+      "updated_at": "2026-10-19T09:09:30Z",
+      "digest": "sha256:87da1c9a128d1d7adc00533affce9898b26082040c4d4397320e6b144bd6c2f0",
+      "workflow_run": {
+        "id": 39224770689,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "925ca608a961ac26c84385c8da3b949f609df883"
+      }
+    },
+    {
+      "id": 12173936200,
+      "name": "playmode-results",
+      "size_in_bytes": 458846,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12173936200",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12173936200/zip",
+      "expired": false,
+      "created_at": "2026-10-19T08:52:57Z",
+      "expires_at": "2027-01-17T08:43:13Z",
+      "updated_at": "2026-10-19T08:52:57Z",
+      "digest": "sha256:9ad16f5fc1a102dd21c5df8469069bd6cf8102a524958e3ce4596e688777424c",
+      "workflow_run": {
+        "id": 39224770689,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "925ca608a961ac26c84385c8da3b949f609df883"
+      }
+    },
+    {
+      "id": 12172924814,
+      "name": "editmode-results",
+      "size_in_bytes": 527581,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12172924814",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12172924814/zip",
+      "expired": false,
+      "created_at": "2026-10-19T08:49:29Z",
+      "expires_at": "2027-01-17T08:43:13Z",
+      "updated_at": "2026-10-19T08:49:29Z",
+      "digest": "sha256:16cef35d051e8a2c9f957e6139f6133578ee91a558d8ac9a85853d9606a1570c",
+      "workflow_run": {
+        "id": 39224770689,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-040-public240-save-technikbasis",
+        "head_sha": "925ca608a961ac26c84385c8da3b949f609df883"
+      }
+    }
+  ],
+  "originalArtifactChecks": {
+    "editmode": {
+      "id": 12172924814,
+      "bytes": 527581,
+      "sha256": "16cef35d051e8a2c9f957e6139f6133578ee91a558d8ac9a85853d9606a1570c",
+      "entries": [
+        {
+          "name": "editmode.xml",
+          "root": {
+            "id": "2",
+            "testcasecount": "496",
+            "start-time": "2026-10-19 08:46:40Z",
+            "duration": "162.4044856",
+            "engine-version": "3.5.0.0",
+            "total": "496",
+            "failed": "0",
+            "end-time": "2026-10-19 08:49:22Z",
+            "result": "Passed",
+            "asserts": "0",
+            "skipped": "0",
+            "inconclusive": "0",
+            "clr-version": "4.0.30319.42000",
+            "passed": "496"
+          },
+          "caseCount": 496,
+          "caseResults": {
+            "Passed": 496
+          },
+          "xmlSha256": "260702a3d4ecf7ceb121ddcdc74608fe5c421946c9237a79fe5d3bb339ae59a0"
+        }
+      ]
+    },
+    "playmode": {
+      "id": 12173936200,
+      "bytes": 458846,
+      "sha256": "9ad16f5fc1a102dd21c5df8469069bd6cf8102a524958e3ce4596e688777424c",
+      "entries": [
+        {
+          "name": "playmode.xml",
+          "root": {
+            "testcasecount": "49",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-19 08:52:35Z",
+            "inconclusive": "0",
+            "total": "49",
+            "end-time": "2026-10-19 08:52:46Z",
+            "engine-version": "3.5.0.0",
+            "passed": "49",
+            "failed": "0",
+            "asserts": "0",
+            "skipped": "0",
+            "result": "Passed",
+            "duration": "10.1997304",
+            "id": "2"
+          },
+          "caseCount": 49,
+          "caseResults": {
+            "Passed": 49
+          },
+          "xmlSha256": "4d1de9ecb2e9d23db5ae7e8e1a69e6776416dd140f6f95a44b7a9a6b266bb9c6"
+        }
+      ]
+    },
+    "android": {
+      "id": 12174542073,
+      "zipBytes": 45585316,
+      "zipSha256": "87da1c9a128d1d7adc00533affce9898b26082040c4d4397320e6b144bd6c2f0",
+      "entries": [
+        {
+          "name": "StammstreckenPuzzle_BurstDebugInformation_DoNotShip/tempburstlibs/arm64-v8a/lib_burst_generated.txt",
+          "bytes": 89078,
+          "sha256": "01802ee4f4b31829d45df26b58f7b8031db43a8241eb9a5c85c2551abbd6d20d"
+        },
+        {
+          "name": "stp-qa-development.apk",
+          "bytes": 46844477,
+          "sha256": "62be328c4ff19733c8ef690407c04b41f2fa2700b7df38ce4f49cdba77e0fda4"
+        }
+      ]
+    }
+  },
+  "artifactMethod": "Original ZIPs downloaded only into memory, hashed and compared to API digest. XML root attributes and every test-case result counted. XML text hashes are decoded UTF-8 hashes. Android APK-member bytes hashed independently. Existing workflow uploads no separate iOS ZIP; iOS original job log is the export/Xcode artifact evidence, no invented ZIP.",
+  "licenseReceipts": {
+    "seatId": "2476057761288-UnityPersonal",
+    "successfulActualActivations": 4,
+    "successfulActualDeactivations": 4,
+    "releaseUtcByJob": {
+      "117968400200": "2026-10-19T08:49:27.9731482Z",
+      "117970765569": "2026-10-19T08:52:56.2101562Z",
+      "117972117245": "2026-10-19T09:09:25.3839517Z",
+      "117978722428": "2026-10-19T09:24:19.9148500Z"
+    }
+  },
+  "platformEvidence": {
+    "android": {
+      "job": 117972117245,
+      "buildPassAtUtc": "2026-10-19T09:09:18.8874177Z",
+      "actualBuildReportBothQaScenes": true
+    },
+    "ios": {
+      "job": 117978722428,
+      "buildPassAtUtc": "2026-10-19T09:15:12.6518140Z",
+      "xcodeSucceededAtUtc": "2026-10-19T09:24:16.9979460Z",
+      "actualBuildReportBothQaScenes": true
+    }
+  },
+  "guardrails": {
+    "polling": "50–60 second backoff on unchanged observations; no concurrent root polling requested",
+    "retryDispatchCancelPushOrUnityExecutionByThisRole": false,
+    "reportFilesIgnored": true,
+    "trackedWorkingTreeCleanBeforeWrite": true,
+    "trackedSourceOrStatusFilesChangedByThisRole": false,
+    "onlyWrittenFiles": [
+      ".utmp/public240-tools/T_D_CI_EVIDENCE.json",
+      ".utmp/public240-tools/T_D_CI.md"
+    ]
+  },
+  "boundaries": [
+    "These are new D run/job/XML/build/license facts, not inherited PASS from 54d/B.",
+    "Historical 54d iOS attempt-1 failure and targeted attempt-2 success remain unchanged.",
+    "Technical CI evidence only; R release and a fresh ref audit remain root responsibilities before A/S anchors.",
+    "No A/S/I implementation, integration, human-review, graphic/device or product/release approval."
+  ]
+}

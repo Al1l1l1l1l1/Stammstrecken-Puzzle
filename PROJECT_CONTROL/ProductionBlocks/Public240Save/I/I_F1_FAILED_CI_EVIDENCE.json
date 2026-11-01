@@ -1,0 +1,2877 @@
+{
+  "at": "2026-10-19T15:07:23.804Z",
+  "status": "I_F1_ACTUAL_REGULAR_CI_FAILED_RETAINED",
+  "source": {
+    "sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+    "tree": "c7243bfc259949635e713b0b3d7efee4a74ceb43",
+    "parent": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e"
+  },
+  "apis": {
+    "observedAt": "2026-10-19T15:06:58.970Z",
+    "architecture": {
+      "id": 39272387677,
+      "name": "Architecture Validation",
+      "node_id": "WFR_kwLOURiA7s8AAAAJJNEUXQ",
+      "head_branch": "codex/wp-043-public240-gespeicherte-integration",
+      "head_sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+      "path": ".github/workflows/validate.yml",
+      "display_title": "feat(qa): integrate persisted Public240 review",
+      "run_number": 272,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "workflow_id": 357319394,
+      "check_suite_id": 106418667540,
+      "check_suite_node_id": "CS_kwDOURiA7s8AAAAYxwwAFA",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/37",
+          "id": 4922855112,
+          "number": 37,
+          "head": {
+            "ref": "codex/wp-043-public240-gespeicherte-integration",
+            "sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+            "repo": {
+              "id": 1360560366,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "name": "Stammstrecken-Puzzle"
+            }
+          },
+          "base": {
+            "ref": "codex/wp-036-vollstaendige-textbibliothek",
+            "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+            "repo": {
+              "id": 1360560366,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "name": "Stammstrecken-Puzzle"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-19T14:49:12Z",
+      "updated_at": "2026-10-19T14:49:58Z",
+      "actor": {
+        "login": "Al1l1l1l1l1",
+        "id": 268204362,
+        "node_id": "U_kgDOD_x5Sg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Al1l1l1l1l1",
+        "html_url": "https://github.com/Al1l1l1l1l1",
+        "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+        "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+        "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+        "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+        "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-19T14:49:12Z",
+      "triggering_actor": {
+        "login": "Al1l1l1l1l1",
+        "id": 268204362,
+        "node_id": "U_kgDOD_x5Sg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Al1l1l1l1l1",
+        "html_url": "https://github.com/Al1l1l1l1l1",
+        "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+        "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+        "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+        "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+        "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677/jobs",
+      "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677/logs",
+      "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/106418667540",
+      "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677/artifacts",
+      "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677/cancel",
+      "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387677/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/357319394",
+      "head_commit": {
+        "id": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+        "tree_id": "c7243bfc259949635e713b0b3d7efee4a74ceb43",
+        "message": "feat(qa): integrate persisted Public240 review",
+        "timestamp": "2026-10-19T14:41:35Z",
+        "author": {
+          "name": "Al1l1l1l1l1",
+          "email": "glatza99@outlook.de"
+        },
+        "committer": {
+          "name": "Al1l1l1l1l1",
+          "email": "glatza99@outlook.de"
+        }
+      },
+      "repository": {
+        "id": 1360560366,
+        "node_id": "R_kgDOURiA7g",
+        "name": "Stammstrecken-Puzzle",
+        "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "private": false,
+        "owner": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "description": "Stammstrecken-Puzzle",
+        "fork": false,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+        "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+        "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+        "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+        "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+        "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+        "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+        "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+        "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+        "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+        "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+        "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+        "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+      },
+      "head_repository": {
+        "id": 1360560366,
+        "node_id": "R_kgDOURiA7g",
+        "name": "Stammstrecken-Puzzle",
+        "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "private": false,
+        "owner": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "description": "Stammstrecken-Puzzle",
+        "fork": false,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+        "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+        "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+        "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+        "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+        "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+        "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+        "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+        "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+        "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+        "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+        "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+        "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+      }
+    },
+    "unity": {
+      "id": 39272387608,
+      "name": "Unity CI",
+      "node_id": "WFR_kwLOURiA7s8AAAAJJNEUGA",
+      "head_branch": "codex/wp-043-public240-gespeicherte-integration",
+      "head_sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+      "path": ".github/workflows/unity.yml",
+      "display_title": "feat(qa): integrate persisted Public240 review",
+      "run_number": 239,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "workflow_id": 362942037,
+      "check_suite_id": 106418667351,
+      "check_suite_node_id": "CS_kwDOURiA7s8AAAAYxwv_Vw",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608",
+      "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608",
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/37",
+          "id": 4922855112,
+          "number": 37,
+          "head": {
+            "ref": "codex/wp-043-public240-gespeicherte-integration",
+            "sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+            "repo": {
+              "id": 1360560366,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "name": "Stammstrecken-Puzzle"
+            }
+          },
+          "base": {
+            "ref": "codex/wp-036-vollstaendige-textbibliothek",
+            "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+            "repo": {
+              "id": 1360560366,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "name": "Stammstrecken-Puzzle"
+            }
+          }
+        }
+      ],
+      "created_at": "2026-10-19T14:49:12Z",
+      "updated_at": "2026-10-19T15:03:10Z",
+      "actor": {
+        "login": "Al1l1l1l1l1",
+        "id": 268204362,
+        "node_id": "U_kgDOD_x5Sg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Al1l1l1l1l1",
+        "html_url": "https://github.com/Al1l1l1l1l1",
+        "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+        "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+        "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+        "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+        "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "run_attempt": 1,
+      "referenced_workflows": [],
+      "run_started_at": "2026-10-19T14:49:12Z",
+      "triggering_actor": {
+        "login": "Al1l1l1l1l1",
+        "id": 268204362,
+        "node_id": "U_kgDOD_x5Sg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Al1l1l1l1l1",
+        "html_url": "https://github.com/Al1l1l1l1l1",
+        "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+        "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+        "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+        "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+        "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608/jobs",
+      "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608/logs",
+      "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/106418667351",
+      "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608/artifacts",
+      "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608/cancel",
+      "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39272387608/rerun",
+      "previous_attempt_url": null,
+      "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/362942037",
+      "head_commit": {
+        "id": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+        "tree_id": "c7243bfc259949635e713b0b3d7efee4a74ceb43",
+        "message": "feat(qa): integrate persisted Public240 review",
+        "timestamp": "2026-10-19T14:41:35Z",
+        "author": {
+          "name": "Al1l1l1l1l1",
+          "email": "glatza99@outlook.de"
+        },
+        "committer": {
+          "name": "Al1l1l1l1l1",
+          "email": "glatza99@outlook.de"
+        }
+      },
+      "repository": {
+        "id": 1360560366,
+        "node_id": "R_kgDOURiA7g",
+        "name": "Stammstrecken-Puzzle",
+        "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "private": false,
+        "owner": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "description": "Stammstrecken-Puzzle",
+        "fork": false,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+        "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+        "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+        "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+        "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+        "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+        "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+        "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+        "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+        "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+        "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+        "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+        "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+      },
+      "head_repository": {
+        "id": 1360560366,
+        "node_id": "R_kgDOURiA7g",
+        "name": "Stammstrecken-Puzzle",
+        "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "private": false,
+        "owner": {
+          "login": "Al1l1l1l1l1",
+          "id": 268204362,
+          "node_id": "U_kgDOD_x5Sg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/Al1l1l1l1l1",
+          "html_url": "https://github.com/Al1l1l1l1l1",
+          "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+          "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+          "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+          "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+          "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+          "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "description": "Stammstrecken-Puzzle",
+        "fork": false,
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+        "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+        "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+        "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+        "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+        "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+        "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+        "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+        "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+        "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+        "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+        "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+        "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+        "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+        "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+        "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+        "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+        "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+        "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+        "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+        "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+        "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+        "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+        "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+        "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+        "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+        "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+        "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+        "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+        "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+        "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+        "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+        "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+        "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+        "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+        "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+      }
+    },
+    "architectureJobs": [
+      {
+        "id": 118127801994,
+        "name": "validate",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387677,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Repository mit vollständiger Historie auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "CPython 3.11.13 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Node.js 22.20.0 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Gepinnte Validator-Abhängigkeiten installieren",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Architecture-only-Lauf mit Self-/Negativtests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 10
+          },
+          {
+            "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Node.js 22.20.0 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Post CPython 3.11.13 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Post Repository mit vollständiger Historie auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          }
+        ]
+      }
+    ],
+    "unityJobs": [
+      {
+        "id": 118127802265,
+        "name": "unity-environment-ios",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Unity Hub installieren",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 3
+          },
+          {
+            "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 4
+          },
+          {
+            "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 118127802599,
+        "name": "unity-environment-linux",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Initialize containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Stop containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          }
+        ]
+      },
+      {
+        "id": 118127802754,
+        "name": "project-preflight",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Repository mit vollständiger Historie auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "CPython 3.11.13 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Unity-Versionspin und Projektartefakte prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Explizite QA-Identitaeten vor Unity pruefen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Post CPython 3.11.13 einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Repository mit vollständiger Historie auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          }
+        ]
+      },
+      {
+        "id": 118127802838,
+        "name": "unity-environment-android",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Speicherplatz für das Unity-Android-Image freigeben",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Editor-Start und Android-Toolchain im Container prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          }
+        ]
+      },
+      {
+        "id": 118127802967,
+        "name": "unity-config",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          }
+        ]
+      },
+      {
+        "id": 118128014317,
+        "name": "unity-evidence-guard",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 2
+          },
+          {
+            "name": "Unity-Nachweiskonfiguration vorhanden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          }
+        ]
+      },
+      {
+        "id": 118128015450,
+        "name": "unity-compile-editmode",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Initialize containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Repository auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Unity-Library aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Unity-Personal-Seat freigeben (best effort)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Testergebnisse archivieren",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Post Unity-Library aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18
+          },
+          {
+            "name": "Post Repository auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Stop containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          }
+        ]
+      },
+      {
+        "id": 118132679600,
+        "name": "unity-playmode-bootstrap-smoke",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Initialize containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Repository auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Unity-Library aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 6
+          },
+          {
+            "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 7
+          },
+          {
+            "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Unity-Personal-Seat freigeben (best effort)",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Testergebnisse archivieren",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Post Unity-Library aus Cache wiederherstellen",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 18
+          },
+          {
+            "name": "Post Repository auschecken",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Stop containers",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          }
+        ]
+      },
+      {
+        "id": 118135177213,
+        "name": "unity-android-development-il2cpp",
+        "status": "completed",
+        "conclusion": "skipped",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": null
+      },
+      {
+        "id": 118135177220,
+        "name": "unity-ios-export",
+        "status": "completed",
+        "conclusion": "skipped",
+        "run_id": 39272387608,
+        "logs_url": null,
+        "steps": null
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": 12196870799,
+      "name": "editmode-results",
+      "size_in_bytes": 1053897,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12196870799",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12196870799/zip",
+      "expired": false,
+      "created_at": "2026-10-19T14:58:24Z",
+      "expires_at": "2027-01-17T14:49:13Z",
+      "updated_at": "2026-10-19T14:58:24Z",
+      "digest": "sha256:146236e75cc3f9c6a5bdc39c91ee9bae046a99e3cd6daf6605a408eb3c816078",
+      "workflow_run": {
+        "id": 39272387608,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-043-public240-gespeicherte-integration",
+        "head_sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8"
+      }
+    },
+    {
+      "id": 12196766780,
+      "name": "playmode-results",
+      "size_in_bytes": 952083,
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12196766780",
+      "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12196766780/zip",
+      "expired": false,
+      "created_at": "2026-10-19T15:03:07Z",
+      "expires_at": "2027-01-17T14:49:13Z",
+      "updated_at": "2026-10-19T15:03:07Z",
+      "digest": "sha256:c8a21b619381d20e614c46b9ab5691e7cd091d82b1529c1997aa87b61b1a98b0",
+      "workflow_run": {
+        "id": 39272387608,
+        "repository_id": 1360560366,
+        "head_repository_id": 1360560366,
+        "head_branch": "codex/wp-043-public240-gespeicherte-integration",
+        "head_sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8"
+      }
+    }
+  ],
+  "members": [
+    {
+      "artifact": 12196870799,
+      "bytes": 1053897,
+      "originalZipSha256": "146236e75cc3f9c6a5bdc39c91ee9bae046a99e3cd6daf6605a408eb3c816078",
+      "members": [
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0000.xml",
+          "bytes": 8050152,
+          "sha256": "9d9f364acaea3ece05b34b28d450c267779ea81cb5108a61d678008e2909ef7e",
+          "xmlRoot": "CoverageSession",
+          "moduleSummary": [
+            {
+              "name": "STP.Application",
+              "summary": {
+                "numSequencePoints": "3190",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "154",
+                "visitedMethods": "0",
+                "numMethods": "835"
+              },
+              "methodCount": 835
+            },
+            {
+              "name": "STP.Bootstrap",
+              "summary": {
+                "numSequencePoints": "1072",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "19",
+                "visitedMethods": "0",
+                "numMethods": "145"
+              },
+              "methodCount": 145
+            },
+            {
+              "name": "STP.Editor.Build",
+              "summary": {
+                "numSequencePoints": "387",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "6",
+                "visitedMethods": "0",
+                "numMethods": "40"
+              },
+              "methodCount": 40
+            },
+            {
+              "name": "STP.Editor.Content",
+              "summary": {
+                "numSequencePoints": "210",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "8",
+                "visitedMethods": "0",
+                "numMethods": "46"
+              },
+              "methodCount": 46
+            },
+            {
+              "name": "STP.Infrastructure.Content",
+              "summary": {
+                "numSequencePoints": "2552",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "66",
+                "visitedMethods": "0",
+                "numMethods": "431"
+              },
+              "methodCount": 431
+            },
+            {
+              "name": "STP.Infrastructure.Persistence",
+              "summary": {
+                "numSequencePoints": "2460",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "86",
+                "visitedMethods": "0",
+                "numMethods": "535"
+              },
+              "methodCount": 535
+            },
+            {
+              "name": "STP.MobileServices.Google",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.MobileServices.Store",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.Platform",
+              "summary": {
+                "numSequencePoints": "79",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "4",
+                "visitedMethods": "0",
+                "numMethods": "11"
+              },
+              "methodCount": 11
+            },
+            {
+              "name": "STP.Presentation.UI",
+              "summary": {
+                "numSequencePoints": "1915",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "21",
+                "visitedMethods": "0",
+                "numMethods": "175"
+              },
+              "methodCount": 175
+            },
+            {
+              "name": "STP.Presentation.World",
+              "summary": {
+                "numSequencePoints": "145",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "2",
+                "visitedMethods": "0",
+                "numMethods": "16"
+              },
+              "methodCount": 16
+            },
+            {
+              "name": "STP.Puzzle.Domain",
+              "summary": {
+                "numSequencePoints": "757",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "27",
+                "visitedMethods": "0",
+                "numMethods": "171"
+              },
+              "methodCount": 171
+            },
+            {
+              "name": "STP.Puzzle.Solver",
+              "summary": {
+                "numSequencePoints": "1045",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "30",
+                "visitedMethods": "0",
+                "numMethods": "123"
+              },
+              "methodCount": 123
+            },
+            {
+              "name": "STP.Tests.Application.EditMode",
+              "summary": {
+                "numSequencePoints": "2400",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "105",
+                "visitedMethods": "0",
+                "numMethods": "318"
+              },
+              "methodCount": 318
+            },
+            {
+              "name": "STP.Tests.Bootstrap.PlayMode",
+              "summary": {
+                "numSequencePoints": "2808",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "111",
+                "visitedMethods": "0",
+                "numMethods": "275"
+              },
+              "methodCount": 275
+            },
+            {
+              "name": "STP.Tests.Content.EditMode",
+              "summary": {
+                "numSequencePoints": "3681",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "76",
+                "visitedMethods": "0",
+                "numMethods": "552"
+              },
+              "methodCount": 552
+            },
+            {
+              "name": "STP.Tests.Domain.EditMode",
+              "summary": {
+                "numSequencePoints": "458",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "14",
+                "visitedMethods": "0",
+                "numMethods": "53"
+              },
+              "methodCount": 53
+            },
+            {
+              "name": "STP.Tests.Persistence.EditMode",
+              "summary": {
+                "numSequencePoints": "1400",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "46",
+                "visitedMethods": "0",
+                "numMethods": "218"
+              },
+              "methodCount": 218
+            },
+            {
+              "name": "STP.Tests.Presentation.PlayMode",
+              "summary": {
+                "numSequencePoints": "375",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "24",
+                "visitedMethods": "0",
+                "numMethods": "73"
+              },
+              "methodCount": 73
+            },
+            {
+              "name": "STP.Tests.Solver.EditMode",
+              "summary": {
+                "numSequencePoints": "2380",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "41",
+                "visitedMethods": "0",
+                "numMethods": "258"
+              },
+              "methodCount": 258
+            }
+          ]
+        },
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0001.xml",
+          "bytes": 8136659,
+          "sha256": "adc746ab65ac5088f38876d641e7033cbbd68ce262d696883bd9f7cbe6e7bdd1",
+          "xmlRoot": "CoverageSession",
+          "moduleSummary": [
+            {
+              "name": "STP.Application",
+              "summary": {
+                "numSequencePoints": "3190",
+                "visitedSequencePoints": "2432",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "76.24",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "138",
+                "numClasses": "154",
+                "visitedMethods": "650",
+                "numMethods": "835"
+              },
+              "methodCount": 835
+            },
+            {
+              "name": "STP.Bootstrap",
+              "summary": {
+                "numSequencePoints": "1072",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "19",
+                "visitedMethods": "0",
+                "numMethods": "145"
+              },
+              "methodCount": 145
+            },
+            {
+              "name": "STP.Editor.Build",
+              "summary": {
+                "numSequencePoints": "387",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "6",
+                "visitedMethods": "0",
+                "numMethods": "40"
+              },
+              "methodCount": 40
+            },
+            {
+              "name": "STP.Editor.Content",
+              "summary": {
+                "numSequencePoints": "210",
+                "visitedSequencePoints": "199",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "94.76",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "8",
+                "numClasses": "8",
+                "visitedMethods": "45",
+                "numMethods": "46"
+              },
+              "methodCount": 46
+            },
+            {
+              "name": "STP.Infrastructure.Content",
+              "summary": {
+                "numSequencePoints": "2552",
+                "visitedSequencePoints": "2458",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "96.32",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "63",
+                "numClasses": "66",
+                "visitedMethods": "416",
+                "numMethods": "431"
+              },
+              "methodCount": 431
+            },
+            {
+              "name": "STP.Infrastructure.Persistence",
+              "summary": {
+                "numSequencePoints": "2460",
+                "visitedSequencePoints": "1251",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "50.85",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "61",
+                "numClasses": "86",
+                "visitedMethods": "312",
+                "numMethods": "535"
+              },
+              "methodCount": 535
+            },
+            {
+              "name": "STP.MobileServices.Google",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.MobileServices.Store",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.Platform",
+              "summary": {
+                "numSequencePoints": "79",
+                "visitedSequencePoints": "24",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "30.38",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "2",
+                "numClasses": "4",
+                "visitedMethods": "6",
+                "numMethods": "11"
+              },
+              "methodCount": 11
+            },
+            {
+              "name": "STP.Presentation.UI",
+              "summary": {
+                "numSequencePoints": "1915",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "21",
+                "visitedMethods": "0",
+                "numMethods": "175"
+              },
+              "methodCount": 175
+            },
+            {
+              "name": "STP.Presentation.World",
+              "summary": {
+                "numSequencePoints": "145",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "2",
+                "visitedMethods": "0",
+                "numMethods": "16"
+              },
+              "methodCount": 16
+            },
+            {
+              "name": "STP.Puzzle.Domain",
+              "summary": {
+                "numSequencePoints": "757",
+                "visitedSequencePoints": "604",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "79.79",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "25",
+                "numClasses": "27",
+                "visitedMethods": "139",
+                "numMethods": "171"
+              },
+              "methodCount": 171
+            },
+            {
+              "name": "STP.Puzzle.Solver",
+              "summary": {
+                "numSequencePoints": "1045",
+                "visitedSequencePoints": "1039",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "99.43",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "30",
+                "numClasses": "30",
+                "visitedMethods": "123",
+                "numMethods": "123"
+              },
+              "methodCount": 123
+            },
+            {
+              "name": "STP.Tests.Application.EditMode",
+              "summary": {
+                "numSequencePoints": "2400",
+                "visitedSequencePoints": "2175",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "90.62",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "92",
+                "numClasses": "105",
+                "visitedMethods": "268",
+                "numMethods": "318"
+              },
+              "methodCount": 318
+            },
+            {
+              "name": "STP.Tests.Bootstrap.PlayMode",
+              "summary": {
+                "numSequencePoints": "2808",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "111",
+                "visitedMethods": "0",
+                "numMethods": "275"
+              },
+              "methodCount": 275
+            },
+            {
+              "name": "STP.Tests.Content.EditMode",
+              "summary": {
+                "numSequencePoints": "3681",
+                "visitedSequencePoints": "3625",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "98.48",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "75",
+                "numClasses": "76",
+                "visitedMethods": "547",
+                "numMethods": "552"
+              },
+              "methodCount": 552
+            },
+            {
+              "name": "STP.Tests.Domain.EditMode",
+              "summary": {
+                "numSequencePoints": "458",
+                "visitedSequencePoints": "458",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "100.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "14",
+                "numClasses": "14",
+                "visitedMethods": "53",
+                "numMethods": "53"
+              },
+              "methodCount": 53
+            },
+            {
+              "name": "STP.Tests.Persistence.EditMode",
+              "summary": {
+                "numSequencePoints": "1400",
+                "visitedSequencePoints": "1244",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "88.86",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "33",
+                "numClasses": "46",
+                "visitedMethods": "184",
+                "numMethods": "218"
+              },
+              "methodCount": 218
+            },
+            {
+              "name": "STP.Tests.Presentation.PlayMode",
+              "summary": {
+                "numSequencePoints": "375",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "24",
+                "visitedMethods": "0",
+                "numMethods": "73"
+              },
+              "methodCount": 73
+            },
+            {
+              "name": "STP.Tests.Solver.EditMode",
+              "summary": {
+                "numSequencePoints": "2380",
+                "visitedSequencePoints": "2369",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "99.54",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "41",
+                "numClasses": "41",
+                "visitedMethods": "258",
+                "numMethods": "258"
+              },
+              "methodCount": 258
+            }
+          ]
+        },
+        {
+          "name": "editmode.xml",
+          "bytes": 990259,
+          "sha256": "b6e583d4441c3e710b2546d77ad088cb6ee5e080ce0e7a9f5d39c1f9d4221ffc",
+          "xmlRoot": "test-run",
+          "actualNunit": {
+            "id": "2",
+            "testcasecount": "1107",
+            "result": "Passed",
+            "total": "1107",
+            "passed": "1107",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-19 14:52:59Z",
+            "end-time": "2026-10-19 14:58:15Z",
+            "duration": "315.6387933"
+          },
+          "actualCaseCount": 1107,
+          "notPassed": []
+        }
+      ]
+    },
+    {
+      "artifact": 12196766780,
+      "bytes": 952083,
+      "originalZipSha256": "c8a21b619381d20e614c46b9ab5691e7cd091d82b1529c1997aa87b61b1a98b0",
+      "members": [
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0000.xml",
+          "bytes": 8049366,
+          "sha256": "4b102d596922e509c7a60787116151a4d50a732b107800c021aca814c350f37f",
+          "xmlRoot": "CoverageSession",
+          "moduleSummary": [
+            {
+              "name": "STP.Application",
+              "summary": {
+                "numSequencePoints": "3190",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "154",
+                "visitedMethods": "0",
+                "numMethods": "835"
+              },
+              "methodCount": 835
+            },
+            {
+              "name": "STP.Bootstrap",
+              "summary": {
+                "numSequencePoints": "1072",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "19",
+                "visitedMethods": "0",
+                "numMethods": "145"
+              },
+              "methodCount": 145
+            },
+            {
+              "name": "STP.Editor.Build",
+              "summary": {
+                "numSequencePoints": "387",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "6",
+                "visitedMethods": "0",
+                "numMethods": "40"
+              },
+              "methodCount": 40
+            },
+            {
+              "name": "STP.Editor.Content",
+              "summary": {
+                "numSequencePoints": "210",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "8",
+                "visitedMethods": "0",
+                "numMethods": "46"
+              },
+              "methodCount": 46
+            },
+            {
+              "name": "STP.Infrastructure.Content",
+              "summary": {
+                "numSequencePoints": "2552",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "66",
+                "visitedMethods": "0",
+                "numMethods": "431"
+              },
+              "methodCount": 431
+            },
+            {
+              "name": "STP.Infrastructure.Persistence",
+              "summary": {
+                "numSequencePoints": "2460",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "86",
+                "visitedMethods": "0",
+                "numMethods": "535"
+              },
+              "methodCount": 535
+            },
+            {
+              "name": "STP.MobileServices.Google",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.MobileServices.Store",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "1",
+                "visitedMethods": "0",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.Platform",
+              "summary": {
+                "numSequencePoints": "79",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "4",
+                "visitedMethods": "0",
+                "numMethods": "11"
+              },
+              "methodCount": 11
+            },
+            {
+              "name": "STP.Presentation.UI",
+              "summary": {
+                "numSequencePoints": "1915",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "21",
+                "visitedMethods": "0",
+                "numMethods": "175"
+              },
+              "methodCount": 175
+            },
+            {
+              "name": "STP.Presentation.World",
+              "summary": {
+                "numSequencePoints": "145",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "2",
+                "visitedMethods": "0",
+                "numMethods": "16"
+              },
+              "methodCount": 16
+            },
+            {
+              "name": "STP.Puzzle.Domain",
+              "summary": {
+                "numSequencePoints": "757",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "27",
+                "visitedMethods": "0",
+                "numMethods": "171"
+              },
+              "methodCount": 171
+            },
+            {
+              "name": "STP.Puzzle.Solver",
+              "summary": {
+                "numSequencePoints": "1045",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "30",
+                "visitedMethods": "0",
+                "numMethods": "123"
+              },
+              "methodCount": 123
+            },
+            {
+              "name": "STP.Tests.Application.EditMode",
+              "summary": {
+                "numSequencePoints": "2400",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "105",
+                "visitedMethods": "0",
+                "numMethods": "318"
+              },
+              "methodCount": 318
+            },
+            {
+              "name": "STP.Tests.Bootstrap.PlayMode",
+              "summary": {
+                "numSequencePoints": "2808",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "111",
+                "visitedMethods": "0",
+                "numMethods": "275"
+              },
+              "methodCount": 275
+            },
+            {
+              "name": "STP.Tests.Content.EditMode",
+              "summary": {
+                "numSequencePoints": "3681",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "76",
+                "visitedMethods": "0",
+                "numMethods": "552"
+              },
+              "methodCount": 552
+            },
+            {
+              "name": "STP.Tests.Domain.EditMode",
+              "summary": {
+                "numSequencePoints": "458",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "14",
+                "visitedMethods": "0",
+                "numMethods": "53"
+              },
+              "methodCount": 53
+            },
+            {
+              "name": "STP.Tests.Persistence.EditMode",
+              "summary": {
+                "numSequencePoints": "1400",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "46",
+                "visitedMethods": "0",
+                "numMethods": "218"
+              },
+              "methodCount": 218
+            },
+            {
+              "name": "STP.Tests.Presentation.PlayMode",
+              "summary": {
+                "numSequencePoints": "375",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "24",
+                "visitedMethods": "0",
+                "numMethods": "73"
+              },
+              "methodCount": 73
+            },
+            {
+              "name": "STP.Tests.Solver.EditMode",
+              "summary": {
+                "numSequencePoints": "2380",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "41",
+                "visitedMethods": "0",
+                "numMethods": "258"
+              },
+              "methodCount": 258
+            }
+          ]
+        },
+        {
+          "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0001.xml",
+          "bytes": 8090505,
+          "sha256": "da7e1017eb155402a8d7144389deb2ceb6d01c4ec373ec72cc01771ef4c69b68",
+          "xmlRoot": "CoverageSession",
+          "moduleSummary": [
+            {
+              "name": "STP.Application",
+              "summary": {
+                "numSequencePoints": "3190",
+                "visitedSequencePoints": "1442",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "45.20",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "68",
+                "numClasses": "154",
+                "visitedMethods": "316",
+                "numMethods": "835"
+              },
+              "methodCount": 835
+            },
+            {
+              "name": "STP.Bootstrap",
+              "summary": {
+                "numSequencePoints": "1072",
+                "visitedSequencePoints": "701",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "65.39",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "15",
+                "numClasses": "19",
+                "visitedMethods": "115",
+                "numMethods": "145"
+              },
+              "methodCount": 145
+            },
+            {
+              "name": "STP.Editor.Build",
+              "summary": {
+                "numSequencePoints": "387",
+                "visitedSequencePoints": "224",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "57.88",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "6",
+                "numClasses": "6",
+                "visitedMethods": "31",
+                "numMethods": "40"
+              },
+              "methodCount": 40
+            },
+            {
+              "name": "STP.Editor.Content",
+              "summary": {
+                "numSequencePoints": "210",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "8",
+                "visitedMethods": "0",
+                "numMethods": "46"
+              },
+              "methodCount": 46
+            },
+            {
+              "name": "STP.Infrastructure.Content",
+              "summary": {
+                "numSequencePoints": "2552",
+                "visitedSequencePoints": "493",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "19.32",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "21",
+                "numClasses": "66",
+                "visitedMethods": "83",
+                "numMethods": "431"
+              },
+              "methodCount": 431
+            },
+            {
+              "name": "STP.Infrastructure.Persistence",
+              "summary": {
+                "numSequencePoints": "2460",
+                "visitedSequencePoints": "10",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.41",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "2",
+                "numClasses": "86",
+                "visitedMethods": "4",
+                "numMethods": "535"
+              },
+              "methodCount": 535
+            },
+            {
+              "name": "STP.MobileServices.Google",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "1",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "20.00",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "1",
+                "numClasses": "1",
+                "visitedMethods": "1",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.MobileServices.Store",
+              "summary": {
+                "numSequencePoints": "5",
+                "visitedSequencePoints": "1",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "20.00",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "1",
+                "numClasses": "1",
+                "visitedMethods": "1",
+                "numMethods": "3"
+              },
+              "methodCount": 3
+            },
+            {
+              "name": "STP.Platform",
+              "summary": {
+                "numSequencePoints": "79",
+                "visitedSequencePoints": "46",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "58.23",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "3",
+                "numClasses": "4",
+                "visitedMethods": "9",
+                "numMethods": "11"
+              },
+              "methodCount": 11
+            },
+            {
+              "name": "STP.Presentation.UI",
+              "summary": {
+                "numSequencePoints": "1915",
+                "visitedSequencePoints": "1807",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "94.36",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "20",
+                "numClasses": "21",
+                "visitedMethods": "168",
+                "numMethods": "175"
+              },
+              "methodCount": 175
+            },
+            {
+              "name": "STP.Presentation.World",
+              "summary": {
+                "numSequencePoints": "145",
+                "visitedSequencePoints": "119",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "82.07",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "2",
+                "numClasses": "2",
+                "visitedMethods": "16",
+                "numMethods": "16"
+              },
+              "methodCount": 16
+            },
+            {
+              "name": "STP.Puzzle.Domain",
+              "summary": {
+                "numSequencePoints": "757",
+                "visitedSequencePoints": "494",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "65.26",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "23",
+                "numClasses": "27",
+                "visitedMethods": "109",
+                "numMethods": "171"
+              },
+              "methodCount": 171
+            },
+            {
+              "name": "STP.Puzzle.Solver",
+              "summary": {
+                "numSequencePoints": "1045",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "30",
+                "visitedMethods": "0",
+                "numMethods": "123"
+              },
+              "methodCount": 123
+            },
+            {
+              "name": "STP.Tests.Application.EditMode",
+              "summary": {
+                "numSequencePoints": "2400",
+                "visitedSequencePoints": "68",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "2.83",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "6",
+                "numClasses": "105",
+                "visitedMethods": "14",
+                "numMethods": "318"
+              },
+              "methodCount": 318
+            },
+            {
+              "name": "STP.Tests.Bootstrap.PlayMode",
+              "summary": {
+                "numSequencePoints": "2808",
+                "visitedSequencePoints": "2331",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "83.01",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "96",
+                "numClasses": "111",
+                "visitedMethods": "240",
+                "numMethods": "275"
+              },
+              "methodCount": 275
+            },
+            {
+              "name": "STP.Tests.Content.EditMode",
+              "summary": {
+                "numSequencePoints": "3681",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "76",
+                "visitedMethods": "0",
+                "numMethods": "552"
+              },
+              "methodCount": 552
+            },
+            {
+              "name": "STP.Tests.Domain.EditMode",
+              "summary": {
+                "numSequencePoints": "458",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "14",
+                "visitedMethods": "0",
+                "numMethods": "53"
+              },
+              "methodCount": 53
+            },
+            {
+              "name": "STP.Tests.Persistence.EditMode",
+              "summary": {
+                "numSequencePoints": "1400",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "46",
+                "visitedMethods": "0",
+                "numMethods": "218"
+              },
+              "methodCount": 218
+            },
+            {
+              "name": "STP.Tests.Presentation.PlayMode",
+              "summary": {
+                "numSequencePoints": "375",
+                "visitedSequencePoints": "355",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "94.67",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "23",
+                "numClasses": "24",
+                "visitedMethods": "61",
+                "numMethods": "73"
+              },
+              "methodCount": 73
+            },
+            {
+              "name": "STP.Tests.Solver.EditMode",
+              "summary": {
+                "numSequencePoints": "2380",
+                "visitedSequencePoints": "0",
+                "numBranchPoints": "0",
+                "visitedBranchPoints": "0",
+                "sequenceCoverage": "0.0",
+                "branchCoverage": "0.0",
+                "maxCyclomaticComplexity": "0",
+                "minCyclomaticComplexity": "0",
+                "maxCrapScore": "0",
+                "minCrapScore": "0",
+                "visitedClasses": "0",
+                "numClasses": "41",
+                "visitedMethods": "0",
+                "numMethods": "258"
+              },
+              "methodCount": 258
+            }
+          ]
+        },
+        {
+          "name": "playmode.xml",
+          "bytes": 189284,
+          "sha256": "51025a40894c762554bcbbfa2bca0a042da5ae4a6b5ad3fd4220e9422a8caff2",
+          "xmlRoot": "test-run",
+          "actualNunit": {
+            "id": "2",
+            "testcasecount": "117",
+            "result": "Failed(Child)",
+            "total": "117",
+            "passed": "116",
+            "failed": "1",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-19 15:01:42Z",
+            "end-time": "2026-10-19 15:03:00Z",
+            "duration": "77.3702566"
+          },
+          "actualCaseCount": 117,
+          "notPassed": [
+            {
+              "fullname": "STP.Tests.Bootstrap.PlayMode.SavedPublic240ReviewSmokeTests.NormalScreen_ActualSaved4x4_10x10_Ride_Results",
+              "result": "Failed",
+              "message": "  Expected: True\n  But was:  False\n"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "jobFacts": [
+    {
+      "jobId": 118127801994,
+      "actualReleaseUtc": null,
+      "results": []
+    },
+    {
+      "jobId": 118128015450,
+      "actualReleaseUtc": "2026-10-19T14:58:21.7872719Z",
+      "results": [
+        "2026-10-19T14:52:38.0306693Z STP coverage causal pointer hook registered before session; no method invocation.",
+        "2026-10-19T14:52:56.1643097Z STP coverage causal async metadata prepared before FullEmpty: 39; zero target body hits; no execution/filter/reset/statistics mutation.",
+        "2026-10-19T14:58:19.2497759Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 28 tatsaechlich bestandene Testfaelle",
+        "2026-10-19T14:58:19.2498934Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 56 tatsaechlich bestandene Testfaelle",
+        "2026-10-19T14:58:19.2500371Z EditMode evidence PASS: STP.Tests.Content.EditMode, 438 tatsaechlich bestandene Testfaelle",
+        "2026-10-19T14:58:19.8028701Z Coverage evidence PASS: 20 STP-Assemblies, keine Mindest-Coverage"
+      ]
+    },
+    {
+      "jobId": 118132679600,
+      "actualReleaseUtc": "2026-10-19T15:03:06.4275246Z",
+      "results": [
+        "2026-10-19T15:01:19.9431932Z STP coverage causal pointer hook registered before session; no method invocation.",
+        "2026-10-19T15:01:38.3799452Z STP coverage causal pointer hook registered before session; no method invocation.",
+        "2026-10-19T15:01:40.1178723Z STP coverage causal async metadata prepared before FullEmpty: 39; zero target body hits; no execution/filter/reset/statistics mutation.",
+        "2026-10-19T15:03:04.2402470Z ##[error]Process completed with exit code 2.",
+        "2026-10-19T15:03:04.3386034Z PlayMode evidence FAILURE: PlayMode-Testlauf nicht bestanden",
+        "2026-10-19T15:03:04.3466562Z ##[error]Process completed with exit code 1.",
+        "2026-10-19T15:03:04.8646831Z Coverage evidence PASS: 20 STP-Assemblies, keine Mindest-Coverage"
+      ]
+    }
+  ],
+  "actualSeatReleases": 2,
+  "rootDiagnosis": "Exactly one PlayMode failure in AssertReadableGrid:708 at the first 4x4:554; all 116 other PlayMode and 1107 EditMode cases pass. Native10 on the unchanged 497-input F reproduces the same headless assertion with OSexit2. Additional bounds instrumentation and a targeted correction remain required.",
+  "boundary": "No complete I CI or acceptance, no Android/iOS execution, no integration decision. First artifact-download404 retained separately; successful original-byte download does not repeat CI."
+}

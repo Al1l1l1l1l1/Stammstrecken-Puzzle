@@ -1,5 +1,11 @@
 # Content Pipeline v0.3
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Production statt Review:** vorhandene Prüfinstanzen/Proofs verwenden und nur tatsächlich betroffene späte Level korrigieren; typisierter vollständiger produktiver Import/Lock/Runtimeassets folgt. Eine Public240-Projektion belegt keine Humanqualität und darf nicht umetikettiert werden. Interne QAprofile bleiben isoliert. Die unten dokumentierten WP038/Public240-QApfade sind historische bzw. getrennte Werkzeuge, keine Produktstartoberfläche.
+
 ## 1. Ziel
 
 Content ist versionierter Quellcode. Level, Lokalisierungsschlüssel, Assets und Abschlussreferenzen müssen in Pull Requests diffbar, maschinell prüfbar und deterministisch in Unity-Laufzeitdaten überführbar sein. Unity-Szenen oder generierte ScriptableObjects sind nie die einzige Wissensquelle.
@@ -178,7 +184,7 @@ Kosmetikpreise und Milestone-Eligibility stammen ausschließlich aus dem gelockt
 
 ## 11. CI-Gates
 
-Content-Pull-Requests müssen Schema, Semantik, Solver, Hashes, Cross-References, Pseudolocale, deterministischen Doppelimport, Addressables Build, Lizenzscan und Größenbudgets bestehen. Release führt den vollständigen Katalog erneut aus; kein gecachter Proof ersetzt die aktuelle Solverprüfung.
+Content-Produktkandidaten müssen die tatsächlich betroffenen Schema-/Semantik-/Solver-/Hash-/Referenz-/Import-/Lizenz-/Größenrisiken bestehen. Neue Instanzen erhalten ihre vollständigen neuen Nachweise; reine UI-/Status-/Dokuänderungen regenerieren nicht den gesamten unveränderten Altkorpus. Release prüft einmal den vollständigen aktuellen Katalog; kein gecachter Proof ersetzt die dafür erforderliche aktuelle Solverprüfung.
 
 Generierte Dauerbaustellenkandidaten benötigen zusätzlich ein kanonisches `GeneratorQualityProfile` nach `SOLVER_ARCHITECTURE.md`. CI prüft Status `PRODUCT_APPROVED`, Profilhash, Solver-/Ruleset-Kompatibilität, Referenzkorpus, Metrikintervalle, Noveltyalgorithmus/-schwelle, Laufzeitbudget und Human-Review-Nachweis. Fehlt ein Wert oder stimmt ein Hash nicht, bleibt der Kandidat `DRAFT` und der Productionimport bricht ab. Wegen `BLOCKER-PROD-003` darf bis zur fachlichen Kalibrierung kein Generatoroutput veröffentlicht werden.
 
@@ -197,3 +203,11 @@ Ein Levelautor verantwortet Logik und Qualitätsnotiz. Ein Solver-/Tooling-Revie
 [5]: ./CONTENT_CATALOGS.md "Content Catalogs v0.3"
 [6]: ../DECISIONS/ADR-021-puzzleidentitaet-und-proofartefakte.md "ADR-021 – Puzzleidentität und Proofartefakte"
 [7]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
+
+## Interne transiente Spielschleife – ADR033 / WP038
+
+[ADR-033](../DECISIONS/ADR-033-interne-transiente-spielschleife.md) erlaubt ausschließlich die eigene interne QA-Szene DevelopmentPuzzle mit zwei eigenen öffentlichen QA-Definitionen, realen Domaincommands und klar ungespeicherter Fahrt-/Ergebnispräsentation. Eigene UXML-/USS-/Panel-/Locale-/Materialquellen werden am validierten Installer serialisiert; neutrale QA-Strings werden über eine isolierte Unity-Localization-In-Memory-StringTable aufgelöst. Alle internen Assemblykanten bleiben unverändert; ausschließlich UI erhält den bereits vorgesehenen externen Unity.Localization-Verweis. Kein DRAFT-/FIXTURE_ONLY-Import, keine Katalog-/Proof-/Textpromotion, kein Save-/ProgressCommitted-/Rewardclaim und kein Productionentry. Produktiver Addressables-/Localization-, Save-vor-Fahrt-/Reward- und Releasevertrag bleiben verbindlich. Reguläre Builds enthalten die neue QA-Spielszene zusätzlich zur bestehenden Composition-Smoke-Szene; bestehende Profil-/URP-/Stripping-/CI-Gates bleiben erhalten.
+
+## Gemeinsame Technikbasis Public240 und lokaler Save
+
+[ADR-034](../DECISIONS/ADR-034-isolierter-public240-reviewpfad.md) ergänzt ausschließlich den isolierten nichtproduktiven Public240Review-Entry. [ADR-035](../DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md) konkretisiert typisierte Zusatzports, die Wiederverwendung des bestehenden strikten JCS über Injektion ohne neue Assemblykante, validierte vollständige Checkpoints und CAS/Commit-vor-Fahrt. Produktionsgates, Hashprojektionen, Save-v2-/Migrations-/Ledgerverträge und offene Produktblocker bleiben unverändert. Eigene QA-Profile und Claims werden niemals zu Produktprofilen übertragen. Fachimplementierung und tatsächliche Nachweise folgen getrennt verankerten WPs auf abgeschlossenem T.

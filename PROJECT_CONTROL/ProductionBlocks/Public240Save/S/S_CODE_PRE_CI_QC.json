@@ -1,0 +1,1974 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-19T11:18:24.494Z",
+  "reviewer": "entry_audit independent; no source/Git/Unity/CI mutation or local Unity execution",
+  "verdict": "PASS_PRE_CI_S_CODE_REVIEW_NO_OPEN_SOURCE_HIGH_WITH_EXPLICIT_PENDING_FREEZE_EVIDENCE",
+  "scope": {
+    "workPackage": "WP-042",
+    "anchor": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+    "manifestSha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+    "baseD": "925ca608a961ac26c84385c8da3b949f609df883",
+    "review": "All new S runtime/model/checkpoint/policy/app/autosave/catalog/codec/migration/ledger/FS/repository plus actual tests; no general Solver/text review, no P/I or provider activation claim"
+  },
+  "ownerFreeze": {
+    "path": "S_OWN_SOURCE_FREEZE_V3.json",
+    "sha256": "6e03bc7bc0c5fd2230cbe9e11a5cc71e09ed1f4ba1a9d0bdce16056d19c3b537",
+    "exactCurrentFiles": 44,
+    "sourceBindings": [
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+        "bytes": 16637,
+        "sha256": "5f0b2e36215c7f57e42cba3a3cab9407a9d30cdd1d6e924480c8bd7867156035"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+        "bytes": 60,
+        "sha256": "498b8e6568e15de8efd829078783fbacc9d4b951e0a9360d61491d870fe5481f"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+        "bytes": 77025,
+        "sha256": "5dfe5219ce92d1de674cdd778bb5fe2da1e4e5f06d190c5341d0be4296fafffd"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+        "bytes": 60,
+        "sha256": "cf1598d9884c3d1245eb75856506700940b453698fe682ba34f33c8e282247ac"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+        "bytes": 18189,
+        "sha256": "c993039cb9efe746018c31edc12dbd85b1cca5f185fd554566ab2e1d6387aa8e"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+        "bytes": 61,
+        "sha256": "7dd9d3cf460908f4fb3993d425c14206c5fc1905e0d2e46d5f012cd68c67a077"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+        "bytes": 22247,
+        "sha256": "5c3b0463e41f44ebe84ac7d80c4d48057ddb215135a4953198830f7b51c8ed20"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+        "bytes": 61,
+        "sha256": "127701f7108bcc4149e9b5314a5566f567f7065f9f788301ee1ebc96dd971ea8"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+        "bytes": 4963,
+        "sha256": "11f6d688fb6c100cf4ed332640520b8ba61fe76e954788f0aaa2051b5e24765e"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+        "bytes": 61,
+        "sha256": "0a91a81a58b0418b2630eb52165db4dc42b7b5febc20d64b163ff2489ae89626"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+        "bytes": 60404,
+        "sha256": "d0cc0ab940ccad45badad3c1e0be9a0b0630a58139154ab045d3223167a8a4bc"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+        "bytes": 61,
+        "sha256": "17a3c755ea4c6c7e06ecee4fb1eb17ae31f0fca8e24eff58706f6a6c7f0f0aba"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+        "bytes": 56996,
+        "sha256": "fb17bb4b2d8d489f41cb78d14197813509aa8516763e45e1d874b4b5f81762ae"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+        "bytes": 61,
+        "sha256": "1af4549cee3406cf16cd030b810f77fb0c4cdedc679886632ae69e29bd705bfe"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+        "bytes": 9324,
+        "sha256": "27d6e5f8f9d42052153e326ceb3214536295a0628e75dd52df5aebe1cc5e1d9a"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+        "bytes": 61,
+        "sha256": "efb687e456a316186a3f726224185406ec3b0ad1bb60dfab96db62fd3105a299"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+        "bytes": 9940,
+        "sha256": "5184b3c38c18ead0b990a02cc85229870fc59d0105ac7d27e20c35fd76183b53"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+        "bytes": 61,
+        "sha256": "2afcddbf20f94a97287350e63325a88c04c6c4186866594093d9d43cf2462847"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+        "bytes": 66420,
+        "sha256": "1a34ea7a6797d39ae6e1fa2c19a6d6b63b4f467321587f7ee6471828a922f76f"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+        "bytes": 60,
+        "sha256": "51221c5cd7680f0cc9a5580e995c4cc59ed397f95f49e5369aea59b6ab737c25"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+        "bytes": 24607,
+        "sha256": "27c4534b723abb4f6c344996903b11b0a38e5a2aba652576ad5f89988e2e3148"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+        "bytes": 60,
+        "sha256": "3cab79a510e2415d1242f8d1a84c6e161eb538dcc287bbc4813e704e4070d3d1"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+        "bytes": 9514,
+        "sha256": "26adae5773ba96e63052fe092f4495e1ddf6b4333256b45f6546dd22701c2107"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+        "bytes": 61,
+        "sha256": "353159e90694455bccad31880bb3dadad98a5853175cd92c1861cc79273cb633"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+        "bytes": 3814,
+        "sha256": "74186cf1fe4a992b0f0e4eb712baee3d1ddc372d6d471d57c32a52becaab44d3"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+        "bytes": 61,
+        "sha256": "1c0b2dea08ace52c49fe6f2fa9bf63d58c156e8b497324fafa61fbebde729fca"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+        "bytes": 12350,
+        "sha256": "ab9baccaeb69d99da051117ea73bb2721b35e61f036fe70d60cda0f876d055a0"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+        "bytes": 61,
+        "sha256": "18bc50b587a4cbab7fe57c7eb1b212b111b3a1a39529f281ec33ff4b4b0dd5b7"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+        "bytes": 17667,
+        "sha256": "dd2ed5a3bdc7a92b1178f20d609ef01976390b208de60d64bd31e8375a09a2fc"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+        "bytes": 61,
+        "sha256": "0813889b2f9f76210005ae260ad7b0c99dc426738c4b8efed09d1620a263c914"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+        "bytes": 8313,
+        "sha256": "e80d7e578bebbb32f6eb6fba241e0061499b05d487f219e098770ee15db47ce0"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+        "bytes": 61,
+        "sha256": "97ad8666fc811d328919acfb91ba8afaf498e0d5bc03d6fbcd123aacbcb9e239"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+        "bytes": 16428,
+        "sha256": "f6e7597aca7c4a1e41d4cb5ebd629b96ad2f5e825fb9690c87dd9dcc967e1a95"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+        "bytes": 61,
+        "sha256": "d40841808782721ad949e63efa250a4bf4677bae2e410477f2b192e2571d3d72"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+        "bytes": 2162,
+        "sha256": "f9c01bc3e7d3d84af273737352f2d493a8dcb0cf0cfee68ef91ea8d2f6f936e5"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+        "bytes": 61,
+        "sha256": "10192d18019e6f1dca35fcef20ae9e48e52508598dd1ca5f5cd52333e3c3a8f6"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+        "bytes": 9007,
+        "sha256": "3637d935726e7421bb001575bd033f3143a83ddcc38b3efeca70fc13bf716538"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+        "bytes": 60,
+        "sha256": "a6c2633762e053280a81385650271a6f48d2a3d5d858a448aeb687859ba72da8"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+        "bytes": 1301427,
+        "sha256": "4a35f6d9ebed6a2473947e33cbfac14571225fc095774e9d56f4724abb46429f"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+        "bytes": 61,
+        "sha256": "0c03dd79edb826809caafd73ab7f5154c9ac90c77d1c815a70e138ed5b4ff923"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+        "bytes": 1289366,
+        "sha256": "dd13a57d43aa42c2a1d2cd7ba2704acadcb9256881d4c647fbeab83262f577f5"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+        "bytes": 61,
+        "sha256": "972fae7269a2db9dcc037858c578e859198d7b3de2f37e365b61f7d904bfd322"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+        "bytes": 6280,
+        "sha256": "126d37f3813405148d12b089aa5439945d49a80aec5fc37883deb1f46d33547d"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+        "bytes": 60,
+        "sha256": "f32992b3f4fcd9a6b3f14efa89bfa86082a54359599989dfddacc0458590606f"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_DELIVERY.json",
+      "bytes": 62665,
+      "sha256": "04836d7cd33d705bc94a9fed0e7b32f07aeb6ccc48a172377792e92ef47be6f5"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILER_SOURCE_PACK.json",
+      "bytes": 9454621,
+      "sha256": "a67b930f1d71e5b9a352cbbe92689acc7033845d77ae6b451aed1af41366774d"
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_RAW_XML.json",
+      "bytes": 26756,
+      "sha256": "ae31b28c9b7619188e20d8b7a1dd6a4ec5a5c28eb14a1ea98e4840326c3fd6fa"
+    }
+  ],
+  "compiler": {
+    "report": "S_V3_COMPILER_METADATA_QC.json",
+    "sha256": "8dd04169ee64b1d93bf9de809f24b6944ebc6146c45598b211e840aedeb79a00",
+    "verifiedGzipArtifacts": 171,
+    "uniqueArtifactPaths": 151,
+    "duplicate20PathsExact": true,
+    "actualAssembliesPeCodeViewToPortablePdb": 9,
+    "projectDocumentsExactPackedSources": 86,
+    "unavailableAutomaticUnityGeneratedDocuments": 9,
+    "allOwn20CsRawSha256ExactPdbDocuments": true,
+    "actualV3PersistenceFs": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736",
+    "currentRootFsSeparate": "537dd73cac4968f1fbe5fb72711a4bf16e3e1497ac20b691d4cbf5dc527ffed0"
+  },
+  "actualSuites": [
+    {
+      "fixture": "STP.Tests.Domain.EditMode.PuzzleSessionCheckpointTests",
+      "bytes": 7394,
+      "sha256": "cf5f470e2534a81be7f400edf381336c809f2e905acca9b77d4e5637fd343f22",
+      "cases": [
+        {
+          "name": "CheckpointAndNestedDiffInputsAreDefensivelyCopiedAndCannotExposeWritableLists",
+          "result": "Passed"
+        },
+        {
+          "name": "CompleteCheckpoint_RestoresStickyHistoryAndUsesNewClockAnchor",
+          "result": "Passed"
+        },
+        {
+          "name": "Constructor_RejectsImpossibleTimerUndoAndCorrectionHistories",
+          "result": "Passed"
+        },
+        {
+          "name": "FullRasterAnd256UndoKeepEverySuccessfulCommandIdAcrossRestore(2)",
+          "result": "Passed"
+        },
+        {
+          "name": "FullRasterAnd256UndoKeepEverySuccessfulCommandIdAcrossRestore(4)",
+          "result": "Passed"
+        },
+        {
+          "name": "FullRasterAnd256UndoKeepEverySuccessfulCommandIdAcrossRestore(10)",
+          "result": "Passed"
+        },
+        {
+          "name": "LifecycleBeforeInput_PreservesRealParityWithoutStartingTimer",
+          "result": "Passed"
+        },
+        {
+          "name": "Restore_RejectsWrongIdentityDefinitionAndUndoReplay",
+          "result": "Passed"
+        },
+        {
+          "name": "SolvedCheckpointMustMatchActualEvaluatorAndExactSolvedEventIdentity",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1034\" name=\"STP.Tests.Domain.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Domain.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"28\" result=\"Passed\" start-time=\"2026-10-19 11:12:17Z\" end-time=\"2026-10-19 11:12:17Z\" duration=\"0.123185\" total=\"9\" passed=\"9\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"57\">"
+    },
+    {
+      "fixture": "STP.Tests.Application.EditMode.CatalogSetIdentityTests",
+      "bytes": 3730,
+      "sha256": "51bb16916440a32baf8c77898f5ddc911875aed7574c008389d1edc7c4a8e7f3",
+      "cases": [
+        {
+          "name": "ExactIndependentNodeAggregateAndAllRoleBindingsArePreserved",
+          "result": "Passed"
+        },
+        {
+          "name": "MutationOfAnyPartOrCrossUseBreaksAggregateBinding",
+          "result": "Passed"
+        },
+        {
+          "name": "SameCatalogInDifferentRolesIsRejectedDespiteItsCorrectRecomputedAggregate",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1070\" name=\"STP.Tests.Application.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Application.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"58\" result=\"Passed\" start-time=\"2026-10-19 11:12:18Z\" end-time=\"2026-10-19 11:12:18Z\" duration=\"0.298364\" total=\"3\" passed=\"3\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"7\">"
+    },
+    {
+      "fixture": "STP.Tests.Application.EditMode.LocalProfileStateTests",
+      "bytes": 3215,
+      "sha256": "7d965ab109bd7124c294b0f53a43f11abec3795287e451c5603e3131c5d9f152",
+      "cases": [
+        {
+          "name": "ClosedRecordFactoriesRejectContradictoryOrInventedFacts",
+          "result": "Passed"
+        },
+        {
+          "name": "CompleteTypedPayloadCopiesAndProtectsEveryAuthoritativeCollection",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1070\" name=\"STP.Tests.Application.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Application.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"58\" result=\"Passed\" start-time=\"2026-10-19 11:12:19Z\" end-time=\"2026-10-19 11:12:19Z\" duration=\"0.341763\" total=\"2\" passed=\"2\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"11\">"
+    },
+    {
+      "fixture": "STP.Tests.Application.EditMode.LocalProgressPolicyTests",
+      "bytes": 10462,
+      "sha256": "e39753e9fb94ea3d7a2ba8263fd8d0f73e680d50867b6a1196d75bd21c1d63c8",
+      "cases": [
+        {
+          "name": "FailedTwentyFirstDraftWriteKeepsDurableTwentyAndCurrentUnsavedAttempt",
+          "result": "Passed"
+        },
+        {
+          "name": "FirstClearRouteSectionAndTerminalReplayAreOneCopyOnWriteTransaction",
+          "result": "Passed"
+        },
+        {
+          "name": "LegalFullSuffixCompactsBeforeFirstClearRouteAndSectionGrants(511,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "LegalFullSuffixCompactsBeforeFirstClearRouteAndSectionGrants(512,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "LegalFullSuffixCompactsBeforeFirstClearRouteAndSectionGrants(383,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "NineteenOrphansRemainIdenticalAndDisplaceOnlyKnownOlderDraft",
+          "result": "Passed"
+        },
+        {
+          "name": "NullTimesAndBothMarkersNeverInventStarsOrGateTheNextFirstClear",
+          "result": "Passed"
+        },
+        {
+          "name": "PracticeCannotImproveOfficialFactsAndRevisionOnlyPaysEachMissingStarOnce",
+          "result": "Passed"
+        },
+        {
+          "name": "SameIdChangedSemanticHashAndUnprovenRevisionAreRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "TwentyFirstKnownDraftAlwaysPersistsCurrentDespiteClockRollbackAndEqualInstantSpellings(False,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "TwentyFirstKnownDraftAlwaysPersistsCurrentDespiteClockRollbackAndEqualInstantSpellings(True,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "TwentyFirstKnownDraftAlwaysPersistsCurrentDespiteClockRollbackAndEqualInstantSpellings(False,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "TwentyOrphansAndChangedIdentityStopBeforeAnyRetentionLoss",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1070\" name=\"STP.Tests.Application.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Application.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"58\" result=\"Passed\" start-time=\"2026-10-19 11:12:20Z\" end-time=\"2026-10-19 11:12:21Z\" duration=\"1.774604\" total=\"13\" passed=\"13\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"108\">"
+    },
+    {
+      "fixture": "STP.Tests.Application.EditMode.PersistedPuzzleSessionTests",
+      "bytes": 12047,
+      "sha256": "7a3c5c42b1cc4c2fac17aca46557af4a1a7fd7c92d1db84c742662d887ddcdcf",
+      "cases": [
+        {
+          "name": "BothStickyMarkersDoNotPenalizeNullTimeStarsOrFirstClearCurrency",
+          "result": "Passed"
+        },
+        {
+          "name": "CommitConflictRequiresFreshChangedObservationAndASeparateExplicitRecoveryChoice",
+          "result": "Passed"
+        },
+        {
+          "name": "CommitDurableBeforeLostCallbackLoadsExactWinnerAndDoesNotRegrantOrAcknowledgeOldAttempt",
+          "result": "Passed"
+        },
+        {
+          "name": "CompletionAcknowledgementCannotReleaseResultsForAnotherStartedOrRestoredAttempt",
+          "result": "Passed"
+        },
+        {
+          "name": "ConfirmedWinnerFromAnotherAttemptReleasesOldSolvedAttemptWithoutClaimingItsAcknowledgement(True)",
+          "result": "Passed"
+        },
+        {
+          "name": "ConfirmedWinnerFromAnotherAttemptReleasesOldSolvedAttemptWithoutClaimingItsAcknowledgement(False)",
+          "result": "Passed"
+        },
+        {
+          "name": "DelayedAlreadyCommittedPublicationCannotAcknowledgeNewSolvedAttempt",
+          "result": "Passed"
+        },
+        {
+          "name": "ExplicitCompletionFailureRetainsSolvedAttemptAndRetryPaysExactlyOnceAfterConfirmedAck",
+          "result": "Passed"
+        },
+        {
+          "name": "ExplicitNewProfileReleasesOldAttemptOnlyAfterConfirmedInitialization(True)",
+          "result": "Passed"
+        },
+        {
+          "name": "ExplicitNewProfileReleasesOldAttemptOnlyAfterConfirmedInitialization(False)",
+          "result": "Passed"
+        },
+        {
+          "name": "FailedCancelledOrIncompleteConflictReloadPreservesEveryEffectBlock(\"Failed\")",
+          "result": "Passed"
+        },
+        {
+          "name": "FailedCancelledOrIncompleteConflictReloadPreservesEveryEffectBlock(\"Cancelled\")",
+          "result": "Passed"
+        },
+        {
+          "name": "FailedCancelledOrIncompleteConflictReloadPreservesEveryEffectBlock(\"AbsentObservation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ImmediateRepositoryAndSemaphoreStillOffloadLoadNewProfileCompletionAndDraftHashing",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1070\" name=\"STP.Tests.Application.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Application.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"58\" result=\"Passed\" start-time=\"2026-10-19 11:12:22Z\" end-time=\"2026-10-19 11:12:22Z\" duration=\"0.420795\" total=\"14\" passed=\"14\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"4\">"
+    },
+    {
+      "fixture": "STP.Tests.Application.EditMode.AutosaveCoordinatorTests",
+      "bytes": 5906,
+      "sha256": "3909e564cb3a3ba8ecc98dd817d5b2594d18dc559873391628d2af1783aa882f",
+      "cases": [
+        {
+          "name": "CancelledUnknownCommitKeepsDirtyAndBlocksEffectsUntilFreshLoad",
+          "result": "Passed"
+        },
+        {
+          "name": "CancellingAQueuedLifecycleWaitDoesNotCancelOrDuplicateTheInFlightWrite",
+          "result": "Passed"
+        },
+        {
+          "name": "CompletionWaitsForEarlierDraftAndRemovesItInTheLaterConfirmedSnapshot",
+          "result": "Passed"
+        },
+        {
+          "name": "Debounce499500AndContinuousMutation19992000UseExactMonotonicBoundaries",
+          "result": "Passed"
+        },
+        {
+          "name": "FailedSaveRetainsDirtyVersionAndAConfirmedRetryAloneClearsIt",
+          "result": "Passed"
+        },
+        {
+          "name": "LifecycleFlushIsImmediateAndSuspendedBackgroundTimeDoesNotEnterCheckpoint",
+          "result": "Passed"
+        },
+        {
+          "name": "OldAcknowledgementCannotClearOrLoseANewerActualMutation",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1070\" name=\"STP.Tests.Application.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Application.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"58\" result=\"Passed\" start-time=\"2026-10-19 11:12:23Z\" end-time=\"2026-10-19 11:12:24Z\" duration=\"0.406460\" total=\"7\" passed=\"7\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"0\">"
+    },
+    {
+      "fixture": "STP.Tests.Persistence.EditMode.LocalSaveCodecTests",
+      "bytes": 48981,
+      "sha256": "5110866673e1bfcc446d83755529606a5db747af14a0f84a56ce2455df58709c",
+      "cases": [
+        {
+          "name": "AgreedResourceLimitsStopTheActualStrictPortBeforeDtoMapping(\"bytes\",\"LVL-PARSE-SIZE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "AgreedResourceLimitsStopTheActualStrictPortBeforeDtoMapping(\"depth\",\"LVL-PARSE-DEPTH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "AgreedResourceLimitsStopTheActualStrictPortBeforeDtoMapping(\"string\",\"LVL-PARSE-STRING-LENGTH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "AgreedResourceLimitsStopTheActualStrictPortBeforeDtoMapping(\"array\",\"LVL-PARSE-ARRAY-LENGTH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "AgreedResourceLimitsStopTheActualStrictPortBeforeDtoMapping(\"members\",\"LVL-PARSE-OBJECT-MEMBERS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "DuplicateNonCommittedPostClearClaimCannotCreateTwoAuthoritativeInstances",
+          "result": "Passed"
+        },
+        {
+          "name": "EmbeddedReferencesRetainExactOriginalBytesAndOptionalEvidenceCopy",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V1_FULL_FIRST_CLEAR\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V1_FULL_CHECKPOINT\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V1_FULL_RETAINED_LEGACY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V1_FULL_ENDLESS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_FULL_RESERVED_ROUNDTRIP\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_LEGACY_ACTIVE_DRAFTS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_OWNERSHIP_DEFAULT\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_OWNERSHIP_PURCHASE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_REWARD_RESERVED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_REWARD_RECONCILIATION_REQUIRED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_REWARD_CLOSED_NO_REWARD\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_REWARD_FAILED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_STARTED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_EVIDENCE_RECEIVED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_VERIFIED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_GRANTED_NOT_FINALIZED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_FINALIZED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_REJECTED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_IAP_RECONCILIATION_REQUIRED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_CAMPAIGN_PROGRESS_TERMINALS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_OWNERSHIP_LEGACY_ENTITLEMENT\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_REWARD_COMMITTED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_COSMETIC_RESERVED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_OWNERSHIP_MILESTONE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"LEDGER_CONTRACT1_AND_CATALOGSET\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_ENDLESS_CLAIM_PROVIDER_RESERVED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_ENDLESS_CLAIM_RECONCILIATION_REQUIRED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_ENDLESS_CLAIM_REWARD_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_ENDLESS_CLAIM_NO_REWARD_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PENDING_REWARD_REWARD_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PENDING_REWARD_NO_REWARD_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_UNKNOWN\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_DENIED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_ENABLE_PENDING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_ENABLED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_REVOKE_PENDING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_VALID_REVOKED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_UNKNOWN\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_DENIED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_ENABLE_PENDING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_ENABLED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_REVOKE_PENDING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedPositive_UsesRealClosedCodecAndExactIndependentNodeBytes(\"V2_PRIVACY_INVALID_REVOKED_CONFIRMED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "PostClearAndOpenEndlessCannotHoldSameClaimThroughDifferentOperations",
+          "result": "Passed"
+        },
+        {
+          "name": "TwentyFull10x10DraftsRetain256UndoAndAll300CommandIdsWithMeasuredDesktopSize",
+          "result": "Passed"
+        },
+        {
+          "name": "UnicodeDiagnosticsAndWhitespacePreservePayloadAuthorityAndExactOriginalByteProvenance",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownActiveEndlessHashProfileIsProtectedAsUnsupported(\"STP-SOLUTION-JCS-1\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownActiveEndlessHashProfileIsProtectedAsUnsupported(\"STP-PROOF-JCS-1\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownHistoricalFirstClearCatalogCannotBypassBoundRewardValuesEvenWithConsistentLedgerAndHashes",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_OWNERSHIP_MILESTONE\",\"eligibilityContractVersion\",\"SAVE_ELIGIBILITY_CONTRACT_UNSUPPORTED\",False)",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_OWNERSHIP_MILESTONE\",\"eligibilityContractVersion\",\"SAVE_ELIGIBILITY_CONTRACT_UNSUPPORTED\",True)",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_COSMETIC_RESERVED\",\"eligibilityContractVersion\",\"SAVE_ELIGIBILITY_CONTRACT_UNSUPPORTED\",False)",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_COSMETIC_RESERVED\",\"eligibilityContractVersion\",\"SAVE_ELIGIBILITY_CONTRACT_UNSUPPORTED\",True)",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_OWNERSHIP_LEGACY_ENTITLEMENT\",\"sourceSaveSchemaVersion\",\"SAVE_LEGACY_READER_UNSUPPORTED\",False)",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownOrMissingRetainedReaderVersionIsProtectedAsUnsupported(\"V2_OWNERSHIP_LEGACY_ENTITLEMENT\",\"sourceSaveSchemaVersion\",\"SAVE_LEGACY_READER_UNSUPPORTED\",True)",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"utf8\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"float\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"exponent\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"unsafe-integer\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"surrogate\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"duplicate\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"unknown-envelope\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"truncation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UntrustedLexicalAndEnvelopeMutationsFailClosedWithoutChangingOriginalBytes(\"trailing\")",
+          "result": "Passed"
+        },
+        {
+          "name": "WriterLimitFailurePreservesTheOfferedImmutablePayloadAndItsCompleteDeduplication",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1517\" name=\"STP.Tests.Persistence.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Persistence.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"478\" result=\"Passed\" start-time=\"2026-10-19 11:12:25Z\" end-time=\"2026-10-19 11:12:32Z\" duration=\"7.718796\" total=\"72\" passed=\"72\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"395\">"
+    },
+    {
+      "fixture": "STP.Tests.Persistence.EditMode.SaveMigrationTests",
+      "bytes": 60616,
+      "sha256": "cdb056dabf5bd2fc4847a7fb0ff1267bcf59da113181654b5de9747913b08c25",
+      "cases": [
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ROOT_MISSING_SETTINGS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENVELOPE_UNKNOWN_VERSION\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_UNRESOLVED_IDENTITY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_CHECKPOINT_MISSING_HISTORY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_ENDLESS_PREFIX_GAP\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"LEDGER_CHAIN_MUTATION\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"CATALOGSET_WRONG_HASH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PURCHASE_MISSING_LEDGER\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"MILESTONE_MIXED_PROVENANCE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"RESERVATION_ITEM_COLLISION\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_MISSING_PARAMETERS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_UNKNOWN_GRAMMAR\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PROVIDER_REFERENCE_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OLD_V2_READER_BINDING_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"HINT_UNKNOWN_POLICY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DAILY_UNKNOWN_POLICY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PRIVACY_UNKNOWN_POLICY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"IAP_UNKNOWN_STORE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"REWARD_COMMITTED_WITHOUT_TERMINAL\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENTITLEMENT_REVOKED_OWNED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ACCESSIBILITY_UNKNOWN_REVISION\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"SETTINGS_INVALID_SCALE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENVELOPE_PAYLOAD_HASH_MISMATCH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_LEGACY_LOCK_BINDING_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_LEGACY_LOCK_BINDING_DUPLICATE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_WRONG_DOCUMENT_BYTES\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V2_SAME_ID_CHANGED_HASH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"CHECKPOINT_COMMAND_HISTORY_INCOMPLETE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"CHECKPOINT_UNDO_REPLAY_INVALID\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_COMPLETED_CLAIM_UNRESOLVED\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_FOREIGN_LEDGER_ALGORITHM\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"V1_UNPROVEN_NONZERO_CHECKPOINT\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"UNKNOWN_ROOT_PROPERTY\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PROFILE_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PROFILE_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"LEVEL_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"LEVEL_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DRAFT_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DRAFT_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OPEN_ENDLESS_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OPEN_ENDLESS_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"INVENTORY_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"INVENTORY_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_DEFAULT_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_DEFAULT_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_PURCHASE_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_PURCHASE_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_MILESTONE_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_MILESTONE_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_LEGACY_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"OWNERSHIP_LEGACY_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"RESERVATION_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"RESERVATION_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"CACHE_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"CACHE_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"REWARD_CLAIM_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"REWARD_CLAIM_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PROGRESS_TERMINAL_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PROGRESS_TERMINAL_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENTITLEMENTS_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENTITLEMENTS_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENTITLEMENT_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENTITLEMENT_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"IAP_OPERATION_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"IAP_OPERATION_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"REWARD_OPERATION_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"REWARD_OPERATION_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"SETTINGS_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"SETTINGS_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ACCESSIBILITY_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ACCESSIBILITY_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PRIVACY_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"PRIVACY_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DATA_LIFECYCLE_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DATA_LIFECYCLE_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DAILY_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"DAILY_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"HINT_RECORD_VERSION_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"HINT_RECORD_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"LEDGER_CONTRACT_VERSION_FUTURE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PARAMETERS_EXTRA\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PARAMETER_MISSING\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PARAMETER_WRONG_TYPE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PARAMETER_OUT_OF_RANGE\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_PARAMETER_MUTATED_OLD_HASH\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_VALID_PARAMETERS_WRONG_E1\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ENDLESS_SAME_DESCRIPTOR_DIFFERENT_PARAMETERS\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v1-to-v2.golden.json\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(\"ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v2.example.json\")",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1517\" name=\"STP.Tests.Persistence.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Persistence.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"478\" result=\"Passed\" start-time=\"2026-10-19 11:12:33Z\" end-time=\"2026-10-19 11:12:34Z\" duration=\"0.605295\" total=\"91\" passed=\"91\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"364\">"
+    },
+    {
+      "fixture": "STP.Tests.Persistence.EditMode.SaveLedgerCodecTests",
+      "bytes": 11552,
+      "sha256": "f766467fc1233122f3dc15a63d5f267dfc702a495d14a06c38b277eaf474dc8b",
+      "cases": [
+        {
+          "name": "CanonicalByteThresholdIsIndependentOfEntryCount(196607,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "CanonicalByteThresholdIsIndependentOfEntryCount(196608,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "CanonicalByteThresholdIsIndependentOfEntryCount(262144,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "CountThresholdCompactsOnlyAt384AndPreservesAllTerminals(383,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "CountThresholdCompactsOnlyAt384AndPreservesAllTerminals(384,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "CountThresholdCompactsOnlyAt384AndPreservesAllTerminals(511,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "CountThresholdCompactsOnlyAt384AndPreservesAllTerminals(512,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "ExactIndependentNodeProjectionTailSuffixAndNullFieldsArePreservedWithoutDoubleCounting",
+          "result": "Passed"
+        },
+        {
+          "name": "HardByteLimitRejectsRatherThanTruncatesAnyAuthoritativeEntry",
+          "result": "Passed"
+        },
+        {
+          "name": "HardCountLimitRejectsRatherThanTruncatesAnyAuthoritativeEntry",
+          "result": "Passed"
+        },
+        {
+          "name": "SemanticSequenceBalanceAndTransactionCollisionsStopDespiteOtherwiseRealBoundSuffix(\"sequence\",\"SAVE_LEDGER_SEQUENCE_INVALID\")",
+          "result": "Passed"
+        },
+        {
+          "name": "SemanticSequenceBalanceAndTransactionCollisionsStopDespiteOtherwiseRealBoundSuffix(\"balance\",\"SAVE_LEDGER_BALANCE_INVALID\")",
+          "result": "Passed"
+        },
+        {
+          "name": "SemanticSequenceBalanceAndTransactionCollisionsStopDespiteOtherwiseRealBoundSuffix(\"collision\",\"ECO-TRANSACTION-ID-COLLISION\")",
+          "result": "Passed"
+        },
+        {
+          "name": "UnknownTerminalSuffixCannotBeCompactedAndIncorrectHashCannotBeAccepted",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1517\" name=\"STP.Tests.Persistence.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Persistence.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"478\" result=\"Passed\" start-time=\"2026-10-19 11:12:35Z\" end-time=\"2026-10-19 11:12:37Z\" duration=\"2.363355\" total=\"14\" passed=\"14\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"70\">"
+    },
+    {
+      "fixture": "STP.Tests.Content.EditMode.ReviewProgressCatalogTests",
+      "bytes": 13733,
+      "sha256": "b0ae8c74327fa5e9971a952f9e096483c1c3990272833315d451dd29a51316b6",
+      "cases": [
+        {
+          "name": "ClosedCampaignSourceRejectsUnknownDuplicateIncorrectMembershipAndProductGates(\"unknown\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCampaignSourceRejectsUnknownDuplicateIncorrectMembershipAndProductGates(\"duplicate\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCampaignSourceRejectsUnknownDuplicateIncorrectMembershipAndProductGates(\"membership\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCampaignSourceRejectsUnknownDuplicateIncorrectMembershipAndProductGates(\"gated\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"version\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"product\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"fixture\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"unknown\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"duplicate\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"membership\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"stars-zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ClosedCompletionSourceRejectsVersionPromotionUnknownDuplicateMembershipAndInventedDefaults(\"reward-command\")",
+          "result": "Passed"
+        },
+        {
+          "name": "CompletionIdentityCoversEntireWrapperAndValidSourceChangesWithoutMutatingInput",
+          "result": "Passed"
+        },
+        {
+          "name": "Exactly240InjectedIdentitiesHaveAllOpenMembershipLockedBaseRewardsAndExplicitNullTimes",
+          "result": "Passed"
+        },
+        {
+          "name": "ReviewAdapterCannotPromoteProductionOrFixturePublicCatalog(\"Production\")",
+          "result": "Passed"
+        },
+        {
+          "name": "ReviewAdapterCannotPromoteProductionOrFixturePublicCatalog(\"ContractTest\")",
+          "result": "Passed"
+        }
+      ],
+      "assembly": "<test-suite type=\"Assembly\" id=\"1469\" name=\"STP.Tests.Content.EditMode.dll\" fullname=\"C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\compile\\STP.Tests.Content.EditMode.dll\" runstate=\"Runnable\" testcasecount=\"417\" result=\"Passed\" start-time=\"2026-10-19 11:12:38Z\" end-time=\"2026-10-19 11:12:38Z\" duration=\"0.292802\" total=\"16\" passed=\"16\" failed=\"0\" inconclusive=\"0\" skipped=\"0\" asserts=\"2908\">"
+    }
+  ],
+  "totalActualCases": 241,
+  "passedActualCases": 241,
+  "failed": 0,
+  "skipped": 0,
+  "fixedReferences": {
+    "goldenSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+    "bytes": 9988353,
+    "embeddedTransport": [
+      {
+        "name": "Application",
+        "sourceBytes": 1301427,
+        "sourceSha256": "4a35f6d9ebed6a2473947e33cbfac14571225fc095774e9d56f4724abb46429f",
+        "chunks": 78,
+        "rawBytes": 9988353,
+        "rawSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+        "exactGoldenBytes": true
+      },
+      {
+        "name": "Persistence",
+        "sourceBytes": 1289366,
+        "sourceSha256": "dd13a57d43aa42c2a1d2cd7ba2704acadcb9256881d4c647fbeab83262f577f5",
+        "chunks": 78,
+        "rawBytes": 9988353,
+        "rawSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+        "exactGoldenBytes": true
+      }
+    ],
+    "caseByCase": {
+      "positive": [
+        {
+          "name": "V1_FULL_FIRST_CLEAR",
+          "pass": true
+        },
+        {
+          "name": "V1_FULL_CHECKPOINT",
+          "pass": true
+        },
+        {
+          "name": "V1_FULL_RETAINED_LEGACY",
+          "pass": true
+        },
+        {
+          "name": "V1_FULL_ENDLESS",
+          "pass": true
+        },
+        {
+          "name": "V2_FULL_RESERVED_ROUNDTRIP",
+          "pass": true
+        },
+        {
+          "name": "V2_LEGACY_ACTIVE_DRAFTS",
+          "pass": true
+        },
+        {
+          "name": "V2_OWNERSHIP_DEFAULT",
+          "pass": true
+        },
+        {
+          "name": "V2_OWNERSHIP_PURCHASE",
+          "pass": true
+        },
+        {
+          "name": "V2_REWARD_RESERVED",
+          "pass": true
+        },
+        {
+          "name": "V2_REWARD_RECONCILIATION_REQUIRED",
+          "pass": true
+        },
+        {
+          "name": "V2_REWARD_CLOSED_NO_REWARD",
+          "pass": true
+        },
+        {
+          "name": "V2_REWARD_FAILED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_STARTED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_EVIDENCE_RECEIVED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_VERIFIED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_GRANTED_NOT_FINALIZED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_FINALIZED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_REJECTED",
+          "pass": true
+        },
+        {
+          "name": "V2_IAP_RECONCILIATION_REQUIRED",
+          "pass": true
+        },
+        {
+          "name": "V2_CAMPAIGN_PROGRESS_TERMINALS",
+          "pass": true
+        },
+        {
+          "name": "V2_OWNERSHIP_LEGACY_ENTITLEMENT",
+          "pass": true
+        },
+        {
+          "name": "V2_REWARD_COMMITTED",
+          "pass": true
+        },
+        {
+          "name": "V2_COSMETIC_RESERVED",
+          "pass": true
+        },
+        {
+          "name": "V2_OWNERSHIP_MILESTONE",
+          "pass": true
+        },
+        {
+          "name": "LEDGER_CONTRACT1_AND_CATALOGSET",
+          "pass": true
+        },
+        {
+          "name": "V2_ENDLESS_CLAIM_PROVIDER_RESERVED",
+          "pass": true
+        },
+        {
+          "name": "V2_ENDLESS_CLAIM_RECONCILIATION_REQUIRED",
+          "pass": true
+        },
+        {
+          "name": "V2_ENDLESS_CLAIM_REWARD_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_ENDLESS_CLAIM_NO_REWARD_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PENDING_REWARD_REWARD_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PENDING_REWARD_NO_REWARD_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_UNKNOWN",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_DENIED_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_ENABLE_PENDING",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_ENABLED_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_REVOKE_PENDING",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_VALID_REVOKED_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_UNKNOWN",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_DENIED_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_ENABLE_PENDING",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_ENABLED_CONFIRMED",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_REVOKE_PENDING",
+          "pass": true
+        },
+        {
+          "name": "V2_PRIVACY_INVALID_REVOKED_CONFIRMED",
+          "pass": true
+        }
+      ],
+      "negative": [
+        {
+          "name": "ROOT_MISSING_SETTINGS",
+          "pass": true
+        },
+        {
+          "name": "ENVELOPE_UNKNOWN_VERSION",
+          "pass": true
+        },
+        {
+          "name": "V1_UNRESOLVED_IDENTITY",
+          "pass": true
+        },
+        {
+          "name": "V1_CHECKPOINT_MISSING_HISTORY",
+          "pass": true
+        },
+        {
+          "name": "V1_ENDLESS_PREFIX_GAP",
+          "pass": true
+        },
+        {
+          "name": "LEDGER_CHAIN_MUTATION",
+          "pass": true
+        },
+        {
+          "name": "CATALOGSET_WRONG_HASH",
+          "pass": true
+        },
+        {
+          "name": "PURCHASE_MISSING_LEDGER",
+          "pass": true
+        },
+        {
+          "name": "MILESTONE_MIXED_PROVENANCE",
+          "pass": true
+        },
+        {
+          "name": "RESERVATION_ITEM_COLLISION",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_MISSING_PARAMETERS",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_UNKNOWN_GRAMMAR",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PROVIDER_REFERENCE_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OLD_V2_READER_BINDING_MISSING",
+          "pass": true
+        },
+        {
+          "name": "HINT_UNKNOWN_POLICY",
+          "pass": true
+        },
+        {
+          "name": "DAILY_UNKNOWN_POLICY",
+          "pass": true
+        },
+        {
+          "name": "PRIVACY_UNKNOWN_POLICY",
+          "pass": true
+        },
+        {
+          "name": "IAP_UNKNOWN_STORE",
+          "pass": true
+        },
+        {
+          "name": "REWARD_COMMITTED_WITHOUT_TERMINAL",
+          "pass": true
+        },
+        {
+          "name": "ENTITLEMENT_REVOKED_OWNED",
+          "pass": true
+        },
+        {
+          "name": "ACCESSIBILITY_UNKNOWN_REVISION",
+          "pass": true
+        },
+        {
+          "name": "SETTINGS_INVALID_SCALE",
+          "pass": true
+        },
+        {
+          "name": "ENVELOPE_PAYLOAD_HASH_MISMATCH",
+          "pass": true
+        },
+        {
+          "name": "V1_LEGACY_LOCK_BINDING_MISSING",
+          "pass": true
+        },
+        {
+          "name": "V1_LEGACY_LOCK_BINDING_DUPLICATE",
+          "pass": true
+        },
+        {
+          "name": "V1_WRONG_DOCUMENT_BYTES",
+          "pass": true
+        },
+        {
+          "name": "V2_SAME_ID_CHANGED_HASH",
+          "pass": true
+        },
+        {
+          "name": "CHECKPOINT_COMMAND_HISTORY_INCOMPLETE",
+          "pass": true
+        },
+        {
+          "name": "CHECKPOINT_UNDO_REPLAY_INVALID",
+          "pass": true
+        },
+        {
+          "name": "V1_COMPLETED_CLAIM_UNRESOLVED",
+          "pass": true
+        },
+        {
+          "name": "V1_FOREIGN_LEDGER_ALGORITHM",
+          "pass": true
+        },
+        {
+          "name": "V1_UNPROVEN_NONZERO_CHECKPOINT",
+          "pass": true
+        },
+        {
+          "name": "UNKNOWN_ROOT_PROPERTY",
+          "pass": true
+        },
+        {
+          "name": "PROFILE_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "PROFILE_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "LEVEL_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "LEVEL_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "DRAFT_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "DRAFT_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "OPEN_ENDLESS_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OPEN_ENDLESS_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "INVENTORY_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "INVENTORY_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_DEFAULT_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_DEFAULT_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_PURCHASE_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_PURCHASE_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_MILESTONE_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_MILESTONE_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_LEGACY_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "OWNERSHIP_LEGACY_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "RESERVATION_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "RESERVATION_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "CACHE_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "CACHE_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "REWARD_CLAIM_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "REWARD_CLAIM_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "PROGRESS_TERMINAL_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "PROGRESS_TERMINAL_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "ENTITLEMENTS_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "ENTITLEMENTS_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "ENTITLEMENT_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "ENTITLEMENT_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "IAP_OPERATION_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "IAP_OPERATION_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "REWARD_OPERATION_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "REWARD_OPERATION_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "SETTINGS_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "SETTINGS_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "ACCESSIBILITY_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "ACCESSIBILITY_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "PRIVACY_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "PRIVACY_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "DATA_LIFECYCLE_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "DATA_LIFECYCLE_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "DAILY_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "DAILY_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "HINT_RECORD_VERSION_MISSING",
+          "pass": true
+        },
+        {
+          "name": "HINT_RECORD_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "LEDGER_CONTRACT_VERSION_FUTURE",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PARAMETERS_EXTRA",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PARAMETER_MISSING",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PARAMETER_WRONG_TYPE",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PARAMETER_OUT_OF_RANGE",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_PARAMETER_MUTATED_OLD_HASH",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_VALID_PARAMETERS_WRONG_E1",
+          "pass": true
+        },
+        {
+          "name": "ENDLESS_SAME_DESCRIPTOR_DIFFERENT_PARAMETERS",
+          "pass": true
+        },
+        {
+          "name": "ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v1-to-v2.golden.json",
+          "pass": true
+        },
+        {
+          "name": "ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v2.example.json",
+          "pass": true
+        }
+      ]
+    },
+    "expected": "Exact pre-code Node22 V7 fixed bytes; real typed DTO payload/envelope output compared in tests, expected never supplied by implementation codec."
+  },
+  "findings": [
+    {
+      "id": "S-APP-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Exact normal completion session captured; Start/Restore explicit SAVE_USE_CASE_BLOCKED until ack; actual inner error and unchanged session tested."
+    },
+    {
+      "id": "S-APP-02",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "AlreadyCommitted replay captures immutable original session/snapshot; delayed publication cannot release different solved attempt."
+    },
+    {
+      "id": "S-APP-03",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Hash/cache/ledger work explicit Task.Run using dispatcher-captured immutable inputs; real synchronous caller/publication thread probe passes."
+    },
+    {
+      "id": "S-APP-04",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Fresh confirmed load/recovery promotion/new-profile success clears previous uncertain session without false results; failed initialization retains it."
+    },
+    {
+      "id": "S-MODEL-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Three catalog roles pairwise distinct in factory despite correct aggregate hash."
+    },
+    {
+      "id": "S-MODEL-02",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "ClaimId/LocalOperationId uniqueness covers PostClear and openEndless union; campaign kind+subject uniqueness retained including orphans."
+    },
+    {
+      "id": "S-POLICY-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Legal full suffix compacted before adding first-clear/route/section grants, actual511/512/262140-byte source regressions."
+    },
+    {
+      "id": "S-POLICY-02",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Actual current or explicitly registered immutable historical campaign/completion binding required by Codec; unknownforeign999 mutation stops Unsupported."
+    },
+    {
+      "id": "S-CODEC-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Unknown/missing Eligibility/LegacyReader and unknown solution/proof/public hash profiles protected as Unsupported before record field factories."
+    },
+    {
+      "id": "S-FS-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Unique same-directory staging, Flush(true), exact reread, nonoverwriting final move, exact final reread; fresh partial/finalized retry actual originals."
+    },
+    {
+      "id": "S-REPO-01",
+      "status": "CLOSED_IN_REVIEWED_SOURCE_AND_TARGETED_ACTUAL_EVIDENCE",
+      "closure": "Actual OS HResult112/39/28 stable lowdisk mapping, numeric exception regressions."
+    }
+  ],
+  "rootAbiFinding": {
+    "origin": "R independent concrete Apple-ARM64 variadic fcntl concern",
+    "status": "SOURCE_FIXED_AND_INDEPENDENT_DELTA_PASS_NEW_RUNTIME_PROOF_PENDING",
+    "review": "S_APPLE_ABI_PRECODE_REVIEW.json and S_APPLE_ABI_SOURCE_DELTA_QC.json",
+    "oldSourceEvidenceHistorical": true
+  },
+  "sourceBoundaries": [
+    "Domain fields defensively immutable; full Cells/PreviouslySet/GUIDDedup/256Undo replay and new monotonic resume anchor retained.",
+    "Closed typed DTOs; untrusted raw input strict bounded canonical port first; no generic DOM/property bags or alternative JCS authority in runtime codec.",
+    "Full v1 source/document/release-lock/historical cache and passive policy bindings preserved; unknown or missing contracts protect source, no invented production legacy history/policy.",
+    "All240 review membership entries, base rewards15/5/10/60/150, explicit null times, Draft/IsolatedReview and CatalogSet use boundaries remain isolated; no provider operations.",
+    "Application no file/UnitySDK dependency; filesystem I/O/repository writer explicit worker plus dispatcher publication; no new assembly edge observed in reviewed sources.",
+    "Retention executes documented pre-code R acceptance: offered exact draft retained plus unchanged orphans within20, deterministic UTC-instant/ordinal remaining slots, named capacity/identity stop."
+  ],
+  "stress": {
+    "actualSerializedBytes": 659652,
+    "scope": "Actual20drafts10x10 with256undo changesPerUndo1 and300dedup ids each; Domain separately full100-cell batch256 undo tested.",
+    "mobileOrMaxBatchAllocationPass": false
+  },
+  "pendingEvidence": [
+    "One coherent final compile/Atomic+OwnSuite on actual new537dd FS with exact source/DLL/PDB bindings; V3 241 binds oldFS and is not relabelled.",
+    "Actual new537dd Linux FFI interprocess+30s timeout and explicit Apple/Android compile checks; no iOS/APFS physical runtime claim.",
+    "R canonical current Architecture/Scope/selftests and actual immutable S freeze Gitobject/diff/manifest/source bindings.",
+    "Own regular S CI terminal full original XML/log/checkout/tree/build/license receipts on actual published freeze; then separate independent freeze/CI decision."
+  ],
+  "limitations": [
+    "Pre-CI code review only; not completed S delivery/CI gate, no A/S merge or P/I integration approval.",
+    "Compilerpack contains nine unprovided automatic Unity generator document bodies; their PDB metadata retained, no exact body claim. Every actual project document including all20owned C# sources matches.",
+    "Original initial findings/red XML/rejected pre-code Goldens and prior a6bb FS/runtime packs preserved unchanged; additive corrections reviewed separately."
+  ]
+}

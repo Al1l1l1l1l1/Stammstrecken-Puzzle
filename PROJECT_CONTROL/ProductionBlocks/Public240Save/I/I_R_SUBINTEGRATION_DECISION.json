@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T16:37:46.407Z",
+  "decisionId": "WP043-SUBINTEGRATION-01",
+  "actor": "R / Codex technical execution coordinator; distinct from independent entry_audit implementation-free review",
+  "authority": {
+    "id": "MANUS-2026-10-19-01",
+    "path": "PROJECT_CONTROL/ProductionBlocks/WP-038/MANUS_DECISION_AND_EXECUTION_MANDATE_2026-10-19.md",
+    "sections": [
+      5,
+      6,
+      7
+    ],
+    "delegation": "Explicit technical authority to decide and execute this non-main subintegration after actual independent PASS and required regular CI; no CEO/product/main authority"
+  },
+  "decision": "APPROVED_NON_MAIN_UNDERINTEGRATION",
+  "source": {
+    "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "parent": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+    "branch": "codex/wp-043-public240-gespeicherte-integration"
+  },
+  "expected": {
+    "targetBranch": "codex/wp-036-vollstaendige-textbibliothek",
+    "targetHead": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+    "mainHead": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "remoteAudit": {
+      "raw": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3\trefs/heads/codex/wp-036-vollstaendige-textbibliothek\n925ca608a961ac26c84385c8da3b949f609df883\trefs/heads/codex/wp-040-public240-save-technikbasis\n7d2e99837cd3910d11ed5f01ea67e8d06acba2c4\trefs/heads/codex/wp-041-public240-interne-prueffassung\n3746184ca75eb439de918896e9b88aa238cff893\trefs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt\n242712d1b99202fd18273dc28ef2fd12aff71cab\trefs/heads/codex/wp-043-public240-gespeicherte-integration\nd90e798dd9b26d3f152f3b0c2d1d52cae641eb16\trefs/heads/main",
+      "actual": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "refs/heads/codex/wp-040-public240-save-technikbasis": "925ca608a961ac26c84385c8da3b949f609df883",
+        "refs/heads/codex/wp-041-public240-interne-prueffassung": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt": "3746184ca75eb439de918896e9b88aa238cff893",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    }
+  },
+  "basis": {
+    "ciEvidenceFile": "I_F2_CI_EVIDENCE.json",
+    "ciEvidenceSha256": "7978316cf5e877fa6b0e4745a121f018eb952a114f6a5e8cb8a26c651a236f5a",
+    "independentFile": "I_F2_FINAL_INDEPENDENT_QC.json",
+    "independentSha256": "e71e7c636605836140c3e114e80a8f2466b12adf58067efc1d3daf36347e7567",
+    "independentVerdict": "PASS_EXACT_I_F2_SOURCE_FREEZE_CI_AK_I01_I15_I16_OPEN",
+    "cleanCanonicalFile": "I_F2_CLEAN_CANONICAL.json",
+    "cleanCanonicalSha256": "b4628d52e481b7edeb7e6420a0b1ae80898c03bc7e5c7a9ba49309fc46182bf7",
+    "rawGitFreezeFile": "I_F2_RAW_GIT_FREEZE_INDEPENDENT_QC.json",
+    "rawGitFreezeSha256": "9870f4ec4f7c0f3932d5b22864dfec2f725e0ee0fa06ba373638e108b9a387a2"
+  },
+  "permittedAct": "Normal no-ff merge of exact accepted F2 into freshly verified B on WP036, ordered parents [B,F2], tree exactly F2 and empty source diff; independent actual merge audit before normal non-force target publication",
+  "followingMandatoryGates": "Actual integrated CI on real published target (push and PR31), tree/diff/scope-chain inspection and independent integration acceptance, then separately bound documentation-only handover",
+  "excluded": "Main integration, public game distribution/release, product/WP026/WP035/final art/480 assets, changed star thresholds/prices, excluded providers, human tests/calibration, physical-device/store/signing acceptance"
+}

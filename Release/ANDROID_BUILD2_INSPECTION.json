@@ -1,0 +1,153 @@
+{
+  "evidenceKind": "ACTUAL_UNCOMMITTED_ANDROID_BUILD2_ARTIFACT_INSPECTION",
+  "apkSha256": "c37a59d1c85c651e55874736d8d132faa9786ee0c60c938a7f5c9c99fb4204a9",
+  "apkSizeBytes": 57580800,
+  "sourceBinding": "Uncommitted frozen pre-postgame live tree; GitHEAD is NOT the exact build source. Preserved build log/report and generated Bee/Gradle artifacts only.",
+  "manifest": {
+    "package": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": "26",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_ADSERVICES_TOPICS",
+      "com.android.vending.BILLING",
+      "android.permission.WAKE_LOCK",
+      "android.permission.FOREGROUND_SERVICE",
+      "com.STP.StammstreckenPuzzle.qa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "providers": [
+      "com.google.android.gms.ads.MobileAdsInitProvider",
+      "androidx.startup.InitializationProvider"
+    ],
+    "measurementDelayValues": [
+      "true"
+    ],
+    "debuggable": "true"
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "nativeLibraries": [
+    {
+      "path": "lib/arm64-v8a/lib_burst_generated.so",
+      "sizeBytes": 422840,
+      "sha256": "0c9b89691d2122b20bddcf33b0df3a874d0158d01c10f4192834368707a8685c",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sizeBytes": 1292904,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libgame.so",
+      "sizeBytes": 252008,
+      "sha256": "5e1f799e725960bd7b9017d7f3129e4fe28dc93fea8029102d85bf9fc4bdc64d",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libil2cpp.so",
+      "sizeBytes": 77905472,
+      "sha256": "1cc6644202ddc1038385486d88d24d64437c3977b27300cd1b2abf483d160548",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libmain.so",
+      "sizeBytes": 8720,
+      "sha256": "56e3c619bf938450f5a95eec2a460cf620adb3ce73cea8577160d58542b0f632",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libswappywrapper.so",
+      "sizeBytes": 227040,
+      "sha256": "86e33cbd6c4b7d47c9456b9389aace0002265d3424c230cbd78c918e867956e0",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libunity.so",
+      "sizeBytes": 36201016,
+      "sha256": "cd5bf65466358244257f176e2885f5ea4396ef6a5fd5d685fe19fec819a0e827",
+      "elfMachine": 183
+    }
+  ],
+  "packagedSdkVersionProperties": {
+    "billing.properties": "version=9.0.0\nclient=billing\nbilling_client=9.0.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-measurement-base.properties": "version=20.1.2\nclient=play-services-measurement-base\nplay-services-measurement-base_client=20.1.2\n",
+    "play-services-measurement-sdk-api.properties": "version=20.1.2\nclient=play-services-measurement-sdk-api\nplay-services-measurement-sdk-api_client=20.1.2\n",
+    "user-messaging-platform.properties": "version=4.0.0\nclient=user-messaging-platform\nuser-messaging-platform_client=4.0.0\n"
+  },
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "archiveDirectory": ".utmp/wp046-native/android-build2-verified",
+  "originalAuditSha256": "0a2f9fd67a4397578d589cf999f3720dc7e49c4a2dfb12dd3f27a7292a888370",
+  "archiveArtifacts": [
+    {
+      "path": "stp-mobile-preview.apk",
+      "kind": "ACTUAL_APK",
+      "sizeBytes": 57580800,
+      "sha256": "c37a59d1c85c651e55874736d8d132faa9786ee0c60c938a7f5c9c99fb4204a9"
+    },
+    {
+      "path": "unity-build.log",
+      "kind": "ORIGINAL_BUILD_LOG",
+      "sizeBytes": 84298,
+      "sha256": "f01496d849eebac6bc2a468ce985adc647dee0d6a50c2bfa555ec05db2b517d9"
+    },
+    {
+      "path": "LastBuild.buildreport",
+      "kind": "ORIGINAL_UNITY_BUILD_REPORT_BINARY",
+      "sizeBytes": 172069,
+      "sha256": "9d6c9b4518cafe756d1350a3a2d97c0242b5b5b608f277cec9f264d8e014155c"
+    },
+    {
+      "path": "signature-verification.txt",
+      "kind": "CLI_OUTPUT",
+      "sizeBytes": 972,
+      "sha256": "7eb4494b998cc7a393ed8f96b444b93bd519efc316a4f77d1e33239a1bbca3e2"
+    },
+    {
+      "path": "packaged-AndroidManifest.xml",
+      "kind": "CLI_OUTPUT",
+      "sizeBytes": 17370,
+      "sha256": "0e37497b93c5bc88a3b27ce3ff62b3f462c89928bd6f7b5d854c68e3fc7e6c6e"
+    },
+    {
+      "path": "il2cpp-generated-inputs.zip",
+      "kind": "BUILD2_BEE_GENERATED_IL2CPP_INPUT_ARCHIVE",
+      "sizeBytes": 137658819,
+      "sha256": "fbe8e0933b235c9435f0cdff4acfd0343db86cd3aecd325f6489d8cdb603cd12"
+    },
+    {
+      "path": "resolved-debugRuntimeClasspath.txt",
+      "kind": "POSTBUILD_OFFLINE_RESOLVED_GRADLE_GRAPH_DIAGNOSTIC",
+      "sizeBytes": 30985,
+      "sha256": "e8c9eb1eca546dd33f8efde1407b7c99f1ea33ff8aae12c8b56a1b3dac9fa6e4"
+    },
+    {
+      "path": "resolved-native-artifacts-verified.json",
+      "kind": "POSTBUILD_OFFLINE_RESOLVED_NATIVE_ARTIFACT_HASHES",
+      "sha256": "fcbd6b1fb20703b17cdfa2c5c1af90e2713699962889495299ad1d8afe85e478",
+      "sizeBytes": 43124
+    },
+    {
+      "path": "native-artifact-final-diagnostic.log",
+      "kind": "POSTBUILD_OFFLINE_ARTIFACT_DIAGNOSTIC",
+      "sha256": "61126e8dc69a5da73c01105bb85a7a6d694434d896e1253662745c7eeec0fa1f",
+      "sizeBytes": 1596
+    }
+  ],
+  "nativeLicenseSourceInventory": "NativeAndroidBuild2Sources/inventory.json",
+  "nativeLicenseSourceInventorySha256": "c82069164c816439a9cf32432306c1c40772fb883e2ea20d0e8eec129cc1cf71"
+}

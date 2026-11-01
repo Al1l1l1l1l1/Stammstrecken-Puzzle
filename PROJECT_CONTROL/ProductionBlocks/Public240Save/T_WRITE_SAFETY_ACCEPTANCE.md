@@ -1,0 +1,11 @@
+# R – konkretisierte Writer-Sicherungsinvariante vor S-Code
+
+19.10.2026. Die getrennte Rolle `/root/t_boundary_review` bestätigt die folgende konkrete Ausgestaltung aus PERSISTENCE §5–6/Copy-on-Write. R/Codex nimmt sie innerhalb MANUS-2026-10-19-01 §5 und ADR035 vor S-Code verbindlich an; kein neuer Produktentscheid und kein abweichender Schreibalgorithmus.
+
+Vor jedem destruktiven Öffnen von Pending muss nach frischer vollständiger Beobachtungs-/CASprüfung unter derselben exklusiven Writersperre der zuletzt geladene höchste gültige unterstützte Envelope mindestens in einem anderen regulär von Load gelesenen Kandidaten Main oder Backup vollständig, geflusht und erneut byte-/hash-/fachverifiziert vorliegen. Liegt er ausschließlich in Pending, wird er zuerst erhaltend in einem solchen regulären Kandidaten gesichert und exakt nachgeprüft. Jeder Fehler stoppt vor Pendingtruncate; Quarantäne oder migration-source allein erfüllen diese Invariante nicht.
+
+Erst danach folgen die neun bestehenden Kernschritte. Auch eine spätere Backuprotation darf die letzte reguläre gültige Kopie nicht zerstören, solange noch kein vollständig validierter neuer Kandidat existiert. Die zusätzlichen Vorbereitungs-, Copy-, Flush- und Reread-Crashfenster werden in S05 tatsächlich getestet. Die Regel gilt für normale Autosaves/Completion, Migrationen und die ausdrücklich payloadgebundene Recoverypromotion. SplitBrain/Unsupported werden dadurch weder still repariert noch für normale Writes freigegeben.
+
+Bei expliziter Recovery bleiben sämtliche ursprünglichen widersprüchlichen Kandidaten vorher in der vollständig beobachtungsgebundenen Quarantäne erhalten. Jede zulässige interne Kandidatenvorbereitung geschieht erst nach diesem vollständigen Vergleich innerhalb derselben Sperre, ist Bestandteil allein derselben payloadgebundenen Promotion und begründet keine normale Schreibfreigabe. Ein Absturz während der Vorbereitung darf Originalbytes oder die letzte regulär ladbare gültige Wahrheit nicht verlieren.
+
+S_IMPLEMENTATION_PLAN wird vor seinem abschließenden Detailhash entsprechend ergänzt. Die konkrete Fileimplementation und tatsächliche Crashmatrix sind spätere S-Lieferungen; hier wird kein Writer-/CI-PASS behauptet.

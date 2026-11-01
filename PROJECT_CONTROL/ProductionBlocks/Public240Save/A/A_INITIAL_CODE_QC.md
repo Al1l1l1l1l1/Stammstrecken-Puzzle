@@ -1,0 +1,35 @@
+# Unabhängige A-Eingangsprüfung vor Lieferfreeze
+
+**Urteil: BLOCKED_TWO_CONCRETE_HIGHS.** Geprüfter Runtime-/Asset-/Meta-/Teststand entspricht Native-Snapshot04 vom 19.10.2026 10:12:15.597Z. Native04 ist tatsächlich 22/22 Passed/Exit0; dessen Erfolg deckt die unten beschriebenen fehlenden Regressionen nicht ab. Kein A-/CI-/Lieferfreeze-PASS.
+
+Basis: WP041/Anker `69ec03f910601313d2a0b1e5a5610fcf61a86619`, einziger Parent D `925ca608a961ac26c84385c8da3b949f609df883`, unveränderliches Manifest SHA256 `9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d`. Die bereits vollständig gelesenen AGENTS-/Konzept15/00/09-/CURRENT_STATE-Quellen wurden in Pflichtreihenfolge als bytegleich zur S/D-Fassung bestätigt; aktuelles WP041, kompletter A-Plan, Liefervertrag, ADR034 sowie Interaktions-/UI-/Puzzleverträge gelesen. Keine allgemeine Solver-/Textprüfung.
+
+## High A-QC-01 — alter fertiger Ride blockiert unmittelbar neu gelösten Versuch
+
+`Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs:168–175`: Im `ride.IsFinished`-Zweig wird `CompleteTrainRide(rideAttempt)` ausgeführt und die Textur entfernt, das alte fertige `ride` aber erst in einem späteren Nicht-TrainRide-Update disposed/null gesetzt.
+
+Konkrete Folge: Results → Restart → erneute echte UI-Lösung ohne dazwischenliegendes Update, alternativ Wechsel auf einen fast fertigen behaltenen Versuch und letzter Input. Beim nächsten Update ist das neue Modell schon TrainRide, `ride != null` bezeichnet aber weiterhin die alte fertige Fahrt. Es wird keine neue Fahrt erzeugt; die alte `rideAttempt` wird vom neuen Modell dauerhaft als STALE_ATTEMPT abgewiesen. Das neue Modell bleibt in TrainRide mit gesperrter Navigation/Eingabe hängen. A-Owner hat den Codepfad unabhängig bestätigt.
+
+Der bestehende Smoke-Test ab Zeile141 erreicht Results und Restart, löst den neuen Versuch danach jedoch nicht erneut. Er verhindert diese Regression nicht. Enge Korrektur durch Owner/R: fertigen Ride im Abschlusszweig vollständig beenden/freigeben und Referenz zurücksetzen; echter Test Results→Restart→Solve im selben Frame ohne zusätzlichen yield, dann neue Fahrt/neue Attempt-ID und tatsächliche Results nachweisen. Kein Reviewer-Sourcefix und keine Reviewer-Unityausführung.
+
+## High A-QC-02 — fehlender Builder-Creation-Nachweis und tatsächlicher Namenswiderspruch
+
+`Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs:37` setzt beim tatsächlichen Anlegen eines fehlenden Panels `panel.name = "Public240 Public240Review Panel"`. Das gelieferte `UI/Public240ReviewPanelSettings.asset:13` besitzt dagegen `m_Name: Public240ReviewPanelSettings`. Ein Neuaufbau aus fehlendem eigenen Panel kann daher schon aufgrund dieses konkreten Bytes das gelieferte Panel nicht exakt reproduzieren.
+
+Der vorhandene Doppelerzeugungs-/Reimporttest ab SmokeTests Zeile261 ruft EnsureArtifacts zweimal bei bereits vorhandenem Panel auf. Er belegt stabile No-op-/Reimportbytes, jedoch nicht den notwendigen Creationzweig. Owner/R müssen den engen Namen-/Erzeugungsvertrag vereinheitlichen und in isolierter Kopie die tatsächliche Neuerzeugung ausschließlich eigener Scene/Panel/Metas gegenüber den gelieferten festen Bytes belegen. Bestehende neutrale Theme-/Materialquellen unverändert lassen; keine Löschung fremder oder benötigter Quellen. Native04 bleibt unverändert historisch gebunden.
+
+## Übrige tatsächliche Prüfung
+
+Alle sechs neuen Fachdateien, vier Testdateien, UXML/USS/Locale/Scene/Panel und der Projektor wurden vollständig gelesen. Keine weitere konkrete High-/Blockerursache gefunden. Neue Applicationaktionen delegieren an den bestehenden Domainreducer; echte öffentliche Identität, Timer/No-op/Undo/Revision/Dedup/sticky Flags und kopierter echter PuzzleSolved-Pfad sind erhalten. Presentation enthält keine zweite Regel-/Solverautorität. Der Runtimegraph erstellt keine Save-/Reward-/Hint-/Daily-/Generator-/Ads-/Store-/Analytics-/Cloudoperation; Bestehende Assemblykanten werden konsumiert, nicht verändert. Der ausschließlich testseitige Referenzpfad liegt hinter Testassemblygrenzen, nicht im Playerpayload.
+
+Eigene Datenprüfung: 964 konkrete geschlossene Feld-/240-ID-/Publichash-/Cataloghash-/Auditbindungschecks ohne Fehler. Asset SHA `c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2`, Catalog `f64721318b2fffa5179cfc3acef8aa2176115717c02f15c1f3a581dab6b562a4`, aktueller SourceLock `c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0`. Alle240 aktuellen Lockzeilen stimmen mit Roots früherem unabhängigem Git-Rawblob-Audit überein. Keine neue Git-/Solverprüfung ausgeführt. Ursprüngliche Projektion belegt denselben unveränderten Asset-/Kataloginhalt; der aktuelle Projektor-/Lock-Byteprofilstand braucht wie von R vorgesehen seinen abschließenden kanonischen Doppelprojektionsnachweis.
+
+Alle32 eigenen Runtime-/Asset-/Meta-/Testdateien stimmen mit Snapshot04 überein. Alle219 Metadateien im Snapshot besitzen gültige eindeutige GUIDs, darunter16 eigene. Der Workflowvergleich mit dem getrennten S-Kind ergibt ausschließlich den eigenen vorab verankerten Scope-Selektor. Projektor und SourceLock sind nicht im Native04-Snapshot enthalten und werden deshalb separat mit ihren tatsächlichen aktuellen Hashes gebunden; daraus wird kein nachträglicher Nativebeleg abgeleitet.
+
+Native04-Receipt `A_NATIVE_SCREEN_04.json` unabhängig gelesen: tatsächlicher Nonbatch-D3D11-Lauf, Unity6000.3.23f1, 22/22, 0Fail/Skip/Inconclusive, Exit0. Alle43 eingebetteten gzip-Original-/Logprofil-/Source-/Settingspayloads vollständig dekodiert und byte-/hashgeprüft; keine Abweichung. Snapshotrawhash `4c89e5cb9bf0241c77041da70966fc0dd903d5ad71d31e66326ece4a2b03f3a9` stimmt. Alle fünf PNG-Originalbytes stimmen mit Receipt überein; vier unterschiedliche Originale vom Reviewer selbst angesehen. 4x4/10x10 zeigen tatsächliche Zähler, A/B, X/Grau/gelbe Auswahl; der Zug liegt sichtbar auf der gebauten Strecke, Result folgt. Picker-PNG ist bytegleich10x10 und belegt ausschließlich geschlossenen Picker, keinen offenen Popup-/Human-Test.
+
+Die eigene Locale erstellt/entsorgt isolierte Unity-Localization-Objekte ohne globale Localeänderung; deutsche Keys und typisierte Formatwerte sind vollständig vorhanden. Fehlerhafte/fehlende Keys und Konstruktor-/Disposepfade sind konkret getestet. Serialized Scene enthält nur explizite erlaubte Referenzen, kein SourceLock/Authoringwissen; Quellenlock bleibt außerhalb Assets. Bestehende Developmentquellen und Provider-/Produktgates werden nicht von A umgebaut.
+
+## Weitergabe und Grenzen
+
+Beide Highs wurden R und Owner vor Änderungen konkret gemeldet. R koordiniert Korrektur und erforderliche echte neue Regressionen/Bytebindungen. Der Reviewer ändert keine A-/S-Quelle und führt weder Git-, Unity- noch CIaktion aus. Nach Korrektur ist nur der gebundene tatsächliche Delta-/Regressionsteil neu zu prüfen; unveränderte Quellenbelege bleiben standgebunden verwendbar. Reguläre veröffentlichte A-CI, finaler Commit-/Tree-/Refbezug und getrennte LA-Annahme stehen weiterhin aus.

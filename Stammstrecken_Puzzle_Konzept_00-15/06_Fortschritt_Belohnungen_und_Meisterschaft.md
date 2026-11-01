@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Fortschritt, Belohnungen und Meisterschaft
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Hintpräzisierung P03:** identitätsgebundene Credits werden erst bei wirklich dargestelltem sicheren nicht enttarnenden Schluss verbraucht. Jedes neue Endlosrätsel hat eigenen gleichen Vorrat. **Stars P02:** echte Erstkontaktstichproben nach stabiler neuer Bedienung; pro Level valide eigene/übertragbare Logikklassenwerte, Nullschwellen bleiben nur intern. **Endlosreward P05:** 15 Punkte je neuer korrekter Lösung plus ihre einmaligen Zeitsternboni, keine Routen-/Abschnittsboni.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung  
 **Zweck:** Dieses Dokument definiert Season-Fortschritt, Sterne, Betriebsrevision, Geduldspunkte und persönliche Meisterschaft. Alle Systeme belohnen echtes Lösen; sie verkaufen oder erzwingen keine Rätselkompetenz.
 
@@ -57,10 +65,10 @@ Bereits erreichte Sterne und Geduldspunkte können nie wieder verloren gehen.
 
 | Regel | Festlegung |
 |---|---|
-| Erster Hinweis | Auf jedem neuen Level einmal kostenlos verfügbar. |
+| Kostenloser Anspruch | Pro unveränderlicher Puzzleidentität ein Startanspruch plus zwei weitere kostenlose Credits; Neustart/Übung/Revision füllen nicht neu auf. |
 | Inhalt | Zeigt oder erklärt genau einen logisch sicheren nächsten Schluss, niemals die Gesamtlösung. |
 | Formulierung | Erklärung einer Regel, etwa: „In dieser Spalte sind bereits alle drei Gleisfelder bestimmt. Die übrigen Felder können leer bleiben.“ |
-| Weitere Hilfe | Auf aktive Anfrage über ein regulär verfügbares Hilfekontingent oder ein freiwilliges Werbevideo. |
+| Videozusatz | Höchstens ein aktiv erbetenes freiwilliges Hintvideo je Puzzleidentität; erzeugt einen persistenten Credit. Kein Geld-/Punktkauf, vorhandene Credits zuerst. |
 | Sternwirkung | Keine. Hinweise verhindern weder Sterne noch Kampagnen- beziehungsweise Season-Fortschritt. |
 | Direkte Lösung | Ein eingesetzter Hinweis verhindert ausschließlich das persönliche Abzeichen „direkt gelöst“. |
 
@@ -87,7 +95,7 @@ Die Kampagne ist eine Betriebslage-Karte. Der Fortschritt entsteht durch korrekt
 | Vollständige Route mit 12 Meldungen | +60 Geduldspunkte |
 | Vollständiger Netzabschnitt mit 48 Meldungen | +150 Geduldspunkte |
 | Freiwillige Videoanzeige nach erster Lösung | +10 Geduldspunkte, einmal je Meldung |
-| Betriebslage des Tages | +10, +15 oder +25 Geduldspunkte beziehungsweise kosmetischer Fortschritt |
+| Betriebslage des Tages | +10/+15/+25 Geduldspunkte mit 60/30/10 Prozent; lokales Gerätedatum, ein kostenloser plus maximal ein Videoclaim. |
 
 Eine komplette Season-1-Kampagne mit drei Sternen pro Meldung liefert 9.150 Geduldspunkte aus Rätseln, Routen und Netzabschnitten. Freiwillige Anzeigen und die Betriebslage des Tages sind Zusätze, keine Ersatzquelle für grundlegenden Sammlungserfolg.
 

@@ -1,0 +1,937 @@
+{
+  "schemaVersion": 1,
+  "reviewRole": "/root/entry_audit",
+  "scope": "WP-040 T01; read-only B CI follow-up, no Unity execution or general source QC",
+  "observedAtUtc": "2026-10-19T07:19:26Z",
+  "basis": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+  "initialObservation": {
+    "exactClientObservationTimeUtc": null,
+    "reason": "Not recorded in the first reading; no retroactive timestamp invented.",
+    "apiRunUpdatedAtUtc": "2026-10-19T07:05:40Z",
+    "runStatus": "in_progress",
+    "successfulJobs": 9,
+    "remainingJobId": 117932776599,
+    "remainingStep": "iOS-Xcodeprojekt exportieren und kompilieren",
+    "seatStepStatus": "pending"
+  },
+  "terminalRun": {
+    "id": 39209670469,
+    "name": "Unity CI",
+    "event": "pull_request",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+    "run_attempt": 1,
+    "created_at": "2026-10-19T06:23:55Z",
+    "updated_at": "2026-10-19T07:18:27Z",
+    "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39209670469"
+  },
+  "terminalJobs": [
+    {
+      "id": 117920036889,
+      "name": "project-preflight",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Unity-Versionspin und Projektartefakte prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Explizite QA-Identitaeten vor Unity pruefen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post CPython 3.11.13 einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Repository mit vollständiger Historie auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 117920036976,
+      "name": "unity-environment-android",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Speicherplatz für das Unity-Android-Image freigeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Editor-Start und Android-Toolchain im Container prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        }
+      ]
+    },
+    {
+      "id": 117920037062,
+      "name": "unity-environment-linux",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        }
+      ]
+    },
+    {
+      "id": 117920037065,
+      "name": "unity-config",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        }
+      ]
+    },
+    {
+      "id": 117920037086,
+      "name": "unity-environment-ios",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Unity Hub installieren",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 117920128157,
+      "name": "unity-evidence-guard",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 2
+        },
+        {
+          "name": "Unity-Nachweiskonfiguration vorhanden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        }
+      ]
+    },
+    {
+      "id": 117920128807,
+      "name": "unity-compile-editmode",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Testergebnisse archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 117922425645,
+      "name": "unity-playmode-bootstrap-smoke",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Testergebnisse archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        }
+      ]
+    },
+    {
+      "id": 117927485374,
+      "name": "unity-android-development-il2cpp",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Speicherplatz für das Unity-Android-Image freigeben",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Android-Buildartefakt archivieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 117932776599,
+      "name": "unity-ios-export",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39209670469,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Unity Hub installieren",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5
+        },
+        {
+          "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "iOS-Xcodeprojekt exportieren und kompilieren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Unity-Personal-Seat freigeben (best effort)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Unity-Library aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Repository auschecken",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    }
+  ],
+  "originalLogs": [
+    {
+      "jobId": 117920128807,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117920128807/logs",
+      "sha256DecodedUtf8": "b4f2e4a134615620793709a8d1df1b09fc31459ceaf66f0edca44bc99591f17d",
+      "decodedUtf8Bytes": 374551,
+      "checkout": [
+        {
+          "line": 224,
+          "text": "2026-10-19T06:25:53.2332417Z HEAD is now at 009b122 Merge 3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 into d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+        }
+      ],
+      "receipts": [
+        {
+          "line": 3246,
+          "text": "2026-10-19T06:31:46.4767162Z ##[endgroup]"
+        },
+        {
+          "line": 3247,
+          "text": "2026-10-19T06:31:46.8376326Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 3248,
+          "text": "2026-10-19T06:31:48.5099053Z Deactivation processed successfully."
+        },
+        {
+          "line": 3249,
+          "text": "2026-10-19T06:31:48.5099505Z "
+        }
+      ],
+      "results": [
+        {
+          "line": 3125,
+          "text": "2026-10-19T06:31:46.1736165Z EditMode evidence PASS: STP.Tests.Domain.EditMode, 19 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3126,
+          "text": "2026-10-19T06:31:46.1737491Z EditMode evidence PASS: STP.Tests.Solver.EditMode, 56 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3127,
+          "text": "2026-10-19T06:31:46.1738512Z EditMode evidence PASS: STP.Tests.Content.EditMode, 379 tatsaechlich bestandene Testfaelle"
+        },
+        {
+          "line": 3236,
+          "text": "2026-10-19T06:31:46.4422667Z Coverage evidence PASS: 18 STP-Assemblies, keine Mindest-Coverage"
+        }
+      ],
+      "seatLines": [
+        {
+          "line": 270,
+          "text": "2026-10-19T06:26:15.4640739Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 3250,
+          "text": "2026-10-19T06:31:48.5099701Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ]
+    },
+    {
+      "jobId": 117922425645,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117922425645/logs",
+      "sha256DecodedUtf8": "57c05b361c552ce36728c8f4e050ce2425051a2baa5c8cba93ceb7c9ad98b79a",
+      "decodedUtf8Bytes": 770009,
+      "checkout": [
+        {
+          "line": 221,
+          "text": "2026-10-19T06:47:03.9475615Z HEAD is now at 009b122 Merge 3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 into d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+        }
+      ],
+      "receipts": [
+        {
+          "line": 5390,
+          "text": "2026-10-19T06:48:34.8907961Z ##[endgroup]"
+        },
+        {
+          "line": 5391,
+          "text": "2026-10-19T06:48:35.1245757Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 5392,
+          "text": "2026-10-19T06:48:36.2663407Z Deactivation processed successfully."
+        },
+        {
+          "line": 5393,
+          "text": "2026-10-19T06:48:36.2663604Z "
+        }
+      ],
+      "results": [
+        {
+          "line": 5271,
+          "text": "2026-10-19T06:48:34.7004813Z PlayMode evidence PASS: 49 ausgefuehrte Tests, 27 Smoke-Faelle, QA-Szene Passed"
+        },
+        {
+          "line": 5380,
+          "text": "2026-10-19T06:48:34.8663492Z Coverage evidence PASS: 18 STP-Assemblies, keine Mindest-Coverage"
+        }
+      ],
+      "seatLines": [
+        {
+          "line": 266,
+          "text": "2026-10-19T06:47:20.6620544Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 5394,
+          "text": "2026-10-19T06:48:36.2663695Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ]
+    },
+    {
+      "jobId": 117927485374,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117927485374/logs",
+      "sha256DecodedUtf8": "dec23b93282f0f1ffbfe5d6675bf83453bf16fdc640fc75534903b83c7692480",
+      "decodedUtf8Bytes": 1071637,
+      "checkout": [
+        {
+          "line": 132,
+          "text": "2026-10-19T06:48:47.5172396Z HEAD is now at 009b122 Merge 3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 into d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+        }
+      ],
+      "receipts": [
+        {
+          "line": 9373,
+          "text": "2026-10-19T07:05:23.1784189Z Exiting batchmode successfully now!"
+        },
+        {
+          "line": 9374,
+          "text": "2026-10-19T07:05:23.5958801Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 9375,
+          "text": "2026-10-19T07:05:25.2290252Z Deactivation processed successfully."
+        },
+        {
+          "line": 9376,
+          "text": "2026-10-19T07:05:25.2290691Z "
+        }
+      ],
+      "results": [
+        {
+          "line": 2100,
+          "text": "2026-10-19T06:54:33.1241248Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 2155,
+          "text": "2026-10-19T06:54:33.5482348Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 9332,
+          "text": "2026-10-19T07:05:17.9292737Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (855127739 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+        }
+      ],
+      "seatLines": [
+        {
+          "line": 288,
+          "text": "2026-10-19T06:53:31.1577646Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 9377,
+          "text": "2026-10-19T07:05:25.2290879Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ]
+    },
+    {
+      "jobId": 117932776599,
+      "source": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117932776599/logs",
+      "sha256DecodedUtf8": "e175b4ee62340ad4675a11b0f75dce1739bfb42e24e4e55cba784fe8c12a6d60",
+      "decodedUtf8Bytes": 2743021,
+      "checkout": [
+        {
+          "line": 116,
+          "text": "2026-10-19T07:05:44.0230310Z HEAD is now at 009b122 Merge 3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3 into d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+        }
+      ],
+      "receipts": [
+        {
+          "line": 14956,
+          "text": "2026-10-19T07:18:17.2855100Z ##[endgroup]"
+        },
+        {
+          "line": 14957,
+          "text": "2026-10-19T07:18:18.5444300Z Trying to deactivate all seats ..."
+        },
+        {
+          "line": 14958,
+          "text": "2026-10-19T07:18:19.8777720Z Deactivation processed successfully."
+        },
+        {
+          "line": 14959,
+          "text": "2026-10-19T07:18:19.8778560Z "
+        }
+      ],
+      "results": [
+        {
+          "line": 2049,
+          "text": "2026-10-19T07:08:27.0795420Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 2104,
+          "text": "2026-10-19T07:08:27.5803680Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+        },
+        {
+          "line": 11631,
+          "text": "2026-10-19T07:10:09.5416960Z STP Build PASS: iOS -> Builds/iOS/Xcode (1044286875 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity."
+        },
+        {
+          "line": 14943,
+          "text": "2026-10-19T07:18:16.8370800Z ** BUILD SUCCEEDED **"
+        }
+      ],
+      "seatLines": [
+        {
+          "line": 250,
+          "text": "2026-10-19T07:07:29.3942860Z Seat ID: 2476057761288-UnityPersonal"
+        },
+        {
+          "line": 14960,
+          "text": "2026-10-19T07:18:19.8779010Z Seat ID: 2476057761288-UnityPersonal"
+        }
+      ]
+    }
+  ],
+  "xmlArtifacts": [
+    {
+      "id": 12167248048,
+      "name": "editmode-results",
+      "zipBytes": 498258,
+      "zipSha256": "39745b24e702fa2ddcb54eaeb7e833bfb4a0f7cc2a1d9f3f7fadb42f443367ed",
+      "digestMatchesApi": true,
+      "xmlEntry": "editmode.xml",
+      "xmlDecodedUtf8Sha256": "3c36d682ea849f2817c556631dc3fb54fc7b12ea7bcb22cb1ca96c667601b7a1",
+      "total": 474,
+      "passed": 474,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "actualTestCaseCount": 474,
+      "actualPassedTestCases": 474,
+      "durationSeconds": "234.5849068"
+    },
+    {
+      "id": 12167838466,
+      "name": "playmode-results",
+      "zipBytes": 432469,
+      "zipSha256": "87c1176786c097ea7f21da8c7a1e9b43c943ef14be210e4e098e73cb778d9593",
+      "digestMatchesApi": true,
+      "xmlEntry": "playmode.xml",
+      "xmlDecodedUtf8Sha256": "6a215116541df4bc2da04521f47573612050ce61524aded8dd3967162b5a22ba",
+      "total": 49,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "actualTestCaseCount": 49,
+      "actualPassedTestCases": 49,
+      "durationSeconds": "9.9473139"
+    }
+  ],
+  "artifactMethod": "GitHub connector retrieved original ZIPs; PowerShell WebClient downloaded both into memory, SHA256 computed on exact ZIP bytes; XML roots and every test-case result counted. XML hash is over decoded UTF-8 text; not claimed as raw member-byte hash.",
+  "boundaries": [
+    "Architecture B remains FAILURE in both events.",
+    "Unity Push B remains CANCELLED; no overwrite by later PR SUCCESS.",
+    "No new graphic proof, device proof, source/solver/text total QC or T/A/S implementation acceptance.",
+    "Logs are bound by decoded UTF-8 digest and exact excerpts; full transient download URLs not persisted.",
+    "No Unity execution, workflow dispatch, retry, cancellation, commit or push performed."
+  ]
+}

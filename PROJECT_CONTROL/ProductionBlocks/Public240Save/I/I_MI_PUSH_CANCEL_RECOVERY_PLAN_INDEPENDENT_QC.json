@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T16:53:40.988Z",
+  "verdict": "PASS_BOUNDED_OPERATIONAL_RECOVERY_PLAN_ONLY_INTEGRATED_ACCEPTANCE_OPEN",
+  "reviewer": "entry_audit; independent read-only reviewer, no dispatch authority exercised",
+  "source": {
+    "merge": "1af988cd73a7267796fb3b6fd77204166241a07a",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "workflowPath": ".github/workflows/unity.yml",
+    "workflowSha256": "5788b805b9d162db60de7447944d24360a7118b807d7f4809c85a38654061fcc",
+    "unchanged": true
+  },
+  "actualCause": {
+    "run": 39287505617,
+    "attempt": 1,
+    "job": 118179021831,
+    "conclusion": "cancelled",
+    "annotation": {
+      "path": ".github",
+      "blob_href": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/blob/1af988cd73a7267796fb3b6fd77204166241a07a/.github",
+      "start_line": 1,
+      "start_column": null,
+      "end_line": 1,
+      "end_column": null,
+      "annotation_level": "failure",
+      "title": "",
+      "message": "Canceling since a higher priority waiting request for unity-personal-seat exists",
+      "raw_details": ""
+    },
+    "checkResponses": [
+      {
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/118179021831",
+        "httpStatus": 200,
+        "bodySha256": "325fa6fa134936d19cae923cb4887bfc74cea804f37806ae51a15f85f96f766e"
+      },
+      {
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/118179021831/annotations?per_page=100",
+        "httpStatus": 200,
+        "bodySha256": "4f03488976dc93d693877356cd6e1875e046a7560647347c3d85306ae5c8ab34"
+      }
+    ],
+    "runnerId": 0,
+    "runnerName": "",
+    "steps": [],
+    "logResponse": "404 BlobNotFound; original preserved",
+    "interpretation": "No runner allocation, executed step, Unity activation, product/test execution or seat occupation occurred in this cancelled job. No deactivation receipt exists or is claimed. Existing single-pending concurrency evicted this waiting job; this is not a failing test being retried to green.",
+    "originalPrepJobs": [
+      {
+        "id": 118178784194,
+        "name": "unity-config",
+        "conclusion": "success"
+      },
+      {
+        "id": 118178784618,
+        "name": "unity-environment-linux",
+        "conclusion": "success"
+      },
+      {
+        "id": 118178784757,
+        "name": "unity-environment-ios",
+        "conclusion": "success"
+      },
+      {
+        "id": 118178784787,
+        "name": "unity-environment-android",
+        "conclusion": "success"
+      },
+      {
+        "id": 118178785212,
+        "name": "project-preflight",
+        "conclusion": "success"
+      },
+      {
+        "id": 118179021106,
+        "name": "unity-evidence-guard",
+        "conclusion": "success"
+      }
+    ],
+    "skippedDependents": [
+      {
+        "id": 118184169644,
+        "name": "unity-playmode-bootstrap-smoke",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 118184170898,
+        "name": "unity-ios-export",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 118184171109,
+        "name": "unity-android-development-il2cpp",
+        "conclusion": "skipped"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "I_INTEGRATED_PUSH_CANCELLED_CHECKRUN_API.json",
+        "bytes": 4954,
+        "sha256": "c2cad63209f5dc1d0be11a0b6dfa5c41ca3941b35de8abcc060b9a0e0e5b0e2d"
+      },
+      {
+        "file": "I_INTEGRATED_PUSH_CANCELLED_RUN_API.json",
+        "bytes": 30213,
+        "sha256": "a8b5cc1188be6763a970570ac82ec971b4384662846a0c81b6bdf0d61ef2cd96"
+      },
+      {
+        "file": "I_INTEGRATED_PUSH_CANCELLED_JOBS_API.json",
+        "bytes": 36361,
+        "sha256": "55fcc73fdc722cdf105dd3756ec378f3e079c03449c169764f46c9df1c28866c"
+      },
+      {
+        "file": "I_INTEGRATED_PUSH_CANCELLED_EDIT_ORIGINAL_TOOL.json",
+        "bytes": 948,
+        "sha256": "0dd2114d04fec5b6b265b654405327c24c6239840210d5b6d65a5ef19210214a"
+      },
+      {
+        "file": "I_INTEGRATED_PUSH_CANCELLED_EDIT_STEPS_API.json",
+        "bytes": 157,
+        "sha256": "7407b8c15cbce43a1f106e6351e60821b42ef83d0e48e6644447f80d1ec2041e"
+      }
+    ]
+  },
+  "contractReview": {
+    "unchangedTestStrategy": "ARCHITECTURE/TEST_STRATEGY.md:251 prohibits retrying actual flaky failures to green. Here the cancelled job executed zero tests; preserving original cancellation and separately proving new execution does not weaken that gate.",
+    "mandate": "MANUS-2026-10-19-01 §§5–7 authorizes necessary actual integration evidence and coordinated technical operational corrections. A separate documented R operational decision must precede dispatch; this report is technical review only.",
+    "officialPrimarySources": [
+      {
+        "url": "https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency",
+        "finding": "Without a larger configured queue, only one pending request is retained; another pending request can replace it."
+      },
+      {
+        "url": "https://docs.github.com/en/rest/actions/workflow-runs#re-run-a-job-from-a-workflow-run",
+        "finding": "The individual job-rerun endpoint reruns the selected job and its dependent jobs."
+      },
+      {
+        "url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+        "finding": "Reruns retain the original event SHA/ref; independently bind actual new checkout and workflow again."
+      }
+    ],
+    "workflowFinding": "Four jobs share unity-personal-seat with cancel-in-progress:false; no queue override. Header explicitly documents one running and one pending. No source/workflow/validator/scope change is proposed."
+  },
+  "acceptedPlan": {
+    "action": "Exactly one targeted rerun of cancelled Push Edit job118179021831 and its skipped dependent Play/Android/iOS jobs, initiated only by R after separate decision.",
+    "preconditions": [
+      "PR31 regular chain39287516001 completed SUCCESS with all four actual deactivation receipts independently available",
+      "Fresh run/attempt/job and global active-seat audit confirms no other active/waiting licensed chain before dispatch",
+      "Remote MI/Main/F2 heads, local clean roots and workflow bytes remain exact; preserve Attempt1 original run/jobs/annotation/404 transport before any rerun",
+      "Persist separate R operational decision and dispatch record with exact selected job/run/source before mutation"
+    ],
+    "requiredPostconditions": [
+      "Record actual new attempt number and new four job IDs from API; preserve Attempt1 CANCELLED and three SKIPPED without rewriting",
+      "Do not claim six successful prep jobs executed again; retain their exact original Attempt1 provenance",
+      "Independently inspect actual checkout MI/PR synthetic distinction, tree/modes/blobs, actual1107/117 XML, unchanged20-module coverage, all four ordered scene reports for each platform, artifacts and four new real seat releases",
+      "Require terminal run AND exact attempt/job APIs plus original evidence before integrated PASS",
+      "If API refuses, source/ref changes or another failure occurs: stop this one-shot plan and report the specific new condition; no implicit retry series"
+    ]
+  },
+  "open": [
+    "PR31 complete regular CI not yet accepted",
+    "Push recovery not dispatched by this reviewer and not yet executed",
+    "Integrated I16 acceptance and doc follow-up remain open"
+  ],
+  "boundary": "Plan PASS is not operational authorization, dispatch success, CI PASS or integrated acceptance. No source/Git/Unity/seat/API mutation performed."
+}

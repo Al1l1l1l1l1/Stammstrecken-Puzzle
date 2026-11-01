@@ -1,0 +1,81 @@
+{
+  "at": "2026-10-19T12:35:14.887Z",
+  "status": "PASS_EXACT_PINNED_SOURCE_INSPECTION_ONLY_NOT_I_RUNTIME_TEST",
+  "input": {
+    "path": "I_TEST_RUNNER_SCENE_SETUP_SOURCE_AUDIT.json",
+    "bytes": 15049,
+    "sha256": "0aa4bd2e2b4c7edb5b9048e7c0d1b987f2304de9d20fb75a8fc7a6ab8d3913d3"
+  },
+  "package": {
+    "manifestSha256": "0d173feba52bb7ad5e01a89035077d7495021a7c96c8a93498825f380dcc8015",
+    "lockSha256": "4152170de117b849c79d7a6d1231b44617ccb04de3405acaffbbc8cf14d680d2",
+    "dependency": "1.6.0",
+    "locked": {
+      "version": "1.6.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.ext.nunit": "2.0.3",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    }
+  },
+  "packageChecks": [
+    {
+      "path": "Packages/manifest.json",
+      "rootNativeBytes": 1832,
+      "rootNativeSha256": "0d173feba52bb7ad5e01a89035077d7495021a7c96c8a93498825f380dcc8015",
+      "declaredRootMatches": true,
+      "sNativeBytes": 1876,
+      "sNativeSha256": "4c5d4b8805effd220fcdf73f35be59f1918e0554d36bdb25040a4c9221ec0657",
+      "sToRootOnlyCrlfToLf": true,
+      "parsedJsonIdentical": true
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "rootNativeBytes": 12615,
+      "rootNativeSha256": "4152170de117b849c79d7a6d1231b44617ccb04de3405acaffbbc8cf14d680d2",
+      "declaredRootMatches": true,
+      "sNativeBytes": 13081,
+      "sNativeSha256": "15c933bde2c37482a8c7da2dd6dc596e8be733bc6f4b021032d0cb5d44e14785",
+      "sToRootOnlyCrlfToLf": true,
+      "parsedJsonIdentical": true
+    }
+  ],
+  "fourDecodedSourceChecks": [
+    {
+      "path": "Library/PackageCache/com.unity.test-framework@bd7f943e9647/UnityEditor.TestRunner/TestRun/TaskList.cs",
+      "declaredMatches": true,
+      "rootActualMatches": true,
+      "sActualMatches": true
+    },
+    {
+      "path": "Library/PackageCache/com.unity.test-framework@bd7f943e9647/UnityEditor.TestRunner/TestRun/Tasks/CreateBootstrapSceneTask.cs",
+      "declaredMatches": true,
+      "rootActualMatches": true,
+      "sActualMatches": true
+    },
+    {
+      "path": "Library/PackageCache/com.unity.test-framework@bd7f943e9647/UnityEditor.TestRunner/TestRun/Tasks/PreparePlayModeRunTask.cs",
+      "declaredMatches": true,
+      "rootActualMatches": true,
+      "sActualMatches": true
+    },
+    {
+      "path": "Library/PackageCache/com.unity.test-framework@bd7f943e9647/UnityEditor.TestRunner/TestRun/Tasks/EnterPlayModeTask.cs",
+      "declaredMatches": true,
+      "rootActualMatches": true,
+      "sActualMatches": true
+    }
+  ],
+  "observedFlow": "For ordinary PlayMode-in-Editor (!editMode), TaskList yields CreateBootstrapSceneTask(...EmptyScene), whose Execute uses EditorSceneManager.NewScene(...Single). Later PreparePlayModeRunTask sets that test scene active; EnterPlayModeTask enters PlayMode. Current normal firstBuildSettings entry is therefore not implicitly loaded by this specific path.",
+  "implication": "The planned test-private-root scope can be installed before the tests explicitly load their actual Savedscene. It must still be in place before actual LoadScene/Awake; sceneLoaded callback is too late.",
+  "notClaimed": [
+    "No actual I Scene/Awake/root/native observation.",
+    "No general guarantee for manualPlay, player-included tests or arbitrary frameworkpaths.",
+    "No runtime testrunner detection, package modification or assemblyedge permitted."
+  ],
+  "reviewerActions": "Readonly base64 roundtrip/hash check and allfour fullsources read; bytes independently match both existing Root/S pinned package caches. Ownignoredreview only.",
+  "packageProfile": "Declared audit hashes are Root nativeLF; S copies use solelyCRLF. Both JSONvalues and locked1.6.0 package contents agree; do not claim rawRoot/S manifest equality."
+}

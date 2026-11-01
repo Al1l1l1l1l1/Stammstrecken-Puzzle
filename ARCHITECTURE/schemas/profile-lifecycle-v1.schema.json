@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/profile-lifecycle-v1.schema.json",
+  "title": "Local profile writer lifecycle v1",
+  "description": "ADR046 technical local writer boundary only. No gameplay, export or provider eligibility. Typed codec additionally rejects the empty GUID; ordinary reads never ignore exchange stages.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profileLifecycleVersion", "writerEpoch", "deletePending"],
+  "properties": {
+    "profileLifecycleVersion": {"const": 1},
+    "writerEpoch": {"type": "string", "minLength": 32, "maxLength": 32, "pattern": "^[0-9a-f]{32}$", "not": {"const": "00000000000000000000000000000000"}},
+    "deletePending": {"type": "boolean"}
+  }
+}

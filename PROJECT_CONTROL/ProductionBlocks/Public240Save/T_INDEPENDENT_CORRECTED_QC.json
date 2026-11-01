@@ -1,0 +1,160 @@
+{
+  "reviewer": "/root/t_boundary_review",
+  "observedAtUtc": "2026-10-19T07:38:53Z",
+  "workPackage": "WP-040",
+  "category": "independent static and original-evidence correction review; no Unity or test execution by reviewer",
+  "freeze": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+  "tree": "85d1cdb94beaa440cca600e16a1bf6ac06cf128e",
+  "previousRejectedFreeze": "4929ad8be779c2def5d7b2b504add9346ee5a389",
+  "result": "STATIC_CONTRACT_CORRECTION_PASS",
+  "overallTAccepted": false,
+  "openBlockersOrHighsInReviewedStaticScope": [],
+  "closedFindings": [
+    { "id": "T03-HIGH-01", "correction": "Reject threeStarMilliseconds >= twoStarMilliseconds; explicit equal-value regression" },
+    { "id": "T03-HIGH-02", "correction": "Observed Failure and Success overloads; missing-main splitbrain selection and changed-pending regression" }
+  ],
+  "openLowFindingsOnOriginal54dFreeze": [
+    { "id": "LOW-INDEX-01", "path": "DECISIONS/README.md", "detail": "Blank line after ADR033 interrupts the Markdown table on the unchanged original freeze; closed only in separately hashed later working documentation below" }
+  ],
+  "openLowFindingsAfterReviewedDocumentationDelta": [],
+  "redOriginal": {
+    "path": "T_REVIEW_REGRESSION_RED.json",
+    "decodedXmlSha256": "5c0d1254bf3f77012fd7392ad331a6a9208a7474e5b71e016d749b5b3c116149",
+    "hashIndependentlyMatched": true,
+    "total": 22,
+    "passed": 20,
+    "failed": 2,
+    "failedTests": [ "CatalogContractsRejectPromotionAndUnconfirmedRewardValues", "RecoveryRequestsBindEveryCandidateAndSplitBrainIsNeverSuccess" ]
+  },
+  "greenOriginal": {
+    "path": "T_CONTRACT_TESTS.txt",
+    "xmlSha256": "634b7685a0f1d07d3f51d9adce70570ec5ac47d8a39446ce99d490c2f5103fdf",
+    "hashIndependentlyMatched": true,
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "category": "license-free compile/Mono/NUnit supplement, not Unity"
+  },
+  "sourceHashReview": {
+    "nativeCompiledSourcesMatched": 6,
+    "gitNormalizedSourcesMatchedFromRawFreezeBlobBytes": 6,
+    "adapterNativeSha256": "7d11b68529527557290604631761e3ddd6fa4f4bc5d2a8f298d9e9bd6e64f32d",
+    "adapterGitSha256": "198952c6ae7c7c5aecaf7b5095069743c89c6cf891e31348369a29f4461f9f0a",
+    "adapterByteEqualityClaimed": false,
+    "reason": "Explicit native EOF CRLF versus Git LF normalization; five other source/meta pairs are byte equal"
+  },
+  "rootLocalLogsReadNotExecuted": {
+    "architecture": { "groups": 17, "result": "PASS", "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9" },
+    "scope": { "groups": 18, "result": "PASS", "sha256": "b70933334fc170101901c23c370e88754aa64d7cae2b91a21f0a60aeb08d87b1" },
+    "limitation": "Command execution and temporal clean-HEAD binding are Root provenance; not independently re-executed"
+  },
+  "stillRequired": [
+    "actual own freeze regular CI and original XML/log/checkout/tree/job bindings",
+    "T06/T07 closeout and WP/CURRENT_STATE/QUEUE/HANDOVER updates",
+    "publication and actual separate CI binding of the later documentation closeout"
+  ],
+  "noClaims": [ "overall T complete", "A/S/I implemented", "Unity execution by reviewer", "device or human review", "production/main/release approval" ],
+  "separateDocumentationDeltaReview": {
+    "date": "2026-10-19",
+    "baseFreeze": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "result": "DOCUMENTATION_DELTA_PASS",
+    "commitOrCIEvidenceClaimed": false,
+    "closedFinding": "LOW-INDEX-01",
+    "indexDiff": { "addedLines": 0, "removedLines": 1, "semanticChange": "Remove only the blank line between ADR033 and ADR034" },
+    "nativeSha256": {
+      "DECISIONS/README.md": "850f8221ada1fe01c3974ac923c0c8c265a255f37bd538f3014f9d74e604db3d",
+      "DELIVERY_CONTRACT.md": "42507fa1af2da810d2c8c71d863f5b93fb9672de5f8bfa2f2449b00ed921bcdc",
+      "T_DOCUMENTATION_DELTA.md": "e91450b1f1d894604dfadd3b14187c1e2c41cf564a8b76007f7d4ab02f99a8d2",
+      "T_DETAIL_ACCEPTANCE.md": "babf719781ffb112b1ce014c45f78b334b61fc34619c4c6ee7df92c628b8a102"
+    },
+    "unchangedAgainstBase": [ "Assets", "Packages", "ProjectSettings", ".github workflows", "scope manifests", "architecture validator" ],
+    "limitations": "T06/T07 and actual CI still open; S DTO planning not reviewed here"
+  },
+  "separateSRecordPlanReview": {
+    "path": "S_IMPLEMENTATION_PLAN.md",
+    "sha256": "046899e225017cd639db90f4a4fc4fc85732f18e16f8b61317c67954bb1f3d1d",
+    "scope": "section2 CanonicalDtoCursor and sections12-15 closed records, v1 reader and independent golden plan",
+    "result": "RECORD_READER_PLANNING_PASS",
+    "closedFinding": {
+      "id": "SPLAN-HIGH-01",
+      "originalHash": "b5849e5de783ce0406ed4d8eb0a21bd9cd9b7ec9574db6b20a08e049a2418c3c",
+      "problem": "Closed Endless descriptor omitted actual parameters",
+      "correction": "Complete closed version-bound typed parameters preserved; parameterhash and unchanged E1 projection independently verified; unknown grammar stops without rewriting; test descriptor never runtime-registered"
+    },
+    "positiveChecks": [
+      "passive retained record unions do not activate excluded commands",
+      "unknown policies/versions/source bindings stop without invented defaults",
+      "explicit V1 reader provenance and separate first-clear/first-run/revision times",
+      "complete independently fixed expected bytes and immutable migration-source",
+      "cursor only maps already port-validated canonical tokens; all canonical/hash output remains on existing injected port"
+    ],
+    "separateWriterRecommendationAtEarlierPlanHash": "Before any destructive pending write preserve and reread-verify highest valid state in another regularly loaded main/backup candidate; quarantine alone is insufficient; test every added preparation crash window; subsequently bound and passed in separateWriterPlanDeltaReview",
+    "implementationOrCIPassClaimed": false
+  },
+  "separateWriterPlanDeltaReview": {
+    "path": "S_IMPLEMENTATION_PLAN.md",
+    "finalPlanSha256": "41f1d5e2cb8af9b779319eb0299b8b0dec84fc71f75263af0c138ac71f94e37d",
+    "result": "WRITER_PLAN_DELTA_PASS",
+    "scope": "Only writer safety additions in section5/S05 against T_WRITE_SAFETY_ACCEPTANCE.md and prior reviewer recommendation",
+    "writerSafetyAcceptanceSha256": "80751b2d20a103434660aa5344ff0eb4b12767890370eb6f48a20eb18427664e",
+    "reusedRecordReaderPlanHash": "046899e225017cd639db90f4a4fc4fc85732f18e16f8b61317c67954bb1f3d1d",
+    "confirmed": [
+      "highest already-valid state is fully flushed and reread-verified in another normal main/backup candidate before destructive pending open",
+      "pending-only source remains untouched until successful preservation; quarantine/migration-source alone insufficient",
+      "same safety covers backup rotation and normal/migration/explicit recovery writes",
+      "original observed CAS/lease check precedes own preparation effects under one continuous exclusive lock",
+      "preparation file effects count for uncertain-write cancellation semantics",
+      "all added preparation/rotation crash windows and concrete pending-only failure cases included in S05",
+      "no automatic repair of blocked splitbrain/unsupported/failed state"
+    ],
+    "remainingPlanningHighs": [],
+    "implementationOrCIPassClaimed": false
+  },
+  "separateIOSInfrastructureReview": {
+    "date": "2026-10-19",
+    "result": "SINGLE_TARGETED_INFRASTRUCTURE_RETRY_ALLOWED_NOT_EXECUTION_SUCCESS",
+    "normativeReviewer": "/root/t_boundary_review",
+    "decisionAndDispatchOwner": "R/Root",
+    "originalCIEvidenceOwner": "/root/entry_audit",
+    "freeze": "54d2496ac2c74b681d24fe7a69d7f044392c46dd",
+    "run": 39217159752,
+    "originalFailedIOSJob": 117953319870,
+    "originalAttempt": 1,
+    "originalResult": "nine Unity jobs success; iOS install failure ENOTFOUND before activation/export; no failed functional test rerun",
+    "readDecisionSha256": "0f45f2fa25e49ffe56b54b7c4499b6ea773f4eb40496213d82a2d6b8bb91ddd9",
+    "readDispatchSha256": "2fd2d3a5308e32886513ad0a43381b21bc1931b3c5b64213aea2dc9f48176e36",
+    "dispatchRecordedAtUtc": "2026-10-19T08:17:24Z",
+    "maximumAdditionalRetryDispatches": 0,
+    "localDNSAndHEADAreRunnerProof": false,
+    "originalRealDeactivationReceipts": 3,
+    "cleanupMissingFileIsFourthReceipt": false,
+    "constraints": [
+      "unchanged source workflow toolchain budgets and gates",
+      "only failed iOS job; preserve every original failure and earlier test provenance",
+      "new install/activation/export/Xcode/checkout/tree/deactivation originals required",
+      "repeat infrastructure failure remains open without another retry",
+      "no overall T06/T07 or CI success inferred from dispatch"
+    ],
+    "reviewerGitHubFetchOrRetryExecution": false
+  },
+  "separateTechnicalDetailReview": {
+    "date": "2026-10-19",
+    "path": "T_TECHNICAL_DETAILS.md",
+    "sha256": "cc2f51119db4b76d5387d40f5f8b2508435ce505a138571110ca3f7a4922e6bb",
+    "result": "DETAIL_PLANNING_PASS",
+    "newADRRequiredForReviewedDetails": false,
+    "openHighs": [],
+    "closedRecoveryLeaseHigh": {
+      "previousHashWithFinding": "32bd7036954c79114e838a6d5fe8d8941c6f6d4b3949b9c3cf8763c3ce8e590f",
+      "closure": "One-shot lease binds validated returned immutable target-payload hash, repository/profile/catalog, maxObservedGeneration+1 and all reobserved candidate bytes under the same exclusive lock; other payloads/autosave/completion/normal writes are rejected without file effects; no added gameplay/reward/ledger/claim mutation; ordinary mutation resumes only after confirmed promotion"
+    },
+    "additionalBindingsReviewed": [
+      "separate bounded non-authoritative diagnostic tail and exact ledger bytes with legacy stops",
+      "closed inactive payload variants and visible resource failure without state truncation",
+      "separate S QA catalog sources and three-part CatalogSetIdentity",
+      "provider-free local clock and application dispatcher ports",
+      "A grid/read boundary and provenance-bound P selector conflict handling"
+    ],
+    "limitations": "Planning only; concrete files/closed DTOs before S/I code, no implementation/CI/overall-T claim"
+  }
+}

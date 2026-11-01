@@ -1,0 +1,4504 @@
+{
+  "schemaVersion": 1,
+  "rendererVersion": "railway-cartoon-1",
+  "approvalStatus": "DRAFT",
+  "referenceSourceCommit": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+  "styleSourceCommit": "9e3f209cd92d491ab3a1ab51cce63677d3b5d53e",
+  "origin": "Original code-native cartoon constructions in RailwayIllustrationElement and RailwayCosmeticElement; IBM Plex font license is recorded separately.",
+  "runtimeContract": "Presentation references only. No puzzle solution, reward, ownership, product approval or release authority.",
+  "worlds": [
+    {
+      "id": "s1-world-01",
+      "section": 1,
+      "rendererWorld": 0
+    },
+    {
+      "id": "s1-world-02",
+      "section": 2,
+      "rendererWorld": 1
+    },
+    {
+      "id": "s1-world-03",
+      "section": 3,
+      "rendererWorld": 2
+    },
+    {
+      "id": "s1-world-04",
+      "section": 4,
+      "rendererWorld": 3
+    },
+    {
+      "id": "s1-world-05",
+      "section": 5,
+      "rendererWorld": 4
+    }
+  ],
+  "routes": [
+    {
+      "id": "s1-route-01-01",
+      "worldId": "s1-world-01",
+      "section": 1,
+      "route": 1,
+      "modules": [
+        {
+          "kind": "tunnel",
+          "x": 347,
+          "y": 155,
+          "scale": 0.5
+        },
+        {
+          "kind": "platform",
+          "x": 89,
+          "y": 137,
+          "scale": 0.35
+        },
+        {
+          "kind": "signal",
+          "x": 219,
+          "y": 140,
+          "scale": 0.62
+        }
+      ]
+    },
+    {
+      "id": "s1-route-01-02",
+      "worldId": "s1-world-01",
+      "section": 1,
+      "route": 2,
+      "modules": [
+        {
+          "kind": "signal",
+          "x": 327,
+          "y": 161,
+          "scale": 0.9
+        },
+        {
+          "kind": "indicator",
+          "x": 102,
+          "y": 135,
+          "scale": 0.45
+        },
+        {
+          "kind": "bench",
+          "x": 349,
+          "y": 193,
+          "scale": 0.53
+        }
+      ]
+    },
+    {
+      "id": "s1-route-01-03",
+      "worldId": "s1-world-01",
+      "section": 1,
+      "route": 3,
+      "modules": [
+        {
+          "kind": "wayfinding",
+          "x": 331,
+          "y": 157,
+          "scale": 0.8
+        },
+        {
+          "kind": "bench",
+          "x": 83,
+          "y": 139,
+          "scale": 0.4
+        },
+        {
+          "kind": "platform",
+          "x": 227,
+          "y": 139,
+          "scale": 0.38
+        }
+      ]
+    },
+    {
+      "id": "s1-route-01-04",
+      "worldId": "s1-world-01",
+      "section": 1,
+      "route": 4,
+      "modules": [
+        {
+          "kind": "tunnel",
+          "x": 337,
+          "y": 152,
+          "scale": 0.52
+        },
+        {
+          "kind": "indicator",
+          "x": 218,
+          "y": 138,
+          "scale": 0.48
+        },
+        {
+          "kind": "platform",
+          "x": 87,
+          "y": 143,
+          "scale": 0.42
+        }
+      ]
+    },
+    {
+      "id": "s1-route-02-01",
+      "worldId": "s1-world-02",
+      "section": 2,
+      "route": 1,
+      "modules": [
+        {
+          "kind": "barrier",
+          "x": 324,
+          "y": 178,
+          "scale": 0.8
+        },
+        {
+          "kind": "platform",
+          "x": 111,
+          "y": 145,
+          "scale": 0.36
+        },
+        {
+          "kind": "wayfinding",
+          "x": 217,
+          "y": 141,
+          "scale": 0.45
+        }
+      ]
+    },
+    {
+      "id": "s1-route-02-02",
+      "worldId": "s1-world-02",
+      "section": 2,
+      "route": 2,
+      "modules": [
+        {
+          "kind": "barrier",
+          "x": 343,
+          "y": 178,
+          "scale": 0.62
+        },
+        {
+          "kind": "signal",
+          "x": 232,
+          "y": 139,
+          "scale": 0.6
+        },
+        {
+          "kind": "bench",
+          "x": 101,
+          "y": 141,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-02-03",
+      "worldId": "s1-world-02",
+      "section": 2,
+      "route": 3,
+      "modules": [
+        {
+          "kind": "indicator",
+          "x": 329,
+          "y": 154,
+          "scale": 0.8
+        },
+        {
+          "kind": "noticeboard",
+          "x": 214,
+          "y": 142,
+          "scale": 0.42
+        },
+        {
+          "kind": "barrier",
+          "x": 87,
+          "y": 143,
+          "scale": 0.36
+        }
+      ]
+    },
+    {
+      "id": "s1-route-02-04",
+      "worldId": "s1-world-02",
+      "section": 2,
+      "route": 4,
+      "modules": [
+        {
+          "kind": "platform",
+          "x": 328,
+          "y": 166,
+          "scale": 0.8
+        },
+        {
+          "kind": "wayfinding",
+          "x": 217,
+          "y": 139,
+          "scale": 0.5
+        },
+        {
+          "kind": "barrier",
+          "x": 87,
+          "y": 143,
+          "scale": 0.36
+        }
+      ]
+    },
+    {
+      "id": "s1-route-03-01",
+      "worldId": "s1-world-03",
+      "section": 3,
+      "route": 1,
+      "modules": [
+        {
+          "kind": "platform",
+          "x": 337,
+          "y": 176,
+          "scale": 0.75
+        },
+        {
+          "kind": "wayfinding",
+          "x": 217,
+          "y": 141,
+          "scale": 0.5
+        },
+        {
+          "kind": "bench",
+          "x": 97,
+          "y": 140,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-03-02",
+      "worldId": "s1-world-03",
+      "section": 3,
+      "route": 2,
+      "modules": [
+        {
+          "kind": "depot",
+          "x": 330,
+          "y": 155,
+          "scale": 0.6
+        },
+        {
+          "kind": "indicator",
+          "x": 217,
+          "y": 142,
+          "scale": 0.4
+        },
+        {
+          "kind": "bench",
+          "x": 92,
+          "y": 141,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-03-03",
+      "worldId": "s1-world-03",
+      "section": 3,
+      "route": 3,
+      "modules": [
+        {
+          "kind": "depot",
+          "x": 337,
+          "y": 157,
+          "scale": 0.6
+        },
+        {
+          "kind": "signal",
+          "x": 218,
+          "y": 142,
+          "scale": 0.5
+        },
+        {
+          "kind": "platform",
+          "x": 88,
+          "y": 141,
+          "scale": 0.38
+        }
+      ]
+    },
+    {
+      "id": "s1-route-03-04",
+      "worldId": "s1-world-03",
+      "section": 3,
+      "route": 4,
+      "modules": [
+        {
+          "kind": "wayfinding",
+          "x": 336,
+          "y": 159,
+          "scale": 0.8
+        },
+        {
+          "kind": "bench",
+          "x": 214,
+          "y": 140,
+          "scale": 0.4
+        },
+        {
+          "kind": "indicator",
+          "x": 93,
+          "y": 140,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-04-01",
+      "worldId": "s1-world-04",
+      "section": 4,
+      "route": 1,
+      "modules": [
+        {
+          "kind": "bridge",
+          "x": 324,
+          "y": 152,
+          "scale": 0.67
+        },
+        {
+          "kind": "wayfinding",
+          "x": 215,
+          "y": 140,
+          "scale": 0.45
+        },
+        {
+          "kind": "platform",
+          "x": 90,
+          "y": 142,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-04-02",
+      "worldId": "s1-world-04",
+      "section": 4,
+      "route": 2,
+      "modules": [
+        {
+          "kind": "bridge",
+          "x": 325,
+          "y": 152,
+          "scale": 0.62
+        },
+        {
+          "kind": "bench",
+          "x": 217,
+          "y": 141,
+          "scale": 0.4
+        },
+        {
+          "kind": "indicator",
+          "x": 97,
+          "y": 141,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-04-03",
+      "worldId": "s1-world-04",
+      "section": 4,
+      "route": 3,
+      "modules": [
+        {
+          "kind": "wayfinding",
+          "x": 337,
+          "y": 157,
+          "scale": 0.75
+        },
+        {
+          "kind": "noticeboard",
+          "x": 215,
+          "y": 142,
+          "scale": 0.46
+        },
+        {
+          "kind": "bridge",
+          "x": 95,
+          "y": 139,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-04-04",
+      "worldId": "s1-world-04",
+      "section": 4,
+      "route": 4,
+      "modules": [
+        {
+          "kind": "bridge",
+          "x": 329,
+          "y": 155,
+          "scale": 0.7
+        },
+        {
+          "kind": "wayfinding",
+          "x": 216,
+          "y": 141,
+          "scale": 0.5
+        },
+        {
+          "kind": "signal",
+          "x": 91,
+          "y": 142,
+          "scale": 0.45
+        }
+      ]
+    },
+    {
+      "id": "s1-route-05-01",
+      "worldId": "s1-world-05",
+      "section": 5,
+      "route": 1,
+      "modules": [
+        {
+          "kind": "sev-stop",
+          "x": 328,
+          "y": 174,
+          "scale": 0.85
+        },
+        {
+          "kind": "wayfinding",
+          "x": 217,
+          "y": 143,
+          "scale": 0.5
+        },
+        {
+          "kind": "barrier",
+          "x": 91,
+          "y": 143,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-05-02",
+      "worldId": "s1-world-05",
+      "section": 5,
+      "route": 2,
+      "modules": [
+        {
+          "kind": "sev-stop",
+          "x": 330,
+          "y": 173,
+          "scale": 0.9
+        },
+        {
+          "kind": "bench",
+          "x": 218,
+          "y": 141,
+          "scale": 0.48
+        },
+        {
+          "kind": "indicator",
+          "x": 91,
+          "y": 143,
+          "scale": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1-route-05-03",
+      "worldId": "s1-world-05",
+      "section": 5,
+      "route": 3,
+      "modules": [
+        {
+          "kind": "sev-stop",
+          "x": 332,
+          "y": 174,
+          "scale": 0.8
+        },
+        {
+          "kind": "wayfinding",
+          "x": 218,
+          "y": 143,
+          "scale": 0.5
+        },
+        {
+          "kind": "platform",
+          "x": 93,
+          "y": 141,
+          "scale": 0.42
+        }
+      ]
+    },
+    {
+      "id": "s1-route-05-04",
+      "worldId": "s1-world-05",
+      "section": 5,
+      "route": 4,
+      "modules": [
+        {
+          "kind": "noticeboard",
+          "x": 333,
+          "y": 168,
+          "scale": 0.77
+        },
+        {
+          "kind": "sev-stop",
+          "x": 217,
+          "y": 140,
+          "scale": 0.45
+        },
+        {
+          "kind": "signal",
+          "x": 91,
+          "y": 143,
+          "scale": 0.5
+        }
+      ]
+    }
+  ],
+  "cosmetics": [
+    {
+      "id": "livery-baustellengelb",
+      "assetAddress": "stp/cosmetics/livery-baustellengelb",
+      "titleKey": "cosmetic.livery-baustellengelb.title",
+      "rendererKey": "livery-baustellengelb"
+    },
+    {
+      "id": "livery-betriebsrot",
+      "assetAddress": "stp/cosmetics/livery-betriebsrot",
+      "titleKey": "cosmetic.livery-betriebsrot.title",
+      "rendererKey": "livery-betriebsrot"
+    },
+    {
+      "id": "obj-absperrung-laufzeit-offen",
+      "assetAddress": "stp/cosmetics/obj-absperrung-laufzeit-offen",
+      "titleKey": "cosmetic.obj-absperrung-laufzeit-offen.title",
+      "rendererKey": "obj-absperrung-laufzeit-offen"
+    },
+    {
+      "id": "obj-anzeiger-in-pruefung",
+      "assetAddress": "stp/cosmetics/obj-anzeiger-in-pruefung",
+      "titleKey": "cosmetic.obj-anzeiger-in-pruefung.title",
+      "rendererKey": "obj-anzeiger-in-pruefung"
+    },
+    {
+      "id": "obj-bahnsteig-provisorisch",
+      "assetAddress": "stp/cosmetics/obj-bahnsteig-provisorisch",
+      "titleKey": "cosmetic.obj-bahnsteig-provisorisch.title",
+      "rendererKey": "obj-bahnsteig-provisorisch"
+    },
+    {
+      "id": "obj-sev-bucht-geplant",
+      "assetAddress": "stp/cosmetics/obj-sev-bucht-geplant",
+      "titleKey": "cosmetic.obj-sev-bucht-geplant.title",
+      "rendererKey": "obj-sev-bucht-geplant"
+    },
+    {
+      "id": "obj-signal-freigegeben",
+      "assetAddress": "stp/cosmetics/obj-signal-freigegeben",
+      "titleKey": "cosmetic.obj-signal-freigegeben.title",
+      "rendererKey": "obj-signal-freigegeben"
+    },
+    {
+      "id": "obj-tafel-trotzdem-weiter",
+      "assetAddress": "stp/cosmetics/obj-tafel-trotzdem-weiter",
+      "titleKey": "cosmetic.obj-tafel-trotzdem-weiter.title",
+      "rendererKey": "obj-tafel-trotzdem-weiter"
+    },
+    {
+      "id": "obj-tunnelportal-wartung",
+      "assetAddress": "stp/cosmetics/obj-tunnelportal-wartung",
+      "titleKey": "cosmetic.obj-tunnelportal-wartung.title",
+      "rendererKey": "obj-tunnelportal-wartung"
+    },
+    {
+      "id": "obj-wartebank-ohne-anschluss",
+      "assetAddress": "stp/cosmetics/obj-wartebank-ohne-anschluss",
+      "titleKey": "cosmetic.obj-wartebank-ohne-anschluss.title",
+      "rendererKey": "obj-wartebank-ohne-anschluss"
+    },
+    {
+      "id": "obj-wegweiser-vielleicht",
+      "assetAddress": "stp/cosmetics/obj-wegweiser-vielleicht",
+      "titleKey": "cosmetic.obj-wegweiser-vielleicht.title",
+      "rendererKey": "obj-wegweiser-vielleicht"
+    },
+    {
+      "id": "train-anschlusswunder",
+      "assetAddress": "stp/cosmetics/train-anschlusswunder",
+      "titleKey": "cosmetic.train-anschlusswunder.title",
+      "rendererKey": "train-anschlusswunder"
+    },
+    {
+      "id": "train-ersatzgarnitur",
+      "assetAddress": "stp/cosmetics/train-ersatzgarnitur",
+      "titleKey": "cosmetic.train-ersatzgarnitur.title",
+      "rendererKey": "train-ersatzgarnitur"
+    },
+    {
+      "id": "train-stammrot-default",
+      "assetAddress": "stp/cosmetics/train-stammrot-default",
+      "titleKey": "cosmetic.train-stammrot-default.title",
+      "rendererKey": "train-stammrot-default"
+    }
+  ],
+  "moments": [
+    {
+      "referenceId": "draft-s1-01-01-01-map",
+      "puzzleId": "S1-01-01-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-01-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-01-01-train",
+      "puzzleId": "S1-01-01-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-01-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-01-02-map",
+      "puzzleId": "S1-01-01-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-02-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-01-02-train",
+      "puzzleId": "S1-01-01-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-02-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-01-03-map",
+      "puzzleId": "S1-01-01-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-03-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-01-03-train",
+      "puzzleId": "S1-01-01-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-03-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-01-04-map",
+      "puzzleId": "S1-01-01-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-04-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-01-04-train",
+      "puzzleId": "S1-01-01-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-04-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-01-05-map",
+      "puzzleId": "S1-01-01-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-05-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-01-05-train",
+      "puzzleId": "S1-01-01-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-05-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-01-06-map",
+      "puzzleId": "S1-01-01-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-06-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-01-06-train",
+      "puzzleId": "S1-01-01-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-06-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-01-07-map",
+      "puzzleId": "S1-01-01-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-07-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-01-07-train",
+      "puzzleId": "S1-01-01-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-07-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-01-08-map",
+      "puzzleId": "S1-01-01-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-08-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-01-08-train",
+      "puzzleId": "S1-01-01-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-08-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-01-09-map",
+      "puzzleId": "S1-01-01-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-09-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-01-09-train",
+      "puzzleId": "S1-01-01-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-09-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-01-10-map",
+      "puzzleId": "S1-01-01-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-10-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-01-10-train",
+      "puzzleId": "S1-01-01-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-10-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-01-11-map",
+      "puzzleId": "S1-01-01-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-11-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-01-11-train",
+      "puzzleId": "S1-01-01-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-11-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-01-12-map",
+      "puzzleId": "S1-01-01-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-01-12-map",
+      "compositionId": "s1-route-01-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-01-12-train",
+      "puzzleId": "S1-01-01-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-01-12-train",
+      "compositionId": "s1-route-01-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-02-01-map",
+      "puzzleId": "S1-01-02-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-01-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-02-01-train",
+      "puzzleId": "S1-01-02-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-01-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-02-02-map",
+      "puzzleId": "S1-01-02-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-02-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-02-02-train",
+      "puzzleId": "S1-01-02-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-02-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-02-03-map",
+      "puzzleId": "S1-01-02-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-03-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-02-03-train",
+      "puzzleId": "S1-01-02-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-03-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-02-04-map",
+      "puzzleId": "S1-01-02-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-04-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-02-04-train",
+      "puzzleId": "S1-01-02-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-04-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-02-05-map",
+      "puzzleId": "S1-01-02-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-05-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-02-05-train",
+      "puzzleId": "S1-01-02-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-05-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-02-06-map",
+      "puzzleId": "S1-01-02-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-06-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-02-06-train",
+      "puzzleId": "S1-01-02-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-06-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-02-07-map",
+      "puzzleId": "S1-01-02-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-07-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-02-07-train",
+      "puzzleId": "S1-01-02-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-07-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-02-08-map",
+      "puzzleId": "S1-01-02-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-08-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-02-08-train",
+      "puzzleId": "S1-01-02-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-08-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-02-09-map",
+      "puzzleId": "S1-01-02-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-09-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-02-09-train",
+      "puzzleId": "S1-01-02-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-09-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-02-10-map",
+      "puzzleId": "S1-01-02-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-10-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-02-10-train",
+      "puzzleId": "S1-01-02-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-10-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-02-11-map",
+      "puzzleId": "S1-01-02-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-11-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-02-11-train",
+      "puzzleId": "S1-01-02-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-11-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-02-12-map",
+      "puzzleId": "S1-01-02-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-02-12-map",
+      "compositionId": "s1-route-01-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-02-12-train",
+      "puzzleId": "S1-01-02-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-02-12-train",
+      "compositionId": "s1-route-01-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-03-01-map",
+      "puzzleId": "S1-01-03-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-01-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-03-01-train",
+      "puzzleId": "S1-01-03-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-01-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-03-02-map",
+      "puzzleId": "S1-01-03-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-02-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-03-02-train",
+      "puzzleId": "S1-01-03-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-02-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-03-03-map",
+      "puzzleId": "S1-01-03-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-03-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-03-03-train",
+      "puzzleId": "S1-01-03-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-03-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-03-04-map",
+      "puzzleId": "S1-01-03-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-04-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-03-04-train",
+      "puzzleId": "S1-01-03-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-04-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-03-05-map",
+      "puzzleId": "S1-01-03-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-05-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-03-05-train",
+      "puzzleId": "S1-01-03-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-05-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-03-06-map",
+      "puzzleId": "S1-01-03-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-06-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-03-06-train",
+      "puzzleId": "S1-01-03-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-06-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-03-07-map",
+      "puzzleId": "S1-01-03-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-07-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-03-07-train",
+      "puzzleId": "S1-01-03-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-07-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-03-08-map",
+      "puzzleId": "S1-01-03-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-08-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-03-08-train",
+      "puzzleId": "S1-01-03-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-08-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-03-09-map",
+      "puzzleId": "S1-01-03-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-09-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-03-09-train",
+      "puzzleId": "S1-01-03-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-09-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-03-10-map",
+      "puzzleId": "S1-01-03-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-10-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-03-10-train",
+      "puzzleId": "S1-01-03-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-10-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-03-11-map",
+      "puzzleId": "S1-01-03-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-11-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-03-11-train",
+      "puzzleId": "S1-01-03-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-11-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-03-12-map",
+      "puzzleId": "S1-01-03-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-03-12-map",
+      "compositionId": "s1-route-01-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-03-12-train",
+      "puzzleId": "S1-01-03-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-03-12-train",
+      "compositionId": "s1-route-01-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-04-01-map",
+      "puzzleId": "S1-01-04-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-01-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-04-01-train",
+      "puzzleId": "S1-01-04-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-01-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-01-04-02-map",
+      "puzzleId": "S1-01-04-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-02-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-04-02-train",
+      "puzzleId": "S1-01-04-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-02-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-01-04-03-map",
+      "puzzleId": "S1-01-04-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-03-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-04-03-train",
+      "puzzleId": "S1-01-04-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-03-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-01-04-04-map",
+      "puzzleId": "S1-01-04-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-04-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-04-04-train",
+      "puzzleId": "S1-01-04-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-04-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-01-04-05-map",
+      "puzzleId": "S1-01-04-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-05-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-04-05-train",
+      "puzzleId": "S1-01-04-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-05-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-01-04-06-map",
+      "puzzleId": "S1-01-04-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-06-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-04-06-train",
+      "puzzleId": "S1-01-04-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-06-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-01-04-07-map",
+      "puzzleId": "S1-01-04-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-07-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-04-07-train",
+      "puzzleId": "S1-01-04-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-07-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-01-04-08-map",
+      "puzzleId": "S1-01-04-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-08-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-04-08-train",
+      "puzzleId": "S1-01-04-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-08-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-01-04-09-map",
+      "puzzleId": "S1-01-04-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-09-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-04-09-train",
+      "puzzleId": "S1-01-04-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-09-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-01-04-10-map",
+      "puzzleId": "S1-01-04-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-10-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-04-10-train",
+      "puzzleId": "S1-01-04-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-10-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-01-04-11-map",
+      "puzzleId": "S1-01-04-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-11-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-04-11-train",
+      "puzzleId": "S1-01-04-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-11-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-01-04-12-map",
+      "puzzleId": "S1-01-04-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-01-04-12-map",
+      "compositionId": "s1-route-01-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-01-04-12-train",
+      "puzzleId": "S1-01-04-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-01-04-12-train",
+      "compositionId": "s1-route-01-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-01-01-map",
+      "puzzleId": "S1-02-01-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-01-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-01-01-train",
+      "puzzleId": "S1-02-01-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-01-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-01-02-map",
+      "puzzleId": "S1-02-01-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-02-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-01-02-train",
+      "puzzleId": "S1-02-01-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-02-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-01-03-map",
+      "puzzleId": "S1-02-01-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-03-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-01-03-train",
+      "puzzleId": "S1-02-01-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-03-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-01-04-map",
+      "puzzleId": "S1-02-01-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-04-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-01-04-train",
+      "puzzleId": "S1-02-01-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-04-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-01-05-map",
+      "puzzleId": "S1-02-01-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-05-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-01-05-train",
+      "puzzleId": "S1-02-01-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-05-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-01-06-map",
+      "puzzleId": "S1-02-01-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-06-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-01-06-train",
+      "puzzleId": "S1-02-01-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-06-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-01-07-map",
+      "puzzleId": "S1-02-01-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-07-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-01-07-train",
+      "puzzleId": "S1-02-01-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-07-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-01-08-map",
+      "puzzleId": "S1-02-01-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-08-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-01-08-train",
+      "puzzleId": "S1-02-01-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-08-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-01-09-map",
+      "puzzleId": "S1-02-01-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-09-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-01-09-train",
+      "puzzleId": "S1-02-01-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-09-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-01-10-map",
+      "puzzleId": "S1-02-01-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-10-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-01-10-train",
+      "puzzleId": "S1-02-01-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-10-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-01-11-map",
+      "puzzleId": "S1-02-01-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-11-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-01-11-train",
+      "puzzleId": "S1-02-01-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-11-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-01-12-map",
+      "puzzleId": "S1-02-01-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-01-12-map",
+      "compositionId": "s1-route-02-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-01-12-train",
+      "puzzleId": "S1-02-01-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-01-12-train",
+      "compositionId": "s1-route-02-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-02-01-map",
+      "puzzleId": "S1-02-02-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-01-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-02-01-train",
+      "puzzleId": "S1-02-02-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-01-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-02-02-map",
+      "puzzleId": "S1-02-02-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-02-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-02-02-train",
+      "puzzleId": "S1-02-02-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-02-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-02-03-map",
+      "puzzleId": "S1-02-02-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-03-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-02-03-train",
+      "puzzleId": "S1-02-02-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-03-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-02-04-map",
+      "puzzleId": "S1-02-02-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-04-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-02-04-train",
+      "puzzleId": "S1-02-02-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-04-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-02-05-map",
+      "puzzleId": "S1-02-02-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-05-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-02-05-train",
+      "puzzleId": "S1-02-02-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-05-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-02-06-map",
+      "puzzleId": "S1-02-02-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-06-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-02-06-train",
+      "puzzleId": "S1-02-02-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-06-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-02-07-map",
+      "puzzleId": "S1-02-02-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-07-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-02-07-train",
+      "puzzleId": "S1-02-02-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-07-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-02-08-map",
+      "puzzleId": "S1-02-02-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-08-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-02-08-train",
+      "puzzleId": "S1-02-02-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-08-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-02-09-map",
+      "puzzleId": "S1-02-02-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-09-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-02-09-train",
+      "puzzleId": "S1-02-02-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-09-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-02-10-map",
+      "puzzleId": "S1-02-02-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-10-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-02-10-train",
+      "puzzleId": "S1-02-02-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-10-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-02-11-map",
+      "puzzleId": "S1-02-02-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-11-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-02-11-train",
+      "puzzleId": "S1-02-02-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-11-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-02-12-map",
+      "puzzleId": "S1-02-02-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-02-12-map",
+      "compositionId": "s1-route-02-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-02-12-train",
+      "puzzleId": "S1-02-02-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-02-12-train",
+      "compositionId": "s1-route-02-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-03-01-map",
+      "puzzleId": "S1-02-03-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-01-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-03-01-train",
+      "puzzleId": "S1-02-03-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-01-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-03-02-map",
+      "puzzleId": "S1-02-03-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-02-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-03-02-train",
+      "puzzleId": "S1-02-03-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-02-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-03-03-map",
+      "puzzleId": "S1-02-03-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-03-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-03-03-train",
+      "puzzleId": "S1-02-03-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-03-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-03-04-map",
+      "puzzleId": "S1-02-03-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-04-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-03-04-train",
+      "puzzleId": "S1-02-03-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-04-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-03-05-map",
+      "puzzleId": "S1-02-03-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-05-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-03-05-train",
+      "puzzleId": "S1-02-03-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-05-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-03-06-map",
+      "puzzleId": "S1-02-03-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-06-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-03-06-train",
+      "puzzleId": "S1-02-03-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-06-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-03-07-map",
+      "puzzleId": "S1-02-03-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-07-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-03-07-train",
+      "puzzleId": "S1-02-03-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-07-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-03-08-map",
+      "puzzleId": "S1-02-03-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-08-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-03-08-train",
+      "puzzleId": "S1-02-03-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-08-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-03-09-map",
+      "puzzleId": "S1-02-03-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-09-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-03-09-train",
+      "puzzleId": "S1-02-03-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-09-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-03-10-map",
+      "puzzleId": "S1-02-03-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-10-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-03-10-train",
+      "puzzleId": "S1-02-03-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-10-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-03-11-map",
+      "puzzleId": "S1-02-03-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-11-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-03-11-train",
+      "puzzleId": "S1-02-03-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-11-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-03-12-map",
+      "puzzleId": "S1-02-03-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-03-12-map",
+      "compositionId": "s1-route-02-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-03-12-train",
+      "puzzleId": "S1-02-03-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-03-12-train",
+      "compositionId": "s1-route-02-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-04-01-map",
+      "puzzleId": "S1-02-04-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-01-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-04-01-train",
+      "puzzleId": "S1-02-04-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-01-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-02-04-02-map",
+      "puzzleId": "S1-02-04-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-02-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-04-02-train",
+      "puzzleId": "S1-02-04-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-02-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-02-04-03-map",
+      "puzzleId": "S1-02-04-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-03-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-04-03-train",
+      "puzzleId": "S1-02-04-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-03-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-02-04-04-map",
+      "puzzleId": "S1-02-04-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-04-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-04-04-train",
+      "puzzleId": "S1-02-04-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-04-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-02-04-05-map",
+      "puzzleId": "S1-02-04-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-05-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-04-05-train",
+      "puzzleId": "S1-02-04-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-05-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-02-04-06-map",
+      "puzzleId": "S1-02-04-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-06-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-04-06-train",
+      "puzzleId": "S1-02-04-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-06-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-02-04-07-map",
+      "puzzleId": "S1-02-04-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-07-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-04-07-train",
+      "puzzleId": "S1-02-04-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-07-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-02-04-08-map",
+      "puzzleId": "S1-02-04-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-08-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-04-08-train",
+      "puzzleId": "S1-02-04-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-08-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-02-04-09-map",
+      "puzzleId": "S1-02-04-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-09-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-04-09-train",
+      "puzzleId": "S1-02-04-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-09-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-02-04-10-map",
+      "puzzleId": "S1-02-04-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-10-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-04-10-train",
+      "puzzleId": "S1-02-04-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-10-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-02-04-11-map",
+      "puzzleId": "S1-02-04-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-11-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-04-11-train",
+      "puzzleId": "S1-02-04-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-11-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-02-04-12-map",
+      "puzzleId": "S1-02-04-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-02-04-12-map",
+      "compositionId": "s1-route-02-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-02-04-12-train",
+      "puzzleId": "S1-02-04-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-02-04-12-train",
+      "compositionId": "s1-route-02-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-01-01-map",
+      "puzzleId": "S1-03-01-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-01-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-01-01-train",
+      "puzzleId": "S1-03-01-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-01-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-01-02-map",
+      "puzzleId": "S1-03-01-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-02-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-01-02-train",
+      "puzzleId": "S1-03-01-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-02-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-01-03-map",
+      "puzzleId": "S1-03-01-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-03-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-01-03-train",
+      "puzzleId": "S1-03-01-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-03-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-01-04-map",
+      "puzzleId": "S1-03-01-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-04-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-01-04-train",
+      "puzzleId": "S1-03-01-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-04-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-01-05-map",
+      "puzzleId": "S1-03-01-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-05-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-01-05-train",
+      "puzzleId": "S1-03-01-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-05-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-01-06-map",
+      "puzzleId": "S1-03-01-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-06-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-01-06-train",
+      "puzzleId": "S1-03-01-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-06-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-01-07-map",
+      "puzzleId": "S1-03-01-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-07-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-01-07-train",
+      "puzzleId": "S1-03-01-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-07-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-01-08-map",
+      "puzzleId": "S1-03-01-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-08-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-01-08-train",
+      "puzzleId": "S1-03-01-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-08-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-01-09-map",
+      "puzzleId": "S1-03-01-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-09-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-01-09-train",
+      "puzzleId": "S1-03-01-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-09-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-01-10-map",
+      "puzzleId": "S1-03-01-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-10-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-01-10-train",
+      "puzzleId": "S1-03-01-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-10-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-01-11-map",
+      "puzzleId": "S1-03-01-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-11-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-01-11-train",
+      "puzzleId": "S1-03-01-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-11-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-01-12-map",
+      "puzzleId": "S1-03-01-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-01-12-map",
+      "compositionId": "s1-route-03-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-01-12-train",
+      "puzzleId": "S1-03-01-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-01-12-train",
+      "compositionId": "s1-route-03-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-02-01-map",
+      "puzzleId": "S1-03-02-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-01-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-02-01-train",
+      "puzzleId": "S1-03-02-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-01-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-02-02-map",
+      "puzzleId": "S1-03-02-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-02-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-02-02-train",
+      "puzzleId": "S1-03-02-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-02-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-02-03-map",
+      "puzzleId": "S1-03-02-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-03-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-02-03-train",
+      "puzzleId": "S1-03-02-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-03-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-02-04-map",
+      "puzzleId": "S1-03-02-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-04-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-02-04-train",
+      "puzzleId": "S1-03-02-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-04-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-02-05-map",
+      "puzzleId": "S1-03-02-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-05-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-02-05-train",
+      "puzzleId": "S1-03-02-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-05-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-02-06-map",
+      "puzzleId": "S1-03-02-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-06-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-02-06-train",
+      "puzzleId": "S1-03-02-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-06-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-02-07-map",
+      "puzzleId": "S1-03-02-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-07-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-02-07-train",
+      "puzzleId": "S1-03-02-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-07-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-02-08-map",
+      "puzzleId": "S1-03-02-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-08-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-02-08-train",
+      "puzzleId": "S1-03-02-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-08-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-02-09-map",
+      "puzzleId": "S1-03-02-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-09-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-02-09-train",
+      "puzzleId": "S1-03-02-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-09-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-02-10-map",
+      "puzzleId": "S1-03-02-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-10-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-02-10-train",
+      "puzzleId": "S1-03-02-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-10-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-02-11-map",
+      "puzzleId": "S1-03-02-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-11-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-02-11-train",
+      "puzzleId": "S1-03-02-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-11-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-02-12-map",
+      "puzzleId": "S1-03-02-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-02-12-map",
+      "compositionId": "s1-route-03-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-02-12-train",
+      "puzzleId": "S1-03-02-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-02-12-train",
+      "compositionId": "s1-route-03-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-03-01-map",
+      "puzzleId": "S1-03-03-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-01-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-03-01-train",
+      "puzzleId": "S1-03-03-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-01-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-03-02-map",
+      "puzzleId": "S1-03-03-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-02-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-03-02-train",
+      "puzzleId": "S1-03-03-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-02-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-03-03-map",
+      "puzzleId": "S1-03-03-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-03-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-03-03-train",
+      "puzzleId": "S1-03-03-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-03-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-03-04-map",
+      "puzzleId": "S1-03-03-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-04-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-03-04-train",
+      "puzzleId": "S1-03-03-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-04-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-03-05-map",
+      "puzzleId": "S1-03-03-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-05-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-03-05-train",
+      "puzzleId": "S1-03-03-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-05-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-03-06-map",
+      "puzzleId": "S1-03-03-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-06-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-03-06-train",
+      "puzzleId": "S1-03-03-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-06-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-03-07-map",
+      "puzzleId": "S1-03-03-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-07-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-03-07-train",
+      "puzzleId": "S1-03-03-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-07-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-03-08-map",
+      "puzzleId": "S1-03-03-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-08-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-03-08-train",
+      "puzzleId": "S1-03-03-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-08-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-03-09-map",
+      "puzzleId": "S1-03-03-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-09-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-03-09-train",
+      "puzzleId": "S1-03-03-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-09-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-03-10-map",
+      "puzzleId": "S1-03-03-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-10-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-03-10-train",
+      "puzzleId": "S1-03-03-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-10-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-03-11-map",
+      "puzzleId": "S1-03-03-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-11-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-03-11-train",
+      "puzzleId": "S1-03-03-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-11-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-03-12-map",
+      "puzzleId": "S1-03-03-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-03-12-map",
+      "compositionId": "s1-route-03-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-03-12-train",
+      "puzzleId": "S1-03-03-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-03-12-train",
+      "compositionId": "s1-route-03-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-04-01-map",
+      "puzzleId": "S1-03-04-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-01-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-04-01-train",
+      "puzzleId": "S1-03-04-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-01-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-03-04-02-map",
+      "puzzleId": "S1-03-04-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-02-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-04-02-train",
+      "puzzleId": "S1-03-04-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-02-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-03-04-03-map",
+      "puzzleId": "S1-03-04-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-03-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-04-03-train",
+      "puzzleId": "S1-03-04-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-03-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-03-04-04-map",
+      "puzzleId": "S1-03-04-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-04-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-04-04-train",
+      "puzzleId": "S1-03-04-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-04-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-03-04-05-map",
+      "puzzleId": "S1-03-04-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-05-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-04-05-train",
+      "puzzleId": "S1-03-04-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-05-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-03-04-06-map",
+      "puzzleId": "S1-03-04-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-06-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-04-06-train",
+      "puzzleId": "S1-03-04-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-06-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-03-04-07-map",
+      "puzzleId": "S1-03-04-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-07-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-04-07-train",
+      "puzzleId": "S1-03-04-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-07-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-03-04-08-map",
+      "puzzleId": "S1-03-04-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-08-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-04-08-train",
+      "puzzleId": "S1-03-04-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-08-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-03-04-09-map",
+      "puzzleId": "S1-03-04-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-09-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-04-09-train",
+      "puzzleId": "S1-03-04-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-09-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-03-04-10-map",
+      "puzzleId": "S1-03-04-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-10-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-04-10-train",
+      "puzzleId": "S1-03-04-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-10-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-03-04-11-map",
+      "puzzleId": "S1-03-04-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-11-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-04-11-train",
+      "puzzleId": "S1-03-04-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-11-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-03-04-12-map",
+      "puzzleId": "S1-03-04-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-03-04-12-map",
+      "compositionId": "s1-route-03-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-03-04-12-train",
+      "puzzleId": "S1-03-04-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-03-04-12-train",
+      "compositionId": "s1-route-03-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-01-01-map",
+      "puzzleId": "S1-04-01-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-01-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-01-01-train",
+      "puzzleId": "S1-04-01-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-01-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-01-02-map",
+      "puzzleId": "S1-04-01-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-02-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-01-02-train",
+      "puzzleId": "S1-04-01-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-02-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-01-03-map",
+      "puzzleId": "S1-04-01-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-03-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-01-03-train",
+      "puzzleId": "S1-04-01-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-03-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-01-04-map",
+      "puzzleId": "S1-04-01-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-04-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-01-04-train",
+      "puzzleId": "S1-04-01-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-04-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-01-05-map",
+      "puzzleId": "S1-04-01-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-05-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-01-05-train",
+      "puzzleId": "S1-04-01-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-05-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-01-06-map",
+      "puzzleId": "S1-04-01-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-06-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-01-06-train",
+      "puzzleId": "S1-04-01-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-06-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-01-07-map",
+      "puzzleId": "S1-04-01-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-07-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-01-07-train",
+      "puzzleId": "S1-04-01-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-07-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-01-08-map",
+      "puzzleId": "S1-04-01-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-08-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-01-08-train",
+      "puzzleId": "S1-04-01-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-08-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-01-09-map",
+      "puzzleId": "S1-04-01-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-09-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-01-09-train",
+      "puzzleId": "S1-04-01-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-09-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-01-10-map",
+      "puzzleId": "S1-04-01-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-10-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-01-10-train",
+      "puzzleId": "S1-04-01-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-10-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-01-11-map",
+      "puzzleId": "S1-04-01-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-11-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-01-11-train",
+      "puzzleId": "S1-04-01-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-11-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-01-12-map",
+      "puzzleId": "S1-04-01-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-01-12-map",
+      "compositionId": "s1-route-04-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-01-12-train",
+      "puzzleId": "S1-04-01-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-01-12-train",
+      "compositionId": "s1-route-04-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-02-01-map",
+      "puzzleId": "S1-04-02-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-01-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-02-01-train",
+      "puzzleId": "S1-04-02-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-01-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-02-02-map",
+      "puzzleId": "S1-04-02-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-02-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-02-02-train",
+      "puzzleId": "S1-04-02-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-02-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-02-03-map",
+      "puzzleId": "S1-04-02-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-03-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-02-03-train",
+      "puzzleId": "S1-04-02-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-03-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-02-04-map",
+      "puzzleId": "S1-04-02-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-04-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-02-04-train",
+      "puzzleId": "S1-04-02-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-04-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-02-05-map",
+      "puzzleId": "S1-04-02-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-05-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-02-05-train",
+      "puzzleId": "S1-04-02-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-05-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-02-06-map",
+      "puzzleId": "S1-04-02-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-06-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-02-06-train",
+      "puzzleId": "S1-04-02-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-06-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-02-07-map",
+      "puzzleId": "S1-04-02-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-07-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-02-07-train",
+      "puzzleId": "S1-04-02-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-07-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-02-08-map",
+      "puzzleId": "S1-04-02-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-08-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-02-08-train",
+      "puzzleId": "S1-04-02-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-08-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-02-09-map",
+      "puzzleId": "S1-04-02-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-09-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-02-09-train",
+      "puzzleId": "S1-04-02-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-09-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-02-10-map",
+      "puzzleId": "S1-04-02-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-10-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-02-10-train",
+      "puzzleId": "S1-04-02-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-10-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-02-11-map",
+      "puzzleId": "S1-04-02-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-11-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-02-11-train",
+      "puzzleId": "S1-04-02-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-11-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-02-12-map",
+      "puzzleId": "S1-04-02-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-02-12-map",
+      "compositionId": "s1-route-04-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-02-12-train",
+      "puzzleId": "S1-04-02-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-02-12-train",
+      "compositionId": "s1-route-04-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-03-01-map",
+      "puzzleId": "S1-04-03-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-01-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-03-01-train",
+      "puzzleId": "S1-04-03-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-01-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-03-02-map",
+      "puzzleId": "S1-04-03-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-02-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-03-02-train",
+      "puzzleId": "S1-04-03-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-02-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-03-03-map",
+      "puzzleId": "S1-04-03-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-03-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-03-03-train",
+      "puzzleId": "S1-04-03-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-03-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-03-04-map",
+      "puzzleId": "S1-04-03-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-04-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-03-04-train",
+      "puzzleId": "S1-04-03-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-04-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-03-05-map",
+      "puzzleId": "S1-04-03-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-05-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-03-05-train",
+      "puzzleId": "S1-04-03-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-05-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-03-06-map",
+      "puzzleId": "S1-04-03-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-06-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-03-06-train",
+      "puzzleId": "S1-04-03-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-06-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-03-07-map",
+      "puzzleId": "S1-04-03-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-07-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-03-07-train",
+      "puzzleId": "S1-04-03-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-07-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-03-08-map",
+      "puzzleId": "S1-04-03-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-08-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-03-08-train",
+      "puzzleId": "S1-04-03-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-08-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-03-09-map",
+      "puzzleId": "S1-04-03-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-09-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-03-09-train",
+      "puzzleId": "S1-04-03-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-09-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-03-10-map",
+      "puzzleId": "S1-04-03-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-10-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-03-10-train",
+      "puzzleId": "S1-04-03-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-10-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-03-11-map",
+      "puzzleId": "S1-04-03-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-11-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-03-11-train",
+      "puzzleId": "S1-04-03-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-11-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-03-12-map",
+      "puzzleId": "S1-04-03-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-03-12-map",
+      "compositionId": "s1-route-04-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-03-12-train",
+      "puzzleId": "S1-04-03-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-03-12-train",
+      "compositionId": "s1-route-04-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-04-01-map",
+      "puzzleId": "S1-04-04-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-01-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-04-01-train",
+      "puzzleId": "S1-04-04-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-01-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-04-04-02-map",
+      "puzzleId": "S1-04-04-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-02-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-04-02-train",
+      "puzzleId": "S1-04-04-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-02-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-04-04-03-map",
+      "puzzleId": "S1-04-04-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-03-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-04-03-train",
+      "puzzleId": "S1-04-04-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-03-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-04-04-04-map",
+      "puzzleId": "S1-04-04-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-04-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-04-04-train",
+      "puzzleId": "S1-04-04-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-04-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-04-04-05-map",
+      "puzzleId": "S1-04-04-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-05-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-04-05-train",
+      "puzzleId": "S1-04-04-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-05-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-04-04-06-map",
+      "puzzleId": "S1-04-04-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-06-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-04-06-train",
+      "puzzleId": "S1-04-04-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-06-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-04-04-07-map",
+      "puzzleId": "S1-04-04-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-07-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-04-07-train",
+      "puzzleId": "S1-04-04-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-07-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-04-04-08-map",
+      "puzzleId": "S1-04-04-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-08-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-04-08-train",
+      "puzzleId": "S1-04-04-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-08-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-04-04-09-map",
+      "puzzleId": "S1-04-04-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-09-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-04-09-train",
+      "puzzleId": "S1-04-04-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-09-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-04-04-10-map",
+      "puzzleId": "S1-04-04-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-10-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-04-10-train",
+      "puzzleId": "S1-04-04-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-10-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-04-04-11-map",
+      "puzzleId": "S1-04-04-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-11-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-04-11-train",
+      "puzzleId": "S1-04-04-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-11-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-04-04-12-map",
+      "puzzleId": "S1-04-04-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-04-04-12-map",
+      "compositionId": "s1-route-04-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-04-04-12-train",
+      "puzzleId": "S1-04-04-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-04-04-12-train",
+      "compositionId": "s1-route-04-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-01-01-map",
+      "puzzleId": "S1-05-01-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-01-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-01-01-train",
+      "puzzleId": "S1-05-01-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-01-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-01-02-map",
+      "puzzleId": "S1-05-01-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-02-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-01-02-train",
+      "puzzleId": "S1-05-01-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-02-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-01-03-map",
+      "puzzleId": "S1-05-01-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-03-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-01-03-train",
+      "puzzleId": "S1-05-01-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-03-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-01-04-map",
+      "puzzleId": "S1-05-01-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-04-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-01-04-train",
+      "puzzleId": "S1-05-01-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-04-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-01-05-map",
+      "puzzleId": "S1-05-01-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-05-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-01-05-train",
+      "puzzleId": "S1-05-01-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-05-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-01-06-map",
+      "puzzleId": "S1-05-01-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-06-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-01-06-train",
+      "puzzleId": "S1-05-01-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-06-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-01-07-map",
+      "puzzleId": "S1-05-01-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-07-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-01-07-train",
+      "puzzleId": "S1-05-01-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-07-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-01-08-map",
+      "puzzleId": "S1-05-01-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-08-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-01-08-train",
+      "puzzleId": "S1-05-01-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-08-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-01-09-map",
+      "puzzleId": "S1-05-01-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-09-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-01-09-train",
+      "puzzleId": "S1-05-01-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-09-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-01-10-map",
+      "puzzleId": "S1-05-01-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-10-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-01-10-train",
+      "puzzleId": "S1-05-01-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-10-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-01-11-map",
+      "puzzleId": "S1-05-01-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-11-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-01-11-train",
+      "puzzleId": "S1-05-01-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-11-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-01-12-map",
+      "puzzleId": "S1-05-01-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-01-12-map",
+      "compositionId": "s1-route-05-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-01-12-train",
+      "puzzleId": "S1-05-01-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-01-12-train",
+      "compositionId": "s1-route-05-01",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-02-01-map",
+      "puzzleId": "S1-05-02-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-01-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-02-01-train",
+      "puzzleId": "S1-05-02-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-01-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-02-02-map",
+      "puzzleId": "S1-05-02-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-02-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-02-02-train",
+      "puzzleId": "S1-05-02-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-02-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-02-03-map",
+      "puzzleId": "S1-05-02-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-03-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-02-03-train",
+      "puzzleId": "S1-05-02-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-03-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-02-04-map",
+      "puzzleId": "S1-05-02-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-04-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-02-04-train",
+      "puzzleId": "S1-05-02-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-04-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-02-05-map",
+      "puzzleId": "S1-05-02-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-05-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-02-05-train",
+      "puzzleId": "S1-05-02-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-05-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-02-06-map",
+      "puzzleId": "S1-05-02-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-06-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-02-06-train",
+      "puzzleId": "S1-05-02-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-06-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-02-07-map",
+      "puzzleId": "S1-05-02-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-07-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-02-07-train",
+      "puzzleId": "S1-05-02-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-07-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-02-08-map",
+      "puzzleId": "S1-05-02-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-08-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-02-08-train",
+      "puzzleId": "S1-05-02-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-08-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-02-09-map",
+      "puzzleId": "S1-05-02-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-09-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-02-09-train",
+      "puzzleId": "S1-05-02-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-09-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-02-10-map",
+      "puzzleId": "S1-05-02-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-10-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-02-10-train",
+      "puzzleId": "S1-05-02-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-10-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-02-11-map",
+      "puzzleId": "S1-05-02-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-11-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-02-11-train",
+      "puzzleId": "S1-05-02-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-11-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-02-12-map",
+      "puzzleId": "S1-05-02-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-02-12-map",
+      "compositionId": "s1-route-05-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-02-12-train",
+      "puzzleId": "S1-05-02-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-02-12-train",
+      "compositionId": "s1-route-05-02",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-03-01-map",
+      "puzzleId": "S1-05-03-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-01-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-03-01-train",
+      "puzzleId": "S1-05-03-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-01-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-03-02-map",
+      "puzzleId": "S1-05-03-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-02-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-03-02-train",
+      "puzzleId": "S1-05-03-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-02-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-03-03-map",
+      "puzzleId": "S1-05-03-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-03-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-03-03-train",
+      "puzzleId": "S1-05-03-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-03-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-03-04-map",
+      "puzzleId": "S1-05-03-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-04-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-03-04-train",
+      "puzzleId": "S1-05-03-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-04-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-03-05-map",
+      "puzzleId": "S1-05-03-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-05-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-03-05-train",
+      "puzzleId": "S1-05-03-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-05-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-03-06-map",
+      "puzzleId": "S1-05-03-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-06-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-03-06-train",
+      "puzzleId": "S1-05-03-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-06-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-03-07-map",
+      "puzzleId": "S1-05-03-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-07-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-03-07-train",
+      "puzzleId": "S1-05-03-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-07-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-03-08-map",
+      "puzzleId": "S1-05-03-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-08-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-03-08-train",
+      "puzzleId": "S1-05-03-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-08-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-03-09-map",
+      "puzzleId": "S1-05-03-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-09-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-03-09-train",
+      "puzzleId": "S1-05-03-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-09-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-03-10-map",
+      "puzzleId": "S1-05-03-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-10-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-03-10-train",
+      "puzzleId": "S1-05-03-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-10-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-03-11-map",
+      "puzzleId": "S1-05-03-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-11-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-03-11-train",
+      "puzzleId": "S1-05-03-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-11-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-03-12-map",
+      "puzzleId": "S1-05-03-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-03-12-map",
+      "compositionId": "s1-route-05-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-03-12-train",
+      "puzzleId": "S1-05-03-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-03-12-train",
+      "compositionId": "s1-route-05-03",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-04-01-map",
+      "puzzleId": "S1-05-04-01",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-01-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-04-01-train",
+      "puzzleId": "S1-05-04-01",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-01-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 1
+    },
+    {
+      "referenceId": "draft-s1-05-04-02-map",
+      "puzzleId": "S1-05-04-02",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-02-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-04-02-train",
+      "puzzleId": "S1-05-04-02",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-02-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 2
+    },
+    {
+      "referenceId": "draft-s1-05-04-03-map",
+      "puzzleId": "S1-05-04-03",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-03-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-04-03-train",
+      "puzzleId": "S1-05-04-03",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-03-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 3
+    },
+    {
+      "referenceId": "draft-s1-05-04-04-map",
+      "puzzleId": "S1-05-04-04",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-04-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-04-04-train",
+      "puzzleId": "S1-05-04-04",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-04-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 4
+    },
+    {
+      "referenceId": "draft-s1-05-04-05-map",
+      "puzzleId": "S1-05-04-05",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-05-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-04-05-train",
+      "puzzleId": "S1-05-04-05",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-05-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 5
+    },
+    {
+      "referenceId": "draft-s1-05-04-06-map",
+      "puzzleId": "S1-05-04-06",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-06-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-04-06-train",
+      "puzzleId": "S1-05-04-06",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-06-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 6
+    },
+    {
+      "referenceId": "draft-s1-05-04-07-map",
+      "puzzleId": "S1-05-04-07",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-07-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-04-07-train",
+      "puzzleId": "S1-05-04-07",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-07-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 7
+    },
+    {
+      "referenceId": "draft-s1-05-04-08-map",
+      "puzzleId": "S1-05-04-08",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-08-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-04-08-train",
+      "puzzleId": "S1-05-04-08",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-08-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 8
+    },
+    {
+      "referenceId": "draft-s1-05-04-09-map",
+      "puzzleId": "S1-05-04-09",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-09-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-04-09-train",
+      "puzzleId": "S1-05-04-09",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-09-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 9
+    },
+    {
+      "referenceId": "draft-s1-05-04-10-map",
+      "puzzleId": "S1-05-04-10",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-10-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-04-10-train",
+      "puzzleId": "S1-05-04-10",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-10-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 10
+    },
+    {
+      "referenceId": "draft-s1-05-04-11-map",
+      "puzzleId": "S1-05-04-11",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-11-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-04-11-train",
+      "puzzleId": "S1-05-04-11",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-11-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 11
+    },
+    {
+      "referenceId": "draft-s1-05-04-12-map",
+      "puzzleId": "S1-05-04-12",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-s1-05-04-12-map",
+      "compositionId": "s1-route-05-04",
+      "stage": 12
+    },
+    {
+      "referenceId": "draft-s1-05-04-12-train",
+      "puzzleId": "S1-05-04-12",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-s1-05-04-12-train",
+      "compositionId": "s1-route-05-04",
+      "stage": 12
+    }
+  ],
+  "reusableMoments": [
+    {
+      "referenceId": "draft-endless-map-default",
+      "puzzleId": "",
+      "kind": "MAP",
+      "assetAddress": "stp/moments/draft-endless-map-default",
+      "compositionId": "s1-route-05-04",
+      "stage": 0
+    },
+    {
+      "referenceId": "draft-endless-train-default",
+      "puzzleId": "",
+      "kind": "TRAIN",
+      "assetAddress": "stp/moments/draft-endless-train-default",
+      "compositionId": "s1-route-05-04",
+      "stage": 0
+    }
+  ]
+}

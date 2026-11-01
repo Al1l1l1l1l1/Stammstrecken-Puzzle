@@ -1,0 +1,10 @@
+# Inspection reports keep stable hashes across checkouts; original upstream license bytes stay unchanged.
+*.json text eol=lf
+# This original report is raw-byte-bound by OFFLINE_NOTICES_SOURCES.json.
+CI_ANDROID_40513127084_INSPECTION.json -text -filter -working-tree-encoding whitespace=cr-at-eol
+# Upstream originals retain their exact license bytes, including intentional whitespace.
+NativeAndroidBuild2Sources/**/*.pom -text whitespace=-blank-at-eol,-blank-at-eof
+NativeAndroidBuild2Sources/**/*.txt -text whitespace=-blank-at-eol,-blank-at-eof
+
+# New upstream notice originals retain exact raw bytes across checkouts.
+OfflineNoticeSources/** -text -filter -working-tree-encoding whitespace=-blank-at-eol,-blank-at-eof

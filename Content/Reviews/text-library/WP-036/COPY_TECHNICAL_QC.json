@@ -1,0 +1,296 @@
+{
+  "reportSchemaVersion": 1,
+  "workPackageId": "WP-036",
+  "reportType": "independent-technical-final-qc-copy-rework",
+  "language": "de-DE",
+  "verdict": {
+    "result": "PASS",
+    "scope": "Vollständige lokale technische DRAFT-/Scope-Lieferung der WP-036-Copy-Nacharbeit am exakt gebundenen Freeze.",
+    "notAClaim": [
+      "Neue reguläre CI bestanden",
+      "Kreative Restannahme oder Ownerannahme",
+      "Produktfreigabe",
+      "Runtime- oder Doppelimport",
+      "Rechts- oder Releasefreigabe",
+      "Main-Merge"
+    ],
+    "ciStatus": "OPEN_NOT_STARTED_BY_THIS_QC"
+  },
+  "independence": {
+    "role": "Gesonderte unabhängige technische Abschluss-QC; nicht Autor und ohne Wiederverwendung der Eltern-Prüflogik.",
+    "worktree": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-qc",
+    "canonicalRepository": "/home/ubuntu/Stammstrecken-Puzzle",
+    "canonicalRepositoryMutations": [
+      "Nur dieser JSON-Bericht",
+      "COPY_TECHNICAL_QC.md"
+    ],
+    "temporaryIndependentArtifacts": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-qc/.utmp/",
+    "temporaryArtifactsIgnored": true,
+    "committed": false,
+    "pushed": false
+  },
+  "freeze": {
+    "head": "c7683ea445c65becd78cfd1e34ccb8ba587fd024",
+    "base": "6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1",
+    "manifestBaseMain": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "sourcePath": "Content/Localization/source/de-DE.json",
+    "sourceSha256": {
+      "baseGitBlob": "b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be",
+      "freezeGitBlob": "2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb",
+      "qcWorktree": "2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb"
+    },
+    "creativeScope": {
+      "path": "Content/Reviews/text-library/WP-036/CREATIVE_SCOPE.json",
+      "sha256BaseGitBlob": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+      "sha256FreezeGitBlob": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+      "sha256QcWorktree": "255440ac5b1bf5b38d92f38273cead8ffebb4b8d00d88b88a738ea4d895f7271",
+      "unchangedAgainstBase": true,
+      "originalValuesBindBaseOnly": true,
+      "allowedRevisionRecords": 110,
+      "allowedFields": 120,
+      "allowedTextFields": 109,
+      "allowedShortTextFields": 11
+    },
+    "sourceShapeAndScopeAudit": {
+      "method": "Eigenes read-only Python-Audit gegen exakte git-show-Gitblobs und QC-Worktreebytes; kein Eltern-Auditskript.",
+      "result": "PASS",
+      "exitCode": 0,
+      "entryCounts": {
+        "base": 1408,
+        "freeze": 1408,
+        "unchangedWholeEntries": 1298,
+        "changedExistingEntries": 110
+      },
+      "changedFields": {
+        "total": 120,
+        "text": 109,
+        "shortText": 11,
+        "exactlyEqualToCreativeScope": true
+      },
+      "unchanged": {
+        "rootKeyOrder": true,
+        "entryKeyOrder": true,
+        "entryPropertyOrderAndShape": true,
+        "rootMetadata": true,
+        "allUnlistedProperties": true,
+        "charLimits": true,
+        "placeholderContracts": true,
+        "statusAudienceAvailabilityAndBlockedBy": true,
+        "newPropertiesAllowed": false,
+        "levelTitles": {
+          "count": 240,
+          "changed": 0
+        },
+        "internalEntries": {
+          "count": 240,
+          "changed": 0
+        },
+        "uiEntries": {
+          "count": 308,
+          "changed": 0
+        },
+        "blockedProductEntries": {
+          "count": 70,
+          "changed": 0
+        }
+      },
+      "copyChangeAuditCrossCheck": {
+        "path": "Content/Reviews/text-library/WP-036/COPY_CHANGE_AUDIT.json",
+        "sha256FreezeGitBlob": "d48999a4f8f57468e51b317f99e450526ef816e2046f21fce6ffd9c4dd401ed4",
+        "records": 120,
+        "keysFieldsOldNewCodepointsAndLimitsMatchGitBlobs": true,
+        "baseFreezeScopeBindingsMatch": true
+      }
+    },
+    "freezeDiff": {
+      "baseToFreezePathCount": 16,
+      "exactAllowedPaths": [
+        "Content/Localization/source/de-DE.json",
+        "Content/Reviews/text-library/WP-036/COPY_CHANGE_AUDIT.json",
+        "Content/Reviews/text-library/WP-036/COPY_CHANGE_REVIEW.md",
+        "Content/Reviews/text-library/WP-036/COPY_LOCAL_ARCHITECTURE.txt",
+        "Content/Reviews/text-library/WP-036/COPY_LOCAL_RENDER_CHECK.txt",
+        "Content/Reviews/text-library/WP-036/COPY_LOCAL_SCOPE_CHECK.txt",
+        "Content/Reviews/text-library/WP-036/COPY_LOCAL_TEXT_CHECK.txt",
+        "Content/Reviews/text-library/WP-036/HANDOVER.md",
+        "Content/Reviews/text-library/WP-036/READING_EDITION.md",
+        "Content/Reviews/text-library/WP-036/README.md",
+        "Content/Reviews/text-library/WP-036/pseudolocale.json",
+        "Content/Reviews/text-library/WP-036/repetition-report.json",
+        "Content/Reviews/text-library/WP-036/technical-validation.json",
+        "PROJECT_CONTROL/CURRENT_STATE.md",
+        "PROJECT_CONTROL/WORK_QUEUE.md",
+        "WORK_PACKAGES/WP-036_Vollstaendige-Textbibliothek.md"
+      ],
+      "rootSchemaToolsWorkflowsManifestConceptsArchitectureLevelsProofsAssetsCatalogsAndDecisionsUnchanged": true
+    }
+  },
+  "environment": {
+    "python": {
+      "path": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python",
+      "version": "Python 3.11.13",
+      "lockedDependencies": true
+    },
+    "node": "v22.13.0"
+  },
+  "freshCommands": [
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/text-library/validate.py --self-test --write-reports",
+      "exitCode": 0,
+      "result": "TEXT_LIBRARY PASS: entries=1408; season1=960/960; internal=240; foreign-unresolved=480; mutations=12",
+      "boundary": "DRAFT authoring/provenance/input-anchor only; kein Runtime-, Ganzparaphrasen-, Creative-, Produkt-, Legal- oder Release-PASS."
+    },
+    {
+      "command": "Eigener Bytevergleich der vier mit --write-reports frisch regenerierten Reports gegen git show HEAD:<path>",
+      "exitCode": 0,
+      "result": "technical-validation.json, repetition-report.json, pseudolocale.json und existing-key-inventory.json byteidentisch zum Freezeblob"
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/text-library/render.py --check",
+      "exitCode": 0,
+      "result": "READING_EDITION PASS: exact canonical text projection"
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/architecture-validation/validate.py --self-test",
+      "exitCode": 0,
+      "result": "RESULT PASS (17 lokale Prüfgruppen)"
+    },
+    {
+      "command": "/home/ubuntu/.venv-stp-wp036-canonical/bin/python tools/architecture-validation/validate.py --scope production --scope-manifest tools/architecture-validation/scopes/WP-036.production.scope.json --self-test",
+      "exitCode": 0,
+      "result": "RESULT PASS (18 lokale Prüfgruppen), einschließlich LOCAL_SCOPE; worktreeDirty=false"
+    },
+    {
+      "command": "git diff --quiet -- Content/Localization/source/de-DE.json nach Reportregeneration",
+      "exitCode": 0,
+      "result": "source-clean"
+    },
+    {
+      "command": "git diff --check d90e798dd9b26d3f152f3b0c2d1d52cae641eb16 --",
+      "exitCode": 0,
+      "result": "kein Whitespacefehler gegen Main"
+    },
+    {
+      "command": "git diff --check 6103d53f9a01b199db7eaf9b3e5fd0c76f4a63a1 --",
+      "exitCode": 0,
+      "result": "kein Whitespacefehler gegen Ausgangsanker"
+    }
+  ],
+  "freshReportHashes": {
+    "technical-validation.json": "f557f1dec7dba765f7a0fad04cb4f3b54d43e4b5673fa71dac217e8dee68f290",
+    "repetition-report.json": "82ceca54a7c0dd42c7dc3c90fd052fecdd02edc86be5afcb3c5c27d0ea9e6799",
+    "pseudolocale.json": "6a263f7b0d091fc25c02877c6a6e932d3a0a6bec2f9f5996e80a13b8aaf1c5a6",
+    "existing-key-inventory.json": "a5b9602755ae5fa13ce272755c4fa232ee6542403e345484f8a5d6aaaacb0100",
+    "READING_EDITION.md": "308b882998fedda6b41e017b83a806c12e3f62556372a2519ca97cc03e2fcf1e",
+    "WP-036.production.scope.json": "f04c0ca2b57319aacb2ea40632b862853fce5284b795114612a85dc181a1ce2e"
+  },
+  "independentNegativeProbes": {
+    "productionSourceByteUnchangedAfterProbes": true,
+    "result": "PASS",
+    "detected": 6,
+    "total": 6,
+    "probes": [
+      {
+        "name": "overlength_changed_copy",
+        "target": "level.s1.01.04.02.status.text",
+        "temporaryMutation": "122 Codepoints versus existing charLimit 110",
+        "exitCode": 1,
+        "diagnostic": "over-limit:level.s1.01.04.02.status:text:122>110"
+      },
+      {
+        "name": "undeclared_parameter_changed_copy",
+        "target": "level.s1.01.04.02.status.text",
+        "temporaryMutation": "undeclared {probe}",
+        "exitCode": 1,
+        "diagnostic": "placeholder-set:level.s1.01.04.02.status:text"
+      },
+      {
+        "name": "non_nfc_changed_copy",
+        "target": "level.s1.01.04.02.status.text",
+        "temporaryMutation": "decomposed ü",
+        "exitCode": 1,
+        "diagnostic": "not-nfc:level.s1.01.04.02.status:text"
+      },
+      {
+        "name": "internal_visibility_changed_status",
+        "target": "level.s1.01.04.02.status",
+        "temporaryMutation": "audience PLAYER to INTERNAL",
+        "exitCode": 1,
+        "diagnostic": "binding:S1-01-04-02:audience:statusKey"
+      },
+      {
+        "name": "out_of_scope_production_path",
+        "target": "ARCHITECTURE/CONTENT_PIPELINE.md",
+        "temporaryMutation": "simulated changed path against actual WP-036 production manifest",
+        "exitCode": 0,
+        "diagnostic": "scope:out-of-scope:ARCHITECTURE/CONTENT_PIPELINE.md",
+        "exitBoundary": "Die direkt aufgerufene Diagnosefunktion meldete erwartungsgemäß den Fehler; ihr erfolgreicher Prozess-Exit ist nicht als Scope-PASS der simulierten Mutation zu lesen."
+      },
+      {
+        "name": "stale_reading_projection",
+        "target": "temporäre .utmp-READING_EDITION.md",
+        "temporaryMutation": "vom kanonischen Renderoutput abweichender Inhalt",
+        "exitCode": 1,
+        "diagnostic": "READING_EDITION FAIL: missing or stale derived edition"
+      }
+    ],
+    "boundary": "Eigene Experimente auf temporären Kopien bzw. in-memory gegen unveränderte bestehende Werkzeuge; kein Produkt-, Runtime-, CI- oder Releasebeweis."
+  },
+  "acceptanceCriteria": {
+    "AK01": {
+      "status": "PASS",
+      "boundary": "Technische Vollständigkeit und Erhaltung: 240 Leveltitel, 960/960 Referenzen, 240 INTERNAL und 720 Level-PLAYER bestätigt."
+    },
+    "AK02": {
+      "status": "PASS_WITH_BOUNDARY",
+      "boundary": "Frischer Provenance-/Bindinglauf für 240 Level/Author/Review/Inputanker; weder Solverneulauf noch Beweis jeder Paraphrase."
+    },
+    "AK03": {
+      "status": "PASS_WITH_BOUNDARY",
+      "boundary": "Kampagnen-/Routenstruktur, Titel und nicht zugelassene Kampagnenfelder erhalten; kreative Wirkung ist separat."
+    },
+    "AK04": {
+      "status": "PASS_WITH_BOUNDARY",
+      "boundary": "308 UI- und 70 BLOCKED_PRODUCT-Einträge sowie Metadaten unverändert; keine Produktregel freigegeben."
+    },
+    "AK05": {
+      "status": "PASS_WITH_BOUNDARY",
+      "boundary": "Variantenbestand erhalten; nur variant.ride-ended.04.text zugelassen; keine Auswahlmechanik erstellt oder geprüft."
+    },
+    "AK06": {
+      "status": "PASS",
+      "boundary": "Eintragsform, Metadaten, Limits, Platzhalter und Status im direkten Blobvergleich erhalten; Textvalidator PASS."
+    },
+    "AK07": {
+      "status": "PASS",
+      "boundary": "Frischer Validator, 12 vorhandene und 6 neue unabhängige Negativproben, Pseudolocale und exakte Lesefassung; kein Runtimeimport."
+    },
+    "AK08": {
+      "status": "NOT_IN_TECHNICAL_QC_SCOPE",
+      "boundary": "Kreative Gesamtkritik und Restannahme nicht vorweggenommen."
+    },
+    "AK09": {
+      "status": "LOCAL_PASS_CI_OPEN",
+      "boundary": "ADR-030-gebundener Production-Scope und lokale Selftests PASS; neue reguläre Architecture-/Unity-CI am Freeze wurde nicht gestartet und bleibt offen."
+    },
+    "AK10": {
+      "status": "PASS_FOR_TECHNICAL_QC_HANDOVER",
+      "boundary": "Dieser Bericht und der Markdownbericht binden Hashes, Scope, Befehle, Diagnosen und offene Grenzen an den Freeze; keine Main-Integration."
+    }
+  },
+  "findings": [],
+  "openAndBlocked": [
+    "Neue reguläre CI am Freeze c7683ea445c65becd78cfd1e34ccb8ba587fd024: OPEN_NOT_STARTED_BY_THIS_QC.",
+    "Unabhängige kreative Nachlektüre und Restannahme: offen und getrennte Rolle.",
+    "Alle Texte bleiben DRAFT; keine Owner-, Produkt-, Import-, Rechts- oder Releaseannahme.",
+    "BLOCKER-PROD-001, BLOCKER-PROD-002 und BLOCKER-PROD-003 bleiben fail-closed.",
+    "WP-026-, Katalog-/Cross-Reference-, Asset-, Zeit-, Layout/Accessibility-, Geräte-, SDK-, Datenschutz-, Signing- und Storegates bleiben außerhalb dieses technischen QC-Scopes offen."
+  ],
+  "artifacts": {
+    "markdownReport": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.md",
+    "jsonReport": "/home/ubuntu/Stammstrecken-Puzzle/Content/Reviews/text-library/WP-036/COPY_TECHNICAL_QC.json",
+    "temporaryAudit": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-qc/.utmp/independent-audit.json",
+    "temporaryFreshLogs": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-qc/.utmp/fresh-checks/",
+    "temporaryNegativeProbeReport": "/home/ubuntu/Stammstrecken-Puzzle/.utmp/wp036-independent-qc/.utmp/negative-probes/results.json"
+  }
+}

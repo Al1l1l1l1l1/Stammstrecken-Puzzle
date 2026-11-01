@@ -1,0 +1,108 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-02-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 4
+    },
+    "b": {
+      "side": "W",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    0,
+    0,
+    0,
+    4,
+    4
+  ],
+  "columnCounts": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 2,
+    "position": 9,
+    "titleKey": "level.s1.01.02.09.title",
+    "statusKey": "level.s1.01.02.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.02.09.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 3,
+    "qualityNote": "Bewusster enger Variantenraum für nahe Endpunkte: W/4 und E/4 liegen an derselben Zeile, alle Spalten haben Count 2. Die acht Kurven sind vollständig durch die kurze Verschlingung bestimmt; frühe Wiederholung ist hier zulässig und passt zum nahen Endpunktbrief.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-02-09-map",
+    "trainMomentId": "draft-s1-01-02-09-train",
+    "resultTextKey": "level.s1.01.02.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-02-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "e89b9f56037f4283df17e1d94ef965678fa69145792d5db7c0b0b451b3b30687"
+    }
+  }
+}

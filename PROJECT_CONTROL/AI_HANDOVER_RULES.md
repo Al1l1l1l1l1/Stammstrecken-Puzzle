@@ -1,44 +1,33 @@
 # Verbindliche Regeln für die KI-Übergabe
 
-> **Kernregel:** Ein neuer Agent muss das Projekt vollständig aus Repository und Dokumentation übernehmen können, ohne einen vorherigen Chat gelesen zu haben.
+**Ab MANUS-2026-10-20-02:** Neue Agenten müssen aus Repository und kurzem aktuellem Auftrag übernehmen können. Dafür ist keine erneute Volllektüre aller Historien und keine technische Botenrolle des Owners nötig. Es gelten der kurze Einstieg und die übertragenen Entscheidungsgrenzen aus AGENTS.
 
-Diese Regeln gelten für Manus, ChatGPT/Astra, Kimi und alle zukünftigen KI-Agenten gleichermaßen.
+## Interne Zusammenarbeit
 
-## 1. Übernahme vor Arbeitsbeginn
+Der Releaselead verantwortet durchgehend Vorbereitung, Umsetzung, Zusammenführung, Eigenkorrektur, notwendige unabhängige Prüfung und integriertes Ergebnis. Die Koordination formuliert große Gesamtaufträge einmal. Der Lead erzeugt kurze fachliche Teilbriefe für seine Spezialisten und setzt ihre Ergebnisse ohne neue Ownerprompts intern zusammen.
 
-Der übernehmende Agent muss die Lesereihenfolge aus `AGENTS.md` vollständig einhalten. Dazu gehören insbesondere die Projektübergabe, der Konzeptindex, die Master-Spezifikation, der aktuelle Projektstand und das konkrete Work Package. Fachdateien sind zusätzlich zu lesen, wenn sie für den Scope des Work Packages relevant sind.
+Jeder Teilbrief benennt Ziel, Schreibbereich, zuständigen Eigentümer, Eingangsstand, erwartetes Ergebnis und relevante Prüfung. Parallel arbeitende Rollen dürfen nicht dieselben zentralen Steuerungs-/Workflowdateien überschreiben; diese besitzt der Lead. Technische Montage oder Routinekorrektur innerhalb des Programmscopes braucht kein neues WP, keinen neuen Scopeanker und keine separate Geschäftsführerfreigabe.
 
-Vor Beginn prüft der Agent, ob Ziel, Voraussetzungen, Scope, verbotene Änderungen, Akzeptanzkriterien, Tests und Risikoklasse des Work Packages vollständig sind. Fehlt eine dieser Angaben oder widerspricht sie dem dokumentierten Projektstand, wird nicht geraten. Der Mangel wird als Blocker dokumentiert.
+## Was bei einer Fortsetzung übergeben wird
 
-## 2. Verbindliche Arbeitsführung
+Eine kompakte aktuelle Notiz im bestehenden Hauptreport oder WP enthält tatsächlichen Branch/Head, fertiggestellte Teile, offene konkrete Befunde, nächste Handlung, benötigte Zugänge und relevante unveränderte Grenzen. Dateien und Originalbelege werden verlinkt. Die nächste Instanz lädt diese Notiz und die relevanten Änderungen, nicht den gesamten früheren Chat oder jede alte Abschlussdokumentation.
 
-Während der Bearbeitung arbeitet der Agent ausschließlich innerhalb des Work-Package-Scopes. Bestätigte Produktentscheidungen werden nicht verändert. Architekturentscheidungen werden nicht eigenmächtig getroffen oder geändert. Chat-Aussagen, Erinnerungen und nicht in Projektdateien festgehaltene Ergebnisse gelten nicht als belastbare Grundlage.
+Bereits geprüfte unveränderte Quellen werden mit ihrer tatsächlichen Standbindung weiterverwendet. Neue oder korrigierte Quellen erhalten ihre angemessenen eigenen Nachweise. Eine fehlgeschlagene Prüfung bleibt als konkreter Befund erhalten; keine erfundene Abnahme und keine nachträgliche Behauptung einer fremden Befugnis.
 
-Ein Agent dokumentiert jede relevante Erkenntnis dort, wo das Work Package sie verlangt. Eine Architekturentscheidung wird nur nach dem ADR-System dokumentiert. Eine Produktentscheidung benötigt eine ausdrückliche Bestätigung und die Fortschreibung der zuständigen Fachdokumentation nach den geltenden Projektregeln.
+## Unabhängige Prüfung
 
-## 3. Pflichtinhalt einer Übergabe
+Pro integriertem Produktmeilenstein gibt es eine passende unabhängige Ergebnis-/Risikoprüfung. Eine separate zweite/ dritte Gesamtprüfung derselben unveränderten Quelle, eine Vollprüfung nach jedem Dokucommit oder eine eigenständige Abnahme für jede Berichtsformatänderung ist keine Standardpflicht.
 
-Beim Anhalten, Abschließen oder Wechseln eines Work Packages muss der übergebende Agent in den vorgesehenen Projektdateien mindestens die folgenden Informationen dokumentieren.
+Ein konkreter Nachbefund wird innerhalb desselben Auftrags korrigiert und gezielt erneut geprüft. Bei echten Hash-/Proof-/Save-/Consent-/Kauf-/Sicherheitsänderungen ist eine fachlich unabhängige Kontrolle dieser Risiken erforderlich. Ein Source-/CI-PASS ersetzt nicht die reale UI-/Touch-/Geräte-/Hör-/Spielqualitätsprüfung.
 
-| Pflichtinformation | Ablage |
-|---|---|
-| Work-Package-ID, Bearbeitungsstatus und Ergebnis | Zugehörige Datei in `WORK_PACKAGES/`. |
-| Erstellte oder geänderte Dateien und ihre Funktion | Zugehörige Datei in `WORK_PACKAGES/`; ergänzend dort, wo das Work Package es verlangt. |
-| Durchgeführte Tests, Ergebnisse und noch nicht ausführbare Tests | Zugehörige Datei in `WORK_PACKAGES/`. |
-| Abweichungen, bekannte Einschränkungen und offene Blocker | Zugehörige Datei in `WORK_PACKAGES/` und `PROJECT_CONTROL/CURRENT_STATE.md`. |
-| Letzter abgeschlossener Schritt und nächster vorgesehener Schritt | `PROJECT_CONTROL/CURRENT_STATE.md`. |
-| Architekturentscheidungen oder ausstehende Architekturfragen | Passender ADR in `DECISIONS/` oder klarer Blocker im Work Package; niemals nur im Chat. |
+## Eine vollständige externe Übergabe
 
-## 4. Abschlussübergabe
+Die Abschlussübergabe besteht aus einem Hauptreport des großen Auftrags: sichtbares Produktresultat, tatsächlicher Head/Artefakt, Start-/Installationsweg, passende Prüfungen, bekannte Risiken, erforderliche Ownerentscheidung und nächster bereits autorisierter Lieferabschnitt. CURRENT_STATE bleibt kurz. Der Owner erhält eine einzige vollständige übertragbare Datei und eine kurze verständliche Chatmeldung.
 
-Ein Work Package wird erst als abgeschlossen übergeben, wenn seine Akzeptanzkriterien erfüllt und seine Definition of Done nachweisbar geprüft sind. Andernfalls bleibt der Status offen, blockiert oder in Bearbeitung. Der übergebende Agent darf einen unvollständigen Stand nicht als abgeschlossen darstellen.
+Die Koordination liest Detailbelege direkt im Repository. Der Owner muss sie nicht einzeln herunterladen und wieder hochladen. Git bewahrt alte Fassungen; aktuelle Steuerung wird aktualisiert, nicht um immer mehr unübersichtliche Historienblöcke erweitert.
 
-Die Abschlussdokumentation muss so konkret sein, dass der nächste Agent ohne Rückfragen erkennen kann, was fertig ist, was nicht fertig ist, was unverändert bleiben muss und welche Arbeit als Nächstes ansteht.
+## Eskalation
 
-## 5. Umgang mit Widersprüchen und Lücken
+Routineentscheidungen im bestehenden Produkt-/Stack-/Programmscope trifft der Lead. Neue Änderungen am Produktversprechen, ungeklärte rechtliche/finanzielle externe Erklärungen oder Aktionen außerhalb seiner Befugnisse gehen gebündelt an die zuständige Stelle. Nur der betroffene Teil wartet; unabhängige Produktion wird nicht künstlich angehalten.
 
-Bei einem Widerspruch zwischen Quellen gilt die in `AGENTS.md` definierte Quellenhierarchie. Bei einer Dokumentationslücke, einem fehlenden Work Package oder einer nicht bestätigten Entscheidung stoppt der Agent den betroffenen Teilbereich und dokumentiert den Blocker. Der Agent darf keine Architektur, Produktregel, Technologie, Priorität oder Implementierungsannahme eigenständig ergänzen.
-
-## 6. Mindeststandard der Nachvollziehbarkeit
-
-Eine Übergabe ist nur dann gültig, wenn sie ohne individuelle Modellkenntnis, ohne Zugang zu einem vorangegangenen Chat und ohne mündliche Ergänzung verständlich ist. Persistente Projektdateien sind daher stets maßgeblich; Chat-Kommunikation kann sie erläutern, aber nicht ersetzen.
+Ein unvollständiger Meilenstein bleibt unvollständig. Die bloße Erstellung dieser Übergabe oder das Zuordnen eines Defekts zu einer späteren Aufgabe schließt ihn nicht.

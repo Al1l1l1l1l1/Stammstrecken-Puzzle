@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:39:09.945Z",
+  "role": "entry_audit full independent static FS/repository initial delivered writer review; source unchanged by reviewer",
+  "verdict": "TWO_CONCRETE_FINDINGS_ACCEPTED_FOR_ROOT_CORRECTION_NO_WRITER_PASS",
+  "sourceBinding": "S_WRITER_REVIEW_SOURCE_BINDING.json",
+  "sourceBindingSha256": "8f58d806bc60ddb1ebb9ba4a9c7906f9517e19efcfad49f90a077c29b7556d85",
+  "files": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "bytes": 11834,
+      "sha256": "c6327d07a75da3ebfeab6778a7740d0a140f98255046a08e02dad903a88a8114",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "bytes": 22417,
+      "sha256": "8fe43cb065b6c6520029b32255bf63d16359e09e48e54bf0a02f2d201f3af36c",
+      "encoding": "gzip/base64"
+    }
+  ],
+  "findings": [
+    {
+      "id": "S-FS-01",
+      "severity": "High",
+      "status": "ROOT_ACCEPTED_CORRECTION_IN_PROGRESS",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "sourceSha256": "c6327d07a75da3ebfeab6778a7740d0a140f98255046a08e02dad903a88a8114",
+      "finding": "PreserveSource directly writes final content-addressed name with CreateNew. Crash/Lowdisk afteropen/partial leaves existing unlike bytes at finalname; fresh same-source recovery/migration preservation forever throws SAVE_SOURCE_ARCHIVE_MISMATCH with no allowed retry path although original candidate remains safe.",
+      "requestedRegression": "Actual partial recovery and migration-source archive write -> fresh repository load/recover/authorizedwrite -> success; finalized originals immutable; crash after final move retry accepts full existing exactbytes.",
+      "rootResponse": "Unique short same-directory staging -> Flush(true) -> complete reread -> Move to immutable final name -> complete reread; new finalize.before/after fault boundaries, exact existing final preserved."
+    },
+    {
+      "id": "S-REPO-01",
+      "severity": "Medium",
+      "status": "ROOT_ACCEPTED_CORRECTION_IN_PROGRESS",
+      "file": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "sourceSha256": "8fe43cb065b6c6520029b32255bf63d16359e09e48e54bf0a02f2d201f3af36c",
+      "lines": [
+        295,
+        301
+      ],
+      "finding": "Initial FileError maps actual OS diskfull IOException to generic SAVE_IO_FAILED; named injected SAVE_* message alone cannot prove promised distinguishable Lowdisk stablecode.",
+      "rootResponse": "Windows112/39 HRESULT mapping already added after reviewed snapshot; add LinuxENOSPC28 and actual numeric IOException test instead of localized message heuristics."
+    }
+  ],
+  "reviewedSafety": [
+    "Whole Load/Recover/Commit under one OS mutex on synchronous worker delegates; cancellation/acquisition release reviewed.",
+    "Complete three source-byte observations; Failed/Unsupported protect writes/recovery; equal-generation different-payload SplitBrain has no normal-write bypass.",
+    "One-use recovery lease binds full observation, canonical selected payload, profile/catalog and max+1; ordinary differentpayload cannot consume it.",
+    "Before sole destructive Pending open, untouched highest source remains until flushed fully decoded regular Main/Backup safety copy verified.",
+    "Migration/recovery original source preservation precedes replacement; backup rotation after independently verified new Pending; fallback preserves verifiedbytes and oldhighest copy.",
+    "Success only after complete exact-byte main reread, decoded generation/payload verification and before-ACK cancellation point; uncertain possible effects are RecoveryRequired.",
+    "Private absolute root, safe segments/reservednames, ancestors-reparse rejection, profile/catalog namespaces and no Load directory/file creation reviewed."
+  ],
+  "limits": "Static read of full bound FS/repository only. Root implements fixes and separate owner runs actual filesystem tests. No independent writer acceptance until exact final source/actual original crash and cancellation matrix delta review. No overall S/native/regularCI/freeze claim."
+}

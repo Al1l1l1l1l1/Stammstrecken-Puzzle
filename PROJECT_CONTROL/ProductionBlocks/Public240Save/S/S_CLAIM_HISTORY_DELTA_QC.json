@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:49:14.116Z",
+  "role": "entry_audit independent actual owner red/green XML and precise static correction review",
+  "verdict": "NARROW_CLAIM_AND_UNKNOWN_HISTORY_CORRECTIONS_VERIFIED_OTHER_S_GATES_OPEN",
+  "bindingFile": "S_CLAIM_HISTORY_CORRECTION_BINDING.json",
+  "bindingSha256": "2465d508356b62f2bb954d93d4e6e3b2d9eb78604c6f0f79bbec3e592efadecb",
+  "sourceBindings": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "bytes": 76854,
+      "sha256": "a4db0e4ba4561593582d72ea667bf7a6ee771e52503899352d68c6c67392a472",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+      "bytes": 60241,
+      "sha256": "e3253d6ea0037b49fa279fc722e8d8a22bf0a063239580907b64258f3e9145e0",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+      "bytes": 56996,
+      "sha256": "fb17bb4b2d8d489f41cb78d14197813509aa8516763e45e1d874b4b5f81762ae",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+      "bytes": 5118,
+      "sha256": "99662be2f31aadabf5190bf96a490d64fa2b65b1ec39790be2a7d10c7ee46e38",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_BEFORE_HISTORICAL_TERMINAL_FIX.cs.txt",
+      "bytes": 57018,
+      "sha256": "3eaca54117e514610aaabf0bf06a35cff04219b1d3073b797e89cd6cf5441925",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_MODEL_BEFORE_CLAIM_UNIQUE_FIX.cs.txt",
+      "bytes": 76273,
+      "sha256": "f6c023e741f856c28036e7107f7a2a20f02395f552ad38e6b37991880753aace",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CLAIM_HISTORICAL_BINDING_FAIL.xml.txt",
+      "bytes": 31050,
+      "sha256": "f0bd5becfd757267c2df5c876082958a10d7bc1a9c2e8a763919e940de809d81",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": ".utmp/compile/s-codec-claim-history-fixed-results.xml",
+      "bytes": 29799,
+      "sha256": "ba0d35048d306d40505f2c9353b9e0585a800e3bc5a0b4d04084e6fe90384492",
+      "encoding": "gzip/base64"
+    }
+  ],
+  "reproductions": {
+    "original": {
+      "total": 45,
+      "passed": 43,
+      "failed": 2,
+      "utc": "2026-10-19T10:43:56Z to10:43:57Z"
+    },
+    "fixed": {
+      "total": 45,
+      "passed": 45,
+      "failed": 0,
+      "utc": "2026-10-19T10:45:19Z"
+    },
+    "execution": "Owner actual license-free NUnit assembly execution; no reviewer runtime and no Unity/CI claim"
+  },
+  "findings": [
+    {
+      "id": "S-MODEL-02",
+      "status": "REPORTED_POST_CLEAR_DUPLICATION_FIXED_AND_ORIGINAL_REPRO_VERIFIED",
+      "proof": "Actual full CLOSED_NO_REWARD envelope duplicates claim with distinctoperation IDs+matching duplicateoperation, recomputes payloadhash; originalValid vs expectedCorrupt failed, fixedCorrupt SAVE_DUPLICATE_ID passes.",
+      "correction": "Unique PostClearClaimId/LocalOperationId and all CampaignKindSubject, plus same-operation uniqueness across standalone and openEndless retainedclaims.",
+      "remaining": "Reviewer asked to check logical ClaimId uniqueness also across PostClear and OpenEndlessCompletion with distinctoperations; no acceptance of that extra boundary yet."
+    },
+    {
+      "id": "S-POLICY-02",
+      "status": "CLOSED_NARROW_UNKNOWN_HISTORY_BYPASS",
+      "proof": "Full V2 expected source with foreigncompletioncatalog+amount999 and actual raw32+canonical entrychain recomputation; payloadhash recomputed. OriginalValid vs expectedUnsupported failed; fixedUnsupported SAVE_COMPLETION_BINDING_UNSUPPORTED passes.",
+      "correction": "Codec ValidateProgressAuthority always resolves exact current values or one explicit retained historical campaign/completion pair; validates level/star and full historicalcampaignsubject membership/value. Retained registration cannot promote testhistory into Production/Review.",
+      "limits": "Positive supported historicalcatalog and unknown/duplicate binding variants remain part of later complete S tests; static interface contracts assume supplied locked catalog ports fulfill immutable contract."
+    }
+  ],
+  "boundaries": "Pre-codeV7 originalbytes not changed. Complete final negative91+additional tests/resources/thread/compaction/writer/realregularCI/freeze remain open."
+}

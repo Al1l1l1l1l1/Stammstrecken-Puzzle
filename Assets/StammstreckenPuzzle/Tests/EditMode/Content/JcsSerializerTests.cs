@@ -113,5 +113,36 @@ namespace STP.Tests.Content.EditMode
                 Assert.That(again, Is.EqualTo(canonical), file);
             }
         }
+        [TestCase("\"", "\\\"")]
+        [TestCase("\\", "\\\\")]
+        [TestCase("\b", "\\b")]
+        [TestCase("\f", "\\f")]
+        [TestCase("\n", "\\n")]
+        [TestCase("\r", "\\r")]
+        [TestCase("\t", "\\t")]
+        [TestCase("\u0001", "\\u0001")]
+        [TestCase("\U0001F680", "\U0001F680")]
+        public void LongPlainStringRuns_KeepTheExactAdjacentSpecialCharacterEncoding(string value, string canonical)
+        {
+            string prefix = new string('a', 512), suffix = new string('z', 512);
+            var result = JcsSerializer.Serialize(JsonValue.CreateString(prefix + value + suffix));
+            Assert.That(result.Succeeded, Is.True);
+            Assert.That(result.Text, Is.EqualTo("\"" + prefix + canonical + suffix + "\""));
+            Assert.That(result.Utf8, Is.EqualTo(new UTF8Encoding(false, true).GetBytes(result.Text!)));
+        }
+
+        [Test]
+        public void UnpairedSurrogateAfterLongPlainRun_RetainsTheNestedDiagnosticPath()
+        {
+            foreach (string tail in new[] { "\ud800", "\udc00", "\ud800x" })
+            {
+                var value = JsonValue.CreateObject(new[] { new JsonMember("k", JsonValue.CreateString(new string('a', 512) + tail)) });
+                var result = JcsSerializer.Serialize(value);
+                Assert.That(result.Succeeded, Is.False);
+                Assert.That(result.Text, Is.Null); Assert.That(result.Utf8, Is.Null);
+                Assert.That(result.Error!.Code, Is.EqualTo(LevelDiagnosticCodes.JcsSurrogate));
+                Assert.That(result.Error.Path, Is.EqualTo("/k"));
+            }
+        }
     }
 }

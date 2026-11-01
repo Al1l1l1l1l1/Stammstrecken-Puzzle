@@ -1,0 +1,1217 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T18:13:15.545Z",
+  "reviewer": "entry_audit — independent from all T/A/S/I implementation and R decisions",
+  "verdict": "PASS_EXACT_MI_TECHNICAL_INTEGRATION_BOTH_CI_CHAINS_DOC_CLOSEOUT_OPEN",
+  "scope": "Final actual technical underintegration acceptance. Separate final handover/status documentation generation, independent content/freeze inspection and actual documentation-head CI remain open. This report does not assert the full I16 documentation closeout.",
+  "source": {
+    "acceptedF2": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+    "acceptedF2Parent": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+    "merge": "1af988cd73a7267796fb3b6fd77204166241a07a",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "orderedMergeParents": [
+      "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "242712d1b99202fd18273dc28ef2fd12aff71cab"
+    ],
+    "rawMergeCommitRehash": "1af988cd73a7267796fb3b6fd77204166241a07a",
+    "sourceDiff": "EMPTY",
+    "recursiveEntries": 1368,
+    "modeBlobInventorySha256": "ad755d9153b9b288050248ad3acd26174bccd6223bdcb8f810b10627ebd59c37",
+    "allRecursiveModesBlobsExactlyF2": true,
+    "unityInputEntries": 497,
+    "unityInputInventorySha256": "3b630306b7f58f18daa7e762305465775802877cad3c259871f264e9edc4f80f",
+    "allUnityInputModesBlobsExactlyF2": true,
+    "mainUnchanged": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "prSynthetic": {
+      "sha": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "rehash": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+      "parents": [
+        "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "1af988cd73a7267796fb3b6fd77204166241a07a"
+      ],
+      "recursiveSame": true,
+      "sourceDiff": ""
+    },
+    "boundary": "PR synthetic Main+MI checkout is a CI-only merge with the identical tree; actual Main remains unchanged and unmerged."
+  },
+  "authorityAndActualOperations": {
+    "mandate": {
+      "id": "MANUS-2026-10-19-01",
+      "sections": [
+        5,
+        6,
+        7
+      ]
+    },
+    "separateBeforeMutationDecision": {
+      "id": "WP043-SUBINTEGRATION-01",
+      "file": "I_R_SUBINTEGRATION_DECISION.json",
+      "at": "2026-10-19T16:37:46.407Z",
+      "sha256": "c4ff7f76a4460a4a9553c638345f116aad46fcb355847a86abba8ad3cd4de719",
+      "pr37PersistenceReceiptSha256": "7f2c6772876fcdf6b3f1cf46bc7f54e9711d44b77e5f6d69afa164c5200f7e10"
+    },
+    "actualLocalMerge": {
+      "receipt": "I_ACTUAL_LOCAL_UNDERMERGE_RECEIPT.json",
+      "sha256": "7ca7c6342f9113a3245cec1d3020dfde43cbb85f2a768e13ba13f50120acc4c5",
+      "exit": 0
+    },
+    "actualNormalNonForcePublication": {
+      "receipt": "I_ACTUAL_UNDERMERGE_PUBLICATION_RECEIPT.json",
+      "sha256": "65a236408be22f56a1ae54587fc070f1d195966d5b77bc3c232536dd0fbbdfac",
+      "at": "2026-10-19T16:41:16.987Z",
+      "exit": 0,
+      "expectedBefore": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      },
+      "actualAfter": {
+        "refs/heads/codex/wp-036-vollstaendige-textbibliothek": "1af988cd73a7267796fb3b6fd77204166241a07a",
+        "refs/heads/codex/wp-043-public240-gespeicherte-integration": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "refs/heads/main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+      }
+    },
+    "targetedRecovery": {
+      "decisionId": "WP043-CI-RECOVERY-01",
+      "decisionSha256": "0d05317623a63fd841050ef019e3b299a835f1470d739afd1b1519000584edb4",
+      "actualSingleRequestSha256": "91d4cdf55f134fa235234aeba39bf52ce6586fdbb51b534a0f0075636b3b5e1a",
+      "prerequisites": {
+        "decisionSha256": "0d05317623a63fd841050ef019e3b299a835f1470d739afd1b1519000584edb4",
+        "actualReceiptSha256": "91d4cdf55f134fa235234aeba39bf52ce6586fdbb51b534a0f0075636b3b5e1a",
+        "activitySha256": "594487ff2d433c0eee48eb0838edd44adf7bba5b5a61a746c7e1550edb6434b2",
+        "activityAt": "2026-10-19T17:30:54.774Z",
+        "inProgressCount": 0,
+        "queued": [
+          {
+            "id": 37642383594,
+            "name": "Unity CI",
+            "head": "8c0d73ac72c01c8bc079a69a00ccf4e5b759c1aa",
+            "created": "2026-10-07T15:09:03Z",
+            "status": "queued"
+          },
+          {
+            "id": 37642383611,
+            "name": "Architecture Validation",
+            "head": "8c0d73ac72c01c8bc079a69a00ccf4e5b759c1aa",
+            "created": "2026-10-07T15:09:03Z",
+            "status": "queued"
+          }
+        ],
+        "comment": {
+          "id": 6273219504,
+          "created_at": "2026-10-19T17:31:15Z",
+          "updated_at": "2026-10-19T17:31:15Z",
+          "bodySha256": "3bf2e93a400cbd56d7e2fd06a26eb9789596e7bb2f0342bd5c31e44023d72a46",
+          "body": "CI recovery at unchanged head 1af988cd73a7267796fb3b6fd77204166241a07a: PR checks 39287516015 / 39287516001 completed SUCCESS, with 1107 EditMode and 117 PlayMode tests, both platform builds and four verified license releases. Push run 39287505617 attempt 1 remains CANCELLED before EditMode job 118179021831 started; the scheduler annotation identifies unity-personal-seat contention. A fresh activity check found no active Unity run. One targeted rerun of that cancelled job and its three skipped dependents is approved; six successful preparation jobs are retained as historical results. Recovery decision WP043-CI-RECOVERY-01 SHA256 0d05317623a63fd841050ef019e3b299a835f1470d739afd1b1519000584edb4. Integrated acceptance remains open until the actual recovery results are verified.",
+          "hashBound": true
+        },
+        "requestedAt": "2026-10-19T17:31:25.155Z",
+        "toolSuccess": true,
+        "ordered": true,
+        "sourceUnchanged": true
+      },
+      "technicalPlanReference": "I_MI_PUSH_CANCEL_RECOVERY_PLAN_INDEPENDENT_QC.json",
+      "originalCancellationPreserved": {
+        "file": "I_MI_PUSH_CANCELLED_ORIGINALS.json",
+        "sha256": "4c80cec8c4c9fad50552ed714850f245f3f638c2a26b7837cf4053e4bb40874e",
+        "conclusion": "CANCELLED",
+        "neverExecutedJob": 118179021831,
+        "runner0StepsEmpty": true,
+        "originalDependentJobs": "SKIPPED"
+      },
+      "sixHistoricalPrepExecutionsCarriedForward": [
+        {
+          "name": "unity-config",
+          "oldAttempt1Job": 118178784194,
+          "newAttempt2CopiedCheckrun": 118204537715,
+          "started_at": "2026-10-19T16:41:26Z",
+          "completed_at": "2026-10-19T16:41:29Z",
+          "runner_id": 1000002222,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        },
+        {
+          "name": "unity-environment-android",
+          "oldAttempt1Job": 118178784787,
+          "newAttempt2CopiedCheckrun": 118204538766,
+          "started_at": "2026-10-19T16:41:26Z",
+          "completed_at": "2026-10-19T16:45:27Z",
+          "runner_id": 1000002223,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        },
+        {
+          "name": "unity-evidence-guard",
+          "oldAttempt1Job": 118179021106,
+          "newAttempt2CopiedCheckrun": 118204539272,
+          "started_at": "2026-10-19T16:41:47Z",
+          "completed_at": "2026-10-19T16:41:50Z",
+          "runner_id": 1000002227,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        },
+        {
+          "name": "unity-environment-linux",
+          "oldAttempt1Job": 118178784618,
+          "newAttempt2CopiedCheckrun": 118204539280,
+          "started_at": "2026-10-19T16:41:26Z",
+          "completed_at": "2026-10-19T16:43:00Z",
+          "runner_id": 1000002221,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        },
+        {
+          "name": "project-preflight",
+          "oldAttempt1Job": 118178785212,
+          "newAttempt2CopiedCheckrun": 118204612424,
+          "started_at": "2026-10-19T16:41:26Z",
+          "completed_at": "2026-10-19T16:41:44Z",
+          "runner_id": 1000002224,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        },
+        {
+          "name": "unity-environment-ios",
+          "oldAttempt1Job": 118178784757,
+          "newAttempt2CopiedCheckrun": 118204619688,
+          "started_at": "2026-10-19T16:41:30Z",
+          "completed_at": "2026-10-19T16:43:03Z",
+          "runner_id": 1000002220,
+          "allOriginalExecutionFieldsIdentical": true,
+          "matchesRootProvenance": true,
+          "execution": "Historical copied original execution, not re-executed"
+        }
+      ],
+      "exactlyFourNewExecutions": [
+        {
+          "id": 118204537823,
+          "name": "unity-compile-editmode",
+          "attempt": 2,
+          "started_at": "2026-10-19T17:31:28Z",
+          "completed_at": "2026-10-19T17:39:02Z",
+          "runner_id": 1000002231,
+          "stepCount": 14,
+          "actualNewExecution": true,
+          "matchesRootProvenance": true
+        },
+        {
+          "id": 118208328233,
+          "name": "unity-playmode-bootstrap-smoke",
+          "attempt": 2,
+          "started_at": "2026-10-19T17:39:05Z",
+          "completed_at": "2026-10-19T17:43:29Z",
+          "runner_id": 1000002232,
+          "stepCount": 14,
+          "actualNewExecution": true,
+          "matchesRootProvenance": true
+        },
+        {
+          "id": 118210498530,
+          "name": "unity-android-development-il2cpp",
+          "attempt": 2,
+          "started_at": "2026-10-19T17:43:31Z",
+          "completed_at": "2026-10-19T18:00:56Z",
+          "runner_id": 1000002233,
+          "stepCount": 10,
+          "actualNewExecution": true,
+          "matchesRootProvenance": true
+        },
+        {
+          "id": 118218925999,
+          "name": "unity-ios-export",
+          "attempt": 2,
+          "started_at": "2026-10-19T18:01:03Z",
+          "completed_at": "2026-10-19T18:09:33Z",
+          "runner_id": 1000002234,
+          "stepCount": 15,
+          "actualNewExecution": true,
+          "matchesRootProvenance": true
+        }
+      ]
+    }
+  },
+  "historicalProvenance": {
+    "rawGraph": [
+      {
+        "sha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+        "rawRehash": "1af988cd73a7267796fb3b6fd77204166241a07a",
+        "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+        "parents": [
+          "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+          "242712d1b99202fd18273dc28ef2fd12aff71cab"
+        ]
+      },
+      {
+        "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "rawRehash": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+        "parents": [
+          "89ee035ca0fa205ca1c0e845ad315047eae94fd8"
+        ]
+      },
+      {
+        "sha": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+        "rawRehash": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+        "tree": "c7243bfc259949635e713b0b3d7efee4a74ceb43",
+        "parents": [
+          "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e"
+        ]
+      },
+      {
+        "sha": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+        "rawRehash": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+        "tree": "b076a72d594f7a5af4e609fa5e9dbb492b9f3936",
+        "parents": [
+          "f16f99cc269f0b9ece4530d41d1ed948b193ddf4"
+        ]
+      },
+      {
+        "sha": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+        "rawRehash": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+        "tree": "1731fbe88002a29c0d1638d50dfdbaa2be804efa",
+        "parents": [
+          "1c002e14e07a7cf48366e786f2ec598234f9d314"
+        ]
+      },
+      {
+        "sha": "95508482696cc1cc4e355021ce47d64863d9651a",
+        "rawRehash": "95508482696cc1cc4e355021ce47d64863d9651a",
+        "tree": "f0d7306e8b907dfa60661bb8703ce970b3049200",
+        "parents": [
+          "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+          "3746184ca75eb439de918896e9b88aa238cff893"
+        ]
+      },
+      {
+        "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "rawRehash": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+        "parents": [
+          "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+        ]
+      },
+      {
+        "sha": "3746184ca75eb439de918896e9b88aa238cff893",
+        "rawRehash": "3746184ca75eb439de918896e9b88aa238cff893",
+        "tree": "ca88b989c03e7daf10bc05eeb9bb845348717bc9",
+        "parents": [
+          "ba4abccebeb0e073986f37b92b7479f61dabc063"
+        ]
+      },
+      {
+        "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+        "rawRehash": "925ca608a961ac26c84385c8da3b949f609df883",
+        "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+        "parents": [
+          "54d2496ac2c74b681d24fe7a69d7f044392c46dd"
+        ]
+      }
+    ],
+    "scopeAnchors": [
+      {
+        "wp": "040",
+        "path": "tools/architecture-validation/scopes/WP-040.production.scope.json",
+        "bytes": 1573,
+        "sha256": "cbf761b5edbd2d80b76bb37855b51da44d110201a609da692b19a0a6ec9591dc",
+        "manifest": {
+          "manifestVersion": 1,
+          "workPackageId": "WP-040",
+          "baseCommit": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+          "scope": "production",
+          "allowedPathPatterns": [
+            "WORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+            "tools/architecture-validation/scopes/WP-040.production.scope.json",
+            "DECISIONS/ADR-033-interne-transiente-spielschleife.md",
+            "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+            "DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md",
+            "DECISIONS/README.md",
+            "tools/architecture-validation/validate.py",
+            ".github/workflows/validate.yml",
+            "ARCHITECTURE/CONTENT_PIPELINE.md",
+            "ARCHITECTURE/CONTENT_CATALOGS.md",
+            "ARCHITECTURE/PERSISTENCE.md",
+            "ARCHITECTURE/GAME_STATE_MODEL.md",
+            "ARCHITECTURE/MODULE_BOUNDARIES.md",
+            "PROJECT_CONTROL/CURRENT_STATE.md",
+            "PROJECT_CONTROL/WORK_QUEUE.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.json",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/*.txt",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta"
+          ]
+        },
+        "firstAdds": [
+          "0da2b684a079c0caf9306dc21a67e2dc20e8489a"
+        ],
+        "anchor": {
+          "sha": "0da2b684a079c0caf9306dc21a67e2dc20e8489a",
+          "parents": [
+            "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3"
+          ],
+          "tree": "3dfa2f4a5d6d476bb0bc177f7281022f0e3475f8"
+        },
+        "anchorBlobEqual": true,
+        "firstAddPaths": [
+          "A\tWORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+          "A\ttools/architecture-validation/scopes/WP-040.production.scope.json"
+        ],
+        "soleParentIsBase": true,
+        "exactTwoFirstAdds": true
+      },
+      {
+        "wp": "041",
+        "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+        "bytes": 3241,
+        "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+        "manifest": {
+          "manifestVersion": 1,
+          "workPackageId": "WP-041",
+          "baseCommit": "925ca608a961ac26c84385c8da3b949f609df883",
+          "scope": "production",
+          "allowedPathPatterns": [
+            "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+            "tools/architecture-validation/scopes/WP-041.production.scope.json",
+            ".github/workflows/validate.yml",
+            "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+            "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+            "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+            "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+            "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+            "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+            "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+            "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+            "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+            "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+            "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+            "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+            "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+            "tools/public240/project.cjs",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.json",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.txt",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/A/*.png"
+          ]
+        },
+        "firstAdds": [
+          "69ec03f910601313d2a0b1e5a5610fcf61a86619"
+        ],
+        "anchor": {
+          "sha": "69ec03f910601313d2a0b1e5a5610fcf61a86619",
+          "parents": [
+            "925ca608a961ac26c84385c8da3b949f609df883"
+          ],
+          "tree": "1a3f1fc04af92a201b2972eca0a355be76935eae"
+        },
+        "anchorBlobEqual": true,
+        "firstAddPaths": [
+          "A\tWORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+          "A\ttools/architecture-validation/scopes/WP-041.production.scope.json"
+        ],
+        "soleParentIsBase": true,
+        "exactTwoFirstAdds": true
+      },
+      {
+        "wp": "042",
+        "path": "tools/architecture-validation/scopes/WP-042.production.scope.json",
+        "bytes": 4943,
+        "sha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+        "manifest": {
+          "manifestVersion": 1,
+          "workPackageId": "WP-042",
+          "baseCommit": "925ca608a961ac26c84385c8da3b949f609df883",
+          "scope": "production",
+          "allowedPathPatterns": [
+            "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+            "tools/architecture-validation/scopes/WP-042.production.scope.json",
+            ".github/workflows/validate.yml",
+            "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+            "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+            "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+            "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+            "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.json",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.txt",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/*.png"
+          ]
+        },
+        "firstAdds": [
+          "8c3481b3602567406ab4ef6f9365249ccb5d3afc"
+        ],
+        "anchor": {
+          "sha": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+          "parents": [
+            "925ca608a961ac26c84385c8da3b949f609df883"
+          ],
+          "tree": "e2977b0fcd9f225fc626aa739127471a081683e0"
+        },
+        "anchorBlobEqual": true,
+        "firstAddPaths": [
+          "A\tWORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+          "A\ttools/architecture-validation/scopes/WP-042.production.scope.json"
+        ],
+        "soleParentIsBase": true,
+        "exactTwoFirstAdds": true
+      },
+      {
+        "wp": "043",
+        "path": "tools/architecture-validation/scopes/WP-043.production.scope.json",
+        "bytes": 3775,
+        "sha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+        "manifest": {
+          "manifestVersion": 1,
+          "workPackageId": "WP-043",
+          "baseCommit": "95508482696cc1cc4e355021ce47d64863d9651a",
+          "scope": "production",
+          "allowedPathPatterns": [
+            "WORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md",
+            "tools/architecture-validation/scopes/WP-043.production.scope.json",
+            "DECISIONS/ADR-036-gespeicherter-public240-qa-entry.md",
+            "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs.meta",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs.meta",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml.meta",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss.meta",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+            "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json.meta",
+            "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+            "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity.meta",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs.meta",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+            "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs.meta",
+            ".github/workflows/validate.yml",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+            "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+            "ProjectSettings/EditorBuildSettings.asset",
+            "DECISIONS/README.md",
+            "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+            "tools/architecture-validation/validate.py",
+            "ARCHITECTURE/MODULE_BOUNDARIES.md",
+            "ARCHITECTURE/BUILD_AND_RELEASE.md",
+            "PROJECT_CONTROL/CURRENT_STATE.md",
+            "PROJECT_CONTROL/WORK_QUEUE.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md",
+            "WORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+            "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+            "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.md",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.json",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.txt",
+            "PROJECT_CONTROL/ProductionBlocks/Public240Save/I/*.png"
+          ]
+        },
+        "firstAdds": [
+          "1c002e14e07a7cf48366e786f2ec598234f9d314"
+        ],
+        "anchor": {
+          "sha": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+          "parents": [
+            "95508482696cc1cc4e355021ce47d64863d9651a"
+          ],
+          "tree": "76069b81b2a95511d3e5356f00a0859c360fb749"
+        },
+        "anchorBlobEqual": true,
+        "firstAddPaths": [
+          "A\tWORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md",
+          "A\ttools/architecture-validation/scopes/WP-043.production.scope.json"
+        ],
+        "soleParentIsBase": true,
+        "exactTwoFirstAdds": true
+      }
+    ],
+    "all22ManifestBindings": [
+      {
+        "path": "tools/architecture-validation/scopes/WP-003.documentation.scope.json",
+        "sha256": "40a3782cab82c4fa1f8267170b7a944eb3e6ebd2df063042a6ed5681f6d05c40",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-004.documentation.scope.json",
+        "sha256": "7e3376ef28be2bf710fb82dc1f2cccd9a1eda404133cd65ac18f5a0ccebb2ba8",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-005.documentation.scope.json",
+        "sha256": "4e256258ee4681fb0a4660bf5e6a52addf521df9575103fe1afbb65872e13ecc",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-006.documentation.scope.json",
+        "sha256": "a5fde22e0adee91b94ef45de1cfd584fe2bbca5d011b43652441a5ec7b25fc6d",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-007.documentation.scope.json",
+        "sha256": "7825ac2b65e274a2f2cf8cc0893fe8ceaba0a305fb6cd58b579dc3509aadcf7c",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-010.documentation.scope.json",
+        "sha256": "9d2624a79be7e408ff39f76838377612a74cc5d558cba2cbaa09ec24c6addc19",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-011.documentation.scope.json",
+        "sha256": "db17088e0ccdbb2cfc5022a8f941a4cbe7d5d0ad06b49abb3b4e3b2fee92a432",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-014.documentation.scope.json",
+        "sha256": "7c4afa6233192e0a239ff0426d9199a5555a5ccd9686ece4be22021edca537c4",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-018.documentation.scope.json",
+        "sha256": "4cb0728c7a92a8cc170247cf6c2400904e3a297939b4b19a61e4cc5538cecad9",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-021.production.scope.json",
+        "sha256": "a0166dde558cba692c34a4f19a2e20f614f1b02de548559a9977b02661e9be61",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-022.production.scope.json",
+        "sha256": "003f5d47d1177d70fa49359200127a243ca4265f2124a1dc2401ac36ea2988e6",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-023.production.scope.json",
+        "sha256": "a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-024.production.scope.json",
+        "sha256": "2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-025.production.scope.json",
+        "sha256": "1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-027.governance.scope.json",
+        "sha256": "af42b035ba821c870cb8e5b21612644a707474fc20b07258abf55047796457b1",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-036.production.scope.json",
+        "sha256": "f04c0ca2b57319aacb2ea40632b862853fce5284b795114612a85dc181a1ce2e",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-037.production.scope.json",
+        "sha256": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-038.production.scope.json",
+        "sha256": "cf9087d50941eb64dea3dc1ea894dd29a3a5a2a7d611668e3228cc6b875b979a",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-040.production.scope.json",
+        "sha256": "cbf761b5edbd2d80b76bb37855b51da44d110201a609da692b19a0a6ec9591dc",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-041.production.scope.json",
+        "sha256": "9e491cbe70ba10c3a4bcefcc1b7005d27af86999a13187f8a80901dd2bfdc54d",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-042.production.scope.json",
+        "sha256": "2b532b6fabbe34e7b005e88a4cbbaf090150f9d0fe039c0eaa92f4c5bb5e2ace",
+        "same": true
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-043.production.scope.json",
+        "sha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+        "same": true
+      }
+    ],
+    "sourceAndOldA_S_TProtected": "All1368MI modes/blobs equal acceptedF2. Thus no additional Runtime/A/S/provider/leak/catalog/manifest/workflow/validator/source delta was introduced by this merge. Previous independent exact-source tests/reviews are reused with actual hashes.",
+    "scopeBoundary": "Own I scope checks only P→I; no childmanifest is treated as a cumulative-scope authorization and no scope/validator/gate was widened."
+  },
+  "actualIntegratedChains": {
+    "PUSH": {
+      "event": "push",
+      "architecture": {
+        "run": 39287505616,
+        "attempt": 1,
+        "job": 118178740560,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "unity": {
+        "run": 39287505617,
+        "actualFinalAttempt": 2,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "independentTerminalObservationUtc": "2026-10-19T18:09:50.857Z",
+      "allTenCheckrunsSuccess": true,
+      "executions": "Six old successful preparation executions carried forward plus exactly four newly executed licensed recovery jobs.",
+      "completeIndependentReport": {
+        "file": "I_MI_PUSH_RECOVERY_COMPLETE_CI_INDEPENDENT_QC.json",
+        "bytes": 180714,
+        "sha256": "f247300c8dfeff2e18d455b1530d9fa5155b0ea029641bfba2ec0399ec836ce7"
+      },
+      "pack": {
+        "file": "I_INTEGRATED_PUSH_DURABLE_CI_PACK.json",
+        "bytes": 3401932,
+        "sha256": "67e3c1e6b3eaec8c80630358e7d675f2275c6d8d626ebea85a832957842f5796"
+      },
+      "evidence": {
+        "file": "I_INTEGRATED_PUSH_CI_EVIDENCE.json",
+        "bytes": 170393,
+        "sha256": "9c00c48bfaeca62145926a3b44fac53cbeedae0fd002335cc3e05c4bb85f3b74"
+      },
+      "actualEditTests": 1107,
+      "actualPlayTests": 117,
+      "failures": 0,
+      "skips": 0,
+      "originalCounterChecks": 80,
+      "actualCoverageModules": 20,
+      "actualFourNewSeatReleases": 4,
+      "androidApk": {
+        "bytes": 47512825,
+        "sha256": "4a88dd6bcae19797c1289a3506c3a0e8bf7c5b0967000eea0e78f72b1ba47cfd"
+      },
+      "iosBuildSucceededUtc": "2026-10-19T18:09:26.6391090Z"
+    },
+    "PR31": {
+      "event": "pull_request",
+      "architecture": {
+        "run": 39287516015,
+        "attempt": 1,
+        "job": 118178783439,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "unity": {
+        "run": 39287516001,
+        "attempt": 1,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "actualCheckout": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "independentTerminalObservationUtc": "2026-10-19T17:26:24.539Z",
+      "allTenJobsSuccess": true,
+      "completeIndependentReport": {
+        "file": "I_MI_PR31_COMPLETE_CI_INDEPENDENT_QC.json",
+        "bytes": 144687,
+        "sha256": "188668941d3dc80fe77e80d16192980e13beec7bdaf836929806a653f5094579"
+      },
+      "pack": {
+        "file": "I_INTEGRATED_PR_DURABLE_CI_PACK.json",
+        "bytes": 3408732,
+        "sha256": "1546b3de59482e8478f13c81f998a99e50aa045ccc4d63ebc7eca5a6b31d7764"
+      },
+      "evidence": {
+        "file": "I_INTEGRATED_PR_CI_EVIDENCE.json",
+        "bytes": 127257,
+        "sha256": "e0aa666b79467dcca5e392c1d5dc374bafd201a2f83d5cb713ee7b0b4c0f6a27"
+      },
+      "actualEditTests": 1107,
+      "actualPlayTests": 117,
+      "failures": 0,
+      "skips": 0,
+      "originalCounterChecks": 80,
+      "actualCoverageModules": 20,
+      "actualSeatReleases": 4,
+      "androidApk": {
+        "bytes": 47512829,
+        "sha256": "8952978269130cc53800434aa715e6362efc818abef3c889ee7f4a4080da67d5"
+      },
+      "iosBuildSucceededUtc": "2026-10-19T17:26:04.3228200Z"
+    }
+  },
+  "eightActualIntegratedSeatReleases": [
+    {
+      "chain": "PR31",
+      "attempt": 1,
+      "role": "unity-compile-editmode",
+      "jobId": 118179006028,
+      "rawBytes": 391231,
+      "rawSha256": "f4db4cf96d5573177dd5d3d3aae37c5702c52e2bd20722bcc6836586388288e5",
+      "checkoutSha": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T16:50:26.7439290Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "d31701faffd99630ab82861c28c190f1e6fe6b29b5e413b3a6225bc7c5352dd8"
+    },
+    {
+      "chain": "PR31",
+      "attempt": 1,
+      "role": "unity-playmode-bootstrap-smoke",
+      "jobId": 118184164277,
+      "rawBytes": 1483727,
+      "rawSha256": "796720d2db780a68c2c1915c58775d051ebbcdfdebf159ff177bf36397d26d0f",
+      "checkoutSha": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T16:55:02.9501301Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "cc322b01ca14e9d304e35e51e7b441f6aa4a63a7684ea515726a5135e44f91e7"
+    },
+    {
+      "chain": "PR31",
+      "attempt": 1,
+      "role": "unity-android-development-il2cpp",
+      "jobId": 118186575822,
+      "rawBytes": 1124418,
+      "rawSha256": "1121d68cb6648aea3d40c43f9c09080c81629cebb1d12fe52ee67f98e35de8b7",
+      "checkoutSha": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T17:14:00.2548660Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [
+        "2026-10-19T17:03:10.2966014Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:03:10.7837450Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:03:11.1389014Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:03:11.4706689Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "30424418b9d9b1dcbb7383ff9b6b8d8f79cd00eb52fa4847fb1331e2df4b186e"
+    },
+    {
+      "chain": "PR31",
+      "attempt": 1,
+      "role": "unity-ios-export",
+      "jobId": 118196029577,
+      "rawBytes": 2812137,
+      "rawSha256": "1ec4af7510c2d8faf40ba4bfb2228157a40c2cc6d01513a8a2437898d871e3c8",
+      "checkoutSha": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T17:26:06.5795550Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [
+        "2026-10-19T17:18:11.3302340Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:18:11.6385470Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:18:11.8926290Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:18:12.0948260Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "c9cb616572fc9c1f1f622a2290c9f6340be52ffef56ea2e21ae01c70d5cf11aa"
+    },
+    {
+      "chain": "PUSH",
+      "attempt": 2,
+      "role": "unity-compile-editmode",
+      "jobId": 118204537823,
+      "rawBytes": 390953,
+      "rawSha256": "60ae6af968295b8343b8e830f2943e83cb96da29ab369a840804578c8a6fec20",
+      "actualCheckoutSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T17:38:57.6867734Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "30ec7904011e15d47f5bc9913c520b6fc0e7e70e1008bf7fb542af4af3dc3356"
+    },
+    {
+      "chain": "PUSH",
+      "attempt": 2,
+      "role": "unity-playmode-bootstrap-smoke",
+      "jobId": 118208328233,
+      "rawBytes": 1485108,
+      "rawSha256": "b20e1b2fd7784aaa896e2b2eda53a16afdf95ea5d1ee032c188386d245cac012",
+      "actualCheckoutSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T17:43:24.2359327Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "f515ad80244cfd7d59df22c95a5a949548fb1f7a9b7fa58a7149e0545757f9d8"
+    },
+    {
+      "chain": "PUSH",
+      "attempt": 2,
+      "role": "unity-android-development-il2cpp",
+      "jobId": 118210498530,
+      "rawBytes": 1124479,
+      "rawSha256": "1af87327f4f834352a9938a8a09f989a4cbe3342e71de686287812d94fcf0106",
+      "actualCheckoutSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T18:00:48.6555089Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [
+        "2026-10-19T17:49:24.9059551Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:49:25.3666306Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:49:25.6574486Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T17:49:25.9329000Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "9ea20241072a9412aae8e6ec6ef14d5c8c9ecbcdf2c224a9ee1cf62009fe55d7"
+    },
+    {
+      "chain": "PUSH",
+      "attempt": 2,
+      "role": "unity-ios-export",
+      "jobId": 118218925999,
+      "rawBytes": 2809933,
+      "rawSha256": "aa1270a97c263000f1448f402aeab12788d1b1d64958762eb06fa271f8b0e2b5",
+      "actualCheckoutSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutOriginalPresent": true,
+      "actualReleaseUtc": "2026-10-19T18:09:28.5232890Z",
+      "releaseCount": 1,
+      "revoke200": true,
+      "releaseMatchesEvidence": true,
+      "sceneReports": [
+        "2026-10-19T18:03:48.6673620Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T18:03:48.9736850Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T18:03:49.1662800Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T18:03:49.3559410Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "sceneReportsMatchEvidence": true,
+      "receiptLineSha256": "2f42dca8f551cf5c26fa74df13811532bedb8e4e9ddc961cefe267950c51432b"
+    }
+  ],
+  "originalEvidenceChecks": {
+    "fullOriginalJobLogsRead": 10,
+    "fullDeclaredPublicSafeLogProfilesComparedLineByLine": 10,
+    "exactOriginalXmlCoverageZipsRoundtripped": 4,
+    "allArtifactZipDigestsAndMemberHashesIndependent": true,
+    "actualCoverageModuleSummaryElementComparisons": 160,
+    "allFourOrderedActualSceneReportsPerPlatformPerChain": true,
+    "apkAndBuildBinaryPublication": "No APK/Android binary ZIP included in durable repository packs. Exact byte/digest proof retained; buildbinary stays ignored local. No iOSZIP emitted by unchanged workflow.",
+    "ciGraphics": "HeadlessCI screenshots are NOT_EXECUTED; actual normal Native09/13 graphics and originalPNG review remain separately source-bound. No generated/manipulated screenshot is claimed.",
+    "historicalFailures": "OriginalSfirstFAIL/I-F1FAIL/native04–07failures/ROOT002pre-fix/headless10–11failures and PushAttempt1CANCELLED stay unchanged; no result moved onto another head."
+  },
+  "acceptanceMatrix": [
+    {
+      "ak": "I01",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I02",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I03",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I04",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I05",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I06",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I07",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I08",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I09",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I10",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I11",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I12",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I13",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I14",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I15",
+      "status": "PASS_EXACT_ACCEPTED_SOURCE_AND_ACTUAL_TECHNICAL_INTEGRATION",
+      "evidence": "I_F2_FINAL_INDEPENDENT_QC.json plus this exact merge and both independently completed integrated-chain original reports; original AK-specific source/native/contract evidence retained."
+    },
+    {
+      "ak": "I16",
+      "status": "TECHNICAL_UNDERINTEGRATION_PASS_DOCUMENTATION_CLOSEOUT_OPEN",
+      "completed": "SeparateRdecision, freshExpectedHEAD/non-main merge/publication, exactTree/Diff/historicalscopechain, both actual integrated CI chains and independent technical merge/CI control.",
+      "open": "Actual final WP/CURRENT/QUEUE/HANDOVER content generation and independent content/rawfreeze checks; separate documentation-head publication and truthful actual CI terminal binding."
+    }
+  ],
+  "freshRemoteRefsAndPRs": [
+    {
+      "at": "2026-10-19T18:10:50.001Z",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/ref/heads/codex/wp-036-vollstaendige-textbibliothek",
+      "ref": "refs/heads/codex/wp-036-vollstaendige-textbibliothek",
+      "sha": "1af988cd73a7267796fb3b6fd77204166241a07a"
+    },
+    {
+      "at": "2026-10-19T18:10:50.001Z",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/ref/heads/codex/wp-043-public240-gespeicherte-integration",
+      "ref": "refs/heads/codex/wp-043-public240-gespeicherte-integration",
+      "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab"
+    },
+    {
+      "at": "2026-10-19T18:10:50.001Z",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/ref/heads/main",
+      "ref": "refs/heads/main",
+      "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16"
+    },
+    {
+      "at": "2026-10-19T18:10:50.001Z",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/31",
+      "number": 31,
+      "state": "open",
+      "merged": false,
+      "mergeCommit": "44fb0530beff649095ff3915307ab377c992eb1e",
+      "draft": true,
+      "head": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "headRef": "codex/wp-036-vollstaendige-textbibliothek",
+      "baseRef": "main",
+      "updated_at": "2026-10-19T17:31:15Z",
+      "merged_at": null
+    },
+    {
+      "at": "2026-10-19T18:10:50.001Z",
+      "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/37",
+      "number": 37,
+      "state": "closed",
+      "merged": true,
+      "mergeCommit": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "draft": true,
+      "head": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "base": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+      "headRef": "codex/wp-043-public240-gespeicherte-integration",
+      "baseRef": "codex/wp-036-vollstaendige-textbibliothek",
+      "updated_at": "2026-10-19T17:09:14Z",
+      "merged_at": "2026-10-19T16:41:17Z"
+    },
+    {
+      "at": "2026-10-19T18:12:07.655Z",
+      "ref": "refs/heads/codex/wp-040-public240-save-technikbasis",
+      "sha": "925ca608a961ac26c84385c8da3b949f609df883"
+    },
+    {
+      "at": "2026-10-19T18:12:07.655Z",
+      "ref": "refs/heads/codex/wp-041-public240-interne-prueffassung",
+      "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4"
+    },
+    {
+      "at": "2026-10-19T18:12:07.655Z",
+      "ref": "refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt",
+      "sha": "3746184ca75eb439de918896e9b88aa238cff893"
+    }
+  ],
+  "cleanFrozenRoots": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008",
+      "head": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "expected": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i",
+      "head": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "expected": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-a",
+      "head": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "expected": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+      "status": ""
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s",
+      "head": "3746184ca75eb439de918896e9b88aa238cff893",
+      "expected": "3746184ca75eb439de918896e9b88aa238cff893",
+      "status": ""
+    }
+  ],
+  "reusedIndependentReports": [
+    {
+      "file": "I_F2_FINAL_INDEPENDENT_QC.json",
+      "bytes": 111751,
+      "sha256": "e71e7c636605836140c3e114e80a8f2466b12adf58067efc1d3daf36347e7567",
+      "verdict": "PASS_EXACT_I_F2_SOURCE_FREEZE_CI_AK_I01_I15_I16_OPEN"
+    },
+    {
+      "file": "I_F2_RAW_GIT_FREEZE_INDEPENDENT_QC.json",
+      "bytes": 196100,
+      "sha256": "9870f4ec4f7c0f3932d5b22864dfec2f725e0ee0fa06ba373638e108b9a387a2",
+      "verdict": "PASS_EXACT_I_F2_FREEZE_RAW_GIT_SOURCE_CANONICAL_PREPUSH_CI_GATE_OPEN"
+    },
+    {
+      "file": "I_MI_LOCAL_UNDERMERGE_INDEPENDENT_QC.json",
+      "bytes": 47006,
+      "sha256": "8d04b17229c40358711fe042aeb1bd7eefecffb0932dafe3be13599186b71d43",
+      "verdict": "PASS_EXACT_LOCAL_UNDERMERGE_MI_SOURCE_TREE_AUTHORITY_PREPUSH_INTEGRATED_CI_OPEN"
+    },
+    {
+      "file": "I_MI_PR31_COMPLETE_CI_INDEPENDENT_QC.json",
+      "bytes": 144687,
+      "sha256": "188668941d3dc80fe77e80d16192980e13beec7bdaf836929806a653f5094579",
+      "verdict": "PASS_EXACT_INTEGRATED_PR31_CI_ORIGINALS_FOUR_RELEASES_RECOVERY_GATE_ONLY_PUSH_AND_I16_OPEN"
+    },
+    {
+      "file": "I_MI_PUSH_RECOVERY_COMPLETE_CI_INDEPENDENT_QC.json",
+      "bytes": 180714,
+      "sha256": "f247300c8dfeff2e18d455b1530d9fa5155b0ea029641bfba2ec0399ec836ce7",
+      "verdict": "PASS_EXACT_INTEGRATED_PUSH_RECOVERY_ATTEMPT2_ORIGINALS_DOC_FOLLOWUP_OPEN"
+    },
+    {
+      "file": "I_DOC_ONLY_VALIDATION_PLAN_INDEPENDENT_QC.json",
+      "bytes": 4690,
+      "sha256": "515f3eed2555f163f9b148e6b2f536babc56b38da13a6601612cd71629f9836e",
+      "verdict": "PASS_PROSPECTIVE_DOC_ONLY_VALIDATION_REUSE_PLAN_NO_DOC_OR_I16_ACCEPTANCE"
+    }
+  ],
+  "findings": [],
+  "openDocumentationFollowup": [
+    "Generate only the permitted own documentation/status/evidence closeout, with all497Unityinputs/workflows/technical tools/source/metas unchanged",
+    "Actual independent content and staged canonical17/18+self/negative checks, then exact documentation rawcommit/tree/parent/diff/scope review",
+    "Actual separate documentation publication/head/CI terminal statuses; preserve any proven never-executed schedulerCANCEL and reuse exact accepted technical evidence per user instruction and separately reviewed plan",
+    "Complete the documentation part of I16 only from the actual generated/reviewed/published evidence; this technical report does not pre-accept it"
+  ],
+  "excluded": "Main integration, public game distribution/release, product/WP026/WP035/final art/480 assets, changed star thresholds/prices, excluded providers, human tests/calibration, physical-device/store/signing acceptance",
+  "reviewerActions": "Read-only Git/source/API/original/ZIP inspection. No source/Git/Unity/compiler/seat/retry/dispatch/cancel mutations, no general solver/text re-review; only ignored own report files written.",
+  "assertions": {
+    "count": 11,
+    "allPass": true
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-19T10:32:15.876Z",
+  "role": "R pre-CI evidence receipt, no commit-bound regular CI or final LA acceptance",
+  "copiedByteIdentical": [
+    {
+      "name": "A_INITIAL_CODE_QC.md",
+      "bytes": 7128,
+      "sha256": "b6e16ad713552ad08a806e241ca37096e9814b5bb218598cfee418e558448979"
+    },
+    {
+      "name": "A_INITIAL_CODE_QC.json",
+      "bytes": 33138,
+      "sha256": "55a1ca67492aaa219ca39467a97465def09104c09c8b69dc70727ab78834cc9a"
+    },
+    {
+      "name": "A_CORRECTION_CODE_QC.md",
+      "bytes": 2529,
+      "sha256": "b2e62d2cfde075b656400736de6e6bfb5906b59396f72b11c79a1517917fa6c6"
+    },
+    {
+      "name": "A_CORRECTION_CODE_QC.json",
+      "bytes": 4760,
+      "sha256": "cac1aaf3480e2ec98615fdbf8459ba711c37889e0c352036b6955975193bd702"
+    },
+    {
+      "name": "A_CORRECTION_CLOSURE_QC.md",
+      "bytes": 1528,
+      "sha256": "2ebea4232daf509506871a41cd43fa338c7fa7035d9b8e6ccf244bd44987db2f"
+    },
+    {
+      "name": "A_CORRECTION_CLOSURE_QC.json",
+      "bytes": 28149,
+      "sha256": "ea485dfd6a469f455d64c7ce341f48da1dbf28e8d4cf0fd9de010165d5b912a7"
+    },
+    {
+      "name": "A_PROJECTION_SOURCE_AUDIT_PRE_FREEZE.json",
+      "bytes": 108236,
+      "sha256": "fe2603bac94892fc207c23a64f15225799472710482a83d344f57c52651d31d0"
+    },
+    {
+      "name": "A_PRECI_CANONICAL_architecture.txt",
+      "bytes": 1931,
+      "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9"
+    },
+    {
+      "name": "A_PRECI_CANONICAL_scope.txt",
+      "bytes": 2131,
+      "sha256": "be00e375484539efb0941ecf591a23d6aead92fc97458fc0bf78295ca78a3621"
+    }
+  ],
+  "node22ActualCompletedSession": {
+    "session": 82962,
+    "command": "Canonical Node22.20.0 tools/public240/project.cjs --check --double in isolated A via bound WSL git worktree environment",
+    "actualExitCode": 0,
+    "actualToolReturnedStdout": {
+      "count": 240,
+      "source": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+      "assetBytes": 166484,
+      "assetSha256": "c21c9ef55ab34c369c3d6aa16c08c066a96ea9bcab4286ff73e3d402d33e17c2",
+      "lockSha256": "c36ab1675caa5f34699475b0a39e0fb7e5092cd50d1f238345a37b817821b8b0",
+      "double": true,
+      "check": true
+    },
+    "profile": "Faithful structured transcription of actual completed exec output; original earlier projection reports and cross-platform replica preserved separately"
+  },
+  "native05": {
+    "actualExitCode": 0,
+    "total": 23,
+    "passed": 23,
+    "originalXmlAndLog": "A_NATIVE_SCREEN_05.json",
+    "originalScreens": 5,
+    "rootIndependentlyViewedFourDistinctOriginals": true
+  },
+  "native06": {
+    "creationExitCode": 0,
+    "secondExitCode": 0,
+    "rawByteIdenticalFilesEach": 4,
+    "evidence": "A_NATIVE_REBUILD_06.json"
+  },
+  "canonical": {
+    "architecture": 17,
+    "scope": 18,
+    "worktreeDirty": true
+  },
+  "independentReview": "A_CORRECTION_CLOSURE_QC.md/.json: independent targeted code/native closure with no open High at source reviewed before CI",
+  "remaining": "Exact commit/tree, own regular Architecture+Unity CI original results and independent final LA acceptance; formal project-wide WP completion in I"
+}

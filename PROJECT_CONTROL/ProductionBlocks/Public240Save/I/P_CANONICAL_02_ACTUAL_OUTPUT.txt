@@ -1,0 +1,349 @@
+architecture exit 0 ARCHITECTURE VALIDATION v1.0 scope=architecture-only
+LOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar
+LOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur
+LOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding
+LOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks
+LOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle
+LOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck
+LOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt
+MANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS
+CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode
+REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP
+REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox
+REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion
+BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed
+RESULT PASS (17 lokale Prüfgruppen)
+
+scope exit 1 ARCHITECTURE VALIDATION v1.0 scope=production
+LOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar
+LOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur
+LOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding
+LOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks
+LOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle
+LOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck
+LOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker
+LOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt
+SCOPE_CONTEXT  workPackage=WP-041 base=925ca608a961ac26c84385c8da3b949f609df883 head=95508482696cc1cc4e355021ce47d64863d9651a worktreeDirty=false
+MANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS
+CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode
+REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP
+REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox
+REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion
+BLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json
+FAIL  scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_ARCHITECTURE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_PROVENANCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_SCOPE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/AS_ANCHOR_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/AS_ANCHOR_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_FINAL_GAPS.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_FINAL_GAPS.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_OS_HANDLE_TEST_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_OS_HANDLE_TEST_EVIDENCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_TEST_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_TEST_EVIDENCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/CHILD_ID_AUDIT.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/CODEC_FIRST_POSITIVE_PASS.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_COMPARE_NODE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_HARNESS.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V2.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V2_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BASE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BASE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V4.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V4_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V5.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V5_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V6.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V6_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V2.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3_BASE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V4.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V5.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V6.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V7.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APPLICATION_FIXTURE_BEFORE_EMBED.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APP_ALREADY_COMMITTED_RACE.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APP_ALREADY_COMMITTED_RACE_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CATALOG_ROLE_REPRO_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CLAIM_HISTORICAL_BINDING_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_BEFORE_HISTORICAL_TERMINAL_FIX.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_INPUT_CANONICALIZATION_TEST_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_LEXICAL_MUTATION_TEST_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_DISCOVERY_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_LIMIT_DISCOVERY_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_LEDGER_TEST_EXPECTATION_FAIL.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_LOCAL_PROFILE_BEFORE_ROLE_FIX.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_MODEL_BEFORE_CLAIM_UNIQUE_FIX.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_PERSISTENCE_FIXTURE_BEFORE_EMBED.cs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_READER_STATUS_ORDER_REGRESSION.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/REVIEW_PROGRESS_SOURCE_CONTRACT.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_CAUSAL_PROBE_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_METADATA_TEST_FIX_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_TEST_HELPER_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_DIFF_CHECK_ADVISORY_CLASSIFICATION.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_DRAFT_RETENTION_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_F1_WHITESPACE_CORRECTION.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_GOLDEN_ACCEPTANCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_GOLDEN_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_OS_HANDLE_ABI_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_OS_HANDLE_ACCEPTANCE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_F2_PRECI_RECEIPT.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_GIT_LF_COMPILER_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_PRECI_RECEIPT.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_COMPILER_METADATA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_FINAL_PRE_FREEZE_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_FINAL_PRE_FREEZE_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_PLATFORM_METADATA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_REVIEWER_FLAT_PACK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_COHERENT_SUPPLEMENT.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_COHERENT_SUPPLEMENT.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_LINUX_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_PRECODE_REVIEW.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_PRECODE_REVIEW.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_SOURCE_DELTA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_POLICY_FINAL_DELTA_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_RECOVERY_CONTINUATION_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_RECOVERY_CONTINUATION_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_THREAD_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_THREAD_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_CORRECTION_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_DELTA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_DELTA_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_EARLY_REVIEW_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_POLICY_INITIAL_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_POLICY_INITIAL_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODE_PRE_CI_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODE_PRE_CI_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CONFLICT_EXECUTION_REVIEW.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_METADATA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_REVIEWER_COMPILER_PACK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DIFF_CHECK_ADVISORY.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DRAFT_RETENTION_PRECODE_REVIEW.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DRAFT_RETENTION_PRECODE_REVIEW.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_EARLY_CODE_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_MONO_PREPAREMETHOD_IL_INSPECTION.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_EXACT_ORIGINALS.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_ADOPTED_SOURCE_DELTA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_ADOPTED_SOURCE_DELTA_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_STAGED_CANONICAL_ARCHITECTURE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_STAGED_CANONICAL_SCOPE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_CODE_DELTA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_CODE_DELTA_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_COMPILER_METADATA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_EVIDENCE_CLOSURE_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_EVIDENCE_CLOSURE_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_FINAL_DELTA_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FULL_CODE_ACTUAL_SUITE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_FINAL_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_FINAL_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_INITIAL_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_INITIAL_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REPRODUCE.cjs.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REVIEW.js.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REVIEW_PY.py.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_NODE22.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_PYTHON.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_PYTHON311.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_REPRODUCTION.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_IMPLEMENTATION_DELIVERY.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CODE_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CODE_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CORRECTIONS_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CORRECTIONS_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INTEGRATION_HANDOFF.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_OS_HANDLE_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_TIMEOUT_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OS_HANDLE_PRECODE_REVIEW.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OS_HANDLE_PRECODE_REVIEW.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_SOURCE_FREEZE_V3.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_AutosaveCoordinatorTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_AutosaveCoordinatorTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_COMPILE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_COMPILER_SOURCE_PACK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_CatalogSetIdentityTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_CatalogSetIdentityTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_DELIVERY.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProfileStateTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProfileStateTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProgressPolicyTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProgressPolicyTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalSaveCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalSaveCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PersistedPuzzleSessionTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PersistedPuzzleSessionTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PuzzleSessionCheckpointTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PuzzleSessionCheckpointTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_RAW_XML.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_ReviewProgressCatalogTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_ReviewProgressCatalogTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveLedgerCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveLedgerCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveMigrationTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveMigrationTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_TEST_FAILURE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_AutosaveCoordinatorTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_AutosaveCoordinatorTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_COMPILE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_CatalogSetIdentityTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_CatalogSetIdentityTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_DELIVERY.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProfileStateTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProfileStateTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProgressPolicyTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProgressPolicyTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalSaveCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalSaveCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PersistedPuzzleSessionTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PersistedPuzzleSessionTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PuzzleSessionCheckpointTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PuzzleSessionCheckpointTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_ReviewProgressCatalogTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_ReviewProgressCatalogTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveLedgerCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveLedgerCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveMigrationTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveMigrationTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_AutosaveCoordinatorTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_AutosaveCoordinatorTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILER_SOURCE_PACK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_CatalogSetIdentityTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_CatalogSetIdentityTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_DELIVERY.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProfileStateTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProfileStateTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProgressPolicyTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProgressPolicyTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalSaveCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalSaveCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PersistedPuzzleSessionTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PersistedPuzzleSessionTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PuzzleSessionCheckpointTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PuzzleSessionCheckpointTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_RAW_XML.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_ReviewProgressCatalogTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_ReviewProgressCatalogTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveLedgerCodecTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveLedgerCodecTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveMigrationTests.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveMigrationTests_RUN.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_PRECI_CANONICAL_ARCHITECTURE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_PRECI_CANONICAL_SCOPE.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_TEST_PLACEMENT_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_TEST_PLACEMENT_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_V3_COMPILER_METADATA_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WHITESPACE_ADVISORY_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WHITESPACE_ADVISORY_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_CODEC_PREREQUISITE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_CODEC_PREREQUISITE.xml.txt
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_INITIAL_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_INITIAL_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_REVIEW_SOURCE_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_CI.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_CI_EVIDENCE.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_DURABLE_PACK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_INDEPENDENT_RAW_QC.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_INDEPENDENT_RAW_QC.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_RAW_BLOB_BINDINGS.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_ROOT_TERMINAL_RUN_CHECK.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_FINAL_BINDING.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_SHARED_BASIS_RELEASE.md
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDENS_PRECODEC_77ef839d.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDENS_PRECODEC_BINDING_77ef839d.json
+FAIL  scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDEN_REFERENCE_NODE_77ef839d.txt
+FAIL  scope:out-of-scope:WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md
+FAIL  scope:out-of-scope:tools/architecture-validation/scopes/WP-042.production.scope.json
+RESULT FAIL (297 Fehler)

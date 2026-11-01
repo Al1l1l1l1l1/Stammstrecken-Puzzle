@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001}
+  - component: {fileID: 1002}
+  m_Layer: 0
+  m_Name: SavedPublic240Review
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e3dac3a62eb19df68982e3cd5b9d56, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: STP.Bootstrap::STP.Bootstrap.SavedPublic240ReviewInstaller
+  savedTree: {fileID: 9197481963319205126, guid: 7666be5eabe395d838b50916622fabd3, type: 3}
+  savedStyles: {fileID: 7433441132597879392, guid: daa0e2a635e31a646bdf1ec11df885c6, type: 3}
+  puzzleTree: {fileID: 9197481963319205126, guid: 65df22bf59330d3313c037f9b66a8127, type: 3}
+  puzzleStyles: {fileID: 7433441132597879392, guid: 9a97e82b2ceabcd350106b19f85d0a55, type: 3}
+  qaLocale: {fileID: 4900000, guid: 08b027e5c889c5df29f6f34f3d3a3d59, type: 3}
+  panelSettings: {fileID: 11400000, guid: 8fd2c857cfac7bdf0748472d8b0402eb, type: 2}
+  trainMaterial: {fileID: 2100000, guid: b281a1bc613c4544b3dc4c9e6a038002, type: 2}
+  publicData: {fileID: 4900000, guid: e0d44f18b99809133d6f9af9135ceea2, type: 3}
+  campaignData: {fileID: 4900000, guid: 605b0b01b790a7a031c3657fc47c71c4, type: 3}
+  completionData: {fileID: 4900000, guid: 90f5a876c3548f396e3fab1f175669ac, type: 3}
+  rideDurationSeconds: 3
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1001}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stammstrecken-puzzle.invalid/schemas/completion-runtime-v1.schema.json",
+  "title": "Stammstrecken-Puzzle Runtime Completion v1",
+  "description": "ADR044: complete JCS wrapper bytes define the existing Completion CatalogIdentity hash. Typed import checks exact expected lock/use/approval, separate LEVEL or ENDLESS_INSTANCE source, reward values and all calibration bindings. No authoring solutions or Human originals in this document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "runtimeCompletionContractVersion",
+    "completionCatalog",
+    "calibrationCatalog"
+  ],
+  "properties": {
+    "runtimeCompletionContractVersion": {
+      "const": 1
+    },
+    "completionCatalog": {
+      "$ref": "completion-v1.schema.json"
+    },
+    "calibrationCatalog": {
+      "$ref": "star-calibration-v1.schema.json"
+    }
+  }
+}

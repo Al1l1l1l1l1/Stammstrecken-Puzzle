@@ -1,0 +1,149 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-02-05",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 7
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 0
+    },
+    "b": {
+      "side": "E",
+      "index": 6
+    }
+  },
+  "rowCounts": [
+    5,
+    3,
+    1,
+    1,
+    1,
+    2,
+    2
+  ],
+  "columnCounts": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    3,
+    6
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 2,
+    "position": 5,
+    "titleKey": "level.s1.04.02.05.title",
+    "statusKey": "level.s1.04.02.05.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.02.05.entry",
+    "focus": [
+      "COMBINATION",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 7,
+    "qualityNote": "Vier Einsercounts erzwingen den langen oberen Querarm; der rechte Sechsercount trägt danach die vertikale Strecke mit unterem Knick. Das dünne Muster ist räumlich klar, aber keine Zahl fixiert allein die Form; behalten als mittlere Hinweise mit verschiedener Restzahlbedeutung.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-02-05-map",
+    "trainMomentId": "draft-s1-04-02-05-train",
+    "resultTextKey": "level.s1.04.02.05.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-02-05/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "af3e8636bc457fc8438bcc4a2de8a910125d6b01a16b0eb4a091b127a4a933c4"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-01-08",
+  "contentRevision": 2,
+  "grid": {
+    "width": 8,
+    "height": 8
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 2
+    },
+    "b": {
+      "side": "S",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    3,
+    2,
+    2,
+    2,
+    2,
+    5,
+    2,
+    6
+  ],
+  "columnCounts": [
+    7,
+    7,
+    3,
+    2,
+    3,
+    2,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 1,
+    "position": 8,
+    "titleKey": "level.s1.05.01.08.title",
+    "statusKey": "level.s1.05.01.08.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.01.08.entry",
+    "focus": [
+      "EXCLUSION",
+      "CHAIN"
+    ],
+    "chainDepth": 8,
+    "qualityNote": "Die zwei linken Siebenercounts verlangen fast durchgehende Belegung, erst die Fünfer-/Sechserreihen unten erlauben Querarme nach rechts. Nord und Süd liegen nahe, aber die hohen entfernten Spaltenwerte verhindern die Abkürzung; der Ausschlussbereich beeinflusst die gesamte Formfolge.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-01-08-map",
+    "trainMomentId": "draft-s1-05-01-08-train",
+    "resultTextKey": "level.s1.05.01.08.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "track": "TRACK_ES"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-01-08/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "43f6a67a6ce3f39d4ac81d5daafb794b48c97c9d61852d735e9c78a3aff2270a"
+    }
+  }
+}

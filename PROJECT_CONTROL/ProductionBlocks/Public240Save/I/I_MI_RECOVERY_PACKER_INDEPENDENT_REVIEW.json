@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T17:33:42.403Z",
+  "verdict": "PASS_NARROW_IGNORED_RECOVERY_PACKER_REVIEW_NO_RUNNING_CI_PASS",
+  "script": {
+    "file": "pack-i-integration-ci.cjs",
+    "bytes": 10923,
+    "sha256": "5de06c57505f6c2cb2eadca9ffe6530b86bc581616d7646c69be8b3ace90cc2d",
+    "syntaxOnlyParsed": true,
+    "notExecuted": true
+  },
+  "config": {
+    "file": "I_INTEGRATED_PUSH_RECOVERY_CONFIG.json",
+    "bytes": 977,
+    "sha256": "8e3a9a513029893ae999c76f123a0d0094bbb276a45cf14e88b1ff50d9182693",
+    "data": {
+      "event": "push",
+      "apiHeadSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutSha": "1af988cd73a7267796fb3b6fd77204166241a07a",
+      "checkoutTree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+      "workflow": {
+        "architecture": 39287505616,
+        "unity": 39287505617
+      },
+      "recovery": {
+        "decisionSha256": "0d05317623a63fd841050ef019e3b299a835f1470d739afd1b1519000584edb4",
+        "originalAttempt": 1,
+        "actualRecoveryAttempt": 2,
+        "maximumRerunCalls": 1,
+        "originalConfigurationFile": "I_INTEGRATED_PUSH_CONFIG.json"
+      },
+      "boundary": "Actual separately decided targeted job recovery at unchanged MI. Original attempt 1 remains CANCELLED. Six new attempt-2 checkrun IDs copy historical preparation executions with original times; only the four licensed jobs execute anew. Full actual terminal APIs, original tests/coverage, four-scene platform builds and four releases remain required. No final integration or I16 acceptance by this prospective configuration."
+    }
+  },
+  "readOnlyFindings": [
+    "Recovery path is explicitly restricted to I_INTEGRATED_PUSH at exact MI and run39287505617; original source and workflow remain unchanged.",
+    "Architecture remains real Attempt1; Unity latest run must be terminal SUCCESS Attempt2. An additional terminal Attempt2 API is mandatory. Independent final review will verify that extra API id/head/event/tree as well.",
+    "Six preparation records require originalAttempt1 and newAttempt2 checkrun IDs with exactly preserved name/head/run/started/completed/runner/steps, success and execution completed before decision. They are explicitly labelled historical copied execution.",
+    "Four licensed jobs require new IDs, actual nonempty steps/runner, Attempt2, started after Rdecision; no old cancelled/skipped ID can substitute.",
+    "Full original logs/checkout, real four deactivation+REVOKE receipts, unchanged metadata/coverage gates, ordered four scene callbacks and Xcode success remain required.",
+    "Three actual artifact API digests and exactZIPbytes/members are checked, fullXML/CoverageZIPbytes retained, APKexcluded. Public-safe full profiles preserve separate original rawhashes.",
+    "Output prefix is the actual integrated Push chain, creation uses wx and cannot overwrite an existing output. OriginalPushconfig and alreadyaccepted PRpack/evidence are separate and unchanged."
+  ],
+  "priorPRUnchanged": {
+    "packSha256": "1546b3de59482e8478f13c81f998a99e50aa045ccc4d63ebc7eca5a6b31d7764",
+    "evidenceSha256": "e0aa666b79467dcca5e392c1d5dc374bafd201a2f83d5cb713ee7b0b4c0f6a27"
+  },
+  "actualCarryForwardOriginals": {
+    "file": "I_MI_CI_ORIGINALS/PUSH_RECOVERY_PREP_CARRY_FORWARD_MAPPING.json",
+    "allSixTimesStepsExactlyMatch": true
+  },
+  "boundary": "This is read-only script/config review, not an execution test, actual final pack acceptance, ongoing CI PASS or I16 acceptance. No source/Git/Unity/dispatch/retry/cancel action performed. Later actual APIs/outputs/originals remain independently checked."
+}

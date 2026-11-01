@@ -1,0 +1,34 @@
+{
+  "utc": "2026-10-18T23:17:44.078620+00:00",
+  "head": "524b45024438b93c592351d7683a7c62aec2ab8d",
+  "tree": "f1adfa4e006169c32bd930cc6c76f1d62b98e780",
+  "role": "coordinator-own-canonical-validation; independent QC separate",
+  "runs": [
+    {
+      "name": "architecture",
+      "exitCode": 0,
+      "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9",
+      "bytes": 1931,
+      "argv": [
+        "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+        "tools/architecture-validation/validate.py",
+        "--self-test"
+      ]
+    },
+    {
+      "name": "scope",
+      "exitCode": 0,
+      "sha256": "0a02d0114aebe705da3c2f95f913cd462c60a89947351a045842eb32ac75dbd7",
+      "bytes": 2132,
+      "argv": [
+        "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+        "tools/architecture-validation/validate.py",
+        "--scope",
+        "production",
+        "--scope-manifest",
+        "tools/architecture-validation/scopes/WP-038.production.scope.json",
+        "--self-test"
+      ]
+    }
+  ]
+}

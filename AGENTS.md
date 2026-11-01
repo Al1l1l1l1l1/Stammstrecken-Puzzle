@@ -1,52 +1,39 @@
 # Verbindliche Agentenleitlinie
 
-Dieses Dokument ist die **verbindliche Startanweisung** für jeden KI-Agenten, der am Projekt **Stammstrecken-Puzzle** arbeitet. Es stellt sicher, dass Manus, ChatGPT/Astra, Kimi und künftige Systeme denselben dokumentierten Projektstand verwenden und nicht auf einen früheren Chat angewiesen sind.
+**Geltung ab MANUS-2026-10-20-02:** Die ausdrückliche Kurskorrektur des Owners ersetzt die bisherige kleinschrittige Produktionsführung. Maßstab ist ein gutes, tatsächlich laufendes und veröffentlichungsfähiges Spiel, nicht die Zahl von Dokumenten, Work Packages oder grünen technischen Teilprüfungen. Die bisherige Version bleibt in Git am Stand `8d2ff1950fa72777014eda0555b02b6e9fd9a995` nachvollziehbar.
 
-## Verbindliche Lesereihenfolge vor jeder Arbeit
+## Kurzer verbindlicher Einstieg
 
-1. Zuerst diese Datei, `AGENTS.md`, vollständig lesen.
-2. Danach `Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` vollständig lesen.
-3. Danach `Stammstrecken_Puzzle_Konzept_00-15/00_Train_Track_Konzeptindex.md` vollständig lesen.
-4. Danach `Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md` vollständig lesen.
-5. Danach `PROJECT_CONTROL/CURRENT_STATE.md` und das konkrete Work Package in `WORK_PACKAGES/` vollständig lesen.
-6. Weitere Fachdateien nur lesen, soweit sie für das konkrete Work Package erforderlich sind. Der Konzeptindex und die Projektübergabe benennen die jeweils passenden Fachdateien.
+1. Diese Datei und `PROJECT_CONTROL/CURRENT_STATE.md` lesen; tatsächlichen Branch/Head und aktive Aufgabe feststellen.
+2. Das dort verlinkte aktuelle Gesamtmandat und das eigene große Work Package beziehungsweise den delegierten Teilbrief lesen.
+3. Nur die für die eigene Arbeit einschlägigen Fachverträge und aktuellen Änderungen lesen. Konzeptindex/Master stehen zur Navigation bereit; eine komplette Wiederlektüre aller Konzept-, Historien- oder ADR-Dateien bei jedem Routineabschnitt ist nicht erforderlich.
 
-Mit der Bearbeitung darf erst begonnen werden, wenn diese Lesereihenfolge abgeschlossen ist. Existiert noch kein konkretes Work Package, darf kein Agent eigenständig einen Umsetzungsauftrag ableiten oder außerhalb eines ausdrücklich freigegebenen Scopes arbeiten.
+Bei Fortsetzung desselben Auftrags den aktuellen Arbeitsstand und seitdem geänderte Anforderungen laden, nicht die ganze Einstiegskette wiederholen. Fehlende technische Kleinentscheidungen innerhalb des übertragenen Mandats trifft die verantwortliche technische Rolle; ein echter Konflikt mit Produktversprechen, Datenintegrität oder externer Befugnis wird nur im betroffenen Teil eskaliert.
 
-## Verbindliche Arbeitsregeln
+## Verantwortung und Auftragsgröße
 
-| Regel | Verbindliche Anwendung |
-|---|---|
-| Dokumentierter Stand | Repository und Projektdateien sind der persistente Projektstand. Informationen, die nur in einem Chat vorkommen, gelten nicht als persistenter Projektstand. |
-| Produktentscheidungen | Bereits bestätigte Produktentscheidungen dürfen nicht stillschweigend verändert werden. Eine Änderung erfordert eine neue ausdrückliche Produktentscheidung und die dokumentierte Fortschreibung der zuständigen Fachdateien. |
-| Architekturentscheidungen | Architekturentscheidungen dürfen nach ihrer Annahme nicht eigenmächtig verändert werden. Sie sind nach dem ADR-Verfahren in `DECISIONS/README.md` zu dokumentieren und dürfen nur durch eine ausdrücklich dokumentierte, nachfolgende Entscheidung ersetzt werden. |
-| Scope-Treue | Jeder Agent arbeitet ausschließlich innerhalb seines konkreten Work-Package-Scopes. Beiläufige „Verbesserungen“, Refactorings oder Inhaltsänderungen außerhalb dieses Scopes sind nicht erlaubt. |
-| Unklare Informationen | Was nicht dokumentiert oder ausdrücklich entschieden ist, wird nicht geraten und nicht entschieden. Der Agent dokumentiert die Lücke als Blocker oder Rückfrage im dafür vorgesehenen Projektstand. |
-| Abschlussdokumentation | Jede abgeschlossene Arbeit wird in den im Work Package vorgegebenen Projektdateien dokumentiert. Mindestens der Work-Package-Status und `PROJECT_CONTROL/CURRENT_STATE.md` sind bei einem Abschluss zu aktualisieren. |
-| Qualitätsnachweis | Eine technische Aufgabe gilt nur nach `PROJECT_CONTROL/DEFINITION_OF_DONE.md` als abgeschlossen. |
+Ein Gesamtauftrag liefert einen großen, zusammenhängenden Teil des Produkts einschließlich Vorbereitung, Umsetzung, eigener Korrekturen, nötiger unabhängiger Prüfung, Nachbesserung und Integration. Die Koordination übergibt diesen Auftrag einmal; Routinefortsetzungen, Defektbehebung, Subagentenbeauftragung und zulässige Integration erfordern keine neuen Ownerprompts.
 
-## Verbindliche Quellenhierarchie
+Der benannte Releaselead ist für die Zusammenführung, spielbare Meilensteine und das vollständige Endergebnis verantwortlich. Parallel arbeitende Rollen besitzen eindeutige Dateieigentümerschaft und kurze interne Teilbriefe. Ein neuer Subagent, ein Fix, eine Union oder ein Dokumentationsschluss erzeugt allein kein neues Work Package, kein neues Scope-Manifest und keine zusätzliche Geschäftsführerfreigabe.
 
-Bei einem Widerspruch gilt die folgende Reihenfolge, soweit eine höherstehende Quelle ausdrücklich zur konkreten Frage Stellung nimmt:
+Ein eigener unveränderlicher Scopeanker ist je tatsächlich unabhängiger großer Lieferbahn vor Fachänderungen ausreichend. Sein Scope benennt die zusammengehörigen Module und realen Ergebnis-/Risiko-/Integrationsgrenzen. Der historische ADR-030-Vertrag bleibt erhalten; er verlangt nicht, jeden internen Kleinschritt als neues Programm zu verankern. Erweiterungen außerhalb des Programms bleiben ausdrückliche Entscheidungen.
 
-1. Eine neue, ausdrücklich bestätigte Produktentscheidung.
-2. Eine angenommene, dokumentierte Architekturentscheidung im ADR-System für technische Fragen.
-3. Die maßgebliche Master-Spezifikation und die dort nachgewiesenen, später bestätigten Fachdateien.
-4. Die Projektübergabe und der Konzeptindex als Steuerungs- und Navigationsdokumente.
-5. Der aktuelle Status und das konkrete Work Package für Ausführungsstand und Auftragsgrenzen.
+## Produkt- und technische Entscheidungsgrenzen
 
-Ein vermuteter Widerspruch ist vor der Umsetzung als Blocker zu dokumentieren. Er darf nicht durch eine eigene Interpretation aufgelöst werden.
+Neue direkte Ownerentscheidungen und ausdrücklich zuständige Produktentscheidungen haben Vorrang. Aktuelle Fachfassungen müssen ihnen entsprechen. Keine stille Featurekürzung, erfundene menschliche Abnahme, falsche Befugnisherkunft oder nachträgliche Umdeutung alter Nachweise.
 
-## Abschluss- und Übergabepflicht
+Implementierungsdetails im bestehenden Stack, normale Daten-/UIcomposition, Importpresets, Tests, Fehlerkorrektur und geplante interne Integration darf der Lead innerhalb seines Mandats selbst entscheiden. Ein Fach-ADR ist nur bei einer echten Änderung eines öffentlichen Daten-/Persistenz-/Hash-/Sicherheits-/Providervertrags oder einer tragenden Modul-/Stackgrenze erforderlich, nicht für jede Klasse, Ansicht, Presetdatei oder Montage. Solche echten Vertragsänderungen werden vor Abhängigmachen in einer kurzen Entscheidung mit nötiger getrennten Fachreview festgehalten.
 
-Vor dem Ende eines Arbeitsschritts prüft jeder Agent die Akzeptanzkriterien und die Definition of Done seines Work Packages. Der Agent dokumentiert Ergebnis, Validierung, offene Punkte und den nächsten vorgesehenen Schritt so, dass ein neuer Agent ohne Chat-Verlauf übernehmen kann. Der verbindliche Ablauf steht in `PROJECT_CONTROL/AI_HANDOVER_RULES.md`.
+Main-/Produkt-/Releasebefugnisse gelten nur im ausdrücklichen aktuellen Gesamtmandat. Eine technische Integration ist nicht gleich Storeveröffentlichung. Externe Konten, rechtliche Erklärungen, Zahlungen und Veröffentlichung brauchen ihre jeweils tatsächlich autorisierte Handlung; keine Annahme aus einem allgemeinen Agentenauftrag.
 
-## Projektquellen
+## Qualitätsmaßstab
 
-| Datei | Rolle |
-|---|---|
-| `Stammstrecken_Puzzle_Konzept_00-15/15_Projektuebergabe_und_Gesamtstatus.md` | Bestätigter Gesamtstand und bekannte Produktionsblöcke. |
-| `Stammstrecken_Puzzle_Konzept_00-15/00_Train_Track_Konzeptindex.md` | Verzeichnis der maßgeblichen Fachfassungen. |
-| `Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md` | Strategische Gesamtfassung und bestätigte Leitplanken. |
-| `PROJECT_CONTROL/` | Persistente Steuerung des laufenden Arbeitsstands. |
-| `DECISIONS/` | Künftige dokumentierte Architekturentscheidungen. |
+Die laufende App muss gut aussehen, stabil reagieren und ihren vollständigen Spielablauf liefern. Referenzbilder, Build-PASS, Scope-/Proof-PASS und Dokumentation ersetzen die tatsächliche visuelle, bedienungsbezogene und gerätebezogene Prüfung nicht. Automatisierte Kontrollen sichern konkrete Risiken; unveränderte Quellen werden nicht wegen neuer Schlussdokumentation neu kompiliert oder vollständig erneut beurteilt.
+
+Die risikogerechte Definition of Done und CIsteuerung stehen in `PROJECT_CONTROL/DEFINITION_OF_DONE.md` und `ARCHITECTURE/TEST_STRATEGY.md`. Eine unabhängige ergebnisbezogene Annahme je integriertem Produktmeilenstein reicht; ein konkreter Nachbefund wird gezielt geschlossen, nicht über eine neue globale Abnahmekette.
+
+## Kurze aktuelle Dokumentation
+
+`CURRENT_STATE.md` ist ein kurzer aktueller Steuerungsstand, kein wachsendes Historienbuch. Der Lead pflegt eine vollständige Hauptübergabe des Gesamtauftrags und verlinkt erforderliche Originalbelege. Änderungen an Produktregeln stehen in den maßgeblichen Fachdateien. Git und datierte Quellbindungen bewahren Historie; identische Ergebnisse nicht in mehreren Zusatzberichten erneut erzählen.
+
+Der Owner erhält pro Liefermeilenstein höchstens eine vollständige übertragbare Koordinatordatei und eine kurze konkrete Chatmeldung. Keine Pflicht, einzelne technische Belege manuell zwischen Agenten zu transportieren. Die Koordination und Ausführung lesen sie direkt aus dem Repository.

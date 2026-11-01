@@ -1,0 +1,395 @@
+{
+  "evidenceKind": "ACTUAL_CI_ANDROID_QA_PACKAGE_INSPECTION",
+  "status": "TECHNICAL_CI_QA_DEBUG_PACKAGE_PASS",
+  "runId": 40143424066,
+  "jobId": 121025263409,
+  "sourceHead": "bcb52258224f55db112527f16cd923f45533b344",
+  "actualCheckout": "476600ed93b0c35d0d2f82e0577e8a058df38b01",
+  "apk": {
+    "path": ".utmp/wp046-c-ci-bcb-review/android-originals/MobilePreview/Android/stp-mobile-preview.apk",
+    "sha256": "3b3ed16a18fd5f02ceb4060eca0a529203f641a36f0774803c83ad37d76ce07c",
+    "sizeBytes": 58636497
+  },
+  "originalArtifactArchive": {
+    "path": ".utmp/wp046-c-ci-bcb-review/android-results.zip",
+    "sha256": "69d4e40a1e3269364902962ff68774cbd2390d3307d9bb825a1fed6844fe4327",
+    "sizeBytes": 266184178
+  },
+  "originalArtifactMetadata": {
+    "path": ".utmp/wp046-c-ci-bcb-review/android-artifact-metadata.json",
+    "sha256": "aadb9d75da90bde46f4b84ecf39d7e2cdfc1a7d2590ea591f658faac52c3b4f1",
+    "sizeBytes": 792
+  },
+  "originalBuildAudit": {
+    "path": ".utmp/wp046-c-ci-bcb-review/android-originals/CI/Android/apk-audit/audit.json",
+    "sha256": "1d7c68a82db158eeff3cd0285cc73119d84ffea108ddc70fba824214d2038aa1",
+    "sizeBytes": 65526
+  },
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/independent-conclusion.json",
+    "sha256": "3ccabd511605fd411ecad27e59dc286436d2695ad95e34b8c3a59ab215d8f54e",
+    "sizeBytes": 16095
+  },
+  "independentConclusion": {
+    "evidenceKind": "INDEPENDENT_ACTUAL_CI_ANDROID_40143424066_STATIC_ARTIFACT_ACCEPTANCE",
+    "status": "PASS_STATIC_CI_QA_DEBUG_ARTIFACT",
+    "findings": [],
+    "runId": 40143424066,
+    "jobId": 121025263409,
+    "jobConclusion": "success",
+    "artifactId": 12581311930,
+    "artifactZipSha256": "69d4e40a1e3269364902962ff68774cbd2390d3307d9bb825a1fed6844fe4327",
+    "artifactZipSizeBytes": 266184178,
+    "apk": {
+      "path": ".utmp/wp046-c-ci-bcb-review/android-originals/MobilePreview/Android/stp-mobile-preview.apk",
+      "sha256": "3b3ed16a18fd5f02ceb4060eca0a529203f641a36f0774803c83ad37d76ce07c",
+      "sizeBytes": 58636497
+    },
+    "apkSha256": "3b3ed16a18fd5f02ceb4060eca0a529203f641a36f0774803c83ad37d76ce07c",
+    "apkSizeBytes": 58636497,
+    "sourceHead": "bcb52258224f55db112527f16cd923f45533b344",
+    "actualCheckout": "476600ed93b0c35d0d2f82e0577e8a058df38b01",
+    "actualCheckoutTree": "684a4d28e718a5b8271ea89767201c4873c4f54d",
+    "independentWholeTreeAndParentBinding": {
+      "path": ".utmp/wp046-c-ci-bcb-review/independent-source-binding.json",
+      "sha256": "d1224d4a23830c72034cc69dcc6d99c13317212fce710681fd5ef429492a3984",
+      "sizeBytes": 2864
+    },
+    "all238ArtifactOriginalMembersIndependentlyRehashed": true,
+    "all234AuditEntriesIndependentlyRehashed": true,
+    "actualCICompilerArchive": {
+      "path": ".utmp/wp046-c-ci-bcb-review/android-originals/CI/Android/apk-audit/il2cpp-generated-inputs.zip",
+      "sha256": "53b34bffad7ac39058d0fe5a1ada1224182202ebcdd649aca6c9e3d0a7cb9a22",
+      "sizeBytes": 143057436
+    },
+    "actualCompiledBodyBinding": {
+      "methods": 16,
+      "allExactlyEqualAcceptedMain18": true,
+      "reusedConcreteBranchReview": {
+        "path": ".utmp/wp046-c-final-native18/manual-generated-code-review.json",
+        "sha256": "a8d2c0079583f4a6f3b0b101a2d905b2f16acc6bae064ff3af46dc66ce972330",
+        "sizeBytes": 8047
+      },
+      "currentInterfaceMetadata": {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/actual-review-interface-slots.json",
+        "sha256": "8c71dc8a3fca140702793c18952fc404c1c9ac7f63c2a72b74747877b0cef9b7",
+        "sizeBytes": 5106
+      },
+      "currentReviewPhaseSlot": 5,
+      "currentLedgerCompactSlot": 3,
+      "scope": "Exact actual CI source bodies plus actual CI stripped-interface metadata allow reuse of Main18 concrete save/cache/security branch review. No installed-player or per-test loaded-image claim."
+    },
+    "actualNativeSourcesScannedIncludingC": 612,
+    "actualCppAndHeaderCount": 495,
+    "requiredPlayerSafetySymbols": 12,
+    "excludedEditorHooks": [
+      "ConfigureTestLocalDataDrain",
+      "testLocalDataDrain",
+      "ConfigureContractTestRuntime",
+      "ConfigureTestRoot",
+      "testContractRuntime"
+    ],
+    "actualStrippedAssemblies": 104,
+    "noNunitCoverageTestAssemblies": true,
+    "actualPackagedGlobalMetadata": {
+      "actualPackagedPath": "assets/bin/Data/Managed/Metadata/global-metadata.dat",
+      "allFourActualByteSourcesEqual": true,
+      "sizeBytes": 10000352,
+      "sha256": "4ae685a7a2d30294ada2d81b057d15dafd8e2df43c039a2b84e2d5c918491c37"
+    },
+    "all205ProductCsMatchBcbAfterDeclaredCRLFNormalization": true,
+    "rawCsLineEndingDifferences": 3,
+    "fourLocal18ProjectSettingsExplicitComparisons": [
+      {
+        "path": "ProjectSettings/GraphicsSettings.asset",
+        "local18RawSha256": "27d267ac0ca95aab34055c1b3e74ebc17780e358d6556a8f0cd7bb52697dd9f3",
+        "inGit": true,
+        "gitRawSha256": "83f008014cd45a9c4d6ab9a8363ea6495a52142545385bff6388ebff41071973",
+        "rawBytesEqual": false
+      },
+      {
+        "path": "ProjectSettings/QualitySettings.asset",
+        "local18RawSha256": "fb5340fbeff6c883c9cf24b76a3b7a160bf511e785a4d6740b32cebd236967a3",
+        "inGit": true,
+        "gitRawSha256": "6f403035f207746f1251927a7ab8c0077f79b617c496efd238d1d7fbad1a03f2",
+        "rawBytesEqual": false
+      },
+      {
+        "path": "ProjectSettings/PackageManagerSettings.asset",
+        "local18RawSha256": "d5368f5e862d6964716ec46cedfb30ee9b2ee274cd5aef5436f6c74dcf1c4797",
+        "inGit": false,
+        "gitRawSha256": null,
+        "rawBytesEqual": false
+      },
+      {
+        "path": "ProjectSettings/URPProjectSettings.asset",
+        "local18RawSha256": "68d75e5e1502dd7a4c18b7306430916b5ee8dadfdb0fbb588893fe38eaa2c056",
+        "inGit": false,
+        "gitRawSha256": null,
+        "rawBytesEqual": false
+      }
+    ],
+    "qaPackage": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": 26,
+    "targetSdk": 36,
+    "abi": "arm64-v8a",
+    "debuggable": true,
+    "actualV2SignatureVerified": true,
+    "ciSignerCertificateSha256": "10f03d2267b864e3ca5a0c8c11b8b1c5619bba404525afd3f00aa13cf664954d",
+    "localMain18SignerCertificateSha256": "2fc6af1b7aa6d58ac223dc388575847b98f4a65e93a7a41cbb9031563eca9bfd",
+    "sameSignerAsMain18": false,
+    "currentPrivateUserTestApkRemains": 18,
+    "privacyAndTwoFinalMergeGates": "PASS_ACTUAL_PACKAGED_AND_EXACT_CURRENT_FINAL_MERGE_RECEIPTS",
+    "adIdAbsent": true,
+    "measurementInitDelayed": true,
+    "firebaseInitAbsent": true,
+    "ownHumanProviderAbsent": true,
+    "adsAndBillingDexPresent": true,
+    "dexFiles": 5,
+    "static16KiB": {
+      "libraries": 7,
+      "loadSegments": 26,
+      "zipEntries": 605,
+      "zipalignP16Exit": 0,
+      "elfAndZipPassed": true,
+      "physicalRuntimeValidated": false
+    },
+    "actualPngComparison": {
+      "count": 24,
+      "sameBytesAsMain18": 13,
+      "maximumChannelDifference": 1,
+      "changedChannels": 273,
+      "allAlphaAndDimensionsEqual": true,
+      "wholeByteOrPixelEqualityClaim": false,
+      "visualSighting": "All24 actual packaged icons seen in contact-sheet-v2, consistent complete train/icon layers, no visual defect. Only icon graphics, not installed game UI.",
+      "producerCauseInferred": false
+    },
+    "fontObjects": {
+      "count": 4,
+      "allActualObjectBytesEqual18": true,
+      "threeProjectTtfFilesExactlyEmbedded": true,
+      "unchangedUnityFallback": "NotInter-Regular"
+    },
+    "parserJcsActualBodiesExactlyEqual18": [
+      {
+        "method": "Reader_ParseString",
+        "member": "cpp/STP.Infrastructure.Content__1.cpp",
+        "bodySha256": "c6bdaaa55e9b02973ae8669182c685555d04e91cc38587cdb28eb113b99418ba",
+        "exactBytesEqual18": true
+      },
+      {
+        "method": "JcsSerializer_WriteString",
+        "member": "cpp/STP.Infrastructure.Content.cpp",
+        "bodySha256": "d53e7ddb0c2f9f644a23ac44cbf0ec6d9e03edae9df2c514fc9f4f5ba2507d5a",
+        "exactBytesEqual18": true
+      }
+    ],
+    "nativeAndDexByteComparisonsTo18": {
+      "sameSO": 2,
+      "sameDex": 5,
+      "details": "package-readback.json; all changed member hashes retained, no complete APK equality claimed"
+    },
+    "referenceMain18Acceptance": {
+      "path": ".utmp/wp046-c-final-native18/independent-conclusion.json",
+      "sha256": "495261257b030af58b5347b9d251dabe3a5ce182afedb19450c3ecd2eeac2290",
+      "sizeBytes": 16392
+    },
+    "files": [
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/original-integrity.json",
+        "sha256": "31871263736a36462aee35e1e1d6b7ee55e3b5946a6f21f149eeaba715c372a5",
+        "sizeBytes": 60330
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/package-readback.json",
+        "sha256": "461b8b20e3dcb06a43e0421749fe17fede95b3797c1547990561e04fd3a337e6",
+        "sizeBytes": 184316
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/compiler-resource-readback.json",
+        "sha256": "0dcc208dda4a3eff38298cb6a59fd82aaf0c7f2252c2f6cabb0dae2ec1a049cf",
+        "sizeBytes": 106662
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/metadata-boundaries-readback.json",
+        "sha256": "e1871bfcdc3921ee353f545f740bb44aa374fb8b36248e222cf04fbc8ec0a4cc",
+        "sizeBytes": 140607
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/actual-review-interface-slots.json",
+        "sha256": "8c71dc8a3fca140702793c18952fc404c1c9ac7f63c2a72b74747877b0cef9b7",
+        "sizeBytes": 5106
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/independent-terminal-binding.json",
+        "sha256": "fa37e08e6d4c20ad7f548a5be258b4f4bff7353adb669f8a8c11e751263fac45",
+        "sizeBytes": 1474
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/actual-signature.txt",
+        "sha256": "a99f3e434a7d5820ec6a6ef8a70de5c7fd39ae6a560d3165ab23046d55015441",
+        "sizeBytes": 972
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/actual-packaged-manifest.xml",
+        "sha256": "ec74ecc8ae6f860d64a7a14f6e0d173b38ff9838ba95eed53b6fdeb6ed591986",
+        "sizeBytes": 16886
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/actual-ci-icon-contact-sheet-v2.png",
+        "sha256": "8e2410b91367643915e2a0a0974ec5d8be480f6b06cff768c93d404728669e9d",
+        "sizeBytes": 81141
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/initial-icon-raw-equality-assumption.json",
+        "sha256": "7643fc94ac7316ee67dfb260b5f263b95cc64737754bd0dd0f986e287e095725",
+        "sizeBytes": 644
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/linux-log-format-observation.json",
+        "sha256": "2339f9115b9d173733c84bca53c6eaf032e6aaf62f2463785a1b4d28e7809798",
+        "sizeBytes": 468
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/verify_originals.py",
+        "sha256": "483f1b52dd2cf63eb8d0ade88366cd2c7073a40ef3c6639ef784f2e3975d299a",
+        "sizeBytes": 3126
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/inspect_package.py",
+        "sha256": "499ebd34f20d9f03775ee80cc0fc12b100d05a963e0f510cb4a79a652840ebfc",
+        "sizeBytes": 8044
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/inspect_compiler_resources.py",
+        "sha256": "d3248c1719912d007c08193c261497eb741019c440ac55d1770fedf0fd75aefb",
+        "sizeBytes": 9373
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/check_metadata_and_boundaries.py",
+        "sha256": "f49f2e437a32300a4040fcd273191b43531e9ae60825a49d758fb36b543bb569",
+        "sizeBytes": 3121
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/inspect_actual_interface_slots.ps1",
+        "sha256": "583aee1f4c3c8d1d6836178ef792130bf69e99d1f6ffac76b4d6c3a15c661391",
+        "sizeBytes": 1600
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/finalize_acceptance.py",
+        "sha256": "44e85d91c956667e550c978a91efcf0cddf3bb78d10c0653e7ea1e66b9fd7864",
+        "sizeBytes": 8496
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/LocalProgressPolicy_PrepareForSave.generated.cpp",
+        "sha256": "fafb7888484b3f332fffb5c7263c0207b643d63fb752f4ab10c3c8520a8146db",
+        "sizeBytes": 2351
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/MobilePreviewInstaller_Update.generated.cpp",
+        "sha256": "2872ab4a4542c494b5d31de8d4246acd21ca7a71ed2cdd7693ed502ae326894e",
+        "sizeBytes": 22918
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/MobilePreviewInstaller_OnDestroy.generated.cpp",
+        "sha256": "aafc2bd80ead9786bbc369ea8f5821a420d39666b8201d5689c243f477111884",
+        "sizeBytes": 15890
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/MobilePreviewInstaller_ReadHintDisplayCredits.generated.cpp",
+        "sha256": "84442245f4270101009ea9b5b7c59b1ad3129bbfb9f8295a6e7f8f7d48ed7e93",
+        "sizeBytes": 10102
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/MobilePreviewInstaller_ClearHintDisplayProjection.generated.cpp",
+        "sha256": "ca5b1c09be43cc68b523af93741002330268146478af01f5e93a128ba7e254c7",
+        "sizeBytes": 1311
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/LocalSaveCodec_ValidateProgressAuthority.generated.cpp",
+        "sha256": "fc60e38e42c0701d69705273b9b9e904394702b3dabaca718f050a4340791b45",
+        "sizeBytes": 48206
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/LocalSaveCodec_Encode.generated.cpp",
+        "sha256": "4b3d286d035210239c2762f2c9c1aa973e07a14c22c3ce06c1b09bee5e767e41",
+        "sizeBytes": 16318
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/LocalSaveCodec_PayloadBytes.generated.cpp",
+        "sha256": "1926add549a34bfda468896194aac6f4e44b8dcd0068a7f8c2c1b90c437d3832",
+        "sizeBytes": 1744
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/LocalSaveCodec_ValidatedPayloadBytes.generated.cpp",
+        "sha256": "a002b6f790396411c17df53892e364e426e340c4c792608f77bc7d75377294af",
+        "sizeBytes": 1782
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/U3CU3Ec__DisplayClass25_0_U3CValidateProgressAuthorityU3Eg__PublishedByIdU7C0.generated.cpp",
+        "sha256": "4643e2bb583c4f94895c9698b45a01c91ad58ce0ce7c2d47560f9ee8eb49bf68",
+        "sizeBytes": 5108
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/U3CU3Ec__DisplayClass25_0_U3CValidateProgressAuthorityU3Eg__FirstClearedU7C1.generated.cpp",
+        "sha256": "a0167f2417018b1d7eefe16709e4ac208769dcd616854d1d6555304e7d0a050f",
+        "sizeBytes": 8577
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/U3CU3Ec__DisplayClass25_0_U3CValidateProgressAuthorityU3Eb__12.generated.cpp",
+        "sha256": "c8cd70273204d168a0b9c994a097b4c747eaab85dba47f21f8f34d263917c09d",
+        "sizeBytes": 1475
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/U3CU3Ec__DisplayClass25_1_U3CValidateProgressAuthorityU3Eb__5.generated.cpp",
+        "sha256": "1622be4635b6cd95be9c1f18aafac7180783c95dd9478c8307563ea82d2fc9a9",
+        "sizeBytes": 1057
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/SaveLedgerCodec_Validate.generated.cpp",
+        "sha256": "037827f69fa8db366a5427ecaf590161aa9ce16490a143f222bffb04167e4909",
+        "sizeBytes": 525
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/SaveLedgerCodec_ValidateCore.generated.cpp",
+        "sha256": "14aea7dbaad75fa2fed6c90475ff052f3649b80042b73e7295da59a4e99f08d3",
+        "sizeBytes": 48742
+      },
+      {
+        "path": ".utmp/wp046-c-ci-bcb-native-android-review/v2/SaveLedgerCodec_Compact.generated.cpp",
+        "sha256": "39c7a4aa4e9bf66ab2df61cb9695ded6199aa9abcd241df03aa79b508dd67102",
+        "sizeBytes": 13629
+      }
+    ],
+    "originalsOrLiveSourcesModified": false,
+    "ownUnityInvocations": 0,
+    "ownCiOrGitMutations": false,
+    "physicalDeviceValidated": false,
+    "physicalPrivacyValidated": false,
+    "providerSandboxValidated": false,
+    "humanAcceptance": false,
+    "human8ChangedOrReinterpreted": false,
+    "productionSigned": false,
+    "legalApproved": false,
+    "promotionAllowed": false,
+    "sourceCleanOrBinaryReproductionAsserted": false,
+    "limitations": [
+      "Static QA/debug Android CI artifact acceptance only. No physical device, installation/runtime, native SDK sandbox, Human, legal or Store production approval.",
+      "CI debug signer differs from local Main18; no automatic reinstall or profile deletion authorized. Main18 remains the user-facing local test package.",
+      "Four local Main18 ProjectSettings differences and three C# raw CRLF differences are explicit. Git-bound source semantics and actual generated-body checks are not a clean/bit-reproduction claim.",
+      "Some icon PNGs differ in sparse RGB least-significant channels by at most1, with exact dimensions/alpha; no raw/pixel identity or producer-internal-cause assertion. Actual current icons were seen.",
+      "Four font objects and16 native source bodies are byte-identical to accepted18; interface slots were independently checked in actualCI metadata. Native source/input observation is not installed-player execution.",
+      "iOS compilation is separately failed and being corrected by Root/B; this Android acceptance does not close the complete release programme."
+    ]
+  },
+  "preferredLocalUserTestPackage": "Release/ANDROID_BUILD18_INSPECTION.json",
+  "ciPackageAutomaticallyReplacesMain18": false,
+  "differentDebugSignerExplicitlyPreserved": true,
+  "human8Unchanged": true,
+  "iOSBuildAccepted": false,
+  "physicalDeviceValidated": false,
+  "providerSandboxValidated": false,
+  "productionSigned": false,
+  "legalApproved": false,
+  "promotionAllowed": false
+}

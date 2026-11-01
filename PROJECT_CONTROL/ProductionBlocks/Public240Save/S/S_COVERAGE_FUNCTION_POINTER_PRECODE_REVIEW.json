@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-19T11:46:08.445Z",
+  "status": "No objection to tightly bounded scratch diagnosis only; no implementation or S acceptance",
+  "supersedesHypothesis": "RuntimeHelpers.PrepareMethod discarded; its efficacy on pinned Mono not established.",
+  "mechanism": "For an ordinary method, public Unity Mono RuntimeMethodHandle.GetFunctionPointer directly calls mono_compile_method_checked. No method invocation is needed in the cited implementation.",
+  "primarySource": {
+    "url": "https://raw.githubusercontent.com/Unity-Technologies/mono/unity-main/mono/metadata/icall.c",
+    "lines": "7828–7835",
+    "binaryBindingLimit": "Public moving unity-main is not proven exact source of pinned6000.3.23f1 Mono binary; actual native probe required."
+  },
+  "allowedProspectivePlacement": "Existing immutable-scope LocalSaveContractFixtures.cs, editor-only test-helper; no new source path or runtime assembly.",
+  "conditions": [
+    "Closed exact STP assembly name allowlist, no StartsWith-only widening or foreign assembly loads.",
+    "IAsyncStateMachine generated type with nongeneric instance MoveNext, no ContainsGenericParameters; unexpected selection/load/preparation failure visible and fail closed.",
+    "Only obtain function pointer and discard it. Never call/store/dereference pointer; never Invoke/Activator/constructor/factory or advance state machine.",
+    "Gate hook with UNITY_EDITOR and actual coverage enabled; record initialization before actual FullEmpty/RunStarted, without relying only on undocumented cross-initializer order.",
+    "Before/after preparation prove complete per-method offset sets, all hit counts zero, exact source/DLL/PDB/native Unity version bound.",
+    "Then actual tests must show unchanged full sets with real measured hits and unchanged FullEmpty/full exporter/filter/gate; retain both A/B original logs/XMLs.",
+    "No CoverageReset, synthetic execution, fixture warmup, counter or XML editing, exclusions or narrowed method/assembly filters.",
+    "Replacement regular CI and target-platform jobs remain required; no carry-over of first-run failed CI as PASS."
+  ],
+  "risks": [
+    "JIT can increase test-editor initialization cost and platform behavior can differ.",
+    "Open generic state machines or later-loaded test assemblies can remain unprepared; selection must be audited and failure explicit.",
+    "Early source initializer alone does not constitute actual ordering evidence.",
+    "Any unanticipated static initializer/execution effect would invalidate non-executing premise."
+  ],
+  "reviewerActions": "Read-only source/API/ZIP diagnosis; no local Unity or source/Git/CI mutation."
+}

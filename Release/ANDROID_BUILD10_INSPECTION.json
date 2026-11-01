@@ -1,0 +1,224 @@
+{
+  "evidenceKind": "ACTUAL_ANDROID_APK_ARTIFACT_INSPECTION",
+  "buildLabel": "wp046-main-android-10",
+  "apkSha256": "85c3d1726cd29f8a67583cc01f89f5a5d12b7a37073cf60372f41034bb598364",
+  "apkSizeBytes": 58628605,
+  "sourceBinding": "Git 213186388648f3478103346c8f604fa7858d4a50; actual prebuild source input inventory SHA256 d149a418103d40687c7c0278017c0098444d459a1eaf9cb853183f891e0bd986; exact original source archive SHA256 715545b54f7e741da5703fa63d6778606aa2e1d32f5b8144e60b461e254cfb2f; four preserved local ProjectSettings overrides declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "manifest": {
+    "package": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": "26",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_ADSERVICES_TOPICS",
+      "com.android.vending.BILLING",
+      "android.permission.WAKE_LOCK",
+      "android.permission.FOREGROUND_SERVICE",
+      "com.STP.StammstreckenPuzzle.qa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "providers": [
+      "com.google.android.gms.ads.MobileAdsInitProvider",
+      "androidx.startup.InitializationProvider"
+    ],
+    "measurementDelayValues": [
+      "true"
+    ],
+    "debuggable": "true"
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "nativeLibraries": [
+    {
+      "path": "lib/arm64-v8a/lib_burst_generated.so",
+      "sizeBytes": 422840,
+      "sha256": "84c365e70ebd2d5f08dc5d151cfba93156f3f142424c8339de7b67b80364f70f",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sizeBytes": 1292904,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libgame.so",
+      "sizeBytes": 252008,
+      "sha256": "5e1f799e725960bd7b9017d7f3129e4fe28dc93fea8029102d85bf9fc4bdc64d",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libil2cpp.so",
+      "sizeBytes": 80479176,
+      "sha256": "dd0bf2f087c403980a0d9ee42fdb4cf0989071f6108322f9ddfaf75aaf729102",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libmain.so",
+      "sizeBytes": 8720,
+      "sha256": "56e3c619bf938450f5a95eec2a460cf620adb3ce73cea8577160d58542b0f632",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libswappywrapper.so",
+      "sizeBytes": 227040,
+      "sha256": "bad9938ead2f8196a0fdd25cd04f51a74ea7958eb681a13517c507bf08ab9798",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libunity.so",
+      "sizeBytes": 36232048,
+      "sha256": "6e5dbb360a1b1fcd34d0a2cfd0bce50a21431a3b52d0e9b2b2771671eb2490b4",
+      "elfMachine": 183
+    }
+  ],
+  "packagedSdkVersionProperties": {
+    "billing.properties": "version=9.0.0\nclient=billing\nbilling_client=9.0.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-measurement-base.properties": "version=20.1.2\nclient=play-services-measurement-base\nplay-services-measurement-base_client=20.1.2\n",
+    "play-services-measurement-sdk-api.properties": "version=20.1.2\nclient=play-services-measurement-sdk-api\nplay-services-measurement-sdk-api_client=20.1.2\n",
+    "user-messaging-platform.properties": "version=4.0.0\nclient=user-messaging-platform\nuser-messaging-platform_client=4.0.0\n"
+  },
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "status": "TECHNICAL_PACKAGE_PASS",
+  "apk": ".utmp/wp046-native/android-build10-verified/stp-mobile-preview.apk",
+  "originalArtifactEntryCount": 237,
+  "originalAudit": {
+    "path": ".utmp/wp046-native/android-build10-inspected/audit.json",
+    "sha256": "1936d4577b72d86e2bfc0a1156228f1c9fc29cb6e48c799bd5ce544ee2c4cccb",
+    "sizeBytes": 68179
+  },
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c-native-apk10/independent-conclusion.json",
+    "sha256": "5ba2d6c16cc55bf03a53b76280773985503964374afba76d208909979dfe0b0f",
+    "sizeBytes": 5040
+  },
+  "sourceCleanHeadAsserted": false,
+  "prebuildInventory": {
+    "path": ".utmp/wp046-native/android-build10-source-inputs/source-inputs.json",
+    "sha256": "d149a418103d40687c7c0278017c0098444d459a1eaf9cb853183f891e0bd986",
+    "sizeBytes": 238221
+  },
+  "prebuildOriginalSourceArchive": {
+    "path": ".utmp/wp046-native/android-build10-source-inputs/original-source-inputs.zip",
+    "sha256": "715545b54f7e741da5703fa63d6778606aa2e1d32f5b8144e60b461e254cfb2f",
+    "sizeBytes": 6490152
+  },
+  "preservedPrebuildSourceFiles": 1114,
+  "actualUnityBuildExitCode": 0,
+  "nativeInputCapture": {
+    "path": ".utmp/wp046-native/android-build10-inspected/native-originals/capture.json",
+    "sha256": "8457b76a3da10c57af3707df97e51ae30cf19a31ce55eb3acc00c14fc087248d",
+    "sizeBytes": 569319
+  },
+  "nativeInputArchive": {
+    "path": ".utmp/wp046-native/android-build10-inspected/native-originals/native-originals.zip",
+    "sha256": "5140e117d2a4986a678a3435696bfb85d785b2009f79a10197bab881f006a9a9",
+    "sizeBytes": 17890757
+  },
+  "managedIl2cppInputArchive": {
+    "path": ".utmp/wp046-native/android-build10-inspected/native-originals/managed-il2cpp-originals.zip",
+    "sha256": "0ab43bd5f2ede9c5cb9ea1f5537a97ae93f726278affde9b0b972985cfa4829e",
+    "sizeBytes": 152243163
+  },
+  "preservedNativeFiles": 1849,
+  "preservedManagedIl2cppFiles": 815,
+  "independentReports": [
+    {
+      "path": ".utmp/wp046-c-native-apk10/capture-archive-byte-readback.json",
+      "sha256": "1e58840fe9935c878a31215b6c7538e00e1b6ed55e7a6942a2c976dcf4ddab83",
+      "sizeBytes": 868
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/independent-readback.json",
+      "sha256": "d5e3908e8d26c0be3e1d2f7300326057d369b25dcae47a72ed802f783b56fbb5",
+      "sizeBytes": 20654
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/dex-source-and-size-readback.json",
+      "sha256": "39803c1c94c0a10c725fa1876ad014d6f7ea520eb190ba1e861aa5eff02bbb89",
+      "sizeBytes": 5329
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/player-code-readback.json",
+      "sha256": "016888b24336537a2ae775a02f5b46fb6e290dfbceaebf1d027e9ce32792ec08",
+      "sizeBytes": 9537
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/native-scope-readback.json",
+      "sha256": "e681291239de4d8e9bc5ebcabd94651363432ccdc06fff7b7ebf06bfad21e01b",
+      "sizeBytes": 3250
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/readback.json",
+      "sha256": "ad90d289a1e427beb59f7939f7d1ceb2f79acd61f09c4423af723ec091cc81b1",
+      "sizeBytes": 18917
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/swappy-byte-difference.json",
+      "sha256": "b50f7613d46f6b91b85b7af5ae2c4ca4b276b8ac4664ab87800706be70ac269e",
+      "sizeBytes": 47182
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/actual-apk-icon-layers.png",
+      "sha256": "f0b5c9b2ec151a9497315ccc4a6821a61b119879732ca4497dbd16e77cdf0a9c",
+      "sizeBytes": 13438
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/verify_apk.py",
+      "sha256": "580be30213a64797707dbb49fcb1cbaa68defbf808a75410f8267374c2811c98",
+      "sizeBytes": 10363
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/extra.py",
+      "sha256": "3e85b73e2a3f3bc695f121920a0e063240561d604ca900ce4e16e790cb38a270",
+      "sizeBytes": 5043
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/verify_player_inputs.py",
+      "sha256": "558c9f46d4c24a78944129050c7e00fe5fdb4d1d80fdf58e03331e3be816e2da",
+      "sizeBytes": 5110
+    },
+    {
+      "path": ".utmp/wp046-c-native-apk10/page_size.py",
+      "sha256": "538958311335a3e97d178003403f09565a669f7878460c745e00de96250ff235",
+      "sizeBytes": 10480
+    },
+    {
+      "path": ".utmp/wp046-b-apk10-elf-review/elf-ranges.json",
+      "sha256": "eb647b53dad1577be6948bc4860e8821e8e6c6a9d89850aadc255172230ca9c4",
+      "sizeBytes": 14548
+    }
+  ],
+  "static16KiBElfAndZipValidated": true,
+  "physical16KiBRuntimeValidated": false,
+  "humanAcceptance": false,
+  "publicStoreReleaseAllowed": false,
+  "nativeDifferenceFromMain9": {
+    "changedLibrary": "libswappywrapper.so",
+    "sameUncompressedSize": true,
+    "oldEmbeddedBuildTime": "Wed Oct 21 23:16:51 2026",
+    "newEmbeddedBuildTime": "Thu Oct 22 01:07:28 2026",
+    "remainingSixNativeLibrariesByteIdentical": true,
+    "semanticEquivalenceNotAsserted": true
+  },
+  "limitations": [
+    "This is the actual QA/debug-signed APK, not a production/release candidate.",
+    "Static 16KiB ELF/ZIP compatibility is established; no 16KiB device/emulator runtime was executed.",
+    "Actual retained compiler CPP symbol presence/exclusion is build-input evidence; no installed-player execution or reproducible-source build claim.",
+    "Cached RSP variants remain original evidence; their presence alone does not identify which compiler invocation ran.",
+    "libswappywrapper has a fresh embedded build timestamp and byte differences; this inspection does not claim binary semantic equivalence to Main9."
+  ]
+}

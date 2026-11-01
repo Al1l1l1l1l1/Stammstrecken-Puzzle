@@ -1,0 +1,38 @@
+{
+  "role": "Actual unchanged Domain reducer plus S checkpoint export; license-free Roslyn/Mono, no Unity/codec execution",
+  "nodeVersion": "v22.20.0",
+  "goldenBundleSha256": "c95d703d56e446f7ccc271a8c777fce77aed9bf6d1697a48b62abd62bd8c260e",
+  "harnessSourceSha256": "9594a68d1ce7638114973d690f9dbdf9204c19cb0adeaf6f6ae1ddf21d4e9b1b",
+  "actualExportSourceBytesSha256": "544f0ef5e72a79433d53567161e7d2b7756e64df0c2dc36c32c95e822bfc157e",
+  "canonicalCheckpointUtf8": "{\"activeElapsedMs\":400,\"appliedCommandIds\":[\"10000000-0000-0000-0000-000000000001\",\"10000000-0000-0000-0000-000000000002\",\"10000000-0000-0000-0000-000000000003\",\"10000000-0000-0000-0000-000000000004\",\"10000000-0000-0000-0000-000000000005\"],\"attemptId\":\"20000000-0000-0000-0000-000000000001\",\"cells\":[\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\",\"UNSET\"],\"correctionCount\":2,\"hintCount\":0,\"identity\":{\"profile\":\"STP-PUZZLE-SEMANTIC-JCS-1\",\"puzzleId\":\"S1-01-01-01\",\"sha256\":\"b2a8bdb105dde81b9072eda0bdb602cb64390c1533494651f1951efea3225031\"},\"lastSavedAtUtc\":\"2026-10-19T00:00:00Z\",\"mode\":\"PRACTICE\",\"phase\":\"Suspended\",\"previouslySet\":[true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],\"recordVersion\":1,\"revision\":5,\"rulesetVersion\":\"train-track-v1\",\"solvedEventId\":null,\"startedAtUtc\":\"2026-10-19T00:00:00Z\",\"timerStarted\":true,\"undo\":[{\"changes\":[{\"after\":\"MARK_EMPTY\",\"before\":\"UNSET\",\"x\":0,\"y\":0}]},{\"changes\":[{\"after\":\"UNSET\",\"before\":\"MARK_EMPTY\",\"x\":0,\"y\":0}]}],\"usedEmptyMarker\":true,\"usedOccupiedMarker\":true}",
+  "canonicalCheckpointSha256": "b0f48d733d8f8ce63cdbf4a00423004de74a7acffc6c0107cf0b93baba904f3b",
+  "expectedEqualsActual": true,
+  "commands": [
+    {
+      "id": 1,
+      "content": "MARK_EMPTY",
+      "time": 0
+    },
+    {
+      "id": 2,
+      "content": "UNSET",
+      "time": 100
+    },
+    {
+      "id": 3,
+      "content": "MARK_OCCUPIED",
+      "time": 200
+    },
+    {
+      "id": 4,
+      "command": "UndoLastAction",
+      "time": 300
+    },
+    {
+      "id": 5,
+      "command": "PauseForLifecycle",
+      "time": 400
+    }
+  ],
+  "exportMonotonicMs": 400
+}

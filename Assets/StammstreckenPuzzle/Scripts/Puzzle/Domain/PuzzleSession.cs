@@ -90,8 +90,16 @@ namespace STP.Puzzle.Domain
     public sealed class PauseForLifecycle : PuzzleCommand { public PauseForLifecycle(Guid id, long revision) : base(id, revision) { } }
     /// <summary>Resume a suspended timer at a new monotonic interval.</summary>
     public sealed class ResumeFromLifecycle : PuzzleCommand { public ResumeFromLifecycle(Guid id, long revision) : base(id, revision) { } }
+    /// <summary>Records an actually displayed safe hint; it changes no cell and never starts the solve timer.</summary>
+    public sealed class RecordHintDisplayed : PuzzleCommand
+    {
+        /// <summary>Attempt to which the displayed conclusion belongs.</summary>
+        public Guid AttemptId { get; }
+        /// <summary>The display ID is also the deduplicated command ID.</summary>
+        public RecordHintDisplayed(Guid displayId, long revision, Guid attemptId) : base(displayId, revision) { AttemptId = attemptId; }
+    }
     /// <summary>Domain facts emitted in cell, diagnostic, completion order.</summary>
-    public enum PuzzleEventKind { CellContentChanged, CellBatchChanged, ObjectiveViolationChanged, PuzzleSolved, SessionSuspended }
+    public enum PuzzleEventKind { CellContentChanged, CellBatchChanged, ObjectiveViolationChanged, PuzzleSolved, SessionSuspended, HintDisplayed }
     /// <summary>Immutable local fact, with completion path only for PuzzleSolved.</summary>
     public sealed class PuzzleEvent
     {
@@ -124,10 +132,13 @@ namespace STP.Puzzle.Domain
             if (command.ExpectedRevision != s.Revision) return Fail(DomainError.STALE_COMMAND);
             if (s.AppliedCommandIds.Contains(command.CommandId)) return Fail(DomainError.DUPLICATE_COMMAND);
             bool resume = command is ResumeFromLifecycle;
-            if (resume ? s.Phase != SessionPhase.Suspended : s.Phase != SessionPhase.Ready && s.Phase != SessionPhase.Active) return Fail(DomainError.SESSION_CLOSED);
+            bool hint = command is RecordHintDisplayed;
+            if(hint&&((RecordHintDisplayed)command).AttemptId!=s.AttemptId)return Fail(DomainError.STALE_COMMAND);
+            if (hint ? s.Phase != SessionPhase.Ready && s.Phase != SessionPhase.Active && s.Phase != SessionPhase.Suspended : resume ? s.Phase != SessionPhase.Suspended : s.Phase != SessionPhase.Ready && s.Phase != SessionPhase.Active) return Fail(DomainError.SESSION_CLOSED);
+            if(hint&&s.HintCount==int.MaxValue)return Fail(DomainError.INTERNAL_INVARIANT_BROKEN);
             if (monotonicTime < 0 || monotonicTime < s.LastMonotonicMs) return Fail(DomainError.INVALID_TIME);
             if (s.Revision == long.MaxValue) return Fail(DomainError.INTERNAL_INVARIANT_BROKEN);
-            bool lifecycle = resume || command is PauseForLifecycle;
+            bool lifecycle = resume || command is PauseForLifecycle || hint;
             var changes = new List<CellChange>(); var cells = s.Cells.ToArray(); var history = s.PreviouslySet.ToArray(); var undo = s.UndoStack.ToList(); bool isUndo = command is UndoLastAction;
             if (isUndo)
             {
@@ -175,7 +186,7 @@ namespace STP.Puzzle.Domain
             var evaluation = PuzzleEvaluator.Evaluate(s.Definition, cells);
             var oldEvaluation = PuzzleEvaluator.Evaluate(s.Definition, s.Cells);
             var events = new List<PuzzleEvent>(); string? solvedId = s.SolvedEventId;
-            SessionPhase phase = resume ? (started ? SessionPhase.Active : SessionPhase.Ready) : command is PauseForLifecycle ? SessionPhase.Suspended : started ? SessionPhase.Active : SessionPhase.Ready;
+            SessionPhase phase = hint ? s.Phase : resume ? (started ? SessionPhase.Active : SessionPhase.Ready) : command is PauseForLifecycle ? SessionPhase.Suspended : started ? SessionPhase.Active : SessionPhase.Ready;
             if (changes.Count > 0)
             {
                 events.Add(new PuzzleEvent(command is ApplyCellContent ? PuzzleEventKind.CellContentChanged : PuzzleEventKind.CellBatchChanged, changes));
@@ -183,8 +194,9 @@ namespace STP.Puzzle.Domain
                 if (evaluation.Completed && solvedId == null) { solvedId = "puzzle-solved:" + s.AttemptId.ToString("D"); phase = SessionPhase.SolvedPendingCommit; events.Add(new PuzzleEvent(PuzzleEventKind.PuzzleSolved, id: solvedId, path: evaluation.Path)); }
             }
             if (command is PauseForLifecycle) events.Add(new PuzzleEvent(PuzzleEventKind.SessionSuspended));
+            if(hint)events.Add(new PuzzleEvent(PuzzleEventKind.HintDisplayed,id:command.CommandId.ToString("D")));
             var ids = s.AppliedCommandIds.Concat(new[] { command.CommandId }).OrderBy(id => id).ToArray();
-            var next = new PuzzleSessionState(s.Definition, s.PuzzleId, s.PublicPuzzleHashProfile, s.PublicPuzzleHashSha256, s.AttemptId, s.Mode, s.HintCount, s.StartedAtUtc, s.LastSavedAtUtc,
+            var next = new PuzzleSessionState(s.Definition, s.PuzzleId, s.PublicPuzzleHashProfile, s.PublicPuzzleHashSha256, s.AttemptId, s.Mode, s.HintCount+(hint?1:0), s.StartedAtUtc, s.LastSavedAtUtc,
                 cells, history, undo.ToArray(), ids, phase, s.Revision + 1, started, elapsed, monotonicTime, empty, occupied, corrections, solvedId);
             return new CommandResult(next, DomainError.NONE, events);
         }

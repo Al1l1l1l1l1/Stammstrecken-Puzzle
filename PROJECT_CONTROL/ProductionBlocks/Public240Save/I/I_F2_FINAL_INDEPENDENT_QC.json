@@ -1,0 +1,2560 @@
+{
+  "schema": "STP independent exact I-F2 complete source freeze regular CI originals and AK review v1",
+  "atUtc": "2026-10-19T16:35:03.883Z",
+  "verdict": "PASS_EXACT_I_F2_SOURCE_FREEZE_CI_AK_I01_I15_I16_OPEN",
+  "reviewer": "entry_audit",
+  "acceptedScope": "Independent source/own regular CI acceptance at exact corrected freeze. This is not the R underintegration decision or final I16/delivery acceptance.",
+  "source": {
+    "sha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+    "tree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+    "parent": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+    "baseP": "95508482696cc1cc4e355021ce47d64863d9651a",
+    "anchor": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+    "manifestSha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+    "worktreeCleanAtFinalRead": true,
+    "headAtFinalRead": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+    "rawGitFreezeReview": {
+      "file": "I_F2_RAW_GIT_FREEZE_INDEPENDENT_QC.json",
+      "bytes": 196100,
+      "sha256": "9870f4ec4f7c0f3932d5b22864dfec2f725e0ee0fa06ba373638e108b9a387a2",
+      "verdict": "PASS exact commit/tree/soleparent,73treeobjects/35changedblobs,228cumulativePpaths/all50patterns,22immutableoldmanifestblobs,only1Smoke asset delta,allRuntime/A/S/workflows/metas/GUIDs unchanged;497actualNative12/13modeblobs equalF2;32raw/3declaredCRLFtoLFJSONouterprofiles."
+    },
+    "canonicalReceipt": {
+      "file": "I_F2_CLEAN_CANONICAL.json",
+      "sha256": "b4628d52e481b7edeb7e6420a0b1ae80898c03bc7e5c7a9ba49309fc46182bf7",
+      "actualSession": 46239,
+      "wrapperExit": 0,
+      "childExits": {
+        "architecture": 0,
+        "scope": 0
+      },
+      "architectureGroups": 17,
+      "productionGroups": 18,
+      "selfNegativeChecksPassed": true,
+      "scopeHead": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+      "scopeBase": "95508482696cc1cc4e355021ce47d64863d9651a",
+      "worktreeDirty": false
+    },
+    "sourceReviewReuse": [
+      {
+        "file": "I_ADR036_ACCEPTANCE_REGISTRY_TRANSPORT_INDEPENDENT_QC.json",
+        "bytes": 33021,
+        "sha256": "73762b4880fab20e21b9aabf11533a524b1f55b9421b212da3150d1dacbfacb2",
+        "verdict": "PASS_TARGETED_ADR036_ACCEPTANCE_REGISTRY_AND_ORIGINAL_TRANSPORT_SEQUENCE"
+      },
+      {
+        "file": "P_RAW_GIT_UNION_INDEPENDENT_QC.json",
+        "bytes": 203086,
+        "sha256": "a2c1716c0ca5ab0cda07821501dcb2fc5597ba409eee9d692d752f31c2ea00df",
+        "verdict": "PASS_ACTUAL_ISOLATED_P_RAW_GIT_UNION_PROVENANCE_ONLY"
+      },
+      {
+        "file": "I_NATIVE_08_FINAL_LOCAL_AK_INDEPENDENT_QC.json",
+        "bytes": 924699,
+        "sha256": "2a4f6ae62fc7d4fe3a5b0a4c5a1911ea245c3632d076a72f2bc3eec3c651db33",
+        "verdict": "PASS_ACTUAL_NATIVE08_SOURCE_LOCAL_AKS_LAYOUT_HIGH_CLOSED_I15_I16_OPEN"
+      },
+      {
+        "file": "I_ROOT_002_NATIVE09_FINAL_INDEPENDENT_QC.json",
+        "bytes": 1217192,
+        "sha256": "b3469011897b6cc9b937da7613d90c1986b816977b422102e5d8d594d74fa85f",
+        "verdict": "PASS_I_ROOT_002_CLOSED_ACTUAL_NATIVE09_45_OF45_LOCAL_SOURCE_AKS_I04_MOBILE_I15_I16_OPEN"
+      },
+      {
+        "file": "I_HEADLESS_001_SOURCE_COMPILE_NATIVE12_13_INDEPENDENT_CLOSURE.json",
+        "bytes": 1018248,
+        "sha256": "1596d35bdc8c577e67a45849aaa2f562d59d418fb8fa2990d5fe7b936bb2cfae",
+        "verdict": "PASS_I_HEADLESS_001_EXACT_SOURCE_NATIVE12_NATIVE13_REGULAR_F2_CI_OPEN"
+      }
+    ],
+    "sourceDelta": "Only corrected ownSmoke test b6d1c07219b9c46bdec5ef5e6726b3fd13924a8fa41f6025301d99f31c4684e9/Git7bce94ef8b8d1cbb4be3b70d978d921af7c5568d. Exact helper/call revert equals9line diagnostic11 source; all original board/text/control/capture bodies retained. Runtime and accepted A/S proofs reused; no general re-QC."
+  },
+  "regularCi": {
+    "event": "push",
+    "attempt": 1,
+    "architecture": {
+      "run": 39277141508,
+      "job": 118144378675,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "unity": {
+      "run": 39277141630,
+      "status": "completed",
+      "conclusion": "success",
+      "updatedAt": "2026-10-19T16:29:30Z",
+      "actualTenJobs": [
+        {
+          "id": 118144376793,
+          "name": "unity-environment-android",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:21Z",
+          "completedAt": "2026-10-19T15:25:33Z"
+        },
+        {
+          "id": 118144376914,
+          "name": "unity-config",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:21Z",
+          "completedAt": "2026-10-19T15:21:24Z"
+        },
+        {
+          "id": 118144377003,
+          "name": "unity-environment-ios",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:25Z",
+          "completedAt": "2026-10-19T15:23:23Z"
+        },
+        {
+          "id": 118144377083,
+          "name": "unity-environment-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:21Z",
+          "completedAt": "2026-10-19T15:22:46Z"
+        },
+        {
+          "id": 118144377607,
+          "name": "project-preflight",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:21Z",
+          "completedAt": "2026-10-19T15:21:42Z"
+        },
+        {
+          "id": 118144592213,
+          "name": "unity-evidence-guard",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:46Z",
+          "completedAt": "2026-10-19T15:21:49Z"
+        },
+        {
+          "id": 118144593210,
+          "name": "unity-compile-editmode",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:21:46Z",
+          "completedAt": "2026-10-19T15:37:35Z"
+        },
+        {
+          "id": 118150784570,
+          "name": "unity-playmode-bootstrap-smoke",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:37:40Z",
+          "completedAt": "2026-10-19T15:42:12Z"
+        },
+        {
+          "id": 118152235403,
+          "name": "unity-android-development-il2cpp",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:42:14Z",
+          "completedAt": "2026-10-19T15:58:47Z"
+        },
+        {
+          "id": 118157805402,
+          "name": "unity-ios-export",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-10-19T15:58:54Z",
+          "completedAt": "2026-10-19T16:10:21Z"
+        }
+      ]
+    },
+    "independentTerminalApiObservations": {
+      "archRun": {
+        "observedUtc": "2026-10-19T16:31:21.965Z",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39277141508",
+        "bodyBytes": 14000,
+        "bodySha256": "72fed00d0c141b909313da94aefb93e1e3f7150ad0b0dc9d5410d6cf7cefcc9f",
+        "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "headCommitTree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "unityRun": {
+        "observedUtc": "2026-10-19T16:31:21.964Z",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39277141630",
+        "bodyBytes": 13982,
+        "bodySha256": "e05866e6b63504e5e5f7b769492652b4fe1185ae33fcf24251adde9b957e8fb9",
+        "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "headCommitTree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "attempt": {
+        "observedUtc": "2026-10-19T16:31:22.035Z",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39277141630/attempts/1",
+        "bodyBytes": 14004,
+        "bodySha256": "a993fd41ac2893eeb49475d7cc2240482b50482e7cfbce33067fd95d5baa9869",
+        "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab",
+        "headCommitTree": "8b4f4b2d9460979bd0a532c993933e7b5be4b93a",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "unityJobs": {
+        "observedUtc": "2026-10-19T16:31:23.386Z",
+        "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39277141630/jobs",
+        "bodyBytes": 25893,
+        "bodySha256": "2d6d32e30b2868f099849828d4cf826135156f106e6aff1853eb627f3ed1a409"
+      }
+    },
+    "actualCheckout": "All five complete original logs independently show actual git checkout242712; remote run+attempt head_commit.tree_id is exact8b4f. Actual job/log/source IDs kept distinct from synthetic/other runs.",
+    "statusHistory": "Original Edit/Play/Android/iOS execution and deactivation evidence preceded delayed API completed statuses. Earlier queued/in_progress and ReadTimeout observations preserved separately, never overwritten. Fresh public HTTP200/no-cache receipt274ad982… confirms source reporting delay. First independent all10jobsSUCCESS16:25:13.768Z; independent final run+attempt+jobs consistently terminalSUCCESS16:31:21–23Z.",
+    "noRerunOrDispatch": true
+  },
+  "nunit": {
+    "edit": {
+      "member": "editmode.xml",
+      "bytes": 990244,
+      "sha256": "775b6b51d8b2d28d4a11666e064cdb9645ba573b18bec5db077d1d3d5e88d69a",
+      "root": {
+        "id": "2",
+        "testcasecount": "1107",
+        "result": "Passed",
+        "total": "1107",
+        "passed": "1107",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-19 15:24:59Z",
+        "end-time": "2026-10-19 15:29:49Z",
+        "duration": "290.0741807"
+      },
+      "actualCases": 1107,
+      "failures": []
+    },
+    "play": {
+      "member": "playmode.xml",
+      "bytes": 199735,
+      "sha256": "fc701fb857970fc3ad1d10a1d29c6748965c9502e140cb572ee5b226710692f3",
+      "root": {
+        "id": "2",
+        "testcasecount": "117",
+        "result": "Passed",
+        "total": "117",
+        "passed": "117",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-19 15:40:44Z",
+        "end-time": "2026-10-19 15:41:46Z",
+        "duration": "61.936229"
+      },
+      "actualCases": 117,
+      "failures": []
+    },
+    "playActualGate": "117 executed tests,27smoke cases,QA scene Passed at2026-10-19T15:41:52.0956999Z",
+    "headlessCorrectionActualCi": {
+      "originalFormerFailureNowPassed": {
+        "id": "1086",
+        "name": "NormalScreen_ActualSaved4x4_10x10_Ride_Results",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.SavedPublic240ReviewSmokeTests.NormalScreen_ActualSaved4x4_10x10_Ride_Results",
+        "methodname": "NormalScreen_ActualSaved4x4_10x10_Ride_Results",
+        "classname": "STP.Tests.Bootstrap.PlayMode.SavedPublic240ReviewSmokeTests",
+        "runstate": "Runnable",
+        "seed": "540274089",
+        "result": "Passed",
+        "start-time": "2026-10-19 15:41:20Z",
+        "end-time": "2026-10-19 15:41:24Z",
+        "duration": "4.114812",
+        "asserts": "0"
+      },
+      "actualSetupContainments": 18,
+      "panelRootScrollViewport1033_85x775_38": true,
+      "originalStrictAssertionsRetained": true,
+      "screenGraphics": "ExplicitNOT_EXECUTED in headless/batch. Native09/13 actual nonbatch images remain the graphics evidence; no CI screenshot claim."
+    }
+  },
+  "coverage": {
+    "edit": [
+      {
+        "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0000.xml",
+        "bytes": 8061248,
+        "sha256": "78e49fc9fe4a03d39a281dda6068943a7b414a849cd2e2c3e1500e0aa92a3f06",
+        "modules": [
+          {
+            "name": "STP.Application",
+            "summary": {
+              "numSequencePoints": "3190",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "154",
+              "visitedMethods": "0",
+              "numMethods": "835"
+            },
+            "actualSequencePoints": 3190,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 835,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Bootstrap",
+            "summary": {
+              "numSequencePoints": "1072",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "19",
+              "visitedMethods": "0",
+              "numMethods": "145"
+            },
+            "actualSequencePoints": 1072,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 145,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Build",
+            "summary": {
+              "numSequencePoints": "387",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "6",
+              "visitedMethods": "0",
+              "numMethods": "40"
+            },
+            "actualSequencePoints": 387,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 40,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Content",
+            "summary": {
+              "numSequencePoints": "210",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "8",
+              "visitedMethods": "0",
+              "numMethods": "46"
+            },
+            "actualSequencePoints": 210,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 46,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Infrastructure.Content",
+            "summary": {
+              "numSequencePoints": "2552",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "66",
+              "visitedMethods": "0",
+              "numMethods": "431"
+            },
+            "actualSequencePoints": 2552,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 431,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Infrastructure.Persistence",
+            "summary": {
+              "numSequencePoints": "2460",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "86",
+              "visitedMethods": "0",
+              "numMethods": "535"
+            },
+            "actualSequencePoints": 2460,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 535,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.MobileServices.Google",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.MobileServices.Store",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Platform",
+            "summary": {
+              "numSequencePoints": "79",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "4",
+              "visitedMethods": "0",
+              "numMethods": "11"
+            },
+            "actualSequencePoints": 79,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 11,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Presentation.UI",
+            "summary": {
+              "numSequencePoints": "1915",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "21",
+              "visitedMethods": "0",
+              "numMethods": "175"
+            },
+            "actualSequencePoints": 1915,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 175,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Presentation.World",
+            "summary": {
+              "numSequencePoints": "145",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "2",
+              "visitedMethods": "0",
+              "numMethods": "16"
+            },
+            "actualSequencePoints": 145,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 16,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Puzzle.Domain",
+            "summary": {
+              "numSequencePoints": "757",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "27",
+              "visitedMethods": "0",
+              "numMethods": "171"
+            },
+            "actualSequencePoints": 757,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 171,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Puzzle.Solver",
+            "summary": {
+              "numSequencePoints": "1045",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "30",
+              "visitedMethods": "0",
+              "numMethods": "123"
+            },
+            "actualSequencePoints": 1045,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 123,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Application.EditMode",
+            "summary": {
+              "numSequencePoints": "2400",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "105",
+              "visitedMethods": "0",
+              "numMethods": "318"
+            },
+            "actualSequencePoints": 2400,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 318,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Bootstrap.PlayMode",
+            "summary": {
+              "numSequencePoints": "2858",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "112",
+              "visitedMethods": "0",
+              "numMethods": "279"
+            },
+            "actualSequencePoints": 2858,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 279,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Content.EditMode",
+            "summary": {
+              "numSequencePoints": "3681",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "76",
+              "visitedMethods": "0",
+              "numMethods": "552"
+            },
+            "actualSequencePoints": 3681,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 552,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Domain.EditMode",
+            "summary": {
+              "numSequencePoints": "458",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "14",
+              "visitedMethods": "0",
+              "numMethods": "53"
+            },
+            "actualSequencePoints": 458,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 53,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Persistence.EditMode",
+            "summary": {
+              "numSequencePoints": "1400",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "46",
+              "visitedMethods": "0",
+              "numMethods": "218"
+            },
+            "actualSequencePoints": 1400,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 218,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Presentation.PlayMode",
+            "summary": {
+              "numSequencePoints": "375",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "24",
+              "visitedMethods": "0",
+              "numMethods": "73"
+            },
+            "actualSequencePoints": 375,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 73,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Solver.EditMode",
+            "summary": {
+              "numSequencePoints": "2380",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "41",
+              "visitedMethods": "0",
+              "numMethods": "258"
+            },
+            "actualSequencePoints": 2380,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 258,
+            "actualVisitedMethods": 0
+          }
+        ]
+      },
+      {
+        "name": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0001.xml",
+        "bytes": 8147755,
+        "sha256": "80c3bd3dbce93c4be53b54089f1bf815b15514d20894a1222a530cd239e70c82",
+        "modules": [
+          {
+            "name": "STP.Application",
+            "summary": {
+              "numSequencePoints": "3190",
+              "visitedSequencePoints": "2432",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "76.24",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "138",
+              "numClasses": "154",
+              "visitedMethods": "650",
+              "numMethods": "835"
+            },
+            "actualSequencePoints": 3190,
+            "actualVisitedSequencePoints": 2432,
+            "actualMethods": 835,
+            "actualVisitedMethods": 650
+          },
+          {
+            "name": "STP.Bootstrap",
+            "summary": {
+              "numSequencePoints": "1072",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "19",
+              "visitedMethods": "0",
+              "numMethods": "145"
+            },
+            "actualSequencePoints": 1072,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 145,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Build",
+            "summary": {
+              "numSequencePoints": "387",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "6",
+              "visitedMethods": "0",
+              "numMethods": "40"
+            },
+            "actualSequencePoints": 387,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 40,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Content",
+            "summary": {
+              "numSequencePoints": "210",
+              "visitedSequencePoints": "199",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "94.76",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "8",
+              "numClasses": "8",
+              "visitedMethods": "45",
+              "numMethods": "46"
+            },
+            "actualSequencePoints": 210,
+            "actualVisitedSequencePoints": 199,
+            "actualMethods": 46,
+            "actualVisitedMethods": 45
+          },
+          {
+            "name": "STP.Infrastructure.Content",
+            "summary": {
+              "numSequencePoints": "2552",
+              "visitedSequencePoints": "2458",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "96.32",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "63",
+              "numClasses": "66",
+              "visitedMethods": "416",
+              "numMethods": "431"
+            },
+            "actualSequencePoints": 2552,
+            "actualVisitedSequencePoints": 2458,
+            "actualMethods": 431,
+            "actualVisitedMethods": 416
+          },
+          {
+            "name": "STP.Infrastructure.Persistence",
+            "summary": {
+              "numSequencePoints": "2460",
+              "visitedSequencePoints": "1251",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "50.85",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "61",
+              "numClasses": "86",
+              "visitedMethods": "312",
+              "numMethods": "535"
+            },
+            "actualSequencePoints": 2460,
+            "actualVisitedSequencePoints": 1251,
+            "actualMethods": 535,
+            "actualVisitedMethods": 312
+          },
+          {
+            "name": "STP.MobileServices.Google",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.MobileServices.Store",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Platform",
+            "summary": {
+              "numSequencePoints": "79",
+              "visitedSequencePoints": "24",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "30.38",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "2",
+              "numClasses": "4",
+              "visitedMethods": "6",
+              "numMethods": "11"
+            },
+            "actualSequencePoints": 79,
+            "actualVisitedSequencePoints": 24,
+            "actualMethods": 11,
+            "actualVisitedMethods": 6
+          },
+          {
+            "name": "STP.Presentation.UI",
+            "summary": {
+              "numSequencePoints": "1915",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "21",
+              "visitedMethods": "0",
+              "numMethods": "175"
+            },
+            "actualSequencePoints": 1915,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 175,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Presentation.World",
+            "summary": {
+              "numSequencePoints": "145",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "2",
+              "visitedMethods": "0",
+              "numMethods": "16"
+            },
+            "actualSequencePoints": 145,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 16,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Puzzle.Domain",
+            "summary": {
+              "numSequencePoints": "757",
+              "visitedSequencePoints": "604",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "79.79",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "25",
+              "numClasses": "27",
+              "visitedMethods": "139",
+              "numMethods": "171"
+            },
+            "actualSequencePoints": 757,
+            "actualVisitedSequencePoints": 604,
+            "actualMethods": 171,
+            "actualVisitedMethods": 139
+          },
+          {
+            "name": "STP.Puzzle.Solver",
+            "summary": {
+              "numSequencePoints": "1045",
+              "visitedSequencePoints": "1039",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "99.43",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "30",
+              "numClasses": "30",
+              "visitedMethods": "123",
+              "numMethods": "123"
+            },
+            "actualSequencePoints": 1045,
+            "actualVisitedSequencePoints": 1039,
+            "actualMethods": 123,
+            "actualVisitedMethods": 123
+          },
+          {
+            "name": "STP.Tests.Application.EditMode",
+            "summary": {
+              "numSequencePoints": "2400",
+              "visitedSequencePoints": "2169",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "90.38",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "92",
+              "numClasses": "105",
+              "visitedMethods": "268",
+              "numMethods": "318"
+            },
+            "actualSequencePoints": 2400,
+            "actualVisitedSequencePoints": 2169,
+            "actualMethods": 318,
+            "actualVisitedMethods": 268
+          },
+          {
+            "name": "STP.Tests.Bootstrap.PlayMode",
+            "summary": {
+              "numSequencePoints": "2858",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "112",
+              "visitedMethods": "0",
+              "numMethods": "279"
+            },
+            "actualSequencePoints": 2858,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 279,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Content.EditMode",
+            "summary": {
+              "numSequencePoints": "3681",
+              "visitedSequencePoints": "3625",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "98.48",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "75",
+              "numClasses": "76",
+              "visitedMethods": "547",
+              "numMethods": "552"
+            },
+            "actualSequencePoints": 3681,
+            "actualVisitedSequencePoints": 3625,
+            "actualMethods": 552,
+            "actualVisitedMethods": 547
+          },
+          {
+            "name": "STP.Tests.Domain.EditMode",
+            "summary": {
+              "numSequencePoints": "458",
+              "visitedSequencePoints": "458",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "100.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "14",
+              "numClasses": "14",
+              "visitedMethods": "53",
+              "numMethods": "53"
+            },
+            "actualSequencePoints": 458,
+            "actualVisitedSequencePoints": 458,
+            "actualMethods": 53,
+            "actualVisitedMethods": 53
+          },
+          {
+            "name": "STP.Tests.Persistence.EditMode",
+            "summary": {
+              "numSequencePoints": "1400",
+              "visitedSequencePoints": "1244",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "88.86",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "33",
+              "numClasses": "46",
+              "visitedMethods": "184",
+              "numMethods": "218"
+            },
+            "actualSequencePoints": 1400,
+            "actualVisitedSequencePoints": 1244,
+            "actualMethods": 218,
+            "actualVisitedMethods": 184
+          },
+          {
+            "name": "STP.Tests.Presentation.PlayMode",
+            "summary": {
+              "numSequencePoints": "375",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "24",
+              "visitedMethods": "0",
+              "numMethods": "73"
+            },
+            "actualSequencePoints": 375,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 73,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Solver.EditMode",
+            "summary": {
+              "numSequencePoints": "2380",
+              "visitedSequencePoints": "2369",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "99.54",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "41",
+              "numClasses": "41",
+              "visitedMethods": "258",
+              "numMethods": "258"
+            },
+            "actualSequencePoints": 2380,
+            "actualVisitedSequencePoints": 2369,
+            "actualMethods": 258,
+            "actualVisitedMethods": 258
+          }
+        ]
+      }
+    ],
+    "play": [
+      {
+        "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0001.xml",
+        "bytes": 8102026,
+        "sha256": "d442520c4d1c32a77dbb5a0116a301653f15538b4c97d34295caa98df96ce25a",
+        "modules": [
+          {
+            "name": "STP.Application",
+            "summary": {
+              "numSequencePoints": "3190",
+              "visitedSequencePoints": "1442",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "45.20",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "68",
+              "numClasses": "154",
+              "visitedMethods": "316",
+              "numMethods": "835"
+            },
+            "actualSequencePoints": 3190,
+            "actualVisitedSequencePoints": 1442,
+            "actualMethods": 835,
+            "actualVisitedMethods": 316
+          },
+          {
+            "name": "STP.Bootstrap",
+            "summary": {
+              "numSequencePoints": "1072",
+              "visitedSequencePoints": "701",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "65.39",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "15",
+              "numClasses": "19",
+              "visitedMethods": "115",
+              "numMethods": "145"
+            },
+            "actualSequencePoints": 1072,
+            "actualVisitedSequencePoints": 701,
+            "actualMethods": 145,
+            "actualVisitedMethods": 115
+          },
+          {
+            "name": "STP.Editor.Build",
+            "summary": {
+              "numSequencePoints": "387",
+              "visitedSequencePoints": "224",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "57.88",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "6",
+              "numClasses": "6",
+              "visitedMethods": "31",
+              "numMethods": "40"
+            },
+            "actualSequencePoints": 387,
+            "actualVisitedSequencePoints": 224,
+            "actualMethods": 40,
+            "actualVisitedMethods": 31
+          },
+          {
+            "name": "STP.Editor.Content",
+            "summary": {
+              "numSequencePoints": "210",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "8",
+              "visitedMethods": "0",
+              "numMethods": "46"
+            },
+            "actualSequencePoints": 210,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 46,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Infrastructure.Content",
+            "summary": {
+              "numSequencePoints": "2552",
+              "visitedSequencePoints": "493",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "19.32",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "21",
+              "numClasses": "66",
+              "visitedMethods": "83",
+              "numMethods": "431"
+            },
+            "actualSequencePoints": 2552,
+            "actualVisitedSequencePoints": 493,
+            "actualMethods": 431,
+            "actualVisitedMethods": 83
+          },
+          {
+            "name": "STP.Infrastructure.Persistence",
+            "summary": {
+              "numSequencePoints": "2460",
+              "visitedSequencePoints": "10",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.41",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "2",
+              "numClasses": "86",
+              "visitedMethods": "4",
+              "numMethods": "535"
+            },
+            "actualSequencePoints": 2460,
+            "actualVisitedSequencePoints": 10,
+            "actualMethods": 535,
+            "actualVisitedMethods": 4
+          },
+          {
+            "name": "STP.MobileServices.Google",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "1",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "20.00",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "1",
+              "numClasses": "1",
+              "visitedMethods": "1",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 1,
+            "actualMethods": 3,
+            "actualVisitedMethods": 1
+          },
+          {
+            "name": "STP.MobileServices.Store",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "1",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "20.00",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "1",
+              "numClasses": "1",
+              "visitedMethods": "1",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 1,
+            "actualMethods": 3,
+            "actualVisitedMethods": 1
+          },
+          {
+            "name": "STP.Platform",
+            "summary": {
+              "numSequencePoints": "79",
+              "visitedSequencePoints": "46",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "58.23",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "3",
+              "numClasses": "4",
+              "visitedMethods": "9",
+              "numMethods": "11"
+            },
+            "actualSequencePoints": 79,
+            "actualVisitedSequencePoints": 46,
+            "actualMethods": 11,
+            "actualVisitedMethods": 9
+          },
+          {
+            "name": "STP.Presentation.UI",
+            "summary": {
+              "numSequencePoints": "1915",
+              "visitedSequencePoints": "1807",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "94.36",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "20",
+              "numClasses": "21",
+              "visitedMethods": "168",
+              "numMethods": "175"
+            },
+            "actualSequencePoints": 1915,
+            "actualVisitedSequencePoints": 1807,
+            "actualMethods": 175,
+            "actualVisitedMethods": 168
+          },
+          {
+            "name": "STP.Presentation.World",
+            "summary": {
+              "numSequencePoints": "145",
+              "visitedSequencePoints": "119",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "82.07",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "2",
+              "numClasses": "2",
+              "visitedMethods": "16",
+              "numMethods": "16"
+            },
+            "actualSequencePoints": 145,
+            "actualVisitedSequencePoints": 119,
+            "actualMethods": 16,
+            "actualVisitedMethods": 16
+          },
+          {
+            "name": "STP.Puzzle.Domain",
+            "summary": {
+              "numSequencePoints": "757",
+              "visitedSequencePoints": "494",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "65.26",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "23",
+              "numClasses": "27",
+              "visitedMethods": "109",
+              "numMethods": "171"
+            },
+            "actualSequencePoints": 757,
+            "actualVisitedSequencePoints": 494,
+            "actualMethods": 171,
+            "actualVisitedMethods": 109
+          },
+          {
+            "name": "STP.Puzzle.Solver",
+            "summary": {
+              "numSequencePoints": "1045",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "30",
+              "visitedMethods": "0",
+              "numMethods": "123"
+            },
+            "actualSequencePoints": 1045,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 123,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Application.EditMode",
+            "summary": {
+              "numSequencePoints": "2400",
+              "visitedSequencePoints": "68",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "2.83",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "6",
+              "numClasses": "105",
+              "visitedMethods": "14",
+              "numMethods": "318"
+            },
+            "actualSequencePoints": 2400,
+            "actualVisitedSequencePoints": 68,
+            "actualMethods": 318,
+            "actualVisitedMethods": 14
+          },
+          {
+            "name": "STP.Tests.Bootstrap.PlayMode",
+            "summary": {
+              "numSequencePoints": "2858",
+              "visitedSequencePoints": "2429",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "84.99",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "98",
+              "numClasses": "112",
+              "visitedMethods": "245",
+              "numMethods": "279"
+            },
+            "actualSequencePoints": 2858,
+            "actualVisitedSequencePoints": 2429,
+            "actualMethods": 279,
+            "actualVisitedMethods": 245
+          },
+          {
+            "name": "STP.Tests.Content.EditMode",
+            "summary": {
+              "numSequencePoints": "3681",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "76",
+              "visitedMethods": "0",
+              "numMethods": "552"
+            },
+            "actualSequencePoints": 3681,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 552,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Domain.EditMode",
+            "summary": {
+              "numSequencePoints": "458",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "14",
+              "visitedMethods": "0",
+              "numMethods": "53"
+            },
+            "actualSequencePoints": 458,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 53,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Persistence.EditMode",
+            "summary": {
+              "numSequencePoints": "1400",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "46",
+              "visitedMethods": "0",
+              "numMethods": "218"
+            },
+            "actualSequencePoints": 1400,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 218,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Presentation.PlayMode",
+            "summary": {
+              "numSequencePoints": "375",
+              "visitedSequencePoints": "355",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "94.67",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "23",
+              "numClasses": "24",
+              "visitedMethods": "61",
+              "numMethods": "73"
+            },
+            "actualSequencePoints": 375,
+            "actualVisitedSequencePoints": 355,
+            "actualMethods": 73,
+            "actualVisitedMethods": 61
+          },
+          {
+            "name": "STP.Tests.Solver.EditMode",
+            "summary": {
+              "numSequencePoints": "2380",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "41",
+              "visitedMethods": "0",
+              "numMethods": "258"
+            },
+            "actualSequencePoints": 2380,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 258,
+            "actualVisitedMethods": 0
+          }
+        ]
+      },
+      {
+        "name": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0000.xml",
+        "bytes": 8060462,
+        "sha256": "15d95f497aa9b88c4e4327744f5378320d4f1444f890420d9f7fa941ec4abe81",
+        "modules": [
+          {
+            "name": "STP.Application",
+            "summary": {
+              "numSequencePoints": "3190",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "154",
+              "visitedMethods": "0",
+              "numMethods": "835"
+            },
+            "actualSequencePoints": 3190,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 835,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Bootstrap",
+            "summary": {
+              "numSequencePoints": "1072",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "19",
+              "visitedMethods": "0",
+              "numMethods": "145"
+            },
+            "actualSequencePoints": 1072,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 145,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Build",
+            "summary": {
+              "numSequencePoints": "387",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "6",
+              "visitedMethods": "0",
+              "numMethods": "40"
+            },
+            "actualSequencePoints": 387,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 40,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Editor.Content",
+            "summary": {
+              "numSequencePoints": "210",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "8",
+              "visitedMethods": "0",
+              "numMethods": "46"
+            },
+            "actualSequencePoints": 210,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 46,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Infrastructure.Content",
+            "summary": {
+              "numSequencePoints": "2552",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "66",
+              "visitedMethods": "0",
+              "numMethods": "431"
+            },
+            "actualSequencePoints": 2552,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 431,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Infrastructure.Persistence",
+            "summary": {
+              "numSequencePoints": "2460",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "86",
+              "visitedMethods": "0",
+              "numMethods": "535"
+            },
+            "actualSequencePoints": 2460,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 535,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.MobileServices.Google",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.MobileServices.Store",
+            "summary": {
+              "numSequencePoints": "5",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "1",
+              "visitedMethods": "0",
+              "numMethods": "3"
+            },
+            "actualSequencePoints": 5,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 3,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Platform",
+            "summary": {
+              "numSequencePoints": "79",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "4",
+              "visitedMethods": "0",
+              "numMethods": "11"
+            },
+            "actualSequencePoints": 79,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 11,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Presentation.UI",
+            "summary": {
+              "numSequencePoints": "1915",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "21",
+              "visitedMethods": "0",
+              "numMethods": "175"
+            },
+            "actualSequencePoints": 1915,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 175,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Presentation.World",
+            "summary": {
+              "numSequencePoints": "145",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "2",
+              "visitedMethods": "0",
+              "numMethods": "16"
+            },
+            "actualSequencePoints": 145,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 16,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Puzzle.Domain",
+            "summary": {
+              "numSequencePoints": "757",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "27",
+              "visitedMethods": "0",
+              "numMethods": "171"
+            },
+            "actualSequencePoints": 757,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 171,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Puzzle.Solver",
+            "summary": {
+              "numSequencePoints": "1045",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "30",
+              "visitedMethods": "0",
+              "numMethods": "123"
+            },
+            "actualSequencePoints": 1045,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 123,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Application.EditMode",
+            "summary": {
+              "numSequencePoints": "2400",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "105",
+              "visitedMethods": "0",
+              "numMethods": "318"
+            },
+            "actualSequencePoints": 2400,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 318,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Bootstrap.PlayMode",
+            "summary": {
+              "numSequencePoints": "2858",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "112",
+              "visitedMethods": "0",
+              "numMethods": "279"
+            },
+            "actualSequencePoints": 2858,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 279,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Content.EditMode",
+            "summary": {
+              "numSequencePoints": "3681",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "76",
+              "visitedMethods": "0",
+              "numMethods": "552"
+            },
+            "actualSequencePoints": 3681,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 552,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Domain.EditMode",
+            "summary": {
+              "numSequencePoints": "458",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "14",
+              "visitedMethods": "0",
+              "numMethods": "53"
+            },
+            "actualSequencePoints": 458,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 53,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Persistence.EditMode",
+            "summary": {
+              "numSequencePoints": "1400",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "46",
+              "visitedMethods": "0",
+              "numMethods": "218"
+            },
+            "actualSequencePoints": 1400,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 218,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Presentation.PlayMode",
+            "summary": {
+              "numSequencePoints": "375",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "24",
+              "visitedMethods": "0",
+              "numMethods": "73"
+            },
+            "actualSequencePoints": 375,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 73,
+            "actualVisitedMethods": 0
+          },
+          {
+            "name": "STP.Tests.Solver.EditMode",
+            "summary": {
+              "numSequencePoints": "2380",
+              "visitedSequencePoints": "0",
+              "numBranchPoints": "0",
+              "visitedBranchPoints": "0",
+              "sequenceCoverage": "0.0",
+              "branchCoverage": "0.0",
+              "maxCyclomaticComplexity": "0",
+              "minCyclomaticComplexity": "0",
+              "maxCrapScore": "0",
+              "minCrapScore": "0",
+              "visitedClasses": "0",
+              "numClasses": "41",
+              "visitedMethods": "0",
+              "numMethods": "258"
+            },
+            "actualSequencePoints": 2380,
+            "actualVisitedSequencePoints": 0,
+            "actualMethods": 258,
+            "actualVisitedMethods": 0
+          }
+        ]
+      }
+    ],
+    "independentMethod": "OriginalZIP central/local headers, exact inflate sizes, CRC32 and SHA256 verified; actual NUnit testcase elements counted. Every one of20modules in each of4OpenCoverXMLs independently recounts sequence points/methods/visited values equal to moduleSummary. Both original untouched workflow coverage gatesPASS.",
+    "metadataSetup": "39asyncmetadata targets, zero bodyhits beforeFullEmpty, no method invocation/filter/hit/reset/statistics mutation; initial0visitedpoints verified. Original workflow unchanged; no minimumcoverage policy added."
+  },
+  "platforms": {
+    "android": {
+      "job": 118152235403,
+      "status": "completed",
+      "conclusion": "success",
+      "actualBuildPass": "2026-10-19T15:58:21.7526688Z STP Build PASS: Android -> Builds/Android/stp-qa-development.apk (878373174 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity, Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity, Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.",
+      "fourActualOrderedSceneCallbacks": [
+        "2026-10-19T15:47:57.6822835Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T15:47:58.1760952Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T15:47:58.5097655Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T15:47:58.8361650Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "artifact": {
+        "id": 12202160485,
+        "name": "android-development-il2cpp",
+        "zipBytes": 46217988,
+        "zipSha256": "7c367cb1ed3fc01bfd0f03b2d8cd172ccb620a01a0e9b2c365d78765b4b40322",
+        "members": [
+          {
+            "name": "StammstreckenPuzzle_BurstDebugInformation_DoNotShip/tempburstlibs/arm64-v8a/lib_burst_generated.txt",
+            "bytes": 89078,
+            "sha256": "01802ee4f4b31829d45df26b58f7b8031db43a8241eb9a5c85c2551abbd6d20d"
+          },
+          {
+            "name": "stp-qa-development.apk",
+            "bytes": 47512821,
+            "sha256": "d9677a73469ed8fc96cf63e4be83c0d8165db070af060d337409eece4173b2fc"
+          }
+        ],
+        "allMemberCrcInflateHashesVerified": true,
+        "binaryRetainedIgnoredOnly": true
+      },
+      "reportedUnitySummaryBytesAreNotApkMemberBytes": true
+    },
+    "ios": {
+      "job": 118157805402,
+      "status": "completed",
+      "conclusion": "success",
+      "actualUnityExportPass": "2026-10-19T16:02:48.9062160Z STP Build PASS: iOS -> Builds/iOS/Xcode (1064261271 Bytes), QA scenes: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity, Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity, Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity, Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.",
+      "fourActualOrderedSceneCallbacks": [
+        "2026-10-19T16:01:29.5840320Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T16:01:30.0852270Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T16:01:30.3431290Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+        "2026-10-19T16:01:30.6833990Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+      ],
+      "xcode": "26.3,Build17C529",
+      "actualBuildSucceeded": "2026-10-19T16:10:12.9928360Z ** BUILD SUCCEEDED **",
+      "earlySnapshot": {
+        "bytes": 2111945,
+        "sha256": "d5d625fee96fd1c29150d24e3abaf1bff15f54a36419bd38a555426d6610e4ea",
+        "exactPrefixOfFinalLog": true
+      },
+      "noSignedDeviceOrStoreClaim": true
+    }
+  },
+  "actualSeatReleases": {
+    "count": 4,
+    "receipts": [
+      {
+        "jobId": 118144593210,
+        "role": "unity-compile-editmode",
+        "utc": "2026-10-19T15:29:55.3900774Z",
+        "actualMessage": "Deactivation processed successfully.",
+        "originalDecodedLineSha256": "9978d63e4bae61e4c7bc72f4304e345e10b01263f895685cf1c539dbe088a23f",
+        "originalFullLogSha256": "4aed3185dfdf73288dad39767cfd88db660a6d125d67ff924577b4833d3bd15c"
+      },
+      {
+        "jobId": 118150784570,
+        "role": "unity-playmode-bootstrap-smoke",
+        "utc": "2026-10-19T15:41:54.0601570Z",
+        "actualMessage": "Deactivation processed successfully.",
+        "originalDecodedLineSha256": "87faef756d69de8730c1abf09735581219cb455613d4e04cc19338a077f182ec",
+        "originalFullLogSha256": "f660e9db00c1da5bc972f9fbfac225ac0c2de2ee27632399b334e7bc8bb06ef3"
+      },
+      {
+        "jobId": 118152235403,
+        "role": "unity-android-development-il2cpp",
+        "utc": "2026-10-19T15:58:27.1993926Z",
+        "actualMessage": "Deactivation processed successfully.",
+        "originalDecodedLineSha256": "ea18d8293839771845394a7c7c94a43046f30530d8d8b7fdf8b8caf24f5268d1",
+        "originalFullLogSha256": "37e4f2f208996cb718d8b7f110f25a0efae84d980d5e79aa6bbbaf4a94e7082c"
+      },
+      {
+        "jobId": 118157805402,
+        "role": "unity-ios-export",
+        "utc": "2026-10-19T16:10:15.1823480Z",
+        "actualMessage": "Deactivation processed successfully.",
+        "originalDecodedLineSha256": "89dcf3769195581663c7ba573fd1d84244aa0c3b0f2032708cd90a427e8ed1ab",
+        "originalFullLogSha256": "f67c3b98c20a6e752dd6a42fa34e14e21b1682d5126d345187ffc3fb7de2c5c3"
+      }
+    ],
+    "notShellCleanupOrUnusedSeatClaims": true
+  },
+  "durability": {
+    "rootEvidence": {
+      "file": "I_F2_CI_EVIDENCE.json",
+      "bytes": 128211,
+      "sha256": "7978316cf5e877fa6b0e4745a121f018eb952a114f6a5e8cb8a26c651a236f5a",
+      "status": "I_F2_COMPLETE_REGULAR_CI_PASS",
+      "sourceAndTerminalApisAndFourActualReceiptCrossChecks": {
+        "sourceHead": true,
+        "sourceTree": true,
+        "architectureTerminal": true,
+        "unityTerminal": true,
+        "architectureJobs": true,
+        "unityJobCount": 10,
+        "unityJobs": true,
+        "facts": [
+          {
+            "jobId": 118144378675,
+            "role": "architecture",
+            "originalSha256": "354576abeac6918602c73ff4e7755e61c0b8dd647a78e29d2c34d51029edb477",
+            "actualDeactivationUtc": null,
+            "originalDeactivationLineSha256": null,
+            "sceneReports": [],
+            "checkoutVerified": true,
+            "pass": true
+          },
+          {
+            "jobId": 118144593210,
+            "role": "unity-compile-editmode",
+            "originalSha256": "4aed3185dfdf73288dad39767cfd88db660a6d125d67ff924577b4833d3bd15c",
+            "actualDeactivationUtc": "2026-10-19T15:29:55.3900774Z",
+            "originalDeactivationLineSha256": "9978d63e4bae61e4c7bc72f4304e345e10b01263f895685cf1c539dbe088a23f",
+            "sceneReports": [],
+            "checkoutVerified": true,
+            "pass": true
+          },
+          {
+            "jobId": 118150784570,
+            "role": "unity-playmode-bootstrap-smoke",
+            "originalSha256": "f660e9db00c1da5bc972f9fbfac225ac0c2de2ee27632399b334e7bc8bb06ef3",
+            "actualDeactivationUtc": "2026-10-19T15:41:54.0601570Z",
+            "originalDeactivationLineSha256": "87faef756d69de8730c1abf09735581219cb455613d4e04cc19338a077f182ec",
+            "sceneReports": [],
+            "checkoutVerified": true,
+            "pass": true
+          },
+          {
+            "jobId": 118152235403,
+            "role": "unity-android-development-il2cpp",
+            "originalSha256": "37e4f2f208996cb718d8b7f110f25a0efae84d980d5e79aa6bbbaf4a94e7082c",
+            "actualDeactivationUtc": "2026-10-19T15:58:27.1993926Z",
+            "originalDeactivationLineSha256": "ea18d8293839771845394a7c7c94a43046f30530d8d8b7fdf8b8caf24f5268d1",
+            "sceneReports": [
+              "2026-10-19T15:47:57.6822835Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T15:47:58.1760952Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T15:47:58.5097655Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T15:47:58.8361650Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=Android; buildGuid=00000000000000000000000000000000; installers=1."
+            ],
+            "checkoutVerified": true,
+            "pass": true
+          },
+          {
+            "jobId": 118157805402,
+            "role": "unity-ios-export",
+            "originalSha256": "f67c3b98c20a6e752dd6a42fa34e14e21b1682d5126d345187ffc3fb7de2c5c3",
+            "actualDeactivationUtc": "2026-10-19T16:10:15.1823480Z",
+            "originalDeactivationLineSha256": "89dcf3769195581663c7ba573fd1d84244aa0c3b0f2032708cd90a427e8ed1ab",
+            "sceneReports": [
+              "2026-10-19T16:01:29.5840320Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T16:01:30.0852270Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T16:01:30.3431290Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1.",
+              "2026-10-19T16:01:30.6833990Z STP actual BuildReport QA scene processed: Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity; platform=iOS; buildGuid=00000000000000000000000000000000; installers=1."
+            ],
+            "checkoutVerified": true,
+            "pass": true
+          }
+        ],
+        "actualFourReleaseCount": 4
+      }
+    },
+    "rootPack": {
+      "file": "I_F2_DURABLE_CI_PACK.json",
+      "bytes": 3401794,
+      "sha256": "63206fb5ee5c014a968abfc8b66b68a6dd2b763f0c0d7990e1b1c947585f81f2",
+      "allFiveFullDeclaredRedactedLogProfilesAndBothExactXmlCoverageZipsVerified": {
+        "logs": [
+          {
+            "jobId": 118144378675,
+            "role": "architecture",
+            "originalDecodedUtf8Bytes": 50764,
+            "originalDecodedUtf8Sha256": "354576abeac6918602c73ff4e7755e61c0b8dd647a78e29d2c34d51029edb477",
+            "profileBytes": 50845,
+            "profileSha256": "6da94e4ba9938d094ea64335f727b32d258c0303f9e650ee6ad558456753d062",
+            "redactedLines": 4,
+            "allOtherLinesByteExact": true,
+            "roundtrip": true,
+            "originalCurrentFileMatchesEarlierObserved": true
+          },
+          {
+            "jobId": 118144593210,
+            "role": "unity-compile-editmode",
+            "originalDecodedUtf8Bytes": 390838,
+            "originalDecodedUtf8Sha256": "4aed3185dfdf73288dad39767cfd88db660a6d125d67ff924577b4833d3bd15c",
+            "profileBytes": 385847,
+            "profileSha256": "4355cf909ca19127828ab1decdee94b5b8e4994d440103d049bf6407c4e04320",
+            "redactedLines": 90,
+            "allOtherLinesByteExact": true,
+            "roundtrip": true,
+            "originalCurrentFileMatchesEarlierObserved": true
+          },
+          {
+            "jobId": 118150784570,
+            "role": "unity-playmode-bootstrap-smoke",
+            "originalDecodedUtf8Bytes": 1481424,
+            "originalDecodedUtf8Sha256": "f660e9db00c1da5bc972f9fbfac225ac0c2de2ee27632399b334e7bc8bb06ef3",
+            "profileBytes": 1475291,
+            "profileSha256": "06ab061ade478ae8d79b589c71ea9fdf5ae76a70298e7d61c5126422b6e4de0f",
+            "redactedLines": 171,
+            "allOtherLinesByteExact": true,
+            "roundtrip": true,
+            "originalCurrentFileMatchesEarlierObserved": true
+          },
+          {
+            "jobId": 118152235403,
+            "role": "unity-android-development-il2cpp",
+            "originalDecodedUtf8Bytes": 1123989,
+            "originalDecodedUtf8Sha256": "37e4f2f208996cb718d8b7f110f25a0efae84d980d5e79aa6bbbaf4a94e7082c",
+            "profileBytes": 1061648,
+            "profileSha256": "f995c3fbc8b83c30dfcc2fa927878dc551615836922586c32b9af7ec679a421d",
+            "redactedLines": 410,
+            "allOtherLinesByteExact": true,
+            "roundtrip": true,
+            "originalCurrentFileMatchesEarlierObserved": true
+          },
+          {
+            "jobId": 118157805402,
+            "role": "unity-ios-export",
+            "originalDecodedUtf8Bytes": 2805754,
+            "originalDecodedUtf8Sha256": "f67c3b98c20a6e752dd6a42fa34e14e21b1682d5126d345187ffc3fb7de2c5c3",
+            "profileBytes": 2581051,
+            "profileSha256": "d164e918a0ca7284f49e07799a139b8b63f5eeb31ac9535da18920df7708cf06",
+            "redactedLines": 700,
+            "allOtherLinesByteExact": true,
+            "roundtrip": true,
+            "originalCurrentFileMatchesEarlierObserved": true
+          }
+        ],
+        "zips": [
+          {
+            "artifactId": 12199636387,
+            "bytes": 1055533,
+            "sha256": "a23292eca00c638bd0881b6ff4ef64e409a1d8aa7ff8fcabda0769ca1429adf1",
+            "matchesIndependentlyDecodedOriginal": true
+          },
+          {
+            "artifactId": 12199538161,
+            "bytes": 954643,
+            "sha256": "35a277aeea51d884f9a2a868bfd3e13ef00224b358d023f86ad32c3ad16c4912",
+            "matchesIndependentlyDecodedOriginal": true
+          }
+        ]
+      },
+      "androidBuildBinaryExcluded": true
+    },
+    "artifactApi": {
+      "observedUtc": "2026-10-19T16:31:21.850Z",
+      "bodySha256": "6613b860a7d44f9448cfcd6886d29064445e45114da8386397a09f5d557fb78f",
+      "artifacts": [
+        {
+          "id": 12202160485,
+          "name": "android-development-il2cpp",
+          "bytes": 46217988,
+          "digest": "sha256:7c367cb1ed3fc01bfd0f03b2d8cd172ccb620a01a0e9b2c365d78765b4b40322",
+          "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab"
+        },
+        {
+          "id": 12199636387,
+          "name": "editmode-results",
+          "bytes": 1055533,
+          "digest": "sha256:a23292eca00c638bd0881b6ff4ef64e409a1d8aa7ff8fcabda0769ca1429adf1",
+          "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab"
+        },
+        {
+          "id": 12199538161,
+          "name": "playmode-results",
+          "bytes": 954643,
+          "digest": "sha256:35a277aeea51d884f9a2a868bfd3e13ef00224b358d023f86ad32c3ad16c4912",
+          "headSha": "242712d1b99202fd18273dc28ef2fd12aff71cab"
+        }
+      ]
+    },
+    "allFiveFinalRawLogsEqualEarlierIndependentlyReadObservations": true,
+    "sourceOriginalsMeaning": "SHA256 binds fully decoded UTF8 original strings supplied by GitHub log tools; not a claim to remote HTTP/archive raw bytes. Full raw decoded logs kept ignored; future repository transport contains full declared account/licensing-line-redacted profiles plus separate original hashes."
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "I01",
+      "requirement": "B/D/LA/LS/P exakt, angenommene eigene CI/QC und geordnete P-Eltern/Union/ursprüngliche Konfliktblobs/LA-Wahl; erwarteter kumulativer KindFAIL erhalten; gemeinsamer eigener Erstadd mit soleParent P und unveränderten Manifestbytes.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Independent P rawGitunion, LA/LS accepts and ownjointFirstAdd/manifest/parent reviews already bound; no new scope interpretation.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I02",
+      "requirement": "Neuer nummerierter ADR-036-Entwurf → getrennte Review → zuständige dokumentierte R-Annahme vor Fachcode; ausschließlich geschlossene Index-/Registry-/Nachfolger-/Navigationsfortschreibung und passende positive/negative Prüfungen.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "NumberedADR036 independentreview→separateRacceptbeforeall28source/meta paths; finite registrypositive/negative tests and ownreview preserved.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I03",
+      "requirement": "Exakte A-Publicbytes/all240/gebundener Publichash plus echte S-Campaign-/Completion-/Aggregate-/QA-Profilbindung; Mutationen, falsche Profile, Traversal/Reparse und ungültige Root-/Datenbindung stoppen sichtbar ohne Ersatzprofil. Tatsächlicher RuntimeRoot und isolierte Testrootgrenze nachgewiesen.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 ActualCompositionRunsOnWorker…, CorruptPublicOrReviewSources…, boundary/namespace/realroot tests allPassed; prioractual18aliasproof independentlyclosed. AdditiveI-ROOT-002 actualoriginalunsafeacceptance reproduced; correctedactualcompiledprivateguard20/20Unix+18/18Windows withdirectPE/PDBsourcebinding andfinalNative09Windows45/45. This closesexplicitUnixsymlinkcounterexample failclosed; notuniversalUnixaliascanonicalization.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I04",
+      "requirement": "Saved als erster normaler Editor-/Android-/iOS-QA-Entry, weitere drei getrennte Szenen; richtige explizite Installer und Referenzen, QA-Identifier fail-closed, iOS BuildOptions.None kein Produktionspass. Tatsächliche BuildReports aller vier Szenen in beiden Plattformjobs. Deterministischer Builder erzeugt nur eigene neue Artefakte; Reproduktion verändert A-/Developmentassets nicht.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 ordered4normalEditor/Build inputs, stableGUIDs, actualscene preflight, dependency graph and sameOwnSceneBuildertwice/protected A/S bytesPassed. Ordered cleanmissingScene/metaBuilder03actualOS0. ActualAndroid/iOS4sceneBuildReports must follow regularI-CI; not yet fulfilled by localinspection.",
+      "currentEvidence": "Prior deterministic clean builder03/scene/metadata/dependency proofs retained. Current exact F2 regular Android and iOS each processed all four ordered QA scenes with installer1; both actual builds succeeded and all10Unityjobs are terminalSUCCESS."
+    },
+    {
+      "id": "I05",
+      "requirement": "Clock/Dispatcher/Bridge auf Main, echte IO/JCS-/Hashcomposition auf Worker; verzögerte Antworten erst nach Drain; Workerdrain abgewiesen; kein Render-I/O. Lokalisierte Loading-/Fehleransicht ohne Modell, einmaliges BindModel, nullModelPump, alte Epoch-/Disposeantworten wirkungslos; kein Taskcompletion-als-Erfolg.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 model-freeactualWorkerfailure and boundrequestfault/cancel testsPassed. ExistingactualAppV3originalXML28/28 parsed and archivebyteverified; source9d1023 unchanged in actual08inputs. Ownerthread/dispatcher/latecallback Source review retained.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I06",
+      "requirement": "Drei echte Missing erzeugen sichtbar NeedsInitialization und keine Profildatei; erst ausdrückliche Createaktion bestätigt Generation1. Corrupt/Unsupported/Failed/SplitBrain werden weder automatisch initialisiert noch verdeckt.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 ColdLoad3Missing/read-only-beforeCreate plus Unsupported/Failed/Corrupt/SplitBrain behaviorPassed.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I07",
+      "requirement": "Tatsächlich bedienbare240Auswahl mit4×4/10×10, korrekten Randzahlen/Endpoints/Tools/Batch/Undo. Dropdown allein wirkt nicht auf Session/Dateien; expliziter Neu-/Resumeweg und volle Draftidentity. Wechsel/Restart warten echten Flush ab; Fehler behält Wahrheit. Alte Viewcommands/Capture/Undo/Ridecallbacks können keine neue Attempt/Dimension erfassen.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 all240tentativepicker/New/Resume/fullidentity/staleCapture+envelope/batch testsPassed; both4x4and10x10 originalimages independentlyviewed.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I08",
+      "requirement": "Reale UI-/Datei-/Coldloadprobe mit Marker→Leeren→Marker→Undo→Pause/Flush und neuem Installer. Zellen/PreviouslySet/stickyFlags/Correction/Revision/Dedup/Undo bleiben erhalten; neue Monotonie ohne Auszeitzuschlag. Keine zweite Checkpointautorität.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 actualMarker/Clear/Undo/Pause/fileColdRestore testPassed, preservingflags/revision/PreviouslySet/dedup/undo and noofflineelapsed.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I09",
+      "requirement": "Neue Bridge meldet tatsächliche Mutationen korrekt, keine bloße Tool-/Auswahländerung; vorhandene S-Debounce-/2s-Verträge bleiben nachgewiesen. Sofortiger Pause-/Fokusflush, OR-Suspension/keine Hintergrundzeit, alte Writeantwort/neue Mutation und Completion versus Draftwrite. Keine unobserved Tasks oder Frame-IO; Dispose beendet Publikationen kontrolliert.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 ORsuspension/realautosave/installer-onlydestroy/testscope-untilactualshutdownPassed. App28supplementandunchangedSdebounce/2s/lifecycle/latewrite Source/evidence reused; not presented as newlyexecutedSsuite.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I10",
+      "requirement": "Tatsächliche Spielercommands lösen; echter SaveFS-Ownerlock hält ACK bei responsivem Main, keine Fahrt/Results/Rewarderfolg oder Eingaben davor. Nach verifiziertem Mainreread ausschließlich eigene gebundene Spielerstrecke; genau eigene Attempt darf Fahrt/Result öffnen. Native4×4/10×10/Fahrt/Result selbst betrachten und Originalscreens binden.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 realOSownerlockholdsACK whileMainpumps/noearlyRide/ResultsPassed; fourgenuineScreenCaptures selfviewed with boundownedroute/train/savedresult.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I11",
+      "requirement": "Tatsächliches Dateisystemhindernis stoppt den echten Writer, gelöste Session und alte durable Wahrheit bleiben; keine falsche Fahrt. Bewusster Retry nach Beseitigung zahlt nur einmal. Ungewisser/Conflict-Ausgang verlangt frischen Load statt altem Lease; S-Crash-/Lowdisk-/CASfensterbelege unverändert wiederverwenden. Unerwarteter gebundener Requestfault sperrt Spiel, erhält erreichbaren äußeren expliziten Reload ohne Schleife.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 actualPendingdirectoryhindrance/noFalseResult/freshReloadThenSolve/idempotentRetry plus unexpectedrequestfault testsPassed; unchangedSCrash/Lowdisk/CAS retained.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I12",
+      "requirement": "Drei echte Kandidaten einschließlich SplitBrain; Auswahl/Anzeigen/Abbrechen sind ohne Dateiwirkung. Bewusste bestätigte Auswahl führt read-only Recover→exakte Promotion, vollständige aktuelle Observation und Sourceänderungen werden berücksichtigt. Unsupported/Failed weder umgehen noch resetten. CorruptReset separat sichtbar bestätigen, Originale/Generation erhalten, alte Callbacks wirkungslos.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 fouractualSplitBrain/selectioncancel/staleOtherSource/CorruptReset/Unsupported/Failed casesPassed with registeredHapticsCodecValid/threeCorruptPrerequisites/fullOriginalBytes. PriorNative06independentrecoveryclosure retained.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I13",
+      "requirement": "Bestätigter neuer Attempt/Readycheckpoint, Time0 bis erster Input; fehlgeschlagener Neustartwrite sichtbar ungesichert bei erhaltener alter durable Payload. Echter FirstClear bei nullZeiten1Stern/15QA-Geduld, Markerstraffrei, keine Doppelzahlung nach Restart/Restore. Bestätigte QA-Balance/Sterne/Claims ausschließlich aus S-Snapshot; weitergehende Policy-/Ledgerfälle sind S-Bestand, keine neue Produktregel.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 ResultsRestartAndSolve/freshattempt/freshRide/noDoublePay and pendingerrorreloadPassed; confirmed1star/15QA/oneFirstClear. ExactfailureReadywrite/timerzero cases in actualApp28supplement retained.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I14",
+      "requirement": "Savedstatus sichtbar auch ohne Domainrevision, alle eigenen Keys/Argumenttypen und Startup-/Recovery-/Bestätigungscontrols, keine rohen Keys oder unbedienbaren abgeschnittenen Controls. Fehlende Workercomposition sichtbar, keine Fake-Session. Unveränderte A-Publicprojektion und tatsächlicher Scene-/Playerdependencygraph enthalten kein internes Lösungswissen/Testfixturepayload.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Native09 all12Presenter cases and actual586×543viewport strictgeometryPassed. All116content controls independentlyrectchecked, slotsminimum42.95≥41.35777, noadjacentoverlap; fourimages selfviewed, nohorizontalclip; actualdependencygraph/Payloadboundary unchanged.",
+      "currentEvidence": "Accepted exact local source/Native09 proof reused, with only the reviewed Smoke headless fixture correction to b6d1/Git7bce. Native12actual45/45 and Native13actual1/1+four directly viewed originals plus current regular117/117 confirm current source. No new A/S or product review inferred."
+    },
+    {
+      "id": "I15",
+      "requirement": "Passende lizenzfreie Targetcompiles ausdrücklich Supplements; echte kanonische17/18- und Self-/Negativchecks nach vollständigem Staging. Vollständige reguläre gemeinsame CI am exakten Freeze, OriginalXML/Logs/Coverage/Checkout/Tree/BuildReport/Seatfreigaben gebunden. Getrennte Source-/Original-/AKprüfung ohne offene Highs/Blocker; ursprüngliche FAILs und ihre Grenzen erhalten.",
+      "status": "PASS_EXACT_SOURCE_CRITERION",
+      "previousLocalEvidence": "Finalfullystagedcanonical17/18/selftests, realfreezecommit/rawGitQC, fullregularI-CI/coverage/platforms/artifacts/releaseOriginals and exactindependentCIverdict remainrequired.",
+      "currentEvidence": "Exact F2 raw Git/clean canonical17/18+self-negative checks plus actual pushAttempt1 Architecture/10Unityjobs and run/attemptterminalSUCCESS; original1107/117 XML,20modulecoverage perstage, four actual deactivations,APK/Xcode/buildreports and independent original/AK review. No open source Highs."
+    },
+    {
+      "id": "I16",
+      "requirement": "Gesonderte R-Entscheidung erst nach I-PASS+CI; frisch erwartungsgebundener Merge nur in WP036, actualTree/Diff/Scopeketten und integrierte CI/getrennte Kontrolle. Formale T/A/S/I-WP-, CURRENT_STATE-/Queue-Nachführung und eine maßgebliche Handoverfundstelle mit tatsächlichem Start-/Installationsweg, allen Commit-/PR-/CIbindungen, offenen Produkt-/Human-/Gerätegrenzen und nächstem gültigem Schritt. Dokumentationsnachläufe separat ehrlich gebunden.",
+      "status": "OPEN_SEPARATE_R_UNDERINTEGRATION_INTEGRATED_CI_AND_FINAL_DOCS_REQUIRED",
+      "previousLocalEvidence": "SeparateRunderintegrationdecision onlyafterI-CIacceptance; freshExpectedHEAD WP036merge and actualintegratedCI/separateQC/finalhandover updates remainrequired.",
+      "currentEvidence": "Not performed or accepted by this source review. R decision, fresh expected-head WP036 merge, actual integrated CI/separate review and final handover/documentation remain subsequent gates."
+    }
+  ],
+  "openSourceHighs": [],
+  "openSourceBlockers": [],
+  "historicalFailures": "F1 CI actualFAIL preserved at89ee035:1107EditPASS/116of117Play/mobileSKIPPED/2releases. Native10 reproducer and11diagnostic originals preserved, exact narrow correction accepted before code; finalF2 is new regular pushAttempt1, not a green rerun of failed source. Original initialsource corrections and Native04-07FAILs remain in their bound reports, closed only by later exact proof.",
+  "boundary": "Independent source/regular CI/AK I01-I15 PASS only. I16 remainsOPEN: no Rdecision or undermerge performed/approved here, no actual integratedPUSH/PR31CI or finaldocumentation acceptance. No main/product/release/store/physicaldevice/human240test/timecalibration approval. No source/Git/Unity/compiler/dispatch/retry/cancel/push mutation by reviewer; all new reports rootignored, frozenI clean."
+}

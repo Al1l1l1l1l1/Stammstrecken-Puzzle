@@ -1,0 +1,250 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-07",
+  "contentRevision": 2,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 1
+    },
+    "b": {
+      "side": "E",
+      "index": 7
+    }
+  },
+  "rowCounts": [
+    3,
+    3,
+    3,
+    6,
+    5,
+    5,
+    7,
+    2,
+    0,
+    0
+  ],
+  "columnCounts": [
+    6,
+    1,
+    7,
+    1,
+    7,
+    1,
+    4,
+    1,
+    5,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 7,
+    "titleKey": "level.s1.05.04.07.title",
+    "statusKey": "level.s1.05.04.07.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.07.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 9,
+    "qualityNote": "Die Armhöhen sind unterschiedlich; fünf Einserspalten erlauben nur Querübergänge, der Ostport sitzt vor dem leeren Boden. Die getrennten mittleren Restzahlfolgen müssen dieselbe lange Strecke ergeben; gegenüber 6 wechselt das 10×10-Muster seine Achse und sein Endpunktgebiet.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-07-map",
+    "trainMomentId": "draft-s1-05-04-07-train",
+    "resultTextKey": "level.s1.05.04.07.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 6,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 9,
+        "y": 7,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-07/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "7a297f1eb0e44557265c7f6504ac1376513ffc54ce84e34cc192ddd39018c081"
+    }
+  }
+}

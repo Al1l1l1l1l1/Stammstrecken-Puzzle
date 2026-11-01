@@ -1,0 +1,470 @@
+{
+  "type": "WP038_NATIVE_CORRECTION_PARTIAL_REVIEW",
+  "reviewer": "/root/wp037_independent_qc",
+  "recordedUtc": "2026-10-18T22:15:39.086913+00:00",
+  "result": "PASS_TARGETED_NATIVE_CORRECTION",
+  "closedFinding": "NATIVE-01",
+  "originalFailurePreservedIn": "NATIVE_INITIAL_QC.md / NATIVE_INITIAL_EVIDENCE.json",
+  "packageSha256": "4a162344772afa70e657a408ed8349359a0cbf806b34a4b571efa0db6e5fe386",
+  "xml": {
+    "rawBytes": 12869,
+    "sha256": "9418d48f241bf3d92cf5de6ebd7318351d686a796533ffe14934c756571dce72",
+    "summary": {
+      "id": "2",
+      "testcasecount": "8",
+      "result": "Passed",
+      "total": "8",
+      "passed": "8",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-18 22:12:26Z",
+      "end-time": "2026-10-18 22:12:32Z",
+      "duration": "5,5200498"
+    },
+    "cases": [
+      {
+        "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:26Z",
+        "end-time": "2026-10-18 22:12:27Z",
+        "duration": "0.621091"
+      },
+      {
+        "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:27Z",
+        "end-time": "2026-10-18 22:12:27Z",
+        "duration": "0.188391"
+      },
+      {
+        "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:27Z",
+        "end-time": "2026-10-18 22:12:30Z",
+        "duration": "3.181638"
+      },
+      {
+        "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:30Z",
+        "end-time": "2026-10-18 22:12:31Z",
+        "duration": "0.292777"
+      },
+      {
+        "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:31Z",
+        "end-time": "2026-10-18 22:12:31Z",
+        "duration": "0.236413"
+      },
+      {
+        "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:31Z",
+        "end-time": "2026-10-18 22:12:31Z",
+        "duration": "0.589172"
+      },
+      {
+        "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:31Z",
+        "end-time": "2026-10-18 22:12:32Z",
+        "duration": "0.207762"
+      },
+      {
+        "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+        "result": "Passed",
+        "start-time": "2026-10-18 22:12:32Z",
+        "end-time": "2026-10-18 22:12:32Z",
+        "duration": "0.186126"
+      }
+    ]
+  },
+  "payloadIntegrity": "3/3 gzip/raw bytecounts and SHA256 verified against native originals and exact declared redacted profile",
+  "logs": [
+    {
+      "name": "generate.log",
+      "originalBytes": 36141,
+      "originalSha256": "c9526a9f395f034948d557013a3bbde905ea55141fe3170be3abba584e6309b5",
+      "profileSha256": "66e49a06a05dd188df22f914e3bfc1c914d82cf7c63e2c5c35e5d0ad0a7c98bb",
+      "redactedLinesVerified": 27,
+      "allOtherLinesByteEquivalentAfterDeclaredLfNormalization": true,
+      "safeRuntimeLines": [
+        "Forcing GfxDevice: Direct3D 11",
+        "Direct3D:",
+        "    Version:  Direct3D 11.0 [level 11.1]",
+        "    Renderer: AMD Radeon RX 9070 XT (ID=0x7550)",
+        "Start importing Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset using Guid(b281a1bc613c4544b3dc4c9e6a038001) (NativeFormatImporter) -> (artifact id: '6bf4b05133964db5187c1298f5f5e550') in 0.0049989 seconds",
+        "Start importing Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat using Guid(b281a1bc613c4544b3dc4c9e6a038002) (NativeFormatImporter) -> (artifact id: 'b251a4ee2167c967edd1172aca35227f') in 0.0014682 seconds",
+        "Start importing Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity using Guid(b281a1bc613c4544b3dc4c9e6a038003) (DefaultImporter) -> (artifact id: '4a584e6ce82f108758ce29944b6ac90c') in 0.0006763 seconds",
+        "STP WP038 QA artifacts reproduced and verified.",
+        "Exiting batchmode successfully now!"
+      ]
+    },
+    {
+      "name": "graphics.log",
+      "originalBytes": 261402,
+      "originalSha256": "519e5860b872f1bfe5ae3067338104edf5304a0ddff76f2780bba348d975211e",
+      "profileSha256": "2c69b0e8fe34e2e235fc556be0d624149160383469dd4f37cb40a4869b710b66",
+      "redactedLinesVerified": 29,
+      "allOtherLinesByteEquivalentAfterDeclaredLfNormalization": true,
+      "safeRuntimeLines": [
+        "Forcing GfxDevice: Direct3D 11",
+        "Direct3D:",
+        "    Version:  Direct3D 11.0 [level 11.1]",
+        "    Renderer: AMD Radeon RX 9070 XT (ID=0x7550)",
+        "Start importing Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat using Guid(b281a1bc613c4544b3dc4c9e6a038002) (NativeFormatImporter) -> (artifact id: 'b251a4ee2167c967edd1172aca35227f') in 0.0012945 seconds",
+        "Start importing Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity using Guid(b281a1bc613c4544b3dc4c9e6a038003) (DefaultImporter) -> (artifact id: '4a584e6ce82f108758ce29944b6ac90c') in 0.0036613 seconds",
+        "STP WP038 QA artifacts reproduced and verified.",
+        "Start importing Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity using Guid(b281a1bc613c4544b3dc4c9e6a038003) (DefaultImporter) -> (artifact id: '4a584e6ce82f108758ce29944b6ac90c') in 0.0007629 seconds",
+        "Start importing Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset using Guid(b281a1bc613c4544b3dc4c9e6a038001) (NativeFormatImporter) -> (artifact id: '6bf4b05133964db5187c1298f5f5e550') in 0.0017378 seconds",
+        "Start importing Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat using Guid(b281a1bc613c4544b3dc4c9e6a038002) (NativeFormatImporter) -> (artifact id: 'b251a4ee2167c967edd1172aca35227f') in 0.0016299 seconds",
+        "Start importing Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity using Guid(b281a1bc613c4544b3dc4c9e6a038003) (DefaultImporter) -> (artifact id: '4a584e6ce82f108758ce29944b6ac90c') in 0.000977 seconds",
+        "STP WP038 QA artifacts reproduced and verified."
+      ]
+    }
+  ],
+  "images": [
+    {
+      "name": "wp038-4x4-editing.png",
+      "bytes": 78574,
+      "sha256": "b73666e0c53a886d8faadd32b8015db6ae68444f69b39944d66e804cfaf139b3",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "unchangedFromIndependentlyViewedInitialImage": true,
+      "independentlyViewedViaViewImage": true
+    },
+    {
+      "name": "wp038-10x10-editing.png",
+      "bytes": 83416,
+      "sha256": "78ece007e81f0e3348eaa982ff06ae0a89abf828096cdf01ce2d5df5e6ae3eff",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "unchangedFromIndependentlyViewedInitialImage": true,
+      "independentlyViewedViaViewImage": true
+    },
+    {
+      "name": "wp038-4x4-ride.png",
+      "bytes": 75841,
+      "sha256": "70f1b7a13c242c073dd80650a650fbeb5610d4857a5aab5fa4f319cbb7234613",
+      "width": 960,
+      "height": 840,
+      "bitDepth": 8,
+      "colourType": "RGBA",
+      "allChunkCrcAndFullIdatDecompressionVerified": true,
+      "unchangedFromIndependentlyViewedInitialImage": false,
+      "independentlyViewedViaViewImage": true
+    }
+  ],
+  "fixedAssetIdentities": {
+    "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset": {
+      "guid": "b281a1bc613c4544b3dc4c9e6a038001",
+      "assetSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300",
+      "metaSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab"
+    },
+    "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat": {
+      "guid": "b281a1bc613c4544b3dc4c9e6a038002",
+      "assetSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a",
+      "metaSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a"
+    },
+    "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity": {
+      "guid": "b281a1bc613c4544b3dc4c9e6a038003",
+      "assetSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e",
+      "metaSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab"
+    }
+  },
+  "changedSourcePathsSinceInitialRuntimeSnapshot": [
+    "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+    "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+    "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+    "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+    "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+    "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs"
+  ],
+  "unchangedSourceCount": 35,
+  "sources": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+      "rawBytes": 18347,
+      "rawSha256": "b981f916af2fde98874c86aa6db866f41c43976e9aea1f68e6b89c91ddede6c6",
+      "canonicalLfSha256": "b981f916af2fde98874c86aa6db866f41c43976e9aea1f68e6b89c91ddede6c6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "34defdf0eb3ce8547e29ef66473ac41f7034089a5991ecb153e9375a43708c12",
+      "canonicalLfSha256": "34defdf0eb3ce8547e29ef66473ac41f7034089a5991ecb153e9375a43708c12"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs",
+      "rawBytes": 21543,
+      "rawSha256": "78999b4e8582aaeb1feca029c1b26dcffa0e22b262b629d2f32ff29f740c9791",
+      "canonicalLfSha256": "78999b4e8582aaeb1feca029c1b26dcffa0e22b262b629d2f32ff29f740c9791"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "adfeb0970b449370473da71c3bfa4c1615bc8ae11fb5382355cb5c3bce646ea5",
+      "canonicalLfSha256": "adfeb0970b449370473da71c3bfa4c1615bc8ae11fb5382355cb5c3bce646ea5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs",
+      "rawBytes": 17150,
+      "rawSha256": "72e0ee545a36a5fb1724747c9bd9ad6d4fd24d12ab49a2852c1b2cbcb7ae6d1c",
+      "canonicalLfSha256": "72e0ee545a36a5fb1724747c9bd9ad6d4fd24d12ab49a2852c1b2cbcb7ae6d1c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "4c2809accd75fe637714b2852ee19ad816c8bafd2e1b8342d9d757a0cb8bd1ce",
+      "canonicalLfSha256": "4c2809accd75fe637714b2852ee19ad816c8bafd2e1b8342d9d757a0cb8bd1ce"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+      "rawBytes": 480,
+      "rawSha256": "7428e505fb43c3c34098eef482b9bd42964395f7531879083f9314254e657536",
+      "canonicalLfSha256": "acf0464b32ab8baaba35f05e3753890248d114c9183a37fc5cff4680c1c4eeea"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "rawBytes": 8833,
+      "rawSha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2",
+      "canonicalLfSha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "6ec29f277a58561e11249cffc7379035813271d23112f48e86180e350fb6d8e6",
+      "canonicalLfSha256": "6ec29f277a58561e11249cffc7379035813271d23112f48e86180e350fb6d8e6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+      "rawBytes": 8276,
+      "rawSha256": "86d5966ea0372f287104634056929b83e38a45890a77ed1e6c3ca8990a09bd82",
+      "canonicalLfSha256": "86d5966ea0372f287104634056929b83e38a45890a77ed1e6c3ca8990a09bd82"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "15656d2fb36e734ba11fa7d8d778d03b7856f86fac32818ff294f5185588647f",
+      "canonicalLfSha256": "15656d2fb36e734ba11fa7d8d778d03b7856f86fac32818ff294f5185588647f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+      "rawBytes": 496,
+      "rawSha256": "8856e456b9f6bda0ccb859121c7b257ade71ebd4432b543d69591b6f09fdfb82",
+      "canonicalLfSha256": "8856e456b9f6bda0ccb859121c7b257ade71ebd4432b543d69591b6f09fdfb82"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "e7049e87b9cebdde0927a8ab2ee9e979407a1c6a90236e16e3003a6ddfb9ba75",
+      "canonicalLfSha256": "e7049e87b9cebdde0927a8ab2ee9e979407a1c6a90236e16e3003a6ddfb9ba75"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs",
+      "rawBytes": 956,
+      "rawSha256": "80032bc4978eb3e79249296c811798aaa5eaa5eaef25da004fde296aaaf95a0d",
+      "canonicalLfSha256": "80032bc4978eb3e79249296c811798aaa5eaa5eaef25da004fde296aaaf95a0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "b003722aeba83d0a0107678fdebf77b9f26a234ef21efacd9030e0709e0eb3c4",
+      "canonicalLfSha256": "b003722aeba83d0a0107678fdebf77b9f26a234ef21efacd9030e0709e0eb3c4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "rawBytes": 12767,
+      "rawSha256": "9c51a2eacf9cf138b9b15e29c7359916c2ac30f27a1c488c69650d201fcc0cb1",
+      "canonicalLfSha256": "9c51a2eacf9cf138b9b15e29c7359916c2ac30f27a1c488c69650d201fcc0cb1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs.meta",
+      "rawBytes": 236,
+      "rawSha256": "620e2f238d5019b76e699b3636f94bb4407d9bef2f4bd1019a4c44f1521a9a36",
+      "canonicalLfSha256": "620e2f238d5019b76e699b3636f94bb4407d9bef2f4bd1019a4c44f1521a9a36"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "rawBytes": 9566,
+      "rawSha256": "e82dc43f6051dfdce913ac40fc13bff3fecd011917f9a1405b0db69a0582564a",
+      "canonicalLfSha256": "55d0eacdccf64ec817dc6957ea4df9dbcbec4cba5b9408b0c9c4c5b930d1b40d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI.meta",
+      "rawBytes": 169,
+      "rawSha256": "0dccbaf3d798de430ea79495ddbb8c94147d9ba25d8be64a863f5f22c1a4be6d",
+      "canonicalLfSha256": "0dccbaf3d798de430ea79495ddbb8c94147d9ba25d8be64a863f5f22c1a4be6d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml",
+      "rawBytes": 1765,
+      "rawSha256": "56bec15f1377d2c7222cd709b9362e5e05b302e495dba3777fa4ba0d7bc1d29e",
+      "canonicalLfSha256": "56bec15f1377d2c7222cd709b9362e5e05b302e495dba3777fa4ba0d7bc1d29e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml.meta",
+      "rawBytes": 279,
+      "rawSha256": "9fd0ca56255a0bc1e76f18f807a3ec505475227d0804db7ed6372a2e448b6426",
+      "canonicalLfSha256": "9fd0ca56255a0bc1e76f18f807a3ec505475227d0804db7ed6372a2e448b6426"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss",
+      "rawBytes": 3068,
+      "rawSha256": "1e69f66cccf3f4bd756fd5f64eb837fbebb6e6d804086145f83f4e2df6078e12",
+      "canonicalLfSha256": "1e69f66cccf3f4bd756fd5f64eb837fbebb6e6d804086145f83f4e2df6078e12"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss.meta",
+      "rawBytes": 333,
+      "rawSha256": "40314fb161149c76739494ca1efbf78ac97eba3ea68268264989380cd1b5b140",
+      "canonicalLfSha256": "40314fb161149c76739494ca1efbf78ac97eba3ea68268264989380cd1b5b140"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss",
+      "rawBytes": 38,
+      "rawSha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda",
+      "canonicalLfSha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss.meta",
+      "rawBytes": 333,
+      "rawSha256": "df200edb19dcc9a8c7e779de2fb2583d0a0aa1178dea49484e835090b8e97aa5",
+      "canonicalLfSha256": "df200edb19dcc9a8c7e779de2fb2583d0a0aa1178dea49484e835090b8e97aa5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json",
+      "rawBytes": 4715,
+      "rawSha256": "348e74021b3e878c9c97529071b1ee40a9fc62358a3e2cb54855e3576567c017",
+      "canonicalLfSha256": "fec8a68f8610d65ccca07d699a16fd40398e070ac679f56d216f19f15a55f199"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json.meta",
+      "rawBytes": 60,
+      "rawSha256": "08a8054fda2cb45c11c455e2abb48cb7f7fa24a7011fd40ee0546f4817978a68",
+      "canonicalLfSha256": "08a8054fda2cb45c11c455e2abb48cb7f7fa24a7011fd40ee0546f4817978a68"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+      "rawBytes": 1912,
+      "rawSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300",
+      "canonicalLfSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+      "rawBytes": 186,
+      "rawSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab",
+      "canonicalLfSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art.meta",
+      "rawBytes": 169,
+      "rawSha256": "847b7536b86dc4adda27f6d04aeed02e292d7b6418e57c515b0eb4097d3ae9f7",
+      "canonicalLfSha256": "847b7536b86dc4adda27f6d04aeed02e292d7b6418e57c515b0eb4097d3ae9f7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development.meta",
+      "rawBytes": 169,
+      "rawSha256": "c219f6a94568a2dbc37356ffcb9736567f4221a854edf83baa5fd9c4a75373ba",
+      "canonicalLfSha256": "c219f6a94568a2dbc37356ffcb9736567f4221a854edf83baa5fd9c4a75373ba"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+      "rawBytes": 1120,
+      "rawSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a",
+      "canonicalLfSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+      "rawBytes": 185,
+      "rawSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a",
+      "canonicalLfSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "rawBytes": 1861,
+      "rawSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e",
+      "canonicalLfSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity.meta",
+      "rawBytes": 152,
+      "rawSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab",
+      "canonicalLfSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs",
+      "rawBytes": 14496,
+      "rawSha256": "3a477c8288e8309f6a65f883fb1c66824668b23976bef9f1e1f869e43d64154b",
+      "canonicalLfSha256": "3a477c8288e8309f6a65f883fb1c66824668b23976bef9f1e1f869e43d64154b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "b31448d6d98750968cb1a9a0f2d8f2b0a641e50db9467d794fc438008b7c65b6",
+      "canonicalLfSha256": "b31448d6d98750968cb1a9a0f2d8f2b0a641e50db9467d794fc438008b7c65b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs",
+      "rawBytes": 4235,
+      "rawSha256": "49bfcda92c0e6bcc70e066c18d488e9493579b589c834b3047e8ed7ecba82a49",
+      "canonicalLfSha256": "49bfcda92c0e6bcc70e066c18d488e9493579b589c834b3047e8ed7ecba82a49"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "5340490e80e6a3bd0c2640bbfb35e0df2f74e3475877211861be25c35a286b0d",
+      "canonicalLfSha256": "5340490e80e6a3bd0c2640bbfb35e0df2f74e3475877211861be25c35a286b0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+      "rawBytes": 24965,
+      "rawSha256": "052c821dc43f5ddd5d89bd0d71a58df35881aa073f73f3260ea44d45f735287a",
+      "canonicalLfSha256": "052c821dc43f5ddd5d89bd0d71a58df35881aa073f73f3260ea44d45f735287a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs.meta",
+      "rawBytes": 60,
+      "rawSha256": "d042d13504f852fb9bd0484744bdbb14a9622cd0aea874aa97c333bd78b3f7e5",
+      "canonicalLfSha256": "d042d13504f852fb9bd0484744bdbb14a9622cd0aea874aa97c333bd78b3f7e5"
+    }
+  ],
+  "restoredProjectSettings": [
+    {
+      "path": "ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json",
+      "headBlob": "3c7b4c18bb0d72369422dce1472bb7d54e7024f2",
+      "canonicalLfSha256": "a40f81b0dcc795e422f5ca0881fe7dad4e26cb8fdb33244a70f110835c1a8d44"
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "headBlob": "db7dd2746e995738697fad4cbe9850e402706f1c",
+      "canonicalLfSha256": "fc075cdda4f5e3500514a913f98b0dc99d1f4162c14fae06b2e12a0f09f244dd"
+    },
+    {
+      "path": "ProjectSettings/ShaderGraphSettings.asset",
+      "headBlob": "e7d2c65790e8f1e678babd381f35840ae4d1d5c1",
+      "canonicalLfSha256": "ced4c296ca9ee31667185c2a98ef8fbec98d958df3edbde5d6f2a50d1f0ebb32"
+    }
+  ],
+  "noEditorOrRerunByReviewer": true,
+  "notFinalAcceptance": true
+}

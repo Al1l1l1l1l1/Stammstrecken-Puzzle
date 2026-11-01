@@ -92,15 +92,26 @@ namespace STP.Infrastructure.Content
         private static LevelDiagnostic? WriteString(string text, StringBuilder builder, string path)
         {
             builder.Append('"');
-            for (int i = 0; i < text.Length; i++)
+            int i = 0;
+            while (i < text.Length)
             {
+                int runStart = i;
+                // Ordinary code units need no escaping; special and surrogate cases retain the exact path below.
+                while (i < text.Length)
+                {
+                    char plain = text[i];
+                    if (plain < 0x20 || plain == '"' || plain == '\\' || char.IsSurrogate(plain)) break;
+                    i++;
+                }
+                builder.Append(text, runStart, i - runStart);
+                if (i == text.Length) break;
                 char c = text[i];
                 if (char.IsHighSurrogate(c))
                 {
                     if (i + 1 >= text.Length || !char.IsLowSurrogate(text[i + 1]))
                         return new LevelDiagnostic(LevelDiagnosticStage.Hash, LevelDiagnosticCodes.JcsSurrogate, path, "Unpaired high surrogate.");
                     builder.Append(c).Append(text[i + 1]);
-                    i++;
+                    i += 2;
                     continue;
                 }
                 if (char.IsLowSurrogate(c))
@@ -119,6 +130,7 @@ namespace STP.Infrastructure.Content
                         else builder.Append(c);
                         break;
                 }
+                i++;
             }
             builder.Append('"');
             return null;

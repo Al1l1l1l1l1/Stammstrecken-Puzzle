@@ -1,0 +1,134 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-02-11",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 1
+    },
+    "b": {
+      "side": "S",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    2,
+    3,
+    3,
+    3,
+    2
+  ],
+  "columnCounts": [
+    5,
+    5,
+    3,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 2,
+    "position": 11,
+    "titleKey": "level.s1.01.02.11.title",
+    "statusKey": "level.s1.01.02.11.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.02.11.entry",
+    "focus": [
+      "CHAIN",
+      "COMBINATION"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Zwei volle linke Spalten lassen nur die Kurven und den wechselnden Dreierrest rechts offen. Die verschachtelten kleinen Bögen verlangen einen längeren Anschlussablauf als der weite U-Bogen in Position 10; bei ähnlicher Dichte entsteht eine andere Schlussaufgabe.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-02-11-map",
+    "trainMomentId": "draft-s1-01-02-11-train",
+    "resultTextKey": "level.s1.01.02.11.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_SW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-02-11/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "c3f42151551b26ddff87c365b70dd29f94ba830dff0367a7b403ed1626f5e848"
+    }
+  }
+}

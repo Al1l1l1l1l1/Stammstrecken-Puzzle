@@ -1,0 +1,101 @@
+{
+  "at": "2026-10-19T14:20:36.595Z",
+  "status": "I_NATIVE_08_ACTUAL_45_OF_45_PASS",
+  "receipt": {
+    "startedUtc": "2026-10-19T14:18:20.6358566+00:00",
+    "endedUtc": "2026-10-19T14:19:07.4426416+00:00",
+    "pid": 16720,
+    "actualExit": 0,
+    "editor": "C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Unity.exe",
+    "productVersion": "6000.3.23f1_09d2ecc7fb28",
+    "fileVersion": "6000.3.23.643820",
+    "project": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-native",
+    "arguments": [
+      "-force-d3d11",
+      "-screen-width",
+      "960",
+      "-screen-height",
+      "840",
+      "-projectPath",
+      "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-native",
+      "-runTests",
+      "-testPlatform",
+      "PlayMode",
+      "-testFilter",
+      "STP.Tests.Bootstrap.PlayMode.SavedPublic240ReviewSmokeTests;STP.Tests.Presentation.PlayMode.SavedPublic240ReviewPresenterTests;STP.Tests.Bootstrap.PlayMode.SavedPublic240BuildEntryTests",
+      "-testResults",
+      "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-native-evidence/08-graphics-width/graphics.xml",
+      "-logFile",
+      "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-native-evidence/08-graphics-width/unity.log"
+    ],
+    "graphicsRequired": "1",
+    "graphicsOutput": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-native-evidence/08-graphics-width/images",
+    "preflight": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/I_NATIVE_08_CI_PREFLIGHT.json"
+  },
+  "xml": {
+    "bytes": 112742,
+    "sha256": "06caade4ca7b1503f75aa3984436c7136d8a7ca41b18db3da8d051214a62d630",
+    "attributes": {
+      "id": "2",
+      "testcasecount": "45",
+      "result": "Passed",
+      "total": "45",
+      "passed": "45",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-19 14:18:36Z",
+      "end-time": "2026-10-19 14:19:04Z",
+      "duration": "27,4461697"
+    }
+  },
+  "images": [
+    {
+      "name": "4x4",
+      "bytes": 41464,
+      "sha256": "1c0ae0c6734439ce1d2857a96430081633144bd1019d1729df56d4b1f337688e",
+      "width": 586,
+      "height": 543
+    },
+    {
+      "name": "10x10",
+      "bytes": 44807,
+      "sha256": "c5e58a6bad673a21365d315a4fb584c360974043503ad0c8a13308d2dc0d24fb",
+      "width": 586,
+      "height": 543
+    },
+    {
+      "name": "ride",
+      "bytes": 38900,
+      "sha256": "d25cf6ac921a2f929b5c50631f79fdf3a5a4fe7bd69f063b4469cdfc60ce4102",
+      "width": 586,
+      "height": 543
+    },
+    {
+      "name": "results",
+      "bytes": 42219,
+      "sha256": "18b169e44129f7ba83b8e82d4a77154a667f97db10937652e082bf31d830f7c8",
+      "width": 586,
+      "height": 543
+    }
+  ],
+  "rootActualSelfViewing": {
+    "actor": "Root technical implementer R, not independent review",
+    "method": "All four exact PNGs loaded with view_image and visually examined after terminal process.",
+    "observations": {
+      "4x4": "Complete readable grid, marker/occupied marker/selection, current identity and explicit actions; vertical scrolling for controls.",
+      "10x10": "All ten row/column counts separated, complete grid/endpoints, no horizontal text clipping.",
+      "ride": "Orange train on exact own solved brown path after generation7/15QA/one first clear confirmed, status TrainRide.",
+      "results": "Confirmed own path, accessible controls and result block Verbindung lokal bestätigt, saved isolated QA boundary; vertically scrolled result view."
+    }
+  },
+  "boundaries": [
+    "Actual local D3D11 Editor run with real saved scene, actual isolated FS/ownerlock/restore/recovery and strict measured small viewport/controls.",
+    "Source binding is08_INPUT_SNAPSHOT.json,497 exact staged Unity blobs; final delivery commit and regular CI remain separate.",
+    "Original failed04/05/06/07 results,01 launcher OS-unknown and02 overlap retained unchanged.",
+    "No physical device, human240, product, main or release acceptance."
+  ]
+}

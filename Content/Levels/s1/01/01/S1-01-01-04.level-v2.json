@@ -1,0 +1,103 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-01-04",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 4
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 2
+    },
+    "b": {
+      "side": "E",
+      "index": 0
+    }
+  },
+  "rowCounts": [
+    2,
+    2,
+    2,
+    1
+  ],
+  "columnCounts": [
+    0,
+    0,
+    4,
+    3
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 1,
+    "position": 4,
+    "titleKey": "level.s1.01.01.04.title",
+    "statusKey": "level.s1.01.01.04.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.01.04.entry",
+    "focus": [
+      "EXCLUSION",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 3,
+    "qualityNote": "S/2 und E/0 machen den schmalen rechten Bereich lesbar; die einzelnen Zweierzeilen erzwingen versetzte Kurven. Nähe zu Position 2 ist bewusst auf frühe Wiederholung begrenzt: ein zusätzlicher besetzter Schritt und angrenzende statt gegenüberliegende Endpunkte ändern die Anschlussentscheidung.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-01-04-map",
+    "trainMomentId": "draft-s1-01-01-04-train",
+    "resultTextKey": "level.s1.01.01.04.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-01-04/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "a1f86651ee704741fa587134b1a2dc6cfb67376a0004f8e66fb58d82103180bc"
+    }
+  }
+}

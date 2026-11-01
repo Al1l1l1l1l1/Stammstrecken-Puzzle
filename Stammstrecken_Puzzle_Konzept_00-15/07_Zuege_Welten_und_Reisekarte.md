@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Betriebslage-Karte, Betriebswerk und Zug-Sammlung
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Launchkatalog P06:** Stammrot01 sofort; vier kleine Betriebsobjekte à120, zwei Lackierungen/Provisorium à300, Portal/SEV-Bucht à650, Ersatzgarnitur1200, Anschlusswunder2500; Signal nach Stammstrecke/Meldetafel nach Season1. Die vollständigen vierzehn logischen Keys/Namen/Erwerbsweisen stehen im Gesamtmandat. Konkrete Katalog-/Asset-/Text-/Lizenzzuordnung ist echte A/B-Lieferarbeit, nicht mehr eine offene Familieninterviewphase.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung nach dem Bahn-Alltags-Pivot  
 **Zweck:** Dieses Dokument definiert die sichtbare Langzeitwelt des Spiels. Gelöste Rätsel stabilisieren nicht abstrakte Fantasywelten, sondern ein fiktives, wunderbar überfordertes deutsches Bahnnetz.
 

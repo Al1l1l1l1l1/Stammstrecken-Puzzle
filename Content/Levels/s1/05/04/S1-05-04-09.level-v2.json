@@ -1,0 +1,250 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-05-04-09",
+  "contentRevision": 4,
+  "grid": {
+    "width": 10,
+    "height": 10
+  },
+  "endpoints": {
+    "a": {
+      "side": "S",
+      "index": 0
+    },
+    "b": {
+      "side": "N",
+      "index": 6
+    }
+  },
+  "rowCounts": [
+    7,
+    7,
+    2,
+    2,
+    2,
+    2,
+    3,
+    5,
+    3,
+    1
+  ],
+  "columnCounts": [
+    3,
+    3,
+    9,
+    9,
+    4,
+    2,
+    2,
+    2,
+    0,
+    0
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 5,
+    "route": 4,
+    "position": 9,
+    "titleKey": "level.s1.05.04.09.title",
+    "statusKey": "level.s1.05.04.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.05.04.09.entry",
+    "focus": [
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 25,
+    "qualityNote": "DRAFT-Neufassung mit 34 Gleisfeldern, drei trivialen Linien und 28 Kurven; Solver 220 Schritte/Tiefe25/Guess0. Zwei rechte Nullspalten begrenzen den Raum, zwei fast volle Neunerspalten müssen jedoch mehrere getrennte Quergebiete und den innenliegenden Nordport tragen. Frisch öffentlich gelöste Referenz S1-05-04-08 mit mehreren Umleitungen, mindestens 5% D4-normalisierte öffentliche Distanz und höchstens 82,35% D4-Pfad-Jaccard zum aktuellen Korpus. Menschliche Erstkontaktprüfung und Sternzeitkalibrierung stehen aus.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-05-04-09-map",
+    "trainMomentId": "draft-s1-05-04-09-train",
+    "resultTextKey": "level.s1.05.04.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 9,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 7,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 7,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_NE"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-05-04-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "3c264f7ab3005a554b625f4ffcc461b024b4bb409edbb6bb2a341c4d27678420"
+    }
+  }
+}

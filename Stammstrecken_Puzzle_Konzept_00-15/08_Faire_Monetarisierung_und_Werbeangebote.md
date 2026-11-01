@@ -1,5 +1,13 @@
 # Stammstrecken-Puzzle – Faire Monetarisierung und Werbeangebote
 
+## Aktuelle Kurskorrektur – MANUS-2026-10-20-02
+
+[Vollständige Entscheidung und ausführbarer Releaseauftrag](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Diese spätere ausdrückliche Owner-/Manusentscheidung geht widersprechenden älteren Produktions-/Bedien-/Offenangaben unten vor. Kernregeln, fünf Abschnitte/20 Routen/240 Plätze und reine Kosmetik bleiben. Mehrfachauswahl/Anwenden wird produktiv entfernt; direkte Sticky-Tool-Taps/gleiches Werkzeug→Leeren, stabile Eingabeziele und echte sorgfältige Cartoonoberfläche sind Pflicht. Die gespielte QAapp ist abgelehnt, nicht die zulässige unabhängige Bahn-Satire-Richtung.
+
+Jetzt drei große parallele Lieferbahnen unter einem durchgehenden Releaselead R bis zum vollständigen RC statt serieller Mikro-WPs. Die früheren Hint-/Daily-/Generatorproduktfragen sind konkret entschieden (P03–P05); tatsächliche Implementation/Human-/Geräte-/Rechts-/Storegates bleiben offen. Arbeitsziel vier Wochen, konditionaler Vier-bis-sechs-Wochen-Korridor, keine Termin- oder Storegarantie; konkreter Restplan nach der frühen echten M1-Fassung. Keine weitere reine Anschlussplanung. Ältere Gestaltungs-/Produktionsnachträge bleiben als Herkunft der fortgeltenden Teile erhalten.
+
+**Tagespolicy P04:** lokales Gerätedatum, ein Gratis-/ein zusätzlicher Videoclaim, best-effort Offlineuhr/Deduplikation ohne Reise-/Zukunftssperren. **Provider P07:** AdMob/UMP allein, Unity-IAP Apple/Google; keine Analytics/Crashlytics/zweite Mediation. Werbetaktung unverändert. Der aktiv erbetene begrenzte Hintvideopfad wird ausdrücklich erhalten, nicht still gestrichen.
+
 **Status:** Aktuelle, beschlossene Arbeitsfassung  
 **Zweck:** Dieses Dokument definiert eine zweistufige Monetarisierung: Sie erfasst Meme-getriebene Kurzbesucher an natürlichen Abschlussstellen, schützt aber langfristige Puzzle-Spieler vor einer billigen oder störenden Erfahrung.
 
@@ -38,7 +46,7 @@ Nach einer unterbrechenden Anzeige kann eine eigene knappe Statuszeile erscheine
 | Angebot | Zeitpunkt | Gegenwert | Feste Grenze |
 |---|---|---:|---|
 | Freiwilliges Video für Geduldspunkte | Nach erster Lösung einer Meldung und der vollständigen Ergebnisinszenierung. | +10 Geduldspunkte, einmal je Meldung. | Nie für Sterne, Season-Zugang oder Lösungsgültigkeit. |
-| Freiwilliges Video für Hinweis | Nur auf ausdrückliche aktive Anfrage im Rätsel. | Ein zusätzlicher Logikhinweis. | Hinweis bleibt auch regulär erreichbar; keine automatische Aufforderung. |
+| Freiwilliges Video für Hinweis | Nur aktiv angefordert in pausierter Hilfeoberfläche. | Ein persistenter Zusatzcredit. | Maximal einmal je Puzzleidentität; drei reguläre kostenlose Credits bleiben, keine automatische Aufforderung. |
 | Zusätzliche Betriebslage des Tages | Außerhalb des Rätsels. | Eine weitere Teilnahme nach dem kostenlosen Durchlauf. | Höchstens einmal je Kalendertag. |
 | Werbefrei-Option | Betriebswerk oder Einstellungen. | Entfernt unterbrechende Anzeigen dauerhaft. | Freiwillige Videos bleiben eine klare, vollständig optionale Wahl. |
 
@@ -52,7 +60,7 @@ Die **Betriebslage des Tages** ist ein freiwilliger Tagesritus außerhalb des R�
 |---|---|
 | Kostenlose Teilnahme | Einmal pro Kalendertag. |
 | Zusätzliche Teilnahme | Einmal nach freiwilligem Video. |
-| Belohnungswerte | +10, +15 oder +25 Geduldspunkte beziehungsweise kosmetischer Fortschritt. |
+| Belohnungswerte | +10/+15/+25 Geduldspunkte mit 60/30/10 Prozent; Ergebnis atomar speichern, keine Neustartneuwürfelung. |
 | Ton | Trockene Meldung, etwa: „Heute keine besonderen Vorkommnisse – theoretisch.“ |
 | Grenzen | Keine Kaufteilnahmen, keine Rätselvorteile und kein Verlust beim Auslassen. |
 
@@ -76,7 +84,7 @@ Eine dauerhafte Werbefrei-Option steht im Betriebswerk und in den Einstellungen 
 |---|---|
 | Unterbrechende Anzeigen in Standardspiel, Betriebsrevision und Dauerbaustelle. | Rätsel, Sterne, Season-Fortschritt, reguläre Geduldspunkte, Preise und Sammlung. |
 
-Preis und genaue Ausgestaltung der Werbefrei-Option werden später nach Plattform-, Markt- und Store-Überprüfung entschieden.
+remove_ads ist als dauerhaftes Non-Consumable mit 3,99 € deutschem Basispreis entschieden; tatsächlichen Storepreispunkt/lokale Steuern und Kauf-/Restorewirkung vor Release prüfen.
 
 ## 7. Ausgeschlossene Muster
 

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:44:26.415Z",
+  "role": "entry_audit independent narrow pre-code OS-handle design review, no implementation/runtime platform PASS",
+  "verdict": "PERMITTED_NARROW_FS_IMPLEMENTATION_WITH_EXISTING_ROOT_PRECONDITION_FAIL_CLOSED_AND_PLATFORM_EVIDENCE_LIMITS",
+  "basis": [
+    "DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md §17",
+    "PROJECT_CONTROL/ProductionBlocks/Public240Save/T_TECHNICAL_DETAILS.md §29/35",
+    "Immutable WP042 sole FS ownership and unchanged manifest"
+  ],
+  "decision": "Windows OS named mutex plus Linux/Android/Darwin native advisory directory-handle locking is within accepted concrete OS-handle infrastructure scope. Conservative root-wide serialization is permitted; profile/catalog isolation and candidate paths are unchanged.",
+  "recommendedRootContract": "Require a stable existing app-private absolute local filesystem root; missing root is named infrastructure failure. Avoid implicit creation inside Load/Recover or an arbitrary-thread constructor. Explicit provisioning later on worker outside read-only load/recover, by I composition, can be separately documented.",
+  "implementationConditions": [
+    "All candidate observation/CAS/archives/preparation/pending/rotation/promotion/mainACK remain within one acquired OS handle.",
+    "Open root directory read-only without create; separate open FD per acquisition; no inherited/shared FD accidental unlock; all disposal and exception/cancellation paths close FD.",
+    "Nonblocking flock LOCK_EX|LOCK_NB with cancellation and monotonic30second timeout; capture errno immediately. EINTR retry; EWOULDBLOCK remains contention; every unsupported/other error fails closed with stable code.",
+    "Platform-specific ABI/constants and DllImport library linkage must be explicit (Linux/Androidlibc vs iOS__Internal); no silent MonoNamedMutex fallback on failednativebinding.",
+    "Stable private-root inode is required for lifetime; root replacement/removal is not allowed by application composition. Reparse/path checks remain.",
+    "Tests need distinct processes with second-acquisition exclusion, release/crashexit reacquisition, cancellation/timeout, same-process separate opens, and read-only directory/candidate no-delta. NativeLinuxUnity FFI evidence remains distinct from GCC/CPython supplement."
+  ],
+  "sources": [
+    {
+      "url": "https://man7.org/linux/man-pages/man2/flock.2.html",
+      "claim": "Native Linux advisory locks bind open file descriptions, distinct opens contend, closed last descriptor releases, read-only mode can lock. This is not a universal POSIX guarantee."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/bionic/+/8bc9f80f42cc5c9bc20dc546d808d57f0c3a4dfe/libc/include/sys/file.h",
+      "claim": "Official Android Bionic declares flock(int fd,int op) and errno failure contract."
+    },
+    {
+      "url": "https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/flock.2.html",
+      "claim": "Apple documents flock advisory API, LOCK_NB, errno including EINVAL/ENOTSUP. This does not establish actual APFS directory-FD support on target hardware."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/kern/kern_descrip.c",
+      "claim": "Apple XNU sys_flock obtains vnode and dispatches VNOP_ADVLOCK with F_FLOCK; actual filesystem behavior is downstream. No actual iOS execution claimed."
+    }
+  ],
+  "limits": "No code modified by reviewer. This permits precise scoped implementation, not interprocess/platform acceptance. Linux/Android/iOS native FFI/runtime and physical durability remain separately evidenced; unavailable directorylocking must stop safely rather than claim serialization."
+}

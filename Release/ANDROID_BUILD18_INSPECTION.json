@@ -1,0 +1,357 @@
+{
+  "evidenceKind": "ACTUAL_ANDROID_APK_ARTIFACT_INSPECTION",
+  "buildLabel": "wp046-main-android-18",
+  "apkSha256": "2faf37fdb3accbbc7c395595b6197c257a23e6a578f33edc51c0d9ccf3cf934e",
+  "apkSizeBytes": 58639777,
+  "sourceBinding": "Git bcb52258224f55db112527f16cd923f45533b344; actual prebuild source input inventory SHA256 c600aa6e8e93212d8e03eb615d3aa06fa0531a59973f1e868e608636c10554fa; exact original source archive SHA256 9034f8bd3023edabfe8d43fc1f9ef0a1eeb655cab003ba365a5e47ccb7c9c2fb; four preserved local ProjectSettings overrides declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "manifest": {
+    "package": "com.STP.StammstreckenPuzzle.qa",
+    "minSdk": "26",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_ADSERVICES_TOPICS",
+      "com.android.vending.BILLING",
+      "android.permission.WAKE_LOCK",
+      "android.permission.FOREGROUND_SERVICE",
+      "com.STP.StammstreckenPuzzle.qa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "providers": [
+      "com.google.android.gms.ads.MobileAdsInitProvider",
+      "androidx.startup.InitializationProvider"
+    ],
+    "measurementDelayValues": [
+      "true"
+    ],
+    "debuggable": "true"
+  },
+  "abis": [
+    "arm64-v8a"
+  ],
+  "nativeLibraries": [
+    {
+      "path": "lib/arm64-v8a/lib_burst_generated.so",
+      "sizeBytes": 422840,
+      "sha256": "84c365e70ebd2d5f08dc5d151cfba93156f3f142424c8339de7b67b80364f70f",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "sizeBytes": 1292904,
+      "sha256": "4397241b4bd20a8e579bfb41d21107857e12985f6a01ca0c2a5f83380d1270b4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libgame.so",
+      "sizeBytes": 252008,
+      "sha256": "5e1f799e725960bd7b9017d7f3129e4fe28dc93fea8029102d85bf9fc4bdc64d",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libil2cpp.so",
+      "sizeBytes": 80501648,
+      "sha256": "c867ffb2669d19b4bcc3f954abd5e486839d521082023140dcbe49d15be3b0a4",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libmain.so",
+      "sizeBytes": 8720,
+      "sha256": "56e3c619bf938450f5a95eec2a460cf620adb3ce73cea8577160d58542b0f632",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libswappywrapper.so",
+      "sizeBytes": 227040,
+      "sha256": "be765b6824060e42c01ba7fe1c67dd3dbb3a493be03a4de649df43f3e42de363",
+      "elfMachine": 183
+    },
+    {
+      "path": "lib/arm64-v8a/libunity.so",
+      "sizeBytes": 36232048,
+      "sha256": "6e5dbb360a1b1fcd34d0a2cfd0bce50a21431a3b52d0e9b2b2771671eb2490b4",
+      "elfMachine": 183
+    }
+  ],
+  "packagedSdkVersionProperties": {
+    "billing.properties": "version=9.0.0\nclient=billing\nbilling_client=9.0.0\n",
+    "play-services-ads-api.properties": "version=25.4.0\nclient=play-services-ads-api\nplay-services-ads-api_client=25.4.0\n",
+    "play-services-ads-identifier.properties": "version=18.0.0\nclient=play-services-ads-identifier\nplay-services-ads-identifier_client=18.0.0\n",
+    "play-services-ads.properties": "version=25.4.0\nclient=play-services-ads\nplay-services-ads_client=25.4.0\n",
+    "play-services-measurement-base.properties": "version=20.1.2\nclient=play-services-measurement-base\nplay-services-measurement-base_client=20.1.2\n",
+    "play-services-measurement-sdk-api.properties": "version=20.1.2\nclient=play-services-measurement-sdk-api\nplay-services-measurement-sdk-api_client=20.1.2\n",
+    "user-messaging-platform.properties": "version=4.0.0\nclient=user-messaging-platform\nuser-messaging-platform_client=4.0.0\n"
+  },
+  "problems": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "status": "TECHNICAL_PACKAGE_PASS",
+  "apk": ".utmp/wp046-native/android-build18-verified/stp-mobile-preview.apk",
+  "sourceCleanHeadAsserted": false,
+  "actualUnityBuildExitCode": 0,
+  "originalArtifactEntryCount": 236,
+  "originalAudit": {
+    "path": ".utmp/wp046-native/android-build18-inspected/audit.json",
+    "sha256": "3135a5d8dbd7cebc5a2493affd77256a8280f6b2d6c792477fd39c9c5246dca6",
+    "sizeBytes": 67928
+  },
+  "independentAcceptance": {
+    "path": ".utmp/wp046-c-final-native18/independent-conclusion.json",
+    "sha256": "495261257b030af58b5347b9d251dabe3a5ce182afedb19450c3ecd2eeac2290",
+    "sizeBytes": 16392
+  },
+  "prebuildInventory": {
+    "path": ".utmp/wp046-native/android-build18-source-inputs/source-inputs.json",
+    "sha256": "c600aa6e8e93212d8e03eb615d3aa06fa0531a59973f1e868e608636c10554fa",
+    "sizeBytes": 235611
+  },
+  "prebuildOriginalSourceArchive": {
+    "path": ".utmp/wp046-native/android-build18-source-inputs/original-source-inputs.zip",
+    "sha256": "9034f8bd3023edabfe8d43fc1f9ef0a1eeb655cab003ba365a5e47ccb7c9c2fb",
+    "sizeBytes": 6498774
+  },
+  "preservedPrebuildSourceFiles": 1114,
+  "nativeInputCapture": {
+    "path": ".utmp/wp046-native/android-build18-inspected/native-originals/capture.json",
+    "sha256": "9d1a0e2028239bc88daf0ea14d77d999994c0c82922ea5efd2c996c83a327d13",
+    "sizeBytes": 640863
+  },
+  "nativeInputArchive": {
+    "path": ".utmp/wp046-native/android-build18-inspected/native-originals/native-originals.zip",
+    "sha256": "4e64b7c5f77e2a1ba4c992e4efebe35df4eae235fd13268097fb0541b1e8c423",
+    "sizeBytes": 19383069
+  },
+  "managedIl2cppInputArchive": {
+    "path": ".utmp/wp046-native/android-build18-inspected/native-originals/managed-il2cpp-originals.zip",
+    "sha256": "8765626cc95206da658d768ca9eeb852083a6d7af6e5f0763276f82f298d84b2",
+    "sizeBytes": 152275519
+  },
+  "preservedNativeFiles": 2196,
+  "preservedManagedIl2cppFiles": 814,
+  "independentReports": [
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/archive-and-final-runtime-readback.json",
+      "sha256": "548de2da62a8b6090ada6350b470ea52347775e9f03a058640a1894f449e220a",
+      "sizeBytes": 5482
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/independent-readback.json",
+      "sha256": "6061b16b187219bacd96ab77f967ed768ce97c9a9e4761155a981bda16274375",
+      "sizeBytes": 20654
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/player-code-readback.json",
+      "sha256": "ecae37e975d5d26f73d4c1887020bf8cdd4a36c57b720fc545e8dc3eeeb8e5ed",
+      "sizeBytes": 9537
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/dex-source-and-size-readback.json",
+      "sha256": "e0cd76f1b2337caaf7748f7550c630a3cf5abb91dccde1371eec6bd5f589ec7f",
+      "sizeBytes": 5335
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/run-authorized-binding.json",
+      "sha256": "3e9cd58150ed010e4dca974bfa9747acab41e6ec68784b5f479fa5f51f0673e0",
+      "sizeBytes": 959
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/readback.json",
+      "sha256": "d3d8bbd8e975a43eb5c85f6567834c3e84eb9f3cf1f7e12d318b4ebb2234e11e",
+      "sizeBytes": 18918
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/unchanged-inputs-readback.json",
+      "sha256": "d1aa010a37d570f697561d742e063b904cfcaf9e74557d6a557e1c1b9c139ba1",
+      "sizeBytes": 22211
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/main17-to18-comparison.json",
+      "sha256": "986ba6049423f88b1a43d72aee908380c34bd8f94d6780689ed685de7a433a8b",
+      "sizeBytes": 12661
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/same-call-player-methods-readback.json",
+      "sha256": "de2615d25c0268ca5ae7557109fdbf12053eff542b8061f7f2e86cf2b55832cf",
+      "sizeBytes": 3815
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/new-followup-methods-readback.json",
+      "sha256": "5b73a520674ccdb2d3576ded1b59d3bba1e1db31918bf9c40b2fc2c5c562d462",
+      "sizeBytes": 7862
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/actual-review-interface-slots.json",
+      "sha256": "29425f19861aa6ec34f998332b8100856698f65c9af283c3530317f835bfff3f",
+      "sizeBytes": 5102
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/manual-generated-code-review.json",
+      "sha256": "a8d2c0079583f4a6f3b0b101a2d905b2f16acc6bae064ff3af46dc66ce972330",
+      "sizeBytes": 8047
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/actual-signature.txt",
+      "sha256": "31bdf41dd2f5702e9538a03cb0e2281674ab392729137c28ce656f403838ac87",
+      "sizeBytes": 955
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/actual-packaged-manifest.xml",
+      "sha256": "ec74ecc8ae6f860d64a7a14f6e0d173b38ff9838ba95eed53b6fdeb6ed591986",
+      "sizeBytes": 16886
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/verify_apk.py",
+      "sha256": "66e4878d00f51f2c1d2e0a7243a3fc09aa5bd8b28bf0914aae692e8513511d78",
+      "sizeBytes": 10644
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/verify_player_inputs.py",
+      "sha256": "d3e39cc798935fb59766fa751dca7ef115a5c5aed58ebaca3bb80ad573a47d98",
+      "sizeBytes": 5369
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/page_size.py",
+      "sha256": "eb4034d717ea012342d2a2d53e9f8c6eaa75e67519a00d968e4a52a912f87f5d",
+      "sizeBytes": 11248
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/extra.py",
+      "sha256": "ce2ba6d8b2415023dc503472e1ef7ef206b93ea8d4e0fd0d19c6326bbe3aea4a",
+      "sizeBytes": 5221
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/archive_and_final_runtime.py",
+      "sha256": "003069041be707c28c7df5ca4f1e8da3f9a43a90fa3fd732f7b090eeac338735",
+      "sizeBytes": 8126
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/new_followup_methods.py",
+      "sha256": "ffcbe513920a2abc38252b566d449977100c805e8bedd56eb4d8f93a69f10777",
+      "sizeBytes": 5703
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/compare_unchanged_inputs.py",
+      "sha256": "7b4465484ddee239c74545bbe8f00ac57c4265200a296dd9f4b4ab6ef2825c72",
+      "sizeBytes": 4988
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/inspect_same_call_player_methods.py",
+      "sha256": "bcf0622939f63f1208c064c58749b66482cb0d71270e0e1feec37a8b737a0c04",
+      "sizeBytes": 4417
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/inspect_actual_interface_slots.ps1",
+      "sha256": "28575d342a9b08e6a36ec4866ef372cc4cbc8336ebb241ca9788a16fe2410901",
+      "sizeBytes": 1579
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/compare17_18.py",
+      "sha256": "291a8684047a0d79bd04afd2dc2bfc095082747dea7212a7a0958976a89f2c7b",
+      "sizeBytes": 5947
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/finalize_current18.py",
+      "sha256": "21fcf68552da68a13882d07c0f2d430ca609774b30e1509ebc11a5aaae06fba9",
+      "sizeBytes": 9396
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/MobilePreviewInstaller_Update.generated.cpp",
+      "sha256": "2872ab4a4542c494b5d31de8d4246acd21ca7a71ed2cdd7693ed502ae326894e",
+      "sizeBytes": 22918
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/MobilePreviewInstaller_OnDestroy.generated.cpp",
+      "sha256": "aafc2bd80ead9786bbc369ea8f5821a420d39666b8201d5689c243f477111884",
+      "sizeBytes": 15890
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/MobilePreviewInstaller_ReadHintDisplayCredits.generated.cpp",
+      "sha256": "84442245f4270101009ea9b5b7c59b1ad3129bbfb9f8295a6e7f8f7d48ed7e93",
+      "sizeBytes": 10102
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/MobilePreviewInstaller_ClearHintDisplayProjection.generated.cpp",
+      "sha256": "ca5b1c09be43cc68b523af93741002330268146478af01f5e93a128ba7e254c7",
+      "sizeBytes": 1311
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/LocalSaveCodec_ValidateProgressAuthority.generated.cpp",
+      "sha256": "fc60e38e42c0701d69705273b9b9e904394702b3dabaca718f050a4340791b45",
+      "sizeBytes": 48206
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/LocalSaveCodec_Encode.generated.cpp",
+      "sha256": "4b3d286d035210239c2762f2c9c1aa973e07a14c22c3ce06c1b09bee5e767e41",
+      "sizeBytes": 16318
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/LocalSaveCodec_PayloadBytes.generated.cpp",
+      "sha256": "1926add549a34bfda468896194aac6f4e44b8dcd0068a7f8c2c1b90c437d3832",
+      "sizeBytes": 1744
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/LocalSaveCodec_ValidatedPayloadBytes.generated.cpp",
+      "sha256": "a002b6f790396411c17df53892e364e426e340c4c792608f77bc7d75377294af",
+      "sizeBytes": 1782
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/Authority_PublishedById.generated.cpp",
+      "sha256": "4643e2bb583c4f94895c9698b45a01c91ad58ce0ce7c2d47560f9ee8eb49bf68",
+      "sizeBytes": 5108
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/Authority_FirstCleared.generated.cpp",
+      "sha256": "a0167f2417018b1d7eefe16709e4ac208769dcd616854d1d6555304e7d0a050f",
+      "sizeBytes": 8577
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/Authority_MemberFirstClearedPredicate.generated.cpp",
+      "sha256": "c8cd70273204d168a0b9c994a097b4c747eaab85dba47f21f8f34d263917c09d",
+      "sizeBytes": 1475
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/Authority_PublishedMismatchPredicate.generated.cpp",
+      "sha256": "1622be4635b6cd95be9c1f18aafac7180783c95dd9478c8307563ea82d2fc9a9",
+      "sizeBytes": 1057
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/LocalProgressPolicy_PrepareForSave.generated.cpp",
+      "sha256": "743fe598dddfc7e5cf6e670611f142b689408e0796930b60e36b928738940605",
+      "sizeBytes": 2398
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/SaveLedgerCodec_Validate.generated.cpp",
+      "sha256": "d0f89792ba1b684ccbdaa41a87179ba879a3305460bdc1072ad7112d91fca3ee",
+      "sizeBytes": 534
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/SaveLedgerCodec_ValidateCore.generated.cpp",
+      "sha256": "69d8b315e8bfc21d724eacf5ce87d34e13f65132d40f4f3ad5b00179cf4d9cee",
+      "sizeBytes": 49809
+    },
+    {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/wp046-c-final-native18/SaveLedgerCodec_Compact.generated.cpp",
+      "sha256": "e9d40ed1bd33a7c403f541bd8663ec5ce5dda23d08d4ec014ebe7bdffe2d3405",
+      "sizeBytes": 13846
+    }
+  ],
+  "static16KiBElfAndZipValidated": true,
+  "physical16KiBRuntimeValidated": false,
+  "humanAcceptance": false,
+  "publicStoreReleaseAllowed": false,
+  "limitations": [
+    "Actual QA/debug APK and immutable archived audit/compiler/source originals only. No installed-phone/emulator/device/16KiB runtime/provider/human/production/Store acceptance.",
+    "Four preserved local settings are explicitly separate from remote source; no clean working-tree or bitwise reproducible build claim.",
+    "New method coverage remains0positiveSP in localEdit35/Play42originals. Actual player compiler bodies are bound independently, without inventing runtime execution or nonexecution.",
+    "Earlier Linux250PASS/1outer180sTimeout remains failed until an actual subsequent Linux run closes it. Main18staticapproval/localfulls are not Linux closure.",
+    "Historical17largecontainer remains unchanged. Measured23,283,050byte reduction is exactly23,283,046inter-entrygap bytes plus4localheaderbytes; no23MBcodegrowth orproducer-internalcause claimed.",
+    "Human8 active source path remains separately accepted; no new binary hash/stripping or participant observation reinterpretation."
+  ]
+}

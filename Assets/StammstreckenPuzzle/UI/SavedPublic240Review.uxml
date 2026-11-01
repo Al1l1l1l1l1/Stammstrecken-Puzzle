@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:ScrollView name="saved-scroll" class="saved-scroll" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto">
+  <ui:VisualElement name="saved-root" class="saved-page">
+    <ui:Label name="saved-boundary" class="saved-boundary" />
+    <ui:Label name="saved-status" class="saved-status" />
+    <ui:Label name="saved-error" class="saved-error" />
+    <ui:Label name="saved-progress" class="saved-progress" />
+    <ui:Label name="saved-stars" class="saved-stars" />
+    <ui:Label name="saved-current" class="saved-current" />
+    <ui:DropdownField name="saved-picker" class="saved-picker" />
+    <ui:VisualElement class="saved-actions">
+      <ui:Button name="saved-startup-retry" /><ui:Button name="saved-create" />
+      <ui:Button name="saved-open" /><ui:Button name="saved-resume" /><ui:Button name="saved-restart" />
+      <ui:Button name="saved-retry-save" /><ui:Button name="saved-retry-completion" /><ui:Button name="saved-reload" />
+    </ui:VisualElement>
+    <ui:VisualElement name="saved-candidates" class="saved-candidates" />
+    <ui:VisualElement class="saved-actions"><ui:Button name="saved-recover" /><ui:Button name="saved-reset" /></ui:VisualElement>
+    <ui:VisualElement name="saved-confirmation" class="saved-confirmation">
+      <ui:Label name="saved-confirm-text" />
+      <ui:VisualElement class="saved-actions"><ui:Button name="saved-confirm" /><ui:Button name="saved-cancel" /></ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="saved-game-host" class="saved-game-host" />
+  </ui:VisualElement>
+  </ui:ScrollView>
+</ui:UXML>

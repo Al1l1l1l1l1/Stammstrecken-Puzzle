@@ -1,0 +1,285 @@
+{
+  "reviewer": "/root/wp037_independent_qc",
+  "recordedUtc": "2026-10-18T22:38:54.792638+00:00",
+  "result": "FAIL_SCREEN_OUTPUT_PATH",
+  "finding": "SCREEN-01",
+  "severity": "HIGH",
+  "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+  "tree": "e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0",
+  "affectedAcceptance": [
+    "AK04",
+    "AK06",
+    "AK09 cannot establish actual usable screen path alone",
+    "AK10 not granted"
+  ],
+  "evidenceType": "Independent static proof from frozen application sources and actual pinned URP17.3.0 package implementation; actual normal-screen pixel probe NOT_EXECUTED",
+  "bindings": [
+    {
+      "kind": "frozen-source",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+      "sha256": "86d5966ea0372f287104634056929b83e38a45890a77ed1e6c3ca8990a09bd82",
+      "bytes": 8276,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "selectedLineBindings": [
+        {
+          "needle": "private void Awake",
+          "lines": [
+            {
+              "number": 80,
+              "text": "private void Awake()"
+            }
+          ]
+        },
+        {
+          "needle": "new DevelopmentTrainRide",
+          "lines": [
+            {
+              "number": 116,
+              "text": "ride = new DevelopmentTrainRide(model.BuiltPath, model.A, model.B, model.Width, model.Height, trainMaterial!, rideDurationSeconds);"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "frozen-source",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "sha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2",
+      "bytes": 8833,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "selectedLineBindings": [
+        {
+          "needle": "AddComponent<Camera>",
+          "lines": [
+            {
+              "number": 81,
+              "text": "var camera = cameraObject.AddComponent<Camera>();"
+            }
+          ]
+        },
+        {
+          "needle": "camera.targetTexture = texture",
+          "lines": [
+            {
+              "number": 101,
+              "text": "camera.targetTexture = texture;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "frozen-source",
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "sha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e",
+      "bytes": 1861,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "selectedLineBindings": [
+        {
+          "needle": "m_Name: DevelopmentPuzzle",
+          "lines": [
+            {
+              "number": 14,
+              "text": "m_Name: DevelopmentPuzzle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "frozen-source",
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+      "sha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300",
+      "bytes": 1912,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "selectedLineBindings": [
+        {
+          "needle": "m_TargetTexture:",
+          "lines": [
+            {
+              "number": 17,
+              "text": "m_TargetTexture: {fileID: 0}"
+            }
+          ]
+        },
+        {
+          "needle": "m_RenderMode:",
+          "lines": [
+            {
+              "number": 18,
+              "text": "m_RenderMode: 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "frozen-source",
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+      "sha256": "052c821dc43f5ddd5d89bd0d71a58df35881aa073f73f3260ea44d45f735287a",
+      "bytes": 24965,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "selectedLineBindings": [
+        {
+          "needle": "ownedPanel.targetTexture = panelTexture",
+          "lines": [
+            {
+              "number": 52,
+              "text": "ownedPanel.targetTexture = panelTexture;"
+            }
+          ]
+        },
+        {
+          "needle": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+          "lines": [
+            {
+              "number": 277,
+              "text": "public IEnumerator GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult()"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pinned-package",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@7865b6b91f8a/Runtime/UniversalRenderPipeline.cs",
+      "sha256": "f0dfa2e218115ae82f437028935f4c196d4aab1a010c7216cc2d3e978a555619",
+      "bytes": 136471,
+      "head": null,
+      "selectedLineBindings": [
+        {
+          "needle": "AdjustUIOverlayOwnership(cameraCount)",
+          "lines": [
+            {
+              "number": 448,
+              "text": "AdjustUIOverlayOwnership(cameraCount);"
+            }
+          ]
+        },
+        {
+          "needle": "static void AdjustUIOverlayOwnership",
+          "lines": [
+            {
+              "number": 2600,
+              "text": "static void AdjustUIOverlayOwnership(int cameraCount)"
+            }
+          ]
+        },
+        {
+          "needle": "if (XRSystem.displayActive || cameraCount == 0)",
+          "lines": [
+            {
+              "number": 2604,
+              "text": "if (XRSystem.displayActive || cameraCount == 0)"
+            }
+          ]
+        },
+        {
+          "needle": "SupportedRenderingFeatures.active.rendersUIOverlay = true",
+          "lines": [
+            {
+              "number": 1358,
+              "text": "SupportedRenderingFeatures.active.rendersUIOverlay = true;"
+            },
+            {
+              "number": 2613,
+              "text": "SupportedRenderingFeatures.active.rendersUIOverlay = true;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pinned-package",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@7865b6b91f8a/Runtime/FrameData/UniversalCameraData.cs",
+      "sha256": "e656fc575fce67e64c45b484f925a43b339c0757bd5644869fd2f6f8e78b152c",
+      "bytes": 33475,
+      "head": null,
+      "selectedLineBindings": [
+        {
+          "needle": "internal bool resolveToScreen",
+          "lines": [
+            {
+              "number": 318,
+              "text": "internal bool resolveToScreen => targetTexture == null && resolveFinalTarget && (cameraType == CameraType.Game || camera.cameraType == CameraType.VR);"
+            }
+          ]
+        },
+        {
+          "needle": "public bool rendersOverlayUI",
+          "lines": [
+            {
+              "number": 395,
+              "text": "public bool rendersOverlayUI => SupportedRenderingFeatures.active.rendersUIOverlay && resolveToScreen;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pinned-package",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@7865b6b91f8a/Runtime/2D/Rendergraph/Renderer2DRendergraph.cs",
+      "sha256": "de7350c14c97df1c2ff2285f9836a509da4d16fae26d0ed4b7af5edf960e4ee2",
+      "bytes": 57785,
+      "head": null,
+      "selectedLineBindings": [
+        {
+          "needle": "bool shouldRenderUI = cameraData.rendersOverlayUI && cameraData.isLastBaseCamera",
+          "lines": [
+            {
+              "number": 1012,
+              "text": "bool shouldRenderUI = cameraData.rendersOverlayUI && cameraData.isLastBaseCamera;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "pinned-package",
+      "path": "Library/PackageCache/com.unity.render-pipelines.universal@7865b6b91f8a/Runtime/Passes/DrawScreenSpaceUIPass.cs",
+      "sha256": "c6cbab946b68a6ca49114737dc7bd58dbfa1ace80067deb19c02fe043ac9d0db",
+      "bytes": 13717,
+      "head": null,
+      "selectedLineBindings": [
+        {
+          "needle": "internal void RenderOverlay",
+          "lines": [
+            {
+              "number": 234,
+              "text": "internal void RenderOverlay(RenderGraph renderGraph, ContextContainer frameData, in TextureHandle colorBuffer, in TextureHandle depthBuffer)"
+            }
+          ]
+        },
+        {
+          "needle": "UISubset.UIToolkit_UGUI",
+          "lines": [
+            {
+              "number": 200,
+              "text": "passData.rendererList = renderGraph.CreateUIOverlayRendererList(cameraData.camera, UISubset.UIToolkit_UGUI);"
+            },
+            {
+              "number": 249,
+              "text": "passData.rendererList = renderGraph.CreateUIOverlayRendererList(cameraData.camera, UISubset.UIToolkit_UGUI);"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "renderChain": [
+    "Frozen QA scene contains only explicit installer root, no Camera component; installer creates UIDocument but no screen camera.",
+    "During TrainRide, DevelopmentTrainRide creates enabled game Camera when non-null graphics, with non-null RenderTexture target. No other application runtime camera exists in this isolated QA scene.",
+    "URP Render calls AdjustUIOverlayOwnership(cameraCount); at cameraCount>0/non-XR this sets rendersUIOverlay=true, disabling the engine no-camera overlay fallback.",
+    "UniversalCameraData.resolveToScreen requires targetTexture==null. Sole World camera therefore has false resolveToScreen and false rendersOverlayUI.",
+    "Renderer2D normal overlay pass runs only when rendersOverlayUI and isLastBaseCamera. Its DrawScreenSpaceUIPass explicitly renders UISubset.UIToolkit_UGUI, so the screen UIDocument is excluded on the sole offscreen camera.",
+    "Actual existing graphics tests clone PanelSettings and set targetTexture to capture RT before ride. They prove offscreen panel pixels and World texture, not the unchanged normal screen path."
+  ],
+  "correctionBoundary": "Existing WP038 scope permits explicit QA scene-local screen camera with null targetTexture and zero world culling, after isolated World camera, owned/disposed by installer; no global URP flags or protected settings changes. Exact implementation belongs to separated author role.",
+  "requiredTargetedRecheck": [
+    "Changed installer/scene/test sources only; no unchanged Solver/text/application re-review.",
+    "Actual graphical normal-screen probe with PanelSettings.targetTexture remaining null during Editing/TrainRide/Results, real UI actions, current screen-frame capture, true non-null renderer and evidence of visible train/result progression.",
+    "Existing graphical eight-case route and reproducible builder remain valid only for unchanged bindings; new source bindings and affected runtime proof require actual rerun.",
+    "New exact corrected freeze and required regular CI after correction, then independent final review."
+  ],
+  "ciTreatment": "C CI continues normally as original historical event, no cancel/retry/Editor while licensed jobs run. Even all jobs SUCCESS cannot close SCREEN-01."
+}

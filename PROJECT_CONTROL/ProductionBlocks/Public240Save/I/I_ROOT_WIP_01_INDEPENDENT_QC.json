@@ -1,0 +1,131 @@
+{
+  "at": "2026-10-19T13:33:50.395Z",
+  "verdict": "WIP_SOURCE_REVIEW_ONE_CONFIRMED_HIGH_PENDING_TARGETED_CORRECTION",
+  "scope": "Only three new Root integration files and four existing technical connection deltas; no App/UI owner implementation review, no renewed A/S/P/solver/content inventory review.",
+  "snapshotAt": "2026-10-19T13:26:26.412Z",
+  "originalSourcePack": {
+    "name": "I_ROOT_WIP_01_ORIGINAL_SOURCE_PACK.json",
+    "bytes": 34731,
+    "sha256": "0b9e17637a57e095d1344354e4c17afed0389803d9de3333188350fc9d3d95e8"
+  },
+  "rootSources": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+      "bytes": 7005,
+      "sha256": "d0bbeacb59bcccd3811f020d6abac083a6959a3f79f632ac1fcdbc2fe944c875",
+      "fullyRead": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "bytes": 26606,
+      "sha256": "a896d5577cc6071b45a4c09966ee670edc730b0b91d89e0f6b409211d8dc35f7",
+      "fullyRead": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+      "bytes": 13847,
+      "sha256": "210d6eebe36d2f10750be95c0f5f21132db1eda62c28b12f34eb2e0b8b725c6d",
+      "fullyRead": true
+    }
+  ],
+  "technicalConnections": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "bytes": 9999,
+      "sha256": "c66b5729f0add0aa867fba492c7df7e9e7ed73a0a3cf7aea37c53bd396ad6297",
+      "deltaRead": true
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "bytes": 13406,
+      "sha256": "35661c1a78177a83ed8fd91fbfcea5afe0207b21c2a1458abc957f914aa24dcd",
+      "deltaRead": true
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "bytes": 707,
+      "sha256": "beadff1c0aca045872ca4a7d9d1b5f9798c721a110eb2825c64c96d6d09afc6f",
+      "deltaRead": true
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "bytes": 10302,
+      "sha256": "99e7936a61a7aae0649e0f006517922df9e72efc91350d985ce246d58416be33",
+      "deltaRead": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "I-ROOT-001",
+      "severity": "High",
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "sha256": "a896d5577cc6071b45a4c09966ee670edc730b0b91d89e0f6b409211d8dc35f7",
+      "startLine": 415,
+      "endLine": 427,
+      "title": "Lexical root disjointness accepts a Windows alias of the protected real profile root",
+      "cause": "CanonicalDirectory usesPath.GetFullPath and string ancestor comparisons only. PinnedWindowsMono preserves Extended namespaceprefix; matching aliasedSTP_TEST_TEMP_ROOT makes identical physical realroot text appear disjoint and permitted. ExistingSaveFS Reparsechecks do not establish directory identity for ordinary namespace/8.3/Subst aliases.",
+      "actualEvidence": "Pure pinnedUnity6000.3.23f1MonoCLI probe exit0: CurrentRootGuardDisjoint=True andCurrentEnvRootPermitsAlias=True for normalC:root versusExtendedalias. Originalcode/exe/output hashes andfullsource are in originalpack. NoAppData provisioning, save IO or UnityEditor executed.",
+      "impact": "A supposedly isolated testscope can bind the real AppData profile tree through an alias, contrary to acceptedADR036decision6.",
+      "status": "Accepted by R; exact prospective fix separately reviewed as within existing test-only scope, actualsource/runtime regression closure pending."
+    }
+  ],
+  "staticResults": [
+    {
+      "area": "Main/Worker/nullmodelpump",
+      "result": "RootAwake constructsClock/Dispatcher and copiesUnitybytes onMain; CreateAsync clonesinputs and runs catalog/JCS/FS/repository construction onTask.Run. Bridge/BindModel follow defaultUnitycontext await. Update drainsdispatcher beforemodelnullreturn and refreshesstartup. NoBootstrap Domainedge."
+    },
+    {
+      "area": "RuntimeRoot/Windows filenames",
+      "result": "ActualpersistentDataPath orcapturedtestroot is passedonce toSaveFS; exactQA namespace/cataloghash/r appendedsolelybyPersistence. ExplicitWindowschecks coverallactualmain/backup/pending/migrationsource/archive/stagingnames beforeprofileaccess; UnixnotgivenWindows260rule. Rootdirectory-only infrastructureprovisioning remainsexistingSaveFScontract."
+    },
+    {
+      "area": "Observedtasks/Lifecycle/shutdown",
+      "result": "Explicitoperation/lifecycle/init taskslots, catchesandfaultprojection; ApplySuspension immediately callsBridgeSetSuspendedAsync onMain, ORcombinesfocus/pause. Dispose cancels lifetime, disposesmodel anddispatcher; dispatcher completespendingpublications withoutaction; ShutdownTask awaits trackedwork before releasingtestLiveInstances. Actual slowworker/shutdown regressions still required."
+    },
+    {
+      "area": "Failure/retrytruth",
+      "result": "Automatic completion cachesattempt anddraftticksstopafter noncommittedstatus; observedtaskfault setsrequestFault anddisposesride. Userreload is explicit andclearsfaultonlyafternewstateversion. No automaticfaultRetryloop found intheseRootbytes."
+    },
+    {
+      "area": "ExactACK/ride/latecallbacks",
+      "result": "RootusesstateCanStartRide pluscurrentviewattempt, thenbindsrideViewreference andguid; everyframechecksreference/guid/TrainRidephase. Completion iscalledonlyonboundview; dispose/null occursimmediately afterfinish. ExistingBridge/S authority remainsrequired andisnotinferredfromTaskcompletion."
+    },
+    {
+      "area": "Fourentries/guardpartition",
+      "result": "StpBuildEntrypoints usesfreshorderedSaved/Public240/Development/Bootstrap array forbothplatforms; EditorBuildSettings exactfourpaths/GUIDs. ExistingDevelopmentguard handlesSaved plusoldtwo andvalidatesSavedreferences; unchangedA guard retainsPublic240. Onlyvalidate.yml manifestselector changes; noUnityworkflowdelta."
+    },
+    {
+      "area": "NewRoottests",
+      "result": "Buildentrytests coverfourpaths/fresharray/GUIDs, protectedassetread-onlypreflight, actualAssetDBdependencies, closedQAidentity, lexicalrootnegatives/nonnesting, realworker/allMissingfileless andinvalidsourcesbeforeprovision. Testteardownwaitsactualtasks beforecheckedtempcleanup. Existing tests do not coverconfirmednamespacealias; realnativeflow andnewphysicalguardclosure pending."
+    }
+  ],
+  "acceptedFixPlanReview": {
+    "verdict": "PASS_PROSPECTIVE_NARROW_TEST_ONLY_FIX_WITH_STATED_PRECONDITIONS",
+    "scope": "OnlyexistingUNITY_EDITOR&&UNITY_INCLUDE_TESTSRootscope innewinstaller; noRuntime/S/APIauthority/newassemblychange andnonewADRrequired.",
+    "plan": "Failclosed ambiguousWindows Device/Extended/UNC/trailing-dot-space/ADSinputs; worker read-only nearestexistingDirectory metadata viaCreateFileW desiredaccess0/share7/OPEN_EXISTING/FILE_FLAG_BACKUP_SEMANTICS, GetFinalPathNameByHandleW normalized|VOLUME_NAME_NT2; closeeveryhandlefinally; appendonlyvalidatednonexistent suffixes; compareallfourRoot/real/temp/env boundaries insamephysicalidentity domain beforeactualSaveFSProvision.",
+    "requirements": [
+      "Only genuineNotFound cases become nonexistentSuffix; existingfile/unauthorized/API/buffersize failuresstop",
+      "Allfourboundarypaths use same resolver andcomparison profile",
+      "NTdeviceoutput is comparisonidentityonly, neverpassedtoSaveFS orRuntimeRoot",
+      "PreserveexistingReparsechecks andinstance/Shutdownscopeownership",
+      "Actualnamespace/8.3/Subst andsafe missingSuffix/Temp tests beforeclosure"
+    ],
+    "primarySources": [
+      {
+        "title": "MicrosoftGetFinalPathNameByHandleW",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getfinalpathnamebyhandlew"
+      },
+      {
+        "title": "MicrosoftCreateFileW",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew"
+      }
+    ]
+  },
+  "limits": [
+    "WIPonly; noSourcefreeze/native/CI/deliveryPASS",
+    "AppownerV1/V2 andUIownerSource/testsareseparatemutable dependencies; Rootstaticresultsrequiretheiractualcontractclosure",
+    "Onlya purelicensefreeMonoPath/stringprobeexecuted; noUnityEditor/seat/profileIO",
+    "No product/main/device/APFS/integratedfourentrybuildclaim"
+  ],
+  "actions": "Independentreading/rawsource snapshots andownignoredanalysis artifacts only. No implementation/Git/Unity/CI mutation."
+}

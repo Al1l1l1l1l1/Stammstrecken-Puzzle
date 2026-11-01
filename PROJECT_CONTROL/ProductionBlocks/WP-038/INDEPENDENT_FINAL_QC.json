@@ -1,0 +1,3097 @@
+{
+  "reviewer": "/root/wp037_independent_qc",
+  "result": "FAIL_OPEN_HIGH_SCREEN_01",
+  "independentAcceptanceGranted": false,
+  "recordedUtc": "2026-10-18T22:28:13.756349+00:00",
+  "sourceAndCanonicalChecks": {
+    "status": "INDEPENDENT_SOURCE_AND_CANONICAL_PASS_CI_PENDING",
+    "freeze": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+    "tree": "e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0",
+    "base": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+    "anchor": "ee14a1bf1ad88768fecca6937072cfe4fc14ba67",
+    "acceptance": "4667413ae0baa9971b4b7660a19988ce36248469",
+    "main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "sourceTrackedCleanBeforeReview": true,
+    "onlyUntrackedAllowedEvidenceBeforeReview": [
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_ARCHITECTURE.txt",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_LOCAL.json",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_LOCAL.md",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_SCOPE.txt"
+    ],
+    "manifestSha256": "cf9087d50941eb64dea3dc1ea894dd29a3a5a2a7d611668e3228cc6b875b979a",
+    "changedPaths": [
+      ".github/workflows/unity.yml",
+      ".github/workflows/validate.yml",
+      "ARCHITECTURE/BUILD_AND_RELEASE.md",
+      "ARCHITECTURE/CONTENT_PIPELINE.md",
+      "ARCHITECTURE/MODULE_BOUNDARIES.md",
+      "Assets/StammstreckenPuzzle/Art.meta",
+      "Assets/StammstreckenPuzzle/Art/Development.meta",
+      "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+      "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+      "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs.meta",
+      "Assets/StammstreckenPuzzle/UI.meta",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss.meta",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml.meta",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json.meta",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss",
+      "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss.meta",
+      "DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md",
+      "DECISIONS/ADR-033-interne-transiente-spielschleife.md",
+      "DECISIONS/README.md",
+      "PROJECT_CONTROL/CURRENT_STATE.md",
+      "PROJECT_CONTROL/ProductionBlocks/PRODUCTION_BUNDLING_DECISION.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/ACCEPTANCE_MAP.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/GRAPHICS_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/GRAPHICS_INITIAL_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/GRAPHICS_INITIAL_QC.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/GRAPHICS_QC.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/IMPLEMENTATION_HANDOVER.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/LOCAL_MODULE_PREFLIGHT.txt",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_CORRECTION_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_CORRECTION_QC.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_INITIAL_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_INITIAL_QC.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_INITIAL_wp038-10x10-editing.png",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_INITIAL_wp038-4x4-editing.png",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NATIVE_INITIAL_wp038-4x4-ride.png",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/NEXT_BLOCK_BOUNDARIES.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PARENT_CLOSEOUT_CI.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PARENT_CLOSEOUT_CI.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_ARCHITECTURE.txt",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_QC.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/PRE_CODE_SCOPE.txt",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/QA_PLAY_GUIDE.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/STATIC_REVIEW.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/STATIC_REVIEW_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/SUPPLEMENTAL_APP_EVIDENCE.json",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/SUPPLEMENTAL_VALIDATION.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/TECHNICAL_ACCEPTANCE.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/TECHNICAL_BOUNDARY_REVIEW.md",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/wp038-10x10-editing.png",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/wp038-4x4-editing.png",
+      "PROJECT_CONTROL/ProductionBlocks/WP-038/wp038-4x4-ride.png",
+      "PROJECT_CONTROL/WORK_QUEUE.md",
+      "WORK_PACKAGES/WP-038_Interne-spielbare-Raetselschleife.md",
+      "tools/architecture-validation/scopes/WP-038.production.scope.json",
+      "tools/architecture-validation/validate.py"
+    ],
+    "protectedManifests": [
+      {
+        "path": "tools/architecture-validation/scopes/WP-003.documentation.scope.json",
+        "sha256": "40a3782cab82c4fa1f8267170b7a944eb3e6ebd2df063042a6ed5681f6d05c40"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-004.documentation.scope.json",
+        "sha256": "7e3376ef28be2bf710fb82dc1f2cccd9a1eda404133cd65ac18f5a0ccebb2ba8"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-005.documentation.scope.json",
+        "sha256": "4e256258ee4681fb0a4660bf5e6a52addf521df9575103fe1afbb65872e13ecc"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-006.documentation.scope.json",
+        "sha256": "a5fde22e0adee91b94ef45de1cfd584fe2bbca5d011b43652441a5ec7b25fc6d"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-007.documentation.scope.json",
+        "sha256": "7825ac2b65e274a2f2cf8cc0893fe8ceaba0a305fb6cd58b579dc3509aadcf7c"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-010.documentation.scope.json",
+        "sha256": "9d2624a79be7e408ff39f76838377612a74cc5d558cba2cbaa09ec24c6addc19"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-011.documentation.scope.json",
+        "sha256": "db17088e0ccdbb2cfc5022a8f941a4cbe7d5d0ad06b49abb3b4e3b2fee92a432"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-014.documentation.scope.json",
+        "sha256": "7c4afa6233192e0a239ff0426d9199a5555a5ccd9686ece4be22021edca537c4"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-018.documentation.scope.json",
+        "sha256": "4cb0728c7a92a8cc170247cf6c2400904e3a297939b4b19a61e4cc5538cecad9"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-021.production.scope.json",
+        "sha256": "a0166dde558cba692c34a4f19a2e20f614f1b02de548559a9977b02661e9be61"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-022.production.scope.json",
+        "sha256": "003f5d47d1177d70fa49359200127a243ca4265f2124a1dc2401ac36ea2988e6"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-023.production.scope.json",
+        "sha256": "a8a3a5068bf6b390ad3b44b5e6d8ec36f2d93f9d849959c9230620880a5776b0"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-024.production.scope.json",
+        "sha256": "2055ed1a9e8985fb6898ad6f914e7775ff1ae75148118a6e1b8086d20b69e631"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-025.production.scope.json",
+        "sha256": "1a30063cf00771e053b39b6ee37405ba25d7310600ad8bb158ac8055194ed44d"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-027.governance.scope.json",
+        "sha256": "af42b035ba821c870cb8e5b21612644a707474fc20b07258abf55047796457b1"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-036.production.scope.json",
+        "sha256": "f04c0ca2b57319aacb2ea40632b862853fce5284b795114612a85dc181a1ce2e"
+      },
+      {
+        "path": "tools/architecture-validation/scopes/WP-037.production.scope.json",
+        "sha256": "022590d076f1e6a972b445b8696c56f83acccfebbaf7e1f30475a388e18e44a4"
+      }
+    ],
+    "protectedTextSha256": "4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c",
+    "asmdefInventory": 23,
+    "onlyExternalUiReferenceAdded": true,
+    "nativeReviewSourceBindings": [
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+        "gitBlob": "f25f0f7829afcad808cef82bc91265f634df01fa",
+        "canonicalLfSha256": "b981f916af2fde98874c86aa6db866f41c43976e9aea1f68e6b89c91ddede6c6"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs.meta",
+        "gitBlob": "ad5309cfa7ae5e9ceba181d9d433266d6b5e6f59",
+        "canonicalLfSha256": "34defdf0eb3ce8547e29ef66473ac41f7034089a5991ecb153e9375a43708c12"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs",
+        "gitBlob": "e0871c81f91daeee470aa7d50f2ea92c63805cbe",
+        "canonicalLfSha256": "78999b4e8582aaeb1feca029c1b26dcffa0e22b262b629d2f32ff29f740c9791"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs.meta",
+        "gitBlob": "6f7c4e81db6748ebc5f4047db9a6c56246ff0a28",
+        "canonicalLfSha256": "adfeb0970b449370473da71c3bfa4c1615bc8ae11fb5382355cb5c3bce646ea5"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs",
+        "gitBlob": "d49e6d10aac08d9ef86b98503211a7f077330d51",
+        "canonicalLfSha256": "72e0ee545a36a5fb1724747c9bd9ad6d4fd24d12ab49a2852c1b2cbcb7ae6d1c"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs.meta",
+        "gitBlob": "a7c9758db3ff8f79afa22b1eeec9b23f66a453b0",
+        "canonicalLfSha256": "4c2809accd75fe637714b2852ee19ad816c8bafd2e1b8342d9d757a0cb8bd1ce"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+        "gitBlob": "c5525c561ddaee02c2c6b10e10909b26c3937724",
+        "canonicalLfSha256": "acf0464b32ab8baaba35f05e3753890248d114c9183a37fc5cff4680c1c4eeea"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+        "gitBlob": "600cf733ea3afdc90ef49a7bb12792d58542a613",
+        "canonicalLfSha256": "647e4bb5ccfbb1c740c730dbe2ea2948f76215af739fe057b993c21faa2801b2"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs.meta",
+        "gitBlob": "472fe1d6c2ec6aa6327eac8d2217b323abb7b139",
+        "canonicalLfSha256": "6ec29f277a58561e11249cffc7379035813271d23112f48e86180e350fb6d8e6"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+        "gitBlob": "337ce2a82f75ae6ddcb7dc69feaf8a86dbae38e4",
+        "canonicalLfSha256": "86d5966ea0372f287104634056929b83e38a45890a77ed1e6c3ca8990a09bd82"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs.meta",
+        "gitBlob": "35e22ea090cb221ee766590304c6310ebb6ff58d",
+        "canonicalLfSha256": "15656d2fb36e734ba11fa7d8d778d03b7856f86fac32818ff294f5185588647f"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+        "gitBlob": "83556c990e4d6084c9f88e10ea29b53333773aaf",
+        "canonicalLfSha256": "8856e456b9f6bda0ccb859121c7b257ade71ebd4432b543d69591b6f09fdfb82"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs.meta",
+        "gitBlob": "ace4e36441995448a9c89bb0e7f3ed4bdef5d050",
+        "canonicalLfSha256": "e7049e87b9cebdde0927a8ab2ee9e979407a1c6a90236e16e3003a6ddfb9ba75"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs",
+        "gitBlob": "98aa5711e791b1de590864998fa3bdc381ab19e4",
+        "canonicalLfSha256": "80032bc4978eb3e79249296c811798aaa5eaa5eaef25da004fde296aaaf95a0d"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs.meta",
+        "gitBlob": "bed12fbc7329a97b611f763ebd61cd66e607976a",
+        "canonicalLfSha256": "b003722aeba83d0a0107678fdebf77b9f26a234ef21efacd9030e0709e0eb3c4"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+        "gitBlob": "a3c61558feeba52e765bd264dbd5e283ec4bfaf2",
+        "canonicalLfSha256": "9c51a2eacf9cf138b9b15e29c7359916c2ac30f27a1c488c69650d201fcc0cb1"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs.meta",
+        "gitBlob": "7dadf37e869391c9cd11ca0767d02efbbe6e9e45",
+        "canonicalLfSha256": "620e2f238d5019b76e699b3636f94bb4407d9bef2f4bd1019a4c44f1521a9a36"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+        "gitBlob": "46c638b2a8be0ec42bfd76bbd6121e77d1931253",
+        "canonicalLfSha256": "55d0eacdccf64ec817dc6957ea4df9dbcbec4cba5b9408b0c9c4c5b930d1b40d"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI.meta",
+        "gitBlob": "9938b9328ff6c502708206524b6775bf551b7a75",
+        "canonicalLfSha256": "0dccbaf3d798de430ea79495ddbb8c94147d9ba25d8be64a863f5f22c1a4be6d"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml",
+        "gitBlob": "c47987d287676592da9725fcdabad281c04551af",
+        "canonicalLfSha256": "56bec15f1377d2c7222cd709b9362e5e05b302e495dba3777fa4ba0d7bc1d29e"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml.meta",
+        "gitBlob": "5fa75e538b097c917eb41e786c52d6bc05e81859",
+        "canonicalLfSha256": "9fd0ca56255a0bc1e76f18f807a3ec505475227d0804db7ed6372a2e448b6426"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss",
+        "gitBlob": "af7b05203d74177d582f878a506bb54a629e1992",
+        "canonicalLfSha256": "1e69f66cccf3f4bd756fd5f64eb837fbebb6e6d804086145f83f4e2df6078e12"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss.meta",
+        "gitBlob": "b1ab7d6094d79ad217b1fe7e88ef76b4175a3367",
+        "canonicalLfSha256": "40314fb161149c76739494ca1efbf78ac97eba3ea68268264989380cd1b5b140"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss",
+        "gitBlob": "51924cb33eebde3c11c50c714826553d60ecef70",
+        "canonicalLfSha256": "682e2b1c6cc1d6e332c15f56c840f7d8282cb1e5bc627eb6664580352a752fda"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss.meta",
+        "gitBlob": "b3583ac948d5cc404c2e73fa0671e1071d33f270",
+        "canonicalLfSha256": "df200edb19dcc9a8c7e779de2fb2583d0a0aa1178dea49484e835090b8e97aa5"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json",
+        "gitBlob": "9ec9aaf6ef2401d67a292a6a7d484afedbde84f4",
+        "canonicalLfSha256": "fec8a68f8610d65ccca07d699a16fd40398e070ac679f56d216f19f15a55f199"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json.meta",
+        "gitBlob": "2be26f61708b0fb7122e89e5db2a210827fa6142",
+        "canonicalLfSha256": "08a8054fda2cb45c11c455e2abb48cb7f7fa24a7011fd40ee0546f4817978a68"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+        "gitBlob": "f2f33b19169e9c72fb1ca874cc7592815e14e754",
+        "canonicalLfSha256": "94700b9e488187022f223e706d22cd6026c0be573efba383f1cf869389ca0300"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+        "gitBlob": "b8d4a7e85ff53411c7188a8657c27d6007fb3abc",
+        "canonicalLfSha256": "3a93d711cb4a267e8a2b7e94e36f223ab6306b4b9b779cf6e896f42d969e7aab"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Art.meta",
+        "gitBlob": "73004aee8924ea14afdc265e28574ad14eca774d",
+        "canonicalLfSha256": "847b7536b86dc4adda27f6d04aeed02e292d7b6418e57c515b0eb4097d3ae9f7"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Art/Development.meta",
+        "gitBlob": "7253a7b06548ddf9ac250ef00473012299431be5",
+        "canonicalLfSha256": "c219f6a94568a2dbc37356ffcb9736567f4221a854edf83baa5fd9c4a75373ba"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+        "gitBlob": "6c6064652c89772bd456ef77234b0ff2d0240225",
+        "canonicalLfSha256": "6276551dfc3ed6dfc5c33b1d865a15f5aa521bd1420b06ac44335108d1aaab3a"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+        "gitBlob": "f376b0cc99b0d646b9b9894cf6bd1092e917d8d7",
+        "canonicalLfSha256": "7a3b1b890d9b5486301cc2b0554b79abcd6485621d7bef5743c756579735797a"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+        "gitBlob": "189bb5aa6239d3457e42f1642d09ba0861931b01",
+        "canonicalLfSha256": "9c9c4229e5303e3a3a10621a8559531d5d66ea935f013bdcc18f66e6ff882a1e"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity.meta",
+        "gitBlob": "38b87f0a079e12b586ea924130e99d03d28d42fc",
+        "canonicalLfSha256": "1d8d42bcdace0a41a7fdfb49ffdcf2e8c79b0ef9a2ea0d653c88c49272044bab"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs",
+        "gitBlob": "268a9a5e7d53e755d82d63b004a954d86e6a9c41",
+        "canonicalLfSha256": "3a477c8288e8309f6a65f883fb1c66824668b23976bef9f1e1f869e43d64154b"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs.meta",
+        "gitBlob": "8eee888e0df7e5416947d98a4437e81ae4c7f06c",
+        "canonicalLfSha256": "b31448d6d98750968cb1a9a0f2d8f2b0a641e50db9467d794fc438008b7c65b6"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs",
+        "gitBlob": "6f4468920b1f16d143c9227acff0cd2cea6e7cdf",
+        "canonicalLfSha256": "49bfcda92c0e6bcc70e066c18d488e9493579b589c834b3047e8ed7ecba82a49"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs.meta",
+        "gitBlob": "5da8812cd788dd3a3bb508258823f907ae45b648",
+        "canonicalLfSha256": "5340490e80e6a3bd0c2640bbfb35e0df2f74e3475877211861be25c35a286b0d"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+        "gitBlob": "353cc8fac4883b536114ad25eb2d35d49d637062",
+        "canonicalLfSha256": "052c821dc43f5ddd5d89bd0d71a58df35881aa073f73f3260ea44d45f735287a"
+      },
+      {
+        "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs.meta",
+        "gitBlob": "66f6166dd5a824245a3a5b3b747878fc9a058282",
+        "canonicalLfSha256": "d042d13504f852fb9bd0484744bdbb14a9622cd0aea874aa97c333bd78b3f7e5"
+      }
+    ],
+    "runs": [
+      {
+        "name": "architecture",
+        "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+        "exitCode": 0,
+        "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9",
+        "bytes": 1931,
+        "argv": [
+          "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+          "tools/architecture-validation/validate.py",
+          "--self-test"
+        ]
+      },
+      {
+        "name": "scope",
+        "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+        "exitCode": 0,
+        "sha256": "7d8d0c39519016505d0a3b00a5780612d2b2b0685b0d5916393129d666ab7d65",
+        "bytes": 2132,
+        "argv": [
+          "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/wp029-venv/bin/python",
+          "tools/architecture-validation/validate.py",
+          "--scope",
+          "production",
+          "--scope-manifest",
+          "tools/architecture-validation/scopes/WP-038.production.scope.json",
+          "--self-test"
+        ]
+      }
+    ],
+    "onlyUntrackedAllowedEvidenceAfterReview": [
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_ARCHITECTURE.txt",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_LOCAL.json",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_LOCAL.md",
+      "?? PROJECT_CONTROL/ProductionBlocks/WP-038/CODEFREEZE_SCOPE.txt"
+    ]
+  },
+  "freshRemoteBinding": {
+    "recordedUtc": "2026-10-18T22:28:07.936Z",
+    "pullRequest": {
+      "number": 33,
+      "url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/33",
+      "state": "open",
+      "draft": true,
+      "head": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "base": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+      "baseRef": "codex/wp-036-vollstaendige-textbibliothek"
+    },
+    "targetPullRequest": {
+      "number": 31,
+      "url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/31",
+      "state": "open",
+      "draft": true,
+      "head": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+      "base": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+      "baseRef": "main"
+    },
+    "commit": {
+      "sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+      "tree": "e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0",
+      "parents": [
+        "4667413ae0baa9971b4b7660a19988ce36248469"
+      ]
+    },
+    "main": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "ci": {
+      "architecture": 39171716266,
+      "unity": 39171716314,
+      "observedUnityState": "in_progress",
+      "regularPullRequestRunsExpected": false,
+      "reason": "Existing pull_request main-branch filter; PR33 targets WP036 development branch"
+    }
+  },
+  "canonicalOutputs": {
+    "architecture": {
+      "profile": "Exact own canonical LF scratch validator output; combined stdout/stderr UTF-8 bytes",
+      "bytes": 1931,
+      "sha256": "820a3f7829f82c7390c108717f0a8bb395d2152f3dbf8f1ab70d7fc871b65ba9",
+      "utf8Text": "ARCHITECTURE VALIDATION v1.0 scope=architecture-only\nLOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar\nLOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur\nLOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding\nLOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks\nLOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle\nLOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck\nLOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt\nMANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS\nCONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode\nREQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP\nREQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox\nREQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion\nBLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed\nRESULT PASS (17 lokale Prüfgruppen)\n"
+    },
+    "scope": {
+      "profile": "Exact own canonical LF scratch validator output; combined stdout/stderr UTF-8 bytes",
+      "bytes": 2132,
+      "sha256": "7d8d0c39519016505d0a3b00a5780612d2b2b0685b0d5916393129d666ab7d65",
+      "utf8Text": "ARCHITECTURE VALIDATION v1.0 scope=production\nLOCAL_DOCUMENT_STRUCTURE PASS  Datei-/ADR-Inventar\nLOCAL_DOCUMENT_STRUCTURE PASS  Work-Package-IDs und Struktur\nLOCAL_DOCUMENT_STRUCTURE PASS  ADR-Index, Status und Superseding\nLOCAL_DOCUMENT_STRUCTURE PASS  Relative Markdownlinks\nLOCAL_ARCHITECTURE_SEMANTICS PASS  JSON Schema Draft 2020-12\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Level-v1-Legacy und Level-v2-/Proofbindung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Campaign-/Completion-/Cosmetics-v2-Semantik\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Zyklusfreier exakter Assemblygraph\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Endless-Watermark und Save-v1→v2\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Strukturierte IAP-Fixture-Zustandsmaschine\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Ausführbarer Privacy-v2-Lifecycle\nLOCAL_ARCHITECTURE_SEMANTICS PASS  RC-/Promotion- und Release-Lock-Identität\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Store-Crashrate und Rolloutentscheidung\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Vier Architecture-v0.5-HIGH-Verträge\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Save-JCS Python/Node-Crosscheck\nLOCAL_DOCUMENT_STRUCTURE PASS  Architecture-v1.0-Status und drei Produktblocker\nLOCAL_SCOPE PASS  Git-Diff gegen versioniertes Scope-Manifest\nLOCAL_ARCHITECTURE_SEMANTICS PASS  Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt\nSCOPE_CONTEXT  workPackage=WP-038 base=3772c0370b39ec95979fb9efdd47f4344c41a539 head=e77c5fa168b915979c3c9e39d45fbcfcaefa3aea worktreeDirty=false\nMANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS\nCONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode\nREQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP\nREQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox\nREQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion\nBLOCKED  BLOCKER-PROD-001, BLOCKER-PROD-002, BLOCKER-PROD-003 bleiben fail-closed\nRESULT PASS (18 lokale Prüfgruppen)\n"
+    }
+  },
+  "ci": "PENDING; no original CI/XML/platform acceptance transferred from parent or local graphics",
+  "nativePartReview": {
+    "path": "NATIVE_CORRECTION_EVIDENCE.json",
+    "sha256": "503c902379f6a6b2ebd992075d945a01957ff376d67c7dd89acd75ce949b3a41",
+    "all41SourcesBoundToFrozenGitBlobs": true,
+    "originalFinding": "NATIVE-01",
+    "findingClosed": true
+  },
+  "ak": {
+    "AK01": "PASS_SOURCE_AND_SCOPE",
+    "AK02": "PASS_BOUNDARY_AND_STATIC_GRAPH",
+    "AK03": "SOURCE_AND_NATIVE_BOUND_PENDING_REGULAR_CI",
+    "AK04": "FAIL_SCREEN_01_NORMAL_SCREEN_RENDER_PATH",
+    "AK05": "SOURCE_AND_NATIVE_BOUND_PENDING_REGULAR_CI",
+    "AK06": "FAIL_SCREEN_01_NORMAL_SCREEN_DURING_RIDE",
+    "AK07": "SOURCE_AND_NATIVE_BOUND_PENDING_REGULAR_PRESENTATION_TESTS",
+    "AK08": "REPRODUCTION_PASS_PLATFORM_BUILD_RECEIPTS_PENDING",
+    "AK09": "REQUIRED_CI_PENDING",
+    "AK10": "NOT_GRANTED_OPEN_HIGH",
+    "AK11": "SEPARATE_COORDINATION_AND_INTEGRATION_PENDING"
+  },
+  "partialOriginalCiRead": {
+    "observedUtc": "2026-10-18T22:34:28.317588+00:00",
+    "notFinalAcceptance": true,
+    "freshApiSnapshot": {
+      "observedUtc": "2026-10-18T22:32:51.798Z",
+      "runs": [
+        {
+          "run": {
+            "id": 39171716266,
+            "name": "Architecture Validation",
+            "node_id": "WFR_kwLOURiA7s8AAAAJHtD0qg",
+            "head_branch": "codex/wp-038-interne-spielschleife",
+            "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+            "path": ".github/workflows/validate.yml",
+            "display_title": "WP-038: implement internal playable QA puzzle loop and native evidence",
+            "run_number": 257,
+            "event": "push",
+            "status": "completed",
+            "conclusion": "success",
+            "workflow_id": 357319394,
+            "check_suite_id": 106148085845,
+            "check_suite_node_id": "CS_kwDOURiA7s8AAAAYtutAVQ",
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266",
+            "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266",
+            "pull_requests": [
+              {
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/33",
+                "id": 4913328505,
+                "number": 33,
+                "head": {
+                  "ref": "codex/wp-038-interne-spielschleife",
+                  "sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                  "repo": {
+                    "id": 1360560366,
+                    "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                    "name": "Stammstrecken-Puzzle"
+                  }
+                },
+                "base": {
+                  "ref": "codex/wp-036-vollstaendige-textbibliothek",
+                  "sha": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+                  "repo": {
+                    "id": 1360560366,
+                    "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                    "name": "Stammstrecken-Puzzle"
+                  }
+                }
+              }
+            ],
+            "created_at": "2026-10-18T22:19:25Z",
+            "updated_at": "2026-10-18T22:20:06Z",
+            "actor": {
+              "login": "Al1l1l1l1l1",
+              "id": 268204362,
+              "node_id": "U_kgDOD_x5Sg",
+              "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/Al1l1l1l1l1",
+              "html_url": "https://github.com/Al1l1l1l1l1",
+              "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+              "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+              "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+              "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+              "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+              "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "run_attempt": 1,
+            "referenced_workflows": [],
+            "run_started_at": "2026-10-18T22:19:25Z",
+            "triggering_actor": {
+              "login": "Al1l1l1l1l1",
+              "id": 268204362,
+              "node_id": "U_kgDOD_x5Sg",
+              "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/Al1l1l1l1l1",
+              "html_url": "https://github.com/Al1l1l1l1l1",
+              "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+              "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+              "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+              "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+              "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+              "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/jobs",
+            "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/logs",
+            "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/106148085845",
+            "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/artifacts",
+            "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/cancel",
+            "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/rerun",
+            "previous_attempt_url": null,
+            "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/357319394",
+            "head_commit": {
+              "id": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+              "tree_id": "e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0",
+              "message": "WP-038: implement internal playable QA puzzle loop and native evidence",
+              "timestamp": "2026-10-18T22:17:18Z",
+              "author": {
+                "name": "Al1l1l1l1l1",
+                "email": "glatza99@outlook.de"
+              },
+              "committer": {
+                "name": "Al1l1l1l1l1",
+                "email": "glatza99@outlook.de"
+              }
+            },
+            "repository": {
+              "id": 1360560366,
+              "node_id": "R_kgDOURiA7g",
+              "name": "Stammstrecken-Puzzle",
+              "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "private": false,
+              "owner": {
+                "login": "Al1l1l1l1l1",
+                "id": 268204362,
+                "node_id": "U_kgDOD_x5Sg",
+                "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/Al1l1l1l1l1",
+                "html_url": "https://github.com/Al1l1l1l1l1",
+                "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+                "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+                "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+                "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+                "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+                "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+                "type": "User",
+                "user_view_type": "public",
+                "site_admin": false
+              },
+              "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "description": "Stammstrecken-Puzzle",
+              "fork": false,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+              "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+              "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+              "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+              "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+              "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+              "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+              "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+              "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+              "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+              "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+              "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+              "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+              "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+              "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+              "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+              "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+              "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+              "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+              "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+              "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+              "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+              "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+              "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+              "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+              "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+              "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+              "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+              "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+              "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+              "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+              "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+              "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+              "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+              "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+              "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+            },
+            "head_repository": {
+              "id": 1360560366,
+              "node_id": "R_kgDOURiA7g",
+              "name": "Stammstrecken-Puzzle",
+              "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "private": false,
+              "owner": {
+                "login": "Al1l1l1l1l1",
+                "id": 268204362,
+                "node_id": "U_kgDOD_x5Sg",
+                "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/Al1l1l1l1l1",
+                "html_url": "https://github.com/Al1l1l1l1l1",
+                "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+                "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+                "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+                "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+                "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+                "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+                "type": "User",
+                "user_view_type": "public",
+                "site_admin": false
+              },
+              "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "description": "Stammstrecken-Puzzle",
+              "fork": false,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+              "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+              "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+              "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+              "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+              "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+              "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+              "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+              "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+              "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+              "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+              "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+              "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+              "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+              "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+              "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+              "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+              "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+              "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+              "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+              "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+              "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+              "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+              "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+              "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+              "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+              "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+              "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+              "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+              "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+              "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+              "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+              "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+              "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+              "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+              "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+            }
+          },
+          "jobs": {
+            "total_count": 1,
+            "jobs": [
+              {
+                "id": 117805980512,
+                "run_id": 39171716266,
+                "workflow_name": "Architecture Validation",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcibYA",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805980512",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716266/job/117805980512",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:28Z",
+                "completed_at": "2026-10-18T22:20:06Z",
+                "name": "validate",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:28Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  },
+                  {
+                    "name": "Repository mit vollständiger Historie auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:19:32Z"
+                  },
+                  {
+                    "name": "CPython 3.11.13 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:19:32Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  },
+                  {
+                    "name": "Node.js 22.20.0 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:19:42Z",
+                    "completed_at": "2026-10-18T22:19:48Z"
+                  },
+                  {
+                    "name": "Gepinnte Validator-Abhängigkeiten installieren",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:19:48Z",
+                    "completed_at": "2026-10-18T22:19:53Z"
+                  },
+                  {
+                    "name": "Architecture-only-Lauf mit Self-/Negativtests",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-10-18T22:19:53Z",
+                    "completed_at": "2026-10-18T22:19:55Z"
+                  },
+                  {
+                    "name": "JCS-/Hash-Goldenvektoren gegen die Node-Referenz prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-10-18T22:19:55Z",
+                    "completed_at": "2026-10-18T22:19:57Z"
+                  },
+                  {
+                    "name": "Gepinnte WP-026-Textquellen ausschließlich als Gitobjekte lesen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-10-18T22:19:57Z",
+                    "completed_at": "2026-10-18T22:19:57Z"
+                  },
+                  {
+                    "name": "Vollständige deutsche Textquelle und Negativproben prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-10-18T22:19:57Z",
+                    "completed_at": "2026-10-18T22:20:01Z"
+                  },
+                  {
+                    "name": "Tatsächlichen PR-Head für Scope-Prüfung auschecken",
+                    "status": "completed",
+                    "conclusion": "skipped",
+                    "number": 10,
+                    "started_at": "2026-10-18T22:20:01Z",
+                    "completed_at": "2026-10-18T22:20:01Z"
+                  },
+                  {
+                    "name": "Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 11,
+                    "started_at": "2026-10-18T22:20:01Z",
+                    "completed_at": "2026-10-18T22:20:03Z"
+                  },
+                  {
+                    "name": "Post Node.js 22.20.0 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 20,
+                    "started_at": "2026-10-18T22:20:03Z",
+                    "completed_at": "2026-10-18T22:20:03Z"
+                  },
+                  {
+                    "name": "Post CPython 3.11.13 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 21,
+                    "started_at": "2026-10-18T22:20:03Z",
+                    "completed_at": "2026-10-18T22:20:03Z"
+                  },
+                  {
+                    "name": "Post Repository mit vollständiger Historie auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 22,
+                    "started_at": "2026-10-18T22:20:03Z",
+                    "completed_at": "2026-10-18T22:20:03Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 23,
+                    "started_at": "2026-10-18T22:20:03Z",
+                    "completed_at": "2026-10-18T22:20:03Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805980512",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002036,
+                "runner_name": "GitHub Actions 1000002036",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              }
+            ]
+          },
+          "artifacts": {
+            "total_count": 0,
+            "artifacts": []
+          }
+        },
+        {
+          "run": {
+            "id": 39171716314,
+            "name": "Unity CI",
+            "node_id": "WFR_kwLOURiA7s8AAAAJHtD02g",
+            "head_branch": "codex/wp-038-interne-spielschleife",
+            "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+            "path": ".github/workflows/unity.yml",
+            "display_title": "WP-038: implement internal playable QA puzzle loop and native evidence",
+            "run_number": 224,
+            "event": "push",
+            "status": "in_progress",
+            "conclusion": null,
+            "workflow_id": 362942037,
+            "check_suite_id": 106148085996,
+            "check_suite_node_id": "CS_kwDOURiA7s8AAAAYtutA7A",
+            "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+            "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+            "pull_requests": [
+              {
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls/33",
+                "id": 4913328505,
+                "number": 33,
+                "head": {
+                  "ref": "codex/wp-038-interne-spielschleife",
+                  "sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                  "repo": {
+                    "id": 1360560366,
+                    "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                    "name": "Stammstrecken-Puzzle"
+                  }
+                },
+                "base": {
+                  "ref": "codex/wp-036-vollstaendige-textbibliothek",
+                  "sha": "3772c0370b39ec95979fb9efdd47f4344c41a539",
+                  "repo": {
+                    "id": 1360560366,
+                    "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+                    "name": "Stammstrecken-Puzzle"
+                  }
+                }
+              }
+            ],
+            "created_at": "2026-10-18T22:19:25Z",
+            "updated_at": "2026-10-18T22:30:48Z",
+            "actor": {
+              "login": "Al1l1l1l1l1",
+              "id": 268204362,
+              "node_id": "U_kgDOD_x5Sg",
+              "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/Al1l1l1l1l1",
+              "html_url": "https://github.com/Al1l1l1l1l1",
+              "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+              "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+              "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+              "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+              "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+              "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "run_attempt": 1,
+            "referenced_workflows": [],
+            "run_started_at": "2026-10-18T22:19:25Z",
+            "triggering_actor": {
+              "login": "Al1l1l1l1l1",
+              "id": 268204362,
+              "node_id": "U_kgDOD_x5Sg",
+              "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/Al1l1l1l1l1",
+              "html_url": "https://github.com/Al1l1l1l1l1",
+              "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+              "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+              "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+              "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+              "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+              "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "jobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/jobs",
+            "logs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/logs",
+            "check_suite_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-suites/106148085996",
+            "artifacts_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/artifacts",
+            "cancel_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/cancel",
+            "rerun_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/rerun",
+            "previous_attempt_url": null,
+            "workflow_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/workflows/362942037",
+            "head_commit": {
+              "id": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+              "tree_id": "e5f9235716d15b1ab0a74b46fac1e1cdd1aeddd0",
+              "message": "WP-038: implement internal playable QA puzzle loop and native evidence",
+              "timestamp": "2026-10-18T22:17:18Z",
+              "author": {
+                "name": "Al1l1l1l1l1",
+                "email": "glatza99@outlook.de"
+              },
+              "committer": {
+                "name": "Al1l1l1l1l1",
+                "email": "glatza99@outlook.de"
+              }
+            },
+            "repository": {
+              "id": 1360560366,
+              "node_id": "R_kgDOURiA7g",
+              "name": "Stammstrecken-Puzzle",
+              "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "private": false,
+              "owner": {
+                "login": "Al1l1l1l1l1",
+                "id": 268204362,
+                "node_id": "U_kgDOD_x5Sg",
+                "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/Al1l1l1l1l1",
+                "html_url": "https://github.com/Al1l1l1l1l1",
+                "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+                "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+                "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+                "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+                "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+                "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+                "type": "User",
+                "user_view_type": "public",
+                "site_admin": false
+              },
+              "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "description": "Stammstrecken-Puzzle",
+              "fork": false,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+              "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+              "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+              "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+              "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+              "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+              "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+              "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+              "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+              "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+              "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+              "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+              "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+              "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+              "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+              "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+              "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+              "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+              "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+              "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+              "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+              "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+              "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+              "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+              "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+              "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+              "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+              "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+              "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+              "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+              "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+              "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+              "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+              "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+              "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+              "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+            },
+            "head_repository": {
+              "id": 1360560366,
+              "node_id": "R_kgDOURiA7g",
+              "name": "Stammstrecken-Puzzle",
+              "full_name": "Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "private": false,
+              "owner": {
+                "login": "Al1l1l1l1l1",
+                "id": 268204362,
+                "node_id": "U_kgDOD_x5Sg",
+                "avatar_url": "https://avatars.githubusercontent.com/u/268204362?v=4",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/Al1l1l1l1l1",
+                "html_url": "https://github.com/Al1l1l1l1l1",
+                "followers_url": "https://api.github.com/users/Al1l1l1l1l1/followers",
+                "following_url": "https://api.github.com/users/Al1l1l1l1l1/following{/other_user}",
+                "gists_url": "https://api.github.com/users/Al1l1l1l1l1/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/Al1l1l1l1l1/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/Al1l1l1l1l1/subscriptions",
+                "organizations_url": "https://api.github.com/users/Al1l1l1l1l1/orgs",
+                "repos_url": "https://api.github.com/users/Al1l1l1l1l1/repos",
+                "events_url": "https://api.github.com/users/Al1l1l1l1l1/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/Al1l1l1l1l1/received_events",
+                "type": "User",
+                "user_view_type": "public",
+                "site_admin": false
+              },
+              "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "description": "Stammstrecken-Puzzle",
+              "fork": false,
+              "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle",
+              "forks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/forks",
+              "keys_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/keys{/key_id}",
+              "collaborators_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/collaborators{/collaborator}",
+              "teams_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/teams",
+              "hooks_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/hooks",
+              "issue_events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/events{/number}",
+              "events_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/events",
+              "assignees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/assignees{/user}",
+              "branches_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/branches{/branch}",
+              "tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/tags",
+              "blobs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/blobs{/sha}",
+              "git_tags_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/tags{/sha}",
+              "git_refs_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/refs{/sha}",
+              "trees_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/trees{/sha}",
+              "statuses_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/statuses/{sha}",
+              "languages_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/languages",
+              "stargazers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/stargazers",
+              "contributors_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contributors",
+              "subscribers_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscribers",
+              "subscription_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/subscription",
+              "commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/commits{/sha}",
+              "git_commits_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/git/commits{/sha}",
+              "comments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/comments{/number}",
+              "issue_comment_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/comments{/number}",
+              "contents_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/contents/{+path}",
+              "compare_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/compare/{base}...{head}",
+              "merges_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/merges",
+              "archive_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/{archive_format}{/ref}",
+              "downloads_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/downloads",
+              "issues_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/issues{/number}",
+              "pulls_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/pulls{/number}",
+              "milestones_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/milestones{/number}",
+              "notifications_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/notifications{?since,all,participating}",
+              "labels_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/labels{/name}",
+              "releases_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/releases{/id}",
+              "deployments_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/deployments"
+            }
+          },
+          "jobs": {
+            "total_count": 9,
+            "jobs": [
+              {
+                "id": 117805981007,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcidTw",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805981007",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117805981007",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:28Z",
+                "completed_at": "2026-10-18T22:19:31Z",
+                "name": "unity-config",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:28Z",
+                    "completed_at": "2026-10-18T22:19:28Z"
+                  },
+                  {
+                    "name": "Unity-Zugangsdaten und Runner-Konfiguration prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:28Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805981007",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002038,
+                "runner_name": "GitHub Actions 1000002038",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117805981052,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcidfA",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805981052",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117805981052",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:28Z",
+                "completed_at": "2026-10-18T22:19:44Z",
+                "name": "project-preflight",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  },
+                  {
+                    "name": "Repository mit vollständiger Historie auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:19:32Z"
+                  },
+                  {
+                    "name": "CPython 3.11.13 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:19:32Z",
+                    "completed_at": "2026-10-18T22:19:41Z"
+                  },
+                  {
+                    "name": "Unity-Versionspin und Projektartefakte prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:19:41Z",
+                    "completed_at": "2026-10-18T22:19:41Z"
+                  },
+                  {
+                    "name": "Explizite QA-Identitaeten vor Unity pruefen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:19:41Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  },
+                  {
+                    "name": "Statischer Modulgraph-Check der realen .asmdef-Dateien",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-10-18T22:19:42Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  },
+                  {
+                    "name": "Post CPython 3.11.13 einrichten",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 11,
+                    "started_at": "2026-10-18T22:19:42Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  },
+                  {
+                    "name": "Post Repository mit vollständiger Historie auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 12,
+                    "started_at": "2026-10-18T22:19:42Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 13,
+                    "started_at": "2026-10-18T22:19:42Z",
+                    "completed_at": "2026-10-18T22:19:42Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805981052",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002037,
+                "runner_name": "GitHub Actions 1000002037",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117805981124,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcidxA",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805981124",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117805981124",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:28Z",
+                "completed_at": "2026-10-18T22:23:41Z",
+                "name": "unity-environment-android",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  },
+                  {
+                    "name": "Speicherplatz für das Unity-Android-Image freigeben",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:21:03Z"
+                  },
+                  {
+                    "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:21:03Z",
+                    "completed_at": "2026-10-18T22:23:37Z"
+                  },
+                  {
+                    "name": "Editor-Start und Android-Toolchain im Container prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:23:37Z",
+                    "completed_at": "2026-10-18T22:23:39Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:23:39Z",
+                    "completed_at": "2026-10-18T22:23:39Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805981124",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002040,
+                "runner_name": "GitHub Actions 1000002040",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117805981160,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcid6A",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805981160",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117805981160",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:28Z",
+                "completed_at": "2026-10-18T22:20:49Z",
+                "name": "unity-environment-linux",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:28Z",
+                    "completed_at": "2026-10-18T22:19:29Z"
+                  },
+                  {
+                    "name": "Initialize containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:29Z",
+                    "completed_at": "2026-10-18T22:20:43Z"
+                  },
+                  {
+                    "name": "Editor-Version und Headless-Start bis zur Lizenzprüfung prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:20:43Z",
+                    "completed_at": "2026-10-18T22:20:44Z"
+                  },
+                  {
+                    "name": "Lizenz-Client vorhanden und Lizenz-API ohne Zugangsdaten erreichbar (Negativprobe)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:20:44Z",
+                    "completed_at": "2026-10-18T22:20:48Z"
+                  },
+                  {
+                    "name": "Stop containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-10-18T22:20:48Z",
+                    "completed_at": "2026-10-18T22:20:48Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-10-18T22:20:48Z",
+                    "completed_at": "2026-10-18T22:20:48Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805981160",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002041,
+                "runner_name": "GitHub Actions 1000002041",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117805981164,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcid7A",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117805981164",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117805981164",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:26Z",
+                "started_at": "2026-10-18T22:19:32Z",
+                "completed_at": "2026-10-18T22:20:54Z",
+                "name": "unity-environment-ios",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:32Z",
+                    "completed_at": "2026-10-18T22:19:33Z"
+                  },
+                  {
+                    "name": "Unity-Editor-Installation aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:33Z",
+                    "completed_at": "2026-10-18T22:20:42Z"
+                  },
+                  {
+                    "name": "Unity Hub installieren",
+                    "status": "completed",
+                    "conclusion": "skipped",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:20:42Z",
+                    "completed_at": "2026-10-18T22:20:42Z"
+                  },
+                  {
+                    "name": "Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)",
+                    "status": "completed",
+                    "conclusion": "skipped",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:20:42Z",
+                    "completed_at": "2026-10-18T22:20:42Z"
+                  },
+                  {
+                    "name": "Editor-Version prüfen (direkter Bundle-Pfad)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:20:43Z",
+                    "completed_at": "2026-10-18T22:20:44Z"
+                  },
+                  {
+                    "name": "Editor-Headless-Start bis zur Lizenzprüfung prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-10-18T22:20:44Z",
+                    "completed_at": "2026-10-18T22:20:46Z"
+                  },
+                  {
+                    "name": "Xcode 26+ auswählen und iOS-SDK prüfen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-10-18T22:20:46Z",
+                    "completed_at": "2026-10-18T22:20:51Z"
+                  },
+                  {
+                    "name": "Lizenz-Client auf macOS vorhanden und aufrufbar",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-10-18T22:20:51Z",
+                    "completed_at": "2026-10-18T22:20:52Z"
+                  },
+                  {
+                    "name": "Post Unity-Editor-Installation aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 16,
+                    "started_at": "2026-10-18T22:20:52Z",
+                    "completed_at": "2026-10-18T22:20:52Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 17,
+                    "started_at": "2026-10-18T22:20:52Z",
+                    "completed_at": "2026-10-18T22:20:53Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117805981164",
+                "labels": [
+                  "macos-15"
+                ],
+                "runner_id": 1000002039,
+                "runner_name": "GitHub Actions 1000002039",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117806044826,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcmWmg",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117806044826",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117806044826",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:45Z",
+                "started_at": "2026-10-18T22:19:46Z",
+                "completed_at": "2026-10-18T22:19:50Z",
+                "name": "unity-evidence-guard",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:47Z",
+                    "completed_at": "2026-10-18T22:19:47Z"
+                  },
+                  {
+                    "name": "Wahrheitsgemäßer Unity-Nachweisstatus",
+                    "status": "completed",
+                    "conclusion": "skipped",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:47Z",
+                    "completed_at": "2026-10-18T22:19:47Z"
+                  },
+                  {
+                    "name": "Unity-Nachweiskonfiguration vorhanden",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:19:47Z",
+                    "completed_at": "2026-10-18T22:19:47Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:19:47Z",
+                    "completed_at": "2026-10-18T22:19:47Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117806044826",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002042,
+                "runner_name": "GitHub Actions 1000002042",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117806044973,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbcmXLQ",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117806044973",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117806044973",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:19:45Z",
+                "started_at": "2026-10-18T22:19:47Z",
+                "completed_at": "2026-10-18T22:27:04Z",
+                "name": "unity-compile-editmode",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:19:48Z",
+                    "completed_at": "2026-10-18T22:19:49Z"
+                  },
+                  {
+                    "name": "Initialize containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:19:49Z",
+                    "completed_at": "2026-10-18T22:21:09Z"
+                  },
+                  {
+                    "name": "Repository auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:21:09Z",
+                    "completed_at": "2026-10-18T22:21:10Z"
+                  },
+                  {
+                    "name": "Unity-Library aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:21:10Z",
+                    "completed_at": "2026-10-18T22:21:30Z"
+                  },
+                  {
+                    "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:21:30Z",
+                    "completed_at": "2026-10-18T22:21:33Z"
+                  },
+                  {
+                    "name": "Editorversion verifizieren, Projekt kompilieren und EditMode mit Coverage",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-10-18T22:21:33Z",
+                    "completed_at": "2026-10-18T22:26:56Z"
+                  },
+                  {
+                    "name": "Domain-/Solver-/Content-EditMode-Ausfuehrung verifizieren",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-10-18T22:26:56Z",
+                    "completed_at": "2026-10-18T22:26:56Z"
+                  },
+                  {
+                    "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-10-18T22:26:56Z",
+                    "completed_at": "2026-10-18T22:26:57Z"
+                  },
+                  {
+                    "name": "Unity-Personal-Seat freigeben (best effort)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-10-18T22:26:57Z",
+                    "completed_at": "2026-10-18T22:26:59Z"
+                  },
+                  {
+                    "name": "Testergebnisse archivieren",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 10,
+                    "started_at": "2026-10-18T22:26:59Z",
+                    "completed_at": "2026-10-18T22:27:01Z"
+                  },
+                  {
+                    "name": "Post Unity-Library aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-10-18T22:27:01Z",
+                    "completed_at": "2026-10-18T22:27:01Z"
+                  },
+                  {
+                    "name": "Post Repository auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-10-18T22:27:01Z",
+                    "completed_at": "2026-10-18T22:27:01Z"
+                  },
+                  {
+                    "name": "Stop containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 20,
+                    "started_at": "2026-10-18T22:27:01Z",
+                    "completed_at": "2026-10-18T22:27:02Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 21,
+                    "started_at": "2026-10-18T22:27:02Z",
+                    "completed_at": "2026-10-18T22:27:02Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117806044973",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002043,
+                "runner_name": "GitHub Actions 1000002043",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117807648163,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbeINow",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117807648163",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117807648163",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-10-18T22:27:05Z",
+                "started_at": "2026-10-18T22:27:07Z",
+                "completed_at": "2026-10-18T22:30:46Z",
+                "name": "unity-playmode-bootstrap-smoke",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:27:08Z",
+                    "completed_at": "2026-10-18T22:27:09Z"
+                  },
+                  {
+                    "name": "Initialize containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:27:09Z",
+                    "completed_at": "2026-10-18T22:28:50Z"
+                  },
+                  {
+                    "name": "Repository auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:28:50Z",
+                    "completed_at": "2026-10-18T22:28:52Z"
+                  },
+                  {
+                    "name": "Unity-Library aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-10-18T22:28:52Z",
+                    "completed_at": "2026-10-18T22:29:09Z"
+                  },
+                  {
+                    "name": "Unity-Personal-Lizenz aktivieren (Unity Licensing Client)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-10-18T22:29:09Z",
+                    "completed_at": "2026-10-18T22:29:12Z"
+                  },
+                  {
+                    "name": "BootstrapCompositionSmoke (PlayMode, QA-Szene, mit Coverage)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-10-18T22:29:12Z",
+                    "completed_at": "2026-10-18T22:30:34Z"
+                  },
+                  {
+                    "name": "PlayMode-Evidenz mit vorgeschriebenem QA-Szenen-Smoke verifizieren",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-10-18T22:30:34Z",
+                    "completed_at": "2026-10-18T22:30:34Z"
+                  },
+                  {
+                    "name": "Coverage-Evidenz verifizieren und Baseline je Assembly ausgeben",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-10-18T22:30:34Z",
+                    "completed_at": "2026-10-18T22:30:34Z"
+                  },
+                  {
+                    "name": "Unity-Personal-Seat freigeben (best effort)",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-10-18T22:30:34Z",
+                    "completed_at": "2026-10-18T22:30:41Z"
+                  },
+                  {
+                    "name": "Testergebnisse archivieren",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 10,
+                    "started_at": "2026-10-18T22:30:41Z",
+                    "completed_at": "2026-10-18T22:30:42Z"
+                  },
+                  {
+                    "name": "Post Unity-Library aus Cache wiederherstellen",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-10-18T22:30:42Z",
+                    "completed_at": "2026-10-18T22:30:42Z"
+                  },
+                  {
+                    "name": "Post Repository auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-10-18T22:30:42Z",
+                    "completed_at": "2026-10-18T22:30:43Z"
+                  },
+                  {
+                    "name": "Stop containers",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 20,
+                    "started_at": "2026-10-18T22:30:43Z",
+                    "completed_at": "2026-10-18T22:30:43Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 21,
+                    "started_at": "2026-10-18T22:30:43Z",
+                    "completed_at": "2026-10-18T22:30:43Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117807648163",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002044,
+                "runner_name": "GitHub Actions 1000002044",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 117808452127,
+                "run_id": 39171716314,
+                "workflow_name": "Unity CI",
+                "head_branch": "codex/wp-038-interne-spielschleife",
+                "run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOURiA7s8AAAAbbe5SHw",
+                "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea",
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/jobs/117808452127",
+                "html_url": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39171716314/job/117808452127",
+                "status": "in_progress",
+                "conclusion": null,
+                "created_at": "2026-10-18T22:30:46Z",
+                "started_at": "2026-10-18T22:30:48Z",
+                "completed_at": null,
+                "name": "unity-android-development-il2cpp",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-10-18T22:30:49Z",
+                    "completed_at": "2026-10-18T22:30:49Z"
+                  },
+                  {
+                    "name": "Repository auschecken",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-10-18T22:30:49Z",
+                    "completed_at": "2026-10-18T22:30:51Z"
+                  },
+                  {
+                    "name": "Speicherplatz für das Unity-Android-Image freigeben",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-10-18T22:30:51Z",
+                    "completed_at": "2026-10-18T22:32:47Z"
+                  },
+                  {
+                    "name": "Unity-Android-Containerimage pullen (Tag- und Digest-gepinnt)",
+                    "status": "in_progress",
+                    "conclusion": null,
+                    "number": 4,
+                    "started_at": "2026-10-18T22:32:47Z",
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Unity-Library aus Cache wiederherstellen",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 5,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Android-Development-IL2CPP-Build (mit Personal-Aktivierung im selben Container)",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 6,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Android-Buildartefakt archivieren",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 7,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Post Repository auschecken",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 14,
+                    "started_at": null,
+                    "completed_at": null
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/check-runs/117808452127",
+                "labels": [
+                  "ubuntu-24.04"
+                ],
+                "runner_id": 1000002045,
+                "runner_name": "GitHub Actions 1000002045",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              }
+            ]
+          },
+          "artifacts": {
+            "total_count": 2,
+            "artifacts": [
+              {
+                "id": 12153410658,
+                "node_id": "MDg6QXJ0aWZhY3QxMjE1MzQxMDY1OA==",
+                "name": "playmode-results",
+                "size_in_bytes": 423818,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12153410658",
+                "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12153410658/zip",
+                "expired": false,
+                "digest": "sha256:d8efa0491b28fea15dc77098512b7071d2e2727918063e6be27478a66d3f6958",
+                "created_at": "2026-10-18T22:30:42Z",
+                "updated_at": "2026-10-18T22:30:42Z",
+                "expires_at": "2027-01-16T22:19:25Z",
+                "workflow_run": {
+                  "id": 39171716314,
+                  "repository_id": 1360560366,
+                  "head_repository_id": 1360560366,
+                  "head_branch": "codex/wp-038-interne-spielschleife",
+                  "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea"
+                }
+              },
+              {
+                "id": 12151809989,
+                "node_id": "MDg6QXJ0aWZhY3QxMjE1MTgwOTk4OQ==",
+                "name": "editmode-results",
+                "size_in_bytes": 489853,
+                "url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12151809989",
+                "archive_download_url": "https://api.github.com/repos/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/artifacts/12151809989/zip",
+                "expired": false,
+                "digest": "sha256:7c5f7e3f070c5d66a3ddf1c7d15abc11d306bcd4985b8b65c7adfc2cd55f5ded",
+                "created_at": "2026-10-18T22:27:01Z",
+                "updated_at": "2026-10-18T22:27:01Z",
+                "expires_at": "2027-01-16T22:19:25Z",
+                "workflow_run": {
+                  "id": 39171716314,
+                  "repository_id": 1360560366,
+                  "head_repository_id": 1360560366,
+                  "head_branch": "codex/wp-038-interne-spielschleife",
+                  "head_sha": "e77c5fa168b915979c3c9e39d45fbcfcaefa3aea"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "originalTestReview": [
+      {
+        "artifactId": 12151809989,
+        "zipBytes": 489853,
+        "zipSha256": "7c5f7e3f070c5d66a3ddf1c7d15abc11d306bcd4985b8b65c7adfc2cd55f5ded",
+        "xmlName": "editmode.xml",
+        "xmlBytes": 411963,
+        "xmlSha256": "6e909441c74c238f95aa0c98915ab53e0fd4dafb0e759be36b93d706e66cf8c2",
+        "root": {
+          "id": "2",
+          "testcasecount": "474",
+          "result": "Passed",
+          "total": "474",
+          "passed": "474",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-18 22:22:59Z",
+          "end-time": "2026-10-18 22:26:52Z",
+          "duration": "232.5442289"
+        },
+        "newClasses": {
+          "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests": 19
+        },
+        "oldCompositionSmoke": [],
+        "newCases": [
+          {
+            "id": "1003",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(Clear)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(Clear)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "128250545",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.031658",
+            "asserts": "0"
+          },
+          {
+            "id": "1004",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(EmptyMarker)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(EmptyMarker)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1505697899",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.007880",
+            "asserts": "0"
+          },
+          {
+            "id": "1005",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(OccupiedMarker)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(OccupiedMarker)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1244346449",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.002908",
+            "asserts": "0"
+          },
+          {
+            "id": "1006",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackNS)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackNS)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1337367300",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.002028",
+            "asserts": "0"
+          },
+          {
+            "id": "1007",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackEW)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackEW)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "199088805",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000422",
+            "asserts": "0"
+          },
+          {
+            "id": "1008",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackNE)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackNE)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1124978271",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000367",
+            "asserts": "0"
+          },
+          {
+            "id": "1009",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackES)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackES)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "650562465",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000408",
+            "asserts": "0"
+          },
+          {
+            "id": "1010",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackSW)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackSW)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1213553804",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.001147",
+            "asserts": "0"
+          },
+          {
+            "id": "1011",
+            "name": "AllNineToolContents_MapExactlyWithoutCycling(TrackWN)",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.AllNineToolContents_MapExactlyWithoutCycling(TrackWN)",
+            "methodname": "AllNineToolContents_MapExactlyWithoutCycling",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1596068393",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000397",
+            "asserts": "0"
+          },
+          {
+            "id": "1014",
+            "name": "Batch_IsAtomicAndOneUndoStep_WithStickyMarkerHistory",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.Batch_IsAtomicAndOneUndoStep_WithStickyMarkerHistory",
+            "methodname": "Batch_IsAtomicAndOneUndoStep_WithStickyMarkerHistory",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "146231776",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.006498",
+            "asserts": "0"
+          },
+          {
+            "id": "1018",
+            "name": "Completion_UsesActualPlayerPath_LocksInputs_AndResultsNeverCommitDomain",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.Completion_UsesActualPlayerPath_LocksInputs_AndResultsNeverCommitDomain",
+            "methodname": "Completion_UsesActualPlayerPath_LocksInputs_AndResultsNeverCommitDomain",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "253785689",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.010067",
+            "asserts": "0"
+          },
+          {
+            "id": "1020",
+            "name": "CurvedCompletionPath_IsCopiedFromAThroughThePlayersEntireRoute",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.CurvedCompletionPath_IsCopiedFromAThroughThePlayersEntireRoute",
+            "methodname": "CurvedCompletionPath_IsCopiedFromAThroughThePlayersEntireRoute",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1471545058",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.002098",
+            "asserts": "0"
+          },
+          {
+            "id": "1013",
+            "name": "EmptyAndNoOpInputs_KeepTimerAndUndoOff",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.EmptyAndNoOpInputs_KeepTimerAndUndoOff",
+            "methodname": "EmptyAndNoOpInputs_KeepTimerAndUndoOff",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1355241794",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000470",
+            "asserts": "0"
+          },
+          {
+            "id": "1021",
+            "name": "InvalidPublicConfiguration_FailsThroughDomainValidation",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.InvalidPublicConfiguration_FailsThroughDomainValidation",
+            "methodname": "InvalidPublicConfiguration_FailsThroughDomainValidation",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "346956195",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000930",
+            "asserts": "0"
+          },
+          {
+            "id": "1017",
+            "name": "LifecycleAndOverview_ExcludeBackgroundTimeAndRetainTheSameAttempt",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.LifecycleAndOverview_ExcludeBackgroundTimeAndRetainTheSameAttempt",
+            "methodname": "LifecycleAndOverview_ExcludeBackgroundTimeAndRetainTheSameAttempt",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1787553546",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.002353",
+            "asserts": "0"
+          },
+          {
+            "id": "1002",
+            "name": "PublicInput_IsCopied_AndInitialReadsDoNotStartTimer",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.PublicInput_IsCopied_AndInitialReadsDoNotStartTimer",
+            "methodname": "PublicInput_IsCopied_AndInitialReadsDoNotStartTimer",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "2018545861",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.001314",
+            "asserts": "0"
+          },
+          {
+            "id": "1019",
+            "name": "Restart_CreatesFreshIdentity_AndRejectsOldInputAndRideCallbacks",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.Restart_CreatesFreshIdentity_AndRejectsOldInputAndRideCallbacks",
+            "methodname": "Restart_CreatesFreshIdentity_AndRejectsOldInputAndRideCallbacks",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "158602462",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.003117",
+            "asserts": "0"
+          },
+          {
+            "id": "1016",
+            "name": "StaleDuplicateAndInvalidCommands_UseReducerIdentityAndNeverMutateAgain",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.StaleDuplicateAndInvalidCommands_UseReducerIdentityAndNeverMutateAgain",
+            "methodname": "StaleDuplicateAndInvalidCommands_UseReducerIdentityAndNeverMutateAgain",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "504178273",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.000961",
+            "asserts": "0"
+          },
+          {
+            "id": "1015",
+            "name": "VisibleCounts_AreOnlyVisibleAssumptions_AndClearRestoresNeutralContent",
+            "fullname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests.VisibleCounts_AreOnlyVisibleAssumptions_AndClearRestoresNeutralContent",
+            "methodname": "VisibleCounts_AreOnlyVisibleAssumptions_AndClearRestoresNeutralContent",
+            "classname": "STP.Tests.Application.EditMode.DevelopmentPuzzleSessionTests",
+            "runstate": "Runnable",
+            "seed": "1529539464",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:22:59Z",
+            "end-time": "2026-10-18 22:22:59Z",
+            "duration": "0.001017",
+            "asserts": "0"
+          }
+        ],
+        "coverage": [
+          {
+            "member": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0000.xml",
+            "sha256": "57deaf09ddb30e007b29275e1b57c445ba7d9b351dcc9b1985ab49b282443507",
+            "modules": [
+              {
+                "name": "STP.Application",
+                "totalPoints": "231",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Bootstrap",
+                "totalPoints": "184",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Build",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Content",
+                "totalPoints": "210",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Infrastructure.Content",
+                "totalPoints": "2229",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.MobileServices.Google",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.MobileServices.Store",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Platform",
+                "totalPoints": "2",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.UI",
+                "totalPoints": "685",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.World",
+                "totalPoints": "145",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Puzzle.Domain",
+                "totalPoints": "545",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Puzzle.Solver",
+                "totalPoints": "1045",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Application.EditMode",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Bootstrap.PlayMode",
+                "totalPoints": "696",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Content.EditMode",
+                "totalPoints": "3232",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Domain.EditMode",
+                "totalPoints": "339",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Presentation.PlayMode",
+                "totalPoints": "70",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Solver.EditMode",
+                "totalPoints": "2380",
+                "visitedPoints": "0"
+              }
+            ]
+          },
+          {
+            "member": "Coverage/Stammstrecken-Puzzle-opencov/EditMode/TestCoverageResults_0001.xml",
+            "sha256": "12e03a942ee9f86cec115981323f3775dceed4f6272a9f9a363d673b6a478979",
+            "modules": [
+              {
+                "name": "STP.Application",
+                "totalPoints": "231",
+                "visitedPoints": "180"
+              },
+              {
+                "name": "STP.Bootstrap",
+                "totalPoints": "184",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Build",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Content",
+                "totalPoints": "210",
+                "visitedPoints": "199"
+              },
+              {
+                "name": "STP.Infrastructure.Content",
+                "totalPoints": "2229",
+                "visitedPoints": "2164"
+              },
+              {
+                "name": "STP.MobileServices.Google",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.MobileServices.Store",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Platform",
+                "totalPoints": "2",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.UI",
+                "totalPoints": "685",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.World",
+                "totalPoints": "145",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Puzzle.Domain",
+                "totalPoints": "545",
+                "visitedPoints": "530"
+              },
+              {
+                "name": "STP.Puzzle.Solver",
+                "totalPoints": "1045",
+                "visitedPoints": "1039"
+              },
+              {
+                "name": "STP.Tests.Application.EditMode",
+                "totalPoints": "200",
+                "visitedPoints": "200"
+              },
+              {
+                "name": "STP.Tests.Bootstrap.PlayMode",
+                "totalPoints": "696",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Content.EditMode",
+                "totalPoints": "3232",
+                "visitedPoints": "3176"
+              },
+              {
+                "name": "STP.Tests.Domain.EditMode",
+                "totalPoints": "339",
+                "visitedPoints": "339"
+              },
+              {
+                "name": "STP.Tests.Presentation.PlayMode",
+                "totalPoints": "70",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Solver.EditMode",
+                "totalPoints": "2380",
+                "visitedPoints": "2369"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artifactId": 12153410658,
+        "zipBytes": 423818,
+        "zipSha256": "d8efa0491b28fea15dc77098512b7071d2e2727918063e6be27478a66d3f6958",
+        "xmlName": "playmode.xml",
+        "xmlBytes": 53803,
+        "xmlSha256": "0d74e653c9491e83ecfed4981e8a423fdc1028b85be037d0c685d618e4b150ab",
+        "root": {
+          "id": "2",
+          "testcasecount": "48",
+          "result": "Passed",
+          "total": "48",
+          "passed": "48",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-18 22:30:21Z",
+          "end-time": "2026-10-18 22:30:28Z",
+          "duration": "7.1573736"
+        },
+        "newClasses": {
+          "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests": 8,
+          "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests": 13
+        },
+        "oldCompositionSmoke": [
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle.dev\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle.dev\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.STP.StammstreckenPuzzle.staging\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.STP.StammstreckenPuzzle.staging\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"Android\",\"com.other.product.qa\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.BuildEntrypoints_RejectWrongIdentityBeforeAnyBuild(\"iOS\",\"com.other.product.qa\")",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Bindings_CannotBeMutatedThroughDictionaryInterfaces",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_CompiledConstructorOrder_IncludesConfigurationAndLoggerBeforeContent",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_ConfigurationAndLocalLogger_AreWiredAndUsedWithoutGlobalState",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Get_ProviderPort_BeforeBindProviders_FailsWithoutFallback",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_Get_UnboundPort_FailsWithoutFallback",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(0)",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(1)",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(2)",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(3)",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_NullProvider_LeavesAllProviderPortsUnbound_ThenAllowsRetry(4)",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_RejectsNullPort_FailClosed",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Composition_SecondBindProviders_FailsAsDoubleBinding",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Presentation_RequiresApplication_AndCanBeWiredBeforeProviders",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_AndroidAndIos_ExplicitlyUseMediumManagedStripping",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_ScaffoldIdentity_IsExplicitQaOnAndroidAndIos",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.Project_UrpAssetAndRenderer_AreAssignedForEveryQualityLevel",
+          "STP.Tests.Bootstrap.PlayMode.BootstrapCompositionSmoke.QaScene_ComposesCompleteGraph_ExactlyOneBindingPerPort_NoProviderStart"
+        ],
+        "newCases": [
+          {
+            "id": "1034",
+            "name": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "methodname": "ActualLifecycle_PauseAndFocusExcludeBackgroundTime_AndDisposedCallbacksDoNothing",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1706975972",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:21Z",
+            "end-time": "2026-10-18 22:30:22Z",
+            "duration": "0.883914",
+            "asserts": "0"
+          },
+          {
+            "id": "1032",
+            "name": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "methodname": "ActualUi_AllToolsSelectionBatchUndoAndNoOpUseTheRealDomain",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1128686400",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:22Z",
+            "end-time": "2026-10-18 22:30:22Z",
+            "duration": "0.243122",
+            "asserts": "0"
+          },
+          {
+            "id": "1033",
+            "name": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "methodname": "ActualUi_SolvedPathStartsOneRideBeforeUnsavedResults_AndRestarts",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "1696721313",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:22Z",
+            "end-time": "2026-10-18 22:30:25Z",
+            "duration": "3.235442",
+            "asserts": "0"
+          },
+          {
+            "id": "1036",
+            "name": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "methodname": "Builder_TwoReproductionsPreserveBytesGuidsAndOriginalPanel",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "641660301",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:25Z",
+            "end-time": "2026-10-18 22:30:26Z",
+            "duration": "0.660440",
+            "asserts": "0"
+          },
+          {
+            "id": "1038",
+            "name": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_10x10_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_10x10_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "395586000",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:26Z",
+            "end-time": "2026-10-18 22:30:27Z",
+            "duration": "0.458002",
+            "asserts": "0"
+          },
+          {
+            "id": "1039",
+            "name": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "methodname": "GraphicsProbe_4x4_ActualBuiltPathTrainOverlayBeforeResult",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "942290451",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:27Z",
+            "end-time": "2026-10-18 22:30:27Z",
+            "duration": "0.747755",
+            "asserts": "0"
+          },
+          {
+            "id": "1037",
+            "name": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.GraphicsProbe_4x4_ActualPanelAndSelection",
+            "methodname": "GraphicsProbe_4x4_ActualPanelAndSelection",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "105543565",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:27Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.277004",
+            "asserts": "0"
+          },
+          {
+            "id": "1035",
+            "name": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "fullname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests.QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "methodname": "QaProfileMissingReferencesAndMissingLocaleKeys_FailClosed",
+            "classname": "STP.Tests.Bootstrap.PlayMode.DevelopmentPuzzleSmokeTests",
+            "runstate": "Runnable",
+            "seed": "2081201852",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.278890",
+            "asserts": "0"
+          },
+          {
+            "id": "1046",
+            "name": "Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard(4,4)",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard(4,4)",
+            "methodname": "Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "604570537",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.007182",
+            "asserts": "0"
+          },
+          {
+            "id": "1047",
+            "name": "Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard(10,10)",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard(10,10)",
+            "methodname": "Grid_ExposesEveryStableFocusableCell_AndKeepsOverlayInBoard",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "2139495632",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.015800",
+            "asserts": "0"
+          },
+          {
+            "id": "1049",
+            "name": "Grid_RejectsInvalidDimensions_InsteadOfCreatingFallbackBoard",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.Grid_RejectsInvalidDimensions_InsteadOfCreatingFallbackBoard",
+            "methodname": "Grid_RejectsInvalidDimensions_InsteadOfCreatingFallbackBoard",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1699068731",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000865",
+            "asserts": "0"
+          },
+          {
+            "id": "1055",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0}\",\"[]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0}\",\"[]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1568868147",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000865",
+            "asserts": "0"
+          },
+          {
+            "id": "1056",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{1}\",\"[\\\"integer\\\"]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{1}\",\"[\\\"integer\\\"]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1354608314",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000263",
+            "asserts": "0"
+          },
+          {
+            "id": "1057",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0} {\",\"[\\\"integer\\\"]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0} {\",\"[\\\"integer\\\"]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1234115577",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000252",
+            "asserts": "0"
+          },
+          {
+            "id": "1058",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0:00}\",\"[\\\"string\\\"]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0:00}\",\"[\\\"string\\\"]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1122582169",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000254",
+            "asserts": "0"
+          },
+          {
+            "id": "1059",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"constant\",\"[\\\"integer\\\"]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"constant\",\"[\\\"integer\\\"]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "2026279700",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000216",
+            "asserts": "0"
+          },
+          {
+            "id": "1060",
+            "name": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0}\",\"[\\\"unknown\\\"]\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract(\"{0}\",\"[\\\"unknown\\\"]\")",
+            "methodname": "OwnStringTable_RejectsMissingMalformedOrUntypedFormatContract",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1621096244",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000241",
+            "asserts": "0"
+          },
+          {
+            "id": "1051",
+            "name": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"en-US\\\",\\\"entries\\\":[{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"en-US\\\",\\\"entries\\\":[{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "methodname": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1859305112",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000746",
+            "asserts": "0"
+          },
+          {
+            "id": "1052",
+            "name": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"de-DE\\\",\\\"entries\\\":[{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]},{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"b\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"de-DE\\\",\\\"entries\\\":[{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]},{\\\"key\\\":\\\"qa.wp038.a\\\",\\\"value\\\":\\\"b\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "methodname": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1485721884",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000239",
+            "asserts": "0"
+          },
+          {
+            "id": "1053",
+            "name": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"de-DE\\\",\\\"entries\\\":[{\\\"key\\\":\\\"product.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace(\"{\\\"locale\\\":\\\"de-DE\\\",\\\"entries\\\":[{\\\"key\\\":\\\"product.a\\\",\\\"value\\\":\\\"a\\\",\\\"argumentTypes\\\":[]}]}\")",
+            "methodname": "OwnStringTable_RejectsWrongLocale_DuplicateKey_AndForeignNamespace",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "1998830195",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.000205",
+            "asserts": "0"
+          },
+          {
+            "id": "1050",
+            "name": "OwnStringTable_UsesGermanFormatting_RejectsMissingKey_AndDisposesIdempotently",
+            "fullname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests.OwnStringTable_UsesGermanFormatting_RejectsMissingKey_AndDisposesIdempotently",
+            "methodname": "OwnStringTable_UsesGermanFormatting_RejectsMissingKey_AndDisposesIdempotently",
+            "classname": "STP.Tests.Presentation.PlayMode.DevelopmentPuzzlePresentationTests",
+            "runstate": "Runnable",
+            "seed": "890769095",
+            "result": "Passed",
+            "start-time": "2026-10-18 22:30:28Z",
+            "end-time": "2026-10-18 22:30:28Z",
+            "duration": "0.002666",
+            "asserts": "0"
+          }
+        ],
+        "coverage": [
+          {
+            "member": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0000.xml",
+            "sha256": "1cccb9ee1af4a0ca4fd780bcd2c2c4b67dd9bced93e00674ec79345618f00169",
+            "modules": [
+              {
+                "name": "STP.Application",
+                "totalPoints": "231",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Bootstrap",
+                "totalPoints": "184",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Build",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Editor.Content",
+                "totalPoints": "210",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Infrastructure.Content",
+                "totalPoints": "2229",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.MobileServices.Google",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.MobileServices.Store",
+                "totalPoints": "5",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Platform",
+                "totalPoints": "2",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.UI",
+                "totalPoints": "685",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Presentation.World",
+                "totalPoints": "145",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Puzzle.Domain",
+                "totalPoints": "545",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Puzzle.Solver",
+                "totalPoints": "1045",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Application.EditMode",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Bootstrap.PlayMode",
+                "totalPoints": "696",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Content.EditMode",
+                "totalPoints": "3232",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Domain.EditMode",
+                "totalPoints": "339",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Presentation.PlayMode",
+                "totalPoints": "70",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Solver.EditMode",
+                "totalPoints": "2380",
+                "visitedPoints": "0"
+              }
+            ]
+          },
+          {
+            "member": "Coverage/Stammstrecken-Puzzle-opencov/PlayMode/TestCoverageResults_0001.xml",
+            "sha256": "2f61e2d07802f399cf3d13551be434dad2c066f57e747a9d85fc79b48b378210",
+            "modules": [
+              {
+                "name": "STP.Application",
+                "totalPoints": "231",
+                "visitedPoints": "195"
+              },
+              {
+                "name": "STP.Bootstrap",
+                "totalPoints": "184",
+                "visitedPoints": "160"
+              },
+              {
+                "name": "STP.Editor.Build",
+                "totalPoints": "200",
+                "visitedPoints": "108"
+              },
+              {
+                "name": "STP.Editor.Content",
+                "totalPoints": "210",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Infrastructure.Content",
+                "totalPoints": "2229",
+                "visitedPoints": "13"
+              },
+              {
+                "name": "STP.MobileServices.Google",
+                "totalPoints": "5",
+                "visitedPoints": "1"
+              },
+              {
+                "name": "STP.MobileServices.Store",
+                "totalPoints": "5",
+                "visitedPoints": "1"
+              },
+              {
+                "name": "STP.Platform",
+                "totalPoints": "2",
+                "visitedPoints": "2"
+              },
+              {
+                "name": "STP.Presentation.UI",
+                "totalPoints": "685",
+                "visitedPoints": "645"
+              },
+              {
+                "name": "STP.Presentation.World",
+                "totalPoints": "145",
+                "visitedPoints": "117"
+              },
+              {
+                "name": "STP.Puzzle.Domain",
+                "totalPoints": "545",
+                "visitedPoints": "490"
+              },
+              {
+                "name": "STP.Puzzle.Solver",
+                "totalPoints": "1045",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Application.EditMode",
+                "totalPoints": "200",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Bootstrap.PlayMode",
+                "totalPoints": "696",
+                "visitedPoints": "620"
+              },
+              {
+                "name": "STP.Tests.Content.EditMode",
+                "totalPoints": "3232",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Domain.EditMode",
+                "totalPoints": "339",
+                "visitedPoints": "0"
+              },
+              {
+                "name": "STP.Tests.Presentation.PlayMode",
+                "totalPoints": "70",
+                "visitedPoints": "70"
+              },
+              {
+                "name": "STP.Tests.Solver.EditMode",
+                "totalPoints": "2380",
+                "visitedPoints": "0"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "remaining": "Actual Android/iOS terminal successful jobs with both scene BuildReport receipts and final complete original logs/API/packaged digests"
+  },
+  "newFinding": {
+    "id": "SCREEN-01",
+    "severity": "HIGH",
+    "status": "OPEN",
+    "report": "SCREEN_OUTPUT_QC.json",
+    "sha256": "296d0c986ce43665dd69f995571cc7562af437d8120e4a6a2696ab401b9bedb5"
+  }
+}

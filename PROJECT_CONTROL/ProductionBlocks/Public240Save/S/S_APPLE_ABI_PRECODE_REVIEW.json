@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-10-19T11:12:07.488Z",
+  "role": "entry_audit independent narrow pre-code ABI review",
+  "verdict": "PERMITTED_NARROW_FS_CORRECTION_REQUIRED_FOR_APPLE_ARM64_ABI",
+  "finding": {
+    "origin": "R concrete finding before patch",
+    "sourceSha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736",
+    "problem": "Fixed three-argument fcntl PInvoke does not express native variadic third parameter under Apple ARM64 stack calling convention.",
+    "requiredCorrection": "Remove fcntl entirely; open stable existing private-root inode with O_RDONLY|platform O_CLOEXEC and its two fixed parameters only; flock/close unchanged."
+  },
+  "acceptedWithinExistingScope": true,
+  "preconditions": [
+    "Darwin O_CLOEXEC=0x01000000 for UNITY_IOS&&!UNITY_EDITOR or actual runtime OSPlatform.OSX; Linux/Android supported ABI O_CLOEXEC=1<<19.",
+    "No O_CREAT or O_TMPFILE and therefore no optional mode argument; no file or directory creation through this open.",
+    "Unknown non-supported Unix platform must fail closed instead of assuming its flag ABI or falling back to fcntl.",
+    "Preserve Windows branch and all prior originals; bind changed FS bytes to new actual Linux FFI/interprocess/timeout and static Apple/Android compilation.",
+    "No Apple/APFS/iOS runtime proof inferred from constants, compilation or Linux/Windows evidence."
+  ],
+  "sources": [
+    {
+      "url": "https://developer.apple.com/documentation/apple-silicon/addressing-architectural-differences-in-your-macos-code",
+      "supports": "Apple ARM64 fixed versus variadic argument placement differs; fetched via indexed official page because JS/Markdown fetch was unavailable."
+    },
+    {
+      "url": "https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms",
+      "supports": "Apple ARM64 variadic arguments assigned to stack slots; fixed arguments follow their own calling rules."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/apple-oss-distributions/xnu/main/bsd/sys/fcntl.h",
+      "supports": "O_RDONLY0, O_CLOEXEC0x01000000, open(const char*,int,...), fcntl(int,int,...), flock(int,int)."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/asm-generic/fcntl.h",
+      "supports": "O_RDONLY0, O_CLOEXEC1<<19 in supported asm-generic Linux ABI."
+    },
+    {
+      "url": "https://android.googlesource.com/platform/bionic/+/main/libc/include/fcntl.h",
+      "supports": "Bionic imports Linux fcntl headers and open fixed path/flags plus optional variadic mode."
+    }
+  ],
+  "limits": "Read-only design review only; no patch, compile, Unity, Git or CI action by reviewer. Earlier narrow a6bb closure remains historically bound and is not a guarantee of Apple ABI safety."
+}

@@ -67,3 +67,7 @@ Ergänzt [ADR-010](./ADR-010-build-release-und-observability.md) und [ADR-016](.
 [2]: ../ARCHITECTURE/CONTENT_CATALOGS.md "Content Catalogs v0.3"
 [3]: ../ARCHITECTURE/PERSISTENCE.md "Persistence v0.3"
 [4]: ../WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md "WP-003"
+
+## Nachfolgerverweis vom 22.10.2026
+
+[ADR-047](./ADR-047-produktionspaketierung-und-release-manifest-v2.md) ersetzt für neue reale Kandidaten ausschließlich die V1-Manifestnutzung und die vollständig unveränderliche Manifestidentität durch die dort eng begrenzte, vorgängergebundene V2-Evidenzfortschreibung. Productionidentität, Artefaktgleichheit, alle übrigen Manifestfelder und sämtliche Kosmetikverträge bleiben gültig. Die ursprüngliche Entscheidung und ihre historischen Nachweise bleiben unverändert.

@@ -1,0 +1,76 @@
+"""Independent read-only fixed-vector canonical-byte crosscheck (not a product codec)."""
+import json, hashlib, sys
+def pairs(items):
+    d={}
+    for k,v in items:
+        if k in d: raise ValueError('duplicate property '+k)
+        d[k]=v
+    return d
+def number(s):
+    n=int(s)
+    if abs(n)>9007199254740991: raise ValueError('unsafe JSON integer')
+    return n
+def reject_float(s): raise ValueError('float or special number: '+s)
+def load(s): return json.loads(s,object_pairs_hook=pairs,parse_int=number,parse_float=reject_float,parse_constant=reject_float)
+def canonical(v):
+    if isinstance(v,dict):
+        return '{'+','.join(canonical(k)+':'+canonical(v[k]) for k in sorted(v,key=lambda x:x.encode('utf-16-be')))+'}'
+    if isinstance(v,list): return '['+','.join(canonical(x) for x in v)+']'
+    if isinstance(v,str):
+        v.encode('utf-8',errors='strict')
+        return json.dumps(v,ensure_ascii=False,separators=(',',':'))
+    return json.dumps(v,ensure_ascii=False,separators=(',',':'),allow_nan=False)
+def sha(b): return hashlib.sha256(b).hexdigest()
+raw=open(sys.argv[1],'rb').read(); bundle=load(raw.decode('utf-8')); count=0; failures=[]
+for c in bundle['cases']:
+    for obj,field in [(c['sourceEnvelope'],'sourceEnvelopeUtf8'),(c['sourceEnvelope']['payload'],'sourcePayloadUtf8'),(c['expectedPayload'],'expectedPayloadUtf8'),(c['expectedEnvelope'],'expectedEnvelopeUtf8')]:
+        count+=1
+        if canonical(obj)!=c[field]:failures.append(c['name']+'.'+field)
+    for prefix,field in [('source','sourcePayloadUtf8'),('expected','expectedPayloadUtf8')]:
+        count+=1
+        if sha(c[field].encode())!=c[prefix+'PayloadSha256']:failures.append(c['name']+'.'+prefix+'PayloadSha256')
+    for kind in ['sourceDocument','targetDocument','releaseLock']:
+        d=c['bindings'].get(kind)
+        if d and 'canonicalUtf8' in d:
+            count+=2
+            if canonical(d['document'])!=d['canonicalUtf8']:failures.append(c['name']+'.'+kind+'.bytes')
+            if sha(d['canonicalUtf8'].encode())!=d['canonicalSha256'] or d['canonicalSha256']!=d['jcsSha256']:failures.append(c['name']+'.'+kind+'.sha')
+for c in bundle.get('negativeCases',[]):
+    if 'sourceEnvelope' not in c:
+        count+=2
+        if sha(c['sourceFixtureUtf8'].encode())!=c['sourceFixtureBytesSha256']:failures.append(c['name']+'.fixture.sha')
+        if c['expectedTarget'] is not None or not c['expectedSourcePreserved']:failures.append(c['name']+'.target/original')
+        continue
+    count+=5
+    if canonical(c['sourceEnvelope'])!=c['sourceEnvelopeUtf8']:failures.append(c['name']+'.envelope.bytes')
+    if canonical(c['sourceEnvelope']['payload'])!=c['sourcePayloadUtf8']:failures.append(c['name']+'.payload.bytes')
+    if sha(c['sourceEnvelopeUtf8'].encode())!=c['sourceEnvelopeSha256']:failures.append(c['name']+'.envelope.sha')
+    if sha(c['sourcePayloadUtf8'].encode())!=c['sourcePayloadSha256']:failures.append(c['name']+'.payload.sha')
+    if c['expectedTarget'] is not None or not c['expectedSourcePreserved']:failures.append(c['name']+'.target/original')
+schema_results=[]
+if len(sys.argv)>2:
+    from pathlib import Path
+    from jsonschema import Draft202012Validator
+    root=Path(sys.argv[2]); inputs=[]
+    for key,schema in [('campaignCatalog','campaign-v2'),('completionCatalog','completion-v1'),('oldCampaign','campaign-v1')]:inputs.append((key,bundle['catalogs'][key],schema))
+    seen=set()
+    for c in bundle['cases']:
+        for binding in c.get('passiveBindings',[]):
+            if binding.get('recordKind')=='COSMETICS':
+                digest=sha(canonical(binding['document']).encode())
+                if digest not in seen:inputs.append(('cosmetic:'+digest,binding['document'],'cosmetics-v2'));seen.add(digest)
+        for key,schema in [('sourceDocument','level-v1'),('targetDocument','level-v2'),('releaseLock','release-lock-v1')]:
+            d=c['bindings'][key]['document'];digest=sha(canonical(d).encode())
+            if digest not in seen:inputs.append((key+':'+digest,d,schema));seen.add(digest)
+        for b in c['bindings'].get('additionalLevelBindings',[]):
+            for key,schema in [('sourceDocument','level-v1'),('targetDocument','level-v2'),('proof','proof-v1')]:
+                d=b[key]['document'];digest=sha(canonical(d).encode())
+                count+=2
+                if canonical(d)!=b[key]['canonicalUtf8']:failures.append(c['name']+'.additional.'+key+'.bytes')
+                if sha(b[key]['canonicalUtf8'].encode())!=b[key]['jcsSha256']:failures.append(c['name']+'.additional.'+key+'.sha')
+                if digest not in seen:inputs.append(('additional.'+key+':'+digest,d,schema));seen.add(digest)
+    for label,obj,schema in inputs:
+        rules=load((root/'ARCHITECTURE/schemas'/f'{schema}.schema.json').read_text(encoding='utf-8'))
+        errors=[{'path':'/'.join(map(str,e.absolute_path)),'message':e.message} for e in Draft202012Validator(rules).iter_errors(obj)]
+        schema_results.append({'label':label,'schema':schema,'errors':errors})
+print(json.dumps({'python':sys.version,'sourceSha256':sha(raw),'byteLength':len(raw),'cases':len(bundle['cases']),'negativeCases':len(bundle.get('negativeCases',[])),'checks':count,'failures':failures,'sourceSchemaResults':schema_results},indent=2))

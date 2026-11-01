@@ -1,0 +1,808 @@
+{
+  "at": "2026-10-19T13:13:04.903Z",
+  "verdict": "PASS_ACTUAL_WP043_ANCHOR_AND_NUMBERED_ADR036_DRAFT_FOR_SEPARATE_R_DECISION",
+  "reviewer": "independent entry_audit; no I implementation role",
+  "mandatoryReadBinding": "AGENTS,concept15/00/09 andCURRENT_STATE blobs equal previously fully read S sources; concreteWP043 and full numberedADR036 now fully read. Relevant ADR034/035/011 and governance contracts previously read remain unchanged by this historical draft.",
+  "sourceObjects": [
+    {
+      "commit": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+      "tree": "76069b81b2a95511d3e5356f00a0859c360fb749",
+      "rawCommitSha256": "c19ef0b3038e7c6b1965c2a0f989a5c204fe7ab33aafb4b91eaa927ca4ae9286",
+      "computedCommitSha1": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+      "computedTreeSha1": "76069b81b2a95511d3e5356f00a0859c360fb749"
+    },
+    {
+      "commit": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+      "tree": "1731fbe88002a29c0d1638d50dfdbaa2be804efa",
+      "rawCommitSha256": "823ecea0063cb97cb7b9d6f62f072104eac1f59953bc885fc262ec4c013845b4",
+      "computedCommitSha1": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+      "computedTreeSha1": "1731fbe88002a29c0d1638d50dfdbaa2be804efa"
+    }
+  ],
+  "anchor": {
+    "commit": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+    "soleParent": "95508482696cc1cc4e355021ce47d64863d9651a",
+    "jointFirstAddOnly": [
+      "A\tWORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md",
+      "A\ttools/architecture-validation/scopes/WP-043.production.scope.json"
+    ],
+    "globalFirstAddHistory": {
+      "WORK_PACKAGES/WP-043_Public240-gespeicherte-Integration.md": [
+        "1c002e14e07a7cf48366e786f2ec598234f9d314"
+      ],
+      "tools/architecture-validation/scopes/WP-043.production.scope.json": [
+        "1c002e14e07a7cf48366e786f2ec598234f9d314"
+      ]
+    },
+    "tree": "76069b81b2a95511d3e5356f00a0859c360fb749",
+    "manifestSha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+    "manifestNativeAndAnchorDraftGitBytesExact": true,
+    "manifestAllowedPatternCount": 50,
+    "allPatternsExactReviewedProspectiveClosedList": true,
+    "workPackageHistoricalBacktickIdAndLocalManifestLink": true
+  },
+  "canonicalP02": {
+    "receiptSha256": "1e2759c283da410f8e3bc29b2bc0edc4e0f94cbcdd145c8a7289c6ae5ad24796",
+    "actualExitCode": 1,
+    "actualP": "95508482696cc1cc4e355021ce47d64863d9651a",
+    "architecture17Pass": true,
+    "scopeContext": "SCOPE_CONTEXT  workPackage=WP-041 base=925ca608a961ac26c84385c8da3b949f609df883 head=95508482696cc1cc4e355021ce47d64863d9651a worktreeDirty=false",
+    "errors": [
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+      "scope:out-of-scope:Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_ARCHITECTURE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_PROVENANCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ANCHOR_SCOPE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/AS_ANCHOR_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/AS_ANCHOR_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_FINAL_GAPS.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_FINAL_GAPS.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_OS_HANDLE_TEST_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_OS_HANDLE_TEST_EVIDENCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_TEST_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ATOMIC_TEST_EVIDENCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/CHILD_ID_AUDIT.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/CODEC_FIRST_POSITIVE_PASS.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_COMPARE_NODE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_HARNESS.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V2.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V2_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BASE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BASE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V4.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V4_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V5.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V5_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V6.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V6_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V2.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3_BASE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V4.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V5.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V6.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V7.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APPLICATION_FIXTURE_BEFORE_EMBED.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APP_ALREADY_COMMITTED_RACE.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_APP_ALREADY_COMMITTED_RACE_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CATALOG_ROLE_REPRO_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CLAIM_HISTORICAL_BINDING_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_BEFORE_HISTORICAL_TERMINAL_FIX.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_INPUT_CANONICALIZATION_TEST_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_LEXICAL_MUTATION_TEST_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_DISCOVERY_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_CODEC_POSITIVES_LIMIT_DISCOVERY_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_LEDGER_TEST_EXPECTATION_FAIL.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_LOCAL_PROFILE_BEFORE_ROLE_FIX.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_MODEL_BEFORE_CLAIM_UNIQUE_FIX.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_PERSISTENCE_FIXTURE_BEFORE_EMBED.cs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/ORIGINAL_READER_STATUS_ORDER_REGRESSION.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/REVIEW_PROGRESS_SOURCE_CONTRACT.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_CAUSAL_PROBE_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_METADATA_TEST_FIX_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_COVERAGE_TEST_HELPER_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_DIFF_CHECK_ADVISORY_CLASSIFICATION.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_DRAFT_RETENTION_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_F1_WHITESPACE_CORRECTION.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_GOLDEN_ACCEPTANCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_GOLDEN_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_OS_HANDLE_ABI_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_OS_HANDLE_ACCEPTANCE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_F2_PRECI_RECEIPT.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_GIT_LF_COMPILER_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_S_PRECI_RECEIPT.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_COMPILER_METADATA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_FINAL_PRE_FREEZE_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_FINAL_PRE_FREEZE_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_PLATFORM_METADATA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_537_REVIEWER_FLAT_PACK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_COHERENT_SUPPLEMENT.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_COHERENT_SUPPLEMENT.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_ABI537_LINUX_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_PRECODE_REVIEW.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_PRECODE_REVIEW.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APPLE_ABI_SOURCE_DELTA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_POLICY_FINAL_DELTA_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_RECOVERY_CONTINUATION_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_RECOVERY_CONTINUATION_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_THREAD_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_APP_THREAD_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_CORRECTION_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_DELTA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CLAIM_HISTORY_DELTA_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_EARLY_REVIEW_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_POLICY_INITIAL_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODEC_POLICY_INITIAL_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODE_PRE_CI_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CODE_PRE_CI_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_CONFLICT_EXECUTION_REVIEW.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_METADATA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_AB_NATIVE_REVIEWER_COMPILER_PACK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_CAUSAL_AB_INDEPENDENT_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_COVERAGE_FUNCTION_POINTER_PRECODE_REVIEW.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DIFF_CHECK_ADVISORY.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DRAFT_RETENTION_PRECODE_REVIEW.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_DRAFT_RETENTION_PRECODE_REVIEW.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_EARLY_CODE_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_CI_FINAL_INDEPENDENT_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_COVERAGE_DIAGNOSIS_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_MONO_PREPAREMETHOD_IL_INSPECTION.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_CORRECTION_PUBLICSAFE_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_EXACT_ORIGINALS.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F1_WHITESPACE_TARGETED_INDEPENDENT_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_ADOPTED_SOURCE_DELTA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_ADOPTED_SOURCE_DELTA_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_STAGED_CANONICAL_ARCHITECTURE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_F2_STAGED_CANONICAL_SCOPE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_CODE_DELTA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_CODE_DELTA_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_COMPILER_METADATA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_EVIDENCE_CLOSURE_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_EVIDENCE_CLOSURE_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FS_FINAL_DELTA_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_FULL_CODE_ACTUAL_SUITE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_FINAL_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_FINAL_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_INITIAL_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_INITIAL_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REPRODUCE.cjs.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REVIEW.js.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_REVIEW_PY.py.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_NODE22.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_PYTHON.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_PYTHON311.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_GOLDEN_V7_REPRODUCTION.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_IMPLEMENTATION_DELIVERY.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CODE_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CODE_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CORRECTIONS_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INITIAL_CORRECTIONS_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_INTEGRATION_HANDOFF.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_OS_HANDLE_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_LINUX_TIMEOUT_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OS_HANDLE_PRECODE_REVIEW.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OS_HANDLE_PRECODE_REVIEW.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_SOURCE_FREEZE_V3.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_AutosaveCoordinatorTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_AutosaveCoordinatorTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_COMPILE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_COMPILER_SOURCE_PACK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_CatalogSetIdentityTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_CatalogSetIdentityTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_DELIVERY.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProfileStateTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProfileStateTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProgressPolicyTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalProgressPolicyTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalSaveCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_LocalSaveCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PersistedPuzzleSessionTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PersistedPuzzleSessionTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PuzzleSessionCheckpointTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_PuzzleSessionCheckpointTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_RAW_XML.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_ReviewProgressCatalogTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_ReviewProgressCatalogTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveLedgerCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveLedgerCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveMigrationTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_SaveMigrationTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V1_TEST_FAILURE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_AutosaveCoordinatorTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_AutosaveCoordinatorTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_COMPILE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_CatalogSetIdentityTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_CatalogSetIdentityTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_DELIVERY.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProfileStateTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProfileStateTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProgressPolicyTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalProgressPolicyTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalSaveCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_LocalSaveCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PersistedPuzzleSessionTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PersistedPuzzleSessionTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PuzzleSessionCheckpointTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_PuzzleSessionCheckpointTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_ReviewProgressCatalogTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_ReviewProgressCatalogTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveLedgerCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveLedgerCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveMigrationTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V2_SaveMigrationTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_AutosaveCoordinatorTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_AutosaveCoordinatorTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_COMPILER_SOURCE_PACK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_CatalogSetIdentityTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_CatalogSetIdentityTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_DELIVERY.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProfileStateTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProfileStateTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProgressPolicyTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalProgressPolicyTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalSaveCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_LocalSaveCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PersistedPuzzleSessionTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PersistedPuzzleSessionTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PuzzleSessionCheckpointTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_PuzzleSessionCheckpointTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_RAW_XML.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_ReviewProgressCatalogTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_ReviewProgressCatalogTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveLedgerCodecTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveLedgerCodecTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveMigrationTests.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_OWN_V3_SaveMigrationTests_RUN.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_PRECI_CANONICAL_ARCHITECTURE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_PRECI_CANONICAL_SCOPE.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_TEST_PLACEMENT_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_TEST_PLACEMENT_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_V3_COMPILER_METADATA_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WHITESPACE_ADVISORY_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WHITESPACE_ADVISORY_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_CODEC_PREREQUISITE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_CODEC_PREREQUISITE.xml.txt",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_INITIAL_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_INITIAL_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/S_WRITER_REVIEW_SOURCE_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_CI.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_CI_EVIDENCE.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_DURABLE_PACK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_INDEPENDENT_RAW_QC.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_INDEPENDENT_RAW_QC.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_RAW_BLOB_BINDINGS.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_D_ROOT_TERMINAL_RUN_CHECK.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_FINAL_BINDING.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/T_SHARED_BASIS_RELEASE.md",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDENS_PRECODEC_77ef839d.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDENS_PRECODEC_BINDING_77ef839d.json",
+      "scope:out-of-scope:PROJECT_CONTROL/ProductionBlocks/Public240Save/S/_INITIAL_GOLDEN_REFERENCE_NODE_77ef839d.txt",
+      "scope:out-of-scope:WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md",
+      "scope:out-of-scope:tools/architecture-validation/scopes/WP-042.production.scope.json"
+    ],
+    "exactIndependent297ExpectedSet": true,
+    "otherFailures": [],
+    "expectedFailureAuditSha256": "92c8d3ab2f7450ff33ad16f03735b4c213a434165497392c4c333b29cca65550",
+    "originalProcess01PreservedAsSeparate298FailReport": "P_CHECKOUT_CRLF_INDEPENDENT_QC.json cc5794e86e00a21ebcc0c13c2c47b12dfd227e6e6343745c02608e14b9fe9194"
+  },
+  "freshIdAudit": {
+    "path": "CHILD_ID_AUDIT.json",
+    "sha256": "62c4629dfda667d4940edb533f8f1074d695a5fcaa57a521bbf1f16873ecedc2",
+    "at": "2026-10-19T13:09:11.069Z",
+    "recordedRefs": 60,
+    "independentlyComputedUniqueGitTrees": 41,
+    "everyRecordedPathListMatchedRawGitTree": true,
+    "usedWpNumbersExact": true,
+    "usedAdrNumbersExact": true,
+    "WP043AndADR036AbsentAtAudit": true,
+    "actualPRefIncluded": true,
+    "secondsBeforeAnchor": 4.527,
+    "refBindings": [
+      {
+        "ref": "refs/heads/chore/ci-readiness-unity",
+        "sha": "f96c2f3a50822d4a426dd510f70063a823d18e3b",
+        "tree": "88caf09fbe5d7fb8e597f237d9a946dc313e7a5e",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/public240-isolated-montage",
+        "sha": "95508482696cc1cc4e355021ce47d64863d9651a",
+        "tree": "f0d7306e8b907dfa60661bb8703ce970b3049200",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-021-closeout",
+        "sha": "7575f45d2f8e771e85a9b6ae483ff1ade409aaa2",
+        "tree": "8de6e992d521cf914546fcf1b1aa93826ffaa5b3",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-022-puzzle-kern-recovery",
+        "sha": "b257efd98bd14e7f66ffc40916a0b584c3f51fb7",
+        "tree": "5b28f36bac766e8602fddaf7139ad721c1c399a3",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-025-proof-v1-strict-preparation",
+        "sha": "92842bc653bf364bd7ade5bbff7c37f71bf9fd1f",
+        "tree": "3159dfe2349d6273fa923eda87dba1164559d024",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-026-season1-logical-content",
+        "sha": "a2e26a658a2bcdd47002698c150cb5736d9760da",
+        "tree": "05042b508afacc9b03e9ab1baf771d82ab33fd9d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-028-season1-ci-performance",
+        "sha": "b449ab761dca98ab6d7af387efba81886118428b",
+        "tree": "2bc50e6fffa987ecb543b98d1014084846d1a6fa",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-034-hardbudget-reliability",
+        "sha": "7eed2483e5bdc9289e0c94f577a68148a7b8f46a",
+        "tree": "58ee055410afd3c5e6a3acba9c47ff4f42050cf8",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-036-vollstaendige-textbibliothek",
+        "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "tree": "51a14d09bfa19c80608133b333105d56ae850374",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-037-hardbudget-wp036",
+        "sha": "8dd68e22b58f126cb499fee408e98c173202a98e",
+        "tree": "25b7907fee4e0741574c3f32867fbef03bfb1e96",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-039-public240-save-technikbasis",
+        "sha": "bb81fe6fd1cbdb83dac1c3164f17b404349266ce",
+        "tree": "22e684d5d92c2db21a380a5fd6ea94b287f91d92",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-040-public240-save-technikbasis",
+        "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+        "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-041-public240-interne-prueffassung",
+        "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/codex/wp-042-lokaler-save-restore-grundfortschritt",
+        "sha": "3746184ca75eb439de918896e9b88aa238cff893",
+        "tree": "ca88b989c03e7daf10bc05eeb9bb845348717bc9",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/feat/wp-008-unity-scaffold",
+        "sha": "edb713efc1580bcf0f8074dc7667c0f179a723ab",
+        "tree": "8e9befe4b1e56cad13cca2a8665b37e6e3479a8a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/feat/wp-009-puzzle-kern",
+        "sha": "767c01efb3720b3dae080280f58c568fbb36686f",
+        "tree": "35692ef22685d44bce5926f081a81d40c39f0f4e",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/feat/wp-013-level-v2-pipeline",
+        "sha": "21fb4dbaafbdb1c7946408085f92a4f131f97f22",
+        "tree": "ef24635b4a8c6d948971861ad942be3459040c72",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/feat/wp-021-unity-scaffold-recovery",
+        "sha": "c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b",
+        "tree": "b45567ecfce1e74ccc9adffd0270585790d7c04c",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/heads/main",
+        "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "tree": "378f9ef06143ad8cff18e2e5840a6a636f485d26",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/HEAD",
+        "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "tree": "378f9ef06143ad8cff18e2e5840a6a636f485d26",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/arch/architecture-v0.1",
+        "sha": "df213c9e5a3b7155dc06e81c76ffb30038fbdd38",
+        "tree": "71194329f9d240fa0cb90e74201586e24afeac1a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/ci-readiness-unity",
+        "sha": "f96c2f3a50822d4a426dd510f70063a823d18e3b",
+        "tree": "88caf09fbe5d7fb8e597f237d9a946dc313e7a5e",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/ci-setup",
+        "sha": "0234dea993bcb56d20bc9e21566df6ad52c05a92",
+        "tree": "af71d22e75dd7e655e9bfb95801e7f222d44832a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/wp-011-pr-scope-checkout",
+        "sha": "5bd82c0820cbeb6567f18f7f266d1e60aa6d9179",
+        "tree": "e97d0b4320950dcb708f7e9c2d384e7385457b4d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/wp-023-closeout",
+        "sha": "6e69d420dbf4a47e8242d846b318b76bb9e2af06",
+        "tree": "cd1d9a092f64b75fc2a68a17e92ff40392ef7609",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/wp-024-closeout",
+        "sha": "bff879b56757fa9f6ede2b7c1593f437799021b9",
+        "tree": "40c7ac375a6cc1caab92081437c273c479040a30",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/chore/wp-025-closeout",
+        "sha": "c6dbc64849d6ac161f9a828b9a81d3f38d4abbfe",
+        "tree": "64b64184d32f19226741478752161c4c2fd6edd8",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-021-closeout",
+        "sha": "7575f45d2f8e771e85a9b6ae483ff1ade409aaa2",
+        "tree": "8de6e992d521cf914546fcf1b1aa93826ffaa5b3",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-022-puzzle-kern-recovery",
+        "sha": "b257efd98bd14e7f66ffc40916a0b584c3f51fb7",
+        "tree": "5b28f36bac766e8602fddaf7139ad721c1c399a3",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-023-level-v2-foundation",
+        "sha": "f56eab34dca0346d0e339a1c5cde650e15955f68",
+        "tree": "59fd7cc051853f4b992a760b41dc1081d8aca1fd",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-025-proof-v1-strict-preparation",
+        "sha": "92842bc653bf364bd7ade5bbff7c37f71bf9fd1f",
+        "tree": "3159dfe2349d6273fa923eda87dba1164559d024",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-026-season1-logical-content",
+        "sha": "dc1652befd7545b4c2a2dd0580f35a4e8e05d72d",
+        "tree": "4b84b56d0c7446d5182018b02f8c223bbe36c096",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-028-season1-ci-performance",
+        "sha": "b449ab761dca98ab6d7af387efba81886118428b",
+        "tree": "2bc50e6fffa987ecb543b98d1014084846d1a6fa",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-031-integration-preview",
+        "sha": "060c1c4b01458a80835094d5bd004be8c36eec54",
+        "tree": "652661ddd524cbfaea1bdeb2f5de2e8d4ea9c101",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-032-integration-acceptance",
+        "sha": "b83c69ccecdaf4455aa4d5b0882519e4530291d0",
+        "tree": "ff0d4cdeaf4a86612530ce90bf6dd7a274e05b4a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-033-followup-closeout",
+        "sha": "a2e26a658a2bcdd47002698c150cb5736d9760da",
+        "tree": "05042b508afacc9b03e9ab1baf771d82ab33fd9d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-034-hardbudget-reliability",
+        "sha": "7eed2483e5bdc9289e0c94f577a68148a7b8f46a",
+        "tree": "58ee055410afd3c5e6a3acba9c47ff4f42050cf8",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-036-vollstaendige-textbibliothek",
+        "sha": "3d1ac59c3f70d50e05434a54d3ddec5d282bb0c3",
+        "tree": "51a14d09bfa19c80608133b333105d56ae850374",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-037-hardbudget-wp036",
+        "sha": "8dd68e22b58f126cb499fee408e98c173202a98e",
+        "tree": "25b7907fee4e0741574c3f32867fbef03bfb1e96",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-038-interne-spielschleife",
+        "sha": "524b45024438b93c592351d7683a7c62aec2ab8d",
+        "tree": "f1adfa4e006169c32bd930cc6c76f1d62b98e780",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-040-public240-save-technikbasis",
+        "sha": "925ca608a961ac26c84385c8da3b949f609df883",
+        "tree": "6b2693ad596ba3b8fb84ef1044a9b367270d22b2",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-041-public240-interne-prueffassung",
+        "sha": "7d2e99837cd3910d11ed5f01ea67e8d06acba2c4",
+        "tree": "8391710ddd9159af9ac4405abfd9670c289b073d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/codex/wp-042-lokaler-save-restore-grundfortschritt",
+        "sha": "3746184ca75eb439de918896e9b88aa238cff893",
+        "tree": "ca88b989c03e7daf10bc05eeb9bb845348717bc9",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/design/wp-035-finale-asset-bible",
+        "sha": "9e3f209cd92d491ab3a1ab51cce63677d3b5d53e",
+        "tree": "ef5dfa1f16e8d303e864d02a90d554623ed57362",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/docs/wp-010-tests-standort",
+        "sha": "dfde541c5cf50b2ad1f4840f1f29f647685c7ea3",
+        "tree": "1bd1f8e5580be14930d93d221096e24ef0301440",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/docs/wp-022-closeout",
+        "sha": "6b3240f160255cb5bfa2e0ea12e4e1e10cd1f32f",
+        "tree": "4bc079cd2eb7d6fb90e764a297e373f942ece26a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/docs/wp-027-governance-closeout",
+        "sha": "e825116c655f14d3d313a55e792f1ffdf3074843",
+        "tree": "378f9ef06143ad8cff18e2e5840a6a636f485d26",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/docs/wp-027-season1-entscheidungen-ci-performance",
+        "sha": "09259190ff13ad05c13656316be1264f72f57012",
+        "tree": "b791cd1ea5f910ece34c49a5ea8b16d10f266d98",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/docs/wp-027-season1-entscheidungen-ci-performance-r1",
+        "sha": "91daceaf3fa89aac4ec70fc16479b145a63f8084",
+        "tree": "b8615c675795280c250e874bf77463500ee55360",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/feat/wp-008-unity-scaffold",
+        "sha": "edb713efc1580bcf0f8074dc7667c0f179a723ab",
+        "tree": "8e9befe4b1e56cad13cca2a8665b37e6e3479a8a",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/feat/wp-009-puzzle-kern",
+        "sha": "767c01efb3720b3dae080280f58c568fbb36686f",
+        "tree": "35692ef22685d44bce5926f081a81d40c39f0f4e",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/feat/wp-013-level-v2-pipeline",
+        "sha": "21fb4dbaafbdb1c7946408085f92a4f131f97f22",
+        "tree": "ef24635b4a8c6d948971861ad942be3459040c72",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/feat/wp-021-unity-scaffold-recovery",
+        "sha": "c93d4c192e55b26ae91db02d7e0c77b9ffd9f54b",
+        "tree": "b45567ecfce1e74ccc9adffd0270585790d7c04c",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/feat/wp-024-solver-v2-metriken-und-deduktionsspur",
+        "sha": "64d8801ee28d68dc0c8ec9800898b7862977c32c",
+        "tree": "ce7f255b0518c7d8eec976ce86827f591556bb04",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/governance/trust-anchor-correction-closeout",
+        "sha": "42619c824df394452420033e231026c72b5610fd",
+        "tree": "8b74b95a32f571f9071aa5cc4ef5f5ebc8eec96d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/governance/wp-013-recovery-architecture",
+        "sha": "7b65c0cf70ba9e9ead65df8a749f9324ae6ebc30",
+        "tree": "1a447dd7cd3ef78350956fb4df24205b5c28af66",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/governance/wp-018-closeout",
+        "sha": "2669a94eac3002d1e8505a02b7a2db972448a156",
+        "tree": "87d081020b646a1c3e580692f39a5ed8a1e1478d",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/governance/wp-019-020-anchor-correction",
+        "sha": "0b1e3c492a87835aed09c051d37b37fd664e907a",
+        "tree": "7c83f026907b4fd30985df031f1411a03b8e3f28",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/governance/wp021-readiness-hold",
+        "sha": "3849efe6710645a15d7fdd55ecb644145847dcb7",
+        "tree": "4c8a32da2c1ae0f30bfd326ac8afe06213a6f0a0",
+        "recordedPathsExact": true
+      },
+      {
+        "ref": "refs/remotes/origin/main",
+        "sha": "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+        "tree": "378f9ef06143ad8cff18e2e5840a6a636f485d26",
+        "recordedPathsExact": true
+      }
+    ],
+    "countBoundary": "Actual60recorded ref states map to41 unique Git trees; parent message42Trees is not used as a verified tree-count claim."
+  },
+  "numberedDraft": {
+    "commit": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+    "soleParent": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+    "exactChangedPaths": [
+      "A\tDECISIONS/ADR-036-gespeicherter-public240-qa-entry.md",
+      "M\tDECISIONS/README.md"
+    ],
+    "nativeBytes": 11327,
+    "sha256": "9af498cd2c3b2e3885a296fefa730e8713cda72a8588651be1e805284a30183e",
+    "nativeAndHistoricalGitBytesExact": true,
+    "status": "Entwurf — not yet effective",
+    "unNumberedOriginalSha256": "a345e85c916fab4413c3f7f9313247ceb3289f146f742dcd7254d9e652b1ecf0",
+    "literalDelta": [
+      "Title becomes ADR036 with numbered name",
+      "Status paragraph names actual WP043/anchor and still requires separate review/R acceptance before I code",
+      "Final historical-status sentence changes exclusively unnumbered draft→actually numbered precode draft",
+      "Additive actual precode-binding section with exact anchor/P/manifest/original hashes"
+    ],
+    "technicalDecisionParagraphs1To8AndAllOtherNormativeBodyUnchanged": true,
+    "indexDraftRowAndExplicitPendingRegistryNoteOnly": true,
+    "oldADR034035BodiesUnchangedInHistoricalDraft": true
+  },
+  "substantiveReview": {
+    "newNarrowSceneLocaleException": "Exactly SavedPublic240Review, ownqa.public240.saved Locale via existing adapter; oldA scene andADR034 exception remain separate.",
+    "authority": "One S snapshot/session/commit authority, immutable attempt+full publicidentity; no UI save/reward fallback.",
+    "threading": "Unity captures andClock/Dispatcher onMain before worker composition; WP043 explicitly requires Bridge onMain afterward, null-model Pump and single BindModel; no fileIO in render.",
+    "root": "Actual persistentDataPath withIsolatedReview/qa-public240-v1/r, actual builddiagnostics, failclosed path/reparse/full-length handling.",
+    "testroot": "OnlyUNITY_EDITOR&&UNITY_INCLUDE_TESTS, beforeactualAwake, single/non-nested, actualtemp/envroot, disjoint realpersistentDataPath includingancestor/descendant; truecatalog/codec/repository unchanged.",
+    "visibleFlow": "Explicitinit/new/resume/recovery/reset; actual verified current-attemptMaincommit beforeRide/Results; stalecommands/callbacks rejected.",
+    "build": "NormalSaved/Public240/Development/Bootstrap entries; onlyexistingDevelopmentguardSavedextension; existingA guard/bodyunchanged; no duplicateSavedguard.",
+    "governance": "New numberedADR within immutableI scope; onlyclosed registry/negativecases andadditive034followup/navigation; no gate/runtime/product/assembly expansion."
+  },
+  "preCodeObservation": {
+    "all14IAssetBasesAnd14MetasAbsentNativeAndGit": true,
+    "paths": [
+      "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs.meta",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs.meta",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml.meta",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss.meta",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json.meta",
+      "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+      "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity.meta",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs.meta",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs.meta"
+    ],
+    "trackedWorkingCopyChangesDuringReview": [
+      "PROJECT_CONTROL/CURRENT_STATE.md",
+      "PROJECT_CONTROL/WORK_QUEUE.md"
+    ],
+    "trackedChangeBoundary": "Observed Root status preparation only; named historical anchor/draft objects reviewed separately. No claim current wholeworktree is clean.",
+    "ownEvidenceUntrackedAllowedCount": 56
+  },
+  "openHighs": [],
+  "remainingGates": [
+    "Separate documented R acceptance of this exact numbered draft before I source creation",
+    "At acceptance, actual closed ADR036 registry/status/range/count/followup/negativecases and navigation must agree; historical draft is not an architecture17PASS claim",
+    "I implementation/native/freeze/regularCI and authoritative non-main integration remain future independent gates"
+  ],
+  "actions": "Read-only localGit/API-free source/evidence review and own ignored report. No Git/source/Unity mutations."
+}

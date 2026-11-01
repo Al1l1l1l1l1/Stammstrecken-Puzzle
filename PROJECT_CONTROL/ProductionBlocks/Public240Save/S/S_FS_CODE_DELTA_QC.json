@@ -1,0 +1,588 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-10-19T10:58:39.277Z",
+  "role": "entry_audit independent complete final FS/repository/test source and original evidence review; no runtime/Unity/Git/CI mutation",
+  "verdict": "PASS_NARROW_FS_REPOSITORY_SOURCE_AND_ARCHIVE_LOWDISK_CORRECTIONS_OS_TIMEOUT_AND_DURABLE_LINUX_PACK_PENDING",
+  "exactSources": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "bytes": 18373,
+      "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "bytes": 22637,
+      "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba",
+      "encoding": "gzip/base64"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+      "bytes": 44028,
+      "sha256": "3751fc8901d31406aa28f31efe0af8fc7057cea669181e6ca4075aa34a6fc87b",
+      "encoding": "gzip/base64"
+    }
+  ],
+  "sourcePack": "S_FS_FINAL_DELTA_SOURCE_BINDING.json",
+  "compilerMetadata": {
+    "path": "S_FS_COMPILER_METADATA_QC.json",
+    "sha256": "aaeb1cb056b58688c6091eb120b3d2f2c4813a6a9fe7dd4d33a9104801866314",
+    "meaning": "Original PE CodeView GUID equals original portablePDB id; compiler SHA256 Document checksums equal exact current FS and repository bytes."
+  },
+  "closedFindings": [
+    {
+      "id": "S-FS-01",
+      "status": "CLOSED_NARROW",
+      "source": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736",
+      "proof": "Same-directory unique staging, persistentflush+fullreread, nonoverwritingfinalMove+fullreread. Actual owner original partial-archive regressions0/2failed->2/2passed; current299includesfresh recovery/migrationretry and finalizationwindows. Original old runtimef4c9490 preserved separately; no asserted equality to initial reviewer source hash."
+    },
+    {
+      "id": "S-REPO-01",
+      "status": "CLOSED_NARROW",
+      "source": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba",
+      "proof": "NumericIOException HResult112/39/28 mapsSAVE_LOW_DISK; actual3 numeric exception tests pass, no localizedmessage dependency."
+    }
+  ],
+  "windows": {
+    "evidenceSha256": "5dc34284fe30c05199cda7144b18132d7fa691df402631370f5230c2d120746f",
+    "xmlSha256": "9121f01f8bfc150fbe4cca841ea4db3a7db0f0ca33b3705e33f432138553dc3c",
+    "total": 299,
+    "passed": 299,
+    "failed": 0,
+    "skip": 0,
+    "methods": {
+      "ActualIOExceptionHResultMapsDiskFullWithoutDependingOnMessage": 3,
+      "AfterPendingOnlyPreparationNewPendingFailureKeepsOldHighestInMainOrBackup": 3,
+      "BadOrUnknownSourceIsPreservedWithFullRawHash": 3,
+      "CancellationAtCoreTransitionNeverClaimsRollbackAfterPossibleEffect": 9,
+      "CancellationWhileAnotherInstanceOwnsWriterLockHasNoEffect": 1,
+      "ConfirmedCorruptResetPreservesEveryOriginalAndStaleResetDoesNothing": 1,
+      "ConstructorDoesNotProvisionMissingPrivateRootAndExplicitProvisionCreatesNoProfile": 1,
+      "CorruptMainNeverOverwritesSoleHighestBackupDuringNormalCommit": 2,
+      "EqualPayloadTieAcceptsDifferentEnvelopeButRetainsDistinctRawHashes": 1,
+      "EveryBackupRotationWindowPreservesHighestRegularCopy": 8,
+      "EveryCoreCrashWindowPreservesNormallyLoadableHighestTruth": 9,
+      "EveryMutationFileWindowHasLowdiskPermissionAndCancellationTruthOracle": 75,
+      "EverySourceArchiveWindowFailurePreventsDestructiveCandidateWrite": 78,
+      "ExistingMainFallbackPartialFailureRetainsNormallyLoadableTruth": 1,
+      "ExistingMainUnsupportedReplaceExercisesRealCopyFallback": 1,
+      "ExplicitRecoveryIsReadOnlyAndKeepsFullWriterObservation": 3,
+      "FinalMainRereadMutationCannotBeAcknowledgedCommitted": 1,
+      "HighestGenerationWinsIndependentOfCandidateRole": 3,
+      "IndependentRepositoryInstancesRaceWithExactlyOneCasWinner": 1,
+      "InvalidLogicalPathSegmentsNeverBecomeSanitizedFilesystemPaths": 6,
+      "LastSafeGenerationCanCommitAndExhaustedGenerationCannotWrite": 1,
+      "MigrationArchiveFailureCannotWriteTargetOrChangeOriginal": 13,
+      "MigrationWritePreservesExactOriginalV1Source": 1,
+      "NonselectedReadFailurePreventsRecoveryEvenWhenSelectedValid": 1,
+      "NormalCommitDoesNotAutomaticallyRepairProtectedCandidates": 3,
+      "OrdinaryCommitDoesNotImplicitlyInitializeButExplicitCreateDoes": 1,
+      "OversizedRealCandidateIsFailedWithoutInventedPrefixHash": 1,
+      "PartialArchiveCrashAllowsFreshExplicitRecoveryOrMigrationRetry": 2,
+      "PendingOnlyHighestPreparationFailureNeverDestroysOriginalPending": 8,
+      "PendingOnlyMigrationPreparationFailureRetainsRegularHighestSource": 8,
+      "PendingOnlyRecoveryPreparationFailureKeepsHighestRegularTruth": 8,
+      "PermissionFailureAfterPossibleEffectIsUncertainAndPreservesTruth": 3,
+      "PreCancelledCommitHasNoEffect": 1,
+      "PreCancelledReadAndRecoveryHaveNoStorageEffect": 1,
+      "ProfileCatalogAndConsumerNamespacesArePhysicallyDisjoint": 1,
+      "RawArchiveWithMismatchingBytesIsNeverOverwrittenOrAccepted": 1,
+      "RealReparseRootIsRejectedAndOutsideTargetIsUnchanged": 1,
+      "RecoveryArchiveFailureKeepsEveryOriginalCandidateUnchanged": 13,
+      "RecoveryLeaseCannotAuthorizeAnotherPayloadOrNewProcess": 1,
+      "RecoveryPromotionBindsExactPayloadAndMaxObservedGeneration": 1,
+      "RecoveryPromotionRejectsChangedUnselectedEnvelopeWithoutWrite": 1,
+      "RecoveryRejectsEveryChangedSourceIncludingUnselectedEnvelope": 5,
+      "RecoveryRequestForAnotherBindingCannotSelectLocalCandidate": 2,
+      "SoleValidCandidateReturnsExactCompleteSourceHash": 3,
+      "SplitBrainNeverExposesAuthoritativeSnapshotAndConservativeMainMustBeHighest": 2,
+      "ThreeMissingNeverCreatesEvenDirectoryOrDefaultPayload": 1,
+      "UnreadableCandidateIsFailedNotMissingOrPrefixHashed": 1,
+      "WrongExpectedOrOfferedGenerationNeverWrites": 4
+    },
+    "verifiedOriginalPackedBlocks": [
+      {
+        "path": "/acceptance",
+        "originalPath": "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/R_OS_HANDLE_ACCEPTANCE.md",
+        "bytes": 2057,
+        "sha256": "f9b77d79a9601558d9408f0384548c7fbd0ae555bd920a775fabbac31fff6d4a"
+      },
+      {
+        "path": "/originals/0",
+        "originalPath": ".utmp/atomic-compile/atomic-oshandle-provision-current-results.xml",
+        "bytes": 201164,
+        "sha256": "9121f01f8bfc150fbe4cca841ea4db3a7db0f0ca33b3705e33f432138553dc3c"
+      },
+      {
+        "path": "/originals/1",
+        "originalPath": ".utmp/atomic-compile/atomic-oshandle-provision-current-run.txt",
+        "bytes": 201172,
+        "sha256": "3476aced0a9177a4395255d32e8c389e6b9c079a7d6367055683cdc3f67c2f5e"
+      },
+      {
+        "path": "/currentSources/0",
+        "originalPath": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+        "bytes": 18373,
+        "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736"
+      },
+      {
+        "path": "/currentSources/1",
+        "originalPath": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+        "bytes": 22637,
+        "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+      },
+      {
+        "path": "/currentSources/2",
+        "originalPath": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+        "bytes": 44028,
+        "sha256": "3751fc8901d31406aa28f31efe0af8fc7057cea669181e6ca4075aa34a6fc87b"
+      },
+      {
+        "path": "/currentSources/3",
+        "originalPath": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+        "bytes": 60,
+        "sha256": "ad626d4519c4266c94717031d5e8b60780491d7849ebbe2d914176f0fda0f733"
+      },
+      {
+        "path": "/currentRuntime/0",
+        "originalPath": ".utmp/atomic-compile/STP.Infrastructure.Persistence.dll",
+        "bytes": 146944,
+        "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+      },
+      {
+        "path": "/currentRuntime/1",
+        "originalPath": ".utmp/atomic-compile/STP.Infrastructure.Persistence.pdb",
+        "bytes": 51896,
+        "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+      },
+      {
+        "path": "/currentRuntime/2",
+        "originalPath": ".utmp/atomic-compile/STP.Tests.Persistence.EditMode.dll",
+        "bytes": 65024,
+        "sha256": "8366049f41458d79f03ec2c8d82a05dc8c2fee857d6d2c3fd6d732f13cde1766"
+      },
+      {
+        "path": "/currentRuntime/3",
+        "originalPath": ".utmp/atomic-compile/STP.Tests.Persistence.EditMode.pdb",
+        "bytes": 34704,
+        "sha256": "8e0305b2113430a1a2c77b305416c71f1ef8e5880393d77066cbe60e9855d98c"
+      },
+      {
+        "path": "/interprocess",
+        "originalPath": ".utmp/interprocess-lock/run-2026-10-19T10-47-03.714Z/INTERPROCESS_EVIDENCE.json",
+        "bytes": 384832,
+        "sha256": "98bbed566fb14506ab242f194a2e6db489942ff9ba1f2a799861cb62fdf08e26"
+      },
+      {
+        "path": "windows/interprocess/sourceHarness/0",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\LockProcess.cs",
+        "bytes": 3251,
+        "sha256": "1ce971c765c739fbf59d0de5ba41011515600d31a2458761b21204d0481f53f2"
+      },
+      {
+        "path": "windows/interprocess/sourceHarness/1",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\LockProcess.rsp",
+        "bytes": 24002,
+        "sha256": "058c257923efc9e6fbcadbec0742f1721faba5b10468ed2751389a07ed156d67"
+      },
+      {
+        "path": "windows/interprocess/sourceHarness/2",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\compile-oshandle.txt",
+        "bytes": 131,
+        "sha256": "376effd16100e28690a5f05be5258a4dcf4ecaa0363803d95c506d42473a9160"
+      },
+      {
+        "path": "windows/interprocess/sourceHarness/3",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run.cjs",
+        "bytes": 7385,
+        "sha256": "a9245253e0bdcac9523c0d7d84f90c3daf5e2d419cf363834d84a679de8c06af"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/0",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\LockProcess.exe",
+        "bytes": 7680,
+        "sha256": "467f9b6768969f21131d6eec0c113dec25d043a55d13f34126b841261cd75953"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/1",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Infrastructure.Persistence.dll",
+        "bytes": 146944,
+        "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/2",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Infrastructure.Persistence.pdb",
+        "bytes": 51896,
+        "sha256": "1fb81852b0c22a560d10183b15a954ed4823e00b9984f5600ecbc8b0f8eca66d"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/3",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Application.dll",
+        "bytes": 131072,
+        "sha256": "09bc2bf8c840c17555a582ad0a352ea1800b0305f7b3658d89684d42c3c76f99"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/4",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Puzzle.Domain.dll",
+        "bytes": 36352,
+        "sha256": "d9a95e268d1142e03fdf7b516e3e9331dd91da438c774be8293cefcb1f7b145a"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/5",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Infrastructure.Content.dll",
+        "bytes": 109568,
+        "sha256": "1177b9d49896e52dc95d4e272be64540ff68cbeb4853b7564782ce61c30f7bc3"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/6",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Tests.Persistence.EditMode.dll",
+        "bytes": 65024,
+        "sha256": "8366049f41458d79f03ec2c8d82a05dc8c2fee857d6d2c3fd6d732f13cde1766"
+      },
+      {
+        "path": "windows/interprocess/actualAssemblies/7",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\atomic-compile\\STP.Tests.Application.EditMode.dll",
+        "bytes": 45568,
+        "sha256": "cf16e85e7dae0303b13485ecc88c1b40da568cae26992836cbd5ca2f7882175e"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/0",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\abandoned-owner.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/1",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\abandoned-owner.stdout.txt",
+        "bytes": 147,
+        "sha256": "6f75c3f4e20a86e6074430c9bbefa6ee2bd819230068588eb856caa32a613c3a"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/2",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\abandoned-waiter.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/3",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\abandoned-waiter.stdout.txt",
+        "bytes": 193,
+        "sha256": "51f2cf5614ccd560a31969729d790a78df478b7713389bc2550a4eb662a48919"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/4",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cancel-owner.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/5",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cancel-owner.stdout.txt",
+        "bytes": 248,
+        "sha256": "a3438e941be8c286647e61f9cb8d598779f1015dd530e1c174a430017dc57397"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/6",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cancel-waiter.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/7",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cancel-waiter.stdout.txt",
+        "bytes": 150,
+        "sha256": "7ecd82e2f9de776942d2bbf85f1dba18d5a1864955acdf246be7d90a1db72c27"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/8",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-a.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/9",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-a.stdout.txt",
+        "bytes": 152,
+        "sha256": "e6ce5609107d747082b27ba902b9aa970613a4f0523458f2a251b010415fb4ed"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/10",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-b.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/11",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-b.stdout.txt",
+        "bytes": 175,
+        "sha256": "60a853c53d3a9cc881fc2c98ef63c2485126c6d3bb8ec7d894983c4cc8d022bf"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/12",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-owner.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/13",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-owner.stdout.txt",
+        "bytes": 248,
+        "sha256": "6ce3585dff702972679f34e982ab1d22d20b73eec4adcdbe37f6eb1298ef8254"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/14",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-seed.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/15",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\cas-seed.stdout.txt",
+        "bytes": 103,
+        "sha256": "6292795a87e00601d52b7f2a40ad3e25b7f7cfff872488a78bcaa8605ea0daf5"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/16",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\fresh-process-load.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/17",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\fresh-process-load.stdout.txt",
+        "bytes": 113,
+        "sha256": "e84510ae7688278fad091c4a8a19e70be6f10a33e8291206e6de75276db88222"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/18",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\root-provision.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/19",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\root-provision.stdout.txt",
+        "bytes": 108,
+        "sha256": "809f0386c0f4f905abef03bd6a26b4b5ae407a2feee3ac5f3e2cc9a3f30dacef"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/20",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\serial-owner.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/21",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\serial-owner.stdout.txt",
+        "bytes": 248,
+        "sha256": "3e5e54be6905bc6368932a302050d5c005f7b3607ac73d0174d3b29cc3f5d182"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/22",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\serial-waiter.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "windows/interprocess/originalOutputs/23",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\public240-s\\.utmp\\interprocess-lock\\run-2026-10-19T10-47-03.714Z\\serial-waiter.stdout.txt",
+        "bytes": 193,
+        "sha256": "0c44ccd5ce2ec6dcfc23d68fdde167a3d2978f1e8eeda3f33c8e70fe82a35344"
+      },
+      {
+        "path": "windows/interprocess/actualCandidateBytes/0",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\ipc-2fff3f40\\contract-test-v1\\contract-save-v1\\5ae1e6ee04a625ce357517ad60bff6580bb074eefdea323a796af71ed91b9bd3\\contract-profile-1\\save.backup.json",
+        "bytes": 2873,
+        "sha256": "72d88c4250f6996252a65507b1f255e0850111b309ac1a9f725bb3420ae63c47"
+      },
+      {
+        "path": "windows/interprocess/actualCandidateBytes/1",
+        "originalPath": "C:\\STP\\Stammstrecken-Puzzle-WP008\\.utmp\\ipc-2fff3f40\\contract-test-v1\\contract-save-v1\\5ae1e6ee04a625ce357517ad60bff6580bb074eefdea323a796af71ed91b9bd3\\contract-profile-1\\save.json",
+        "bytes": 2873,
+        "sha256": "e576a91bb6d96196dd83dcea1675ee408afc27c9c1681c60fe1354949a2c36d8"
+      },
+      {
+        "path": "windows/interprocess/runtimeSourceBindings/0",
+        "originalPath": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+        "bytes": 18373,
+        "sha256": "a6bb38615ca2fa8397bbd8c342ed6aebbd8159b10ecbac70790db87011211736"
+      },
+      {
+        "path": "windows/interprocess/runtimeSourceBindings/1",
+        "originalPath": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+        "bytes": 22637,
+        "sha256": "85872e4ea90543c5cc9ad145c261d103a475c0239f655905bfdd9b5d282f0bba"
+      }
+    ],
+    "interprocessSha256": "98bbed566fb14506ab242f194a2e6db489942ff9ba1f2a799861cb62fdf08e26",
+    "processes": 12,
+    "checks": [
+      {
+        "label": "Explicit private root provision before constructor/read/lock",
+        "passed": true,
+        "utc": "2026-10-19T10:47:03.844Z"
+      },
+      {
+        "label": "Second independent process cannot acquire while first owns same physical profile",
+        "passed": true,
+        "utc": "2026-10-19T10:47:05.208Z"
+      },
+      {
+        "label": "Second process acquires after explicit release",
+        "passed": true,
+        "utc": "2026-10-19T10:47:05.266Z"
+      },
+      {
+        "label": "Waiting independent process cancellation has no acquisition",
+        "passed": true,
+        "utc": "2026-10-19T10:47:06.805Z"
+      },
+      {
+        "label": "Cancellation did not release other process lock",
+        "passed": true,
+        "utc": "2026-10-19T10:47:06.805Z"
+      },
+      {
+        "label": "Owner releases after waiting process cancels",
+        "passed": true,
+        "utc": "2026-10-19T10:47:06.860Z"
+      },
+      {
+        "label": "Abandonment waiter blocked before owner termination",
+        "passed": true,
+        "utc": "2026-10-19T10:47:08.207Z"
+      },
+      {
+        "label": "Actual killed owner releases/abandons lock and separate waiter acquires",
+        "passed": true,
+        "utc": "2026-10-19T10:47:08.269Z"
+      },
+      {
+        "label": "Explicit real profile initialized generation1",
+        "passed": true,
+        "utc": "2026-10-19T10:47:08.909Z"
+      },
+      {
+        "label": "Both separate CAS processes block behind third physical writer owner",
+        "passed": true,
+        "utc": "2026-10-19T10:47:10.307Z"
+      },
+      {
+        "label": "Both real CAS calls return supported outcomes",
+        "passed": true,
+        "utc": "2026-10-19T10:47:10.473Z"
+      },
+      {
+        "label": "Exactly one interprocess CAS winner and one Conflict",
+        "passed": true,
+        "utc": "2026-10-19T10:47:10.473Z"
+      },
+      {
+        "label": "New independent process reads actual winning generation2",
+        "passed": true,
+        "utc": "2026-10-19T10:47:11.108Z"
+      }
+    ],
+    "actualRuntime": "C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Data/MonoBleedingEdge/bin/mono.exe",
+    "claim": "Owner actual Mono executable assembly run and separate OS processes, not UnityEditor or CI."
+  },
+  "linux": {
+    "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-linux-lock/out/run-2026-10-19T10-52-00.099Z/LINUX_INTERPROCESS.json",
+    "bytes": 31294,
+    "sha256": "4be93a402347ee57d25e5a26d9130603a6972bb0b922f3c753246f295f0fd250",
+    "image": "mono@sha256:749851d74745492754d1ebb3c50fc335d4b84a7bb34e17a4e7c3909c5ec1212b",
+    "checks": [
+      {
+        "label": "Actual compiled FS explicitly provisions only private root before reads",
+        "passed": true,
+        "at": "2026-10-19T10:52:00.956Z"
+      },
+      {
+        "label": "Separate Linux Mono process blocked by actual directory-fd flock",
+        "passed": true,
+        "at": "2026-10-19T10:52:03.954Z"
+      },
+      {
+        "label": "Linux separate process acquires after owner descriptor close",
+        "passed": true,
+        "at": "2026-10-19T10:52:04.007Z"
+      },
+      {
+        "label": "Waiting Linux process cancellation is observed without acquiring",
+        "passed": true,
+        "at": "2026-10-19T10:52:07.023Z"
+      },
+      {
+        "label": "Cancellation leaves different process owner held",
+        "passed": true,
+        "at": "2026-10-19T10:52:07.023Z"
+      },
+      {
+        "label": "Owner releases normally after other process cancellation",
+        "passed": true,
+        "at": "2026-10-19T10:52:07.071Z"
+      },
+      {
+        "label": "Linux waiter blocked before actual kill",
+        "passed": true,
+        "at": "2026-10-19T10:52:10.095Z"
+      },
+      {
+        "label": "Kill PID comes only from exact harness child startup receipt",
+        "passed": true,
+        "at": "2026-10-19T10:52:10.095Z"
+      },
+      {
+        "label": "Kernel releases directory lock after actual owner process death",
+        "passed": true,
+        "at": "2026-10-19T10:52:10.378Z"
+      },
+      {
+        "label": "All lock-only operations left private root completely empty, no profile or lockfile",
+        "passed": true,
+        "at": "2026-10-19T10:52:10.380Z"
+      },
+      {
+        "label": "Actual Linux codec/writer initializes explicit generation1",
+        "passed": true,
+        "at": "2026-10-19T10:52:11.887Z"
+      },
+      {
+        "label": "Both actual CAS worker processes wait behind third process root lock",
+        "passed": true,
+        "at": "2026-10-19T10:52:14.838Z"
+      },
+      {
+        "label": "Both independent Linux CAS calls return supported status",
+        "passed": true,
+        "at": "2026-10-19T10:52:15.237Z"
+      },
+      {
+        "label": "Exactly one Linux interprocess CAS winner, one Conflict",
+        "passed": true,
+        "at": "2026-10-19T10:52:15.237Z"
+      },
+      {
+        "label": "Fresh process validates actual winning main generation2",
+        "passed": true,
+        "at": "2026-10-19T10:52:16.642Z"
+      }
+    ],
+    "processes": 12,
+    "persistenceDll": {
+      "file": "STP.Infrastructure.Persistence.dll",
+      "bytes": 146944,
+      "sha256": "ba58c17145a3098362cbb187ea48b2af5be56849706fbd52ce63d6fc388d98e4"
+    },
+    "sameDllAsWindows": true,
+    "harnessSha256": "1ce971c765c739fbf59d0de5ba41011515600d31a2458761b21204d0481f53f2",
+    "orchestratorSha256": "9f6159db7e1dd7aec929f3fbf4985d4984e93e380ef78392d78b58cfd3bfb78f",
+    "claims": "Actual LinuxMono6.12 Docker/WSL FFI, normal+SIGKILLowner release, cancellation, no lockfiles, oneCASwinner and freshgeneration2. Does not prove Unity6000Linux, Android or iOS/APFS."
+  },
+  "pending": [
+    "Actual30second OS waiter timeout with owner continuingtohold: current holdharnessbarrier20seconds cannot prove it. Root informed.",
+    "Durable complete Linux source/logpack and exact final-source binding before evidence closure.",
+    "Afterfinalize.after fresh retry positive useful separate regression; static existing complete finalfile handling is correct."
+  ],
+  "boundaries": "No further concrete sourceHigh in these exact2 files; full511line tests/302lineFS/complete repository read. S application/codec/policy/resource/thread/freeze/regularCI and physicalmobile gates remain separate and open."
+}

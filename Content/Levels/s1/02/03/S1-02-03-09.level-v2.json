@@ -1,0 +1,146 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-02-03-09",
+  "contentRevision": 2,
+  "grid": {
+    "width": 6,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 4
+    },
+    "b": {
+      "side": "N",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    6,
+    6,
+    1,
+    1,
+    1
+  ],
+  "columnCounts": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    5
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 2,
+    "route": 3,
+    "position": 9,
+    "titleKey": "level.s1.02.03.09.title",
+    "statusKey": "level.s1.02.03.09.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.02.03.09.entry",
+    "focus": [
+      "ENDPOINT_GEOMETRY",
+      "DENSITY"
+    ],
+    "chainDepth": 4,
+    "qualityNote": "Der Nordport liegt innen, während der Ostport weit unten sitzt; der dichte obere Kurvenzug endet in einem langen klaren rechten Schenkel. Als bewusste asymmetrische Variation darf die Kurvenlast fast ganz oben liegen.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-02-03-09-map",
+    "trainMomentId": "draft-s1-02-03-09-train",
+    "resultTextKey": "level.s1.02.03.09.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_WN"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-02-03-09/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "be77ed8cf4912cc785f83ea56128dbf4228db45445830e48a80520dfcea92532"
+    }
+  }
+}

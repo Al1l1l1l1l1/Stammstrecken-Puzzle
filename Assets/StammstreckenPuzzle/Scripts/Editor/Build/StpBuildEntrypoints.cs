@@ -55,6 +55,9 @@ namespace STP.Editor.Build
             }
 
             VerifyRenderingAndStripping();
+            DevelopmentPuzzleBuild.VerifyArtifacts();
+            Public240ReviewBuild.VerifyArtifacts();
+            SavedPublic240ReviewBuild.VerifyArtifacts();
             Debug.Log($"STP Preflight PASS: Unity {Application.unityVersion}, ProjectVersion.txt konsistent, QA-Szene vorhanden.");
         }
 
@@ -123,15 +126,27 @@ namespace STP.Editor.Build
                 throw new InvalidOperationException($"QA-Szene fehlt: {QaScenePath}");
             }
 
-            var report = BuildPipeline.BuildPlayer(new[] { QaScenePath }, locationPathName, target, options);
+            var scenes = GetQaScenePaths();
+            Debug.Log($"STP QA build scene inputs: {string.Join(", ", scenes)}.");
+            var build = new BuildPlayerOptions { scenes = scenes, locationPathName = locationPathName, target = target, options = options };
+            var report = target == BuildTarget.Android
+                ? NativeInputBuildEvidence.BuildPlayerWithEvidence(build, ReadDeclaredNativeCheckout())
+                : BuildPipeline.BuildPlayer(build);
             if (report.summary.result != BuildResult.Succeeded)
             {
                 throw new InvalidOperationException(
                     $"Build fuer {target} fehlgeschlagen: {report.summary.result}, Fehler: {report.summary.totalErrors}");
             }
 
-            Debug.Log($"STP Build PASS: {target} -> {locationPathName} ({report.summary.totalSize} Bytes).");
+            Debug.Log($"STP Build PASS: {target} -> {locationPathName} ({report.summary.totalSize} Bytes), QA scenes: {string.Join(", ", scenes)}.");
         }
+
+        /// <summary>Fresh ordered normal QA scene inputs, shared by both platform builds; no production entry is inferred.</summary>
+        public static string[] GetQaScenePaths() => new[]
+        {
+            SavedPublic240ReviewBuild.ScenePath, Public240ReviewBuild.ScenePath,
+            DevelopmentPuzzleBuild.ScenePath, QaScenePath
+        };
 
         private static void VerifyRenderingAndStripping()
         {
@@ -172,6 +187,31 @@ namespace STP.Editor.Build
                 throw new InvalidOperationException("Android/iOS Managed Stripping muss explizit Medium sein.");
             }
             Debug.Log($"STP Rendering/Stripping PASS: URP mit 2D-Renderer, {levels.arraySize} Quality-Level, Android/iOS Medium.");
+        }
+        // A checkout label accompanies the independently retained actual input archive; it never attests a clean worktree.
+        internal static string ReadDeclaredNativeCheckout()
+        {
+            string declared = Environment.GetEnvironmentVariable("STP_NATIVE_CALLER_CHECKOUT") ?? Environment.GetEnvironmentVariable("GITHUB_SHA") ?? string.Empty;
+            if (declared.Length == 0)
+            {
+                string repository = Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath, ".."));
+                var info = new System.Diagnostics.ProcessStartInfo("git", "rev-parse --verify HEAD")
+                {
+                    WorkingDirectory = repository, UseShellExecute = false, CreateNoWindow = true,
+                    RedirectStandardOutput = true, RedirectStandardError = true
+                };
+                using var process = System.Diagnostics.Process.Start(info) ?? throw new InvalidOperationException("NATIVE_INPUTS_CHECKOUT_LABEL_UNAVAILABLE");
+                if (!process.WaitForExit(10000))
+                {
+                    process.Kill();
+                    throw new InvalidOperationException("NATIVE_INPUTS_CHECKOUT_LABEL_TIMEOUT");
+                }
+                if (process.ExitCode != 0) throw new InvalidOperationException("NATIVE_INPUTS_CHECKOUT_LABEL_UNAVAILABLE");
+                declared = process.StandardOutput.ReadToEnd().Trim();
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(declared, "^[a-f0-9]{40}$"))
+                throw new InvalidOperationException("NATIVE_INPUTS_DECLARED_CHECKOUT_REQUIRED");
+            return declared;
         }
     }
 }

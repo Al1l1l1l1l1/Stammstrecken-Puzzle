@@ -1,5 +1,11 @@
 # Game State Model v0.5
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**P03–P05:** drei kostenlose Hintcredits plus maximal ein freiwilliger Videozusatz je Identity, lokales Tagesdatum/60–30–10-Meldetafel und kalibrierte vier Endlosprofile sind Produktpolicy, keine noch fehlenden Ownerfragen. Tatsächliche Claims/Save-/Lifecycle-/History-/Idempotenzverträge implementiert B/C im Gesamtauftrag; keine QAprogresspromotion.
+
 ## 1. Zustandsprinzip
 
 Der fachliche Spielzustand ist ein unveränderlicher Snapshot. Commands sind die einzige Mutationsgrenze. UI-Auswahl, Animation und SDK-Verfügbarkeit sind keine Rätselwahrheit. Persistente Zustände werden versioniert; abgeleitete Read Models können jederzeit neu erzeugt werden.
@@ -43,11 +49,10 @@ Gelb existiert nicht in `CellContent`. Es ist ausschließlich die Präsentation 
 | `OCCUPIED_MARKER` | `MARK_OCCUPIED` |
 | `TRACK_NS_TOOL` bis `TRACK_WN_TOOL` | korrespondierendes `TRACK_*` |
 | `CLEAR_TOOL` | `UNSET` |
-| `MULTI_SELECT_MODE` | Kein Zellinhalt; ändert nur Auswahlmodus. |
 
-`SelectionState` enthält sortierte eindeutige Koordinaten, den Auswahlmodus und den fokussierten Rasterpunkt. Eine Einzelfeldanwendung erzeugt `ApplyCellContent` auf genau eine Koordinate. Mehrfachauswahl sammelt Koordinaten transient; die bestätigte Anwendung erzeugt einen **atomaren** `ApplyCellContentBatch`-Command. Bereits identischer Inhalt ist ein No-op und erzeugt keinen Undo-Eintrag.
+`ActiveToolState` und Fokus sind transient. Im Produkt gibt es keine Mehrfachauswahl. Ein direkter Tap berechnet vor `ApplyCellContent`: aktiver Inhalt entspricht aktuellem Zellinhalt→UNSET, sonst aktiver Inhalt; CLEAR_TOOL→UNSET. Daraus entsteht genau eine atomare Zelländerung/Undo. Der vorhandene Batchcommand darf als interner Domainvertrag/testbare API erhalten bleiben, wird aber nicht als Multi-/Anwenden-UI angeboten. Ein echter Domainno-op bleibt no-op; ein UI-Identisch-Tap ist jetzt bewusst Leeren, kein no-op.
 
-Die konkreten Touchgesten sind ein offenes Produktdetail. Alle Gesten müssen dieselben Commands erzeugen; ihre spätere Festlegung erfordert keine Domainänderung.
+Die direkte Sticky-Tool-/Toggle-Tap-Bedienung ist jetzt ausdrücklich entschieden. Alle Gesten müssen dieselben Commands erzeugen; ihre spätere Festlegung erfordert keine Domainänderung.
 
 ## 5. PuzzleSessionState
 
@@ -72,7 +77,7 @@ Die konkreten Touchgesten sind ein offenes Produktdetail. Alle Gesten müssen di
 
 Ein Entwurf wird nur bei exakt passendem Tripel `{puzzleId, publicPuzzleHash.profile, publicPuzzleHash.sha256}` geladen. Reine Dokument- oder Proofmigrationen mit identischem fachlichem Hash erhalten ihn. In einem veröffentlichten Katalog ist eine andere Semantik unter derselben Puzzle-ID `LVL-PUBLISHED-PUZZLE-MUTATED` und blockiert den Katalog; der Entwurf wird archiviert und Fortschritt nie still übertragen.
 
-`hintCount` zählt ausschließlich in diesem Versuch tatsächlich dargestellte Hinweise. Der Anspruch auf kostenlosen, regulären oder werbebasierten Hinweis ist kein Sessionboolean. Ein persistenter `HintEntitlementState` mit Policyversion, Level-/Modusbezug, verfügbaren Credits und idempotenten Claim-IDs ist als Application-/Savevertrag reserviert. Seine finale Semantik bleibt wegen `BLOCKER-PROD-001` unveröffentlicht, bis „neues Level“ und das reguläre Hilfekontingent produktseitig präzisiert sind.
+`hintCount` zählt ausschließlich in diesem Versuch tatsächlich dargestellte Hinweise. Der Anspruch auf kostenlosen, regulären oder werbebasierten Hinweis ist kein Sessionboolean. Ein persistenter `HintEntitlementState` mit Policyversion, Level-/Modusbezug, verfügbaren Credits und idempotenten Claim-IDs ist als Application-/Savevertrag reserviert. Seine Produktsemantik ist mit P03 konkret entschieden; Identity-/Credit-/Save-/Rewardimplementation und echte Tests bleiben das offene Liefergate BLOCKER-PROD-001.
 
 ## 6. Sessionphasen
 
@@ -132,7 +137,7 @@ Der Rätseltimer nutzt `IClock.MonotonicNow`. Er startet mit dem ersten Command,
 
 `directSolved` gilt nur, wenn beim ersten erfolgreichen Abschluss `usedEmptyMarker == false`, `usedOccupiedMarker == false` und `hintCount == 0`. Undo setzt diese sticky Flags nicht zurück. Diese Regel verändert keine Sterne und keine Geduldspunkte.
 
-Sterne werden aus der ersten erfolgreichen aktiven Zeit beziehungsweise in freigeschalteter Betriebsrevision aus einer besseren Zeit berechnet. Konkrete Schwellen kommen später als versionierte Leveldaten; fehlende Schwellen ergeben ausschließlich einen Stern und keinen Fehler.
+Sterne werden aus der ersten erfolgreichen aktiven Zeit beziehungsweise in freigeschalteter Betriebsrevision aus einer besseren Zeit berechnet. Konkrete Schwellen kommen später als versionierte Leveldaten; fehlende Schwellen ergeben im internen Review ausschließlich einen Stern und keinen technischen Fehler; eine solche Nullschwellenkampagne ist kein vollständiger marktfähiger Launch.
 
 ## 10. Fortschritt und Economy
 
@@ -176,3 +181,7 @@ Folgende Zustände bleiben bewusst außerhalb des Saves: aktives Tool, gelbe Zel
 [10]: ../DECISIONS/ADR-023-releasekandidat-und-kosmetikclaims.md "ADR-023 – Releasekandidat und Kosmetikclaims"
 [11]: ../DECISIONS/ADR-027-endless-no-reward-terminalpfad.md "ADR-027 – Providerfreier Endless-No-Reward-Terminalpfad"
 [12]: ../DECISIONS/ADR-028-cosmetics-reservation-binding.md "ADR-028 – Bindende Cosmetics-Claim-Reservation"
+
+## Gemeinsame Technikbasis Public240 und lokaler Save
+
+[ADR-034](../DECISIONS/ADR-034-isolierter-public240-reviewpfad.md) ergänzt ausschließlich den isolierten nichtproduktiven Public240Review-Entry. [ADR-035](../DECISIONS/ADR-035-lokaler-save-und-checkpoint-vertrag.md) konkretisiert typisierte Zusatzports, die Wiederverwendung des bestehenden strikten JCS über Injektion ohne neue Assemblykante, validierte vollständige Checkpoints und CAS/Commit-vor-Fahrt. Produktionsgates, Hashprojektionen, Save-v2-/Migrations-/Ledgerverträge und offene Produktblocker bleiben unverändert. Eigene QA-Profile und Claims werden niemals zu Produktprofilen übertragen. Fachimplementierung und tatsächliche Nachweise folgen getrennt verankerten WPs auf abgeschlossenem T.

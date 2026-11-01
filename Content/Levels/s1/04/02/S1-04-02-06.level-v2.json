@@ -1,0 +1,179 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-04-02-06",
+  "contentRevision": 2,
+  "grid": {
+    "width": 7,
+    "height": 7
+  },
+  "endpoints": {
+    "a": {
+      "side": "E",
+      "index": 3
+    },
+    "b": {
+      "side": "S",
+      "index": 1
+    }
+  },
+  "rowCounts": [
+    5,
+    2,
+    3,
+    6,
+    2,
+    2,
+    1
+  ],
+  "columnCounts": [
+    6,
+    5,
+    1,
+    3,
+    4,
+    1,
+    1
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 4,
+    "route": 2,
+    "position": 6,
+    "titleKey": "level.s1.04.02.06.title",
+    "statusKey": "level.s1.04.02.06.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.04.02.06.entry",
+    "focus": [
+      "COMBINATION",
+      "CHAIN"
+    ],
+    "chainDepth": 8,
+    "qualityNote": "Der obere breite Bogen, der mittige Ostarm und die linke untere Wechselkurve werden über zwei fast volle Spalten verbunden. Count 1 in Spalte 2 lässt nur einen Querübergang zu; das früh erkennbare Feld verlangt danach Kombination statt eines zweiten Extremankers.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-04-02-06-map",
+    "trainMomentId": "draft-s1-04-02-06-train",
+    "resultTextKey": "level.s1.04.02.06.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 6,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-04-02-06/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "a037b17276f9f727fba9b537849649eb8e8c7ec55dec03c0b54ca434ebc1448d"
+    }
+  }
+}

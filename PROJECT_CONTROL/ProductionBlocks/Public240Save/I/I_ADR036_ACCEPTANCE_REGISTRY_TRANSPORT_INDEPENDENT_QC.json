@@ -1,0 +1,781 @@
+{
+  "at": "2026-10-19T13:19:19.830Z",
+  "verdict": "PASS_TARGETED_ADR036_ACCEPTANCE_REGISTRY_AND_ORIGINAL_TRANSPORT_SEQUENCE",
+  "scope": "Only supplied acceptance/registry/source-view transport delta at exact precode commit; no new P/A/S inventory review or I runtime review.",
+  "commit": {
+    "sha": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+    "tree": "b076a72d594f7a5af4e609fa5e9dbb492b9f3936",
+    "soleParent": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+    "computedRawCommitSha1": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+    "rawCommitSha256": "9d1a386472b582892ec647a07455362a1af334405a01533da9841683c07b9590",
+    "changedPaths": 71,
+    "all71WithinOwnImmutableManifest": true,
+    "all14IAssetBasesAnd14MetasAbsentInCommittedTree": true
+  },
+  "acceptance": {
+    "at": "2026-10-19T13:13:31.376Z",
+    "decision": "R_ADR036_TECHNICAL_ACCEPTED_BEFORE_I_CODE",
+    "sha256": "9a4f9ebc40903e1b55060e719675558a34f07b08356f685c41c2af81d1af898d",
+    "exactDraftCommit": "f16f99cc269f0b9ece4530d41d1ed948b193ddf4",
+    "exactDraftSha256": "9af498cd2c3b2e3885a296fefa730e8713cda72a8588651be1e805284a30183e",
+    "independentNumberedReviewSha256": "d4db9ee0b777ff799e9fa8f12d611e2d1a28d57caa21e8a736d189e84853b5bd",
+    "technicalBodyUnchangedFromReviewedDraft": true,
+    "old034BodyPreservedWithAdditiveFollowupOnly": true,
+    "notProductOrMainAcceptance": true
+  },
+  "registry": {
+    "targetedCheckSha256": "71bc67d5d28097ef1d65b79c8eb4fd6f2b1be5a480598859ec5f5492e5f866eb",
+    "actualValidatorNativeSha256": "396fc17f2060c91890399449e3ed2c63c741e02eade1d835955f03fccc9ea289",
+    "committedValidatorGitLfSha256": "4d98ef0d786b48b03dec9ed0eb9439fc5f38c3fc9283c39e3030f7b4144eb21e",
+    "gitNativeOnlyCrLfLfDifference": true,
+    "exactClosedDeltaOnly": [
+      "CURRENT_ADR_STATUS adds36Angenommen",
+      "FOLLOW_UPS adds34→36",
+      "Two finite inventory/index ranges extend1..35to1..36",
+      "Index accepted-count literal26→27; historical replaced9 unchanged",
+      "Existing34/35 missing/statusselftest loop extends with36"
+    ],
+    "allOldStatusesFollowupsAndGateLogicPreserved": true,
+    "index36Total27Accepted9Replaced": true,
+    "actualTargetedResults": {
+      "positiveInventoryAdrRelativeLinkErrors": [],
+      "missingIndex": [
+        "adr-index:missing:036"
+      ],
+      "wrongIndexStatus": [
+        "adr-index:status:036"
+      ],
+      "actualSameAdrCheckMutations": [
+        {
+          "case": "exact actual adr_check missing old034 backlink",
+          "errors": [
+            "adr:follow-up:34:36"
+          ]
+        },
+        {
+          "case": "exact actual adr_check wrong accepted status",
+          "errors": [
+            "adr:status:ADR-036-gespeicherter-public240-qa-entry.md"
+          ]
+        }
+      ]
+    },
+    "helperTransport": {
+      "bytes": 3301,
+      "sha256": "482641771b3ce941b84d8a1a557c99a48425937fc7550672870b16753f24e741",
+      "matchesDeclaredHash": true,
+      "sourceActuallyCallsImportedUnmodifiedAdrCheckOnTemporaryDecisionCopies": true,
+      "sourceDoesNotWeakenOrRewriteValidator": true
+    },
+    "verificationBoundary": "Executed targeted Root report and complete helper bytes are independently bound and inspected. Reviewer did not rerun tests or claim full17/18/selftests/native/CI at this acceptance commit."
+  },
+  "sourceViewTransports": {
+    "copyBindingSha256": "ebd807ccd08dd85590bccca8e182be7fd5beda40371089e7d183843f932c5739",
+    "copiedInputs": [
+      {
+        "name": "LA_FINAL_BINDING.json",
+        "nativeBytes": 2029,
+        "nativeSha256": "e1190e720ee6d2184734313b7843a9772a3e049ee8609addcf0dc7759fe18a0c",
+        "gitBytes": 2029,
+        "gitSha256": "e1190e720ee6d2184734313b7843a9772a3e049ee8609addcf0dc7759fe18a0c",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "LS_FINAL_BINDING.json",
+        "nativeBytes": 2397,
+        "nativeSha256": "4e2a0b42b7038f53435561393179b605ee62cc3e6af41c2c626ae84b4afbcffb",
+        "gitBytes": 2397,
+        "gitSha256": "4e2a0b42b7038f53435561393179b605ee62cc3e6af41c2c626ae84b4afbcffb",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "A_F_DURABLE_CI_PACK.json",
+        "nativeBytes": 2190459,
+        "nativeSha256": "4ab4a9040f1e1c68b471279cb9ead3415b1625c06c8bfe4f57409ed50967af8c",
+        "gitBytes": 2190459,
+        "gitSha256": "4ab4a9040f1e1c68b471279cb9ead3415b1625c06c8bfe4f57409ed50967af8c",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "A_F_CI_EVIDENCE.json",
+        "nativeBytes": 66244,
+        "nativeSha256": "a76b030e07277f55fa437475276943e535f08fc2ed49ea9210c9838112bab0c9",
+        "gitBytes": 66244,
+        "gitSha256": "a76b030e07277f55fa437475276943e535f08fc2ed49ea9210c9838112bab0c9",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "A_F_FINAL_INDEPENDENT_QC.json",
+        "nativeBytes": 18248,
+        "nativeSha256": "95d89d21c0e3af9a35903cd5c27080a7b51521cbf4ea5a82da94f5d0a54bed1e",
+        "gitBytes": 18248,
+        "gitSha256": "95d89d21c0e3af9a35903cd5c27080a7b51521cbf4ea5a82da94f5d0a54bed1e",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "A_F_FINAL_INDEPENDENT_QC.md",
+        "nativeBytes": 1698,
+        "nativeSha256": "76adfcaeb5d53a9636561db6dc63244fce31265cce4d573167f92e2d0877caf9",
+        "gitBytes": 1698,
+        "gitSha256": "76adfcaeb5d53a9636561db6dc63244fce31265cce4d573167f92e2d0877caf9",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "A_FREEZE_GIT_OBJECT_QC.json",
+        "nativeBytes": 25693,
+        "nativeSha256": "5a65f12ade4b380af21bff60e6fc422c178a35eab002ab7c0ae45c11fa64d9ac",
+        "gitBytes": 25211,
+        "gitSha256": "bc2a8f30745c0a8d8ba511cea94c11d8acbeb4c539ec77969fad066403db9f28",
+        "gitProfile": "sole-native-CRLF-to-Git-LF",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_DURABLE_CI_PACK.json",
+        "nativeBytes": 2717233,
+        "nativeSha256": "ab26d67d114caf8815efca459ec8e95852a93cf8f38bc1a7cbb1c208b60021be",
+        "gitBytes": 2717233,
+        "gitSha256": "ab26d67d114caf8815efca459ec8e95852a93cf8f38bc1a7cbb1c208b60021be",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_CI_EVIDENCE.json",
+        "nativeBytes": 126474,
+        "nativeSha256": "1d846578bf571b0b54a0863a0541f448bdb423945ecc694de6c9ef57dbc5f724",
+        "gitBytes": 126474,
+        "gitSha256": "1d846578bf571b0b54a0863a0541f448bdb423945ecc694de6c9ef57dbc5f724",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_FINAL_INDEPENDENT_QC.json",
+        "nativeBytes": 2801403,
+        "nativeSha256": "b36987ff800c545b7e7d26baa50d0a9b807ae2ae09417ad056b65c23726d5eee",
+        "gitBytes": 2801403,
+        "gitSha256": "b36987ff800c545b7e7d26baa50d0a9b807ae2ae09417ad056b65c23726d5eee",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_FINAL_INDEPENDENT_QC.md",
+        "nativeBytes": 1879,
+        "nativeSha256": "bc0464543befd2d08f4927a4fcb1c208c9e5164d02bccc87941cac0213154b3d",
+        "gitBytes": 1879,
+        "gitSha256": "bc0464543befd2d08f4927a4fcb1c208c9e5164d02bccc87941cac0213154b3d",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_ROOT_PACK_INDEPENDENT_QC.json",
+        "nativeBytes": 5253,
+        "nativeSha256": "c683fa49ec880b33942b8ad69050a339297375852a81dd815eafb60393cad694",
+        "gitBytes": 5253,
+        "gitSha256": "c683fa49ec880b33942b8ad69050a339297375852a81dd815eafb60393cad694",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_ROOT_PACK_INDEPENDENT_QC.md",
+        "nativeBytes": 1014,
+        "nativeSha256": "4b6fd07f3ca1d880f9704bafad25ce645e9db21c7426a6da2ae6edd24f48e5f8",
+        "gitBytes": 1014,
+        "gitSha256": "4b6fd07f3ca1d880f9704bafad25ce645e9db21c7426a6da2ae6edd24f48e5f8",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_FREEZE_GIT_OBJECT_QC.json",
+        "nativeBytes": 208244,
+        "nativeSha256": "2515141b4788a4ba20f71958480f7e9104e166d94c3e73e96267fa6a93bd2eb9",
+        "gitBytes": 208244,
+        "gitSha256": "2515141b4788a4ba20f71958480f7e9104e166d94c3e73e96267fa6a93bd2eb9",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "S_F2_FREEZE_GIT_OBJECT_QC.md",
+        "nativeBytes": 2079,
+        "nativeSha256": "30940888f355c35312ac3e18c6e387436e8866b545ccc5aded8e2e1e61194d51",
+        "gitBytes": 2079,
+        "gitSha256": "30940888f355c35312ac3e18c6e387436e8866b545ccc5aded8e2e1e61194d51",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_FRESH_REMOTE_AUDIT.json",
+        "nativeBytes": 1924,
+        "nativeSha256": "39d251d4195f5f127294a9b40dea056db1149ea4efdd933e62406d0771a41b18",
+        "gitBytes": 1924,
+        "gitSha256": "39d251d4195f5f127294a9b40dea056db1149ea4efdd933e62406d0771a41b18",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_PRE_MERGE_INPUTS.json",
+        "nativeBytes": 239413,
+        "nativeSha256": "be9b685b693bad4823e41cff654c8b0060939321637f0c77a679e3bb05cef6e5",
+        "gitBytes": 239413,
+        "gitSha256": "be9b685b693bad4823e41cff654c8b0060939321637f0c77a679e3bb05cef6e5",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_ACTUAL_MERGE_OUTPUT.json",
+        "nativeBytes": 268,
+        "nativeSha256": "3b5bcd8c5eb04f946c47e324a0d82f7d55ac93aaeeeda69d26f574ac8f415d54",
+        "gitBytes": 268,
+        "gitSha256": "3b5bcd8c5eb04f946c47e324a0d82f7d55ac93aaeeeda69d26f574ac8f415d54",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_PROVENANCE.json",
+        "nativeBytes": 240643,
+        "nativeSha256": "0b134f82424c9cf1d20d5fa3f829f09a21f20edfd3a7cb94796e496dfc2352bf",
+        "gitBytes": 240643,
+        "gitSha256": "0b134f82424c9cf1d20d5fa3f829f09a21f20edfd3a7cb94796e496dfc2352bf",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_CANONICAL_ACTUAL_OUTPUT.txt",
+        "nativeBytes": 35931,
+        "nativeSha256": "1f82b884a10e92daa5ce0f63543854de6f16814aec55da94234681748cdb04fa",
+        "gitBytes": 35931,
+        "gitSha256": "1f82b884a10e92daa5ce0f63543854de6f16814aec55da94234681748cdb04fa",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": false,
+        "readableOriginalView": true
+      },
+      {
+        "name": "P_CANONICAL_PROCESS_RECEIPT.json",
+        "nativeBytes": 49116,
+        "nativeSha256": "d88f178513eff4063508383c79fbeeadae4cc6c9c7365ecad2bb33a657888da0",
+        "gitBytes": 49116,
+        "gitSha256": "d88f178513eff4063508383c79fbeeadae4cc6c9c7365ecad2bb33a657888da0",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_CANONICAL_02_ACTUAL_OUTPUT.txt",
+        "nativeBytes": 35889,
+        "nativeSha256": "faa07a3d891927f7845956d54c4ae5f03c9a63d4c32a75f96e1e7f0c673e9427",
+        "gitBytes": 35889,
+        "gitSha256": "faa07a3d891927f7845956d54c4ae5f03c9a63d4c32a75f96e1e7f0c673e9427",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": false,
+        "readableOriginalView": true
+      },
+      {
+        "name": "P_CANONICAL_02_PROCESS_RECEIPT.json",
+        "nativeBytes": 49060,
+        "nativeSha256": "1e2759c283da410f8e3bc29b2bc0edc4e0f94cbcdd145c8a7289c6ae5ad24796",
+        "gitBytes": 49060,
+        "gitSha256": "1e2759c283da410f8e3bc29b2bc0edc4e0f94cbcdd145c8a7289c6ae5ad24796",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_RAW_GIT_UNION_INDEPENDENT_QC.json",
+        "nativeBytes": 203086,
+        "nativeSha256": "a2c1716c0ca5ab0cda07821501dcb2fc5597ba409eee9d692d752f31c2ea00df",
+        "gitBytes": 203086,
+        "gitSha256": "a2c1716c0ca5ab0cda07821501dcb2fc5597ba409eee9d692d752f31c2ea00df",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_RAW_GIT_UNION_INDEPENDENT_QC.md",
+        "nativeBytes": 1051,
+        "nativeSha256": "09f4e5092c08ce86b1333e0b25c865332e0f1e471e4fce277c7b3bead931b0fe",
+        "gitBytes": 1051,
+        "gitSha256": "09f4e5092c08ce86b1333e0b25c865332e0f1e471e4fce277c7b3bead931b0fe",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "P_CHECKOUT_CRLF_INDEPENDENT_QC.json",
+        "nativeBytes": 85799,
+        "nativeSha256": "cc5794e86e00a21ebcc0c13c2c47b12dfd227e6e6343745c02608e14b9fe9194",
+        "gitBytes": 85799,
+        "gitSha256": "cc5794e86e00a21ebcc0c13c2c47b12dfd227e6e6343745c02608e14b9fe9194",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_ANCHOR_ORCHESTRATOR_CRLF_FINDING.json",
+        "nativeBytes": 702,
+        "nativeSha256": "1faa30817c9966bf83b15ddea1c39055b97762e5a044d66dc6a14775e6abe49c",
+        "gitBytes": 702,
+        "gitSha256": "1faa30817c9966bf83b15ddea1c39055b97762e5a044d66dc6a14775e6abe49c",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_EXPECTED_P_CHILD_SCOPE_FAILURE_AUDIT.json",
+        "nativeBytes": 64965,
+        "nativeSha256": "92c8d3ab2f7450ff33ad16f03735b4c213a434165497392c4c333b29cca65550",
+        "gitBytes": 64965,
+        "gitSha256": "92c8d3ab2f7450ff33ad16f03735b4c213a434165497392c4c333b29cca65550",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "CHILD_ID_AUDIT.json",
+        "nativeBytes": 284299,
+        "nativeSha256": "62c4629dfda667d4940edb533f8f1074d695a5fcaa57a521bbf1f16873ecedc2",
+        "gitBytes": 284299,
+        "gitSha256": "62c4629dfda667d4940edb533f8f1074d695a5fcaa57a521bbf1f16873ecedc2",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_ANCHOR_BINDING.json",
+        "nativeBytes": 3021,
+        "nativeSha256": "8a86584b6fb6b6d9e1fde5a07de49c8c00ae8dadce4730c975c5e10964e08402",
+        "gitBytes": 3021,
+        "gitSha256": "8a86584b6fb6b6d9e1fde5a07de49c8c00ae8dadce4730c975c5e10964e08402",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_NUMBERED_ADR_DRAFT_BINDING.json",
+        "nativeBytes": 3216,
+        "nativeSha256": "23d0a85b7d9eebec876c87ace1682b02e5569b14b979e57ae25cbf2da634acd1",
+        "gitBytes": 3216,
+        "gitSha256": "23d0a85b7d9eebec876c87ace1682b02e5569b14b979e57ae25cbf2da634acd1",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_PROSPECTIVE_PLAN.md",
+        "nativeBytes": 32721,
+        "nativeSha256": "97915aa7be73d4f88ab2f52e92070f9718a96612017e5ee789019e39e0bd6852",
+        "gitBytes": 32721,
+        "gitSha256": "97915aa7be73d4f88ab2f52e92070f9718a96612017e5ee789019e39e0bd6852",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_PROSPECTIVE_PLAN.json",
+        "nativeBytes": 18971,
+        "nativeSha256": "883e5affbaf14adcb20277849e6967907e87fbad429de60d3b6dca9ce4e097f4",
+        "gitBytes": 18971,
+        "gitSha256": "883e5affbaf14adcb20277849e6967907e87fbad429de60d3b6dca9ce4e097f4",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_UI_PROSPECTIVE_PLAN.md",
+        "nativeBytes": 21091,
+        "nativeSha256": "479b793aa284025de4a43afadfc09f3e79878a0fe3d449dab09946fe31eaab17",
+        "gitBytes": 21091,
+        "gitSha256": "479b793aa284025de4a43afadfc09f3e79878a0fe3d449dab09946fe31eaab17",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_ROOT_PRECODE_PLAN_RESOLUTION.md",
+        "nativeBytes": 6654,
+        "nativeSha256": "87e1c9772b1339b8fb61eaa40d355c0d26df7363548a99a1a1bb432a0f26e0d8",
+        "gitBytes": 6654,
+        "gitSha256": "87e1c9772b1339b8fb61eaa40d355c0d26df7363548a99a1a1bb432a0f26e0d8",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_UI_STARTUP_API_ADDENDUM.md",
+        "nativeBytes": 10594,
+        "nativeSha256": "6910c9713810399c2df7537574489fdc0e39e1bf88b198d9ed06edac7273a567",
+        "gitBytes": 10594,
+        "gitSha256": "6910c9713810399c2df7537574489fdc0e39e1bf88b198d9ed06edac7273a567",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_UI_STARTUP_API_ADDENDUM_V2.md",
+        "nativeBytes": 4252,
+        "nativeSha256": "1821a6bab4de80ecd17e183602462cac4b6a418627bf52b429db61689a1fc59e",
+        "gitBytes": 4252,
+        "gitSha256": "1821a6bab4de80ecd17e183602462cac4b6a418627bf52b429db61689a1fc59e",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_UI_SELECTION_RESUME_ADDENDUM.md",
+        "nativeBytes": 7270,
+        "nativeSha256": "fd2d84dacb6369ae4e66f5b74547bb427a2e27da60f2c147e25f0f08309b4901",
+        "gitBytes": 7270,
+        "gitSha256": "fd2d84dacb6369ae4e66f5b74547bb427a2e27da60f2c147e25f0f08309b4901",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_SAVED_ENTRY_ADR_DRAFT_UNNUMBERED.md",
+        "nativeBytes": 10748,
+        "nativeSha256": "a345e85c916fab4413c3f7f9313247ceb3289f146f742dcd7254d9e652b1ecf0",
+        "gitBytes": 10748,
+        "gitSha256": "a345e85c916fab4413c3f7f9313247ceb3289f146f742dcd7254d9e652b1ecf0",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_WP_TEMPLATE_ORIGINAL.txt",
+        "nativeBytes": 16602,
+        "nativeSha256": "5f75b998ff0b695909c856c7de42d291b0567260546dca84b3670b86cd2fb58c",
+        "gitBytes": 16602,
+        "gitSha256": "5f75b998ff0b695909c856c7de42d291b0567260546dca84b3670b86cd2fb58c",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_PROSPECTIVE_EXECUTION_QC.json",
+        "nativeBytes": 8275,
+        "nativeSha256": "43231295034b6acde6107a7796700ba4c02a1964b17c5295331cadd8bf541c01",
+        "gitBytes": 8275,
+        "gitSha256": "43231295034b6acde6107a7796700ba4c02a1964b17c5295331cadd8bf541c01",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_PROSPECTIVE_EXECUTION_QC.md",
+        "nativeBytes": 1627,
+        "nativeSha256": "14a31bcbfa81238415eff638c10c495a95728d9fe153de16e00765cd46ddb24e",
+        "gitBytes": 1627,
+        "gitSha256": "14a31bcbfa81238415eff638c10c495a95728d9fe153de16e00765cd46ddb24e",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_SAVED_ENTRY_ADR_UNNUMBERED_REVIEW.json",
+        "nativeBytes": 4850,
+        "nativeSha256": "a2367d88745f72ec81bbb76d7280f8194a881adc7c4f441d589aaf869b809d6a",
+        "gitBytes": 4850,
+        "gitSha256": "a2367d88745f72ec81bbb76d7280f8194a881adc7c4f441d589aaf869b809d6a",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_SAVED_ENTRY_ADR_UNNUMBERED_REVIEW.md",
+        "nativeBytes": 1356,
+        "nativeSha256": "d66243d9e87252f5d7fd38d567a35fab9602a40bcf34220385fe2654348f8086",
+        "gitBytes": 1356,
+        "gitSha256": "d66243d9e87252f5d7fd38d567a35fab9602a40bcf34220385fe2654348f8086",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_SAVED_ENTRY_ADR_UNNUMBERED_DELTA_QC.json",
+        "nativeBytes": 4120,
+        "nativeSha256": "c154ec02ddd6ce709ecf87c0d216de728af64ab1924ca37e6f18d8d6d2cf74b0",
+        "gitBytes": 4120,
+        "gitSha256": "c154ec02ddd6ce709ecf87c0d216de728af64ab1924ca37e6f18d8d6d2cf74b0",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_SAVED_ENTRY_ADR_UNNUMBERED_DELTA_QC.md",
+        "nativeBytes": 571,
+        "nativeSha256": "2491725adb3d9359e774eb3786b25580724ab6e982f11603eabb98190e423c52",
+        "gitBytes": 571,
+        "gitSha256": "2491725adb3d9359e774eb3786b25580724ab6e982f11603eabb98190e423c52",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_STARTUP_API_ADDENDA_INDEPENDENT_QC.json",
+        "nativeBytes": 4167,
+        "nativeSha256": "03b8846fa8bf1838bcbc24a4916be6a69cbe0cd6da1d853b9e9b4667623ffdec",
+        "gitBytes": 4167,
+        "gitSha256": "03b8846fa8bf1838bcbc24a4916be6a69cbe0cd6da1d853b9e9b4667623ffdec",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_STARTUP_API_ADDENDA_INDEPENDENT_QC.md",
+        "nativeBytes": 1135,
+        "nativeSha256": "bf381c574afddc0e888b3cfbcb96ce3ffdecd139aa32d75f1f6cf6811fcc27b9",
+        "gitBytes": 1135,
+        "gitSha256": "bf381c574afddc0e888b3cfbcb96ce3ffdecd139aa32d75f1f6cf6811fcc27b9",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_TEST_RUNNER_SCENE_SETUP_SOURCE_AUDIT.json",
+        "nativeBytes": 15049,
+        "nativeSha256": "0aa4bd2e2b4c7edb5b9048e7c0d1b987f2304de9d20fb75a8fc7a6ab8d3913d3",
+        "gitBytes": 15049,
+        "gitSha256": "0aa4bd2e2b4c7edb5b9048e7c0d1b987f2304de9d20fb75a8fc7a6ab8d3913d3",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_TEST_RUNNER_SCENE_SETUP_INDEPENDENT_QC.json",
+        "nativeBytes": 3828,
+        "nativeSha256": "242bddf6e83686c4d52f5905b3e9efcb43fa4ab541b545ee6ba6dd657b8197b2",
+        "gitBytes": 3828,
+        "gitSha256": "242bddf6e83686c4d52f5905b3e9efcb43fa4ab541b545ee6ba6dd657b8197b2",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_TEST_RUNNER_SCENE_SETUP_INDEPENDENT_QC.md",
+        "nativeBytes": 661,
+        "nativeSha256": "aba05e281d59c7a2f2b2ba354d51967fd83f61b91ea9e2dc7685800fd663ca78",
+        "gitBytes": 661,
+        "gitSha256": "aba05e281d59c7a2f2b2ba354d51967fd83f61b91ea9e2dc7685800fd663ca78",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_WP_ORCHESTRATION_PROSPECTIVE_QC.json",
+        "nativeBytes": 6262,
+        "nativeSha256": "b4d1d10bdb056ecc2537081aea21aa684572dc88056d1e0061b7acff48847586",
+        "gitBytes": 6262,
+        "gitSha256": "b4d1d10bdb056ecc2537081aea21aa684572dc88056d1e0061b7acff48847586",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      },
+      {
+        "name": "I_WP_ORCHESTRATION_PROSPECTIVE_QC.md",
+        "nativeBytes": 1135,
+        "nativeSha256": "7fecb6ed832d494685fd19d9e7c69085f8ee34b6d69782749eee7d82014ea95a",
+        "gitBytes": 1135,
+        "gitSha256": "7fecb6ed832d494685fd19d9e7c69085f8ee34b6d69782749eee7d82014ea95a",
+        "gitProfile": "raw-identical",
+        "originalSourceExact": true,
+        "readableOriginalView": false
+      }
+    ],
+    "all53NativeSourceOrDeclaredViewBindingsVerified": true,
+    "gitRawIdenticalCopies": 52,
+    "soleNativeCrLfToGitLfCopy": {
+      "name": "A_FREEZE_GIT_OBJECT_QC.json",
+      "nativeBytes": 25693,
+      "nativeSha256": "5a65f12ade4b380af21bff60e6fc422c178a35eab002ab7c0ae45c11fa64d9ac",
+      "gitBytes": 25211,
+      "gitSha256": "bc2a8f30745c0a8d8ba511cea94c11d8acbeb4c539ec77969fad066403db9f28",
+      "gitProfile": "sole-native-CRLF-to-Git-LF",
+      "originalSourceExact": true,
+      "readableOriginalView": false,
+      "nativeCrLf": 482,
+      "nativeLoneLf": 1,
+      "loneLfOrdinalsOneBased": [
+        483
+      ],
+      "totalLfOrdinals": 483,
+      "losslessReconstruction": "Starting from committed GitLF bytes, convert each LF toCRLF except the declared one-based loneLF ordinal(s).",
+      "nativeRawHashReconstructionExact": true
+    },
+    "exactOriginalTransportSha256": "e2064f9698ca43222791d652bb914c573fe4dc43e53e10f4f706d4ed7b862bd4",
+    "fullOriginalRoundtripChecks": [
+      {
+        "name": "P_CANONICAL_ACTUAL_OUTPUT.txt",
+        "fullOriginalBase64Roundtrip": true,
+        "originalRootAndReceiptExact": true,
+        "sourceBytes": 35932,
+        "sourceSha256": "53c31f2bdef5c91fae083bdd1d4dee3d771024ef6c4019c481472e306b7ad5d1",
+        "viewBytes": 35931,
+        "viewSha256": "1f82b884a10e92daa5ce0f63543854de6f16814aec55da94234681748cdb04fa",
+        "onlyOneTerminalEmptyLineRemoved": true
+      },
+      {
+        "name": "P_CANONICAL_02_ACTUAL_OUTPUT.txt",
+        "fullOriginalBase64Roundtrip": true,
+        "originalRootAndReceiptExact": true,
+        "sourceBytes": 35890,
+        "sourceSha256": "4ef49bf5de7dcbf1cf37ea464d904fedd5b4f11112f233910dd803e006f70917",
+        "viewBytes": 35889,
+        "viewSha256": "faa07a3d891927f7845956d54c4ae5f03c9a63d4c32a75f96e1e7f0c673e9427",
+        "onlyOneTerminalEmptyLineRemoved": true
+      },
+      {
+        "name": "fresh-p-refs.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 1827,
+        "sha256": "b5847924cd6c9e38e98aa4c32337ca2304d493b02528e9b6ae0931650fe0e930"
+      },
+      {
+        "name": "assemble-p.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 6427,
+        "sha256": "48d8a016b6c5bc0b4187eeeb573c4705831f9b52745874580243ad73682a2f5e"
+      },
+      {
+        "name": "check-p.py",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 1806,
+        "sha256": "963b7f904634f5f74797301989c9701dc1def95ee6ffbcec2a96cfd07f31209a"
+      },
+      {
+        "name": "check-p-02.py",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 1812,
+        "sha256": "d0ffb251cf4e381a0847213611bde60ef468c4cb9bde5e667239b8297da6883d"
+      },
+      {
+        "name": "create-i-anchor.ORIGINAL_CRLF_GATE.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 8625,
+        "sha256": "7c1660a01ca327f10f6190ba8addca6691bc2f23fbab9f383ce797c94bf3872e"
+      },
+      {
+        "name": "create-i-anchor.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 8868,
+        "sha256": "6c69dc84c85e1abc15677c009280c37f422287ad2cdc4adaa3ae4ae39b62a647"
+      },
+      {
+        "name": "create-numbered-i-adr.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 4477,
+        "sha256": "7878f4ec39ced5fd7bcd14216d8a8c6350147c3cbf7819a67a1c6476a8dc4f17"
+      },
+      {
+        "name": "accept-la.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 2475,
+        "sha256": "69d2bf6b78c76375a2841f1aefdf5b78ef21b959e2bc2f977bd5f6d0eb312b6f"
+      },
+      {
+        "name": "accept-ls.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 2853,
+        "sha256": "2eead691cc38195a6a5f10b5aa4d2908dfd2e7d1898bebce56abf2d42ad495cf"
+      },
+      {
+        "name": "audit-child-ids.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 1819,
+        "sha256": "ac8c8b1304432ae2d97b718d705f58ed8169bf2cf4e0bd50e295bebee47968ed"
+      },
+      {
+        "name": "pack-s-f2-ci.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 6348,
+        "sha256": "a9dc8f31f662cdaa7eb3a467d35a2da50f51a4bd01e2c4fc58525608e8a9a04e"
+      },
+      {
+        "name": "persist-i-inputs.cjs",
+        "fullBase64RoundtripAndIgnoredOriginalExact": true,
+        "bytes": 3612,
+        "sha256": "2dd865e5f5f15039328faad996729231437b4c41baf9ba12598c0da4c18fdc94"
+      }
+    ],
+    "originalPProcessReceiptsAndRootOutputsUnchanged": true,
+    "template": {
+      "source": "I_WP_TEMPLATE.md",
+      "destination": "I_WP_TEMPLATE_ORIGINAL.txt",
+      "bytes": 16602,
+      "sha256": "5f75b998ff0b695909c856c7de42d291b0567260546dca84b3670b86cd2fb58c",
+      "exactOriginalBytes": true,
+      "reason": "Historical placeholder links are preserved as text, not active Markdown navigation."
+    }
+  },
+  "primaryCommittedFileBindings": [
+    {
+      "name": "I_R_ADR036_ACCEPTANCE.json",
+      "nativeBytes": 1052,
+      "nativeSha256": "9a4f9ebc40903e1b55060e719675558a34f07b08356f685c41c2af81d1af898d",
+      "gitBytes": 1052,
+      "gitSha256": "9a4f9ebc40903e1b55060e719675558a34f07b08356f685c41c2af81d1af898d",
+      "profile": "raw-identical"
+    },
+    {
+      "name": "I_ADR036_REGISTRY_TARGETED_CHECK.json",
+      "nativeBytes": 5365,
+      "nativeSha256": "71bc67d5d28097ef1d65b79c8eb4fd6f2b1be5a480598859ec5f5492e5f866eb",
+      "gitBytes": 5365,
+      "gitSha256": "71bc67d5d28097ef1d65b79c8eb4fd6f2b1be5a480598859ec5f5492e5f866eb",
+      "profile": "raw-identical"
+    },
+    {
+      "name": "I_P_CANONICAL_OUTPUT_EXACT_ORIGINALS.json",
+      "nativeBytes": 97037,
+      "nativeSha256": "e2064f9698ca43222791d652bb914c573fe4dc43e53e10f4f706d4ed7b862bd4",
+      "gitBytes": 97037,
+      "gitSha256": "e2064f9698ca43222791d652bb914c573fe4dc43e53e10f4f706d4ed7b862bd4",
+      "profile": "raw-identical"
+    },
+    {
+      "name": "I_INPUT_EVIDENCE_COPY_BINDING.json",
+      "nativeBytes": 9703,
+      "nativeSha256": "ebd807ccd08dd85590bccca8e182be7fd5beda40371089e7d183843f932c5739",
+      "gitBytes": 9703,
+      "gitSha256": "ebd807ccd08dd85590bccca8e182be7fd5beda40371089e7d183843f932c5739",
+      "profile": "raw-identical"
+    },
+    {
+      "name": "I_ORCHESTRATION_SOURCE_ORIGINALS.json",
+      "nativeBytes": 71226,
+      "nativeSha256": "fbc248c448bcef6d2067abe55e6de7c555ba81b823ab3012dce0bd9737d1bdc6",
+      "gitBytes": 71226,
+      "gitSha256": "fbc248c448bcef6d2067abe55e6de7c555ba81b823ab3012dce0bd9737d1bdc6",
+      "profile": "raw-identical"
+    }
+  ],
+  "scopeChain": "P→jointWP043/manifestanchor1c002e14→historicalnumberedDraftf16f99cc→separateRaccepted3ca62a9b, all before first I implementation sources. Later working copy may contain authorized I work and is not relabeled as this precode tree.",
+  "openHighs": [],
+  "remainingGates": [
+    "Actual I implementation/source review and coherent tests",
+    "Full staged canonical17/18+selftests, exact finalfreeze and regular CI",
+    "Separate R non-main integration decision and integrated actual verification"
+  ],
+  "actions": "Read-only namedGitobjects/nativeevidence and own ignored reports. No source/Git/Unity mutation, no duplicate tests."
+}

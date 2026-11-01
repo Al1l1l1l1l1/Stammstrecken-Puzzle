@@ -53,13 +53,22 @@ namespace STP.Puzzle.Solver
             for (int j = 0; j < entries.Count; j++) if (readSet == null || readSet[entries[j].Cell]) candidates.Add(j);
             var included = new bool[entries.Count];
             foreach (int j in candidates) included[j] = true;
-            bool derivable = Holds(entry, View(included));
+            // One premise view per reduction. Dropping an entry can change only its own cell, so replay just that
+            // cell's remaining candidates instead of allocating and rebuilding the entire grid for every trial.
+            // The candidate order and newest-first deletion order remain exactly the solver-v2 contract.
+            var view = View(included);
+            bool derivable = Holds(entry, view);
             if (!derivable) Faulted = true;
             else
                 for (int k = candidates.Count - 1; k >= 0; k--)
                 {
                     int j = candidates[k]; included[j] = false;
-                    if (!Holds(entry, View(included))) included[j] = true;
+                    int changedCell = entries[j].Cell;
+                    byte saved = view[changedCell], remaining = 127;
+                    foreach (int prior in candidates)
+                        if (included[prior] && entries[prior].Cell == changedCell) remaining &= (byte)~entries[prior].Removed;
+                    view[changedCell] = remaining;
+                    if (!Holds(entry, view)) { included[j] = true; view[changedCell] = saved; }
                 }
             var premises = new List<int>();
             int depth = 0;
@@ -67,7 +76,7 @@ namespace STP.Puzzle.Solver
             entry.Premises = premises.ToArray(); entry.Depth = depth + 1;
             // The public facts are minimised on exactly the chosen entries. An underivable step is a fault and never
             // published; for diagnostics it declares every fact its rule can consult.
-            entry.Facts = derivable ? MinimalFacts(entry, View(included)) : Candidates(rule);
+            entry.Facts = derivable ? MinimalFacts(entry, view) : Candidates(rule);
             entries.Add(entry);
         }
 

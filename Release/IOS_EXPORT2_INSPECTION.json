@@ -1,0 +1,204 @@
+{
+  "evidenceKind": "ACTUAL_IOS_EXPORTED_PROJECT_SOURCE_INSPECTION_ONLY",
+  "buildLabel": "iOS export2: full game with enforced compiled iOS hook target",
+  "sourceBinding": "Git b22a3fffc0bcf66ca31bfc62244df8c35f42bfe9; actual prebuild source input inventory SHA256 f04f5525090c8b9be61e5867d23ff144a03cec2ddfc9c17411fb69e4f8ad8707; four preserved local ProjectSettings overrides archived and declared; no clean-HEAD assertion.",
+  "sourceBindingIsCallerDeclaration": true,
+  "targets": {
+    "Unity-iPhone": {
+      "nativeHooks": [],
+      "storeKitLinks": [
+        "System/Library/Frameworks/StoreKit.framework"
+      ],
+      "configs": {
+        "Release": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "ReleaseForProfiling": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "ReleaseForRunning": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        },
+        "Debug": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "YES",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.STP.StammstreckenPuzzle.qa",
+          "LD_RUNPATH_SEARCH_PATHS": [
+            "$(inherited) @executable_path/Frameworks",
+            "$(inherited)",
+            "/usr/lib/swift"
+          ],
+          "CLANG_ENABLE_MODULES": null
+        }
+      }
+    },
+    "UnityFramework": {
+      "nativeHooks": [
+        "Libraries/Plugins/iOS/StpHaptics.mm",
+        "Libraries/Plugins/iOS/StpStoreKitVerifier.swift"
+      ],
+      "storeKitLinks": [
+        "System/Library/Frameworks/StoreKit.framework"
+      ],
+      "configs": {
+        "Release": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "ReleaseForProfiling": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "ReleaseForRunning": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        },
+        "Debug": {
+          "SWIFT_VERSION": "5.0",
+          "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": "NO",
+          "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+          "PRODUCT_BUNDLE_IDENTIFIER": "com.unity3d.framework",
+          "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
+          "CLANG_ENABLE_MODULES": "YES"
+        }
+      }
+    }
+  },
+  "plist": {
+    "GADDelayAppMeasurementInit": true,
+    "GADApplicationIdentifier": "ca-app-pub-3940256099942544~1458002511",
+    "NSUserTrackingUsageDescription": null,
+    "CFBundleIdentifier": "${PRODUCT_BUNDLE_IDENTIFIER}",
+    "CFBundleVersion": "0"
+  },
+  "podfile": "source 'https://github.com/CocoaPods/Specs'\nsource 'https://cdn.cocoapods.org/'\n\nplatform :ios, '15.0'\n\ntarget 'UnityFramework' do\n  pod 'Google-Mobile-Ads-SDK', '~> 13.9'\n  pod 'GoogleUserMessagingPlatform', '3.1.0'\nend\ntarget 'Unity-iPhone' do\nend\nuse_frameworks! :linkage => :static\n",
+  "podfileLockPresent": false,
+  "podsDirectoryPresent": false,
+  "sourceBindings": [
+    {
+      "source": "Assets/Plugins/iOS/StpStoreKitVerifier.swift",
+      "export": "Libraries/Plugins/iOS/StpStoreKitVerifier.swift",
+      "sourceSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce",
+      "exportSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce"
+    },
+    {
+      "source": "Assets/Plugins/iOS/StpHaptics.mm",
+      "export": "Libraries/Plugins/iOS/StpHaptics.mm",
+      "sourceSha256": "432a2861e768ad58415250bb4e5144a78733b99c5fdb5e6b73963c26af6892c0",
+      "exportSha256": "432a2861e768ad58415250bb4e5144a78733b99c5fdb5e6b73963c26af6892c0"
+    }
+  ],
+  "hookReport": {
+    "GADDelayAppMeasurementInit": "true",
+    "InfoPlistSha256": "7462a0b824f505189b57c7fbe30957ac6e6bd9204d269acd4c0676d3b212b688",
+    "SwiftSourceSha256": "f9a956da8247a14e4e98bbbc631d902917c82d9e3c1b84ac7831eee9aaef9dce",
+    "PBXProjectSha256": "09163d1d3ec98072bb8127e93953513ba27b682590902bc9e5e9f80129b81c7c",
+    "Evidence": "EXPORTED_SOURCE_ONLY;Xcode_compile_link_and_physical_network_capture_required"
+  },
+  "privacyManifestDeclarations": [
+    {
+      "path": "UnityFramework/PrivacyInfo.xcprivacy",
+      "sha256": "1cd73a2fdfd39572784ec165bafae6661374fed735365fd2f9c44d8f13c315e9",
+      "declaration": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "35F9.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryDiskSpace",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "E174.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "0A2A.1",
+              "C617.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          }
+        ],
+        "NSPrivacyTracking": false
+      }
+    }
+  ],
+  "problems": [],
+  "archive": {
+    "path": "ios-exported-project-source.zip",
+    "sha256": "8bdf2698cf49207a90c20074c32e916fb56a7c0754995cdb1cbf0722e369e266",
+    "sizeBytes": 361552159
+  },
+  "log": {
+    "path": "unity-ios-export.log",
+    "sha256": "1f2b98ef5fcc7c0c56dc793685ce6758ea2a396f5cc896c813453e32a22e25a6"
+  },
+  "buildReportSha256": "8f1891e09cd0b2610add1800f1fffeb5c485bc2afc4d7651e0338dab2a6469a4",
+  "xcodeCompileValidated": false,
+  "swiftNativeLinkValidated": false,
+  "podResolutionValidated": false,
+  "ipaCreated": false,
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "sandboxValidated": false,
+  "physicalPrivacyValidated": false,
+  "legalApproved": false,
+  "promotionAllowed": false,
+  "originalAuditSha256": "08d98aaabaafec0e53e8fd135fbdd71c585af1fca68d75f0713640a79215c694",
+  "archiveDirectory": ".utmp/wp046-native/ios-export2-verified",
+  "originalArtifactEntryCount": 3264
+}

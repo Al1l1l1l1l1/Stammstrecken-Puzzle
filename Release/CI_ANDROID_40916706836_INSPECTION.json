@@ -1,0 +1,1652 @@
+{
+  "evidenceKind": "ACTUAL_CURRENT_PR_FULL_UNITY_TEST_ANDROID_IOS_ORIGINAL_INSPECTION",
+  "status": "PASS_ACTUAL_PR_EDITOR_PLAY_ANDROID_AND_UNSIGNED_IOS_ORIGINALS",
+  "observedAtUtc": "2026-11-01T15:02:24.032522+00:00",
+  "runId": 40916706836,
+  "runUrl": "https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40916706836",
+  "sourceHead": "1f3d3137c24900d21dcbcbe1148a890efa1a64a3",
+  "actualLoggedPrCheckout": "1dd84257ba8598513d2af63a6045b99a14249e11",
+  "actualHeadAndPrRootTree": "7cd2a200c63297f32204e3682d9c5f784acf6c51",
+  "actualPrParents": [
+    "d90e798dd9b26d3f152f3b0c2d1d52cae641eb16",
+    "1f3d3137c24900d21dcbcbe1148a890efa1a64a3"
+  ],
+  "allCurrentPrJobsTerminalSuccess": true,
+  "independentAcceptances": {
+    "tests": {
+      "path": ".utmp/wp046-c-ci1f-final/tests/independent-conclusion.json",
+      "sha256": "c7fd5c298478d59712ec6612c6474b80d18714120065d2792414e6c46b80bc48",
+      "sizeBytes": 12511
+    },
+    "android": {
+      "path": ".utmp/wp046-c-ci1f-final/android/independent-conclusion.json",
+      "sha256": "46218965829593f0b72309a152dfd314d3cd6aa813f83554211a9a9d3e05d3d5",
+      "sizeBytes": 8375
+    },
+    "ios": {
+      "path": ".utmp/wp046-c-ci1f-final/ios/independent-conclusion.json",
+      "sha256": "5590d457f499fc8f78cd188c9e559ddc19ddaaf93073401a3f82e4885cb8c151",
+      "sizeBytes": 148221
+    }
+  },
+  "tests": {
+    "editorJob": 123599150445,
+    "editorCases": 1722,
+    "oldEditorCases": 1720,
+    "newEditorCases": 2,
+    "playJob": 123617045713,
+    "playCases": 258,
+    "oldPlayCases": 253,
+    "newPlayCases": 5,
+    "allOriginalCaseNamesAndTimeoutsPreserved": true,
+    "retryRepeatPropertiesZero": {
+      "editor": 3444,
+      "play": 516
+    },
+    "noSkippedOrFailedCases": true,
+    "strictCoverageModulesPerPhase": 24,
+    "negativeCoverageRows": 0,
+    "originalPhases": [
+      {
+        "phase": "edit",
+        "jobId": 123599150445,
+        "actualCases": 1722,
+        "oldCases": 1720,
+        "newCases": 2,
+        "retryRepeatPropertyCount": 3444,
+        "strictCoverageModules": 24,
+        "completedJobLog": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/edit-completed-job-decoded-mcp.json",
+          "sha256": "1d0b4a070673e0377524fc19efecea4c9ca9be136e7ef957c197e437d603c84b",
+          "sizeBytes": 289141
+        },
+        "jobsApi": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/edit-terminal-jobs-api.json",
+          "sha256": "82474af9015dc0440fe9b2e85334282b0846e89380a9bbeee77f7778a57ec9bb",
+          "sizeBytes": 19593
+        },
+        "artifactMetadata": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/edit-artifact-metadata.json",
+          "sha256": "27619ef85afa20569bd3b38287d12859e6142560631122ec8a4b21878a46930b",
+          "sizeBytes": 780
+        },
+        "sourceCheckoutWitness": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/edit-terminal-source-binding.json",
+          "sha256": "a722f6cfbc93b55851ea2c2d8230b0e45edeca31b2cf9720cd6037de4ab848ba",
+          "sizeBytes": 755
+        },
+        "actualPassedXmlRunAttributes": {
+          "id": "2",
+          "testcasecount": "1722",
+          "result": "Passed",
+          "total": "1722",
+          "passed": "1722",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-29 17:15:24Z",
+          "end-time": "2026-10-29 17:29:37Z",
+          "duration": "852.2680527"
+        },
+        "selectedActualEndCases": [
+          {
+            "case": "STP.Tests.Application.EditMode.AssignedHumanSessionTests.ConcurrentHintRequestsCannotComputeOrSpendPastTheSamePendingDisplay",
+            "result": "Passed",
+            "duration": "0.083707",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Calibration.EditMode.CalibratedEndlessTests.OpenResultSurvivesActualCompactionWhileReceiptsPruneAndTenThousandOrdinalsStayBounded",
+            "result": "Passed",
+            "duration": "200.843912",
+            "timeout": [
+              {
+                "name": "Timeout",
+                "value": "600000"
+              }
+            ]
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.ActualSavedHumanScenePassesPreflightAndStaleInMemoryHashIsRejectedWithoutRepair",
+            "result": "Passed",
+            "duration": "0.447200",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.ExactInstallerPublicHashAcceptsLfCrLfAndIgnoresForeignComponentValue",
+            "result": "Passed",
+            "duration": "0.001507",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"stale\")",
+            "result": "Passed",
+            "duration": "0.000891",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"missing\")",
+            "result": "Passed",
+            "duration": "0.000321",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"duplicateSame\")",
+            "result": "Passed",
+            "duration": "0.000310",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"duplicateDifferent\")",
+            "result": "Passed",
+            "duration": "0.000300",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"uppercase\")",
+            "result": "Passed",
+            "duration": "0.000324",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"quoted\")",
+            "result": "Passed",
+            "duration": "0.000344",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"trailingText\")",
+            "result": "Passed",
+            "duration": "0.000319",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"wrongScript\")",
+            "result": "Passed",
+            "duration": "0.000325",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"secondInstaller\")",
+            "result": "Passed",
+            "duration": "0.000347",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"duplicateScript\")",
+            "result": "Passed",
+            "duration": "0.000317",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"foreignOnly\")",
+            "result": "Passed",
+            "duration": "0.000323",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Content.EditMode.HumanPackSceneBindingTests.PublicHashCannotBeSatisfiedByStaleMissingDuplicateOrForeignText(\"foreignWithStaleInstaller\")",
+            "result": "Passed",
+            "duration": "0.000368",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Persistence.EditMode.AtomicSaveRepositoryTests.RealReparseRootIsRejectedAndOutsideTargetIsUnchanged",
+            "result": "Passed",
+            "duration": "0.127453",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Persistence.EditMode.LocalDiagnosticRingTests.ActualReparseDirectoryIsNeverFollowedForWriteOrClear",
+            "result": "Passed",
+            "duration": "0.118258",
+            "timeout": []
+          }
+        ]
+      },
+      {
+        "phase": "play",
+        "jobId": 123617045713,
+        "actualCases": 258,
+        "oldCases": 253,
+        "newCases": 5,
+        "retryRepeatPropertyCount": 516,
+        "strictCoverageModules": 24,
+        "completedJobLog": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/play-completed-job-decoded-mcp.json",
+          "sha256": "065e30cedecd7113ba6ba039f48d878fe634b3b5a1fa183ab405d249a7967970",
+          "sizeBytes": 1730417
+        },
+        "jobsApi": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/play-terminal-jobs-api.json",
+          "sha256": "82474af9015dc0440fe9b2e85334282b0846e89380a9bbeee77f7778a57ec9bb",
+          "sizeBytes": 19593
+        },
+        "artifactMetadata": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/play-artifact-metadata.json",
+          "sha256": "1a7ceb45bcaa4c30f16d7a49a00d15f806780d5b40a9b9c71ad43ab2368a09bd",
+          "sizeBytes": 780
+        },
+        "sourceCheckoutWitness": {
+          "path": ".utmp/wp046-c-ci1f-review/pr/play-terminal-source-binding.json",
+          "sha256": "70e6f86186da0f336806da368ba1628ca312e2cdbe8d22eecc0694b81326144e",
+          "sizeBytes": 755
+        },
+        "actualPassedXmlRunAttributes": {
+          "id": "2",
+          "testcasecount": "258",
+          "result": "Passed",
+          "total": "258",
+          "passed": "258",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-29 17:45:50Z",
+          "end-time": "2026-10-29 17:55:49Z",
+          "duration": "598.3191186"
+        },
+        "selectedActualEndCases": [
+          {
+            "case": "STP.Tests.Bootstrap.PlayMode.HumanCalibrationIntegrationTests.ActualAssignedInputs_ContactHintRestart_PersistBeforeRealRide_ExportOriginalsWithoutGameProgress",
+            "result": "Passed",
+            "duration": "6.210497",
+            "timeout": []
+          },
+          {
+            "case": "STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.Candidate_AllTwentyMapRoutes_KeepTheirWorldAndCanvasAcrossHomeAndRefresh",
+            "result": "Passed",
+            "duration": "9.887700",
+            "timeout": [
+              {
+                "name": "Timeout",
+                "value": "180000"
+              }
+            ]
+          },
+          {
+            "case": "STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.Candidate_Endless_ActualGeneratedPuzzleHintRestartResumeCompletionSkipAndNextReservation",
+            "result": "Passed",
+            "duration": "144.830053",
+            "timeout": [
+              {
+                "name": "Timeout",
+                "value": "180000"
+              }
+            ]
+          },
+          {
+            "case": "STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.TenByTen_ExplicitRetapCaptionFits_AndAllCellAndToolRectsStayFixed",
+            "result": "Passed",
+            "duration": "4.541128",
+            "timeout": [
+              {
+                "name": "Timeout",
+                "value": "120000"
+              }
+            ]
+          },
+          {
+            "case": "STP.Tests.Bootstrap.PlayMode.RuntimeGameIntegrationTests.LockedRuntime_RealSeasonUnlockCosmeticPurchaseAndV2EndlessResultRoundTrip",
+            "result": "Passed",
+            "duration": "146.760920",
+            "timeout": [
+              {
+                "name": "Timeout",
+                "value": "180000"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "originalCaseContract": {
+      "path": ".utmp/wp046-c-ci1f-review/expected-cases.json",
+      "sha256": "5e620517f8cbaa16e2b85a45e882d737944270facb7bced00e473369194306c7",
+      "sizeBytes": 400943
+    }
+  },
+  "android": {
+    "jobId": 123631651502,
+    "artifactId": 12922170889,
+    "originalArtifact": {
+      "path": ".utmp/wp046-c-ci1f-final/android/android-results.zip",
+      "sha256": "523c0038672323f97ef2e4cf1c4300480e3ce5d64031eadeed0923b56e5ed2d5",
+      "sizeBytes": 299885889
+    },
+    "actualApk": {
+      "path": ".utmp/wp046-c-ci1f-final/android/originals/MobilePreview/Android/stp-mobile-preview.apk",
+      "sha256": "50dd7e7734aff6149322ba3d6baeb06a93b7b83f01472c583381af53909afd43",
+      "sizeBytes": 58867802
+    },
+    "allOuterMembersRehashed": 570,
+    "allCurrentCsGitBindings": 206,
+    "compiler": {
+      "actualCompilerZipMembers": 621,
+      "allRehashed": true,
+      "actualRegisteredFunctions": 28,
+      "all28BodyBytesEqualIndependentlyAcceptedLocalMain22": true,
+      "actualStrippedAssemblies": 104,
+      "metadataCopiesInCompilerEqualActualApk": 2,
+      "managedMemoReadonlyFields": 7,
+      "newNoticeRecoveryActualManagedIlBindingsVerified": true,
+      "noObservedTestCoverageEditorOrIosBridgeNamesInAndroidCpp": true
+    },
+    "content": {
+      "allInstallerBytesConsumed": true,
+      "typedAssets": 12,
+      "allTextAssets": 12,
+      "publicCount": 240,
+      "publicHash": "0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8",
+      "uiFileCount": 76,
+      "uiHash": "da68b92b1d49604f6e1b54caee39645dae00be9211806c6626a50f0157d30864",
+      "literalNoticeBytes": 850418,
+      "literalNoticeSha256": "cbfe6b73ab5cefdb90b29d6f97ae4479b8419bbd1fab0eb1487078672dd9eca0",
+      "fourDraftProfiles": true,
+      "audioReferences": 15,
+      "retapCaption": true,
+      "twoCurrentLateGeometries": true,
+      "unissuedProductionBindingsEmpty": true
+    },
+    "resources": {
+      "currentFontObjects": 4,
+      "allFourFullObjectsEqualAcceptedMain20": true,
+      "threeIbmTtfsFullyLiteralFromCurrentGitAndProvenance": true,
+      "builtinFontBoundaryExplicit": true,
+      "actualIconPngs": 24,
+      "allAlphaBytesEqualAcceptedMain20": true,
+      "currentSourceLayerAndPixelChecks": true
+    },
+    "signaturePrivacyStatic16KiB": {
+      "actualDebugSignerSha256": "f0e25efa9cf45b5b9c634f58bc36d3a5ac488de1f2f1309144b6c203c7316500",
+      "signerDiffersFromLocalQaSigner": true,
+      "qaPackage": "com.STP.StammstreckenPuzzle.qa",
+      "minSdk": 26,
+      "targetSdk": 36,
+      "abi": "arm64-v8a",
+      "signatureV2Verified": true,
+      "twoFinalPrivacyGateReports": 2,
+      "adIdAbsent": true,
+      "measurementInitDelayed": true,
+      "firebaseInitAbsent": true,
+      "ownHumanProviderAbsentAcrossDefinedDex": true,
+      "nativeLibraries": 7,
+      "loadSegments": 26,
+      "apkZipEntries": 606,
+      "zipalignP16Exit": 0,
+      "physicalRuntimeValidated": false
+    },
+    "actualRetainedBuildTimeInputs": {
+      "selectedNonce": "b89d874b980c480f84fead2c96df5a4e",
+      "actualApkBuildGuid": "ffe717aefd0b4f0dab0d2f73cb2b39dc",
+      "originalReceipts": 4,
+      "allRetainedFilesRehashed": 332,
+      "actualGeneratedBuildSourceFiles": 19,
+      "actualRuntimeArtifactFiles": 98,
+      "runtimeKindCounts": {
+        "LOCAL_OR_OPAQUE": 1,
+        "LOCAL_FLATDIR_MODULE": 1,
+        "MAVEN_MODULE": 93,
+        "PROJECT": 3
+      },
+      "retainedArtifactsAndCachedPomFilesRehashed": 175,
+      "declaredPackagingInputHashes": 105,
+      "callerSourceWitness": "CALLER_DECLARED_CHECKOUT:1dd84257ba8598513d2af63a6045b99a14249e11",
+      "callerCheckoutExplicitlyBound": true,
+      "retentionInsideUploadedArtifactActuallyVerified": true,
+      "materialUniqueArchives": 90,
+      "cachedPoms": 85,
+      "embeddedNotices": 40,
+      "external86CoordinatesBinaryAnd125MaterialHashesUnchanged": true,
+      "ownFourLocalOrProjectInputsNoLicenseInheritance": true
+    }
+  },
+  "ios": {
+    "jobId": 123642188169,
+    "artifactId": 12923131677,
+    "originalArtifact": {
+      "path": ".utmp/wp046-c-ci1f-final/ios/ios-results.zip",
+      "sizeBytes": 432689120,
+      "sha256": "1a06a7f9b83a72fcb7ec93a065216f49e714b013af85b3948bc17ea882ac867b"
+    },
+    "originalCounts": {
+      "outer": 29,
+      "export": 3610,
+      "unsignedApp": 44
+    },
+    "xcode": {
+      "version": "26.3",
+      "sdk": "26.2.0",
+      "releaseArm64": true,
+      "actualCompileAndBothLinks": true,
+      "codeSigningAllowed": false
+    },
+    "allCurrentCsGitBindings": 206,
+    "all28ActualRegisteredBodiesEqualCurrentAndroid": true,
+    "typedTextAssets": [
+      {
+        "field": "locale",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/ProductionGameLocale.json",
+        "pointer": [
+          2,
+          49
+        ],
+        "name": "ProductionGameLocale",
+        "sizeBytes": 54400,
+        "rawSha256": "2d9a7e59ebae65b7a0e50ff6b8c9e537f7482b937f32a02f5905931a240a266c",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "offlineNotices",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt",
+        "pointer": [
+          2,
+          47
+        ],
+        "name": "ThirdPartyNotices",
+        "sizeBytes": 850418,
+        "rawSha256": "cbfe6b73ab5cefdb90b29d6f97ae4479b8419bbd1fab0eb1487078672dd9eca0",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "publicData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.public.json",
+        "pointer": [
+          2,
+          41
+        ],
+        "name": "MobileCandidate.public",
+        "sizeBytes": 166488,
+        "rawSha256": "2eed2bf015c648140a901673957269d9d135649edaa37d6cd265d07176e7922a",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "campaignData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.campaign.json",
+        "pointer": [
+          2,
+          48
+        ],
+        "name": "MobileCandidate.campaign",
+        "sizeBytes": 82577,
+        "rawSha256": "c04124d78bfad2a985f3875ab12b60563e0e802e4165d68f33244f850a69691d",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "completionData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.completion.json",
+        "pointer": [
+          2,
+          43
+        ],
+        "name": "MobileCandidate.completion",
+        "sizeBytes": 74978,
+        "rawSha256": "c8ad15bd206faa9406321845db6b2921cd955b97cebe48c01d93cb5553aea2e2",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "railwayAssets",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/RailwayAssets.json",
+        "pointer": [
+          2,
+          42
+        ],
+        "name": "RailwayAssets",
+        "sizeBytes": 126203,
+        "rawSha256": "020b962af448567d6ac193ab66ca3d8baa9c569d8ab6b9568d01e83be9c6b219",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "cosmeticsData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.cosmetics.json",
+        "pointer": [
+          2,
+          45
+        ],
+        "name": "MobileCandidate.cosmetics",
+        "sizeBytes": 4658,
+        "rawSha256": "2afb65d2cf1c5f61daa0472943a1827601382902b4f0820ad7eecfdb8fb61692",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "candidateBindings",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.bindings.json",
+        "pointer": [
+          2,
+          40
+        ],
+        "name": "MobileCandidate.bindings",
+        "sizeBytes": 531,
+        "rawSha256": "118be90d30e46434c9ca6e11262ac108d90843cb0e6d1a2345f6bc7ecaf47f23",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "campaignText",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/ProductionCampaignText.json",
+        "pointer": [
+          2,
+          39
+        ],
+        "name": "ProductionCampaignText",
+        "sizeBytes": 74557,
+        "rawSha256": "355fe1bd1b19c2c4214696d6edb21facbfe9c3e3e04194dd9fa44e0abd43daa4",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "endlessProfilesData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-profiles.json",
+        "pointer": [
+          2,
+          46
+        ],
+        "name": "MobileCandidate.endless-profiles",
+        "sizeBytes": 3633,
+        "rawSha256": "2504a40422a13988091e3f2722f57d0567ad3e3c0460c9b942bb55b95ab45202",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "endlessCompletionData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-completion.json",
+        "pointer": [
+          2,
+          38
+        ],
+        "name": "MobileCandidate.endless-completion",
+        "sizeBytes": 1057,
+        "rawSha256": "b375c551b9ef7e21f32613ac2ce42c38e2f6b00957e523c8b14244d11c9e7eaf",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      },
+      {
+        "field": "endlessBindingsData",
+        "sourcePath": "Assets/StammstreckenPuzzle/UI/MobileCandidate.endless-bindings.json",
+        "pointer": [
+          2,
+          44
+        ],
+        "name": "MobileCandidate.endless-bindings",
+        "sizeBytes": 393,
+        "rawSha256": "8b61354a3fec2b58da1f7a4bf0ed52d482b0c2366eae0b702cc05e0dae9e8097",
+        "actual8bGitAndFrozenSourceByteEqual": true
+      }
+    ],
+    "allInstallerBytesConsumed": true,
+    "fullNoticeBytes": 850418,
+    "fullNoticeSha256": "cbfe6b73ab5cefdb90b29d6f97ae4479b8419bbd1fab0eb1487078672dd9eca0",
+    "uiFileCount": 76,
+    "uiHash": "da68b92b1d49604f6e1b54caee39645dae00be9211806c6626a50f0157d30864",
+    "publicCount": 240,
+    "publicHash": "0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8",
+    "posixBridgeDefinitions": 4,
+    "actualPosixCallers": 10,
+    "actualFonts": [
+      {
+        "name": "IBMPlexSansCondensed-SemiBold",
+        "bytes": 202782,
+        "sha256": "1da4ccb87970cb8b97f0c130191269bf37485f107a5e99601dcfd27f99016932"
+      },
+      {
+        "name": "IBMPlexSans-SemiBold",
+        "bytes": 202770,
+        "sha256": "667367ee1a8b90cbffa8c01913135610ae038519e1ffbb2fe511764d39f900c2"
+      },
+      {
+        "name": "IBMPlexSans-Regular",
+        "bytes": 200638,
+        "sha256": "e1eddc908c675904c86805a9fd964d5873b0b743e7c296a074b4a86ec716acc6"
+      },
+      {
+        "name": "NotInter-Regular",
+        "bytes": 431646,
+        "sha256": "1eb03e7e759ac01242261e3cded8b23e86d5acfe160dd31ab5ae0fc09fb650fa"
+      }
+    ],
+    "actualExportIcons": [
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-120.png",
+        "size": [
+          120,
+          120
+        ],
+        "rawSha256": "eb1f537da700327e232a59c65570c182d3099f2e0b01e46ecb58b3f8af565aed",
+        "rgbaSha256": "7d0c70d698c776164f2fc8f04f401aa1b976ec374f32c0891c6d9759c9d92066",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-180.png",
+        "size": [
+          180,
+          180
+        ],
+        "rawSha256": "36ee9a7bfa28c53d2ad21d81b32bc64fd141001a4ceb995d0c5f6be3c06fd71b",
+        "rgbaSha256": "067a0a43d7529f3214045471695440f8acd816a040fa65221c7ed0a2484c986b",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-29.png",
+        "size": [
+          29,
+          29
+        ],
+        "rawSha256": "b3bcacf064975157b2f3af1c1ab32317b0186fcb8d1fcbd75996ac7c47b98eec",
+        "rgbaSha256": "1eebd5320a393ed00e08d99feb8ef8ca2f7740763fa225bdf36b216c8d404f57",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-58.png",
+        "size": [
+          58,
+          58
+        ],
+        "rawSha256": "88260a2aa8b5969818c5e250393bf1467e61a75a9853c6c78c685b34f96b90f2",
+        "rgbaSha256": "bdac3c0eb0f5d8dc17fd3794c0419404138889d365b254f9e13329129c1059c1",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-87.png",
+        "size": [
+          87,
+          87
+        ],
+        "rawSha256": "d772a6426ac182782f98cb5fa267fdbb5893559df514f8ba943a197c2ef15fc2",
+        "rgbaSha256": "e5eaf8eb845044fc1124796c66f4179d2bb0fc6b2579ef0d7da259d3c56fd215",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Spotlight-80.png",
+        "size": [
+          80,
+          80
+        ],
+        "rawSha256": "1013da21cc2ff4205ef88e89b218aad8fe64d4b0def366944dd3c62b96c147e5",
+        "rgbaSha256": "32dad19dab03cd7481b5b3a1749c6453a3f58654acfa6f2677257e2d5c421135",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Spotlight-120.png",
+        "size": [
+          120,
+          120
+        ],
+        "rawSha256": "eb1f537da700327e232a59c65570c182d3099f2e0b01e46ecb58b3f8af565aed",
+        "rgbaSha256": "7d0c70d698c776164f2fc8f04f401aa1b976ec374f32c0891c6d9759c9d92066",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Notification-40.png",
+        "size": [
+          40,
+          40
+        ],
+        "rawSha256": "2babe794ca44e499e603171cc4fc8c18ff2c5453027acd5dbf7925515692f502",
+        "rgbaSha256": "841f505c49fa09e11c20b09892477da5fbd6382dbfce4ff86ff12a790aa95daa",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Notification-60.png",
+        "size": [
+          60,
+          60
+        ],
+        "rawSha256": "09aeaaba73072cc5fd35b92f10d6a283e492a78fdf2f4814e04e136afc80ca42",
+        "rgbaSha256": "6587e51f74fa80715cc999cae1c12f6733dd3ab07fcb40974eb5ea69b8d71e5a",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Settings-29.png",
+        "size": [
+          29,
+          29
+        ],
+        "rawSha256": "b3bcacf064975157b2f3af1c1ab32317b0186fcb8d1fcbd75996ac7c47b98eec",
+        "rgbaSha256": "1eebd5320a393ed00e08d99feb8ef8ca2f7740763fa225bdf36b216c8d404f57",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Settings-58.png",
+        "size": [
+          58,
+          58
+        ],
+        "rawSha256": "88260a2aa8b5969818c5e250393bf1467e61a75a9853c6c78c685b34f96b90f2",
+        "rgbaSha256": "bdac3c0eb0f5d8dc17fd3794c0419404138889d365b254f9e13329129c1059c1",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Spotlight-40.png",
+        "size": [
+          40,
+          40
+        ],
+        "rawSha256": "2babe794ca44e499e603171cc4fc8c18ff2c5453027acd5dbf7925515692f502",
+        "rgbaSha256": "841f505c49fa09e11c20b09892477da5fbd6382dbfce4ff86ff12a790aa95daa",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Spotlight-80.png",
+        "size": [
+          80,
+          80
+        ],
+        "rawSha256": "1013da21cc2ff4205ef88e89b218aad8fe64d4b0def366944dd3c62b96c147e5",
+        "rgbaSha256": "32dad19dab03cd7481b5b3a1749c6453a3f58654acfa6f2677257e2d5c421135",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-76.png",
+        "size": [
+          76,
+          76
+        ],
+        "rawSha256": "01fda8acfb814727eca1aeb61914588c013cfbfc6c5c548cfdf2dc4db8f7c1e4",
+        "rgbaSha256": "7d300ecb65ff1bc359baa2090e736fbf845be7a70d6fb6f1c43f2d9322641f7a",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-152.png",
+        "size": [
+          152,
+          152
+        ],
+        "rawSha256": "ab5b474859c5943dfea4401aaac6867052c6d8d65667783d84757616da72a80c",
+        "rgbaSha256": "c145d403aed6e1d38282de498a1160206916d4ac5e6fa56cd1a3854577adcfe5",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Notification-20.png",
+        "size": [
+          20,
+          20
+        ],
+        "rawSha256": "b28e8cf3b2c76cfe6cd127ea129f501456d522141929948826bf1458fdeb5baf",
+        "rgbaSha256": "17f8c81ec924f202321dbc9d60aebb6ac84dfd1309a70ecdb1157eb0c8de49ad",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Notification-40.png",
+        "size": [
+          40,
+          40
+        ],
+        "rawSha256": "2babe794ca44e499e603171cc4fc8c18ff2c5453027acd5dbf7925515692f502",
+        "rgbaSha256": "841f505c49fa09e11c20b09892477da5fbd6382dbfce4ff86ff12a790aa95daa",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-167.png",
+        "size": [
+          167,
+          167
+        ],
+        "rawSha256": "10bf516ecf8e565d58221457fd35d9458efc562c81f60138ce8fb28c9885b86b",
+        "rgbaSha256": "0eca56692aa2da4603bca5794df9542cb5f091011fdcde76e40431ee37e778a3",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      },
+      {
+        "path": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-Store-1024.png",
+        "size": [
+          1024,
+          1024
+        ],
+        "rawSha256": "40c2e9ddb7d5c342e81edbcee926051e6d4b8583f0a362682d1b39e26fb550db",
+        "rgbaSha256": "a4bf4a6830bd3b425c0811c029218c3d99bf9525b835f7d528eaa11d56fa67fa",
+        "pixelsExactlyEqualAcceptedSameSource1dfExport": true,
+        "opaque": true
+      }
+    ],
+    "actualAppImages": [
+      {
+        "path": "StammstreckenPuzzle.app/AppIcon60x60@2x.png",
+        "size": [
+          120,
+          120
+        ],
+        "rawSha256": "bcf37fc867184d4bae04367a4e7ec475d884d88ee2eed8790a641d0ae8d5d026",
+        "actualCgbi": true,
+        "sourceMatches": [
+          {
+            "exportPath": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-120.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Spotlight-120.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          }
+        ]
+      },
+      {
+        "path": "StammstreckenPuzzle.app/AppIcon76x76@2x~ipad.png",
+        "size": [
+          152,
+          152
+        ],
+        "rawSha256": "562d3ab0c9d6a852980e2f255900ef960c632fb3e033e916157a17f8031b78a1",
+        "actualCgbi": true,
+        "sourceMatches": [
+          {
+            "exportPath": "Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-152.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          }
+        ]
+      },
+      {
+        "path": "StammstreckenPuzzle.app/LaunchScreen-iPad.png",
+        "size": [
+          1,
+          1
+        ],
+        "rawSha256": "7b159c01e44e6101841183009cefccbfe0f6f9173de4e520cbee75f680b40c72",
+        "actualCgbi": true,
+        "sourceMatches": [
+          {
+            "exportPath": "LaunchScreen-iPad.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhoneLandscape.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhonePortrait.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          }
+        ]
+      },
+      {
+        "path": "StammstreckenPuzzle.app/LaunchScreen-iPhoneLandscape.png",
+        "size": [
+          1,
+          1
+        ],
+        "rawSha256": "7b159c01e44e6101841183009cefccbfe0f6f9173de4e520cbee75f680b40c72",
+        "actualCgbi": true,
+        "sourceMatches": [
+          {
+            "exportPath": "LaunchScreen-iPad.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhoneLandscape.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhonePortrait.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          }
+        ]
+      },
+      {
+        "path": "StammstreckenPuzzle.app/LaunchScreen-iPhonePortrait.png",
+        "size": [
+          1,
+          1
+        ],
+        "rawSha256": "7b159c01e44e6101841183009cefccbfe0f6f9173de4e520cbee75f680b40c72",
+        "actualCgbi": true,
+        "sourceMatches": [
+          {
+            "exportPath": "LaunchScreen-iPad.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhoneLandscape.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          },
+          {
+            "exportPath": "LaunchScreen-iPhonePortrait.png",
+            "maxRGBAError": 0,
+            "alphaExact": true,
+            "premultipliedComparison": true
+          }
+        ]
+      }
+    ],
+    "assetsCar": [
+      {
+        "path": "StammstreckenPuzzle.app/Assets.car",
+        "bytes": 142760,
+        "sha256": "0c7640eac742bca1932fa2c70df5761adbaf9cba94af601721244fb52678232a"
+      }
+    ],
+    "actualPrivacy": [
+      {
+        "path": "StammstreckenPuzzle.app/Frameworks/UnityFramework.framework/GoogleMobileAdsResources.bundle/PrivacyInfo.xcprivacy",
+        "sha256": "69fb112582fc23fc06c635c961d262a3f7b4b5654d284787491de3000dadf9d2",
+        "declaration": {
+          "NSPrivacyCollectedDataTypes": [
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeOtherDiagnosticData",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising",
+                "NSPrivacyCollectedDataTypePurposeAnalytics"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeCoarseLocation",
+              "NSPrivacyCollectedDataTypeLinked": true,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising",
+                "NSPrivacyCollectedDataTypePurposeAnalytics",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypePerformanceData",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising",
+                "NSPrivacyCollectedDataTypePurposeAnalytics"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeCrashData",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeAnalytics"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeAdvertisingData",
+              "NSPrivacyCollectedDataTypeLinked": true,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising",
+                "NSPrivacyCollectedDataTypePurposeAnalytics"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeProductInteraction",
+              "NSPrivacyCollectedDataTypeLinked": true,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeAnalytics",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising",
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeDeviceID",
+              "NSPrivacyCollectedDataTypeLinked": true,
+              "NSPrivacyCollectedDataTypeTracking": true,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising",
+                "NSPrivacyCollectedDataTypePurposeAnalytics",
+                "NSPrivacyCollectedDataTypePurposeDeveloperAdvertising"
+              ]
+            }
+          ],
+          "NSPrivacyAccessedAPITypes": [
+            {
+              "NSPrivacyAccessedAPITypeReasons": [
+                "35F9.1"
+              ],
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime"
+            },
+            {
+              "NSPrivacyAccessedAPITypeReasons": [
+                "CA92.1"
+              ],
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults"
+            },
+            {
+              "NSPrivacyAccessedAPITypeReasons": [
+                "E174.1"
+              ],
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryDiskSpace"
+            }
+          ]
+        }
+      },
+      {
+        "path": "StammstreckenPuzzle.app/Frameworks/UnityFramework.framework/PrivacyInfo.xcprivacy",
+        "sha256": "1cd73a2fdfd39572784ec165bafae6661374fed735365fd2f9c44d8f13c315e9",
+        "declaration": {
+          "NSPrivacyAccessedAPITypes": [
+            {
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+              "NSPrivacyAccessedAPITypeReasons": [
+                "35F9.1"
+              ]
+            },
+            {
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryDiskSpace",
+              "NSPrivacyAccessedAPITypeReasons": [
+                "E174.1"
+              ]
+            },
+            {
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+              "NSPrivacyAccessedAPITypeReasons": [
+                "CA92.1"
+              ]
+            },
+            {
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+              "NSPrivacyAccessedAPITypeReasons": [
+                "0A2A.1",
+                "C617.1"
+              ]
+            },
+            {
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+              "NSPrivacyAccessedAPITypeReasons": [
+                "C617.1"
+              ]
+            }
+          ],
+          "NSPrivacyTracking": false
+        }
+      },
+      {
+        "path": "StammstreckenPuzzle.app/Frameworks/UnityFramework.framework/UserMessagingPlatformResources.bundle/PrivacyInfo.xcprivacy",
+        "sha256": "45b7adb99fcd2d962a1c800fbfcc1325b57a7fa4165f416182323bb5ffe9c900",
+        "declaration": {
+          "NSPrivacyCollectedDataTypes": [
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeCoarseLocation",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypePerformanceData",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+              ]
+            },
+            {
+              "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeProductInteraction",
+              "NSPrivacyCollectedDataTypeLinked": false,
+              "NSPrivacyCollectedDataTypeTracking": false,
+              "NSPrivacyCollectedDataTypePurposes": [
+                "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+              ]
+            }
+          ],
+          "NSPrivacyAccessedAPITypes": [
+            {
+              "NSPrivacyAccessedAPITypeReasons": [
+                "CA92.1"
+              ],
+              "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults"
+            }
+          ]
+        }
+      }
+    ],
+    "actualMachOs": {
+      "app": {
+        "architecture": "arm64",
+        "filetype": 2,
+        "loadCommandCount": 25,
+        "flags": "0x200085",
+        "buildVersions": [
+          {
+            "platform": 2,
+            "minimumOS": "15.0.0",
+            "sdk": "26.2.0"
+          }
+        ],
+        "dylibs": [
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/StoreKit.framework/StoreKit",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/Foundation.framework/Foundation",
+            "current": 275316736,
+            "compatibility": 19660800
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libobjc.A.dylib",
+            "current": 14942208,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libc++.1.dylib",
+            "current": 131089152,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libSystem.B.dylib",
+            "current": 88866816,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+            "current": 275316736,
+            "compatibility": 9830400
+          }
+        ],
+        "codeSignatures": [],
+        "symbolCount": 35,
+        "selectedPosixSymbols": []
+      },
+      "framework": {
+        "architecture": "arm64",
+        "filetype": 6,
+        "loadCommandCount": 70,
+        "flags": "0x918085",
+        "buildVersions": [
+          {
+            "platform": 2,
+            "minimumOS": "15.0.0",
+            "sdk": "26.2.0"
+          }
+        ],
+        "dylibs": [
+          {
+            "command": "0xd",
+            "name": "@rpath/UnityFramework.framework/UnityFramework",
+            "current": 0,
+            "compatibility": 0
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libsqlite3.dylib",
+            "current": 24903680,
+            "compatibility": 589824
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libz.1.dylib",
+            "current": 66060,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/AVFoundation.framework/AVFoundation",
+            "current": 131072,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox",
+            "current": 65536000,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CFNetwork.framework/CFNetwork",
+            "current": 253034271,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+            "current": 128778755,
+            "compatibility": 4194304
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreMedia.framework/CoreMedia",
+            "current": 215614977,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony",
+            "current": 0,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreVideo.framework/CoreVideo",
+            "current": 47579648,
+            "compatibility": 66048
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore",
+            "current": 40829198,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/MessageUI.framework/MessageUI",
+            "current": 253296425,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices",
+            "current": 80347136,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/Network.framework/Network",
+            "current": 364985383,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+            "current": 78196482,
+            "compatibility": 66048
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/Security.framework/Security",
+            "current": 4056759336,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/StoreKit.framework/StoreKit",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration",
+            "current": 90782723,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/WebKit.framework/WebKit",
+            "current": 40829198,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/AdSupport.framework/AdSupport",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/SafariServices.framework/SafariServices",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/CoreMotion.framework/CoreMotion",
+            "current": 200802314,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/libSystem.B.dylib",
+            "current": 88866816,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libiconv.2.dylib",
+            "current": 458752,
+            "compatibility": 458752
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/AVKit.framework/AVKit",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreText.framework/CoreText",
+            "current": 57475584,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/Foundation.framework/Foundation",
+            "current": 275316736,
+            "compatibility": 19660800
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/Metal.framework/Metal",
+            "current": 24264706,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/UIKit.framework/UIKit",
+            "current": 598082052,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/GameController.framework/GameController",
+            "current": 852488,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libobjc.A.dylib",
+            "current": 14942208,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libc++.1.dylib",
+            "current": 131089152,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/AVFAudio.framework/AVFAudio",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+            "current": 275316736,
+            "compatibility": 9830400
+          },
+          {
+            "command": "0xc",
+            "name": "/System/Library/Frameworks/CoreServices.framework/CoreServices",
+            "current": 80347136,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/System/Library/Frameworks/MarketplaceKit.framework/MarketplaceKit",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/libcompression.dylib",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/swift/libswiftCore.dylib",
+            "current": 0,
+            "compatibility": 0
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftCoreFoundation.dylib",
+            "current": 7889920,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftCoreImage.dylib",
+            "current": 131584,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftDarwin.dylib",
+            "current": 22751234,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/swift/libswiftDispatch.dylib",
+            "current": 3670016,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftMetal.dylib",
+            "current": 24264706,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftOSLog.dylib",
+            "current": 655360,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/swift/libswiftObjectiveC.dylib",
+            "current": 62324992,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftQuartzCore.dylib",
+            "current": 327680,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+            "current": 57606660,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftXPC.dylib",
+            "current": 6881294,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/swift/libswift_Concurrency.dylib",
+            "current": 0,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftos.dylib",
+            "current": 70526978,
+            "compatibility": 65536
+          },
+          {
+            "command": "0xc",
+            "name": "/usr/lib/swift/libswiftFoundation.dylib",
+            "current": 65536,
+            "compatibility": 65536
+          },
+          {
+            "command": "0x80000018",
+            "name": "/usr/lib/swift/libswiftUIKit.dylib",
+            "current": 65536,
+            "compatibility": 65536
+          }
+        ],
+        "codeSignatures": [],
+        "symbolCount": 631546,
+        "selectedPosixSymbols": [
+          {
+            "name": "_stp_posix_rename",
+            "type": "0x1e",
+            "section": 1,
+            "description": 0,
+            "value": 16484,
+            "undefined": false
+          },
+          {
+            "name": "_stp_posix_open",
+            "type": "0x1e",
+            "section": 1,
+            "description": 0,
+            "value": 16488,
+            "undefined": false
+          },
+          {
+            "name": "_stp_posix_flock",
+            "type": "0x1e",
+            "section": 1,
+            "description": 0,
+            "value": 16492,
+            "undefined": false
+          },
+          {
+            "name": "_stp_posix_close",
+            "type": "0x1e",
+            "section": 1,
+            "description": 0,
+            "value": 16496,
+            "undefined": false
+          },
+          {
+            "name": "_close",
+            "type": "0x1",
+            "section": 0,
+            "description": 5952,
+            "value": 0,
+            "undefined": true
+          },
+          {
+            "name": "_flock",
+            "type": "0x1",
+            "section": 0,
+            "description": 5952,
+            "value": 0,
+            "undefined": true
+          },
+          {
+            "name": "_open",
+            "type": "0x1",
+            "section": 0,
+            "description": 5952,
+            "value": 0,
+            "undefined": true
+          },
+          {
+            "name": "_rename",
+            "type": "0x1",
+            "section": 0,
+            "description": 5952,
+            "value": 0,
+            "undefined": true
+          }
+        ]
+      }
+    },
+    "actualPods": {
+      "Google-Mobile-Ads-SDK": "13.11.0",
+      "GoogleUserMessagingPlatform": "3.1.0"
+    },
+    "podSpecChecksums": {
+      "Google-Mobile-Ads-SDK": "09d0868abe43b9f851b7b340a245679f0eafc96c",
+      "GoogleUserMessagingPlatform": "befe603da6501006420c206222acd449bba45a9c"
+    },
+    "podLicenseMaterials": [
+      {
+        "path": "Pods/Google-Mobile-Ads-SDK/LICENSE",
+        "bytes": 18880,
+        "sha256": "91348f7d73834c36e12a515ff4d70191ad3106747c7e7ec116aab915a52b1b8b",
+        "byteEqualRetainedSameResolvedVersions": true
+      },
+      {
+        "path": "Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-acknowledgements.plist",
+        "bytes": 805,
+        "sha256": "3ddf95946dd1173fa4e5ab9223a3c81e754fa322bff280d69566be21aa52a687",
+        "byteEqualRetainedSameResolvedVersions": true
+      },
+      {
+        "path": "Pods/Target Support Files/Pods-UnityFramework/Pods-UnityFramework-acknowledgements.plist",
+        "bytes": 1331,
+        "sha256": "3aa603d05e4ee5a6431c968cb3feac7686a5f4e210d6af3eb74e2fc6373be873",
+        "byteEqualRetainedSameResolvedVersions": true
+      }
+    ]
+  },
+  "originalTerminalJobsSnapshot": {
+    "path": ".utmp/wp046-native/remote1f/nov1-terminal-jobs.json",
+    "sha256": "0d3795f60adab568e5abe78b9f766942b148e468f2a572290a2b6d54687fa3d5",
+    "sizeBytes": 32034
+  },
+  "rootReferencedOriginalFilesRehashed": 67,
+  "parallelPushBoundary": {
+    "run": 40916695660,
+    "editorJob": 123599129351,
+    "status": "CANCELED_BEFORE_EXECUTION_BY_GITHUB_CONCURRENCY_QUEUE",
+    "runnerId": 0,
+    "steps": [],
+    "notTestFailureOrFullPushSuccess": true,
+    "actualQueueOriginals": ".utmp/wp046-native/remote1f/queue-observation-first"
+  },
+  "localPlayablePackagesRemainUnchanged": [
+    "Release/ANDROID_BUILD22_INSPECTION.json",
+    "Release/HUMAN_ANDROID_BUILD11_INSPECTION.json"
+  ],
+  "limits": [
+    "Actual PR1f originals only. The canceled Push1f and partial136 workflows are not relabeled as complete successes.",
+    "Independent source/compiled-input evidence does not prove a per-test loaded image, bitwise reproduction or mobile runtime performance.",
+    "The CI debug signer differs from local QA packages. No automatic replacement, installation, uninstall, data deletion or progress migration follows.",
+    "The actual iOS build is unsigned; no signed IPA/TestFlight, physical device, provider sandbox, real Human calibration, Owner game-quality, qualified rights/privacy or Store approval is granted.",
+    "Original SDK POM/notices and complete literal text remain materials for qualified review, not complete legal/binary-notice coverage or contract acceptance."
+  ],
+  "findings": [],
+  "productionSigned": false,
+  "physicalDeviceValidated": false,
+  "humanCalibrationOrOwnerAcceptance": false,
+  "providerSandboxValidated": false,
+  "legalApproved": false,
+  "mainOrStorePromotionAllowed": false
+}

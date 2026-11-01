@@ -1,0 +1,134 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-01-03-10",
+  "contentRevision": 2,
+  "grid": {
+    "width": 4,
+    "height": 5
+  },
+  "endpoints": {
+    "a": {
+      "side": "W",
+      "index": 2
+    },
+    "b": {
+      "side": "S",
+      "index": 2
+    }
+  },
+  "rowCounts": [
+    3,
+    4,
+    3,
+    2,
+    1
+  ],
+  "columnCounts": [
+    2,
+    4,
+    5,
+    2
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 1,
+    "route": 3,
+    "position": 10,
+    "titleKey": "level.s1.01.03.10.title",
+    "statusKey": "level.s1.01.03.10.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.01.03.10.entry",
+    "focus": [
+      "DENSITY",
+      "ENDPOINT_GEOMETRY"
+    ],
+    "chainDepth": 5,
+    "qualityNote": "Der volle Anker liegt nun in Zeile 1, darunter nimmt die Belegung schrittweise ab. Obwohl beide Varianten 13 Zellen haben, liegen der dichte Teil und die Eintrittsrichtung anders als in Position 9; der Dichtebrief ist durch diese räumliche Umkehr nachvollziehbar.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-01-03-10-map",
+    "trainMomentId": "draft-s1-01-03-10-train",
+    "resultTextKey": "level.s1.01.03.10.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_NS"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-01-03-10/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "df5eda4a3ac35a6c81ff3af26578c33f5911b7482a9d7b5be49b8d5f36d73713"
+    }
+  }
+}

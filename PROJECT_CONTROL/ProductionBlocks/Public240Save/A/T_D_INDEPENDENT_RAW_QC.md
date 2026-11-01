@@ -1,0 +1,13 @@
+# Unabhängige tatsächliche D-Rohblobprüfung
+
+**PASS_RAW_GIT_BLOB_AND_AUTHORITY_DELTA_ONLY.** Eng lesende Nachprüfung durch `/root/t_boundary_review`; keine erneute Fach-/Codeprüfung und keine Aussage über den späteren D-CI-Erfolg.
+
+Tatsächlicher Commit D: `925ca608a961ac26c84385c8da3b949f609df883`, Tree `6b2693ad596ba3b8fb84ef1044a9b367270d22b2`, einziger Parent `54d2496ac2c74b681d24fe7a69d7f044392c46dd` selbst abgefragt und bestätigt. Gegen diesen Parent gibt es keine Änderung in Assets, Packages, ProjectSettings, Workflows oder tools/architecture-validation einschließlich Manifesten.
+
+Alle 33 Dokument-Rohblobs aus Roots Bindungsnachweis wurden unabhängig mit `git cat-file blob` als Binärbytes über den Prozess-BaseStream gelesen und mit SHA256 gehasht; sämtliche Hashes stimmen mit dem Rootnachweis überein. Zusätzlich wurden die fünf gespeicherten gzip-Nativeoriginale aus den tatsächlichen D-Bindungsblobs selbst dekodiert, gehasht und nach ausschließlich CRLF→LF mit den tatsächlichen Zielblobs verglichen. Die 17 im Schluss-QC gebundenen nativen Dokumenthashes stimmen weiterhin mit den Dateien überein; deren alleinige CRLF-Normalisierung entspricht jeweils dem tatsächlichen D-Rohblob. Vollständige Einzelwerte stehen in der JSON-Beilage.
+
+Die zuvor nur erwarteten Bindungen sind damit tatsächlich eingetreten: T-Details native `cc2f51119db4b76d5387d40f5f8b2508435ce505a138571110ca3f7a4922e6bb` → Git-LF `5b42ebca2e1240b90b50bf2f5dad47c6fb3af3638c94e4f5d8acc6f57ebbd1b2`; S-Plan native/Git `41f1d5e2cb8af9b779319eb0299b8b0dec84fc71f75263af0c138ac71f94e37d`; A-Plan native `8a4e6cdffec2563a1200cf72a4a82d2ef2a18720ce12399e69a636cf4408f465` → Git-LF `62bdcd157b301f93aa65693876304e7b43fab343ee5bfed2b09f88bf1a1d226a`. Die historischen nativen Annahmehashes bleiben eigenständig erhalten. Originale T_CI.md und T_CI_EVIDENCE.json sind bytegleich erhalten.
+
+Der tatsächliche R-Nachtrag T_CLOSEOUT_DECISION.md (Rohblob-SHA256 `bb26ccc46cdfa0722e838d7e2f023130b960464d68c1b796c58ede183086ab71`) ist der abgegrenzte gewöhnliche Authoritynachtrag nach dem tatsächlich abgegebenen unabhängigen PASS. Er nimmt Code und Dokumentliefergegenstand an, ändert keine angenommenen Source-/Planinhalte und lässt D-eigene CI sowie gemeinsame Kindbasisfreigabe ausdrücklich offen. Er behauptet keine Produkt-, Main- oder Releaseannahme. Die nachträgliche Annahme erfordert deshalb keine neue Fachprüfung.
+
+Der Bericht schließt ausschließlich das Rohblobgate. Eigene D-CI wurde hier nicht bewertet: terminaler Erfolg auf exakt D und anschließende R-Freigabe bleiben vor beiden A/S-Kindankern erforderlich. Nur diese ignorierten Nachweisdateien wurden geschrieben; D und Git blieben unverändert.

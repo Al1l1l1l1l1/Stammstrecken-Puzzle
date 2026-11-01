@@ -1,0 +1,109 @@
+{
+  "reviewer": "independent entry_audit",
+  "reviewUtc": "2026-10-19T12:50:00.071Z",
+  "verdict": "PASS_PROSPECTIVE_CONTENT_AND_NARROW_ORCHESTRATION_DELTA_ONLY",
+  "executed": false,
+  "sourceGitUnityMutations": false,
+  "inputs": [
+    {
+      "path": "I_WP_TEMPLATE.md",
+      "bytes": 16602,
+      "sha256": "5f75b998ff0b695909c856c7de42d291b0567260546dca84b3670b86cd2fb58c"
+    },
+    {
+      "path": "fresh-p-refs.cjs",
+      "bytes": 1827,
+      "sha256": "b5847924cd6c9e38e98aa4c32337ca2304d493b02528e9b6ae0931650fe0e930"
+    },
+    {
+      "path": "assemble-p.cjs",
+      "bytes": 6427,
+      "sha256": "48d8a016b6c5bc0b4187eeeb573c4705831f9b52745874580243ad73682a2f5e"
+    },
+    {
+      "path": "check-p.py",
+      "bytes": 1806,
+      "sha256": "963b7f904634f5f74797301989c9701dc1def95ee6ffbcec2a96cfd07f31209a"
+    },
+    {
+      "path": "create-i-anchor.cjs",
+      "bytes": 8625,
+      "sha256": "7c1660a01ca327f10f6190ba8addca6691bc2f23fbab9f383ce797c94bf3872e"
+    }
+  ],
+  "scope": {
+    "newAssets": 14,
+    "newMetas": 14,
+    "newAssetPaths": [
+      "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+      "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+      "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+      "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+      "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs"
+    ],
+    "existingPaths": [
+      ".github/workflows/validate.yml",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "ProjectSettings/EditorBuildSettings.asset",
+      "DECISIONS/README.md",
+      "DECISIONS/ADR-034-isolierter-public240-reviewpfad.md",
+      "tools/architecture-validation/validate.py",
+      "ARCHITECTURE/MODULE_BOUNDARIES.md",
+      "ARCHITECTURE/BUILD_AND_RELEASE.md",
+      "PROJECT_CONTROL/CURRENT_STATE.md",
+      "PROJECT_CONTROL/WORK_QUEUE.md",
+      "PROJECT_CONTROL/ProductionBlocks/Public240Save/HANDOVER.md",
+      "WORK_PACKAGES/WP-040_Public240-Save-Technikbasis.md",
+      "WORK_PACKAGES/WP-041_Public240-interne-Prueffassung.md",
+      "WORK_PACKAGES/WP-042_Lokaler-Save-Restore-Grundfortschritt.md"
+    ],
+    "newGovernanceFile": "DECISIONS/<fresh-ADR>-gespeicherter-public240-qa-entry.md",
+    "ownEvidencePatterns": 4,
+    "totalProspectiveAllowedPatterns": 50,
+    "technicalExisting": 4,
+    "existingGovernance": 5,
+    "statusHandoverExisting": 6,
+    "workPackageAndManifestFirstAdds": 2
+  },
+  "acceptanceCoverage": {
+    "criteria": "I01–I16 read completely",
+    "points": [
+      "Exact separately accepted LA/LS union on D with ordered LA/LS parents and sole allowed validate.yml conflict resolved to exact LA blob",
+      "Fresh global ID audit and own immutable joint WP+manifest first-add directly on actual P",
+      "Numbered narrow ADR draft/review/R acceptance before all I implementation; ADR034 body unchanged with additive follow-up only",
+      "Four normal scene entries and actual BuildReports; own deterministic Saved builder; existing A guard unchanged",
+      "Main-thread Unity capture, Clock/Dispatcher and Bridge construction; worker pure S/catalog/FS composition; loading/fault before single BindModel and Pump without model",
+      "Explicit profile initialization; ephemeral picker, distinct new/resume commands and full-triplet HasDraft read projection",
+      "Cold restore, autosave/lifecycle/epoch/dispose, actual OS lock while main responsive, commit before Ride/Results",
+      "Actual physical root length and private-root isolation, real durable failures/recovery/unknown observation, explicit outer reload after unexpected bound task fault",
+      "Full staging canonical checks, exact freeze, all regular CI/raw XML/Coverage/4 releases and separate authoritative R integration acceptance"
+    ]
+  },
+  "closedPriorReadinessFindings": [
+    {
+      "finding": "Cached origin tracking refs alone are not a fresh server audit",
+      "resolution": "fresh-p-refs performs actual fetch plus server ls-remote for Main/Dev/T/A/S; assemble requires complete matching expected/observed set within120s and records audit SHA256"
+    },
+    {
+      "finding": "Any RESULT FAIL is insufficient for expected child cumulative scope failure",
+      "resolution": "check-p preserves actual unmodified canonical process exit and original architecture/scope bytes; anchor requires actual exit1, architecture17PASS, exact WP041/baseD/headP/clean context, immutable A manifest and exact sorted equality of all FAIL errors with computed out-of-scope set; every other FAIL blocks"
+    }
+  ],
+  "matchingBoundary": "Closed A manifest uses exact paths and shallow single-star own evidence patterns only; prepared matcher escapes regexp metacharacters and star cannot cross slash. No general replacement of canonical validator or future-manifest matcher claimed.",
+  "remainingGates": [
+    "No P assembly, remote audit, new WP/ADR number, anchor or numbered ADR acceptance performed by this review",
+    "Actual LS technical acceptance still requires F2 terminal full CI and R decision",
+    "Fresh actual audits/process outputs/exact-union Git objects and eventual own I anchor require separate post-execution independent binding",
+    "No I source, native run, regular CI or product/delivery PASS follows from prospective content review"
+  ]
+}

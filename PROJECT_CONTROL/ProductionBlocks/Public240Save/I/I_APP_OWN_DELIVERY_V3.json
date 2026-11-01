@@ -1,0 +1,209 @@
+{
+  "status": "OWN_IMPLEMENTER_DELIVERY_SUPPLEMENT_SOURCE_STABLE_NOT_INDEPENDENT_OR_UNITY_PASS",
+  "workPackage": "WP-043",
+  "anchor": "1c002e14e07a7cf48366e786f2ec598234f9d314",
+  "parentP": "95508482696cc1cc4e355021ce47d64863d9651a",
+  "acceptedBeforeCode": "3ca62a9b109f828fbb32965eace4fbf8fe3eae7e",
+  "manifestSha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+  "sources": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+      "bytes": 42430,
+      "sha256": "9d1023cef6a45e5bc7a5c24c366f9be576264d9315e7242c126ba400541e284a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+      "bytes": 240,
+      "sha256": "294c499a4b16d1e338a937e9f036a817936a3f6434c8ba748e7be0f0f268219c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+      "bytes": 3892,
+      "sha256": "568472f0fbeac372d537639157ab4730e3375217be2d52c3c7fa48c10dec09c8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+      "bytes": 240,
+      "sha256": "a364d90d5bc4afb966722f1345802f20367baa137f8deff7b7b19518ff63b797"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+      "bytes": 39989,
+      "sha256": "c42048a5e03e4f6dc9db985e68c67931a4e310de17f90891ab6aa3f1c336ae5a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+      "bytes": 240,
+      "sha256": "b3cbed05fc7635fa68b708b79e7898bfce476a91655dfffe4860c91eeefae672"
+    }
+  ],
+  "validation": {
+    "compilerAssemblies": [
+      "STP.Puzzle.Domain",
+      "STP.Puzzle.Solver",
+      "STP.Application",
+      "STP.Infrastructure.Content",
+      "STP.Infrastructure.Persistence",
+      "STP.Platform",
+      "STP.Tests.Application.EditMode"
+    ],
+    "compilerExitCodes": "all seven 0, Root compile05",
+    "run": "license-free Mono NUnit supplement",
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "startUtc": "2026-10-19T13:32:38Z",
+    "endUtc": "2026-10-19T13:32:45Z",
+    "originalXml": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-i-compile-05/i-app-v3-results.xml",
+    "originalXmlSha256": "271627a4058ebb44fbdd7e0d797b269587edf1bfea4de786945f9885d25bb157",
+    "durablePack": "I_APP_V3_ORIGINAL_COMPILER_TEST_PACK.json",
+    "durablePackSha256": "bb8316ba52735e3bae12f00e686385d8cd59d28c5949b82e72b7a80e13d9d980",
+    "cases": [
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.BridgeWorkerEntryIsRejectedAndPublishedStatesRemainImmutable",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.CancellingQueuedLifecycleFlushDoesNotCancelEarlierPhysicalWrite",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.CompletionDuringDraftWriteWaitsForItsOwnSeparateAcknowledgement",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.ConfirmedFreshLoadRetiresDirtySchedulerBeforeExplicitResumeOrNewStart",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.ConflictUsesFreshObservationAndExplicitRecoveryPromotionClearsUnconfirmedAttempt",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.CorruptResetIsOnlyAnExplicitObservedActionAndClearsOldView",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.DispatcherDisposeCompletesWaitingAndFuturePublicationsWithoutTheirActions",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.DisposeRetiresViewsAndLateAcknowledgementCannotPublishResults",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.ExplicitOpenConfirmsReadyCheckpointAndReadOnlyDraftQueriesDoNotSelect",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.FailedCompletionRequiresExplicitRetryAndNeverDoublePays",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.FailedNewReadyWriteDoesNotInventConfirmedDraftAvailability",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.LifecycleDuringHeldLoadPausesKnownSessionAtImmediateCallbackInstant",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.LifecyclePausesAtCallbackInstantWhileEarlierWriteIsHeld",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.LocalSaveClockUsesProcessMonotonicAndInvariantUtc",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.MainThreadDispatcherQueuesWorkersAndRejectsWorkerDrainWithoutExecutingPublications",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.MissingColdLoadDoesNotCreateProfileOrFakeAttempt",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.MissingResumeNeverFallsBackToStartAndNoStartupAttemptIsFabricated",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.NavigationWaitsForActualFlushAndFailureKeepsOldAttemptAndDurableDraft",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.NewMutationDuringDraftWriteRemainsDirtyAfterEarlierAcknowledgement",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.NoOpDoesNotNotifyButActualUndoAndMarkerHistoryRoundtripThroughS",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.OldViewsCannotRetargetNewAttemptDimensionsCommandsOrRide",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.SafeDraftFailureStopsFrameRetriesAndExplicitRetryAloneConfirms",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.SolveDoesNotStartUnobservedCommitAndHeldAcknowledgementCannotReleaseRide",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.SuspensionPreservesAcknowledgedRideAndResultWithoutReplayOrExtraWrite",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.UnexpectedRequestFaultKeepsExplicitReloadReachableAndCannotReuseStaleRecovery",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.UnknownCompletionRequiresFreshLoadAndCannotReuseOldSolvedView",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.UnsupportedOrFailedCandidateNeverOffersCreateRecoveryOrReset(Unsupported,Unsupported)",
+        "result": "Passed"
+      },
+      {
+        "name": "STP.Tests.Application.EditMode.SavedPublic240ReviewSessionTests.UnsupportedOrFailedCandidateNeverOffersCreateRecoveryOrReset(Failed,Failed)",
+        "result": "Passed"
+      }
+    ]
+  },
+  "historicalFailures": [
+    {
+      "pack": "I_APP_V1_ORIGINAL_COMPILER_TEST_PACK.json",
+      "sha256": "944a8847c91fa2ddca25b93ecc4ed6676494441a0003cc9a1c58fecf79d89e77",
+      "passed": 19,
+      "failed": 2,
+      "causes": [
+        "Retired attempt dirty coordinator flushed against null S session after confirmed recovery",
+        "Test injected failure into required old pause/flush instead of subsequent new Ready write"
+      ]
+    },
+    {
+      "pack": "I_APP_V2_ORIGINAL_COMPILER_TEST_PACK.json",
+      "sha256": "da947d90e1b5f8f160b2fb438ad5d7879f0beaf80f0a23e975938fb7734c44c6",
+      "passed": 27,
+      "failed": 1,
+      "cause": "NUnit exact Assert.Throws did not accept valid TaskCanceledException subtype; only test changed to Assert.Catch"
+    }
+  ],
+  "scope": {
+    "existingASFilesChanged": false,
+    "assemblyEdgesChanged": false,
+    "unityExecutedByOwner": false,
+    "gitMutationByOwner": false,
+    "activeCoordinator": "one per confirmed profile lifetime; replaced only after serial confirmed session retirement per R decision",
+    "additionalFiles": "only this requested evidence pair"
+  },
+  "limits": [
+    "Implementer report, not independent QC or final I acceptance",
+    "Controlled repository acknowledgement/failure doubles with actual S/Domain/Policy/JCS; these tests do not prove physical filesystem/OS lock behavior",
+    "Native Unity startup/UI/scene/real-file/actual240/4x4/10x10/ride screenshots, platform builds and regular CI remain Root/UI integration responsibilities",
+    "No product/main/release/human/device approval"
+  ]
+}

@@ -1,64 +1,39 @@
-# Regeln für Work Packages
+# Regeln für große Work Packages
 
-Ein Work Package ist der verbindliche, abgegrenzte Arbeitsauftrag für einen Agenten. Es wird als eigene Markdown-Datei im Ordner `WORK_PACKAGES/` angelegt. Ohne ein passendes Work Package darf keine technische, konzeptionelle oder inhaltliche Arbeit begonnen werden.
+**Ab MANUS-2026-10-20-02 verbindlich:** Ein Work Package ist ein vollständiger großer Lieferauftrag mit einem sichtbaren Ergebnis im Spiel. Vorbereitung, Implementierung, eigene Fehlerkorrektur, notwendige Nachbesserung, angemessene unabhängige Prüfung und zulässige Integration gehören in denselben Auftrag. Die alte Forderung nach genau einer kleinen einzeln testbaren Änderung pro WP ist aufgehoben.
 
-## Verbindliches Format
+## Mindestinhalt vor Beginn
 
-Jedes Work Package muss die folgenden Abschnitte in dieser Reihenfolge enthalten.
+Das WP enthält die bestehenden verständlichen Abschnitte ID, Ziel, Voraussetzungen, Scope, Betroffene Dateien/Module, Ausdrücklich nicht erlaubte Änderungen, Akzeptanzkriterien, Tests, Risikoklasse und Definition of Done. Ein kurzer Bearbeitungsstand nennt Verantwortung, reale Basis/Head, nächstes Ergebnis und Blocker. Es soll direkt ausführbar sein, nicht alle internen Schritte als neue Erlaubnisanträge ausformulieren.
 
-| Abschnitt | Verbindlicher Inhalt |
-|---|---|
-| ID | Eindeutige, stabile Kennung im Format `WP-###`. Eine vergebene ID wird nicht wiederverwendet. |
-| Ziel | Ein klarer, überprüfbarer Sollzustand des Arbeitspakets. |
-| Voraussetzungen | Pflichtlektüre, bestätigte Vorentscheidungen, benötigte Zugänge sowie vorher abzuschließende Work Packages. |
-| Scope | Die ausdrücklich erlaubten Tätigkeiten und Ergebnisgrenzen. |
-| Betroffene Dateien/Module | Alle Dateien, Verzeichnisse, Module oder Dokumente, die erstellt, geändert oder geprüft werden dürfen. Nicht vorhandene Zielartefakte sind ausdrücklich als neu anzulegen zu kennzeichnen. |
-| Ausdrücklich nicht erlaubte Änderungen | Produktentscheidungen, Architekturteile, Dateien, Module oder Verhaltensweisen, die vom Scope ausgenommen sind. |
-| Akzeptanzkriterien | Objektiv prüfbare Bedingungen, anhand derer das Ergebnis abgenommen wird. |
-| Tests | Konkrete vorgeschriebene Tests, Prüfschritte oder begründete Nichtanwendbarkeit. |
-| Risikoklasse | Niedrig, mittel oder hoch einschließlich einer kurzen Begründung. |
-| Definition of Done | Die auf dieses Work Package konkret angewandten Abschlussbedingungen gemäß `PROJECT_CONTROL/DEFINITION_OF_DONE.md`. |
+Das Ziel benennt einen tatsächlichen Produktzustand: beispielsweise vollständige mobil bedienbare Kampagne oder getestete Store-/Monetarisierungsintegration. Der Scope umfasst alle dafür sachlich notwendigen benannten Module, Daten, Assets, Tests, Korrekturen und Integrationsarbeiten. Segmentierte passende Verzeichnisglobs sind für große Lieferbahnen zulässig; globale Sammel-Allowlists und sachfremde Refactorings nicht.
 
-## Verbindliche Zusatzregeln
+## Ein Programmanker statt Ankerketten für Routinearbeit
 
-1. Ein Work Package beschreibt genau eine fachlich kohärente, einzeln testbare Änderung mit explizit aufgelisteten betroffenen Modulen. Wenn eine vollständige architektonische Transaktion mehrere Module zwingend gemeinsam ändern muss, gehören diese Module in dasselbe Work Package; unspezifische Sammellisten bleiben verboten.
-2. Der Scope ist abschließend. Eine nicht genannte Änderung oder ein beiläufiges Refactoring außerhalb der aufgelisteten Module ist nicht automatisch erlaubt.
-3. Akzeptanzkriterien und Tests müssen vor Beginn der Bearbeitung feststehen. Sie werden nicht nachträglich abgesenkt, um einen unvollständigen Stand als fertig zu deklarieren.
-4. Abhängigkeiten und betroffene Dateien müssen den tatsächlich dokumentierten Projektstand widerspiegeln. Unklare Informationen werden als Blocker markiert, nicht ergänzt oder geraten.
-5. Ein Work Package darf bestätigte Produktentscheidungen nicht stillschweigend verändern. Architekturentscheidungen benötigen gegebenenfalls vor der Umsetzung einen akzeptierten ADR gemäß `DECISIONS/README.md`.
-6. Nach Abschluss müssen das Work Package selbst und `PROJECT_CONTROL/CURRENT_STATE.md` den nachvollziehbaren Abschluss- und Übergabestand enthalten.
+Je unabhängiger großer Lieferbahn entstehen WP und eigenes Manifest einmal vor Fachänderungen im gemeinsamen Erst-Add-Commit nach ADR-030. Historische IDs und Manifeste bleiben unverändert. Unteraufgaben innerhalb dieses Scopes brauchen nur einen kurzen internen Brief: Eigentümer, Ziel, Schreibbereich, Eingänge, Prüf- und Übergabeergebnis. Kein neues WP/Manifest für jeden Subagenten, Routinefix, Testbericht, Closeout oder vorher erfassten Integrationsschritt.
 
-## Risikoklassen
+Der Lead darf denselben gültigen Programmscope über alle Korrekturen, Fortsetzungen und sachlich dazugehörigen Unterintegrationen verwenden. Unabhängige parallele Lieferbahnen bekommen je einen passenden Scope; ihre Montage und der RC-Abschluss sind bereits im Gesamtmandat und einem passenden Integrationsscope enthalten. Die Ausführung darf technische Reihenfolge, Teilung und interne Fortsetzung selbst wählen, ohne neue Ownermeldung.
 
-| Klasse | Bedeutung |
-|---|---|
-| Niedrig | Isolierter, klar reversibler Auftrag ohne Auswirkung auf bestätigte Produktentscheidungen, Architektur, Persistenz, Datenschutz, Sicherheit oder Releasefähigkeit. |
-| Mittel | Auftrag mit mehreren betroffenen Komponenten oder einer relevanten Auswirkung auf Qualität, Daten, Tests oder Dokumentation, jedoch ohne grundlegende Architekturentscheidung. |
-| Hoch | Auftrag mit möglicher Auswirkung auf Architektur, Persistenz, Datenschutz, Sicherheit, Monetarisierung, Releasefähigkeit oder bestätigte Produktleitplanken. |
+Echte Scopeerweiterungen außerhalb benannter Liefermodule, Änderungen am Produktversprechen oder neue sicherheits-/finanz-/datenschutzrelevante externe Aktionen bleiben separate ausdrückliche Entscheidungen. Keine nachträgliche Scope-/AKabsenkung zum Bestehen eines fehlenden Ergebnisses.
 
-## Vorlage
+## Entscheidungen innerhalb des Auftrags
 
-```md
-# WP-### – Kurztitel
+Die verantwortliche Rolle trifft normale technische Implementierungs-, UIresponsive-, Import-, Test- und Integrationsentscheidungen im bestehenden Stack selbst. Nur echte Vertrags-/Sicherheits-/Modulgrenzenänderungen benötigen einen Fach-ADR samt erforderlicher getrennter Review. Ein vorher schon entschiedener Grundsatz oder eine Routinekorrektur erzeugt keine neue Entscheiderkette.
 
-## ID
-WP-###
+Unsicherheit wird nach Wirkung behandelt: Ein implementierbares Detail wird mit nachvollziehbarer innerhalb des Mandats zulässiger Wahl umgesetzt; ein echter ungelöster Produkt-/Rechts-/Befugniskonflikt blockiert nur den betroffenen Teil. Unabhängige Arbeit geht weiter. Der Owner ist nicht technischer Bote.
 
-## Ziel
+## Risikogerechte Abschlussbedingungen
 
-## Voraussetzungen
+Niedrig: reine Dokumentation, Navigation oder technisch identische Schlussdateien – Struktur, Links, Scope und tatsächliche Quellgleichheit; kein Unity-/Geräte-/Korpus-Neulauf.
 
-## Scope
+Mittel: neue UI/Assets/Features – relevante automatisierte Tests, reale Ausführung und Sichtung der betroffenen Spielabläufe, passende technische Integration; vorhandene unveränderte Risiko-Nachweise wiederverwenden.
 
-## Betroffene Dateien/Module
+Hoch: Puzzle-/Hash-/Proof-/Persistenz-/Zahlungs-/Consent-/Releaseänderung – betroffene positiven/negativen Integritätsprüfungen und echte neue Quellen-/Build-/Geräte-/Providerbelege. Eine unabhängige gezielte Fachprüfung der veränderten Risiken, keine pauschale Wiederprüfung aller unberührten Bereiche.
 
-## Ausdrücklich nicht erlaubte Änderungen
+Der nächste Meilenstein ist erst erfüllt, wenn sein Ergebnis im tatsächlich laufenden Spiel überzeugt und die passenden Gates bestanden sind. Bei konkreten Reviewbefunden korrigiert dieselbe verantwortliche Rolle innerhalb desselben Auftrags und weist nur die betroffenen Nachbesserungen neu nach. Ein methodisches Problem kann zusätzliche Prüfung rechtfertigen, aber nicht jede Formatkorrektur eine zweite vollständige Abnahme.
 
-## Akzeptanzkriterien
+## Dokumentation und Übergabe
 
-## Tests
+Der Lead aktualisiert den WP-Status, den kurzen CURRENT_STATE und die geänderten Fachverträge. Eine Hauptübergabe mit echtem Head/Tree, Ergebnis, vorhandenen Prüfungen, Installationsweg, offenen Risiken und nächster Phase ist ausreichend. Originale als direkte Repository-/CIverweise beifügen, nicht denselben Befund mehrfach in separaten Annahme-/Scope-/Closeout-/Koordinatorberichten wiederholen.
 
-## Risikoklasse
-
-## Definition of Done
-```
+Vorlagen und historische WPs bleiben lesbare Herkunftsquellen. Ihre alten Schrittgrenzen oder Vorbehalte sind keine neuen Blocker gegen einen späteren ausdrücklich breiteren Gesamtauftrag. Das jeweilige aktuelle Mandat und diese Regeln entscheiden.

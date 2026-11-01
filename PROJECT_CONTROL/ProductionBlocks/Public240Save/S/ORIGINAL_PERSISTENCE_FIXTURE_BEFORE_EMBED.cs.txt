@@ -1,0 +1,75 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using STP.Infrastructure.Persistence;
+
+namespace STP.Tests.Persistence.EditMode
+{
+    internal sealed class FixtureJson
+    {
+        private readonly object value;internal FixtureJson(object value){this.value=value;}
+        internal static FixtureJson Parse(string text){var t=Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.StrictJsonParser",true)!;var r=t.GetMethod("ParseText")!.Invoke(null,new object?[]{text,Activator.CreateInstance(t.Assembly.GetType("STP.Infrastructure.Content.JsonParserLimits",true)!,67108864,64,65536,1048576,256)})!;return new FixtureJson(LocalSaveContractFixtures.Property(r,"Value")??throw new ArgumentException("FIXTURE_JSON_INVALID"));}
+        internal FixtureJson? Maybe(string name){var v=value.GetType().GetMethod("Get")!.Invoke(value,new object[]{name});return v==null?null:new FixtureJson(v);}
+        internal FixtureJson Get(string name)=>Maybe(name)??throw new ArgumentException("FIXTURE_FIELD_MISSING:"+name);
+        internal string Text=>(string)LocalSaveContractFixtures.Property(value,"StringValue")!;
+        internal long Integer=>(long)LocalSaveContractFixtures.Property(value,"IntegerValue")!;
+        internal IReadOnlyList<FixtureJson> Items=>((IEnumerable)LocalSaveContractFixtures.Property(value,"Items")!).Cast<object>().Select(x=>new FixtureJson(x)).ToArray();
+        internal byte[] Canonical(){var t=Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.JcsSerializer",true)!;var r=t.GetMethod("Serialize")!.Invoke(null,new[]{value})!;return(byte[])LocalSaveContractFixtures.Property(r,"Utf8")!;}
+    }
+    /// <summary>Test-only reflection bridge preserving production assembly boundaries. Expected bytes come from the pre-codec Node artifact.</summary>
+    public static class LocalSaveContractFixtures
+    {
+        internal static string EvidencePath(string name)=>Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("STP_SOURCE_ROOT")??Directory.GetCurrentDirectory(),"PROJECT_CONTROL","ProductionBlocks","Public240Save","S",name));
+        private static readonly Lazy<FixtureJson> fixedBundle=new Lazy<FixtureJson>(()=>FixtureJson.Parse(File.ReadAllText(EvidencePath("GOLDENS_PRECODEC_V7.json"))));
+        internal static FixtureJson Bundle=>fixedBundle.Value;
+        internal static FixtureJson Case(string name)=>Bundle.Get("cases").Items.Single(c=>c.Get("name").Text==name);
+        /// <summary>Reads an immutable property without introducing an Application or Content asmdef edge.</summary>
+        public static object? Property(object instance,string name)=>instance.GetType().GetProperty(name)!.GetValue(instance);
+        internal static object? Invoke(object instance,string name,params object?[] args)=>instance.GetType().GetMethods().Single(m=>m.Name==name&&m.GetParameters().Length==args.Length).Invoke(instance,args);
+        private static Type App(string name)=>Assembly.Load("STP.Application").GetType("STP.Application."+name,true)!;
+        private static object AppNew(string name,params object?[] args)=>Activator.CreateInstance(App(name),args)!;
+        private static object AppFixture(string method,params object[] args)=>Assembly.Load("STP.Tests.Application.EditMode").GetType("STP.Tests.Application.EditMode.LocalSaveContractFixtures",true)!.GetMethod(method)!.Invoke(null,args)!;
+        /// <summary>Returns a real explicitly bound empty or alternative immutable profile snapshot.</summary>
+        public static object Snapshot(long generation=1,bool alternative=false)=>AppFixture("CreateContractSnapshot",generation,alternative);
+        /// <summary>Wraps an actual supplied payload and preserves its reference for commit acknowledgement tests.</summary>
+        public static object Snapshot(object state,long generation)=>AppFixture("SnapshotFromState",state,generation);
+        /// <summary>Creates a deterministic process-local test clock through its existing application port.</summary>
+        public static object Clock(long monotonicMilliseconds=0)=>AppFixture("CreateClock",monotonicMilliseconds);
+        /// <summary>Returns the explicit empty payload for initialization/reset tests.</summary>
+        public static object EmptyState(bool alternative=false)=>AppFixture("CreateEmptyContractState",alternative);
+        /// <summary>Returns canonical byte projection through the real shared strict Content authority.</summary>
+        public static byte[] Canonical(string text){var ports=Ports();var r=ports[0].GetType().GetInterfaces().Single(t=>t.Name=="ICanonicalJson").GetMethod("Canonicalize")!.Invoke(ports[0],new[]{(object)Encoding.UTF8.GetBytes(text),AppNew("JsonResourceLimits",67108864,64,65536,1048576,256)})!;return(byte[])Invoke(r,"GetUtf8")!;}
+        private static object[] Ports()=>(object[])AppFixture("CreateContractPorts");
+        private static Array Typed(Type type,IEnumerable<object> objects){var values=objects.ToArray();var a=Array.CreateInstance(type,values.Length);for(int i=0;i<a.Length;i++)a.SetValue(values[i],i);return a;}
+        private static object Catalog(FixtureJson c)=>AppNew("CatalogIdentity",c.Get("catalogId").Text,(int)c.Get("revision").Integer,c.Get("hashSha256").Text,Enum.Parse(App("CatalogUse"),c.Get("use").Text),Enum.Parse(App("CatalogApprovalStatus"),c.Get("approvalStatus").Text));
+        private static object CatalogSet(FixtureJson s,object json)=>App("CatalogSetIdentity").GetMethod("Create")!.Invoke(null,new[]{Catalog(s.Get("publicCatalog")),Catalog(s.Get("campaignCatalog")),Catalog(s.Get("completionCatalog")),Catalog(s.Get("aggregateCatalog")),json})!;
+        internal static LocalSaveCodec CodecFor(FixtureJson c)
+        {
+            var ports=Ports();object json=ports[0],profile=ports[1],catalogs=ports[2],puzzles=ports[3],campaign=ports[4],completion=ports[5];var descriptors=c.Maybe("passiveBindings")?.Items??Array.Empty<FixtureJson>();var use=Property(profile,"Use")!;
+            var privacy=descriptors.Where(x=>x.Get("recordKind").Text=="PRIVACY").Select(x=>(object)new RetainedPrivacyBinding(x.Get("policyRevision").Text,x.Get("sdkContractRevision").Text,x.Get("source").Text)).ToArray();var iap=descriptors.Where(x=>x.Get("recordKind").Text=="IAP").Select(x=>(object)new RetainedIapBinding(x.Get("policyVersion").Text,x.Get("store").Text,x.Get("logicalProductKey").Text)).ToArray();var legacy=descriptors.Where(x=>x.Get("recordKind").Text=="LEGACY_OWNERSHIP").Select(x=>(object)new RetainedLegacyOwnershipReader(x.Get("readerId").Text,(int)x.Get("sourceSaveSchemaVersion").Integer,x.Get("itemTypes").Items.Select(v=>v.Text).ToArray())).ToArray();var cosmetics=descriptors.Where(x=>x.Get("recordKind").Text=="COSMETICS").Select(x=>typeof(RetainedCosmeticsBinding).GetMethod("FromDocuments")!.Invoke(null,new[]{(object)x.Get("document").Canonical(),x.Get("campaignDocument").Canonical(),json,use,puzzles})!).ToArray();
+            string[] Policies(string kind,string property)=>descriptors.Where(x=>x.Get("recordKind").Text==kind).Select(x=>x.Get(property).Text).Distinct(StringComparer.Ordinal).ToArray();
+            var retained=Activator.CreateInstance(typeof(RetainedContractBindings),use,Policies("HINT","policyVersion"),Policies("DAILY","policyVersion"),Policies("ACCESSIBILITY","contractRevision"),Typed(typeof(RetainedPrivacyBinding),privacy),Typed(typeof(RetainedIapBinding),iap),Typed(typeof(RetainedLegacyOwnershipReader),legacy),Typed(typeof(RetainedCosmeticsBinding),cosmetics),descriptors.Where(x=>x.Get("recordKind").Text=="REWARD"||x.Get("recordKind").Text=="ENDLESS_REWARD").Select(x=>x.Get("policyVersion").Text).Distinct(StringComparer.Ordinal).ToArray(),Policies("ENDLESS_PARAMETERS","generatorVersion"),new[]{"de-DE"},new[]{"contract-master"},Typed(typeof(RetainedCompletionRewardBinding),descriptors.Where(x=>x.Get("recordKind").Text=="REWARD").Select(x=>typeof(RetainedCompletionRewardBinding).GetMethod("FromDocument")!.Invoke(null,new[]{(object)x.Get("policyVersion").Text,Bundle.Get("catalogs").Get("completionCatalog").Canonical(),json,use})!)),Array.Empty<RetainedProgressCatalogBinding>())!;
+            var historical=new List<object>();var binding=c.Get("bindings");if(c.Get("sourceSchemaVersion").Integer==1)
+            {
+                var levelBindings=new List<object>();var docs=new[]{binding}.Concat(binding.Maybe("additionalLevelBindings")?.Items??Array.Empty<FixtureJson>());foreach(var d in docs){var source=d.Maybe("sourceDocument");if(source==null)continue;var target=d.Get("targetDocument");var locked=binding.Get("releaseLock");levelBindings.Add(typeof(HistoricalLevelBinding).GetMethod("Create")!.Invoke(null,new[]{(object)Encoding.UTF8.GetBytes(source.Get("canonicalUtf8").Text),source.Get("jcsSha256").Text,Encoding.UTF8.GetBytes(target.Get("canonicalUtf8").Text),target.Get("jcsSha256").Text,Encoding.UTF8.GetBytes(locked.Get("canonicalUtf8").Text),locked.Get("jcsSha256").Text,json})!);}
+                var destination=CatalogSet(binding.Get("destinationCatalogSet"),json);var sourceCampaign=typeof(HistoricalProfileBinding).GetMethod("ReadSourceCampaign")!.Invoke(null,new[]{(object)Bundle.Get("catalogs").Get("oldCampaign").Canonical(),binding.Get("sourceContentCatalogHash").Text,json,use,puzzles})!;historical.Add(Activator.CreateInstance(typeof(HistoricalProfileBinding),binding.Get("sourceLocalProfileId").Text,binding.Get("sourceContentCatalogHash").Text,profile,destination,Typed(typeof(HistoricalLevelBinding),levelBindings),sourceCampaign,binding.Get("ledgerAlgorithm").Text)!);
+            }
+            var oldReaders=new List<object>();var old=c.Maybe("legacyReaderBinding");if(old!=null&&old.Maybe("readerId")!=null)oldReaders.Add(Activator.CreateInstance(typeof(LegacyV2ReaderBinding),old.Get("readerId").Text,old.Get("sourceEnvelopeSha256").Text,old.Get("sourcePayloadSha256").Text,old.Get("sourceContentCatalogHash").Text,use)!);
+            return(LocalSaveCodec)Activator.CreateInstance(typeof(LocalSaveCodec),json,profile,catalogs,puzzles,campaign,completion,retained,Typed(typeof(HistoricalProfileBinding),historical),Typed(typeof(LegacyV2ReaderBinding),oldReaders))!;
+        }
+        internal static string Sha(byte[] source){using(var h=System.Security.Cryptography.SHA256.Create())return string.Concat(h.ComputeHash(source).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));}
+        internal static byte[] MutatePayload(FixtureJson c,Func<string,string> mutation,bool expected=false)
+        {string p=c.Get(expected?"expectedPayloadUtf8":"sourcePayloadUtf8").Text;string e=c.Get(expected?"expectedEnvelopeUtf8":"sourceEnvelopeUtf8").Text;string old=c.Get(expected?"expectedPayloadSha256":"sourcePayloadSha256").Text;string next=mutation(p);return Encoding.UTF8.GetBytes(e.Replace("\"payload\":"+p,"\"payload\":"+next).Replace("\"payloadSha256\":\""+old+"\"","\"payloadSha256\":\""+Sha(Encoding.UTF8.GetBytes(next))+"\""));}
+        /// <summary>Real codec configured with the complete historical first-clear fixture line and no operative providers.</summary>
+        public static LocalSaveCodec Codec()=>CodecFor(Case("V1_FULL_FIRST_CLEAR"));
+        /// <summary>Returns exact fixed original full-v1 source bytes for migration-source tests.</summary>
+        public static byte[] V1Source()=>Encoding.UTF8.GetBytes(Case("V1_FULL_FIRST_CLEAR").Get("sourceEnvelopeUtf8").Text);
+        /// <summary>Encodes an offered snapshot through the actual codec using explicit deterministic diagnostics.</summary>
+        public static byte[] Encode(LocalSaveCodec codec,object snapshot)=> (byte[])typeof(LocalSaveCodec).GetMethod("Encode")!.Invoke(codec,new[]{snapshot,(object)"2026-10-19T00:00:00Z","contract-1","contract-node-reference"})!;
+    }
+}

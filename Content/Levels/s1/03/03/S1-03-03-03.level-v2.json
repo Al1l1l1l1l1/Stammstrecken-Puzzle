@@ -1,0 +1,167 @@
+{
+  "documentSchemaVersion": 2,
+  "rulesetVersion": "train-track-v1",
+  "puzzleId": "S1-03-03-03",
+  "contentRevision": 3,
+  "grid": {
+    "width": 6,
+    "height": 6
+  },
+  "endpoints": {
+    "a": {
+      "side": "N",
+      "index": 3
+    },
+    "b": {
+      "side": "S",
+      "index": 4
+    }
+  },
+  "rowCounts": [
+    1,
+    2,
+    2,
+    4,
+    5,
+    5
+  ],
+  "columnCounts": [
+    0,
+    2,
+    3,
+    6,
+    5,
+    3
+  ],
+  "content": {
+    "season": 1,
+    "networkSection": 3,
+    "route": 3,
+    "position": 3,
+    "titleKey": "level.s1.03.03.03.title",
+    "statusKey": "level.s1.03.03.03.status"
+  },
+  "production": {
+    "entryDeductionKey": "level.s1.03.03.03.entry",
+    "focus": [
+      "COMBINATION",
+      "EXCLUSION"
+    ],
+    "chainDepth": 6,
+    "qualityNote": "Oben bleiben Zweierreihen schmal, unten verteilen Fünferreihen verschiedene Einzelücken. Die linke Nullspalte x0 und der Fünfercount in x4, rechts der vollen Spalte x3, trennen den rechten unteren Teilweg von der oberen Kurvenfolge; plausible Teilwege werden durch dieselben Counts unterschiedlich eingegrenzt.",
+    "timeClass": "UNCALIBRATED",
+    "starThresholdsSeconds": null
+  },
+  "completion": {
+    "mapSegmentId": "draft-s1-03-03-03-map",
+    "trainMomentId": "draft-s1-03-03-03-train",
+    "resultTextKey": "level.s1.03.03.03.result"
+  },
+  "solution": {
+    "path": [
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_ES"
+      }
+    ]
+  },
+  "proofRef": {
+    "artifactId": "proofs/S1-03-03-03/solver-v2.proof-v1.json",
+    "proofFormatVersion": 1,
+    "proofHash": {
+      "profile": "STP-PROOF-JCS-1",
+      "sha256": "48ad95e16c6dc24cfeb5755f9db68fb3a676ef87097fae8fe5a0510dce850f08"
+    }
+  }
+}

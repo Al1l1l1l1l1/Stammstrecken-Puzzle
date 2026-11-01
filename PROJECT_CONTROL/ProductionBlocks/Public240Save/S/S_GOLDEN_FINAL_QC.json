@@ -1,0 +1,1257 @@
+{
+  "reviewer": "/root/entry_audit",
+  "reviewedAtUtc": "2026-10-19T10:12:10.270Z",
+  "verdict": "PASS_PRECODEC_GOLDEN_CONTRACT_ONLY",
+  "openBlockers": [],
+  "openHighs": [],
+  "responsibility": "Independent technical data-contract review; R alone accepts before codec implementation",
+  "scope": {
+    "workPackage": "WP-042",
+    "anchor": "8c3481b3602567406ab4ef6f9365249ccb5d3afc",
+    "soleParentD": "925ca608a961ac26c84385c8da3b949f609df883",
+    "acceptedTBindingSha256": "25bfd7224f88b4f0256611ae0b91b8d25edea5bd01077a3a51132552ee87c1ad"
+  },
+  "inputs": {
+    "GOLDENS_PRECODEC.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC.json",
+      "byteLength": 1496817,
+      "sha256": "77ef839de5142c55bd2faed0e9a7ebd190523e8e2ac99b0431704081ed2b57bf"
+    },
+    "GOLDEN_REFERENCE_NODE.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE.txt",
+      "byteLength": 22966,
+      "sha256": "aaeddb96e8f4fca218f702a8c50665dda8c92eb75a4157dd1243d818ec648c5e"
+    },
+    "GOLDENS_PRECODEC_BINDING.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_BINDING.json",
+      "byteLength": 5557,
+      "sha256": "b0eefd1d7e926535ec92386ffd5f6d668df47c860adbbeaf3595a3ae4625d5ff"
+    },
+    "GOLDENS_PRECODEC_V3_BASE.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3_BASE.json",
+      "byteLength": 1612815,
+      "sha256": "c34d2d184849536148fba2ea7767e979307739b3411b1084d541dff93fa259d8"
+    },
+    "GOLDENS_PRECODEC_V3.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V3.json",
+      "byteLength": 2158374,
+      "sha256": "2c48878580379b318e124dc6d0b900fb4b2302d990d91c416a8fc52ecc27d016"
+    },
+    "GOLDENS_PRECODEC_V4.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V4.json",
+      "byteLength": 4592710,
+      "sha256": "0f36dad35df221adbe2c1f0cf4aaee104d7c371ad4f9dedbfea388de9ff14378"
+    },
+    "GOLDENS_PRECODEC_V5.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V5.json",
+      "byteLength": 5769554,
+      "sha256": "8046d9ce07acb98fac8d4f6bb1030283e7cf5a9820dc0d8fcdc47b9bcd672f56"
+    },
+    "GOLDENS_PRECODEC_V6.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V6.json",
+      "byteLength": 9987104,
+      "sha256": "c95d703d56e446f7ccc271a8c777fce77aed9bf6d1697a48b62abd62bd8c260e"
+    },
+    "GOLDENS_PRECODEC_V7.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json",
+      "byteLength": 9988353,
+      "sha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0"
+    },
+    "GOLDENS_PRECODEC_V7_BINDING.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7_BINDING.json",
+      "byteLength": 402,
+      "sha256": "f7347256d85f1a6611c02d019c94006cd3dc202f17bbdb2eda7d04fa33d0c39d"
+    },
+    "GOLDEN_REFERENCE_NODE_V3_BASE.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3_BASE.txt",
+      "byteLength": 24912,
+      "sha256": "e3347def2287e0f39d43b294db159a669d386670031d9781da4353359ee24463"
+    },
+    "GOLDEN_REFERENCE_NODE_V3.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V3.txt",
+      "byteLength": 5365,
+      "sha256": "91dd2d77bf008117085b5d87dc27258e293b7d93059420272af7c45719ed3571"
+    },
+    "GOLDEN_REFERENCE_NODE_V4.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V4.txt",
+      "byteLength": 7951,
+      "sha256": "cc1d6ae003503668ab516c74a71f25e9b309c383669667bc650f45682ca931ac"
+    },
+    "GOLDEN_REFERENCE_NODE_V5.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V5.txt",
+      "byteLength": 6221,
+      "sha256": "04dac8090fd9623bbc906686e03e5310c33cd91d1f125da0bc2f39bf720bb86a"
+    },
+    "GOLDEN_REFERENCE_NODE_V6.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V6.txt",
+      "byteLength": 10856,
+      "sha256": "f1630cd0eb303dbc542e4764a42accb1387d4307c76587607792a56c79892483"
+    },
+    "GOLDEN_REFERENCE_NODE_V7.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDEN_REFERENCE_NODE_V7.txt",
+      "byteLength": 2126,
+      "sha256": "6d8f4073349724df33d640717e46f09cb639e423066912d966af4ae94b8d1c33"
+    },
+    "DOMAIN_CHECKPOINT_HARNESS.txt": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_HARNESS.txt",
+      "byteLength": 2737,
+      "sha256": "9594a68d1ce7638114973d690f9dbdf9204c19cb0adeaf6f6ae1ddf21d4e9b1b"
+    },
+    "DOMAIN_CHECKPOINT_PRECODEC.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC.json",
+      "byteLength": 1140,
+      "sha256": "544f0ef5e72a79433d53567161e7d2b7756e64df0c2dc36c32c95e822bfc157e"
+    },
+    "DOMAIN_CHECKPOINT_PRECODEC_BINDING.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/DOMAIN_CHECKPOINT_PRECODEC_BINDING.json",
+      "byteLength": 2320,
+      "sha256": "fe8d5b8f63a43ae21ef2e49ac03dce07654f8cfe72c0e766e0b6bb8cd954a54c"
+    }
+  },
+  "reviewToolsAndReceipts": {
+    "S_GOLDEN_REVIEW.js": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_REVIEW.js",
+      "sha256": "1bd1036e007399a1719e4f68da9d4fde0aefe7fc9a524d869871adb48f1f22bf",
+      "byteLength": 30886
+    },
+    "S_GOLDEN_REVIEW_PY.py": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_REVIEW_PY.py",
+      "sha256": "49ed90e50cd5af5dd217670d210c604d1668dbbb2a6afbdd109258e868ac873e",
+      "byteLength": 5277
+    },
+    "S_GOLDEN_REPRODUCE.cjs": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_REPRODUCE.cjs",
+      "sha256": "422a2317b2b92a4b21327963eeab991078fdc85a06e1e3089166141edcbab8ff",
+      "byteLength": 1019
+    },
+    "S_GOLDEN_V7_NODE22.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_V7_NODE22.json",
+      "sha256": "377def8a378d50705b79e4521e420f5646e0d082627e51777318b6807e38d75f",
+      "byteLength": 1571
+    },
+    "S_GOLDEN_V7_PYTHON311.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_V7_PYTHON311.json",
+      "sha256": "0c6c597826011ec161b52bab98a772fc241194b444550a8adeaef3c9c436d1a8",
+      "byteLength": 1711
+    },
+    "S_GOLDEN_V7_PYTHON.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_V7_PYTHON.json",
+      "sha256": "e9ee0d2f600a305316cca75781ad90bc547de3c71fcadfcf773040c83e1d84e4",
+      "byteLength": 1707
+    },
+    "S_GOLDEN_V7_REPRODUCTION.json": {
+      "path": "C:/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/S_GOLDEN_V7_REPRODUCTION.json",
+      "sha256": "654fc00c85e0c10e4e73307e3c221a6e4b808fbfa2474efdad58f086a60c36f5",
+      "byteLength": 531
+    }
+  },
+  "primaryValidation": {
+    "node22": {
+      "reviewerVersion": 2,
+      "runtime": "v22.20.0",
+      "source": "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-s/PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json",
+      "sourceByteLength": 9988353,
+      "sourceSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+      "checkCount": 23178,
+      "failures": [],
+      "coverage": {
+        "ownership": [
+          "LEGACY",
+          "DEFAULT",
+          "PATIENCE_PURCHASE",
+          "MILESTONE_CLAIM"
+        ],
+        "reward": [
+          "RESERVED",
+          "RECONCILIATION_REQUIRED",
+          "CLOSED_NO_REWARD",
+          "FAILED",
+          "COMMITTED"
+        ],
+        "iap": [
+          "RECONCILIATION_REQUIRED",
+          "STARTED",
+          "EVIDENCE_RECEIVED",
+          "VERIFIED",
+          "GRANTED_NOT_FINALIZED",
+          "FINALIZED",
+          "REJECTED"
+        ],
+        "rewardPending": [
+          "RESERVED",
+          "RECONCILIATION_REQUIRED",
+          "CLOSED_NO_REWARD",
+          "FAILED",
+          "COMMITTED",
+          "REWARD_CONFIRMED",
+          "NO_REWARD_CONFIRMED"
+        ],
+        "endless": [
+          "COMPLETION_CLAIM_OPEN",
+          "ACTIVE_DRAFT",
+          "RESERVED_NOT_GENERATED"
+        ],
+        "openClaim": [
+          "LOCAL_DECISION_PENDING",
+          "PROVIDER_RESERVED",
+          "RECONCILIATION_REQUIRED",
+          "REWARD_CONFIRMED",
+          "NO_REWARD_CONFIRMED"
+        ],
+        "privacy": [
+          "REVOKED_CONFIRMED",
+          "UNKNOWN",
+          "DENIED_CONFIRMED",
+          "ENABLE_PENDING",
+          "ENABLED_CONFIRMED",
+          "REVOKE_PENDING"
+        ]
+      },
+      "note": "Only implemented structural/hash checks; full semantic acceptance requires documented human-agent source review."
+    },
+    "cpython311": {
+      "python": "3.11.13 (main, Oct  7 2025, 15:34:32) [Clang 20.1.4 ]",
+      "sourceSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+      "byteLength": 9988353,
+      "cases": 43,
+      "negativeCases": 91,
+      "checks": 1223,
+      "failures": [],
+      "sourceSchemaResults": [
+        {
+          "label": "campaignCatalog",
+          "schema": "campaign-v2",
+          "errors": []
+        },
+        {
+          "label": "completionCatalog",
+          "schema": "completion-v1",
+          "errors": []
+        },
+        {
+          "label": "oldCampaign",
+          "schema": "campaign-v1",
+          "errors": []
+        },
+        {
+          "label": "sourceDocument:2c52d69b655a5f16a0b25ec3748155d54a49b913a902293d3f78b01599ac7806",
+          "schema": "level-v1",
+          "errors": []
+        },
+        {
+          "label": "targetDocument:1e025232202030bd420a1cee721585b36f9a1796476ff27cc22977c0970ff3c4",
+          "schema": "level-v2",
+          "errors": []
+        },
+        {
+          "label": "releaseLock:27e89d0bdbc2e7816da948ab4bc252816a53061ffad89d82bbcbce4b9f1b17ac",
+          "schema": "release-lock-v1",
+          "errors": []
+        },
+        {
+          "label": "additional.sourceDocument:4b675c3aa501a710cef8e03a3b6a985fca6d3fc3aff87f4a7da19df145fe4f36",
+          "schema": "level-v1",
+          "errors": []
+        },
+        {
+          "label": "additional.targetDocument:c4e514e645199d86193dc78ee6659fdaab02579491847cad19d9e9d7ff2c2657",
+          "schema": "level-v2",
+          "errors": []
+        },
+        {
+          "label": "additional.proof:96794383da3dc15e971a07430c108a9c70b4eec3d46d09cca5e2669d198a51bd",
+          "schema": "proof-v1",
+          "errors": []
+        },
+        {
+          "label": "cosmetic:5251e0f59afc28d294545c82930f2d204dfc870cd9a8a35a1111b4d47371783a",
+          "schema": "cosmetics-v2",
+          "errors": []
+        }
+      ]
+    },
+    "node22ReferenceReproduction": {
+      "runtime": "v22.20.0",
+      "root": "/mnt/c/STP/Stammstrecken-Puzzle-WP008/.utmp/public240-tools/golden-reference-reproduction",
+      "role": "Only ignored reproduction copies written; original S evidence unchanged",
+      "results": [
+        {
+          "name": "GOLDENS_PRECODEC_V7.json",
+          "byteLength": 9988353,
+          "actualSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+          "expectedSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+          "exactBytesEqual": true
+        }
+      ]
+    }
+  },
+  "supplementalPython314": {
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "sourceSha256": "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0",
+    "byteLength": 9988353,
+    "cases": 43,
+    "negativeCases": 91,
+    "checks": 1223,
+    "failures": [],
+    "sourceSchemaResults": [
+      {
+        "label": "campaignCatalog",
+        "schema": "campaign-v2",
+        "errors": []
+      },
+      {
+        "label": "completionCatalog",
+        "schema": "completion-v1",
+        "errors": []
+      },
+      {
+        "label": "oldCampaign",
+        "schema": "campaign-v1",
+        "errors": []
+      },
+      {
+        "label": "sourceDocument:2c52d69b655a5f16a0b25ec3748155d54a49b913a902293d3f78b01599ac7806",
+        "schema": "level-v1",
+        "errors": []
+      },
+      {
+        "label": "targetDocument:1e025232202030bd420a1cee721585b36f9a1796476ff27cc22977c0970ff3c4",
+        "schema": "level-v2",
+        "errors": []
+      },
+      {
+        "label": "releaseLock:27e89d0bdbc2e7816da948ab4bc252816a53061ffad89d82bbcbce4b9f1b17ac",
+        "schema": "release-lock-v1",
+        "errors": []
+      },
+      {
+        "label": "additional.sourceDocument:4b675c3aa501a710cef8e03a3b6a985fca6d3fc3aff87f4a7da19df145fe4f36",
+        "schema": "level-v1",
+        "errors": []
+      },
+      {
+        "label": "additional.targetDocument:c4e514e645199d86193dc78ee6659fdaab02579491847cad19d9e9d7ff2c2657",
+        "schema": "level-v2",
+        "errors": []
+      },
+      {
+        "label": "additional.proof:96794383da3dc15e971a07430c108a9c70b4eec3d46d09cca5e2669d198a51bd",
+        "schema": "proof-v1",
+        "errors": []
+      },
+      {
+        "label": "cosmetic:5251e0f59afc28d294545c82930f2d204dfc870cd9a8a35a1111b4d47371783a",
+        "schema": "cosmetics-v2",
+        "errors": []
+      }
+    ]
+  },
+  "sevenFamilies": [
+    "V1_FULL_FIRST_CLEAR",
+    "V1_FULL_CHECKPOINT",
+    "V1_FULL_RETAINED_LEGACY",
+    "V1_FULL_ENDLESS",
+    "V2_FULL_RESERVED_ROUNDTRIP",
+    "V2_LEGACY_ACTIVE_DRAFTS",
+    "LEDGER_CONTRACT1_AND_CATALOGSET"
+  ],
+  "positiveCaseCount": 43,
+  "negativeCaseCount": 91,
+  "negativeCounts": {
+    "Corrupt": 23,
+    "Unsupported": 68
+  },
+  "negativeContractMatrix": [
+    {
+      "name": "ROOT_MISSING_SETTINGS",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENVELOPE_UNKNOWN_VERSION",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_SCHEMA_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_UNRESOLVED_IDENTITY",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEVEL_IDENTITY_UNRESOLVED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_CHECKPOINT_MISSING_HISTORY",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_MIGRATION_CHECKPOINT_INCOMPLETE",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_ENDLESS_PREFIX_GAP",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_MIGRATION_NEEDS_DECISION",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "LEDGER_CHAIN_MUTATION",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_LEDGER_CHAIN_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "CATALOGSET_WRONG_HASH",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_CATALOG_SET_HASH_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PURCHASE_MISSING_LEDGER",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_OWNERSHIP_LEDGER_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "MILESTONE_MIXED_PROVENANCE",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "RESERVATION_ITEM_COLLISION",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_DUPLICATE_ID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_MISSING_PARAMETERS",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_UNKNOWN_GRAMMAR",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PROVIDER_REFERENCE_MISSING",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_ENDLESS_PROVIDER_BINDING_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OLD_V2_READER_BINDING_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_MIGRATION_NEEDS_DECISION",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "HINT_UNKNOWN_POLICY",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_UNSUPPORTED_POLICY",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DAILY_UNKNOWN_POLICY",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_UNSUPPORTED_POLICY",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PRIVACY_UNKNOWN_POLICY",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_UNSUPPORTED_POLICY",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "IAP_UNKNOWN_STORE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_UNSUPPORTED_POLICY",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "REWARD_COMMITTED_WITHOUT_TERMINAL",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_REWARD_CLAIM_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENTITLEMENT_REVOKED_OWNED",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_ENTITLEMENT_CONTRADICTION",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ACCESSIBILITY_UNKNOWN_REVISION",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_UNSUPPORTED_POLICY",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "SETTINGS_INVALID_SCALE",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_AUDIO_SCALE_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENVELOPE_PAYLOAD_HASH_MISMATCH",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_PAYLOAD_HASH_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_LEGACY_LOCK_BINDING_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEVEL_IDENTITY_UNRESOLVED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_LEGACY_LOCK_BINDING_DUPLICATE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEVEL_IDENTITY_UNRESOLVED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_WRONG_DOCUMENT_BYTES",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEVEL_IDENTITY_UNRESOLVED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V2_SAME_ID_CHANGED_HASH",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "LVL-PUBLISHED-PUZZLE-MUTATED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "CHECKPOINT_COMMAND_HISTORY_INCOMPLETE",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "CHECKPOINT_LENGTH_OR_COUNTER_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "CHECKPOINT_UNDO_REPLAY_INVALID",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "CHECKPOINT_UNDO_REPLAY_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_COMPLETED_CLAIM_UNRESOLVED",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_MIGRATION_NEEDS_DECISION",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_FOREIGN_LEDGER_ALGORITHM",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEDGER_ALGORITHM_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "V1_UNPROVEN_NONZERO_CHECKPOINT",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEDGER_ANCESTRY_UNPROVEN",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "UNKNOWN_ROOT_PROPERTY",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PROFILE_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PROFILE_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "LEVEL_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "LEVEL_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DRAFT_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DRAFT_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OPEN_ENDLESS_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OPEN_ENDLESS_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "INVENTORY_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "INVENTORY_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_DEFAULT_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_DEFAULT_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_PURCHASE_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_PURCHASE_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_MILESTONE_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_MILESTONE_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_LEGACY_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "OWNERSHIP_LEGACY_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "RESERVATION_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "RESERVATION_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "CACHE_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "CACHE_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "REWARD_CLAIM_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "REWARD_CLAIM_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PROGRESS_TERMINAL_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PROGRESS_TERMINAL_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENTITLEMENTS_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENTITLEMENTS_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENTITLEMENT_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENTITLEMENT_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "IAP_OPERATION_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "IAP_OPERATION_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "REWARD_OPERATION_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "REWARD_OPERATION_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "SETTINGS_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "SETTINGS_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ACCESSIBILITY_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ACCESSIBILITY_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PRIVACY_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "PRIVACY_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DATA_LIFECYCLE_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DATA_LIFECYCLE_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DAILY_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "DAILY_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "HINT_RECORD_VERSION_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "HINT_RECORD_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_RECORD_VERSION_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "LEDGER_CONTRACT_VERSION_FUTURE",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_LEDGER_ALGORITHM_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PARAMETERS_EXTRA",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PARAMETER_MISSING",
+      "expectedStatus": "Unsupported",
+      "expectedErrorCode": "SAVE_GENERATOR_PARAMETERS_UNSUPPORTED",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PARAMETER_WRONG_TYPE",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_TYPE_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PARAMETER_OUT_OF_RANGE",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_GENERATOR_PARAMETER_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_PARAMETER_MUTATED_OLD_HASH",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_PARAMETER_HASH_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_VALID_PARAMETERS_WRONG_E1",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_ENDLESS_ID_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ENDLESS_SAME_DESCRIPTOR_DIFFERENT_PARAMETERS",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_PARAMETER_HASH_MISMATCH",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "full fixed save envelope plus explicit immutable source bindings",
+      "partialImportBoundary": null
+    },
+    {
+      "name": "ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v1-to-v2.golden.json",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_ENVELOPE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "Whole unchanged architecture fixture container passed directly to the closed save-envelope reader: rejects envelope shape, never parserfallback",
+      "partialImportBoundary": {
+        "role": "Separate targeted import resolution of existing architecture Sourceform, not a save-envelope load",
+        "expectedStatus": "Unsupported",
+        "expectedErrorCode": "SAVE_MIGRATION_CHECKPOINT_INCOMPLETE",
+        "expectedTarget": null,
+        "expectedSourcePreserved": true,
+        "reason": "Only moveCount and incomplete identity/definition/history; cannot manufacture complete checkpoint truth"
+      }
+    },
+    {
+      "name": "ARCHITECTURE_PARTIAL_FULL_IMPORT_endless-save-v2.example.json",
+      "expectedStatus": "Corrupt",
+      "expectedErrorCode": "SAVE_ENVELOPE_FIELDS_INVALID",
+      "expectedTarget": null,
+      "expectedSourcePreserved": true,
+      "inputBoundary": "Whole unchanged architecture fixture container passed directly to the closed save-envelope reader: rejects envelope shape, never parserfallback",
+      "partialImportBoundary": {
+        "role": "Separate targeted import resolution of existing architecture Sourceform, not a save-envelope load",
+        "expectedStatus": "Unsupported",
+        "expectedErrorCode": "SAVE_MIGRATION_CHECKPOINT_INCOMPLETE",
+        "expectedTarget": null,
+        "expectedSourcePreserved": true,
+        "reason": "Only moveCount and incomplete identity/definition/history; cannot manufacture complete checkpoint truth"
+      }
+    }
+  ],
+  "actualDomainExport": {
+    "executionOwner": "/root/t_contracts_implementation",
+    "role": "Owner-executed unchanged Domain reducer plus S checkpoint Export; independent reviewer read harness, actual bytes and recomputed complete equality",
+    "harnessSourceSha256": "9594a68d1ce7638114973d690f9dbdf9204c19cb0adeaf6f6ae1ddf21d4e9b1b",
+    "actualExportRawSha256": "544f0ef5e72a79433d53567161e7d2b7756e64df0c2dc36c32c95e822bfc157e",
+    "canonicalCheckpointSha256": "b0f48d733d8f8ce63cdbf4a00423004de74a7acffc6c0107cf0b93baba904f3b",
+    "canonicalExpectedEqualsActual": true,
+    "ownerBindingNamesBundleV6": "c95d703d56e446f7ccc271a8c777fce77aed9bf6d1697a48b62abd62bd8c260e",
+    "v6V7AllPositiveCaseBytesEqual": true,
+    "independentNativeReexecution": false
+  },
+  "resolvedFindings": [
+    "Canonical campaign/completion/cosmetics source schema and separated read projections",
+    "Price1 catalog/debit/ownership agreement",
+    "Actual complete campaign-subject eligibility and null-ledger milestone ownership",
+    "Closed source/version/policy retention bindings limited to ContractTest",
+    "Fixed ledger raw32 chain/checkpoint/tail/suffix/null-entry bytes",
+    "Complete supported union states and privacy validity/native-state variants",
+    "Complete source/target/lock/second-puzzle/proof byte and hash bindings",
+    "Neutral full V1 intermediates and second uncompleted puzzle",
+    "Fixed negative expected contracts for locks/document/history/versions/parameters/unknown claims/ledger ancestry",
+    "Consistent source bytes for missing/duplicate lock negatives",
+    "Separate closed-envelope rejection versus partial Sourceform import stop",
+    "Actual Domain checkpoint expected/actual complete byte equality"
+  ],
+  "originalSubmissionPreserved": true,
+  "finalV6ToV7DeltaPointers": [
+    "/referenceVersion",
+    "/previousBundleSha256",
+    "/negativeCases/23/bindings/releaseLock/jcsSha256",
+    "/negativeCases/23/bindings/releaseLock/canonicalUtf8",
+    "/negativeCases/23/bindings/releaseLock/canonicalSha256",
+    "/negativeCases/24/bindings/releaseLock/jcsSha256",
+    "/negativeCases/24/bindings/releaseLock/canonicalUtf8",
+    "/negativeCases/24/bindings/releaseLock/canonicalSha256",
+    "/negativeCases/89/expectedStatus",
+    "/negativeCases/89/expectedErrorCode",
+    "/negativeCases/89/inputBoundary",
+    "/negativeCases/89/partialImportBoundary",
+    "/negativeCases/90/expectedStatus",
+    "/negativeCases/90/expectedErrorCode",
+    "/negativeCases/90/inputBoundary",
+    "/negativeCases/90/partialImportBoundary"
+  ],
+  "sourceAndActions": {
+    "productionCodecFileExists": false,
+    "originalOrSourceFilesChangedByReviewer": false,
+    "gitMutations": false,
+    "unityRuns": false,
+    "ciActions": false,
+    "reviewerWrites": "Only ignored .utmp/public240-tools evidence and isolated reference reproduction copies"
+  },
+  "limits": [
+    "No actual production codec, migrator, writer, crash safety, CAS, autosave or S implementation PASS",
+    "91 negative cases are accepted fixed future expected contracts, not observed production-codec rejection executions",
+    "No production historical V1 stock, generator grammar or Hint/Daily/privacy/provider policy is invented or registered",
+    "No Unity, CI, native platform or product release approval is conferred"
+  ]
+}

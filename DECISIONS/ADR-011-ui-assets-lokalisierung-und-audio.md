@@ -58,3 +58,7 @@ Ersetzt keinen früheren ADR. Wird derzeit durch keinen ADR ersetzt.
 [2]: https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.addressables.html "Addressables package for Unity 6.3"
 [3]: https://docs.unity3d.com/6000.3/Documentation/Manual/com.unity.localization.html "Localization package for Unity 6.3"
 [4]: ../Stammstrecken_Puzzle_Konzept_00-15/12_UI_und_Bedienungsspezifikation.md "Stammstrecken-Puzzle – UI- und Bedienungsspezifikation"
+
+## Nachträglicher Ergänzungsverweis – WP038
+
+[ADR-033](ADR-033-interne-transiente-spielschleife.md) ergänzt ausschließlich die ausdrücklich benannte interne transiente QA-Szene um serialisierte Inspectorbindung und eine isolierte Unity-Localization-In-Memory-StringTable aus eigener technischer QA-Localequelle. Der historische Entscheidungskörper dieses ADR bleibt unverändert; produktive Assets und Lokalisierung behalten den lokalen Addressables-/Freigabevertrag. Keine Produktionsimport-/Save-/Releasefreigabe.

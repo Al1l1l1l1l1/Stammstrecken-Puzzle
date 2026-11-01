@@ -1,5 +1,13 @@
 # Build and Release v0.5
 
+## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
+
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+
+**Releasezuständigkeit:** R darf nach unabhängig geprüfter integrierter RCfassung und wirklicher Owner-Spielannahme den geprüften Stand über normalen geschützten PRweg nach Main integrieren. Öffentliche Store-/Vertrag-/Payment-/Rechtsfreigaben bleiben konkrete Ownerhandlungen. Signing, physische Geräte, echte SDK-/Privacy-/Kauf-/Restorebelege und Stores sind nicht durch dieses Dokument erfüllt.
+
+**Technischer Nachfolger ab22.10.2026:** [ADR-047](../DECISIONS/ADR-047-produktionspaketierung-und-release-manifest-v2.md) ist nach gezielter getrennter Review angenommen. Neue reale Storekandidaten erhalten einen streng nachweisgebundenen `release-manifest-v2`-Pfad; seine konkrete Umsetzung einschließlich CI-, Nativepackaging- und Manifestwerkzeugen ist integriert und gezielt geprüft. Das [aktuelle Runbook](../Release/RC_PIPELINE.md) und [gebundene Prüfergebnisse](../Release/WP046_RELEASE_TOOLING_VALIDATION.json) nennen die tatsächlichen Ausführungsgrenzen. Ein echter Production-AAB-/IPA-/Signing-/Storelauf steht aus. `release-manifest-v1`, Beispiele und historische Reducer bleiben unverändert. Vor tatsächlichem Storebezug entsteht ausschließlich ein Packagingreceipt. Bei Storeauslieferung werden ursprüngliches AAB/IPA und dessen Signer über echte Storebuild-/Version-/Signaturzuordnung mit der geprüften Auslieferung verbunden; Play-Uploadkey und App-Signing-Signer werden nicht verwechselt. Ein späterer reiner Evidenznachfolger darf nur `evidenceGates`, `blockerState` und berechnetes `promotionAllowed` verändern und bindet den erhaltenen Vorgänger raw/JCS. Alle übrigen Kandidatenfelder bleiben exakt gleich. Fehlende echte Owner-/Human-/Geräte-/Provider-/Rechts-/Storeannahme bleibt offen; diese technische Entscheidung führt keine externe Handlung aus.
+
 ## 1. Ziel
 
 Jeder Storekandidat ist aus Commit, Tag, Toolchain, Contenthash und Konfiguration reproduzierbar. Kein Release hängt von einer lokalen Entwickleroberfläche oder Chatwissen ab. Öffentliche Promotion bleibt eine bewusste, separat bestätigte Handlung.
@@ -37,9 +45,9 @@ Release-Tags zeigen auf unveränderte geprüfte Commits. Nach Tagging wird kein 
 
 ## 5. GitHub-Actions-Pipelines
 
-### 5.1 `validate.yml`
+### 5.1 Änderungsklassen und tatsächliche Workflows
 
-Läuft auf jedem Pull Request:
+Architecture-/Scope-Vorprüfung bleibt günstig und fail-closed. Docs/Governance/Status/reine Routingänderungen mit unveränderten Unityrezepten brauchen keine Unityjobs. Text/JCS sind selektiv. Produktvolläufe erfolgen nach der sicheren PR-Kandidatensteuerung; Arbeitsbranch-Preflight meldet DEFERRED, nicht PASS. Bei neuer/unbekannter Basis, geänderter Mergeunion oder manuellem Vollauftrag vollständiger Pfad. Die nachstehende frühere Liste beschreibt Produktprüfungen, nicht acht teure Schritte je Dokumentänderung:
 
 1. Pfad-/Scopeprüfung gegen ein versioniertes Manifest und Secretcheck;
 2. `python tools/architecture-validation/validate.py --scope documentation --scope-manifest <path> --self-test` beziehungsweise für Produktionspakete `--scope production`;
@@ -65,7 +73,7 @@ Läuft geplant auf aktuellem Integrationsstand:
 
 Läuft nur auf `v*-rc.*`-Tag:
 
-- alle Validierungs-/Nightlygates erneut ohne Wiederverwendung unbewiesener lokaler Outputs;
+- einmal vollständige aktuelle Kandidaten-/Plattform-/Contentsolverintegration; keine unbewiesenen lokalen Outputs, aber standgebundene unveränderte Vertrags-/Lizenz-/Reviewbelege wiederverwenden;
 - signierte AAB-/IPA-Erzeugung mit `production`-Buildprofil, finaler Application-ID, Productionkonfiguration und Production-Signing im geschützten Environment;
 - Symbole, Mapping, SBOM/SDK-Inventar, Lizenzen und Checksummen;
 - Upload zu Play Internal und TestFlight;
@@ -76,7 +84,7 @@ Läuft nur auf `v*-rc.*`-Tag:
 
 Promotet exakt das bereits geprüfte Storebuild. Es kompiliert, exportiert, signiert und paketiert nicht neu. Erst nach manueller Freigabe darf stufenweiser öffentlicher Rollout starten. Der öffentliche Tag `vX.Y.Z` attestiert denselben Commit. Erlaubt ein Store keine artefaktgenaue Trackpromotion, ist der Kandidat nicht promotable und ein neuer `rc.N+1` wird gebaut.
 
-Das Release-Manifest bindet Version/RC-Ordinal, Commit, Workflow-SHA, Plattform, Buildnummer, `buildProfile: production`, finale Application-ID, Signingfingerprint, Toolchain-/Paket-/Content-/Productionkonfigurationshash, Artefakthash, Storebuildreferenz, Debugflags und Blockerstatus. `promotionAllowed` ist nur wahr, wenn alle Debugflags aus, alle Identitäten production und die drei offenen Produktbereiche fail-closed sind. [`release-manifest-v1.rc.example.json`](./examples/release-manifest-v1.rc.example.json) ist ein synthetisches Positivfixture; [`release-manifest-v1.staging.example.json`](./examples/release-manifest-v1.staging.example.json) muss nicht promotable bleiben.
+Das Release-Manifest bindet Version/RC-Ordinal, Commit, Workflow-SHA, Plattform, Buildnummer, `buildProfile: production`, finale Application-ID, Signingfingerprint, Toolchain-/Paket-/Content-/Productionkonfigurationshash, Artefakthash, Storebuildreferenz, Debugflags und Blockerstatus. `promotionAllowed` darf nur bei ausgeräumten tatsächlichen Produkt-/Implementierungs-/Releasegates wahr sein; deaktivierte versprochene Hint-/Daily-/Endlosfunktionen sind keine vollständige Launchfreigabe, auch wenn ein altes Contractfixture dies syntaktisch erlaubt. [`release-manifest-v1.rc.example.json`](./examples/release-manifest-v1.rc.example.json) ist ein synthetisches Positivfixture; [`release-manifest-v1.staging.example.json`](./examples/release-manifest-v1.staging.example.json) muss nicht promotable bleiben.
 
 Alle verwendeten Actions werden per vollständigem Commit-SHA gepinnt. Workflowpermissions folgen Least Privilege; `GITHUB_TOKEN` ist standardmäßig read-only.
 
@@ -154,7 +162,7 @@ Architecture v0.5 erfüllt diese späteren Release-Gates nicht selbst. Sie defin
 
 ## 12. Rollout und Rollback
 
-Öffentliche Releases starten gestuft. Das primäre technische Rolloutsignal ist `store-crash-rate-v2` aus [`rollout-metric-v1.json`](../tools/architecture-validation/fixtures/rollout-metric-v1.json). Andere Signale ergänzen diese Entscheidung, ersetzen sie aber nicht.
+Gestufte Updatepromotion folgt den tatsächlichen Storemöglichkeiten. Eine erstmalige Veröffentlichung benötigt die reale dafür geeignete Initial-Releasefreigabe; iOS-Phased-Release für Updates und die fehlende Vorpopulation dürfen einen Erststart nicht als bereits messbar ausgeben oder technisch unmöglich machen. Vor dem Erststart wird hierfür die kleine plattformrichtige technische Releasekonkretisierung unter R geprüft. Das primäre technische Rolloutsignal ist `store-crash-rate-v2` aus [`rollout-metric-v1.json`](../tools/architecture-validation/fixtures/rollout-metric-v1.json). Andere Signale ergänzen diese Entscheidung, ersetzen sie aber nicht.
 
 | Plattform | Quelle und exakte Releasepopulation | Kennzahl | Verfügbarkeit |
 |---|---|---|---|
@@ -182,7 +190,7 @@ Remote Config darf keinen Code-, Save-, Ruleset- oder Monetarisierungsrollback s
 
 ## 13. Store- und Provider-Voraussetzungen
 
-Vor Sandbox-/Releaseintegration werden benötigt: Apple Developer/App Store Connect, Google Play Console, Unity-Lizenz, AdMob-/Mediationkonto, Firebaseprojekte je Environment, IAP-Produkte, Signingmaterial und rechtlich freigegebene Datenschutz-/Consentangaben. Fehlende Zugänge blockieren das jeweilige Implementierungs- oder Release-Work-Package, nicht die vorliegende Architekturspezifikation.
+Vor Sandbox-/Releaseintegration werden benötigt: Apple Developer/App Store Connect, Google Play Console, Unity-Lizenz, AdMobkonto, IAP-Produkte, Signingmaterial und rechtlich freigegebene Datenschutz-/Consentangaben. Fehlende Zugänge blockieren das jeweilige Implementierungs- oder Release-Work-Package, nicht die vorliegende Architekturspezifikation.
 
 ## 14. Releasecheckliste
 
@@ -216,3 +224,11 @@ Ein Kandidat ist promotable, wenn:
 [11]: https://developer.apple.com/documentation/analytics-reports/app-crashes "Apple App Crashes report"
 [12]: https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases/ "Apple phased release schedule"
 [13]: ../DECISIONS/ADR-029-rollout-reducer-semantik.md "ADR-029 – Vollständige Rollout-Reducer-Semantik"
+
+## Interne transiente Spielschleife – ADR033 / WP038
+
+[ADR-033](../DECISIONS/ADR-033-interne-transiente-spielschleife.md) erlaubt ausschließlich die eigene interne QA-Szene DevelopmentPuzzle mit zwei eigenen öffentlichen QA-Definitionen, realen Domaincommands und klar ungespeicherter Fahrt-/Ergebnispräsentation. Eigene UXML-/USS-/Panel-/Locale-/Materialquellen werden am validierten Installer serialisiert; neutrale QA-Strings werden über eine isolierte Unity-Localization-In-Memory-StringTable aufgelöst. Alle internen Assemblykanten bleiben unverändert; ausschließlich UI erhält den bereits vorgesehenen externen Unity.Localization-Verweis. Kein DRAFT-/FIXTURE_ONLY-Import, keine Katalog-/Proof-/Textpromotion, kein Save-/ProgressCommitted-/Rewardclaim und kein Productionentry. Produktiver Addressables-/Localization-, Save-vor-Fahrt-/Reward- und Releasevertrag bleiben verbindlich. Reguläre Builds enthalten die neue QA-Spielszene zusätzlich zur bestehenden Composition-Smoke-Szene; bestehende Profil-/URP-/Stripping-/CI-Gates bleiben erhalten.
+
+## Gespeicherter interner Public240-Entry – ADR036 / WP043
+
+[ADR-036](../DECISIONS/ADR-036-gespeicherter-public240-qa-entry.md) ergänzt ausschließlich SavedPublic240Review als ersten normalen QA-Entry mit eigener expliziter Inspector-/In-Memory-Localegrenze. Public240Review und die beiden bisherigen QA-Szenen bleiben getrennt. Bestehende Assemblykanten, S-Checkpoint-/JCS-/CAS-/Commitautorität und physische QA-Profilisolation bleiben unverändert; Clock/Dispatcher/Bridge entstehen auf Main, reine Katalog-/IOcomposition auf Worker. Erst der verifizierte eigene Commit erlaubt Fahrt/Result. Testroot ausschließlich im ausdrücklich begrenzten Editor-Testscope; kein Zugriff auf echte AppData-Profile durch Tests. Der vorhandene DevelopmentSceneBuildCheck wird nur um Saved ergänzt, der A-Guard bleibt unverändert. Keine Produktions-, Geräte-, Main- oder Releasefreigabe.

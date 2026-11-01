@@ -1,0 +1,2507 @@
+{
+  "at": "2026-10-19T15:16:56.057Z",
+  "headBeforeImplementationCommit": "89ee035ca0fa205ca1c0e845ad315047eae94fd8",
+  "indexBeforeBinding": "e4a12d14d40f0a220569bb0b56e6a5a363de085a",
+  "manifestSha256": "66716e5f9c529b28e896e4607ab3afebd894bf563dd960165d416d08d4686992",
+  "nativeInputSnapshot": "13",
+  "nativeInputSnapshotSha256": "c53fdd02f42eb38a9d52961c30cdbcf7e2bbad55994df8c1fe8b765819271126",
+  "unityInputCount": 497,
+  "unityInputs": [
+    {
+      "path": "Assets/DefaultVolumeProfile.asset",
+      "mode": "100644",
+      "blob": "e7b4147614a3153cd50fc33762bc635ebf949645"
+    },
+    {
+      "path": "Assets/DefaultVolumeProfile.asset.meta",
+      "mode": "100644",
+      "blob": "1269891af285a89382173dfa825899616d5e2b83"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle.meta",
+      "mode": "100644",
+      "blob": "4cf0cb0b5680f048de9a3111c9a6fb647dfcef23"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art.meta",
+      "mode": "100644",
+      "blob": "73004aee8924ea14afdc265e28574ad14eca774d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development.meta",
+      "mode": "100644",
+      "blob": "7253a7b06548ddf9ac250ef00473012299431be5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat",
+      "mode": "100644",
+      "blob": "6c6064652c89772bd456ef77234b0ff2d0240225"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Art/Development/DevelopmentTrain.mat.meta",
+      "mode": "100644",
+      "blob": "f376b0cc99b0d646b9b9894cf6bd1092e917d8d7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes.meta",
+      "mode": "100644",
+      "blob": "1cb9285d7ac0290d92edfe46b1560ae06f7afad8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA.meta",
+      "mode": "100644",
+      "blob": "2554b772c8fd7f4b859d30ff37c4915e93f28ffd"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity",
+      "mode": "100644",
+      "blob": "972871137cea2084d6e8c665a29f64b2b89cec36"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/BootstrapComposition.unity.meta",
+      "mode": "100644",
+      "blob": "3a7cd698d43e32bcd9450c3837c876805fa1391f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity",
+      "mode": "100644",
+      "blob": "189bb5aa6239d3457e42f1642d09ba0861931b01"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/DevelopmentPuzzle.unity.meta",
+      "mode": "100644",
+      "blob": "38b87f0a079e12b586ea924130e99d03d28d42fc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity",
+      "mode": "100644",
+      "blob": "5b10df2695cdfff2558aabbf70cba05a63e36931"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/Public240Review.unity.meta",
+      "mode": "100644",
+      "blob": "ad512b307dd75aad1b1ec9824f3ab960d9ce672b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity",
+      "mode": "100644",
+      "blob": "50f7052c95c1a70bdf123b1a8323308822fb1e9c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scenes/QA/SavedPublic240Review.unity.meta",
+      "mode": "100644",
+      "blob": "e14588c7376614982d106fed889755a6c0aef6f9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts.meta",
+      "mode": "100644",
+      "blob": "385c447cfefe95671539ab26b1e41ff5e689df59"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application.meta",
+      "mode": "100644",
+      "blob": "780cc81713a2ce2e5a185b9d68dd89aaf8f96278"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/ApplicationComposition.cs",
+      "mode": "100644",
+      "blob": "a33cf780dca0458491325a81564f1057c1e82c98"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/ApplicationComposition.cs.meta",
+      "mode": "100644",
+      "blob": "25ed94f2f641a5c98b03d99de18c6ed566b36ad0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/ApplicationRoot.cs",
+      "mode": "100644",
+      "blob": "290e9898f4b3bdcd84e9c360a338741bec3c4722"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/ApplicationRoot.cs.meta",
+      "mode": "100644",
+      "blob": "9892e362ba620937f551ceefc3c315e1f318724c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs",
+      "mode": "100644",
+      "blob": "7f60a440375c55f93dbcf4ba6cf7be9ce12cfee2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/AutosaveCoordinator.cs.meta",
+      "mode": "100644",
+      "blob": "dd3a56818dc7aab4f4b8cb6554d0857e5d4103e3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs",
+      "mode": "100644",
+      "blob": "f25f0f7829afcad808cef82bc91265f634df01fa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/DevelopmentPuzzleSession.cs.meta",
+      "mode": "100644",
+      "blob": "ad5309cfa7ae5e9ceba181d9d433266d6b5e6f59"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs",
+      "mode": "100644",
+      "blob": "0b3d4f707c10e8bf2ba0d2cc25d3910575bf5342"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalGameContracts.cs.meta",
+      "mode": "100644",
+      "blob": "06301a7ca665405f97a4ece056fbf5d451612557"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs",
+      "mode": "100644",
+      "blob": "37804dbfa7db095613b654085cee1300c7f32f8b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProfileState.cs.meta",
+      "mode": "100644",
+      "blob": "154cae1dbc4f9c813ed011c9c03de57f7e512dfc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs",
+      "mode": "100644",
+      "blob": "b107252d0f584dad730c1ae2fad74e1ad0721ba4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/LocalProgressPolicy.cs.meta",
+      "mode": "100644",
+      "blob": "420695c411aa728dabf24bfcb8dd9d4ace0d8b77"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs",
+      "mode": "100644",
+      "blob": "1fa12049d3b36f336a4a68182da53a6e186888f9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/PersistedPuzzleSession.cs.meta",
+      "mode": "100644",
+      "blob": "919a619b59eb3370e57fffa1116e29c93d3ac04f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports.meta",
+      "mode": "100644",
+      "blob": "d06dafcd8b3101a1b1fd671bf64f4fb888678488"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAdsPort.cs",
+      "mode": "100644",
+      "blob": "a5c9ac8f85095dcf4950710dd7c52cc96d3d120e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAdsPort.cs.meta",
+      "mode": "100644",
+      "blob": "9120985d83e3341d0a61d5ac23a78a09a34c96c4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAnalyticsPort.cs",
+      "mode": "100644",
+      "blob": "fc8c015483d0b0b0840cad98ff2641e1a6692f71"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAnalyticsPort.cs.meta",
+      "mode": "100644",
+      "blob": "9a6352b19268c05eea2734be3a612a7d83f50f2e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAppLifecyclePort.cs",
+      "mode": "100644",
+      "blob": "88c03eac9544f2e9affdc82af7590e8a0aadfb2c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAppLifecyclePort.cs.meta",
+      "mode": "100644",
+      "blob": "17c9d640b2ac286e91ed421b80537886aab93f3d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAudioPort.cs",
+      "mode": "100644",
+      "blob": "3f8695c4b7adf75dca7914e11182eb22a6a5cdbb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IAudioPort.cs.meta",
+      "mode": "100644",
+      "blob": "b55e0535b26d742e1b9a88f231221f12190dbfd2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICampaignCatalog.cs",
+      "mode": "100644",
+      "blob": "b0618b55880a808a18e8d69afac56b69847fc0fd"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICampaignCatalog.cs.meta",
+      "mode": "100644",
+      "blob": "b03ba63d917e38507d2c6895e401138c2bec505a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IClock.cs",
+      "mode": "100644",
+      "blob": "4b18ebc1f13cb2f656e914ec211bb89eb7ff3792"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IClock.cs.meta",
+      "mode": "100644",
+      "blob": "90e81e7a660a87c5a29f3444ebb6f0d5482b91ff"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICompletionCatalog.cs",
+      "mode": "100644",
+      "blob": "edcc15a8adfe56338ee8174ff2a531d34dba7e01"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICompletionCatalog.cs.meta",
+      "mode": "100644",
+      "blob": "ba2236c2e0971349977de9e0300f0cbf02f0dc81"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IConsentPort.cs",
+      "mode": "100644",
+      "blob": "5ae32d701242d69775f6db85a01ffb56698a53ec"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IConsentPort.cs.meta",
+      "mode": "100644",
+      "blob": "f167b33f2e36a1b012030a219d4220ec4a4cd818"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICosmeticsCatalog.cs",
+      "mode": "100644",
+      "blob": "cfc0be5b18dbe60a43b9c0c305718a196eb62889"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICosmeticsCatalog.cs.meta",
+      "mode": "100644",
+      "blob": "f0a9425e4ea90065595145b671161b0d7b0c42a5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICrashReportingPort.cs",
+      "mode": "100644",
+      "blob": "c6578ce7d721ac5d67eb25ade0b6643f0b9ad2c8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ICrashReportingPort.cs.meta",
+      "mode": "100644",
+      "blob": "08162200e1313ed7e0eedc30cdaefc3f9d99f787"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IHapticsPort.cs",
+      "mode": "100644",
+      "blob": "9a17ca6ea3856960e3e26c78747632976ce3a06b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IHapticsPort.cs.meta",
+      "mode": "100644",
+      "blob": "6df029df56980f419c607911b0fc19009f27d398"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ILevelCatalog.cs",
+      "mode": "100644",
+      "blob": "89bfc1ec638faa4598c0cc8a424ea6961e469b44"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ILevelCatalog.cs.meta",
+      "mode": "100644",
+      "blob": "de7843e2bd75a8b36bc84bccecffe4803738ffc5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/INetworkStatusPort.cs",
+      "mode": "100644",
+      "blob": "c975390f4d456c32ed3040a86f259bdb8bd11372"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/INetworkStatusPort.cs.meta",
+      "mode": "100644",
+      "blob": "ac973064fdb59f021e997ca2dfc490d018e63018"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IPurchasePort.cs",
+      "mode": "100644",
+      "blob": "5e4606156f2b072342a89b7b38e7a0a95cab4bf5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/IPurchasePort.cs.meta",
+      "mode": "100644",
+      "blob": "52c1c3356e0635c93f5e8c5f5b9e9931fe31160e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ISaveRepository.cs",
+      "mode": "100644",
+      "blob": "76f0e6cfdee351b596cc68b06cf871350778c646"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Ports/ISaveRepository.cs.meta",
+      "mode": "100644",
+      "blob": "f104b2e757bdf22a64779af4cce5be307d9aac2d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs",
+      "mode": "100644",
+      "blob": "0ae0f9e4292183707d0eb6a4fe9406c6755ebbbf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/Public240ReviewSession.cs.meta",
+      "mode": "100644",
+      "blob": "bfc6844d94769c7c81f19bf2d642575fbfdc9ff7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/STP.Application.asmdef",
+      "mode": "100644",
+      "blob": "277b9a7faf159a65fd54ca8f8833684f01589a4f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/STP.Application.asmdef.meta",
+      "mode": "100644",
+      "blob": "914b052b6838e99d331147144d75dc325404c0f9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs",
+      "mode": "100644",
+      "blob": "ccf012dcd514bf98298d14c33de3bf3187e1960d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/SavedPublic240ReviewSession.cs.meta",
+      "mode": "100644",
+      "blob": "442ddaf3f78d19556fc9b195bb0aec8ed48b90b9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Application/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "cc2b724839bdb367d1c47e539ae5b3b92291173e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio.meta",
+      "mode": "100644",
+      "blob": "6ad39a3235110e7a250cd1a402379ca8e62e7c5d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/AudioModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "f94580c7d516fc8f6f579333cb9a85be085f686e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/AudioModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "08a63e3c8e949f8f0a6907e84e41ad8edff406d5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/STP.Audio.asmdef",
+      "mode": "100644",
+      "blob": "57ba9fc4b398809960cf37e778f1475803ad43e6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/STP.Audio.asmdef.meta",
+      "mode": "100644",
+      "blob": "83c5e523fc7578688b11d12a5a682a4ee342d5f4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Audio/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "9edc0a6936ab94cc6688d8d15cb0facd8878f199"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap.meta",
+      "mode": "100644",
+      "blob": "8a883b47a7d2e495113fa5cbbc8e24eda16f3fea"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapComposition.cs",
+      "mode": "100644",
+      "blob": "a271109d2905d8fd384276d85aa0d57fa2e90ab8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapComposition.cs.meta",
+      "mode": "100644",
+      "blob": "906da7d878d6d540917e80c27bb1ec62912eac50"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapCompositionResult.cs",
+      "mode": "100644",
+      "blob": "f50c0d2d7e7d2f7b4a573e3e9fcd002075d83220"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapCompositionResult.cs.meta",
+      "mode": "100644",
+      "blob": "46c734797e6a91487fa8c244c26ecc292a5c4adf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapConfiguration.cs",
+      "mode": "100644",
+      "blob": "6cf5795dfcb557ad4238ae75e3f5de59be908d15"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapConfiguration.cs.meta",
+      "mode": "100644",
+      "blob": "40989bb99e551fc4f64f09ee6363a1839af19c7c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapInstaller.cs",
+      "mode": "100644",
+      "blob": "2e6170c029a1c702f392970d42a4cbb9b6f457dd"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/BootstrapInstaller.cs.meta",
+      "mode": "100644",
+      "blob": "bb8fa1b2ce6e09b92b7cd40f1c2c0a166f0c373f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs",
+      "mode": "100644",
+      "blob": "f53c9f339c7a43d57e1e79c49108cee857329f50"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/DevelopmentPuzzleInstaller.cs.meta",
+      "mode": "100644",
+      "blob": "35e22ea090cb221ee766590304c6310ebb6ff58d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/LocalBootstrapLogger.cs",
+      "mode": "100644",
+      "blob": "912ed1e946d5c27cfe43b7a17b0cb0a603cd3d22"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/LocalBootstrapLogger.cs.meta",
+      "mode": "100644",
+      "blob": "10ffe36445f87c1aff0744e6ad8728ce37bcf3e4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs",
+      "mode": "100644",
+      "blob": "d660c0b8df79e8409d8edbc067df0da2e497830a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/Public240ReviewInstaller.cs.meta",
+      "mode": "100644",
+      "blob": "a78c10ad6e7e41818fa50a6964ef32b24704c9d8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/STP.Bootstrap.asmdef",
+      "mode": "100644",
+      "blob": "81641dd1605dd0f52d829a45cceee383c797a003"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/STP.Bootstrap.asmdef.meta",
+      "mode": "100644",
+      "blob": "186c588ea27409a0d5c03e43f4f12077fc0efdb2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs",
+      "mode": "100644",
+      "blob": "3063d22e7eca2d3168bf01fff957c35767bb6d66"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240Composition.cs.meta",
+      "mode": "100644",
+      "blob": "5e258011fb01ed849129f206511f4848c3a20bcf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs",
+      "mode": "100644",
+      "blob": "4d60a7042bfd08b37ad14197138bf3f7630212a3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/SavedPublic240ReviewInstaller.cs.meta",
+      "mode": "100644",
+      "blob": "5a25b1de3bca9d8d11b78c8b4bf18b82282d9f9f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Bootstrap/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "acd48ee92b516b2f1499066cb02fdd1d512d7ad3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor.meta",
+      "mode": "100644",
+      "blob": "2c989282addcd1d9193c3aa3d8373bcd53eec635"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build.meta",
+      "mode": "100644",
+      "blob": "3976db8228156e5614ada019acaf4edc59949c62"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs",
+      "mode": "100644",
+      "blob": "37a293ed4604a8778ff403a4f38ecbd0d90de8ae"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/DevelopmentPuzzleBuild.cs.meta",
+      "mode": "100644",
+      "blob": "7dadf37e869391c9cd11ca0767d02efbbe6e9e45"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs",
+      "mode": "100644",
+      "blob": "665b97b046ef25497fcde224cea446eb79193aa8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/Public240ReviewBuild.cs.meta",
+      "mode": "100644",
+      "blob": "dbba8bc1f59f6462fbf8b529d2a0f2efcc885dd8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/STP.Editor.Build.asmdef",
+      "mode": "100644",
+      "blob": "9261b02d040752fdd829161cf3bf6cdcad877e14"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/STP.Editor.Build.asmdef.meta",
+      "mode": "100644",
+      "blob": "a69a8cac9aae72838570f135c4647145157c493c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs",
+      "mode": "100644",
+      "blob": "abd0eb97d1ff381e52bb2aa4749f91021d7becdf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/SavedPublic240ReviewBuild.cs.meta",
+      "mode": "100644",
+      "blob": "661b85d55fe345be86d50c89614db3560cc242cb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs",
+      "mode": "100644",
+      "blob": "a9145307c828f00fef671f1ac3a4167dd161417a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/StpBuildEntrypoints.cs.meta",
+      "mode": "100644",
+      "blob": "b9ef4854b66b41f4b039ca654de833964853b545"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Build/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "9cd2de6d5bb74059733f391a907d6f8b691f7f9e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content.meta",
+      "mode": "100644",
+      "blob": "56962c232550505019830a113854e56f21080ea2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/EditorContentSkeleton.cs",
+      "mode": "100644",
+      "blob": "f5d8e6b0cf27fe2f5a953221ace24eaa303fc03b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/EditorContentSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "22761dae907b7fddc6cd499c1304c078c570428f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/LevelValidationCommand.cs",
+      "mode": "100644",
+      "blob": "9eb2539af4185c65fb66c2e62d9121e0b426de2f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/LevelValidationCommand.cs.meta",
+      "mode": "100644",
+      "blob": "e881bc933ccfb7fd56a78bb03bd4184881264c0f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/LevelValidationPipeline.cs",
+      "mode": "100644",
+      "blob": "8a1e5891b81ca38d531e296eb1ef582b03cee079"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/LevelValidationPipeline.cs.meta",
+      "mode": "100644",
+      "blob": "3ff763f77ec5e4d93e34a1b9d5181fb144e432a4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/ProofGenerator.cs",
+      "mode": "100644",
+      "blob": "a5a59cf8fa9cebc45c8903e5ccb058378346b687"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/ProofGenerator.cs.meta",
+      "mode": "100644",
+      "blob": "6bdbda9b2965b90bf462431b0228d0b9dc666768"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/STP.Editor.Content.asmdef",
+      "mode": "100644",
+      "blob": "0811d8a1c441a06cf841f364297c35640cb6a3cb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/STP.Editor.Content.asmdef.meta",
+      "mode": "100644",
+      "blob": "bf436eb375a6df2a18905bc7cbaeed8d2635d4a8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Editor/Content/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "fe3c4ecc3860000691cd3eb9fcaa27e97f2a7853"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure.meta",
+      "mode": "100644",
+      "blob": "246aa6c42cac9b8cf8508adb451611441708aba3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content.meta",
+      "mode": "100644",
+      "blob": "2c76b67d6d08188ec9142857fe96c1a2e638fc33"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs",
+      "mode": "100644",
+      "blob": "5d0c63054199a199e1ab53945db7da324d76be52"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/CanonicalJsonAdapter.cs.meta",
+      "mode": "100644",
+      "blob": "a8718b7b78b1c3575c2a982059eb7853a4341439"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ContentEditorAccess.cs",
+      "mode": "100644",
+      "blob": "c0bb4bdbbbfa312c968f90bed0255b9472ea1bcb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ContentEditorAccess.cs.meta",
+      "mode": "100644",
+      "blob": "dfa185e9fb09b1f31e950b79aa3631360b7fd8b4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ContentModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "5bfd419e8619fb4d0487eb3d009971a3f82749a7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ContentModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "6f93a486fc28721a308c5b3418af5d3da36b3969"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs",
+      "mode": "100644",
+      "blob": "98aa5711e791b1de590864998fa3bdc381ab19e4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/DevelopmentPuzzleData.cs.meta",
+      "mode": "100644",
+      "blob": "bed12fbc7329a97b611f763ebd61cd66e607976a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/JcsSerializer.cs",
+      "mode": "100644",
+      "blob": "446a81b824d46a5590696b2601643efcffa475dd"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/JcsSerializer.cs.meta",
+      "mode": "100644",
+      "blob": "8d7ff2d4c5ddc76a0590300ece3957d6d2cf8dbb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/JsonValue.cs",
+      "mode": "100644",
+      "blob": "5ce8b21a15391afae276f2626934699798301342"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/JsonValue.cs.meta",
+      "mode": "100644",
+      "blob": "d973b5868540ad6007179c167f9e87d25ff2a66b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelDiagnostic.cs",
+      "mode": "100644",
+      "blob": "b49adbb22cf4e8f83f73cdaad4725c58aef29fe2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelDiagnostic.cs.meta",
+      "mode": "100644",
+      "blob": "b7705981b0d7211dc1c179d8011f782f7a6d3b90"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelHashing.cs",
+      "mode": "100644",
+      "blob": "dc848acea0a5a785d72fcf63f3f222bd67ebab70"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelHashing.cs.meta",
+      "mode": "100644",
+      "blob": "78a97ad3ccbd531da7bc16f7f921de147def5d84"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelSchemaReader.cs",
+      "mode": "100644",
+      "blob": "621d70cb58147a059d3536e3159ef6033a4b2f81"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelSchemaReader.cs.meta",
+      "mode": "100644",
+      "blob": "0e44c88a974ca087211f52d9ff1d72f5c5d0b889"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1Document.cs",
+      "mode": "100644",
+      "blob": "38a618f65b163070eb6f587097ed317b894eb2a6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1Document.cs.meta",
+      "mode": "100644",
+      "blob": "12ef9036dfe50d5dfccf6d6374b414182b4c0efa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1Reader.cs",
+      "mode": "100644",
+      "blob": "53859031dfb8f652ff1742117e8538e9f21d61bc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1Reader.cs.meta",
+      "mode": "100644",
+      "blob": "4a366c2ea71c3f28cf32be75d17d955115986413"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1ToV2Migrator.cs",
+      "mode": "100644",
+      "blob": "6b869612f9895a20ae72aa53797fd9f0459c613e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV1ToV2Migrator.cs.meta",
+      "mode": "100644",
+      "blob": "1f871256793b9f6b8b484a21f53f69d99ea570b5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Contract.cs",
+      "mode": "100644",
+      "blob": "dea4394f75676900a4fb62476353906f4a93a69d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Contract.cs.meta",
+      "mode": "100644",
+      "blob": "ed5b444d84a7993acd827fcc20a9ad8aa2b54901"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Document.cs",
+      "mode": "100644",
+      "blob": "ddfb06761650d5aa9d40e5369e4ce40546020fd9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Document.cs.meta",
+      "mode": "100644",
+      "blob": "e3c1063b605b049588d8c965c64ca06c71920e2c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2DomainMapper.cs",
+      "mode": "100644",
+      "blob": "d50cfdbcd192b9e05a5bd2023a4fe27bf8a0ffef"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2DomainMapper.cs.meta",
+      "mode": "100644",
+      "blob": "08888faba7868d0f059898751bdaf2901ed48f61"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Loader.cs",
+      "mode": "100644",
+      "blob": "c02ff2084141efab35650b24287d944a83d723ed"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Loader.cs.meta",
+      "mode": "100644",
+      "blob": "1f1331fac3b436f29119ae4d699e682063cbaeee"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Reader.cs",
+      "mode": "100644",
+      "blob": "08907fb35f698ded23d5dbd2537bcfe03b0d09d3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Reader.cs.meta",
+      "mode": "100644",
+      "blob": "4a9507b1b0d6db1ca36123a1a73983da7cf496df"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Semantics.cs",
+      "mode": "100644",
+      "blob": "e2952f30616cc0d1cc63828e6d44363c1868d33e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelV2Semantics.cs.meta",
+      "mode": "100644",
+      "blob": "578fb79e3d4bdf85be31e685cd50c5f970620601"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelValidationResult.cs",
+      "mode": "100644",
+      "blob": "5b2c2373d1a8899bae6ad54d7c3dd79e67315ec2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/LevelValidationResult.cs.meta",
+      "mode": "100644",
+      "blob": "2ba1c24b816d42dd33ed45eaf7fe8b2a56863c85"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ProofV1.cs",
+      "mode": "100644",
+      "blob": "1dd8001490076f47cc5e28ef07aa30c1a0d64342"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ProofV1.cs.meta",
+      "mode": "100644",
+      "blob": "b9adac8ef4a7c74bbabbbf6d2ab59b831f8ce512"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs",
+      "mode": "100644",
+      "blob": "45feea77d0aa140e93b4d156e88e1e8ca5c96a7b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/Public240ReviewData.cs.meta",
+      "mode": "100644",
+      "blob": "e5e66cb2ed8e18b8c675efcbf2a849d584de3f8b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs",
+      "mode": "100644",
+      "blob": "77d390c21eb54b1bc959ccf57236adeea77931ea"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/ReviewProgressCatalog.cs.meta",
+      "mode": "100644",
+      "blob": "7e1de43679efb3e05d95a710f97a66dc96cfefff"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/STP.Infrastructure.Content.asmdef",
+      "mode": "100644",
+      "blob": "4a574adddf4acc6f0100a8b8af142c33344f3b33"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/STP.Infrastructure.Content.asmdef.meta",
+      "mode": "100644",
+      "blob": "9fde7f05d033843b547dfa68103a544c61f55990"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/StrictJsonParser.cs",
+      "mode": "100644",
+      "blob": "33fbe5f20d8cd466cc472f025d4a02978de0a039"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/StrictJsonParser.cs.meta",
+      "mode": "100644",
+      "blob": "c371be6213e1fd65e3f84c3090369a4a3ca5bbb3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Content/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "a51bbb80fe5b9239a6893cb7bcebf272b5cbf882"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence.meta",
+      "mode": "100644",
+      "blob": "1b04085bc0e14fd1f842015ed89c4c39ccc2887c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs",
+      "mode": "100644",
+      "blob": "ff6262efa359a30c3a41314837027b5c96f5ce2c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/AtomicSaveRepository.cs.meta",
+      "mode": "100644",
+      "blob": "64b3422dae38bd4e3c8ce855c92ac3af88d81dda"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs",
+      "mode": "100644",
+      "blob": "a1202ebdcb0d570df332045b8dc4bc2e7270c838"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/LocalSaveCodec.cs.meta",
+      "mode": "100644",
+      "blob": "bda86dcd892c6584866d55775d68a5c036e0616f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/PersistenceModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "14eff63149b714d37ccd756af005ab37cd5c4671"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/PersistenceModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "14cf6b138332e267dec57dd0c309843b2552befa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/STP.Infrastructure.Persistence.asmdef",
+      "mode": "100644",
+      "blob": "de95dc7f8b41daf74bf58ff303e0eb58cf1adecb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/STP.Infrastructure.Persistence.asmdef.meta",
+      "mode": "100644",
+      "blob": "20325b851fadb92c3efed78e81ad1a8cfabe759b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs",
+      "mode": "100644",
+      "blob": "e175e74092fef3bd6d10141819492c0a833a132c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveFileSystem.cs.meta",
+      "mode": "100644",
+      "blob": "5380751f5e8e959786c1d2d30201182780c31093"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs",
+      "mode": "100644",
+      "blob": "141da791be7ada87b1df61228d7304f8e18245a0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveLedgerCodec.cs.meta",
+      "mode": "100644",
+      "blob": "c0e5bab845f81cef25a98caec8da256109bcab8c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs",
+      "mode": "100644",
+      "blob": "b43d7a0e305534e4020a56177e2f9aa76921df0f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/SaveMigration.cs.meta",
+      "mode": "100644",
+      "blob": "274ebcf28bd2d24a59d922eece7d40f9157b0262"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Infrastructure/Persistence/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "27b554bf8bc51b591d0f44774346e9cc31348d56"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices.meta",
+      "mode": "100644",
+      "blob": "d1506def9e503dbebeb4bb004092c1ed9485efc7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google.meta",
+      "mode": "100644",
+      "blob": "a3ebf75677b42e3965d3119038d6635aebab3735"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/GoogleModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "1578b9e0070c801a239c4ae70a007d1db6a7a082"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/GoogleModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "5088449773406a3b6a6ee2eabfe4e693ed5fbff8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/STP.MobileServices.Google.asmdef",
+      "mode": "100644",
+      "blob": "148e91154d787f6ce408378794f01f9067babef5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/STP.MobileServices.Google.asmdef.meta",
+      "mode": "100644",
+      "blob": "cb71d8d0602f85b15c43678c0b96d874b1a589d9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Google/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "6be9a2bdb554f549ea182e88ca6fceb9d989d6ae"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store.meta",
+      "mode": "100644",
+      "blob": "324fa7196878bea89c7dc8e6e5ca085233f7540d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/STP.MobileServices.Store.asmdef",
+      "mode": "100644",
+      "blob": "e3eba1a8ea8b66ab81eb6d236b8fcdbdb563139f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/STP.MobileServices.Store.asmdef.meta",
+      "mode": "100644",
+      "blob": "5ac9448e675b494d1b04e3a5bcfdbe65dc353a57"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/StoreModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "32efe9431d7e60a9784bb9e36c341ffd7fd82d8b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/StoreModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "2e6842dd1c61c52f2e9438b4d8b3bbad1840bf81"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/MobileServices/Store/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "e02d11c53ecea34174e0b41a6a6f02327b065a7d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform.meta",
+      "mode": "100644",
+      "blob": "f59e8e9f556f0d586d662dcde88be97efe13f4b0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs",
+      "mode": "100644",
+      "blob": "83556c990e4d6084c9f88e10ea29b53333773aaf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/DevelopmentClock.cs.meta",
+      "mode": "100644",
+      "blob": "ace4e36441995448a9c89bb0e7f3ed4bdef5d050"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs",
+      "mode": "100644",
+      "blob": "247f3feb30a784d6f553af0e55fd1119fbdcd082"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/LocalSaveRuntime.cs.meta",
+      "mode": "100644",
+      "blob": "bede8057d23ec5715fd6d9091b0f4cd6bd6cc0e9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/PlatformModuleSkeleton.cs",
+      "mode": "100644",
+      "blob": "ac0f7d778fd1acc1d579ab875d31d81cd2e6308c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/PlatformModuleSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "103408357e8434a0a305308fe49a830e80ebfb42"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/STP.Platform.asmdef",
+      "mode": "100644",
+      "blob": "570fbe5dfd2d89b2364693b6fe789242a85e59c2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/STP.Platform.asmdef.meta",
+      "mode": "100644",
+      "blob": "c48c3da19ec7f4c74adec766fd4dad4ff30cdded"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Platform/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "74379dec55d751526ace337113663a94f4278b8c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation.meta",
+      "mode": "100644",
+      "blob": "fbcfcd1b1607be90acf967f7da5ee3da2ffd3ab8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI.meta",
+      "mode": "100644",
+      "blob": "c57c192bb8906c1eef2dd7e9ff3d2a6795881128"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs",
+      "mode": "100644",
+      "blob": "e0871c81f91daeee470aa7d50f2ea92c63805cbe"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/DevelopmentPuzzlePresenter.cs.meta",
+      "mode": "100644",
+      "blob": "6f7c4e81db6748ebc5f4047db9a6c56246ff0a28"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs",
+      "mode": "100644",
+      "blob": "c6745d03630ccbe26917ecaf1900f456e3ce1b77"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewGrid.cs.meta",
+      "mode": "100644",
+      "blob": "c9ebcdd5d6f7b4efbb23d617938f48f21da83df6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs",
+      "mode": "100644",
+      "blob": "f364c7bea159c53aa502e6ba7df0f93c18ed8380"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/Public240ReviewPresenter.cs.meta",
+      "mode": "100644",
+      "blob": "02985ada1390e8ca592fb79b03036fa3e69f5113"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs",
+      "mode": "100644",
+      "blob": "d49e6d10aac08d9ef86b98503211a7f077330d51"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/PuzzleGridElement.cs.meta",
+      "mode": "100644",
+      "blob": "a7c9758db3ff8f79afa22b1eeec9b23f66a453b0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef",
+      "mode": "100644",
+      "blob": "c5525c561ddaee02c2c6b10e10909b26c3937724"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/STP.Presentation.UI.asmdef.meta",
+      "mode": "100644",
+      "blob": "dba4af38661dbc59d1e56135052aee2598620e78"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs",
+      "mode": "100644",
+      "blob": "7181f791d78bcf1722ee3e9a0ed4d55e9525a6f6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/SavedPublic240ReviewPresenter.cs.meta",
+      "mode": "100644",
+      "blob": "0226295c8c00af0a6caf4801e700790a1fa07043"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/UiPresentationSkeleton.cs",
+      "mode": "100644",
+      "blob": "c36f95ada2cdab8ec5368b9d5553ff2cc3752b46"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/UiPresentationSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "69b9b375e11bdfdf92ad85206d791d0c5f6988bb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/UI/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "6ef6cd9c03f7a191ab406a3761ffda75849b803b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World.meta",
+      "mode": "100644",
+      "blob": "4c710c5aa40741a0239fc8d86846ef53ac902c3d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs",
+      "mode": "100644",
+      "blob": "600cf733ea3afdc90ef49a7bb12792d58542a613"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/DevelopmentTrainRide.cs.meta",
+      "mode": "100644",
+      "blob": "472fe1d6c2ec6aa6327eac8d2217b323abb7b139"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/STP.Presentation.World.asmdef",
+      "mode": "100644",
+      "blob": "797dc1012a8902beb19f073e8d788d6616c75619"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/STP.Presentation.World.asmdef.meta",
+      "mode": "100644",
+      "blob": "ace3e122bb1028103d1f3e002ed1979b4d728f41"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/WorldPresentationSkeleton.cs",
+      "mode": "100644",
+      "blob": "bb5c4375538f4aefa4c051d5f009598f1d0cebac"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/WorldPresentationSkeleton.cs.meta",
+      "mode": "100644",
+      "blob": "a2ac9791313339574b034c889f162560fc1edf3c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Presentation/World/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "61e56b987610f3172c43cbd349996b7cdc206483"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle.meta",
+      "mode": "100644",
+      "blob": "8c214377b8e5814eb13c2d1946c8bfc882d1d0b5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain.meta",
+      "mode": "100644",
+      "blob": "fc040dab06db51c0c152340295e1a3e7f7529032"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleEvaluator.cs",
+      "mode": "100644",
+      "blob": "1442895bdac83c9a33b9dfa33e42f948137f6f89"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleEvaluator.cs.meta",
+      "mode": "100644",
+      "blob": "393a0b7b2af6ac4cb5277bbf6f2fda9234288b34"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSession.cs",
+      "mode": "100644",
+      "blob": "f6c6723dc0d6865850da694081a1323c054ac250"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSession.cs.meta",
+      "mode": "100644",
+      "blob": "4d00e0223cb040062cb97046aa64d3fa1f494ee4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs",
+      "mode": "100644",
+      "blob": "faaf06b680a8f00583470749c337fc6e73c9f09c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleSessionCheckpoint.cs.meta",
+      "mode": "100644",
+      "blob": "2eeb01c0a290f1fadbd9846e5485f27cd795697c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleValues.cs",
+      "mode": "100644",
+      "blob": "6ace000320a47d402daf7c9360975c0d7a05d053"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/PuzzleValues.cs.meta",
+      "mode": "100644",
+      "blob": "fdf263d9a9b868b181cbc7c28a9cf6fcacfff8fa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/STP.Puzzle.Domain.asmdef",
+      "mode": "100644",
+      "blob": "7843123c8975709f9cadf5264730c51d1d84e21d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/STP.Puzzle.Domain.asmdef.meta",
+      "mode": "100644",
+      "blob": "eb2388a220e196b9fef55a95196108a692763eb9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Domain/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "750462d20a1631b29248e624cfd853cdac1a5ef4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver.meta",
+      "mode": "100644",
+      "blob": "5f52de1059386fc0e9250f8325a488b7df3727f7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/CampaignGate.cs",
+      "mode": "100644",
+      "blob": "b4f6a85f54c0b26ea49abb1d0d58cccabfbab7cc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/CampaignGate.cs.meta",
+      "mode": "100644",
+      "blob": "6218961203295ea167ebb3b1c07b293bc47f57b8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/DeductionTrace.cs",
+      "mode": "100644",
+      "blob": "8fe1ab20617e327e9ce20984c83bd6e22303bc06"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/DeductionTrace.cs.meta",
+      "mode": "100644",
+      "blob": "031e079a708ed3b26d6054e5ad65d4d4dab48f14"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs",
+      "mode": "100644",
+      "blob": "87dfe6d7cd9196aed7c8063276df5dc00d3b3cd4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/PuzzleSolver.cs.meta",
+      "mode": "100644",
+      "blob": "d48f1edeeb38d8f3f05334b988fb1e175be70ac1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs",
+      "mode": "100644",
+      "blob": "a41a802fd3e3f2f54074bd0d1e0bf540d0ae5a6c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/RootDeductionTracer.cs.meta",
+      "mode": "100644",
+      "blob": "c10e4e92fc256da4d464b0e03ef972c29e3dbe1f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/STP.Puzzle.Solver.asmdef",
+      "mode": "100644",
+      "blob": "6f7947b38f313551b6fb88d400c087b70ab0164a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/STP.Puzzle.Solver.asmdef.meta",
+      "mode": "100644",
+      "blob": "852b033c7f3e6175f4ca02bd09b8f7573dae706a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Scripts/Puzzle/Solver/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "e9545e447f29fbf7846f1705e36519193bd517e0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings.meta",
+      "mode": "100644",
+      "blob": "7b8008af55e9196813dbd4d4b048f58760c7303c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset",
+      "mode": "100644",
+      "blob": "7a2c6c248ef16a1fd1f1f2d8e0b8c7be7c8904e5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset.meta",
+      "mode": "100644",
+      "blob": "c205bc7ad75cdf236891be22fa3b52cde0de87e5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset",
+      "mode": "100644",
+      "blob": "2ba0cb79ad2929db6bb5896d48e45a16f08448b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset.meta",
+      "mode": "100644",
+      "blob": "4bf17cac540644cc304e4889ae90ffd55f513466"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests.meta",
+      "mode": "100644",
+      "blob": "b29af1da914229af0490827ea1002945d49007a1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Device.meta",
+      "mode": "100644",
+      "blob": "b3b27c0d6a415d68fdce913b1967fa735ef4cb0e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Device/STP.Tests.Device.asmdef",
+      "mode": "100644",
+      "blob": "8f60a0ddf82c2b2307c2376a76481319ffe357d9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Device/STP.Tests.Device.asmdef.meta",
+      "mode": "100644",
+      "blob": "96608c0839824e7e5a298fc6ea860ab5a7ce51e0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Device/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Device/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "9954f2516b2589bbc1fb3249def64a75c99f2e7b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode.meta",
+      "mode": "100644",
+      "blob": "6548d46e6125e41285bdf3b0e8535aff98b50ae1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application.meta",
+      "mode": "100644",
+      "blob": "a7a2496eacfb0b20d5902e3cf13295e41ff3adcf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs",
+      "mode": "100644",
+      "blob": "19cb23d76c5510b787429840505c9f22585d5f50"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/AutosaveCoordinatorTests.cs.meta",
+      "mode": "100644",
+      "blob": "84ad9148c8bc43275211adc93a475c31f6665c0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs",
+      "mode": "100644",
+      "blob": "268a9a5e7d53e755d82d63b004a954d86e6a9c41"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/DevelopmentPuzzleSessionTests.cs.meta",
+      "mode": "100644",
+      "blob": "8eee888e0df7e5416947d98a4437e81ae4c7f06c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs",
+      "mode": "100644",
+      "blob": "2509aaae784383513e346f8e9190a8cdeee96b95"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProfileStateTests.cs.meta",
+      "mode": "100644",
+      "blob": "26b1c08d63ecf291a24eba5fc86349677be9bb92"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs",
+      "mode": "100644",
+      "blob": "acfc250547d3c56fe184f1f7a2d9ef928e1a5baa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalProgressPolicyTests.cs.meta",
+      "mode": "100644",
+      "blob": "c5d2ba9c441619147d43f58c92d45999f959f2c2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs",
+      "mode": "100644",
+      "blob": "5c02c168707ad30d8a3a48c3c511ba14c6c00169"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/LocalSaveContractFixtures.cs.meta",
+      "mode": "100644",
+      "blob": "dfa974d0e9153ebf5f94185f62abdd5a09d37b56"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs",
+      "mode": "100644",
+      "blob": "b41891520a82d8a501b4d2e63580c53a1151b577"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/PersistedPuzzleSessionTests.cs.meta",
+      "mode": "100644",
+      "blob": "abaabeae50faff5f1575a91b76db781ec90449d5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs",
+      "mode": "100644",
+      "blob": "80f322bd92bd8be8781f9b4626c7dfeed9398f88"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/Public240ReviewSessionTests.cs.meta",
+      "mode": "100644",
+      "blob": "f71036f2c38ee62bcdb0f3fa1a4c8ca1676f56ad"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/STP.Tests.Application.EditMode.asmdef",
+      "mode": "100644",
+      "blob": "a06387ae4dc0b2157595b6b4ca6068d8364a0747"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/STP.Tests.Application.EditMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "82eee1e5d2cfb36810f2605d3100805e47d377ed"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs",
+      "mode": "100644",
+      "blob": "e7ee9505a28d86d44e492a40584a1d026a9b7c14"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/SavedPublic240ReviewSessionTests.cs.meta",
+      "mode": "100644",
+      "blob": "de8de2f0b69ce4f500e4d5ee77e50f37d887bdcb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Application/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "30b03c33d29797c7f258f7fe4ad2b07e6cb1a271"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content.meta",
+      "mode": "100644",
+      "blob": "34b14a3a44fd141490d7341e585bb6683562a4b0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs",
+      "mode": "100644",
+      "blob": "3e5ea8aaa0c452adff799ddd4cc3f1047dc432f9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/CanonicalJsonAdapterTests.cs.meta",
+      "mode": "100644",
+      "blob": "8955f83c147c6e87ad4c718bfdbc6ac1ec5bf0e5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ContentTestSupport.cs",
+      "mode": "100644",
+      "blob": "0ce72baa759d1703fbf0437d9d5364ab0731910f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ContentTestSupport.cs.meta",
+      "mode": "100644",
+      "blob": "b28397a3c6d090d05b3c626b2d1c39af02d1c89a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/JcsSerializerTests.cs",
+      "mode": "100644",
+      "blob": "0a190b86bc1481901c9b32590a803a672a9cca00"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/JcsSerializerTests.cs.meta",
+      "mode": "100644",
+      "blob": "608d3fbcc47a6cfd071d4de293a56586ba3e4d03"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/JsonValueTests.cs",
+      "mode": "100644",
+      "blob": "3bac6232cc8bc5d3f79d3a0e7b465d89b85e2f99"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/JsonValueTests.cs.meta",
+      "mode": "100644",
+      "blob": "f35b1dc70b4e825a2a3ca4494b5a0bc8235d3fb4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelHashingTests.cs",
+      "mode": "100644",
+      "blob": "34e5880e60d7456ff45182112e40e6b56979f734"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelHashingTests.cs.meta",
+      "mode": "100644",
+      "blob": "68f26eb4dce831f525dcc1e1f34f1fbd54b3b659"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelMigrationTests.cs",
+      "mode": "100644",
+      "blob": "0ce7e26c541a5ff626a19cca297557459119d60b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelMigrationTests.cs.meta",
+      "mode": "100644",
+      "blob": "688281d4e4caa4ee83038b5ac17a3c07f165a792"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2LoaderTests.cs",
+      "mode": "100644",
+      "blob": "7b21505dc4972da0439af75742d6681aa6712875"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2LoaderTests.cs.meta",
+      "mode": "100644",
+      "blob": "6fa1f644fdc9da04c6469a5ae012a33ad9e90fa9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2ReaderTests.cs",
+      "mode": "100644",
+      "blob": "e57ba3d94685e18e49864714e89360b5c51db91b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2ReaderTests.cs.meta",
+      "mode": "100644",
+      "blob": "447ab76fb5e41b36a14aac44fd29b673fe338663"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2SemanticsTests.cs",
+      "mode": "100644",
+      "blob": "01476921bcaf33f3f60ab48ea0f288dd4b867c04"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/LevelV2SemanticsTests.cs.meta",
+      "mode": "100644",
+      "blob": "4a5ef1f4cb34334452e012f4fb83bb7e467f672a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ProofV1Tests.cs",
+      "mode": "100644",
+      "blob": "d42fb979fb0ddde5b6ed23e2113c93f24ad22f54"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ProofV1Tests.cs.meta",
+      "mode": "100644",
+      "blob": "6369e4d530f504f81882eb108a5fa4c31a4af418"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs",
+      "mode": "100644",
+      "blob": "09133e9f075ea19c237e8727abd683bce44c773f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/Public240ReviewDataTests.cs.meta",
+      "mode": "100644",
+      "blob": "7d00c9cf19cdf7a490573ced7915b4866a249f8b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs",
+      "mode": "100644",
+      "blob": "08164b6c1a2534e7102f29c1f2297ded66fc96fa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/ReviewProgressCatalogTests.cs.meta",
+      "mode": "100644",
+      "blob": "b0e1462be1584b673091338f3982cadee9406b69"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/STP.Tests.Content.EditMode.asmdef",
+      "mode": "100644",
+      "blob": "4bbb705457780f26f182b6dec03e5eecba63229e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/STP.Tests.Content.EditMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "442646ca84d0644e15d6f6471e06ca20635d9cfc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/SchemaParityTests.cs",
+      "mode": "100644",
+      "blob": "e8d683bd75c8c6b2dcbd861aea3f890ba3931841"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/SchemaParityTests.cs.meta",
+      "mode": "100644",
+      "blob": "bb2b90450c8985d9b58effb507184d9924631cc9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/StrictJsonParserTests.cs",
+      "mode": "100644",
+      "blob": "db6747dfb88e648f7fe89f30d3d15986eb778d2a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/StrictJsonParserTests.cs.meta",
+      "mode": "100644",
+      "blob": "b999634d1f63f0a15a8f80d67eef3c881f235e07"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "91a184425e7cf93ad420489ff6e9acd35b11bb9b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/level-v2-jcs-golden.json",
+      "mode": "100644",
+      "blob": "8cbdaf0a093eb8dbdd43bc1839a40fe04373a790"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/level-v2-jcs-golden.json.meta",
+      "mode": "100644",
+      "blob": "e625d81cee13992881c4bc0b1620a61bb63373a2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.json",
+      "mode": "100644",
+      "blob": "f88075cce86b39b363e622f1eb0a36843d751da9"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.json.meta",
+      "mode": "100644",
+      "blob": "c311c7ecc0ea66e25b1a7f82c23b5f7c27e29d76"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json",
+      "mode": "100644",
+      "blob": "efd3bf2f806cc6ad71b6f197331df6d2917f4b2b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-root.level.json.meta",
+      "mode": "100644",
+      "blob": "60885ffbca61f4acb77116e46be12d671fcd45ec"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.json",
+      "mode": "100644",
+      "blob": "05544c7269be826ce67214bc1dfe211a5fec51b6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.json.meta",
+      "mode": "100644",
+      "blob": "da3d285a804d4a3174da78759861ad2a82775b5b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json",
+      "mode": "100644",
+      "blob": "8a94f1893118717eaabb9756d55053ea94edd443"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-search.level.json.meta",
+      "mode": "100644",
+      "blob": "e73250594002e73cba6b0525d733c9c53db153aa"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.json",
+      "mode": "100644",
+      "blob": "bace96abda095a80990df7c82208c2d428b03b3e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.json.meta",
+      "mode": "100644",
+      "blob": "6e61948b9ae48c42560425b83ca897110d925031"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json",
+      "mode": "100644",
+      "blob": "8a2b89492f6658d35ff10ae519679e820c76beb6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Content/proof-v1-solver-v2-single.level.json.meta",
+      "mode": "100644",
+      "blob": "2db904e8a864ae879e0f635dc7cb7d2172290d28"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain.meta",
+      "mode": "100644",
+      "blob": "226b4287bb24d8d26afee8a6c23ea43d2d78c2bc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleDomainTests.cs",
+      "mode": "100644",
+      "blob": "11a02ccb96e5d6168354867c0c71034a44232948"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleDomainTests.cs.meta",
+      "mode": "100644",
+      "blob": "364c486d036c90f9e7d5458f9d21697a958bb77d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs",
+      "mode": "100644",
+      "blob": "a0531888209f6ec9022f088efc21b8274c2d63d3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionCheckpointTests.cs.meta",
+      "mode": "100644",
+      "blob": "817fb7866b12bc911079f8b519a6d8ccd7f7ca9b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionTests.cs",
+      "mode": "100644",
+      "blob": "69b15b42fda03eaedfe7468113e259d9830856a3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/PuzzleSessionTests.cs.meta",
+      "mode": "100644",
+      "blob": "114c37edb21ef060e9bdc088cd1dd0db98c29a0a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/STP.Tests.Domain.EditMode.asmdef",
+      "mode": "100644",
+      "blob": "d869839946727f02cbad6e129cf152ea9b3d4610"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/STP.Tests.Domain.EditMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "9442fd736bde8172e3a9f5bcafd7355e0e9f76f0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Domain/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "d2e1b82081d341fefe237110c52a349e4ebc87c3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence.meta",
+      "mode": "100644",
+      "blob": "2890dbf5fb9ff8826e8452cf4d2952a79a76b6ee"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs",
+      "mode": "100644",
+      "blob": "9e8dceac1ea6092388eeba80b5202dcd2e26d885"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/AtomicSaveRepositoryTests.cs.meta",
+      "mode": "100644",
+      "blob": "00ec6e921e7d4832e838ed73129fb34f5a24bca3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs",
+      "mode": "100644",
+      "blob": "c7d3cdc4992cf2c802956412a8d409584dc525ab"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveCodecTests.cs.meta",
+      "mode": "100644",
+      "blob": "997ca54df3365947e38204ad8f3aff2b4796d698"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs",
+      "mode": "100644",
+      "blob": "adc89d38cca783bda67fe65abc084c8977196f7d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/LocalSaveContractFixtures.cs.meta",
+      "mode": "100644",
+      "blob": "c4be8b01984ecf61e400fa19b830cc209fe46898"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/STP.Tests.Persistence.EditMode.asmdef",
+      "mode": "100644",
+      "blob": "5470228ef3e2449b63d6fe82a2558f767c74d555"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/STP.Tests.Persistence.EditMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "b19342cb41c69d1a3692cdcf1b681082e686b9c1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs",
+      "mode": "100644",
+      "blob": "4e6e62975e59cf950d1dbd9cc9d46fe1936b35e3"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveLedgerCodecTests.cs.meta",
+      "mode": "100644",
+      "blob": "9f9ba0c4fd783379044528cc3ace4d0e477e43ca"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs",
+      "mode": "100644",
+      "blob": "66867fc56254d0d8fb516eeebb263b095acf87db"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/SaveMigrationTests.cs.meta",
+      "mode": "100644",
+      "blob": "81acb4e8fcbe14c040c3aceda92f56c6bf675e0b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Persistence/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "c79dd2ad69e2eae769179452aa947e561cc1c4f2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver.meta",
+      "mode": "100644",
+      "blob": "e400ffb3db4a9bd740a1934e9c9d2ac4b29da4b1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/ConstraintContractTests.cs",
+      "mode": "100644",
+      "blob": "a50925e64d525a90cd22260ad4d5c1e4c54b117f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/ConstraintContractTests.cs.meta",
+      "mode": "100644",
+      "blob": "64c7a27d631ee0ece5dc2602981f5c305c47d573"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs",
+      "mode": "100644",
+      "blob": "5931f0c165c084d67b344173171ea07abe2767b0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/PuzzleSolverTests.cs.meta",
+      "mode": "100644",
+      "blob": "e50c205af0899c45d4e7964cf4a8e7a4c6e619bf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/STP.Tests.Solver.EditMode.asmdef",
+      "mode": "100644",
+      "blob": "1003588c911b9262e11b65689af57395c5028d2b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/STP.Tests.Solver.EditMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "dafee96a96c46044724044118394992da410af1e"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SmallPathOracle.cs",
+      "mode": "100644",
+      "blob": "cee462f73ee78f664d4c27fd17aebfa261367710"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SmallPathOracle.cs.meta",
+      "mode": "100644",
+      "blob": "32860686bfb1d6dd9b974fb29e81b43e296549bb"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs",
+      "mode": "100644",
+      "blob": "6be782565505376c960fc3f040dd1de95f3202bc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/SolverV2MetricsTests.cs.meta",
+      "mode": "100644",
+      "blob": "c6dd2af2b06e6543c4fad68293ee70c6eb12f8c8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TraceAudit.cs",
+      "mode": "100644",
+      "blob": "ea937d4a43807dfd55690ab3945f933a16a6c11b"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TraceAudit.cs.meta",
+      "mode": "100644",
+      "blob": "bb2e5be57b94827547a5c4c2c0a3d7595412be0d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TracePremiseSufficiencyTests.cs",
+      "mode": "100644",
+      "blob": "0aa8cf39b2e5fdf047936f273cb9854caa3ccda0"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TracePremiseSufficiencyTests.cs.meta",
+      "mode": "100644",
+      "blob": "2dde8ff7532a3eba92f73c7ccaa53b233d818a86"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TracerPredicateTests.cs",
+      "mode": "100644",
+      "blob": "a2b63e1d2fabb6e45df9784f066042b8d3e4fe22"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/TracerPredicateTests.cs.meta",
+      "mode": "100644",
+      "blob": "f7331b9f24c000dda152aace0b903281f5187217"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/EditMode/Solver/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "f8155504acd4ed45f148ad0dfe479b5d9307da92"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Fixtures.meta",
+      "mode": "100644",
+      "blob": "26f89b9df62c69c8aafd79fb7088f2d231f686dc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/Golden.meta",
+      "mode": "100644",
+      "blob": "264bab2bc914cbf32dd585efe0b70e58c0355c4d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode.meta",
+      "mode": "100644",
+      "blob": "53fdd58c3198c8d67c5c2f01a44f697f2ea5ed1c"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap.meta",
+      "mode": "100644",
+      "blob": "b0924b13c1828e5005e2fc132bb720ab6c2c58be"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs",
+      "mode": "100644",
+      "blob": "3bd269cc96e19675bc33467bfd7d76ea86c330ad"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/BootstrapCompositionSmoke.cs.meta",
+      "mode": "100644",
+      "blob": "51241d828d3a073287acfb07a406751b0cb4abc4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs",
+      "mode": "100644",
+      "blob": "935f2d256e05dc2eda81408c64d620fbb5fd74bf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/DevelopmentPuzzleSmokeTests.cs.meta",
+      "mode": "100644",
+      "blob": "66f6166dd5a824245a3a5b3b747878fc9a058282"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs",
+      "mode": "100644",
+      "blob": "8dd91134d6849d07c87d682e993a9da553d15957"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/Public240ReviewSmokeTests.cs.meta",
+      "mode": "100644",
+      "blob": "8d19f6cc0cdd0cf67144793c3abdefa4234afd69"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/STP.Tests.Bootstrap.PlayMode.asmdef",
+      "mode": "100644",
+      "blob": "861d4b0002828d9c4b81172d7085d605b44dbb3a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/STP.Tests.Bootstrap.PlayMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "77065d4280b99a4a54a94fcc4f2069c2e0eaf030"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs",
+      "mode": "100644",
+      "blob": "4362d9ac92ed882c593adaf61f59a8cbe4468ead"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240BuildEntryTests.cs.meta",
+      "mode": "100644",
+      "blob": "dd5117ed60dd5dc2037868f14d097fb1a90349e4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+      "mode": "100644",
+      "blob": "7bce94ef8b8d1cbb4be3b70d978d921af7c5568d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs.meta",
+      "mode": "100644",
+      "blob": "afa1f0a390c46bc944e61898b8207261f243e206"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "53fae59ff0abe3c4e3344761bb3fa4ce8b4521b8"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile.meta",
+      "mode": "100644",
+      "blob": "7b847cb36c504148042da5ac49ae57e7994f9efd"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile/STP.Tests.Mobile.PlayMode.asmdef",
+      "mode": "100644",
+      "blob": "8ba5cd394414cd98dceab1775359dba044b89d45"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile/STP.Tests.Mobile.PlayMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "30509a9ee7881f55c8d76706fd239867debd11f2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Mobile/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "f0a98dbe9444d415f8eeb9ce52f2ba8279e9ea93"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation.meta",
+      "mode": "100644",
+      "blob": "25e270c54f229e6270c3c3ebe0fc0ce44416e3ba"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs",
+      "mode": "100644",
+      "blob": "6f4468920b1f16d143c9227acff0cd2cea6e7cdf"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/DevelopmentPuzzlePresentationTests.cs.meta",
+      "mode": "100644",
+      "blob": "5da8812cd788dd3a3bb508258823f907ae45b648"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs",
+      "mode": "100644",
+      "blob": "185839c026f7d1f66e4f7d49bd9b89b790f710c5"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/Public240ReviewPresenterTests.cs.meta",
+      "mode": "100644",
+      "blob": "fe355391603931234560d42a5aadcd1345458ed4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/STP.Tests.Presentation.PlayMode.asmdef",
+      "mode": "100644",
+      "blob": "960920351e9f8920adf1adf1d7f581772aa606f2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/STP.Tests.Presentation.PlayMode.asmdef.meta",
+      "mode": "100644",
+      "blob": "25ee30cf32776c9c0e4fbb8316e8df284789194d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs",
+      "mode": "100644",
+      "blob": "e81a2d2036acb57092a903f8c02823f182c03254"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/SavedPublic240ReviewPresenterTests.cs.meta",
+      "mode": "100644",
+      "blob": "45bac1c7f81ad9abb2a8268bdc15006e0b606d3d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/csc.rsp",
+      "mode": "100644",
+      "blob": "25048765cd228b9b8028d87326bdc3202ee40516"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Presentation/csc.rsp.meta",
+      "mode": "100644",
+      "blob": "3e14d14870da1dc05b623915d87f770717733bc2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI.meta",
+      "mode": "100644",
+      "blob": "9938b9328ff6c502708206524b6775bf551b7a75"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss",
+      "mode": "100644",
+      "blob": "af7b05203d74177d582f878a506bb54a629e1992"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uss.meta",
+      "mode": "100644",
+      "blob": "b1ab7d6094d79ad217b1fe7e88ef76b4175a3367"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml",
+      "mode": "100644",
+      "blob": "c47987d287676592da9725fcdabad281c04551af"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzle.uxml.meta",
+      "mode": "100644",
+      "blob": "5fa75e538b097c917eb41e786c52d6bc05e81859"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json",
+      "mode": "100644",
+      "blob": "9ec9aaf6ef2401d67a292a6a7d484afedbde84f4"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleLocale.json.meta",
+      "mode": "100644",
+      "blob": "2be26f61708b0fb7122e89e5db2a210827fa6142"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset",
+      "mode": "100644",
+      "blob": "f2f33b19169e9c72fb1ca874cc7592815e14e754"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzlePanelSettings.asset.meta",
+      "mode": "100644",
+      "blob": "b8d4a7e85ff53411c7188a8657c27d6007fb3abc"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss",
+      "mode": "100644",
+      "blob": "51924cb33eebde3c11c50c714826553d60ecef70"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/DevelopmentPuzzleTheme.tss.meta",
+      "mode": "100644",
+      "blob": "b3583ac948d5cc404c2e73fa0671e1071d33f270"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json",
+      "mode": "100644",
+      "blob": "7d592b587888235b055f22c975d8f9009e4dd11a"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240.public.json.meta",
+      "mode": "100644",
+      "blob": "60136401fce3d70c02461c161363f34353c7c1de"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss",
+      "mode": "100644",
+      "blob": "768f40c5888190a80284e91c2af953372f04c6ff"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uss.meta",
+      "mode": "100644",
+      "blob": "7405bfa72617275758e118fd10f59e7f19bbb70d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml",
+      "mode": "100644",
+      "blob": "f5245685401c7c333f39bb640372a80f4a39a929"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240Review.uxml.meta",
+      "mode": "100644",
+      "blob": "8a42aad000077c6d18dbd069b31aa65ee3242db6"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json",
+      "mode": "100644",
+      "blob": "880970863428379563352b6a1d43e72c506c1fc2"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewLocale.json.meta",
+      "mode": "100644",
+      "blob": "8cbba98c80af3f3a1e80d82e059be12d3091f123"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset",
+      "mode": "100644",
+      "blob": "943682a9c928a6ba7e9c728fa23ddd5b20ebafa7"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/Public240ReviewPanelSettings.asset.meta",
+      "mode": "100644",
+      "blob": "d11204be841cb0a3f17bdadb87b5de46c7e47488"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json",
+      "mode": "100644",
+      "blob": "c38ac07787769d3494d64b0c478fa4999b168401"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/ReviewCampaign.catalog.json.meta",
+      "mode": "100644",
+      "blob": "d211bf1f8048d629e3b0d71a52fce7ae2fe77c90"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json",
+      "mode": "100644",
+      "blob": "fffafdfc712db7102bf4e26640ab5a3e56d3d16f"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json.meta",
+      "mode": "100644",
+      "blob": "5addda6341f83a1d653f3b261818bf050e15b669"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss",
+      "mode": "100644",
+      "blob": "127b187700dd10cc4184da0e92761733946f7031"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uss.meta",
+      "mode": "100644",
+      "blob": "4075b4badf711ab7a404b3c86a0a42eb35757b78"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml",
+      "mode": "100644",
+      "blob": "a075a243a5f2b73cbbae580202a6a0fcf079d94d"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240Review.uxml.meta",
+      "mode": "100644",
+      "blob": "9dd5f1a498df5e809a001c7c19966defacc809a1"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json",
+      "mode": "100644",
+      "blob": "a066ab38a249e0196f95a64c573aaa3fe45e4ced"
+    },
+    {
+      "path": "Assets/StammstreckenPuzzle/UI/SavedPublic240ReviewLocale.json.meta",
+      "mode": "100644",
+      "blob": "589e3928b75c833b760621698d59e00a4f230013"
+    },
+    {
+      "path": "Assets/UniversalRenderPipelineGlobalSettings.asset",
+      "mode": "100644",
+      "blob": "9d82607ccb61a9a9a630fb5970833830d400b865"
+    },
+    {
+      "path": "Assets/UniversalRenderPipelineGlobalSettings.asset.meta",
+      "mode": "100644",
+      "blob": "5acd7962cc2fa5a1fce682bc5c9bc4d0c68f595b"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "mode": "100644",
+      "blob": "d295b5e7c3170ab2a3c7886a2810d1473e0a3547"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "mode": "100644",
+      "blob": "2810f48d199e9edb179351cecb5d41f550a915cd"
+    },
+    {
+      "path": "ProjectSettings/AudioManager.asset",
+      "mode": "100644",
+      "blob": "28add941a919f84533f7fcc9ac4b96d571b36bc1"
+    },
+    {
+      "path": "ProjectSettings/ClusterInputManager.asset",
+      "mode": "100644",
+      "blob": "e7886b266a005f4d9d80f2fef8d1649dcfd3ed2b"
+    },
+    {
+      "path": "ProjectSettings/DynamicsManager.asset",
+      "mode": "100644",
+      "blob": "3b4c3e626364203ab6402418c69abf3e12b097db"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "mode": "100644",
+      "blob": "14c3ebb58a7d5e84bea728e5fc3007a756284a41"
+    },
+    {
+      "path": "ProjectSettings/EditorSettings.asset",
+      "mode": "100644",
+      "blob": "094ef7155e08fe0c07bce2b4a232bbd85c59fee5"
+    },
+    {
+      "path": "ProjectSettings/GraphicsSettings.asset",
+      "mode": "100644",
+      "blob": "95040f96208f1ca900cb2a882327d9747cc20398"
+    },
+    {
+      "path": "ProjectSettings/InputManager.asset",
+      "mode": "100644",
+      "blob": "3c7e969c95a10044a8a6bd5d8c9498fb9862d08f"
+    },
+    {
+      "path": "ProjectSettings/MemorySettings.asset",
+      "mode": "100644",
+      "blob": "4e5dae711c87877bee1a55160eb7916b29750a68"
+    },
+    {
+      "path": "ProjectSettings/MultiplayerManager.asset",
+      "mode": "100644",
+      "blob": "c19bcd739da8e3b9c9ac37f7890c2db649ee2069"
+    },
+    {
+      "path": "ProjectSettings/NavMeshAreas.asset",
+      "mode": "100644",
+      "blob": "6beb5419644bd32e73557933fd96cd8aa6d81f3d"
+    },
+    {
+      "path": "ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json",
+      "mode": "100644",
+      "blob": "3c7b4c18bb0d72369422dce1472bb7d54e7024f2"
+    },
+    {
+      "path": "ProjectSettings/Physics2DSettings.asset",
+      "mode": "100644",
+      "blob": "14f419f848295ffdd17e5907883c0c833486285c"
+    },
+    {
+      "path": "ProjectSettings/PresetManager.asset",
+      "mode": "100644",
+      "blob": "67a94daefe2e6bce3ec73546ad7cda94f702ad22"
+    },
+    {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "mode": "100644",
+      "blob": "db7dd2746e995738697fad4cbe9850e402706f1c"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "mode": "100644",
+      "blob": "5c6ad6f36e7e26862bb074b475a1265d26ff53a5"
+    },
+    {
+      "path": "ProjectSettings/QualitySettings.asset",
+      "mode": "100644",
+      "blob": "9f36c5a69302575acbcd0caf36217726102d71d6"
+    },
+    {
+      "path": "ProjectSettings/SceneTemplateSettings.json",
+      "mode": "100644",
+      "blob": "ede5887b3a3e5e7ce4e90f0d893a1e4cdb2c7451"
+    },
+    {
+      "path": "ProjectSettings/ShaderGraphSettings.asset",
+      "mode": "100644",
+      "blob": "e7d2c65790e8f1e678babd381f35840ae4d1d5c1"
+    },
+    {
+      "path": "ProjectSettings/TagManager.asset",
+      "mode": "100644",
+      "blob": "c19ee59c801cd36f9919088effa458ec75125913"
+    },
+    {
+      "path": "ProjectSettings/TimeManager.asset",
+      "mode": "100644",
+      "blob": "2e23a1f42187cc2b6b25e899a7caaede6e8a0bd1"
+    },
+    {
+      "path": "ProjectSettings/UnityConnectSettings.asset",
+      "mode": "100644",
+      "blob": "a85518e6e3848a600d46926c7c805e70b8ace455"
+    },
+    {
+      "path": "ProjectSettings/VFXManager.asset",
+      "mode": "100644",
+      "blob": "90a59aa83ee8fd75b9b2ec522e4d4ec57b694925"
+    },
+    {
+      "path": "ProjectSettings/VersionControlSettings.asset",
+      "mode": "100644",
+      "blob": "979fd8eca84fae8dac89c1021ef6049be95ee5f6"
+    }
+  ],
+  "nativeBindings": [
+    {
+      "path": "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/SavedPublic240ReviewSmokeTests.cs",
+      "nativeBytes": 60588,
+      "nativeSha256": "b6d1c07219b9c46bdec5ef5e6726b3fd13924a8fa41f6025301d99f31c4684e9",
+      "gitBytes": 60588,
+      "gitSha256": "b6d1c07219b9c46bdec5ef5e6726b3fd13924a8fa41f6025301d99f31c4684e9",
+      "profile": "raw exact"
+    }
+  ],
+  "boundary": "Exact final staged source inputs equal actually executed native snapshot. Final commit/tree and clean canonical execution are separate later bindings. Existing A/S sources and old manifests remain under their own accepted scope chains; no cumulative child manifest claim."
+}

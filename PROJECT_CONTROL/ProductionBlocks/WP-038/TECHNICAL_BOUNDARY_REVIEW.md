@@ -1,0 +1,67 @@
+# ADR033 / WP038 – unabhängige technische Vorabprüfung
+
+Prüfrolle `/root/wp037_independent_qc`, getrennt von Entwurf, Implementierung und zuständiger technischer Annahme. Gegenstand ausschließlich die Scratchentwürfe ADR033/WP038/Manifest/Produktionsbündelung vor historischem Anker; keine Produktannahme, kein Implementierungs-PASS. Gelesener Quellenstand b9b59647cf73e2dcfa05a413259ca27c18a5afdf, kompletter Tree identisch zum unabhängig geprüften WP037-Lieferbaum.
+
+**Ergebnis dieser Erstprüfung: technisch tragfähiger enger QA-Ansatz, zwei konkrete Voranker-Korrekturen erforderlich. Noch kein uneingeschränkter Vorab-PASS.** Keine Änderung an Entwurfscode, Produktregeln oder Scope durch die Prüfrolle.
+
+## Bestätigte Grenzen
+
+ADR005, ADR011, ADR013, ADR018, GAME_STATE_MODEL, MODULE_BOUNDARIES, CONTENT_PIPELINE, CONTENT_CATALOGS, TEST_STRATEGY und BUILD_AND_RELEASE sowie tatsächliche asmdefs, IClock-/Lifecycle-Skelette und Buildentrypoints gezielt gegengeprüft. Der Vorschlag ändert weder Puzzlewahrheit noch Domainphase: Domaincommands bleiben einziger Mutationsweg; SolvedPendingCommit wird nicht als ProgressCommitted ausgegeben. Eine ausdrücklich als ungespeichert gekennzeichnete separate QA-Präsentationsphase mit echten PuzzleSolved-Pfaddaten ist keine behauptete produktive Save-/Rewardtransaktion. Der spätere produktive Savecommit vor Fahrt/Reward bleibt verpflichtend.
+
+Zwei neue public-only QA-Definitionen ohne Kampagnen-/Proof-/Text-/Completionreferenzen importieren keinen DRAFT-/FIXTURE_ONLY-Produktkatalog und verändern keine bestehende IsRuntimeImportable-Grenze. Der Ansatz benötigt keine menschliche Kampagnenprüfung vor seiner eigenen Existenz. Technische QA-Texte aus separater stabiler de-DE-Quelle via wirklicher Unity-Localization-StringTable bewahren Schlüssel-/Platzhaltervertrag; WP036 bleibt bytegleich. Inspectorbindung darf nur nach ausdrücklich angenommener enger ADR-Ausnahme die bestimmte QA-Szene versorgen, keine globale Productionasset-Ladegrenze ersetzen.
+
+Die bestehende interne Referenzmatrix genügt: Application besitzt providerfreie DTOs/Steuerung; Content erzeugt Definitionen; Bootstrap sieht Application und vorhandene Adapter/Presenter, Domain/Solver nur transitiv; EditorBuild sieht Bootstrap. Der alleinige neue externe UI-Verweis Unity.Localization steht bereits in der normativen externen Pakettabelle und darf getrennt von weiterhin exakten internen Kanten geprüft werden. Keine neue Produktions-/Testassemblykante ist nötig. Clock-/Lifecycleports sind bisher leere Skelette; die Implementierung darf aus dem Namen keine nicht erlaubte Dateiänderung oder neue Architektur ableiten. Der erlaubte neue Sessioncode kann seine monotone Zeit explizit injizieren; neue öffentliche Verträge sind zu dokumentieren/testen.
+
+## VORAB-01 – beidseitiger ADR011-Ergänzungsverweis fehlt im erlaubten Pfadscope
+
+DECISIONS/README.md verlangt bei Ergänzung/Teilablösung ausdrücklichen Umfang und fortgeltenden Teil im ADR und Index; die verbindliche ADR-Struktur nennt beidseitige Referenzen, der Lifecycle gestattet dem alten ADR genau Status-/Link-/Ersetzungsverweise. ADR033 benennt ausdrücklich eine eng begrenzte Ergänzung von ADR011 (Inspector-/In-Memory-Locale-QA), während das WP038-Manifest ADR011 nicht enthält. Der Auftrag könnte die notwendige rückwärtige Bindung daher nach dem Anker nicht mehr korrekt liefern.
+
+**Vor Anker erforderlich:** Manifest um genau `DECISIONS/ADR-011-ui-assets-lokalisierung-und-audio.md` ergänzen; WP erlaubt dort ausschließlich einen additiven Link-/Geltungsnachtrag auf ADR033. Historischer angenommener Entscheidungskörper bleibt unverändert. Index benennt ausdrücklich die Ausnahme nur für die isolierte QA-Szene und den unveränderten produktiven Addressables-/Localizationvertrag. ADR033 selbst darf die technische Annahme erst nach separatem zuständigem Entscheid behaupten.
+
+## VORAB-02 – reale grafische Bedienprobe noch nicht ausführbar gebunden
+
+Der gelesene WP-Entwurf Test7 verlangt noch eine tatsächliche manuelle Editor-/QA-Bedienprobe. Die Koordination hat angekündigt, dies vor Anker durch eine echte automatisierte grafische Unity-PlayMode-Bedienprobe mit tatsächlichen UI-Aktionen und selbst betrachteten 4×4/10×10-Screenshots zu ersetzen. Diese klare Prüfung kann den internen technischen Bedienbarkeitsnachweis erfüllen, wenn sie tatsächlich ausgeführt wird; sie ist kein menschlicher WP026-Rätseltest.
+
+Der bisher erlaubte unity.yml-Diff ist jedoch ausschließlich die External-Localization-Preflightanpassung; die vorhandenen EditMode-/PlayModeaufrufe tragen `-nographics`. Ein bloßer semantischer UI-Test in dieser Ausführung liefert keinen gerenderten Bildschirmnachweis. Der angekündigte Ersatz darf deshalb nicht nur im Testtext stehen bleiben und später an der unveränderlichen Workflowgrenze scheitern.
+
+**Vor Anker erforderlich:** den genauen tatsächlichen grafischen Prüfweg binden. Falls CI verwendet wird, eng begrenzte eigene QA-PlayMode-Ausführung mit real verfügbarem Grafik-/Displaypfad sowie Archivierung der zwei Screenshots explizit in Scope8/Tests/Manifestbegründung erlauben; bestehende reguläre Jobs, vollständige Testausführung, Runner-/Seat-/Budget-/Coverage-/Timeout-/Gategrenzen beibehalten. Alternativ einen nachweislich verfügbaren separaten lokalen Grafiklauf konkret festhalten. Die Prüfinstanz muss die erzeugten Screenshots danach tatsächlich sehen; bloß vorhandene PNG-Dateien oder ein -nographics-Ergebnis sind kein visueller PASS.
+
+## Integrations- und Basisführung
+
+Der bisherige b9-Baum ist eine belegte integrierte Codebasis; seine neue vollständige Unity-CI läuft noch und wird separat durch WP037 geprüft. Vor tatsächlicher WP038-Verankerung Basis und Zielhead erneut festlegen. Falls der vorgegebene WP037-Closeout im Zielzweig vorher einen neuen Dokumentationshead erzeugt, sollte dieser tatsächliche abgeschlossene Zielhead die neue WP038-Manifestbasis werden. Ein späterer gemischter kumulativer Scope darf den eigenen alten WP037-Vertrag nicht ersetzen oder zufällig WP037-Closeoutpfade in den WP038-Diff ziehen. Dies ist eine konkrete Ausführungsabhängigkeit, kein neuer Produktentscheid.
+
+Nach den beiden begrenzten Voranker-Korrekturen kann eine schmale Nachprüfung der Texte und Manifestpfade den technischen Vorab-PASS liefern. Kein Anlass für erneute Textbibliotheks-/Solver-/Korpusgesamtprüfung. Zuständige Annahme ADR033, tatsächlicher prospektiver gemeinsamer WP-/Manifestanker, spätere Implementierung, Codefreeze-CI und unabhängige Abschluss-QC bleiben eigene reale Schritte im selben koordinierten Auftrag.
+
+## Schmale Nachprüfung der korrigierten Vorankerfassung
+
+**Ergebnis: PASS der technischen Boundary-/Auftragsprüfung. VORAB-01 und VORAB-02 sind im revidierten Entwurf geschlossen; kein offener technischer Boundarybefund.** Dies ist eine Vorabprüfung vor Anker/Code, kein Implementierungs-, Grafik-, CI- oder Produkt-PASS.
+
+VORAB-01: Das Manifest erlaubt nun exakt ADR011. WP Voraussetzungen5 und betroffene Dateien sowie ADR033-Betroffene Artefakte erlauben dort ausschließlich den rückwärtigen Link-/Geltungsnachtrag; der angenommene historische Entscheidungskörper und der produktive Addressables-/Localizationvertrag bleiben ausdrücklich unverändert. Die beidseitige Bindung kann damit nach Annahme ordnungsgemäß umgesetzt werden.
+
+VORAB-02: Test7 und ADR033-Validierung binden nun einen separaten lokalen tatsächlichen Grafiklauf mit dem vorhandenen `C:/Program Files/Unity/Hub/Editor/6000.3.23f1/Editor/Unity.exe`, `-batchmode -force-d3d11` ohne `-nographics`, isoliertem Checkout und konkretem Bootstrap-PlayMode-Filter samt XML/Log. Das genannte Unity.exe wurde von dieser Prüfrolle am angegebenen Pfad selbst gefunden (282544 Bytes). UI-Aktionen statt direkter Modelbefehle, RenderTexture/ReadPixels, die zwei tatsächlich erzeugten 4×4-/10×10-Bilder und deren eigene Sichtprüfung sind vor Grafik-PASS verbindlich. Keine Grafikänderung der regulären CI und keine behauptete bereits erfolgreiche grafische Ausführung. Ein später tatsächlich fehlender Lizenz-/Grafik-/Testnachweis bleibt ein echter offener Implementierungsnachweis.
+
+Die zusätzlich eng benannten DevelopmentPuzzleTheme.tss/.meta-Pfade und der Import `unity-theme://default` vermeiden eine Runtimebindung auf Testfixtures. Das ist QA-Präsentationsverdrahtung innerhalb der ausdrücklich zu entscheidenden Grenze, keine angenommene Produktgestaltung oder zweite UI-Technologie.
+
+Die technische verantwortliche Rolle kann ADR033 im beschriebenen begrenzten Umfang gesondert annehmen. Vor Anker ist nur noch die tatsächliche endgültige Parent-/Manifestbasis wie oben beschrieben auf den dann aktuellen erlaubten Zielhead zu binden; diese schmale Basis-/Ankerverifikation verändert den geprüften fachlichen Auftrag nicht. Kein Mainmerge, keine automatische Content-/Savepromotion oder Vorwegnahme späterer Produktentscheidungen.
+
+Geprüfte korrigierte Textbindungen, SHA256 im kanonischen LF-Profil: ADR033 `142310369b0f2b4393bcb62a5af516e128119efebceebbc12c9522c935a7baf3`; WP038 `baced1be101b0f7907eb097bc743a5b3b92bde576ade70b6fbe63a5898285377`; Manifest `07cf8bdba292213acf456af6605432f38e0eecf2776140e7e153149c55ffc200`. Die ausdrücklich noch ausstehende Basisnachführung oder ein später zuständig gesetzter ADR-Annahmestatus hat eine neue jeweilige Bytebindung; fachlicher Reviewumfang und zu schützende Grenzen werden dadurch nicht automatisch verändert.
+
+## Nachprüfung der zusätzlichen geschlossenen ADR-Registrypromotion
+
+**PASS auch für den ergänzten Vorankerumfang.** Der von Root gefundene tatsächliche Validatorstand wurde selbst geprüft: CURRENT_ADR_STATUS endet bei 32; inventory_check und adr_index_errors erwarten `range(1, 33)`; Indexsummary prüft 23 angenommene/9 ersetzte ADRs. Eine tatsächlich neu angenommene ADR033 erfordert deshalb eine bewusst geschlossene Registry-/Inventar-/Indexnachführung. Sie ist keine dynamische Freigabe fremder Entscheidungen.
+
+Der revidierte Manifesttext erlaubt genau tools/architecture-validation/validate.py; WP Scope8, betroffene Dateien, Verbote, AK02 und Tests1 sowie ADR033-Betroffene-Artefakte begrenzen dessen Änderung konsistent auf genau 33:Angenommen, Inventar/Index1–33 und Summary24Angenommen/9Ersetzt sowie zwei additive Negativregressionen (fehlender ADR033-Indexeintrag und falscher Indexstatus). Alle bestehenden Selftests, Scopeanker-/Allowlist-/Lock-/Hash-/Schema-/Reducer-/Fachgates bleiben unverändert. Die Registry darf nur zusammen mit dem tatsächlichen zuständigen Annahmestand nachgeführt werden; ein Entwurf gilt dadurch nicht vorab als angenommen.
+
+Diese begrenzte zusätzliche Dateierlaubnis ist vor dem gemeinsamen Anker ausdrücklich im Auftrag festgelegt und technisch erforderlich. Sie verbreitert weder die WP037-Verträge noch die QA-Produktgrenze. Die bereits geschlossenen VORAB-01/02 bleiben geschlossen. Als zusätzliche sinnvolle Sicherung kann der konkret angenommene beidseitige ADR011/033-Verweis im bestehenden FOLLOW_UPS-Mechanismus mit einem eigenen gezielten Negativtest gebunden werden; das wäre vor Anker ebenfalls ausdrücklich als Teil der neuen Registrybindung zu nennen. Es ist keine Pflicht zur dynamischen allgemeinen ADR-Refaktorierung.
+
+Neue geprüfte LF-SHA256 nach Registryumfang: ADR033 `339aef35b095044f5da9382f33702e8cd474fc652b3883cf5e4dde0c884a18b0`; WP038 `4a053a242b2e39e7274e40f1f7dae438c97370c89b176c1115a808ca632b8d41`; Manifest `7848c87aeaf4fb176dc66027bf58e4f3e32487ed414d2160af062fb192c744ca`.
+
+## Schmale Nachprüfung der ausdrücklich begrenzten alternativen CI-Grafikroute
+
+**PASS des zusätzlichen Vorankerumfangs.** Revidierte Scope8/Dateigrenze/Tests7 und ADR033 binden nun alternativ genau einen gefilterten DevelopmentPuzzleSmokeTests-Grafiklauf im bestehenden seriellen PlayModejob, erst nach dessen vollständig unverändertem Headless-/Coveragepflichtlauf und vor Seatfreigabe. Bestehender Runner/Container/Seat/Jobtimeout, keine neue gleichzeitige Unityinstanz, keine Testsuiteverkürzung oder Retry eines roten Pflichtlaufs. Software-GL/`xvfb-run`/`-force-glcore` ohne `-nographics` bleiben ein tatsächlich zu beweisender Ausführungsweg.
+
+Eigene Grafik-XML/-Logs und echte 4×4-/10×10-PNGs liegen unter TestResults/DevelopmentGraphics und werden vom schon bestehenden TestResults-Upload archiviert; sie ersetzen keine reguläre XML/Coverage. Nicht-Nullrenderer, tatsächliche UI-Aktionen, wirklich Passed ausgeführte Grafikfälle und nachfolgende eigene Bildbetrachtung bleiben verbindlich. Nicht verfügbarer Renderer, fehlende/übersprungene Grafikfälle oder leere PNGs sind kein PASS. Vor Codefreeze muss die tatsächlich gewählte belegte lokale oder CI-Route dokumentiert werden; eine nicht benötigte Alternative wird nicht als ausgeführt behauptet. Das Fehlen eines Legacy-ULF allein ist korrekt nicht als Lizenzbefund definiert.
+
+Dieser eng benannte zusätzliche Nachweis erfordert keine neue interne Referenzkante, keinen produktiven Save-/Contentpfad und keine Änderung bestehender Runner-/Lizenz-/Budget-/Gategrenzen. Die bereits enthaltene genaue unity.yml-Dateierlaubnis wird vor Anker inhaltlich präzisiert; kein nachträglicher Scopewechsel. Die späteren tatsächlichen Grafik- und vollständigen regulären CI-Pässe bleiben notwendige eigene Implementierungsnachweise.
+
+Aktuelle geprüfte LF-SHA256: ADR033 `05f17cbeea5fb28b495535b1d2571018c7d951efe75fe0cf5237d54ed92a111e`; WP038 `e60706a986c5091abcb45a99125de3bacd00689979aa0763af594f39927de957`; Manifest weiterhin `7848c87aeaf4fb176dc66027bf58e4f3e32487ed414d2160af062fb192c744ca`.

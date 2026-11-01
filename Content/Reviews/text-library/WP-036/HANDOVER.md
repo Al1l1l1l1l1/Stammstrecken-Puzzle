@@ -1,0 +1,85 @@
+# Übergabe WP-036 – Vollständige Textbibliothek
+
+Stand: 17.10.2026. **Textproduktion vollständig als DRAFT geliefert; konkrete kreative Ownerannahme offen.** Eigene Branch: codex/wp-036-vollstaendige-textbibliothek. Basis main d90e798dd9b26d3f152f3b0c2d1d52cae641eb16, gemeinsamer eigener Anker 213065f7f33be634073e5bcef85db4f848d5b99f, Manifest danach byteunverändert. Kein fremder Zweig integriert und kein Main-Merge.
+
+## Was tatsächlich vorliegt
+
+1.408 deutsche Originaleinträge: 960 Leveltexte für sämtliche 240 wirklichen WP-026-IDs, 85 Kampagnenbegleitungen für fünf Abschnitte und zwanzig Routen einschließlich Seasonfinale, 308 UI-/Zustandstexte und 55 Varianten in elf semantisch getrennten Familien. 82 Kurzfassungen. 240 Einstiege sind INTERNAL; 1.168 PLAYER-Einträge sind vorgesehene Anzeigetexte. Alle 1.408 bleiben DRAFT. 70 Einträge mit zusätzlichen Produkt-/Katalog-/Darstellungsvoraussetzungen sind durch BLOCKED_PRODUCT ausdrücklich gesperrt, 1.338 Einträge sind lediglich konzeptionell DECIDED.
+
+Die einzige kanonische Quelle ist [de-DE.json](../../../Localization/source/de-DE.json), ihr eigenes geschlossenes [Authoringschema](../../../Localization/source-v1.schema.json) konkretisiert die vorhandenen Mindestfelder aus CONTENT_PIPELINE §8. Keine Architekturänderung und kein Runtimeformat. [Vollständige Lesefassung](READING_EDITION.md), [Abdeckung](COVERAGE.md), [konkrete Sprachregeln](EDITORIAL_RULES.md), [kritische Eigenprüfung/Stichprobe](EDITORIAL_REVIEW.md), [gesonderte unabhängige QC](QC.md), [Quellenbindungen](source-bindings.json) und tatsächliche JSON-/TXT-Prüfnachweise liegen gemeinsam hier.
+
+## Reproduktion und technische Aussage
+
+Der Textchecker aus tools/text-library/validate.py liest ausschließlich gepinnte Gitobjekte aus dc1652befd7545b4c2a2dd0580f35a4e8e05d72d: 240 Level, zwanzig Leveldesignreviews, individuellen Autorensatz und das ursprüngliche 1.440-Referenzen-Inventar. Er prüft Level-/Review-/Authorbytehashes, alle ursprünglichen Keys und deren Reihenfolge, 240 Autor-/Revieweinstiege, eigene interne Texthashes, öffentliche Fakten und einen elementaren mathematischen Eingangsanker pro Level. Er beweist keine gesamte sprachliche Paraphrase und führt keinen neuen Solver-/Human-Test aus. Die Autoren prüften ihre einzelnen Formulierungen am realen Input; die unabhängige Rolle prüft dies gesondert.
+
+```text
+git fetch --no-tags origin dc1652befd7545b4c2a2dd0580f35a4e8e05d72d
+python tools/text-library/validate.py --self-test --write-reports
+python tools/text-library/render.py --check
+python tools/architecture-validation/validate.py --self-test
+python tools/architecture-validation/validate.py --scope production --scope-manifest tools/architecture-validation/scopes/WP-036.production.scope.json --self-test
+git diff --check d90e798dd9b26d3f152f3b0c2d1d52cae641eb16
+```
+
+Bestehende gepinnte Architekturabhängigkeiten verwenden, keine neuen Pakete. Kanonisch Linux/macOS, CPython3.11 und Node22; CI verwendet 3.11.13/22.20.0. Lokal bestand der eigentliche Textcheck auf Windows CPython3.11.15. Ein erster Windows-Architekturlauf erkannte die damals noch unformatierte WP-ID und eine plattformabhängige absolute-Pfad-Selbstprobe; der unveröffentlichte Anker wurde ausschließlich im ID-Format korrigiert. Keine Regel oder Manifest-Allowlist wurde für einen PASS verändert. Der erste temporäre Assemblyversuch scheiterte vor Erzeugung der kanonischen Quelle an einem Indexfehler in der nur temporären Zusammenführung; nach Korrektur wurde die gesamte Quelle neu erstellt und vollständig geprüft. Fehlversuche sind keine PASS-Evidenz.
+
+Der neue echte Textlauf besteht sämtliche Schema-/Key-/960-Referenz-/Platzhalter-/NFC-/Zeichen-/Quellenbindungsprüfungen und zwölf absichtliche Mutationen. Die vollständigen tatsächlich ausgeführten Ergebnisse samt Quellhash stehen in technical-validation.json. Pseudolocale und Wiederholungsbericht sind reproduzierbares Prüfmaterial; keine ausgeführten Gerätelayouts. Bestehende echte Produktionskeys sind bedient, fehlende Fixture-/Testkeys bleiben ausdrücklich isoliert.
+
+## Akzeptanzkriterien und Abschlussgrenze
+
+| AK | Tatsächlicher Stand vor gesondertem Abschlussnachtrag |
+|---|---|
+| AK01 | Vollständige 240er-Reihenfolge, 960/960 Texte, 240 INTERNAL/720 Level-PLAYER erfolgreich geprüft. |
+| AK02 | Alle 240 Level-/Author-/Review-/Textbindungen plus öffentliche Fakten/elementarer Anker geprüft; individuelle redaktionelle Abgleiche geliefert, unabhängiges Ergebnis separat. |
+| AK03 | Fünf Abschnitts- und zwanzig Routenbögen samt bestehendem Finale vollständig. |
+| AK04 | Gesamtes Oberflächeninventar und entschiedene Beschriftungen geliefert; konkrete offene Regeln in den jeweiligen Entwürfen gesperrt. |
+| AK05 | Alle neun geforderten Anlässe geliefert, wegen klarer Sachverhaltstrennung elf Familien mit je fünf Varianten. |
+| AK06 | Pflichtfelder an jedem Eintrag, vorgeschlagene Limits, erlaubte Typen, Sichtbarkeit und 82 Kurzformen. |
+| AK07 | Vollständiger eigener Checker und zwölf Negativproben PASS. Pseudolocale/Inventar erzeugt; kein Runtimeimport. |
+| AK08 | Individuelle Autorrollen, Gesamtnacharbeit, Wiederholungsbeurteilung, 16 begründete Stichproben und Abgleich11/12/14 geliefert. Keine unabhängige Freigabe durch Eigenprüfung. |
+| AK09 | Eigener Anker/Manifest und korrekte Workflowauswahl vorhanden. Unabhängige Freeze-QC und tatsächliche reguläre CI erst nach ihrem Lauf einzutragen, bis dahin offen. |
+| AK10 | Vollständige Repoquellen/Lesefassung/Nachweise, Status und Übergabe vorhanden. Draft-PR/finaler Liefercommit folgen nach tatsächlicher Erstellung. |
+
+## Gesonderter Nachweisstand nach Produktionsfreeze
+
+Der vollständige Produktionsfreeze ist af6eb73eebc73bb3662569b2f5f610734e68b6f5, Source-SHA256 b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be. [Draft-PR #31](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/31) ist tatsächlich erstellt und an die Aufgabe angehängt. Die separate unabhängige lokale DRAFT-QC ist PASS ohne offene Blocker/High-Befunde: alle 720 Level-Spielertexte, 240 interne Einstiege mit realen Inputs, 448 weitere Einträge und 82 Kurzformen gelesen; kanonische Linuxläufe17/18, gesamter Textcheck, zwölf eigene plus zehn unabhängige Negativproben und bytegenaue Reproduktion der abgeleiteten Berichte bestanden. Originalbericht QC.md bleibt unverändert.
+
+Die beiden echten Architecture-Runs auf diesem Freeze sind SUCCESS: [Push39058795864](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058795864), [PR39058816091](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058816091). Die tatsächlichen Ergebniszeilen umfassen Architecture17, eigenen Scope18, Node-JCS12/32/2/2, Text1408/960/12 und exakte Lesefassung. Die ursprünglichen Voraussetzungen AK09/AK10 sind damit für Anker, Lokalprüfung, unabhängige Rolle, Architecture und Draft-PR tatsächlich belegt. Die zwei vollständigen Unity-Läufe [Push39058795866](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058795866) und [PR39058816058](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/39058816058) werden erst durch ihren gesonderten tatsächlichen Schlussnachweis in [CI_QC.md](CI_QC.md) und ci-qc.json als vollständig gewertet; Teilstände bleiben dort ausdrücklich Teilstände. Keine vorweggenommene PASS-Übertragung.
+
+**Tatsächlicher CI-Schluss:** Der PR-Lauf 39058816058 ist COMPLETED/SUCCESS mit allen zehn Jobs: 454/454 EditMode, 27/27 PlayMode, Android-Development-IL2CPP und erfolgreichem iOS-Export/Xcode-26.3-Build. Alle Plattform-Vorprüfungen und übrigen Jobs sind ebenfalls SUCCESS. Die unabhängige Rolle hat tatsächliche Logs und vier Original-ZIPs samt XML/APK-Inhalt gehasht/gelesen; genaue IDs, SHA-Werte und Aussagegrenzen stehen in CI_QC.md/ci-qc.json. Der separate Push 39058795866 bleibt ausdrücklich CANCELLED/partiell (PlayMode cancelled, Android/iOS skipped). Seine erfolgreichen Teilergebnisse werden nicht zum Gesamt-PASS umgedeutet. Es wird insbesondere kein „22 Checks PASS“ behauptet.
+
+Damit sind AK01–AK10 im vereinbarten Umfang einer vollständigen, prüfbaren DRAFT-Textproduktion nachgewiesen; kreative Ownerannahme und fremde Produktionsgates bleiben offen. Der anschließende reine Nachweis-/Statuscommit enthält die Originalberichte und aktuelle Übergabe; sämtliche Produktionsquellen, Tools, Workflow und Manifest bleiben bytegleich zum unabhängig geprüften und voll per PR-CI gebauten Freeze. Dessen nachgelagerte tatsächliche CI wird separat am [Draft-PR31](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/31) mit exaktem Liefercommit gebunden. Der finale Liefercommit ist der tatsächliche HEAD dieses Draft-PR; er ist aus Git/PR-Metadaten ohne Chat rekonstruierbar. Kein weiterer Text muss erst erstellt werden. Nächster fachlicher Schritt: konkrete Ownerbewertung.
+
+## Was weiterhin offen bleibt
+
+- Konkrete kreative Ownerannahme der Texte und Kurzformen. Die bestätigte deutliche Bahn-Anspielung wird nicht abgeschwächt; die Ausführung kann trotzdem redaktionell nachgearbeitet werden.
+- Finale UI-/Accessibility-/Layoutprüfung einschließlich expandierter Variablen, dynamischer Schrift und Screenreader. Zeichenlimits sind ausschließlich redaktionelle Vorschläge.
+- BLOCKER-PROD-001 Hint-Entitlement/-Economy und geprüfte Hinweisdarstellung; BLOCKER-PROD-002 Kalendertag/Zeitzone/Offline-/Manipulationspolicy; BLOCKER-PROD-003 Generatorqualitätsprofil.
+- Finaler Zug-/Objektkatalog mit konkreten Namen, Beschreibungen, Preisen und Freischaltungen. Dieses WP liefert bestehende Kategorien und parametrisierte Zustandsbeschriftungen, keine erfundenen finalen Items.
+- Meisterschaftsdetaildarstellung, kosmetischer Tagesfortschritt, Store-/Werbefrei-Produkt/Preis, Consent-/SDK-/Rechtstexte nach zuständiger Freigabe. Keine zusätzlichen Rechte oder Monetarisierungsregeln gesetzt.
+- WP-026 bleibt insgesamt offen: menschlicher Spieltest, finale Zeitkalibrierung, kreative-/Produkt-/Import-/Releasegates. Dessen 480 Karten-/Zugziele werden durch keine Textquelle erledigt. Die 960 vorhandenen DRAFT-Texte sind weder ein ganzer Cross-Reference-PASS noch ein Release-Lock.
+- Die konkrete WP-035-Ausführung ist weiterhin offen. Keine Assetproduktion oder fremde Freigabe. Runtimeimport, deterministischer Doppelimport, Addressables, Lizenz-/Größenbudgets, Geräte-/SDK-/Privacy-/Signing-/Store- und Rechtsendprüfung bleiben ihre zuständigen Folgeschritte.
+
+Nächste Tätigkeit nach vollständiger Nachweisübergabe ist die konkrete Bewertung der Texte und ihrer tatsächlichen Nachweise. Die nächste Instanz beginnt mit AGENTS und dem eigenen Work Package; sie muss die Textproduktion nicht aus Chatfragmenten rekonstruieren.
+
+## Maßgeblicher kreativer Entscheidungsnachtrag – 17.10.2026
+
+Die zuvor als nächste Tätigkeit genannte kreative Bewertung ist jetzt durch Manus im ausdrücklich übertragenen Geschäftsführer-/Konzeptauftrag durchgeführt, unter Einbezug des im Chat erarbeiteten und in der Entscheidung persistent erklärten Wirkungsmaßstabs. **WP-036-CREATIVE-01: kreative Teilannahme mit gezielter Nacharbeit.** [Entscheidung](CREATIVE_DECISION.md), [ausführbarer Korrekturauftrag innerhalb WP-036](CORRECTION_BRIEF.md), [exakte Key-/Eigenschaftsgrenze](CREATIVE_SCOPE.json), [Lektüreumfang](CREATIVE_READING_RECORD.json).
+
+1.298 der 1.408 Einträge werden in ihrer vorgelegten Fassung kreativ angenommen; nur 110 bestehende Keys mit 109 text-/11 shortText-Feldern sind nachzuarbeiten. Alle 240 Titel, 240 internen Einstiege, 308 UI-Texte, 70 zusätzlich gesperrten Produktentwürfe und alle übrigen Eigenschaften bleiben unverändert. Die Unterstützungsvorschläge wurden nicht pauschal angenommen: 19 unnötige Titel-/Rahmen-/Neutraltexteingriffe sind bewusst ausgeschlossen. Ausdrückliche Ownerannahme wird nicht behauptet.
+
+Bewertet wurde genau Liefer-HEAD f217ccbd615f33ca323fec2ecd29f4681fdbc721; Quell-SHA256 b45db9d6d8216de7a185b26da1edf77f5ad71b1c921ebcfbc49f9726834557be. Quelle, Schema, Tools, Workflow und Manifest bleiben in diesem Entscheidungsschritt unverändert. Vorhandene finale PR-Evidenz belegt 22 erfolgreiche Jobs auf f217; die älteren Berichte/Quellfreeze-Stornierung bleiben historische Evidenz und werden nicht überschrieben. Keine erneute vollständige technische QC desselben Textbestands. Eigene Dokumentations-CI eines folgenden Entscheidungscommits ist separat und nicht vorab als PASS belegt.
+
+**Jetzt nächster eigener fachlicher Schritt:** nach Veröffentlichung des Entscheidungsankers nur die persistent benannten Copy-Felder nacharbeiten, neue standgebundene Nachweise gemäß bestehendem WP-036-Verfahren liefern und die Korrekturfenster kreativ nachlesen/entscheiden lassen. Nacharbeit noch nicht begonnen; Gesamt-WP weiterhin offen. Kein neuer Textblock, keine Änderung fremder Prioritäten, kein Main-Merge, keine Runtime-/Produkt-/Rechts-/Releasefreigabe. Die oben genannten sachlichen und fremden Gates bestehen sämtlich fort.
+
+## Vollständige Copy-Korrektur umgesetzt – 18.10.2026
+
+Der zusätzlich ausdrücklich erteilte Owner-Ausführungsauftrag ist in allen verankerten Copy-Feldern umgesetzt: 110 bestehende Keys, 109 text- und 11 shortText-Felder. [Audit](COPY_CHANGE_AUDIT.json), [gesamter Vergleich](COPY_CHANGE_REVIEW.md), Source-SHA256 `2cd576dc52a7e3379dfe8a925a7e8c4201c1e24e988913b247d39f1f81b605fb`. 1.298 Einträge und alle übrigen Quelleigenschaften bleiben unverändert. Die fünf Kampagnenabschnitte, 20 Routen, 240 Titel, interne Einstiegsschlüsse, UI-Texte und gesperrte Entwürfe sind keine neue Nacharbeit. Lesefassung, technische Validation, Pseudolocale und Wiederholungsbericht aktualisiert; eigene CPython3.11.13-/Node22-Text-/Projektions-/Architecture-/Scopeprüfungen tatsächlich PASS. **Vor gesondertem neuen Abschluss:** Quellfreeze veröffentlichen, unabhängige kreative/technische Restprüfung und reguläre neue CI tatsächlich belegen; diese ausstehenden Ergebnisse werden nicht aus historischer Evidenz übertragen. Die vorher genannten „noch nicht begonnen“-Formulierungen bleiben ausschließlich historische Entscheidungsevidenz. DRAFT- und fremde Produkt-/Import-/Rechts-/Releasegates offen, kein Main-Merge.
+
+## Befundkorrektur HIGH-01 – 18.10.2026
+
+Die unabhängige kreative Restprüfung des ersten Korrekturfreezes c7683ea meldet genau einen offenen HIGH: shortText von `level.s1.04.03.07.status` nahm die eigene gelöste Strecke vorweg. Exakt dieses bereits freigegebene Feld ist jetzt korrigiert: „Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.“. Der unveränderte Langstatus bleibt die ungelöste widersprüchliche Anzeigenlage; die Kurzform behauptet keine eigene Strecke. Die übrigen 119 Korrekturfelder bleiben unverändert. Source-SHA256 `4458cd9214ed788f69cf3816c39835393d4038bd87f6b262c52ad2b86146d53c`; bestehender110-Key-/120-Feld-Scope und alle übrigen Properties unverändert. Audit, Lesefassung und betroffene Nachweise werden frisch regeneriert. Die beiden ersten unabhängigen Berichte bleiben historische Evidenz mit FAIL kreativ/PASS technisch an c7683ea. Neue schmale kreative und frische technische Freezeprüfung sowie neue reguläre CI ausstehend; keine PASS-Übertragung und keine Eigenkorrektur an akzeptierten Nachbarn.
+
+## Maßgeblicher Abschluss der vollständigen Copy-Nacharbeit – 18.10.2026
+
+[Vollständige aktuelle Abschlussübergabe](COPY_REWORK_HANDOVER.md) und [WP-036-CREATIVE-02](CREATIVE_FINAL_DECISION.md) ersetzen die früheren offenen Copy-Folgeaufträge. Alle 110 Keys / 120 Copy-Felder korrigiert und unabhängig geprüft; letzte kreative und formale Befunde geschlossen. Finale Quelle am 89c8-Freeze, beide Architecture-Läufe und vollständiger Unity-Push erfolgreich mit unabhängigen tatsächlichen Originalnachweisen; separater Unity-PR cancelled, kein pauschaler 22-Checks-/PR-PASS. Kein neuer Textproduktionsprompt erforderlich. Tatsächlicher PR-/Integrationsnachlauf, ausdrückliche Owner-/Produkt-/Import-/Rechts-/Releasegates und sämtliche Fremdabhängigkeiten bleiben nach bestehendem Verfahren offen. Die folgende reine Nachweis-/Statuslieferung verändert keine angenommenen Produktionsbytes und weist ihre eigene CI separat aus.

@@ -1,0 +1,35 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement name="qa-root" class="qa-page">
+    <ui:Label name="qa-boundary" class="qa-boundary" />
+    <ui:VisualElement class="qa-header">
+      <ui:Label name="qa-title" class="qa-title" />
+      <ui:Label name="qa-timer" class="qa-timer" />
+    </ui:VisualElement>
+    <ui:Label name="qa-phase" class="qa-phase" />
+    <ui:Label name="qa-count-legend" class="qa-count-legend" />
+    <ui:VisualElement name="qa-grid-host" class="qa-grid-host" />
+    <ui:VisualElement name="qa-tools" class="qa-tools">
+      <ui:Button name="qa-tool-ns" class="qa-tool" />
+      <ui:Button name="qa-tool-ew" class="qa-tool" />
+      <ui:Button name="qa-tool-ne" class="qa-tool" />
+      <ui:Button name="qa-tool-es" class="qa-tool" />
+      <ui:Button name="qa-tool-sw" class="qa-tool" />
+      <ui:Button name="qa-tool-wn" class="qa-tool" />
+      <ui:Button name="qa-tool-empty" class="qa-tool" />
+      <ui:Button name="qa-tool-occupied" class="qa-tool" />
+      <ui:Button name="qa-tool-clear" class="qa-tool" />
+    </ui:VisualElement>
+    <ui:VisualElement class="qa-actions">
+      <ui:Button name="qa-multiselect" class="qa-action" />
+      <ui:Button name="qa-apply-selection" class="qa-action qa-action-primary" />
+      <ui:Button name="qa-undo" class="qa-action" />
+      <ui:Button name="qa-restart" class="qa-action" />
+    </ui:VisualElement>
+    <ui:Label name="qa-status" class="qa-status" />
+    <ui:VisualElement name="qa-result" class="qa-result">
+      <ui:Label name="qa-result-title" class="qa-result-title" />
+      <ui:Label name="qa-result-time" class="qa-result-time" />
+      <ui:Label name="qa-result-boundary" class="qa-result-boundary" />
+    </ui:VisualElement>
+  </ui:VisualElement>
+</ui:UXML>
