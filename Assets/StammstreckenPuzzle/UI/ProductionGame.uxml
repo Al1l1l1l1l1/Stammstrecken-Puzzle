@@ -32,6 +32,7 @@
             <ui:VisualElement class="status-strip"><ui:Label view-data-key="status" /></ui:VisualElement>
             <ui:ScrollView class="home-scroll"><ui:VisualElement name="home-art" class="home-art" />
             <ui:VisualElement class="home-copy">
+                <ui:VisualElement name="home-mail" class="mail-card hidden"><ui:Label view-data-key="mail.from" class="mail-from" /><ui:Label view-data-key="mail.subject" class="mail-subject" /><ui:Label view-data-key="mail.body" class="mail-body" /><ui:Label view-data-key="mail.ps" class="mail-ps" /></ui:VisualElement>
                 <ui:Label name="home-section" class="eyebrow" /><ui:Label view-data-key="home.title" class="hero-title" />
                 <ui:Label view-data-key="home.body" class="body-copy" /><ui:Label name="home-route" class="route-caption" />
                 <ui:Button name="home-play" class="primary-button" />

@@ -16,7 +16,7 @@ namespace STP.Bootstrap
         private readonly ProductionGameComposition? runtime;
         internal FullGameRuntimeContext(MobileCandidateComposition value)
         {
-            candidate=value??throw new ArgumentNullException(nameof(value));Catalog=value.Catalog;Campaign=value.Progress.Campaign;
+            candidate=value??throw new ArgumentNullException(nameof(value));Catalog=value.Catalog;Campaign=value.Progress.Campaign;Completion=value.Progress.Completion;
             Catalogs=value.Progress.CatalogSet;Cosmetics=value.Cosmetics;Profile=value.Profile;Repository=value.Repository;
             Persisted=value.Persisted;Metagame=value.Metagame;CosmeticPolicy=value.CosmeticPolicy;PostClear=value.PostClear;
             EndlessPolicy=value.EndlessPolicy;
@@ -24,7 +24,7 @@ namespace STP.Bootstrap
         }
         internal FullGameRuntimeContext(ProductionGameComposition value)
         {
-            runtime=value??throw new ArgumentNullException(nameof(value));Catalog=value.Catalog;Campaign=value.Progress.Campaign;
+            runtime=value??throw new ArgumentNullException(nameof(value));Catalog=value.Catalog;Campaign=value.Progress.Campaign;Completion=value.Sources.CampaignCompletion;
             Catalogs=value.Progress.CatalogSet;Cosmetics=value.Cosmetics;Profile=value.Profile;Repository=value.Repository;
             Persisted=value.Persisted;Metagame=value.Metagame;CosmeticPolicy=value.CosmeticPolicy;PostClear=value.PostClear;
             EndlessPolicy=value.EndlessPolicy;
@@ -35,6 +35,7 @@ namespace STP.Bootstrap
         }
         internal IPublicPuzzleCatalog Catalog{get;}
         internal ILockedCampaignCatalog Campaign{get;}
+        internal ILockedCompletionCatalog Completion{get;}
         internal CatalogSetIdentity Catalogs{get;}
         internal LockedCosmeticsCatalog Cosmetics{get;}
         internal SaveProfileIdentity Profile{get;}

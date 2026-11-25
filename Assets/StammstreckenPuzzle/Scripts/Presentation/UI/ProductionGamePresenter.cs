@@ -392,7 +392,7 @@ namespace STP.Presentation.UI
             }
             buttons["home-play"].text=L(view!=null&&view.Phase==DevelopmentPreviewPhase.Editing?"resume":"play");
             buttons["home-play"].SetEnabled(clear&&(state.CanCreateProfile||state.CanNavigate||view!=null));
-            buttons["home-map"].SetEnabled(clear&&state.CanNavigate);
+            buttons["home-map"].SetEnabled(clear&&state.CanNavigate);SetVisible(Require<VisualElement>("home-mail"),state.CanCreateProfile&&assignedReview==null);
             var campaignResult=view!=null&&CurrentCampaignIndex>=0&&view.Phase==DevelopmentPreviewPhase.Results;
             var seasonEnd=campaignResult&&SeasonComplete&&CurrentCampaignIndex>=239;
             buttons["result-next"].SetEnabled(clear&&state.CanNavigate&&!seasonEnd);buttons["result-home"].SetEnabled(clear);

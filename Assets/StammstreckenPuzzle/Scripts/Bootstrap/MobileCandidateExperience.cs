@@ -123,7 +123,7 @@ namespace STP.Bootstrap
         private (long two,long three)? ReadStarTargets(int index)
         {
             if(index<0||index>=saved.Puzzles.Count)return null;
-            return composition.Progress.Completion.TryGet(saved.Puzzles[index].Identity,out var values)&&values!=null&&values.TwoStarMs.HasValue&&values.ThreeStarMs.HasValue
+            return composition.Completion.TryGet(saved.Puzzles[index].Identity,out var values)&&values!=null&&values.TwoStarMs.HasValue&&values.ThreeStarMs.HasValue
                 ?(values.TwoStarMs.Value,values.ThreeStarMs.Value):((long,long)?)null;
         }
         private int RecommendedIndex()
