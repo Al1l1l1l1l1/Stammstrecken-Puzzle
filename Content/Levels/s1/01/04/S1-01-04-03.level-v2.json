@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-01-04-03",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 4,
     "height": 5
@@ -10,25 +10,25 @@
   "endpoints": {
     "a": {
       "side": "N",
-      "index": 0
+      "index": 3
     },
     "b": {
       "side": "S",
-      "index": 1
+      "index": 0
     }
   },
   "rowCounts": [
-    4,
-    3,
     1,
-    4,
-    4
+    3,
+    3,
+    2,
+    1
   ],
   "columnCounts": [
-    4,
-    4,
+    2,
     3,
-    5
+    2,
+    3
   ],
   "content": {
     "season": 1,
@@ -44,8 +44,8 @@
       "COMBINATION",
       "DENSITY"
     ],
-    "chainDepth": 5,
-    "qualityNote": "Die einzelne Zelle in Zeile 2 zwingt eine schmale Verbindung zwischen zwei dichten Bereichen. Nähe zu S1-01-02-07 ist sachlich vorhanden, aber der Engpass wandert in die Mitte und der Südanschluss fordert den unteren Rückknick; behalten als Abschnittsvergleich hoher und niedriger Zahlen.",
+    "chainDepth": 8,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 6 interne Richtungswechsel, 2 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 51 Deduktionsschritte, Tiefe 8. Counts Zeilen [1, 3, 3, 2, 1], Spalten [2, 3, 2, 3]; Anschlussanker N3/S0 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: wiederholter voll/leer-Streifen nach Einstieg. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -57,34 +57,9 @@
   "solution": {
     "path": [
       {
-        "x": 0,
-        "y": 0,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 1,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 1,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 1,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 2,
-        "y": 0,
-        "track": "TRACK_EW"
-      },
-      {
         "x": 3,
         "y": 0,
-        "track": "TRACK_SW"
+        "track": "TRACK_NS"
       },
       {
         "x": 3,
@@ -94,32 +69,32 @@
       {
         "x": 3,
         "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 3,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 3,
-        "y": 4,
         "track": "TRACK_WN"
       },
       {
         "x": 2,
-        "y": 4,
+        "y": 2,
         "track": "TRACK_NE"
       },
       {
         "x": 2,
-        "y": 3,
+        "y": 1,
         "track": "TRACK_SW"
       },
       {
         "x": 1,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
         "y": 3,
-        "track": "TRACK_EW"
+        "track": "TRACK_WN"
       },
       {
         "x": 0,
@@ -129,12 +104,7 @@
       {
         "x": 0,
         "y": 4,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 1,
-        "y": 4,
-        "track": "TRACK_SW"
+        "track": "TRACK_NS"
       }
     ]
   },
@@ -143,7 +113,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "e967e5a4d8ce6dffd9f0e008c5a1158214753c248d950e2615bad3e5aa891ade"
+      "sha256": "934e4a61c151311e93180aebe2ba28d7cd06d3539f0cb39029d4d3f40e832139"
     }
   }
 }

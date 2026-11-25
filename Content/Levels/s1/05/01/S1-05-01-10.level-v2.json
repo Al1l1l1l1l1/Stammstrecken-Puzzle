@@ -2,40 +2,40 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-01-10",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 8,
     "height": 8
   },
   "endpoints": {
     "a": {
-      "side": "N",
+      "side": "E",
       "index": 7
     },
     "b": {
-      "side": "E",
-      "index": 5
+      "side": "W",
+      "index": 1
     }
   },
   "rowCounts": [
-    5,
+    3,
+    3,
+    6,
+    4,
     3,
     1,
-    4,
-    4,
-    3,
-    0,
-    0
+    1,
+    1
   ],
   "columnCounts": [
-    0,
-    0,
-    0,
-    5,
     4,
-    5,
     4,
-    2
+    4,
+    1,
+    1,
+    3,
+    1,
+    4
   ],
   "content": {
     "season": 1,
@@ -51,8 +51,8 @@
       "ENDPOINT_GEOMETRY",
       "DENSITY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Der Nordport ganz rechts verbraucht einen der zwei Counts in Spalte 7; links begrenzen drei Nullspalten den langen Gegenschenkel. Die kleine rechte Rückkurve liegt an einem anderen Teilraum als der obere Bogen und wird aus mittleren Vierer-/Fünfercounts spät geometrisch bestimmt.",
+    "chainDepth": 21,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 12 interne Richtungswechsel, 8 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 144 Deduktionsschritte, Tiefe 21. Counts Zeilen [3, 3, 6, 4, 3, 1, 1, 1], Spalten [4, 4, 4, 1, 1, 3, 1, 4]; Anschlussanker E7/W1 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: \u003E=3 direkte Null/Voll-Linien; \u003E=50% direkt entschieden. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -65,103 +65,113 @@
     "path": [
       {
         "x": 7,
-        "y": 0,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 6,
-        "y": 0,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 5,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 5,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 1,
+        "y": 7,
         "track": "TRACK_NE"
       },
       {
-        "x": 4,
-        "y": 0,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 3,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
-        "y": 1,
+        "x": 7,
+        "y": 6,
         "track": "TRACK_NS"
-      },
-      {
-        "x": 3,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 3,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 3,
-        "y": 4,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 4,
-        "y": 4,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 3,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 5,
-        "y": 3,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 6,
-        "y": 3,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 6,
-        "y": 4,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 5,
-        "y": 4,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 5,
-        "y": 5,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 6,
-        "y": 5,
-        "track": "TRACK_EW"
       },
       {
         "x": 7,
         "y": 5,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 6,
+        "y": 4,
         "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
       }
     ]
   },
@@ -170,7 +180,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "4dc605fe4dcfb06609ed61b5ed7c5dccfe514755e712135e70c2d62317fac064"
+      "sha256": "cded5b632a4ee282c96ffa4e538d71d3eff7f1391808eee583fecc8b7170c6ae"
     }
   }
 }

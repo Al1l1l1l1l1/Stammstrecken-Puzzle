@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-04-09",
-  "contentRevision": 4,
+  "contentRevision": 5,
   "grid": {
     "width": 10,
     "height": 10
@@ -13,33 +13,33 @@
       "index": 0
     },
     "b": {
-      "side": "N",
-      "index": 6
+      "side": "E",
+      "index": 1
     }
   },
   "rowCounts": [
-    7,
-    7,
     2,
-    2,
-    2,
+    4,
+    6,
+    6,
+    3,
     2,
     3,
-    5,
+    2,
     3,
     1
   ],
   "columnCounts": [
+    2,
+    1,
+    2,
+    2,
     3,
-    3,
-    9,
-    9,
-    4,
+    5,
+    5,
     2,
-    2,
-    2,
-    0,
-    0
+    5,
+    5
   ],
   "content": {
     "season": 1,
@@ -55,8 +55,8 @@
       "DENSITY",
       "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 25,
-    "qualityNote": "DRAFT-Neufassung mit 34 Gleisfeldern, drei trivialen Linien und 28 Kurven; Solver 220 Schritte/Tiefe25/Guess0. Zwei rechte Nullspalten begrenzen den Raum, zwei fast volle Neunerspalten müssen jedoch mehrere getrennte Quergebiete und den innenliegenden Nordport tragen. Frisch öffentlich gelöste Referenz S1-05-04-08 mit mehreren Umleitungen, mindestens 5% D4-normalisierte öffentliche Distanz und höchstens 82,35% D4-Pfad-Jaccard zum aktuellen Korpus. Menschliche Erstkontaktprüfung und Sternzeitkalibrierung stehen aus.",
+    "chainDepth": 36,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 24 interne Richtungswechsel, 14 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 241 Deduktionsschritte, Tiefe 36. Counts Zeilen [2, 4, 6, 6, 3, 2, 3, 2, 3, 1], Spalten [2, 1, 2, 2, 3, 5, 5, 2, 5, 5]; Anschlussanker S0/E1 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: Haeufung direkt entscheidender Linien ab Abschnitt2. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -75,166 +75,156 @@
       {
         "x": 0,
         "y": 8,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 6,
+        "y": 4,
         "track": "TRACK_NS"
       },
       {
-        "x": 0,
-        "y": 7,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 1,
-        "y": 7,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 2,
-        "y": 7,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 2,
-        "y": 8,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 3,
-        "y": 8,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 3,
-        "y": 7,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 4,
-        "y": 7,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 6,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 3,
-        "y": 6,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 2,
-        "y": 6,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 2,
-        "y": 5,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
-        "y": 5,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 3,
-        "y": 4,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 2,
-        "y": 4,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 2,
+        "x": 6,
         "y": 3,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
-        "y": 3,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 3,
-        "y": 2,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 2,
-        "y": 2,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 1,
-        "y": 1,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 1,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 2,
-        "y": 0,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 3,
-        "y": 0,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 3,
-        "y": 1,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 4,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 5,
-        "y": 0,
         "track": "TRACK_SW"
       },
       {
         "x": 5,
-        "y": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 4,
+        "y": 3,
         "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_ES"
       },
       {
         "x": 6,
         "y": 1,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 7,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 7,
-        "y": 0,
         "track": "TRACK_SW"
       },
       {
         "x": 6,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 7,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 7,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 8,
+        "y": 3,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 9,
+        "y": 4,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 9,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 9,
+        "y": 2,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
         "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 9,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 9,
+        "y": 1,
         "track": "TRACK_NE"
       }
     ]
@@ -244,7 +234,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "3c264f7ab3005a554b625f4ffcc461b024b4bb409edbb6bb2a341c4d27678420"
+      "sha256": "65069ac2984252d8bac7592d7e004295f5a5725ced98757560cdbf8bd7317fba"
     }
   }
 }

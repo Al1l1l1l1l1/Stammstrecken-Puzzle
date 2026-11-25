@@ -68,7 +68,7 @@ namespace STP.Tests.Application.EditMode
         public void QualityBoundsCannotTurnAnInterruptedVerifierIntoASeedSkip()
         {
             long clock = 0;
-            var result = PuzzleCandidateSearch.GenerateAsync(1, new PuzzleCandidateParameters(4, 5, 25, 65, 0, 0, 256, 4000, 60000, 1, 20, 0),
+            var result = PuzzleCandidateSearch.GenerateAsync(2, new PuzzleCandidateParameters(4, 5, 25, 65, 0, 0, 256, 4000, 60000, 1, 20, 0),
                 Array.Empty<PuzzleDefinition>(), Array.Empty<PuzzleDefinition>(), CancellationToken.None, () => ++clock, Bounds(Wide())).GetAwaiter().GetResult();
             Assert.That(result.Succeeded, Is.False); Assert.That(result.Status, Is.EqualTo("GEN_VERIFICATION_INDETERMINATE")); Assert.That(result.Attempts, Is.EqualTo(1));
         }

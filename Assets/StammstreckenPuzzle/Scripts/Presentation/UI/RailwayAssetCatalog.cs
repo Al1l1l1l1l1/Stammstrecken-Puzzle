@@ -20,7 +20,7 @@ namespace STP.Presentation.UI
         {
             if(source==null)throw new ArgumentNullException(nameof(source));
             var document=JsonUtility.FromJson<Manifest>(source.text);
-            if(document==null||document.schemaVersion!=1||document.rendererVersion!="railway-cartoon-1"||document.routes==null||document.routes.Length!=20||document.worlds==null||document.worlds.Length!=5||document.cosmetics==null||document.cosmetics.Length!=14||document.moments==null||document.moments.Length!=480)
+            if(document==null||document.schemaVersion!=1||document.rendererVersion!="railway-cartoon-1"||document.routes==null||document.routes.Length!=20||document.worlds==null||document.worlds.Length!=5||document.cosmetics==null||document.cosmetics.Length!=29||document.moments==null||document.moments.Length!=480)
                 throw new ArgumentException("RAILWAY_MANIFEST_STRUCTURE");
             if(!(use==SourceUse.ContractTest?document.approvalStatus=="FIXTURE_ONLY":document.approvalStatus=="PRODUCT_APPROVED"||use==SourceUse.InternalDraft&&document.approvalStatus=="DRAFT"))throw new ArgumentException("RAILWAY_MANIFEST_NOT_APPROVED");
             var worlds=new HashSet<string>(StringComparer.Ordinal);

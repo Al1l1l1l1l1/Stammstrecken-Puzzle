@@ -109,4 +109,4 @@ if(fs.existsSync(path.join(root,profilePath))) {
 }
 sources.push({path:'Content/Quality/s1/star-time-estimates.json', contentRevision:1, documentSha256:hash(starEstimates)});
 emit('Content/Quality/s1/mobile-candidate-projection-lock.json', {schemaVersion:1, ...bindings, sources, outputs});
-console.log('PASS: 240 public-only identities, sequential progression, 240 map/train moments and 14 cosmetics; InternalPreview/DRAFT, no production promotion.');
+console.log('PASS: 240 public-only identities, sequential progression, 240 map/train moments and 29 cosmetics; InternalPreview/DRAFT, no production promotion.');

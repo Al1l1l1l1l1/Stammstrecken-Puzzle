@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-03-02",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 6,
     "height": 6
@@ -10,28 +10,28 @@
   "endpoints": {
     "a": {
       "side": "N",
-      "index": 1
+      "index": 0
     },
     "b": {
       "side": "S",
-      "index": 2
+      "index": 5
     }
   },
   "rowCounts": [
+    3,
+    4,
+    5,
     1,
     2,
-    1,
-    1,
-    1,
-    3
+    2
   ],
   "columnCounts": [
-    5,
     3,
     1,
-    0,
-    0,
-    0
+    2,
+    5,
+    5,
+    1
   ],
   "content": {
     "season": 1,
@@ -47,8 +47,8 @@
       "EXCLUSION",
       "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 3,
-    "qualityNote": "Drei Nullspalten rechts und drei mittlere Einserzeilen begrenzen einen langen linken Schenkel. Der kurze obere Versatz und der untere Dreierrückweg reaktivieren bekannte sichere Linien vor dem Größenwechsel; die geringe aktive Breite hat hier einen benannten Entlastungszweck.",
+    "chainDepth": 9,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 11 interne Richtungswechsel, 6 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 82 Deduktionsschritte, Tiefe 9. Counts Zeilen [3, 4, 5, 1, 2, 2], Spalten [3, 1, 2, 5, 5, 1]; Anschlussanker N0/S5 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: \u003E=3 direkte Null/Voll-Linien; \u003E=50% direkt entschieden; extrem geringer Umweg. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -60,47 +60,87 @@
   "solution": {
     "path": [
       {
-        "x": 1,
+        "x": 0,
         "y": 0,
         "track": "TRACK_NS"
       },
       {
-        "x": 1,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
         "x": 0,
         "y": 1,
-        "track": "TRACK_ES"
+        "track": "TRACK_NS"
       },
       {
         "x": 0,
         "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 5,
         "track": "TRACK_NE"
       },
       {
         "x": 1,
-        "y": 5,
+        "y": 2,
         "track": "TRACK_EW"
       },
       {
         "x": 2,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
         "y": 5,
         "track": "TRACK_SW"
       }
@@ -111,7 +151,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "e858ac2d92b42ad3e48e862e08e5b7505a6e44754dccd347b50b1a9bd8668f90"
+      "sha256": "767b535e7e3954dcd15563a41ac72085936d0ec06cb3ed6a223b224704ac0fe9"
     }
   }
 }

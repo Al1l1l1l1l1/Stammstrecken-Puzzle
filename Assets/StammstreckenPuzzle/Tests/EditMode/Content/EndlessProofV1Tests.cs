@@ -152,7 +152,7 @@ namespace STP.Tests.Content.EditMode
             internal IReadOnlyList<LevelDiagnostic> Validate(ProofReadResult proof,object? descriptor=null,object? puzzle=null,ProfiledHash? solution=null)=>(IReadOnlyList<LevelDiagnostic>)typeof(EndlessProofV1Codec).GetMethod("ValidateAgainst")!.Invoke(null,new[]{descriptor??Descriptor,puzzle??Puzzle,solution??SolutionHash,proof})!;
             private object Parameters(bool changed,bool recent)
             {var history=Array.CreateInstance(Type("PublicPuzzleInput"),recent?1:0);if(recent)history.SetValue(Puzzle,0);return New("SearchGeneratorParameters",Get(profile,"Id"),changed?new string('2',64):Get(profile,"HashSha256"),"public-d4-l1-v1",corpusIdentity,history,search);}
-            private object DescriptorFor(string seed,string ordinal,object p,string hash)=>Static("LocalEndlessDescriptor","Create","train-track-v1","path-search-v1",seed,ordinal,p,hash)!;
+            private object DescriptorFor(string seed,string ordinal,object p,string hash)=>Static("LocalEndlessDescriptor","Create","train-track-v1","path-search-v2",seed,ordinal,p,hash)!;
             private object Input(string hash)=>New("PublicPuzzleInput",New("PublicPuzzleIdentity",Id,"STP-PUZZLE-SEMANTIC-JCS-1",hash),Definition.RulesetVersion,Definition.Grid.Width,Definition.Grid.Height,Enum.ToObject(Type("PublicPuzzleSide"),(int)Definition.A.Side),Definition.A.Index,Enum.ToObject(Type("PublicPuzzleSide"),(int)Definition.B.Side),Definition.B.Index,Definition.RowCounts,Definition.ColumnCounts);
             private Type Type(string name)=>app.GetType("STP.Application."+name,true)!;
             private object New(string name,params object[] args)=>Activator.CreateInstance(Type(name),args)!;

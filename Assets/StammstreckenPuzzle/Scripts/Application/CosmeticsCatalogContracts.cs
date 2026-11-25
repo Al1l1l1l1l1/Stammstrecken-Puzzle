@@ -13,7 +13,7 @@ namespace STP.Application
             string acquisition, long? price, IReadOnlyList<string> subjects)
         {
             if (id == null || !Regex.IsMatch(id, @"^[a-z][a-z0-9-]*$")) throw new ArgumentException("COSMETIC_ID_INVALID");
-            Id = id; Type = LocalModel.One(type, "OPERATING_OBJECT|LIVERY|TRAIN_VARIANT");
+            Id = id; Type = LocalModel.One(type, "OPERATING_OBJECT|LIVERY|TRAIN_VARIANT|WAGON");
             Status = LocalModel.One(status, "DRAFT|ACTIVE|HIDDEN|TOMBSTONE");
             if (titleKey == null || !Regex.IsMatch(titleKey, @"^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$")) throw new ArgumentException("COSMETIC_TITLE_KEY_INVALID");
             TitleKey = titleKey; AssetAddress = LocalModel.Text(assetAddress);
@@ -22,6 +22,7 @@ namespace STP.Application
             LocalModel.Unique(RequiredCampaignSubjectIds);
             if (acquisition == "PATIENCE_PURCHASE") LocalModel.Require(price.HasValue && LocalModel.Positive(price.Value) > 0 && subjects.Count == 0, "COSMETIC_ACQUISITION_INVALID");
             else LocalModel.Require(!price.HasValue && (acquisition == "MILESTONE_GRANT" ? subjects.Count > 0 : subjects.Count == 0), "COSMETIC_ACQUISITION_INVALID");
+            LocalModel.Require(type != "WAGON" || acquisition == "PATIENCE_PURCHASE", "COSMETIC_WAGON_PATIENCE_PURCHASE_REQUIRED");
             foreach (string subject in subjects) LocalModel.Require(Regex.IsMatch(subject, @"^S[1-9][0-9]*(?:-[0-9]{2}){0,2}$"), "COSMETIC_SUBJECT_INVALID");
         }
         /// <summary>Creates a schema-equivalent discriminated definition.</summary>
@@ -30,7 +31,7 @@ namespace STP.Application
             => new CosmeticDefinition(id, type, status, titleKey, assetAddress, acquisition, pricePatience, requiredCampaignSubjectIds);
         /// <summary>Stable canonical item ID.</summary>
         public string Id { get; }
-        /// <summary>OPERATING_OBJECT, LIVERY or TRAIN_VARIANT.</summary>
+        /// <summary>OPERATING_OBJECT, LIVERY, TRAIN_VARIANT or additive WAGON.</summary>
         public string Type { get; }
         /// <summary>Closed authoring/runtime status.</summary>
         public string Status { get; }

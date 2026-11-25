@@ -44,7 +44,7 @@ for(const path of paths){
 }
 moments.sort((a,b)=>a.referenceId.localeCompare(b.referenceId,"en"));
 const catalog=JSON.parse(fs.readFileSync("Content/Catalogs/s1/cosmetics-v2.json","utf8"));
-if(catalog.items.length!==14)throw Error("Expected 14 cosmetics");
+if(catalog.items.length!==29)throw Error("Expected 29 owner-listed cosmetics (7 trains, 10 liveries, 9 objects, 3 wagons)");
 const cosmetics=catalog.items.map(item=>({id:item.id,assetAddress:item.assetAddress,titleKey:item.titleKey,rendererKey:item.id})).sort((a,b)=>a.id.localeCompare(b.id,"en"));
 const reusableMoments=[{referenceId:"draft-endless-map-default",puzzleId:"",kind:"MAP",assetAddress:"stp/moments/draft-endless-map-default",compositionId:"s1-route-05-04",stage:0},{referenceId:"draft-endless-train-default",puzzleId:"",kind:"TRAIN",assetAddress:"stp/moments/draft-endless-train-default",compositionId:"s1-route-05-04",stage:0}];
 const manifest={schemaVersion:1,rendererVersion:"railway-cartoon-1",approvalStatus:"DRAFT",referenceSourceCommit:sourceCommit,styleSourceCommit:"9e3f209cd92d491ab3a1ab51cce63677d3b5d53e",origin:"Original code-native cartoon constructions in RailwayIllustrationElement and RailwayCosmeticElement; IBM Plex font license is recorded separately.",runtimeContract:"Presentation references only. No puzzle solution, reward, ownership, product approval or release authority.",worlds,routes,cosmetics,moments,reusableMoments};

@@ -70,7 +70,7 @@ namespace STP.Application
     }
 
     /// <summary>Closed passive ownership union; none of these records executes a grant.</summary>
-    public abstract class LocalOwnership { private protected LocalOwnership(string itemId,string itemType){ItemId=LocalModel.Text(itemId);ItemType=LocalModel.One(itemType,"OPERATING_OBJECT|LIVERY|TRAIN_VARIANT");} /// <summary>Stable owned item.</summary>
+    public abstract class LocalOwnership { private protected LocalOwnership(string itemId,string itemType){ItemId=LocalModel.Text(itemId);ItemType=LocalModel.One(itemType,"OPERATING_OBJECT|LIVERY|TRAIN_VARIANT|WAGON");} /// <summary>Stable owned item.</summary>
  public string ItemId {get;} /// <summary>Known cosmetics type.</summary>
  public string ItemType {get;} }
 

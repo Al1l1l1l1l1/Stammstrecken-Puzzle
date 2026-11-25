@@ -39,17 +39,33 @@ namespace STP.Tests.Application.EditMode
             Assert.Throws<TargetInvocationException>(() => Read(text));
         }
         [Test]
-        public void DraftCannotBeImportedAsProductionAndFourteenItemCatalogPreservesP06PricesAndMilestones()
+        public void DraftCannotBeImportedAsProductionAndExpandedCatalogPreservesPricesAndMilestones()
         {
             string root = Environment.GetEnvironmentVariable("STP_SOURCE_ROOT") ?? Directory.GetCurrentDirectory();
             string text = File.ReadAllText(Path.Combine(root, "Content", "Catalogs", "s1", "cosmetics-v2.json"));
             Assert.Throws<TargetInvocationException>(() => Read(text, CatalogUse.Production));
             var catalog = Read(text, CatalogUse.IsolatedReview);
-            Assert.That(catalog.Items.Count, Is.EqualTo(14)); Assert.That(catalog.Items.All(i => i.Status == "DRAFT"), Is.True);
+            Assert.That(catalog.Items.Count, Is.EqualTo(29)); Assert.That(catalog.Items.All(i => i.Status == "DRAFT"), Is.True);
+            Assert.That(catalog.Identity.Revision, Is.EqualTo(2));
+            Assert.That(catalog.Items.Count(i => i.Type == "TRAIN_VARIANT"), Is.EqualTo(7));
+            Assert.That(catalog.Items.Count(i => i.Type == "LIVERY"), Is.EqualTo(10));
+            Assert.That(catalog.Items.Count(i => i.Type == "OPERATING_OBJECT"), Is.EqualTo(9));
+            Assert.That(catalog.Items.Count(i => i.Type == "WAGON"), Is.EqualTo(3));
             Assert.That(catalog.Items.Count(i => i.Acquisition == "DEFAULT"), Is.EqualTo(1));
-            Assert.That(catalog.Items.Where(i => i.Acquisition == "PATIENCE_PURCHASE").Select(i => i.PricePatience).OrderBy(p => p), Is.EqualTo(new long?[] { 120,120,120,120,300,300,300,650,650,1200,2500 }));
+            Assert.That(catalog.Items.Count(i => i.Acquisition == "MILESTONE_GRANT"), Is.EqualTo(2));
+            Assert.That(catalog.Items.Where(i => i.Acquisition == "PATIENCE_PURCHASE").Select(i => i.PricePatience).OrderBy(p => p), Is.EqualTo(new long?[] { 120,120,120,120,300,300,300,350,350,400,400,400,450,450,500,500,650,650,700,900,1000,1200,1800,2200,2500,3000 }));
+            Assert.That(catalog.Items.Where(i => i.Type == "WAGON").All(i => i.Acquisition == "PATIENCE_PURCHASE"), Is.True);
             Assert.That(catalog.Items.Single(i => i.Id == "obj-signal-freigegeben").RequiredCampaignSubjectIds, Is.EqualTo(new[] { "S1-01" }));
             Assert.That(catalog.Items.Single(i => i.Id == "obj-tafel-trotzdem-weiter").RequiredCampaignSubjectIds, Is.EqualTo(new[] { "S1" }));
+        }
+        [Test]
+        public void WagonIsKnownButDefaultMilestoneAndRealMoneyAcquisitionsAreRejected()
+        {
+            string wagon = Item.Replace("OPERATING_OBJECT", "WAGON");
+            Assert.That(Read(Source(wagon)).Items.Single().Type, Is.EqualTo("WAGON"));
+            Assert.Throws<TargetInvocationException>(() => Read(Source(wagon.Replace(",\"pricePatience\":120", "").Replace("PATIENCE_PURCHASE", "DEFAULT"))));
+            Assert.Throws<TargetInvocationException>(() => Read(Source(wagon.Replace("PATIENCE_PURCHASE", "REAL_MONEY_PURCHASE"))));
+            Assert.Throws<ArgumentException>(() => CosmeticDefinition.Create("wagon-test", "WAGON", "ACTIVE", "cosmetic.wagon.title", "stp/wagon", "MILESTONE_GRANT", null, new[] { "S1" }));
         }
     }
 }

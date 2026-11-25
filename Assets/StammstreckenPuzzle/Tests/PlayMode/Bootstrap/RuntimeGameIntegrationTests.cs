@@ -27,9 +27,9 @@ namespace STP.Tests.Bootstrap.PlayMode
     {
         private const string Ui = "Assets/StammstreckenPuzzle/UI/";
         private const string Fixtures = "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/RuntimeFixtures/";
-        private const string BindingSha = "3baf99433918a2aa35e9edd7bdab988f9daaaf7c1e57ede5268c624e3935d9a1";
-        private const string ReleaseSha = "3174e9d24f8ac6be040032601ba156ab51463df596f094adf04ac0c4b8dccf06";
-        private const string UiSha = "fc0c2a3f02fcd00445a5c5a1ab1d1e8017657329c84447b619ff76c77b15a8ee";
+        private const string BindingSha = "c24e24fc10d7fc78557c9ef7351eb53fdcbe6aab45e91709ca93776fd8fc7d83";
+        private const string ReleaseSha = "bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b";
+        private const string UiSha = "8a4d61537ed6583239ab2c269a088d9f2cacaf1188611f9381f6c6c41283a3b8";
         private static readonly string[] Paths = { "Calibration.json", "Campaign.json", "CampaignCompletion.json", "CampaignText.json", "Cosmetics.json", "EndlessCompletion.json",
             "Profiles/dienstbeginn.json", "Profiles/grosslage.json", "Profiles/regelbetrieb.json", "Profiles/stoerungslage.json", "Public.json", "RailwayAssets.json" };
         private GameObject? host;
@@ -56,9 +56,9 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Directory.Exists(ownRoot), Is.False);
             host = new GameObject("WP046 locked fixture runtime integration"); host.SetActive(false);
             installer = host.AddComponent<MobilePreviewInstaller>(); installer.ConfigureTestRoot(ownRoot); ownsRoot = true;
-            // Original fixture budgets stay unchanged: seed1 exhausts ten attempts; the independently
-            // probed seeds2/3 each verify on attempt1, the latter against the actual first Recent.
-            installer.ConfigureTestEndlessSeeds(2, 3);
+            // Original fixture budgets stay unchanged: seed1 still exhausts ten attempts. Under path-search-v2,
+            // harness-probed seeds3/6 each verify on attempt1; seed6 uses the actual seed3 Recent.
+            installer.ConfigureTestEndlessSeeds(3, 6);
             panel = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<PanelSettings>(Ui + "Public240ReviewPanelSettings.asset"));
             panel.referenceResolution = new Vector2Int(390, 844); panel.match = 0;
             if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null)

@@ -18,12 +18,13 @@
       "required": ["id", "type", "status", "titleKey", "assetAddress", "acquisition"],
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
-        "type": {"type": "string", "enum": ["OPERATING_OBJECT", "LIVERY", "TRAIN_VARIANT"]},
+        "type": {"type": "string", "enum": ["OPERATING_OBJECT", "LIVERY", "TRAIN_VARIANT", "WAGON"], "description": "WAGON is additive (up to three selected); trains and liveries each occupy one selection slot."},
         "status": {"type": "string", "enum": ["DRAFT", "ACTIVE", "HIDDEN", "TOMBSTONE"]},
         "titleKey": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)+$"},
         "assetAddress": {"type": "string", "minLength": 1},
         "acquisition": {"type": "string", "enum": ["DEFAULT", "PATIENCE_PURCHASE", "MILESTONE_GRANT"]}
-      }
+      },
+      "allOf": [{"if": {"properties": {"type": {"const": "WAGON"}}, "required": ["type"]}, "then": {"properties": {"acquisition": {"const": "PATIENCE_PURCHASE"}}}}]
     },
     "item": {
       "oneOf": [

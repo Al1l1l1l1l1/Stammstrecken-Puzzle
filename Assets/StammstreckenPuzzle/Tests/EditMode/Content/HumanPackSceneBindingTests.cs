@@ -56,7 +56,7 @@ namespace STP.Tests.Content.EditMode
             scene+="--- !u!114 &9\nMonoBehaviour:\n  m_Name: "+string.Join(",",Guids)+"\n";
             Assert.Throws<InvalidOperationException>(()=>Check(scene));
         }
-        private const string CurrentPublicHash="0ad7ae94f5a457e0b78d2dec5901256de15069fdd21e3c13dd724d549e7a60e8";
+        private const string CurrentPublicHash="8395e83da4775d40de809e1151fef7e1a815e48eddabaa09571e11dd232cd638";
         private const string StalePublicHash="886dab4515817e7f1bdf3142e4097c5bd87b4431e82262189d5fe4a5908c23f0";
         private static string HashLine(string hash)=>"  publicCatalogHashSha256: "+hash+"\n";
         private static string HashScene=>Scene+HashLine(CurrentPublicHash);
@@ -136,7 +136,7 @@ namespace STP.Tests.Content.EditMode
         {
             const string folder="Assets/StammstreckenPuzzle/UI/";
             var ui=JsonUtility.FromJson<CurrentUiLock>(File.ReadAllText(folder+"HumanAssignments/ui-source-lock.json"));
-            Assert.That(ui.schemaVersion,Is.EqualTo(1));Assert.That(ui.kind,Is.EqualTo("HUMAN_UI_SOURCE_LOCK"));Assert.That(ui.files.Length,Is.EqualTo(76));
+            Assert.That(ui.schemaVersion,Is.EqualTo(1));Assert.That(ui.kind,Is.EqualTo("HUMAN_UI_SOURCE_LOCK"));Assert.That(ui.files.Length,Is.EqualTo(79));
             var entry=ui.files.Single(f=>f.path==folder+"ThirdPartyNotices.txt");
             using var hash=System.Security.Cryptography.SHA256.Create();string raw=string.Concat(hash.ComputeHash(File.ReadAllBytes(entry.path)).Select(b=>b.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
             Assert.That(entry.sha256,Is.EqualTo(raw));

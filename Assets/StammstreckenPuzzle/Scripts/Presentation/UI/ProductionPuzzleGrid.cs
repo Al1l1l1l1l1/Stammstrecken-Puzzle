@@ -22,6 +22,7 @@ namespace STP.Presentation.UI
         private bool disposed;
         private Rect boardFrame;
         private Rect worksiteBounds;
+        private StpVehicle worksiteVehicle=StpKit.Resolve(System.Array.Empty<string>());
 
         /// <summary>Creates exactly one semantic focusable target for every public cell.</summary>
         public ProductionPuzzleGrid(IReviewPuzzleSession model, Func<string,object[],string> localize, Action<int,int> activated)
@@ -48,6 +49,7 @@ namespace STP.Presentation.UI
             b=MakeLabel("puzzle-endpoint-b","puzzle-endpoint");b.text=localize("endpoint.b",Array.Empty<object>());Add(b);
             train=new TrainOverlay();board.Add(train);
             generateVisualContent+=DrawWorksite;
+            board.generateVisualContent+=DrawBoard;
             RegisterCallback<GeometryChangedEvent>(OnGeometry);
             Refresh(false);
         }
@@ -79,15 +81,16 @@ namespace STP.Presentation.UI
             }
             for(var y=0;y<GridHeight;y++){SetCount(rows[y],model.RowVisible(y),model.RowTarget(y));rows[y].tooltip=localize("accessibility.row",new object[]{y+1,model.RowVisible(y),model.RowTarget(y)});}
             for(var x=0;x<GridWidth;x++){SetCount(columns[x],model.ColumnVisible(x),model.ColumnTarget(x));columns[x].tooltip=localize("accessibility.column",new object[]{x+1,model.ColumnVisible(x),model.ColumnTarget(x)});}
+            board.MarkDirtyRepaint();
             EnableInClassList("puzzle-grid--ride",revealing);
         }
         /// <summary>Displays an externally supplied world pose, without inferring a route.</summary>
         public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible)=>train.SetPose(x,y,clockwiseDegrees,visible);
         /// <summary>Projects selected train and livery without changing path geometry or timings.</summary>
-        public void SetTrainAppearance(System.Collections.Generic.IReadOnlyList<string> ids)=>train.SetAppearance(ids);
+        public void SetTrainAppearance(System.Collections.Generic.IReadOnlyList<string> ids){worksiteVehicle=StpKit.Resolve(ids);train.SetAppearance(ids);MarkDirtyRepaint();}
         /// <summary>Releases callbacks; repeated disposal is safe.</summary>
         public void Dispose()
-        {if(disposed)return;disposed=true;activation=null;generateVisualContent-=DrawWorksite;UnregisterCallback<GeometryChangedEvent>(OnGeometry);SetEnabled(false);}
+        {if(disposed)return;disposed=true;activation=null;generateVisualContent-=DrawWorksite;board.generateVisualContent-=DrawBoard;UnregisterCallback<GeometryChangedEvent>(OnGeometry);SetEnabled(false);}
         private static Label MakeLabel(string id,string css)
         {var label=new Label{name=id,pickingMode=PickingMode.Ignore};label.AddToClassList(css);return label;}
         private void SetCount(Label label,int visible,int target)
@@ -130,35 +133,26 @@ namespace STP.Presentation.UI
                 ?new Rect(10,freeTop+(freeHeight-Mathf.Min(76,freeHeight))*.5f,contentSize.x-20,Mathf.Min(76,freeHeight))
                 :Rect.zero;
         }
+        private void DrawBoard(MeshGenerationContext context)
+        {
+            if(disposed||board.contentRect.width<=0||board.contentRect.height<=0)return;
+            var revealing=model.Phase==DevelopmentPreviewPhase.TrainRide||model.Phase==DevelopmentPreviewPhase.Results;
+            int Code(int cx,int cy)
+            {
+                var value=model.CellAt(cx,cy);
+                return StpBoardWorld.CodeFor(value);
+            }
+            StpBoardWorld.PaintBoard(context,new Rect(0,0,board.contentRect.width,board.contentRect.height),GridWidth,GridHeight,Code,
+                StpBoardWorld.EdgeIndex(model.EndpointA.Edge),model.EndpointA.X,model.EndpointA.Y,StpBoardWorld.EdgeIndex(model.EndpointB.Edge),model.EndpointB.X,model.EndpointB.Y);
+            if(revealing)return;
+        }
         private void DrawWorksite(MeshGenerationContext context)
         {
             if(disposed||boardFrame.width<=0||boardFrame.height<=0)return;
             var p=context.painter2D;
             // Painted behind the existing children: no new element, hit target, layout input or semantic node.
-            RailwayDrawing.Box(p,boardFrame.x-.8f,boardFrame.y-.8f,boardFrame.width+1.6f,boardFrame.height+1.6f,Color.white,1.5f);
             if(worksiteBounds.width<=0||worksiteBounds.height<=0)return;
-            var scale=Mathf.Min(worksiteBounds.width/350f,worksiteBounds.height/76f);
-            var origin=new Vector2(worksiteBounds.center.x-175*scale,worksiteBounds.y);
-            Vector2 At(float x,float y)=>origin+new Vector2(x,y)*scale;
-            void Box(float x,float y,float w,float h,string color,float stroke=1.8f)
-                =>RailwayDrawing.Box(p,At(x,y).x,At(x,y).y,w*scale,h*scale,RailwayDrawing.Color(color),stroke*scale);
-            void Shape(string color,params Vector2[] points)
-            {for(int i=0;i<points.Length;i++)points[i]=At(points[i].x,points[i].y);RailwayDrawing.Polygon(p,RailwayDrawing.Color(color),points,1.8f*scale);}
-            // A small squat station, waiting bench and a permanently decorative works barrier. No tracks, route clues or signals.
-            RailwayDrawing.Line(p,At(7,69),At(343,69),RailwayDrawing.Color("CCD0D1"),1.5f*scale);
-            Box(19,23,102,39,"F4F2EE");
-            Shape("727B82",new Vector2(121,23),new Vector2(132,30),new Vector2(132,63),new Vector2(121,62));
-            Shape("C83D45",new Vector2(10,23),new Vector2(24,12),new Vector2(116,12),new Vector2(130,23));
-            Box(18,23,104,5,"20272C",0);
-            Box(28,34,24,18,"727B82");Box(89,34,23,28,"FFFFFF");Box(95,39,11,12,"727B82",1.2f);
-            Box(59,33,24,8,"20272C");Box(64,36,14,2,"FFFFFF",0);
-            Box(147,45,66,8,"805535");Box(147,56,66,6,"805535");Box(154,63,4,6,"20272C",0);Box(202,63,4,6,"20272C",0);
-            Box(236,53,5,15,"727B82");Box(302,53,5,15,"727B82");
-            Box(229,37,85,17,"FFFFFF");
-            Shape("C83D45",new Vector2(232,39),new Vector2(247,39),new Vector2(237,52),new Vector2(232,52));
-            Shape("C83D45",new Vector2(263,39),new Vector2(278,39),new Vector2(268,52),new Vector2(253,52));
-            Shape("C83D45",new Vector2(294,39),new Vector2(309,39),new Vector2(299,52),new Vector2(284,52));
-            Box(229,66,19,3,"20272C",0);Box(296,66,19,3,"20272C",0);
+            StpDiorama.Paint(context,worksiteBounds,2,worksiteVehicle,System.Array.Empty<string>(),null,0);
         }
         private void EndpointLabel(Label label,DevelopmentEndpoint port)
         {label.tooltip=localize("accessibility.endpoint",new object[]{label.text,port.X+1,port.Y+1,localize("accessibility.edge."+port.Edge,Array.Empty<object>())});}
@@ -175,29 +169,22 @@ namespace STP.Presentation.UI
 
         private sealed class TrainOverlay:VisualElement
         {
-            private float x,y,angle;private bool trainVisible;private string bodyColor="C83D45";private int variant;
+            private float x,y,angle;private bool trainVisible;private StpVehicle vehicle=StpKit.Resolve(System.Array.Empty<string>());private readonly StpTrail trail=new StpTrail();
             public TrainOverlay(){name="puzzle-train";pickingMode=PickingMode.Ignore;style.position=Position.Absolute;generateVisualContent+=Draw;}
             public float CellSize{get;set;}
             public void SetPose(float px,float py,float degrees,bool show)
-            {x=px;y=py;angle=degrees;trainVisible=show;MarkDirtyRepaint();}
-            public void SetAppearance(System.Collections.Generic.IReadOnlyList<string> ids){RailwayCosmeticElement.ResolveTrainStyle(ids,out bodyColor,out variant);MarkDirtyRepaint();}
+            {
+                if(!show)trail.Clear();else trail.Add(new Vector2(px,py),degrees);
+                x=px;y=py;angle=degrees;trainVisible=show;MarkDirtyRepaint();
+            }
+            public void SetAppearance(System.Collections.Generic.IReadOnlyList<string> ids){vehicle=StpKit.Resolve(ids);MarkDirtyRepaint();}
             private void Draw(MeshGenerationContext context)
             {
                 if(!trainVisible||CellSize<=0)return;
-                var p=context.painter2D;var c=new Vector2(x*CellSize,y*CellSize);
-                var dir=new Vector2(Mathf.Cos(angle*Mathf.Deg2Rad),Mathf.Sin(angle*Mathf.Deg2Rad));var side=new Vector2(-dir.y,dir.x);
-                Vector2 Point(float f,float s)=>c+dir*(f*CellSize)+side*(s*CellSize);
-                RailwayDrawing.Polygon(p,RailwayDrawing.Color("20272C"),new[]{Point(-.38f,-.2f),Point(.28f,-.2f),Point(.4f,-.12f),Point(.4f,.12f),Point(.28f,.2f),Point(-.38f,.2f)},Mathf.Max(1,CellSize*.035f));
-                RailwayDrawing.Polygon(p,RailwayDrawing.Color(bodyColor),new[]{Point(-.35f,-.16f),Point(.27f,-.16f),Point(.36f,-.1f),Point(.36f,.1f),Point(.27f,.16f),Point(-.35f,.16f)},0);
-                RailwayDrawing.Polygon(p,RailwayDrawing.Color("E9E6D9"),new[]{Point(-.31f,-.10f),Point(.12f,-.10f),Point(.12f,.10f),Point(-.31f,.10f)},0);
-                RailwayDrawing.Line(p,Point(.2f,-.13f),Point(.2f,.13f),RailwayDrawing.Color("394E58"),CellSize*.09f);
-                RailwayDrawing.Line(p,Point(-.2f,-.05f),Point(.02f,-.05f),RailwayDrawing.Color("59666B"),CellSize*.06f);
-                if(variant==1)RailwayDrawing.Line(p,Point(-.07f,-.16f),Point(-.07f,.16f),RailwayDrawing.Ink,CellSize*.045f);
-                if(variant==2)RailwayDrawing.Line(p,Point(-.28f,.13f),Point(.15f,.13f),RailwayDrawing.Color("F1EEE4"),CellSize*.035f);
+                StpBoardWorld.PaintTrain(context,default,CellSize,x,y,angle,vehicle,trail);
             }
         }
     }
-
     internal sealed class ProductionTrackGlyph:VisualElement
     {
         private DevelopmentTool tool;private readonly bool toolIcon;
@@ -224,18 +211,8 @@ namespace STP.Presentation.UI
                 RailwayDrawing.Line(p,At(.28f,.42f),At(.72f,.42f),gray,line);RailwayDrawing.Line(p,At(.28f,.58f),At(.72f,.58f),gray,line);
                 for(var i=0;i<3;i++)RailwayDrawing.Line(p,At(.35f+i*.15f,.32f),At(.35f+i*.15f,.68f),gray,line);return;
             }
-            p.strokeColor=RailwayDrawing.Color("805535");p.lineWidth=size*.18f;p.lineCap=LineCap.Butt;p.lineJoin=LineJoin.Round;
-            p.BeginPath();const float k=.276142375f;
-            switch(tool)
-            {
-                case DevelopmentTool.TrackNS:p.MoveTo(At(.5f,0));p.LineTo(At(.5f,1));break;
-                case DevelopmentTool.TrackEW:p.MoveTo(At(0,.5f));p.LineTo(At(1,.5f));break;
-                case DevelopmentTool.TrackNE:p.MoveTo(At(.5f,0));p.BezierCurveTo(At(.5f,k),At(1-k,.5f),At(1,.5f));break;
-                case DevelopmentTool.TrackES:p.MoveTo(At(1,.5f));p.BezierCurveTo(At(1-k,.5f),At(.5f,1-k),At(.5f,1));break;
-                case DevelopmentTool.TrackSW:p.MoveTo(At(.5f,1));p.BezierCurveTo(At(.5f,1-k),At(k,.5f),At(0,.5f));break;
-                case DevelopmentTool.TrackWN:p.MoveTo(At(0,.5f));p.BezierCurveTo(At(k,.5f),At(.5f,k),At(.5f,0));break;
-            }
-            p.Stroke();
+            if(!toolIcon)return;
+            StpBoardWorld.PaintTile(context,new Rect(origin.x,origin.y,size,size),StpBoardWorld.CodeFor(tool));
         }
     }
 }

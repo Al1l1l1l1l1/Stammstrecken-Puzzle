@@ -541,7 +541,7 @@ namespace STP.Presentation.UI
             foreach(var asset in assetCatalog.CosmeticAssets)
             {
                 if(!cosmeticsCatalog.TryGet(asset.id,out var item)||item==null||item.AssetAddress!=asset.assetAddress)throw new InvalidOperationException("PRODUCT_COSMETICS_ASSET_MISMATCH");
-                var owned=ownsCosmetic(item.Id);var active=equippedCosmetic(item.Id);if(active&&owned)selected.Add(item.Id);var canUnequip=active&&owned&&(item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT");
+                var owned=ownsCosmetic(item.Id);var active=equippedCosmetic(item.Id);if(active&&owned)selected.Add(item.Id);var canUnequip=active&&owned&&(item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT"||item.Type=="WAGON");
                 cosmeticStates[item.Id].text=L(active?"cosmetic.equipped":owned?"cosmetic.owned":item.Acquisition=="MILESTONE_GRANT"?"cosmetic.milestone":"cosmetic.available");
                 var button=cosmeticButtons[item.Id];button.text=owned?L(active?canUnequip?"cosmetic.unequip":"cosmetic.equipped":"cosmetic.equip"):
                     item.PricePatience.HasValue?L("cosmetic.price",item.PricePatience.Value):L("cosmetic.claim");

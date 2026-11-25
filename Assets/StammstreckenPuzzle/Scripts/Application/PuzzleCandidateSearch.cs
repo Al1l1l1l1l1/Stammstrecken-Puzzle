@@ -56,7 +56,7 @@ namespace STP.Application
     /// <summary>Versioned, provider-free background authoring/runtime search. Issuance remains the save authority.</summary>
     public static class PuzzleCandidateSearch
     {
-        public const string GeneratorVersion = "path-search-v1";
+        public const string GeneratorVersion = "path-search-v2";
         public const string NoveltyVersion = "public-d4-l1-v1";
 
         public static Task<PuzzleCandidateResult> GenerateAsync(ulong seed, PuzzleCandidateParameters parameters,
@@ -83,8 +83,9 @@ namespace STP.Application
             }
             var random = new RandomSequence(seed);
             var seen = new HashSet<string>(campaign.Concat(recent).Select(CanonicalSignature), StringComparer.Ordinal);
-            var templates=campaign.Where(q=>q.Grid.Width>=p.MinSize&&q.Grid.Width<=p.MaxSize&&q.Grid.Height>=p.MinSize&&q.Grid.Height<=p.MaxSize).ToArray();
+            var templates=campaign.Where(q=>q.Grid.Width>=p.MinSize&&q.Grid.Width<=p.MaxSize&&q.Grid.Height>=p.MinSize&&q.Grid.Height<=p.MaxSize&&PuzzlePathQuality.AcceptsCounts(q)).ToArray();
             var templatePaths=new Dictionary<PuzzleDefinition,int[]>();
+            var rejectedTemplates=new HashSet<PuzzleDefinition>();
             int attempts = 0;
             while (attempts < p.MaxAttempts && Elapsed() < p.TotalBudgetMs)
             {
@@ -93,6 +94,7 @@ namespace STP.Application
                 if(p.MinSize>=8&&(attempts&1)==1&&templates.Length>0)
                 {
                     var source=templates[random.Next(0,templates.Length)];grid=source.Grid;a=source.A;b=source.B;
+                    if(rejectedTemplates.Contains(source))continue;
                     if(!templatePaths.TryGetValue(source,out var original))
                     {
                         long remaining=p.TotalBudgetMs-Elapsed();if(remaining<=0)break;
@@ -100,9 +102,13 @@ namespace STP.Application
                         cancellation.ThrowIfCancellationRequested();
                         if(sourceProof.Classification==SolverClassification.INDETERMINATE)return new PuzzleCandidateResult(null,null,attempts,"GEN_VERIFICATION_INDETERMINATE");
                         if(sourceProof.Classification!=SolverClassification.UNIQUE||sourceProof.Metrics!.RequiredGuessDepth!=0)continue;
+                        if(!PuzzlePathQuality.Accepts(source,sourceProof.Path)){rejectedTemplates.Add(source);continue;}
                         original=sourceProof.Path.Select(c=>c.Y*grid.Width+c.X).ToArray();templatePaths.Add(source,original);
                     }
                     path=MutatePublicPath(original,grid,ref random);
+                    // Change the global A-B context as well as local bends. Trimming only at actual
+                    // boundary cells preserves an ordinary simple path; public verification remains mandatory.
+                    if(random.Next(0,2)==0)RetargetBoundaryPath(path,grid,ref a,ref b,ref random);
                     if(path.Count<(grid.CellCount*p.MinDensityPercent+99)/100||path.Count>grid.CellCount*p.MaxDensityPercent/100)continue;
                 }
                 else
@@ -124,7 +130,7 @@ namespace STP.Application
                 int trivial = rows.Count(n => n <= 1 || n == width) + columns.Count(n => n <= 1 || n == height);
                 if (trivial > p.MaxTrivialLines) continue;
                 var puzzle = PuzzleDefinition.Create(grid, a, b, rows, columns, "train-track-v1").Value;
-                if (puzzle == null || seen.Contains(CanonicalSignature(puzzle))) continue;
+                if (puzzle == null || !PuzzlePathQuality.Accepts(puzzle,path.Select(c=>CellCoordinate.Create(grid,c%width,c/width).Value!).ToArray()) || seen.Contains(CanonicalSignature(puzzle))) continue;
                 if (recent.Any(old => SimilarityDistancePercent(puzzle, old) <= p.RecentSimilarityPercent)) continue;
                 long left = p.TotalBudgetMs - Elapsed();
                 if (left <= 0) break;
@@ -145,6 +151,8 @@ namespace STP.Application
                 if (verified.Classification != SolverClassification.UNIQUE || verified.Metrics == null ||
                     verified.Metrics.RequiredGuessDepth != 0 || verified.Metrics.DeductionSteps < p.MinDeductionSteps ||
                     verified.Metrics.MaxDeductionDepth < p.MinDeductionDepth) continue;
+                // Geometry is checked again on the independent solver's path, not merely the proposal.
+                if (!PuzzlePathQuality.Accepts(puzzle,verified.Path)) continue;
                 if (quality != null)
                 {
                     int occupied = puzzle.RowCounts.Sum();
@@ -164,6 +172,13 @@ namespace STP.Application
             var path=new List<int>(original);int count=random.Next(2,21);
             for(int mutation=0;mutation<count;mutation++)
             {
+                // Both remove and insert local detours, rather than only expanding a reference's arms.
+                if(path.Count>4&&random.Next(0,3)==0)
+                {
+                    int from=random.Next(0,path.Count-3),to=from+3;
+                    if(Math.Abs(path[from]%grid.Width-path[to]%grid.Width)+Math.Abs(path[from]/grid.Width-path[to]/grid.Width)==1)
+                    {path.RemoveRange(from+1,2);continue;}
+                }
                 int i=random.Next(0,path.Count-1);int ax=path[i]%grid.Width,ay=path[i]/grid.Width;
                 int bx=path[i+1]%grid.Width,by=path[i+1]/grid.Width;
                 int dx=-(by-ay),dy=bx-ax;if(random.Next(0,2)==0){dx=-dx;dy=-dy;}
@@ -173,6 +188,25 @@ namespace STP.Application
                 path.Insert(i+1,c);path.Insert(i+2,e);
             }
             return path;
+        }
+
+        private static void RetargetBoundaryPath(List<int> path,GridSize grid,ref Endpoint a,ref Endpoint b,ref RandomSequence random)
+        {
+            bool Boundary(int cell)=>cell%grid.Width==0||cell%grid.Width==grid.Width-1||cell/grid.Width==0||cell/grid.Width==grid.Height-1;
+            var positions=Enumerable.Range(0,path.Count).Where(i=>Boundary(path[i])).ToArray();
+            if(positions.Length<2)return;
+            int first=positions[random.Next(0,positions.Length-1)],last=positions[random.Next(0,positions.Length)];
+            if(first>last){int swap=first;first=last;last=swap;}
+            if(last-first<3)return;
+            path.RemoveRange(last+1,path.Count-last-1);path.RemoveRange(0,first);
+            Endpoint Port(int cell,ref RandomSequence sequence)
+            {
+                int x=cell%grid.Width,y=cell/grid.Width;var sides=new List<Direction>();
+                if(y==0)sides.Add(Direction.N);if(x==grid.Width-1)sides.Add(Direction.E);
+                if(y==grid.Height-1)sides.Add(Direction.S);if(x==0)sides.Add(Direction.W);
+                var side=sides[sequence.Next(0,sides.Count)];return Endpoint.Create(grid,side,side==Direction.N||side==Direction.S?x:y).Value!;
+            }
+            a=Port(path[0],ref random);b=Port(path[path.Count-1],ref random);
         }
 
         private static List<int>? TryPath(GridSize grid, CellCoordinate start, CellCoordinate end, int desired,

@@ -3,14 +3,13 @@ using UnityEngine.UIElements;
 
 namespace STP.Presentation.UI
 {
-    /// <summary>Original code-native cartoon railway artwork, sharing the accepted red/white/charcoal visual family.</summary>
+    /// <summary>Original procedural 3D railway diorama (bubbly, depth-sorted mesh) with the player's actual train, wagons and decorations.</summary>
     public sealed class RailwayIllustrationElement : VisualElement
     {
         private int world;
         private RailwayRouteComposition? composition;
         private int clearedStage;
-        private string trainColor="C83D45";
-        private int trainVariant;
+        private StpVehicle vehicle=StpKit.Resolve(System.Array.Empty<string>());
         private string[] selectedProps=System.Array.Empty<string>();
         /// <summary>Creates a decorative, non-interactive railway composition.</summary>
         public RailwayIllustrationElement()
@@ -34,90 +33,16 @@ namespace STP.Presentation.UI
         /// <summary>Uses actual selected train/livery and decorative objects without altering any puzzle fact.</summary>
         public void SetActiveCosmetics(System.Collections.Generic.IReadOnlyList<string> ids)
         {
-            RailwayCosmeticElement.ResolveTrainStyle(ids,out trainColor,out trainVariant);var props=new System.Collections.Generic.List<string>();
+            vehicle=StpKit.Resolve(ids);var props=new System.Collections.Generic.List<string>();
             foreach(var id in ids){var module=RailwayCosmeticElement.ModuleForItem(id);if(module!=null)props.Add(module);}selectedProps=props.ToArray();MarkDirtyRepaint();
         }
         private void Draw(MeshGenerationContext context)
         {
             var w = contentRect.width; var h = contentRect.height;
             if (w <= 0 || h <= 0) return;
-            var p = context.painter2D;
-            var scale = new Vector2(w / 400f, h / 240f);
-            void Box(float x, float y, float bw, float bh, string fill, float outline = 2.5f) =>
-                RailwayDrawing.Box(p, x * scale.x, y * scale.y, bw * scale.x, bh * scale.y, RailwayDrawing.Color(fill), outline * scale.x);
-            void Shape(string fill, params Vector2[] points)
-            {
-                for (var i = 0; i < points.Length; i++) points[i] = Vector2.Scale(points[i], scale);
-                RailwayDrawing.Polygon(p, RailwayDrawing.Color(fill), points, 2.5f * scale.x);
-            }
-            Box(0, 0, 400, 240, world == 4 ? "E9E3D8" : "E7ECE9", 0);
-            Shape("D9DFDB", new Vector2(0, 92), new Vector2(67, 72), new Vector2(132, 89), new Vector2(210, 65), new Vector2(285, 78), new Vector2(400, 56), new Vector2(400, 240), new Vector2(0, 240));
-            // Cropped chunky station, window rhythm and two drawn shade planes.
-            Box(10, 33, 138, 111, "B2B6AF");
-            Box(18, 45, 120, 12, "D6D6CB", 0);
-            for (var i = 0; i < 4; i++) { Box(24 + i * 28, 65, 17, 29, "59666B", 1.8f); Box(24 + i * 28, 101, 17, 27, "737D7D", 1.8f); }
-            Shape("8C9794", new Vector2(148, 33), new Vector2(164, 45), new Vector2(164, 144), new Vector2(148, 144));
-            Box(7, 26, 144, 10, "495256");
-            if (world == 0)
-            {
-                Box(261, 58, 135, 99, "939E9C");
-                RailwayDrawing.RoundBox(p, new Rect(280 * scale.x, 78 * scale.y, 91 * scale.x, 90 * scale.y), 29 * scale.x, RailwayDrawing.Color("303B40"), 3 * scale.x);
-                Box(272, 47, 115, 15, "D2D2C8");
-                Box(286, 83, 77, 6, "5D6969", 0);
-            }
-            else if (world == 1)
-            {
-                Shape("93745B", new Vector2(223, 126), new Vector2(368, 119), new Vector2(393, 165), new Vector2(211, 177));
-                Box(260, 28, 7, 94, "D2A84B"); Box(250, 25, 111, 7, "D2A84B");
-                Box(350, 31, 4, 47, "5F6969", 1); Box(338, 77, 29, 8, "D2A84B");
-            }
-            else if (world == 2)
-            {
-                Box(256, 59, 127, 83, "A9B0AC");
-                Shape("D3D3C8", new Vector2(247, 58), new Vector2(321, 24), new Vector2(392, 58));
-                for (var i = 0; i < 4; i++) Box(267 + i * 27, 89, 18, 53, "5B666B");
-            }
-            else if (world == 3)
-            {
-                Shape("BBC3BD", new Vector2(210, 110), new Vector2(391, 73), new Vector2(398, 101), new Vector2(216, 139));
-                Box(240, 130, 13, 35, "8C9894"); Box(356, 105, 13, 47, "8C9894");
-                Box(310, 34, 5, 62, "59666B"); Box(278, 42, 71, 17, "F1EEE4");
-            }
-            else
-            {
-                RailwayDrawing.RoundBox(p, new Rect(249 * scale.x, 84 * scale.y, 132 * scale.x, 59 * scale.y), 10 * scale.x, RailwayDrawing.Color("CEB475"), 3 * scale.x);
-                Box(260, 93, 82, 22, "485B64"); Box(351, 93, 21, 40, "D7D4BB");
-                RailwayDrawing.Disc(p, new Vector2(273 * scale.x, 144 * scale.y), 9 * scale.x, RailwayDrawing.Color("303A3E"));
-                RailwayDrawing.Disc(p, new Vector2(355 * scale.x, 144 * scale.y), 9 * scale.x, RailwayDrawing.Color("303A3E"));
-                Box(227, 50, 4, 102, "59666B"); Box(213, 43, 31, 24, "F1EEE4");
-            }
-            Shape("C8C8BC", new Vector2(0, 146), new Vector2(400, 137), new Vector2(400, 193), new Vector2(0, 209));
-            Shape("A8ADA5", new Vector2(0, 178), new Vector2(400, 169), new Vector2(400, 181), new Vector2(0, 192));
-            // Small separate signal is an environmental prop, never a puzzle rule.
-            Box(184, 69, 6, 85, "59666B"); Box(175, 57, 24, 39, "303A3E");
-            RailwayDrawing.Disc(p, new Vector2(187 * scale.x, 69 * scale.y), 4.5f * scale.x, RailwayDrawing.Color("C83D45"));
-            RailwayDrawing.Disc(p, new Vector2(187 * scale.x, 84 * scale.y), 4.5f * scale.x, RailwayDrawing.Color("697473"));
-            // Sleepers and double rail anchor the vehicle into the scene.
-            for (var i = 0; i < 13; i++) Box(8 + i * 34, 207, 9, 23, "A28B70", 1);
-            RailwayDrawing.Line(p, new Vector2(0, 213 * scale.y), new Vector2(w, 202 * scale.y), RailwayDrawing.Color("596469"), 4 * scale.x);
-            RailwayDrawing.Line(p, new Vector2(0, 228 * scale.y), new Vector2(w, 217 * scale.y), RailwayDrawing.Color("596469"), 4 * scale.x);
-            RailwayDrawing.TrainSide(p, new Rect(41 * scale.x, 129 * scale.y, 259 * scale.x, 84 * scale.y),trainColor,trainVariant);
-            // Understated admin clutter and graphic dust, using original simple geometry.
-            Box(335, 163, 42, 9, "C1AE8D"); Box(340, 173, 5, 23, "59666B"); Box(367, 173, 5, 23, "59666B");
-            for (var i = 0; i < 3; i++) Box(20 + i * 9, 154 + i % 2 * 6, 3, 2, "8C9790", 0);
-            for(var i=0;i<selectedProps.Length;i++)RailwayCosmeticElement.DrawModule(p,selectedProps[i],Vector2.Scale(new Vector2(32+i%5*76,143+i/5*43),scale),.55f*scale.x);
-            if(composition!=null)
-            {
-                foreach(var module in composition.modules)RailwayCosmeticElement.DrawModule(p,module.kind,Vector2.Scale(new Vector2(module.x,module.y),scale),module.scale*scale.x);
-                for(var i=0;i<12;i++)
-                {
-                    var color=RailwayDrawing.Color(i==clearedStage-1?"C83D45":"CCD0D1");
-                    RailwayDrawing.Disc(p,new Vector2((21+i*32)*scale.x,233*scale.y),3.1f*scale.x,color);
-                }
-            }
+            StpDiorama.Paint(context, new Rect(0, 0, w, h), world, vehicle, selectedProps, composition, clearedStage);
         }
     }
-
     internal static class RailwayDrawing
     {
         internal static readonly Color Ink = Color("20272C");

@@ -2,36 +2,36 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-01-12",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 6,
     "height": 6
   },
   "endpoints": {
     "a": {
-      "side": "E",
-      "index": 0
+      "side": "N",
+      "index": 5
     },
     "b": {
       "side": "W",
-      "index": 4
+      "index": 0
     }
   },
   "rowCounts": [
+    2,
+    2,
+    2,
+    5,
     3,
-    2,
-    1,
-    2,
-    2,
     2
   ],
   "columnCounts": [
+    5,
     2,
     3,
-    3,
-    2,
     1,
-    1
+    1,
+    4
   ],
   "content": {
     "season": 1,
@@ -47,8 +47,8 @@
       "CHAIN",
       "ENDPOINT_GEOMETRY"
     ],
-    "chainDepth": 8,
-    "qualityNote": "Der obere Arm läuft versetzt bis zum unteren Westport und kehrt dort zunächst nach Süden zurück. Die mittleren Dreier-/Zweiercounts begrenzen den Weg ohne Voll-/Nullanker; der dünne diagonale Abschluss unterscheidet sich durch die untere Endpunktkurve von 11, bleibt ein Spieltestrisiko zur langen Anschlussfolge.",
+    "chainDepth": 22,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 6 interne Richtungswechsel, 10 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 89 Deduktionsschritte, Tiefe 22. Counts Zeilen [2, 2, 2, 5, 3, 2], Spalten [5, 2, 3, 1, 1, 4]; Anschlussanker N5/W0 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: extrem geringer Umweg. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -62,61 +62,81 @@
       {
         "x": 5,
         "y": 0,
-        "track": "TRACK_EW"
+        "track": "TRACK_NS"
       },
       {
-        "x": 4,
-        "y": 0,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 3,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
+        "x": 5,
         "y": 1,
-        "track": "TRACK_WN"
+        "track": "TRACK_NS"
       },
       {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 2,
+        "x": 5,
         "y": 2,
         "track": "TRACK_NS"
       },
       {
-        "x": 2,
+        "x": 5,
         "y": 3,
         "track": "TRACK_WN"
       },
       {
-        "x": 1,
+        "x": 4,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 2,
         "y": 3,
         "track": "TRACK_ES"
       },
       {
-        "x": 1,
+        "x": 2,
         "y": 4,
         "track": "TRACK_NS"
       },
       {
-        "x": 1,
+        "x": 2,
         "y": 5,
         "track": "TRACK_WN"
       },
       {
-        "x": 0,
+        "x": 1,
         "y": 5,
         "track": "TRACK_NE"
       },
       {
+        "x": 1,
+        "y": 4,
+        "track": "TRACK_SW"
+      },
+      {
         "x": 0,
         "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 0,
+        "y": 0,
         "track": "TRACK_SW"
       }
     ]
@@ -126,7 +146,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "b31df1d5d1ab0226cc4a62a6959153e7718316b8b3d03a8a1ad6d33a7c04eeb3"
+      "sha256": "192a7fb1a5fdde40bff30f505308baab955e2e74fbcc2809df5fc0fc75b3b3de"
     }
   }
 }

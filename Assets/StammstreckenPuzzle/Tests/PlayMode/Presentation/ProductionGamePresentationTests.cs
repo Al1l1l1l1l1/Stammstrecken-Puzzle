@@ -71,11 +71,11 @@ namespace STP.Tests.Presentation.PlayMode
                 var composition=catalog.ResolveComposition(map.compositionId);Assert.That(composition.section,Is.EqualTo(section));Assert.That(composition.route,Is.EqualTo(route));
                 Assert.That(train.compositionId,Is.EqualTo(map.compositionId));Assert.That(composition.modules.Length,Is.GreaterThanOrEqualTo(3));
             }
-            var reusableMap=catalog.ResolveReusableMoment("draft-endless-map-default");var reusableTrain=catalog.ResolveReusableMoment("draft-endless-train-default");Assert.That(reusableMap.puzzleId,Is.Empty);Assert.That(reusableTrain.puzzleId,Is.Empty);Assert.That(reusableMap.kind,Is.EqualTo("MAP"));Assert.That(reusableTrain.kind,Is.EqualTo("TRAIN"));Assert.That(reusableMap.compositionId,Is.EqualTo("s1-route-05-04"));Assert.Throws<ArgumentException>(()=>catalog.ResolveMoment(reusableMap.referenceId));Assert.That(catalog.CosmeticAssets.Count,Is.EqualTo(14));
+            var reusableMap=catalog.ResolveReusableMoment("draft-endless-map-default");var reusableTrain=catalog.ResolveReusableMoment("draft-endless-train-default");Assert.That(reusableMap.puzzleId,Is.Empty);Assert.That(reusableTrain.puzzleId,Is.Empty);Assert.That(reusableMap.kind,Is.EqualTo("MAP"));Assert.That(reusableTrain.kind,Is.EqualTo("TRAIN"));Assert.That(reusableMap.compositionId,Is.EqualTo("s1-route-05-04"));Assert.Throws<ArgumentException>(()=>catalog.ResolveMoment(reusableMap.referenceId));Assert.That(catalog.CosmeticAssets.Count,Is.EqualTo(29));
             foreach(var asset in catalog.CosmeticAssets){Assert.That(RailwayCosmeticElement.SupportsItem(asset.id),Is.True);Assert.That(catalog.ResolveCosmetic(asset.id),Is.SameAs(asset));}
             Assert.Throws<ArgumentException>(()=>catalog.ResolveMoment("missing"));
             using var presenter=new ProductionGamePresenter(Frame(),Locale(),()=>0,_=>Task.CompletedTask);
-            presenter.BindAssetCatalog(source,true);Assert.That(presenter.Root.Q("depot-catalog").childCount,Is.EqualTo(14));
+            presenter.BindAssetCatalog(source,true);Assert.That(presenter.Root.Q("depot-catalog").childCount,Is.EqualTo(29));
         }
 
         [Test]

@@ -11,6 +11,33 @@ namespace STP.Tests.Persistence.EditMode
     public sealed class SaveMigrationTests
     {
         public static IEnumerable<string> FixedNegativeNames()=>LocalSaveContractFixtures.Bundle.Get("negativeCases").Items.Select(c=>c.Get("name").Text).ToArray();
+        [TestCase("V1_FULL_FIRST_CLEAR")]
+        [TestCase("V1_FULL_RETAINED_LEGACY")]
+        public void LegacyWithoutWagonsMigratesWithExactInventorySelectionAndBalance(string name)
+        {
+            var fixture = LocalSaveContractFixtures.Case(name);
+            byte[] source = Encoding.UTF8.GetBytes(fixture.Get("sourceEnvelopeUtf8").Text); var original = (byte[])source.Clone();
+            var codec = LocalSaveContractFixtures.CodecFor(fixture); var decoded = codec.Decode(source);
+            Assert.That(decoded.Status, Is.EqualTo(LocalSaveDecodeStatus.Valid), decoded.ErrorCode);
+            Assert.That(decoded.SourceSchemaVersion, Is.EqualTo(1));
+            var snapshot = LocalSaveContractFixtures.Property(decoded, "Snapshot")!;
+            var state = LocalSaveContractFixtures.Property(snapshot, "Payload")!;
+            var inventory = LocalSaveContractFixtures.Property(state, "Inventory")!;
+            var records = ((System.Collections.IEnumerable)LocalSaveContractFixtures.Property(inventory, "Ownership")!).Cast<object>().ToArray();
+            Assert.That(records.All(o => (string)LocalSaveContractFixtures.Property(o, "ItemType")! != "WAGON"), Is.True);
+            byte[] encoded = LocalSaveContractFixtures.Encode(codec, snapshot);
+            var target = FixtureJson.Parse(Encoding.UTF8.GetString(encoded)).Get("payload");
+            var old = FixtureJson.Parse(fixture.Get("sourcePayloadUtf8").Text);
+            Assert.That(target.Get("inventory").Canonical(), Is.EqualTo(old.Get("inventory").Canonical()));
+            Assert.That(target.Get("ledgerCheckpoint").Get("balancePatience").Integer, Is.EqualTo(old.Get("ledgerCheckpoint").Get("balancePatience").Integer));
+            Assert.That(source, Is.EqualTo(original));
+        }
+        [Test]
+        public void SchemaOneLegacyReaderDoesNotInventHistoricalWagonSupport()
+        {
+            Assert.DoesNotThrow(() => new RetainedLegacyOwnershipReader("legacy-test", 1, new[] { "OPERATING_OBJECT", "LIVERY", "TRAIN_VARIANT" }));
+            Assert.That(Assert.Throws<ArgumentException>(() => new RetainedLegacyOwnershipReader("legacy-test", 1, new[] { "WAGON" }))!.Message, Is.EqualTo("SAVE_LEGACY_READER_UNSUPPORTED"));
+        }
         [TestCaseSource(nameof(FixedNegativeNames))]
         public void EveryFixedNegative_StopsAtItsRealReaderOrBindingBoundaryWithoutAReplacement(string name)
         {

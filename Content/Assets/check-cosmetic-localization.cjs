@@ -11,7 +11,10 @@ function verify(repo,sourcePath){
   const bytes=fs.readFileSync(path.join(repo,'Content/Assets/railway-assets-v1.json')),assets=JSON.parse(bytes);
   assert(bytes.equals(fs.readFileSync(path.join(repo,'Assets/StammstreckenPuzzle/UI/RailwayAssets.json'))),'Actual source/runtime assets must remain identical');
   fields(source.value,['schemaVersion','locale','status','entries']);assert.equal(source.value.schemaVersion,1);assert.equal(source.value.locale,'de-DE');assert.equal(source.value.status,'DRAFT');
-  assert.equal(source.value.entries.length,14);assert.equal(catalog.value.items.length,14);assert.equal(assets.cosmetics.length,14);
+  // The owner-listed IDs total 29: 7 trains + 10 liveries + 9 objects + 3 wagons.
+  assert.equal(source.value.entries.length,29);assert.equal(catalog.value.items.length,29);assert.equal(assets.cosmetics.length,29);
+  for(const [type,count] of [['TRAIN_VARIANT',7],['LIVERY',10],['OPERATING_OBJECT',9],['WAGON',3]])assert.equal(catalog.value.items.filter(i=>i.type===type).length,count);
+  assert(catalog.value.items.filter(i=>i.type==='WAGON').every(i=>i.acquisition==='PATIENCE_PURCHASE'&&Number.isSafeInteger(i.pricePatience)&&i.pricePatience>0));
   const projected=new Map(locale.value.entries.map(e=>[e.key,e]));assert.equal(projected.size,locale.value.entries.length);
   const names=new Map();for(const row of source.value.entries){
    fields(row,['key','text','description','charLimit','placeholders','status','audience','availability','blockedBy','charLimitStatus']);
@@ -26,7 +29,7 @@ function verify(repo,sourcePath){
   }
   const resolve=fs.readFileSync(path.join(repo,'Assets/StammstreckenPuzzle/Scripts/Presentation/UI/ProductionGameLocalization.cs'));
   assert(resolve.toString('utf8').includes('var key="product."+suffix;'),'Existing namespace contract changed; independent review required');
-  return {kind:'ACTUAL_DRAFT_COSMETIC_SOURCE_CROSS_REFERENCE_ONLY',titles:14,aliasesCreated:0,sourceRawSha256:source.sourceRawSha256,catalogRawSha256:catalog.sourceRawSha256,localeRawSha256:locale.sourceRawSha256,assetsRawSha256:raw(bytes),namespaceAdapterRawSha256:raw(resolve),approvalStatus:'DRAFT',productionApproval:false,saveOrCandidateRebinding:false};
+  return {kind:'ACTUAL_DRAFT_COSMETIC_SOURCE_CROSS_REFERENCE_ONLY',titles:source.value.entries.length,aliasesCreated:0,sourceRawSha256:source.sourceRawSha256,catalogRawSha256:catalog.sourceRawSha256,localeRawSha256:locale.sourceRawSha256,assetsRawSha256:raw(bytes),namespaceAdapterRawSha256:raw(resolve),approvalStatus:'DRAFT',productionApproval:false,saveOrCandidateRebinding:false};
  } finally {c.dispose();}
 }
 if(require.main===module){

@@ -73,7 +73,7 @@ namespace STP.Tests.Application.EditMode
         {
             var bounded=new PuzzleCandidateParameters(4,5,25,65,0,0,256,4000,60000,1,20,0);
             long ticks=0;
-            var result=PuzzleCandidateSearch.GenerateAsync(1,bounded,Array.Empty<PuzzleDefinition>(),Array.Empty<PuzzleDefinition>(),
+            var result=PuzzleCandidateSearch.GenerateAsync(2,bounded,Array.Empty<PuzzleDefinition>(),Array.Empty<PuzzleDefinition>(),
                 CancellationToken.None,()=>++ticks).GetAwaiter().GetResult();
             Assert.That(result.Succeeded,Is.False);Assert.That(result.Puzzle,Is.Null);
             Assert.That(result.Status,Is.EqualTo("GEN_VERIFICATION_INDETERMINATE"));

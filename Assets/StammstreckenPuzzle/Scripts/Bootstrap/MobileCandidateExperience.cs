@@ -190,7 +190,7 @@ namespace STP.Bootstrap
         private bool CanActCosmetic(string id)
         {
             var state=State;if(state==null||!saved.State.CanNavigate||!composition.Cosmetics.TryGet(id,out var item)||item==null)return false;
-            if(Owns(id))return !Equipped(id)||item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT";
+            if(Owns(id))return !Equipped(id)||item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT"||item.Type=="WAGON";
             if(item.Acquisition=="PATIENCE_PURCHASE")return saved.State.Progress?.BalancePatience>=item.PricePatience;
             if(item.Acquisition=="DEFAULT")return true;
             return item.RequiredCampaignSubjectIds.All(subject=>composition.Campaign.Entries
@@ -204,9 +204,9 @@ namespace STP.Bootstrap
             if(Owns(id))
             {
                 var inventory=State!.Inventory;
-                bool remove=Equipped(id)&&(item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT");
+                bool remove=Equipped(id)&&(item.Type=="LIVERY"||item.Type=="OPERATING_OBJECT"||item.Type=="WAGON");
                 var selected=remove?inventory.SelectedItemIds.Where(existing=>existing!=id).ToArray():
-                    inventory.SelectedItemIds.Where(existing=>existing!=id&&(item.Type=="OPERATING_OBJECT"||inventory.Ownership.Single(o=>o.ItemId==existing).ItemType!=item.Type)).Concat(new[]{id}).ToArray();
+                    inventory.SelectedItemIds.Where(existing=>existing!=id&&(item.Type=="OPERATING_OBJECT"||item.Type=="WAGON"||inventory.Ownership.Single(o=>o.ItemId==existing).ItemType!=item.Type)).Concat(new[]{id}).ToArray();
                 await CommitAsync((use,ct)=>use.SelectCosmeticsAsync(composition.CosmeticPolicy,selected,hash,ct));
             }
             else if(item.Acquisition=="PATIENCE_PURCHASE")await CommitAsync((use,ct)=>use.PurchaseCosmeticAsync(composition.CosmeticPolicy,id,hash,ct));

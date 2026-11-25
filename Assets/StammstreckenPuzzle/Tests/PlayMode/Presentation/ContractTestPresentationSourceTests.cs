@@ -38,11 +38,11 @@ namespace STP.Tests.Presentation.PlayMode
             var draft=Read("RailwayAssets.json");var fixture=Status(draft,"FIXTURE_ONLY");var product=Status(draft,"PRODUCT_APPROVED");
             try
             {
-                Assert.Throws<ArgumentException>(()=>new RailwayAssetCatalog(draft));Assert.That(new RailwayAssetCatalog(draft,true).CosmeticAssets.Count,Is.EqualTo(14));
+                Assert.Throws<ArgumentException>(()=>new RailwayAssetCatalog(draft));Assert.That(new RailwayAssetCatalog(draft,true).CosmeticAssets.Count,Is.EqualTo(29));
                 Assert.Throws<ArgumentException>(()=>new RailwayAssetCatalog(fixture));Assert.Throws<ArgumentException>(()=>new RailwayAssetCatalog(fixture,true));
                 Assert.That(RailwayAssetCatalog.ForContractTest(fixture).ResolvePuzzleMoment("S1-05-04-12",true).stage,Is.EqualTo(12));
                 Assert.Throws<ArgumentException>(()=>RailwayAssetCatalog.ForContractTest(draft));Assert.Throws<ArgumentException>(()=>RailwayAssetCatalog.ForContractTest(product));
-                Assert.That(new RailwayAssetCatalog(product).CosmeticAssets.Count,Is.EqualTo(14));
+                Assert.That(new RailwayAssetCatalog(product).CosmeticAssets.Count,Is.EqualTo(29));
             }
             finally{UnityEngine.Object.DestroyImmediate(fixture);UnityEngine.Object.DestroyImmediate(product);}
         }
@@ -54,7 +54,7 @@ namespace STP.Tests.Presentation.PlayMode
             {
                 using var presenter=new ProductionGamePresenter(frame,Read("ProductionGameLocale.json"),()=>0,_=>Task.CompletedTask);
                 Assert.Throws<ArgumentException>(()=>presenter.BindContractTestAssetCatalog(source));Assert.Throws<ArgumentException>(()=>presenter.BindContractTestAssetCatalog(product));Assert.That(frame.Q("depot-catalog").childCount,Is.Zero);
-                presenter.BindContractTestAssetCatalog(fixture);Assert.That(frame.Q("depot-catalog").childCount,Is.EqualTo(14));Assert.Throws<InvalidOperationException>(()=>presenter.BindContractTestAssetCatalog(fixture));Assert.Throws<InvalidOperationException>(()=>presenter.BindAssetCatalog(product));
+                presenter.BindContractTestAssetCatalog(fixture);Assert.That(frame.Q("depot-catalog").childCount,Is.EqualTo(29));Assert.Throws<InvalidOperationException>(()=>presenter.BindContractTestAssetCatalog(fixture));Assert.Throws<InvalidOperationException>(()=>presenter.BindAssetCatalog(product));
                 Assert.Throws<ArgumentException>(()=>presenter.BindContractTestCampaignText(textSource));presenter.BindContractTestCampaignText(fixtureText);Assert.Throws<InvalidOperationException>(()=>presenter.BindContractTestCampaignText(fixtureText));
             }
             finally{UnityEngine.Object.DestroyImmediate(fixture);UnityEngine.Object.DestroyImmediate(product);UnityEngine.Object.DestroyImmediate(fixtureText);}

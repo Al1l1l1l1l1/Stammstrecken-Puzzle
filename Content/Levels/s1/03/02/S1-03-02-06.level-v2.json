@@ -2,36 +2,36 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-03-02-06",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 6,
     "height": 6
   },
   "endpoints": {
     "a": {
-      "side": "N",
+      "side": "W",
       "index": 1
     },
     "b": {
-      "side": "E",
-      "index": 2
+      "side": "S",
+      "index": 3
     }
   },
   "rowCounts": [
+    5,
+    5,
     1,
-    2,
     3,
-    3,
-    4,
-    0
+    1,
+    1
   ],
   "columnCounts": [
-    0,
+    2,
+    1,
     2,
     4,
-    1,
     3,
-    3
+    4
   ],
   "content": {
     "season": 1,
@@ -47,8 +47,8 @@
       "COMBINATION",
       "CHAIN"
     ],
-    "chainDepth": 6,
-    "qualityNote": "Linke und untere Nullachse begrenzen fünf aktive Zeilen/Spalten. Der Einsercount von Spalte 3 koppelt den linken Nordarm mit dem rechten Ostgebiet nur im unteren Querweg; genau dieser Übergang führt zwei Teilräume zusammen.",
+    "chainDepth": 13,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 8 interne Richtungswechsel, 8 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 84 Deduktionsschritte, Tiefe 13. Counts Zeilen [5, 5, 1, 3, 1, 1], Spalten [2, 1, 2, 4, 3, 4]; Anschlussanker W1/S3 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: Haeufung direkt entscheidender Linien ab Abschnitt2. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -60,69 +60,84 @@
   "solution": {
     "path": [
       {
-        "x": 1,
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 0,
         "y": 0,
-        "track": "TRACK_NS"
+        "track": "TRACK_ES"
       },
       {
         "x": 1,
-        "y": 1,
-        "track": "TRACK_NE"
+        "y": 0,
+        "track": "TRACK_EW"
       },
       {
         "x": 2,
-        "y": 1,
+        "y": 0,
         "track": "TRACK_SW"
       },
       {
         "x": 2,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 4,
+        "y": 1,
         "track": "TRACK_NE"
       },
       {
         "x": 3,
-        "y": 4,
+        "y": 1,
         "track": "TRACK_EW"
       },
       {
         "x": 4,
-        "y": 4,
-        "track": "TRACK_EW"
-      },
-      {
-        "x": 5,
-        "y": 4,
+        "y": 1,
         "track": "TRACK_WN"
       },
       {
-        "x": 5,
-        "y": 3,
-        "track": "TRACK_SW"
-      },
-      {
         "x": 4,
-        "y": 3,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 4,
-        "y": 2,
+        "y": 0,
         "track": "TRACK_ES"
       },
       {
         "x": 5,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
         "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 4,
+        "y": 3,
         "track": "TRACK_EW"
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "track": "TRACK_NS"
       }
     ]
   },
@@ -131,7 +146,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "647fd88c208cc1ef3307893778dccb61cab5b1d88c354890edd192a1c45f4fe9"
+      "sha256": "fb2b2b700f16ad52cae7c37334aa146b0fd3c6a59bf062a2a7ee14b16194b611"
     }
   }
 }

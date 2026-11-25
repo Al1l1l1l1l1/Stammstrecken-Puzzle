@@ -20,7 +20,14 @@ namespace STP.Tests.Application.EditMode
                 Items = Array.AsReadOnly(new[] {
                     CosmeticDefinition.Create("default-train", "TRAIN_VARIANT", "ACTIVE", "cosmetic.default.title", "stp/default", "DEFAULT", null, Array.Empty<string>()),
                     CosmeticDefinition.Create("purchase-object", "OPERATING_OBJECT", purchaseStatus, "cosmetic.purchase.title", "stp/purchase", "PATIENCE_PURCHASE", 120, Array.Empty<string>()),
-                    CosmeticDefinition.Create("season-object", "OPERATING_OBJECT", "ACTIVE", "cosmetic.season.title", "stp/season", "MILESTONE_GRANT", null, new[] { "S1" }) });
+                    CosmeticDefinition.Create("season-object", "OPERATING_OBJECT", "ACTIVE", "cosmetic.season.title", "stp/season", "MILESTONE_GRANT", null, new[] { "S1" }),
+                    CosmeticDefinition.Create("other-train", "TRAIN_VARIANT", "ACTIVE", "cosmetic.other.title", "stp/other", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("livery-one", "LIVERY", "ACTIVE", "cosmetic.livery.one", "stp/livery-one", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("livery-two", "LIVERY", "ACTIVE", "cosmetic.livery.two", "stp/livery-two", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("wagon-one", "WAGON", "ACTIVE", "cosmetic.wagon.one", "stp/wagon-one", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("wagon-two", "WAGON", "ACTIVE", "cosmetic.wagon.two", "stp/wagon-two", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("wagon-three", "WAGON", "ACTIVE", "cosmetic.wagon.three", "stp/wagon-three", "PATIENCE_PURCHASE", 10, Array.Empty<string>()),
+                    CosmeticDefinition.Create("wagon-four", "WAGON", "ACTIVE", "cosmetic.wagon.four", "stp/wagon-four", "PATIENCE_PURCHASE", 10, Array.Empty<string>()) });
                 string Q(string s) => LocalSaveHash.Quote(s);
                 string source = "{\"schemaVersion\":2,\"catalogId\":\"test-cosmetics\",\"catalogRevision\":" + revision + ",\"approvalStatus\":\"FIXTURE_ONLY\",\"items\":[" + string.Join(",", Items.Select(i => "{\"id\":" + Q(i.Id) + ",\"type\":" + Q(i.Type) + ",\"status\":" + Q(i.Status) + ",\"titleKey\":" + Q(i.TitleKey) + ",\"assetAddress\":" + Q(i.AssetAddress) + ",\"acquisition\":" + Q(i.Acquisition) + (i.PricePatience.HasValue ? ",\"pricePatience\":" + i.PricePatience.Value : i.Acquisition == "MILESTONE_GRANT" ? ",\"milestoneEligibility\":{\"contractVersion\":1,\"kind\":\"ALL_FIRST_CLEARS_OF_CAMPAIGN_SUBJECTS\",\"requiredCampaignSubjectIds\":[\"S1\"]}" : "") + "}")) + "]}";
                 Source = LocalSaveHash.Canonical(LocalSaveContractFixtures.Json, source);
@@ -74,6 +81,37 @@ namespace STP.Tests.Application.EditMode
             Assert.That(f.Saves.Ledger.Validate(result.State), Is.Zero);
         }
         [Test]
+        public void ThreeWagonsAreAdditiveBesideOneTrainOneLiveryAndSeveralObjects()
+        {
+            var f = new Fixture(); var state = f.Policy.GrantDefaults(f.Earned, f.Hash, Utc).State;
+            foreach (string id in new[] { "other-train", "livery-one", "livery-two", "wagon-one", "wagon-two", "wagon-three", "wagon-four", "purchase-object" })
+                state = f.Policy.Purchase(state, id, f.Hash, 4, Utc).State;
+            state = f.Policy.ReserveMilestone(state, "season-object", "op", f.Hash, 4).State;
+            state = f.Policy.CommitMilestone(state, "season-object", "op", 4, f.Hash, Utc).State;
+            var ids = new[] { "other-train", "livery-one", "wagon-one", "wagon-two", "wagon-three", "purchase-object", "season-object" };
+            var selected = f.Policy.Select(state, ids, f.Hash).State;
+            Assert.That(selected.Inventory.SelectedItemIds, Is.EqualTo(ids));
+            Assert.That(f.Saves.Ledger.Validate(selected), Is.EqualTo(f.Saves.Ledger.Validate(state)));
+            Assert.That(f.Policy.Select(selected, ids.Where(id => id != "wagon-two").ToArray(), f.Hash).State.Inventory.SelectedItemIds, Does.Contain("wagon-one").And.Contain("wagon-three").And.Not.Contain("wagon-two"));
+            foreach (string conflict in new[] { "default-train", "livery-two", "wagon-four" })
+                Assert.That(Assert.Throws<ArgumentException>(() => f.Policy.Select(selected, ids.Concat(new[] { conflict }).ToArray(), f.Hash))!.Message, Is.EqualTo("COSMETIC_SELECTION_CONFLICT"));
+        }
+        [Test]
+        public void WagonUsesOnlyCatalogPricedPatiencePurchaseAndReplayNeverChargesAgain()
+        {
+            var f = new Fixture(); var source = f.Earned; long balance = f.Saves.Ledger.Validate(source);
+            Assert.That(Assert.Throws<ArgumentException>(() => f.Policy.Purchase(f.Saves.Empty, "wagon-one", f.Hash, 2, Utc))!.Message, Is.EqualTo("COSMETIC_INSUFFICIENT_PATIENCE"));
+            Assert.That(Assert.Throws<ArgumentException>(() => f.Policy.ReserveMilestone(source, "wagon-one", "op", f.Hash, 4))!.Message, Is.EqualTo("COSMETIC_ACQUISITION_MISMATCH"));
+            Assert.That(f.Policy.GrantDefaults(source, f.Hash, Utc).State.Inventory.Ownership.Any(o => o.ItemType == "WAGON"), Is.False);
+            var result = f.Policy.Purchase(source, "wagon-one", f.Hash, 4, Utc).State;
+            var wagon = result.Inventory.Ownership.OfType<PurchasedOwnership>().Single();
+            Assert.That(wagon.ItemType, Is.EqualTo("WAGON")); Assert.That(wagon.PricePatience, Is.EqualTo(10));
+            Assert.That(f.Saves.Ledger.Validate(result), Is.EqualTo(balance - 10));
+            Assert.That(result.EconomyJournal.Single(e => e.ReasonCode == "COSMETIC_PURCHASE").Amount, Is.EqualTo(-10));
+            Assert.That(f.Policy.Purchase(result, "wagon-one", f.Hash, 5, Utc).State, Is.SameAs(result));
+            Assert.That(source.Inventory.Ownership, Is.Empty);
+        }
+        [Test]
         public void MilestoneNeedsEveryFirstClearAndItsPersistedReservationBeforeOwnership()
         {
             var f = new Fixture(); Assert.Throws<ArgumentException>(() => f.Policy.ReserveMilestone(f.Saves.Empty, "season-object", "op", f.Hash, 2));
@@ -92,9 +130,12 @@ namespace STP.Tests.Application.EditMode
             Assert.Throws<ArgumentException>(() => other.CommitMilestone(reserve.State, "season-object", "op", 4, changed.Identity.HashSha256, Utc));
         }
         [Test]
-        public void PurchasedAndReservedStatesRoundTripThroughUnchangedSaveV2Codec()
+        [TestCase("purchase-object", "OPERATING_OBJECT")]
+        [TestCase("wagon-one", "WAGON")]
+        public void PurchasedAndReservedStatesRoundTripThroughUnchangedSaveV2Codec(string itemId, string itemType)
         {
-            var f = new Fixture(); var bought = f.Policy.Purchase(f.Earned, "purchase-object", f.Hash, 4, Utc).State;
+            var f = new Fixture(); var bought = f.Policy.Purchase(f.Earned, itemId, f.Hash, 4, Utc).State;
+            bought = f.Policy.Select(bought, new[] { itemId }, f.Hash).State;
             var reserve = f.Policy.ReserveMilestone(bought, "season-object", "op", f.Hash, 5).State;
             var campaignJson = LocalSaveContractFixtures.Goldens.Get("catalogs").Get("campaignCatalog");
             var dom = campaignJson.GetType().GetField("value", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(campaignJson)!;
@@ -113,7 +154,10 @@ namespace STP.Tests.Application.EditMode
             Assert.That(LocalSaveContractFixtures.Get(decoded, "Status")!.ToString(), Is.EqualTo("Valid"));
             Assert.That(LocalSaveContractFixtures.Get(decoded, "SourceSchemaVersion"), Is.EqualTo(2));
             var recovered = ((SaveSnapshot<LocalProfileState>)LocalSaveContractFixtures.Get(decoded, "Snapshot")!).Payload;
-            Assert.That(recovered.Inventory.Ownership.OfType<PurchasedOwnership>().Single().ItemId, Is.EqualTo("purchase-object"));
+            var ownership = recovered.Inventory.Ownership.OfType<PurchasedOwnership>().Single();
+            Assert.That(ownership.ItemId, Is.EqualTo(itemId)); Assert.That(ownership.ItemType, Is.EqualTo(itemType));
+            Assert.That(recovered.Inventory.SelectedItemIds, Is.EqualTo(new[] { itemId }));
+            Assert.That(f.Saves.Ledger.Validate(recovered), Is.EqualTo(f.Saves.Ledger.Validate(reserve)));
             Assert.That(f.Policy.CommitMilestone(recovered, "season-object", "op", 5, f.Hash, Utc).State.Inventory.Ownership.OfType<MilestoneOwnership>().Count(), Is.EqualTo(1));
         }
         [Test]

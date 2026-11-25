@@ -2,42 +2,42 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-05-04-03",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 9,
     "height": 9
   },
   "endpoints": {
     "a": {
-      "side": "W",
-      "index": 0
+      "side": "S",
+      "index": 8
     },
     "b": {
-      "side": "E",
-      "index": 7
+      "side": "W",
+      "index": 1
     }
   },
   "rowCounts": [
+    5,
+    8,
+    1,
+    2,
+    2,
+    2,
     4,
-    3,
-    6,
-    5,
-    5,
-    5,
-    5,
-    7,
-    0
+    1,
+    1
   ],
   "columnCounts": [
-    8,
     1,
-    8,
     1,
-    8,
+    2,
+    2,
     1,
     6,
-    1,
-    6
+    7,
+    3,
+    3
   ],
   "content": {
     "season": 1,
@@ -53,8 +53,8 @@
       "COMBINATION",
       "DENSITY"
     ],
-    "chainDepth": 7,
-    "qualityNote": "Drei Achterspalten sind innerhalb des aktiven Gebietes voll, die übrigen mittleren Werte verteilen den rechten Rückweg. Die Nähe zu S1-05-03-03 und -08 ist als Übertragung von deren ungleicher Belegung in einen komplexeren Quer-/Restzusammenhang dokumentiert; behalten, statt einen beliebigen Ähnlichkeitswert zum Ausschluss zu machen.",
+    "chainDepth": 15,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 17 interne Richtungswechsel, 10 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 177 Deduktionsschritte, Tiefe 15. Counts Zeilen [5, 8, 1, 2, 2, 2, 4, 1, 1], Spalten [1, 1, 2, 2, 1, 6, 7, 3, 3]; Anschlussanker S8/W1 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: Fuenfarm-Serpentine. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -66,204 +66,134 @@
   "solution": {
     "path": [
       {
-        "x": 0,
-        "y": 0,
+        "x": 8,
+        "y": 8,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 7,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 8,
+        "y": 6,
         "track": "TRACK_SW"
       },
       {
-        "x": 0,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
+        "x": 7,
         "y": 6,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 7,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 1,
-        "y": 7,
         "track": "TRACK_EW"
       },
       {
-        "x": 2,
-        "y": 7,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 2,
+        "x": 6,
         "y": 6,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 2,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 3,
-        "y": 0,
         "track": "TRACK_EW"
       },
       {
-        "x": 4,
-        "y": 0,
-        "track": "TRACK_SW"
-      },
-      {
-        "x": 4,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 2,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 3,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 4,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
+        "x": 5,
         "y": 6,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 4,
-        "y": 7,
         "track": "TRACK_NE"
       },
       {
         "x": 5,
-        "y": 7,
-        "track": "TRACK_EW"
+        "y": 5,
+        "track": "TRACK_ES"
       },
       {
         "x": 6,
-        "y": 7,
+        "y": 5,
         "track": "TRACK_WN"
       },
       {
         "x": 6,
-        "y": 6,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
-        "y": 5,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 6,
         "y": 4,
-        "track": "TRACK_NS"
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "track": "TRACK_ES"
       },
       {
         "x": 6,
         "y": 3,
-        "track": "TRACK_NS"
+        "track": "TRACK_WN"
       },
       {
         "x": 6,
         "y": 2,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 6,
+        "y": 1,
         "track": "TRACK_ES"
       },
       {
         "x": 7,
-        "y": 2,
-        "track": "TRACK_EW"
+        "y": 1,
+        "track": "TRACK_WN"
       },
       {
-        "x": 8,
-        "y": 2,
+        "x": 7,
+        "y": 0,
         "track": "TRACK_SW"
       },
       {
-        "x": 8,
-        "y": 3,
-        "track": "TRACK_NS"
+        "x": 6,
+        "y": 0,
+        "track": "TRACK_EW"
       },
       {
-        "x": 8,
-        "y": 4,
-        "track": "TRACK_NS"
+        "x": 5,
+        "y": 0,
+        "track": "TRACK_ES"
       },
       {
-        "x": 8,
-        "y": 5,
-        "track": "TRACK_NS"
+        "x": 5,
+        "y": 1,
+        "track": "TRACK_WN"
       },
       {
-        "x": 8,
-        "y": 6,
-        "track": "TRACK_NS"
+        "x": 4,
+        "y": 1,
+        "track": "TRACK_EW"
       },
       {
-        "x": 8,
-        "y": 7,
+        "x": 3,
+        "y": 1,
         "track": "TRACK_NE"
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "track": "TRACK_EW"
       }
     ]
   },
@@ -272,7 +202,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "b25007dc761fafa8428e36387f32806ef8332b4bb59bdef0057efa05914ada09"
+      "sha256": "e11c5e65a206b2ba061e39642d8236bc45b1b686ace5c635eb15531f4edf1703"
     }
   }
 }

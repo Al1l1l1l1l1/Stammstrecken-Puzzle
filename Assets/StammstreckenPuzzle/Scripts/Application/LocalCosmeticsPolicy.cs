@@ -125,11 +125,12 @@ namespace STP.Application
             var ownership = MilestoneOwnership.Create(item.Id, item.Type, cosmetics.Identity, r.ClaimId, r.OperationId, r.ClaimGeneration, hash, acquiredAtUtc);
             return new LocalCosmeticsProjection(Copy(state, LocalInventory.Create(state.Inventory.Ownership.Concat(new[] { ownership }).OrderBy(o => o.ItemId, StringComparer.Ordinal).ToArray(), state.Inventory.SelectedItemIds), state.CosmeticClaimReservations.Where(x => x.ClaimId != r.ClaimId).ToArray()), "MILESTONE_GRANTED");
         }
-        /// <summary>Selection uses owned IDs, including retained hidden/tombstoned ownership; at most one train and livery.</summary>
+        /// <summary>Owned IDs only: one train, one livery, up to three additive wagons and any number of objects.</summary>
         public LocalCosmeticsProjection Select(LocalProfileState state, IReadOnlyList<string> itemIds, string expectedHash)
         {
             Binding(state, expectedHash); var inventory = LocalInventory.Create(state.Inventory.Ownership, itemIds);
             foreach (string type in new[] { "TRAIN_VARIANT", "LIVERY" }) LocalModel.Require(itemIds.Count(id => state.Inventory.Ownership.Single(o => o.ItemId == id).ItemType == type) <= 1, "COSMETIC_SELECTION_CONFLICT");
+            LocalModel.Require(itemIds.Count(id => state.Inventory.Ownership.Single(o => o.ItemId == id).ItemType == "WAGON") <= 3, "COSMETIC_SELECTION_CONFLICT");
             return new LocalCosmeticsProjection(Copy(state, inventory, state.CosmeticClaimReservations), "SELECTION_SAVED");
         }
     }

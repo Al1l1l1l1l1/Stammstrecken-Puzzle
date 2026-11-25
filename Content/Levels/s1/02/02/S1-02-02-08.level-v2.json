@@ -2,7 +2,7 @@
   "documentSchemaVersion": 2,
   "rulesetVersion": "train-track-v1",
   "puzzleId": "S1-02-02-08",
-  "contentRevision": 2,
+  "contentRevision": 3,
   "grid": {
     "width": 5,
     "height": 5
@@ -10,26 +10,26 @@
   "endpoints": {
     "a": {
       "side": "S",
-      "index": 0
+      "index": 2
     },
     "b": {
       "side": "N",
-      "index": 1
+      "index": 4
     }
   },
   "rowCounts": [
-    5,
-    5,
     4,
-    2,
+    1,
+    4,
+    4,
     2
   ],
   "columnCounts": [
+    2,
     4,
-    5,
     4,
-    3,
-    2
+    4,
+    1
   ],
   "content": {
     "season": 1,
@@ -45,8 +45,8 @@
       "COMBINATION",
       "DENSITY"
     ],
-    "chainDepth": 5,
-    "qualityNote": "Die Belegung fällt danach auf 4/2/2 ab und muss zum Südport links führen. Die fast diagonale Kurvenfolge ist anders als die vertikale Wechselserie in Position 7; viele Formzwänge kreuzen die volle Spalte 1 und binden den unteren Bereich ein.",
+    "chainDepth": 11,
+    "qualityNote": "DRAFT-Strukturrework: groessengleicher Ersatz im unveraenderten Kampagnenplatz. Keine Null-/Voll-Linie, keine direkt durch solche Linien entschiedene Zelle; 8 interne Richtungswechsel, 8 zusaetzliche Pfadkanten gegenueber A-B-Manhattan. Maximal drei parallele alternierende Arme mit gleichgerichteten Verbindern nach path-geometry-v1. Oeffentlich frisch UNIQUE/Guess0 verifiziert: 63 Deduktionsschritte, Tiefe 11. Counts Zeilen [4, 1, 4, 4, 2], Spalten [2, 4, 4, 4, 1]; Anschlussanker S2/N4 statt vorgezeichneter Voll-/Leerstreifen. Auswahl nahe am bisherigen technischen Slotband mit positionsabhaengiger Tiefenstaffelung; das ist keine menschliche Schwierigkeitsannahme. Anlass: \u003E=3 direkte Null/Voll-Linien. Echter Erstkontakt und Sternzeitkalibrierung bleiben NOT_EXECUTED.",
     "timeClass": "UNCALIBRATED",
     "starThresholdsSeconds": null
   },
@@ -58,49 +58,69 @@
   "solution": {
     "path": [
       {
-        "x": 0,
+        "x": 2,
         "y": 4,
         "track": "TRACK_ES"
       },
       {
-        "x": 1,
+        "x": 3,
         "y": 4,
         "track": "TRACK_WN"
       },
       {
-        "x": 1,
+        "x": 3,
         "y": 3,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 2,
-        "y": 3,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 2,
-        "y": 2,
-        "track": "TRACK_ES"
+        "track": "TRACK_NS"
       },
       {
         "x": 3,
         "y": 2,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 3,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 4,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 4,
-        "y": 0,
         "track": "TRACK_SW"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "track": "TRACK_EW"
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "track": "TRACK_NE"
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "track": "TRACK_WN"
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "track": "TRACK_NS"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "track": "TRACK_ES"
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "track": "TRACK_EW"
       },
       {
         "x": 3,
@@ -108,42 +128,7 @@
         "track": "TRACK_EW"
       },
       {
-        "x": 2,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 2,
-        "y": 1,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 1,
-        "y": 1,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 1,
-        "y": 2,
-        "track": "TRACK_WN"
-      },
-      {
-        "x": 0,
-        "y": 2,
-        "track": "TRACK_NE"
-      },
-      {
-        "x": 0,
-        "y": 1,
-        "track": "TRACK_NS"
-      },
-      {
-        "x": 0,
-        "y": 0,
-        "track": "TRACK_ES"
-      },
-      {
-        "x": 1,
+        "x": 4,
         "y": 0,
         "track": "TRACK_WN"
       }
@@ -154,7 +139,7 @@
     "proofFormatVersion": 1,
     "proofHash": {
       "profile": "STP-PROOF-JCS-1",
-      "sha256": "532b986e36a45355c99702713b19843a2b2dbd4bf71290a296879d37f66c9ee3"
+      "sha256": "414402dbf621c2d2ee2457efb64019b9c4e2a40a64fd375ad835afcef3642cb7"
     }
   }
 }
