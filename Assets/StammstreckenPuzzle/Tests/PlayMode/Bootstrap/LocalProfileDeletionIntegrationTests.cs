@@ -173,7 +173,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             }
             var files=Paths.ToDictionary(p=>p,p=>AssetDatabase.LoadAssetAtPath<TextAsset>(Fixtures+p),StringComparer.Ordinal);Assert.That(files.Values.All(v=>v!=null),Is.True);
             installer.ConfigureContractTestRuntime(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(Ui+"ProductionGame.uxml"),AssetDatabase.LoadAssetAtPath<StyleSheet>(Ui+"ProductionGame.uss"),AssetDatabase.LoadAssetAtPath<TextAsset>(Ui+"ProductionGameLocale.json"),panel,
-                files,AssetDatabase.LoadAssetAtPath<TextAsset>(Fixtures+"Runtime.bindings.json"),"96d5ef9c4635d8ff5504f97c9dda61b649301f59b84efa7e136c6d006aec2e8d","bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b","bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b","8a4d61537ed6583239ab2c269a088d9f2cacaf1188611f9381f6c6c41283a3b8");
+                files,AssetDatabase.LoadAssetAtPath<TextAsset>(Fixtures+"Runtime.bindings.json"),"25d9a01aa1a38275d846fe3c5451a1fefed9eff8d8bae5de6d04502510d80421","bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b","bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b","8a4d61537ed6583239ab2c269a088d9f2cacaf1188611f9381f6c6c41283a3b8");
             host.SetActive(true);installer.Document.rootVisualElement.style.width=390;installer.Document.rootVisualElement.style.height=844;yield return Await(installer.InitializeTask);yield return null;yield return null;
             Assert.That(installer.RuntimeComposition,Is.Not.Null,installer.StartupDiagnostic);Assert.That(Runtime.Profile.Use,Is.EqualTo(CatalogUse.ContractTest));Assert.That(ProfilePath.StartsWith(Path.GetFullPath(ownRoot)+Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase),Is.True);
 #else

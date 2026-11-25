@@ -27,7 +27,7 @@ namespace STP.Tests.Bootstrap.PlayMode
     {
         private const string Ui = "Assets/StammstreckenPuzzle/UI/";
         private const string Fixtures = "Assets/StammstreckenPuzzle/Tests/PlayMode/Bootstrap/RuntimeFixtures/";
-        private const string BindingSha = "96d5ef9c4635d8ff5504f97c9dda61b649301f59b84efa7e136c6d006aec2e8d";
+        private const string BindingSha = "25d9a01aa1a38275d846fe3c5451a1fefed9eff8d8bae5de6d04502510d80421";
         private const string ReleaseSha = "bc970d83dec62509f17246319e22e6745ec53e8b72e17d8d1afe6e17b8e7030b";
         private const string UiSha = "8a4d61537ed6583239ab2c269a088d9f2cacaf1188611f9381f6c6c41283a3b8";
         private static readonly string[] Paths = { "Calibration.json", "Campaign.json", "CampaignCompletion.json", "CampaignText.json", "Cosmetics.json", "EndlessCompletion.json",
