@@ -4,2039 +4,1925 @@ Automatisch aus der kanonischen de-DE.json abgeleitet. Alle Texte sind DRAFT. Di
 
 ## Die 240 Meldungen
 
-### S1-01-01-01 · Alles planmäßig
+### S1-01-01-01 · Abfahrt laut geänderter Tafel
 
-Status: Die erste Abweichung ist bereits berücksichtigt. Worin, wird noch geklärt.
+Status: Die Tafel zeigt fünf Minuten mehr. Damit ist der Zug wieder pünktlich.
 
-Ergebnis: Die Verbindung steht. Der Plan kann sich vorerst darauf berufen.
+Ergebnis: Die Tafel meldet Abfahrt. Diesmal bewegt sich auch etwas außerhalb der Anzeige.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 fordert vier Gleisfelder bei vier Spalten und ist daher vollständig belegt. B an N/0 legt zusätzlich den Nordanschluss der Zelle (0,0) fest.
 
-### S1-01-01-02 · Kleine Abweichung
+### S1-01-01-02 · Kurzzug zur Hauptverkehrszeit
 
-Status: Der Regelbetrieb erhält eine vorsorgliche Ausnahmegenehmigung.
+Status: Heute halten nur drei Wagen. Die übrigen stehen im Fahrplan.
 
-Ergebnis: Abweichung erledigt. Die Ausnahme bleibt aus organisatorischen Gründen vermerkt.
+Ergebnis: Die Durchsage meldet einen vollständigen Zug. Alle drei Wagen fahren tatsächlich.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat Count 4 und ist vollständig belegt. Eine bloße Gerade durch diese Zeile reicht nicht, da Spalten 2 und 3 jeweils zwei Gleisfelder verlangen.
 
-### S1-01-01-03 · Fahrplan vorsorglich angepasst
+### S1-01-01-03 · Erste Klasse am anderen Zugende
 
-Status: Die Abfahrten wurden der erwarteten Wirklichkeit angenähert.
+Status: Die erste Klasse hält hinten. Der Aushang bleibt seiner Richtung treu.
 
-Ergebnis: Der Fahrplan hat jetzt eine Verbindung, auf die er sich beziehen kann.
+Ergebnis: Die Wagen stehen richtig. Der Aushang wurde umgedreht, nicht der Zug.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 0; alle vier Zellen dieser Spalte bleiben leer. Die nutzbare Fläche endet damit vor der rechten Rasterkante.
 
-### S1-01-01-04 · Anpassung vor Eintritt der Abweichung
+### S1-01-01-04 · Gleiswechsel nach Türschluss
 
-Status: Die Änderung gilt bereits. Ihr Anlass wird noch vorbereitet.
+Status: Ihr Zug steht gegenüber. Die neue Gleisangabe kommt mit dem Türschluss.
 
-Ergebnis: Anlass und Änderung passen wieder zusammen. Die Reihenfolge war unerheblich.
+Ergebnis: Die Türen öffnen noch einmal. Der Weg über die Treppe zählt diesmal als Umstieg.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 1 haben beide Count 0. Die gesamte linke Hälfte des 4×4-Felds ist damit ausgeschlossen.
 
-### S1-01-01-05 · Vorläufiger Fahrplanstand
+### S1-01-01-05 · Aufzug mit planmäßiger Pause
 
-Status: Bitte betrachten Sie die vorige Änderung als Teil der nächsten.
+Status: Der Aufzug zum Bahnsteig steht. Die Treppe übernimmt ohne Zuschlag.
 
-Ergebnis: Der aktuelle Plan reicht bis B. Eine bemerkenswert konkrete Fassung.
+Ergebnis: Aufzug und Zug fahren. Laut Aushang besteht darauf kein Anspruch.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0 und bleibt leer. Deshalb kann keine Zelle in Zeile 1 nach Norden anschließen.
 
-### S1-01-01-06 · Strecke wird geprüft
+### S1-01-01-06 · Anschluss mit verkürzter Wartezeit
 
-Status: Die Prüfung bestätigt zunächst den Bedarf einer Prüfung.
+Status: Ihr Anschluss fährt schon. So entfällt die Wartezeit beim Umsteigen.
 
-Ergebnis: Die Strecke ist befahrbar. Der Prüfauftrag hat seinen Gegenstand überlebt.
+Ergebnis: Der Anschluss steht noch da. Die Durchsage muss ihre Entschuldigung abbrechen.
 
 **INTERN · Einstieg:** Nullbasiert: Die unterste Zeile 3 hat Count 4 bei vier Feldern. Ihre vollständige Belegung ist sicher; die Gleisformen sind damit noch nicht bestimmt.
 
-### S1-01-01-07 · Prüfumfang wird erweitert
+### S1-01-01-07 · Ersatzbus am gesperrten Ausgang
 
-Status: Auch die bereits geprüften Angaben bleiben Gegenstand der Prüfung.
+Status: Der Bus hält hinter dem Bauzaun. Die Abfahrt gilt als angeboten.
 
-Ergebnis: Die Verbindung hat die erweiterte Prüfung auf ganzer Strecke bestanden.
+Ergebnis: Die Strecke ist frei. Der Ersatzbus darf wieder eine erreichbare Haltestelle bedienen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 ist mit Count 4 vollständig belegt. Sie liefert einen waagerechten Belegungsanker zwischen beiden Rasterseiten.
 
-### S1-01-01-08 · Prüfung mit begrenztem Befund
+### S1-01-01-08 · Endstation durch neuen Linienplan
 
-Status: Zum Zustand der Strecke liegt inzwischen eine belastbare Zwischenüberschrift vor.
+Status: Der Zug endet hier. Ihr Ziel wurde auf dem Linienplan näher herangerückt.
 
-Ergebnis: Aus der Zwischenüberschrift ist eine befahrbare Strecke geworden.
+Ergebnis: Die Ansage kündigt Ihr Ziel an. Diesmal fährt der Zug auch hin.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 ist bei Höhe 4 mit Count 4 voll. Die Zeilen 1, 2 und 3 haben je Count 1, weshalb ihre übrigen Zellen leer bleiben.
 
-### S1-01-01-09 · Gleiswechsel nicht erforderlich
+### S1-01-01-09 · Tunnelbaustelle mit neuem Enddatum
 
-Status: Sie stehen bereits richtig. Die Verbindung wird noch entsprechend organisiert.
+Status: Im Tunnel wird weiter gebaut. Der Aushang nennt jetzt den 32. Mai.
 
-Ergebnis: Die Strecke passt zu Ihrem Standort. Ein zusätzlicher Bahnsteigweg entfällt.
+Ergebnis: Die Pressestelle meldet einen offenen Tunnel. Der 32. Mai wird als Bautag gestrichen.
 
 **INTERN · Einstieg:** Nullbasiert: A an W/0 erzwingt die Belegung von (0,0). Da Zeile 0 Count 1 hat, bleiben (1,0), (2,0) und (3,0) leer.
 
-### S1-01-01-10 · Standort bleibt ausnahmsweise gültig
+### S1-01-01-10 · Freie Fahrt für die Durchsage
 
-Status: Bitte bleiben Sie dort. Die Lagebeschreibung ist noch unterwegs.
+Status: Die Ansage meldet freie Fahrt. Sie gilt nur für den Lautsprecher.
 
-Ergebnis: Ihr Standort musste nicht korrigiert werden. Die Strecke hat sich darum gekümmert.
+Ergebnis: Laut Durchsage fahren wir jetzt. Die Räder übernehmen ab hier den Transport.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 bleibt wegen Count 0 leer. Spalte 3 ist mit Count 4 vollständig belegt; die Ports N/1 und S/1 ersetzen diese Pflichtbelegung nicht.
 
-### S1-01-01-11 · Freigabe unter Vorbehalt
+### S1-01-01-11 · Abfahrt rückwirkend genehmigt
 
-Status: Der Vorbehalt betrifft vor allem die Möglichkeit eines ordentlichen Betriebs.
+Status: Am Bahnsteig wartet Ihr Zug. Seine Abfahrt ist für gestern freigegeben.
 
-Ergebnis: Strecke freigegeben. Der Vorbehalt hat heute keinen Anschluss gefunden.
+Ergebnis: Die Türen schließen heute. Die Tafel führt das als einen Tag Verspätung.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 3 hat Count 0 und bleibt leer; Zeile 0 ist bei Count 4 vollständig belegt. A an N/3 legt dort den Nordport fest.
 
-### S1-01-01-12 · Betrieb vorläufig stabil
+### S1-01-01-12 · Warnung vor fahrplanmäßiger Abfahrt
 
-Status: Die Stabilität wird zunächst auf diesen Tunnelabschnitt begrenzt.
+Status: Alle Züge fahren pünktlich. Der Aushang warnt vor diesem ungetesteten Zustand.
 
-Ergebnis: Der erste Tunnelabschnitt ist offen. Die nächste Störung bleibt ordnungsgemäß außerhalb.
+Ergebnis: Ihr Zug fährt zur angegebenen Zeit. Die Pressestelle spricht von einem Einzelfall.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 0 und ist leer; Spalte 1 hat Count 4 und ist voll. Ihr oberes Feld (1,0) trägt A an N/1.
 
-### S1-01-02-01 · Signalstörung zum Feierabend
+### S1-01-02-01 · Rotes Signal am Tunnel
 
-Status: Der Feierabendverkehr sammelt sich vor einer noch offenen Aussage.
+Status: Der Zug wartet vor dem Tunnel. Feierabend gilt nur für die Büros.
 
-Ergebnis: Ein erster Abschnitt ist wieder frei. Der Feierabend rückt in erreichbare Nähe.
+Ergebnis: Sie können „Bin gleich da“ jetzt senden. Hinter dem grünen Signal liegt wieder Feierabend.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat bei Breite 4 Count 4. Alle vier Zellen sind belegt; die größere Höhe ändert diesen sicheren Schluss nicht.
 
-### S1-01-02-02 · Freie Fahrt in Vorbereitung
+### S1-01-02-02 · Zwei Minuten bis zur Einfahrt
 
-Status: Das Signal wird bereits auf die Möglichkeit einer eindeutigen Anzeige vorbereitet.
+Status: Die Tafel meldet zwei Minuten. Die zweite dauert seit halb sechs.
 
-Ergebnis: Die Verbindung ist eindeutig. Das Signal darf sich anschließen.
+Ergebnis: Die Tafel zeigt null Minuten. Der Zug kommt dazu. Beide Angaben stimmen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 hat Count 5 bei fünf Zeilen. Alle ihre Zellen sind belegt, die jeweiligen Formen bleiben offen.
 
-### S1-01-02-03 · Signal zeigt ungewohnt klare Angaben
+### S1-01-02-03 · Halt bei freiem Nachbargleis
 
-Status: Die Anzeige ist verständlich. Eine vorsorgliche Rückfrage läuft.
+Status: Der Zug hält vor Rot. Auf dem Nachbargleis fährt Ihr Anschluss vorbei.
 
-Ergebnis: Die klare Angabe hat standgehalten. Die Rückfrage wird gegenstandslos abgelegt.
+Ergebnis: Ihr Zug fährt weiter. Am nächsten Bahnsteig steht sogar noch der Anschluss.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 2 und 3 haben beide Count 5 und sind vollständig belegt. A an N/2 fixiert den Nordport der Zelle (2,0).
 
-### S1-01-02-04 · Eindeutigkeit wird überprüft
+### S1-01-02-04 · Durchsage ohne Abfahrtszeit
 
-Status: Eine klare Anzeige allein gilt noch nicht als ausreichende Verwirrung.
+Status: Die Durchsage bittet um Geduld. Eine Abfahrtszeit wäre zu verbindlich.
 
-Ergebnis: Die Strecke funktioniert auch nach näherer Betrachtung. Ein erfreulicher Befund.
+Ergebnis: Die Durchsage nennt eine Abfahrt. Der Zug hält sich an das gesprochene Wort.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 sind mit Count 4 voll; Zeile 4 hat Count 0 und bleibt leer. Diese Belegungen sind unabhängig von den Formen sicher.
 
-### S1-01-02-05 · Anzeige ohne ergänzende Ausnahme
+### S1-01-02-05 · Gleiswechsel im Feierabend
 
-Status: Die Zusatztafel ist noch leer. Dieser Zustand wird beobachtet.
+Status: Der Zug kommt auf Gleis 2. Das rote Signal zieht mit.
 
-Ergebnis: Die Verbindung benötigt keine Fußnote. Die Zusatztafel bleibt frei.
+Ergebnis: Die Türen öffnen auf Gleis 2. Sie und der Zug haben denselben Bahnsteig erreicht.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 ist mit Count 4 vollständig belegt. Ihre vier Belegungen lassen sich unabhängig von den noch offenen Kurven festhalten.
 
-### S1-01-02-06 · Anzeige wird nachgereicht
+### S1-01-02-06 · Tunnelhalt neben der Werbung
 
-Status: Die Information zur fehlenden Information ist bereits verfügbar.
+Status: Der Zug hält neben einem Reiseplakat. Darauf kommt man weiter.
 
-Ergebnis: Die Strecke ist da. Die Anzeige hat nun etwas Konkretes nachzureichen.
+Ergebnis: Die Werbung zieht am Fenster vorbei. Diesmal liegt es an Ihrem Zug.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 verlangt Count 5 und ist damit über die gesamte Höhe belegt. Ihre Belegung ist ein sicherer Anker für die kreuzenden Zeilen.
 
-### S1-01-02-07 · Ergänzung zur ausstehenden Anzeige
+### S1-01-02-07 · Feierabend am geschlossenen Kiosk
 
-Status: Die neue Information bestätigt den bisherigen Informationsstand.
+Status: Der Kiosk schließt vor der Abfahrt. Nur Ihr Zug bleibt im Dienst.
 
-Ergebnis: Die Ergänzung kann jetzt eine funktionierende Verbindung melden.
+Ergebnis: Der geschlossene Kiosk bleibt zurück. Ihr Abendessen muss nicht mehr bis morgen warten.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 haben je Count 4 bei vier Spalten und sind voll. Das bestimmt die Belegung, noch nicht die Gleisformen.
 
-### S1-01-02-08 · Anzeige vor Ort noch nicht angekommen
+### S1-01-02-08 · Freie Fahrt nur auf der Tafel
 
-Status: Die Durchsage verweist auf eine Tafel, die auf die Durchsage verweist.
+Status: Die Tafel meldet Abfahrt. Der Zug nimmt die Meldung zur Kenntnis.
 
-Ergebnis: Die Strecke hat die gegenseitigen Verweise verlassen und B erreicht.
+Ergebnis: Die Tafel und der Zug melden Abfahrt. Der Zug tut es mit Rädern.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0 und bleibt leer. So sind alle Fortsetzungen aus Zeile 1 nach Norden ausgeschlossen.
 
-### S1-01-02-09 · Feierabendverkehr mit Restkapazität
+### S1-01-02-09 · Ersatzbus hinter der Ampel
 
-Status: Die Restkapazität besteht derzeit überwiegend aus der Aussicht auf Feierabend.
+Status: Der Ersatzbus steht an der Ampel. Rot bleibt Teil des Angebots.
 
-Ergebnis: Die Aussicht hat jetzt Gleisanschluss. Der Feierabendverkehr kann weiter.
+Ergebnis: Sie steigen aus dem Bus in den Zug. Der Ersatz ersetzt diesmal tatsächlich etwas.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0, 1 und 2 haben Count 0 und sind leer. Übrig bleiben nur Zeilen 3 und 4 für die geforderten Gleisfelder.
 
-### S1-01-02-10 · Restkapazität wird neu verteilt
+### S1-01-02-10 · Grünes Signal mit Wartezeit
 
-Status: Die Kapazität reicht laut Anzeige für eine weitere Neubewertung.
+Status: Das Signal ist grün. Die Freigabe wartet noch auf Erlaubnis.
 
-Ergebnis: Die Neubewertung ist beendet. Es reicht tatsächlich für eine Verbindung.
+Ergebnis: Grün reicht zur Abfahrt. Ein zweites Grün wurde nicht benötigt.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 hat Count 4 und ist voll. B an E/1 fixiert den Ostport der rechten Zelle (3,1) innerhalb dieser Zeile.
 
-### S1-01-02-11 · Signal wieder nachvollziehbar
+### S1-01-02-11 · Abfahrt auf dem neuen Fahrplan
 
-Status: Die Bedeutung der Anzeige und ihre beabsichtigte Wirkung nähern sich an.
+Status: Am Bahnsteig hängt der neue Fahrplan. Ihr Zug steht jetzt unter gestern.
 
-Ergebnis: Signal und Strecke sind wieder einer Meinung. Das wird als Fortschritt geführt.
+Ergebnis: Ihr Zugbegleiter begrüßt Sie zur heutigen Fahrt. Gestern bleibt im Fahrplan zurück.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 0 und ist vollständig leer. Keine Zelle der benachbarten Spalte 2 kann dorthin nach Osten fortsetzen.
 
-### S1-01-02-12 · Durchfahrt auf Sicht möglich
+### S1-01-02-12 · Rotes Signal bis zum Ruhestand
 
-Status: Für diesen Signalabschnitt wird vorsichtiger Optimismus angezeigt.
+Status: Das Signal bleibt rot. Laut Aushang endet die Störung mit dem Berufsleben.
 
-Ergebnis: Der Signalabschnitt ist frei. Die Anzeige hat ausnahmsweise nichts hinzuzufügen.
+Ergebnis: Die Strecke ist frei. Sie erreichen Ihren Feierabend noch ohne Rentenausweis.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 1, 2 und 3 haben jeweils Count 4 und sind vollständig belegt. Die große sichere Fläche enthält weiterhin offene Formentscheidungen.
 
-### S1-01-03-01 · Anschluss laut Plan vorhanden
+### S1-01-03-01 · Anschluss fährt bei Ihrer Ankunft
 
-Status: Der Anschluss ist aufgeführt. Seine Anwesenheit wird gesondert behandelt.
+Status: Ihr Zug fährt ein. Der Anschluss fährt aus.
 
-Ergebnis: Der Anschluss hat eine Verbindung. Im Plan ist dafür bereits Platz.
+Ergebnis: Sie steigen um. Beide Züge waren kurz am selben Ort.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 2 hat Count 5 und ist vollständig belegt. A an N/2 bestimmt zusätzlich den Nordport von (2,0).
 
-### S1-01-03-02 · Abfahrt unabhängig vom Zulauf
+### S1-01-03-02 · Gleiswechsel kurz vor dem Umstieg
 
-Status: Die Anschlussfahrt berücksichtigt ankommende Züge als unverbindliche Hintergrundinformation.
+Status: Der Anschluss hält gegenüber. Gegenüber liegt jetzt hinter zwei Treppen.
 
-Ergebnis: Die Strecke berücksichtigt jetzt auch den Zulauf. Das wirkt durchdacht.
+Ergebnis: Die Durchsage nennt das richtige Gleis. Sie erreichen es vor dem Zug.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 sind mit Count 4 voll. Zeilen 3 und 4 haben Count 0 und begrenzen die nutzbare Fläche nach unten.
 
-### S1-01-03-03 · Anschluss noch theoretisch erreichbar
+### S1-01-03-03 · Rolltreppe zum Anschluss steht
 
-Status: Die Theorie empfiehlt einen Umstieg. Die Praxis bittet um einen Moment.
+Status: Die Rolltreppe steht. Ihre Umstiegszeit läuft weiter.
 
-Ergebnis: Die Theorie hat eine Strecke bekommen. Sie darf sich nun praktisch nennen.
+Ergebnis: Sie erreichen den Bahnsteig. Die offenen Türen sind tatsächlich für Sie.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 2 und 3 haben Count 0 und bleiben leer. N/0 und W/3 liegen an verschiedenen Kanten des verbleibenden linken Bereichs.
 
-### S1-01-03-04 · Theoretische Umstiegszeit
+### S1-01-03-04 · Anschlusstür schließt vor Ihnen
 
-Status: Die Umstiegszeit wurde ohne den Weg zwischen den Bahnsteigen ermittelt.
+Status: Die Tür schließt vor Ihnen. Ihre Ankunft gilt nicht als Einstieg.
 
-Ergebnis: Der Weg ist hergestellt. Die Berechnung darf ihn künftig berücksichtigen.
+Ergebnis: Die Tür öffnet sich. Diesmal ist das keine Verabschiedung.
 
 **INTERN · Einstieg:** Nullbasiert: A an E/1 belegt (3,1). Zeile 1 fordert nur ein Gleisfeld, daher bleiben ihre anderen drei Zellen leer.
 
-### S1-01-03-05 · Anschlussmöglichkeit wird bestätigt
+### S1-01-03-05 · Anschluss laut Tafel erreicht
 
-Status: Bestätigt wird zunächst, dass eine Möglichkeit vorgesehen war.
+Status: Die Tafel meldet Ihren Umstieg als erfolgt. Sie stehen noch davor.
 
-Ergebnis: Die vorgesehene Möglichkeit führt jetzt bis B. Mehr Bestätigung ist kaum nötig.
+Ergebnis: Sie sitzen im Anschlusszug. Die Anzeige muss nichts mehr erfinden.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 ist mit Count 4 vollständig belegt. Ihr linkes Feld (0,1) trägt den Westanschluss A.
 
-### S1-01-03-06 · Wartezeit wird aktiv genutzt
+### S1-01-03-06 · Kaffee bis zum nächsten Anschluss
 
-Status: Die Wartezeit dient vorläufig der Vorbereitung auf weitere Wartezeit.
+Status: Ihr Anschluss ist weg. Am Kiosk kostet die Wartezeit jetzt pro Becher.
 
-Ergebnis: Die Wartezeit hat eine befahrbare Strecke hervorgebracht. Ungewöhnlich produktiv.
+Ergebnis: Bitte halten Sie den Kaffee fest, wir fahren. Weitere Wartezeit ist nicht im Becherpreis enthalten.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 4 und ist vollständig belegt. Dieser Queranker legt noch nicht fest, wie die Kurven verbunden werden.
 
-### S1-01-03-07 · Zeit für eine Anschlussprüfung
+### S1-01-03-07 · Anschluss hinter der Baustellenwand
 
-Status: Während der Prüfung bleibt ausreichend Gelegenheit, den Anschluss zu vermissen.
+Status: Der Pfeil zum Anschluss zeigt durch die Wand. Dieser Weg spart Zeit.
 
-Ergebnis: Die Prüfung endet mit einer Verbindung. Die Wartezeit verliert ihren Auftrag.
+Ergebnis: Der Bauzaun hat eine Lücke. Ihr Anschluss wartet auf der richtigen Seite.
 
 **INTERN · Einstieg:** Nullbasiert: A an S/2 erzwingt (2,4). Weil Zeile 4 Count 1 hat, bleiben alle übrigen Zellen dieser Zeile leer.
 
-### S1-01-03-08 · Warten mit verwertbarem Ergebnis
+### S1-01-03-08 · Anschlussdurchsage nach der Abfahrt
 
-Status: Für die Wartezeit liegt bislang keine kürzere Alternative vor.
+Status: Die Durchsage nennt Ihren Anschluss. Sie erreicht als Einzige den Zug.
 
-Ergebnis: Die Verbindung ist fertig. Weiteres Warten würde das Ergebnis nicht verbessern.
+Ergebnis: Die Ansage kommt vor der Abfahrt. Sie dürfen ihr diesmal folgen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 hat Count 5 und ist voll; Spalte 0 hat Count 0 und ist leer. Untere Einserzeilen können deshalb nur in Spalte 1 belegt sein.
 
-### S1-01-03-09 · Türen schließen nicht aus Prinzip
+### S1-01-03-09 · Wartebank für den nächsten Anschluss
 
-Status: Die Türen warten auf einen betrieblich überzeugenden Anlass.
+Status: Der nächste Anschluss kommt morgen. Die Bank zählt als Übernachtung.
 
-Ergebnis: Der Anlass liegt vor: eine funktionierende Strecke zum Seitenbahnsteig.
+Ergebnis: Der Anschluss fährt noch heute. Die Bank muss kein Bett mehr darstellen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 3 und 4 haben jeweils Count 4 und sind vollständig belegt. Der dichte untere Bereich ist damit sicher, seine Geometrie bleibt offen.
 
-### S1-01-03-10 · Türfreigabe mit Anschlussbezug
+### S1-01-03-10 · Aushang empfiehlt den gestrigen Anschluss
 
-Status: Die Abfahrt soll diesmal erst nach der Möglichkeit eines Umstiegs bewertet werden.
+Status: Der Aushang empfiehlt den Zug von gestern. Heute ist er pünktlich.
 
-Ergebnis: Der Anschluss hat wieder etwas mit Ankommen zu tun. Ein brauchbarer Zusammenhang.
+Ergebnis: Sie steigen in den Zug von heute. Der Aushang wird als Zukunftsprojekt gefeiert.
 
 **INTERN · Einstieg:** Nullbasiert: B an S/2 belegt (2,4), das einzige geforderte Gleisfeld der untersten Zeile. Ihre anderen Felder bleiben leer.
 
-### S1-01-03-11 · Anschluss knapp verpasst, Strecke gelöst
+### S1-01-03-11 · Anschluss wartet mit geschlossenen Türen
 
-Status: Der Anschluss ist fort. Das Verbindungsproblem zeigt sich kooperativer.
+Status: Der Anschluss wartet jetzt auf Sie. Dafür bleiben seine Türen geschlossen.
 
-Ergebnis: Der Anschluss mag weg sein. Die gelöste Strecke bleibt als belastbare Verbesserung.
+Ergebnis: Ihr Rollkoffer fährt mit. Die offenen Türen waren diesmal auch zum Einsteigen da.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 hat Count 4 und ist voll. Vier sichere Belegungen bilden den Einstieg; gleiche Spaltenwerte bedeuten noch keine gleichen Gleisformen.
 
-### S1-01-03-12 · Weiterfahrt ausnahmsweise möglich
+### S1-01-03-12 · Pünktliche Abfahrt vor Ihrer Ankunft
 
-Status: Am Seitenbahnsteig wird mit einer bislang ungewohnten Nutzbarkeit gerechnet.
+Status: Der Anschluss fährt vor Ihrer Ankunft. So stört kein Umstieg die Pünktlichkeit.
 
-Ergebnis: Der Seitenbahnsteig ist wieder verbunden. Die Weiterfahrt hat eine Grundlage.
+Ergebnis: Sie sitzen im Anschluss. Die Statistik bittet Sie, das nicht weiterzuerzählen.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/1 belegt (1,0). A an S/3 belegt (3,4) und verbraucht damit den gesamten Count 1 von Spalte 3; deren übrige Felder sind leer.
 
-### S1-01-04-01 · Fahrplanstand bei Öffnung
+### S1-01-04-01 · Abfahrt bleibt bei fünf Minuten
 
-Status: Diese Fassung war beim Aushang bereits die zuletzt bekannte.
+Status: Der Zug kommt fünf Minuten später. Die fünf Minuten bleiben stehen.
 
-Ergebnis: Die Verbindung steht noch. Der Fahrplan darf diesen Stand gern übernehmen.
+Ergebnis: Eine Taube sieht der Abfahrt nach. Sie hatte sich auf weitere fünf Minuten eingerichtet.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 haben Count 0 und bleiben leer. Die Strecke muss innerhalb der drei unteren Zeilen liegen.
 
-### S1-01-04-02 · Änderung zum aktuellen Stand
+### S1-01-04-02 · Neuer Fahrplan am Bahnsteig
 
-Status: Der Aushang ändert die Abfahrt. Der Bahnsteig wartet noch auf die passende Zeile.
+Status: Am Bahnsteig hängt ein neuer Plan. Er ist älter als die Durchsage.
 
-Ergebnis: Ein befahrbarer Stand liegt vor. Die Änderung ist damit einmal hilfreich.
+Ergebnis: Zug und Aushang nennen dieselbe Abfahrt. Das Papier darf diesmal hängen bleiben.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 sowie Zeilen 3 und 4 haben jeweils Count 0. A an N/3 liegt im verbleibenden oberen rechten Gebiet.
 
-### S1-01-04-03 · Neue Abfahrtszeit folgt
+### S1-01-04-03 · Abfahrt von der Tafel entfernt
 
-Status: Die neue Uhrzeit wird veröffentlicht, sobald die vorige ausreichend ungültig ist.
+Status: Ihr Zug steht nicht mehr auf der Tafel. Sie stehen weiter am Gleis.
 
-Ergebnis: Die selbst gebaute Strecke führt von A nach B. Die Anzeigetafel sucht weiter nach einer Uhrzeit.
+Ergebnis: Die Türen öffnen sich. Diesmal ist der Zug nicht nur eine Zeile auf der Tafel.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist bei Breite 4 und Count 4 vollständig belegt. A an N/0 fixiert den Nordport von (0,0).
 
-### S1-01-04-04 · Abfahrtszeit in Abstimmung
+### S1-01-04-04 · Neue Abfahrt auf Gleis 2
 
-Status: Die neue Abfahrtszeit wird abgestimmt. Die Wartenden am Bahnsteig erfahren sie danach.
+Status: Die Abfahrt wurde auf Gleis 2 verlegt. Ihre Wartezeit fährt mit.
 
-Ergebnis: Der Betriebsverlauf reicht bis B. Die Abstimmung hat jetzt einen Gegenstand.
+Ergebnis: Sie sitzen im Zug. Die Treppe wird für diese Abfahrt nicht mehr benötigt.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 ist mit Count 5 voll; Spalten 2 und 3 bleiben wegen Count 0 leer. Die drei unteren Einserzeilen sind damit auf Spalte 1 begrenzt.
 
-### S1-01-04-05 · Uhrzeit mit Aktualitätsvorbehalt
+### S1-01-04-05 · Neue Uhrzeit per Durchsage
 
-Status: Die angegebene Zeit beschreibt vor allem den Stand ihrer Veröffentlichung.
+Status: Die Durchsage nennt die neue Abfahrt. Der Satz beginnt mit „Vorhin“.
 
-Ergebnis: Die Verbindung ist belastbarer als die Zeitangabe. Sie ist bereits fertig.
+Ergebnis: Noch während der Ansage rollen wir los. Die neue Abfahrtszeit wird unterwegs nachgereicht.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0, 1 und 2 haben Count 4 und sind voll. Zeile 3 fordert nur eine Zelle und kann diese Fläche nicht einfach fortsetzen.
 
-### S1-01-04-06 · Umplanung im laufenden Betrieb
+### S1-01-04-06 · Fahrt endet vor Ihrem Ziel
 
-Status: Die Umplanung führt über einen anderen Bahnsteig. Die Wegweisung wird noch angepasst.
+Status: Der Zug endet am nächsten Halt. Ihr Ziel wurde aus dem Plan entfernt.
 
-Ergebnis: Die Umplanung hat ihr Ziel erreicht. Der Änderungsplan darf ruhen.
+Ergebnis: Die Durchsage nennt Ihr Ziel. Diesmal dürfen Sie bis dorthin sitzen bleiben.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 0 und bleibt vollständig leer. Der verfügbare Bereich ist auf die drei linken Spalten begrenzt.
 
-### S1-01-04-07 · Planänderung mit Rückwirkung
+### S1-01-04-07 · Anschluss fährt jetzt früher
 
-Status: Die neue Fassung erklärt, weshalb die vorige nicht mehr helfen konnte.
+Status: Ihr Anschluss fährt vor Ihrer Ankunft. Im Plan gilt das als Umstieg.
 
-Ergebnis: Die Verbindung funktioniert in dieser Fassung. Eine rückwirkende Erklärung erübrigt sich.
+Ergebnis: Ihr Anschluss steht noch am Gleis. Die Verbindung besteht heute auch außerhalb des Plans.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist leer. A an S/0 belegt (0,4); die beiden vollen Zeilen 2 und 3 liefern zusätzlich sichere Queranker.
 
-### S1-01-04-08 · Abstimmung der Abstimmungen
+### S1-01-04-08 · Ihr Halt wurde gestrichen
 
-Status: Die Wegweiser zeigen zum selben Bahnsteig, sobald sie sich über die Richtung geeinigt haben.
+Status: Der Zug fährt an Ihrem Bahnsteig vorbei. Im Plan entfällt nur Ihr Einstieg.
 
-Ergebnis: Die Teilstrecken ergeben eine Verbindung. Die Abstimmung darf als erfolgt gelten.
+Ergebnis: An Ihrem Bahnsteig öffnen sich die Türen. Der Fahrplan gestattet wieder Ihre Anwesenheit.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat Count 4 und ist voll. B an N/2 belegt (2,0), zugleich die einzige geforderte Zelle der oberen Zeile.
 
-### S1-01-04-09 · Fahrplan mit Interpretationsspielraum
+### S1-01-04-09 · Sonntagsfahrplan gilt ab Montag
 
-Status: Die Verbindung ist vorgesehen. Ihre Auslegung bleibt zunächst großzügig.
+Status: Am Bahnsteig gilt jetzt der Sonntagsplan. Der Montag wurde mit gestrichen.
 
-Ergebnis: Der Interpretationsspielraum endet an einer konkreten Strecke von A nach B.
+Ergebnis: Sie fahren am Montag nach Montagsplan. Die Pressestelle meldet eine ganze Woche gewonnen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 sind mit Count 4 vollständig belegt. Zeile 4 hat Count 0 und bleibt leer.
 
-### S1-01-04-10 · Verbindliche vorläufige Fassung
+### S1-01-04-10 · Ersatzbus fährt einmal pro Stunde
 
-Status: Diese Fassung gilt bis zur nächsten verbindlichen Vorläufigkeit.
+Status: Der Ersatzbus fährt laut Aushang stündlich. Gemeint ist eine Stunde im Jahr.
 
-Ergebnis: Die Strecke braucht keine weitere Auslegung. Sie verbindet bereits beide Enden.
+Ergebnis: Der Bus bringt Sie zum Zug. Der Aushang hat für diesen Fall keine weitere Fußnote.
 
 **INTERN · Einstieg:** Nullbasiert: A an E/0 belegt (3,0). Zeile 0 hat Count 1, weshalb ihre drei anderen Zellen leer bleiben.
 
-### S1-01-04-11 · Stammstrecke eingeschränkt verfügbar
+### S1-01-04-11 · Abfahrt auf gestern vorverlegt
 
-Status: Die Verfügbarkeit wird inzwischen häufiger bestätigt als eingeschränkt.
+Status: Die Tafel meldet Ihre Abfahrt von gestern. Der Zug steht zur Bestätigung noch hier.
 
-Ergebnis: Der Hauptstrang ist fast frei. Die Einschränkung wird auf den Rest begrenzt.
+Ergebnis: Die Räder bewegen sich. Damit ist Ihre Abfahrt nun auch außerhalb der Akten erfolgt.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 hat Count 5 und ist vollständig belegt. A an W/4 fixiert dort den Westanschluss des unteren Felds (0,4).
 
-### S1-01-04-12 · Erste Pünktlichkeit gemeldet
+### S1-01-04-12 · Bahnhofsuhr dem Fahrplan angepasst
 
-Status: Die Meldung wird vor Veröffentlichung auf ihre grundsätzliche Glaubwürdigkeit geprüft.
+Status: Die Bahnhofsuhr bekommt 90 Minuten pro Stunde. Der Zug ist jetzt pünktlich.
 
-Ergebnis: Der erste Hauptstrang ist frei. Die Meldung darf ausnahmsweise positiv bleiben.
+Ergebnis: Die Durchsage meldet pünktliche Abfahrt. Bitte stellen Sie Ihre Uhr auf Bahnzeit.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 1 und 2 haben beide Count 4 und sind voll. B an W/4 belegt (0,4), zugleich die einzige Zelle der unteren Zeile.
 
-### S1-02-01-01 · Kleine Maßnahme am Knoten
+### S1-02-01-01 · Bahnsteig wegen Bauarbeiten verkürzt
 
-Status: Der Eingriff ist überschaubar. Die Übersicht wird noch erstellt.
+Status: Bitte gehen Sie bis zur Markierung. Der Zug hält noch am alten Ende.
 
-Ergebnis: Der erste Bauzustand ist befahrbar. Die Übersicht hat sich gelohnt.
+Ergebnis: Die Türen öffnen sich am Bahnsteig. Ihr Rollkoffer benötigt keinen Bauhelm mehr.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 hat Count 5 und ist voll. Zeilen 2, 3 und 4 haben je Count 1, weshalb sie außerhalb dieser Spalte leer bleiben.
 
-### S1-02-01-02 · Provisorischer Zugang eingerichtet
+### S1-02-01-02 · Zugang nur durch den Ausgang
 
-Status: Der Zugang führt zunächst zur Information über den eigentlichen Zugang.
+Status: Der Eingang ist gesperrt. Bitte betreten Sie den Bahnhof durch den Ausgang.
 
-Ergebnis: Die erste Verbindung zum Provisorium steht. Der Zugang erhält langsam einen Zweck.
+Ergebnis: Sie sitzen im Zug. Der Ausgang hat seine Aufgabe als Eingang erfüllt.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat Count 5 bei fünf Spalten. Alle fünf unteren Felder sind sicher belegt.
 
-### S1-02-01-03 · Bauzeit wird präzisiert
+### S1-02-01-03 · Durchsagen wegen Baulärm nicht hörbar
 
-Status: Das Ende der Maßnahme wird inzwischen genauer als später beschrieben.
+Status: Die Durchsage erklärt den Baulärm. Verständlich bleibt nur der Presslufthammer.
 
-Ergebnis: Ein Stück Strecke ist fertig. Das ist genauer als die bisherige Terminlage.
+Ergebnis: Die Durchsage nennt Ihr Ziel. Der Zug fährt sogar dorthin.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 1 haben Count 0 und bleiben leer. Spalte 3 ist mit Count 5 vollständig belegt.
 
-### S1-02-01-04 · Termin in baubedingter Abstimmung
+### S1-02-01-04 · Ersatzbus im Baustellenverkehr
 
-Status: Der Fertigstellungstermin wird an den Fortschritt seiner Abstimmung angepasst.
+Status: Der Ersatzbus steht im Stau. Der Fahrplan setzt eine freie Straße voraus.
 
-Ergebnis: Die Verbindung ist fertig, bevor die Terminabstimmung eine neue Fassung braucht.
+Ergebnis: Im Ersatzbus bleiben die Sitze leer: Die Schienen sind wieder schneller als der Stau.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat Count 0 und ist leer; Zeile 1 hat Count 5 und ist voll. Beide Grenzen sind unmittelbar aus den Randzahlen sicher.
 
-### S1-02-01-05 · Präzisierter vorläufiger Endstand
+### S1-02-01-05 · Bauende nur noch mit Bleistift
 
-Status: Der Bauplan enthält jetzt einen eigenen Bereich für das Ende der Bauarbeiten.
+Status: Am Bauzaun hängt der neue Termin. Ein Radiergummi hängt daneben.
 
-Ergebnis: Die Strecke reicht über den Planungsstand hinaus. Sie lässt sich bereits befahren.
+Ergebnis: Auf der Tafel steht eine Abfahrt statt eines Bautermins. Radieren ist nicht mehr nötig.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 3 ist mit Count 5 voll; Zeilen 0 und 1 sind bei Count 0 leer. Die sichere Querbelegung liegt somit unter den leeren Reihen.
 
-### S1-02-01-06 · Zugang über Umweg möglich
+### S1-02-01-06 · Aufzug hinter dem Bauzaun
 
-Status: Der ausgeschilderte Zugang führt an der früheren Zugangsbeschilderung vorbei.
+Status: Der Aufzug ist in Betrieb. Sie erreichen ihn ausschließlich über die Treppe.
 
-Ergebnis: Der Umweg hat Anschluss. Die Beschilderung kann ihn jetzt mit gutem Grund empfehlen.
+Ergebnis: Sie erreichen den Zug ohne Treppe. Der Aufzug zählt wieder als Aufzug.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat Count 5 und ist voll. Sie kreuzt die ebenfalls vollen Spalten 3 und 4; die Formen an den Schnittstellen bleiben offen.
 
-### S1-02-01-07 · Zugangsweg vorläufig verlängert
+### S1-02-01-07 · Nachtarbeiten bis Montagmittag
 
-Status: Die zusätzliche Wegstrecke verbessert vor allem den Abstand zur Baugrube.
+Status: Die Arbeiten finden nur nachts statt. Montag bleibt deshalb bis 14 Uhr dunkel.
 
-Ergebnis: Der verlängerte Zugang führt wieder an die Strecke. Der Abstand zur Baugrube bleibt erhalten.
+Ergebnis: Tageslicht fällt ins fahrende Abteil. Damit ist auch die dreitägige Nacht abgeschlossen.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/1 belegt (1,0). Zeile 0 fordert Count 1, ihre übrigen vier Zellen sind deshalb leer.
 
-### S1-02-01-08 · Zugang nach jüngster Beschilderung
+### S1-02-01-08 · Abfahrt am Nachbarbahnhof
 
-Status: Bitte berücksichtigen Sie auch die Schilder, die auf entfernte Schilder verweisen.
+Status: Ihr Zug hält am Ersatzbahnsteig. Die Anfahrt dorthin erfordert einen Zug.
 
-Ergebnis: Der Zugang ist verbunden. Die Schilder dürfen den Verweisverkehr einstellen.
+Ergebnis: Ihr Zug hält wieder hier. Für die Anreise zum Zug genügt nun ein Bahnhof.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 ist bei Count 5 voll, Zeile 1 bei Count 5 ebenfalls. Die beiden sicheren Belegungsachsen kreuzen sich in (0,1).
 
-### S1-02-01-09 · Bauzaun verschoben
+### S1-02-01-09 · Bahnsteig hinter neuer Sichtschutzwand
 
-Status: Der Bahnsteig ist unverändert. Der Weg dorthin hat erneut Fortschritte gemacht.
+Status: Die Sichtschutzwand ist fertig. Der Zug dahinter gilt als ausgefallen.
 
-Ergebnis: Die neue Führung ist befahrbar. Der Bauzaun muss vorerst keinen weiteren Vorschlag machen.
+Ergebnis: Die Wand ist weg. Der Zug fährt und wird wieder als vorhanden geführt.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 ist mit Count 5 vollständig belegt. Die sichere senkrechte Achse bleibt trotz A an N/3 und B an W/3 erforderlich.
 
-### S1-02-01-10 · Neue Lage des bisherigen Zauns
+### S1-02-01-10 · Umleitung zurück zum Start
 
-Status: Der alte Umweg wurde zugunsten eines aktuelleren Umwegs aufgehoben.
+Status: Bitte folgen Sie den gelben Pfeilen. Ihr Rundweg ersetzt heute die Abfahrt.
 
-Ergebnis: Der aktuelle Umweg verbindet A und B. Das ist eine Verbesserung gegenüber seiner Bezeichnung.
+Ergebnis: Bitte steigen Sie ein; wir fahren weiter. Der Rundweg ist heute nicht im Preis enthalten.
 
 **INTERN · Einstieg:** Nullbasiert: B an W/0 erzwingt (0,0). Zeile 0 hat Count 1, daher bleiben ihre anderen vier Felder leer.
 
-### S1-02-01-11 · Maßnahme planmäßig verlängert
+### S1-02-01-11 · Wiedereröffnung am 31. Februar
 
-Status: Die Bauzeit entspricht weiterhin dem Plan, nachdem dieser entsprechend verlängert wurde.
+Status: Der Termin steht am Bauzaun. Der Kalender muss sich dem Baufortschritt anpassen.
 
-Ergebnis: Die Strecke ist freigegeben. Für diesen Teil braucht die Verlängerung keine weitere Begründung.
+Ergebnis: Die Pressestelle bestätigt die Abfahrt am 1. März. Der 31. Februar gilt als eingehalten.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist bei Count 5 voll. A an N/0 fixiert den Nordport von (0,0) innerhalb dieser sicheren Querbelegung.
 
-### S1-02-01-12 · Provisorium dauerhaft nutzbar
+### S1-02-01-12 · 100 Jahre am provisorischen Bahnsteig
 
-Status: Am provisorischen Bahnsteig wird vorsorglich mit regelmäßiger Nutzung gerechnet.
+Status: Der Holzbahnsteig wird 100. Die Festrede kündigt den baldigen Baubeginn an.
 
-Ergebnis: Der provisorische Bahnsteig ist verbunden. Die Befristung kann sich nun Zeit lassen.
+Ergebnis: Mit der ersten Abfahrt endet auch der Mietvertrag der Taube. Er lief seit 100 Jahren.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/3 belegt (3,0), die einzige Zelle von Zeile 0. Zeile 1 fordert ebenfalls nur eine Belegung; deren Position folgt erst aus weiteren Schlüssen.
 
-### S1-02-02-01 · Ein Gleis reicht fürs Erste
+### S1-02-02-01 · Warten am roten Signal
 
-Status: Die verbleibende Kapazität wird als Konzentration auf das Wesentliche geführt.
+Status: Ihr Zug wartet am Signal. Die grüne Welle gilt für die Gegenrichtung.
 
-Ergebnis: Die erste Verbindung nutzt die vorhandene Kapazität. Das Wesentliche fährt.
+Ergebnis: Die Pendler stehen zur Abfahrt auf. Diesmal nicht, um sich die Beine zu vertreten.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 5 und ist vollständig belegt. Die Formen lassen sich aus dieser Belegung allein noch nicht festlegen.
 
-### S1-02-02-02 · Engpass mit betrieblicher Begründung
+### S1-02-02-02 · Gleis 2 endet am Bauzaun
 
-Status: Die Begründung passiert den Engpass bereits. Der Verkehr folgt nach Möglichkeit.
+Status: Gleis 2 endet am Bauzaun. Nur der Fahrplan führt weiter.
 
-Ergebnis: Die Strecke ist wieder nutzbar. Die Begründung muss nicht länger voranfahren.
+Ergebnis: Die Strecke ist frei. Der Fahrplan hat wieder Kontakt zu den Schienen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 hat Count 5 und ist voll; Zeile 4 hat Count 0 und ist leer. Beide Aussagen liefern unabhängige sichere Belegungen.
 
-### S1-02-02-03 · Kapazität wird situationsgerecht reduziert
+### S1-02-02-03 · Kaffeepause vor dem Gegenzug
 
-Status: Die Situation wurde der verfügbaren Kapazität entsprechend enger gefasst.
+Status: Der Gegenzug wird abgewartet. Ihr Kaffee erreicht zuerst Raumtemperatur.
 
-Ergebnis: Die Verbindung steht trotz enger Lage. Die Reduktion hat ihr vorläufiges Ende erreicht.
+Ergebnis: Ihr Kaffee schwappt beim Anfahren. Diese Form der Unruhe ist ausdrücklich erwünscht.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0; alle fünf oberen Felder bleiben leer. Die Belegung muss in den unteren vier Zeilen liegen.
 
-### S1-02-02-04 · Angebot im Rahmen der Kapazität
+### S1-02-02-04 · Gleiswechsel über die Treppe
 
-Status: Das Angebot bleibt erhalten, soweit der verbliebene Rahmen es durchlässt.
+Status: Ihr Zug fährt gegenüber. Der direkte Weg führt über 48 Stufen.
 
-Ergebnis: Die Strecke passt durch den Rahmen. Ein befahrbares Angebot liegt vor.
+Ergebnis: Sie sitzen im Zug. Die Treppe zählt nicht mehr zur heutigen Strecke.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 2 ist mit Count 5 voll. Sie belegt bereits die einzige geforderte Zelle von Zeile 2; deren übrige Felder sind leer.
 
-### S1-02-02-05 · Kapazitätsreserve bereits berücksichtigt
+### S1-02-02-05 · Bus statt zweitem Gleis
 
-Status: Die Reserve wurde vollständig in die Erklärung der fehlenden Reserve aufgenommen.
+Status: Der Ersatzbus steht im Stau. Auch auf der Straße reicht eine Spur.
 
-Ergebnis: Die Verbindung benötigt keine Erklärung mehr. Sie steht als nutzbare Kapazität bereit.
+Ergebnis: Der Zugbegleiter meldet freie Fahrt. Den Busanschluss dürfen Sie diesmal verpassen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 3 und 4 haben Count 5 und sind voll. A an N/4 fixiert zunächst den Nordport der Zelle (4,0), nicht ohne weitere Schlüsse deren gesamte Form.
 
-### S1-02-02-06 · Gegenrichtung heute nicht vorgesehen
+### S1-02-02-06 · Kurzzug am vollen Bahnsteig
 
-Status: Auf dem freien Gleis fährt heute nur eine Richtung. Die Gegenrichtung wartet dienstlich am Signal.
+Status: Heute fahren nur drei Wagen. Der Bahnsteig bleibt in voller Länge besetzt.
 
-Ergebnis: Ihre Strecke führt durch den Engpass. Die Gegenrichtung darf sich weiter gedulden.
+Ergebnis: Der Kurzzug fährt. Die Durchsage bedankt sich für das platzsparende Reisen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 und Zeile 0 sind bei Count 5 voll. Die gekreuzten Belegungsanker legen noch keine vollständigen Gleisformen fest.
 
-### S1-02-02-07 · Richtung nach verfügbarem Betrieb
+### S1-02-02-07 · Anschluss fährt ohne Zubringer
 
-Status: Die Fahrtrichtung wird am freien Gleis entschieden. Der Bahnsteig darf so lange mitdenken.
+Status: Ihr Anschluss fährt pünktlich ab. Ihr Zug wartet noch vor derselben Weiche.
 
-Ergebnis: Der Zug hat jetzt einen durchgehenden Weg. Für diese Richtung reicht das eine Gleis.
+Ergebnis: Beide Züge stehen am Bahnsteig. Der Anschluss ist diesmal mehr als ein Wort.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 1 ist mit Count 5 voll. Spalten 3 und 4 haben Count 0 und bleiben leer; die untere Einserzeile ist damit auf Spalte 1 festgelegt.
 
-### S1-02-02-08 · Rückfahrt noch in der Gesamtschau
+### S1-02-02-08 · Rückfahrt nur auf der Anzeige
 
-Status: Für die Rückfahrt bleibt das Signal rot. Der Hinweg darf sich nicht davon stören lassen.
+Status: Am Endbahnhof bleibt der Zug stehen. Zurück fährt nur die Anzeige.
 
-Ergebnis: Ihre Strecke macht den Hinweg befahrbar. Für die Rückfahrt bleibt die Gesamtschau zuständig.
+Ergebnis: Die Rückfahrt beginnt. Auch die Räder nehmen daran teil.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 haben jeweils Count 5. Beide sind vollständig belegt, obwohl ihre konkreten Formen noch bestimmt werden müssen.
 
-### S1-02-02-09 · Betrieb eingleisig, Stimmung zweigleisig
+### S1-02-02-09 · Wartezeit ohne Bahnhofsuhr
 
-Status: Die Betriebslage bietet unterschiedliche Einschätzungen bei überschaubarer Streckenauswahl.
+Status: Am Engpass gibt es keine Verspätung mehr. Die Bahnhofsuhr wurde abgedeckt.
 
-Ergebnis: Die Strecke ist frei. Über die Lage kann nun während der Weiterfahrt nachgedacht werden.
+Ergebnis: Zur Abfahrt fällt das Tuch von der Uhr. Die Verspätung bleibt darunter.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 4 haben Count 0 und bleiben leer. Die drei mittleren Zeilen enthalten sämtliche Gleisfelder.
 
-### S1-02-02-10 · Verkehrsfluss mit Verengung
+### S1-02-02-10 · Zweites Gleis laut Lautsprecher
 
-Status: Die Engstelle wird als geordnete Zusammenführung bislang getrennter Erwartungen geführt.
+Status: Die Durchsage meldet zwei freie Gleise. Eines davon liegt nur auf dem Bauplan.
 
-Ergebnis: Die Verbindung ist durchgängig. Die Erwartungen haben wieder einen gemeinsamen Weg.
+Ergebnis: Laut Durchsage fahren Sie jetzt auf echten Schienen. Der Bauplan bleibt unbefahren.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 5 und ist voll. A an W/0 legt am linken Feld (0,0) den Westport fest.
 
-### S1-02-02-11 · Engpass erfolgreich verlagert
+### S1-02-02-11 · Bauende laut Schild morgen
 
-Status: Der bisherige Engpass wird nach erfolgreicher Entlastung neu verortet.
+Status: Der Bauzaun nennt morgen als Bauende. Der Termin wird täglich erneuert.
 
-Ergebnis: Dieser Abschnitt ist frei. Der verlegte Engpass muss sich außerhalb darum kümmern.
+Ergebnis: Der Bauzaun ist weg. Das Schild mit dem Bauende hat seinen ersten Arbeitstag.
 
 **INTERN · Einstieg:** Nullbasiert: A an S/4 belegt (4,4). Zeile 4 hat Count 1 und ist damit vollständig erfüllt; die anderen vier unteren Felder sind leer.
 
-### S1-02-02-12 · Durchfahrt mit Geduld möglich
+### S1-02-02-12 · Pünktlichkeit durch Gleisabbau
 
-Status: Am Engpass wird wieder mit tatsächlichen Durchfahrten gerechnet.
+Status: Das zweite Gleis wurde entfernt. So kann dort kein Zug mehr zu spät kommen.
 
-Ergebnis: Der Engpass ist befahrbar. Geduld hat hier einen nachweisbaren Streckenverlauf.
+Ergebnis: Die Pressestelle meldet pünktliche Abfahrt. Das entfernte Gleis bleibt Spitzenreiter.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 4 hat Count 0 und bleibt leer. Der Nordanschluss B an N/3 liegt direkt links davon; östliche Fortsetzungen aus Spalte 3 sind ausgeschlossen.
 
-### S1-02-03-01 · Stellwerksanfrage eingegangen
+### S1-02-03-01 · Halt vor dem Baustellensignal
 
-Status: Das Stellwerk schweigt. Vor dem Signal wartet bereits die erste Fahrt.
+Status: Der Zug wartet vor der Baustelle. Die Freigabe hat noch keinen Termin.
 
-Ergebnis: Die erste Strecke ist gebaut. Das Signal darf die Nachricht später nachreichen.
+Ergebnis: Am Fenster sehen Sie die Baustelle vorbeiziehen. Sie hat nun Verspätung, nicht Sie.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat Count 0 und bleibt leer. Die vier oberen Zeilen enthalten sämtliche Gleisfelder.
 
-### S1-02-03-02 · Eingang der Rückfrage bestätigt
+### S1-02-03-02 · Türen zu bei stehendem Zug
 
-Status: Am Signal wartet die Fahrt. Am Bahnsteig wartet man auf die Rückfrage zur Freigabe.
+Status: Die Türen bleiben geschlossen. Damit gilt die Abfahrt als begonnen.
 
-Ergebnis: Die Verbindung führt weiter. Die Rückfrage darf am Bahnsteig auf ihren Einsatz warten.
+Ergebnis: Wir rollen tatsächlich. Das Schließen der Türen hatte diesmal einen Zweck.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat Count 5 und ist vollständig belegt. Die Zeile darüber fordert zwei weitere Zellen, deren Lage noch offen ist.
 
-### S1-02-03-03 · Rückmeldung verzögert sich
+### S1-02-03-03 · Rückruf aus dem Stellwerk ausstehend
 
-Status: Das Stellwerk prüft noch. Vor dem roten Signal füllt sich der Bahnsteig.
+Status: Das Stellwerk bittet um Geduld. Ihr Anschluss bittet nicht und fährt.
 
-Ergebnis: Die Durchfahrt ist gebaut. Die Rückmeldung kann ihr hinterherfahren.
+Ergebnis: Die Fahrt geht weiter. Am nächsten Bahnsteig wartet tatsächlich noch ein Zug.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 4 hat Count 5 und ist voll. Sie ist der einzige öffentliche Vollanker; die übrigen Randzahlen müssen miteinander kombiniert werden.
 
-### S1-02-03-04 · Antwortstand in Klärung
+### S1-02-03-04 · Abfahrt in einer dauerhaften Minute
 
-Status: Das Signal bleibt rot. Die wartende Fahrt hat davon bereits Kenntnis.
+Status: Die Tafel zeigt noch eine Minute. Diese Angabe gilt seit einer Stunde.
 
-Ergebnis: Der Zugweg ist frei. Das Stellwerk darf die Freigabe nun in Ruhe formulieren.
+Ergebnis: Die Anzeige springt auf null. Der Zug bewegt sich mit. Bitte nicht erschrecken.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 4 hat Count 0 und ist leer. B an N/3 belegt (3,0) und erfüllt Count 1 von Spalte 3; deren übrige Felder bleiben leer.
 
-### S1-02-03-05 · Zwischenmeldung zur Rückmeldung
+### S1-02-03-05 · Neue Durchsage statt Weiterfahrt
 
-Status: Die Durchsage kündigt eine neue Meldung an. Der Zug wartet auf den praktischen Teil.
+Status: Die nächste Durchsage folgt in Kürze. Sie ersetzt die nächste Fahrt.
 
-Ergebnis: Ihre Strecke liefert den praktischen Teil: Der Zug fährt von A nach B.
+Ergebnis: Aus dem Lautsprecher kommt nichts mehr. Dafür fährt der Zug. Ein fairer Tausch.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/1 belegt (1,0). Da Zeile 0 nur Count 1 hat, sind ihre anderen vier Felder leer.
 
-### S1-02-03-06 · Stellwerk arbeitet im Hintergrund
+### S1-02-03-06 · Freigabe am falschen Bauzaun
 
-Status: Im Stellwerk wird gearbeitet. Vor dem Signal bleibt der Alltag vorsichtshalber stehen.
+Status: Die Freigabe hängt am Bauzaun. Sie gilt für das abgerissene Gleis.
 
-Ergebnis: Ihr Zugweg verbindet A und B. Die Arbeit im Hintergrund hat jetzt etwas vorzuzeigen.
+Ergebnis: Ihr Zugbegleiter bestätigt die Abfahrt. Die Erlaubnis gilt erstmals für vorhandene Schienen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0 und bleibt auch im nun sechs Spalten breiten Raster leer. Die drei Fünferzeilen darunter sind nicht vollständig belegt.
 
-### S1-02-03-07 · Bearbeitung läuft ohne neue Meldung
+### S1-02-03-07 · Kaffee kalt vor dem roten Signal
 
-Status: Das Signal hält sich bedeckt. Am Bahnsteig wird der Aufenthalt zur Maßnahme.
+Status: Der Kaffee im Zug ist kalt. Als Ursache gilt die laufende Warmhaltephase.
 
-Ergebnis: Ihre Strecke beendet den Aufenthalt. Der Zug kann den Stellwerksabschnitt durchfahren.
+Ergebnis: Ihr Kaffee ist noch kalt, aber endlich unterwegs. Dies gilt als Ende der Warmhaltephase.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/0 erzwingt (0,0). Spalte 0 hat Count 1, weshalb ihre anderen vier Zellen leer bleiben.
 
-### S1-02-03-08 · Hintergrundarbeit mit Folgewirkung
+### S1-02-03-08 · Ersatzbus wartet auf das Stellwerk
 
-Status: Das Stellwerk bearbeitet weiter. Vor dem Signal wächst inzwischen eine zweite Warteschlange.
+Status: Der Bus steht vor dem Bahnhof. Er übernimmt auch die Wartezeit des Zuges.
 
-Ergebnis: Ihre Strecke führt durch den Abschnitt. Die wartenden Fragen dürfen am Bahnsteig bleiben.
+Ergebnis: Die Verbindung steht. Sie fahren wieder auf Schienen. Der Bus hat Feierabend.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/4 belegt (4,0), die einzige Zelle der oberen Zeile. Spalte 5 hat Count 0 und bleibt vollständig leer.
 
-### S1-02-03-09 · Status unverändert unklar
+### S1-02-03-09 · Grüner Zettel am roten Signal
 
-Status: Das Signal bleibt unentschlossen. Der Bahnsteig füllt die Zeit mit Warten.
+Status: Am Signal hängt ein grüner Zettel. Das Rot ist damit schriftlich behoben.
 
-Ergebnis: Ihre Strecke ist klar befahrbar. Das Signal darf sich diesem seltenen Zustand anschließen.
+Ergebnis: Auf der Tafel steht freie Fahrt. Die Lampe teilt erstmals die Meinung des Zettels.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 sind mit Count 6 vollständig belegt. Spalte 5 ist bei Höhe 5 und Count 5 ebenfalls voll.
 
-### S1-02-03-10 · Unklarheit amtlich fortgeschrieben
+### S1-02-03-10 · Antwort für einen ausgemusterten Zug
 
-Status: Die Durchsage läuft weiter, weil am Signal weiterhin niemand weiterläuft.
+Status: Die Antwort liegt am Bahnsteig. Der zugehörige Zug steht jetzt im Museum.
 
-Ergebnis: Ihre Verbindung schließt die Lücke im Fahrweg. Die Durchsage kann nun kürzer werden.
+Ergebnis: Ein heutiger Zug fährt los. Die Pressestelle spricht von beschleunigter Bearbeitung.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 ist mit Count 6 vollständig belegt. Dieser Bodenanker ist sicher, obwohl Zeile 3 mit Count 5 eine Lücke enthalten muss.
 
-### S1-02-03-11 · Rückmeldung eingetroffen
+### S1-02-03-11 · Sofortige Abfahrt ab 2041
 
-Status: Das Stellwerk hat sich gemeldet. Am Bahnsteig wird geprüft, ob die Fahrt gemeint ist.
+Status: Die Freigabe gilt ab 2041. Der Aushang nennt das eine Sofortmaßnahme.
 
-Ergebnis: Ihre Strecke passt zur Meldung: Der Zug kommt durch den Stellwerksabschnitt.
+Ergebnis: Die Fahrt beginnt noch in diesem Jahr. Am Bahnsteig werden die Kalender geprüft.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 1 und 2 haben bei Höhe 5 jeweils Count 5. Beide sind vollständig belegt und liefern sichere senkrechte Anker.
 
-### S1-02-03-12 · Stellwerk für heute ausreichend
+### S1-02-03-12 · Freie Fahrt nur bei Stillstand
 
-Status: Die Signale zeigen wieder genug Eindeutigkeit für eine Fahrt. Mehr Klarheit wäre Sonderausstattung.
+Status: Der Zug darf weiterfahren. Die Erlaubnis erlischt, sobald er sich bewegt.
 
-Ergebnis: Ihre Strecke macht den Stellwerksabschnitt befahrbar. Das genügt für heute als Rückmeldung.
+Ergebnis: Wir fahren trotzdem. Das Stellwerk bestätigt einen ordnungsgemäßen Stillstand.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 ist mit Count 5 voll. A an W/4 fixiert den Westport im unteren Feld (0,4); die weiteren Formen sind noch offen.
 
-### S1-02-04-01 · Umstieg im Bauzustand
+### S1-02-04-01 · Zugang zu Gleis 2 hinter dem Bauzaun
 
-Status: Der Anschlussbahnsteig ist erreichbar. Die Beschreibung des Weges wird länger.
+Status: Gleis 2 liegt hinter dem Bauzaun. Der Fahrplan steht noch davor.
 
-Ergebnis: Dieser Teil des Umstiegs ist verbunden. Die Wegbeschreibung bekommt wieder eine Richtung.
+Ergebnis: Sie sind am richtigen Bahnsteig. Der Zug hält tatsächlich dort.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat bei Breite 6 Count 6 und ist vollständig belegt. Die zwei Fünferzeilen weiter oben benötigen dagegen je eine freie Zelle.
 
-### S1-02-04-02 · Bahnsteigangabe mit Ergänzung
+### S1-02-04-02 · Umleitung zum Anschluss ohne Pfeil
 
-Status: Die angegebene Richtung gilt bis zur ergänzenden Angabe einer anderen Richtung.
+Status: Bitte folgen Sie der Umleitung. Der erste Pfeil steht am Ziel.
 
-Ergebnis: Die Strecke führt weiter als die Ergänzung. Sie erreicht tatsächlich B.
+Ergebnis: Der Anschluss ist erreicht. Das Schild bestätigt Ihre Ankunft im Nachhinein.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 5 ist mit Count 5 voll. Die Zeilen 2, 3 und 4 haben Count 1 und bleiben deshalb außerhalb dieser Spalte leer.
 
-### S1-02-04-03 · Umstieg bitte zügig und ohne Orientierung
+### S1-02-04-03 · Umstieg mit Rollkoffer über die Treppe
 
-Status: Der Weg zum Anschluss wird vorausgesetzt. Seine Kennzeichnung folgt im Bauablauf.
+Status: Zum Anschluss nehmen Sie die Treppe. Stufenlos ist nur der Lageplan.
 
-Ergebnis: Der Weg zum Anschluss hat wieder einen Verlauf. Die Kennzeichnung kann ihm jetzt folgen.
+Ergebnis: Koffer und Fahrgast sind im Zug. Der Lageplan meldet einen barrierefreien Umstieg.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0, 1 und 2 haben Count 0 und bleiben leer. Sämtliche Gleisfelder müssen in den beiden unteren Zeilen liegen.
 
-### S1-02-04-04 · Umstiegsweg nach örtlicher Lage
+### S1-02-04-04 · Gleiswechsel während der Durchsage
 
-Status: Die örtliche Lage ist am zuverlässigsten dort zu erkennen, wo sie gerade endet.
+Status: Ihr Zug hält jetzt an Gleis 4. Die Durchsage ist noch auf Gleis 3.
 
-Ergebnis: Die Verbindung reicht bis zum Ziel. Die örtliche Lage lässt sich wieder erklären.
+Ergebnis: Die Türen schließen hinter Ihnen. Die Durchsage darf nun in Ruhe nachkommen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 3 hat Count 6 und ist vollständig belegt. Sie liefert einen sicheren Queranker über die gesamte Rasterbreite.
 
-### S1-02-04-05 · Orientierung erfolgt im Weitergehen
+### S1-02-04-05 · Anschluss nach verlängertem Fußweg
 
-Status: Die Beschilderung berücksichtigt den Stand vor der letzten Änderung des Fußwegs.
+Status: Der Fußweg dauert zwölf Minuten. Zum Umstieg bleiben Ihnen drei.
 
-Ergebnis: Die Strecke ist aktueller als der Wegweiser. Sie verbindet die vorgesehenen Enden.
+Ergebnis: Der Anschluss wurde erreicht. Neun Minuten gelten damit als eingespart.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 3 und 4 haben Count 6 und sind beide voll. A an W/4 und B an E/1 liegen über verschiedene Höhen verteilt.
 
-### S1-02-04-06 · Bahnsteigänderung wird angezeigt, sobald bekannt
+### S1-02-04-06 · Umstieg mit Umweg durch die Bahnhofshalle
 
-Status: Die Anzeige ist vorbereitet. Es fehlt nur noch die anzuzeigende Bahnsteigänderung.
+Status: Der Weg führt erneut am Kiosk vorbei. Ihr Kaffee gilt noch als derselbe.
 
-Ergebnis: Die Verbindung ist bekannt und befahrbar. Die Anzeige darf konkret werden.
+Ergebnis: Sie sitzen im Anschlusszug. Der Kaffee hat die Hallenrundfahrt ebenfalls beendet.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 6 und ist voll. Spalte 4 ist bei Höhe 5 mit Count 5 voll; beide sicheren Achsen kreuzen sich in (4,0).
 
-### S1-02-04-07 · Anzeige zur geänderten Bahnsteigangabe
+### S1-02-04-07 · Neue Gleisnummer mit Kreide
 
-Status: Die letzte Anzeige wird bis zur Klärung ihrer Änderung weiter angezeigt.
+Status: Die neue Gleisnummer steht auf dem Boden. Bei Regen gilt wieder die alte.
 
-Ergebnis: Die Strecke kommt ohne weitere Anzeige aus. Ihr Ziel ist bereits verbunden.
+Ergebnis: Am richtigen Gleis fahren Sie ab. Eine Taube übernimmt den Regenschutz für die Kreide.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 2 hat Count 5 und ist voll. Die sichere senkrechte Belegung umfasst alle fünf Zeilen; die kurvenreiche Verbindung folgt erst aus weiteren Schlüssen.
 
-### S1-02-04-08 · Bahnsteigstand derzeit aktuell
+### S1-02-04-08 · Lageplan für den fertig gebauten Bahnhof
 
-Status: Die Aktualität bezieht sich auf den Zeitpunkt, zu dem der Stand zuletzt aktuell war.
+Status: Der Aushang zeigt den Weg zum Anschluss. Gültig ist er ab 2042.
 
-Ergebnis: Die Verbindung ist jetzt da. Dieser Stand hält einer Besichtigung stand.
+Ergebnis: Sie haben den Zug erreicht. Laut Aushang liegen Sie sechzehn Jahre vor dem Plan.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 5 haben Count 0 und bleiben leer. Spalten 3 und 4 haben Count 5 und sind vollständig belegt.
 
-### S1-02-04-09 · Wegeführung vorübergehend endgültig
+### S1-02-04-09 · Abkürzung durch den gesperrten Gang
 
-Status: Die neue Führung ist abschließend beschildert, bis sich der vorübergehende Zustand ändert.
+Status: Der Gang ist nur auf halber Länge gesperrt. Diese Hälfte liegt in der Mitte.
 
-Ergebnis: Die Strecke hat ein festes Ziel. Die Wegeführung darf ausnahmsweise dabei bleiben.
+Ergebnis: Ihr Rollkoffer rollt in den Wagen. Die Abfahrt erfolgt noch im Jahr des Umwegs.
 
 **INTERN · Einstieg:** Nullbasiert: B an S/2 belegt (2,4). Zeile 4 hat Count 1, deshalb bleiben ihre anderen fünf Felder leer.
 
-### S1-02-04-10 · Endgültiger Zwischenweg eingerichtet
+### S1-02-04-10 · Ersatzbus an Gleis 6 angekündigt
 
-Status: Die bisherige Abkürzung entfällt zugunsten einer dauerhafteren vorläufigen Führung.
+Status: Die Tafel kündigt den Bus an Gleis 6 an. Die Straße ist noch nicht bestellt.
 
-Ergebnis: Der Zwischenweg verbindet beide Enden. Sein Name braucht keine Verlängerung.
+Ergebnis: Der Anschluss fährt als Zug. Damit konnte auf die Straße verzichtet werden.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 1 sind bei Count 5 voll; Spalte 5 hat Count 0 und bleibt leer. Das begrenzt die große sichere Belegungsfläche.
 
-### S1-02-04-11 · Umstieg gelungen
+### S1-02-04-11 · Umstieg über den provisorischen Steg
 
-Status: Die Anschlussverbindung wird diesmal auch vom vorhandenen Weg unterstützt.
+Status: Bitte nutzen Sie den provisorischen Steg. Er wird nächstes Jahr hundert.
 
-Ergebnis: Der Umstieg hat eine durchgehende Strecke. Die Orientierung darf sich entspannen.
+Ergebnis: Der Steg hat Sie zum Zug gebracht. Seine befristete Nutzung geht ins zweite Jahrhundert.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat Count 6 und ist vollständig belegt. Der sichere Queranker verbindet in der weiteren Herleitung die getrennten Randgebiete.
 
-### S1-02-04-12 · Bauabschnitt eingeschränkt entstört
+### S1-02-04-12 · Anschlussbahnsteig hinter neuer Wand
 
-Status: Die verbliebenen Unklarheiten werden außerhalb des nutzbaren Kartenrings weitergeführt.
+Status: Der Anschluss wartet hinter der Wand. Die Tür folgt im nächsten Bauabschnitt.
 
-Ergebnis: Der Kartenring im Bauabschnitt Mitte ist stabilisiert. Das Provisorium hat einen brauchbaren Umfang.
+Ergebnis: Die Tür ist eingebaut, der Zug fährt. Der Umstieg gilt nun auch baulich als vorgesehen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 3 und 4 haben jeweils Count 6 und sind voll. Die breite sichere Fläche bestimmt noch nicht die 19 Kurven des vollständigen Wegs.
 
-### S1-03-01-01 · Halt im weiteren Streckenverlauf
+### S1-03-01-01 · Halt am Ortsbahnhof entfällt
 
-Status: Der Außenast wird bedient. Zum Anhalten wird gesondert informiert.
+Status: Der Zug hält erst im Nachbarort. Ihr Ziel bleibt hier.
 
-Ergebnis: Der Zug erreicht den ersten Außenbahnsteig. Der Halt ist jetzt mehr als ein Hinweis.
+Ergebnis: Sie steigen am richtigen Bahnhof aus. Der Rückweg vom Nachbarort entfällt.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 5 haben Count 0 und bleiben leer. Die vier mittleren Zeilen enthalten alle geforderten Gleisfelder.
 
-### S1-03-01-02 · Durchfahrt als Bedienungsangebot
+### S1-03-01-02 · Abfahrt ohne Einstieg
 
-Status: Die Strecke wird erreicht. Der Bahnsteig sieht den Zug zumindest vorbeikommen.
+Status: Die Tafel meldet eine Abfahrt. Eine Ankunft war nicht vorgesehen.
 
-Ergebnis: Der Außenast ist angebunden. Vorbeifahren ist hier nicht mehr die einzige Form der Erreichbarkeit.
+Ergebnis: Die Tafel zeigt denselben Zug nun mit Halt. Sie dürfen tatsächlich mitfahren.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist bei Breite 6 und Count 6 voll. Zeilen 3, 4 und 5 bleiben bei Count 0 leer.
 
-### S1-03-01-03 · Halt wird räumlich verlegt
+### S1-03-01-03 · Durchsage nach dem ausgelassenen Halt
 
-Status: Der Halt bleibt im Angebot. Sein Verhältnis zum bisherigen Bahnsteig wird angepasst.
+Status: Der Lautsprecher kündigt den entfallenen Halt an. Ihr Ort ist schon hinter uns.
 
-Ergebnis: Der verlegte Halt ist über die Strecke erreichbar. Der Zug findet wieder zum Bahnsteig.
+Ergebnis: Die Ansage nennt Ihren Bahnhof vor der Ankunft. Diesmal bleibt Zeit zum Aussteigen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 hat bei Höhe 6 Count 6 und ist voll. A an N/4 liegt rechts davon; seine Lage hebt den linken Vollanker nicht auf.
 
-### S1-03-01-04 · Bahnsteig am bisherigen Standort
+### S1-03-01-04 · Türen bleiben am Bahnsteig geschlossen
 
-Status: Der Bahnsteig bleibt stehen. Die Zuständigkeit für den Halt ist inzwischen weitergezogen.
+Status: Der Zug steht am Bahnsteig. Er hält hier nur für das rote Signal.
 
-Ergebnis: Die Strecke verbindet beide Enden. Die Zuständigkeit darf zurück an den Bahnsteig.
+Ergebnis: Die Türen gehen auf. Der Aufenthalt gilt heute auch für Sie.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 5 hat Count 6 und ist vollständig belegt. Der sichere Queranker liegt unten, während B an N/4 die obere Eintrittszelle (4,0) erzwingt.
 
-### S1-03-01-05 · Halt mit erweitertem Ortsbezug
+### S1-03-01-05 · Ersatzbus ab dem nächsten Bahnhof
 
-Status: Der neue Haltebereich umfasst vorsorglich auch den Weg zum erwarteten Haltebereich.
+Status: Der Aushang nennt einen Ersatzbus. Er startet dort, wo Sie nicht aussteigen konnten.
 
-Ergebnis: Die Strecke führt zum neuen Haltebereich. Der Wegweiser hat wieder ein Ziel.
+Ergebnis: Der Ersatzbus darf leer bleiben. Sie können wieder am eigenen Bahnhof aussteigen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 5 hat Count 6 und ist voll. Alle sechs Belegungen des unteren Querbands sind sicher, ihre Formen bleiben zunächst offen.
 
-### S1-03-01-06 · Durchfahrt ohne Halt
+### S1-03-01-06 · Bahnhof wegen Baustelle ausgelassen
 
-Status: Der Zug erreicht den Außenast weiterhin mit konsequent vermiedenem Aufenthalt.
+Status: Am Zaun steht „Fertig im Mai“. Der Mai hat keine Jahreszahl.
 
-Ergebnis: Die Strecke ist frei. Ein Aufenthalt am Verbindungsproblem ist nicht mehr nötig.
+Ergebnis: Der Bauzaun ist weg, der Zug hält. Die Pressestelle erklärt den Mai für eingetreten.
 
 **INTERN · Einstieg:** Nullbasiert: B an S/3 belegt (3,5). Zeile 5 fordert nur ein Gleisfeld; ihre übrigen fünf Felder bleiben leer.
 
-### S1-03-01-07 · Haltwunsch betrieblich zur Kenntnis genommen
+### S1-03-01-07 · Haltwunsch ohne Halt
 
-Status: Der Wunsch wurde erfasst und dem fortgesetzten Vorbeifahren beigefügt.
+Status: Die Taste bestätigt Ihren Haltwunsch. Er wird bis zur Endstation gespeichert.
 
-Ergebnis: Die Verbindung berücksichtigt wieder beide Enden. Die Kenntnisnahme bekommt einen praktischen Teil.
+Ergebnis: Auf Ihren Tastendruck folgt ein Halt. Die Bestätigung besteht diesmal aus offenen Türen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 3 hat Count 6 und ist vollständig belegt. Der sichere Queranker reicht über das gesamte Raster und muss mit den Endpunktgebieten zusammenpassen.
 
-### S1-03-01-08 · Durchfahrt mit Bahnsteigbezug
+### S1-03-01-08 · Bahnhof von der Tafel gestrichen
 
-Status: Der Bahnsteig wird bei der Durchfahrt als festes Orientierungselement berücksichtigt.
+Status: Ihr Bahnhof fehlt auf der Tafel. Damit sind wir an keinem Halt vorbeigefahren.
 
-Ergebnis: Der Streckenbezug ist wieder hergestellt. Der Bahnsteig dient nicht mehr nur der Orientierung.
+Ergebnis: Ihr Bahnhof steht wieder auf der Tafel. Der Zug hält sogar am dazugehörigen Bahnsteig.
 
 **INTERN · Einstieg:** Nullbasiert: A an S/5 erzwingt (5,5). Zeile 5 hat Count 1, daher bleiben alle anderen unteren Felder leer.
 
-### S1-03-01-09 · Bedarfshalt ohne Bedarf
+### S1-03-01-09 · Durchfahrt wegen leerem Bahnsteig
 
-Status: Der Bedarf wurde mangels Halt am vorgesehenen Ort nicht abschließend festgestellt.
+Status: Der Zug hält wegen fehlender Fahrgäste nicht. Gezählt wurde nachts.
 
-Ergebnis: Die Verbindung ist da. Der Bedarf darf nun am erreichbaren Ort festgestellt werden.
+Ergebnis: Auf dem Bahnsteig werden Sie endlich mitgezählt. Zum Beweis öffnet sich die Tür.
 
 **INTERN · Einstieg:** Nullbasiert: B an S/2 belegt (2,5) und erfüllt den gesamten Count 1 der unteren Zeile. Die anderen fünf Felder dieser Zeile bleiben leer.
 
-### S1-03-01-10 · Bedarf wird nach Durchfahrt ermittelt
+### S1-03-01-10 · Einstieg nur bei nachgewiesenem Bedarf
 
-Status: Die Erhebung erfolgt am Bahnsteig nach dem vorgesehenen Durchfahrtszeitpunkt.
+Status: Der Zettel verlangt einen Einstieg als Nachweis. Dafür müsste der Zug halten.
 
-Ergebnis: Die Strecke steht zur Verfügung. Für die Bedarfserhebung gibt es wieder einen brauchbaren Anlass.
+Ergebnis: Sie sind eingestiegen. Der Halt war damit rückwirkend gerechtfertigt.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 hat Count 0 und bleibt leer. Zeilen 0 und 2 mit Count 5 müssen deshalb alle fünf übrigen Spalten belegen.
 
-### S1-03-01-11 · Halt erfolgt wieder
+### S1-03-01-11 · Halt auf die Sitzbank verlegt
 
-Status: Am Außenbahnsteig wird erstmals wieder mit einem Aufenthalt des Zuges gerechnet.
+Status: Der Aushang bestätigt den Halt. Gemeint ist die Bank am Bahnsteig.
 
-Ergebnis: Der Halt ist wieder möglich. Vorbeifahren ist nicht länger die einzige belastbare Aussicht.
+Ergebnis: Nun steht auch der Zug am Bahnsteig. Die Bank ist nicht mehr das einzige Reiseangebot.
 
 **INTERN · Einstieg:** Nullbasiert: B an E/4 belegt (5,4). Spalte 5 hat Count 1 und ist damit erfüllt; ihre übrigen fünf Felder bleiben leer.
 
-### S1-03-01-12 · Außenast grundsätzlich erreichbar
+### S1-03-01-12 · Halt durch Blick aus dem Fenster
 
-Status: Die Erreichbarkeit schließt den Bahnsteig inzwischen ausdrücklich ein.
+Status: Ihr Bahnhof gilt als bedient. Das Zugfenster war auf Ihrer Seite.
 
-Ergebnis: Der erste Außenbahnsteig ist wieder anfahrbar. Grundsätzlich hat hier einen konkreten Ort gefunden.
+Ergebnis: Die Türen öffnen sich in Ihrem Ort. Die Aussicht lässt sich jetzt betreten.
 
 **INTERN · Einstieg:** Nullbasiert: A an E/0 belegt (5,0). Das erfüllt den gesamten Count 1 von Spalte 5, deren übrige Zellen leer bleiben.
 
-### S1-03-02-01 · Wagenstand zur Orientierung
+### S1-03-02-01 · Wagenreihung heute rückwärts
 
-Status: Die Wagen sind vorhanden. Ihre Reihenfolge wird noch zur Kenntnis gebracht.
+Status: Die Wagen stehen heute andersherum. Die Tafel kennt nur gestern.
 
-Ergebnis: Der erste Abschnitt ist befahrbar. Für die Wagenreihung steht damit ein Bezugspunkt fest.
+Ergebnis: Alle sitzen. Der Zug fährt jetzt ohne Unterstützung der Tafel.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0 und bleibt leer. Die übrigen fünf Zeilen bilden den verfügbaren Raum für die drei längeren Belegungsarme.
 
-### S1-03-02-02 · Reihung abweichend von der Vorschau
+### S1-03-02-02 · Fahrradabteil laut Durchsage hinten
 
-Status: Die Vorschau bleibt zur Dokumentation der erwarteten Wagenfolge sichtbar.
+Status: Das Fahrradabteil finden Sie hinten. Gemeint ist der nächste Zug.
 
-Ergebnis: Die Strecke ist konkreter als die Vorschau. Sie verbindet die tatsächlichen Enden.
+Ergebnis: Die Fahrräder sind an Bord. Die Durchsage darf nun denselben Zug meinen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 5 ist bei Höhe 6 mit Count 6 voll. Zeile 5 hat ebenfalls Count 6 und ist voll; beide sicheren Achsen kreuzen sich unten rechts.
 
-### S1-03-02-03 · Wagenreihung heute kreativ
+### S1-03-02-03 · Kurzzug hält nicht bei Abschnitt D
 
-Status: Die Reihenfolge wurde erweitert um die Möglichkeit, anders als angezeigt zu sein.
+Status: Bitte steigen Sie in Abschnitt A ein. Abschnitt D bedient heute die Wiese.
 
-Ergebnis: Die Verbindung ist geordnet. Die kreative Phase hat ein befahrbares Ergebnis.
+Ergebnis: Die Türen in Abschnitt A schließen. Auch ohne Besuch in D ist der Zug vollständig.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 hat Count 6 und ist voll. Sie kreuzt die ebenfalls vollen Spalten 0 und 1; die Gleisformen bleiben trotz sicherer Fläche offen.
 
-### S1-03-02-04 · Gleiche Wagen, neue Erwartung
+### S1-03-02-04 · Reservierung für den fehlenden Wagen 4
 
-Status: Die Wagenzahl ist unverändert. Die Orientierung am Bahnsteig wird dennoch neu bewertet.
+Status: Ihr Platz liegt in Wagen 4. Der Zug endet nach Wagen 3.
 
-Ergebnis: Die Strecke stimmt wieder. Die unveränderte Anzahl hat nun auch eine brauchbare Anordnung.
+Ergebnis: Sie haben einen Sitzplatz. Diesmal ist auch ein Wagen darum herum.
 
 **INTERN · Einstieg:** Nullbasiert: A an S/0 belegt (0,5). Zeile 5 hat Count 1, weshalb ihre anderen fünf Felder leer bleiben.
 
-### S1-03-02-05 · Angezeigte Folge mit tatsächlicher Abweichung
+### S1-03-02-05 · Erste Klasse hinter dem Bahnsteigende
 
-Status: Die tatsächliche Folge gilt vor Ort. Die Anzeige bleibt als alternative Darstellung erhalten.
+Status: Die erste Klasse befindet sich am Zugende. Der Bahnsteig endet früher.
 
-Ergebnis: Die Verbindung entspricht dem vorhandenen Weg. Die alternative Darstellung darf zurücktreten.
+Ergebnis: Die erste Klasse hält an einer Treppe. Der Aufpreis umfasst heute auch den Einstieg.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 6 und ist vollständig belegt. Sie liefert einen vertikalen Belegungsanker zwischen den unterschiedlich dichten oberen und unteren Gebieten.
 
-### S1-03-02-06 · Erste Klasse am anderen Ende
+### S1-03-02-06 · Hinterer Zugteil mit verschlossenen Türen
 
-Status: Das andere Ende befindet sich aus Sicht der Anzeige an der bisher nicht vorgesehenen Seite.
+Status: Die hinteren Türen bleiben zu. Diese Wagen dienen der Längenangabe.
 
-Ergebnis: Die Verbindung reicht bis zum anderen Ende. Die Lage ist wieder weniger standortabhängig.
+Ergebnis: Auch hinten steigen Sie ein. Der Zug befördert nun mehr als seine eigene Länge.
 
 **INTERN · Einstieg:** Nullbasiert: A an N/1 belegt (1,0), die einzige Zelle von Zeile 0. Alle fünf anderen oberen Felder sind leer.
 
-### S1-03-02-07 · Wagenstand bitte vor Ort feststellen
+### S1-03-02-07 · Neuer Wagenstand nach jedem Rollkofferweg
 
-Status: Der Weg zum angezeigten Wagen enthält eine erneute Prüfung des Wagenstands.
+Status: Bitte folgen Sie dem neuen Wagenplan. Ihr Koffer fährt heute weiter als der Zug.
 
-Ergebnis: Die Verbindung reicht bis zum gesuchten Wagenstand. Eine weitere Wegbeschreibung entfällt.
+Ergebnis: Ihr Koffer steht im Wagen. Die übrige Strecke übernimmt tatsächlich der Zug.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 5 hat Count 6 und ist vollständig belegt. Der lange rechte Belegungsanker muss in der weiteren Herleitung mit beiden Endpunktgebieten verbunden werden.
 
-### S1-03-02-08 · Klassenlage mit Richtungswechsel
+### S1-03-02-08 · Wagen 2 zweimal am Bahnsteig
 
-Status: Die Wagen stehen weiter richtig im Zug. Der Zug steht anders zur Erwartung.
+Status: Wagen 2 ist doppelt vorhanden. Damit gilt Wagen 3 als ersetzt.
 
-Ergebnis: Die Verbindung ist nachvollziehbar. Die Richtung der Erwartung kann neu beschildert werden.
+Ergebnis: Jeder Wagen trägt eine andere Nummer. Die Tafel meldet einen Rückgang der Kapazität.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist bei Count 0 leer. B an W/1 belegt (0,1), das einzige geforderte Feld von Zeile 1; ihr Rest bleibt leer.
 
-### S1-03-02-09 · Wagen fehlen nicht, sie stehen nur anders
+### S1-03-02-09 · Erste Klasse nur auf der Tafel
 
-Status: Die vollständige Garnitur verteilt sich auf einen unerwarteten Eindruck am Bahnsteig.
+Status: An den Türen steht nur zweite Klasse. Der Aufpreis richtet sich nach der Tafel.
 
-Ergebnis: Die Strecke ist vollständig. Ihre Anordnung lässt sich bis zum Ziel nachvollziehen.
+Ergebnis: Die erste Klasse ist im Zug. Sie bezahlen erstmals für etwas, das mitfährt.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0 und 1 sind mit Count 6 voll; Zeilen 4 und 5 haben Count 0 und bleiben leer. Die Belegung ist auf den oberen Bereich konzentriert.
 
-### S1-03-02-10 · Vollständigkeit ohne gewohnte Reihenfolge
+### S1-03-02-10 · Zugteil zum Ziel bleibt am Bahnsteig
 
-Status: Alle vorgesehenen Wagen werden mitgezählt. Die gewohnte Reihenfolge erhält keinen eigenen Anspruch.
+Status: Ihr Zugteil bleibt hier. Der Rest fährt zu Ihrem Ziel.
 
-Ergebnis: Die Verbindung hat ihre Ordnung gefunden. Dafür musste nichts als fehlend erklärt werden.
+Ergebnis: Alle Wagen fahren zum Außenast. Ihr Ziel und Ihr Sitzplatz bleiben zusammen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 2 hat bei Höhe 6 Count 6 und ist vollständig belegt. Der sichere senkrechte Anker koppelt später den Kopfbereich mit dem unteren Bogen.
 
-### S1-03-02-11 · Reihung ausnahmsweise passend
+### S1-03-02-11 · Wagenplan für 2041 am Bahnsteig
 
-Status: Die angekündigte und die vorhandene Folge werden auf verblüffende Übereinstimmung geprüft.
+Status: Der Aushang zeigt die Wagenfolge von 2041. Bis dahin läuft der Testbetrieb.
 
-Ergebnis: Die Reihenfolge passt. Die Prüfung darf dieses Ergebnis ohne Korrektur stehen lassen.
+Ergebnis: Die Wagen stehen richtig, und Sie fahren mit. Für 2041 sind Sie damit deutlich zu früh.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 5 hat Count 0 und bleibt leer. Die fünf oberen Zeilen enthalten alle Gleisfelder; ihre längeren Arme müssen über Restzahlen verbunden werden.
 
-### S1-03-02-12 · Zugteil korrekt zugeordnet
+### S1-03-02-12 · Wagen richtig Bahnsteig falsch
 
-Status: Der abgestellte Zugteil wird wieder im Zusammenhang mit seiner Verbindung betrachtet.
+Status: Die Wagen stehen genau wie auf der Tafel. Nun gilt der Bahnsteig als falsch.
 
-Ergebnis: Der abgestellte Zugteil ist sinnvoll eingeordnet. Die Wagenreihung darf wieder Orientierung geben.
+Ergebnis: Die Pendler fahren im richtigen Wagen ab. Der Bahnsteig wurde per Durchsage berichtigt.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 6 und ist vollständig belegt. Der vertraute obere Belegungsanker bestimmt noch nicht die kurvenreiche Verbindung zum Westanschluss unten.
 
-### S1-03-03-01 · Zugteil fährt heute eigenständig
+### S1-03-03-01 · Nur der vordere Zugteil fährt weiter
 
-Status: Der vordere Zugteil hat einen eigenen Planungsstand. Der hintere ist noch Bestandteil der Auskunft.
+Status: Der hintere Zugteil bleibt am Bahnsteig. Ihr Sitzplatz fährt nicht mit.
 
-Ergebnis: Der erste Teil der Verbindung steht. Die Auskunft kann sich wieder auf einen Zug beziehen.
+Ergebnis: Beide Teile setzen sich in Bewegung. Sie dürfen tatsächlich sitzen bleiben.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 fordert 6 Gleisfelder bei Breite 6. Alle Felder (0,0) bis (5,0) sind deshalb belegt; die Gleisformen bleiben zunächst offen.
 
-### S1-03-03-02 · Hinterer Zugteil folgt gesondert
+### S1-03-03-02 · Zwei Ziele an einem Zug
 
-Status: Die Weiterfahrt wird für beide Zugteile geführt. Eine gemeinsame Aussage liegt noch nicht vor.
+Status: Vorn steht Ihr Ziel, hinten das Depot. Zusammen fährt man nur bis hier.
 
-Ergebnis: Eine gemeinsame Strecke liegt vor. Getrennte Auskünfte sind dafür nicht mehr erforderlich.
+Ergebnis: An beiden Wagen steht nun Ihr Ziel. Diesmal fahren sie auch dorthin.
 
 **INTERN · Einstieg:** 0-basiert: A an N/1 erzwingt (1,0). Zeile 0 hat Count 1; ihre übrigen fünf Felder sind leer.
 
-### S1-03-03-03 · Vorderer Zugteil weiter, hinterer später
+### S1-03-03-03 · Trennungsansage nach Türschluss
 
-Status: Der vordere Zugteil fährt weiter. Der hintere wartet noch am Abzweig zum Depot.
+Status: Die Türen sind zu. Nun erfahren Sie, in welchem Zugteil Sie sitzen müssten.
 
-Ergebnis: Die Strecke verbindet beide Zugteile. Der hintere bleibt nicht mehr am Abzweig zurück.
+Ergebnis: Die Türen öffnen noch einmal. Die Durchsage ist erstmals praktisch nutzbar.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 3 hat Count 6 bei Höhe 6. (3,0) bis (3,5) sind belegt, einschließlich des A-Eintritts an N/3.
 
-### S1-03-03-04 · Weiterfahrt nach Zugteilzugehörigkeit
+### S1-03-03-04 · Weiterfahrt am anderen Bahnsteigende
 
-Status: Der Zug wird vollständig angezeigt. Die Angaben gelten jeweils nur für einen Teil davon.
+Status: Bitte gehen Sie zum vorderen Wagen. Ihr Anschluss steht im selben Zug.
 
-Ergebnis: Die vollständige Verbindung ist jetzt auch vollständig nutzbar.
+Ergebnis: Die Zugbegleitung meldet alle Türen geschlossen. Diesmal sind Sie auf der richtigen Seite.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 fordert bei Höhe 6 alle sechs Felder. (0,0) bis (0,5) sind sichere Belegung, ohne bereits ihre Formen festzulegen.
 
-### S1-03-03-05 · Gemeinsames Ziel, getrennter Sachstand
+### S1-03-03-05 · Durchgang zum vorderen Zugteil fehlt
 
-Status: Beide Zugteile haben dasselbe Ziel. Am Depot trennt sie noch eine unpraktische Abzweigung.
+Status: Zwischen den Wagen gibt es keine Tür. Der kurze Weg führt durch den Regen.
 
-Ergebnis: Die Strecke gibt beiden Zugteilen wieder einen gemeinsamen Weg.
+Ergebnis: Sie sitzen wieder im Trockenen. Der Zug fährt, bevor ein weiterer Umzug nötig wird.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Damit ist Count 1 in Zeile 0 erfüllt; (1,0) bis (5,0) bleiben leer.
 
-### S1-03-03-06 · Trennung betrieblich vorgesehen
+### S1-03-03-06 · Ihr Halt liegt hinter der Zugtrennung
 
-Status: Der vordere Zugteil fährt weiter, der hintere zum Depot. Der Rückweg bleibt offen.
+Status: Ihr Bahnhof liegt am richtigen Ast. Ihr Wagen leider nicht.
 
-Ergebnis: Zusammenführung durchgeführt. Eine bloße Erwähnung im Text hat nicht ausgereicht.
+Ergebnis: Vor dem Fenster erscheint Ihr Bahnhof. Der Zug hält sogar.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 7 bei Breite 7. Sämtliche Felder (0,0) bis (6,0) sind belegt, darunter A an E/0.
 
-### S1-03-03-07 · Zugteilzuordnung in Abstimmung
+### S1-03-03-07 · Hinterer Zugteil endet im Depot
 
-Status: Die Teile sind vorhanden. Ihre Zuordnung zur gemeinsamen Weiterfahrt wird noch abgeglichen.
+Status: Am Fenster zieht Ihr Bahnhof vorbei. Der Wagen hat Feierabend, Sie nicht.
 
-Ergebnis: Die Zuordnung passt. Die Strecke trägt die gemeinsame Weiterfahrt.
+Ergebnis: Der Wagen erreicht den Bahnsteig statt der Halle. Feierabend ist nun auch für Sie möglich.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0 und bleibt leer. Zeile 5 fordert 6 der dann noch sechs verfügbaren Felder; (1,5) bis (6,5) sind belegt.
 
-### S1-03-03-08 · Fahrtverband wird vervollständigt
+### S1-03-03-08 · Gleiswechsel nur für die vordere Hälfte
 
-Status: Die Zugteile stehen bereit. Zwischen Depot und Strecke fehlt nur noch ein durchgehender Weg.
+Status: Die Tafel schickt Sie zu Gleis 2. Ihr Wagen bleibt zur besseren Übersicht auf Gleis 1.
 
-Ergebnis: Die selbst gebaute Strecke führt beide Zugteile zusammen. Der vollständige Zug hat wieder einen Weg.
+Ergebnis: Auf Gleis 2 wartet der ganze Zug. Die Übersicht hat ihren Widerstand aufgegeben.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 erzwingt (0,0). Da Zeile 0 Count 1 hat, sind (1,0) bis (6,0) leer.
 
-### S1-03-03-09 · Wiedervereinigung nicht ausgeschlossen
+### S1-03-03-09 · Ersatzbus zwischen den Zugteilen
 
-Status: Die Zugteile sind weiter auseinander, als es die gemeinsame Bezeichnung vermuten lässt.
+Status: Der Bus verbindet die beiden Wagen. Für einen ganzen Zug ist Umsteigen nötig.
 
-Ergebnis: Die Entfernung ist überbrückt. Der Fahrtverband benötigt keine vorsichtige Zukunftsform mehr.
+Ergebnis: Die Wagen fahren gemeinsam weiter. Der Bus muss heute keinen Zug zusammenhalten.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0, 1 und 2 haben jeweils Count 0. Alle 21 Felder dieser drei Zeilen bleiben leer; der nutzbare Bereich liegt darunter.
 
-### S1-03-03-10 · Gemeinsame Weiterfahrt wird konkret
+### S1-03-03-10 · Wiedervereinigung laut Fahrplan gestern
 
-Status: Die Verbindung der Zugteile ist vorgesehen. Der Weg dorthin wird noch nicht mitgeführt.
+Status: Am Bahnsteig hängt der Plan zur Weiterfahrt. Beide Teile trafen sich gestern.
 
-Ergebnis: Der Weg liegt vor. Die gemeinsame Weiterfahrt ist damit mehr als eine Absicht.
+Ergebnis: Die Verbindung steht, der Zug fährt. Heute wurde trotz abweichender Planung zugelassen.
 
 **INTERN · Einstieg:** 0-basiert: B an N/0 erzwingt (0,0). Spalte 0 hat Count 1; (0,1) bis (0,5) sind daher leer.
 
-### S1-03-03-11 · Zugteile logisch zusammengeführt
+### S1-03-03-11 · Ein Zug auf zwei Bahnsteigen
 
-Status: Die Zugteile sind am Depot bereitgestellt. Für die gemeinsame Fahrt fehlt noch die durchgehende Strecke.
+Status: Die Tafel zählt beide Hälften als einen Zug. Dazwischen liegen drei Stationen.
 
-Ergebnis: Zusammenführung bestätigt. Die Verbindung hält auch außerhalb der Aufzählung.
+Ergebnis: Beide Hälften verlassen denselben Bahnsteig. Die Pressestelle nennt es räumlichen Fortschritt.
 
 **INTERN · Einstieg:** 0-basiert: A an S/0 belegt (0,5). Zeile 5 fordert nur ein Gleisfeld; (1,5) bis (6,5) bleiben leer.
 
-### S1-03-03-12 · Fahrtverband formal wiederhergestellt
+### S1-03-03-12 · Stehender Zugteil bereits auf Rückfahrt
 
-Status: Der gesamte Zug wird wieder als Einheit geführt. Die Strecke bittet noch um denselben Zustand.
+Status: Ihr Wagen steht noch am Bahnsteig. Laut App bringt er Sie bereits zurück.
 
-Ergebnis: Fahrtverband wiederhergestellt. Auch die Verbindung zum Depot ist durchgehend.
+Ergebnis: Der ganze Zug erreicht Ihr Ziel. Die Rückfahrt muss erstmals auf die Hinfahrt warten.
 
 **INTERN · Einstieg:** 0-basiert: Die sieben Felder der Zeile 0 müssen bei Count 7 sämtlich belegt sein: (0,0) bis (6,0). Ihre Formen sind noch nicht bestimmt.
 
-### S1-03-04-01 · Anschluss ist leider weitergereist
+### S1-03-04-01 · Anschluss vor Ihrer Ankunft abgefahren
 
-Status: Die Anschlussverbindung bleibt bestehen. Sie befindet sich inzwischen weiter im Fahrplan.
+Status: Ihr Anschluss hat den Bahnsteig verlassen. Der Fahrplan nennt das Umsteigen.
 
-Ergebnis: Ein erster Weg zum Anschluss steht. Die Formulierung weitergereist hat an Bedeutung verloren.
+Ergebnis: Sie sitzen im Anschlusszug. Die Weiterfahrt findet diesmal mit Ihnen statt.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 7 bei Breite 7. (0,0) bis (6,0) sind belegt; die Einserzeilen 1, 3 und 5 bestimmen davon unabhängig je nur ein Gleisfeld.
 
-### S1-03-04-02 · Rückfrage erreicht den Anschluss nicht
+### S1-03-04-02 · Anschluss nur noch auf der Tafel
 
-Status: Der Anschluss fährt weiter. Die Nachfrage wird weiterhin am Ausgangsort bearbeitet.
+Status: Die Tafel zeigt Ihren Anschluss. Am Gleis steht nur seine Abfahrtszeit.
 
-Ergebnis: Die Verbindung reicht jetzt über die Rückfrage hinaus.
+Ergebnis: Zur Anzeige ist ein Zug eingetroffen. Sie können jetzt auch körperlich weiterreisen.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 2 bis 6 haben jeweils Count 0. Ihre 30 Felder bleiben leer; die beiden aktiven Spalten 0 und 1 haben jeweils Count 5.
 
-### S1-03-04-03 · Anschluss wartet nicht auf Rückfragen
+### S1-03-04-03 · Anschluss schließt die Türen
 
-Status: Die Weiterfahrt ist entschieden. Die Verbindung dorthin befindet sich noch in Klärung.
+Status: Die Türen schließen bei Ihrer Ankunft. Ihr Zug war der Startschuss.
 
-Ergebnis: Klärung abgeschlossen. Die Strecke muss dem Anschluss keine Frage mehr hinterherschicken.
+Ergebnis: Die Türen waren lange genug offen. Sie sind drin. Das zählt als gelungener Übergang.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 5 fordert bei Breite 7 sämtliche sieben Gleisfelder. (0,5) bis (6,5) sind deshalb belegt; ihre Formen folgen erst später.
 
-### S1-03-04-04 · Weiterreise ohne Zwischenbescheid
+### S1-03-04-04 · Anschluss nach Gleiswechsel weg
 
-Status: Eine Antwort ist nicht Voraussetzung für die Abfahrt. Für das Erreichen leider schon ein Weg.
+Status: Ihr Anschluss fährt am anderen Gleis. Die Treppe dauert länger als der Halt.
 
-Ergebnis: Der Weg ist da. Die Weiterreise kommt ohne ausstehenden Zwischenbescheid aus.
+Ergebnis: Sie haben den Zug erreicht. Die Treppe wurde nicht als Zwischenaufenthalt berechnet.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. In Zeile 1 bleiben damit sechs mögliche Felder für Count 6; (1,1) bis (6,1) sind belegt.
 
-### S1-03-04-05 · Anschlussauskunft nach Abfahrt
+### S1-03-04-05 · Eine Stunde bis zum nächsten Zug
 
-Status: Die Auskunft ist vollständig. Ihr Gegenstand hat den Bahnsteig bereits verlassen.
+Status: Der nächste Zug kommt in einer Stunde. Ihr Kaffee ist schneller kalt.
 
-Ergebnis: Die Verbindung ist rechtzeitig für ihre eigene Weiterfahrt vorhanden.
+Ergebnis: Ihr Kaffee bleibt kalt. Als Reiseergebnis kommt jetzt ein erreichter Bahnhof hinzu.
 
 **INTERN · Einstieg:** 0-basiert: A an N/3 belegt (3,0). Count 1 in Zeile 0 schließt (0,0), (1,0), (2,0), (4,0), (5,0) und (6,0) aus.
 
-### S1-03-04-06 · Alternative Verbindung benötigt Geduld
+### S1-03-04-06 · Anschluss fährt ohne Halt durch
 
-Status: Die Alternative wird empfohlen. Ihre Verbindung zum Reiseziel ist noch nicht durchgehend erläutert.
+Status: Ihr Anschluss fährt durch den Bahnhof. Der Halt besteht nur auf der Karte.
 
-Ergebnis: Die Alternative führt durch. Weitere Erläuterungen würden den Weg nur verlängern.
+Ergebnis: Laut Durchsage dürfen Sie einsteigen. Der Halt findet diesmal außerhalb der Karte statt.
 
 **INTERN · Einstieg:** 0-basiert: A an N/0 erzwingt (0,0). Spalte 0 fordert nur dieses eine Gleisfeld; (0,1) bis (0,5) bleiben leer.
 
-### S1-03-04-07 · Anschlusslage ohne Annäherung
+### S1-03-04-07 · Ersatzbus endet vor dem Bahnhof
 
-Status: Die Anzeige nennt den Anschluss. Den Weg zu seinem Bahnsteig führt sie unter weiteren Informationen.
+Status: Der Ersatzbus endet vor dem Bahnhof. Das letzte Stück ersetzt Ihr Fußweg.
 
-Ergebnis: Der Weg zum Anschluss ist verbunden. Die Anzeige muss ihn nicht länger in die Fußnote verschieben.
+Ergebnis: Vom Bus zum Zug hat es gereicht. Ihre Schuhe werden nicht mehr als Verkehrsmittel benötigt.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 2 hat Count 6 bei Höhe 6. Alle Felder (2,0) bis (2,5) sind belegt; dieser Vollanker verbindet die Zeileninformationen.
 
-### S1-03-04-08 · Reiseweg in mehreren Auskünften
+### S1-03-04-08 · Letzter Zug vor der Durchsage weg
 
-Status: Am anderen Bahnsteig steht der Anschluss auf der Anzeige. Die Wegweisung führt zur ersten Anzeige zurück.
+Status: Der letzte Zug ist weg. Die Durchsage wünscht eine gute Weiterfahrt.
 
-Ergebnis: Der Zug fährt über die verbundene Strecke. Für den Weg zum Anschluss ist kein Wechsel der Anzeige nötig.
+Ergebnis: Sie fahren im letzten Zug weiter. Die guten Wünsche durften am Bahnsteig bleiben.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 fordert alle sechs Felder (0,0) bis (0,5). Der A-Eintritt an W/0 gehört damit zum sicheren linken Belegungsarm.
 
-Status kurz: Der Anschluss steht am anderen Bahnsteig. Die Wegweisung führt zurück.
+### S1-03-04-09 · Anschluss zu Fuß empfohlen
 
-Ergebnis kurz: Der Zug fährt durch. Für den Anschluss ist kein Wechsel der Anzeige nötig.
+Status: Der Aushang empfiehlt den Fußweg zum Anschluss. Es sind nur 42 Kilometer.
 
-### S1-03-04-09 · Weiterfahrt am anderen Bahnsteig
-
-Status: Der Anschluss wird am anderen Bahnsteig geführt. Welcher andere, ergibt sich aus der nächsten Auskunft.
-
-Ergebnis: Die Weiterfahrt hat einen erreichbaren Ort. Das Wort andere genügt dafür wieder.
+Ergebnis: Die Verbindung steht. Sie fahren weiter. Der Fußweg bleibt dem Marathon vorbehalten.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 und 1 fordern jeweils 7 bei Breite 7 und sind vollständig belegt. Zeilen 4 und 5 haben Count 0 und bleiben vollständig leer.
 
-Status kurz: Der Anschluss liegt am anderen Bahnsteig. Welcher andere, folgt noch.
+### S1-03-04-10 · Anschluss wartet im nächsten Bahnhof
 
-### S1-03-04-10 · Anschlussweg mit Gegenrichtung
+Status: Ihr Anschluss wartet im nächsten Bahnhof. Ihr Zug hält dort seit 1998 nicht mehr.
 
-Status: Der richtige Bahnsteig ist bekannt. Die Richtung dorthin entspricht vorläufig nicht der Reiserichtung.
-
-Ergebnis: Der Weg erreicht sein Ziel. Die Richtungsangabe kann ohne Zusatzblatt bestehen bleiben.
+Ergebnis: Am Umstieg rollen wieder Koffer. Die Pause seit 1998 ist beendet.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 3 fordert 7 Gleisfelder bei Breite 7. (0,3) bis (6,3) sind sämtlich belegt, darunter der B-Eintritt an W/3.
 
-Status kurz: Der Bahnsteig ist bekannt. Der Weg dorthin widerspricht der Reiserichtung.
+### S1-03-04-11 · Anschluss am selben Gleis nächste Woche
 
-### S1-03-04-11 · Anschluss rein logisch erreicht
+Status: Die Tafel verspricht Anschluss am selben Gleis. Gemeint ist nächste Woche.
 
-Status: Der Anschluss ist auf dem Papier erreichbar. Das Papier hat bisher keine durchgehende Strecke beigefügt.
-
-Ergebnis: Erreichbarkeit nachgewiesen. Die Verbindung endet jetzt auch am Ziel.
+Ergebnis: Sie fahren noch heute weiter. Die Tafel bittet um Verständnis für den Zeitgewinn.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 4 hat Count 6 bei Höhe 6. (4,0) bis (4,5) sind belegt; B an N/4 liegt in diesem Vollanker.
 
-Status kurz: Auf dem Papier erreichbar. Eine durchgehende Strecke liegt nicht bei.
+### S1-03-04-12 · Umstieg in den Fahrplanaushang
 
-### S1-03-04-12 · Außenast wieder im Fahrplan
+Status: Ihr Anschluss ist im Fahrplan erreichbar. Bitte steigen Sie in den Aushang.
 
-Status: Der Außenast wird wieder aufgeführt. Für die Verbindung ist noch die letzte Lücke im Zusammenhang offen.
-
-Ergebnis: Der Außenast ist verbunden. Seine Aufnahme in den Fahrplan hat wieder eine räumliche Grundlage.
+Ergebnis: Bitte nehmen Sie im Wagen Platz. Wir fahren weiter. Der Aushang bleibt Wandverkleidung.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Der Einsercount in Spalte 0 lässt (0,1) bis (0,5) leer; die Fortsetzung muss innerhalb der oberen Zeile liegen.
 
-Status kurz: Der Außenast steht im Fahrplan. Im Zusammenhang bleibt eine Lücke.
+### S1-04-01-01 · Umleitung am Ziel vorbei
 
-### S1-04-01-01 · Kurzfristig über einen Umweg
+Status: Der Zug fährt am Ziel vorbei. Bitte bleiben Sie für den Umweg sitzen.
 
-Status: Der direkte Weg wird kurzfristig ersetzt. Die Ersatzverbindung beansprucht dafür etwas mehr Gegend.
-
-Ergebnis: Der erste Umweg führt durch. Die zusätzliche Gegend erfüllt nun einen Zweck.
+Ergebnis: Die Türen öffnen sich an Ihrem Ziel. Sie müssen diesmal nicht daran vorbeifahren.
 
 **INTERN · Einstieg:** 0-basiert: B an E/0 belegt (6,0). Zeile 0 hat Count 1, also bleiben (0,0) bis (5,0) leer.
 
-### S1-04-01-02 · Zusätzliche Strecke im Reiseweg
+### S1-04-01-02 · Umweg über Gleis 8
 
-Status: Die Verbindung enthält vorsorglich mehr Weg. Eine kürzere Begründung liegt dafür nicht vor.
+Status: Die Tafel meldet Gleis 8. Der Weg dorthin zählt nicht zur Reisezeit.
 
-Ergebnis: Der Weg ist verbunden. Seine Begründung kann jetzt entfallen.
+Ergebnis: Sie sitzen im Zug. Der längste Abschnitt wurde zu Fuß erledigt.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 4 haben jeweils Count 0. Alle 35 Felder dieser Zeilen bleiben leer; nur Zeilen 5 und 6 können Gleisfelder enthalten.
 
-### S1-04-01-03 · Direkter Weg derzeit nicht vorgesehen
+### S1-04-01-03 · Ersatzhaltestelle hinter dem Parkhaus
 
-Status: Die kürzeste Verbindung ist aus der Empfehlung entfernt. Ihre beiden Enden bleiben im Angebot.
+Status: Der Ersatzbus hält hinter dem Parkhaus. Ab hier fährt nur Ihr Rollkoffer.
 
-Ergebnis: Die Enden sind verbunden. Die Empfehlung muss dafür keinen direkten Weg behaupten.
+Ergebnis: Der Bus fährt mit Ihnen ab. Die Haltestelle war keine reine Suchaufgabe.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 6 haben Count 0. In Zeilen 0, 2, 4 und 6 verbleiben jeweils fünf mögliche Felder für Count 5; diese Felder in Spalten 1 bis 5 sind belegt.
 
-### S1-04-01-04 · Erreichbarkeit mit erweitertem Umfeld
+### S1-04-01-04 · Ersatzbus über alle Ortsteile
 
-Status: Das Ziel bleibt unverändert. Der Weg dorthin berücksichtigt nun auch seine weitere Umgebung.
+Status: Der Bus fährt zum nächsten Bahnhof. Unterwegs bedient er den ganzen Landkreis.
 
-Ergebnis: Das Umfeld ist durchquert. Die Verbindung erreicht trotzdem das ursprüngliche Ziel.
+Ergebnis: Sie steigen in den Zug. Die Rundfahrt war im Fahrpreis enthalten.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 1 haben jeweils Count 7 bei Höhe 7 und sind vollständig belegt. Spalten 5 und 6 haben Count 0 und bleiben leer.
 
-### S1-04-01-05 · Umweg innerhalb der Verbindung
+### S1-04-01-05 · Zusätzlicher Halt am Startbahnhof
 
-Status: Die Verbindung ist vorhanden. Der Umweg wird aus Gründen der Übersicht getrennt dargestellt.
+Status: Der Zug hält wieder am Start. Laut Tafel sind Sie jetzt weitergereist.
 
-Ergebnis: Die getrennte Darstellung ist zusammengeführt. Der Weg kann als Verbindung gelten.
+Ergebnis: Die Taube am Startbahnsteig sieht Sie abfahren. Eine vierte Begrüßung entfällt.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 6 hat Count 7. Alle Felder (6,0) bis (6,6) sind belegt; B an E/6 gehört zu dieser sicheren Belegung.
 
-### S1-04-01-06 · Umweg mit Anschlussgarantie ohne Anschluss
+### S1-04-01-06 · Anschluss eine Minute vor Ankunft
 
-Status: Die Garantie betrifft den Umweg. Der Anschluss wird in einer gesonderten Betrachtung geführt.
+Status: Der Bus kommt um 10.12 Uhr an. Der Anschluss wartet bis 10.11 Uhr.
 
-Ergebnis: Der Umweg verbindet. Die gesonderte Betrachtung hat ihren Anschluss gefunden.
+Ergebnis: Sie erreichen den wartenden Zug. Die verlorene Minute wurde tatsächlich gefunden.
 
 **INTERN · Einstieg:** 0-basiert: B an W/3 erzwingt (0,3). Spalte 0 hat Count 1; alle anderen Felder dieser Spalte bleiben leer.
 
-### S1-04-01-07 · Verbindung über entfernte Teilstrecken
+### S1-04-01-07 · Weiterfahrt ab stillgelegtem Bahnhof
 
-Status: Die Teilstrecken sind erreichbar. Ihre gegenseitige Erreichbarkeit wird noch geprüft.
+Status: Ihr Bus endet am Bahnhof. Der nächste Zug hält hier seit 2006 nicht mehr.
 
-Ergebnis: Die Teilstrecken erreichen einander. Eine weitere Umfahrung ist dafür nicht erforderlich.
+Ergebnis: Ein Zug hält und nimmt Sie mit. Der Bahnhof hat wieder einen Zweck.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 2 ist mit Count 7 über die Höhe 7 voll. (2,0) bis (2,6) sind belegt, darunter B an N/2.
 
-### S1-04-01-08 · Durchgehender Umweg wird hergestellt
+### S1-04-01-08 · Ersatzhaltestelle laut Aushang
 
-Status: Die Umleitung ist ausgeschildert. Zwischen zwei Schildern fehlt die Auskunft, wie es weitergeht.
+Status: Der Aushang führt Sie zur Ersatzhaltestelle. Dort hängt derselbe Aushang.
 
-Ergebnis: Die Schilder gehören wieder zu einem befahrbaren Weg. Der Zug erreicht das andere Ende.
+Ergebnis: Der letzte Pfeil endet an einer Bustür. Sie dürfen tatsächlich einsteigen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 6 hat Count 7 bei Breite 7. Ihre Felder (0,6) bis (6,6) sind sicher belegt; die Form der Queranbindung bleibt offen.
 
-### S1-04-01-09 · Nur wenige Minuten mehr Reisezeit
+### S1-04-01-09 · Ankunft mit zwei zusätzlichen Tagen
 
-Status: Die zusätzliche Reisezeit bleibt überschaubar. Der betrachtete Maßstab wurde entsprechend angepasst.
+Status: Die Tafel meldet Ankunft um 08.03 Uhr. Gemeint ist übermorgen.
 
-Ergebnis: Die zusätzliche Strecke funktioniert. Der Maßstab darf wieder unverändert bleiben.
+Ergebnis: Sie kommen noch heute an. Die Tafel verzichtet auf die zusätzlichen Tage.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0, 2 und 4 haben jeweils Count 7 bei Höhe 7. Alle Felder dieser drei Spalten sind belegt; ihre Gleisformen sind noch offen.
 
-### S1-04-01-10 · Umfahrung mit ausführlicherer Strecke
+### S1-04-01-10 · Umleitung auf der Rückseite des Globus
 
-Status: Der Weg ist nur geringfügig länger beschrieben. Auf der Karte nimmt er etwas mehr Platz ein.
+Status: Die Umleitung steht auf der Karte. Bitte drehen Sie den Globus weiter.
 
-Ergebnis: Der beschriebene Weg ist befahrbar. Die Karte hat ihre Ausführlichkeit gerechtfertigt.
+Ergebnis: Die Pressestelle meldet die Ankunft. Als Abkürzung wurde derselbe Kontinent genutzt.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 0. Die Felder (0,0) bis (6,0) bleiben leer; sämtliche mögliche Belegung liegt in Zeilen 1 bis 6.
 
-### S1-04-01-11 · Umweg akzeptiert
+### S1-04-01-11 · Begrüßung aus dem entfernten Zielbahnhof
 
-Status: Der Umweg ist akzeptiert. Seine Verbindung zum Ziel steht noch als letzte Bedingung im Vorgang.
+Status: Die Durchsage begrüßt Sie am Ziel. Der Zug ist noch zwei Bundesländer entfernt.
 
-Ergebnis: Bedingung erfüllt. Die Akzeptanz hat jetzt eine durchgehende Strecke.
+Ergebnis: Die Türen öffnen sich am richtigen Ort. Die Begrüßung passt erstmals dazu.
 
 **INTERN · Einstieg:** 0-basiert: A an E/6 belegt (6,6). Spalte 6 hat Count 1; (6,0) bis (6,5) bleiben leer.
 
-### S1-04-01-12 · Brücke vorläufig tragfähig
+### S1-04-01-12 · Umweg über den gestrigen Fahrplan
 
-Status: Die Umfahrungsbrücke ist Bestandteil des Reisewegs. Für den Reiseweg fehlt noch die durchgehende Freigabe.
+Status: Der Aushang empfiehlt den Zug von gestern. Nur der war noch direkt.
 
-Ergebnis: Die Verbindung steht. Die Umfahrungsbrücke gehört nun zu einem befahrbaren Kartenstrang.
+Ergebnis: Sie kommen heute an. Das gilt hier bereits als Abkürzung.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 erzwingt (6,0). Der Einsercount in Spalte 6 schließt (6,1) bis (6,6) aus.
 
-Status kurz: Die Umfahrungsbrücke gehört zum Weg. Seine Freigabe fehlt noch.
+### S1-04-02-01 · Umleitung mit zusätzlichem Halt
 
-### S1-04-02-01 · Mehr Reisezeit als geplant vorgesehen
+Status: Der Zug hält zusätzlich im Nachbarort. Ihr Ziel liegt vor dem Nachbarort.
 
-Status: Die Reisezeit wurde vorsorglich erweitert. Der Plan wird an diese Vorsorge angepasst.
-
-Ergebnis: Die Verbindung steht. Die zusätzliche Reisezeit benötigt keine zusätzliche Strecke mehr.
+Ergebnis: Sie sind am Ziel. Der Nachbarort muss heute ohne Sie auskommen.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 4, 5 und 6 sowie Zeilen 5 und 6 haben Count 0. Alle ihre Felder sind leer; die mögliche Belegung liegt in Spalten 0 bis 3 und Zeilen 0 bis 4.
 
-### S1-04-02-02 · Fahrtdauer mit offenem Ende
+### S1-04-02-02 · Abfahrt am anderen Bahnsteig
 
-Status: Die Anzeige kennt die Abfahrt. Wann der Zug nach dem Umweg ankommt, bleibt ihr Geheimnis.
+Status: Ihr Zug fährt von Gleis 8. Die Treppe dorthin zählt bereits als Reisezeit.
 
-Ergebnis: Der Zug erreicht das Ende über Ihre Strecke. Die Anzeige hat jetzt wenigstens eine glaubhafte Richtung.
+Ergebnis: Die Durchsage meldet Ihre Abfahrt. Sie stehen tatsächlich am genannten Gleis.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 2 haben jeweils Count 7 bei Höhe 7. (0,0) bis (0,6) und (2,0) bis (2,6) sind belegt.
 
-### S1-04-02-03 · Mehr Reisezeit, weniger Erklärung
+### S1-04-02-03 · Ankunft eine Minute hinter dem Anschluss
 
-Status: Mehr Reisezeit ist vorgesehen. Der Umweg steht am Bahnsteig, die Erklärung blieb offenbar zurück.
+Status: Der Anschluss fährt um 10 Uhr. Ihre Ankunft wurde auf 10.01 Uhr verbessert.
 
-Ergebnis: Ihre Strecke macht den Umweg befahrbar. Der Zug kommt am Ziel an, auch ohne die lange Erklärung.
+Ergebnis: Um 10.01 Uhr steigen Sie um. Der Anschluss wartet ohne Eingriff in die Bahnhofsuhr.
 
 **INTERN · Einstieg:** 0-basiert: A an N/0 belegt (0,0). Spalte 0 hat Count 1 und schließt deshalb (0,1) bis (0,6) aus.
 
-### S1-04-02-04 · Ankunft wird näher bestimmt
+### S1-04-02-04 · Ersatzbus am Ortsrand
 
-Status: Ankunft vorgesehen. Die Anzeige nennt das Ziel, nicht aber den Weg dorthin.
+Status: Der Ersatzbus hält am Ortsrand. Der Fußweg ersetzt die erste Zugfahrt.
 
-Ergebnis: Ihre Strecke endet am vorgesehenen Ziel. Mehr Bestimmung brauchte diese Fahrt nicht.
+Ergebnis: Der Bus erreicht den Bahnhof. Sie müssen nur noch einsteigen, nicht hinwandern.
 
 **INTERN · Einstieg:** 0-basiert: B an S/3 erzwingt (3,6). Zeile 6 fordert ein einziges Gleisfeld; ihre anderen sechs Felder bleiben leer.
 
-### S1-04-02-05 · Zeitbedarf nach weiterer Prüfung
+### S1-04-02-05 · Zwischenhalt neben der Wiese
 
-Status: Der Zeitbedarf wird weiter geprüft. Der Zug wartet derweil am Umleitungsbahnsteig.
+Status: Der Zug wartet neben einer Wiese. Der Fahrplan nennt das Durchfahrt.
 
-Ergebnis: Ihre Strecke bringt den Zug weiter. Für diese Fahrt genügt ein Weg statt einer Zeitprüfung.
+Ergebnis: Es geht weiter. Die Wiese bleibt stehen, wie es für Wiesen vorgesehen ist.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). In Spalte 0 ist Count 1 damit erfüllt; (0,1) bis (0,6) sind leer.
 
-### S1-04-02-06 · Fahrzeit wird dynamisch interpretiert
+### S1-04-02-06 · Umweg zurück zum Startbahnhof
 
-Status: Die Fahrzeit gilt ab Bahnsteig. Welcher Umweg danach folgt, erfährt der Fahrgast unterwegs.
+Status: Der Zug erreicht wieder Ihren Startbahnhof. Die Rückkehr gilt als Fortschritt.
 
-Ergebnis: Ihre Verbindung führt durch den Umweg. Der Zug hat damit eine Fahrzeit, die zu einem Weg gehört.
+Ergebnis: Die Türen öffnen sich am Ziel. Diesmal ist es nicht Ihr Startbahnhof.
 
 **INTERN · Einstieg:** 0-basiert: A an E/3 belegt (6,3). Spalte 6 hat Count 1; die übrigen sechs Felder dieser Spalte sind leer.
 
-### S1-04-02-07 · Prognose mit wachsender Grundlage
+### S1-04-02-07 · Ankunft nach Ladenschluss
 
-Status: Die Prognose wird nachgeschärft, sobald der Zug genug Umweg für neue Verspätung gesammelt hat.
+Status: Der Zug kommt nach Ladenschluss an. Der Umweg war länger als der Einkauf.
 
-Ergebnis: Ihre Strecke führt bis zum Ziel. Für diese Zugfahrt reicht ein gebauter Weg besser als eine Prognose.
+Ergebnis: Bei Ihrer Ankunft ist die Ladentür noch offen. Der Einkauf muss nicht online nachreisen.
 
 **INTERN · Einstieg:** 0-basiert: A an S/0 erzwingt (0,6). Zeile 6 hat Count 1, daher bleiben (1,6) bis (6,6) leer.
 
-Ergebnis kurz: Ihre Strecke führt bis zum Ziel. Ein gebauter Weg hilft mehr als die Prognose.
+### S1-04-02-08 · Ankunftsdatum fehlt auf der Tafel
 
-### S1-04-02-08 · Reisezeit bleibt Gegenstand der Reise
+Status: Die Tafel zeigt Ihre Ankunft um 00.10 Uhr. Ein Datum würde Platz kosten.
 
-Status: Zusätzliche Reisezeit ist eingeplant. Die Wegweiser verteilen sie großzügig über mehrere Bahnsteige.
-
-Ergebnis: Ihre Verbindung führt durch die Umwege. Der Zug fährt den längeren Weg, statt ihn nur anzukündigen.
+Ergebnis: Sie steigen am Ziel aus. Auf Ihrem Handy steht noch derselbe Tag.
 
 **INTERN · Einstieg:** 0-basiert: A an N/4 belegt (4,0). Count 1 der Zeile 0 schließt (0,0) bis (3,0) und (5,0) bis (6,0) aus.
 
-### S1-04-02-09 · Zeitverlust im Rahmen des Erwartbaren
+### S1-04-02-09 · Dritte Runde um den Zielbahnhof
 
-Status: Die längere Reise ist erwartet. Die Anzeige wächst mit jedem Umweg ein Stück weiter.
+Status: Der Zug umrundet den Zielbahnhof. Der Halt ist erst nach Runde drei vorgesehen.
 
-Ergebnis: Ihre Strecke endet am Ziel. Der Umweg muss nicht länger auf der Anzeige weiterwachsen.
+Ergebnis: Am Zielbahnsteig dürfen Sie aussteigen. Für die eingesparte Runde gibt es keine Erstattung.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 3 sind mit Count 0 leer. Zeile 5 fordert bei Breite 7 alle Felder (0,5) bis (6,5) als belegt.
 
-### S1-04-02-10 · Mehr Reisezeit bei gleicher Entfernung
+### S1-04-02-10 · Monatskarte endet vor der Umleitung
 
-Status: Die Entfernung bleibt gleich. Der Fahrplan benötigt dafür inzwischen mehr Strecke.
+Status: Ihre Monatskarte läuft im Zug ab. Für den restlichen Umweg beginnt ein neuer Monat.
 
-Ergebnis: Der Zug erreicht sein Ziel über den gebauten Weg. Die Fahrzeit braucht keinen weiteren Umweg.
+Ergebnis: Sie sind da, Ihre Karte gilt noch. Die Pressestelle meldet eine verkürzte Monatsreise.
 
 **INTERN · Einstieg:** 0-basiert: B an N/2 erzwingt (2,0). Zeile 0 hat Count 1, alle anderen Felder dieser Zeile sind leer.
 
-### S1-04-02-11 · Reisezeit stabilisiert
+### S1-04-02-11 · Weihnachtsmarkt erst im Januar erreichbar
 
-Status: Die Reisezeit ändert sich derzeit nicht. Die Verbindung soll diesen Stand noch nachvollziehbar machen.
+Status: Die Tafel zeigt den 2. Januar. Sie sind für den Weihnachtsmarkt eingestiegen.
 
-Ergebnis: Stabilität bestätigt. Es gibt jetzt einen vollständigen Weg, auf den sich die Angabe bezieht.
+Ergebnis: Am Weihnachtsmarkt empfängt Sie Glühweinduft statt einer Abbaukolonne.
 
 **INTERN · Einstieg:** 0-basiert: B an N/0 belegt (0,0), allein in Zeile 0 mit Count 1. Da (1,0) leer ist und B nach Norden anschließt, muss die Strecke nach (0,1) fortsetzen; Zeile 1 mit Count 1 ist damit ebenfalls bestimmt.
 
-Status kurz: Die Reisezeit bleibt vorerst unverändert. Die Verbindung soll das begründen.
+### S1-04-02-12 · Rückfahrt gestern Hinfahrt morgen
 
-### S1-04-02-12 · Verbindung auf absehbare Zeit nutzbar
+Status: Die Tafel zeigt Ihre Rückfahrt gestern. Die Hinfahrt dauert noch bis morgen.
 
-Status: Die Abfahrtsanzeige führt die Umleitung wieder als Verbindung. Für die Durchfahrt fehlt noch die Freigabe.
-
-Ergebnis: Die Umleitung ist durchgehend befahrbar. Der Zug fährt den Weg, den die Anzeige bisher nur aufführt.
+Ergebnis: Ihre Ankunft steht jetzt auf der Tafel. Die Rückfahrt darf zeitlich dahinter bleiben.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Zeile 0 fordert ein Gleisfeld; (1,0) bis (6,0) sind deshalb leer.
 
-Status kurz: Die Umleitung steht als Verbindung auf der Anzeige. Die Freigabe fehlt noch.
+### S1-04-03-01 · Abfahrt am anderen Gleis
 
-### S1-04-03-01 · Bitte prüfen Sie die Route erneut
+Status: Ihr Zug fährt von Gleis 4. Die Änderung steht nur an Gleis 2.
 
-Status: Die zuletzt geprüfte Route ist weiterhin verzeichnet. Ihr Verhältnis zur aktuellen Route wird geprüft.
-
-Ergebnis: Die Route ist wieder nachvollziehbar. Der Prüfvermerk hat einen durchgehenden Bezug.
+Ergebnis: Sie fahren von Gleis 4 ab. Die exklusive Meldung an Gleis 2 ist nicht mitgekommen.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 6 fordert bei Höhe 7 alle sieben Felder (6,0) bis (6,6). Spalten 0 bis 4 haben Count 0 und bleiben leer.
 
-Status kurz: Die geprüfte Route bleibt verzeichnet. Ihr aktueller Bezug wird geprüft.
+### S1-04-03-02 · Zum Bahnsteig bitte durch den Ausgang
 
-### S1-04-03-02 · Frühere Auskunft weiterhin abrufbar
+Status: Der Weg zum Zug führt durch den Ausgang. Bitte kommen Sie wieder herein.
 
-Status: Die bisherige Route bleibt zur Orientierung verfügbar. Für die Orientierung gilt inzwischen eine andere Route.
-
-Ergebnis: Die Orientierung führt durch. Die frühere Auskunft darf in den Akten bleiben.
+Ergebnis: Sie sind zurück im Bahnhof. Diesmal dürfen Sie mit dem Zug hinaus.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 2 haben Count 7 bei Höhe 7. Beide Spalten sind vollständig belegt; über die Formen ist damit noch nichts entschieden.
 
-Status kurz: Die alte Route dient zur Orientierung. Dafür gilt inzwischen eine andere.
+### S1-04-03-03 · Ersatzbus außerhalb des Lageplans
 
-### S1-04-03-03 · Route hat sich seit eben geändert
+Status: Der Ersatzbus hält hinter dem Bahnhof. Der Lageplan endet davor.
 
-Status: Der Wegweiser zeigt die neue Route. Der Pfeil zum Bahnsteig wird gerade schon wieder überklebt.
-
-Ergebnis: Ihre Strecke hält, was der Wegweiser andeutet: Der Zug fährt ohne weiteren Zwischenpfeil durch.
+Ergebnis: Der Bus hat Sie zum Zug gebracht. Die Durchsage bedankt sich für Ihre Ortskenntnis.
 
 **INTERN · Einstieg:** 0-basiert: A an S/1 belegt (1,6). Zeile 6 fordert nur ein Gleisfeld; (0,6) und (2,6) bis (6,6) bleiben leer.
 
-### S1-04-03-04 · Routenstand mit Folgestand
+### S1-04-03-04 · Gleiswechsel während des Treppenaufstiegs
 
-Status: Die Anzeige meldet einen vollständigen Weg. Der ergänzende Pfeil zeigt trotzdem zum anderen Bahnsteig.
+Status: Ihr Gleis wurde erneut geändert. Sie können auf der Treppe wenden.
 
-Ergebnis: Ihre Strecke verbindet die Bahnsteige. Der ergänzende Pfeil darf fürs Erste hängen bleiben.
+Ergebnis: Die Tafel bleibt bei Gleis 3. Der Zug fährt, bevor sie es sich anders überlegt.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. In den Zeilen 0, 2, 4 und 6 verbleiben je sechs verfügbare Felder für Count 6; Spalten 1 bis 6 sind in diesen Zeilen belegt.
 
-### S1-04-03-05 · Aktuelle Route vorläufig aktuell
+### S1-04-03-05 · Bahnsteigzugang hinter der Wand
 
-Status: Die Route wurde aktualisiert. Die Angabe aktuell gilt bis zur nächsten Präzisierung derselben Angabe.
+Status: Der Durchgang ist zugemauert. Der Pfeil gilt weiterhin.
 
-Ergebnis: Die Route führt ans Ziel. Das ist ein brauchbarer Stand für das Archiv.
+Ergebnis: Die Tür zum Bahnsteig ist offen. Ihr Zug fährt. Die Wand erhält keine Entschuldigung.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 und 1 haben Count 0. Die Felder (0,0) bis (6,0) und (0,1) bis (6,1) bleiben leer.
 
-Status kurz: Die Route ist aktuell. Das gilt bis zur nächsten Präzisierung von aktuell.
+### S1-04-03-06 · Zielbahnhof nur zur Durchfahrt
 
-### S1-04-03-06 · Aktualisierung folgt nach Aktualisierung
+Status: Ihr Zug fährt ohne Halt durch Ihr Ziel. Bitte steigen Sie danach um.
 
-Status: Die Wegeführung wurde aktualisiert. Am Bahnsteig zeigt noch der alte Pfeil zur neuen Richtung.
-
-Ergebnis: Ihre Verbindung führt schon durch. Der Zug ist der Aktualisierung einen Bahnsteig voraus.
+Ergebnis: Am Ziel steigen die Pendler aus. Für die Rückfahrt fehlt nun der Grund.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 7 hat Count 0. Alle Felder (0,7) bis (7,7) bleiben leer; das begrenzt die mögliche Belegung auf Zeilen 0 bis 6.
 
-### S1-04-03-07 · Route mit zusammengeführten Angaben
+### S1-04-03-07 · Drei Tafeln drei Abfahrtsgleise
 
-Status: Drei Anzeigen nennen drei Wege. Gemeinsam ist ihnen nur, dass keiner zum gleichen Bahnsteig zeigt.
+Status: Die Tafeln nennen drei verschiedene Gleise. Ihr Zug hat nur eines gebucht.
 
-Ergebnis: Ihre Strecke verbindet die Bahnsteige. Die Anzeigen dürfen ihre Unterschiede nun unter sich klären.
+Ergebnis: Alle Tafeln zeigen denselben Bahnsteig. Die Pressestelle meldet zwei Gleise eingespart.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0, 2 und 4 haben jeweils Count 8. Sämtliche Felder dieser drei Spalten sind bei Höhe 8 belegt.
 
-Status kurz: Drei Anzeigen, drei Wege. Kein gemeinsamer Bahnsteig in Sicht.
+### S1-04-03-08 · Umleitung zurück zum Startbahnhof
 
-### S1-04-03-08 · Stand der Prüfung wird nachgeführt
+Status: Ihre Fahrt führt über den Startbahnhof. Die Rückkehr zählt als Fortschritt.
 
-Status: Die Route wird geprüft. Währenddessen verweist der Bahnsteig auf eine Auskunft außerhalb des Bahnsteigs.
-
-Ergebnis: Ihre Strecke führt zum Ziel. Die Prüfung darf sich an den befahrbaren Weg halten.
+Ergebnis: Vor dem Fenster erscheint ein neuer Bahnhof. Die Fahrt geht diesmal wirklich weiter.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 6 hat Count 8 und ist vollständig belegt. In den Zeilen 4 und 5 mit Count 1 liegen damit nur (6,4) und (6,5); ihre anderen Felder sind leer.
 
-### S1-04-03-09 · Bitte planen Sie mehr Zeit ein
+### S1-04-03-09 · Anschluss laut Tafel im Vorjahr
 
-Status: Die Route ist räumlich geklärt. Die Erläuterung ihrer Führung beansprucht noch etwas Vorlauf.
+Status: Die Tafel nennt den Anschluss um 8 Uhr. Das Datum gehört zum Vorjahr.
 
-Ergebnis: Die Führung ist befahrbar. Der Vorlauf der Erläuterung wird nicht mehr benötigt.
+Ergebnis: Der Anschluss fährt heute. Das Datum auf der Tafel hält mit.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 3 hat Count 8 bei Breite 8 und ist vollständig belegt. Zeilen 0, 1 und 2 haben Count 0 und bleiben leer.
 
-### S1-04-03-10 · Routenführung nach vollständiger Prüfung
+### S1-04-03-10 · Wegweiser im geschlossenen Kreis
 
-Status: Die Route wird vollständig erklärt, sobald alle Wegweiser dieselbe Richtung erklären können.
+Status: Ein Pfeil führt zum nächsten. Der letzte zeigt zurück zum ersten.
 
-Ergebnis: Ihre Strecke führt durch. Der Zug benötigt für die Fahrt weniger Erklärung als die Wegweiser.
+Ergebnis: Sie erreichen den Zug ohne zweite Runde. Er fährt sogar weiter.
 
 **INTERN · Einstieg:** 0-basiert: A an E/1 erzwingt (7,1). Zeile 1 hat Count 1; (0,1) bis (6,1) bleiben leer.
 
-### S1-04-03-11 · Route erneut geprüft
+### S1-04-03-11 · Weg zum Zug nur per QR-Code im Zug
 
-Status: Die erneute Prüfung bestätigt: Der Zug soll fahren, sobald der Bahnsteig dafür einen Weg hat.
+Status: Der QR-Code zeigt den Weg zum Zug. Zum Scannen müssen Sie im Zug sitzen.
 
-Ergebnis: Der Zug fährt über Ihre Strecke durch. Die erneute Prüfung kommt am Ende wenigstens hinterher.
+Ergebnis: Der Weg ist ohne QR-Code begehbar. Ihr Zug fährt auch ohne Anmeldung.
 
 **INTERN · Einstieg:** 0-basiert: B an S/0 belegt (0,7). Zeile 7 hat Count 1; (1,7) bis (7,7) bleiben leer.
 
-Status kurz: Der Zug soll fahren. Der Bahnsteig wartet noch auf seinen Weg.
+### S1-04-03-12 · Weiterfahrt über die Brücke auf dem Plan
 
-### S1-04-03-12 · Planungsstand derzeit korrekt
+Status: Laut Plan fährt Ihr Zug über die Brücke. Die Brücke steht nur im Plan.
 
-Status: Die Anzeige nennt den richtigen Weg. Zwischen den beiden Bahnsteigen fehlt noch eine befahrbare Verbindung.
-
-Ergebnis: Der Zug befährt den angegebenen Weg. Anzeige und Strecke stimmen für diese Fahrt überein.
+Ergebnis: Die Verbindung steht jetzt auch außerhalb der Karte. Der Zug fährt.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (7,0). Spalte 7 hat Count 1; (7,1) bis (7,7) sind leer.
 
-Status kurz: Der Weg steht auf der Anzeige. Zwischen den Bahnsteigen fehlt die Verbindung.
+### S1-04-04-01 · Abfahrt vom anderen Bahnsteig
 
-### S1-04-04-01 · Die Alternative zur Alternative
+Status: Ihr Zug fährt gegenüber. Der direkte Weg führt über die Straße.
 
-Status: Am ersten Bahnsteig verweist die Alternative auf eine weitere Alternative am anderen Ende.
-
-Ergebnis: Ihre Strecke verbindet beide Bahnsteige. Die erste Alternative hat damit endlich einen Zugweg.
+Ergebnis: Sie sitzen im Zug. Die andere Straßenseite war tatsächlich der richtige Bahnsteig.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 8 bei Breite 8 und ist vollständig belegt. Zeilen 2 bis 7 haben jeweils Count 0 und bleiben vollständig leer.
 
-Status kurz: Die Alternative verweist am Bahnsteig auf eine weitere.
+### S1-04-04-02 · Ersatzbus hinter dem Bahnhof
 
-### S1-04-04-02 · Umleitung mit Ausweichmöglichkeit
+Status: Der Ersatzbus hält hinter dem Bahnhof. Die Abkürzung endet am Bauzaun.
 
-Status: Die ausgeschilderte Ausweichroute wird umgeleitet. Das Schild zum Ersatzschild steht bereits bereit.
-
-Ergebnis: Ihre Strecke macht die Ausweichroute befahrbar. Der Zug findet den Weg auch ohne zweites Schild.
+Ergebnis: Der Bus hat Sie zum Zug gebracht. Ihr Rollkoffer darf ab hier wieder rollen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 fordert alle acht Felder (0,0) bis (7,0). Spalte 6 fordert alle acht Felder (6,0) bis (6,7); beide Vollanker kreuzen sich in (6,0).
 
-### S1-04-04-03 · Es gibt eine Umleitung zur Umleitung
+### S1-04-04-03 · Treppe zum Ersatzbus gesperrt
 
-Status: Die Umleitung ist ausgeschildert. Hinter dem ersten Pfeil beginnt die Umleitung für die Umleitung.
+Status: Die Treppe zum Bus ist gesperrt. Der Umweg führt zum ausgefallenen Zug.
 
-Ergebnis: Ihre Strecke führt durch beide Umwege. Der Zug kommt weiter als die Beschilderung.
+Ergebnis: Der Weg zum Bus ist frei. Ihr Zug wartet diesmal am anderen Ende der Busfahrt.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. Zeilen 0, 2, 4 und 6 fordern jeweils 7 bei sieben verbleibenden Feldern; Spalten 1 bis 7 sind dort belegt.
 
-### S1-04-04-04 · Ausweichweg wird mit umfahren
+### S1-04-04-04 · Umleitung durch die Bahnhofshalle
 
-Status: Der Ausweichweg ist gesperrt. Der Hinweis zum Ausweichen hängt am gesperrten Bahnsteig.
+Status: Bitte folgen Sie den gelben Pfeilen. Der letzte zeigt auf den ersten.
 
-Ergebnis: Ihre Strecke schafft einen nutzbaren Umweg. Der Zug braucht den gesperrten Hinweis nicht.
+Ergebnis: Die Pfeile führen zum Zug. Er fährt weiter, statt Sie zurückzuschicken.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 7 hat Count 8 und ist vollständig belegt. Zeilen 0 und 1 haben Count 0 und schließen ihre 16 Felder aus.
 
-Status kurz: Ausweichweg gesperrt. Der Hinweis zum Ausweichen hängt dort.
+### S1-04-04-05 · Ersatzbus fährt am Ersatzhalt vorbei
 
-### S1-04-04-05 · Alternative mit eigener Zufahrt
+Status: Der Bus fährt zum Ersatzhalt. Ein Halt ist dort nicht vorgesehen.
 
-Status: Die Alternative hat eine eigene Zufahrt. Deren Wegweiser schickt zum Bahnsteig der nächsten Alternative.
-
-Ergebnis: Ihre Strecke verbindet die Zufahrt. Der Zug erreicht den Umweg, der tatsächlich gebraucht wird.
+Ergebnis: Der Bus hat gehalten. Sie erreichen Ihren Zug ohne Absprung.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 1 hat Count 8 bei Höhe 8. Alle Felder (1,0) bis (1,7) sind belegt; die konkrete Gleisgeometrie ist noch offen.
 
-### S1-04-04-06 · Ersatzroute nicht mehr Ersatzroute
+### S1-04-04-06 · Gleiswechsel nach dem Fußweg
 
-Status: Die Ersatzroute ist jetzt der Regelweg. Für ihren Ersatz zeigt ein Schild zum ehemaligen Regelweg.
+Status: Der Weg zu Gleis 4 ist frei. Ihr Zug fährt inzwischen von Gleis 1.
 
-Ergebnis: Ihre Strecke macht den benötigten Weg befahrbar. Der Zug fährt, unabhängig davon, wie das Schild ihn nennt.
+Ergebnis: Bitte bleiben Sie stehen. Ihr Gleis stimmt jetzt mit der Abfahrt überein.
 
 **INTERN · Einstieg:** 0-basiert: A an E/5 belegt (7,5). Der Einsercount in Spalte 7 lässt alle anderen Felder dieser Spalte leer.
 
-Status kurz: Die Ersatzroute ist Regelweg. Ihr Ersatzschild zeigt zurück.
+### S1-04-04-07 · Umstieg am Nachbarbahnhof
 
-### S1-04-04-07 · Umfahrung innerhalb der Ausweichführung
+Status: Der Aushang empfiehlt den Nachbarbahnhof. Zu Fuß überholen Sie den Ersatzbus.
 
-Status: Die Ausweichführung umfährt eine weitere Umfahrung. Der Pfeil dazu bleibt unter derselben Überschrift.
-
-Ergebnis: Ihre Strecke verbindet den ganzen Umweg. Der Zug braucht nur Gleise, keine neue Überschrift.
+Ergebnis: Sie erreichen den Zug vor dem Bus. Die Pressestelle lobt die schnelle Verbindung.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 1 haben Count 0. Ihre 16 Felder bleiben leer; die mögliche Belegung liegt in Spalten 2 bis 7.
 
-Status kurz: Die Ausweichführung umfährt noch eine Umfahrung.
+### S1-04-04-08 · Rückfahrt zum Anschluss
 
-### S1-04-04-08 · Alternative in den Regelweg aufgenommen
+Status: Ihr Anschluss fährt am vorigen Bahnhof. Zurück fährt nur Ihr Anschluss.
 
-Status: Die Alternative heißt nun Regelweg. Der frühere Regelweg erklärt am Bahnsteig weiterhin die Alternative.
-
-Ergebnis: Ihre Strecke führt auf dem neuen Regelweg durch. Der Zug klärt die Zuordnung praktischer als die Anzeige.
+Ergebnis: Der Anschluss ist erreicht. Der Zug fährt weiter, ohne Sie zurückzuverweisen.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 8 und ist vollständig belegt: (0,0) bis (0,7). Dieser Anker legt noch keine Gleisform fest.
 
-Status kurz: Die Alternative heißt Regelweg. Der alte Weg erklärt sie weiter.
+### S1-04-04-09 · Bushaltestelle außerhalb der Karte
 
-### S1-04-04-09 · Umstieg auf unbekanntem Bahnsteig
+Status: Die Karte zeigt den Weg zum Bus. Die Haltestelle liegt jenseits des Kartenrands.
 
-Status: Der Bahnsteig gehört zur empfohlenen Alternative. Seine Lage wird in der Empfehlung vorausgesetzt.
-
-Ergebnis: Die Alternative ist verbunden. Ihre Lage kann jetzt auf dem Weg nachvollzogen werden.
+Ergebnis: Die Tafel zeigt wieder Ihr Ziel. Eine zweite Landkarte ist für die Fahrt nicht nötig.
 
 **INTERN · Einstieg:** 0-basiert: B an W/3 erzwingt (0,3). Count 1 der Spalte 0 schließt (0,0) bis (0,2) und (0,4) bis (0,7) aus.
 
-### S1-04-04-10 · Ausweichführung mit späterer Orientierung
+### S1-04-04-10 · Ersatzbus ab alter Haltestelle
 
-Status: Die Richtung wird nach dem Umstieg erläutert. Der Weg zum Umstieg zählt bereits zur Alternative.
+Status: Der Zettel nennt die alte Bushaltestelle. Sie wurde 1998 abgerissen.
 
-Ergebnis: Die Orientierung reicht bis ans Ziel. Der Umweg benötigt keine nachträgliche Richtungsangabe.
+Ergebnis: Die Strecke ist frei. Der Zug hält an einem Bahnhof, der noch steht.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 0. Da A an S/7 (7,7) belegt und die Zeilen 7, 6 und 5 jeweils Count 1 haben, erzwingen die Anschlüsse nacheinander (7,6) und (7,5); die übrigen Felder dieser drei Zeilen bleiben leer.
 
-### S1-04-04-11 · Alternative ausreichend alternativ
+### S1-04-04-11 · Gleisangabe erst im Zug
 
-Status: Die Auskunft empfiehlt die Alternative zur Umleitung. Der Weg zwischen den Bahnsteigen fehlt im Nachtrag.
+Status: Das Gleis wird im Zug angesagt. Zum Einsteigen benötigen Sie diese Angabe.
 
-Ergebnis: Auch die Alternative führt jetzt zum Ziel. Die Reise muss nicht länger der Auskunft hinterherlaufen.
+Ergebnis: Die Durchsage nennt das Gleis vor der Abfahrt. Der Zug fährt trotzdem.
 
 **INTERN · Einstieg:** 0-basiert: A an W/7 belegt (0,7). Zeile 7 fordert ein Gleisfeld; (1,7) bis (7,7) bleiben leer.
 
-Status kurz: Alternative zur Umleitung empfohlen. Der Weg fehlt noch im Nachtrag.
+### S1-04-04-12 · Ersatzbus zurück zum Startbahnsteig
 
-### S1-04-04-12 · Umleitung erfolgreich eingegrenzt
+Status: Der Bus bringt Sie zum Startbahnsteig zurück. Die Rundfahrt gilt als Anreise.
 
-Status: Die Schilder führen zum vorgesehenen Bahnsteig. Für den Zug ist der Weg noch nicht durchgehend.
-
-Ergebnis: Die Umleitung führt durch. Der Abschnitt hat wieder einen zusammenhängenden Kartenweg.
+Ergebnis: Laut Pressestelle beginnt die Zugfahrt jetzt. Die Ehrenrunde war keine Reisezeit.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 fordert bei Höhe 8 alle acht Felder (0,0) bis (0,7). Die volle linke Belegung verbindet die Zeileninformationen, ohne die Formen vorwegzunehmen.
 
-### S1-05-01-01 · Ersatzhaltestelle in planbarer Entfernung
+### S1-05-01-01 · Ersatzbus am Parkplatz
 
-Status: Die Ersatzhaltestelle liegt im Umfeld des Bahnhofs. Das Umfeld wurde für diese Angabe weit gefasst.
+Status: Der Bus hält laut Tafel am Parkplatz. Ihr Ticket gilt auch für den Fußweg.
 
-Ergebnis: An der Ersatzhaltestelle endet wieder ein befahrbares Gleis. Die Wegweisung hat ein erreichbares Ziel.
+Ergebnis: Der Bus fährt. Ab hier übernimmt wieder ein Fahrzeug.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 5 haben jeweils Count 0. Alle 48 Felder dieser Zeilen bleiben leer; nur die beiden unteren Zeilen können Gleisfelder enthalten.
 
-Ergebnis kurz: Der Ersatzhalt hat wieder ein befahrbares Gleis. Der Wegweiser zeigt ans Ziel.
+### S1-05-01-02 · Wegweiser erst an der Haltestelle
 
-### S1-05-01-02 · Fußweg im weiteren Bahnhofsumfeld
+Status: Der Weg zum Bus ist ausgeschildert. Das erste Schild steht am Ziel.
 
-Status: Die Ersatzhaltestelle ist ausgeschildert. Die Wegweisung setzt Vertrautheit mit der Entfernung voraus.
-
-Ergebnis: Die Strecke führt durch. Zur Orientierung genügt erstmals ein zusammenhängender Weg.
+Ergebnis: Sie haben den Bus gefunden. Das Schild bestätigt Ihre Ankunft.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 2 haben Count 8 bei Höhe 8. Beide Spalten sind vollständig belegt: (0,0) bis (0,7) und (2,0) bis (2,7).
 
-Status kurz: Die Wegweisung steht. Vertrautheit mit der Entfernung wird vorausgesetzt.
+### S1-05-01-03 · Fünf Minuten Fußweg laut Aushang
 
-### S1-05-01-03 · Fußweg nur wenige Minuten länger
+Status: Laut Aushang sind es fünf Minuten zum Bus. Gemessen wurde ohne Ampeln.
 
-Status: Der Fußweg wurde zeitlich eingeordnet. Die Entfernung hat dieser Einordnung noch nicht zugestimmt.
-
-Ergebnis: Die Verbindung ist hergestellt. Ihre Länge muss nicht mehr geschätzt werden.
+Ergebnis: Alle Ampeln sind passiert. Der Bus fährt, ohne dass Sie weiterlaufen müssen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 8 und ist vollständig belegt, einschließlich A an N/0. Ihre acht Felder sind (0,0) bis (7,0).
 
-### S1-05-01-04 · Ersatzhalt mit erweiterten Zuwegen
+### S1-05-01-04 · Tür zur Ersatzhaltestelle verschlossen
 
-Status: Der Zugang erfolgt über den ausgeschilderten Weg. Der ausgeschilderte Weg beginnt nach dem bisherigen Zugang.
+Status: Der Bus hält direkt hinter der Glastür. Die Tür öffnet erst morgen.
 
-Ergebnis: Der Zugang ist verbunden. Der Weg muss nicht mehr hinter sich selbst beginnen.
+Ergebnis: Der Bus ist über den Umweg erreicht. Die Glastür bleibt ihrem Zeitplan treu.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (7,0). Zeile 0 hat Count 1; alle anderen Felder (0,0) bis (6,0) bleiben leer.
 
-Status kurz: Der ausgeschilderte Weg beginnt nach dem bisherigen Zugang.
+### S1-05-01-05 · Ersatzbus hinter dem Bauzaun
 
-### S1-05-01-05 · Haltestellennähe wird präzisiert
+Status: Der Bus hält zehn Meter hinter dem Zaun. Der Durchgang liegt einen Kilometer weiter.
 
-Status: Die Ersatzhaltestelle bleibt in Bahnhofsnähe. Die nähere Bestimmung dieser Nähe erfolgt am Wegweiser.
-
-Ergebnis: Der Zug erreicht den Haltestellenbereich auf Schienen. Die Wegweiser müssen die Nähe nicht mehr erklären.
+Ergebnis: Der Zaun ist umrundet, der Bus fährt. Die Pressestelle lobt die Nähe zum Bahnhof.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 1 fordert bei Breite 8 alle acht Felder. (0,1) bis (7,1) sind deshalb belegt; ihre Formen sind noch nicht bestimmt.
 
-Status kurz: Bahnhofsnähe bestätigt. Die Bedeutung von Nähe steht am Wegweiser.
+### S1-05-01-06 · Haltestelle verlegt Schild bleibt stehen
 
-Ergebnis kurz: Der Zug erreicht den Haltestellenbereich. Die Wegweiser müssen nichts erklären.
+Status: Die Haltestelle wurde verlegt. Am alten Schild steht: Sie sind hier.
 
-### S1-05-01-06 · Ersatzhaltestelle verschoben
-
-Status: Die Ersatzhaltestelle wurde verlegt. Der Hinweis auf den alten Standort dient weiter zur Orientierung.
-
-Ergebnis: Die verlegte Haltestelle ist angebunden. Der alte Wegweiser wird für diesen Weg nicht mehr gebraucht.
+Ergebnis: Der Bus fährt vom neuen Standort ab. Der alte ist weiterhin gut beschildert.
 
 **INTERN · Einstieg:** 0-basiert: B an N/1 erzwingt (1,0). Der Einsercount der Zeile 0 schließt (0,0) und (2,0) bis (7,0) aus.
 
-Status kurz: Die Haltestelle ist verlegt. Der alte Hinweis dient weiter zur Orientierung.
+### S1-05-01-07 · Ersatzbus gleich nebenan auf dem Plan
 
-Ergebnis kurz: Die verlegte Haltestelle ist angebunden. Der alte Wegweiser wird entbehrlich.
+Status: Auf dem Plan steht der Bus gleich nebenan. Ein Zentimeter sind zwei Kilometer.
 
-### S1-05-01-07 · Beschilderung folgt der Haltestelle
-
-Status: Die Wegweisung wird nachgeführt. Bis dahin weist sie zuverlässig auf den vorherigen Standort hin.
-
-Ergebnis: Die Verbindung stimmt wieder mit dem erreichbaren Weg überein.
+Ergebnis: Der Bus ist erreicht und fährt. Auf dem Plan war das ein sehr kleiner Umweg.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 3 hat Count 8 und ist vollständig belegt. Zeilen 0 und 1 haben Count 0; ihre 16 Felder bleiben leer.
 
-### S1-05-01-08 · Standortangabe mit Wegverlängerung
+### S1-05-01-08 · Gelbe Pfeile zurück zum Bahnsteig
 
-Status: Der neue Standort ist einfacher zu beschreiben. Der Weg dorthin wurde entsprechend länger.
+Status: Bitte folgen Sie den gelben Pfeilen. Sie führen zum ausgefallenen Zug.
 
-Ergebnis: Die Strecke erreicht ihr Ende. Eine weitere Standortbeschreibung würde nichts hinzufügen.
+Ergebnis: Die Durchsage meldet Abfahrt. Diesmal fährt tatsächlich etwas: der Bus.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 6 und 7 haben jeweils Count 0. (6,0) bis (6,7) und (7,0) bis (7,7) bleiben leer.
 
-### S1-05-01-09 · Wegweisung vorübergehend plausibel
+### S1-05-01-09 · Busabfahrt vor Ende des Fußwegs
 
-Status: Die Pfeile zeigen in dieselbe Richtung. Der Anschluss an den gemeinten Weg wird noch abgestimmt.
+Status: Laut Ansage dauert der Fußweg zwölf Minuten. Der Bus wartet drei.
 
-Ergebnis: Der Weg schließt an. Die Richtung ist damit auch praktisch plausibel.
+Ergebnis: Sie sitzen im fahrenden Bus. Der Fahrplan hatte diesen Fall nicht vorgesehen.
 
 **INTERN · Einstieg:** 0-basiert: B an S/1 belegt (1,7). Zeile 7 hat Count 1; (0,7) und (2,7) bis (7,7) bleiben leer.
 
-### S1-05-01-10 · Haltestellenzugang mit Restweg
+### S1-05-01-10 · Ersatzhaltestelle am Bahnhof im Nachbarort
 
-Status: Der Zugang ist erreicht, sobald der verbleibende Weg zurückgelegt wurde. Die Haltestelle folgt anschließend.
+Status: Der Zettel nennt den Bahnhof als Bushalt. Gemeint ist der im nächsten Ort.
 
-Ergebnis: Die Verbindung ist vollständig. Der Restweg ist für diese Strecke aufgebraucht.
+Ergebnis: Der Bus fährt. Der Weg zur Haltestelle war bereits die halbe Reise.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 6 und 7 haben Count 0. Ihre 16 Felder bleiben leer; Kopf- und Mittelgebiet liegen oberhalb dieser Grenze.
 
-Status kurz: Nach dem Restweg ist der Zugang erreicht. Die Haltestelle folgt dann.
+### S1-05-01-11 · Fußweg zählt als erste Busfahrt
 
-### S1-05-01-11 · Haltestelle erreicht
+Status: Der Aushang zählt den Fußweg als Fahrt. Der erste Bus sind Ihre Schuhe.
 
-Status: Die Haltestelle ist räumlich gefunden. Eine verlässliche Verbindung dorthin wäre eine passende Ergänzung.
-
-Ergebnis: Die Haltestelle hat einen Gleisanschluss. Das Schild darf erstmals am Ziel bleiben.
+Ergebnis: Sie sitzen, der Bus fährt. Die Statistik meldet einen nahtlosen Fahrzeugwechsel.
 
 **INTERN · Einstieg:** 0-basiert: A an S/7 erzwingt (7,7). Zeile 7 fordert nur ein Gleisfeld; (0,7) bis (6,7) bleiben leer.
 
-Status kurz: Die Haltestelle ist gefunden. Eine verlässliche Verbindung wäre passend.
+### S1-05-01-12 · Haltestellenschild fährt im Bus
 
-### S1-05-01-12 · Ersatzhaltestelle annähernd ortsfest
+Status: Das Haltestellenschild fährt im Bus mit. Bitte folgen Sie ihm zu Fuß.
 
-Status: Der Standort wird vorerst beibehalten. Die Verbindung soll sich diesem Maß an Verlässlichkeit annähern.
-
-Ergebnis: Der Zug erreicht die Ersatzhaltestelle auf Schienen. Der Fußweg muss die Verbindung nicht mehr ersetzen.
+Ergebnis: Der Bus hält und nimmt Sie mit. Die Haltestelle fährt diesmal nicht allein.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (7,0). Der Einsercount der Zeile 0 lässt alle Felder (0,0) bis (6,0) leer.
 
-Status kurz: Der Standort bleibt. Die Verbindung soll ebenso verlässlich werden.
+### S1-05-02-01 · Am Bussteig fehlt der Ersatzbus
 
-Ergebnis kurz: Der Zug erreicht den Ersatzhalt auf Schienen. Kein Fußweg als Verbindung nötig.
+Status: Am Bussteig fehlt der Bus. Der Fahrplan ist schon da.
 
-### S1-05-02-01 · Bus kommt, sobald er kann
-
-Status: Der Bus ist vorgesehen. Für den Zeitpunkt seines Erscheinens gilt vorerst seine Verfügbarkeit.
-
-Ergebnis: Die erste Strecke ist wieder verbunden. Auf Schienen lässt sich der Weg bereits nachvollziehen.
+Ergebnis: Ihr Kaffee ist bei der Abfahrt noch warm. Bitte sichern Sie den Becher als Nachweis.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 4 hat Count 8 und ist vollständig belegt. Zeilen 0, 6 und 7 haben Count 0 und bleiben leer.
 
-### S1-05-02-02 · Abfahrtsbereitschaft wird erwartet
+### S1-05-02-02 · Ersatzhalt hinter dem Bahnhof
 
-Status: Die Abfahrtstafel ist vorbereitet. Am Ersatzhalt fehlt der Bus, auf den sich ihre Angaben beziehen.
+Status: Der Aushang schickt Sie hinter den Bahnhof. Dort hängt derselbe Aushang.
 
-Ergebnis: Der Zug hat eine befahrbare Verbindung. Die vorbereitete Abfahrtstafel braucht er dafür nicht.
+Ergebnis: Ihr Rollkoffer rollt zum abfahrbereiten Zug. Die Ortsbesichtigung ist abgeschlossen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 0. Alle acht Felder (0,0) bis (7,0) bleiben leer; der obere Rand ist damit für weitere Belegung ausgeschlossen.
 
-### S1-05-02-03 · Abfahrt erfolgt bei Gelegenheit
+### S1-05-02-03 · Busankunft nur per Durchsage
 
-Status: Die Abfahrt erfolgt bei Gelegenheit. Eine Gelegenheit ist noch nicht Bestandteil der Angabe.
+Status: Die Durchsage kündigt den Bus an. Lautsprecher können nicht fahren.
 
-Ergebnis: Die Gelegenheit ist geschaffen. Auf der gebauten Verbindung kann der Zug fahren.
+Ergebnis: Die Ansage stimmt: Der Zug fährt ab. Das Mikrofon meldet keinen Widerspruch.
 
 **INTERN · Einstieg:** 0-basiert: A an E/7 belegt (7,7). Zeile 7 hat Count 1 und schließt (0,7) bis (6,7) aus; die Fortsetzung nach (7,6) ist erzwungen. Die weiteren Schritte benötigen die übrigen Zeilen- und Spaltenreste.
 
-### S1-05-02-04 · Abfahrtszeit ohne Zeitpunkt
+### S1-05-02-04 · Kleinbus ersetzt vier Wagen
 
-Status: Die Abfahrtszeit wird mitgeteilt, sobald sie einen Zeitpunkt bezeichnet.
+Status: Ein Kleinbus steht für den Zug bereit. Vier Wagen passen laut Plan hinein.
 
-Ergebnis: Die Strecke hat jetzt ein erreichbares Ende. Die Uhrzeit kann an der Haltestelle weiter offenbleiben.
+Ergebnis: Die Zugbegleitung meldet Platz für alle. Vier Wagen wurden durch vier Wagen ersetzt.
 
 **INTERN · Einstieg:** 0-basiert: B an N/7 belegt (7,0). Spalte 7 hat Count 1; (7,1) bis (7,7) bleiben leer. Dieser lokale Anker klärt nur den Eintritt, danach sind mehrere mittlere Restcounts zu kombinieren.
 
-Ergebnis kurz: Die Strecke erreicht ihr Ende. Die Uhrzeit darf an der Haltestelle offenbleiben.
+### S1-05-02-05 · Anschluss fährt vor dem Ersatzbus
 
-### S1-05-02-05 · Beförderung bei verfügbarer Weiterfahrt
+Status: Der Anschluss fährt vor dem Bus ab. So bleibt er pünktlich.
 
-Status: Die Ersatzhaltestelle ist erreicht. Der Übergang von der Busankunft zur Zugabfahrt bleibt offen.
-
-Ergebnis: Der Zug kommt über die gebaute Strecke ans Ziel. Für diesen Weg ist kein Umstieg am Ersatzhalt mehr nötig.
+Ergebnis: Ihr Zug fährt erst nach Ihrer Ankunft ab. Wir melden keinen Rechenfehler.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Spalte 0 hat Count 1 und schließt (0,1) bis (0,7) aus. Der Eintritt ist damit lokal geklärt; die Belegung der übrigen Gebiete folgt erst aus kombinierten Restzahlen.
 
-Ergebnis kurz: Der Zug erreicht das Ziel. Für diesen Weg ist kein Umstieg am Ersatzhalt nötig.
+### S1-05-02-06 · Ersatzbus steht neben freien Schienen
 
-### S1-05-02-06 · Ankunft abhängig vom Verkehr
+Status: Ihr Ersatzbus steht vor der roten Ampel. Die Schienen daneben sind frei.
 
-Status: Der Bus befindet sich im vorgesehenen Verkehrsablauf. Seine Ankunft hängt vom weiteren Verlauf desselben ab.
-
-Ergebnis: Die Strecke ist verbunden. Für ihre Befahrbarkeit ist keine Verkehrsprognose mehr nötig.
+Ergebnis: Sie fahren wieder auf Schienen. Die rote Ampel darf ohne Sie weiterleuchten.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Count 1 in Zeile 0 macht (1,0) bis (8,0) leer. Dies ist ein sicherer lokaler Anker des 9×9-Felds.
 
-Status kurz: Der Bus ist im Verkehrsablauf. Seine Ankunft hängt von dessen Verlauf ab.
+### S1-05-02-07 · Zwei Minuten bis zum Ersatzbus
 
-### S1-05-02-07 · Busverkehr mit fortlaufender Annäherung
+Status: Die Tafel meldet zwei Minuten Wartezeit. Die Stunde zählt nicht mit.
 
-Status: Am Ersatzhalt wartet die Anzeige auf den Bus. Sie meldet weiterhin nur: unterwegs.
-
-Ergebnis: Ihre Strecke führt bis zum Ersatzhalt. Der Zug erreicht ihn auf Schienen, nicht nach Busanzeige.
+Ergebnis: Die Tafel zeigt die Abfahrt an. Diesmal bewegt sich auch der Zug.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 9 bei Breite 9. Alle neun Felder (0,0) bis (8,0) sind belegt; dazu gehört A an N/0.
 
-Status kurz: Am Ersatzhalt: Bus laut Anzeige unterwegs.
+### S1-05-02-08 · Bus hält am alten Ersatzhalt
 
-### S1-05-02-08 · Ankunft wird im Verlauf möglich
+Status: Der Ersatzhalt wurde verlegt. Der Bus hält noch am alten Pfeil.
 
-Status: Die Busankunft wird nach dem Eintreffen bestätigt. Bis dahin bleibt der Anschluss vorsorglich offen.
-
-Ergebnis: Der Zug erreicht das Ziel auf der gebauten Strecke. Für diesen Anschluss ist keine Ankunftsprognose mehr nötig.
+Ergebnis: Die Taube bleibt auf dem alten Pfeil sitzen. Alle anderen fahren vom richtigen Gleis ab.
 
 **INTERN · Einstieg:** 0-basiert: A an S/8 belegt (8,8). Zeile 8 hat Count 1, daher sind (0,8) bis (7,8) leer.
 
-Ergebnis kurz: Der Zug erreicht das Ziel. Dieser Anschluss braucht keine Ankunftsprognose.
+### S1-05-02-09 · Sonntagsfahrplan am Montag
 
-### S1-05-02-09 · Bus ist unterwegs, Quelle unbekannt
+Status: Am Ersatzhalt hängt der Sonntagsfahrplan. Montag ist nicht vorgesehen.
 
-Status: Die Anzeige meldet einen Bus unterwegs. Welcher Ersatzhalt gemeint ist, bleibt unbeschildert.
-
-Ergebnis: Ihre Schienen verbinden beide Enden. Der Zug folgt einem Weg, der auf keiner Busanzeige gesucht werden muss.
+Ergebnis: Für Montag steht eine Abfahrt auf der Tafel. Der Tag wurde in die Woche aufgenommen.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0, 2 und 4 haben jeweils Count 9 bei Höhe 9. Alle Felder dieser drei Spalten sind sicher belegt.
 
-### S1-05-02-10 · Unterwegs laut vorliegendem Stand
+### S1-05-02-10 · Ersatzbus umrundet den Bahnhof
 
-Status: Der Bus gilt als unterwegs. Die Anzeige nennt keinen Halt, an dem man ihn erwarten dürfte.
+Status: Der Bus fährt im Kreis um den Bahnhof. Jede Runde gilt als neue Verbindung.
 
-Ergebnis: Die gebaute Strecke führt durch. Der Zug erreicht das Ziel ohne Standortsuche am Ersatzhalt.
+Ergebnis: Vom nächsten Bahnsteig ist der Startbahnhof nicht zu sehen. Das gilt als Fortschritt.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 8 hat Count 0. Zeilen 4, 6 und 8 fordern jeweils 8 Gleisfelder; die verbleibenden acht Felder in Spalten 0 bis 7 sind dort sämtlich belegt.
 
-### S1-05-02-11 · Bus durch Gleis ersetzt
+### S1-05-02-11 · Bus laut Anzeige bereits angekommen
 
-Status: Für den Bus liegt ein weitergehender Ersatz vor. Die Verbindung soll wieder auf eigenen Schienen stehen.
+Status: Ihr Bus ist laut Tafel angekommen. Bitte steigen Sie in die Anzeige ein.
 
-Ergebnis: Der Zug fährt auf der gebauten Strecke. Die Busprognose wird für diesen Weg nicht mehr gebraucht.
+Ergebnis: Ein echter Zug fährt ab. Die Tafel verzichtet auf eine Gegendarstellung.
 
 **INTERN · Einstieg:** 0-basiert: B an N/3 belegt (3,0). Zeile 0 fordert nur ein Gleisfeld; (0,0) bis (2,0) und (4,0) bis (8,0) bleiben leer.
 
-Status kurz: Ein Ersatz für den Bus liegt vor: Die Verbindung soll auf Schienen stehen.
+### S1-05-02-12 · Ersatzbus bekommt einen Ersatzbus
 
-### S1-05-02-12 · Beförderung wieder auf Schienenbasis
+Status: Am Bus hängt ein Zettel: Ersatzbus folgt. Der hat denselben Zettel.
 
-Status: Die gestrichelte Verbindung soll wieder eine Strecke werden. Der Bus bleibt eine vorläufige Erklärung.
-
-Ergebnis: Die Schienenbasis ist hergestellt. Der Zug erreicht das andere Ende ohne Ersatzformulierung.
+Ergebnis: Ein Bus bleibt übrig, die Bahn fährt. Sein Zettel wird nicht mehr als Fahrzeug gezählt.
 
 **INTERN · Einstieg:** 0-basiert: A an S/8 belegt (8,8). Der Einsercount in Spalte 8 lässt (8,0) bis (8,7) leer.
 
-Status kurz: Aus der gestrichelten Linie soll eine Strecke werden. Der Bus bleibt vorläufig.
+### S1-05-03-01 · Ersatzbus fährt vor der Zugankunft
 
-### S1-05-03-01 · Anschluss an den Ersatzverkehr
+Status: Ihr Zug fährt ein. Der Bus ist pünktlich ohne Sie abgefahren.
 
-Status: Der Bus hält am Ersatzhalt. Der Anschlusszug steht am Bahnsteig. Dazwischen beginnt die Wegsuche.
-
-Ergebnis: Der Umsteigeknoten hat seinen ersten Gleisanschluss zurück. Der Weg lässt sich wieder befahren.
+Ergebnis: Der Bus wartet bis zur Zugankunft. Die Weiterfahrt gelingt ohne Dauerlauf.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 fordert 9 bei Breite 9 und ist vollständig belegt. Spalte 8 fordert ebenfalls 9 bei Höhe 9 und ist vollständig belegt; beide treffen sich in (8,0).
 
-### S1-05-03-02 · Umstieg zwischen Anschlussangaben
+### S1-05-03-02 · Ersatzhalt am falschen Ausgang
 
-Status: Die Weiterfahrt ist in einer anderen Auskunft enthalten. Der Übergang dorthin gilt als bekannt.
+Status: Der Bus hält hinter dem Bahnhof. Der einzige Ausgang liegt vorne.
 
-Ergebnis: Der Übergang ist verbunden. Die weitere Auskunft hat einen erreichbaren Bezug.
+Ergebnis: Der Bus steht jetzt am Ausgang. Der Bahnhof muss nicht mehr umrundet werden.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. Zeilen 0, 6 und 8 haben jeweils Count 8; ihre acht Felder in Spalten 1 bis 8 sind belegt.
 
-### S1-05-03-03 · Anschluss wird am Ersatzhalt gesucht
+### S1-05-03-03 · Zum Ersatzbus nur über die Treppe
 
-Status: Der Anschluss ist angegeben. Seine Verbindung zur Ersatzhaltestelle wird vor Ort vorausgesetzt.
+Status: Der Aufzug zum Bus ist gesperrt. Die Treppe gilt als gleichwertiger Ersatz.
 
-Ergebnis: Die Voraussetzung ist hergestellt. Der Weg reicht vom einen Ende bis zum anderen.
+Ergebnis: Der Aufzug fährt wieder. Ihr Rollkoffer bleibt heute ein Rollkoffer.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Count 1 der Zeile 0 schließt (1,0) bis (8,0) aus.
 
-### S1-05-03-04 · Ersatzanschluss mit Übergangsbedarf
+### S1-05-03-04 · Anschlussbus bleibt verschlossen
 
-Status: Der Ersatzverkehr ist erreichbar. Der Weg vom Anschluss zu dieser Erreichbarkeit wird noch zusammengeführt.
+Status: Der Bus steht mit geschlossenen Türen da. Laut Anzeige sind Sie angekommen.
 
-Ergebnis: Der Übergang führt durch. Die Erreichbarkeit ist nicht mehr nur abschnittsweise vorhanden.
+Ergebnis: Die Türen öffnen sich. Der Anschluss besteht jetzt auch für Personen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 8 hat Count 9 bei Breite 9. (0,8) bis (8,8) sind sämtlich belegt, darunter A an W/8.
 
-Status kurz: Ersatzverkehr erreichbar. Der Weg vom Anschluss dorthin wird zusammengeführt.
+### S1-05-03-05 · Anschlusszug auf ein anderes Gleis verlegt
 
-### S1-05-03-05 · Weiterfahrt unter Anschlussvorbehalt
+Status: Ihr Zug fährt jetzt an Gleis 8. Der Wegweiser vom Bus kennt nur Gleis 1.
 
-Status: Die Anzeige nennt eine Weiterfahrt. Zum Ersatzhalt zeigen die Schilder in die andere Richtung.
-
-Ergebnis: Der Weg zum Anschluss ist verbunden. Die Richtungsschilder können sich auf die Strecke berufen.
+Ergebnis: Die Durchsage nennt das richtige Gleis. Ihr Zug steht freundlicherweise dort.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. Alle neun Felder (0,0) bis (0,8) bleiben leer; die Querarme liegen in den verbleibenden Spalten.
 
-### S1-05-03-06 · Übergang zwischen Systemen möglich
+### S1-05-03-06 · Keine Gehzeit zwischen Bus und Zug
 
-Status: Der Übergang ist grundsätzlich möglich. Für seine praktische Nutzung fehlt ein durchgehender Zusammenhang.
+Status: Der Bus kommt um 8.10 Uhr. Ihr Zug fährt um 8.10 Uhr hinter dem Parkhaus.
 
-Ergebnis: Der Zusammenhang ist da. Die Schiene trägt die Weiterfahrt wieder selbst.
+Ergebnis: Drei Minuten bis zur Abfahrt bleiben frei. Gehen ist wieder Teil des Fahrplans.
 
 **INTERN · Einstieg:** 0-basiert: B an E/7 belegt (8,7). Zeile 7 hat Count 1; (0,7) bis (7,7) bleiben leer.
 
-Status kurz: Übergang grundsätzlich möglich. Der durchgehende Zusammenhang fehlt noch.
+### S1-05-03-07 · Direktbus mit zwölf Zwischenhalten
 
-### S1-05-03-07 · Anschlussweg ohne gemeinsame Darstellung
+Status: Der Bus fährt direkt zum Anschlusszug. Die zwölf Zwischenhalte zählen nicht.
 
-Status: Die Zugabfahrt steht am Bahnsteig. Die Busankunft steht am Ersatzhalt. Der Übergang steht aus.
-
-Ergebnis: Die Angaben liegen an einem durchgehenden Kartenweg. Der Zug befährt die selbst gebaute Strecke.
+Ergebnis: Ihr Anschluss fährt mit Ihnen ab. Für die entfallene Stadtrundfahrt gibt es keinen Ersatz.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 8 hat Count 9 bei Breite 9. Alle Felder (0,8) bis (8,8) sind belegt, einschließlich B an S/8.
 
-### S1-05-03-08 · Ersatzweg mit Anschlussabsicht
+### S1-05-03-08 · Bahnhofsuhr meldet Anschluss verpasst
 
-Status: Der Ersatzweg berücksichtigt den Anschluss. Das Erreichen ist in dieser Berücksichtigung noch nicht enthalten.
+Status: Die Bahnhofsuhr geht zehn Minuten vor. Laut Tafel sind Sie schon zu spät.
 
-Ergebnis: Die Absicht ist in eine Verbindung überführt. Das Ziel ist auf Schienen erreichbar.
+Ergebnis: Die Uhren stimmen überein. Der Zug ist noch da. Beides wird dokumentiert.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 8 hat Count 0. Zeilen 2 und 4 fordern jeweils 8 bei acht verbleibenden Feldern; (0,2) bis (7,2) und (0,4) bis (7,4) sind belegt.
 
-Status kurz: Der Anschluss ist berücksichtigt. Sein Erreichen ist darin nicht enthalten.
+### S1-05-03-09 · Wegweiser zum Ersatzbus führen im Kreis
 
-### S1-05-03-09 · Bitte folgen Sie der Beschilderung
+Status: Die Pfeile führen zum Ersatzbus. Am Ende steht wieder der erste Pfeil.
 
-Status: Die Beschilderung führt zum Anschluss. Für die Verbindung ihrer Hinweise ist bislang der Weg zuständig.
-
-Ergebnis: Die Hinweise haben einen Zusammenhang erhalten. Die Schienenverbindung führt bis ans Ziel.
+Ergebnis: Der letzte Pfeil zeigt auf einen Bus. Dieser fährt sogar zum Anschlusszug.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 1 hat Count 9 bei Breite 9. Alle neun Felder (0,1) bis (8,1) sind belegt; ihre Formen sind noch offen.
 
-Status kurz: Schilder weisen zum Anschluss. Ihre Verbindung übernimmt vorerst der Weg.
+### S1-05-03-10 · Anschlussbus wartet nur auf der Tafel
 
-### S1-05-03-10 · Anschluss gemäß Richtungshinweis
+Status: Die Tafel meldet einen wartenden Bus. Er wartet jetzt am nächsten Bahnhof.
 
-Status: Der Richtungshinweis ist eindeutig. Seine Beziehung zum nächsten Richtungshinweis wird unterwegs deutlich.
-
-Ergebnis: Der gesamte Weg ist verbunden. Die Richtung muss sich nicht mehr von Schild zu Schild erklären.
+Ergebnis: Bus und Tafel befinden sich wieder am selben Ort. Sie können dort einsteigen.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 2 und Spalten 6 bis 8 haben jeweils Count 0. Alle betroffenen Felder bleiben leer; aktiv ist der Bereich Spalten 0 bis 5, Zeilen 3 bis 8.
 
-Status kurz: Die Richtung ist eindeutig. Ihr Bezug zum nächsten Hinweis folgt unterwegs.
+### S1-05-03-11 · Busanschluss laut historischem Aushang
 
-### S1-05-03-11 · Anschluss in Theorie vorhanden
+Status: Der Aushang nennt den Bus um 9 Uhr. Gemeint ist der 4. Mai 1987.
 
-Status: Der Anschluss steht im Fahrplan. Die Beschilderung zwischen Ersatzhalt und Bahnsteig lässt ihn offen.
-
-Ergebnis: Ersatzhalt und Bahnsteig sind verbunden. Der Anschluss hat mehr als eine Zeile im Fahrplan.
+Ergebnis: Der Bus fährt heute. Die Pressestelle meldet einen Anschluss an die Gegenwart.
 
 **INTERN · Einstieg:** 0-basiert: B an W/1 belegt (0,1). Spalte 0 hat Count 1 und schließt ihre übrigen acht Felder aus.
 
-Status kurz: Der Anschluss steht im Fahrplan. Die Schilder am Ersatzhalt lassen ihn offen.
+### S1-05-03-12 · Zug und Ersatzbus warten aufeinander
 
-### S1-05-03-12 · Ersatzverkehr erfolgreich umgangen
+Status: Der Bus wartet auf den Zug. Der Zug kommt erst, wenn der Bus da ist.
 
-Status: Der letzte Umsteigeknoten wird auf Schienen verbunden. Der Ersatz erklärt noch die frühere Lage.
-
-Ergebnis: Der Zug fährt durch den verbundenen Knoten. Der Ersatzweg gehört für diese Strecke zur Vorgeschichte.
+Ergebnis: Bus und Zug sind da. Die Durchsage bittet darum, dieses Verfahren nicht zu erwarten.
 
 **INTERN · Einstieg:** 0-basiert: A an E/8 belegt (8,8). Spalte 8 fordert nur dieses Gleisfeld; (8,0) bis (8,7) bleiben leer.
 
-Ergebnis kurz: Der Zug befährt den verbundenen Knoten. Der Ersatzweg ist hier Vorgeschichte.
+### S1-05-04-01 · Ersatzbus am anderen Ausgang
 
-### S1-05-04-01 · Gesamtbetrieb in geordnetem Zustand
+Status: Der Bus hält am anderen Ausgang. Ihr Zugticket enthält keinen Kompass.
 
-Status: Der Gesamtbetrieb gilt als geordnet. Beide Bahnsteige warten noch auf die Verbindung dazwischen.
-
-Ergebnis: Die erste Lücke ist geschlossen. Über Ihre Gleise fährt der Zug, nicht die Betriebsmeldung.
+Ergebnis: Die Bahn fährt wieder. Zur Abfahrt genügt jetzt der Weg bis zur Zugtür.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 2 und Spalten 4 bis 8 haben Count 0. Alle betroffenen Felder bleiben leer; mögliche Gleisfelder liegen in Spalten 0 bis 3 und Zeilen 3 bis 8.
 
-Status kurz: Der Gesamtbetrieb gilt als geordnet. Offene Verbindungen sind eingeordnet.
+### S1-05-04-02 · Abfahrtszeit fehlt am Bussteig
 
-### S1-05-04-02 · Stabilisierung im weiteren Verfahren
+Status: Am Bussteig hängt der Zugfahrplan. Die Buszeiten bleiben Privatsache.
 
-Status: Die Stabilisierung ist weit fortgeschritten. Zwischen den letzten Bahnsteigen fehlt noch ein Gleisweg.
-
-Ergebnis: Ihre Strecke schließt die nächste Lücke. Die Stabilisierung erhält einen befahrbaren Beleg.
+Ergebnis: Auf der Tafel steht eine Abfahrt. Am Gleis steht sogar das passende Fahrzeug.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 5 hat Count 9 bei Höhe 9 und ist vollständig belegt. In den Zeilen 2, 3 und 4 mit Count 1 sind deshalb nur (5,2), (5,3) und (5,4) belegt; die anderen Felder dieser Zeilen sind leer.
 
-Status kurz: Stabilisierung weit fortgeschritten. Zwischen den Bahnsteigen fehlt noch der Gleisweg.
+### S1-05-04-03 · Ersatzbus mit begrenztem Platz
 
-### S1-05-04-03 · Stabilität wird fortlaufend bewertet
+Status: Der Bus ist voll. Acht Wagen wurden durch einen Mittelgang ersetzt.
 
-Status: Die Stabilität wird weiter bewertet. Am Bahnsteig bleibt davon vorerst nur ein offener Gleisweg sichtbar.
-
-Ergebnis: Die Bewertung darf weiterlaufen. Ihr Zug fährt bereits auf dem selbst gebauten Weg von A nach B.
+Ergebnis: Alle Wagen rollen. Die versprochene Kapazität hat wieder Türen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 8 hat Count 0 und bleibt leer. Spalten 0, 2 und 4 fordern jeweils 8; bei nur acht verbleibenden Zeilen sind ihre Felder in Zeilen 0 bis 7 vollständig belegt.
 
-Status kurz: Die Stabilitätsbewertung ist stabil. Die Verbindung wird weiter bewertet.
+### S1-05-04-04 · Fahrkarten am gesperrten Gleis
 
-### S1-05-04-04 · Verbindung im stabilen Bearbeitungsstand
+Status: Der Automat steht am gesperrten Gleis. Der Fahrkartenverkauf läuft stabil.
 
-Status: Die Verbindung gilt als stabil in Bearbeitung. Am Bahnsteig endet sie weiterhin vor dem Ziel.
-
-Ergebnis: Der Zug erreicht das andere Ende auf Ihrer Strecke. Die Bearbeitung sucht sich besser einen neuen Gegenstand.
+Ergebnis: Ihre Fahrkarte gilt, der Zug fährt. Der Weg zum Automaten ist kein Reiseabschnitt mehr.
 
 **INTERN · Einstieg:** 0-basiert: A an E/2 erzwingt (8,2). Spalte 8 hat Count 2; nach diesem sicheren Eintritt bleibt dort genau ein weiteres Gleisfeld zu bestimmen.
 
-Status kurz: Stabiler Bearbeitungsstand. Der Stand der Verbindung wird noch bearbeitet.
+### S1-05-04-05 · Ersatzbus nur über Stufen erreichbar
 
-### S1-05-04-05 · Fortlaufende Bewertung ohne Abweichung
+Status: Zum Bus führt nur die Treppe. Der Aufzug ersetzt heute die Wand.
 
-Status: Die Bewertung meldet keine Abweichung. Am Gleis fehlt trotzdem noch die durchgehende Verbindung.
-
-Ergebnis: Die Verbindung steht. Der Zug fährt sie ab; die Bewertung darf danach gern hinterherkommen.
+Ergebnis: Ihr Rollkoffer rollt in die Bahn. Für den Einstieg entfällt die Flugphase.
 
 **INTERN · Einstieg:** 0-basiert: B an S/5 belegt (5,8). Zeile 8 hat Count 1 und schließt (0,8) bis (4,8) sowie (6,8) bis (8,8) aus.
 
-### S1-05-04-06 · Keine besonderen Vorkommnisse gemeldet
+### S1-05-04-06 · Anschlussbus bereits abgefahren
 
-Status: Es liegen keine besonderen Meldungen vor. Die vorhandene Lücke im Zusammenhang gilt als bereits bekannt.
+Status: Der Anschlussbus ist weg. Ihr Umstieg bleibt im Fahrplan möglich.
 
-Ergebnis: Die bekannte Lücke ist geschlossen. Das wäre jetzt eine brauchbare Meldung.
+Ergebnis: Die Durchsage nennt den Anschluss. Diesmal steht er noch am Bahnsteig.
 
 **INTERN · Einstieg:** 0-basiert: B an S/6 belegt (6,9). Zeile 9 hat Count 1; alle anderen Felder dieser untersten Zeile im 10×10-Raster bleiben leer.
 
-Status kurz: Keine besonderen Meldungen. Die Lücke im Zusammenhang ist bereits bekannt.
+### S1-05-04-07 · Ersatzhalt ohne Halt
 
-### S1-05-04-07 · Unveränderte Lage ohne besonderen Hinweis
+Status: Der Bus passiert die Ersatzhaltestelle. Das Schild ersetzt nur das Schild.
 
-Status: Die Lage ist unverändert. Auf einen besonderen Hinweis auf diesen Umstand wurde planmäßig verzichtet.
-
-Ergebnis: Die Strecke ist jetzt durchgehend. Diese Änderung lässt sich an der Zugfahrt erkennen.
+Ergebnis: Die Zugbegleitung bestätigt: Sie können hier aussteigen. Das Schild ist wieder ein Hinweis, kein Denkmal.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 8 und 9 haben jeweils Count 0. Die 20 Felder (0,8) bis (9,8) und (0,9) bis (9,9) bleiben leer.
 
-Status kurz: Lage unverändert. Auf einen besonderen Hinweis dazu wurde verzichtet.
+### S1-05-04-08 · Umleitung zurück zum Bahnhof
 
-### S1-05-04-08 · Betrieb ohne zusätzlichen Erklärungsbedarf
+Status: Der Bus fährt im Kreis. Die Verbindung zum Ausgangspunkt ist gesichert.
 
-Status: Die Betriebslage ist ausführlich erklärt. Der Bedarf an einer funktionierenden Verbindung bleibt bestehen.
-
-Ergebnis: Der Zug befährt die Verbindung. Die ausführliche Erklärung wird dafür nicht mehr gebraucht.
+Ergebnis: Laut Pressestelle wurde ein weiterer Bahnhof erreicht. Es ist nicht wieder derselbe.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 8 und 9 haben Count 0. Ihre zwanzig Felder bleiben leer; die mögliche Kopfbelegung liegt in Spalten 0 bis 7.
 
-Status kurz: Die Lage ist erklärt. Eine funktionierende Verbindung wird weiter benötigt.
+### S1-05-04-09 · Keine Verspätung auf leerer Tafel
 
-### S1-05-04-09 · Störung nur noch im System
+Status: Die Tafel meldet keine Verspätung. Busse sind dort nicht eingetragen.
 
-Status: Die Strecke soll funktionieren. Der offene Störungseintrag wird bis zum Vorliegen einer Strecke beibehalten.
-
-Ergebnis: Die Strecke funktioniert. Der Eintrag hat seinen Gegenstand verloren.
+Ergebnis: Auf der Tafel steht die Abfahrt, am Gleis fährt die Bahn. Beide meinen heute dasselbe.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0, 1 und 2 haben Count 0. Alle dreißig Felder dieser oberen Zeilen bleiben leer; die mögliche Belegung beginnt in Zeile 3.
 
-Status kurz: Die Strecke soll funktionieren. Ihr Störungseintrag bleibt bis dahin offen.
+### S1-05-04-10 · Ersatzhalt für die Ersatzhaltestelle
 
-### S1-05-04-10 · Reststörung ohne bleibenden Reisegrund
+Status: Der Ersatzhalt wurde verlegt. Am neuen Standort hängt der Fahrplan von 1998.
 
-Status: Die letzte Auskunft verweist auf einen offenen Rest. Als Rest verbleibt die durchgehende Verbindung.
-
-Ergebnis: Der Weg trägt bis zum Ziel. Für den offenen Rest bleibt nichts mehr übrig.
+Ergebnis: Abfahrt am Gleis. Die drei Ersatzhaltestellen dürfen unter sich bleiben.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 10 bei Höhe 10 und ist vollständig belegt. Zeilen 0 bis 5 haben Count 1; ihre einzigen Gleisfelder liegen damit in Spalte 0, alle übrigen Felder dieser sechs Zeilen sind leer.
 
-### S1-05-04-11 · Betrieb bis auf Weiteres stabil
+### S1-05-04-11 · Stabiler Betrieb ohne Abfahrt
 
-Status: Die Stabilitätsmeldung ist vorbereitet. Für die Strecke steht noch die letzte praktische Bestätigung aus.
+Status: Der Bus bleibt stehen. Die Lage ist seit Dienstag stabil.
 
-Ergebnis: Die Bestätigung fährt durch. Die Strecke hält, was die Meldung bisher nur vorbereitet hat.
+Ergebnis: Beim Anfahren schwappt der Kaffee über. Die Bewegung ist damit amtlich bestätigt.
 
 **INTERN · Einstieg:** 0-basiert: A an S/0 erzwingt (0,9). Die unterste Zeile 9 hat Count 1; (1,9) bis (9,9) sind leer.
 
-Status kurz: Die Stabilitätsmeldung ist vorbereitet. Die praktische Bestätigung fehlt.
+### S1-05-04-12 · Ersatzbus durch Warten ersetzt
 
-### S1-05-04-12 · Tatsächlich pünktlich
+Status: Der letzte Bus entfällt. Das Warten gilt jetzt als durchgehende Verbindung.
 
-Status: Die Ersatzhaltestelle liegt hinter uns. Vor uns fehlt nur noch die durchgehende Schienenverbindung.
-
-Ergebnis: Der Zug ist angekommen. Die Verbindung funktioniert. Für diese Strecke wird kein Ersatz mehr benötigt.
+Ergebnis: Durchsage: Die Bahn fährt pünktlich. Bitte leiten Sie daraus keinen Anspruch ab.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (9,0). Zeile 0 hat Count 1; (0,0) bis (8,0) bleiben leer. Von (9,0) kann die Strecke wegen dieses Ausschlusses nur nach (9,1) fortsetzen.
-
-Ergebnis kurz: Der Zug ist angekommen. Die Verbindung funktioniert. Kein Ersatz erforderlich.
 
 ## Kampagne, Oberflächen und Varianten
 
