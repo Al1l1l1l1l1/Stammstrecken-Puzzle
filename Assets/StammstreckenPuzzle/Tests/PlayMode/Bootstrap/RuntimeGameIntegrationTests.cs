@@ -266,9 +266,9 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(resultBalance));
             TraceRuntimePhase("bonus.skip.complete");
             Submit("result-next"); yield return Idle();
-            yield return Until(() => Find<Button>("endless-profile-dienstbeginn").enabledInHierarchy, "second settled modal action");
-            TraceRuntimePhase("reservation.second.begin");
-            Submit("endless-profile-dienstbeginn"); yield return Idle();
+            // Endlos-Weiter startet direkt die naechste Runde desselben Profils.
+            yield return Until(() => Model.PuzzleView != null && !Model.PuzzleView.Puzzle.Identity.Equals(identity), "direct next endless round");
+            yield return Idle();
             TraceRuntimePhase("reservation.second.settled");
             Assert.That(Model.ConfirmedSnapshot.Payload.Endless.HighestReservedOrdinal, Is.EqualTo("2"));
             Assert.That(Model.PuzzleView!.Puzzle.Identity, Is.Not.EqualTo(identity));

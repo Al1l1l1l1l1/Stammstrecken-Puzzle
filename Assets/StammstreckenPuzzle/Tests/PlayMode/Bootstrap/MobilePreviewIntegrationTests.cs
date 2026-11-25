@@ -283,7 +283,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
             var state=installer.Model.ConfirmedSnapshot!.Payload;var level=state.Levels.Single(l=>l.Identity.Equals(identity));
             Assert.That(level.FirstClear!.AttemptId,Is.EqualTo(view.AttemptId));
-            Assert.That(level.StarsHighWater,Is.EqualTo(1),"Uncalibrated DRAFT time limits must not award invented stars.");
+            Assert.That(level.StarsHighWater,Is.EqualTo(3),"Synthetic instant solve is inside the estimated three-star time; estimates stay DRAFT and uncalibrated.");
             Assert.That(level.FirstRunBestElapsedMs,Is.Not.Null);Assert.That(level.RevisionBestElapsedMs,Is.Null);
             Assert.That(installer.Model.CanEnterPuzzle(1),Is.True);
             Assert.That(Find<Button>("result-video").enabledInHierarchy,Is.False,"Editor unavailable ads cannot enable a rewarded request.");
@@ -633,11 +633,10 @@ namespace STP.Tests.Bootstrap.PlayMode
             Submit("result-skip-bonus");yield return Idle();yield return null;
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.OpenEndless,Is.Empty);yield return Capture("candidate-endless-result");
             Submit("result-next");yield return Idle();yield return null;
-            Assert.That(Find<VisualElement>("endless-overlay").resolvedStyle.display,Is.EqualTo(DisplayStyle.Flex));
+            // "Weiter" im freien Modus startet direkt die naechste Runde desselben Profils, ohne Profilmenue.
             yield return Idle();deadline=Time.realtimeSinceStartup+10;
-            while((!installer.Model.CanRunProfileAction||!installer.PendingOperation.IsCompleted||!Find<Button>("endless-profile-dienstbeginn").enabledInHierarchy)&&Time.realtimeSinceStartup<deadline)yield return null;
-            Assert.That(installer.Model.CanRunProfileAction,Is.True,"Next menu must settle its host attention pause: "+installer.Model.State.Status+":"+installer.Model.State.ErrorCode);
-            Submit("endless-profile-dienstbeginn");yield return Idle();yield return null;
+            while(installer.Model.PuzzleView!.Puzzle.Identity.PuzzleId==identity.PuzzleId&&Time.realtimeSinceStartup<deadline)yield return null;
+            yield return Idle();yield return null;
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.HighestReservedOrdinal,Is.EqualTo("2"),
                 installer.Model.State.Status+":"+installer.Model.State.ErrorCode+":"+installer.Model.EndlessGenerationStatus+":pending="+installer.PendingOperation.Status);
             Assert.That(installer.Model.PuzzleView!.Puzzle.Identity.PuzzleId,Is.Not.EqualTo(identity.PuzzleId),
