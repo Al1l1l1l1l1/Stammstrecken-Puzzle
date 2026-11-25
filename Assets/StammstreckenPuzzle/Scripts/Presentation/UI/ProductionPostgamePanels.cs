@@ -51,6 +51,13 @@ namespace STP.Presentation.UI
         public bool IsBusy=>endlessTask!=null||bonusTask!=null;
         /// <summary>Opens the profile selection without starting generation.</summary>
         public void Open(){open=true;Refresh();}
+        /// <summary>Starts the next round of the same endless profile directly, using the same availability checks as the profile cards.</summary>
+        public bool TryStartProfile(string profileId)
+        {
+            if(disposed||endlessTask!=null||readEndless==null||startProfile==null)return false;
+            try{var state=readEndless();if(!state.Unlocked||state.Generating||!state.AvailableProfileIds.Contains(profileId))return false;}catch{failed=true;Refresh();return false;}
+            Run(()=>startProfile(profileId));return true;
+        }
         /// <summary>Resolves the actual reusable map reference for generated puzzles, separate from all campaign references.</summary>
         public void BindScene(RailwayAssetCatalog catalog){var moment=catalog.ResolveReusableMoment("draft-endless-map-default");art.SetComposition(catalog.ResolveComposition(moment.compositionId),0);}
         /// <summary>Shows the actual equipped train, livery and objects in the postgame map composition.</summary>

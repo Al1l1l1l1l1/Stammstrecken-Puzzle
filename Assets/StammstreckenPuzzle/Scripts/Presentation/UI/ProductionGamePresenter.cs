@@ -34,6 +34,10 @@ namespace STP.Presentation.UI
         private Func<int,bool>? clearedPuzzle;
         private Func<int,bool>? canOpenPuzzle;
         private Func<int>? recommendedPuzzle;
+        private Func<int,(long two,long three)?>? starTargets;
+        private Func<string?>? endlessProfile;
+        private bool resetRoundOpen;
+        private int resetRoundCount;
         private string[] selectedCosmetics=Array.Empty<string>();
         private readonly ScrollView viewport;
         private readonly HintDisplayGate hintDisplayGate;
@@ -121,6 +125,10 @@ namespace STP.Presentation.UI
                 AddButton("puzzle-back","back",BackFromPuzzle);
                 AddButton("puzzle-undo","undo",Undo);
                 AddButton("puzzle-hint","hint",RequestHint);
+                AddButton("puzzle-reset","reset-round",OpenResetRound);
+                AddButton("reset-round-confirm","reset-round.confirm",ConfirmResetRound);
+                AddButton("reset-round-cancel","reset-round.cancel",CancelResetRound);
+                AddButton("result-endless","result.endless",OpenEndlessFromResult);
                 AddButton("hint-close","notice.close",CloseHint);
                 AddButton("hint-retry","hint.retry",RetryHintCommit);
                 AddButton("hint-video","hint.video",RequestHintVideo);AddButton("hint-request","hint.request",PrepareOpenHint);
@@ -244,6 +252,12 @@ namespace STP.Presentation.UI
         /// <summary>Binds the Root policy invoked only by the explicit Next button of an actual completed ride.</summary>
         public void BindResultContinuation(Func<Task> beforeContinue){CheckThread();CheckProductBinding();resultContinuation.Bind(beforeContinue);}
         /// <summary>Binds actual four-profile postgame eligibility and exact saved record operations.</summary>
+        /// <summary>Binds the displayed star time limits (two/three stars in milliseconds) per campaign index.</summary>
+        public void BindStarTargets(Func<int,(long two,long three)?> read)
+        {CheckThread();CheckProductBinding();starTargets=read??throw new ArgumentNullException(nameof(read));Refresh();}
+        /// <summary>Binds the profile id of the running endless round so that Next starts the next round of the same profile directly.</summary>
+        public void BindEndlessContinue(Func<string?> current)
+        {CheckThread();CheckProductBinding();endlessProfile=current??throw new ArgumentNullException(nameof(current));}
         public void BindEndless(Func<EndlessView> read,Func<string,Task> startProfile,Func<string,Task> resumeId,Func<string,Task> abandonId)
         {CheckThread();CheckProductBinding();postgamePanels.BindEndless(read,startProfile,resumeId,abandonId);}
         /// <summary>Binds explicit video or provider-free skip on an open generated completion record.</summary>
@@ -337,8 +351,11 @@ namespace STP.Presentation.UI
                 Require<Label>("result-mode").text=known?L("puzzle.mode."+mode):string.Empty;
                 if(index>=0&&(mode=="PRACTICE"||mode=="REVISION"))Require<Label>("puzzle-context").text=L("puzzle.context",L("puzzle.mode."+mode),index%12+1);
                 Require<Label>("puzzle-phase").tooltip=display?.Status??string.Empty;
-                Require<Label>("puzzle-phase").text=L(state.Status==SavedReviewStatus.TrainRide?"ride.running":state.Status==SavedReviewStatus.ProgressCommitted||state.Status==SavedReviewStatus.CompletionPending?"ride.preparing":"puzzle.instruction");
-                if(display!=null&&view.Phase==DevelopmentPreviewPhase.Editing)Require<Label>("puzzle-phase").text=display.Status;
+                var phaseBody=L(state.Status==SavedReviewStatus.TrainRide?"ride.running":state.Status==SavedReviewStatus.ProgressCommitted||state.Status==SavedReviewStatus.CompletionPending?"ride.preparing":"puzzle.instruction");
+                if(display!=null&&view.Phase==DevelopmentPreviewPhase.Editing)phaseBody=display.Status;
+                var starText=StarTargetText(index);
+                Require<Label>("puzzle-phase").text=L("puzzle.size",view.Width,view.Height)+(starText.Length>0?"  ·  "+starText:string.Empty)+"\n"+phaseBody;
+                Require<Label>("result-star-targets").text=starText;SetVisible(Require<VisualElement>("result-star-targets"),starText.Length>0);
                 SetVisible(Require<VisualElement>("result-panel"),view.Phase==DevelopmentPreviewPhase.Results&&!requestFault);
                 var stars=state.Progress?.SelectedStars??0;
                 Require<Label>("result-stars").text=L("result.stars."+Mathf.Clamp(stars,0,3));
@@ -376,7 +393,15 @@ namespace STP.Presentation.UI
             buttons["home-play"].text=L(view!=null&&view.Phase==DevelopmentPreviewPhase.Editing?"resume":"play");
             buttons["home-play"].SetEnabled(clear&&(state.CanCreateProfile||state.CanNavigate||view!=null));
             buttons["home-map"].SetEnabled(clear&&state.CanNavigate);
-            buttons["result-next"].SetEnabled(clear&&state.CanNavigate);buttons["result-home"].SetEnabled(clear);
+            var campaignResult=view!=null&&CurrentCampaignIndex>=0&&view.Phase==DevelopmentPreviewPhase.Results;
+            var seasonEnd=campaignResult&&SeasonComplete&&CurrentCampaignIndex>=239;
+            buttons["result-next"].SetEnabled(clear&&state.CanNavigate&&!seasonEnd);buttons["result-home"].SetEnabled(clear);
+            if(seasonEnd)buttons["result-next"].text=L("result.next.final");
+            SetVisible(Require<VisualElement>("result-season-end"),seasonEnd);SetVisible(buttons["result-endless"],campaignResult&&SeasonComplete);buttons["result-endless"].SetEnabled(clear);
+            if(view==null||view.Phase!=DevelopmentPreviewPhase.Editing||screen!=Screen.Puzzle)resetRoundOpen=false;
+            SetVisible(Require<VisualElement>("reset-round-overlay"),resetRoundOpen);
+            Require<Label>("reset-round-count").text=resetRoundCount>0?L("reset-round.count",resetRoundCount*2):string.Empty;
+            buttons["puzzle-reset"].SetEnabled(editing&&!resetRoundOpen);SetVisible(buttons["puzzle-reset"],assignedReview==null);
             if(mapClears!=clears||mapStart!=(mapRoute<0?next/12:mapRoute)*12||renderedMapGeneration!=(state.Progress?.Generation??0))
             {
                 mapStart=(mapRoute<0?next/12:mapRoute)*12;mapClears=clears;renderedMapGeneration=state.Progress?.Generation??0;
@@ -427,6 +452,28 @@ namespace STP.Presentation.UI
             }
             Require<Label>("profile-direct").text=L("record.direct-total",direct,completed);
         }
+        private bool SeasonComplete{get{var p=model?.State.Progress;return p!=null&&p.MemberCount>0&&p.FirstClearCount>=p.MemberCount;}}
+        private string StarTargetText(int index)
+        {
+            if(index<0||starTargets==null)return string.Empty;
+            var t=starTargets(index);if(!t.HasValue)return string.Empty;
+            var three=(int)(t.Value.three/1000);var two=(int)(t.Value.two/1000);
+            return L("puzzle.stars.targets",three/60,three%60,two/60,two%60);
+        }
+        private void OpenResetRound(){if(!CanEdit||view==null)return;resetRoundOpen=true;Refresh();}
+        private void CancelResetRound(){if(!resetRoundOpen)return;resetRoundOpen=false;Refresh();}
+        /// <summary>Clears all filled cells as one atomic domain action inside the same attempt, so the clock keeps running.</summary>
+        private void ConfirmResetRound()
+        {
+            if(!resetRoundOpen)return;
+            resetRoundOpen=false;
+            if(view==null||!CanEdit){Refresh();return;}
+            var cells=new List<DevelopmentCell>();
+            for(var y=0;y<view.Height;y++)for(var x=0;x<view.Width;x++)if(view.CellAt(x,y)!=DevelopmentTool.Clear)cells.Add(new DevelopmentCell(x,y));
+            if(cells.Count>0&&view.ApplyBatch(cells,DevelopmentTool.Clear,clock())==DevelopmentCommandStatus.Applied){resetRoundCount++;EmitFeedback(ProductionFeedbackCue.Clear);}
+            Refresh();
+        }
+        private void OpenEndlessFromResult(){if(!CanContinueResult)return;postgamePanels.Open();Refresh();}
         private int NextIndex=>Mathf.Clamp(recommendedPuzzle?.Invoke()??model?.State.Progress?.FirstClearCount??0,0,239);
         private bool IsCleared(int index)=>clearedPuzzle?.Invoke(index)??index<(model?.State.Progress?.FirstClearCount??0);
         private bool CanOpen(int index)=>index>=0&&index<240&&(canOpenPuzzle?.Invoke(index)??index<=NextIndex);
@@ -462,7 +509,18 @@ namespace STP.Presentation.UI
             if(state.CanCreateProfile){openAfterCreate=true;SendBound(SavedReviewUiRequestKind.CreateProfile);return;}
             if(view!=null&&view.Phase==DevelopmentPreviewPhase.Editing)
             {view.Resume(clock());screen=Screen.Puzzle;Refresh();return;}
-            if(view!=null&&view.Phase==DevelopmentPreviewPhase.Results&&CurrentCampaignIndex<0){postgamePanels.Open();Refresh();return;}
+            if(view!=null&&view.Phase==DevelopmentPreviewPhase.Results&&CurrentCampaignIndex<0)
+            {
+                var profile=endlessProfile?.Invoke();
+                if(profile!=null&&postgamePanels.TryStartProfile(profile)){Refresh();return;}
+                postgamePanels.Open();Refresh();return;
+            }
+            if(SeasonComplete)
+            {
+                var current=view!=null&&view.Phase==DevelopmentPreviewPhase.Results?CurrentCampaignIndex:-1;
+                if(current>=0&&current<239&&CanOpen(current+1)){OpenPuzzle(current+1);return;}
+                postgamePanels.Open();Refresh();return;
+            }
             OpenPuzzle(NextIndex);
         }
         private void ChangeMapRoute(int delta){if(pending!=null)return;mapRoute=Mathf.Clamp((mapRoute<0?NextIndex/12:mapRoute)+delta,0,19);mapClears=-1;Refresh();}
@@ -611,7 +669,7 @@ namespace STP.Presentation.UI
         }
         private static void ObserveLateFault(Task? task)
         {if(task!=null)_=task.ContinueWith(completed=>{_ = completed.Exception;},CancellationToken.None,TaskContinuationOptions.OnlyOnFaulted,TaskScheduler.Default);}
-        private bool CanEdit=>!disposed&&!IsProductModalOpen&&!postgamePanels.IsBusy&&!hintHelpOpen&&pending==null&&!requestFault&&(assignedReview!=null?AssignedCanEdit:model?.State.CanMutate==true)&&view?.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
+        private bool CanEdit=>!disposed&&!IsProductModalOpen&&!postgamePanels.IsBusy&&!hintHelpOpen&&!resetRoundOpen&&pending==null&&!requestFault&&(assignedReview!=null?AssignedCanEdit:model?.State.CanMutate==true)&&view?.Phase==DevelopmentPreviewPhase.Editing&&!view.IsPaused;
         private void ActivateCell(int x,int y)
         {
             if(!CanEdit||view==null)return;

@@ -71,6 +71,7 @@ namespace STP.Bootstrap
             presenter.BindSettings(()=>saved.ConfirmedSnapshot?.Payload.Settings??null!,settings=>TrackUserAction(CommitAsync((use,ct)=>use.SaveSettingsAsync(settings,ct))));
             presenter.BindServices(ReadServices,action=>TrackUserAction(ActServiceAsync(action)));
             presenter.BindCampaignRecords(ReadCampaignRecord);
+            presenter.BindStarTargets(ReadStarTargets);
             presenter.BindActivePuzzleMode(()=>saved.CurrentModeName);
             presenter.BindCompletionBonus(ReadCompletionBonus,video=>TrackUserAction(RequestCompletionBonusAsync(video)));
             presenter.BindResultContinuation(()=>TrackUserAction(ContinueResultAsync()));
@@ -118,6 +119,12 @@ namespace STP.Bootstrap
             if(index<0||index>=saved.Puzzles.Count)return false;
             var cleared=ReadFirstClearIdentities();
             return cleared!=null&&cleared.Contains(saved.Puzzles[index].Identity);
+        }
+        private (long two,long three)? ReadStarTargets(int index)
+        {
+            if(index<0||index>=saved.Puzzles.Count)return null;
+            return composition.Progress.Completion.TryGet(saved.Puzzles[index].Identity,out var values)&&values!=null&&values.TwoStarMs.HasValue&&values.ThreeStarMs.HasValue
+                ?(values.TwoStarMs.Value,values.ThreeStarMs.Value):((long,long)?)null;
         }
         private int RecommendedIndex()
         {

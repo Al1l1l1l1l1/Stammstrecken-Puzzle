@@ -21,6 +21,7 @@ namespace STP.Bootstrap
             presenter.BindEndless(ReadEndless,id=>TrackUserAction(StartEndlessAsync(id)),id=>TrackUserAction(ResumeEndlessAsync(id)),id=>TrackUserAction(AbandonEndlessAsync(id)));
             presenter.BindEndlessReward(CanRequestEndlessVideo,(id,video)=>TrackUserAction(RequestEndlessRewardAsync(id,video)),CanSkipEndlessReward);
             presenter.BindDynamicPuzzleText(ReadEndlessText);
+            presenter.BindEndlessContinue(()=>activeEndlessProfile);
         }
         private ProductionPuzzleDisplay? ReadEndlessText(string id)
         {

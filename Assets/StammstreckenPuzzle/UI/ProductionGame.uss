@@ -182,3 +182,14 @@ Button:disabled { opacity: 0.58; }
 .notices-page-controls { flex-direction: row; flex-shrink: 0; }
 .notices-page-button { flex-grow: 1; flex-basis: 0; min-height: 44px; font-size: 14px; }
 .notices-previous { margin-right: 8px; }
+
+/* Rework: Kopftafel mit Feldgröße, Rundenreset, Saisonende */
+.status-strip { background-color: #0F4BA0; }
+.puzzle-subheader { height: auto; min-height: 48px; background-color: #0F4BA0; padding: 6px 18px; }
+.puzzle-phase { color: white; font-size: 12px; max-height: 52px; }
+.puzzle-subheader .text-button { color: #FFFFFF; }
+.reset-button { background-color: #F28C28; border-color: #B8620F; color: white; }
+.reset-card { border-color: #B8620F; border-width: 3px; background-color: #FFF4E5; }
+.warn-button { height: 52px; min-height: 48px; background-color: #F28C28; border-color: #B8620F; color: white; font-size: 13px; margin-top: 4px; flex-shrink: 0; }
+.warn-button:hover { background-color: #E07B18; }
+.season-end-note { font-size: 13px; color: #0F4BA0; margin: 8px 0; white-space: normal; }

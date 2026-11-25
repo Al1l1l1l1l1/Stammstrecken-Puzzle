@@ -206,7 +206,7 @@ namespace STP.Presentation.UI
         private void ConfirmContact()
         {if(!CanAnswerContact||!selectedContact.HasValue)return;var contact=selectedContact.Value;var previous=priorVersion;RunHuman(()=>assignedReview!.RecordFirstContactAsync(contact,previous,CancellationToken.None));}
         private void BackFromPuzzle(){if(assignedReview==null){Navigate(Screen.Home);return;}if(CanOpenHumanMenu){humanMenuOpen=true;Refresh();}}
-        private void BackFromResult(){if(assignedReview==null)Navigate(Screen.Home);}
+        private void BackFromResult(){if(assignedReview==null)Navigate(Screen.Map);}
         private void CloseHumanMenu(){if(pending!=null)return;humanMenuOpen=false;humanAbortConfirmation=false;Refresh();}
         private void RenderHumanMenu()
         {

@@ -274,7 +274,7 @@ namespace STP.Tests.Presentation.PlayMode
         {
             var source=AssetDatabase.LoadAssetAtPath<TextAsset>(Ui+"ProductionCampaignText.json");Assert.That(source,Is.Not.Null);
             Assert.Throws<ArgumentException>(()=>new ProductionCampaignText(source));using var text=new ProductionCampaignText(source,true);
-            Assert.That(text.Resolve(0,"Tunnel","Route").Title,Is.EqualTo("Alles planmäßig"));
+            Assert.That(text.Resolve(0,"Tunnel","Route").Title,Is.EqualTo("Abfahrt laut geänderter Tafel"));
             for(var i=0;i<240;i++){var value=text.Resolve(i,"Abschnitt","Route");Assert.That(value.Title,Is.Not.Empty);Assert.That(value.Status,Is.Not.Empty);Assert.That(value.Result,Is.Not.Empty);}
             Assert.Throws<ArgumentOutOfRangeException>(()=>text.Resolve(240,"a","b"));
             var duplicate=new TextAsset(source.text.Replace("S1-01-01-02","S1-01-01-01"));try{Assert.Throws<ArgumentException>(()=>new ProductionCampaignText(duplicate,true));}finally{UnityEngine.Object.DestroyImmediate(duplicate);}

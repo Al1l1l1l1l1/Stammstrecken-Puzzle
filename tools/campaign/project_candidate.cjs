@@ -29,6 +29,12 @@ campaign.catalogId = 'campaign-qa-mobile-candidate';
 const completion = read('Assets/StammstreckenPuzzle/UI/ReviewCompletion.catalog.json');
 completion.completionCatalog.catalogId = 'completion-qa-mobile-candidate';
 completion.completionCatalog.completionMoments = [];
+const starEstimates = read('Content/Quality/s1/star-time-estimates.json');
+if (starEstimates.kind !== 'STAR_TIME_ESTIMATE' || starEstimates.approvalStatus !== 'DRAFT' || starEstimates.entries.length !== 240) throw Error('Star estimate source invalid');
+const starById = new Map(starEstimates.entries.map(e => [e.puzzleId, e]));
+completion.starTimes = completion.starTimes.map(t => { const e = starById.get(t.puzzleId);
+  if (!e || !(e.threeStarSeconds > 0) || !(e.twoStarSeconds > e.threeStarSeconds)) throw Error('Missing star estimate: ' + t.puzzleId);
+  return {puzzleId:t.puzzleId, twoStarMs:e.twoStarSeconds * 1000, threeStarMs:e.threeStarSeconds * 1000}; });
 completion.completionCatalog.rewardDefinitions.push({reasonCode:'POST_CLEAR_PATIENCE', subjectKind:'LEVEL', amountPatience:10, claimCardinality:'ONCE_PER_SUBJECT'});
 const cosmetics = read('Content/Catalogs/s1/cosmetics-v2.json');
 cosmetics.catalogId = 'qa-mobile-candidate-cosmetics';
@@ -56,7 +62,7 @@ for (const section of season.sections) {
       previous = entry.puzzleId;
       completion.completionCatalog.completionMoments.push({id:entry.puzzleId.toLowerCase() + '-completion', ...level.completion});
       const thresholds = level.production.starThresholdsSeconds;
-      if (thresholds !== null) throw Error('Calibrated threshold mapping needs explicit source contract; no invented times');
+      if (thresholds !== null) throw Error('Level-owned thresholds need explicit source contract; estimates live in star-time-estimates.json');
       sources.push({path:file, contentRevision:level.contentRevision, documentSha256:hash(level)});
       const values = {puzzleId:level.puzzleId, title:playerText.get(level.content.titleKey),
         status:playerText.get(level.content.statusKey), result:playerText.get(level.completion.resultTextKey)};
@@ -101,5 +107,6 @@ if(fs.existsSync(path.join(root,profilePath))) {
     publicCatalogHashSha256:catalog.catalogHashSha256,profilesHashSha256:hash(draftProfiles),completionHashSha256:hash(endlessCompletion)
   });
 }
+sources.push({path:'Content/Quality/s1/star-time-estimates.json', contentRevision:1, documentSha256:hash(starEstimates)});
 emit('Content/Quality/s1/mobile-candidate-projection-lock.json', {schemaVersion:1, ...bindings, sources, outputs});
 console.log('PASS: 240 public-only identities, sequential progression, 240 map/train moments and 14 cosmetics; InternalPreview/DRAFT, no production promotion.');
