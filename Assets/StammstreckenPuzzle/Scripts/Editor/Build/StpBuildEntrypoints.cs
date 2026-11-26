@@ -153,22 +153,22 @@ namespace STP.Editor.Build
             var pipeline = AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(
                 "Assets/StammstreckenPuzzle/Settings/StpUniversalRP.asset");
             var renderer = AssetDatabase.LoadAssetAtPath<ScriptableObject>(
-                "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset");
+                "Assets/StammstreckenPuzzle/Settings/StpRendererForward.asset");
             if (pipeline == null || renderer == null ||
                 pipeline.GetType().FullName != "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset" ||
-                renderer.GetType().FullName != "UnityEngine.Rendering.Universal.Renderer2DData" ||
+                renderer.GetType().FullName != "UnityEngine.Rendering.Universal.UniversalRendererData" ||
                 GraphicsSettings.defaultRenderPipeline != pipeline || GraphicsSettings.currentRenderPipeline != pipeline)
             {
-                throw new InvalidOperationException("URP-Pipeline/2D-Renderer fehlt oder ist nicht aktiv zugewiesen.");
+                throw new InvalidOperationException("URP-Pipeline/Forward-Renderer fehlt oder ist nicht aktiv zugewiesen.");
             }
 
             var pipelineData = new SerializedObject(pipeline);
             var renderers = pipelineData.FindProperty("m_RendererDataList");
-            if (renderers == null || renderers.arraySize != 1 ||
-                renderers.GetArrayElementAtIndex(0).objectReferenceValue != renderer ||
-                pipelineData.FindProperty("m_DefaultRendererIndex").intValue != 0)
+            if (renderers == null || renderers.arraySize != 2 ||
+                renderers.GetArrayElementAtIndex(1).objectReferenceValue != renderer ||
+                pipelineData.FindProperty("m_DefaultRendererIndex").intValue != 1)
             {
-                throw new InvalidOperationException("URP-Pipeline muss den dokumentierten 2D-Renderer verwenden.");
+                throw new InvalidOperationException("URP-Pipeline muss den dokumentierten Forward-Renderer verwenden.");
             }
 
             var quality = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/QualitySettings.asset")[0]);

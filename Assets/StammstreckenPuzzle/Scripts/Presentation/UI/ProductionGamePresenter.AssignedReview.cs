@@ -71,7 +71,7 @@ namespace STP.Presentation.UI
             if(ReferenceEquals(view,next))return;
             exposureGate?.Dispose();exposureGate=null;exposureArmed=Guid.Empty;
             Grid?.Dispose();Grid?.RemoveFromHierarchy();view=next;renderedRevision=-1;renderedSecond=-1;renderedState=-1;zoom=false;
-            if(view!=null){Grid=new ProductionPuzzleGrid(view,locale.Resolve,ActivateCell);viewport.Add(Grid);Grid.SetTrainAppearance(selectedCosmetics);LayoutGridViewport();viewport.scrollOffset=UnityEngine.Vector2.zero;}
+            if(view!=null){Grid=new ProductionPuzzleGrid(view,locale.Resolve,ActivateCell);Grid.NativeStage=memory!=null;viewport.Add(Grid);Grid.SetTrainAppearance(selectedCosmetics);LayoutGridViewport();viewport.scrollOffset=UnityEngine.Vector2.zero;}
             else Grid=null;
         }
 
@@ -205,7 +205,7 @@ namespace STP.Presentation.UI
         }
         private void ConfirmContact()
         {if(!CanAnswerContact||!selectedContact.HasValue)return;var contact=selectedContact.Value;var previous=priorVersion;RunHuman(()=>assignedReview!.RecordFirstContactAsync(contact,previous,CancellationToken.None));}
-        private void BackFromPuzzle(){if(assignedReview==null){Navigate(Screen.Home);return;}if(CanOpenHumanMenu){humanMenuOpen=true;Refresh();}}
+        private void BackFromPuzzle(){if(assignedReview==null){Navigate(puzzleOrigin);return;}if(CanOpenHumanMenu){humanMenuOpen=true;Refresh();}}
         private void BackFromResult(){if(assignedReview==null)Navigate(Screen.Map);}
         private void CloseHumanMenu(){if(pending!=null)return;humanMenuOpen=false;humanAbortConfirmation=false;Refresh();}
         private void RenderHumanMenu()

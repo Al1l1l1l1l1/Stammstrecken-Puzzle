@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace STP.Presentation.UI
+namespace STP.Presentation.World
 {
     /// <summary>Resolved vehicle: locomotive type, paint, and up to three wagons.</summary>
     internal readonly struct StpVehicle
@@ -50,7 +50,7 @@ namespace STP.Presentation.UI
             {
                 case 1: return H(0xE9A23B);
                 case 2: return H(0xD6213A);
-                case 3: return H(0x1D62C0);
+                case 3: return H(0x80C6EC);
                 case 4: return H(0xD6213A);
                 case 5: return H(0xA4252F);
                 case 6: return H(0x2B2A33);
@@ -139,8 +139,6 @@ namespace STP.Presentation.UI
                 b.Box(new Vector3(len * 0.04f, yy, zb + height * 0.40f), new Vector3(0.03f, 0.008f, height * 0.34f), Dark(body, 0.72f), 0, false);
             }
             if (nose && fwd) EndFace(b, len * 0.5f, halfW, zb, height, body, 1);
-            if (nose && back) EndFace(b, -len * 0.5f, halfW, zb, height, body, -1);
-            if (tail && fwd) EndFace(b, len * 0.5f, halfW, zb, height, body, 1);
             if (tail && back) EndFace(b, -len * 0.5f, halfW, zb, height, body, -1);
         }
 
@@ -180,8 +178,12 @@ namespace STP.Presentation.UI
                     b.Ellipsoid(new Vector3(-len * 0.5f + 0.02f, 0, Rail + 0.20f), new Vector3(0.14f, 0.13f, 0.13f), 0.7f, body, 0, true, 14, 8);
                     b.Box(new Vector3(len * 0.5f + 0.1f, 0, Rail + 0.25f), new Vector3(0.012f, 0.085f, 0.04f), Glass, 0, false);
                     break;
-                case 3: // U-Bahn Muenchen: flat front, blue band, roof pods
-                    Coach(b, len, 0.17f, 0.32f, 0.12f, body, accent, 1, true, true);
+                case 3: // Modern rounded cab and a continuous pale blue window band.
+                    Coach(b, len, 0.17f, 0.32f, 0.48f, body, accent, 1, false, false);
+                    foreach(float end in new[]{-1f,1f}){
+                        b.Ellipsoid(new Vector3(end*len*.43f,0,Rail+.224f),new Vector3(.12f,.164f,.158f),.65f,body);
+                        b.Ellipsoid(new Vector3(end*(len*.43f+.075f),0,Rail+.257f),new Vector3(.055f,.124f,.086f),.64f,Glass);
+                    }
                     b.Box(new Vector3(0, 0, Rail + 0.385f), new Vector3(len * 0.42f, 0.1f, 0.02f), H(0xB7C1CD), 0, true);
                     foreach (var s in new[] { 1f, -1f })
                     {
@@ -301,12 +303,12 @@ namespace STP.Presentation.UI
                 b.Box(new Vector3(seg.c.x, seg.c.y, 0.03f), new Vector3(seg.half + 0.022f, 0.31f, 0.03f), ballast, seg.yaw, true);
         }
 
-        internal static void TrackRails(StpBuilder b, int code, int cx, int cy)
+        internal static void TrackRails(StpBuilder b, int code, int cx, int cy, bool compact = false)
         {
             b.Frame = StpFrame.Identity;
             var tie = H(0x8A5A3A); var tieDark = H(0x6E4528);
             var segs = Centerline(code, cx, cy, 5);
-            var tieCount = code < 2 ? 6 : 5;
+            var tieCount = compact ? 3 : code < 2 ? 6 : 5;
             for (var i = 0; i < tieCount; i++)
             {
                 var p = Along(code, cx, cy, (i + 0.5f) / tieCount, out var yaw);
@@ -458,8 +460,8 @@ namespace STP.Presentation.UI
             b.Frame = new StpFrame(new Vector3(x, y, 0), 0, s);
             b.Shadow(new Vector3(0.03f, 0.03f, 0.004f), 0.12f, 0.06f, 0.25f);
             b.Cylinder(new Vector3(0, 0, 0.3f), 0.02f, 0.3f, 2, H(0x6A6F7A), -1, true, 8);
-            b.Box(new Vector3(0.0f, 0, 0.58f), new Vector3(0.20f, 0.02f, 0.06f), variant == 0 ? H(0x1D62C0) : H(0xF2F2EE), 0, true);
-            b.Box(new Vector3(0.0f, 0.022f, 0.58f), new Vector3(0.15f, 0.004f, 0.012f), variant == 0 ? H(0xFFFFFF) : H(0x1D62C0), 0, false);
+            b.Box(new Vector3(0.0f, 0, 0.58f), new Vector3(0.20f, 0.02f, 0.06f), variant == 0 ? H(0x80C6EC) : H(0xF2F2EE), 0, true);
+            b.Box(new Vector3(0.0f, 0.022f, 0.58f), new Vector3(0.15f, 0.004f, 0.012f), variant == 0 ? H(0xFFFFFF) : H(0x80C6EC), 0, false);
             b.Box(new Vector3(0.05f, 0, 0.44f), new Vector3(0.17f, 0.02f, 0.05f), H(0xD6213A), 0, true);
             b.Box(new Vector3(0.05f, 0.022f, 0.44f), new Vector3(0.12f, 0.004f, 0.010f), H(0xFFFFFF), 0, false);
         }
@@ -490,7 +492,7 @@ namespace STP.Presentation.UI
             b.Frame = new StpFrame(new Vector3(x, y, 0), 0, s);
             b.Box(new Vector3(0, 0, 0.07f), new Vector3(w * 0.5f, 0.2f, 0.07f), H(0xC9CDD6), 0, true);
             b.Box(new Vector3(0, 0.17f, 0.145f), new Vector3(w * 0.5f, 0.012f, 0.004f), H(0xFFD23E), 0, false);
-            b.Box(new Vector3(-w * 0.3f, -0.05f, 0.34f), new Vector3(w * 0.14f, 0.15f, 0.015f), H(0x1D62C0), 0, true);
+            b.Box(new Vector3(-w * 0.3f, -0.05f, 0.34f), new Vector3(w * 0.14f, 0.15f, 0.015f), H(0x80C6EC), 0, true);
             b.Box(new Vector3(-w * 0.43f, -0.05f, 0.22f), new Vector3(0.014f, 0.014f, 0.12f), H(0x6A6F7A), 0, false);
             b.Box(new Vector3(-w * 0.17f, -0.05f, 0.22f), new Vector3(0.014f, 0.014f, 0.12f), H(0x6A6F7A), 0, false);
         }

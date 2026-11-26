@@ -114,12 +114,12 @@ namespace STP.Presentation.UI
                 resultArt=new RailwayIllustrationElement();Require<VisualElement>("result-art").Add(resultArt);
                 resultSheet=new ProductionResultSheet(Require<ScrollView>("result-panel"),Require<VisualElement>("puzzle-screen"));
                 productPanels=new ProductionProductPanels(Root,locale);
-                postgamePanels=new ProductionPostgamePanels(Root,locale,()=>Navigate(Screen.Map));
+                postgamePanels=new ProductionPostgamePanels(Root,locale,()=>{revisionDesk=true;Navigate(Screen.Map);});
                 viewport=Require<ScrollView>("puzzle-viewport");
                 viewport.horizontalScrollerVisibility=ScrollerVisibility.Hidden;viewport.verticalScrollerVisibility=ScrollerVisibility.Hidden;
                 viewport.RegisterCallback<GeometryChangedEvent>(OnViewportGeometry);
                 AddButton("home-play","play",OpenNext);
-                AddButton("home-map","map.open",()=>Navigate(Screen.Map));
+                AddButton("home-map","map.open",()=>{revisionDesk=false;Navigate(Screen.Map);});
                 AddButton("map-back","back",()=>Navigate(Screen.Home));
                 AddButton("map-previous","map.previous",()=>ChangeMapRoute(-1));AddButton("map-next","map.next",()=>ChangeMapRoute(1));
                 AddButton("puzzle-back","back",BackFromPuzzle);
@@ -182,7 +182,7 @@ namespace STP.Presentation.UI
         /// <summary>Whether help owns a modal gameplay pause; lifecycle/other modals must preserve it.</summary>
         public bool IsHelpOpen=>hintHelpOpen;
         /// <summary>Whether Daily/settings owns attention; lifecycle must keep gameplay paused.</summary>
-        public bool IsProductModalOpen=>productPanels.IsModalOpen||postgamePanels.IsModalOpen;
+        public bool IsProductModalOpen=>mailOpen||productPanels.IsModalOpen||postgamePanels.IsModalOpen;
         /// <summary>One explicit next-result service policy is pending; ordinary Home/Open/Refresh never starts it.</summary>
         public bool IsResultContinuationPending=>resultContinuation.IsPending;
         /// <summary>Only the actual visible puzzle screen is eligible for lifecycle resume.</summary>
@@ -207,7 +207,7 @@ namespace STP.Presentation.UI
         /// <summary>Clears only the UI latch after the root's fresh explicit observation.</summary>
         public void ClearRequestFailure(){CheckThread();requestFault=false;requestCancelled=false;Refresh();}
         /// <summary>Projects an explicit root-owned ride pose into the board.</summary>
-        public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible){CheckThread();Grid?.SetTrainPose(x,y,clockwiseDegrees,visible);}
+        public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible){CheckThread();Grid?.SetTrainPose(x,y,clockwiseDegrees,visible);if(!visible)worldCamera?.EndRide();}
 
         /// <summary>Binds the complete presentation manifest. Draft acceptance must be explicitly internal.</summary>
         public void BindAssetCatalog(TextAsset source,bool allowInternalDraft=false)=>BindAssetCatalogCore(()=>new RailwayAssetCatalog(source,allowInternalDraft));
@@ -309,7 +309,7 @@ namespace STP.Presentation.UI
             CheckThread();if(ids==null)throw new ArgumentNullException(nameof(ids));var next=new string[ids.Count];
             for(var i=0;i<next.Length;i++){if(!RailwayCosmeticElement.SupportsItem(ids[i]))throw new ArgumentException("COSMETIC_RENDERER_MISSING");next[i]=ids[i];}
             Array.Sort(next,StringComparer.Ordinal);var same=selectedCosmetics.Length==next.Length;
-            for(var i=0;same&&i<next.Length;i++)same=selectedCosmetics[i]==next[i];if(same)return;selectedCosmetics=next;
+            for(var i=0;same&&i<next.Length;i++)same=selectedCosmetics[i]==next[i];if(same)return;selectedCosmetics=next;appearanceVersion++;
             homeArt.SetActiveCosmetics(next);mapArt.SetActiveCosmetics(next);depotArt.SetActiveCosmetics(next);resultArt.SetActiveCosmetics(next);postgamePanels.SetActiveCosmetics(next);Grid?.SetTrainAppearance(next);
             var train="train-stammrot-default";string? livery=null;foreach(var id in next){if(id.StartsWith("train-",StringComparison.Ordinal))train=id;if(id.StartsWith("livery-",StringComparison.Ordinal))livery=id;}
             Require<Label>("depot-current-name").text=L("cosmetic."+train+".title");Require<Label>("depot-current-body").text=L(train=="train-stammrot-default"?"depot.body":"depot.current.body");
@@ -325,7 +325,7 @@ namespace STP.Presentation.UI
             var startup=Require<VisualElement>("startup-overlay");startup.style.display=model==null?DisplayStyle.Flex:DisplayStyle.None;
             if(model==null)
             {
-                buttons["home-play"].SetEnabled(false);SetVisible(buttons["error-retry"],false);
+                UpdateLoading();buttons["home-play"].SetEnabled(false);SetVisible(buttons["error-retry"],false);
                 var retry=Require<Button>("startup-retry");retry.text=L("retry");retry.SetEnabled(pending==null);retry.style.display=StartupPhase==SavedStartupPhase.Failed?DisplayStyle.Flex:DisplayStyle.None;
                 if(!actions.ContainsKey("startup-retry")){actions.Add("startup-retry",()=>Send(SavedReviewUiRequest.StartupRetry()));buttons.Add("startup-retry",retry);retry.clicked+=actions["startup-retry"];}
                 return;
@@ -355,7 +355,7 @@ namespace STP.Presentation.UI
                 if(display!=null&&view.Phase==DevelopmentPreviewPhase.Editing)phaseBody=display.Status;
                 var starText=StarTargetText(index);
                 Require<Label>("puzzle-phase").text=L("puzzle.size",view.Width,view.Height)+(starText.Length>0?"  ·  "+starText:string.Empty)+"\n"+phaseBody;
-                Require<Label>("result-star-targets").text=starText;SetVisible(Require<VisualElement>("result-star-targets"),starText.Length>0);
+                if(memory==null||view.Phase!=DevelopmentPreviewPhase.Results)Require<Label>("result-star-targets").text=starText;SetVisible(Require<VisualElement>("result-star-targets"),starText.Length>0);
                 SetVisible(Require<VisualElement>("result-panel"),view.Phase==DevelopmentPreviewPhase.Results&&!requestFault);
                 var stars=state.Progress?.SelectedStars??0;
                 Require<Label>("result-stars").text=L("result.stars."+Mathf.Clamp(stars,0,3));
@@ -397,7 +397,7 @@ namespace STP.Presentation.UI
             var seasonEnd=campaignResult&&SeasonComplete&&CurrentCampaignIndex>=239;
             buttons["result-next"].SetEnabled(clear&&state.CanNavigate&&!seasonEnd);buttons["result-home"].SetEnabled(clear);
             if(seasonEnd)buttons["result-next"].text=L("result.next.final");
-            SetVisible(Require<VisualElement>("result-season-end"),seasonEnd);SetVisible(buttons["result-endless"],campaignResult&&SeasonComplete);buttons["result-endless"].SetEnabled(clear);
+            SetVisible(Require<VisualElement>("result-season-end"),seasonEnd);SetVisible(buttons["result-endless"],(campaignResult&&SeasonComplete)||(view?.Phase==DevelopmentPreviewPhase.Results&&CurrentCampaignIndex<0));buttons["result-endless"].SetEnabled(clear);
             if(view==null||view.Phase!=DevelopmentPreviewPhase.Editing||screen!=Screen.Puzzle)resetRoundOpen=false;
             SetVisible(Require<VisualElement>("reset-round-overlay"),resetRoundOpen);
             Require<Label>("reset-round-count").text=resetRoundCount>0?L("reset-round.count",resetRoundCount*2):string.Empty;
@@ -415,7 +415,7 @@ namespace STP.Presentation.UI
             for(var i=0;i<nodes.Length;i++)nodes[i].SetEnabled(clear&&state.CanNavigate&&CanOpen(mapStart+i));
             buttons["map-previous"].SetEnabled(clear&&mapStart>0);buttons["map-next"].SetEnabled(clear&&mapStart<228);
             RenderCampaignRecords(state.Progress?.Generation??0);RenderErrors(state,clear);RenderScreen();renderedState=state.Version;
-            RenderHint();resultSheet.Refresh();
+            RenderHint();RefreshStation();resultSheet.Refresh();
         }
 
         /// <summary>Releases all owned event handlers and localization objects.</summary>
@@ -423,7 +423,7 @@ namespace STP.Presentation.UI
         {
             CheckThread();if(disposed)return;disposed=true;StartupPhase=SavedStartupPhase.Disposed;Unsubscribe();hintDisplayGate.Dispose();accessibility.Dispose();resultSheet.Dispose();productPanels.Dispose();postgamePanels.Dispose();resultContinuation.Dispose();campaignText?.Dispose();
             ObserveLateFault(pending);ObserveLateFault(hintPreparation);ObserveLateFault(hintCommit);ObserveLateFault(hintVideoTask);DisposeAssignedReview();
-            viewport.UnregisterCallback<GeometryChangedEvent>(OnViewportGeometry);Grid?.Dispose();Grid?.RemoveFromHierarchy();Grid=null;feedback=null;locale.Dispose();
+            viewport.UnregisterCallback<GeometryChangedEvent>(OnViewportGeometry);DisposeStation();Grid?.Dispose();Grid?.RemoveFromHierarchy();Grid=null;feedback=null;locale.Dispose();
         }
         /// <summary>Closed own localization key for each existing field content.</summary>
         public static string ToolKey(DevelopmentTool value)=>value switch
@@ -470,10 +470,11 @@ namespace STP.Presentation.UI
             if(view==null||!CanEdit){Refresh();return;}
             var cells=new List<DevelopmentCell>();
             for(var y=0;y<view.Height;y++)for(var x=0;x<view.Width;x++)if(view.CellAt(x,y)!=DevelopmentTool.Clear)cells.Add(new DevelopmentCell(x,y));
-            if(cells.Count>0&&view.ApplyBatch(cells,DevelopmentTool.Clear,clock())==DevelopmentCommandStatus.Applied){resetRoundCount++;EmitFeedback(ProductionFeedbackCue.Clear);}
+            if(cells.Count==0||view.ApplyBatch(cells,DevelopmentTool.Clear,clock())==DevelopmentCommandStatus.Applied)
+            {resetRoundCount++;memory?.ConfirmReset();EmitFeedback(ProductionFeedbackCue.Clear);}
             Refresh();
         }
-        private void OpenEndlessFromResult(){if(!CanContinueResult)return;postgamePanels.Open();Refresh();}
+        private void OpenEndlessFromResult(){if(!CanContinueResult)return;if(CurrentCampaignIndex<0)ContinueFromResult();else postgamePanels.Open();Refresh();}
         private int NextIndex=>Mathf.Clamp(recommendedPuzzle?.Invoke()??model?.State.Progress?.FirstClearCount??0,0,239);
         private bool IsCleared(int index)=>clearedPuzzle?.Invoke(index)??index<(model?.State.Progress?.FirstClearCount??0);
         private bool CanOpen(int index)=>index>=0&&index<240&&(canOpenPuzzle?.Invoke(index)??index<=NextIndex);
@@ -508,7 +509,7 @@ namespace STP.Presentation.UI
             var state=model.State;
             if(state.CanCreateProfile){openAfterCreate=true;SendBound(SavedReviewUiRequestKind.CreateProfile);return;}
             if(view!=null&&view.Phase==DevelopmentPreviewPhase.Editing)
-            {view.Resume(clock());screen=Screen.Puzzle;Refresh();return;}
+            {if(screen!=Screen.Puzzle)puzzleOrigin=screen;view.Resume(clock());screen=Screen.Puzzle;Refresh();return;}
             if(view!=null&&view.Phase==DevelopmentPreviewPhase.Results&&CurrentCampaignIndex<0)
             {
                 var profile=endlessProfile?.Invoke();
@@ -523,12 +524,12 @@ namespace STP.Presentation.UI
             }
             OpenPuzzle(NextIndex);
         }
-        private void ChangeMapRoute(int delta){if(pending!=null)return;mapRoute=Mathf.Clamp((mapRoute<0?NextIndex/12:mapRoute)+delta,0,19);mapClears=-1;Refresh();}
-        private void OpenMapNode(int node){if(CanOpen(mapStart+node))OpenPuzzle(mapStart+node);}
+        private void ChangeMapRoute(int delta){if(pending!=null)return;CloseTicket();mapRoute=Mathf.Clamp((mapRoute<0?NextIndex/12:mapRoute)+delta,0,19);mapClears=-1;Refresh();}
+        private void OpenMapNode(int node){if(CanOpen(mapStart+node)){if(memory==null)OpenPuzzle(mapStart+node);else SelectTicket(mapStart+node);}}
         private void OpenPuzzle(int index)
         {
             if(model==null||!model.State.CanNavigate||pending!=null)return;
-            openAfterRequest=true;
+            if(screen!=Screen.Puzzle)puzzleOrigin=screen;openAfterRequest=true;
             var restore=model.HasDraftForPuzzle(index);
             Send(SavedReviewUiRequest.Puzzle(restore?SavedReviewUiRequestKind.ResumeDraft:SavedReviewUiRequestKind.OpenPuzzle,model.State.Version,index));
         }
@@ -674,7 +675,11 @@ namespace STP.Presentation.UI
         {
             if(!CanEdit||view==null)return;
             var applied=activeTool!=DevelopmentTool.Clear&&view.CellAt(x,y)==activeTool?DevelopmentTool.Clear:activeTool;
-            var status=view.Apply(x,y,applied,clock());Refresh();
+            if(memory!=null&&Grid!=null){
+                focusedCell?.RemoveFromClassList("puzzle-cell--selected");
+                focusedCell=Grid.CellButton(x,y);focusedCell.AddToClassList("puzzle-cell--selected");
+            }
+            var status=view.Apply(x,y,applied,clock());if(status==DevelopmentCommandStatus.Applied)OnTutorialAction(applied,x,y);Refresh();
             if(status==DevelopmentCommandStatus.Applied)EmitFeedback(applied==DevelopmentTool.Clear?ProductionFeedbackCue.Clear:applied==DevelopmentTool.EmptyMarker?ProductionFeedbackCue.EmptyMark:applied==DevelopmentTool.OccupiedMarker?ProductionFeedbackCue.OccupancyNote:ProductionFeedbackCue.TrackSeat);
         }
         private void Undo(){if(CanEdit){var status=view!.Undo(clock());Refresh();if(status==DevelopmentCommandStatus.Applied)EmitFeedback(ProductionFeedbackCue.Undo);}}

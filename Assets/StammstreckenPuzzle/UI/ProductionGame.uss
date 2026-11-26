@@ -276,3 +276,92 @@ Button:active { background-color: #FFE7A0; }
 .daily-odds { background-color: #FFF4CC; border-radius: 14px; }
 .endless-record { border-radius: 14px; background-color: #EAF3FF; }
 .mail-card { border-radius: 18px; border-left-width: 10px; background-color: #FFFFFF; }
+
+/* Physical controls sit around the camera's view of the station. */
+.production-root, .native-station .screen, .native-station .puzzle-viewport { background-color: rgba(0,0,0,0); }
+.station-header { flex-direction: row; align-items: center; padding: 16px 12px 4px; flex-shrink: 0; }
+.departure-board { flex-grow: 1; flex-shrink: 1; padding: 9px 14px; background-color: #0F2A57; border-radius: 12px; border-width: 3px; border-color: #415573; border-bottom-width: 7px; border-bottom-color: #172235; }
+.platform-line, .departure-summary { color: #BDD9F2; font-size: 11px; }
+.departure-row { color: white; font-size: 17px; white-space: normal; -unity-font-definition: url("../Art/Fonts/IBMPlexSansCondensed-SemiBold.ttf"); }
+.balance, .result-balance { background-color: #E8BC70; color: #402F23; border-color: #A27D4F; border-bottom-color: #755735; border-bottom-width: 5px; border-radius: 12px; }
+.station-window .railway-illustration { position: absolute; left: 0; top: 0; }
+.station-window { min-height: 175px; height: 275px; justify-content: flex-end; align-items: flex-start; }
+.station-tag { background-color: #FFF0D1; color: #35372D; border-left-width: 5px; border-left-color: #FF6A13; padding: 4px 8px; margin: 4px 12px; font-size: 11px; white-space: normal; }
+.concourse { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 0 9px 10px; }
+.concourse Button { min-height: 58px; min-width: 100px; max-width: 48%; flex-grow: 1; margin: 4px; border-radius: 18px; border-width: 2px; border-bottom-width: 6px; font-size: 13px; }
+.station-door { color: #FBF3DB; background-color: #386275; border-color: #263E51; }
+.postbox { color: #0F2A57; background-color: #F7D27C; border-color: #957347; }
+.flap-button { color: #FFFFFF; background-color: #244E7E; border-color: #132E52; }
+.site-sign, .endless-profile-button { background-color: #F6D098; color: #3C382E; border-color: #996737; }
+.drawer-button { background-color: #799895; color: #132E39; border-color: #425A57; }
+.clearance { min-height: 62px; margin: 8px 30px; border-radius: 32px; border-color: #A4353A; border-bottom-color: #762A30; border-width: 4px; border-bottom-width: 9px; }
+Button { transition-property: scale, translate; transition-duration: 0.18s; }
+Button:active { scale: 0.92 0.92; translate: 0 4px; }
+.puzzle-cell:active { scale: 1 1; translate: 0 0; }
+.puzzle-header { background-color: #0F2A57; border-top-width: 4px; border-top-color: #476B97; }
+.puzzle-title { white-space: nowrap; overflow: hidden; font-size: 15px; }
+.puzzle-subheader { background-color: #0F4BA0; border-bottom-color: #122E54; border-bottom-width: 6px; }
+.puzzle-phase { color: white; font-size: 23px; -unity-font-definition: url("../Art/Fonts/IBMPlexSansCondensed-SemiBold.ttf"); }
+.puzzle-time { color: white; }
+.delay { color: #FF964D; font-size: 12px; -unity-text-align: middle-right; }
+.target-times { color: white; font-size: 10px; flex-shrink: 1; }
+.service-banner, .station-alert { color: #283547; background-color: #FFF6DF; border-left-width: 8px; border-left-color: #FF6A13; padding: 6px 10px; white-space: normal; font-size: 13px; }
+.puzzle-count { border-radius: 6px; border-width: 1px; border-color: #9D896B; background-color: #F3E9CE; }
+.puzzle-count--exact { color: #706F69; background-color: #CEC9B9; }
+.puzzle-count--exceeded { color: #AA283C; border-color: #C63441; border-width: 2px; }
+.tool-dock { background-color: #AF8053; border-color: #6D4C39; border-top-color: #D4AB7C; border-top-width: 6px; border-radius: 18px; }
+.tool-button { background-color: #E9D3AE; border-color: #9C734F; border-bottom-color: #674934; border-radius: 18px; }
+.tool--active { translate: 0 -6px; background-color: #F4DEB4; border-color: #FFD23F; }
+.tool-caption, .tool-dock-heading .eyebrow { color: #3F302B; }
+.puzzle-grid--ride .puzzle-count, .puzzle-grid--ride .puzzle-endpoint { opacity: 0; }
+.puzzle-cell--selected { border-width: 2px; border-color: #FFD23F; }
+.map-nodes { background-color: #2E4958; border-radius: 20px; border-width: 4px; border-color: #6B817F; border-bottom-width: 8px; padding: 7px; }
+.map-node { background-color: #596C70; color: #DFE9DD; }
+.map-node--cleared { background-color: #FFE19B; color: #4E3C24; border-color: #A7834B; }
+.map-node--current { background-color: #E0243C; color: white; }
+.ticket, .letter { background-color: #FFF1D0; border-radius: 12px; border-left-width: 6px; border-left-color: #E3AB55; margin: 6px 15px; padding: 10px; }
+.map-art, .depot-art { border-width: 0; background-color: rgba(0,0,0,0); }
+.depot-art { height: 228px; min-height: 160px; }
+.native-station #depot-screen .standalone-title, .native-station #profile-screen .standalone-title { font-size: 19px; border-radius: 12px; margin: 8px 12px; padding: 6px 12px; align-self: flex-start; }
+.native-station #depot-screen .page-subtitle, .native-station #profile-screen .page-subtitle, .native-station #depot-screen .eyebrow, .native-station #depot-screen .cosmetic-illustration { display: none; }
+#depot-screen .home-copy { margin: 0 16px; padding: 8px 13px; background-color: #F6DFC1; }
+#depot-screen .hero-title { font-size: 20px; }
+#depot-screen .body-copy { margin: 2px 0; font-size: 12px; }
+.native-station #profile-screen .profile-card { margin: 82px 18px 14px; border-left-width: 12px; border-left-color: #287177; border-color: #9FB7A9; border-bottom-width: 6px; background-color: #F6ECCD; }
+.card-clip { width: 46px; height: 8px; border-radius: 4px; background-color: #697A72; align-self: center; margin-bottom: 12px; }
+.badge-rank { color: #245B67; font-size: 22px; -unity-font-definition: url("../Art/Fonts/IBMPlexSansCondensed-SemiBold.ttf"); }
+.result-panel { background-color: #FAEFD4; border-color: #B5A988; border-bottom-color: #84775E; border-radius: 12px; transition-property: translate; transition-duration: .24s; }
+.native-station .result-art, .native-station .result-stars { display: none; }
+.result-time { color: #193D52; font-size: 29px; }
+.stamps { flex-direction: row; justify-content: space-around; }
+.rubber-stamp { color: #933D40; border-width: 2px; border-color: #994C46; border-radius: 5px; padding: 3px 5px; font-size: 12px; white-space: normal; -unity-text-align: middle-center; rotate: -3deg; transition-property: scale; transition-duration: .12s; }
+.proof-stamp { color: #30736D; font-size: 14px; }
+.coin { position: absolute; background-color: #DFB469; color: #553F2A; padding: 3px 7px; border-radius: 10px; }
+.mail-card, .letter { background-color: #F4E9CE; color: #203742; }
+.mail-card { margin: 4px 18px; }
+.letter { white-space: normal; font-size: 15px; }
+.post-tray { max-height: 260px; }
+.envelope { min-height: 44px; background-color: #DED5BC; border-radius: 6px; margin: 4px; }
+.sealed { border-left-width: 8px; border-left-color: #B84243; }
+#daily-overlay .overlay-card { background-color: #163653; }
+#daily-overlay Label { color: #FFF3D7; }
+#daily-overlay .daily-odds { color: #3A3C31; }
+#settings-overlay .settings-card { background-color: #DBE4DC; border-color: #667F7A; }
+#hint-overlay .overlay-card, #reset-round-overlay .overlay-card, #local-data-overlay .overlay-card, #error-overlay .overlay-card { border-left-width: 10px; border-left-color: #FF6A13; }
+#result-share { color: #234355; background-color: #E0D6B9; }
+
+.station-icon { position: absolute; left: 5px; top: 50%; translate: 0 -50%; width: 25px; height: 25px; }
+.object-control { padding-left: 31px; white-space: normal; }
+.tool-dock-heading .station-icon { width: 17px; height: 17px; left: 2px; }
+.tool-dock-heading .object-control { padding-left: 19px; padding-right: 4px; min-width: 38px; }
+.puzzle-heading { overflow: hidden; }
+.filing-cabinet { background-color: #749391; border-color: #475F5E; }
+.filing-cabinet .map-node { border-radius: 4px; border-color: #876841; background-color: #EFDFB9; color: #594936; }
+#result-video { margin-top: 18px; border-top-width: 3px; border-color: #887B62; font-size: 12px; }
+#daily-flaps { background-color: #102A45; color: white; border-bottom-width: 4px; border-color: #667D85; padding: 6px; }
+
+#endless-overlay { background-color: rgba(22,40,45,.18); }
+#endless-overlay .endless-card { background-color: rgba(255,242,208,.76); }
+#endless-overlay .endless-art { height: 92px; border-width: 0; background-color: rgba(0,0,0,0); }
+#endless-profiles { flex-direction: row; flex-wrap: wrap; }
+.endless-profile-button { width: 46%; min-height: 52px; margin: 3px; border-left-width: 5px; border-left-color: #F39200; }

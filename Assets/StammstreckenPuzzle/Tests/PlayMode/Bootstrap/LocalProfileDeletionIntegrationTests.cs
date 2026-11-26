@@ -91,6 +91,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         {
             yield return Mount();yield return CreateProfile();Submit("home-play");yield return Idle();
             var heldView=Model.PuzzleView!;Submit("tool-1");Submit(ProductionPuzzleGrid.CellName(1,1));yield return Idle();Submit("puzzle-back");yield return Idle();
+            string presentation=Path.Combine(ownRoot,"presentation-v1.json");Assert.That(File.Exists(presentation),Is.True);
             string profile=ProfilePath;var oldRepository=Runtime.Repository;string archive=Path.Combine(profile,"recovery","owned.fixture");Directory.CreateDirectory(Path.GetDirectoryName(archive)!);File.WriteAllText(archive,"owned original");
             string sibling=Path.Combine(Path.GetDirectoryName(profile)!,"other-profile-control","original.fixture");Directory.CreateDirectory(Path.GetDirectoryName(sibling)!);File.WriteAllText(sibling,"outside profile original");
             string human=Path.Combine(ownRoot,"human-calibration-control","original.fixture");Directory.CreateDirectory(Path.GetDirectoryName(human)!);File.WriteAllText(human,"separate observation original");
@@ -99,6 +100,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             SendEvenIfDisabled("local-data-confirm");SendEvenIfDisabled("home-play");SendEvenIfDisabled(ProductionPuzzleGrid.CellName(1,1));SendEvenIfDisabled("nav-home");
             yield return LocalState(ProductionLocalDataState.Deleted);
             Assert.That(installer.Presenter.IsProductModalOpen,Is.True);Assert.That(heldView.CellAt(1,1),Is.EqualTo(heldCell));
+            Assert.That(File.Exists(presentation),Is.False);
             var intent=Read<ProfileDeletionIntent>(installer,"deletionIntent");Assert.That(intent,Is.Not.Null);Assert.That(intent.Observation.Profile,Is.EqualTo(Runtime.Profile));
             string[] remaining=Directory.GetFiles(profile,"*",SearchOption.AllDirectories);Assert.That(remaining.Select(Path.GetFileName),Is.EquivalentTo(new[]{"profile-lifecycle-v1.json"}),"No save, archive, diagnostic or stage can survive the confirmed scope.");
             var marker=new ProfileLifecycleCodec(new CanonicalJsonAdapter()).Decode(File.ReadAllBytes(remaining.Single()));Assert.That(marker.DeletePending,Is.False);Assert.That(marker.WriterEpoch,Is.EqualTo(intent.TargetEpoch));

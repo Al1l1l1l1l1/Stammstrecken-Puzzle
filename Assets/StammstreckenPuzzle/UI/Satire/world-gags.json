@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "gags": [
+    {
+      "id": "gag-elevator",
+      "scene": "PLATFORM",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "elevator",
+        "sign-out-of-order"
+      ],
+      "line": "Gleis 2 · Aufzug außer Betrieb",
+      "sound": null,
+      "direction": "Die Plakette verstaubt bei jedem Besuch."
+    },
+    {
+      "id": "gag-through",
+      "scene": "PLATFORM",
+      "kind": "RARE",
+      "required": true,
+      "objects": [
+        "train"
+      ],
+      "line": "Fährt heute ohne Halt",
+      "sound": "TrainRoll",
+      "direction": "Der Zug fährt am Bahnsteig vorbei."
+    },
+    {
+      "id": "gag-map",
+      "scene": "MAP",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "note"
+      ],
+      "line": "Bitte nichts anfassen, was funktioniert.",
+      "sound": null,
+      "direction": "Zettel am Pultrand."
+    }
+  ]
+}

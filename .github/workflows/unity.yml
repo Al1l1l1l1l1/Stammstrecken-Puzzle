@@ -189,7 +189,7 @@ jobs:
               "STP.MobileServices.Store": {"STP.Application"},
               "STP.Platform": {"STP.Application"},
               "STP.Audio": {"STP.Application"},
-              "STP.Presentation.UI": {"STP.Application", "STP.Puzzle.Domain"},
+              "STP.Presentation.UI": {"STP.Application", "STP.Puzzle.Domain", "STP.Presentation.World"},
               "STP.Presentation.World": {"STP.Application", "STP.Puzzle.Domain"},
               "STP.Bootstrap": {
                   "STP.Application", "STP.Infrastructure.Content", "STP.Infrastructure.Persistence",
@@ -724,6 +724,25 @@ jobs:
         run: |
           set -euo pipefail
           python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json
+
+      - name: Bahnwelt auf dem virtuellen Handybildschirm durchspielen
+        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'rework/wp-047-welt'
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          STP_STATION_FRAMES: "1"
+        run: |
+          set -euo pipefail
+          mkdir -p TestResults/Station
+          xvfb-run -a -s "-screen 0 1280x1024x24 +extension GLX" /opt/unity/Editor/Unity -batchmode -force-glcore -projectPath "${GITHUB_WORKSPACE}" -runTests -testPlatform PlayMode -testFilter 'STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.TenByTen_AllEightToggleTools_ReplaceUndoAutosave_DoNotMoveTargets;STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.Candidate_HintDisplayCommitsOnce_AndCloseRestoresAutosaveWithSequentialUnlocks;STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.Candidate_FirstClearRecordsAndOptionalBonus_ContinueOfflineIntoNextPuzzle;STP.Tests.Bootstrap.PlayMode.MobilePreviewIntegrationTests.Candidate_Endless_ActualGeneratedPuzzleHintRestartResumeCompletionSkipAndNextReservation' -testResults TestResults/Station/graphical.xml -logFile -
+          python3 - <<'PYEOF'
+          import pathlib, struct, xml.etree.ElementTree as ET
+          output = pathlib.Path("TestResults/Station")
+          root = ET.parse(output / "graphical.xml").getroot()
+          assert root.get("result") == "Passed" and len(root.findall(".//test-case")) == 4
+          for frame in ("baubuero", "candidate-puzzle", "puzzle-10x10", "bahnsteig", "dienstpostfach", "candidate-daily", "dienstausweis", "candidate-settings", "candidate-collection", "stellwerk", "candidate-result", "saisonfinale", "betriebsrevision", "candidate-endless-menu", "candidate-endless-result"):
+              data = (output / (frame + ".png")).read_bytes()
+              assert struct.unpack(">II", data[16:24]) == (1080, 2400), frame
+          PYEOF
 
       - name: Unity-Personal-Seat freigeben (best effort)
         if: always()

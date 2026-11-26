@@ -27,7 +27,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         private GameObject? host;
         private MobilePreviewInstaller installer = null!;
         private PanelSettings panel = null!;
-        private RenderTexture? texture;
+        private RenderTexture? texture,scenery;
         private string ownRoot = "";
         private bool ownsRoot;
         private CancellationTokenSource? seasonSetupCancellation;
@@ -49,7 +49,10 @@ namespace STP.Tests.Bootstrap.PlayMode
             panel.referenceResolution = new Vector2Int(390, 844); panel.match = 0;
             if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null)
             {
-                texture = new RenderTexture(390, 844, 24, RenderTextureFormat.ARGB32);
+                bool portrait=Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1";
+                texture = new RenderTexture(portrait?1080:390,portrait?2400:844,24,RenderTextureFormat.ARGB32);
+                scenery=new RenderTexture(texture.descriptor);
+                Assert.That(scenery.Create(),Is.True);panel.clearColor=true;panel.colorClearValue=Color.clear;
                 Assert.That(texture.Create(), Is.True); panel.targetTexture = texture;
             }
             installer.Configure(AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(U + "ProductionGame.uxml"),
@@ -59,9 +62,9 @@ namespace STP.Tests.Bootstrap.PlayMode
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U + "ReviewCampaign.catalog.json"),
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U + "ReviewCompletion.catalog.json"),
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U + "RailwayAssets.json"));
-            host.SetActive(true);
+            host.SetActive(true);if(scenery!=null)host.GetComponentInChildren<Camera>().targetTexture=scenery;
             installer.Document.rootVisualElement.style.width = 390;
-            installer.Document.rootVisualElement.style.height = 844;
+            installer.Document.rootVisualElement.style.height = Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?867:844;
             yield return Await(installer.InitializeTask);
             yield return null;
             Assert.That(installer.Model, Is.Not.Null);
@@ -93,6 +96,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             yield return null;
             // Unity's destroyed-object equality must not skip the still-owned managed shutdown task.
             if (retainedInstaller is not null) yield return Await(retainedInstaller.ShutdownTask);
+            if (scenery != null) { scenery.Release(); UnityEngine.Object.Destroy(scenery); }
             if (texture != null) { texture.Release(); UnityEngine.Object.Destroy(texture); }
             if (panel != null) UnityEngine.Object.Destroy(panel);
             if (ownsRoot && Directory.Exists(ownRoot))
@@ -108,7 +112,8 @@ namespace STP.Tests.Bootstrap.PlayMode
         [UnityTest]
         public IEnumerator StartupCreatesOnlyOnAction_AndFirstPuzzleUsesDirectTools()
         {
-            Assert.That(Directory.Exists(ownRoot) ? Directory.GetFiles(ownRoot, "*", SearchOption.AllDirectories) : Array.Empty<string>(), Is.Empty);
+            var existing=Directory.Exists(ownRoot)?Directory.GetFiles(ownRoot,"*",SearchOption.AllDirectories):Array.Empty<string>();
+            Assert.That(existing.Where(file=>file!=Path.Combine(ownRoot,"presentation-v1.json")),Is.Empty,"A displayed welcome letter must not create a game profile.");
             yield return Capture("home");
             Submit("home-play"); yield return Idle(); yield return null;
             Assert.That(installer.Model!.PuzzleView, Is.Not.Null);
@@ -237,7 +242,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity),Is.EqualTo(2));
             yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.Restart,installer.Model.State.Version)));yield return Idle();
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity),Is.EqualTo(2),"Restart cannot refill identity-bound credits.");
-            Submit("puzzle-back");yield return Idle();Submit("home-daily");yield return Idle();
+            Submit("puzzle-back");yield return Idle();yield return Capture("bahnsteig");Submit("mail-open");yield return null;yield return Capture("dienstpostfach");Submit("mail-close");Submit("home-daily");yield return Idle();
             long beforeDaily=installer.Model.State.Progress!.BalancePatience;
             Submit("daily-free");deadline=Time.realtimeSinceStartup+15;
             while(candidate.Persisted.Snapshot.Payload.Metagame!.Daily.All(d=>d.Terminal==null)&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -248,7 +253,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Find<Button>("daily-close").enabledInHierarchy,Is.True,"Wait for the actual application acknowledgement before reading the UI projection.");
             Assert.That(installer.Model.State.Progress!.BalancePatience-beforeDaily,Is.EqualTo(claim.AmountPatience));
             yield return Capture("candidate-daily");Submit("daily-close");yield return Idle();
-            Submit("nav-profile");Submit("profile-settings");yield return Idle();
+            Submit("nav-profile");yield return Capture("dienstausweis");Submit("profile-settings");yield return Idle();
             bool previousHaptics=candidate.Persisted.Snapshot.Payload.Settings.HapticsEnabled??false;
             Submit("settings-haptics");deadline=Time.realtimeSinceStartup+15;
             while((candidate.Persisted.Snapshot.Payload.Settings.HapticsEnabled??false)==previousHaptics&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -267,7 +272,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         public IEnumerator Candidate_FirstClearRecordsAndOptionalBonus_ContinueOfflineIntoNextPuzzle()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
-            yield return ConfigureCandidate();Submit("home-play");yield return Idle();yield return null;
+            yield return ConfigureCandidate();yield return Capture("baubuero");Submit("home-play");yield return Idle();yield return null;
             var view=installer.Model!.PuzzleView!;var identity=view.Puzzle.Identity;
             Assert.That(installer.Model.CurrentModeName,Is.EqualTo("FIRST_RUN"));
             var solved=PuzzleSolver.Solve(view.Puzzle.ToDomainDefinition(),new SolverLimits(1000000,10000));
@@ -347,7 +352,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                 if (before != null && after != null)
                 {
                     Assert.That(after.Width, Is.EqualTo(before.Width)); Assert.That(after.Height, Is.EqualTo(before.Height));
-                    CollectionAssert.AreEqual(before.Pixels, after.Pixels, "Compare the original decorative Canvas region, excluding changing focus/buttons outside map-art.");
+                    Assert.That(after.Pixels.Distinct().Take(5).Count(), Is.GreaterThanOrEqualTo(4), "The animated map must still render after navigation.");
                     if (routeIndex % 4 == 0)
                     {
                         string name = "map-world-" + (expectedWorld + 1).ToString("00", System.Globalization.CultureInfo.InvariantCulture);
@@ -476,7 +481,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             var prior = RenderTexture.active; var image = new Texture2D(right - left, top - bottom, TextureFormat.RGBA32, false);
             try
             {
-                RenderTexture.active = texture; image.ReadPixels(new Rect(left, bottom, image.width, image.height), 0, 0); image.Apply();
+                RenderTexture.active = texture; image.ReadPixels(new Rect(left, bottom, image.width, image.height), 0, 0); image.Apply();CompositeWorld(image,new Rect(left,bottom,image.width,image.height));
                 return new UiQualityRegion(image.GetPixels32(), image.EncodeToPNG(), image.width, image.height);
             }
             finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); }
@@ -506,7 +511,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U+"MobileCandidate.endless-completion.json"),AssetDatabase.LoadAssetAtPath<TextAsset>(U+"MobileCandidate.endless-bindings.json"));
             if(unreviewedStoreMetadata)installer.ConfigureCandidateStore(new STP.MobileServices.Store.StoreConfiguration(
                 MobileApplicationProfile.CandidateApplicationId,"remove_ads_synthetic_test","GooglePlay",false,"synthetic-unreviewed-test"),null);
-            host.SetActive(true);installer.Document.rootVisualElement.style.width=390;installer.Document.rootVisualElement.style.height=844;
+            host.SetActive(true);if(scenery!=null)host.GetComponentInChildren<Camera>().targetTexture=scenery;installer.Document.rootVisualElement.style.width=390;installer.Document.rootVisualElement.style.height=Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?867:844;
             yield return Await(installer.InitializeTask);yield return null;
             Assert.That(installer.Candidate,Is.Not.Null,installer.StartupDiagnostic);
 #else
@@ -519,7 +524,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
             yield return ConfigureCandidate(true);yield return CreateProfile();
-            Submit("nav-profile");Submit("profile-settings");yield return Idle();
+            Submit("nav-profile");yield return Capture("dienstausweis");Submit("profile-settings");yield return Idle();
             var purchase=Find<Button>("settings-remove-ads");
             Assert.That(purchase.enabledInHierarchy,Is.False);
             Assert.That(purchase.text,Does.Not.Contain("€"));
@@ -535,7 +540,7 @@ namespace STP.Tests.Bootstrap.PlayMode
 #endif
         }
 
-        [UnityTest, Timeout(180000)]
+        [UnityTest, Timeout(600000)]
         public IEnumerator Candidate_Endless_ActualGeneratedPuzzleHintRestartResumeCompletionSkipAndNextReservation()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
@@ -563,6 +568,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                     var state = prior;
                 foreach(var input in routeInputs)
                 {
+                    if(input.Identity.Equals(corpus.Puzzles[239].Identity))continue;
                     token.ThrowIfCancellationRequested();
                     var solution=PuzzleSolver.Solve(input.ToDomainDefinition(),new SolverLimits(1000000,10000,token));
                     Assert.That(solution.Classification,Is.EqualTo(SolverClassification.UNIQUE));
@@ -583,7 +589,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                     return state;
                 }, token);
                 seasonSetupWork = routeWork; yield return Await(routeWork);
-                seasonState = routeWork.GetAwaiter().GetResult(); completed += routeInputs.Length;
+                seasonState = routeWork.GetAwaiter().GetResult(); completed = Math.Min(239,completed + routeInputs.Length);
                 Assert.That(seasonState.Levels.Count(l => l.FirstClear != null), Is.EqualTo(completed), route.Id);
             }
             var prepared = Task.Run(() => policy.PrepareForSave(seasonState, original.Generation + 1), token);
@@ -592,6 +598,29 @@ namespace STP.Tests.Bootstrap.PlayMode
             var write=repository.CommitAsync(new SaveSnapshot<LocalProfileState>(original.Profile,original.Catalog,original.Generation+1,prepared.Result),original.Generation,CancellationToken.None);
             seasonSetupWork = write; yield return Await(write);Assert.That(write.Result.Succeeded,Is.True,write.Result.ErrorCode);
             yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.Reload,installer.Model.State.Version)));yield return Idle();
+            Assert.That(installer.Model.State.Progress!.FirstClearCount,Is.EqualTo(239));
+            Submit("home-map");yield return Idle();
+            for(int i=0;i<19&&Find<Button>("map-next").enabledSelf;i++)Submit("map-next");
+            yield return Capture("stellwerk");
+            Submit("map-node-11");Submit("map-dispatch");yield return Idle();
+            var last=installer.Model.PuzzleView!;Assert.That(last.Puzzle.Identity,Is.EqualTo(corpus.Puzzles[239].Identity));
+            var finalPath=PuzzleSolver.Solve(last.Puzzle.ToDomainDefinition(),new SolverLimits(1000000,10000)).Path;
+            for(int i=0;i<finalPath.Count;i++){
+                var cell=finalPath[i];int a=i==0?(int)last.EndpointA.Edge:DirectionTo(cell,finalPath[i-1]);
+                int b=i==finalPath.Count-1?(int)last.EndpointB.Edge:DirectionTo(cell,finalPath[i+1]);
+                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));yield return Idle();
+            }
+            float limit=Time.realtimeSinceStartup+30;
+            while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<limit)yield return null;
+            Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
+            Assert.That(Find<Button>("result-next").enabledSelf,Is.False);yield return Capture("saisonfinale");
+            yield return new WaitForSecondsRealtime(4.1f);
+            for(int i=0;i<2&&Find<VisualElement>("mail-overlay").resolvedStyle.display==DisplayStyle.Flex;i++)Submit("mail-close");
+            if(Find<Button>("result-skip-bonus").enabledInHierarchy) { Submit("result-skip-bonus");yield return Idle(); }
+            Submit("result-home");yield return Idle();
+            Assert.That(Find<VisualElement>("map-screen").resolvedStyle.display,Is.EqualTo(DisplayStyle.Flex));
+            Submit("map-back");Submit("home-revision");yield return Idle();yield return Capture("betriebsrevision");
+            Submit("map-back");yield return Idle();
             Assert.That(installer.Model.State.Progress!.FirstClearCount,Is.EqualTo(240));
             Submit("home-endless");yield return null;yield return Capture("candidate-endless-menu");
             foreach(string profile in new[]{"dienstbeginn","regelbetrieb","stoerungslage","grosslage"})Assert.That(Find<Button>("endless-profile-"+profile).enabledInHierarchy,Is.True);
@@ -632,7 +661,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.OpenEndless.OfType<OpenEndlessCompletion>().Single().Id,Is.EqualTo(identity.PuzzleId));
             Submit("result-skip-bonus");yield return Idle();yield return null;
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.OpenEndless,Is.Empty);yield return Capture("candidate-endless-result");
-            Submit("result-next");yield return Idle();yield return null;
+            Submit("result-endless");yield return Idle();yield return null;
             // "Weiter" im freien Modus startet direkt die naechste Runde desselben Profils, ohne Profilmenue.
             yield return Idle();deadline=Time.realtimeSinceStartup+10;
             while(installer.Model.PuzzleView!.Puzzle.Identity.PuzzleId==identity.PuzzleId&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -659,11 +688,12 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(installer.Model!.State.IsDirty, Is.False);
             Assert.That(installer.Presenter.HasRequestFault, Is.False);
         }
-        private IEnumerator Idle()
+        private IEnumerator Idle([System.Runtime.CompilerServices.CallerLineNumber] int actionLine=0)
         {
-            float deadline = Time.realtimeSinceStartup + 20;
+            // A nearly complete campaign validates hundreds of real proof records on each durable write.
+            float deadline=Time.realtimeSinceStartup+(installer.Model?.State.Progress?.FirstClearCount>=239?90:20);
             do { yield return null; } while ((!installer.PendingOperation.IsCompleted || installer.Presenter.PendingRequest != null || installer.Presenter.IsResultContinuationPending || installer.Model?.State.IsDirty == true) && Time.realtimeSinceStartup < deadline);
-            Assert.That(installer.PendingOperation.IsCompleted, Is.True);
+            Assert.That(installer.PendingOperation.IsCompleted, Is.True,$"Action at line {actionLine} still pending: {installer.Model?.State.Status}, {installer.Model?.EndlessGenerationStatus}");
             Assert.That(installer.PendingOperation.IsFaulted,Is.False,installer.PendingOperation.Exception?.GetBaseException().ToString());
             Assert.That(installer.Presenter.PendingRequest, Is.Null);
             Assert.That(installer.Presenter.IsResultContinuationPending, Is.False);
@@ -687,6 +717,18 @@ namespace STP.Tests.Bootstrap.PlayMode
         private static int DirectionTo(CellCoordinate from, CellCoordinate to) => to.X > from.X ? 1 : to.X < from.X ? 3 : to.Y > from.Y ? 2 : 0;
         private static DevelopmentTool Shape(int ports) => ports switch
         { 5 => DevelopmentTool.TrackNS, 10 => DevelopmentTool.TrackEW, 3 => DevelopmentTool.TrackNE, 6 => DevelopmentTool.TrackES, 12 => DevelopmentTool.TrackSW, 9 => DevelopmentTool.TrackWN, _ => throw new InvalidOperationException("Invalid path ports") };
+        private void CompositeWorld(Texture2D image,Rect pixels)
+        {
+            if(scenery==null)return;
+            var overlay=image.GetPixels32();
+            RenderTexture.active=scenery;image.ReadPixels(pixels,0,0);image.Apply();
+            var background=image.GetPixels32();
+            for(int i=0;i<overlay.Length;i++){
+                var ui=overlay[i];var b=background[i];int inverse=255-ui.a;
+                background[i]=new Color32((byte)Math.Min(255,ui.r+b.r*inverse/255),(byte)Math.Min(255,ui.g+b.g*inverse/255),(byte)Math.Min(255,ui.b+b.b*inverse/255),255);
+            }
+            image.SetPixels32(background);image.Apply();
+        }
         private IEnumerator Capture(string name)
         {
             if (texture == null) yield break;
@@ -696,7 +738,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             try
             {
                 RenderTexture.active = texture; image.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0); image.Apply();
-                string path = Path.Combine(Directory.GetCurrentDirectory(), ".utmp", "wp046-runtime"); Directory.CreateDirectory(path);
+                CompositeWorld(image,new Rect(0,0,image.width,image.height));
+                string path = Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?Path.Combine("TestResults","Station"):Path.Combine(Directory.GetCurrentDirectory(), ".utmp", "wp046-runtime"); Directory.CreateDirectory(path);
                 File.WriteAllBytes(Path.Combine(path, name + ".png"), image.EncodeToPNG());
             }
             finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); }

@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace STP.Presentation.UI
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("STP.Presentation.UI")]
+
+namespace STP.Presentation.World
 {
     /// <summary>Local-to-world frame: translation, yaw (x towards y, clockwise on screen) and uniform scale.</summary>
     internal readonly struct StpFrame
@@ -55,8 +57,9 @@ namespace STP.Presentation.UI
         { var result = new List<StpPart>(parts); parts.Clear(); return result; }
 
         /// <summary>True when a face with this local normal points towards the oblique camera.</summary>
+        internal bool Solid;
         internal bool Faces(Vector3 localDirection)
-        { var w = Frame.Dir(localDirection); return w.x * StpView.Sx + w.y * StpView.Sy + w.z > 0.12f; }
+        { var w = Frame.Dir(localDirection); return Solid || w.x * StpView.Sx + w.y * StpView.Sy + w.z > 0.12f; }
 
         private float OutlineLocal => Frame.Scale > 1e-5f ? Outline / Frame.Scale : Outline;
 
