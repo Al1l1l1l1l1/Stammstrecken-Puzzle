@@ -408,7 +408,7 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertIn("name: Architecture Validation", workflow)
         self.assertIn('pull_request:\n    branches: ["**"]', workflow)
         self.assertIn("STP_SCOPE: production", workflow)
-        self.assertIn("STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-046.production.scope.json", workflow)
+        self.assertIn("STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-047.production.scope.json", workflow)
         self.assertIn("tools/ci/test_change_scope.py", workflow)
         self.assertIn("tools/ci/change_scope.py", workflow)
         self.assertIn("if: steps.classify.outputs.run_jcs == 'true'", workflow)

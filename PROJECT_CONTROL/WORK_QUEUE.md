@@ -1,16 +1,14 @@
-# Stammstrecken-Puzzle – aktuelle Arbeitswarteschlange
+# Stammstrecken-Puzzle – Arbeitswarteschlange
 
-**Grundlage:** Architecture v1.0 · [MANUS-2026-10-20-02](./PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md).
+**Grundlage:** Architecture v1.0 · Produktquellen in [`PRODUKT/`](../PRODUKT/SATIRE_UND_LORE_BIBEL.md).
 
-| Priorität | Gesamtauftrag | Status / nächster tatsächlicher Output |
-|---:|---|---|
-| 1 | WP046 vollständige Releaseausführung mit drei parallelen Bahnen | Spielumfang und aktuelle vollständige PR-CI40916706836 unabhängig angenommen:1722Editor/258Play, Android mit tatsächlichen Buildinputs, Xcode-Compile/Link ohneSigning. Main22/Human11 sind bereit. Jetzt echter Owner-Handtest und qualifizierte Human11-Erstkontakte; danach reale Geräte-/Provider-/Signing-/Rechts-/Storegates. Derselbe Auftrag läuft bis M3. |
-| Basis | WP045 Kurskorrektur/Regeln/Produktdefaults/CIsteuerung | Veröffentlicht auf bd05da1; Grundlage von WP046, kein offener Umsetzungsauftrag zur erneuten Planung. |
-| parallel | Externe Konten/Rollen/Signing/Geräte/Tester/Rechte/Datenschutz | Begleitende kurze [Ownerliste mit Bedarfszeitpunkten](../Release/OWNER_INPUTS.md); keine weitere allgemeine Abfrage oder Unterbrechung unabhängig möglicher Apparbeit. |
-| M1/M2 | Wirkliche Owner-Mobile-/Difficultybeurteilung | Neue installierbare Fassung und klar genannte Testfälle, keine Referenzbilder als Ersatz. |
-| M3 | Konkrete öffentliche Storeeinreich-/Releaseentscheidung | Vollständige geprüfte RC-/Storevorlage; separate zuständige Ownerfreigabe. |
+| Reihenfolge | Arbeitspaket | Branch | Status |
+|---:|---|---|---|
+| 1a | [`WP-047` – 3D-Bahnwelt und alle Bildschirme](../WORK_PACKAGES/WP-047_3D-Bahnwelt-und-alle-Bildschirme.md) | `rework/wp-047-welt` | Offen · parallel zu 1b |
+| 1b | [`WP-048` – Satire-Inhalte, Stimmen, Klang, Einstieg](../WORK_PACKAGES/WP-048_Satire-Inhalte-Stimmen-Klang-und-Einstieg.md) | `rework/wp-048-satire` | Offen · parallel zu 1a, wird zuerst gemergt |
+| 2 | [`WP-049` – Abschluss, Sternzeiten, Gerät, Aufräumen, Merge nach main](../WORK_PACKAGES/WP-049_Abschluss-Sternzeiten-Geraet-und-Aufraeumen.md) | `rework/wp-049-abschluss` | Wartet auf 1a und 1b |
 
-**Keine neue Mikroqueue:** frühere WP037–WP044-Schluss-/T/A/S/P/I-Phasen sind kein Grund für serielle Wiederholungsaufträge. Der große Rauftrag umfasst Vorbereitung, Implementation, eigene Nacharbeit, angemessene unabhängige Annahme und Integration.
+Jedes Paket: ein Agent, ein Goal-Mode-Lauf, eigener Branch von `rework/manus-rundum-rework`, selbst zurückmergen. Kein Koordinator, keine Review-Schleifen. Abgelöst: [`WP-046`](../WORK_PACKAGES/WP-046_Vollstaendiges-Spiel-und-Release-Candidate.md).
 
 ## Historische Kontrollanker
 

@@ -1,39 +1,39 @@
-# Verbindliche Agentenleitlinie
+# Agenten-Einstieg – Stammstrecken-Puzzle
 
-**Geltung ab MANUS-2026-10-20-02:** Die ausdrückliche Kurskorrektur des Owners ersetzt die bisherige kleinschrittige Produktionsführung. Maßstab ist ein gutes, tatsächlich laufendes und veröffentlichungsfähiges Spiel, nicht die Zahl von Dokumenten, Work Packages oder grünen technischen Teilprüfungen. Die bisherige Version bleibt in Git am Stand `8d2ff1950fa72777014eda0555b02b6e9fd9a995` nachvollziehbar.
+Stammstrecken-Puzzle ist ein deutschsprachiges Handy-Logikspiel (Gleise legen von A nach B, Randzahlen wie beim Sudoku) mit **Bahn-Satire als Existenzgrund**. Owner ist Alex, Solo-Unternehmer. Kein Konzern, keine Prüfketten.
 
-## Kurzer verbindlicher Einstieg
+## So fängst du an (immer, in dieser Reihenfolge)
 
-1. Diese Datei und `PROJECT_CONTROL/CURRENT_STATE.md` lesen; tatsächlichen Branch/Head und aktive Aufgabe feststellen.
-2. Das dort verlinkte aktuelle Gesamtmandat und das eigene große Work Package beziehungsweise den delegierten Teilbrief lesen.
-3. Nur die für die eigene Arbeit einschlägigen Fachverträge und aktuellen Änderungen lesen. Konzeptindex/Master stehen zur Navigation bereit; eine komplette Wiederlektüre aller Konzept-, Historien- oder ADR-Dateien bei jedem Routineabschnitt ist nicht erforderlich.
+1. [`PROJECT_CONTROL/CURRENT_STATE.md`](PROJECT_CONTROL/CURRENT_STATE.md) lesen: aktueller Stand, Branch, welches Paket dran ist.
+2. **Dein Arbeitspaket** vollständig lesen. Welches das ist, steht in deinem Auftrag oder in [`PROJECT_CONTROL/WORK_QUEUE.md`](PROJECT_CONTROL/WORK_QUEUE.md):
+   - [`WP-047` – 3D-Bahnwelt und alle Bildschirme](WORK_PACKAGES/WP-047_3D-Bahnwelt-und-alle-Bildschirme.md)
+   - [`WP-048` – Satire-Inhalte, Stimmen, Klang, Einstieg](WORK_PACKAGES/WP-048_Satire-Inhalte-Stimmen-Klang-und-Einstieg.md)
+   - [`WP-049` – Abschluss, Sternzeiten, Gerät, Aufräumen, Merge nach main](WORK_PACKAGES/WP-049_Abschluss-Sternzeiten-Geraet-und-Aufraeumen.md)
+3. [`PRODUKT/SATIRE_UND_LORE_BIBEL.md`](PRODUKT/SATIRE_UND_LORE_BIBEL.md) lesen. **Pflicht für jedes Paket.** Dort steht, warum das Spiel existiert, wie der Humor funktioniert und was du auf keinen Fall wörtlich nehmen darfst.
+4. [`PRODUKT/KONZEPT_2.1_RUNDUM_REWORK.md`](PRODUKT/KONZEPT_2.1_RUNDUM_REWORK.md) lesen (Stil, Bildschirme, Systeme).
 
-Bei Fortsetzung desselben Auftrags den aktuellen Arbeitsstand und seitdem geänderte Anforderungen laden, nicht die ganze Einstiegskette wiederholen. Fehlende technische Kleinentscheidungen innerhalb des übertragenen Mandats trifft die verantwortliche technische Rolle; ein echter Konflikt mit Produktversprechen, Datenintegrität oder externer Befugnis wird nur im betroffenen Teil eskaliert.
+Mehr musst du nicht lesen. Alte Work-Packages (`WP-001` bis `WP-046`), ADRs und Historie sind Nachschlagewerk, keine Arbeitsanweisung.
 
-## Verantwortung und Auftragsgröße
+## Was Vorrang hat
 
-Ein Gesamtauftrag liefert einen großen, zusammenhängenden Teil des Produkts einschließlich Vorbereitung, Umsetzung, eigener Korrekturen, nötiger unabhängiger Prüfung, Nachbesserung und Integration. Die Koordination übergibt diesen Auftrag einmal; Routinefortsetzungen, Defektbehebung, Subagentenbeauftragung und zulässige Integration erfordern keine neuen Ownerprompts.
+1. Neue ausdrückliche Aussagen von Alex.
+2. `PRODUKT/` (Bibel und Konzept 2.1) und das aktuelle Arbeitspaket.
+3. Alles andere. Die alten Konzeptdateien unter `Stammstrecken_Puzzle_Konzept_00-15/` sind teilweise überholt (z. B. „Die Oberfläche wirkt dienstlich“, „helle, klare Informationsoberfläche“ – genau das hat den PDF-Look verursacht). Bei Widerspruch gilt `PRODUKT/`.
 
-Der benannte Releaselead ist für die Zusammenführung, spielbare Meilensteine und das vollständige Endergebnis verantwortlich. Parallel arbeitende Rollen besitzen eindeutige Dateieigentümerschaft und kurze interne Teilbriefe. Ein neuer Subagent, ein Fix, eine Union oder ein Dokumentationsschluss erzeugt allein kein neues Work Package, kein neues Scope-Manifest und keine zusätzliche Geschäftsführerfreigabe.
+## Wie gearbeitet wird
 
-Ein eigener unveränderlicher Scopeanker ist je tatsächlich unabhängiger großer Lieferbahn vor Fachänderungen ausreichend. Sein Scope benennt die zusammengehörigen Module und realen Ergebnis-/Risiko-/Integrationsgrenzen. Der historische ADR-030-Vertrag bleibt erhalten; er verlangt nicht, jeden internen Kleinschritt als neues Programm zu verankern. Erweiterungen außerhalb des Programms bleiben ausdrückliche Entscheidungen.
+- **Ein Agent, ein Paket, ein Goal-Mode-Lauf.** Das ganze Paket, nicht in Etappen. Kein „Prototyp mit einem Level“.
+- **Keine QC-, Review- oder Rework-Schleifen.** Keine Prüfberichte, keine Evidenzordner, keine neuen Governance-Dokumente, keine neuen ADRs, keine neuen Scope-Manifeste. Deine eigene Durchsicht (Pendler-Test aus der Bibel) plus CI ist die Prüfung.
+- **Keine Rückfragen** zu Dingen, die Paket, Bibel oder Konzept beantworten. Ist etwas wirklich offen: die Lösung wählen, die der Bibel am besten entspricht, und in der Abschlussmeldung in einem Satz nennen.
+- **Eigener Branch** von `rework/manus-rundum-rework` (Name steht im Paket). **Du mergst selbst** zurück, wie im Paket beschrieben. Alex merged nicht.
+- **Lock-Kette nur einmal am Ende:** `python3 tools/rework/rebind_all.py`, danach `--check`.
+- **CI genau einmal pro Paket voll starten:** `gh workflow run unity.yml --ref <dein-branch>`. Nie mehrfach, nie in Schleife (Concurrency-Gruppe bricht Läufe ab).
+- **Abschlussmeldung an Alex:** Deutsch, kurz (höchstens zehn bis zwölf Zeilen), ohne Fachjargon, mit Link zum APK des grünen CI-Laufs und ehrlich, was offen ist. Keine Dateien anhängen.
 
-## Produkt- und technische Entscheidungsgrenzen
+## Harte Grenzen
 
-Neue direkte Ownerentscheidungen und ausdrücklich zuständige Produktentscheidungen haben Vorrang. Aktuelle Fachfassungen müssen ihnen entsprechen. Keine stille Featurekürzung, erfundene menschliche Abnahme, falsche Befugnisherkunft oder nachträgliche Umdeutung alter Nachweise.
-
-Implementierungsdetails im bestehenden Stack, normale Daten-/UIcomposition, Importpresets, Tests, Fehlerkorrektur und geplante interne Integration darf der Lead innerhalb seines Mandats selbst entscheiden. Ein Fach-ADR ist nur bei einer echten Änderung eines öffentlichen Daten-/Persistenz-/Hash-/Sicherheits-/Providervertrags oder einer tragenden Modul-/Stackgrenze erforderlich, nicht für jede Klasse, Ansicht, Presetdatei oder Montage. Solche echten Vertragsänderungen werden vor Abhängigmachen in einer kurzen Entscheidung mit nötiger getrennten Fachreview festgehalten.
-
-Main-/Produkt-/Releasebefugnisse gelten nur im ausdrücklichen aktuellen Gesamtmandat. Eine technische Integration ist nicht gleich Storeveröffentlichung. Externe Konten, rechtliche Erklärungen, Zahlungen und Veröffentlichung brauchen ihre jeweils tatsächlich autorisierte Handlung; keine Annahme aus einem allgemeinen Agentenauftrag.
-
-## Qualitätsmaßstab
-
-Die laufende App muss gut aussehen, stabil reagieren und ihren vollständigen Spielablauf liefern. Referenzbilder, Build-PASS, Scope-/Proof-PASS und Dokumentation ersetzen die tatsächliche visuelle, bedienungsbezogene und gerätebezogene Prüfung nicht. Automatisierte Kontrollen sichern konkrete Risiken; unveränderte Quellen werden nicht wegen neuer Schlussdokumentation neu kompiliert oder vollständig erneut beurteilt.
-
-Die risikogerechte Definition of Done und CIsteuerung stehen in `PROJECT_CONTROL/DEFINITION_OF_DONE.md` und `ARCHITECTURE/TEST_STRATEGY.md`. Eine unabhängige ergebnisbezogene Annahme je integriertem Produktmeilenstein reicht; ein konkreter Nachbefund wird gezielt geschlossen, nicht über eine neue globale Abnahmekette.
-
-## Kurze aktuelle Dokumentation
-
-`CURRENT_STATE.md` ist ein kurzer aktueller Steuerungsstand, kein wachsendes Historienbuch. Der Lead pflegt eine vollständige Hauptübergabe des Gesamtauftrags und verlinkt erforderliche Originalbelege. Änderungen an Produktregeln stehen in den maßgeblichen Fachdateien. Git und datierte Quellbindungen bewahren Historie; identische Ergebnisse nicht in mehreren Zusatzberichten erneut erzählen.
-
-Der Owner erhält pro Liefermeilenstein höchstens eine vollständige übertragbare Koordinatordatei und eine kurze konkrete Chatmeldung. Keine Pflicht, einzelne technische Belege manuell zwischen Agenten zu transportieren. Die Koordination und Ausführung lesen sie direkt aus dem Repository.
+- Spielregeln, Solver, Spielstand-Format und Ökonomie bleiben unverändert, außer ein Paket sagt ausdrücklich etwas anderes.
+- Keine KI-generierten Bilder oder Texturen im Spiel. Kein Fotorealismus.
+- Kein echtes DB-Logo, keine Original-Ansagen, kein Original-Gong, keine Kopie realer App-Screens. Bahnbegriffe sind frei verwendbar.
+- Kein Anwalts-, Rechts- oder Logo-Nebenschauplatz.
+- Keine Unity-Zugangsdaten in Dateien, Logs oder Commits.

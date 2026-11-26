@@ -52,6 +52,8 @@ Alle AK und aktuelle [Definition of Done](../PROJECT_CONTROL/DEFINITION_OF_DONE.
 
 ## Bearbeitungsstatus
 
+**Abgelöst am 26.11.2026** durch das Rundum-Rework (`WP-047`, `WP-048`, `WP-049`). Dieses Paket wird nicht weiter bearbeitet; der Text unten ist Historie.
+
 Stand01.11.2026: vollständiger Spielumfang integriert. Die laufende Oberfläche ist tatsächlich grafisch geprüft, einschließlich stabiler direkter Eingabe und vollständigem lokalem Lizenzleser. [Aktuelle PR-CI40916706836](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40916706836) aus Quellcheckpoint1f3d313 besteht vollständig und unabhängig:1722Editor-/258Playfälle mit exakten Namen/Fristen, ohneSkip/Retry/Repeat, jeCoverage24/0negative; Android-IL2CPP mit tatsächlich erhaltenen Buildinputs und Xcode26.3/SDK26.2-Compile/Link ohneSigning. [Gemeinsamer Originalbeleg](../Release/CI_ANDROID_40916706836_INSPECTION.json). Parallele GitHub-Warteschlangenabbrüche bleiben als ungestartete Jobs qualifiziert, kein falscher kompletterPush-PASS.
 
 [Main22](../Release/ANDROID_BUILD22_INSPECTION.json) und [Human11](../Release/HUMAN_ANDROID_BUILD11_INSPECTION.json) sind unabhängig angenommene installierbare lokale QA-Pakete. Human11 bindet Android08/Revision8/UI76 und102unveränderte Aufgaben; keine Menschenmessung. Tatsächliche Owner-/Human-/Geräte-/Provider-/Signing-/Rechts-/Storegates bleiben offen. Die [eine Hauptübergabe](../PROJECT_CONTROL/ProductionBlocks/ReleaseCandidate/HANDOVER.md) enthält alle aktuellen Quellen/Originalbindungen, Einsatzanleitung und Restweg; die [kurze Ownerliste](../Release/OWNER_INPUTS.md) nennt Beitrag und tatsächlichen Bedarf. Kein M1-/M2-/M3-, Main- oder Storeabschluss vorweggenommen. Derselbe Gesamtauftrag bleibt aktiv.
