@@ -327,7 +327,9 @@ namespace STP.Bootstrap
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
             if (testRoot != null) root = testRoot;
 #endif
-            presenter.BindStation(root,StpWorldCamera.Attach(output),()=>ride?.Tick(1000),name=>gameAudio?.Play(name));
+            var bulletins=Document.rootVisualElement.Q("station-assets").dataSource as StationBulletins
+                ?? throw new InvalidOperationException("STATION_ASSETS_MISSING");
+            presenter.BindStation(root,bulletins,StpWorldCamera.Attach(output,bulletins.railwayShader),()=>ride?.Tick(1000),name=>gameAudio?.Play(name));
             InitializeTask = StartAsync(root, ++startupEpoch);
             operation = InitializeTask;
         }

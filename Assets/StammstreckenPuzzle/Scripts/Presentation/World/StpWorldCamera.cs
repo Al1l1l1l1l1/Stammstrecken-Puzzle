@@ -35,7 +35,7 @@ namespace STP.Presentation.World
             internal bool Removing;
         }
 
-        public static StpWorldCamera? Attach(Camera output)
+        public static StpWorldCamera? Attach(Camera output, Shader shader)
         {
             if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null) return null;
             var scene = output.gameObject.AddComponent<StpWorldCamera>();
@@ -45,7 +45,7 @@ namespace STP.Presentation.World
             output.orthographic = false;
             output.farClipPlane = 180;
             output.nearClipPlane = .1f;
-            scene.enamel = new Material(Resources.Load<Shader>("StpRailway")) { name = "Railway enamel", enableInstancing = true };
+            scene.enamel = new Material(shader) { name = "Railway enamel", enableInstancing = true };
             var sun = new GameObject("Afternoon light");
             sun.transform.SetParent(scene.transform.parent, false);
             var key = sun.AddComponent<Light>();

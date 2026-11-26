@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="ProductionGame.uss" />
     <ui:VisualElement name="production-root" class="production-root">
+        <ui:VisualElement name="station-assets" data-source="project://database/Assets/StammstreckenPuzzle/Settings/StationBulletins.asset?fileID=11400000&amp;guid=98247690fee34a59bab3cf8159a96e14&amp;type=2#StationBulletins" class="hidden" />
         <ui:VisualElement name="human-operator-overlay" class="overlay human-operator-overlay hidden">
             <ui:VisualElement class="human-operator-card">
                 <ui:Label view-data-key="human.operator.internal" class="eyebrow" /><ui:Label view-data-key="human.operator.title" class="page-title" />

@@ -726,7 +726,9 @@ jobs:
           python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json
 
       - name: Bahnwelt auf dem virtuellen Handybildschirm durchspielen
-        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'rework/wp-047-welt'
+        if: >-
+          !cancelled() && hashFiles('TestResults/playmode.xml') != '' &&
+          (github.ref_name == 'rework/wp-047-welt' || github.head_ref == 'rework/wp-047-welt')
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
           STP_STATION_FRAMES: "1"
@@ -741,6 +743,7 @@ jobs:
           assert root.get("result") == "Passed" and len(root.findall(".//test-case")) == 4
           for frame in ("baubuero", "candidate-puzzle", "puzzle-10x10", "bahnsteig", "dienstpostfach", "candidate-daily", "dienstausweis", "candidate-settings", "candidate-collection", "stellwerk", "candidate-result", "saisonfinale", "betriebsrevision", "candidate-endless-menu", "candidate-endless-result"):
               data = (output / (frame + ".png")).read_bytes()
+              assert data[:8] == bytes.fromhex("89504e470d0a1a0a"), frame
               assert struct.unpack(">II", data[16:24]) == (1080, 2400), frame
           PYEOF
 

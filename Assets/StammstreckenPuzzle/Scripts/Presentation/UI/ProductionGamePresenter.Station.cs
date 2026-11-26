@@ -47,12 +47,12 @@ namespace STP.Presentation.UI
         private int lastMailCount=-1;
         private string? openLetter;
 
-        public void BindStation(string directory,StpWorldCamera? camera,Action skip,Action<string> cue)
+        public void BindStation(string directory,StationBulletins bulletins,StpWorldCamera? camera,Action skip,Action<string> cue)
         {
             worldCamera=camera;skipRide=skip;sound=cue;
             memory=new StpPresentationMemory(directory);
-            programme=new StationProgramme(Resources.Load<StationBulletins>("StationBulletins"));
-            var labels=Newtonsoft.Json.Linq.JObject.Parse(Resources.Load<TextAsset>("StationLabels").text);
+            programme=new StationProgramme(bulletins);
+            var labels=Newtonsoft.Json.Linq.JObject.Parse(bulletins.labels.text);
             foreach(var label in labels.Properties())panelWords[label.Name]=label.Value.ToString();
             Root.AddToClassList("native-station");
             foreach(var id in new[]{"mail-open","home-map","home-daily","home-endless","home-revision","nav-depot","nav-profile","nav-home","puzzle-hint","puzzle-undo","puzzle-reset"}){

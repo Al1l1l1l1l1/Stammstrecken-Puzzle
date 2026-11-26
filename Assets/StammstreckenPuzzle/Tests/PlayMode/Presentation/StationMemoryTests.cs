@@ -42,7 +42,7 @@ namespace STP.Tests.Presentation.PlayMode
             try
             {
                 var camera=child.AddComponent<Camera>();camera.enabled=false;
-                var world=StpWorldCamera.Attach(camera);
+                var world=StpWorldCamera.Attach(camera,Shader.Find("Stammstrecke/Railway"));
                 if(SystemInfo.graphicsDeviceType==GraphicsDeviceType.Null)
                 {
                     Assert.IsNull(world);Assert.IsFalse(camera.enabled);
