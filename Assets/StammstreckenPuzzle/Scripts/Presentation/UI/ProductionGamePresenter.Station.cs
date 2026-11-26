@@ -65,6 +65,7 @@ namespace STP.Presentation.UI
             Require<Button>("nav-profile").text=W("id-card");
             Require<Button>("puzzle-reset").text=W("replan");
             Require<Label>("proof-heading").text=W("certificate");
+            Require<Label>("proof-statement").text=programme.Voice.proofOfPunctuality.statement;
             RegisterPanelGags();
             void Wire(string id,Action callback){var button=Require<Button>(id);actions.Add(id,callback);buttons.Add(id,button);button.clicked+=callback;}
             Wire("mail-open",OpenMail);Wire("mail-close",CloseMail);
@@ -248,6 +249,7 @@ namespace STP.Presentation.UI
             if(scene=="Map"&&revisionDesk)scene="Revision";
             if(scene!=lastScene)
             {
+                Require<VisualElement>("home-screen").EnableInClassList("home-screen--office",scene=="Office");
                 lastScene=scene;sceneOpened=Time.unscaledTime;lastFlap=-1;if(scene!="Map"&&scene!="Revision")CloseTicket();
                 if(scene=="Finale"&&view!=null&&finaleShown!=view.AttemptId){
                     finaleShown=view.AttemptId;finaleLetters=true;
@@ -368,7 +370,16 @@ namespace STP.Presentation.UI
             }
             Require<Label>("puzzle-targets").text=targets.HasValue?$"★★★ {Minutes(targets.Value.three/1000)}  ·  ★★ {Minutes(targets.Value.two/1000)}  ·  ★ {W("arrival")}":"";
             Require<Label>("puzzle-delay").text=targets.HasValue&&elapsed>targets.Value.three?"+"+Minutes((elapsed-targets.Value.three)/1000):"";
-            buttons["puzzle-hint"].text=L("hint")+" "+(hintCreditCount?.Invoke()??0);
+            string hintLabel=L("hint");
+            if(CanEdit && hintCreditCount!=null)
+            {
+                // The board can open before its first durable draft exists.
+                // Only a confirmed identity has a displayable credit count.
+                try { hintLabel+=" "+hintCreditCount(); }
+                catch(ArgumentException) { }
+                catch(InvalidOperationException) { }
+            }
+            buttons["puzzle-hint"].text=hintLabel;
             int step=index+1;var tutorial=voice.tutorial.FirstOrDefault(item=>item.step==step);
             var banner=Require<Label>("tutorial-banner");
             if(v.Phase==DevelopmentPreviewPhase.TrainRide){banner.text=worldCamera?.ReversedOrder==true&&drawnStock.Wagons?.Length>0?W("reversed"):voice.arrivalAnnouncements.FirstOrDefault()??"";SetVisible(banner,true);}

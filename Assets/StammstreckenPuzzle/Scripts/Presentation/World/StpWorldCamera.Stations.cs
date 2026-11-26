@@ -106,11 +106,27 @@ namespace STP.Presentation.World
                 b.Box(new Vector3(0,-2,1.8f),new Vector3(4,.12f,1.8f),Tone(0xE9D9B8));
                 b.Box(new Vector3(0,-1.84f,1.8f),new Vector3(2.3f,.1f,1.15f),Tone(0x517077));
                 b.Box(new Vector3(0,-1.72f,1.8f),new Vector3(2.15f,.04f,1f),Tone(0xADDBDF));
-                StpKit.Shed(b,-1,-1.48f,1.2f);StpKit.Barrier(b,.85f,-1.44f,1.5f);
+                // The model building site is visible through the mullions of the office window.
+                for(int i=0;i<5;i++){
+                    float x=-1.72f+i*.84f, height=.32f+(i%3)*.16f;
+                    b.Box(new Vector3(x,-1.63f,1.05f+height),new Vector3(.35f,.022f,height),Tone(i%2==0?0x9BBAC0:0x82A8B1));
+                    for(int j=0;j<3;j++)b.Box(new Vector3(x-.2f+j*.19f,-1.59f,1.28f),new Vector3(.04f,.012f,.066f),Tone(0xD5E3D8));
+                }
+                b.Box(new Vector3(.72f,-1.58f,1.92f),new Vector3(.05f,.035f,.68f),Tone(0xE7AA4E));
+                b.Box(new Vector3(.24f,-1.57f,2.55f),new Vector3(.85f,.045f,.045f),Tone(0xD69537));
+                b.Box(new Vector3(-.30f,-1.55f,2.31f),new Vector3(.009f,.014f,.21f),Tone(0x57686B));
+                foreach(float x in new[]{-1.05f,1.05f})b.Box(new Vector3(x,-1.50f,1.8f),new Vector3(.032f,.04f,1.02f),Tone(0xF2E3C9));
+                StpKit.Shed(b,-1,-1.46f,1.2f);StpKit.Barrier(b,.85f,-1.44f,1.5f);
                 b.Frame=StpFrame.Identity;
                 b.Ellipsoid(new Vector3(0,.65f,.18f),new Vector3(3.5f,1.4f,.2f),.2f,Tone(0xA8724D));
                 b.Ellipsoid(new Vector3(-.25f,.55f,.44f),new Vector3(1.2f,.78f,.07f),.26f,Tone(badge?0xDAD8BD:0x24364C),-.08f);
                 b.Ellipsoid(new Vector3(-.25f,.55f,.51f),new Vector3(1.06f,.66f,.016f),.24f,Tone(badge?0xABD5CE:0x638FA4),-.08f);
+                b.Box(new Vector3(-.3f,.55f,.54f),new Vector3(.84f,.48f,.015f),Tone(badge?0xEFDFB9:0xA5CBD0),-.08f);
+                for(int i=0;i<4;i++)b.Box(new Vector3(-.3f,.25f+i*.18f,.561f),new Vector3(.69f,.010f,.005f),Tone(0xEEF0D3),-.08f);
+                for(int i=0;i<3;i++)b.Box(new Vector3(-.79f+i*.45f,.54f,.564f),new Vector3(.011f,.42f,.004f),Tone(0xEEF0D3),-.08f);
+                b.Box(new Vector3(-.39f,.53f,.573f),new Vector3(.52f,.024f,.005f),Tone(0xA35444),-.27f);
+                for(int i=0;i<3;i++)b.Cylinder(new Vector3(-.83f+i*.44f,.64f-i*.12f,.58f),.05f,.007f,2,Tone(0xF0D488));
+                b.Box(new Vector3(.82f,1.03f,.442f),new Vector3(.032f,.34f,.03f),Tone(0xC14A41),.39f);
                 b.Cylinder(new Vector3(1.42f,.28f,.59f),.23f,.23f,2,Tone(0xEEE4C7));
                 b.Cylinder(new Vector3(1.42f,.28f,.823f),.196f,.006f,2,Tone(0x5B443D));
             });

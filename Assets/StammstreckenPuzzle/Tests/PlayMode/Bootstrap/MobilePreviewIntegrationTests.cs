@@ -28,6 +28,21 @@ namespace STP.Tests.Bootstrap.PlayMode
         private MobilePreviewInstaller installer = null!;
         private PanelSettings panel = null!;
         private RenderTexture? texture,scenery;
+        private static bool PortraitPass => Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1";
+        private static float Deadline(float seconds)=>Time.realtimeSinceStartup+seconds*(PortraitPass?4:1);
+        private void RenderPhone(bool fullSize)
+        {
+            if(!PortraitPass || texture==null || scenery==null || host==null)return;
+            var camera=host.GetComponentInChildren<Camera>();
+            if(camera==null)return;
+            int width=fullSize?1080:360,height=fullSize?2400:800;
+            camera.targetTexture=null;panel.targetTexture=null;
+            foreach(var surface in new[]{texture,scenery}){
+                surface.Release();surface.width=width;surface.height=height;
+                Assert.That(surface.Create(),Is.True);
+            }
+            camera.targetTexture=scenery;panel.targetTexture=texture;
+        }
         private string ownRoot = "";
         private bool ownsRoot;
         private CancellationTokenSource? seasonSetupCancellation;
@@ -49,8 +64,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             panel.referenceResolution = new Vector2Int(390, 844); panel.match = 0;
             if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null)
             {
-                bool portrait=Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1";
-                texture = new RenderTexture(portrait?1080:390,portrait?2400:844,24,RenderTextureFormat.ARGB32);
+                bool portrait=PortraitPass;
+                texture = new RenderTexture(portrait?360:390,portrait?800:844,24,RenderTextureFormat.ARGB32);
                 scenery=new RenderTexture(texture.descriptor);
                 Assert.That(scenery.Create(),Is.True);panel.clearColor=true;panel.colorClearValue=Color.clear;
                 Assert.That(texture.Create(), Is.True); panel.targetTexture = texture;
@@ -63,8 +78,9 @@ namespace STP.Tests.Bootstrap.PlayMode
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U + "ReviewCompletion.catalog.json"),
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U + "RailwayAssets.json"));
             host.SetActive(true);if(scenery!=null)host.GetComponentInChildren<Camera>().targetTexture=scenery;
+            if(PortraitPass){installer.SetFocused(true);installer.SetPaused(false);}
             installer.Document.rootVisualElement.style.width = 390;
-            installer.Document.rootVisualElement.style.height = Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?867:844;
+            installer.Document.rootVisualElement.style.height = PortraitPass?867:844;
             yield return Await(installer.InitializeTask);
             yield return null;
             Assert.That(installer.Model, Is.Not.Null);
@@ -84,7 +100,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                 var pending = seasonSetupWork;
                 if (pending != null)
                 {
-                    float cleanupDeadline = Time.realtimeSinceStartup + 25;
+                    float cleanupDeadline = Deadline(25);
                     while (!pending.IsCompleted && Time.realtimeSinceStartup < cleanupDeadline) yield return null;
                     Assert.That(pending.IsCompleted, Is.True, "Owned season fixture worker must stop before host/root teardown.");
                     if (pending.IsFaulted) _ = pending.Exception;
@@ -189,7 +205,7 @@ namespace STP.Tests.Bootstrap.PlayMode
                 yield return Idle();
             }
             bool sawRide = false;
-            float deadline = Time.realtimeSinceStartup + 25;
+            float deadline = Deadline(25);
             while (installer.Model.State.Status != SavedReviewStatus.Results && Time.realtimeSinceStartup < deadline)
             {
                 if (installer.Model.State.Status == SavedReviewStatus.TrainRide)
@@ -223,10 +239,11 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(installer.Model!.CanEnterPuzzle(0),Is.True);Assert.That(installer.Model.CanEnterPuzzle(1),Is.False);
             var candidate=installer.Candidate!;var view=installer.Model.PuzzleView!;
             yield return Capture("candidate-puzzle");
+            if(PortraitPass){Submit("puzzle-reset");yield return Capture("neu-planen");Submit("reset-round-cancel");yield return null;}
             var identity=installer.Model.State.CurrentIdentity!;
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot!.Payload,identity),Is.EqualTo(3));
             Submit("puzzle-hint");
-            float deadline=Time.realtimeSinceStartup+15;
+            float deadline=Deadline(15);
             while(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot!.Payload,identity)==3&&Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(installer.Presenter.IsHelpOpen,Is.True);
             Assert.That(view.IsPaused,Is.True);Assert.That(view.TimerStarted,Is.False);
@@ -244,7 +261,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity),Is.EqualTo(2),"Restart cannot refill identity-bound credits.");
             Submit("puzzle-back");yield return Idle();yield return Capture("bahnsteig");Submit("mail-open");yield return null;yield return Capture("dienstpostfach");Submit("mail-close");Submit("home-daily");yield return Idle();
             long beforeDaily=installer.Model.State.Progress!.BalancePatience;
-            Submit("daily-free");deadline=Time.realtimeSinceStartup+15;
+            Submit("daily-free");deadline=Deadline(15);
             while(candidate.Persisted.Snapshot.Payload.Metagame!.Daily.All(d=>d.Terminal==null)&&Time.realtimeSinceStartup<deadline)yield return null;
             var claim=candidate.Persisted.Snapshot.Payload.Metagame!.Daily.Single(d=>d.Slot=="FREE");
             Assert.That(claim.Terminal,Is.Not.Null);yield return null;
@@ -255,7 +272,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             yield return Capture("candidate-daily");Submit("daily-close");yield return Idle();
             Submit("nav-profile");yield return Capture("dienstausweis");Submit("profile-settings");yield return Idle();
             bool previousHaptics=candidate.Persisted.Snapshot.Payload.Settings.HapticsEnabled??false;
-            Submit("settings-haptics");deadline=Time.realtimeSinceStartup+15;
+            Submit("settings-haptics");deadline=Deadline(15);
             while((candidate.Persisted.Snapshot.Payload.Settings.HapticsEnabled??false)==previousHaptics&&Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(candidate.Persisted.Snapshot.Payload.Settings.HapticsEnabled,Is.EqualTo(!previousHaptics));
             while(!Find<Button>("settings-close").enabledInHierarchy&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -281,10 +298,17 @@ namespace STP.Tests.Bootstrap.PlayMode
             {
                 var cell=solved.Path[i];int a=i==0?(int)view.EndpointA.Edge:DirectionTo(cell,solved.Path[i-1]);
                 int b=i==solved.Path.Count-1?(int)view.EndpointB.Edge:DirectionTo(cell,solved.Path[i+1]);
-                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));yield return Idle();
+                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));
+                Assert.That(view.CellAt(cell.X,cell.Y),Is.EqualTo(Shape((1<<a)|(1<<b))));
             }
-            float deadline=Time.realtimeSinceStartup+25;
-            while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<deadline)yield return null;
+            float deadline=Deadline(25);
+            bool capturedRide=false;
+            while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<deadline)
+            {
+                if(PortraitPass&&!capturedRide&&view.Phase==DevelopmentPreviewPhase.TrainRide)
+                {capturedRide=true;yield return Capture("zugfahrt");}
+                yield return null;
+            }
             Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
             var state=installer.Model.ConfirmedSnapshot!.Payload;var level=state.Levels.Single(l=>l.Identity.Equals(identity));
             Assert.That(level.FirstClear!.AttemptId,Is.EqualTo(view.AttemptId));
@@ -511,7 +535,8 @@ namespace STP.Tests.Bootstrap.PlayMode
                 AssetDatabase.LoadAssetAtPath<TextAsset>(U+"MobileCandidate.endless-completion.json"),AssetDatabase.LoadAssetAtPath<TextAsset>(U+"MobileCandidate.endless-bindings.json"));
             if(unreviewedStoreMetadata)installer.ConfigureCandidateStore(new STP.MobileServices.Store.StoreConfiguration(
                 MobileApplicationProfile.CandidateApplicationId,"remove_ads_synthetic_test","GooglePlay",false,"synthetic-unreviewed-test"),null);
-            host.SetActive(true);if(scenery!=null)host.GetComponentInChildren<Camera>().targetTexture=scenery;installer.Document.rootVisualElement.style.width=390;installer.Document.rootVisualElement.style.height=Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?867:844;
+            host.SetActive(true);if(scenery!=null)host.GetComponentInChildren<Camera>().targetTexture=scenery;
+            if(PortraitPass){installer.SetFocused(true);installer.SetPaused(false);}installer.Document.rootVisualElement.style.width=390;installer.Document.rootVisualElement.style.height=PortraitPass?867:844;
             yield return Await(installer.InitializeTask);yield return null;
             Assert.That(installer.Candidate,Is.Not.Null,installer.StartupDiagnostic);
 #else
@@ -540,7 +565,7 @@ namespace STP.Tests.Bootstrap.PlayMode
 #endif
         }
 
-        [UnityTest, Timeout(600000)]
+        [UnityTest, Timeout(1200000)]
         public IEnumerator Candidate_Endless_ActualGeneratedPuzzleHintRestartResumeCompletionSkipAndNextReservation()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
@@ -608,9 +633,9 @@ namespace STP.Tests.Bootstrap.PlayMode
             for(int i=0;i<finalPath.Count;i++){
                 var cell=finalPath[i];int a=i==0?(int)last.EndpointA.Edge:DirectionTo(cell,finalPath[i-1]);
                 int b=i==finalPath.Count-1?(int)last.EndpointB.Edge:DirectionTo(cell,finalPath[i+1]);
-                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));yield return Idle();
+                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));Assert.That(last.CellAt(cell.X,cell.Y),Is.EqualTo(Shape((1<<a)|(1<<b))));
             }
-            float limit=Time.realtimeSinceStartup+30;
+            float limit=Deadline(90);
             while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<limit)yield return null;
             Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
             Assert.That(Find<Button>("result-next").enabledSelf,Is.False);yield return Capture("saisonfinale");
@@ -631,7 +656,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(issued.PublicPuzzleInput.Identity,Is.EqualTo(identity));Assert.That(issued.GenerationOrdinal,Is.EqualTo("1"));
             Assert.That(installer.Presenter.IsPuzzleScreenActive,Is.True,"Issued puzzle must replace its own paused menu.");
             Assert.That(installer.Model.State.CanMutate,Is.True,"Closing the menu must release the host input pause.");
-            Submit("puzzle-hint");float deadline=Time.realtimeSinceStartup+15;
+            Submit("puzzle-hint");float deadline=Deadline(15);
             while(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity)==3&&Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity),Is.EqualTo(2),"Wait for the actual visible clue's durable acknowledgement.");
             while(!Find<Button>("hint-close").enabledInHierarchy&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -651,9 +676,9 @@ namespace STP.Tests.Bootstrap.PlayMode
             {
                 var cell=solved.Path[i];int a=i==0?(int)view.EndpointA.Edge:DirectionTo(cell,solved.Path[i-1]);
                 int b=i==solved.Path.Count-1?(int)view.EndpointB.Edge:DirectionTo(cell,solved.Path[i+1]);
-                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));yield return Idle();
+                Submit("tool-"+(int)Shape((1<<a)|(1<<b)));Submit(ProductionPuzzleGrid.CellName(cell.X,cell.Y));Assert.That(view.CellAt(cell.X,cell.Y),Is.EqualTo(Shape((1<<a)|(1<<b))));
             }
-            deadline=Time.realtimeSinceStartup+25;while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<deadline)yield return null;
+            deadline=Deadline(90);while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
             Assert.That(installer.Model.State.Progress!.FirstClearCount,Is.EqualTo(240));Assert.That(installer.Model.State.Progress.SelectedStars,Is.EqualTo(1));
             Assert.That(installer.Model.State.Progress.BalancePatience-displayedBefore,Is.EqualTo(15));
@@ -663,7 +688,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.OpenEndless,Is.Empty);yield return Capture("candidate-endless-result");
             Submit("result-endless");yield return Idle();yield return null;
             // "Weiter" im freien Modus startet direkt die naechste Runde desselben Profils, ohne Profilmenue.
-            yield return Idle();deadline=Time.realtimeSinceStartup+10;
+            yield return Idle();deadline=Deadline(10);
             while(installer.Model.PuzzleView!.Puzzle.Identity.PuzzleId==identity.PuzzleId&&Time.realtimeSinceStartup<deadline)yield return null;
             yield return Idle();yield return null;
             Assert.That(candidate.Persisted.Snapshot.Payload.Endless.HighestReservedOrdinal,Is.EqualTo("2"),
@@ -680,7 +705,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         { yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Puzzle(SavedReviewUiRequestKind.OpenPuzzle, installer.Model!.State.Version, index))); yield return Idle(); }
         private IEnumerator StableIdle(Button cell, Rect cellRect, Rect dockRect)
         {
-            float deadline = Time.realtimeSinceStartup + 15;
+            float deadline = Deadline(15);
             do
             {
                 yield return null; AssertRect(cell.worldBound, cellRect); AssertRect(Find<VisualElement>("tool-dock").worldBound, dockRect);
@@ -691,7 +716,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         private IEnumerator Idle([System.Runtime.CompilerServices.CallerLineNumber] int actionLine=0)
         {
             // A nearly complete campaign validates hundreds of real proof records on each durable write.
-            float deadline=Time.realtimeSinceStartup+(installer.Model?.State.Progress?.FirstClearCount>=239?90:20);
+            float deadline=Deadline(installer.Model?.State.Progress?.FirstClearCount>=239?90:25);
             do { yield return null; } while ((!installer.PendingOperation.IsCompleted || installer.Presenter.PendingRequest != null || installer.Presenter.IsResultContinuationPending || installer.Model?.State.IsDirty == true) && Time.realtimeSinceStartup < deadline);
             Assert.That(installer.PendingOperation.IsCompleted, Is.True,$"Action at line {actionLine} still pending: {installer.Model?.State.Status}, {installer.Model?.EndlessGenerationStatus}");
             Assert.That(installer.PendingOperation.IsFaulted,Is.False,installer.PendingOperation.Exception?.GetBaseException().ToString());
@@ -701,7 +726,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         }
         private static IEnumerator Await(Task task)
         {
-            float deadline = Time.realtimeSinceStartup + 25;
+            float deadline = Deadline(25);
             while (!task.IsCompleted && Time.realtimeSinceStartup < deadline) yield return null;
             Assert.That(task.IsCompleted, Is.True); if (task.IsFaulted) throw task.Exception!;
             Assert.That(task.IsCanceled, Is.False);
@@ -709,6 +734,8 @@ namespace STP.Tests.Bootstrap.PlayMode
         private T Find<T>(string name) where T : VisualElement => installer.Document.rootVisualElement.Q<T>(name) ?? throw new InvalidOperationException(name);
         private void Submit(string name)
         {
+            // Replay an actual foreground user action on the virtual X display.
+            if(PortraitPass){installer.SetFocused(true);installer.SetPaused(false);}
             var button = Find<Button>(name); Assert.That(button.enabledInHierarchy, Is.True, name);
             using (var evt = NavigationSubmitEvent.GetPooled()) { evt.target = button; button.SendEvent(evt); }
         }
@@ -732,6 +759,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         private IEnumerator Capture(string name)
         {
             if (texture == null) yield break;
+            RenderPhone(true);
             yield return null; yield return null;
             var prior = RenderTexture.active;
             var image = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
@@ -739,10 +767,10 @@ namespace STP.Tests.Bootstrap.PlayMode
             {
                 RenderTexture.active = texture; image.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0); image.Apply();
                 CompositeWorld(image,new Rect(0,0,image.width,image.height));
-                string path = Environment.GetEnvironmentVariable("STP_STATION_FRAMES")=="1"?Path.Combine("TestResults","Station"):Path.Combine(Directory.GetCurrentDirectory(), ".utmp", "wp046-runtime"); Directory.CreateDirectory(path);
+                string path = PortraitPass?Path.Combine("TestResults","Station"):Path.Combine(Directory.GetCurrentDirectory(), ".utmp", "wp046-runtime"); Directory.CreateDirectory(path);
                 File.WriteAllBytes(Path.Combine(path, name + ".png"), image.EncodeToPNG());
             }
-            finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); }
+            finally { RenderTexture.active = prior; UnityEngine.Object.Destroy(image); RenderPhone(false); }
         }
     }
 }

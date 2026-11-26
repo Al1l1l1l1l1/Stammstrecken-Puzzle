@@ -39,8 +39,8 @@ namespace STP.Presentation.World
                 b.Box(new Vector3(.74f,.048f,.28f),new Vector3(.13f,.018f,.11f),Tone(0xF3D177),-.11f);
             });face.transform.localPosition=center;face.transform.localRotation=Quaternion.Euler(pitch,0,0);
             Vector3 TextAt(float yOffset,float xOffset=0)=>center+face.transform.localRotation*new Vector3(xOffset,yOffset,-.057f);
-            previousYears=Lettering("",TextAt(.09f),.028f,Tone(0x5E615C));
-            yearSign=Lettering("",TextAt(-.13f),.031f,Tone(0x243A46));
+            previousYears=Lettering("",TextAt(.11f),.0185f,Tone(0x5E615C));
+            yearSign=Lettering("",TextAt(-.13f),.024f,Tone(0x243A46));
             Lettering("?",TextAt(.27f,.73f),.045f,Tone(0x30383D));
             var strike=Place("Überholte Planung",b=>b.Box(Vector3.zero,new Vector3(.50f,.009f,.011f),Tone(0xB34B38)));
             strike.transform.localPosition=TextAt(.09f)-face.transform.forward*.012f;strike.transform.localRotation=face.transform.localRotation;

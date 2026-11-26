@@ -295,9 +295,8 @@ Button:active { background-color: #FFE7A0; }
 .site-sign, .endless-profile-button { background-color: #F6D098; color: #3C382E; border-color: #996737; }
 .drawer-button { background-color: #799895; color: #132E39; border-color: #425A57; }
 .clearance { min-height: 62px; margin: 8px 30px; border-radius: 32px; border-color: #A4353A; border-bottom-color: #762A30; border-width: 4px; border-bottom-width: 9px; }
-Button { transition-property: scale, translate; transition-duration: 0.18s; }
-Button:active { scale: 0.92 0.92; translate: 0 4px; }
-.puzzle-cell:active { scale: 1 1; translate: 0 0; }
+.native-station .station-icon, .tool-button .track-glyph { transition-property: scale, translate; transition-duration: 0.18s; }
+.native-station Button:active .station-icon, .tool-button:active .track-glyph { scale: 0.92 0.92; }
 .puzzle-header { background-color: #0F2A57; border-top-width: 4px; border-top-color: #476B97; }
 .puzzle-title { white-space: nowrap; overflow: hidden; font-size: 15px; }
 .puzzle-subheader { background-color: #0F4BA0; border-bottom-color: #122E54; border-bottom-width: 6px; }
@@ -311,7 +310,8 @@ Button:active { scale: 0.92 0.92; translate: 0 4px; }
 .puzzle-count--exceeded { color: #AA283C; border-color: #C63441; border-width: 2px; }
 .tool-dock { background-color: #AF8053; border-color: #6D4C39; border-top-color: #D4AB7C; border-top-width: 6px; border-radius: 18px; }
 .tool-button { background-color: #E9D3AE; border-color: #9C734F; border-bottom-color: #674934; border-radius: 18px; }
-.tool--active { translate: 0 -6px; background-color: #F4DEB4; border-color: #FFD23F; }
+.tool--active .track-glyph { translate: 0 -6px; }
+.tool--active { background-color: #F4DEB4; border-color: #FFD23F; }
 .tool-caption, .tool-dock-heading .eyebrow { color: #3F302B; }
 .puzzle-grid--ride .puzzle-count, .puzzle-grid--ride .puzzle-endpoint { opacity: 0; }
 .puzzle-cell--selected { border-width: 2px; border-color: #FFD23F; }
@@ -365,3 +365,11 @@ Button:active { scale: 0.92 0.92; translate: 0 4px; }
 #endless-overlay .endless-art { height: 92px; border-width: 0; background-color: rgba(0,0,0,0); }
 #endless-profiles { flex-direction: row; flex-wrap: wrap; }
 .endless-profile-button { width: 46%; min-height: 52px; margin: 3px; border-left-width: 5px; border-left-color: #F39200; }
+
+.home-screen--office .concourse, .home-screen--office .station-header, .home-screen--office .station-tag { display: none; }
+.home-screen--office .station-window { height: 315px; }
+.concourse .object-control { width: 46%; max-width: 46%; min-width: 0; }
+.native-station .nav-button.object-control { min-width: 0; padding: 25px 2px 2px; -unity-text-align: middle-center; white-space: nowrap; font-size: 12px; }
+.native-station .nav-button .station-icon { top: 2px; left: 50%; width: 22px; height: 22px; translate: -50% 0; }
+.proof-statement { display: none; }
+.native-station .proof-statement { display: flex; white-space: normal; color: #554E41; font-size: 13px; margin: 5px 0 9px; }
