@@ -188,7 +188,12 @@ namespace STP.Presentation.World
 
         internal void Frame(Rect board,Vector2 panel)
         {
-            if(panel.x<=0||panel.y<=0||board.width<=0||stage==null)return;
+            // UI Toolkit can report an unmeasured rectangle when a screen is first attached.
+            // Keep the last camera frame until the new board has a usable position and size.
+            if(stage==null || !float.IsFinite(board.center.x) || !float.IsFinite(board.center.y) ||
+                !float.IsFinite(board.width) || !float.IsFinite(board.height) ||
+                !float.IsFinite(panel.x) || !float.IsFinite(panel.y) ||
+                board.width<1 || board.height<1 || panel.x<1 || panel.y<1)return;
             bool editing=puzzle!=null;
             float tilt=editing?Mathf.Lerp(12,40,riding&&!reduced?Mathf.SmoothStep(0,1,(Time.unscaledTime-rideStart)/.6f):0):54;
             float visibleWidth=editing?puzzle!.Width:sceneName=="Depot"?Mathf.Lerp(3.4f,5.8f,(cars.Count-1)/3f):8.4f;
@@ -198,11 +203,11 @@ namespace STP.Presentation.World
             var center=editing?new Vector3(puzzle!.Width*.5f,0,-puzzle.Height*.5f):new Vector3(0,.45f,0);
             if(!editing)center+=new Vector3(-settle*.65f,settle*.20f,0);
             var orientation=Quaternion.Euler(90-tilt+settle*3,editing?0:-8-settle*4,0);
-            transform.rotation=orientation;transform.position=center-orientation*Vector3.forward*distance;
             float halfH=panel.y*.5f*unitsPerPoint;
-            lens.aspect=panel.x/panel.y;
-            lens.fieldOfView=2*Mathf.Atan(halfH/distance)*Mathf.Rad2Deg;
-            var projection=Matrix4x4.Perspective(lens.fieldOfView,lens.aspect,lens.nearClipPlane,lens.farClipPlane);
+            float aspect=panel.x/panel.y;
+            float fieldOfView=2*Mathf.Atan(halfH/distance)*Mathf.Rad2Deg;
+            if(!float.IsFinite(aspect)||aspect<=0||fieldOfView<1||fieldOfView>=179)return;
+            var projection=Matrix4x4.Perspective(fieldOfView,aspect,lens.nearClipPlane,lens.farClipPlane);
             projection.m02=1-2*board.center.x/panel.x;projection.m12=2*board.center.y/panel.y-1;
             if(editing){
                 // Rectify the ground plane at editing pitch so every real rail meets its fixed UITK cell.
@@ -212,6 +217,9 @@ namespace STP.Presentation.World
                 shear.m21=Mathf.Tan(rad)*amount;shear.m11=Mathf.Lerp(1,1/Mathf.Cos(rad),amount);
                 projection*=shear;
             }
+            transform.SetPositionAndRotation(center-orientation*Vector3.forward*distance,orientation);
+            lens.aspect=aspect;
+            lens.fieldOfView=fieldOfView;
             lens.projectionMatrix=projection;
             lens.backgroundColor=StpKit.H(editing?0xC7BA9A:district==1?0xE6C99D:0xAED8E3);
         }

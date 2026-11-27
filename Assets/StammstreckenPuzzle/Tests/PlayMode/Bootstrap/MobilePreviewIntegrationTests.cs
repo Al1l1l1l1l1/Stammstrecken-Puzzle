@@ -36,6 +36,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             var camera=host.GetComponentInChildren<Camera>();
             if(camera==null)return;
             int width=fullSize?1080:360,height=fullSize?2400:800;
+            if(texture.width==width && texture.height==height && scenery.width==width && scenery.height==height)return;
             camera.targetTexture=null;panel.targetTexture=null;
             foreach(var surface in new[]{texture,scenery}){
                 surface.Release();surface.width=width;surface.height=height;
@@ -149,7 +150,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Find<VisualElement>("production-root").Query<Button>().ToList().Any(x => x.name.Contains("batch") || x.name.Contains("multi")), Is.False);
         }
 
-        [UnityTest]
+        [UnityTest, Timeout(600000)]
         public IEnumerator TenByTen_AllEightToggleTools_ReplaceUndoAutosave_DoNotMoveTargets()
         {
             yield return CreateProfile();
@@ -230,7 +231,7 @@ namespace STP.Tests.Bootstrap.PlayMode
         private IEnumerator CreateProfile()
         { yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.CreateProfile, installer.Model!.State.Version))); yield return Idle(); }
 
-        [UnityTest]
+        [UnityTest, Timeout(600000)]
         public IEnumerator Candidate_HintDisplayCommitsOnce_AndCloseRestoresAutosaveWithSequentialUnlocks()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS

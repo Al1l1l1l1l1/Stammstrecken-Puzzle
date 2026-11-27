@@ -353,7 +353,10 @@ Button:active { background-color: #FFE7A0; }
 .station-icon { position: absolute; left: 5px; top: 50%; translate: 0 -50%; width: 25px; height: 25px; }
 .object-control { padding-left: 31px; white-space: normal; }
 .tool-dock-heading .station-icon { width: 17px; height: 17px; left: 2px; }
-.tool-dock-heading .object-control { padding-left: 19px; padding-right: 4px; min-width: 38px; }
+.native-station .tool-dock-heading .eyebrow { display: none; }
+.tool-dock-heading .object-control { flex-basis: 0; flex-grow: 1; min-width: 0; padding-left: 21px; padding-right: 4px; white-space: nowrap; }
+.native-station .puzzle-heading { flex-basis: 0; }
+.native-station .board-clock { width: 58px; flex-shrink: 0; }
 .puzzle-heading { overflow: hidden; }
 .filing-cabinet { background-color: #749391; border-color: #475F5E; }
 .filing-cabinet .map-node { border-radius: 4px; border-color: #876841; background-color: #EFDFB9; color: #594936; }
