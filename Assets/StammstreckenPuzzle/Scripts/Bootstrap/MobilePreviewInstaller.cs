@@ -327,6 +327,9 @@ namespace STP.Bootstrap
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
             if (testRoot != null) root = testRoot;
 #endif
+            var bulletins=Document.rootVisualElement.Q("station-assets").dataSource as StationBulletins
+                ?? throw new InvalidOperationException("STATION_ASSETS_MISSING");
+            presenter.BindStation(root,bulletins,StpWorldCamera.Attach(output,bulletins.railwayShader),()=>ride?.Tick(1000),name=>gameAudio?.Play(name));
             InitializeTask = StartAsync(root, ++startupEpoch);
             operation = InitializeTask;
         }
@@ -562,9 +565,9 @@ namespace STP.Bootstrap
                 {
                     try
                     {
-                        ride = new ProductionTrainRide(view.BuiltPath, view.EndpointA, view.EndpointB, view.Width, view.Height);
+                        ride = new ProductionTrainRide(view.BuiltPath, view.EndpointA, view.EndpointB, view.Width, view.Height, 3.2f/Mathf.Max(1,view.BuiltPath.Count));
                         rideAttempt = attempt; rideView = view;
-                        gameAudio?.Play("CompletionClearance");gameAudio?.Play("TrainStart");
+                        gameAudio?.Play("RouteReveal");gameAudio?.Play("Gong");gameAudio?.Play("TrainStart");
                         var motion=model.ConfirmedSnapshot?.Payload.Settings.Accessibility;
                         if(motion?.TrainRideSkip==true||motion?.ReducedMotion==true)ride.Tick(1000);
                     }
@@ -574,9 +577,10 @@ namespace STP.Bootstrap
             if (ride == null) return;
             if (view == null || !ReferenceEquals(view, rideView) || view.AttemptId != rideAttempt || view.Phase != DevelopmentPreviewPhase.TrainRide)
             { DisposeRide(); return; }
-            if (!suspended) ride.Tick(Time.unscaledDeltaTime);
-            presenter!.SetTrainPose(ride.X, ride.Y, ride.AngleDegrees, true);
-            if (ride.IsFinished) { rideView!.CompleteTrainRide(rideAttempt);gameAudio?.Play("TrainArrive");gameAudio?.Play("ResultsOpen"); DisposeRide(); }
+            // A slow or resumed frame must still show the train before advancing the result sheet.
+            if (!suspended) ride.Tick(Mathf.Min(Time.unscaledDeltaTime, .25f));
+            presenter!.ShowRide(ride);
+            if (ride.IsFinished) { rideView!.CompleteTrainRide(rideAttempt);gameAudio?.Play("Applause");gameAudio?.Play("TrainArrive");gameAudio?.Play("ResultsOpen"); DisposeRide(); }
         }
         private void RefreshAudio()
         {

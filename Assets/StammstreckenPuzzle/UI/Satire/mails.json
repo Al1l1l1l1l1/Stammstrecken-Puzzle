@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "mails": [
+    {
+      "id": "mail-welcome",
+      "trigger": "FIRST_START",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Willkommen im Team!",
+      "body": [
+        "Sie sind die erste Neueinstellung seit 2017.",
+        "Zwischen A und B fehlt eine Verbindung.",
+        "Die Zahlen am Rand zeigen Ihnen, wie viele Gleisfelder in jeder Reihe liegen."
+      ],
+      "ps": "Der Betriebshof hat aktuell Personalmangel. Könnten Sie den nebenbei auch übernehmen?",
+      "gift": null
+    },
+    {
+      "id": "mail-gerd",
+      "trigger": "AFTER_PUZZLE_3",
+      "from": "BETRIEBSHOF",
+      "subject": "Grüße aus der Werkhalle",
+      "body": [
+        "Hallo, ich bin Gerd.",
+        "Ich bin der Betriebshof. Ganz wörtlich."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-press",
+      "trigger": "SEASON_END_PRESS",
+      "from": "PRESSESTELLE",
+      "subject": "Betriebslage",
+      "body": [
+        "Betrieb bis auf Weiteres stabil.",
+        "Bitte bewahren Sie diese Information gut auf."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-season",
+      "trigger": "SEASON_END_LEAD",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Glückwunsch",
+      "body": [
+        "Herzlichen Glückwunsch!"
+      ],
+      "ps": "Ab morgen beginnen die Bauarbeiten für Season 2.",
+      "gift": null
+    }
+  ]
+}

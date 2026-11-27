@@ -146,6 +146,7 @@ namespace STP.Bootstrap
             localDataInputFence=true;localDataState=ProductionLocalDataState.Deleting;
             if(!await CloseOwnersForDeletionAsync(prior)){localDataState=ProductionLocalDataState.RetryRequired;return;}
             if(disposed)return;
+            presenter?.DeletePresentationMemory();
             var result=await fullGame!.Repository.ConfirmDeleteAsync(deletionIntent!,CancellationToken.None);
             if(!disposed)localDataState=result.Succeeded?ProductionLocalDataState.Deleted:ProductionLocalDataState.RetryRequired;
         }
@@ -154,6 +155,7 @@ namespace STP.Bootstrap
             deletionObservation=observed;localDataInputFence=true;localDataState=ProductionLocalDataState.Deleting;
             if(!await CloseOwnersForDeletionAsync(prior)){localDataState=ProductionLocalDataState.RetryRequired;return;}
             if(disposed)return;
+            presenter?.DeletePresentationMemory();
             var result=await fullGame!.Repository.ResumePendingDeletionAsync(observed,CancellationToken.None);
             if(!disposed)localDataState=result.Succeeded?ProductionLocalDataState.Deleted:ProductionLocalDataState.RetryRequired;
         }

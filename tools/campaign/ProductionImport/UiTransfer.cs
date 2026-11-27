@@ -27,7 +27,7 @@ internal static class UiTransfer
             J.Fields(oldFiles[i],"path","sha256");J.Fields(newFiles[i],"path","sha256");string path=J.S(oldFiles[i],"path");byte[] a=sources.Read(measuredPrefix+"/"+path),b=sources.Read(path);
             J.Need(J.Raw(a)==J.H(oldFiles[i],"sha256")&&J.Raw(b)==J.H(newFiles[i],"sha256"),"IMPORT_UI_TRANSFER_ORIGINAL_BYTES");
             if(a.SequenceEqual(b))continue;
-            J.Need(oldFiles.Count==79,"IMPORT_UI_METADATA_TRANSFER_REQUIRES_COMPLETE_79_SOURCE_SET");
+            J.Need(oldFiles.Count==88,"IMPORT_UI_METADATA_TRANSFER_REQUIRES_COMPLETE_88_SOURCE_SET");
             if(path==Prefix+"UI/RailwayAssets.json")CompareMetadataOnly(a,b,false,null);
             else if(path==Prefix+"UI/ProductionCampaignText.json")CompareMetadataOnly(a,b,true,targetTextSourceRawHash);
             else throw new ArgumentException("IMPORT_MEASURED_UI_RENDER_SOURCE_CHANGED:"+path);

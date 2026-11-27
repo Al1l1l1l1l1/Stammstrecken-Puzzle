@@ -136,7 +136,7 @@ namespace STP.Tests.Content.EditMode
         {
             const string folder="Assets/StammstreckenPuzzle/UI/";
             var ui=JsonUtility.FromJson<CurrentUiLock>(File.ReadAllText(folder+"HumanAssignments/ui-source-lock.json"));
-            Assert.That(ui.schemaVersion,Is.EqualTo(1));Assert.That(ui.kind,Is.EqualTo("HUMAN_UI_SOURCE_LOCK"));Assert.That(ui.files.Length,Is.EqualTo(79));
+            Assert.That(ui.schemaVersion,Is.EqualTo(1));Assert.That(ui.kind,Is.EqualTo("HUMAN_UI_SOURCE_LOCK"));Assert.That(ui.files.Length,Is.EqualTo(88));
             var entry=ui.files.Single(f=>f.path==folder+"ThirdPartyNotices.txt");
             using var hash=System.Security.Cryptography.SHA256.Create();string raw=string.Concat(hash.ComputeHash(File.ReadAllBytes(entry.path)).Select(b=>b.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
             Assert.That(entry.sha256,Is.EqualTo(raw));

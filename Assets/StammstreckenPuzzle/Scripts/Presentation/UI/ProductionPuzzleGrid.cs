@@ -1,3 +1,4 @@
+using STP.Presentation.World;
 using System;
 using STP.Application;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace STP.Presentation.UI
         private readonly Func<string, object[], string> localize;
         private Action<int,int>? activation;
         private bool disposed;
+        internal bool NativeStage { get; set; }
         private Rect boardFrame;
         private Rect worksiteBounds;
         private StpVehicle worksiteVehicle=StpKit.Resolve(System.Array.Empty<string>());
@@ -74,6 +76,7 @@ namespace STP.Presentation.UI
             for(var y=0;y<GridHeight;y++)for(var x=0;x<GridWidth;x++)
             {
                 var i=y*GridWidth+x;var value=model.CellAt(x,y);
+                glyphs[i].style.display=NativeStage?DisplayStyle.None:DisplayStyle.Flex;
                 glyphs[i].SetContent(revealing&&(value==DevelopmentTool.EmptyMarker||value==DevelopmentTool.OccupiedMarker)?DevelopmentTool.Clear:value);
                 var key=value==DevelopmentTool.Clear?"accessibility.cell.empty":ProductionGamePresenter.ToolKey(value);
                 cells[i].tooltip=localize("cell",new object[]{x+1,y+1,localize(key,Array.Empty<object>())});
@@ -85,7 +88,7 @@ namespace STP.Presentation.UI
             EnableInClassList("puzzle-grid--ride",revealing);
         }
         /// <summary>Displays an externally supplied world pose, without inferring a route.</summary>
-        public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible)=>train.SetPose(x,y,clockwiseDegrees,visible);
+        public void SetTrainPose(float x,float y,float clockwiseDegrees,bool visible){if(!NativeStage)train.SetPose(x,y,clockwiseDegrees,visible);}
         /// <summary>Projects selected train and livery without changing path geometry or timings.</summary>
         public void SetTrainAppearance(System.Collections.Generic.IReadOnlyList<string> ids){worksiteVehicle=StpKit.Resolve(ids);train.SetAppearance(ids);MarkDirtyRepaint();}
         /// <summary>Releases callbacks; repeated disposal is safe.</summary>
@@ -135,7 +138,7 @@ namespace STP.Presentation.UI
         }
         private void DrawBoard(MeshGenerationContext context)
         {
-            if(disposed||board.contentRect.width<=0||board.contentRect.height<=0)return;
+            if(NativeStage||disposed||board.contentRect.width<=0||board.contentRect.height<=0)return;
             var revealing=model.Phase==DevelopmentPreviewPhase.TrainRide||model.Phase==DevelopmentPreviewPhase.Results;
             int Code(int cx,int cy)
             {
@@ -148,7 +151,7 @@ namespace STP.Presentation.UI
         }
         private void DrawWorksite(MeshGenerationContext context)
         {
-            if(disposed||boardFrame.width<=0||boardFrame.height<=0)return;
+            if(NativeStage||disposed||boardFrame.width<=0||boardFrame.height<=0)return;
             var p=context.painter2D;
             // Painted behind the existing children: no new element, hit target, layout input or semantic node.
             if(worksiteBounds.width<=0||worksiteBounds.height<=0)return;
@@ -208,7 +211,7 @@ namespace STP.Presentation.UI
             if(tool==DevelopmentTool.OccupiedMarker)
             {
                 var gray=RailwayDrawing.Color("727B82");var line=Mathf.Max(1.5f,size*.045f);
-                RailwayDrawing.Line(p,At(.28f,.42f),At(.72f,.42f),gray,line);RailwayDrawing.Line(p,At(.28f,.58f),At(.72f,.58f),gray,line);
+
                 for(var i=0;i<3;i++)RailwayDrawing.Line(p,At(.35f+i*.15f,.32f),At(.35f+i*.15f,.68f),gray,line);return;
             }
             if(!toolIcon)return;

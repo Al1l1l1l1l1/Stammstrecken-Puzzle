@@ -40,7 +40,7 @@ test('54 actual campaign cases and 48 actual selected E1 cases form disjoint six
 });
 
 test('UI source lock uses exact actual raw source bytes, complete ordinal fileset and no circular generated/test/meta inputs',()=>{
-  const file=path.join(participant,'ui-source-lock.json');const raw=fs.readFileSync(file);assert.equal(sha(raw),lock.uiSourceSha256);const source=c.strictFile(file).value;exact(source,['schemaVersion','kind','files']);assert.equal(source.kind,'HUMAN_UI_SOURCE_LOCK');assert.equal(source.schemaVersion,1);assert.equal(source.files.length,79);assert.equal(source.files.filter(f=>f.path==='Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt').length,1);
+  const file=path.join(participant,'ui-source-lock.json');const raw=fs.readFileSync(file);assert.equal(sha(raw),lock.uiSourceSha256);const source=c.strictFile(file).value;exact(source,['schemaVersion','kind','files']);assert.equal(source.kind,'HUMAN_UI_SOURCE_LOCK');assert.equal(source.schemaVersion,1);assert.equal(source.files.length,88);assert.equal(source.files.filter(f=>f.path==='Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt').length,1);
   assert.deepEqual(source.files.map(f=>f.path),source.files.map(f=>f.path).sort());assert(source.files.some(f=>f.path.endsWith('ProductionGamePresenter.AssignedReview.cs')));assert(source.files.some(f=>f.path.includes('/Art/AppIcon/')&&f.path.endsWith('.png')));
   for(const item of source.files){assert(!item.path.includes('/Tests/')&&!item.path.endsWith('.meta')&&!item.path.includes('/HumanAssignments/'));const staged=overlay&&path.join(overlay,item.path);const actual=staged&&fs.existsSync(staged)?staged:path.join(repo,item.path);assert.equal(sha(fs.readFileSync(actual)),item.sha256,item.path);}
   assert.deepEqual(producer.uiSources(c,overlay).bytes,raw);
@@ -72,7 +72,7 @@ test('E1 uppercase/path/hash mutations cannot become assigned input; CLI cannot 
 });
 
 test('Offline notice raw bytes are mandatory in schema1 current79 source set; changed or absent notice cannot reuse the UI hash',()=>{
-  const ui=read(path.join(participant,'ui-source-lock.json'));assert.equal(ui.schemaVersion,1);assert.equal(ui.files.length,79);
+  const ui=read(path.join(participant,'ui-source-lock.json'));assert.equal(ui.schemaVersion,1);assert.equal(ui.files.length,88);
   const notice='Assets/StammstreckenPuzzle/UI/ThirdPartyNotices.txt';assert.equal(ui.files.filter(e=>e.path===notice).length,1);
   const scratch=path.join(path.dirname(output),path.basename(output)+'-notice-selector-controls');assert(!fs.existsSync(scratch));fs.mkdirSync(scratch);
   for(const entry of ui.files){const staged=overlay&&path.join(overlay,entry.path);const source=staged&&fs.existsSync(staged)?staged:path.join(repo,entry.path);const dest=path.join(scratch,entry.path);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(source,dest);}

@@ -143,14 +143,14 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.NotNull(pipeline);
             Assert.AreEqual("UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset", pipeline.GetType().FullName);
             var renderer = AssetDatabase.LoadAssetAtPath<ScriptableObject>(
-                "Assets/StammstreckenPuzzle/Settings/StpRenderer2D.asset");
+                "Assets/StammstreckenPuzzle/Settings/StpRendererForward.asset");
             Assert.NotNull(renderer);
-            Assert.AreEqual("UnityEngine.Rendering.Universal.Renderer2DData", renderer.GetType().FullName);
+            Assert.AreEqual("UnityEngine.Rendering.Universal.UniversalRendererData", renderer.GetType().FullName);
             var data = new SerializedObject(pipeline);
             var renderers = data.FindProperty("m_RendererDataList");
-            Assert.AreEqual(1, renderers.arraySize);
-            Assert.AreSame(renderer, renderers.GetArrayElementAtIndex(0).objectReferenceValue);
-            Assert.AreEqual(0, data.FindProperty("m_DefaultRendererIndex").intValue);
+            Assert.AreEqual(2, renderers.arraySize);
+            Assert.AreSame(renderer, renderers.GetArrayElementAtIndex(1).objectReferenceValue);
+            Assert.AreEqual(1, data.FindProperty("m_DefaultRendererIndex").intValue);
             Assert.AreSame(pipeline, GraphicsSettings.defaultRenderPipeline);
             var previous = QualitySettings.GetQualityLevel();
             try

@@ -1,3 +1,4 @@
+using STP.Presentation.World;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,6 +7,7 @@ namespace STP.Presentation.UI
     /// <summary>Original procedural 3D railway diorama (bubbly, depth-sorted mesh) with the player's actual train, wagons and decorations.</summary>
     public sealed class RailwayIllustrationElement : VisualElement
     {
+        internal bool DrawPreview {get;set;}=true;
         private int world;
         private RailwayRouteComposition? composition;
         private int clearedStage;
@@ -38,6 +40,7 @@ namespace STP.Presentation.UI
         }
         private void Draw(MeshGenerationContext context)
         {
+            if(!DrawPreview)return;
             var w = contentRect.width; var h = contentRect.height;
             if (w <= 0 || h <= 0) return;
             StpDiorama.Paint(context, new Rect(0, 0, w, h), world, vehicle, selectedProps, composition, clearedStage);

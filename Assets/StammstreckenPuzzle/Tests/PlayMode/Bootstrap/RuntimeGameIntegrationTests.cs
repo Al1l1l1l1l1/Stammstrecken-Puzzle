@@ -129,7 +129,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(installer.Presenter.Grid!.CellButton(1, 1).worldBound.width, Is.GreaterThan(28));
 #if UNITY_EDITOR
             using (var texts = ProductionCampaignText.ForContractTest(AssetDatabase.LoadAssetAtPath<TextAsset>(Fixtures + "CampaignText.json")))
-                Assert.That(Find<Label>("puzzle-title").text, Is.EqualTo(texts.Resolve(0, "", "").Title));
+                Assert.That(Find<Label>("puzzle-title").text, Is.EqualTo(texts.Resolve(0, "", "").Status));
 #endif
             var identity = Model.State.CurrentIdentity!; var first = Model.PuzzleView!;
             Assert.That(Runtime.Metagame.HintCredits(Model.ConfirmedSnapshot!.Payload, identity), Is.EqualTo(3));
@@ -217,6 +217,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Model.State.Progress!.FirstClearCount, Is.EqualTo(240));
             TraceRuntimePhase("depot.begin");
             Submit("nav-depot"); yield return Idle(); long balance = Model.State.Progress.BalancePatience;
+            Submit("depot-group"); yield return Idle();
             Submit("cosmetic-action-obj-wartebank-ohne-anschluss"); yield return Idle();
             Assert.That(Model.ConfirmedSnapshot!.Payload.Inventory.Ownership.Any(o => o.ItemId == "obj-wartebank-ohne-anschluss"), Is.True);
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(balance - 120));
@@ -265,7 +266,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Model.ConfirmedSnapshot!.Payload.Endless.OpenEndless, Is.Empty);
             Assert.That(Model.State.Progress.BalancePatience, Is.EqualTo(resultBalance));
             TraceRuntimePhase("bonus.skip.complete");
-            Submit("result-next"); yield return Idle();
+            Submit("result-endless"); yield return Idle();
             // Endlos-Weiter startet direkt die naechste Runde desselben Profils.
             yield return Until(() => Model.PuzzleView != null && !Model.PuzzleView.Puzzle.Identity.Equals(identity), "direct next endless round");
             yield return Idle();

@@ -79,8 +79,8 @@ Die folgende Tabelle ist die **einzige normative Allowlist interner direkter Ass
 | `STP.MobileServices.Store` | Unity-IAP-Adapter, lokale Belegprüfung und Storetransaktionsmapping; implementiert `IPurchasePort`. | `STP.Application` | Unity IAP. |
 | `STP.Platform` | App-Lifecycle, Netzwerkstatus, Safe Area, Haptik und Plattforminformationen. | `STP.Application` | UnityEngine, Input System. |
 | `STP.Audio` | Audio-Cue-Mapping, AudioMixer und Lifecycle. | `STP.Application` | UnityEngine, Addressables. |
-| `STP.Presentation.UI` | UI Toolkit Screens, Presenter, Custom Grid und Navigation. | `STP.Application`, `STP.Puzzle.Domain` | UI Toolkit, Input System, Localization. |
-| `STP.Presentation.World` | Zugfahrt, Kartenwelt, 2D-/2.5D-Renderer und Animation. | `STP.Application`, `STP.Puzzle.Domain` | UnityEngine, URP, Addressables. |
+| `STP.Presentation.UI` | UI Toolkit Screens, Presenter, Custom Grid und Navigation. | `STP.Presentation.World`, `STP.Application`, `STP.Puzzle.Domain` | UI Toolkit, Input System, Localization. |
+| `STP.Presentation.World` | Zugfahrt, Kartenwelt, perspektivischer 3D-Renderer und Animation. | `STP.Application`, `STP.Puzzle.Domain` | UnityEngine, URP, Addressables. |
 | `STP.Bootstrap` | Composition Root, Startreihenfolge, Buildkonfiguration und Szenenentry. | `STP.Application`, `STP.Infrastructure.Content`, `STP.Infrastructure.Persistence`, `STP.MobileServices.Google`, `STP.MobileServices.Store`, `STP.Platform`, `STP.Audio`, `STP.Presentation.UI`, `STP.Presentation.World` | UnityEngine. |
 | `STP.Editor.Content` | Import, Authoringfenster, Batchvalidator und Buildkatalog. | `STP.Puzzle.Domain`, `STP.Puzzle.Solver`, `STP.Infrastructure.Content` | UnityEditor. |
 | `STP.Editor.Build` | Reproduzierbare Buildentrypoints und Preflight. | `STP.Bootstrap` | UnityEditor. |
@@ -131,6 +131,7 @@ flowchart TD
     Audio[STP.Audio] --> App
     UI[STP.Presentation.UI] --> App
     UI --> Domain
+    UI --> World
     World[STP.Presentation.World] --> App
     World --> Domain
     Bootstrap[STP.Bootstrap] --> App

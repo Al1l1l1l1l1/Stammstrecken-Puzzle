@@ -101,8 +101,16 @@ namespace STP.Presentation.World
 
         private void AddLine(Vector2 from, Vector2 to)
         { segments.Add(new Segment(from, to)); length += Vector2.Distance(from, to); }
+        private float travelled;
+        internal Vector2 Behind(float offset)
+        {
+            float at=travelled-offset;
+            if(at>=0)return Sample(Mathf.Min(length,at));
+            var first=segments[0];return first.At(0)+(first.At(1)-first.At(0)).normalized*at;
+        }
         private void UpdatePose(float distance)
         {
+            travelled=distance;
             var rear = Sample(Mathf.Max(0, distance - .17f));
             var front = Sample(Mathf.Min(length, distance + .17f));
             var point = (rear + front) * .5f;
