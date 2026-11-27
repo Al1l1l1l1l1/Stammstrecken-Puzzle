@@ -741,7 +741,7 @@ jobs:
           output = pathlib.Path("TestResults/Station")
           root = ET.parse(output / "graphical.xml").getroot()
           assert root.get("result") == "Passed" and len(root.findall(".//test-case")) == 4
-          for frame in ("baubuero", "candidate-puzzle", "puzzle-10x10", "bahnsteig", "dienstpostfach", "candidate-daily", "dienstausweis", "candidate-settings", "candidate-collection", "stellwerk", "candidate-result", "saisonfinale", "betriebsrevision", "candidate-endless-menu", "candidate-endless-result"):
+          for frame in ("baubuero", "candidate-puzzle", "puzzle-10x10", "zugfahrt", "bahnsteig", "dienstpostfach", "candidate-daily", "dienstausweis", "candidate-settings", "candidate-collection", "stellwerk", "candidate-result", "saisonfinale", "betriebsrevision", "candidate-endless-menu", "candidate-endless-result"):
               data = (output / (frame + ".png")).read_bytes()
               assert data[:8] == bytes.fromhex("89504e470d0a1a0a"), frame
               assert struct.unpack(">II", data[16:24]) == (1080, 2400), frame

@@ -577,7 +577,8 @@ namespace STP.Bootstrap
             if (ride == null) return;
             if (view == null || !ReferenceEquals(view, rideView) || view.AttemptId != rideAttempt || view.Phase != DevelopmentPreviewPhase.TrainRide)
             { DisposeRide(); return; }
-            if (!suspended) ride.Tick(Time.unscaledDeltaTime);
+            // A slow or resumed frame must still show the train before advancing the result sheet.
+            if (!suspended) ride.Tick(Mathf.Min(Time.unscaledDeltaTime, .25f));
             presenter!.ShowRide(ride);
             if (ride.IsFinished) { rideView!.CompleteTrainRide(rideAttempt);gameAudio?.Play("Applause");gameAudio?.Play("TrainArrive");gameAudio?.Play("ResultsOpen"); DisposeRide(); }
         }

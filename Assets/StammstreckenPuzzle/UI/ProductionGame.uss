@@ -333,8 +333,8 @@ Button:active { background-color: #FFE7A0; }
 .result-panel { background-color: #FAEFD4; border-color: #B5A988; border-bottom-color: #84775E; border-radius: 12px; transition-property: translate; transition-duration: .24s; }
 .native-station .result-art, .native-station .result-stars { display: none; }
 .result-time { color: #193D52; font-size: 29px; }
-.stamps { flex-direction: row; justify-content: space-around; }
-.rubber-stamp { color: #933D40; border-width: 2px; border-color: #994C46; border-radius: 5px; padding: 3px 5px; font-size: 12px; white-space: normal; -unity-text-align: middle-center; rotate: -3deg; transition-property: scale; transition-duration: .12s; }
+.stamps { flex-direction: row; justify-content: center; margin-top: 6px; margin-bottom: 6px; }
+.rubber-stamp { width: 29%; min-width: 0; margin-left: 2px; margin-right: 2px; color: #933D40; border-width: 2px; border-color: #994C46; border-radius: 5px; padding: 3px 5px; font-size: 12px; white-space: normal; -unity-text-align: middle-center; rotate: -3deg; transition-property: scale; transition-duration: .12s; }
 .proof-stamp { color: #30736D; font-size: 14px; }
 .coin { position: absolute; background-color: #DFB469; color: #553F2A; padding: 3px 7px; border-radius: 10px; }
 .mail-card, .letter { background-color: #F4E9CE; color: #203742; }

@@ -150,7 +150,8 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(Find<VisualElement>("production-root").Query<Button>().ToList().Any(x => x.name.Contains("batch") || x.name.Contains("multi")), Is.False);
         }
 
-        [UnityTest, Timeout(600000)]
+        // Nineteen separate durable edits each have a bounded wait on the software renderer.
+        [UnityTest, Timeout(1500000)]
         public IEnumerator TenByTen_AllEightToggleTools_ReplaceUndoAutosave_DoNotMoveTargets()
         {
             yield return CreateProfile();
@@ -286,7 +287,7 @@ namespace STP.Tests.Bootstrap.PlayMode
 #endif
         }
 
-        [UnityTest]
+        [UnityTest, Timeout(600000)]
         public IEnumerator Candidate_FirstClearRecordsAndOptionalBonus_ContinueOfflineIntoNextPuzzle()
         {
 #if UNITY_EDITOR && UNITY_INCLUDE_TESTS
@@ -307,10 +308,16 @@ namespace STP.Tests.Bootstrap.PlayMode
             while(installer.Model.State.Status!=SavedReviewStatus.Results&&Time.realtimeSinceStartup<deadline)
             {
                 if(PortraitPass&&!capturedRide&&view.Phase==DevelopmentPreviewPhase.TrainRide)
-                {capturedRide=true;yield return Capture("zugfahrt");}
+                {
+                    for(int frame=0;frame<4;frame++)yield return null;
+                    yield return Capture("zugfahrt");
+                    Assert.That(view.Phase,Is.EqualTo(DevelopmentPreviewPhase.TrainRide),"The captured frame must show the moving train.");
+                    capturedRide=true;
+                }
                 yield return null;
             }
             Assert.That(installer.Model.State.Status,Is.EqualTo(SavedReviewStatus.Results));
+            if(PortraitPass)Assert.That(capturedRide,Is.True,"No rendered ride frame was captured.");
             var state=installer.Model.ConfirmedSnapshot!.Payload;var level=state.Levels.Single(l=>l.Identity.Equals(identity));
             Assert.That(level.FirstClear!.AttemptId,Is.EqualTo(view.AttemptId));
             Assert.That(level.StarsHighWater,Is.EqualTo(3),"Synthetic instant solve is inside the estimated three-star time; estimates stay DRAFT and uncalibrated.");
@@ -711,7 +718,9 @@ namespace STP.Tests.Bootstrap.PlayMode
             {
                 yield return null; AssertRect(cell.worldBound, cellRect); AssertRect(Find<VisualElement>("tool-dock").worldBound, dockRect);
             } while ((!installer.PendingOperation.IsCompleted || installer.Model!.State.IsDirty || installer.Model.State.Status == SavedReviewStatus.Saving) && Time.realtimeSinceStartup < deadline);
-            Assert.That(installer.Model!.State.IsDirty, Is.False);
+            Assert.That(installer.PendingOperation.IsCompleted, Is.True);
+            Assert.That(installer.Model!.State.Status, Is.Not.EqualTo(SavedReviewStatus.Saving));
+            Assert.That(installer.Model.State.IsDirty, Is.False);
             Assert.That(installer.Presenter.HasRequestFault, Is.False);
         }
         private IEnumerator Idle([System.Runtime.CompilerServices.CallerLineNumber] int actionLine=0)
