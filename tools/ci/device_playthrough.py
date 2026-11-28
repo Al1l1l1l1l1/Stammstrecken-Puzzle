@@ -210,15 +210,17 @@ def main():
     adb("shell","wm","density","210")
     storage=last["storage"]
     assert storage.endswith("/Android/data/"+PACKAGE+"/files")
-    initial=command("cat "+shlex.quote(storage+"/star-times-debug.jsonl"))
+    initial=adb("shell", "cat", storage+"/star-times-debug.jsonl")
     src=next(Path("seed").rglob("save.json"))
     relative=src.relative_to(Path("seed")/"DeviceSeed")
     destination=storage+"/"+relative.as_posix()
     adb("shell","am","force-stop",PACKAGE)
     adb("shell","pm","clear",PACKAGE)
-    command("mkdir -p "+shlex.quote(destination.rsplit("/",1)[0]))
-    remote="run-as "+shlex.quote(PACKAGE)+" sh -c "+shlex.quote("cat > "+shlex.quote(destination))
-    subprocess.run(["adb","shell","-T",remote],input=src.read_bytes(),check=True)
+    # Let Android recreate the package's external files directory after clearing its test profile.
+    cold("fresh-profile","home-play")
+    adb("shell","am","force-stop",PACKAGE)
+    adb("shell","mkdir","-p",destination.rsplit("/",1)[0])
+    adb("push",str(src),destination)
     cold("season239","home-play")
     assert last["clears"]==239
     tap("home-play")
@@ -243,7 +245,7 @@ def main():
     tap("map-node-0")
     tap("map-dispatch")
     solve("betriebsrevision")
-    timings=command("cat "+shlex.quote(storage+"/star-times-debug.jsonl"))
+    timings=adb("shell", "cat", storage+"/star-times-debug.jsonl")
     records=[json.loads(line) for line in (initial+"\n"+timings).splitlines() if line.strip()]
     assert len(records)>=6 and all(set(row)=={"puzzleId","size","seconds","notesUsed","hintsUsed"} for row in records)
     metrics["completedEndless"]=len(played)
