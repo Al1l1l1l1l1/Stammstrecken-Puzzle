@@ -66,6 +66,7 @@ def capture(name):
 
 def cold(name, control):
     adb("shell","am","force-stop",PACKAGE)
+    command("mkdir -p files")
     start = time.monotonic()
     adb("shell","am","start","-n",COMPONENT,"--ez","stpDeviceCheck","true")
     wait(lambda p: ready(control,p), name)
@@ -245,3 +246,4 @@ finally:
     (OUT/"measurements.json").write_text(json.dumps(metrics,indent=2),encoding="utf8")
     print(json.dumps(metrics),flush=True)
     if last: capture("last-screen")
+    else: (OUT / "startup.png").write_bytes(adb("exec-out","screencap","-p",raw=True))

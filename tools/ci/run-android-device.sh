@@ -18,7 +18,7 @@ printf 'avd.ini.encoding=UTF-8\npath=%s\ntarget=android-30\n' "$avd" > "$ANDROID
 emulator -list-avds | grep -Fx stp-device
 # The runner's SDK image includes the ARM64 translation needed by the shipped APK.
 sudo chmod 666 /dev/kvm
-emulator -avd stp-device -no-window -no-audio -no-snapshot -no-boot-anim -gpu swiftshader_indirect -memory 4096 -partition-size 2048 > DeviceResults/emulator.log 2>&1 &
+emulator -avd stp-device -no-window -no-audio -no-snapshot -no-boot-anim -gpu software -memory 4096 -partition-size 2048 > DeviceResults/emulator.log 2>&1 &
 emulator_pid=$!
 trap 'tail -100 DeviceResults/emulator.log || true' ERR
 for _ in $(seq 1 60); do
