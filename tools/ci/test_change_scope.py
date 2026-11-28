@@ -339,7 +339,10 @@ class ChangeScopeTests(unittest.TestCase):
             end = len(workflow) if match is None else start + 1 + match.start()
             block = workflow[start:end]
             self.assertIn("changes-preflight", block, job)
-            self.assertIn("requires_unity == 'true'", block, job)
+            if job in ("unity-environment-ios", "unity-ios-export"):
+                self.assertIn("if: ${{ false }} # iOS bis zum iOS-Start deaktiviert", block, job)
+            else:
+                self.assertIn("requires_unity == 'true'", block, job)
         self.assertIn("cancel-in-progress: false", workflow)
 
     def test_candidate_recipe_updates_keep_unaffected_jobs_and_seat_controls(self) -> None:

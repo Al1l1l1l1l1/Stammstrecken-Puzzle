@@ -59,6 +59,7 @@ def tap(name):
 
 
 def capture(name):
+    print(f"Android: {name} ({last.get('status')}, {last.get('clears')} Verbindungen)", flush=True)
     (OUT / (name + ".png")).write_bytes(adb("exec-out","screencap","-p",raw=True))
     (OUT / (name + ".json")).write_text(json.dumps(last, ensure_ascii=False),encoding="utf8")
 
@@ -168,6 +169,7 @@ def home():
 
 
 def select_cosmetic(item):
+    print("Betriebshof: " + item, flush=True)
     action="cosmetic-action-"+item
     for _ in range(40):
         p=page()

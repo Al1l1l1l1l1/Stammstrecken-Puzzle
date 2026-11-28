@@ -53,6 +53,11 @@ on:
   push:
     branches: ["**"]
   workflow_dispatch:
+    inputs:
+      device_run:
+        description: 'Nur WP-049: vorhandene APK und Saisonspielstand erneut auf Android prüfen (Laufnummer)'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -89,11 +94,18 @@ jobs:
       - name: Änderungsklassifikation und ihre deterministischen Negativproben prüfen
         id: classify
         env:
+          DEVICE_RUN: ${{ inputs.device_run }}
           EVENT_BASE: ${{ github.event.before || github.event.pull_request.base.sha }}
           EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           EVENT_MERGE: ${{ github.sha }}
         run: |
           set -euo pipefail
+          if [[ -n "${DEVICE_RUN}" ]]; then
+            [[ "$GITHUB_EVENT_NAME" == workflow_dispatch && "$GITHUB_REF_NAME" == rework/wp-049-abschluss && "$DEVICE_RUN" =~ ^[0-9]+$ ]]
+            echo 'requires_unity=false' >> "$GITHUB_OUTPUT"
+            echo 'unity_status=DEVICE_RECHECK' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
           PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_prepare_coverage.py
           PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_verify_coverage.py
@@ -110,6 +122,9 @@ jobs:
         run: |
           set -euo pipefail
           case "${UNITY_STATUS}" in
+            DEVICE_RECHECK)
+              echo "Nur das installierte Android-Paket wird erneut geprüft."
+              ;;
             REQUIRED)
               echo "Unity source checks REQUIRED: ${UNITY_REASON}"
               ;;
@@ -459,7 +474,7 @@ jobs:
   unity-environment-ios:
     name: unity-environment-ios
     needs: [changes-preflight]
-    if: needs.changes-preflight.outputs.requires_unity == 'true'
+    if: ${{ false }} # iOS bis zum iOS-Start deaktiviert, siehe WP-049
     runs-on: macos-15
     timeout-minutes: 90
     env:
@@ -833,7 +848,7 @@ jobs:
   unity-ios-export:
     name: unity-ios-export
     needs: [changes-preflight, project-preflight, unity-config, unity-android-development-il2cpp]
-    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
+    if: ${{ false }} # iOS bis zum iOS-Start deaktiviert, siehe WP-049
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -962,8 +977,12 @@ jobs:
 
   android-device:
     name: android-device
-    needs: [unity-playmode-bootstrap-smoke, unity-android-development-il2cpp]
-    if: github.ref_name == 'main' || github.ref_name == 'rework/wp-049-abschluss' || github.head_ref == 'rework/wp-049-abschluss'
+    needs: [changes-preflight, unity-playmode-bootstrap-smoke, unity-android-development-il2cpp]
+    if: >-
+      !cancelled() && needs.changes-preflight.result == 'success' &&
+      ((needs.changes-preflight.outputs.unity_status == 'DEVICE_RECHECK' && github.ref_name == 'rework/wp-049-abschluss') ||
+       (needs.unity-playmode-bootstrap-smoke.result == 'success' && needs.unity-android-development-il2cpp.result == 'success' &&
+        (github.ref_name == 'main' || github.ref_name == 'rework/wp-049-abschluss' || github.head_ref == 'rework/wp-049-abschluss')))
     runs-on: ubuntu-24.04
     timeout-minutes: 75
     permissions:
@@ -972,13 +991,19 @@ jobs:
     steps:
       - name: Spiel und Android-Test laden
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - name: Gebaute APK und vorbereiteten Spielstand laden
         env:
           GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.device_run || github.run_id }}
         run: |
-          gh run download "$GITHUB_RUN_ID" -n android-development-il2cpp -D apk
-          gh run download "$GITHUB_RUN_ID" -n playmode-results -D seed
+          source_sha="$(gh run view "$SOURCE_RUN" --json headSha --jq .headSha)"
+          git diff --exit-code "$source_sha" HEAD -- Assets Packages ProjectSettings Content
+          gh run download "$SOURCE_RUN" -n android-development-il2cpp -D apk
+          gh run download "$SOURCE_RUN" -n playmode-results -D seed
       - name: Android-Spiel vom Einstieg bis zur Betriebsrevision bedienen
+        timeout-minutes: 45
         run: bash tools/ci/run-android-device.sh
       - name: Handyansichten und Messwerte aufbewahren
         if: always()
