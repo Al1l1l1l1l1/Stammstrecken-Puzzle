@@ -8,7 +8,14 @@ if [[ "${RUNNER_ENVIRONMENT:-}" == github-hosted ]]; then
   sudo rm -rf /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
 fi
 timeout 10m sdkmanager --install "$image" emulator
-echo no | avdmanager create avd --force --name stp-device --package "$image" --device pixel_4
+export ANDROID_USER_HOME="$RUNNER_TEMP/stp-android"
+export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+mkdir -p "$ANDROID_AVD_HOME"
+avd="$ANDROID_AVD_HOME/stp-device.avd"
+echo no | avdmanager create avd --force --name stp-device --package "$image" --device pixel_4 --path "$avd"
+test -f "$avd/config.ini"
+printf 'avd.ini.encoding=UTF-8\npath=%s\ntarget=android-30\n' "$avd" > "$ANDROID_AVD_HOME/stp-device.ini"
+emulator -list-avds | grep -Fx stp-device
 # The runner's SDK image includes the ARM64 translation needed by the shipped APK.
 sudo chmod 666 /dev/kvm
 emulator -avd stp-device -no-window -no-audio -no-snapshot -no-boot-anim -gpu swiftshader_indirect -memory 4096 -partition-size 2048 > DeviceResults/emulator.log 2>&1 &
