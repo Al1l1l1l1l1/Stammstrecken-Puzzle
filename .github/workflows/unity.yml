@@ -72,6 +72,9 @@ env:
 
 jobs:
   changes-preflight:
+    permissions:
+      actions: read
+      contents: read
     name: changes-preflight
     runs-on: ubuntu-24.04
     outputs:
@@ -95,6 +98,7 @@ jobs:
         id: classify
         env:
           DEVICE_RUN: ${{ inputs.device_run }}
+          GH_TOKEN: ${{ github.token }}
           EVENT_BASE: ${{ github.event.before || github.event.pull_request.base.sha }}
           EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           EVENT_MERGE: ${{ github.sha }}
@@ -102,8 +106,22 @@ jobs:
           set -euo pipefail
           if [[ -n "${DEVICE_RUN}" ]]; then
             [[ "$GITHUB_EVENT_NAME" == workflow_dispatch && "$GITHUB_REF_NAME" == rework/wp-049-abschluss && "$DEVICE_RUN" =~ ^[0-9]+$ ]]
-            echo 'requires_unity=false' >> "$GITHUB_OUTPUT"
-            echo 'unity_status=DEVICE_RECHECK' >> "$GITHUB_OUTPUT"
+            source_sha="$(gh run view "$DEVICE_RUN" --json headSha --jq .headSha)"
+            git merge-base --is-ancestor "$source_sha" HEAD
+            if git diff --quiet "$source_sha" HEAD -- Assets Packages ProjectSettings Content; then
+              echo 'requires_unity=false' >> "$GITHUB_OUTPUT"
+              echo 'unity_status=DEVICE_RECHECK' >> "$GITHUB_OUTPUT"
+            else
+              # Recover a packaging-only error in the serialized sound bank.
+              # Ordinary branches and main always retain the normal compile/test/build chain.
+              git diff --exit-code "$source_sha" HEAD -- Assets Packages ProjectSettings Content \
+                ':!Assets/StammstreckenPuzzle/Scenes/QA/MobilePreview.unity' ':!Assets/StammstreckenPuzzle/Scripts/Editor/Build/MobilePreviewBuild.cs'
+              gh run view "$DEVICE_RUN" --json jobs --jq '.jobs[] | select(.conclusion=="success") | .name' > "$RUNNER_TEMP/passed-jobs"
+              for job in unity-compile-editmode unity-playmode-bootstrap-smoke; do grep -Fx "$job" "$RUNNER_TEMP/passed-jobs"; done
+              python3 tools/rework/rebind_all.py --check
+              echo 'requires_unity=true' >> "$GITHUB_OUTPUT"
+              echo 'unity_status=ANDROID_AUDIO_REBUILD' >> "$GITHUB_OUTPUT"
+            fi
             exit 0
           fi
           PYTHONDONTWRITEBYTECODE=1 python3 tools/ci/test_change_scope.py
@@ -122,6 +140,9 @@ jobs:
         run: |
           set -euo pipefail
           case "${UNITY_STATUS}" in
+            ANDROID_AUDIO_REBUILD)
+              echo "Die gespeicherte Android-Szene wird neu gebaut und auf dem Gerät geprüft."
+              ;;
             DEVICE_RECHECK)
               echo "Nur das installierte Android-Paket wird erneut geprüft."
               ;;
@@ -544,7 +565,7 @@ jobs:
   unity-compile-editmode:
     name: unity-compile-editmode
     needs: [changes-preflight, project-preflight, unity-config]
-    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true' && needs.changes-preflight.outputs.unity_status != 'ANDROID_AUDIO_REBUILD'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -647,7 +668,7 @@ jobs:
   unity-playmode-bootstrap-smoke:
     name: unity-playmode-bootstrap-smoke
     needs: [changes-preflight, project-preflight, unity-config, unity-compile-editmode]
-    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
+    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true' && needs.changes-preflight.outputs.unity_status != 'ANDROID_AUDIO_REBUILD'
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -775,7 +796,10 @@ jobs:
   unity-android-development-il2cpp:
     name: unity-android-development-il2cpp
     needs: [changes-preflight, project-preflight, unity-config, unity-playmode-bootstrap-smoke]
-    if: needs.changes-preflight.outputs.requires_unity == 'true' && needs.unity-config.outputs.ready == 'true'
+    if: >-
+      !cancelled() && needs.project-preflight.result == 'success' && needs.unity-config.outputs.ready == 'true' &&
+      needs.changes-preflight.outputs.requires_unity == 'true' &&
+      (needs.unity-playmode-bootstrap-smoke.result == 'success' || needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD')
     concurrency:
       group: unity-personal-seat
       cancel-in-progress: false
@@ -835,6 +859,12 @@ jobs:
                 --editor-data /opt/unity/Editor/Data \
                 --build-label "${STP_BUILD_LABEL}" --source-binding "${STP_SOURCE_BINDING}"
             '
+
+      - name: Herkunft des Saisonspielstands für den gezielten Gerätetest erhalten
+        if: needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD'
+        env:
+          SEED_RUN: ${{ inputs.device_run }}
+        run: echo "$SEED_RUN" > Builds/CI/Android/seed-run.txt
 
       - name: Android-Buildartefakt archivieren
         if: always()
@@ -980,7 +1010,8 @@ jobs:
     needs: [changes-preflight, unity-playmode-bootstrap-smoke, unity-android-development-il2cpp]
     if: >-
       !cancelled() && needs.changes-preflight.result == 'success' &&
-      ((needs.changes-preflight.outputs.unity_status == 'DEVICE_RECHECK' && github.ref_name == 'rework/wp-049-abschluss') ||
+      ((needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD' && needs.unity-android-development-il2cpp.result == 'success') ||
+       (needs.changes-preflight.outputs.unity_status == 'DEVICE_RECHECK' && github.ref_name == 'rework/wp-049-abschluss') ||
        (needs.unity-playmode-bootstrap-smoke.result == 'success' && needs.unity-android-development-il2cpp.result == 'success' &&
         (github.ref_name == 'main' || github.ref_name == 'rework/wp-049-abschluss' || github.head_ref == 'rework/wp-049-abschluss')))
     runs-on: ubuntu-24.04
@@ -996,12 +1027,15 @@ jobs:
       - name: Gebaute APK und vorbereiteten Spielstand laden
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN: ${{ inputs.device_run || github.run_id }}
+          SOURCE_RUN: ${{ needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD' && github.run_id || inputs.device_run || github.run_id }}
+          SEED_RUN: ${{ inputs.device_run || github.run_id }}
         run: |
           source_sha="$(gh run view "$SOURCE_RUN" --json headSha --jq .headSha)"
           git diff --exit-code "$source_sha" HEAD -- Assets Packages ProjectSettings Content
           gh run download "$SOURCE_RUN" -n android-development-il2cpp -D apk
-          gh run download "$SOURCE_RUN" -n playmode-results -D seed
+          if [[ -f apk/CI/Android/seed-run.txt ]]; then SEED_RUN="$(cat apk/CI/Android/seed-run.txt)"; fi
+          [[ "$SEED_RUN" =~ ^[0-9]+$ ]]
+          gh run download "$SEED_RUN" -n playmode-results -D seed
       - name: Android-Spiel vom Einstieg bis zur Betriebsrevision bedienen
         timeout-minutes: 45
         run: bash tools/ci/run-android-device.sh

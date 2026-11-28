@@ -79,7 +79,18 @@ namespace STP.Editor.Build
                 if(!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Required<TextAsset>(Root+"UI/"+files[i]),out guids[i],out ids[i]))
                     throw new InvalidOperationException("PREVIEW_ENDLESS_ASSET_ID_MISSING");
             VerifyOfflineNoticesAsset();
-            ValidateSceneReferences(File.ReadAllText(ScenePath),AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/MobilePreviewInstaller.cs"),fields,guids,ids);
+            var serializedScene = File.ReadAllText(ScenePath);
+            var bank = Regex.Match(serializedScene, @"(?m)^  audioClips:\r?\n((?:  - \{[^\r\n]+\}\r?\n)+)");
+            var references = Regex.Matches(bank.Groups[1].Value, @"fileID: (\d+), guid: ([0-9a-f]{32}), type: 3");
+            var clips = ProductionAudioAssets.LoadClips();
+            if (references.Count != clips.Length) throw new InvalidOperationException("PREVIEW_AUDIO_BANK_COUNT");
+            for (var i = 0; i < clips.Length; i++)
+            {
+                if (!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(clips[i], out string guid, out long fileId) ||
+                    references[i].Groups[1].Value != fileId.ToString(CultureInfo.InvariantCulture) || references[i].Groups[2].Value != guid)
+                    throw new InvalidOperationException("PREVIEW_AUDIO_BANK_REFERENCE:" + clips[i].name);
+            }
+            ValidateSceneReferences(serializedScene,AssetDatabase.AssetPathToGUID(Root+"Scripts/Bootstrap/MobilePreviewInstaller.cs"),fields,guids,ids);
         }
 
         internal static TextAsset VerifyOfflineNoticesAsset()
