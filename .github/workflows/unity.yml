@@ -54,6 +54,10 @@ on:
     branches: ["**"]
   workflow_dispatch:
     inputs:
+      seed_run:
+        description: 'Optionaler Ursprung des vorbereiteten Saisonspielstands'
+        required: false
+        type: string
       device_run:
         description: 'Nur WP-049: vorhandene APK und Saisonspielstand erneut auf Android prüfen (Laufnummer)'
         required: false
@@ -860,12 +864,6 @@ jobs:
                 --build-label "${STP_BUILD_LABEL}" --source-binding "${STP_SOURCE_BINDING}"
             '
 
-      - name: Herkunft des Saisonspielstands für den gezielten Gerätetest erhalten
-        if: needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD'
-        env:
-          SEED_RUN: ${{ inputs.device_run }}
-        run: echo "$SEED_RUN" > Builds/CI/Android/seed-run.txt
-
       - name: Android-Buildartefakt archivieren
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -1028,12 +1026,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_RUN: ${{ needs.changes-preflight.outputs.unity_status == 'ANDROID_AUDIO_REBUILD' && github.run_id || inputs.device_run || github.run_id }}
-          SEED_RUN: ${{ inputs.device_run || github.run_id }}
+          SEED_RUN: ${{ inputs.seed_run || inputs.device_run || github.run_id }}
         run: |
           source_sha="$(gh run view "$SOURCE_RUN" --json headSha --jq .headSha)"
           git diff --exit-code "$source_sha" HEAD -- Assets Packages ProjectSettings Content
           gh run download "$SOURCE_RUN" -n android-development-il2cpp -D apk
-          if [[ -f apk/CI/Android/seed-run.txt ]]; then SEED_RUN="$(cat apk/CI/Android/seed-run.txt)"; fi
           [[ "$SEED_RUN" =~ ^[0-9]+$ ]]
           gh run download "$SEED_RUN" -n playmode-results -D seed
       - name: Android-Spiel vom Einstieg bis zur Betriebsrevision bedienen
