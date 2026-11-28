@@ -53,7 +53,19 @@ def ready(name, p):
 
 
 def tap(name, p=None):
-    if p is None: p = wait(lambda x: ready(name, x), name)
+    if p is None:
+        p = wait(lambda x: ready(name, x), name)
+        # Result sheets move after a bonus offer or a scrolling gesture.
+        if name.startswith("result-"):
+            previous = None
+            for _ in range(15):
+                target = targets(p).get(name)
+                current = (target["x"], target["y"]) if target and target["enabled"] else None
+                if current is not None and current == previous: break
+                previous = current
+                time.sleep(.4)
+                p = page()
+            else: raise RuntimeError("Schaltfläche bewegt sich: " + name)
     t = targets(p)[name]
     adb("shell", "input", "tap", str(t["x"]), str(t["y"]))
 
@@ -119,7 +131,6 @@ def dismiss_post():
     for _ in range(4):
         p = page()
         if ready("mail-close",p): tap("mail-close",p)
-        elif ready("result-skip-bonus",p): tap("result-skip-bonus",p)
         else: break
 
 
@@ -201,9 +212,9 @@ def home():
     for _ in range(16):
         p=page()
         if ready("home-play",p): return
-        for name in ["mail-close","result-skip-bonus","result-home","map-back","nav-home","puzzle-back"]:
+        for name in ["mail-close","result-home","map-back","nav-home","puzzle-back"]:
             if ready(name,p):
-                tap(name,p)
+                tap(name,p if name=="mail-close" else None)
                 time.sleep(1)
                 break
         else:
