@@ -18,6 +18,7 @@ namespace STP.Presentation.UI
         private readonly Func<SavedReviewUiRequest,Task>? runRequest;
         private readonly Dictionary<string,Button> buttons=new Dictionary<string,Button>(StringComparer.Ordinal);
         private readonly Dictionary<string,Action> actions=new Dictionary<string,Action>(StringComparer.Ordinal);
+        private readonly Dictionary<string,VisualElement> namedElements = new Dictionary<string,VisualElement>(StringComparer.Ordinal);
         private readonly Button[] tools=new Button[9];
         private readonly Button[] nodes=new Button[12];
         private readonly RailwayIllustrationElement homeArt;
@@ -414,7 +415,8 @@ namespace STP.Presentation.UI
             }
             for(var i=0;i<nodes.Length;i++)nodes[i].SetEnabled(clear&&state.CanNavigate&&CanOpen(mapStart+i));
             buttons["map-previous"].SetEnabled(clear&&mapStart>0);buttons["map-next"].SetEnabled(clear&&mapStart<228);
-            RenderCampaignRecords(state.Progress?.Generation??0);RenderErrors(state,clear);RenderScreen();renderedState=state.Version;
+            if (screen == Screen.Profile) RenderCampaignRecords(state.Progress?.Generation ?? 0);
+            RenderErrors(state,clear);RenderScreen();renderedState=state.Version;
             RenderHint();RefreshStation();resultSheet.Refresh();
         }
 
@@ -479,7 +481,14 @@ namespace STP.Presentation.UI
         private bool IsCleared(int index)=>clearedPuzzle?.Invoke(index)??index<(model?.State.Progress?.FirstClearCount??0);
         private bool CanOpen(int index)=>index>=0&&index<240&&(canOpenPuzzle?.Invoke(index)??index<=NextIndex);
         private string L(string key,params object[] args)=>locale.Resolve(key,args);
-        private T Require<T>(string id)where T:VisualElement=>Root.Q<T>(id)??throw new InvalidOperationException("PRODUCT_UI_ELEMENT_MISSING:"+id);
+        private T Require<T>(string id) where T : VisualElement
+        {
+            if (namedElements.TryGetValue(id, out var existing) && existing is T cached &&
+                cached.name == id && Root.Contains(cached)) return cached;
+            var element = Root.Q<T>(id) ?? throw new InvalidOperationException("PRODUCT_UI_ELEMENT_MISSING:" + id);
+            namedElements[id] = element;
+            return element;
+        }
         private void CheckThread(){if(Thread.CurrentThread.ManagedThreadId!=ownerThread)throw new InvalidOperationException("PRODUCT_UI_WRONG_THREAD");}
         private void CheckStartup(){CheckThread();if(disposed)throw new ObjectDisposedException(nameof(ProductionGamePresenter));if(model!=null||assignedReview!=null)throw new InvalidOperationException("PRODUCT_UI_ALREADY_BOUND");}
         private void AddButton(string id,string key,Action action)

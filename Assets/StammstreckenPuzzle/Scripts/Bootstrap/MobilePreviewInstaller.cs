@@ -221,7 +221,9 @@ namespace STP.Bootstrap
         }
 
         /// <summary>Read-only reference and public-catalog preflight.</summary>
-        public void ValidateReferences()
+        public void ValidateReferences() => ValidateReferences(validateCandidateCatalog: true);
+
+        private void ValidateReferences(bool validateCandidateCatalog)
         {
             if (tree == null || styles == null || locale == null || panel == null ||
                 publicData == null || campaignData == null || completionData == null || railwayAssets == null)
@@ -240,7 +242,8 @@ namespace STP.Bootstrap
             else if(candidateBindings!=null)
             {
                 if(cosmeticsData==null)throw new InvalidOperationException("CANDIDATE_COSMETICS_MISSING");
-                MobileCandidateComposition.ValidateCatalogBytes(publicData.bytes,campaignData.bytes,completionData.bytes,cosmeticsData.bytes,candidateBindings.bytes);
+                if (validateCandidateCatalog)
+                    MobileCandidateComposition.ValidateCatalogBytes(publicData.bytes,campaignData.bytes,completionData.bytes,cosmeticsData.bytes,candidateBindings.bytes);
             }
             else SavedPublic240ReviewInstaller.ValidateCatalogData(publicData, campaignData, completionData);
         }
@@ -291,7 +294,8 @@ namespace STP.Bootstrap
         private void Awake()
         {
             started = true;
-            ValidateReferences();
+            // CreateAsync validates the same candidate bytes before opening the save or enabling play.
+            ValidateReferences(validateCandidateCatalog: false);
             clock = new LocalSaveClock();
             dispatcher = new MainThreadSaveDispatcher();
             Document = gameObject.AddComponent<UIDocument>();
