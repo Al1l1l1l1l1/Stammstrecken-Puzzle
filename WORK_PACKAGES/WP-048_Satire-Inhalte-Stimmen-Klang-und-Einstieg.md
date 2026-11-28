@@ -2,7 +2,7 @@
 
 `WP-048`
 
-**Bearbeitungsstatus:** Offen · bereit zur Umsetzung · ein Agent, ein Goal-Mode-Lauf · läuft parallel zu `WP-047`
+**Bearbeitungsstatus:** Abgeschlossen · 28.11.2026 · Merge `96454b20d2e9f95d3a506592ecbafaf68d3d8269`
 
 **Scope-Manifest des gesamten Reworks:** [WP-047.production.scope.json](../tools/architecture-validation/scopes/WP-047.production.scope.json) (gilt auch für dieses Paket; nie verändern)
 
