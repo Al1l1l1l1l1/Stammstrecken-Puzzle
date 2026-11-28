@@ -2,7 +2,7 @@
 
 `WP-049`
 
-**Bearbeitungsstatus:** Offen · startet erst, wenn `WP-047` und `WP-048` auf `rework/manus-rundum-rework` gemergt sind · ein Agent, ein Goal-Mode-Lauf
+**Bearbeitungsstatus:** In Arbeit seit 28. November 2026 · die Android-Spielprüfung läuft.
 
 **Scope-Manifest des gesamten Reworks:** [WP-047.production.scope.json](../tools/architecture-validation/scopes/WP-047.production.scope.json) (gilt auch für dieses Paket; nie verändern)
 
