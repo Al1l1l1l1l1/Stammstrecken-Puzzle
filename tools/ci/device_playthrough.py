@@ -92,6 +92,29 @@ def measure(name, active=None):
     metrics[name + "MiB"] = round(int(match[1].replace(",",""))/1024,1)
 
 
+def capture_unity_profile(storage):
+    remote = storage + "/wp049-android-profiler.raw"
+    options = "-profiler-enable -profiler-log-file " + remote + " -profiler-capture-frame-count 90"
+    adb("shell","wm","size","1080x2400")
+    adb("shell","wm","density","420")
+    adb("shell","am","force-stop",PACKAGE)
+    adb("shell",shlex.join(["am","start","-n",COMPONENT,"--es","unity",options,"--ez","stpDeviceCheck","true"]))
+    previous = 0
+    stable = 0
+    for _ in range(60):
+        time.sleep(2)
+        count = adb("shell", "if test -s " + shlex.quote(remote) +
+                    "; then wc -c < " + shlex.quote(remote) + "; else echo 0; fi")
+        size = int(count)
+        stable = stable + 1 if size > 4096 and size == previous else 0
+        if stable >= 3:
+            output = OUT / "android-profiler.raw"
+            adb("pull",remote,str(output))
+            if output.stat().st_size == size: return
+        previous = size
+    raise RuntimeError("Die Unity-Profilaufzeichnung wurde nicht abgeschlossen")
+
+
 def dismiss_post():
     for _ in range(4):
         p = page()
@@ -272,5 +295,7 @@ try:
 finally:
     (OUT/"measurements.json").write_text(json.dumps(metrics,indent=2),encoding="utf8")
     print(json.dumps(metrics),flush=True)
-    if last: capture("last-screen")
+    if last:
+        capture("last-screen")
+        if last.get("storage"): capture_unity_profile(last["storage"])
     else: (OUT / "startup.png").write_bytes(adb("exec-out","screencap","-p",raw=True))
