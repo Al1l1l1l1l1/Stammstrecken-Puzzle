@@ -14,6 +14,7 @@ if [[ "$(uname -m)" == aarch64 ]]; then
   docker run --detach --name stp-android --privileged --publish 127.0.0.1:5555:5555 "$image" \
     androidboot.use_memfd=true androidboot.redroid_gpu_mode=guest \
     androidboot.redroid_width=1080 androidboot.redroid_height=2400 androidboot.redroid_dpi=420
+  export ANDROID_SERIAL=127.0.0.1:5555
   trap 'docker logs --tail 60 stp-android || true' ERR
   for _ in $(seq 1 60); do
     adb connect 127.0.0.1:5555 || true
