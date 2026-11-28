@@ -13,7 +13,7 @@ namespace STP.Editor.Build
         /// <summary>Versioned central mixer location, consumed by scene composition.</summary>
         public const string MixerPath="Assets/StammstreckenPuzzle/Audio/ProductionAudio.mixer";
         private const string ClipRoot="Assets/StammstreckenPuzzle/Audio/Cues/";
-        private static readonly string[] Files={"ui-tool-focus","grid-empty-mark","grid-occupancy-note","grid-track-seat","grid-clear","ui-undo","completion-route-reveal","train-start","train-roll","train-arrive","results-panel-open","completion-clearance","ambience-scene-open","music-workshop","train-curve"};
+        private static readonly string[] Files={"ui-tool-focus","grid-empty-mark","grid-occupancy-note","grid-track-seat","grid-clear","ui-undo","completion-route-reveal","train-start","train-roll","train-arrive","results-panel-open","completion-clearance","ambience-scene-open","music-workshop","train-curve","station-gong","board-flap","proof-stamp","platform-applause","commuter-sigh","pigeon-wings","door-beep","rail-brake","speaker-crackle"};
         /// <summary>Applies the explicit PCM preset and creates missing mixer buses through Unity's pinned editor implementation.</summary>
         public static void EnsureAssets()
         {
@@ -49,7 +49,7 @@ namespace STP.Editor.Build
         }
         /// <summary>Loads the required central mixer after EnsureAssets.</summary>
         public static AudioMixer LoadMixer()=>AssetDatabase.LoadAssetAtPath<AudioMixer>(MixerPath)??throw new InvalidOperationException("AUDIO_MIXER_MISSING");
-        /// <summary>Loads exactly fifteen imported cues in the documented runtime semantic order.</summary>
+        /// <summary>Loads the imported cues in the documented runtime semantic order.</summary>
         public static AudioClip[] LoadClips()
         {var result=new AudioClip[Files.Length];for(var i=0;i<Files.Length;i++)result[i]=AssetDatabase.LoadAssetAtPath<AudioClip>(ClipRoot+Files[i]+".wav")??throw new InvalidOperationException("AUDIO_CLIP_MISSING:"+Files[i]);return result;}
     }

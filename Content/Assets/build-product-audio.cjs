@@ -12,9 +12,44 @@ const definitions=[
  ["completion-route-reveal",.31,.14,"SFX","unlatch"],["train-start",.45,.11,"SFX","motor-start"],
  ["train-roll",.8,.09,"Ambience","roll"],["train-arrive",.34,.13,"SFX","arrival"],
  ["results-panel-open",.16,.1,"UI","paper"],["completion-clearance",.22,.1,"SFX","brush"],
- ["ambience-scene-open",4,.035,"Ambience","air"],["music-workshop",12,.025,"Music","music"],["train-curve",.14,.07,"SFX","graphite"]
+ ["ambience-scene-open",4,.035,"Ambience","air"],["music-workshop",12,.025,"Music","music"],["train-curve",.14,.07,"SFX","graphite"],
+ ["station-gong",1.22,0.11,"SFX","Gong"],
+ ["board-flap",0.47,0.1,"UI","Flap"],
+ ["proof-stamp",0.26,0.13,"UI","Stamp"],
+ ["platform-applause",1.36,0.12,"SFX","Applause"],
+ ["commuter-sigh",1.12,0.065,"SFX","Sigh"],
+ ["pigeon-wings",0.72,0.08,"SFX","Pigeons"],
+ ["door-beep",0.52,0.075,"SFX","DoorBeep"],
+ ["rail-brake",0.86,0.07,"SFX","Brake"],
+ ["speaker-crackle",0.49,0.075,"SFX","Crackle"]
 ];
-const manifest={version:1,approvalStatus:"DRAFT",origin:"Original deterministic synthesis for Stammstrecken-Puzzle WP046",source:"Content/Assets/build-product-audio.cjs",sourceSha256:crypto.createHash("sha256").update(fs.readFileSync(__filename)).digest("hex"),sampleRate:rate,channels:1,bitsPerSample:24,externalSources:[],rightsNote:"Original waveform synthesis authored in repository; no external samples, recordings, spoken announcements or copied jingles. No legal or hearing approval is asserted.",importPreset:"stp-audio-pcm-v1",cues:[]};
+const manifest={version:1,approvalStatus:"DRAFT",origin:"Original deterministic synthesis for Stammstrecken-Puzzle",source:"Content/Assets/build-product-audio.cjs",sourceSha256:crypto.createHash("sha256").update(fs.readFileSync(__filename,"utf8").replace(/\r\n/g,"\n")).digest("hex"),sampleRate:rate,channels:1,bitsPerSample:24,externalSources:[],rightsNote:"Original waveform synthesis authored in repository; no external samples, recordings, spoken announcements or copied jingles. No legal or hearing approval is asserted.",importPreset:"stp-audio-pcm-v1",cues:[]};
+// Each time marks a different sheet, hand, or wing. Silence between impacts is intentional.
+const sheetTimes=[0,.036,.079,.13,.194,.273,.36];
+const clapTimes=[.12,.39,.48,.73,.89,.97,1.19];
+const wingTimes=[0,.053,.13,.224,.34,.49];
+function impact(t, at, decay) {
+ const age=t-at;
+ return age<0?0:Math.exp(-age/decay);
+}
+function stationSound(kind,t,u,white,low) {
+ const wave=phase=>Math.sin(2*Math.PI*phase);
+ switch(kind){
+ case "Gong": {
+   const bell=(freq,at)=>impact(t,at,.26)*(wave(freq*(t-at))+.15*wave(2.37*freq*(t-at)));
+   return .56*bell(431,0)+.44*bell(558,.32);
+ }
+ case "Flap": return sheetTimes.reduce((sum,at)=>sum+impact(t,at,.009)*(white+.38*wave(870*(t-at))),0);
+ case "Stamp": return impact(t,.014,.053)*(.75*wave(78*t)+.28*low)+.27*impact(t,.082,.018)*white;
+ case "Applause": return clapTimes.reduce((sum,at,i)=>sum+impact(t,at,.023)*(i%2?low:white)*(.68+.3*wave(730*t)),0);
+ case "Sigh": return Math.sin(Math.PI*u)**1.6*low*(.68+.21*wave(310*t-52*t*t)+.1*wave(588*t-69*t*t));
+ case "Pigeons": return wingTimes.reduce((sum,at)=>sum+impact(t,at,.031)*low*(.6+.35*wave(64*t)),0);
+ case "DoorBeep": return (impact(t,0,.088)+impact(t,.27,.088))*(wave(884*t)+.12*wave(1768*t));
+ case "Brake": return Math.sin(Math.PI*u)**1.4*(.55*wave(1130*t-270*t*t)+.28*wave(1820*t-390*t*t)+.17*low);
+ case "Crackle": return (.08+.92*Math.max(0,wave(19*t+.13*wave(33*t)))**14)*(white-low);
+ default: return 0;
+ }
+}
 for(let index=0;index<definitions.length;index++){
  const[id,duration,peak,group,kind]=definitions[index],frames=Math.round(rate*duration),values=new Float64Array(frames);
  let seed=0x78126341+index*731,low=0,max=0,sum=0;
@@ -22,7 +57,7 @@ for(let index=0;index<definitions.length;index++){
  for(let i=0;i<frames;i++){
   const t=i/rate,u=i/(frames-1),white=noise();low=.73*low+.27*white;
   const edges=Math.min(1,t/.004,(duration-t)/.012),envelope=Math.max(0,edges);
-  let sample=0;
+  let sample=index>=15?stationSound(kind,t,u,white,low):0;
   if(kind==="paper")sample=(.8*low+.18*white)*Math.exp(-t/Math.max(.018,duration*.22));
   if(kind==="graphite")sample=(.8*low+.2*white)*Math.sin(Math.PI*u)**1.8*(.7+.3*Math.sin(t*127));
   if(kind==="brush")sample=low*Math.sin(Math.PI*u)**1.4*(.75+.25*Math.cos(t*151));

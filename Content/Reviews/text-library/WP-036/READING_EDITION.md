@@ -56,7 +56,7 @@ Ergebnis: Der Anschluss steht noch da. Die Durchsage muss ihre Entschuldigung ab
 
 Status: Der Bus hält hinter dem Bauzaun. Die Abfahrt gilt als angeboten.
 
-Ergebnis: Die Strecke ist frei. Der Ersatzbus darf wieder eine erreichbare Haltestelle bedienen.
+Ergebnis: Der Zug hält wieder vor dem Ausgang. Der Zaun kann bleiben, wo er ist.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 1 ist mit Count 4 vollständig belegt. Sie liefert einen waagerechten Belegungsanker zwischen beiden Rasterseiten.
 
@@ -102,9 +102,9 @@ Ergebnis: Ihr Zug fährt zur angegebenen Zeit. Die Pressestelle spricht von eine
 
 ### S1-01-02-01 · Rotes Signal am Tunnel
 
-Status: Der Zug wartet vor dem Tunnel. Feierabend gilt nur für die Büros.
+Status: Rot vor dem Tunnel. Seit Ihrem letzten Feierabend.
 
-Ergebnis: Sie können „Bin gleich da“ jetzt senden. Hinter dem grünen Signal liegt wieder Feierabend.
+Ergebnis: Hinter Ihrem Fenster wird es dunkel. Der Zug ist endlich im Tunnel.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 2 hat bei Breite 4 Count 4. Alle vier Zellen sind belegt; die größere Höhe ändert diesen sicheren Schluss nicht.
 
@@ -160,7 +160,7 @@ Ergebnis: Der geschlossene Kiosk bleibt zurück. Ihr Abendessen muss nicht mehr 
 
 Status: Die Tafel meldet Abfahrt. Der Zug nimmt die Meldung zur Kenntnis.
 
-Ergebnis: Die Tafel und der Zug melden Abfahrt. Der Zug tut es mit Rädern.
+Ergebnis: Ihr Zug rollt vom Gleis. Jetzt darf die Tafel die Zeile umblättern.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 hat Count 0 und bleibt leer. So sind alle Fortsetzungen aus Zeile 1 nach Norden ausgeschlossen.
 
@@ -168,7 +168,7 @@ Ergebnis: Die Tafel und der Zug melden Abfahrt. Der Zug tut es mit Rädern.
 
 Status: Der Ersatzbus steht an der Ampel. Rot bleibt Teil des Angebots.
 
-Ergebnis: Sie steigen aus dem Bus in den Zug. Der Ersatz ersetzt diesmal tatsächlich etwas.
+Ergebnis: Der Zug zieht am Fenster des wartenden Busses vorbei. Die Ampel zeigt immer noch Rot.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0, 1 und 2 haben Count 0 und sind leer. Übrig bleiben nur Zeilen 3 und 4 für die geforderten Gleisfelder.
 
@@ -272,7 +272,7 @@ Ergebnis: Der Anschluss fährt noch heute. Die Bank muss kein Bett mehr darstell
 
 Status: Der Aushang empfiehlt den Zug von gestern. Heute ist er pünktlich.
 
-Ergebnis: Sie steigen in den Zug von heute. Der Aushang wird als Zukunftsprojekt gefeiert.
+Ergebnis: Sie steigen ein. Auf der Fahrkarte steht heute dasselbe Datum wie auf Ihrer Uhr.
 
 **INTERN · Einstieg:** Nullbasiert: B an S/2 belegt (2,4), das einzige geforderte Gleisfeld der untersten Zeile. Ihre anderen Felder bleiben leer.
 
@@ -336,15 +336,15 @@ Ergebnis: Noch während der Ansage rollen wir los. Die neue Abfahrtszeit wird un
 
 Status: Der Zug endet am nächsten Halt. Ihr Ziel wurde aus dem Plan entfernt.
 
-Ergebnis: Die Durchsage nennt Ihr Ziel. Diesmal dürfen Sie bis dorthin sitzen bleiben.
+Ergebnis: Die Türen öffnen in Ihrem Ort. Am Fenster wartet schon jemand mit Ihrem Regenschirm.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 3 hat Count 0 und bleibt vollständig leer. Der verfügbare Bereich ist auf die drei linken Spalten begrenzt.
 
-### S1-01-04-07 · Anschluss fährt jetzt früher
+### S1-01-04-07 · Zum Anschluss nur bei Rückenwind
 
-Status: Ihr Anschluss fährt vor Ihrer Ankunft. Im Plan gilt das als Umstieg.
+Status: Im Tunnel gibt es Gegenwind. Beim Weg zum Anschluss rechnet der Fahrplan mit Rückenwind.
 
-Ergebnis: Ihr Anschluss steht noch am Gleis. Die Verbindung besteht heute auch außerhalb des Plans.
+Ergebnis: Sie steigen um. Zum ersten Mal hat der Fahrplan Ihre Gehgeschwindigkeit getroffen.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist leer. A an S/0 belegt (0,4); die beiden vollen Zeilen 2 und 3 liefern zusätzlich sichere Queranker.
 
@@ -368,15 +368,15 @@ Ergebnis: Sie fahren am Montag nach Montagsplan. Die Pressestelle meldet eine ga
 
 Status: Der Ersatzbus fährt laut Aushang stündlich. Gemeint ist eine Stunde im Jahr.
 
-Ergebnis: Der Bus bringt Sie zum Zug. Der Aushang hat für diesen Fall keine weitere Fußnote.
+Ergebnis: Sie sitzen im Zug. Für die Heimfahrt reicht jetzt ein Blick auf die Uhr statt in den Kalender.
 
 **INTERN · Einstieg:** Nullbasiert: A an E/0 belegt (3,0). Zeile 0 hat Count 1, weshalb ihre drei anderen Zellen leer bleiben.
 
-### S1-01-04-11 · Abfahrt auf gestern vorverlegt
+### S1-01-04-11 · Abfahrt unter dem Klebestreifen
 
-Status: Die Tafel meldet Ihre Abfahrt von gestern. Der Zug steht zur Bestätigung noch hier.
+Status: Das neue Datum klebt auf der Tafel. Die Uhrzeit klebt noch darunter.
 
-Ergebnis: Die Räder bewegen sich. Damit ist Ihre Abfahrt nun auch außerhalb der Akten erfolgt.
+Ergebnis: Der Zug fährt ein. Jemand löst vorsichtig den Klebestreifen von der Uhrzeit.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 hat Count 5 und ist vollständig belegt. A an W/4 fixiert dort den Westanschluss des unteren Felds (0,4).
 
@@ -408,7 +408,7 @@ Ergebnis: Sie sitzen im Zug. Der Ausgang hat seine Aufgabe als Eingang erfüllt.
 
 Status: Die Durchsage erklärt den Baulärm. Verständlich bleibt nur der Presslufthammer.
 
-Ergebnis: Die Durchsage nennt Ihr Ziel. Der Zug fährt sogar dorthin.
+Ergebnis: Sie hören die Türen schließen. Zum ersten Mal heute übertönt etwas den Presslufthammer.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 1 haben Count 0 und bleiben leer. Spalte 3 ist mit Count 5 vollständig belegt.
 
@@ -416,7 +416,7 @@ Ergebnis: Die Durchsage nennt Ihr Ziel. Der Zug fährt sogar dorthin.
 
 Status: Der Ersatzbus steht im Stau. Der Fahrplan setzt eine freie Straße voraus.
 
-Ergebnis: Im Ersatzbus bleiben die Sitze leer: Die Schienen sind wieder schneller als der Stau.
+Ergebnis: Am Zugfenster zieht die stehende Autoschlange vorbei. Das letzte Auto war vorhin noch das erste.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 4 hat Count 0 und ist leer; Zeile 1 hat Count 5 und ist voll. Beide Grenzen sind unmittelbar aus den Randzahlen sicher.
 
@@ -464,7 +464,7 @@ Ergebnis: Die Wand ist weg. Der Zug fährt und wird wieder als vorhanden geführ
 
 Status: Bitte folgen Sie den gelben Pfeilen. Ihr Rundweg ersetzt heute die Abfahrt.
 
-Ergebnis: Bitte steigen Sie ein; wir fahren weiter. Der Rundweg ist heute nicht im Preis enthalten.
+Ergebnis: Sie steigen ein. Der gelbe Pfeil zeigt immer noch zurück zum Eingang.
 
 **INTERN · Einstieg:** Nullbasiert: B an W/0 erzwingt (0,0). Zeile 0 hat Count 1, daher bleiben ihre anderen vier Felder leer.
 
@@ -520,7 +520,7 @@ Ergebnis: Sie sitzen im Zug. Die Treppe zählt nicht mehr zur heutigen Strecke.
 
 Status: Der Ersatzbus steht im Stau. Auch auf der Straße reicht eine Spur.
 
-Ergebnis: Der Zugbegleiter meldet freie Fahrt. Den Busanschluss dürfen Sie diesmal verpassen.
+Ergebnis: Das zweite Gleis ist frei. Ihr Zug passiert den Engpass vor der nächsten Grünphase.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 3 und 4 haben Count 5 und sind voll. A an N/4 fixiert zunächst den Nordport der Zelle (4,0), nicht ohne weitere Schlüsse deren gesamte Form.
 
@@ -630,9 +630,9 @@ Ergebnis: Ihr Zugbegleiter bestätigt die Abfahrt. Die Erlaubnis gilt erstmals f
 
 ### S1-02-03-07 · Kaffee kalt vor dem roten Signal
 
-Status: Der Kaffee im Zug ist kalt. Als Ursache gilt die laufende Warmhaltephase.
+Status: Vor dem roten Signal wird Ihr Kaffee kalt. Das Bordbistro verkauft ihn jetzt als Sommergetränk.
 
-Ergebnis: Ihr Kaffee ist noch kalt, aber endlich unterwegs. Dies gilt als Ende der Warmhaltephase.
+Ergebnis: Der Zug fährt. Beim nächsten Becher reicht es wieder für warmen Kaffee.
 
 **INTERN · Einstieg:** Nullbasiert: B an N/0 erzwingt (0,0). Spalte 0 hat Count 1, weshalb ihre anderen vier Zellen leer bleiben.
 
@@ -672,7 +672,7 @@ Ergebnis: Die Fahrt beginnt noch in diesem Jahr. Am Bahnsteig werden die Kalende
 
 Status: Der Zug darf weiterfahren. Die Erlaubnis erlischt, sobald er sich bewegt.
 
-Ergebnis: Wir fahren trotzdem. Das Stellwerk bestätigt einen ordnungsgemäßen Stillstand.
+Ergebnis: Die Räder rollen. Das grüne Signal hat auch aus dem Rückfenster Bestand.
 
 **INTERN · Einstieg:** Nullbasiert: Spalte 0 ist mit Count 5 voll. A an W/4 fixiert den Westport im unteren Feld (0,4); die weiteren Formen sind noch offen.
 
@@ -696,7 +696,7 @@ Ergebnis: Der Anschluss ist erreicht. Das Schild bestätigt Ihre Ankunft im Nach
 
 Status: Zum Anschluss nehmen Sie die Treppe. Stufenlos ist nur der Lageplan.
 
-Ergebnis: Koffer und Fahrgast sind im Zug. Der Lageplan meldet einen barrierefreien Umstieg.
+Ergebnis: Sie rollen den Koffer in den Wagen. Heute hört man die Rollen bis zur Tür.
 
 **INTERN · Einstieg:** Nullbasiert: Zeilen 0, 1 und 2 haben Count 0 und bleiben leer. Sämtliche Gleisfelder müssen in den beiden unteren Zeilen liegen.
 
@@ -752,7 +752,7 @@ Ergebnis: Ihr Rollkoffer rollt in den Wagen. Die Abfahrt erfolgt noch im Jahr de
 
 Status: Die Tafel kündigt den Bus an Gleis 6 an. Die Straße ist noch nicht bestellt.
 
-Ergebnis: Der Anschluss fährt als Zug. Damit konnte auf die Straße verzichtet werden.
+Ergebnis: Der Zug steht auf Gleis 6. Für die Straße muss heute niemand den Bahnsteig aufreißen.
 
 **INTERN · Einstieg:** Nullbasiert: Spalten 0 und 1 sind bei Count 5 voll; Spalte 5 hat Count 0 und bleibt leer. Das begrenzt die große sichere Belegungsfläche.
 
@@ -928,7 +928,7 @@ Ergebnis: Ihr Koffer steht im Wagen. Die übrige Strecke übernimmt tatsächlich
 
 Status: Wagen 2 ist doppelt vorhanden. Damit gilt Wagen 3 als ersetzt.
 
-Ergebnis: Jeder Wagen trägt eine andere Nummer. Die Tafel meldet einen Rückgang der Kapazität.
+Ergebnis: Ihr Wagen trägt nur noch eine Zwei. Sie haben auch nur noch einen Sitznachbarn mit Ihrem Platz.
 
 **INTERN · Einstieg:** Nullbasiert: Zeile 0 ist bei Count 0 leer. B an W/1 belegt (0,1), das einzige geforderte Feld von Zeile 1; ihr Rest bleibt leer.
 
@@ -992,7 +992,7 @@ Ergebnis: Die Türen öffnen noch einmal. Die Durchsage ist erstmals praktisch n
 
 Status: Bitte gehen Sie zum vorderen Wagen. Ihr Anschluss steht im selben Zug.
 
-Ergebnis: Die Zugbegleitung meldet alle Türen geschlossen. Diesmal sind Sie auf der richtigen Seite.
+Ergebnis: Vorn geht die Tür auf. Sie schaffen den Umstieg in denselben Zug.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 fordert bei Höhe 6 alle sechs Felder. (0,0) bis (0,5) sind sichere Belegung, ohne bereits ihre Formen festzulegen.
 
@@ -1024,7 +1024,7 @@ Ergebnis: Der Wagen erreicht den Bahnsteig statt der Halle. Feierabend ist nun a
 
 Status: Die Tafel schickt Sie zu Gleis 2. Ihr Wagen bleibt zur besseren Übersicht auf Gleis 1.
 
-Ergebnis: Auf Gleis 2 wartet der ganze Zug. Die Übersicht hat ihren Widerstand aufgegeben.
+Ergebnis: Beide Hälften rollen auf Gleis 2 ein. Die hintere kommt diesmal bis zu Ihrem Koffer.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 erzwingt (0,0). Da Zeile 0 Count 1 hat, sind (1,0) bis (6,0) leer.
 
@@ -1040,7 +1040,7 @@ Ergebnis: Die Wagen fahren gemeinsam weiter. Der Bus muss heute keinen Zug zusam
 
 Status: Am Bahnsteig hängt der Plan zur Weiterfahrt. Beide Teile trafen sich gestern.
 
-Ergebnis: Die Verbindung steht, der Zug fährt. Heute wurde trotz abweichender Planung zugelassen.
+Ergebnis: Vorn ruckt es kurz. Hinten wackelt Ihr Kaffee. Die Kupplung hält.
 
 **INTERN · Einstieg:** 0-basiert: B an N/0 erzwingt (0,0). Spalte 0 hat Count 1; (0,1) bis (0,5) sind daher leer.
 
@@ -1072,7 +1072,7 @@ Ergebnis: Sie sitzen im Anschlusszug. Die Weiterfahrt findet diesmal mit Ihnen s
 
 Status: Die Tafel zeigt Ihren Anschluss. Am Gleis steht nur seine Abfahrtszeit.
 
-Ergebnis: Zur Anzeige ist ein Zug eingetroffen. Sie können jetzt auch körperlich weiterreisen.
+Ergebnis: Der Anschluss steht am Gleis. Seine Abfahrtszeit hat jetzt auch einen Türgriff.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 2 bis 6 haben jeweils Count 0. Ihre 30 Felder bleiben leer; die beiden aktiven Spalten 0 und 1 haben jeweils Count 5.
 
@@ -1096,7 +1096,7 @@ Ergebnis: Sie haben den Zug erreicht. Die Treppe wurde nicht als Zwischenaufenth
 
 Status: Der nächste Zug kommt in einer Stunde. Ihr Kaffee ist schneller kalt.
 
-Ergebnis: Ihr Kaffee bleibt kalt. Als Reiseergebnis kommt jetzt ein erreichter Bahnhof hinzu.
+Ergebnis: Die Stunde ist um. Ihr Zug kommt gerade rechtzeitig für den letzten kalten Schluck.
 
 **INTERN · Einstieg:** 0-basiert: A an N/3 belegt (3,0). Count 1 in Zeile 0 schließt (0,0), (1,0), (2,0), (4,0), (5,0) und (6,0) aus.
 
@@ -1112,7 +1112,7 @@ Ergebnis: Laut Durchsage dürfen Sie einsteigen. Der Halt findet diesmal außerh
 
 Status: Der Ersatzbus endet vor dem Bahnhof. Das letzte Stück ersetzt Ihr Fußweg.
 
-Ergebnis: Vom Bus zum Zug hat es gereicht. Ihre Schuhe werden nicht mehr als Verkehrsmittel benötigt.
+Ergebnis: Der Zug hält wieder im Ort. Ihre Schuhe bekommen den versprochenen Sitzplatz unter der Bank.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 2 hat Count 6 bei Höhe 6. Alle Felder (2,0) bis (2,5) sind belegt; dieser Vollanker verbindet die Zeileninformationen.
 
@@ -1152,7 +1152,7 @@ Ergebnis: Sie fahren noch heute weiter. Die Tafel bittet um Verständnis für de
 
 Status: Ihr Anschluss ist im Fahrplan erreichbar. Bitte steigen Sie in den Aushang.
 
-Ergebnis: Bitte nehmen Sie im Wagen Platz. Wir fahren weiter. Der Aushang bleibt Wandverkleidung.
+Ergebnis: Sie nehmen am Fenster Platz. Der Aushang fährt draußen vorbei.
 
 **INTERN · Einstieg:** 0-basiert: A an W/0 belegt (0,0). Der Einsercount in Spalte 0 lässt (0,1) bis (0,5) leer; die Fortsetzung muss innerhalb der oberen Zeile liegen.
 
@@ -1176,7 +1176,7 @@ Ergebnis: Sie sitzen im Zug. Der längste Abschnitt wurde zu Fuß erledigt.
 
 Status: Der Ersatzbus hält hinter dem Parkhaus. Ab hier fährt nur Ihr Rollkoffer.
 
-Ergebnis: Der Bus fährt mit Ihnen ab. Die Haltestelle war keine reine Suchaufgabe.
+Ergebnis: Sie sehen das Parkhaus durchs Zugfenster. Den Weg um die Rückseite übernimmt heute das Gleis.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 6 haben Count 0. In Zeilen 0, 2, 4 und 6 verbleiben jeweils fünf mögliche Felder für Count 5; diese Felder in Spalten 1 bis 5 sind belegt.
 
@@ -1184,7 +1184,7 @@ Ergebnis: Der Bus fährt mit Ihnen ab. Die Haltestelle war keine reine Suchaufga
 
 Status: Der Bus fährt zum nächsten Bahnhof. Unterwegs bedient er den ganzen Landkreis.
 
-Ergebnis: Sie steigen in den Zug. Die Rundfahrt war im Fahrpreis enthalten.
+Ergebnis: Der Zug erreicht den Nachbarbahnhof, bevor die Ortsnamen auf der alten Liste zu Ende sind.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 1 haben jeweils Count 7 bei Höhe 7 und sind vollständig belegt. Spalten 5 und 6 haben Count 0 und bleiben leer.
 
@@ -1216,7 +1216,7 @@ Ergebnis: Ein Zug hält und nimmt Sie mit. Der Bahnhof hat wieder einen Zweck.
 
 Status: Der Aushang führt Sie zur Ersatzhaltestelle. Dort hängt derselbe Aushang.
 
-Ergebnis: Der letzte Pfeil endet an einer Bustür. Sie dürfen tatsächlich einsteigen.
+Ergebnis: Der letzte Pfeil zeigt aufs Gleis. Hinter der offenen Tür wartet ein Zugabteil.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 6 hat Count 7 bei Breite 7. Ihre Felder (0,6) bis (6,6) sind sicher belegt; die Form der Queranbindung bleibt offen.
 
@@ -1232,7 +1232,7 @@ Ergebnis: Sie kommen noch heute an. Die Tafel verzichtet auf die zusätzlichen T
 
 Status: Die Umleitung steht auf der Karte. Bitte drehen Sie den Globus weiter.
 
-Ergebnis: Die Pressestelle meldet die Ankunft. Als Abkürzung wurde derselbe Kontinent genutzt.
+Ergebnis: Der Zug hält am Ziel. Sie können den Globus wieder ins Regal stellen.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 0. Die Felder (0,0) bis (6,0) bleiben leer; sämtliche mögliche Belegung liegt in Zeilen 1 bis 6.
 
@@ -1260,11 +1260,11 @@ Ergebnis: Sie sind am Ziel. Der Nachbarort muss heute ohne Sie auskommen.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 4, 5 und 6 sowie Zeilen 5 und 6 haben Count 0. Alle ihre Felder sind leer; die mögliche Belegung liegt in Spalten 0 bis 3 und Zeilen 0 bis 4.
 
-### S1-04-02-02 · Abfahrt am anderen Bahnsteig
+### S1-04-02-02 · Durchs Tal zum Bahnsteig
 
-Status: Ihr Zug fährt von Gleis 8. Die Treppe dorthin zählt bereits als Reisezeit.
+Status: Gleis und Eingang liegen auf derselben Höhe. Dazwischen hat der Plan ein ganzes Tal vorgesehen.
 
-Ergebnis: Die Durchsage meldet Ihre Abfahrt. Sie stehen tatsächlich am genannten Gleis.
+Ergebnis: Sie steigen oben in den Zug. Ihre Wanderschuhe bleiben im Gepäck.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 2 haben jeweils Count 7 bei Höhe 7. (0,0) bis (0,6) und (2,0) bis (2,6) sind belegt.
 
@@ -1280,7 +1280,7 @@ Ergebnis: Um 10.01 Uhr steigen Sie um. Der Anschluss wartet ohne Eingriff in die
 
 Status: Der Ersatzbus hält am Ortsrand. Der Fußweg ersetzt die erste Zugfahrt.
 
-Ergebnis: Der Bus erreicht den Bahnhof. Sie müssen nur noch einsteigen, nicht hinwandern.
+Ergebnis: Sie kommen mitten im Ort an. Der Fußweg beginnt heute erst nach der Zugfahrt.
 
 **INTERN · Einstieg:** 0-basiert: B an S/3 erzwingt (3,6). Zeile 6 fordert ein einziges Gleisfeld; ihre anderen sechs Felder bleiben leer.
 
@@ -1368,7 +1368,7 @@ Ergebnis: Sie sind zurück im Bahnhof. Diesmal dürfen Sie mit dem Zug hinaus.
 
 Status: Der Ersatzbus hält hinter dem Bahnhof. Der Lageplan endet davor.
 
-Ergebnis: Der Bus hat Sie zum Zug gebracht. Die Durchsage bedankt sich für Ihre Ortskenntnis.
+Ergebnis: Der Zug hält wieder im eingezeichneten Teil der Karte. Sie können die Rückseite zusammenfalten.
 
 **INTERN · Einstieg:** 0-basiert: A an S/1 belegt (1,6). Zeile 6 fordert nur ein Gleisfeld; (0,6) und (2,6) bis (6,6) bleiben leer.
 
@@ -1404,11 +1404,11 @@ Ergebnis: Alle Tafeln zeigen denselben Bahnsteig. Die Pressestelle meldet zwei G
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0, 2 und 4 haben jeweils Count 8. Sämtliche Felder dieser drei Spalten sind bei Höhe 8 belegt.
 
-### S1-04-03-08 · Umleitung zurück zum Startbahnhof
+### S1-04-03-08 · Die Brücke für eine Richtung
 
-Status: Ihre Fahrt führt über den Startbahnhof. Die Rückkehr zählt als Fortschritt.
+Status: Die Brücke ist vorläufig nur stadtauswärts frei. Stadteinwärts geht es über dieselbe Brücke zurück.
 
-Ergebnis: Vor dem Fenster erscheint ein neuer Bahnhof. Die Fahrt geht diesmal wirklich weiter.
+Ergebnis: Ihr Zug erreicht das andere Ufer. Der Fluss muss heute nur einmal unter Ihnen durch.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 6 hat Count 8 und ist vollständig belegt. In den Zeilen 4 und 5 mit Count 1 liegen damit nur (6,4) und (6,5); ihre anderen Felder sind leer.
 
@@ -1456,7 +1456,7 @@ Ergebnis: Sie sitzen im Zug. Die andere Straßenseite war tatsächlich der richt
 
 Status: Der Ersatzbus hält hinter dem Bahnhof. Die Abkürzung endet am Bauzaun.
 
-Ergebnis: Der Bus hat Sie zum Zug gebracht. Ihr Rollkoffer darf ab hier wieder rollen.
+Ergebnis: Hinter Ihnen verschwindet der Bauzaun. Vor Ihnen fährt der Kaffeewagen durch den Zug.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 fordert alle acht Felder (0,0) bis (7,0). Spalte 6 fordert alle acht Felder (6,0) bis (6,7); beide Vollanker kreuzen sich in (6,0).
 
@@ -1464,15 +1464,15 @@ Ergebnis: Der Bus hat Sie zum Zug gebracht. Ihr Rollkoffer darf ab hier wieder r
 
 Status: Die Treppe zum Bus ist gesperrt. Der Umweg führt zum ausgefallenen Zug.
 
-Ergebnis: Der Weg zum Bus ist frei. Ihr Zug wartet diesmal am anderen Ende der Busfahrt.
+Ergebnis: Die Bahn fährt vom Hausgleis ab. Das Schild mit der Umleitung darf unten an der Treppe bleiben.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. Zeilen 0, 2, 4 und 6 fordern jeweils 7 bei sieben verbleibenden Feldern; Spalten 1 bis 7 sind dort belegt.
 
-### S1-04-04-04 · Umleitung durch die Bahnhofshalle
+### S1-04-04-04 · Umweg am Blumenstand
 
-Status: Bitte folgen Sie den gelben Pfeilen. Der letzte zeigt auf den ersten.
+Status: Der Ausgang zum Gleis ist gesperrt. Auf dem Umweg durch die Halle blüht inzwischen der Flieder.
 
-Ergebnis: Die Pfeile führen zum Zug. Er fährt weiter, statt Sie zurückzuschicken.
+Ergebnis: Sie erreichen den Zug mit einem Strauß. Für die Blumen hat der Umweg gereicht.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 7 hat Count 8 und ist vollständig belegt. Zeilen 0 und 1 haben Count 0 und schließen ihre 16 Felder aus.
 
@@ -1480,7 +1480,7 @@ Ergebnis: Die Pfeile führen zum Zug. Er fährt weiter, statt Sie zurückzuschic
 
 Status: Der Bus fährt zum Ersatzhalt. Ein Halt ist dort nicht vorgesehen.
 
-Ergebnis: Der Bus hat gehalten. Sie erreichen Ihren Zug ohne Absprung.
+Ergebnis: Der Zug hält am richtigen Bahnsteig. Sie steigen aus, während Ihr Koffer noch neben Ihnen steht.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 1 hat Count 8 bei Höhe 8. Alle Felder (1,0) bis (1,7) sind belegt; die konkrete Gleisgeometrie ist noch offen.
 
@@ -1496,7 +1496,7 @@ Ergebnis: Bitte bleiben Sie stehen. Ihr Gleis stimmt jetzt mit der Abfahrt über
 
 Status: Der Aushang empfiehlt den Nachbarbahnhof. Zu Fuß überholen Sie den Ersatzbus.
 
-Ergebnis: Sie erreichen den Zug vor dem Bus. Die Pressestelle lobt die schnelle Verbindung.
+Ergebnis: Der Zug hält wieder hier. Ihre Schuhe sind trocken geblieben.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 1 haben Count 0. Ihre 16 Felder bleiben leer; die mögliche Belegung liegt in Spalten 2 bis 7.
 
@@ -1510,7 +1510,7 @@ Ergebnis: Der Anschluss ist erreicht. Der Zug fährt weiter, ohne Sie zurückzuv
 
 ### S1-04-04-09 · Bushaltestelle außerhalb der Karte
 
-Status: Die Karte zeigt den Weg zum Bus. Die Haltestelle liegt jenseits des Kartenrands.
+Status: Die Umleitung passt nicht mehr auf den Aushang. Der Rest hängt am Fahrkartenautomaten.
 
 Ergebnis: Die Tafel zeigt wieder Ihr Ziel. Eine zweite Landkarte ist für die Fahrt nicht nötig.
 
@@ -1536,7 +1536,7 @@ Ergebnis: Die Durchsage nennt das Gleis vor der Abfahrt. Der Zug fährt trotzdem
 
 Status: Der Bus bringt Sie zum Startbahnsteig zurück. Die Rundfahrt gilt als Anreise.
 
-Ergebnis: Laut Pressestelle beginnt die Zugfahrt jetzt. Die Ehrenrunde war keine Reisezeit.
+Ergebnis: Die Bahn fährt jetzt auf direktem Weg. Der Startbahnsteig ist zur Abwechslung nur einmal zu sehen.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 fordert bei Höhe 8 alle acht Felder (0,0) bis (0,7). Die volle linke Belegung verbindet die Zeileninformationen, ohne die Formen vorwegzunehmen.
 
@@ -1544,7 +1544,7 @@ Ergebnis: Laut Pressestelle beginnt die Zugfahrt jetzt. Die Ehrenrunde war keine
 
 Status: Der Bus hält laut Tafel am Parkplatz. Ihr Ticket gilt auch für den Fußweg.
 
-Ergebnis: Der Bus fährt. Ab hier übernimmt wieder ein Fahrzeug.
+Ergebnis: Die Gleise sind wieder frei. Ihr Zug passiert den Parkplatz ohne Zwischenhalt.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 5 haben jeweils Count 0. Alle 48 Felder dieser Zeilen bleiben leer; nur die beiden unteren Zeilen können Gleisfelder enthalten.
 
@@ -1552,7 +1552,7 @@ Ergebnis: Der Bus fährt. Ab hier übernimmt wieder ein Fahrzeug.
 
 Status: Der Weg zum Bus ist ausgeschildert. Das erste Schild steht am Ziel.
 
-Ergebnis: Sie haben den Bus gefunden. Das Schild bestätigt Ihre Ankunft.
+Ergebnis: Vom Zugfenster aus sehen Sie das Schild am Ziel. Von hier ist es tatsächlich gut zu finden.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 0 und 2 haben Count 8 bei Höhe 8. Beide Spalten sind vollständig belegt: (0,0) bis (0,7) und (2,0) bis (2,7).
 
@@ -1560,7 +1560,7 @@ Ergebnis: Sie haben den Bus gefunden. Das Schild bestätigt Ihre Ankunft.
 
 Status: Laut Aushang sind es fünf Minuten zum Bus. Gemessen wurde ohne Ampeln.
 
-Ergebnis: Alle Ampeln sind passiert. Der Bus fährt, ohne dass Sie weiterlaufen müssen.
+Ergebnis: Die Schranke geht zu. Diesmal sitzen Sie im Zug auf der anderen Seite der Ampel.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 hat Count 8 und ist vollständig belegt, einschließlich A an N/0. Ihre acht Felder sind (0,0) bis (7,0).
 
@@ -1568,7 +1568,7 @@ Ergebnis: Alle Ampeln sind passiert. Der Bus fährt, ohne dass Sie weiterlaufen 
 
 Status: Der Bus hält direkt hinter der Glastür. Die Tür öffnet erst morgen.
 
-Ergebnis: Der Bus ist über den Umweg erreicht. Die Glastür bleibt ihrem Zeitplan treu.
+Ergebnis: Ihr Zug fährt am Hausgleis ab. Hinter der verschlossenen Glastür kann morgen jemand lüften.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (7,0). Zeile 0 hat Count 1; alle anderen Felder (0,0) bis (6,0) bleiben leer.
 
@@ -1576,7 +1576,7 @@ Ergebnis: Der Bus ist über den Umweg erreicht. Die Glastür bleibt ihrem Zeitpl
 
 Status: Der Bus hält zehn Meter hinter dem Zaun. Der Durchgang liegt einen Kilometer weiter.
 
-Ergebnis: Der Zaun ist umrundet, der Bus fährt. Die Pressestelle lobt die Nähe zum Bahnhof.
+Ergebnis: Der Zug hält auf Ihrer Seite des Zauns. Für die letzten zehn Meter reicht nun ein Türknopf.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 1 fordert bei Breite 8 alle acht Felder. (0,1) bis (7,1) sind deshalb belegt; ihre Formen sind noch nicht bestimmt.
 
@@ -1584,7 +1584,7 @@ Ergebnis: Der Zaun ist umrundet, der Bus fährt. Die Pressestelle lobt die Nähe
 
 Status: Die Haltestelle wurde verlegt. Am alten Schild steht: Sie sind hier.
 
-Ergebnis: Der Bus fährt vom neuen Standort ab. Der alte ist weiterhin gut beschildert.
+Ergebnis: Ihr Zug fährt am neuen Schild vorbei. Auf dem alten steht weiterhin völlig richtig „Sie sind hier“.
 
 **INTERN · Einstieg:** 0-basiert: B an N/1 erzwingt (1,0). Der Einsercount der Zeile 0 schließt (0,0) und (2,0) bis (7,0) aus.
 
@@ -1592,7 +1592,7 @@ Ergebnis: Der Bus fährt vom neuen Standort ab. Der alte ist weiterhin gut besch
 
 Status: Auf dem Plan steht der Bus gleich nebenan. Ein Zentimeter sind zwei Kilometer.
 
-Ergebnis: Der Bus ist erreicht und fährt. Auf dem Plan war das ein sehr kleiner Umweg.
+Ergebnis: Die Räder rollen. Auf der Karte liegen Sie schon einen ganzen Zentimeter weiter.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 3 hat Count 8 und ist vollständig belegt. Zeilen 0 und 1 haben Count 0; ihre 16 Felder bleiben leer.
 
@@ -1600,7 +1600,7 @@ Ergebnis: Der Bus ist erreicht und fährt. Auf dem Plan war das ein sehr kleiner
 
 Status: Bitte folgen Sie den gelben Pfeilen. Sie führen zum ausgefallenen Zug.
 
-Ergebnis: Die Durchsage meldet Abfahrt. Diesmal fährt tatsächlich etwas: der Bus.
+Ergebnis: Die gelben Pfeile führen wieder zum Zug. Heute muss niemand einen davon umdrehen.
 
 **INTERN · Einstieg:** 0-basiert: Spalten 6 und 7 haben jeweils Count 0. (6,0) bis (6,7) und (7,0) bis (7,7) bleiben leer.
 
@@ -1608,7 +1608,7 @@ Ergebnis: Die Durchsage meldet Abfahrt. Diesmal fährt tatsächlich etwas: der B
 
 Status: Laut Ansage dauert der Fußweg zwölf Minuten. Der Bus wartet drei.
 
-Ergebnis: Sie sitzen im fahrenden Bus. Der Fahrplan hatte diesen Fall nicht vorgesehen.
+Ergebnis: Sie sitzen im Zug. Für den Weg von der Bank zum Sitzplatz reichen die drei Minuten gut.
 
 **INTERN · Einstieg:** 0-basiert: B an S/1 belegt (1,7). Zeile 7 hat Count 1; (0,7) und (2,7) bis (7,7) bleiben leer.
 
@@ -1616,7 +1616,7 @@ Ergebnis: Sie sitzen im fahrenden Bus. Der Fahrplan hatte diesen Fall nicht vorg
 
 Status: Der Zettel nennt den Bahnhof als Bushalt. Gemeint ist der im nächsten Ort.
 
-Ergebnis: Der Bus fährt. Der Weg zur Haltestelle war bereits die halbe Reise.
+Ergebnis: Der Zug hält an Ihrem Bahnhof. Der gleichnamige Bushalt im Nachbarort bleibt ein Geheimtipp.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 6 und 7 haben Count 0. Ihre 16 Felder bleiben leer; Kopf- und Mittelgebiet liegen oberhalb dieser Grenze.
 
@@ -1624,7 +1624,7 @@ Ergebnis: Der Bus fährt. Der Weg zur Haltestelle war bereits die halbe Reise.
 
 Status: Der Aushang zählt den Fußweg als Fahrt. Der erste Bus sind Ihre Schuhe.
 
-Ergebnis: Sie sitzen, der Bus fährt. Die Statistik meldet einen nahtlosen Fahrzeugwechsel.
+Ergebnis: Ihre Schuhe stehen unter dem Sitz. Für den Rest der Fahrt sind die Räder zuständig.
 
 **INTERN · Einstieg:** 0-basiert: A an S/7 erzwingt (7,7). Zeile 7 fordert nur ein Gleisfeld; (0,7) bis (6,7) bleiben leer.
 
@@ -1632,7 +1632,7 @@ Ergebnis: Sie sitzen, der Bus fährt. Die Statistik meldet einen nahtlosen Fahrz
 
 Status: Das Haltestellenschild fährt im Bus mit. Bitte folgen Sie ihm zu Fuß.
 
-Ergebnis: Der Bus hält und nimmt Sie mit. Die Haltestelle fährt diesmal nicht allein.
+Ergebnis: Das Haltestellenschild bewegt sich am Fenster vorbei. Diesmal fährt Ihr Zug.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (7,0). Der Einsercount der Zeile 0 lässt alle Felder (0,0) bis (6,0) leer.
 
@@ -1656,7 +1656,7 @@ Ergebnis: Ihr Rollkoffer rollt zum abfahrbereiten Zug. Die Ortsbesichtigung ist 
 
 Status: Die Durchsage kündigt den Bus an. Lautsprecher können nicht fahren.
 
-Ergebnis: Die Ansage stimmt: Der Zug fährt ab. Das Mikrofon meldet keinen Widerspruch.
+Ergebnis: Am Gleis öffnen sich Zugtüren. Dieses Geräusch braucht keine Durchsage.
 
 **INTERN · Einstieg:** 0-basiert: A an E/7 belegt (7,7). Zeile 7 hat Count 1 und schließt (0,7) bis (6,7) aus; die Fortsetzung nach (7,6) ist erzwungen. Die weiteren Schritte benötigen die übrigen Zeilen- und Spaltenreste.
 
@@ -1736,7 +1736,7 @@ Ergebnis: Ein Bus bleibt übrig, die Bahn fährt. Sein Zettel wird nicht mehr al
 
 Status: Ihr Zug fährt ein. Der Bus ist pünktlich ohne Sie abgefahren.
 
-Ergebnis: Der Bus wartet bis zur Zugankunft. Die Weiterfahrt gelingt ohne Dauerlauf.
+Ergebnis: Die Schienen führen wieder bis ans Ziel. Sie bleiben sitzen, während der Bus abfährt.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 0 fordert 9 bei Breite 9 und ist vollständig belegt. Spalte 8 fordert ebenfalls 9 bei Höhe 9 und ist vollständig belegt; beide treffen sich in (8,0).
 
@@ -1744,7 +1744,7 @@ Ergebnis: Der Bus wartet bis zur Zugankunft. Die Weiterfahrt gelingt ohne Dauerl
 
 Status: Der Bus hält hinter dem Bahnhof. Der einzige Ausgang liegt vorne.
 
-Ergebnis: Der Bus steht jetzt am Ausgang. Der Bahnhof muss nicht mehr umrundet werden.
+Ergebnis: Die Türen öffnen sich vorn am Bahnhof. Ihr Zug hat Ihnen die Runde ums Gebäude erspart.
 
 **INTERN · Einstieg:** 0-basiert: Spalte 0 hat Count 0. Zeilen 0, 6 und 8 haben jeweils Count 8; ihre acht Felder in Spalten 1 bis 8 sind belegt.
 
@@ -1760,7 +1760,7 @@ Ergebnis: Der Aufzug fährt wieder. Ihr Rollkoffer bleibt heute ein Rollkoffer.
 
 Status: Der Bus steht mit geschlossenen Türen da. Laut Anzeige sind Sie angekommen.
 
-Ergebnis: Die Türen öffnen sich. Der Anschluss besteht jetzt auch für Personen.
+Ergebnis: Ihr Zug hält und die Türen gehen auf. Sie dürfen der Anzeige jetzt tatsächlich glauben.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 8 hat Count 9 bei Breite 9. (0,8) bis (8,8) sind sämtlich belegt, darunter A an W/8.
 
@@ -1800,7 +1800,7 @@ Ergebnis: Die Uhren stimmen überein. Der Zug ist noch da. Beides wird dokumenti
 
 Status: Die Pfeile führen zum Ersatzbus. Am Ende steht wieder der erste Pfeil.
 
-Ergebnis: Der letzte Pfeil zeigt auf einen Bus. Dieser fährt sogar zum Anschlusszug.
+Ergebnis: Vom Fenster aus sehen die Pfeile fast wie ein Kreis aus. Ihr Zug fährt geradeaus.
 
 **INTERN · Einstieg:** 0-basiert: Zeile 1 hat Count 9 bei Breite 9. Alle neun Felder (0,1) bis (8,1) sind belegt; ihre Formen sind noch offen.
 
@@ -1808,7 +1808,7 @@ Ergebnis: Der letzte Pfeil zeigt auf einen Bus. Dieser fährt sogar zum Anschlus
 
 Status: Die Tafel meldet einen wartenden Bus. Er wartet jetzt am nächsten Bahnhof.
 
-Ergebnis: Bus und Tafel befinden sich wieder am selben Ort. Sie können dort einsteigen.
+Ergebnis: Die Bahn fährt den Anschluss selbst. Auf der Tafel ist wieder Platz für eine Gleisnummer.
 
 **INTERN · Einstieg:** 0-basiert: Zeilen 0 bis 2 und Spalten 6 bis 8 haben jeweils Count 0. Alle betroffenen Felder bleiben leer; aktiv ist der Bereich Spalten 0 bis 5, Zeilen 3 bis 8.
 
@@ -1816,7 +1816,7 @@ Ergebnis: Bus und Tafel befinden sich wieder am selben Ort. Sie können dort ein
 
 Status: Der Aushang nennt den Bus um 9 Uhr. Gemeint ist der 4. Mai 1987.
 
-Ergebnis: Der Bus fährt heute. Die Pressestelle meldet einen Anschluss an die Gegenwart.
+Ergebnis: Das Datum auf Ihrer Fahrkarte stimmt. Ihr Zug ist noch am selben Tag angekommen.
 
 **INTERN · Einstieg:** 0-basiert: B an W/1 belegt (0,1). Spalte 0 hat Count 1 und schließt ihre übrigen acht Felder aus.
 
@@ -1862,9 +1862,9 @@ Ergebnis: Ihre Fahrkarte gilt, der Zug fährt. Der Weg zum Automaten ist kein Re
 
 ### S1-05-04-05 · Ersatzbus nur über Stufen erreichbar
 
-Status: Zum Bus führt nur die Treppe. Der Aufzug ersetzt heute die Wand.
+Status: Der Aushang verspricht einen kurzen Weg zum Bus. Die drei Treppen zeichnet er als gerade Linie.
 
-Ergebnis: Ihr Rollkoffer rollt in die Bahn. Für den Einstieg entfällt die Flugphase.
+Ergebnis: Ihr Koffer rollt bis in den Zug. Die Rollen haben den ganzen Weg Bodenkontakt.
 
 **INTERN · Einstieg:** 0-basiert: B an S/5 belegt (5,8). Zeile 8 hat Count 1 und schließt (0,8) bis (4,8) sowie (6,8) bis (8,8) aus.
 
@@ -1920,7 +1920,7 @@ Ergebnis: Beim Anfahren schwappt der Kaffee über. Die Bewegung ist damit amtlic
 
 Status: Der letzte Bus entfällt. Das Warten gilt jetzt als durchgehende Verbindung.
 
-Ergebnis: Durchsage: Die Bahn fährt pünktlich. Bitte leiten Sie daraus keinen Anspruch ab.
+Ergebnis: Der letzte Zug erreicht B. Alle Störungen behoben. Vorerst.
 
 **INTERN · Einstieg:** 0-basiert: A an E/0 belegt (9,0). Zeile 0 hat Count 1; (0,0) bis (8,0) bleiben leer. Von (9,0) kann die Strecke wegen dieses Ausschlusses nur nach (9,1) fortsetzen.
 
