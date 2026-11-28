@@ -11,8 +11,8 @@ namespace STP.Audio
     [DisallowMultipleComponent]
     public sealed class ProductionGameAudio:MonoBehaviour,IAudioPort
     {
-        private static readonly string[] CueNames={"ToolFocus","EmptyMark","OccupancyNote","TrackSeat","Clear","Undo","RouteReveal","TrainStart","TrainRoll","TrainArrive","ResultsOpen","CompletionClearance","SceneAmbience","WorkshopMusic","TrainCurve"};
-        private static readonly string[] Groups={"UI","SFX","SFX","SFX","UI","UI","SFX","SFX","Ambience","SFX","UI","SFX","Ambience","Music","SFX"};
+        private static readonly string[] CueNames={"ToolFocus","EmptyMark","OccupancyNote","TrackSeat","Clear","Undo","RouteReveal","TrainStart","TrainRoll","TrainArrive","ResultsOpen","CompletionClearance","SceneAmbience","WorkshopMusic","TrainCurve","Gong","Flap","Stamp","Applause","Sigh","Pigeons","DoorBeep","Brake","Crackle"};
+        private static readonly string[] Groups={"UI","SFX","SFX","SFX","UI","UI","SFX","SFX","Ambience","SFX","UI","SFX","Ambience","Music","SFX","SFX","UI","UI","SFX","SFX","SFX","SFX","SFX","SFX"};
         private static readonly string[] GroupNames={"Master","Music","SFX","Ambience","UI"};
         private readonly Dictionary<string,float> gain=new Dictionary<string,float>(StringComparer.Ordinal);
         private readonly List<AudioSource> owned=new List<AudioSource>();
@@ -22,7 +22,7 @@ namespace STP.Audio
         private int uiNext,sfxNext;
         private bool configured,suspended,puzzleVisible,riding,hadFocus=true,appPaused;
         /// <summary>Exact imported bank size, with stable semantic ordering.</summary>
-        public const int ClipCount=15;
+        public const int ClipCount=24;
         /// <summary>Whether all required clips and five central mixer groups were explicitly configured.</summary>
         public bool IsConfigured=>configured;
         /// <summary>True while lifecycle or an explicit modal suspends owned playback.</summary>

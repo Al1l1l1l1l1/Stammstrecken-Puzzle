@@ -5,11 +5,11 @@
       "id": "mail-welcome",
       "trigger": "FIRST_START",
       "from": "ABTEILUNGSLEITUNG",
-      "subject": "Willkommen im Team!",
+      "subject": "Willkommen im Team",
       "body": [
         "Sie sind die erste Neueinstellung seit 2017.",
-        "Zwischen A und B fehlt eine Verbindung.",
-        "Die Zahlen am Rand zeigen Ihnen, wie viele Gleisfelder in jeder Reihe liegen."
+        "Ihr erster Auftrag ist eine Verbindung von A nach B.",
+        "Die Zahlen am Rand zeigen, wie viele Felder der Zug in jeder Reihe belegt."
       ],
       "ps": "Der Betriebshof hat aktuell Personalmangel. Könnten Sie den nebenbei auch übernehmen?",
       "gift": null
@@ -18,10 +18,169 @@
       "id": "mail-gerd",
       "trigger": "AFTER_PUZZLE_3",
       "from": "BETRIEBSHOF",
-      "subject": "Grüße aus der Werkhalle",
+      "subject": "Nebenan brennt noch Licht",
       "body": [
         "Hallo, ich bin Gerd.",
-        "Ich bin der Betriebshof. Ganz wörtlich."
+        "Sie haben nach dem Betriebshof gefragt.",
+        "Sie sprechen mit ihm."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-halle",
+      "trigger": "FIRST_DEPOT",
+      "from": "BETRIEBSHOF",
+      "subject": "Der zweite Schlüssel",
+      "body": [
+        "Der Schlüssel zur Werkstatt passt auch an der Kaffeeküche.",
+        "Das ist dieselbe Tür."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-kauf",
+      "trigger": "FIRST_PURCHASE",
+      "from": "BETRIEBSHOF",
+      "subject": "Ist angekommen",
+      "body": [
+        "Ihr erster Einkauf steht in der Halle.",
+        "Den Lieferschein habe ich links unterschrieben und rechts entgegengenommen."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-wagen",
+      "trigger": "FIRST_WAGON",
+      "from": "BETRIEBSHOF",
+      "subject": "Jetzt mit Anhang",
+      "body": [
+        "Ihr erster Wagen steht hinten am Zug.",
+        "Man hört die Kupplung bis an meinen Schreibtisch.",
+        "Liegt auch daran, wo mein Schreibtisch steht."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-tunnel",
+      "trigger": "WORLD_ENTER_1",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Ein Schlüssel für den Tunnel",
+      "body": [
+        "Hier müssen morgens alle durch denselben Tunnel.",
+        "Sie bekommen den einzigen freien Schlüssel."
+      ],
+      "ps": "Würden Sie auf dem Rückweg am Aufzug das Wort „morgen“ austauschen?",
+      "gift": null
+    },
+    {
+      "id": "mail-bau",
+      "trigger": "WORLD_ENTER_2",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Der Plan vom Bauzaun",
+      "body": [
+        "Im Bauabschnitt Mitte finden Sie den Bagger am eingezeichneten Platz.",
+        "Der Zaun wandert ein Stück schneller als der Plan."
+      ],
+      "ps": "Könnten Sie die neue Lage mit Bleistift eintragen?",
+      "gift": null
+    },
+    {
+      "id": "mail-aussen",
+      "trigger": "WORLD_ENTER_3",
+      "from": "PRESSESTELLE",
+      "subject": "Mehr Platz auf der Bank",
+      "body": [
+        "Am Außenast steht jedem Fahrgast eine ganze Bank zur Verfügung.",
+        "Unsere Zählung fand nach der Durchfahrt statt."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-umweg",
+      "trigger": "WORLD_ENTER_4",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Ihr Weg zur Brücke",
+      "body": [
+        "Am ersten Pfeil biegen Sie ab.",
+        "Am selben Pfeil kommen Sie später von der anderen Seite vorbei."
+      ],
+      "ps": "Könnten Sie dann bitte gleich die Rückseite beschriften?",
+      "gift": null
+    },
+    {
+      "id": "mail-bus",
+      "trigger": "WORLD_ENTER_5",
+      "from": "PRESSESTELLE",
+      "subject": "Anreise im Grünen",
+      "body": [
+        "Unser Ersatzhalt liegt jetzt im Grünen.",
+        "Für die letzten Meter empfehlen wir einen Koffer mit großen Rollen."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-sterne",
+      "trigger": "FIRST_THREE_STARS",
+      "from": "PRESSESTELLE",
+      "subject": "Die Uhr stimmt",
+      "body": [
+        "Ihr Zug war pünktlich.",
+        "Zwei unabhängige Armbanduhren bestätigen die Tafel.",
+        "Wir geben das Foto für den Aushang frei."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-reset",
+      "trigger": "FIRST_RESET",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Zwei neue Ziffern",
+      "body": [
+        "Vielen Dank für den neuen Plan.",
+        "Am Schild haben wir die Fertigstellung um zwei Jahre verschoben."
+      ],
+      "ps": "Würden Sie den Filzstift am Schild anbinden?",
+      "gift": null
+    },
+    {
+      "id": "mail-zehn",
+      "trigger": "CLEARS_10",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Zehn Gleise frei",
+      "body": [
+        "Zehn Ihrer Strecken sind offen.",
+        "Auf der Liste mit den Störungen ist jetzt Platz für meine Unterschrift."
+      ],
+      "ps": "Könnten Sie die zehn Umleitungsschilder einsammeln?",
+      "gift": null
+    },
+    {
+      "id": "mail-fuenfzig",
+      "trigger": "CLEARS_50",
+      "from": "BETRIEBSHOF",
+      "subject": "Eine Kiste übrig",
+      "body": [
+        "Nach Ihrer fünfzigsten Strecke habe ich die Schrauben nachgezählt.",
+        "Diesmal gehört die übrige Kiste tatsächlich zum Regal."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-hundert",
+      "trigger": "CLEARS_100",
+      "from": "PRESSESTELLE",
+      "subject": "Hundert Ankünfte",
+      "body": [
+        "Ihre hundertste Strecke ist offen.",
+        "Die geplante Sammelmeldung über Ausfälle erscheint heute als leeres Blatt."
       ],
       "ps": null,
       "gift": null
@@ -30,7 +189,7 @@
       "id": "mail-press",
       "trigger": "SEASON_END_PRESS",
       "from": "PRESSESTELLE",
-      "subject": "Betriebslage",
+      "subject": "Sondermeldung zum Fahrplan",
       "body": [
         "Betrieb bis auf Weiteres stabil.",
         "Bitte bewahren Sie diese Information gut auf."
@@ -42,11 +201,289 @@
       "id": "mail-season",
       "trigger": "SEASON_END_LEAD",
       "from": "ABTEILUNGSLEITUNG",
-      "subject": "Glückwunsch",
+      "subject": "Das ganze Netz fährt",
       "body": [
-        "Herzlichen Glückwunsch!"
+        "Ich bin heute von A bis B gefahren.",
+        "Unterwegs musste ich kein einziges Mal fragen, wie es weitergeht.",
+        "Das verdanken wir Ihnen."
       ],
-      "ps": "Ab morgen beginnen die Bauarbeiten für Season 2.",
+      "ps": "Ab morgen beginnen die Bauarbeiten für Saison zwei. Könnten Sie aufschließen?",
+      "gift": null
+    },
+    {
+      "id": "mail-endlos",
+      "trigger": "ENDLESS_UNLOCKED",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Ein Auftrag ohne Enddatum",
+      "body": [
+        "Die Dauerbaustelle ist für Sie offen.",
+        "Das Feld für den Fertigstellungstermin haben wir diesmal weggelassen."
+      ],
+      "ps": "Könnten Sie trotzdem schon einmal den Bauzaun bestellen?",
+      "gift": null
+    },
+    {
+      "id": "mail-revision",
+      "trigger": "REVISION_UNLOCKED",
+      "from": "ABTEILUNGSLEITUNG",
+      "subject": "Der Schlüssel zum Aktenschrank",
+      "body": [
+        "In der Betriebsrevision dürfen Sie die alten Strecken noch einmal fahren und Ihre Sterne verbessern.",
+        "Den Schrank haben wir für Sie entstaubt."
+      ],
+      "ps": "Bitte hängen Sie den Schlüssel danach wieder an den Nagel.",
+      "gift": null
+    },
+    {
+      "id": "mail-rund-treppe",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Aufwärts geht es immer",
+      "body": [
+        "Die Rolltreppe steht.",
+        "Der Weg nach oben ist jetzt in beiden Richtungen gleich schnell."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-jahr",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "KONZERNLEITUNG",
+      "subject": "Pünktlichkeitsziel 2041 bestätigt",
+      "body": [
+        "Unser Zieljahr bleibt bestehen.",
+        "Zum genauen Tag äußern wir uns nach Ablauf des Jahres."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-anzeige",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Mehr Platz auf der Tafel",
+      "body": [
+        "Durch Weglassen ausgefallener Züge haben wir die Schrift vergrößert.",
+        "Die gute Lesbarkeit hat Bestand."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-lack",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Einheitliches Erscheinungsbild",
+      "body": [
+        "Der Bauzaun ist frisch gestrichen.",
+        "Hinter dem Zaun ist der Stand vom letzten Anstrich zu sehen."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-dach",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Bahnsteigdach verlängert",
+      "body": [
+        "Die trockene Fläche reicht jetzt bis zum letzten Sitzplatz.",
+        "Der Regen hält sich bislang an die alte Grenze."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-kaffee",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Kürzere Schlange am Bistro",
+      "body": [
+        "Seit die Kaffeemaschine aus ist, entfällt die Wartezeit am Tresen.",
+        "Wir vermerken drei Minuten Zeitgewinn."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-studie",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "KONZERNLEITUNG",
+      "subject": "Die Brücke von morgen",
+      "body": [
+        "Wir prüfen den Standort der künftigen Brücke.",
+        "Die Behelfsbrücke erhält für die Dauer der Prüfung einen neuen Namen."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-ziffer",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Eine Minute gewonnen",
+      "body": [
+        "Die Uhr am Bahnsteig hat aufgeholt.",
+        "Zur fahrplanmäßigen Abfahrt fehlen ihr noch zwei Minuten."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-fenster",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Beste Aussicht",
+      "body": [
+        "Auf der Umleitung sehen Reisende beide Seiten desselben Bauernhofs.",
+        "Ein Fensterplatz genügt."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-plan",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Gute Nachrichten am Schaukasten",
+      "body": [
+        "Der neue Fahrplan hängt.",
+        "Für die passende Verbindung zeigen wir vorerst noch den alten daneben."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-koffer",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Der Fußweg ist ausgeschildert",
+      "body": [
+        "Ein weiterer Pfeil führt nun zur Ersatzhaltestelle.",
+        "Man kann den nächsten Pfeil vom vorigen aus bereits sehen."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-wagen",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Ihr Platz reist mit",
+      "body": [
+        "Die Sitznummer ist im Wagen vorhanden.",
+        "Der Wagen fährt heute auf einer anderen Linie."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-ruhe",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Mehr Ruhe am Gleis",
+      "body": [
+        "Die Lautstärke am Bahnsteig wurde erfolgreich gesenkt.",
+        "Der Lautsprecher wartet auf ein Ersatzteil."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-becher",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "KONZERNLEITUNG",
+      "subject": "Mehrweg bis 2050",
+      "body": [
+        "Bis 2050 erhält jeder Bahnsteig einen Becherrücklauf.",
+        "Bitte bewahren Sie Ihren Becher bis dahin auf."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-wartehaus",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Geschützter Aufenthalt",
+      "body": [
+        "Das neue Wartehaus ist winddicht.",
+        "Der Schlüssel für die Tür kommt mit der nächsten Lieferung."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-anschluss",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Umstieg verkürzt",
+      "body": [
+        "Beide Züge halten jetzt am selben Gleis.",
+        "Zwischen ihnen liegt nur noch eine Stunde."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-bank",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Neue Bank in Betrieb",
+      "body": [
+        "Die Bank am Außenast ist montiert.",
+        "Wir geben den Haltewunsch an das nächste vorbeifahrende Fahrzeug weiter."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-aufzug",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Aufzug erhält neuen Termin",
+      "body": [
+        "Die Plakette mit dem Reparaturdatum ist ausgetauscht.",
+        "Der Austausch selbst verlief pünktlich."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-brief",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "KONZERNLEITUNG",
+      "subject": "Weniger Rundschreiben",
+      "body": [
+        "Künftig bündeln wir alle Mitteilungen zum Papierverbrauch.",
+        "Der Verteiler für die Begleitschreiben folgt getrennt."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-tuer",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "PRESSESTELLE",
+      "subject": "Alle Türen am Zug",
+      "body": [
+        "Im kurzen Zug funktionieren heute sämtliche Türen.",
+        "Die Stellen am Bahnsteig, an denen Türen fehlen, sind entsprechend markiert."
+      ],
+      "ps": null,
+      "gift": null
+    },
+    {
+      "id": "mail-rund-nacht",
+      "trigger": "RANDOM_CIRCULAR",
+      "from": "KONZERNLEITUNG",
+      "subject": "Ausblick auf die Nacht",
+      "body": [
+        "Wir planen eine spätere letzte Verbindung.",
+        "Für die Zwischenzeit empfehlen wir eine frühere letzte Verbindung."
+      ],
+      "ps": null,
       "gift": null
     }
   ]

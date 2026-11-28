@@ -49,9 +49,9 @@ namespace STP.Tests.Presentation.PlayMode
         public void HintPresentation_UsesTypedSingleFact_AndDoesNotExposeRuleCodesOrSolutionText()
         {
             using var locale=new ProductionGameLocalization(Locale());
-            Assert.That(locale.Resolve("hint.fact",3,4,locale.Resolve("tool.empty")),Is.EqualTo("Spalte 3, Zeile 4: Leerannahme X"));
-            Assert.That(locale.Resolve("hint.unspent"),Does.Contain("tatsächlich angezeigten"));
-            Assert.That(locale.Resolve("hint.save.failed"),Does.Contain("sicher gespeichert"));
+            Assert.That(locale.Resolve("hint.fact",3,4,locale.Resolve("tool.empty")),Is.EqualTo("*krrrz* Spalte 3, Zeile 4 · Sprühdose · hier bleibt es frei."));
+            Assert.That(locale.Resolve("hint.unspent"),Does.Contain("erst, wenn sie angezeigt wird"));
+            Assert.That(locale.Resolve("hint.save.failed"),Does.Contain("noch nicht gespeichert"));
             var frame=Frame();using var presenter=new ProductionGamePresenter(frame,Locale(),()=>0,_=>Task.CompletedTask);
             Assert.That(presenter.IsHelpOpen,Is.False);Assert.That(frame.Q<VisualElement>("hint-overlay").ClassListContains("hidden"),Is.True);
         }
@@ -90,7 +90,7 @@ namespace STP.Tests.Presentation.PlayMode
                 var button=frame.Q<Button>("tool-"+i);Assert.That(button,Is.Not.Null);Assert.That(button.text,Is.Empty);
                 Assert.That(button.tooltip,Is.Not.Empty);Assert.That(button.childCount,Is.GreaterThanOrEqualTo(1));
             }
-            Assert.That(frame.Q<Label>("startup-message").text,Does.Contain("vorbereitet"));
+            Assert.That(frame.Q<Label>("startup-message").text,Does.Contain("Verbindung wird gesucht"));
             Assert.That(frame.Q<VisualElement>("tool-dock").parent,Is.SameAs(frame.Q<VisualElement>("puzzle-screen")));
         }
 
@@ -100,7 +100,7 @@ namespace STP.Tests.Presentation.PlayMode
             using var locale=new ProductionGameLocalization(Locale());
             Assert.That(locale.Resolve("balance",1234L),Is.EqualTo("1.234 GP"));
             Assert.That(locale.Resolve("time",4L,7L),Is.EqualTo("04:07"));
-            Assert.That(locale.Resolve("tool.occupied"),Does.Contain("Belegungsnotiz"));
+            Assert.That(locale.Resolve("tool.occupied"),Does.Contain("Graue Schwellen"));
             Assert.Throws<ArgumentException>(()=>locale.Resolve("time",4L));
             Assert.Throws<ArgumentException>(()=>locale.Resolve("balance","1234"));
             Assert.Throws<InvalidOperationException>(()=>locale.Resolve("unknown"));
@@ -218,9 +218,9 @@ namespace STP.Tests.Presentation.PlayMode
                 Submit(frame.Q<Button>("daily-free"));Submit(frame.Q<Button>("daily-free"));Assert.That(calls,Is.EqualTo(1));
                 Assert.That(frame.Q<Button>("daily-close").enabledSelf,Is.False);Assert.That(frame.Q<Button>("daily-video").enabledSelf,Is.False);
                 completion.SetResult(true);panels.Refresh();Assert.That(frame.Q<Label>("daily-result").text,Is.EqualTo(locale.Resolve("daily.ready")),"An operation completing is not proof of a durable grant.");
-                state=new DailyView("21.10.2026",false,true,15,false);panels.Refresh();Assert.That(frame.Q<Label>("daily-result").text,Is.EqualTo("Bestätigt: 15 GP"));
+                state=new DailyView("21.10.2026",false,true,15,false);panels.Refresh();Assert.That(frame.Q<Label>("daily-result").text,Is.EqualTo("Heutige Betriebslage: 15 GP"));
                 panels.BindDaily(()=>state,_=>Task.FromException(new InvalidOperationException("provider unavailable")));
-                Submit(frame.Q<Button>("daily-video"));panels.Refresh();Assert.That(frame.Q<Label>("daily-result").text,Is.EqualTo("Bestätigt: 15 GP"));
+                Submit(frame.Q<Button>("daily-video"));panels.Refresh();Assert.That(frame.Q<Label>("daily-result").text,Is.EqualTo("Heutige Betriebslage: 15 GP"));
                 Assert.That(frame.Q<Label>("daily-state").text,Is.EqualTo(locale.Resolve("daily.failed")));Assert.That(frame.Q<Button>("daily-close").enabledSelf,Is.True);
                 Submit(frame.Q<Button>("daily-close"));Assert.That(panels.IsModalOpen,Is.False);
             }
@@ -305,7 +305,7 @@ namespace STP.Tests.Presentation.PlayMode
             var host=new GameObject("BoundedProductAudio");var component=host.AddComponent(audioType);audioType.GetMethod("Configure")!.Invoke(component,new[]{mixer,clips});
             try
             {
-                Assert.That(Get(component,"VoiceCount"),Is.EqualTo(8));Assert.That(((Array)clips).Length,Is.EqualTo(15));
+                Assert.That(Get(component,"VoiceCount"),Is.EqualTo(8));Assert.That(((Array)clips).Length,Is.EqualTo(24));
                 foreach(AudioClip clip in (Array)clips){var data=new float[clip.samples];Assert.That(clip.GetData(data,0),Is.True);Assert.That(data.Max(Mathf.Abs),Is.LessThan(.15f),"The original source balance must not be normalized to full scale during import.");}
                 for(var i=0;i<100;i++)audioType.GetMethod("Play")!.Invoke(component,new object[]{"TrackSeat"});
                 Assert.That(host.GetComponentsInChildren<AudioSource>().Length,Is.EqualTo(8));
@@ -360,7 +360,7 @@ namespace STP.Tests.Presentation.PlayMode
                 yield return null;Assert.That(calls,Is.Zero);Submit(frame.Q<Button>("result-video"));Submit(frame.Q<Button>("result-video"));Assert.That(calls,Is.EqualTo(1));
                 Assert.That(frame.Q<Button>("result-skip-bonus").enabledSelf,Is.False);completion.SetResult(true);panelUi.Refresh();
                 Assert.That(frame.Q<Label>("result-bonus-state").text,Is.EqualTo(locale.Resolve("completion.optional")),"Task completion is not grant truth.");
-                state=new CompletionBonusView(false,false,false,10);panelUi.Refresh();Assert.That(frame.Q<Label>("result-bonus-state").text,Is.EqualTo("Zusätzlich bestätigt: 10 GP"));
+                state=new CompletionBonusView(false,false,false,10);panelUi.Refresh();Assert.That(frame.Q<Label>("result-bonus-state").text,Is.EqualTo("Gutgeschrieben: 10 GP"));
                 Assert.That(frame.Q<Button>("result-video").style.display.value,Is.EqualTo(DisplayStyle.None));
                 Assert.That(frame.Q<Label>("result-bonus-state").style.display.value,Is.EqualTo(DisplayStyle.Flex));
                 state=new CompletionBonusView(false,false,true,null);panelUi.Refresh();Assert.That(frame.Q<Label>("result-bonus-state").text,Is.EqualTo(locale.Resolve("completion.pending")));Assert.That(frame.Q<Label>("result-bonus-state").style.display.value,Is.EqualTo(DisplayStyle.Flex));
@@ -421,7 +421,7 @@ namespace STP.Tests.Presentation.PlayMode
                 yield return null;var livery=frame.Q<Button>("cosmetic-action-livery-baustellengelb");var prop=frame.Q<Button>("cosmetic-action-obj-wartebank-ohne-anschluss");
                 Assert.That(livery.enabledSelf,Is.True);Assert.That(livery.text,Is.EqualTo("Ablegen"));Assert.That(prop.enabledSelf,Is.True);Assert.That(frame.Q<Button>("cosmetic-action-train-stammrot-default").enabledSelf,Is.False);
                 Submit(livery);render.Invoke(presenter,new object[]{true});Assert.That(calls,Is.EqualTo(1));Assert.That(selected.Contains("livery-baustellengelb"),Is.False);Assert.That(selected.Contains("obj-wartebank-ohne-anschluss"),Is.True);
-                Assert.That(frame.Q<Label>("depot-current-livery").text,Is.EqualTo("Originallackierung"));Assert.That(prop.text,Is.EqualTo("Ablegen"));
+                Assert.That(frame.Q<Label>("depot-current-livery").text,Is.EqualTo("Lack ab Werk"));Assert.That(prop.text,Is.EqualTo("Ablegen"));
             }
             finally{UnityEngine.Object.Destroy(go);UnityEngine.Object.Destroy(panel);}
         }

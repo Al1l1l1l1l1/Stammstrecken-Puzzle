@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "locale": "de-DE",
   "approvalStatus": "DRAFT",
-  "sourceSha256": "c09c37068f4fee2105f7c6b0c96b460ee7e5c5194c9c241818beab0f7e97dc2c",
+  "sourceSha256": "bd2732e58cbb2f564ed3694f0c883cde3e8336f4fb06a3afef81bbbcef957657",
   "entries": [
     {
       "puzzleId": "S1-01-01-01",
@@ -44,7 +44,7 @@
       "puzzleId": "S1-01-01-07",
       "title": "Ersatzbus am gesperrten Ausgang",
       "status": "Der Bus hält hinter dem Bauzaun. Die Abfahrt gilt als angeboten.",
-      "result": "Die Strecke ist frei. Der Ersatzbus darf wieder eine erreichbare Haltestelle bedienen."
+      "result": "Der Zug hält wieder vor dem Ausgang. Der Zaun kann bleiben, wo er ist."
     },
     {
       "puzzleId": "S1-01-01-08",
@@ -79,8 +79,8 @@
     {
       "puzzleId": "S1-01-02-01",
       "title": "Rotes Signal am Tunnel",
-      "status": "Der Zug wartet vor dem Tunnel. Feierabend gilt nur für die Büros.",
-      "result": "Sie können „Bin gleich da“ jetzt senden. Hinter dem grünen Signal liegt wieder Feierabend."
+      "status": "Rot vor dem Tunnel. Seit Ihrem letzten Feierabend.",
+      "result": "Hinter Ihrem Fenster wird es dunkel. Der Zug ist endlich im Tunnel."
     },
     {
       "puzzleId": "S1-01-02-02",
@@ -122,13 +122,13 @@
       "puzzleId": "S1-01-02-08",
       "title": "Freie Fahrt nur auf der Tafel",
       "status": "Die Tafel meldet Abfahrt. Der Zug nimmt die Meldung zur Kenntnis.",
-      "result": "Die Tafel und der Zug melden Abfahrt. Der Zug tut es mit Rädern."
+      "result": "Ihr Zug rollt vom Gleis. Jetzt darf die Tafel die Zeile umblättern."
     },
     {
       "puzzleId": "S1-01-02-09",
       "title": "Ersatzbus hinter der Ampel",
       "status": "Der Ersatzbus steht an der Ampel. Rot bleibt Teil des Angebots.",
-      "result": "Sie steigen aus dem Bus in den Zug. Der Ersatz ersetzt diesmal tatsächlich etwas."
+      "result": "Der Zug zieht am Fenster des wartenden Busses vorbei. Die Ampel zeigt immer noch Rot."
     },
     {
       "puzzleId": "S1-01-02-10",
@@ -206,7 +206,7 @@
       "puzzleId": "S1-01-03-10",
       "title": "Aushang empfiehlt den gestrigen Anschluss",
       "status": "Der Aushang empfiehlt den Zug von gestern. Heute ist er pünktlich.",
-      "result": "Sie steigen in den Zug von heute. Der Aushang wird als Zukunftsprojekt gefeiert."
+      "result": "Sie steigen ein. Auf der Fahrkarte steht heute dasselbe Datum wie auf Ihrer Uhr."
     },
     {
       "puzzleId": "S1-01-03-11",
@@ -254,13 +254,13 @@
       "puzzleId": "S1-01-04-06",
       "title": "Fahrt endet vor Ihrem Ziel",
       "status": "Der Zug endet am nächsten Halt. Ihr Ziel wurde aus dem Plan entfernt.",
-      "result": "Die Durchsage nennt Ihr Ziel. Diesmal dürfen Sie bis dorthin sitzen bleiben."
+      "result": "Die Türen öffnen in Ihrem Ort. Am Fenster wartet schon jemand mit Ihrem Regenschirm."
     },
     {
       "puzzleId": "S1-01-04-07",
-      "title": "Anschluss fährt jetzt früher",
-      "status": "Ihr Anschluss fährt vor Ihrer Ankunft. Im Plan gilt das als Umstieg.",
-      "result": "Ihr Anschluss steht noch am Gleis. Die Verbindung besteht heute auch außerhalb des Plans."
+      "title": "Zum Anschluss nur bei Rückenwind",
+      "status": "Im Tunnel gibt es Gegenwind. Beim Weg zum Anschluss rechnet der Fahrplan mit Rückenwind.",
+      "result": "Sie steigen um. Zum ersten Mal hat der Fahrplan Ihre Gehgeschwindigkeit getroffen."
     },
     {
       "puzzleId": "S1-01-04-08",
@@ -278,13 +278,13 @@
       "puzzleId": "S1-01-04-10",
       "title": "Ersatzbus fährt einmal pro Stunde",
       "status": "Der Ersatzbus fährt laut Aushang stündlich. Gemeint ist eine Stunde im Jahr.",
-      "result": "Der Bus bringt Sie zum Zug. Der Aushang hat für diesen Fall keine weitere Fußnote."
+      "result": "Sie sitzen im Zug. Für die Heimfahrt reicht jetzt ein Blick auf die Uhr statt in den Kalender."
     },
     {
       "puzzleId": "S1-01-04-11",
-      "title": "Abfahrt auf gestern vorverlegt",
-      "status": "Die Tafel meldet Ihre Abfahrt von gestern. Der Zug steht zur Bestätigung noch hier.",
-      "result": "Die Räder bewegen sich. Damit ist Ihre Abfahrt nun auch außerhalb der Akten erfolgt."
+      "title": "Abfahrt unter dem Klebestreifen",
+      "status": "Das neue Datum klebt auf der Tafel. Die Uhrzeit klebt noch darunter.",
+      "result": "Der Zug fährt ein. Jemand löst vorsichtig den Klebestreifen von der Uhrzeit."
     },
     {
       "puzzleId": "S1-01-04-12",
@@ -308,13 +308,13 @@
       "puzzleId": "S1-02-01-03",
       "title": "Durchsagen wegen Baulärm nicht hörbar",
       "status": "Die Durchsage erklärt den Baulärm. Verständlich bleibt nur der Presslufthammer.",
-      "result": "Die Durchsage nennt Ihr Ziel. Der Zug fährt sogar dorthin."
+      "result": "Sie hören die Türen schließen. Zum ersten Mal heute übertönt etwas den Presslufthammer."
     },
     {
       "puzzleId": "S1-02-01-04",
       "title": "Ersatzbus im Baustellenverkehr",
       "status": "Der Ersatzbus steht im Stau. Der Fahrplan setzt eine freie Straße voraus.",
-      "result": "Im Ersatzbus bleiben die Sitze leer: Die Schienen sind wieder schneller als der Stau."
+      "result": "Am Zugfenster zieht die stehende Autoschlange vorbei. Das letzte Auto war vorhin noch das erste."
     },
     {
       "puzzleId": "S1-02-01-05",
@@ -350,7 +350,7 @@
       "puzzleId": "S1-02-01-10",
       "title": "Umleitung zurück zum Start",
       "status": "Bitte folgen Sie den gelben Pfeilen. Ihr Rundweg ersetzt heute die Abfahrt.",
-      "result": "Bitte steigen Sie ein; wir fahren weiter. Der Rundweg ist heute nicht im Preis enthalten."
+      "result": "Sie steigen ein. Der gelbe Pfeil zeigt immer noch zurück zum Eingang."
     },
     {
       "puzzleId": "S1-02-01-11",
@@ -392,7 +392,7 @@
       "puzzleId": "S1-02-02-05",
       "title": "Bus statt zweitem Gleis",
       "status": "Der Ersatzbus steht im Stau. Auch auf der Straße reicht eine Spur.",
-      "result": "Der Zugbegleiter meldet freie Fahrt. Den Busanschluss dürfen Sie diesmal verpassen."
+      "result": "Das zweite Gleis ist frei. Ihr Zug passiert den Engpass vor der nächsten Grünphase."
     },
     {
       "puzzleId": "S1-02-02-06",
@@ -475,8 +475,8 @@
     {
       "puzzleId": "S1-02-03-07",
       "title": "Kaffee kalt vor dem roten Signal",
-      "status": "Der Kaffee im Zug ist kalt. Als Ursache gilt die laufende Warmhaltephase.",
-      "result": "Ihr Kaffee ist noch kalt, aber endlich unterwegs. Dies gilt als Ende der Warmhaltephase."
+      "status": "Vor dem roten Signal wird Ihr Kaffee kalt. Das Bordbistro verkauft ihn jetzt als Sommergetränk.",
+      "result": "Der Zug fährt. Beim nächsten Becher reicht es wieder für warmen Kaffee."
     },
     {
       "puzzleId": "S1-02-03-08",
@@ -506,7 +506,7 @@
       "puzzleId": "S1-02-03-12",
       "title": "Freie Fahrt nur bei Stillstand",
       "status": "Der Zug darf weiterfahren. Die Erlaubnis erlischt, sobald er sich bewegt.",
-      "result": "Wir fahren trotzdem. Das Stellwerk bestätigt einen ordnungsgemäßen Stillstand."
+      "result": "Die Räder rollen. Das grüne Signal hat auch aus dem Rückfenster Bestand."
     },
     {
       "puzzleId": "S1-02-04-01",
@@ -524,7 +524,7 @@
       "puzzleId": "S1-02-04-03",
       "title": "Umstieg mit Rollkoffer über die Treppe",
       "status": "Zum Anschluss nehmen Sie die Treppe. Stufenlos ist nur der Lageplan.",
-      "result": "Koffer und Fahrgast sind im Zug. Der Lageplan meldet einen barrierefreien Umstieg."
+      "result": "Sie rollen den Koffer in den Wagen. Heute hört man die Rollen bis zur Tür."
     },
     {
       "puzzleId": "S1-02-04-04",
@@ -566,7 +566,7 @@
       "puzzleId": "S1-02-04-10",
       "title": "Ersatzbus an Gleis 6 angekündigt",
       "status": "Die Tafel kündigt den Bus an Gleis 6 an. Die Straße ist noch nicht bestellt.",
-      "result": "Der Anschluss fährt als Zug. Damit konnte auf die Straße verzichtet werden."
+      "result": "Der Zug steht auf Gleis 6. Für die Straße muss heute niemand den Bahnsteig aufreißen."
     },
     {
       "puzzleId": "S1-02-04-11",
@@ -698,7 +698,7 @@
       "puzzleId": "S1-03-02-08",
       "title": "Wagen 2 zweimal am Bahnsteig",
       "status": "Wagen 2 ist doppelt vorhanden. Damit gilt Wagen 3 als ersetzt.",
-      "result": "Jeder Wagen trägt eine andere Nummer. Die Tafel meldet einen Rückgang der Kapazität."
+      "result": "Ihr Wagen trägt nur noch eine Zwei. Sie haben auch nur noch einen Sitznachbarn mit Ihrem Platz."
     },
     {
       "puzzleId": "S1-03-02-09",
@@ -746,7 +746,7 @@
       "puzzleId": "S1-03-03-04",
       "title": "Weiterfahrt am anderen Bahnsteigende",
       "status": "Bitte gehen Sie zum vorderen Wagen. Ihr Anschluss steht im selben Zug.",
-      "result": "Die Zugbegleitung meldet alle Türen geschlossen. Diesmal sind Sie auf der richtigen Seite."
+      "result": "Vorn geht die Tür auf. Sie schaffen den Umstieg in denselben Zug."
     },
     {
       "puzzleId": "S1-03-03-05",
@@ -770,7 +770,7 @@
       "puzzleId": "S1-03-03-08",
       "title": "Gleiswechsel nur für die vordere Hälfte",
       "status": "Die Tafel schickt Sie zu Gleis 2. Ihr Wagen bleibt zur besseren Übersicht auf Gleis 1.",
-      "result": "Auf Gleis 2 wartet der ganze Zug. Die Übersicht hat ihren Widerstand aufgegeben."
+      "result": "Beide Hälften rollen auf Gleis 2 ein. Die hintere kommt diesmal bis zu Ihrem Koffer."
     },
     {
       "puzzleId": "S1-03-03-09",
@@ -782,7 +782,7 @@
       "puzzleId": "S1-03-03-10",
       "title": "Wiedervereinigung laut Fahrplan gestern",
       "status": "Am Bahnsteig hängt der Plan zur Weiterfahrt. Beide Teile trafen sich gestern.",
-      "result": "Die Verbindung steht, der Zug fährt. Heute wurde trotz abweichender Planung zugelassen."
+      "result": "Vorn ruckt es kurz. Hinten wackelt Ihr Kaffee. Die Kupplung hält."
     },
     {
       "puzzleId": "S1-03-03-11",
@@ -806,7 +806,7 @@
       "puzzleId": "S1-03-04-02",
       "title": "Anschluss nur noch auf der Tafel",
       "status": "Die Tafel zeigt Ihren Anschluss. Am Gleis steht nur seine Abfahrtszeit.",
-      "result": "Zur Anzeige ist ein Zug eingetroffen. Sie können jetzt auch körperlich weiterreisen."
+      "result": "Der Anschluss steht am Gleis. Seine Abfahrtszeit hat jetzt auch einen Türgriff."
     },
     {
       "puzzleId": "S1-03-04-03",
@@ -824,7 +824,7 @@
       "puzzleId": "S1-03-04-05",
       "title": "Eine Stunde bis zum nächsten Zug",
       "status": "Der nächste Zug kommt in einer Stunde. Ihr Kaffee ist schneller kalt.",
-      "result": "Ihr Kaffee bleibt kalt. Als Reiseergebnis kommt jetzt ein erreichter Bahnhof hinzu."
+      "result": "Die Stunde ist um. Ihr Zug kommt gerade rechtzeitig für den letzten kalten Schluck."
     },
     {
       "puzzleId": "S1-03-04-06",
@@ -836,7 +836,7 @@
       "puzzleId": "S1-03-04-07",
       "title": "Ersatzbus endet vor dem Bahnhof",
       "status": "Der Ersatzbus endet vor dem Bahnhof. Das letzte Stück ersetzt Ihr Fußweg.",
-      "result": "Vom Bus zum Zug hat es gereicht. Ihre Schuhe werden nicht mehr als Verkehrsmittel benötigt."
+      "result": "Der Zug hält wieder im Ort. Ihre Schuhe bekommen den versprochenen Sitzplatz unter der Bank."
     },
     {
       "puzzleId": "S1-03-04-08",
@@ -866,7 +866,7 @@
       "puzzleId": "S1-03-04-12",
       "title": "Umstieg in den Fahrplanaushang",
       "status": "Ihr Anschluss ist im Fahrplan erreichbar. Bitte steigen Sie in den Aushang.",
-      "result": "Bitte nehmen Sie im Wagen Platz. Wir fahren weiter. Der Aushang bleibt Wandverkleidung."
+      "result": "Sie nehmen am Fenster Platz. Der Aushang fährt draußen vorbei."
     },
     {
       "puzzleId": "S1-04-01-01",
@@ -884,13 +884,13 @@
       "puzzleId": "S1-04-01-03",
       "title": "Ersatzhaltestelle hinter dem Parkhaus",
       "status": "Der Ersatzbus hält hinter dem Parkhaus. Ab hier fährt nur Ihr Rollkoffer.",
-      "result": "Der Bus fährt mit Ihnen ab. Die Haltestelle war keine reine Suchaufgabe."
+      "result": "Sie sehen das Parkhaus durchs Zugfenster. Den Weg um die Rückseite übernimmt heute das Gleis."
     },
     {
       "puzzleId": "S1-04-01-04",
       "title": "Ersatzbus über alle Ortsteile",
       "status": "Der Bus fährt zum nächsten Bahnhof. Unterwegs bedient er den ganzen Landkreis.",
-      "result": "Sie steigen in den Zug. Die Rundfahrt war im Fahrpreis enthalten."
+      "result": "Der Zug erreicht den Nachbarbahnhof, bevor die Ortsnamen auf der alten Liste zu Ende sind."
     },
     {
       "puzzleId": "S1-04-01-05",
@@ -914,7 +914,7 @@
       "puzzleId": "S1-04-01-08",
       "title": "Ersatzhaltestelle laut Aushang",
       "status": "Der Aushang führt Sie zur Ersatzhaltestelle. Dort hängt derselbe Aushang.",
-      "result": "Der letzte Pfeil endet an einer Bustür. Sie dürfen tatsächlich einsteigen."
+      "result": "Der letzte Pfeil zeigt aufs Gleis. Hinter der offenen Tür wartet ein Zugabteil."
     },
     {
       "puzzleId": "S1-04-01-09",
@@ -926,7 +926,7 @@
       "puzzleId": "S1-04-01-10",
       "title": "Umleitung auf der Rückseite des Globus",
       "status": "Die Umleitung steht auf der Karte. Bitte drehen Sie den Globus weiter.",
-      "result": "Die Pressestelle meldet die Ankunft. Als Abkürzung wurde derselbe Kontinent genutzt."
+      "result": "Der Zug hält am Ziel. Sie können den Globus wieder ins Regal stellen."
     },
     {
       "puzzleId": "S1-04-01-11",
@@ -948,9 +948,9 @@
     },
     {
       "puzzleId": "S1-04-02-02",
-      "title": "Abfahrt am anderen Bahnsteig",
-      "status": "Ihr Zug fährt von Gleis 8. Die Treppe dorthin zählt bereits als Reisezeit.",
-      "result": "Die Durchsage meldet Ihre Abfahrt. Sie stehen tatsächlich am genannten Gleis."
+      "title": "Durchs Tal zum Bahnsteig",
+      "status": "Gleis und Eingang liegen auf derselben Höhe. Dazwischen hat der Plan ein ganzes Tal vorgesehen.",
+      "result": "Sie steigen oben in den Zug. Ihre Wanderschuhe bleiben im Gepäck."
     },
     {
       "puzzleId": "S1-04-02-03",
@@ -962,7 +962,7 @@
       "puzzleId": "S1-04-02-04",
       "title": "Ersatzbus am Ortsrand",
       "status": "Der Ersatzbus hält am Ortsrand. Der Fußweg ersetzt die erste Zugfahrt.",
-      "result": "Der Bus erreicht den Bahnhof. Sie müssen nur noch einsteigen, nicht hinwandern."
+      "result": "Sie kommen mitten im Ort an. Der Fußweg beginnt heute erst nach der Zugfahrt."
     },
     {
       "puzzleId": "S1-04-02-05",
@@ -1028,7 +1028,7 @@
       "puzzleId": "S1-04-03-03",
       "title": "Ersatzbus außerhalb des Lageplans",
       "status": "Der Ersatzbus hält hinter dem Bahnhof. Der Lageplan endet davor.",
-      "result": "Der Bus hat Sie zum Zug gebracht. Die Durchsage bedankt sich für Ihre Ortskenntnis."
+      "result": "Der Zug hält wieder im eingezeichneten Teil der Karte. Sie können die Rückseite zusammenfalten."
     },
     {
       "puzzleId": "S1-04-03-04",
@@ -1056,9 +1056,9 @@
     },
     {
       "puzzleId": "S1-04-03-08",
-      "title": "Umleitung zurück zum Startbahnhof",
-      "status": "Ihre Fahrt führt über den Startbahnhof. Die Rückkehr zählt als Fortschritt.",
-      "result": "Vor dem Fenster erscheint ein neuer Bahnhof. Die Fahrt geht diesmal wirklich weiter."
+      "title": "Die Brücke für eine Richtung",
+      "status": "Die Brücke ist vorläufig nur stadtauswärts frei. Stadteinwärts geht es über dieselbe Brücke zurück.",
+      "result": "Ihr Zug erreicht das andere Ufer. Der Fluss muss heute nur einmal unter Ihnen durch."
     },
     {
       "puzzleId": "S1-04-03-09",
@@ -1094,25 +1094,25 @@
       "puzzleId": "S1-04-04-02",
       "title": "Ersatzbus hinter dem Bahnhof",
       "status": "Der Ersatzbus hält hinter dem Bahnhof. Die Abkürzung endet am Bauzaun.",
-      "result": "Der Bus hat Sie zum Zug gebracht. Ihr Rollkoffer darf ab hier wieder rollen."
+      "result": "Hinter Ihnen verschwindet der Bauzaun. Vor Ihnen fährt der Kaffeewagen durch den Zug."
     },
     {
       "puzzleId": "S1-04-04-03",
       "title": "Treppe zum Ersatzbus gesperrt",
       "status": "Die Treppe zum Bus ist gesperrt. Der Umweg führt zum ausgefallenen Zug.",
-      "result": "Der Weg zum Bus ist frei. Ihr Zug wartet diesmal am anderen Ende der Busfahrt."
+      "result": "Die Bahn fährt vom Hausgleis ab. Das Schild mit der Umleitung darf unten an der Treppe bleiben."
     },
     {
       "puzzleId": "S1-04-04-04",
-      "title": "Umleitung durch die Bahnhofshalle",
-      "status": "Bitte folgen Sie den gelben Pfeilen. Der letzte zeigt auf den ersten.",
-      "result": "Die Pfeile führen zum Zug. Er fährt weiter, statt Sie zurückzuschicken."
+      "title": "Umweg am Blumenstand",
+      "status": "Der Ausgang zum Gleis ist gesperrt. Auf dem Umweg durch die Halle blüht inzwischen der Flieder.",
+      "result": "Sie erreichen den Zug mit einem Strauß. Für die Blumen hat der Umweg gereicht."
     },
     {
       "puzzleId": "S1-04-04-05",
       "title": "Ersatzbus fährt am Ersatzhalt vorbei",
       "status": "Der Bus fährt zum Ersatzhalt. Ein Halt ist dort nicht vorgesehen.",
-      "result": "Der Bus hat gehalten. Sie erreichen Ihren Zug ohne Absprung."
+      "result": "Der Zug hält am richtigen Bahnsteig. Sie steigen aus, während Ihr Koffer noch neben Ihnen steht."
     },
     {
       "puzzleId": "S1-04-04-06",
@@ -1124,7 +1124,7 @@
       "puzzleId": "S1-04-04-07",
       "title": "Umstieg am Nachbarbahnhof",
       "status": "Der Aushang empfiehlt den Nachbarbahnhof. Zu Fuß überholen Sie den Ersatzbus.",
-      "result": "Sie erreichen den Zug vor dem Bus. Die Pressestelle lobt die schnelle Verbindung."
+      "result": "Der Zug hält wieder hier. Ihre Schuhe sind trocken geblieben."
     },
     {
       "puzzleId": "S1-04-04-08",
@@ -1135,7 +1135,7 @@
     {
       "puzzleId": "S1-04-04-09",
       "title": "Bushaltestelle außerhalb der Karte",
-      "status": "Die Karte zeigt den Weg zum Bus. Die Haltestelle liegt jenseits des Kartenrands.",
+      "status": "Die Umleitung passt nicht mehr auf den Aushang. Der Rest hängt am Fahrkartenautomaten.",
       "result": "Die Tafel zeigt wieder Ihr Ziel. Eine zweite Landkarte ist für die Fahrt nicht nötig."
     },
     {
@@ -1154,79 +1154,79 @@
       "puzzleId": "S1-04-04-12",
       "title": "Ersatzbus zurück zum Startbahnsteig",
       "status": "Der Bus bringt Sie zum Startbahnsteig zurück. Die Rundfahrt gilt als Anreise.",
-      "result": "Laut Pressestelle beginnt die Zugfahrt jetzt. Die Ehrenrunde war keine Reisezeit."
+      "result": "Die Bahn fährt jetzt auf direktem Weg. Der Startbahnsteig ist zur Abwechslung nur einmal zu sehen."
     },
     {
       "puzzleId": "S1-05-01-01",
       "title": "Ersatzbus am Parkplatz",
       "status": "Der Bus hält laut Tafel am Parkplatz. Ihr Ticket gilt auch für den Fußweg.",
-      "result": "Der Bus fährt. Ab hier übernimmt wieder ein Fahrzeug."
+      "result": "Die Gleise sind wieder frei. Ihr Zug passiert den Parkplatz ohne Zwischenhalt."
     },
     {
       "puzzleId": "S1-05-01-02",
       "title": "Wegweiser erst an der Haltestelle",
       "status": "Der Weg zum Bus ist ausgeschildert. Das erste Schild steht am Ziel.",
-      "result": "Sie haben den Bus gefunden. Das Schild bestätigt Ihre Ankunft."
+      "result": "Vom Zugfenster aus sehen Sie das Schild am Ziel. Von hier ist es tatsächlich gut zu finden."
     },
     {
       "puzzleId": "S1-05-01-03",
       "title": "Fünf Minuten Fußweg laut Aushang",
       "status": "Laut Aushang sind es fünf Minuten zum Bus. Gemessen wurde ohne Ampeln.",
-      "result": "Alle Ampeln sind passiert. Der Bus fährt, ohne dass Sie weiterlaufen müssen."
+      "result": "Die Schranke geht zu. Diesmal sitzen Sie im Zug auf der anderen Seite der Ampel."
     },
     {
       "puzzleId": "S1-05-01-04",
       "title": "Tür zur Ersatzhaltestelle verschlossen",
       "status": "Der Bus hält direkt hinter der Glastür. Die Tür öffnet erst morgen.",
-      "result": "Der Bus ist über den Umweg erreicht. Die Glastür bleibt ihrem Zeitplan treu."
+      "result": "Ihr Zug fährt am Hausgleis ab. Hinter der verschlossenen Glastür kann morgen jemand lüften."
     },
     {
       "puzzleId": "S1-05-01-05",
       "title": "Ersatzbus hinter dem Bauzaun",
       "status": "Der Bus hält zehn Meter hinter dem Zaun. Der Durchgang liegt einen Kilometer weiter.",
-      "result": "Der Zaun ist umrundet, der Bus fährt. Die Pressestelle lobt die Nähe zum Bahnhof."
+      "result": "Der Zug hält auf Ihrer Seite des Zauns. Für die letzten zehn Meter reicht nun ein Türknopf."
     },
     {
       "puzzleId": "S1-05-01-06",
       "title": "Haltestelle verlegt Schild bleibt stehen",
       "status": "Die Haltestelle wurde verlegt. Am alten Schild steht: Sie sind hier.",
-      "result": "Der Bus fährt vom neuen Standort ab. Der alte ist weiterhin gut beschildert."
+      "result": "Ihr Zug fährt am neuen Schild vorbei. Auf dem alten steht weiterhin völlig richtig „Sie sind hier“."
     },
     {
       "puzzleId": "S1-05-01-07",
       "title": "Ersatzbus gleich nebenan auf dem Plan",
       "status": "Auf dem Plan steht der Bus gleich nebenan. Ein Zentimeter sind zwei Kilometer.",
-      "result": "Der Bus ist erreicht und fährt. Auf dem Plan war das ein sehr kleiner Umweg."
+      "result": "Die Räder rollen. Auf der Karte liegen Sie schon einen ganzen Zentimeter weiter."
     },
     {
       "puzzleId": "S1-05-01-08",
       "title": "Gelbe Pfeile zurück zum Bahnsteig",
       "status": "Bitte folgen Sie den gelben Pfeilen. Sie führen zum ausgefallenen Zug.",
-      "result": "Die Durchsage meldet Abfahrt. Diesmal fährt tatsächlich etwas: der Bus."
+      "result": "Die gelben Pfeile führen wieder zum Zug. Heute muss niemand einen davon umdrehen."
     },
     {
       "puzzleId": "S1-05-01-09",
       "title": "Busabfahrt vor Ende des Fußwegs",
       "status": "Laut Ansage dauert der Fußweg zwölf Minuten. Der Bus wartet drei.",
-      "result": "Sie sitzen im fahrenden Bus. Der Fahrplan hatte diesen Fall nicht vorgesehen."
+      "result": "Sie sitzen im Zug. Für den Weg von der Bank zum Sitzplatz reichen die drei Minuten gut."
     },
     {
       "puzzleId": "S1-05-01-10",
       "title": "Ersatzhaltestelle am Bahnhof im Nachbarort",
       "status": "Der Zettel nennt den Bahnhof als Bushalt. Gemeint ist der im nächsten Ort.",
-      "result": "Der Bus fährt. Der Weg zur Haltestelle war bereits die halbe Reise."
+      "result": "Der Zug hält an Ihrem Bahnhof. Der gleichnamige Bushalt im Nachbarort bleibt ein Geheimtipp."
     },
     {
       "puzzleId": "S1-05-01-11",
       "title": "Fußweg zählt als erste Busfahrt",
       "status": "Der Aushang zählt den Fußweg als Fahrt. Der erste Bus sind Ihre Schuhe.",
-      "result": "Sie sitzen, der Bus fährt. Die Statistik meldet einen nahtlosen Fahrzeugwechsel."
+      "result": "Ihre Schuhe stehen unter dem Sitz. Für den Rest der Fahrt sind die Räder zuständig."
     },
     {
       "puzzleId": "S1-05-01-12",
       "title": "Haltestellenschild fährt im Bus",
       "status": "Das Haltestellenschild fährt im Bus mit. Bitte folgen Sie ihm zu Fuß.",
-      "result": "Der Bus hält und nimmt Sie mit. Die Haltestelle fährt diesmal nicht allein."
+      "result": "Das Haltestellenschild bewegt sich am Fenster vorbei. Diesmal fährt Ihr Zug."
     },
     {
       "puzzleId": "S1-05-02-01",
@@ -1244,7 +1244,7 @@
       "puzzleId": "S1-05-02-03",
       "title": "Busankunft nur per Durchsage",
       "status": "Die Durchsage kündigt den Bus an. Lautsprecher können nicht fahren.",
-      "result": "Die Ansage stimmt: Der Zug fährt ab. Das Mikrofon meldet keinen Widerspruch."
+      "result": "Am Gleis öffnen sich Zugtüren. Dieses Geräusch braucht keine Durchsage."
     },
     {
       "puzzleId": "S1-05-02-04",
@@ -1304,13 +1304,13 @@
       "puzzleId": "S1-05-03-01",
       "title": "Ersatzbus fährt vor der Zugankunft",
       "status": "Ihr Zug fährt ein. Der Bus ist pünktlich ohne Sie abgefahren.",
-      "result": "Der Bus wartet bis zur Zugankunft. Die Weiterfahrt gelingt ohne Dauerlauf."
+      "result": "Die Schienen führen wieder bis ans Ziel. Sie bleiben sitzen, während der Bus abfährt."
     },
     {
       "puzzleId": "S1-05-03-02",
       "title": "Ersatzhalt am falschen Ausgang",
       "status": "Der Bus hält hinter dem Bahnhof. Der einzige Ausgang liegt vorne.",
-      "result": "Der Bus steht jetzt am Ausgang. Der Bahnhof muss nicht mehr umrundet werden."
+      "result": "Die Türen öffnen sich vorn am Bahnhof. Ihr Zug hat Ihnen die Runde ums Gebäude erspart."
     },
     {
       "puzzleId": "S1-05-03-03",
@@ -1322,7 +1322,7 @@
       "puzzleId": "S1-05-03-04",
       "title": "Anschlussbus bleibt verschlossen",
       "status": "Der Bus steht mit geschlossenen Türen da. Laut Anzeige sind Sie angekommen.",
-      "result": "Die Türen öffnen sich. Der Anschluss besteht jetzt auch für Personen."
+      "result": "Ihr Zug hält und die Türen gehen auf. Sie dürfen der Anzeige jetzt tatsächlich glauben."
     },
     {
       "puzzleId": "S1-05-03-05",
@@ -1352,19 +1352,19 @@
       "puzzleId": "S1-05-03-09",
       "title": "Wegweiser zum Ersatzbus führen im Kreis",
       "status": "Die Pfeile führen zum Ersatzbus. Am Ende steht wieder der erste Pfeil.",
-      "result": "Der letzte Pfeil zeigt auf einen Bus. Dieser fährt sogar zum Anschlusszug."
+      "result": "Vom Fenster aus sehen die Pfeile fast wie ein Kreis aus. Ihr Zug fährt geradeaus."
     },
     {
       "puzzleId": "S1-05-03-10",
       "title": "Anschlussbus wartet nur auf der Tafel",
       "status": "Die Tafel meldet einen wartenden Bus. Er wartet jetzt am nächsten Bahnhof.",
-      "result": "Bus und Tafel befinden sich wieder am selben Ort. Sie können dort einsteigen."
+      "result": "Die Bahn fährt den Anschluss selbst. Auf der Tafel ist wieder Platz für eine Gleisnummer."
     },
     {
       "puzzleId": "S1-05-03-11",
       "title": "Busanschluss laut historischem Aushang",
       "status": "Der Aushang nennt den Bus um 9 Uhr. Gemeint ist der 4. Mai 1987.",
-      "result": "Der Bus fährt heute. Die Pressestelle meldet einen Anschluss an die Gegenwart."
+      "result": "Das Datum auf Ihrer Fahrkarte stimmt. Ihr Zug ist noch am selben Tag angekommen."
     },
     {
       "puzzleId": "S1-05-03-12",
@@ -1399,8 +1399,8 @@
     {
       "puzzleId": "S1-05-04-05",
       "title": "Ersatzbus nur über Stufen erreichbar",
-      "status": "Zum Bus führt nur die Treppe. Der Aufzug ersetzt heute die Wand.",
-      "result": "Ihr Rollkoffer rollt in die Bahn. Für den Einstieg entfällt die Flugphase."
+      "status": "Der Aushang verspricht einen kurzen Weg zum Bus. Die drei Treppen zeichnet er als gerade Linie.",
+      "result": "Ihr Koffer rollt bis in den Zug. Die Rollen haben den ganzen Weg Bodenkontakt."
     },
     {
       "puzzleId": "S1-05-04-06",
@@ -1442,7 +1442,7 @@
       "puzzleId": "S1-05-04-12",
       "title": "Ersatzbus durch Warten ersetzt",
       "status": "Der letzte Bus entfällt. Das Warten gilt jetzt als durchgehende Verbindung.",
-      "result": "Durchsage: Die Bahn fährt pünktlich. Bitte leiten Sie daraus keinen Anspruch ab."
+      "result": "Der letzte Zug erreicht B. Alle Störungen behoben. Vorerst."
     }
   ]
 }

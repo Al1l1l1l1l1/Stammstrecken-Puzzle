@@ -417,7 +417,7 @@ namespace STP.Tests.Bootstrap.PlayMode
             Submit("home-play"); yield return Idle(); yield return null; yield return null;
             var caption = installer.Document.rootVisualElement.Q<Label>(className: "tool-caption");
             Assert.That(caption, Is.Not.Null);
-            const string expected = "Mit gleichem Werkzeug dieselbe Zelle erneut tippen: leeren.";
+            const string expected = "Gleiches Werkzeug noch einmal aufs Feld tippen, um es zu leeren.";
             Assert.That(caption!.text, Is.EqualTo(expected));
             Assert.That(caption.resolvedStyle.whiteSpace, Is.EqualTo(WhiteSpace.Normal));
             Assert.That(caption.resolvedStyle.fontSize, Is.GreaterThanOrEqualTo(10), "Do not make the clarification fit by shrinking the agreed caption.");

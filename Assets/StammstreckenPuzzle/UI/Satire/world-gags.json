@@ -2,17 +2,84 @@
   "version": 1,
   "gags": [
     {
+      "id": "gag-deadline",
+      "scene": "PLATFORM",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "deadline-sign",
+        "year-stickers"
+      ],
+      "line": "2. Stammstrecke · Fertigstellung siehe Aufkleber",
+      "sound": null,
+      "direction": "Am Brett hängen frühere Jahreszahlen unter einem frischen Zettel mit Fragezeichen. Nach jedem bestätigten Neuplanen wird die neue Jahreszahl über die alte geklebt."
+    },
+    {
       "id": "gag-elevator",
       "scene": "PLATFORM",
       "kind": "LOOP",
       "required": true,
       "objects": [
         "elevator",
-        "sign-out-of-order"
+        "sign-out-of-order",
+        "plaque-repair-planned"
       ],
       "line": "Gleis 2 · Aufzug außer Betrieb",
       "sound": null,
-      "direction": "Die Plakette verstaubt bei jedem Besuch."
+      "direction": "Die Tür bleibt geschlossen. Bei jedem Besuch dunkelt die Reparaturplakette etwas nach, bis der Staub die Ränder verdeckt."
+    },
+    {
+      "id": "gag-clock",
+      "scene": "PLATFORM",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "clock",
+        "minute-hand"
+      ],
+      "line": "Bahnhofszeit",
+      "sound": null,
+      "direction": "Der Minutenzeiger läuft drei Minuten hinter der angezeigten Zeit. Beim Wechsel der Tafel bleibt der Abstand gleich."
+    },
+    {
+      "id": "gag-order",
+      "scene": "PLATFORM",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "commuters",
+        "carriage-order-board"
+      ],
+      "line": "Wagen 1 heute am anderen Ende",
+      "sound": "Flap",
+      "direction": "Die Gruppe schaut auf die neue Reihung und geht geschlossen zum anderen Ende. Beim nächsten Wechsel legt sie denselben Weg zurück."
+    },
+    {
+      "id": "gag-sev",
+      "scene": "PLATFORM",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "replacement-bus",
+        "stop-sign",
+        "arrow"
+      ],
+      "line": "Zur Ersatzhaltestelle",
+      "sound": null,
+      "direction": "Auf dem Parkplatz steht ein leerer Bus. Sein Haltestellenpfeil zeigt aus dem Bild hinaus."
+    },
+    {
+      "id": "gag-birds",
+      "scene": "RIDE",
+      "kind": "LOOP",
+      "required": true,
+      "objects": [
+        "pigeons",
+        "overhead-wire"
+      ],
+      "line": null,
+      "sound": "Pigeons",
+      "direction": "Kurz bevor der Zug B erreicht, heben drei Tauben nacheinander von der Oberleitung ab und schlagen die Flügel."
     },
     {
       "id": "gag-through",
@@ -20,23 +87,211 @@
       "kind": "RARE",
       "required": true,
       "objects": [
-        "train"
+        "train",
+        "commuters",
+        "through-board"
       ],
       "line": "Fährt heute ohne Halt",
-      "sound": "TrainRoll",
-      "direction": "Der Zug fährt am Bahnsteig vorbei."
+      "sound": null,
+      "direction": "Ein roter Zug nähert sich und die Pendler treten an die Kante. Er rollt an ihnen vorbei, während ihre Köpfe mitwandern."
+    },
+    {
+      "id": "gag-delay",
+      "scene": "PLATFORM",
+      "kind": "RARE",
+      "required": true,
+      "objects": [
+        "delay-board",
+        "commuters"
+      ],
+      "line": "Zug fällt aus",
+      "sound": "Sigh",
+      "direction": "Die Tafel klappt im Sekundentakt von +5 über +10 auf +20. Beim Wechsel auf „Zug fällt aus“ sinken gleichzeitig alle Schultern."
+    },
+    {
+      "id": "gag-crackle",
+      "scene": "PLATFORM",
+      "kind": "RARE",
+      "required": true,
+      "objects": [
+        "loudspeaker",
+        "commuters"
+      ],
+      "line": "Wir bitten um Verständnis.",
+      "sound": "Crackle",
+      "direction": "Beim Knistern drehen sich die Köpfe zum Lautsprecher. Nach einer kurzen Pause erscheint als einzige verständliche Zeile die Bitte um Verständnis."
+    },
+    {
+      "id": "gag-reverse",
+      "scene": "RIDE",
+      "kind": "RARE",
+      "required": true,
+      "objects": [
+        "train",
+        "reverse-order-board"
+      ],
+      "line": "Heute in umgekehrter Wagenreihung.",
+      "sound": "Flap",
+      "direction": "Die Tafel klappt vor der Einfahrt um. Hinter der Lok kommen die angehängten Wagen diesmal in umgekehrter Folge."
+    },
+    {
+      "id": "gag-tunnel",
+      "scene": "WORLD_1",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "tunnel-mouth",
+        "commuters"
+      ],
+      "line": "Bitte weiter aufrücken",
+      "sound": null,
+      "direction": "Vor dem Tunnel rückt bei der Ansage jeder um einen halben Schuh vor. Am hinteren Ende bleibt der letzte Pendler an derselben Stelle."
+    },
+    {
+      "id": "gag-ticket",
+      "scene": "WORLD_1",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "ticket-machine",
+        "taped-note"
+      ],
+      "line": "Zweiter Automat im Tunnel",
+      "sound": null,
+      "direction": "Am dunklen Automaten klebt ein Pfeil zum zweiten Gerät. Dort weist ein Pfeil wieder zurück."
+    },
+    {
+      "id": "gag-fence",
+      "scene": "WORLD_2",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "fence",
+        "paint-marks"
+      ],
+      "line": "Bauzaun laut Plan",
+      "sound": null,
+      "direction": "Bei jedem Besuch steht der Zaun eine Platte weiter links. Die alte weiße Markierung bleibt am Boden."
+    },
+    {
+      "id": "gag-excavator",
+      "scene": "WORLD_2",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "excavator",
+        "empty-seat",
+        "thermos"
+      ],
+      "line": "Gerät im Einsatz",
+      "sound": null,
+      "direction": "Im leeren Führerstand steht eine Thermoskanne. Vor dem ruhenden Löffel dreht sich ein trockenes Blatt."
+    },
+    {
+      "id": "gag-web",
+      "scene": "WORLD_3",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "bench",
+        "cobweb"
+      ],
+      "line": "Bank frei",
+      "sound": null,
+      "direction": "Zwischen den Armlehnen spannt sich ein dünnes Netz. Bei der Durchfahrt bewegt sich nur der lose Faden."
+    },
+    {
+      "id": "gag-request",
+      "scene": "WORLD_3",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "request-stop",
+        "button",
+        "sign"
+      ],
+      "line": "Halt auf Wunsch",
+      "sound": null,
+      "direction": "Am Ende des Bahnsteigs leuchtet der Knopf für den Haltewunsch. Der Pfeil am anderen Ende zeigt auf genau diesen Knopf."
+    },
+    {
+      "id": "gag-arrows",
+      "scene": "WORLD_4",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "direction-sign",
+        "opposite-arrows"
+      ],
+      "line": "Beide Wege zum Gleis",
+      "sound": null,
+      "direction": "Zwei Bretter zeigen mit derselben Gleisnummer in entgegengesetzte Richtungen. Ein drittes hängt als Reserve darunter."
+    },
+    {
+      "id": "gag-bridge",
+      "scene": "WORLD_4",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "bridge",
+        "temporary-plaque"
+      ],
+      "line": "Vorläufig tragfähig",
+      "sound": null,
+      "direction": "Unter dem Schild baumelt das verblichene Band der Einweihung. Die Brücke und der Zug bleiben bei der Fahrt ruhig."
+    },
+    {
+      "id": "gag-convoy",
+      "scene": "WORLD_5",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "bus-convoy",
+        "destination-boards"
+      ],
+      "line": "Ersatz für den Ersatz",
+      "sound": null,
+      "direction": "Drei Busse stehen Stoßstange an Stoßstange. Nur im hintersten leuchtet die Zielanzeige."
+    },
+    {
+      "id": "gag-rollers",
+      "scene": "WORLD_5",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "suitcases",
+        "gravel-path",
+        "stop-sign"
+      ],
+      "line": "Ersatzhalt am Feldweg",
+      "sound": null,
+      "direction": "Zwei Koffer rollen bis zur Schotterkante. Die Pendler heben sie gleichzeitig an und tragen sie bis zum Schild."
+    },
+    {
+      "id": "gag-coffee",
+      "scene": "DEPOT",
+      "kind": "LOOP",
+      "required": false,
+      "objects": [
+        "mugs",
+        "workbench"
+      ],
+      "line": "Besprechung aller Abteilungen",
+      "sound": null,
+      "direction": "Drei Becher stehen um einen einzigen Hocker. Aus dem vierten neben der Werkbank steigt Dampf."
     },
     {
       "id": "gag-map",
       "scene": "MAP",
       "kind": "LOOP",
-      "required": true,
+      "required": false,
       "objects": [
-        "note"
+        "note",
+        "signal-switch"
       ],
       "line": "Bitte nichts anfassen, was funktioniert.",
       "sound": null,
-      "direction": "Zettel am Pultrand."
+      "direction": "Am Rand des Stellpults hängt ein handbeschriebener Zettel. Genau unter dem Wort „funktioniert“ leuchtet die grüne Lampe."
     }
   ]
 }
