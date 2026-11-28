@@ -159,8 +159,15 @@ def solve(name):
     capture(name+"-result")
     dismiss_post()
 
+def scroll_panel(down):
+    # All navigation after the first measurement uses the 540 x 1200 viewport.
+    y1, y2 = (930, 400) if down else (415, 920)
+    adb("shell", "input", "swipe", "270", str(y1), "270", str(y2), "490")
+    time.sleep(.5)
+
+
 def home():
-    for _ in range(7):
+    for _ in range(16):
         p=page()
         if ready("home-play",p): return
         for name in ["mail-close","result-skip-bonus","result-home","map-back","nav-home","puzzle-back"]:
@@ -168,20 +175,27 @@ def home():
                 tap(name)
                 time.sleep(1)
                 break
-        else: time.sleep(1)
-    wait(lambda p:ready("home-play",p),"Bahnsteig")
+        else:
+            if p["phase"] == "Results": scroll_panel(True)
+            else: time.sleep(1)
+    raise RuntimeError("Bahnsteig nicht erreicht: " + str(list(targets(page()))))
 
 
 def select_cosmetic(item):
     print("Betriebshof: " + item, flush=True)
-    action="cosmetic-action-"+item
+    action = "cosmetic-action-" + item
     for _ in range(40):
-        p=page()
-        if ready(action,p): break
-        if "depot-next" in targets(p):
-            tap("depot-next")
-        else:
-            adb("shell","input","swipe","270","880","270","340","480")
+        p = page()
+        for _ in range(4):
+            if any(key.startswith("cosmetic-action-") for key in targets(p)): break
+            scroll_panel(True)
+            p = page()
+        if action in targets(p): break
+        for _ in range(4):
+            if ready("depot-next", p): break
+            scroll_panel(False)
+            p = page()
+        tap("depot-next")
     tap(action)
     wait(lambda p:item in p["owned"],"Kauf "+item)
     if item not in last["equipped"]:
