@@ -37,7 +37,14 @@ grep -q arm64-v8a DeviceResults/abis.txt
 adb shell wm size 1080x2400
 adb shell wm density 420
 adb shell settings put secure immersive_mode_confirmations confirmed
+adb shell svc power stayon true
+adb shell settings put system screen_off_timeout 1800000
+adb shell wm dismiss-keyguard
 adb shell input keyevent 82
+# Wait for the virtual machine's own home screen to settle before timing a cold game launch.
+timeout 60s adb shell am start -W -a android.intent.action.MAIN -c android.intent.category.HOME || true
+sleep 25
+adb shell am force-stop com.google.android.apps.nexuslauncher
 apk="$(find apk -name '*.apk' -type f -print -quit)"
 aapt="$(find "$ANDROID_HOME/build-tools" -name aapt -type f | sort -V | tail -1)"
 "$aapt" dump badging "$apk" > DeviceResults/package.txt

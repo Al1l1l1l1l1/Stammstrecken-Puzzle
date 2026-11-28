@@ -25,7 +25,7 @@ def command(text):
 def page(sample=False):
     global last
     command(("echo sample" if sample else "echo state") + " > files/screen.request")
-    for _ in range(140):
+    for _ in range(450):
         if command("if test -f files/screen.request; then echo pending; else echo done; fi") == "done":
             last = json.loads(command("cat files/screen.json"))
             return last
