@@ -1,6 +1,6 @@
 # Hauptübergabe – vollständiges Spiel und Release Candidate
 
-Stand: 01.11.2026. Releaselead R führt [WP-046](../../../WORK_PACKAGES/WP-046_Vollstaendiges-Spiel-und-Release-Candidate.md) unter [MANUS-2026-10-20-02](../../PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) bis zum tatsächlich einreichungsfähigen M3 fort. Der vollständige Spielumfang ist integriert. Die aktuelle vollständige Linux-/Android-/Xcode-Prüfkette ist unabhängig aus tatsächlichen Originalen angenommen. Main22 und Human11 stehen als geprüfte Android-Testfassungen bereit. M3 bleibt wegen tatsächlicher Owner-/Human-/Geräte-/Provider-/Signing-/Rechts-/Storegates offen.
+Stand: 01.11.2026. Releaselead R führt [WP-046](../../../../WORK_PACKAGES/WP-046_Vollstaendiges-Spiel-und-Release-Candidate.md) unter [MANUS-2026-10-20-02](../../PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md) bis zum tatsächlich einreichungsfähigen M3 fort. Der vollständige Spielumfang ist integriert. Die aktuelle vollständige Linux-/Android-/Xcode-Prüfkette ist unabhängig aus tatsächlichen Originalen angenommen. Main22 und Human11 stehen als geprüfte Android-Testfassungen bereit. M3 bleibt wegen tatsächlicher Owner-/Human-/Geräte-/Provider-/Signing-/Rechts-/Storegates offen.
 
 ## Auftrag, Quellen und Befugnisse
 
@@ -32,7 +32,7 @@ Lokale258Play- und635betroffeneEditorfälle sind bei ursprünglichen Fällen/Fri
 
 ## Vollständige aktuelle CI aus Originalen
 
-[PR40916706836](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40916706836) ist vollständig terminalSUCCESS und fachlich unabhängig angenommen. [Gemeinsamer veröffentlichter Originalbeleg](../../../Release/CI_ANDROID_40916706836_INSPECTION.json) bindet tatsächliche API-/Job-/Checkoutzeugen, Artefakte und Einzelannahmen. Root hat67 referenzierte Originaldateien zusätzlich gehasht. Beide Architectureläufe bestanden;19lokale Architecture-/Scopegruppen und28CIsteuerungstests sind ebenfalls bestanden.
+[PR40916706836](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/actions/runs/40916706836) ist vollständig terminalSUCCESS und fachlich unabhängig angenommen. [Gemeinsamer veröffentlichter Originalbeleg](../../../../Release/CI_ANDROID_40916706836_INSPECTION.json) bindet tatsächliche API-/Job-/Checkoutzeugen, Artefakte und Einzelannahmen. Root hat67 referenzierte Originaldateien zusätzlich gehasht. Beide Architectureläufe bestanden;19lokale Architecture-/Scopegruppen und28CIsteuerungstests sind ebenfalls bestanden.
 
 | Tatsächlicher Nachweis | Ergebnis und Grenze |
 |---|---|
@@ -51,8 +51,8 @@ Die parallele Pushkette40916695660 ist ausdrücklich kein vollständigerPASS: Gi
 
 | Fassung | Tatsächlicher Stand |
 |---|---|
-| [Main22](../../../Release/ANDROID_BUILD22_INSPECTION.json) | Aktuelle Spielprobe ausf1d039,58.868.114Bytes/SHA256 `fff935a6846aeee5cf9cf3923e3eca3b792a467d60267c39d37c031dc67db2e2`. `.utmp/wp046-native/android-build22-verified/stp-mobile-preview.apk`. Vollständige lokale Lizenzansicht enthalten. |
-| [Human11](../../../Release/HUMAN_ANDROID_BUILD11_INSPECTION.json) | Aktuelle Mess-App aus3f9db0,56.833.847Bytes/SHA256 `0b8254864858b204c266b4625552ce8622e39bfb736e44268058df8ba97a46f6`. `.utmp/wp046-native/human-android-build11-verified/stp-human-calibration.apk`. Android08/Revision8/UI76,17Pakete/102Aufgaben, unvergeben/keine Menschenmessung. |
+| [Main22](../../../../Release/ANDROID_BUILD22_INSPECTION.json) | Aktuelle Spielprobe ausf1d039,58.868.114Bytes/SHA256 `fff935a6846aeee5cf9cf3923e3eca3b792a467d60267c39d37c031dc67db2e2`. `.utmp/wp046-native/android-build22-verified/stp-mobile-preview.apk`. Vollständige lokale Lizenzansicht enthalten. |
+| [Human11](../../../../Release/HUMAN_ANDROID_BUILD11_INSPECTION.json) | Aktuelle Mess-App aus3f9db0,56.833.847Bytes/SHA256 `0b8254864858b204c266b4625552ce8622e39bfb736e44268058df8ba97a46f6`. `.utmp/wp046-native/human-android-build11-verified/stp-human-calibration.apk`. Android08/Revision8/UI76,17Pakete/102Aufgaben, unvergeben/keine Menschenmessung. |
 
 Beide lokalen Vorlaufarchive besitzen dieselben1121Quelldateibytes und sind vollständig mit Native-/Compiler-/Nonce-/Runtimeoriginalen erhalten. Die spätere CI-Werkzeugkorrektur verändert diese Appquellen nicht. Gemeinsame lokale Annahme `.utmp/wp046-c-current-native22-11/pair-independent-conclusion.json`, SHA256 `20e3831375fb55ea46db879cf2230781d8f70c80238f20190d6476c4cfe23587`.
 
@@ -62,7 +62,7 @@ Main20/Human10 und ältere Pakete/Messreihen bleiben erhalten. Human9 bleibt das
 
 ## Quellen, Rechte und Human-Durchführung
 
-Der vollständige lokale Notice-Text hat850.418Bytes/SHA256 `cbfe6b73ab5cefdb90b29d6f97ae4479b8419bbd1fab0eb1487078672dd9eca0`:56Abschnitte/410Bereiche aus49Originalen. Der [portable Quellenindex](../../../Release/OFFLINE_NOTICES_SOURCES.json) erhält41vorhandeneQuellen und acht ergänzte Originalkopien. Alle Bereiche und der gesamte Text wurden auch aus tatsächlichen Gitblobs exakt rekonstruiert. Zwei falsche Herstellerindexwerte bleiben unverändert; vollständige mp4parser-/p2putils-Texte werden an eindeutigen Literalgrenzen gewählt. Checkoutregeln erhalten Original-Lizenz-/Schriftbytes und den bereits rohhashgebundenen historischen CI-Bericht; Originalleerzeichen wurden nicht wegformatiert.
+Der vollständige lokale Notice-Text hat850.418Bytes/SHA256 `cbfe6b73ab5cefdb90b29d6f97ae4479b8419bbd1fab0eb1487078672dd9eca0`:56Abschnitte/410Bereiche aus49Originalen. Der [portable Quellenindex](../../../../Release/OFFLINE_NOTICES_SOURCES.json) erhält41vorhandeneQuellen und acht ergänzte Originalkopien. Alle Bereiche und der gesamte Text wurden auch aus tatsächlichen Gitblobs exakt rekonstruiert. Zwei falsche Herstellerindexwerte bleiben unverändert; vollständige mp4parser-/p2putils-Texte werden an eindeutigen Literalgrenzen gewählt. Checkoutregeln erhalten Original-Lizenz-/Schriftbytes und den bereits rohhashgebundenen historischen CI-Bericht; Originalleerzeichen wurden nicht wegformatiert.
 
 Aktuelle Pods GMA13.11.0/UMP3.1.0 sind an tatsächliche Specs/Hashes/Materialien gebunden. Die18.880Byte-GMA-LICENSE ist OpenMeasurement-Material und kein umfassender Vertrag der proprietären SDK-Binaries. Wrapper-Apache und Webseitenbedingungen ersetzen keinen tatsächlichen Konto-/Ländervertrag. Qualifizierte Rechte-/Datenschutzprüfung, endgültige Noticeabdeckung und Publisherangaben bleiben offen.
 
@@ -82,10 +82,10 @@ Das interne Human08-Quellenpaket erhält895Originale (ZIP-SHA256 `bb881fa8187d13
 
 ## Restweg bis zum tatsächlichen M3
 
-Der nächste konkrete Schritt ist der echte Owner-Handtest an Main22 und die vorbereitete Erstkontaktmessung an Human11. Die erfolgreiche ADB-Abfrage am01.11.2026 fand weiterhin kein angeschlossenes Androidtelefon. Ohne Gerät/Person lassen sich diese Nachweise nicht technisch erzeugen; Referenzbilder und grüneCI ersetzen sie nicht. Die [kurze Ownerliste](../../../Release/OWNER_INPUTS.md) nennt Beitrag und tatsächlichen Bedarfszeitpunkt. Fehlendes blockiert nur den abhängigen Schritt.
+Der nächste konkrete Schritt ist der echte Owner-Handtest an Main22 und die vorbereitete Erstkontaktmessung an Human11. Die erfolgreiche ADB-Abfrage am01.11.2026 fand weiterhin kein angeschlossenes Androidtelefon. Ohne Gerät/Person lassen sich diese Nachweise nicht technisch erzeugen; Referenzbilder und grüneCI ersetzen sie nicht. Die [kurze Ownerliste](../../../../Release/OWNER_INPUTS.md) nennt Beitrag und tatsächlichen Bedarfszeitpunkt. Fehlendes blockiert nur den abhängigen Schritt.
 
 Es folgen tatsächliche physische Android-/iOS-, Offline-, Lifecycle-, Accessibility-, Performance- und Privacyprüfungen; reale AdMob-/UMP-/Kauf-/Restore-/Storekanaltests mit richtigen Kennungen/Rollen; zuständige Signingpersonen und signierte Android-/iOS-Testartefakte; qualifizierte Rechte-/Datenschutz-/Rechtsendprüfung mit Publisher-/Support-/Kontoländerkontext. Geheimwerte ausschließlich in geschützte CI-Eingaben, keine Schlüssel oder Kaufreceipts im Chat/Repository. Keine angenommene Behörde, Vertragszustimmung, Storefreigabe oder menschliche Identität erfinden.
 
-[Issue38](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/38) bleibt bis zur tatsächlichen Hand-/Owner-/Difficultybeurteilung offen. Vorlagen: [Pipeline/Signierung](../../../Release/RC_PIPELINE.md), [Verpackung](../../../tools/release/RC_PACKAGING.md), [CI-Eingaben](../../../tools/release/RC_CI_INPUTS.md), [Storetext](../../../Release/STORE_LISTING_DE.md), [SDKinventar](../../../Release/SDK_INVENTORY.md), [Drittrechte](../../../Release/THIRD_PARTY_NOTICES.md), [Privacy-/Providerbelege](../../../ARCHITECTURE/PRIVACY_PROVIDER_EVIDENCE.md). Vorlagen sind keine Freigaben.
+[Issue38](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/issues/38) bleibt bis zur tatsächlichen Hand-/Owner-/Difficultybeurteilung offen. Vorlagen: [Pipeline/Signierung](../../../../Release/RC_PIPELINE.md), [Verpackung](../../../../tools/release/RC_PACKAGING.md), [CI-Eingaben](../../../../tools/release/RC_CI_INPUTS.md), [Storetext](../../../../Release/STORE_LISTING_DE.md), [SDKinventar](../../../../Release/SDK_INVENTORY.md), [Drittrechte](../../../../Release/THIRD_PARTY_NOTICES.md), [Privacy-/Providerbelege](../../../../ARCHITECTURE/PRIVACY_PROVIDER_EVIDENCE.md). Vorlagen sind keine Freigaben.
 
 Erst tatsächliche externe Nachweise und die abschließende unabhängige integrierte RC-Prüfung ergeben M3. Keine M1-/M2-/M3-, Main- oder Storeannahme vorweggenommen. Arbeitsziel18.11.2026, bedingter Korridor bis02.12.2026; keine Termingarantie. Gesamtauftrag aktiv.

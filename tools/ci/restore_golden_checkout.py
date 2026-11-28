@@ -9,7 +9,7 @@ import argparse
 import hashlib
 import subprocess
 
-REFERENCE = "PROJECT_CONTROL/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json"
+REFERENCE = "PROJECT_CONTROL/HISTORY/ProductionBlocks/Public240Save/S/GOLDENS_PRECODEC_V7.json"
 EXPECTED_SHA256 = "ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0"
 
 

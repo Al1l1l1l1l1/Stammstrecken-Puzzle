@@ -21,7 +21,7 @@
 | Zu bewertende korrigierte Gestaltung | `9e3f209cd92d491ab3a1ab51cce63677d3b5d53e`, `design/wp-035-finale-asset-bible`, [Draft-PR30](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/30) |
 | Maßgebliche vorgelegte Bible | [README samt sieben Kapiteln und zehn Bildern am Designfreeze](https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/blob/9e3f209cd92d491ab3a1ab51cce63677d3b5d53e/PROJECT_CONTROL/AssetBible/WP-035/README.md) |
 | Unverändertes Main | `d90e798dd9b26d3f152f3b0c2d1d52cae641eb16`; kein Mainmerge oder Release durch diese Entscheidung |
-| Heutige reine Entscheidungsdokumentation | [WP-044](../../../WORK_PACKAGES/WP-044_Manus-Gestaltungsentscheidung-und-Produktionsmandat.md), eigener gemeinsamer Governanceanker `ba4c70236f71d0ca4ec667d5e5c8d86275304c87`, einziges Parent / Manifestbasis B; alte Manifeste unverändert |
+| Heutige reine Entscheidungsdokumentation | [WP-044](../../../../WORK_PACKAGES/WP-044_Manus-Gestaltungsentscheidung-und-Produktionsmandat.md), eigener gemeinsamer Governanceanker `ba4c70236f71d0ca4ec667d5e5c8d86275304c87`, einziges Parent / Manifestbasis B; alte Manifeste unverändert |
 
 Die 240 Rätsel, Restore/Autosave/Recovery, vollständigen Domaincheckpoints, idempotenten Grundfortschritt und den verifizierten Savecommit vor Fahrt/gespeichertem Ergebnis nehme ich **nicht erneut technisch ab**. Sie sind abgeschlossene Grundlage. Die bereits kreativ angenommene WP-036-Quelle und ihre 960 Leveltextreferenzen bleiben unverändert.
 

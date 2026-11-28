@@ -4,7 +4,7 @@ const fs=require('fs'), path=require('path'), cp=require('child_process'), crypt
 const root=path.resolve(__dirname,'../..');
 const source='dc1652befd7545b4c2a2dd0580f35a4e8e05d72d';
 const asset='Assets/StammstreckenPuzzle/UI/Public240.public.json';
-const lock='PROJECT_CONTROL/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json';
+const lock='PROJECT_CONTROL/HISTORY/ProductionBlocks/Public240Save/A_SOURCE_LOCK.json';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const scratch=path.join(root,'.utmp/public240-project'); fs.mkdirSync(scratch,{recursive:true});
 function git(args){return cp.execFileSync('git',args,{cwd:root,maxBuffer:16*1024*1024});}

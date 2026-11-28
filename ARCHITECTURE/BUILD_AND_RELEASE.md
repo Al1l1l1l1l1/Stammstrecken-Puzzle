@@ -2,7 +2,7 @@
 
 ## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
 
-[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/HISTORY/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
 
 **Releasezuständigkeit:** R darf nach unabhängig geprüfter integrierter RCfassung und wirklicher Owner-Spielannahme den geprüften Stand über normalen geschützten PRweg nach Main integrieren. Öffentliche Store-/Vertrag-/Payment-/Rechtsfreigaben bleiben konkrete Ownerhandlungen. Signing, physische Geräte, echte SDK-/Privacy-/Kauf-/Restorebelege und Stores sind nicht durch dieses Dokument erfüllt.
 

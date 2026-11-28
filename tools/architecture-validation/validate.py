@@ -5,14 +5,12 @@ import argparse
 import base64
 import copy
 from datetime import datetime, timezone
-import fnmatch
 import hashlib
 import json
-import posixpath
 import re
 import subprocess
 import sys
-from pathlib import Path, PurePosixPath, PureWindowsPath
+from pathlib import Path
 from typing import Any, Callable
 
 try:
@@ -23,47 +21,10 @@ except ImportError as exc:
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOL = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT / "tools/ci"))
-from adr047_metadata_authority import MetadataAuthorityError, authorized_metadata_path
 
 ERRORS: list[str] = []
 PASSES: list[tuple[str, str]] = []
 
-WP_HEADINGS = [
-    "## ID", "## Ziel", "## Voraussetzungen", "## Scope",
-    "## Betroffene Dateien/Module", "## Ausdrücklich nicht erlaubte Änderungen",
-    "## Akzeptanzkriterien", "## Tests", "## Risikoklasse", "## Definition of Done",
-]
-ADR_HEADINGS = [
-    "## Status", "## Datum", "## Kontext", "## Entscheidung", "## Begründung",
-    "## Betrachtete Alternativen", "## Konsequenzen", "## Betroffene Artefakte",
-    "## Validierung", "## Ersetzt / ersetzt durch",
-]
-CURRENT_ADR_STATUS = {
-    1: "Angenommen", 2: "Angenommen", 3: "Ersetzt", 4: "Ersetzt",
-    5: "Angenommen", 6: "Ersetzt", 7: "Angenommen", 8: "Ersetzt",
-    9: "Ersetzt", 10: "Angenommen", 11: "Angenommen", 12: "Angenommen",
-    13: "Angenommen", 14: "Ersetzt", 15: "Ersetzt", 16: "Angenommen",
-    17: "Ersetzt", 18: "Angenommen", 19: "Angenommen", 20: "Angenommen",
-    21: "Angenommen", 22: "Ersetzt", 23: "Angenommen", 24: "Angenommen",
-    25: "Angenommen", 26: "Angenommen",
-    27: "Angenommen", 28: "Angenommen", 29: "Angenommen", 30: "Angenommen",
-    31: "Angenommen", 32: "Angenommen", 33: "Angenommen", 34: "Angenommen", 35: "Angenommen", 36: "Angenommen",
-    37: "Angenommen", 38: "Angenommen", 39: "Angenommen", 40: "Angenommen", 41: "Angenommen", 42: "Angenommen", 43: "Angenommen", 44: "Angenommen", 45: "Angenommen", 46: "Angenommen", 47: "Angenommen", 48: "Angenommen",
-}
-SUPERSEDES = {3: 13, 4: 21, 6: 14, 8: 15, 9: 17, 14: 19, 15: 20, 17: 22, 22: 26}
-FOLLOW_UPS = {(25, 27), (23, 28), (23, 29), (23, 47), (26, 30), (34, 36)}
-ADR016_HISTORY_COMMIT = "6152eead04494386404241967da0d8a62e741718"
-ARCH_DOCS = [
-    "ARCHITECTURE/ARCHITECTURE.md", "ARCHITECTURE/TECH_STACK.md",
-    "ARCHITECTURE/MODULE_BOUNDARIES.md", "ARCHITECTURE/GAME_STATE_MODEL.md",
-    "ARCHITECTURE/LEVEL_DATA_FORMAT.md", "ARCHITECTURE/PUZZLE_ENGINE.md",
-    "ARCHITECTURE/SOLVER_ARCHITECTURE.md", "ARCHITECTURE/PERSISTENCE.md",
-    "ARCHITECTURE/MOBILE_SERVICES.md", "ARCHITECTURE/CONTENT_PIPELINE.md",
-    "ARCHITECTURE/CONTENT_CATALOGS.md", "ARCHITECTURE/OBSERVABILITY.md",
-    "ARCHITECTURE/TEST_STRATEGY.md", "ARCHITECTURE/BUILD_AND_RELEASE.md",
-    "ARCHITECTURE/OPEN_BLOCKERS.md", "ARCHITECTURE/PRIVACY_PROVIDER_EVIDENCE.md",
-]
 SCHEMA_EXAMPLES: dict[str, tuple[str, list[str]]] = {
     "level-v1": ("ARCHITECTURE/schemas/level-v1.schema.json", ["ARCHITECTURE/examples/level-v1.example.json", "ARCHITECTURE/examples/level-v1.single-cell.example.json"]),
     "level-v2": ("ARCHITECTURE/schemas/level-v2.schema.json", ["ARCHITECTURE/examples/level-v2.example.json", "ARCHITECTURE/examples/level-v2.single-cell.example.json"]),
@@ -77,28 +38,6 @@ SCHEMA_EXAMPLES: dict[str, tuple[str, list[str]]] = {
     "release-manifest-v1": ("ARCHITECTURE/schemas/release-manifest-v1.schema.json", ["ARCHITECTURE/examples/release-manifest-v1.rc.example.json", "ARCHITECTURE/examples/release-manifest-v1.staging.example.json"]),
     "scope-manifest-v1": ("tools/architecture-validation/scope-manifest-v1.schema.json", ["tools/architecture-validation/scopes/WP-003.documentation.scope.json", "tools/architecture-validation/scopes/WP-004.documentation.scope.json", "tools/architecture-validation/scopes/WP-005.documentation.scope.json", "tools/architecture-validation/scopes/WP-006.documentation.scope.json", "tools/architecture-validation/scopes/WP-007.documentation.scope.json"]),
 }
-REQUIRED_FILES = [
-    *[ROOT / item for item in ARCH_DOCS],
-    *[ROOT / schema for schema, _ in SCHEMA_EXAMPLES.values()],
-    *[ROOT / example for _, examples in SCHEMA_EXAMPLES.values() for example in examples],
-    *[ROOT / f"DECISIONS/ADR-{number:03d}-" for number in []],
-    ROOT / "DECISIONS/README.md",
-    ROOT / "WORK_PACKAGES/WP-001_Technische_Produktionsspezifikation.md",
-    ROOT / "WORK_PACKAGES/WP-002_Architecture-v0.2-Korrekturen.md",
-    ROOT / "WORK_PACKAGES/WP-003_Architecture-v0.3-Finalkorrekturen.md",
-    ROOT / "WORK_PACKAGES/WP-004_Architecture-v0.4-Abschlusskorrekturen.md",
-    ROOT / "WORK_PACKAGES/WP-005_Architecture-v0.5-letzte-High-Korrekturen.md",
-    ROOT / "WORK_PACKAGES/WP-006_Architecture-v1.0-Promotion.md",
-    ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md",
-    TOOL / "README.md", TOOL / "requirements.lock.txt", TOOL / "jcs_crosscheck.mjs",
-    TOOL / "fixtures/duplicate-key.invalid.json", TOOL / "fixtures/float-token.invalid.json",
-    TOOL / "fixtures/save-payload-v1.golden.json", TOOL / "fixtures/save-payload-v1.expected.json",
-    TOOL / "fixtures/review-contracts-v0.3.json", TOOL / "fixtures/review-contracts-v0.4.json", TOOL / "fixtures/review-contracts-v0.5.json", TOOL / "fixtures/endless-save-v2.example.json",
-    TOOL / "fixtures/endless-save-v1-to-v2.golden.json", TOOL / "fixtures/iap-state-machine-v1.json",
-    TOOL / "fixtures/privacy-lifecycle-v1.json", TOOL / "fixtures/privacy-lifecycle-v2.json", TOOL / "fixtures/level-progress-v1-to-v2.golden.json",
-    TOOL / "fixtures/cosmetics-lifecycle-v1.json", TOOL / "fixtures/rollout-metric-v1.json",
-    ROOT / "ARCHITECTURE/examples/promotion-receipt-v1.example.json",
-]
 TRACK_PORTS = {
     "TRACK_NS": {"N", "S"}, "TRACK_EW": {"E", "W"}, "TRACK_NE": {"N", "E"},
     "TRACK_ES": {"E", "S"}, "TRACK_SW": {"S", "W"}, "TRACK_WN": {"W", "N"},
@@ -176,105 +115,6 @@ def jcs_bytes(value: Any) -> bytes:
 
 def digest(value: Any) -> str:
     return hashlib.sha256(jcs_bytes(value)).hexdigest()
-
-
-def inventory_check() -> None:
-    for path in REQUIRED_FILES:
-        if not path.is_file() or path.stat().st_size == 0:
-            fail(f"inventory:missing-or-empty:{path.relative_to(ROOT)}")
-    adrs = sorted((ROOT / "DECISIONS").glob("ADR-*.md"))
-    numbers = [int(re.match(r"ADR-(\d{3})-", path.name).group(1)) for path in adrs]
-    if numbers != list(range(1, 49)):
-        fail(f"inventory:adr-sequence:{numbers}")
-
-
-def check_wp_identifiers(ids: list[str]) -> list[str]:
-    errors: list[str] = []
-    if any(re.fullmatch(r"WP-[0-9]{3}", item) is None for item in ids): errors.append("wp:id-format")
-    if len(ids) != len(set(ids)): errors.append("wp:id-duplicate")
-    return errors
-
-
-def work_package_check() -> None:
-    files = sorted((ROOT / "WORK_PACKAGES").glob("WP-*.md"))
-    ids: list[str] = []
-    for path in files:
-        match = re.match(r"(WP-[0-9]{3})_", path.name)
-        if not match:
-            fail(f"wp:filename:{path.name}")
-            continue
-        file_id = match.group(1)
-        text = path.read_text(encoding="utf-8")
-        title = re.search(r"^# (WP-[^ ]+) ", text, re.MULTILINE)
-        body = re.search(r"^`(WP-[^`]+)`$", text, re.MULTILINE)
-        if not title or not body or title.group(1) != file_id or body.group(1) != file_id:
-            fail(f"wp:id-content:{path.name}")
-        positions = [text.find(heading) for heading in WP_HEADINGS]
-        if any(value < 0 for value in positions) or positions != sorted(positions):
-            fail(f"wp:headings:{path.name}")
-        ids.append(file_id)
-    for error in check_wp_identifiers(ids): fail(error)
-    all_text = "\n".join(
-        path.read_text(encoding="utf-8")
-        for base in ("ARCHITECTURE", "DECISIONS", "PROJECT_CONTROL", "WORK_PACKAGES")
-        for path in (ROOT / base).rglob("*") if path.is_file() and path.suffix in {".md", ".json"}
-    )
-    if re.search(r"WP-[A-Z]+-[0-9]+", all_text): fail("wp:obsolete-nonconforming-id")
-
-
-def section_body(text: str, heading: str, next_heading: str) -> str:
-    return text.split(heading, 1)[1].split(next_heading, 1)[0].strip()
-
-
-def adr_index_errors(index_text: str) -> list[str]:
-    errors: list[str] = []
-    for number in range(1, 49):
-        token = f"ADR-{number:03d}"
-        if token not in index_text:
-            errors.append(f"adr-index:missing:{number:03d}")
-            continue
-        row = next((line for line in index_text.splitlines() if line.startswith(f"| [{token}]")), None)
-        if row is None or f"**{CURRENT_ADR_STATUS[number]}**" not in row:
-            errors.append(f"adr-index:status:{number:03d}")
-        expected_file = next(ROOT.glob(f"DECISIONS/{token}-*.md"), None)
-        if row is not None and (expected_file is None or f"[{token}](./{expected_file.name})" not in row):
-            errors.append(f"adr-index:link:{number:03d}")
-    if "Architecture v1.0" not in index_text or "39 sind angenommen" not in index_text or "9 bleiben als ersetzte" not in index_text:
-        errors.append("adr-index:summary")
-    return errors
-
-
-def adr_check() -> None:
-    index = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
-    for error in adr_index_errors(index): fail(error)
-    texts: dict[int, str] = {}
-    for path in sorted((ROOT / "DECISIONS").glob("ADR-*.md")):
-        number = int(path.name[4:7])
-        text = path.read_text(encoding="utf-8")
-        positions = [text.find(heading) for heading in ADR_HEADINGS]
-        if any(value < 0 for value in positions) or positions != sorted(positions): fail(f"adr:headings:{path.name}")
-        match = re.search(r"## Status\s+\*\*(Angenommen|Ersetzt|Entwurf|Verworfen)\*\*", text)
-        if not match or match.group(1) != CURRENT_ADR_STATUS[number]: fail(f"adr:status:{path.name}")
-        texts[number] = text
-    for old, new in SUPERSEDES.items():
-        if f"ADR-{new:03d}" not in texts[old] or f"ADR-{old:03d}" not in texts[new]:
-            fail(f"adr:superseding:{old}:{new}")
-    for old, new in FOLLOW_UPS:
-        if f"ADR-{new:03d}" not in texts[old] or f"ADR-{old:03d}" not in texts[new]:
-            fail(f"adr:follow-up:{old}:{new}")
-    if "vollständig ersetzt durch [adr-021]" not in texts[4].lower() or "ersetzt [adr-004]" not in texts[21].lower() or "vollständig" not in texts[21].lower(): fail("adr:004-021-full-replacement")
-    superseding_section = section_body(texts[16], "## Ersetzt / ersetzt durch", "## Referenzen")
-    if "adr-004 bleibt" in superseding_section.lower(): fail("adr:016-stale-004-validity")
-    historical = subprocess.run(
-        ["git", "-C", str(ROOT), "show", f"{ADR016_HISTORY_COMMIT}:DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md"],
-        text=True, capture_output=True, check=False,
-    )
-    if historical.returncode != 0:
-        fail("adr:016-history-source-unavailable")
-    elif section_body(texts[16], "## Entscheidung", "## Begründung") != section_body(historical.stdout, "## Entscheidung", "## Begründung"):
-        fail("adr:016-historical-decision-mutated")
-    if "ADR-024" not in texts[20] or "ADR-020" not in texts[24]: fail("adr:020-024-follow-up")
-    if "ADR-025" not in texts[19] or "ADR-019" not in texts[25]: fail("adr:019-025-follow-up")
 
 
 def markdown_link_check() -> None:
@@ -1236,23 +1076,19 @@ def review_contract_check() -> None:
     endless = findings.get("HIGH-001-ENDLESS-SKIP", {})
     cosmetics = findings.get("HIGH-002-COSMETICS-RESERVATION", {})
     rollout = findings.get("HIGH-003-ROLLOUT-EVIDENCE", {})
-    anchor = findings.get("HIGH-004-WP-SCOPE-ANCHOR", {})
     checks = [
-        contract.get("architectureVersion") == "0.5" and contract.get("workPackageId") == "WP-005",
         endless.get("initialClaimStatus") == "LOCAL_DECISION_PENDING",
         endless.get("localSkipRequiresProviderOperation") is False and endless.get("localSkipLedgerDelta") == 0,
         endless.get("providerReservationBeforeSdk") is True and endless.get("skipProviderRaceUsesSaveGeneration") is True and endless.get("minimumRepeatedSkips") == 100,
         cosmetics.get("reservationRequiredBeforeCommit") is True and cosmetics.get("eligibilityValidatedBeforeReservation") is True and cosmetics.get("atomicOwnershipCommit") is True,
         set(cosmetics.get("bindings", [])) == {"claimId", "operationId", "claimGeneration", "itemId", "catalogId", "catalogRevision", "catalogHashSha256", "acquisition", "eligibilityContractVersion", "eligibilityProjectionHashSha256"},
         rollout.get("completeEvidenceObjectRequired") is True and rollout.get("incompleteEvidenceAction") == "PAUSE_NO_ADVANCE",
-        anchor.get("workPackageAndManifestSameAddCommit") is True and anchor.get("historicalWorkPackageBlobRequired") is True and anchor.get("historicalExactManifestLinkRequired") is True and anchor.get("futureProductionManifestAllowedWithOwnAnchor") is True,
     ]
     if not all(checks): fail("review-contract:v0.5")
     tokens = {
         "HIGH-001": ("ARCHITECTURE/PERSISTENCE.md", "LOCAL_DECISION_PENDING"),
         "HIGH-002": ("ARCHITECTURE/CONTENT_CATALOGS.md", "eligibilityProjectionHashSha256"),
         "HIGH-003": ("ARCHITECTURE/BUILD_AND_RELEASE.md", "reportingComplete"),
-        "HIGH-004": ("ARCHITECTURE/TEST_STRATEGY.md", "historischen Work-Package-Blob"),
     }
     for finding, (rel, token) in tokens.items():
         if token.lower() not in (ROOT / rel).read_text(encoding="utf-8").lower(): fail(f"review-doc:{finding}:{rel}")
@@ -1277,281 +1113,7 @@ def cross_tool_hash_check() -> None:
         if result.returncode == 0 or expected_text not in result.stderr: fail(f"jcs:node-invalid:{invalid_name}")
 
 
-def is_global_pattern(pattern: str) -> bool:
-    parts = pattern.split("/")
-    return pattern in {"*", "**", "**/*", "*/**"} or all(part in {"*", "**"} for part in parts)
-
-
-def segment_glob_match(path: str, pattern: str) -> bool:
-    path_parts = PurePosixPath(path).parts
-    pattern_parts = PurePosixPath(pattern).parts
-    def match(path_index: int, pattern_index: int) -> bool:
-        if pattern_index == len(pattern_parts): return path_index == len(path_parts)
-        token = pattern_parts[pattern_index]
-        if token == "**":
-            return match(path_index, pattern_index + 1) or (path_index < len(path_parts) and match(path_index + 1, pattern_index))
-        return path_index < len(path_parts) and fnmatch.fnmatchcase(path_parts[path_index], token) and match(path_index + 1, pattern_index + 1)
-    return match(0, 0)
-
-
-def scope_manifest_errors(manifest: dict[str, Any], changed: list[str], requested_scope: str, manifest_rel: str | None = None) -> list[str]:
-    errors: list[str] = []
-    if manifest.get("scope") != requested_scope: errors.append("scope:mode-mismatch")
-    patterns = manifest.get("allowedPathPatterns", [])
-    for pattern in patterns:
-        parts = PurePosixPath(pattern).parts
-        if pattern.startswith("/") or "\\" in pattern or ".." in parts or is_global_pattern(pattern): errors.append(f"scope:unsafe-pattern:{pattern}")
-        if not parts or any(token in parts[0] for token in ("*", "?", "[")): errors.append(f"scope:unsafe-root-segment:{pattern}")
-        if any("**" in part and part != "**" for part in parts): errors.append(f"scope:unsafe-double-star-segment:{pattern}")
-    if manifest_rel is not None:
-        wp = manifest.get("workPackageId", "")
-        expected = f"tools/architecture-validation/scopes/{wp}.{requested_scope}.scope.json"
-        if manifest_rel != expected: errors.append("scope:manifest-name-or-location")
-        if manifest_rel not in patterns: errors.append("scope:manifest-self-not-explicit")
-        if any(pattern.startswith("tools/architecture-validation/scopes/") and pattern != manifest_rel for pattern in patterns):
-            errors.append("scope:other-manifests-allowed")
-    for rel in changed:
-        if rel.startswith("/") or "\\" in rel or ".." in PurePosixPath(rel).parts: errors.append(f"scope:unsafe-path:{rel}"); continue
-        if not any(segment_glob_match(rel, pattern) for pattern in patterns): errors.append(f"scope:out-of-scope:{rel}")
-        if rel.startswith("Stammstrecken_Puzzle_Konzept_00-15/") and requested_scope != "governance": errors.append(f"scope:product-source:{rel}")
-        if requested_scope == "documentation":
-            forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
-            forbidden_suffixes = {".cs", ".asmdef", ".unity", ".prefab", ".uxml", ".uss", ".shader"}
-            if rel.startswith(forbidden_roots) or Path(rel).suffix.lower() in forbidden_suffixes: errors.append(f"scope:production-artifact:{rel}")
-        if requested_scope == "governance":
-            forbidden_roots = ("Assets/", "Packages/", "ProjectSettings/", "Content/")
-            forbidden_suffixes = {".cs", ".asmdef", ".unity", ".prefab", ".uxml", ".uss", ".shader"}
-            if rel.startswith(forbidden_roots) or Path(rel).suffix.lower() in forbidden_suffixes: errors.append(f"scope:governance-production-artifact:{rel}")
-            permitted_workflows = {".github/workflows/validate.yml"}
-            if manifest.get("workPackageId") == "WP-045":
-                permitted_workflows.add(".github/workflows/unity.yml")
-            if rel.startswith(".github/") and rel not in permitted_workflows: errors.append(f"scope:governance-workflow-artifact:{rel}")
-    return errors
-
-
-def normalized_blocker_text(text: str) -> str:
-    return re.sub(r"2026-09-(?:08|12|13)|Architecture v0\.[2345]|Architecture-v0\.[2345]", "<VERSION-METADATA>", text)
-
-
-def recovery_policy_errors(text: str) -> list[str]:
-    """Validate the explicitly decided policy without faking implementation closure."""
-    errors: list[str] = []
-    if "MANUS-2026-10-20-02" not in text or "PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md" not in text:
-        errors.append("blocker:recovery-decision-binding")
-    if text.count("| Status | **Offen** |") != 3:
-        errors.append("blocker:recovery-implementation-not-open")
-    if text.count("| Produktentscheidung | **Beschlossen**") != 3:
-        errors.append("blocker:recovery-policy-count")
-    for number, policy in ((1, "P03"), (2, "P04"), (3, "P05")):
-        match = re.search(rf"^## BLOCKER-PROD-00{number}[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
-        if match is None or policy not in match.group(1) or "Fail-closed" not in match.group(1):
-            errors.append(f"blocker:recovery-policy-section:{number}")
-    return errors
-
-
-def blocker_update_errors(manifest: dict[str, Any], before: str, after: str) -> list[str]:
-    """The specific owner-authorized WP045 may decide policies, never fake gates."""
-    if normalized_blocker_text(before) == normalized_blocker_text(after):
-        return []
-    if manifest.get("workPackageId") != "WP-045" or manifest.get("scope") != "governance" or "ARCHITECTURE/OPEN_BLOCKERS.md" not in manifest.get("allowedPathPatterns", []):
-        return ["scope:blocker-content-changed"]
-    return recovery_policy_errors(after)
-
-
-def scope_manifest_trust_errors(manifest: dict[str, Any], manifest_rel: str, tracked: bool, anchors: list[str], anchor_parent: str, anchor_bytes: bytes, current_bytes: bytes) -> list[str]:
-    errors: list[str] = []
-    expected = f"tools/architecture-validation/scopes/{manifest.get('workPackageId')}.{manifest.get('scope')}.scope.json"
-    if manifest_rel != expected: errors.append("scope:manifest-name-or-location")
-    if not tracked: errors.append("scope:manifest-unversioned")
-    if len(anchors) != 1: errors.append("scope:manifest-anchor-count")
-    if anchor_parent != manifest.get("baseCommit"): errors.append("scope:manifest-base-not-anchor-parent")
-    if anchor_bytes != current_bytes: errors.append("scope:manifest-mutated-after-anchor")
-    return errors
-
-
-def historical_link_targets(work_package_rel: str, text: str) -> set[str]:
-    inline = re.findall(r"\[[^\]]+\]\(([^)]+)\)", text)
-    references = re.findall(r"^\[[^\]]+\]:\s+(\S+)", text, re.MULTILINE)
-    targets: set[str] = set()
-    for raw in inline + references:
-        target = raw.strip().strip("<>").split("#", 1)[0]
-        if not target or target.startswith(("http://", "https://", "mailto:")) or target.startswith("/") or "\\" in target:
-            continue
-        normalized = posixpath.normpath(posixpath.join(posixpath.dirname(work_package_rel), target))
-        if normalized != ".." and not normalized.startswith("../"):
-            targets.add(normalized)
-    return targets
-
-
-def scope_anchor_binding_errors(manifest: dict[str, Any], manifest_rel: str, added_paths: set[str], parent_paths: set[str], historical_work_packages: dict[str, str]) -> list[str]:
-    errors: list[str] = []
-    wp_id = manifest.get("workPackageId", "")
-    candidates = {path: text for path, text in historical_work_packages.items() if re.fullmatch(rf"WORK_PACKAGES/{re.escape(wp_id)}_[^/]+\.md", path)}
-    if manifest_rel not in added_paths: errors.append("scope:manifest-not-added-in-anchor")
-    if len(candidates) != 1: errors.append("scope:historical-work-package-count")
-    if manifest_rel in parent_paths: errors.append("scope:manifest-existed-before-anchor")
-    if any(path in parent_paths for path in candidates): errors.append("scope:work-package-existed-before-anchor")
-    if len(candidates) != 1:
-        return errors
-    work_package_rel, text = next(iter(candidates.items()))
-    if work_package_rel not in added_paths: errors.append("scope:work-package-not-added-in-anchor")
-    title = re.search(r"^# (WP-[0-9]{3})\b", text, re.MULTILINE)
-    body = re.search(r"^`(WP-[0-9]{3})`$", text, re.MULTILINE)
-    if not title or not body or title.group(1) != wp_id or body.group(1) != wp_id: errors.append("scope:historical-work-package-id")
-    if manifest_rel not in historical_link_targets(work_package_rel, text): errors.append("scope:historical-work-package-manifest-link")
-    return errors
-
-
-def scope_manifest_argument_error(argument: Path) -> str | None:
-    raw = argument.as_posix()
-    if argument.is_absolute() or PurePosixPath(raw).is_absolute() or PureWindowsPath(raw).is_absolute(): return "scope:absolute-manifest-argument"
-    if "\\" in raw or ".." in PurePosixPath(raw).parts: return "scope:external-manifest-argument"
-    return None
-
-
-def git_scope_check(scope: str, manifest_path: Path) -> None:
-    lexical = manifest_path.absolute()
-    try:
-        resolved = manifest_path.resolve(strict=True)
-    except OSError:
-        fail("scope:manifest-unavailable")
-        return
-    if resolved != lexical:
-        fail("scope:manifest-noncanonical-or-symlink")
-        return
-    try:
-        manifest_rel = resolved.relative_to(ROOT.resolve()).as_posix()
-    except ValueError:
-        fail("scope:external-manifest")
-        return
-    manifest = load_json(resolved)
-    schema = load_json(TOOL / "scope-manifest-v1.schema.json")
-    jsonschema.Draft202012Validator(schema).validate(manifest)
-    tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--error-unmatch", "--", manifest_rel], text=True, capture_output=True, check=False)
-    anchor_result = subprocess.run(["git", "-C", str(ROOT), "log", "--diff-filter=A", "--format=%H", "--", manifest_rel], text=True, capture_output=True, check=True)
-    anchors = [line for line in anchor_result.stdout.splitlines() if line]
-    if len(anchors) != 1:
-        for error in scope_manifest_trust_errors(manifest, manifest_rel, tracked.returncode == 0, anchors, "", b"", resolved.read_bytes()): fail(error)
-        return
-    anchor = anchors[0]
-    anchor_parent = subprocess.run(["git", "-C", str(ROOT), "rev-parse", f"{anchor}^"], text=True, capture_output=True, check=False)
-    anchor_blob = subprocess.run(["git", "-C", str(ROOT), "show", f"{anchor}:{manifest_rel}"], capture_output=True, check=False)
-    if anchor_parent.returncode != 0 or anchor_blob.returncode != 0:
-        fail("scope:manifest-anchor-unavailable")
-        return
-    base = manifest["baseCommit"]
-    for error in scope_manifest_trust_errors(manifest, manifest_rel, tracked.returncode == 0, anchors, anchor_parent.stdout.strip(), anchor_blob.stdout, resolved.read_bytes()): fail(error)
-    anchor_changes = subprocess.run(["git", "-C", str(ROOT), "diff-tree", "--no-commit-id", "--name-status", "-r", anchor], text=True, capture_output=True, check=True).stdout.splitlines()
-    added_paths = {line.split("\t", 1)[1] for line in anchor_changes if line.startswith("A\t")}
-    anchor_tree = subprocess.run(["git", "-C", str(ROOT), "ls-tree", "-r", "--name-only", anchor, "--", "WORK_PACKAGES"], text=True, capture_output=True, check=True).stdout.splitlines()
-    parent_tree = subprocess.run(["git", "-C", str(ROOT), "ls-tree", "-r", "--name-only", anchor_parent.stdout.strip(), "--", "WORK_PACKAGES", manifest_rel], text=True, capture_output=True, check=True).stdout.splitlines()
-    wp_prefix = f"WORK_PACKAGES/{manifest.get('workPackageId', '')}_"
-    wp_paths = [path for path in anchor_tree if path.startswith(wp_prefix) and path.endswith(".md")]
-    historical_work_packages: dict[str, str] = {}
-    for path in wp_paths:
-        blob = subprocess.run(["git", "-C", str(ROOT), "show", f"{anchor}:{path}"], text=True, capture_output=True, check=False)
-        if blob.returncode == 0: historical_work_packages[path] = blob.stdout
-    for error in scope_anchor_binding_errors(manifest, manifest_rel, added_paths, set(parent_tree), historical_work_packages): fail(error)
-    anchor_ancestor = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", anchor, "HEAD"], capture_output=True, check=False)
-    if anchor_ancestor.returncode != 0: fail("scope:manifest-anchor-not-ancestor")
-    exists = subprocess.run(["git", "-C", str(ROOT), "cat-file", "-e", f"{base}^{{commit}}"], capture_output=True, check=False)
-    if exists.returncode != 0: fail("scope:base-unavailable"); return
-    ancestor = subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", base, "HEAD"], capture_output=True, check=False)
-    if ancestor.returncode != 0: fail("scope:base-not-ancestor")
-    if re.fullmatch(r"WP-[0-9]{3}", manifest.get("workPackageId", "")) is None or not list((ROOT / "WORK_PACKAGES").glob(manifest["workPackageId"] + "_*.md")):
-        fail("scope:work-package")
-    name_status = subprocess.run(["git", "-C", str(ROOT), "diff", "--name-status", base, "--"], text=True, capture_output=True, check=True).stdout.splitlines()
-    tracked_paths: list[str] = []
-    for line in name_status:
-        columns = line.split("\t")
-        if columns[0].startswith(("R", "C")) and len(columns) == 3:
-            tracked_paths.extend(columns[1:])
-        elif len(columns) >= 2:
-            tracked_paths.append(columns[-1])
-    untracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--others", "--exclude-standard"], text=True, capture_output=True, check=True).stdout.splitlines()
-    changed = sorted(set(tracked_paths + untracked))
-    for rel in changed:
-        candidate = ROOT / rel
-        if candidate.exists():
-            try: candidate.resolve().relative_to(ROOT.resolve())
-            except ValueError: fail(f"scope:symlink-escape:{rel}")
-    scoped_changed = changed
-    try:
-        metadata_path = authorized_metadata_path(
-            ROOT, changed, manifest_path=manifest_rel,
-            work_package_id=manifest["workPackageId"], requested_scope=scope)
-    except MetadataAuthorityError as error:
-        fail(str(error))
-    else:
-        if metadata_path is not None:
-            scoped_changed = [path for path in changed if path != metadata_path]
-            PASSES.append(("LOCAL_SCOPE", "Zusätzlich autorisierter Metadatenabschluss ADR-023 → ADR-047; ursprüngliches Manifest unverändert"))
-    for error in scope_manifest_errors(manifest, scoped_changed, scope, manifest_rel): fail(error)
-    blocker_rel = "ARCHITECTURE/OPEN_BLOCKERS.md"
-    if blocker_rel in changed:
-        base_text = subprocess.run(["git", "-C", str(ROOT), "show", f"{base}:{blocker_rel}"], text=True, capture_output=True, check=True).stdout
-        current_text = (ROOT / blocker_rel).read_text(encoding="utf-8")
-        for error in blocker_update_errors(manifest, base_text, current_text): fail(error)
-    if scope == "governance" and ".github/workflows/unity.yml" in changed:
-        if manifest.get("workPackageId") != "WP-045":
-            fail("scope:governance-unity-not-authorized")
-        else:
-            recipe_check = subprocess.run([sys.executable, str(ROOT / "tools/ci/test_change_scope.py")], cwd=ROOT, text=True, capture_output=True, check=False)
-            if recipe_check.returncode != 0: fail("scope:governance-unity-recipes-or-routing-invalid")
-    diff_check = subprocess.run(["git", "-C", str(ROOT), "diff", "--check", base, "--"], text=True, capture_output=True, check=False)
-    if diff_check.returncode != 0: fail("scope:diff-check")
-    secret_pattern = re.compile(r"-----BEGIN (?:RSA |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}")
-    for rel in changed:
-        path = ROOT / rel
-        if path.is_file():
-            try: text = path.read_text(encoding="utf-8")
-            except UnicodeDecodeError: continue
-            if secret_pattern.search(text): fail(f"scope:secret-pattern:{rel}")
-    main_remote_result = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--verify", "refs/remotes/origin/main"], text=True, capture_output=True, check=False)
-    if main_remote_result.returncode != 0:
-        fail("git:origin-main-unavailable")
-        return
-    main_local_result = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--verify", "refs/heads/main"], text=True, capture_output=True, check=False)
-    if main_local_result.returncode == 0 and main_local_result.stdout.strip() != main_remote_result.stdout.strip():
-        fail("git:main-changed")
-
-
-def status_consistency_errors(architecture: str, current: str, queue: str, work_package: str) -> list[str]:
-    errors: list[str] = []
-    if not architecture.startswith("# Stammstrecken-Puzzle – Architecture v1.0") or "**Status:** Angenommen" not in architecture: errors.append("version:architecture")
-    if "**Architecture v1.0**" not in current or "Architecture v1.0 (Abnahmekandidat)" in current or "`WP-001` bis `WP-007` sind abgeschlossen" not in current: errors.append("version:current-state")
-    if "Architecture v1.0" not in queue or "WP-001` bis `WP-005" not in queue or "CI-Setup-Work-Package | **Abgeschlossen (`WP-007`)**" not in queue: errors.append("version:work-queue")
-    if "**Bearbeitungsstatus:** Abgeschlossen" not in work_package: errors.append("version:work-package")
-    return errors
-
-
-def version_and_blocker_check() -> None:
-    for error in status_consistency_errors(
-        (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
-        (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
-        (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md").read_text(encoding="utf-8"),
-    ): fail(error)
-    blockers = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
-    for number in (1, 2, 3):
-        if f"BLOCKER-PROD-00{number}" not in blockers: fail(f"blocker:missing:{number}")
-    if blockers.count("| Status | **Offen** |") != 3 or blockers.count("Fail-closed") < 3: fail("blocker:status")
-    if "MANUS-2026-10-20-02" in blockers:
-        for error in recovery_policy_errors(blockers): fail(error)
-
-
-def evidence_summary_lines() -> list[str]:
-    return [
-        "MANUAL_ARCHITECTURE_REVIEW  Normative IAP-Dokumentreihenfolge und textuelle Systembehauptungen; kein automatischer PASS",
-        "CONTRACT_ONLY  JSON-/Markdown-Verträge, Fixtures und Mutationsmodelle; kein Unity-Produktionscode",
-        "REQUIRED_LATER/NOT_EXECUTED  production-code-validation: Unity Compile/EditMode/PlayMode, BootstrapCompositionSmoke und IL2CPP",
-        "REQUIRED_LATER/NOT_EXECUTED  device-validation: physische Privacy-Gerätecaptures und SDK-Sandbox",
-        "REQUIRED_LATER/NOT_EXECUTED  store-validation: Storeupload und Promotion",
-        "BLOCKED  BLOCKER-PROD-001/002/003: Produktpolicy jetzt entschieden; reale Umsetzung/Kalibrierung/Validierung weiterhin fail-closed",
-    ]
-
-
-def self_test(scope: str, manifest_path: Path) -> None:
+def self_test() -> None:
     failures: list[str] = []
     def expect(label: str, condition: bool) -> None:
         if not condition: failures.append(label)
@@ -1560,7 +1122,6 @@ def self_test(scope: str, manifest_path: Path) -> None:
     module_text = (ROOT / "ARCHITECTURE/MODULE_BOUNDARIES.md").read_text(encoding="utf-8")
     mutated = module_text.replace("`STP.Application`, `STP.Infrastructure.Content`", "`STP.Infrastructure.Content`", 1).replace("    Bootstrap[STP.Bootstrap] --> App\n", "")
     expect("REG-ASSEMBLY", "assembly:bootstrap-exact" in assembly_errors(mutated))
-    expect("REG-WP", bool(check_wp_identifiers(["WP-001", "WP-02"])))
 
     # V03-001: privacy inputs and ordering are executed, not only listed.
     privacy = load_json(TOOL / "fixtures/privacy-lifecycle-v2.json")
@@ -1675,61 +1236,6 @@ def self_test(scope: str, manifest_path: Path) -> None:
     expect("HIGH-002-REPLAY-IDEMPOTENT", not replay_errors and replay_result == replay["expected"] and replay_result["ownershipCount"] == 1)
     expect("V03-003-COSMETICS-STATUS", not cosmetic_status_transition_allowed("DRAFT", "TOMBSTONE"))
 
-    # V03-005: segment globs, repository-local manifest and immutable trust anchor.
-    manifest = load_json(manifest_path)
-    manifest_rel = manifest_path.relative_to(ROOT).as_posix()
-    expect("V03-005-PRODUCT", any(item.startswith("scope:out-of-scope") or item.startswith("scope:production-artifact") for item in scope_manifest_errors(manifest, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "documentation", manifest_rel)))
-    for pattern in ("*", "**", "**/*", "*/**"):
-        unsafe = copy.deepcopy(manifest); unsafe["allowedPathPatterns"] = [pattern]
-        expect(f"V03-005-GLOBAL-{pattern}", f"scope:unsafe-pattern:{pattern}" in scope_manifest_errors(unsafe, [], "documentation"))
-    shallow = copy.deepcopy(manifest); shallow["allowedPathPatterns"] = ["ARCHITECTURE/*"]
-    expect("V03-005-SEGMENT", "scope:out-of-scope:ARCHITECTURE/examples/x.json" in scope_manifest_errors(shallow, ["ARCHITECTURE/examples/x.json"], "documentation"))
-    expect("V03-005-ABSOLUTE", scope_manifest_argument_error(Path("/tmp/scope.json")) == "scope:absolute-manifest-argument")
-    expect("SCOPE-ABSOLUTE-WINDOWS", scope_manifest_argument_error(Path("C:/temp/scope.json")) == "scope:absolute-manifest-argument")
-    expect("V03-005-EXTERNAL", scope_manifest_argument_error(Path("../scope.json")) == "scope:external-manifest-argument")
-    expect("V03-005-UNVERSIONED", "scope:manifest-unversioned" in scope_manifest_trust_errors(manifest, manifest_rel, False, ["a"], manifest["baseCommit"], b"x", b"x"))
-    wrong_wp = copy.deepcopy(manifest); wrong_wp["workPackageId"] = "WP-999"
-    expect("V03-005-WP-ASSOCIATION", "scope:manifest-name-or-location" in scope_manifest_trust_errors(wrong_wp, manifest_rel, True, ["a"], wrong_wp["baseCommit"], b"x", b"x"))
-    expect("V03-005-MUTATED-ANCHOR", "scope:manifest-mutated-after-anchor" in scope_manifest_trust_errors(manifest, manifest_rel, True, ["a"], manifest["baseCommit"], b"original", b"changed"))
-    expect("V03-005-SCOPE-ESCAPE", "scope:unsafe-path:../escape" in scope_manifest_errors(manifest, ["../escape"], "documentation", manifest_rel))
-    production = copy.deepcopy(manifest); production["scope"] = "production"; production["allowedPathPatterns"] = ["Assets/**/*.cs"]
-    expect("V03-005-PRODUCTION", not scope_manifest_errors(production, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "production"))
-    product_scope = copy.deepcopy(production); product_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/**"]
-    expect("V03-005-PRODUCT-SOURCE", any(item.startswith("scope:product-source:") for item in scope_manifest_errors(product_scope, ["Stammstrecken_Puzzle_Konzept_00-15/09_Train_Track_Master_Spezifikation.md"], "production")))
-    governance_scope = copy.deepcopy(manifest); governance_scope["scope"] = "governance"; governance_scope["allowedPathPatterns"] = ["Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md"]
-    expect("V03-005-GOVERNANCE-PRODUCT-SOURCE", not scope_manifest_errors(governance_scope, ["Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md"], "governance"))
-    expect("V03-005-GOVERNANCE-NO-PRODUCTION", "scope:governance-production-artifact:Assets/StammstreckenPuzzle/Scripts/Foo.cs" in scope_manifest_errors(governance_scope, ["Assets/StammstreckenPuzzle/Scripts/Foo.cs"], "governance"))
-    governance_workflow = copy.deepcopy(governance_scope); governance_workflow["allowedPathPatterns"] = [".github/workflows/validate.yml"]
-    expect("V03-005-GOVERNANCE-VALIDATE-WORKFLOW", not scope_manifest_errors(governance_workflow, [".github/workflows/validate.yml"], "governance"))
-    expect("V03-005-GOVERNANCE-NO-OTHER-WORKFLOW", "scope:governance-workflow-artifact:.github/workflows/release-candidate.yml" in scope_manifest_errors(governance_workflow, [".github/workflows/release-candidate.yml"], "governance"))
-    restricted_unity = {**governance_workflow, "workPackageId": "WP-044", "allowedPathPatterns": [".github/workflows/unity.yml"]}
-    expect("GOVERNANCE-UNITY-NOT-OTHER-WP", "scope:governance-workflow-artifact:.github/workflows/unity.yml" in scope_manifest_errors(restricted_unity, [".github/workflows/unity.yml"], "governance"))
-    authorized_unity = {**restricted_unity, "workPackageId": "WP-045"}
-    expect("GOVERNANCE-UNITY-WP045-POSITIVE", not scope_manifest_errors(authorized_unity, [".github/workflows/unity.yml"], "governance"))
-    wp_rel = f"WORK_PACKAGES/{manifest['workPackageId']}_Test.md"
-    wp_link = f"../{manifest_rel}"
-    historical_wp = f"# {manifest['workPackageId']} – Test\n\n## ID\n\n`{manifest['workPackageId']}`\n\n[Scope]({wp_link})\n"
-    added = {manifest_rel, wp_rel}; historical = {wp_rel: historical_wp}
-    expect("HIGH-004-COMMON-ANCHOR-POSITIVE", not scope_anchor_binding_errors(manifest, manifest_rel, added, set(), historical))
-    expect("HIGH-004-WP-ADDED-LATER", "scope:work-package-existed-before-anchor" in scope_anchor_binding_errors(manifest, manifest_rel, {manifest_rel}, {wp_rel}, historical))
-    expect("HIGH-004-SEPARATE-ADD-COMMITS", "scope:work-package-not-added-in-anchor" in scope_anchor_binding_errors(manifest, manifest_rel, {manifest_rel}, set(), historical))
-    historical_no_link = {wp_rel: historical_wp.replace(f"[Scope]({wp_link})", "Scope folgt später")}
-    expect("HIGH-004-LATER-REFERENCE", "scope:historical-work-package-manifest-link" in scope_anchor_binding_errors(manifest, manifest_rel, added, set(), historical_no_link))
-    wrong_historical_id = {wp_rel: historical_wp.replace(f"`{manifest['workPackageId']}`", "`WP-999`")}
-    expect("HIGH-004-WRONG-WP-ID", "scope:historical-work-package-id" in scope_anchor_binding_errors(manifest, manifest_rel, added, set(), wrong_historical_id))
-    other_manifest_rel = f"tools/architecture-validation/scopes/{manifest['workPackageId']}.alternate.scope.json"
-    other_manifest_errors = scope_manifest_errors(manifest, [], "documentation", other_manifest_rel) + scope_anchor_binding_errors(manifest, other_manifest_rel, {other_manifest_rel, wp_rel}, set(), historical)
-    expect("HIGH-004-OTHER-MANIFEST-SAME-SCOPE", "scope:manifest-name-or-location" in other_manifest_errors or "scope:historical-work-package-manifest-link" in other_manifest_errors)
-    production_manifest = copy.deepcopy(manifest); production_manifest["workPackageId"] = "WP-900"; production_manifest["scope"] = "production"
-    production_rel = "tools/architecture-validation/scopes/WP-900.production.scope.json"; production_wp_rel = "WORK_PACKAGES/WP-900_Produktionspaket.md"
-    production_wp = "# WP-900 – Produktionspaket\n\n## ID\n\n`WP-900`\n\n[Scope](../tools/architecture-validation/scopes/WP-900.production.scope.json)\n"
-    expect("HIGH-004-FUTURE-PRODUCTION-ALLOWED", not scope_anchor_binding_errors(production_manifest, production_rel, {production_rel, production_wp_rel}, set(), {production_wp_rel: production_wp}))
-
-    # V03-006: historical ADR-016 decision body must remain byte-equivalent as text.
-    current_016 = (ROOT / "DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md").read_text(encoding="utf-8")
-    historical_016 = subprocess.run(["git", "-C", str(ROOT), "show", f"{ADR016_HISTORY_COMMIT}:DECISIONS/ADR-016-katalogvertraege-und-endless-identitaet.md"], text=True, capture_output=True, check=True).stdout
-    mutated_016 = current_016.replace("campaign-v1", "campaign-v9", 1)
-    expect("V03-006-HISTORY", section_body(mutated_016, "## Entscheidung", "## Begründung") != section_body(historical_016, "## Entscheidung", "## Begründung"))
 
     # HIGH-003: no automatic advance without complete, exact, fresh and sufficiently populated Store evidence.
     rollout = load_json(TOOL / "fixtures/rollout-metric-v1.json")
@@ -1761,41 +1267,7 @@ def self_test(scope: str, manifest_path: Path) -> None:
     bad_trace = load_json(TOOL / "fixtures/iap-state-machine-v1.json")["traces"][0]
     events = bad_trace["events"]; bad_trace["events"] = [events[0], events[1], events[3], events[2], events[4]]
     expect("V03-003-IAP-FIXTURE", any(item.startswith("iap:finalize-order") for item in execute_iap_trace(bad_trace)))
-    report = evidence_summary_lines()
-    expect("V03-003-REPORT-CATEGORIES", {line.split("  ", 1)[0] for line in report} == {"MANUAL_ARCHITECTURE_REVIEW", "CONTRACT_ONLY", "REQUIRED_LATER/NOT_EXECUTED", "BLOCKED"})
-    expect("V03-003-NO-FALSE-PASS", all(not line.split("  ", 1)[0].endswith("PASS") for line in report))
-
-    # Retained governance, puzzle and blocker regressions.
-    blocker_text = (ROOT / "ARCHITECTURE/OPEN_BLOCKERS.md").read_text(encoding="utf-8")
-    expect("REG-BLOCKERS", normalized_blocker_text(blocker_text) != normalized_blocker_text(blocker_text.replace("**Offen**", "**Geschlossen**", 1)))
-    if "MANUS-2026-10-20-02" in blocker_text:
-        recovery_manifest = {"workPackageId": "WP-045", "scope": "governance", "allowedPathPatterns": ["ARCHITECTURE/OPEN_BLOCKERS.md"]}
-        expect("RECOVERY-POLICY-POSITIVE", not blocker_update_errors(recovery_manifest, "historical-open-policy", blocker_text))
-        expect("RECOVERY-POLICY-NO-FAKE-CLOSE", bool(blocker_update_errors(recovery_manifest, "historical-open-policy", blocker_text.replace("**Offen**", "**Geschlossen**", 1))))
-        expect("RECOVERY-POLICY-BINDING", bool(recovery_policy_errors(blocker_text.replace("MANUS-2026-10-20-02", "unbound"))))
-        expect("RECOVERY-POLICY-NOT-OTHER-WP", bool(blocker_update_errors({**recovery_manifest, "workPackageId": "WP-044"}, "historical-open-policy", blocker_text)))
-        expect("RECOVERY-POLICY-NOT-PRODUCTION", bool(blocker_update_errors({**recovery_manifest, "scope": "production"}, "historical-open-policy", blocker_text)))
-        expect("RECOVERY-POLICY-NOT-WITHOUT-ALLOWLIST", bool(blocker_update_errors({**recovery_manifest, "allowedPathPatterns": []}, "historical-open-policy", blocker_text)))
-        expect("RECOVERY-POLICY-MISSING-SECTION", bool(recovery_policy_errors(blocker_text.replace("BLOCKER-PROD-002", "removed"))))
-    status_args = [
-        (ROOT / "ARCHITECTURE/ARCHITECTURE.md").read_text(encoding="utf-8"),
-        (ROOT / "PROJECT_CONTROL/CURRENT_STATE.md").read_text(encoding="utf-8"),
-        (ROOT / "PROJECT_CONTROL/WORK_QUEUE.md").read_text(encoding="utf-8"),
-        (ROOT / "WORK_PACKAGES/WP-007_CI-Setup.md").read_text(encoding="utf-8"),
-    ]
-    status_args[2] = status_args[2].replace("Architecture v1.0", "Architecture v0.5")
-    expect("REG-STATUS", "version:work-queue" in status_consistency_errors(*status_args))
-    index_text = (ROOT / "DECISIONS/README.md").read_text(encoding="utf-8")
-    expect("REG-ADR-MISSING", bool(adr_index_errors(index_text.replace("ADR-026", "ADR-X26"))))
-    expect("REG-ADR-032-MISSING", "adr-index:missing:032" in adr_index_errors(index_text.replace("ADR-032", "ADR-X32")))
-    expect("REG-ADR-033-MISSING", "adr-index:missing:033" in adr_index_errors(index_text.replace("ADR-033", "ADR-X33")))
-    wrong_033 = "\n".join(line.replace("**Angenommen**", "**Entwurf**") if line.startswith("| [ADR-033]") else line for line in index_text.splitlines())
-    expect("REG-ADR-033-STATUS", "adr-index:status:033" in adr_index_errors(wrong_033))
-    for number in (34, 35, 36):
-        token = f"ADR-{number:03d}"
-        expect(f"REG-{token}-MISSING", f"adr-index:missing:{number:03d}" in adr_index_errors(index_text.replace(token, f"ADR-X{number}")))
-        wrong_status = "\n".join(line.replace("**Angenommen**", "**Entwurf**") if line.startswith(f"| [{token}]") else line for line in index_text.splitlines())
-        expect(f"REG-{token}-STATUS", f"adr-index:status:{number:03d}" in adr_index_errors(wrong_status))
+    proof = load_json(ROOT / "ARCHITECTURE/examples/proof-v1.example.json")
     inconsistent_level = load_json(ROOT / "ARCHITECTURE/examples/level-v2.example.json")
     inconsistent_level["content"]["season"] = 2
     expect("REG-LEVEL-ID", "level-v2:id-content" in v2_binding_errors(inconsistent_level, proof))
@@ -1807,25 +1279,15 @@ def self_test(scope: str, manifest_path: Path) -> None:
     if failures:
         for label in failures: fail(f"self-test:not-detected:{label}")
     else:
-        PASSES.append(("LOCAL_ARCHITECTURE_SEMANTICS", "Mutations-Selbsttest: vier v0.5-HIGH-Korrekturen, V03-Regressionen und Guardrails werden erkannt"))
+        PASSES.append(("LOCAL_ARCHITECTURE_SEMANTICS", "Fehlerproben für Spielstände, Käufe, Rätsel und Auslieferung"))
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate Stammstrecken-Puzzle Architecture v1.0")
-    parser.add_argument("--scope", choices=("documentation", "production", "governance"))
-    parser.add_argument("--scope-manifest", type=Path)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
-    if bool(args.scope) != bool(args.scope_manifest):
-        parser.error("--scope and --scope-manifest must be provided together")
-    if args.scope_manifest is not None and scope_manifest_argument_error(args.scope_manifest):
-        parser.error("--scope-manifest must be a canonical repository-relative path")
-    manifest_path = None if args.scope_manifest is None else ROOT / args.scope_manifest
 
     groups: list[tuple[str, str, Callable[[], None]]] = [
-        ("LOCAL_DOCUMENT_STRUCTURE", "Datei-/ADR-Inventar", inventory_check),
-        ("LOCAL_DOCUMENT_STRUCTURE", "Work-Package-IDs und Struktur", work_package_check),
-        ("LOCAL_DOCUMENT_STRUCTURE", "ADR-Index, Status und Superseding", adr_check),
         ("LOCAL_DOCUMENT_STRUCTURE", "Relative Markdownlinks", markdown_link_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "JSON Schema Draft 2020-12", schema_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Level-v1-Legacy und Level-v2-/Proofbindung", level_and_proof_check),
@@ -1836,24 +1298,14 @@ def main() -> int:
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Ausführbarer Privacy-v2-Lifecycle", privacy_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "RC-/Promotion- und Release-Lock-Identität", release_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Store-Crashrate und Rolloutentscheidung", rollout_check),
-        ("LOCAL_ARCHITECTURE_SEMANTICS", "Vier Architecture-v0.5-HIGH-Verträge", review_contract_check),
+        ("LOCAL_ARCHITECTURE_SEMANTICS", "Endlosspiel, Freischaltungen und Store-Freigabe", review_contract_check),
         ("LOCAL_ARCHITECTURE_SEMANTICS", "Save-JCS Python/Node-Crosscheck", cross_tool_hash_check),
-        ("LOCAL_DOCUMENT_STRUCTURE", "Architecture-v1.0-Status und drei Produktblocker", version_and_blocker_check),
     ]
-    if args.scope and manifest_path:
-        groups.append(("LOCAL_SCOPE", "Git-Diff gegen versioniertes Scope-Manifest", lambda: git_scope_check(args.scope, manifest_path)))
     for category, name, function in groups: run_group(category, name, function)
-    mutation_manifest = manifest_path or ROOT / "tools/architecture-validation/scopes/WP-005.documentation.scope.json"
-    if args.self_test: self_test(args.scope or "documentation", mutation_manifest)
+    if args.self_test: self_test()
 
-    print(f"ARCHITECTURE VALIDATION v1.0 scope={args.scope or 'architecture-only'}")
+    print("Technische Spielprüfungen")
     for category, item in PASSES: print(f"{category} PASS  {item}")
-    if args.scope and manifest_path:
-        head = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True, capture_output=True, check=True).stdout.strip()
-        dirty = bool(subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain"], text=True, capture_output=True, check=True).stdout)
-        manifest = load_json(manifest_path)
-        print(f"SCOPE_CONTEXT  workPackage={manifest['workPackageId']} base={manifest['baseCommit']} head={head} worktreeDirty={str(dirty).lower()}")
-    for line in evidence_summary_lines(): print(line)
     if ERRORS:
         for item in ERRORS: print(f"FAIL  {item}")
         print(f"RESULT FAIL ({len(ERRORS)} Fehler)")

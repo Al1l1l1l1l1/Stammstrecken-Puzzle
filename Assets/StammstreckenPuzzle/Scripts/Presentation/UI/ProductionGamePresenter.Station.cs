@@ -255,7 +255,7 @@ namespace STP.Presentation.UI
                     finaleShown=view.AttemptId;finaleLetters=true;
                     SetVisible(Require<VisualElement>("result-panel"),false);
                 }
-                if(scene!="Puzzle"){rareVisit=memory.Visit();ChooseGag(scene,zone);}
+                if(scene!="Puzzle"){rareVisit=memory.Visit()&&!reducedMotion;ChooseGag(scene,zone);}
                 if(scene=="Depot"){memory.Fire("FIRST_DEPOT");UpdateDepot();}
                 if(scene=="Office"){
                     var welcome=programme.Mails.FirstOrDefault(m=>m.trigger=="FIRST_START");
@@ -304,7 +304,7 @@ namespace STP.Presentation.UI
                 }
                 var board=scene=="Puzzle"?view:null;
                 bool covered=scene=="Depot"&&depotIds.Count>0&&depotIds[depotIndex].StartsWith("train-",StringComparison.Ordinal)&&ownsCosmetic?.Invoke(depotIds[depotIndex])==false;
-                worldCamera.SetStage(scene,zone,board,frameAppearance,previewEquipment,previewProps,covered,memory.State.menuVisits,rareVisit&&(chosenGag.Contains("through")||chosenGag.Contains("ohne halt")||chosenGag.Contains("durchfahrt")));
+                worldCamera.SetStage(scene,zone,board,frameAppearance,previewEquipment,previewProps,covered,memory.State.menuVisits,!reducedMotion&&rareVisit&&(chosenGag.Contains("through")||chosenGag.Contains("ohne halt")||chosenGag.Contains("durchfahrt")));
                 if(board!=null&&(!ReferenceEquals(drawnBoard,board)||drawnRevision!=board.Revision||drawnPhase!=board.Phase))
                 {worldCamera.SyncBoard();drawnBoard=board;drawnRevision=board.Revision;drawnPhase=board.Phase;}
                 var panel=area.panel.visualTree;

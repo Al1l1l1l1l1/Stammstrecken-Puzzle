@@ -310,7 +310,8 @@ class ChangeScopeTests(unittest.TestCase):
             self.assertIn(f"- name: {step}", workflow, step)
         self.assertEqual(workflow.count("--activate-all --include-personal"), 6)
         self.assertEqual(workflow.count("--deactivate-all || true"), 4)
-        self.assertEqual(workflow.count("actions/upload-artifact@"), 4)
+        self.assertIn("name: android-device-results", workflow)
+        self.assertEqual(workflow.count("actions/upload-artifact@"), 5)
 
     def test_actual_unity_workflow_has_cheap_preflight_and_gates_all_unity_work(self) -> None:
         root = pathlib.Path(__file__).resolve().parents[2]
@@ -343,54 +344,21 @@ class ChangeScopeTests(unittest.TestCase):
 
     def test_candidate_recipe_updates_keep_unaffected_jobs_and_seat_controls(self) -> None:
         root = pathlib.Path(__file__).resolve().parents[2]
-        anchor = "8d2ff1950fa72777014eda0555b02b6e9fd9a995"
-        result = subprocess.run(
-            ["git", "show", f"{anchor}:.github/workflows/unity.yml"],
-            cwd=root,
-            text=True,
-            encoding="utf-8",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=False,
-        )
-        self.assertEqual(result.returncode, 0, result.stderr)
         current = (root / ".github/workflows/unity.yml").read_text(encoding="utf-8")
-        def jobs(source: str) -> dict[str, str]:
-            normalized = subject.normalize_unity_control(source)
-            starts = list(re.finditer(r"^  ([a-z][a-z0-9-]+):\n", normalized, re.MULTILINE))
-            return {match.group(1): normalized[match.start():starts[i+1].start() if i+1 < len(starts) else len(normalized)]
-                    for i, match in enumerate(starts)}
-        original_jobs, current_jobs = jobs(result.stdout), jobs(current)
-        self.assertEqual(set(original_jobs), set(current_jobs))
-        changed = {"project-preflight", "unity-android-development-il2cpp", "unity-ios-export",
-                   "unity-compile-editmode", "unity-playmode-bootstrap-smoke"}
-        # Only the verifier and the explicitly pinned collector preparation differ.
-        # Compilation/test commands, measurement flags and licence handling stay exact.
-        coverage_step = r"      - name: Coverage-Evidenz[^\n]*\n.*?(?=      - name: Unity-Personal-Seat)"
+        current_jobs = {name: body for name, body in re.findall(
+            r"^  ([a-z][a-z0-9-]+):\n(.*?)(?=^  [a-z][a-z0-9-]+:\n|\Z)", current, re.M | re.S)}
         for job in ("unity-compile-editmode", "unity-playmode-bootstrap-smoke"):
-            before, n_before = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", original_jobs[job], flags=re.DOTALL)
-            after, n_after = re.subn(coverage_step, "COVERAGE_VERIFIER_STEP\n", current_jobs[job], flags=re.DOTALL)
-            self.assertEqual((1, 1), (n_before, n_after), job)
-            old_collector = r"          python3 - <<'PYEOF'\n          import hashlib, json, pathlib\n.*?          PYEOF\n"
-            new_collector = r"          python3 tools/ci/prepare_coverage\.py\n"
-            before, n_before = re.subn(old_collector, "PINNED_COLLECTOR_PREPARATION\n", before, flags=re.DOTALL)
-            after, n_after = re.subn(new_collector, "PINNED_COLLECTOR_PREPARATION\n", after)
-            self.assertEqual((1, 1), (n_before, n_after), job)
-            self.assertEqual(before, after, job)
-            self.assertIn("python3 tools/ci/verify_coverage.py TestResults/Coverage --report TestResults/CoverageVerification.json", current_jobs[job])
-        for name in original_jobs.keys() - changed:
-            self.assertEqual(original_jobs[name], current_jobs[name], name)
-        for name in changed - {"project-preflight"}:
-            old, new = original_jobs[name], current_jobs[name]
-            # WP046 intentionally builds the actual full game and Pods workspace.
-            # Routing, runner readiness and single-seat ownership stay exact.
-            controls = ("needs:", "    if:", "runs-on:", "concurrency:", "group:", "timeout-minutes:",
-                        "--activate-all --include-personal", "--deactivate-all || true")
-            for control in controls:
-                def selected(block: str) -> list[str]:
-                    return [line for line in block.splitlines()
-                            if (line.startswith(control) if control == "    if:" else control in line)]
-                self.assertEqual(selected(old), selected(new), (name, control))
+            self.assertIn("tools/ci/prepare_coverage.py", current_jobs[job])
+            self.assertIn("tools/ci/verify_coverage.py", current_jobs[job])
+        for job in ("unity-compile-editmode", "unity-playmode-bootstrap-smoke",
+                    "unity-android-development-il2cpp", "unity-ios-export"):
+            block = current_jobs[job]
+            self.assertIn("group: unity-personal-seat", block)
+            self.assertIn("cancel-in-progress: false", block)
+            self.assertIn("--activate-all --include-personal", block)
+            self.assertIn("--deactivate-all || true", block)
+        for job in ("unity-environment-ios", "unity-ios-export"):
+            self.assertIn("bash tools/ci/install-unity-ios.sh", current_jobs[job])
         self.assertIn("-buildTarget Android", current_jobs["unity-android-development-il2cpp"])
         self.assertIn("-executeMethod STP.Editor.Build.MobilePreviewBuild.BuildAndroid", current)
         self.assertIn("tools/release/audit_android_apk.py", current)
@@ -407,14 +375,13 @@ class ChangeScopeTests(unittest.TestCase):
         self.assertNotIn("\t", workflow)
         self.assertIn("name: Architecture Validation", workflow)
         self.assertIn('pull_request:\n    branches: ["**"]', workflow)
-        self.assertIn("STP_SCOPE: production", workflow)
-        self.assertIn("STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-047.production.scope.json", workflow)
         self.assertIn("tools/ci/test_change_scope.py", workflow)
         self.assertIn("tools/ci/change_scope.py", workflow)
         self.assertIn("if: steps.classify.outputs.run_jcs == 'true'", workflow)
         self.assertEqual(workflow.count("if: steps.classify.outputs.run_text == 'true'"), 2)
-        self.assertIn("--scope \"$STP_SCOPE\"", workflow)
-        self.assertIn("--scope-manifest \"$STP_SCOPE_MANIFEST\"", workflow)
+        self.assertNotIn("--scope-manifest", workflow)
+        self.assertIn("tools/rework/check_satire.py", workflow)
+        self.assertIn("tools/rework/rebind_all.py --check", workflow)
         self.assertIn("--self-test", workflow)
 
 

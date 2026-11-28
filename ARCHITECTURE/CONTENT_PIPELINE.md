@@ -2,7 +2,7 @@
 
 ## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
 
-[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/HISTORY/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
 
 **Production statt Review:** vorhandene Prüfinstanzen/Proofs verwenden und nur tatsächlich betroffene späte Level korrigieren; typisierter vollständiger produktiver Import/Lock/Runtimeassets folgt. Eine Public240-Projektion belegt keine Humanqualität und darf nicht umetikettiert werden. Interne QAprofile bleiben isoliert. Die unten dokumentierten WP038/Public240-QApfade sind historische bzw. getrennte Werkzeuge, keine Produktstartoberfläche.
 

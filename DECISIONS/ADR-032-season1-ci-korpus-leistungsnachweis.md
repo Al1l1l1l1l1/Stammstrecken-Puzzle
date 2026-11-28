@@ -109,4 +109,4 @@ Ersetzt keinen ADR. Ergänzt ADR-007 im dort offen gelassenen CI-Leistungsnachwe
 [5]: ../Stammstrecken_Puzzle_Konzept_00-15/04_Schwierigkeit_Feldgroessen_und_Levelgenerierung.md "Schwierigkeit, Feldgrößen und Levelgenerierung"
 [6]: ../Stammstrecken_Puzzle_Konzept_00-15/14_Season_1_Content_Bible.md "Season-1-Content-Bible"
 [7]: https://github.com/Al1l1l1l1l1/Stammstrecken-Puzzle/pull/21 "Draft-PR #21 – WP-026-Lieferzweig"
-[8]: ../PROJECT_CONTROL/WP-028_EXECUTION_BRIEF.md "Verbindlicher Ausführungsbrief für WP-028"
+[8]: ../PROJECT_CONTROL/HISTORY/WP-028_EXECUTION_BRIEF.md "Verbindlicher Ausführungsbrief für WP-028"

@@ -24,7 +24,7 @@ namespace STP.Tests.Application.EditMode
     public static class LocalSaveContractFixtures
     {
         internal static ICanonicalJson Json=>(ICanonicalJson)Activator.CreateInstance(Assembly.Load("STP.Infrastructure.Content").GetType("STP.Infrastructure.Content.CanonicalJsonAdapter",true)!)!;
-        internal static string EvidencePath(string name)=>Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("STP_SOURCE_ROOT")??Directory.GetCurrentDirectory(),"PROJECT_CONTROL","ProductionBlocks","Public240Save","S",name));
+        internal static string EvidencePath(string name)=>Path.GetFullPath(Path.Combine(Environment.GetEnvironmentVariable("STP_SOURCE_ROOT")??Directory.GetCurrentDirectory(),"PROJECT_CONTROL","HISTORY","ProductionBlocks","Public240Save","S",name));
 
         // Frozen independent pre-codec Node22 reference, raw SHA256 ee0ef35bd3dbf03396fc5fd30389b9e75e486f8b08982b2efde3ffec1cba4ed0.
         // Gzip is only transport compression for test constants; no codec supplies expected values.

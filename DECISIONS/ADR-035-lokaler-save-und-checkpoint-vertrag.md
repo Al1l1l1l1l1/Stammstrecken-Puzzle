@@ -1,7 +1,7 @@
 # ADR-035 – Lokaler Save-, Checkpoint- und Commitvertrag
 
 ## Status
-**Angenommen** – technische Rolle R/Codex gemäß MANUS-2026-10-19-01 §5 nach getrennter Vorcode-Review PASS durch /root/t_boundary_review. [Annahme und Prüfbindung](../PROJECT_CONTROL/ProductionBlocks/Public240Save/T_ADR_DECISION.md). Keine allgemeine Produkt-/Geschäftsführerbefugnis.
+**Angenommen** – technische Rolle R/Codex gemäß MANUS-2026-10-19-01 §5 nach getrennter Vorcode-Review PASS durch /root/t_boundary_review. [Annahme und Prüfbindung](../PROJECT_CONTROL/HISTORY/ProductionBlocks/Public240Save/T_ADR_DECISION.md). Keine allgemeine Produkt-/Geschäftsführerbefugnis.
 
 ## Datum
 2026-10-19

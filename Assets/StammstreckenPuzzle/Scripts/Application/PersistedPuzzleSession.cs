@@ -42,6 +42,17 @@ namespace STP.Application
         /// <summary>Last confirmed immutable profile snapshot; never replaced by an uncertain proposed snapshot.</summary>
         public SaveSnapshot<LocalProfileState>? Snapshot=>durable;
         /// <summary>Current immutable domain state, including a solved state retained while persistence is uncertain.</summary>
+#if DEVELOPMENT_BUILD
+        public bool TryGetSolvedTiming(out string puzzleId, out double seconds, out bool notesUsed, out int hintsUsed)
+        {
+            var solved = session;
+            puzzleId = solved?.PuzzleId ?? string.Empty;
+            seconds = (solved?.ActiveElapsedMs ?? 0L) / 1000d;
+            notesUsed = solved != null && (solved.UsedEmptyMarker || solved.UsedOccupiedMarker);
+            hintsUsed = solved?.HintCount ?? 0;
+            return completionCommitted && solved != null && solved.AttemptId == committedAttempt;
+        }
+#endif
         public PuzzleSessionState? Session=>session;
         /// <summary>Current logical persistence status.</summary>
         public PersistedSessionStatus Status {get;private set;}

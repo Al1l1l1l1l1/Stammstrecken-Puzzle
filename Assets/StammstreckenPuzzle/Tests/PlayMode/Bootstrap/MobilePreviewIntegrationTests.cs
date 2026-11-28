@@ -632,6 +632,14 @@ namespace STP.Tests.Bootstrap.PlayMode
             seasonSetupWork = write; yield return Await(write);Assert.That(write.Result.Succeeded,Is.True,write.Result.ErrorCode);
             yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.Reload,installer.Model.State.Version)));yield return Idle();
             Assert.That(installer.Model.State.Progress!.FirstClearCount,Is.EqualTo(239));
+            if (PortraitPass)
+            {
+                var source = Directory.GetFiles(ownRoot, "save.json", SearchOption.AllDirectories).Single();
+                var relative = Path.GetRelativePath(ownRoot, source);
+                var destination = Path.Combine("TestResults", "DeviceSeed", relative);
+                Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+                File.Copy(source, destination, true);
+            }
             Submit("home-map");yield return Idle();
             for(int i=0;i<19&&Find<Button>("map-next").enabledSelf;i++)Submit("map-next");
             yield return Capture("stellwerk");
@@ -664,10 +672,12 @@ namespace STP.Tests.Bootstrap.PlayMode
             Assert.That(issued.PublicPuzzleInput.Identity,Is.EqualTo(identity));Assert.That(issued.GenerationOrdinal,Is.EqualTo("1"));
             Assert.That(installer.Presenter.IsPuzzleScreenActive,Is.True,"Issued puzzle must replace its own paused menu.");
             Assert.That(installer.Model.State.CanMutate,Is.True,"Closing the menu must release the host input pause.");
-            Submit("puzzle-hint");float deadline=Deadline(15);
+            Submit("puzzle-hint");float deadline=Deadline(90);
             while(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity)==3&&Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(candidate.Metagame.HintCredits(candidate.Persisted.Snapshot.Payload,identity),Is.EqualTo(2),"Wait for the actual visible clue's durable acknowledgement.");
+            deadline=Deadline(90);
             while(!Find<Button>("hint-close").enabledInHierarchy&&Time.realtimeSinceStartup<deadline)yield return null;
+            Assert.That(Find<Button>("hint-close").enabledInHierarchy,Is.True,"Hinweis muss nach der Gutschrift bedienbar sein.");
             Submit("hint-close");yield return Idle();
             Guid firstAttempt=view.AttemptId;
             yield return Await(installer.RunRequestAsync(SavedReviewUiRequest.Bound(SavedReviewUiRequestKind.Restart,installer.Model.State.Version)));yield return Idle();

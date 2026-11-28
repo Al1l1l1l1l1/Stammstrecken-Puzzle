@@ -14,7 +14,7 @@ Der echte logische Season-1-Korpus auf PR #21 erhält auf dem bestehenden CI-Ref
 
 ## Voraussetzungen
 
-1. Vollständige Lesereihenfolge aus [AGENTS.md](../AGENTS.md): Projektübergabe 15, Index 00, Master 09, CURRENT_STATE und dieses WP; anschließend Content-Bible 14, Konzept 04, WORK_QUEUE, DEFINITION_OF_DONE, CONTENT_PIPELINE, SOLVER_ARCHITECTURE, BUILD_AND_RELEASE, ADR-007, ADR-030, ADR-031 und ADR-032.
+1. Vollständige Lesereihenfolge aus [AGENTS.md](../../AGENTS.md): Projektübergabe 15, Index 00, Master 09, CURRENT_STATE und dieses WP; anschließend Content-Bible 14, Konzept 04, WORK_QUEUE, DEFINITION_OF_DONE, CONTENT_PIPELINE, SOLVER_ARCHITECTURE, BUILD_AND_RELEASE, ADR-007, ADR-030, ADR-031 und ADR-032.
 2. WP-027 ist nach unabhängiger QC auf `main` integriert. Seine in Content-Bible 14 persistierten Produktklarstellungen gelten; diese technische Arbeit ändert sie nicht.
 3. Der tatsächliche Startpunkt ist **exakt** `d97c39d03f59a2dbc34930f14e3cb74ebeb2e118` auf `codex/wp-026-season1-logical-content` (PR #21), nicht ein lokaler Ersatz, historischer Fixture-Stand oder ein pauschal neuer `main`-Branch. Vor Beginn ist Remote-Head, Elternschaft, sauberer Arbeitsbaum und fehlende parallele Bearbeitung zu belegen.
 4. Der erste Commit des neuen kindlichen WP-028-Branches führt dieses Work Package und sein Manifest gemeinsam hinzu. Dessen einziger Elterncommit ist `d97c39d03f59a2dbc34930f14e3cb74ebeb2e118`; `baseCommit` des Manifests stimmt bytegenau damit überein und bleibt danach unverändert.
@@ -85,4 +85,4 @@ Abschließende Außengrenze ist das oben verlinkte Manifest. Zulässig sind auss
 
 ## Definition of Done
 
-Die [projektweite Definition of Done](../PROJECT_CONTROL/DEFINITION_OF_DONE.md) gilt vollständig. Das später verankerte WP-028 ist nur dann technisch erfüllt, wenn AK-01 bis AK-08 belegt sind und die Unter-PR korrekt in den weiterhin offenen WP-026-Zweig integriert wurde. Die Integration in diesen Lieferzweig schließt weder WP-026 noch Season 1 ab. Vor einem späteren Merge von PR #21 bleiben insbesondere die neue unabhängige WP-026-Gesamtabnahme, menschlicher Spieltest, der eigenständige bestehende Unity-Timeoutbefund, 1.440 fehlende Referenzziele, Zeitklassen und alle Cross-Reference-/Import-/Produkt-/Releasegates unverändert offen.
+Die [projektweite Definition of Done](../DEFINITION_OF_DONE.md) gilt vollständig. Das später verankerte WP-028 ist nur dann technisch erfüllt, wenn AK-01 bis AK-08 belegt sind und die Unter-PR korrekt in den weiterhin offenen WP-026-Zweig integriert wurde. Die Integration in diesen Lieferzweig schließt weder WP-026 noch Season 1 ab. Vor einem späteren Merge von PR #21 bleiben insbesondere die neue unabhängige WP-026-Gesamtabnahme, menschlicher Spieltest, der eigenständige bestehende Unity-Timeoutbefund, 1.440 fehlende Referenzziele, Zeitklassen und alle Cross-Reference-/Import-/Produkt-/Releasegates unverändert offen.

@@ -297,6 +297,18 @@ namespace STP.Bootstrap
             Document = gameObject.AddComponent<UIDocument>();
             Document.panelSettings = panel;
             tree!.CloneTree(Document.rootVisualElement);
+#if DEVELOPMENT_BUILD
+            AddBuildTimeExport(Document.rootVisualElement);
+#if UNITY_ANDROID && !UNITY_EDITOR
+            EnableDeviceCheck();
+#endif
+#endif
+            if (UnityEngine.Application.isMobilePlatform)
+            {
+                Document.rootVisualElement.RegisterCallback<PointerDownEvent>(OnFrameInput, TrickleDown.TrickleDown);
+                Document.rootVisualElement.RegisterCallback<PointerMoveEvent>(OnFrameDrag, TrickleDown.TrickleDown);
+                WakeFrameRate();
+            }
             Document.rootVisualElement.styleSheets.Add(styles!);
             presenter = new ProductionGamePresenter(Document.rootVisualElement, locale!, () => clock.MonotonicMilliseconds, RunRequestAsync);
             if(offlineNotices!=null)presenter.BindOfflineNotices(offlineNotices.text);
@@ -512,9 +524,39 @@ namespace STP.Bootstrap
         private void ClearHintDisplayProjection()
         {hintDisplayModel=null;hintDisplayPolicy=null;hintDisplayPayload=null;hintDisplayIdentity=null;hintDisplayCredits=0;}
         private static int RequiredIndex(SavedReviewUiRequest request) => request.PuzzleIndex ?? throw new ArgumentException("PREVIEW_PUZZLE_MISSING");
+        private float lastFrameActivity;
+        private long frameRevision = -1;
+        private Guid frameAttempt;
+
+        private void WakeFrameRate()
+        {
+            lastFrameActivity = Time.unscaledTime;
+            if (UnityEngine.Application.targetFrameRate != 60) UnityEngine.Application.targetFrameRate = 60;
+        }
+        private void OnFrameInput(PointerDownEvent evt) => WakeFrameRate();
+        private void OnFrameDrag(PointerMoveEvent evt) { if (evt.pressedButtons != 0) WakeFrameRate(); }
+
+        private void UpdateFrameRate()
+        {
+            if (!UnityEngine.Application.isMobilePlatform) return;
+            var view = model?.PuzzleView;
+            if (view == null || presenter?.IsPuzzleScreenActive != true || presenter.IsProductModalOpen ||
+                presenter.IsHelpOpen || view.Phase != DevelopmentPreviewPhase.Editing || ride != null ||
+                view.AttemptId != frameAttempt || view.Revision != frameRevision)
+                WakeFrameRate();
+            else if (Time.unscaledTime - lastFrameActivity >= 2f && UnityEngine.Application.targetFrameRate != 30)
+                UnityEngine.Application.targetFrameRate = 30;
+            frameRevision = view?.Revision ?? -1;
+            frameAttempt = view?.AttemptId ?? Guid.Empty;
+        }
+
         private void Update()
         {
             if (disposed) return;
+#if DEVELOPMENT_BUILD && UNITY_ANDROID && !UNITY_EDITOR
+            PollDeviceCheck();
+#endif
+            UpdateFrameRate();
             dispatcher?.Drain(); ApplySafeArea(); presenter?.Refresh();
             // Frame-local comparison only: never suppress either gameplay refresh while a puzzle exists.
             var frameModel=model;var framePresenter=presenter;var frameState=model?.State;
@@ -565,6 +607,9 @@ namespace STP.Bootstrap
                 {
                     try
                     {
+#if DEVELOPMENT_BUILD
+                        RecordBuildTime(view.Width, view.Height);
+#endif
                         ride = new ProductionTrainRide(view.BuiltPath, view.EndpointA, view.EndpointB, view.Width, view.Height, 3.2f/Mathf.Max(1,view.BuiltPath.Count));
                         rideAttempt = attempt; rideView = view;
                         gameAudio?.Play("RouteReveal");gameAudio?.Play("Gong");gameAudio?.Play("TrainStart");
@@ -641,7 +686,12 @@ namespace STP.Bootstrap
             experience?.Dispose();DisposeRide(); presenter?.Dispose(); model?.Dispose();
             serviceWork=Task.WhenAll(serviceWork,experience?.Pending??Task.CompletedTask);
             if (output != null) UnityEngine.Object.Destroy(output.gameObject);
-            if (Document != null) Document.rootVisualElement?.Clear();
+            if (Document != null && Document.rootVisualElement != null)
+            {
+                Document.rootVisualElement.UnregisterCallback<PointerDownEvent>(OnFrameInput, TrickleDown.TrickleDown);
+                Document.rootVisualElement.UnregisterCallback<PointerMoveEvent>(OnFrameDrag, TrickleDown.TrickleDown);
+                Document.rootVisualElement.Clear();
+            }
             ShutdownTask = FinishShutdownAsync(Task.WhenAll(operation,lifecycle,hintWork,InitializeTask,DrainClosedExperienceAsync(serviceWork),
                 localDataOperation,deletionDrain??Task.CompletedTask,CloseLocalDiagnosticsAsync()));
         }

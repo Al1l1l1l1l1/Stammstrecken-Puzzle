@@ -2,7 +2,7 @@
 
 ## Aktueller Produktionsvertrag – MANUS-2026-10-20-02
 
-[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
+[Maßgebliches vollständiges Release-Gesamtmandat](../PROJECT_CONTROL/HISTORY/PRODUCTION_RECOVERY_AND_RELEASE_MANDATE_2026-10-20.md). Aktuelle große Lieferausführung unter R und drei parallelen Bahnen; Vorbereitung, Implementation, Eigenkorrektur, gezielte unabhängige Annahme und Integration gehören in denselben Auftrag. Keine neue Mikro-WP-/T/A/S/P/I-/Closeoutkaskade pro Routinefix. Alte Architecture-/ADR-/Fixture-/Nachweisgrundlagen bleiben unverändert nachvollziehbar; unten ausdrücklich benannte historische QAverträge sind keine neue Stopregel für die jetzige Produktlieferung.
 
 **Neue konkrete Qualitätsnachweise:** Sticky-Tool→Direkttap und Toggle-Leeren aller sechs Formen/X/Grau, Undo/Timer/Autosave/Restore ohne sichtbare Zell-/Toolrect-Verschiebung. Keine QA-/Multi-/Anwendenscreens im Produktionsstart; tatsächliche 6×5/10×10-Handprobe, Safe Areas/Touch/Schrift/Audio/Rückmeldung. Späte Rätsel/Human-Star-/Generatorprofile real prüfen, nicht aus Proofproxies erfinden.
 

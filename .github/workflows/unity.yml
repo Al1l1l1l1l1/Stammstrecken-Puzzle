@@ -466,26 +466,20 @@ jobs:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_INSTALL_CLEANUP: "1"
     steps:
+      - name: Repository auschecken
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Unity-Editor-Installation aus Cache wiederherstellen
         id: cache-unity
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: /Applications/Unity/Hub/Editor/6000.3.23f1
-          key: unity-editor-macos15-6000.3.23f1-ios-v1
+          key: unity-editor-macos15-6000.3.23f1-ios-pkg-v2
           save-always: true
 
-      - name: Unity Hub installieren
+      - name: Signierten Unity-Editor mit iOS-Unterstützung installieren
         if: steps.cache-unity.outputs.cache-hit != 'true'
-        run: brew install --cask unity-hub
-
-      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
-        if: steps.cache-unity.outputs.cache-hit != 'true'
-        run: |
-          set -euo pipefail
-          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
-            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
-            --module ios --architecture arm64
-          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+        run: bash tools/ci/install-unity-ios.sh
 
       - name: Editor-Version prüfen (direkter Bundle-Pfad)
         run: |
@@ -728,7 +722,7 @@ jobs:
       - name: Bahnwelt auf dem virtuellen Handybildschirm durchspielen
         if: >-
           !cancelled() && hashFiles('TestResults/playmode.xml') != '' &&
-          (github.ref_name == 'rework/wp-047-welt' || github.head_ref == 'rework/wp-047-welt')
+          (github.ref_name == 'main' || startsWith(github.ref_name, 'rework/wp-') || startsWith(github.head_ref, 'rework/wp-'))
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
           STP_STATION_FRAMES: "1"
@@ -857,21 +851,12 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: /Applications/Unity/Hub/Editor/6000.3.23f1
-          key: unity-editor-macos15-6000.3.23f1-ios-v1
+          key: unity-editor-macos15-6000.3.23f1-ios-pkg-v2
           save-always: true
 
-      - name: Unity Hub installieren
+      - name: Signierten Unity-Editor mit iOS-Unterstützung installieren
         if: steps.cache-unity.outputs.cache-hit != 'true'
-        run: brew install --cask unity-hub
-
-      - name: Unity 6000.3.23f1 mit iOS-Modul installieren (Changeset-gepinnt)
-        if: steps.cache-unity.outputs.cache-hit != 'true'
-        run: |
-          set -euo pipefail
-          "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub" -- --headless install \
-            --version "${STP_UNITY_VERSION}" --changeset "${STP_UNITY_CHANGESET}" \
-            --module ios --architecture arm64
-          test -d "/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app"
+        run: bash tools/ci/install-unity-ios.sh
 
       - name: Editor-Version prüfen (direkter Bundle-Pfad)
         run: |
@@ -974,3 +959,30 @@ jobs:
         run: |
           LIC_CLIENT="/Applications/Unity/Hub/Editor/${STP_UNITY_VERSION}/Unity.app/Contents/Helpers/UnityLicensingClient.app/Contents/MacOS/Unity.Licensing.Client"
           "${LIC_CLIENT}" --username "${UNITY_EMAIL}" --password "${UNITY_PASSWORD}" --deactivate-all || true
+
+  android-device:
+    name: android-device
+    needs: [unity-playmode-bootstrap-smoke, unity-android-development-il2cpp]
+    if: github.ref_name == 'main' || github.ref_name == 'rework/wp-049-abschluss' || github.head_ref == 'rework/wp-049-abschluss'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Spiel und Android-Test laden
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Gebaute APK und vorbereiteten Spielstand laden
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" -n android-development-il2cpp -D apk
+          gh run download "$GITHUB_RUN_ID" -n playmode-results -D seed
+      - name: Android-Spiel vom Einstieg bis zur Betriebsrevision bedienen
+        run: bash tools/ci/run-android-device.sh
+      - name: Handyansichten und Messwerte aufbewahren
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: android-device-results
+          path: DeviceResults/

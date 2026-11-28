@@ -1,31 +1,3 @@
-# Architecture Validation (WP-007)
-#
-# Kanonische CI-Integration des Architekturvalidators aus
-# tools/architecture-validation/ (ADR-017, ADR-026, ADR-030).
-#
-# - Architecture-only-Lauf mit --self-test auf jedem Ereignis.
-# - Kanonischer Work-Package-Scope-Lauf mit --self-test gegen das in
-#   STP_SCOPE_MANIFEST benannte, vorab verankerte Manifest bei Pull Requests
-#   und bei Pushes auf Branches außer main. Auf main-Pushes entfällt der
-#   Scope-Schritt, weil der Integrationsstand keinem einzelnen
-#   Work-Package-Diff mehr entspricht.
-# - Bei pull_request bleibt der initiale Checkout der synthetische
-#   PR-Merge-Stand und trägt den Architecture-only-Lauf; unmittelbar vor dem
-#   Scope-Lauf wird der tatsächliche PR-Head (head.sha) mit vollständiger
-#   Historie ausgecheckt, damit der Scope-Diff baseCommit→PR-Head keine
-#   fremden Main-Änderungen aus dem synthetischen Merge enthält. Bei push
-#   erfolgt kein zweiter Checkout.
-# - Jedes künftige Work Package setzt STP_SCOPE_MANIFEST auf sein eigenes
-#   verankertes Manifest und nimmt diese Workflowdatei in seine Allowlist auf.
-# - WP-023: Die JCS-/Hash-Goldenvektoren der Level-v2-Foundation
-#   (level-v2-jcs-golden.json) werden unabhängig von der C#-Implementierung
-#   durch die Node-Referenz tools/architecture-validation/jcs_crosscheck.mjs
-#   nachgerechnet (Kanonisierung, Ablehnungsfälle, Content-, Public-Puzzle-,
-#   Lösungs-, Proof- und Legacy-v1-Hashes der Beispieldokumente). Die
-#   Unity-Seite derselben Vektoren prüft der Content-EditMode-Lauf in unity.yml.
-# - Fail-closed: jeder Validatorfehler (Exitcode ungleich 0) lässt den Check
-#   "Architecture Validation / validate" fehlschlagen.
-
 name: Architecture Validation
 
 on:
@@ -37,10 +9,6 @@ on:
 
 permissions:
   contents: read
-
-env:
-  STP_SCOPE: production
-  STP_SCOPE_MANIFEST: tools/architecture-validation/scopes/WP-047.production.scope.json
 
 jobs:
   validate:
@@ -214,17 +182,8 @@ jobs:
           ../.venv-stp-architecture/bin/python tools/text-library/validate.py --self-test
           ../.venv-stp-architecture/bin/python tools/text-library/render.py --check
 
-      - name: Tatsächlichen PR-Head für Scope-Prüfung auschecken
-        if: github.event_name == 'pull_request'
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-
-      - name: Kanonischer Work-Package-Scope-Lauf mit Self-/Negativtests
-        if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
+      - name: Spieltexte und Laufzeitdaten prüfen
         run: |
-          ../.venv-stp-architecture/bin/python tools/architecture-validation/validate.py \
-            --scope "$STP_SCOPE" \
-            --scope-manifest "$STP_SCOPE_MANIFEST" \
-            --self-test
+          python3 tools/rework/check_star_times.py
+          python3 tools/rework/check_satire.py
+          python3 tools/rework/rebind_all.py --check

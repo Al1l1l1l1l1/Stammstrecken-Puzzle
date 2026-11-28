@@ -19,6 +19,30 @@ import java.io.IOException;
 public final class PunctualityProof {
     public static final class Provider extends FileProvider {}
     private PunctualityProof() {}
+    public static void shareDocument(Activity activity, String sourcePath, String name) {
+        activity.runOnUiThread(() -> {
+            try {
+                File dir = new File(activity.getCacheDir(), "punctuality");
+                if (!dir.isDirectory() && !dir.mkdirs()) throw new IOException();
+                File output = new File(dir, new File(name).getName());
+                try (java.io.FileInputStream input = new java.io.FileInputStream(sourcePath);
+                     FileOutputStream stream = new FileOutputStream(output)) {
+                    byte[] buffer = new byte[8192];
+                    int count;
+                    while ((count = input.read(buffer)) != -1) stream.write(buffer, 0, count);
+                }
+                Uri uri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".punctuality", output);
+                Intent send = new Intent(Intent.ACTION_SEND).setType("application/x-ndjson");
+                send.putExtra(Intent.EXTRA_STREAM, uri);
+                send.setClipData(ClipData.newRawUri(name, uri));
+                send.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                activity.startActivity(Intent.createChooser(send, "Datei teilen"));
+            } catch (IOException | RuntimeException failure) {
+                Toast.makeText(activity, "Die Datei konnte nicht geteilt werden.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public static void share(Activity activity, String title, String route, String grid, String time,
                              String stars, String statement, String chooser) {
         activity.runOnUiThread(() -> {

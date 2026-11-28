@@ -16,7 +16,7 @@ Die verbindlichen Architekturquellen verlangen einen deterministischen Solver, e
 2. Ein gespeicherter Proof wird nicht mit einer frischen Solverregeneration verglichen.
 3. Der Prototyp vermischt Root-Propagation und Suchzweige bei der Deduktionstiefe, obwohl die Kampagnenschwierigkeit aus nachvollziehbaren Schlussketten des öffentlichen Puzzleinputs entstehen muss.
 
-Die Festlegung erfolgt **nicht** auf Grundlage eines späteren separaten Manus-Chats. Die Quellenherkunft und die ausgeschlossene Quelle sind in [`WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md`](../PROJECT_CONTROL/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md) dokumentiert.
+Die Festlegung erfolgt **nicht** auf Grundlage eines späteren separaten Manus-Chats. Die Quellenherkunft und die ausgeschlossene Quelle sind in [`WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md`](../PROJECT_CONTROL/HISTORY/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md) dokumentiert.
 
 ## Entscheidung
 
@@ -116,4 +116,4 @@ Ersetzt keinen ADR vollständig. Ergänzt [`ADR-007`](./ADR-007-solver-und-einde
 [4]: ../ARCHITECTURE/LEVEL_DATA_FORMAT.md "Level Data Format"
 [5]: ../ARCHITECTURE/CONTENT_PIPELINE.md "Content Pipeline"
 [6]: ../Stammstrecken_Puzzle_Konzept_00-15/04_Schwierigkeit_Feldgroessen_und_Levelgenerierung.md "Schwierigkeit, Feldgrößen und Levelgenerierung"
-[7]: ../PROJECT_CONTROL/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md "WP-013 – Quellenautorität, Auditkorrektur und Wiederanlauf"
+[7]: ../PROJECT_CONTROL/HISTORY/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md "WP-013 – Quellenautorität, Auditkorrektur und Wiederanlauf"

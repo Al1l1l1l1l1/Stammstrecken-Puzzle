@@ -24,7 +24,7 @@ Der vollständige Sollzustand der späteren Implementierung bleibt: `proof-v1` i
 4. Frische Branch `codex/wp-025-proof-v1-strict-preparation` von exakt dieser Basis. WP-025 und sein eigenes Manifest werden erstmals gemeinsam im ersten Branchcommit als `A` eingeführt; dessen einziger Elterncommit und Manifest-`baseCommit` sind exakt diese Basis. Historischer Dateiname, H1, `## ID` und lokaler Manifestlink müssen dieselbe Kennung und denselben kanonischen Pfad binden. Das Manifest ist danach byteunveränderlich.
 5. Vor Änderungen tatsächlichen `main`, Branches, Historie, offene PRs und relevante CI prüfen. Bei bereits laufender oder abgeschlossener gleicher Arbeit keinen zweiten Anchor erzeugen. WP-025 war in der vollständigen abgerufenen Historie unvergeben; kein entsprechender Remote-Branch oder offener PR lag vor.
 6. Bestehende Workflowgates und Zugänge bleiben erhalten. Unity-Lizenzjobs teilen die globale Concurrency-Gruppe `unity-personal-seat` mit `cancel-in-progress: false`; GitHub kann zusätzliche wartende Jobs ersetzen. Eigene Push-/PR-Ereignisse deshalb zeitlich trennen und laufende fremde CI weder abbrechen noch neu starten. Laufende/abgebrochene Runs sind kein PASS.
-7. Historische WP-008-/WP-009-/WP-013-Branches sind nur lesbare Vergleichs-/Negativkorpora, keine Lieferquellen. [Quellenkorrektur](../PROJECT_CONTROL/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md) gilt unverändert. `BLOCKER-PROD-001` bis `-003` bleiben offen und fail-closed.
+7. Historische WP-008-/WP-009-/WP-013-Branches sind nur lesbare Vergleichs-/Negativkorpora, keine Lieferquellen. [Quellenkorrektur](../PROJECT_CONTROL/HISTORY/WP-013_SOURCE_AUTHORITY_AND_RECOVERY.md) gilt unverändert. `BLOCKER-PROD-001` bis `-003` bleiben offen und fail-closed.
 
 ## Scope
 
