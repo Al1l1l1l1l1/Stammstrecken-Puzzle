@@ -52,8 +52,8 @@ def ready(name, p):
     return target and target["enabled"]
 
 
-def tap(name):
-    p = wait(lambda x: ready(name, x), name)
+def tap(name, p=None):
+    if p is None: p = wait(lambda x: ready(name, x), name)
     t = targets(p)[name]
     adb("shell", "input", "tap", str(t["x"]), str(t["y"]))
 
@@ -118,8 +118,8 @@ def capture_unity_profile(storage):
 def dismiss_post():
     for _ in range(4):
         p = page()
-        if ready("mail-close",p): tap("mail-close")
-        elif ready("result-skip-bonus",p): tap("result-skip-bonus")
+        if ready("mail-close",p): tap("mail-close",p)
+        elif ready("result-skip-bonus",p): tap("result-skip-bonus",p)
         else: break
 
 
@@ -177,8 +177,16 @@ def solve(name):
         adb("shell","input","tap",str(cell["x"]),str(cell["y"]))
         page()
     solve.last_tool=None
-    wait(lambda x: x["phase"]=="Results",name+" Ergebnis",150)
+    def finished(state):
+        if name == "dauerbaustelle-1" and state["phase"] == "TrainRide" and not metrics.get("rideObserved"):
+            expected = {"train-u-bahn-muenchen", "wagon-grossraum-sitzplatz-optional", "livery-baustellengelb"}
+            if not expected.issubset(state["equipped"]): raise AssertionError("Fahrzeugausstattung fehlt")
+            capture("fahrt-mit-u-bahn")
+            metrics["rideObserved"] = True
+        return state["phase"] == "Results"
+    wait(finished,name+" Ergebnis",150)
     time.sleep(4.2)
+    page()
     capture(name+"-result")
     dismiss_post()
 
@@ -195,7 +203,7 @@ def home():
         if ready("home-play",p): return
         for name in ["mail-close","result-skip-bonus","result-home","map-back","nav-home","puzzle-back"]:
             if ready(name,p):
-                tap(name)
+                tap(name,p)
                 time.sleep(1)
                 break
         else:
@@ -281,6 +289,7 @@ def main():
     tap("home-revision")
     tap("map-node-0")
     tap("map-dispatch")
+    wait(lambda p:p["mode"]=="REVISION" and p["phase"]=="Editing","Bewertete Betriebsrevision")
     solve("betriebsrevision")
     timings=adb("shell", "cat", storage+"/star-times-debug.jsonl")
     records=[json.loads(line) for line in (initial+"\n"+timings).splitlines() if line.strip()]
