@@ -76,8 +76,9 @@ def cold(name, control):
 
 def measure(name, active=None):
     def touch():
-        for _ in range(7):
-            adb("shell","input","tap",str(active["x"]),str(active["y"]))
+        for _ in range(5):
+            x, y = active["x"], active["y"]
+            adb("shell","input","swipe",str(x),str(y),str(x+30),str(y+4),"420")
             time.sleep(.5)
     worker = threading.Thread(target=touch) if active else None
     if worker: worker.start()
@@ -140,7 +141,7 @@ def solve(name):
     p=wait(lambda x: ready("puzzle-cell-0-0",x) and x["phase"]=="Editing",name)
     controls=targets(p)
     capture(name+"-board")
-    if p["width"]==10: metrics["cellPixels10x10"]=controls["puzzle-cell-0-0"]["width"]
+    if p["width"]==10: metrics["cellPixels10x10At540"]=controls["puzzle-cell-0-0"]["width"]
     for tool,x,y in solve_path(p):
         # Tool selection persists between cells.
         button=controls["tool-"+str(tool)]
@@ -148,8 +149,10 @@ def solve(name):
         # The grid reapplies the selected tool across cells; buttons set a tool explicitly.
         if tool != getattr(solve,"last_tool",None):
             adb("shell","input","tap",str(button["x"]),str(button["y"]))
+            page()
             solve.last_tool=tool
         adb("shell","input","tap",str(cell["x"]),str(cell["y"]))
+        page()
     solve.last_tool=None
     wait(lambda x: x["phase"]=="Results",name+" Ergebnis",150)
     time.sleep(4.2)
@@ -178,7 +181,7 @@ def select_cosmetic(item):
         if "depot-next" in targets(p):
             tap("depot-next")
         else:
-            adb("shell","input","swipe","540","1780","540","680","480")
+            adb("shell","input","swipe","270","880","270","340","480")
     tap(action)
     wait(lambda p:item in p["owned"],"Kauf "+item)
     if item not in last["equipped"]:
@@ -190,13 +193,21 @@ def main():
     cold("entry","home-play")
     tap("home-play")
     wait(lambda p:ready("puzzle-cell-0-0",p),"Erstes Rätsel")
-    measure("puzzleActive",targets(last)["tool-1"])
+    measure("puzzleActive",{"x":420,"y":240})
     time.sleep(2.5)
     measure("puzzleIdle")
+    # Keep the 1080x2400 measurements; reduce the raster only for synthetic touch replay on the CPU renderer.
+    adb("shell","wm","size","540x1200")
+    adb("shell","wm","density","210")
+    time.sleep(3)
     solve("auftrag")
     home()
+    adb("shell","wm","size","1080x2400")
+    adb("shell","wm","density","420")
     cold("platform","home-play")
     measure("platform")
+    adb("shell","wm","size","540x1200")
+    adb("shell","wm","density","210")
     storage=last["storage"]
     assert storage.endswith("/Android/data/"+PACKAGE+"/files")
     initial=command("cat "+shlex.quote(storage+"/star-times-debug.jsonl"))
