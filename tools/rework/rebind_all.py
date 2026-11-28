@@ -81,6 +81,32 @@ def put(path: Path, data: bytes, check: bool) -> None:
         path.write_bytes(data)
 
 
+def step_scene_audio(check: bool) -> None:
+    # The player's committed scene must serialize the same ordered bank as the editor generator.
+    assets = ROOT / "Assets/StammstreckenPuzzle"
+    editor = (assets / "Scripts/Editor/Build/ProductionAudioAssets.cs").read_text(encoding="utf-8")
+    names = re.search(r'string\[\] Files=\{([^}]+)\}', editor)
+    if not names:
+        raise ValueError("Klangliste des Szenengenerators fehlt")
+    cues = re.findall(r'"([^"]+)"', names[1])
+    if not cues or len(set(cues)) != len(cues):
+        raise ValueError("Ungültige Klangliste")
+    scene = assets / "Scenes/QA/MobilePreview.unity"
+    content = scene.read_text(encoding="utf-8")
+    bindings = ["  audioClips:"]
+    for name in cues:
+        meta = (assets / "Audio/Cues" / (name + ".wav.meta")).read_text(encoding="utf-8")
+        guid = re.search(r"^guid: ([0-9a-f]{32})$", meta, re.MULTILINE)
+        if not guid:
+            raise ValueError("Keine Audioquelle für " + name)
+        bindings.append("  - {fileID: 8300000, guid: " + guid[1] + ", type: 3}")
+    updated, count = re.subn(r"^  audioClips:\n(?:  - \{[^\n]+\}\n)+",
+                             "\n".join(bindings) + "\n", content, flags=re.MULTILINE)
+    if count != 1:
+        raise ValueError("Keine eindeutige Klangbank in der Android-Szene")
+    put(scene, updated.encode("utf-8"), check)
+
+
 def run(cmd: list[str]) -> str:
     result = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True)
     if result.returncode != 0:
@@ -164,6 +190,7 @@ def main() -> None:
     args = parser.parse_args()
     if not (ROOT / "AGENTS.md").is_file():
         raise SystemExit("Bitte im Repository ausführen.")
+    step_scene_audio(args.check)
     step_campaign_text(args.check)
     if args.check and changed:
         # Folgeschritte rechnen mit den Repo-Dateien; Abweichung reicht als Befund.
